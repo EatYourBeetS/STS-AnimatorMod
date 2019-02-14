@@ -58,5 +58,10 @@
 		"DESCRIPTION": "弃掉一定数量的牌然后抽出同等数量的牌.",
 		"NAMES": ["cycle","循环"],
 		"PROPERNAME": "循环"
+	},
+	{
+		"DESCRIPTION": "可被多次升级.",
+		"NAMES": ["augmentable","多重进化"],
+		"PROPERNAME": "多重进化"
 	}
 ]

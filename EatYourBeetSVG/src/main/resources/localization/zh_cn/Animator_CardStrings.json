@@ -123,6 +123,13 @@
 		"NAME": "Stephanie",
 		"UPGRADE_DESCRIPTION": "固有. 选择一张手牌, 从你的抽牌堆中取一张同系列的牌."
 	},
+	"animator_DwarfShaman":
+	{
+		"DESCRIPTION": "造成!D!点伤害.若打破目标格挡，抽!M!张牌并升级([#EFC851]*[#FFFFFF]).",
+		"UPGRADE_DESCRIPTION": "造成!D!点伤害.若打破目标格挡，抽!M!张牌并升级([#EFC851]*[#FFFFFF]).",
+		"EXTENDED_DESCRIPTION": ["* 注", "优先抽未升级的牌，若全部升级则随机抽."],
+		"NAME": "'Dwarf Shaman'"
+	},
 	"animator_Elesis":
 	{
 		"DESCRIPTION": "造成 !D! 点伤害. 保留. 每次抽到这张牌时，伤害增加 !M! 点.",
@@ -135,14 +142,14 @@
 	},
 	"animator_Emonzaemon":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害. If this is your 3rd Attack in a row, obtain [#EFC851]炎刀[#EFC851]·铳, then Purge this.",
+		"DESCRIPTION": "造成 !D! 点伤害. 如果这是连续的第三次攻击, 消耗并获得获得[#EFC851]炎刀·铳 .",
 		"EXTENDED_DESCRIPTION": ["炎刀·铳", "A special 0-Cost #yPower."],
 		"NAME": "门左卫兽",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害. If this is your 3rd Attack in a row, obtain [#EFC851]炎刀[#EFC851]·铳, then Purge this."
+		"UPGRADE_DESCRIPTION": " 造成 !D! 点伤害. NL 如果这是连续的第三次攻击, 消耗并获得获得[#EFC851]炎刀·铳+ ."
 	},
 	"animator_Entoma":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害与 !M! 层毒. [#EFC851]饥饿.",
+		"DESCRIPTION": "可被多次升级.造成 !D! 点伤害与 !M! 层毒. [#EFC851]饥饿.",
 		"EXTENDED_DESCRIPTION": ["饥饿", "每回合造成的伤害减少 #b1 点. 如果这张牌消灭了非爪牙的敌人, 永久获得 #b1 点伤害 和 #b2 点生命上限."],
 		"NAME": "Entoma"
 	},
@@ -178,25 +185,57 @@
 	},
 	"animator_Gilgamesh":
 	{
-		"DESCRIPTION": "可被多次升级. 对一个敌人造成 !D! 点伤害 3 次. NL [#EFC851]巴比伦的宝藏.",
-		"EXTENDED_DESCRIPTION": ["巴比伦的宝藏", "每当你获得遗物时升级这张牌并获得 #b", " 个金币. 买的遗物不会触发该效果."],
+		"DESCRIPTION": "可被多次升级. 对一个敌人造成 !D! 点伤害 3 次. NL [#EFC851]巴比伦的宝藏 .",
+		"EXTENDED_DESCRIPTION": ["巴比伦的宝藏", "每当你获得遗物时升级这张牌并获得", " 个金币. 买的遗物不会触发该效果."],
 		"NAME": "英雄王·吉尔伽美什"
+	},
+		"animator_GoblinSoldier":
+	{
+		"DESCRIPTION": "抽到这张牌时，额外抽一张牌.回合结束时,受到2 点伤害.",
+		"NAME": "哥布林小鬼"
+	},
+	"animator_GoblinShaman":
+	{
+		"DESCRIPTION": "在你的回合结束时, 获得1层脆弱. 消耗.",
+		"NAME": "哥布林萨满"
+	},
+	"animator_GoblinChampion":
+	{
+		"DESCRIPTION": "在你的回合结束时,往抽牌堆中加入1张随机哥布林牌.",
+		"NAME": "哥布林冠军"
+	},
+	"animator_GoblinKing":
+	{
+		"DESCRIPTION": "回合结束时,往抽牌堆中加入如3张随机哥布林牌.",
+		"NAME": "哥布林王"
+	},
+	"animator_GoblinSlayer":
+	{
+		"DESCRIPTION": "[#EFC851]哥布林杀手. NL 造成!D!点伤害. NL 获得!B!点格挡. NL 保留.",
+		"EXTENDED_DESCRIPTION": ["哥布林杀手", "消耗所有位于手牌和弃牌堆中的状态牌和诅咒牌. 已消耗牌堆中每有一张牌，额外造成2点伤害. #yWARNING: 哥布林将开始入侵你的牌堆."],
+		"NAME": "哥布林杀手"
+	},
+	"animator_GuildGirl":
+	{
+		"DESCRIPTION": "回合开始时, 循环!M!张牌.",
+		"UPGRADE_DESCRIPTION": "回合开始时,循环!M!张牌.",
+		"NAME": "柜台小姐"
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "给予一个敌人 !B! 点格挡, 然后获得等同于目标的格挡值. 同调: 获得 !M! Focus.",
+		"DESCRIPTION": "给予一个敌人 !B! 点格挡, 然后获得等同于目标的格挡值. 同调: 获得 !M! 点集中.",
 		"NAME": "Guy"
 	},
 	"animator_HigakiRinne":
 	{
-		"DESCRIPTION": "穿越者. NL 布朗运动爱好者...",
+		"DESCRIPTION": "穿越者. NL 布朗运动爱好者...(触发随机效果)",
 		"NAME": "Higaki Rinne",
-		"UPGRADE_DESCRIPTION": "穿越者. NL 真·布朗运动爱好者..."
+		"UPGRADE_DESCRIPTION": "穿越者. NL 真·布朗运动爱好者...(触发更多随机效果)"
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "在你的回合开始时获得 !M!个金币并从你的抽牌堆中随机消耗一张牌.",
-		"EXTENDED_DESCRIPTION": ["资金限制", "每场战斗中你不能获得超过100个金币. 堆叠这种buff会使金币少量增加."],
+		"DESCRIPTION": "在你的回合开始时获得 !M! 个金币 NL 随机消耗一张抽牌堆中的牌 ([#EFC851]*[#FFFFFF]).",
+		"EXTENDED_DESCRIPTION": ["* 注", "每场战斗最多获得100个金币. 堆叠这种状态会使金币获得上限增加."],
 		"NAME": "Hitei"
 	},
 	"animator_Illya":
@@ -249,13 +288,13 @@
 	},
 	"animator_LeleiLaLalena":
 	{
-		"DESCRIPTION": "给予一个敌人!M!层易伤，抽!M!张牌，弃!M!张牌. 同调: 同时给予!M!层虚弱.",
+		"DESCRIPTION": "给予一个敌人!M!层易伤， NL 循环!M! 张牌. 同调: 同时给予!M!层虚弱.",
 		"NAME": "Lelei La Lalena",
-		"UPGRADE_DESCRIPTION": "给予一个敌人!M!层易伤，抽!M!张牌，弃!M!张牌. 同调: 同时给予!M!层虚弱."
+		"UPGRADE_DESCRIPTION": "给予一个敌人!M!层易伤， NL 循环!M! 张牌. 同调: 同时给予!M!层虚弱."
 	},
 	"animator_Megumin":
 	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点伤害. 消耗. NL 同调: 伤害永久增加!M!点.",
+		"DESCRIPTION": "可被多次升级。对所有敌人造成 !D! 点伤害. 消耗. NL 同调: 伤害永久增加!M!点.",
 		"NAME": "惠惠"
 	},
 	"animator_Mikaela":
@@ -309,9 +348,9 @@
 	},
 	"animator_Saber":
 	{
-		"DESCRIPTION": "Loyal. 造成!D!点伤害,当这张牌触发!M!次同调效果后,消耗并获得[#EFC851]誓约胜[#EFC851]利之剑.",
+		"DESCRIPTION": "Loyal. 造成!D!点伤害,当这张牌触发!M!次同调效果后,消耗并获得[#EFC851]誓约胜利之剑 .",
 		"NAME": "Saber",
-		"UPGRADE_DESCRIPTION": "Loyal. 造成!D!点伤害,当这张牌触发!M!次同调效果后,消耗并获得[#EFC851]誓约胜[#EFC851]利之剑+."
+		"UPGRADE_DESCRIPTION": "Loyal. 造成!D!点伤害,当这张牌触发!M!次同调效果后,消耗并获得[#EFC851]誓约胜利之剑+ ."
 	},
 	"animator_Shalltear":
 	{
@@ -320,7 +359,7 @@
 	},
 	"animator_Shichika":
 	{
-		"DESCRIPTION": "获得!B!点格挡和!M!层荆棘. NL 同调: 获得!M!层 [#EFC851]多层护甲.",
+		"DESCRIPTION": "获得!B!点格挡和!M!层荆棘. NL 同调: 获得!M!层 [#EFC851]多层护甲 .",
 		"NAME": "Shichika"
 	},
 	"animator_Shimakaze":
@@ -361,7 +400,7 @@
 	},
 	"animator_Tyuule":
 	{
-		"DESCRIPTION": "手牌中每有一张[#EFC851]技能 牌，给予一个敌人!M!层毒. NL (给予!SV!层毒)",
+		"DESCRIPTION": "手牌中每有一张[#EFC851]技能牌 ，给予一个敌人!M!层毒. NL (给予 !SV! 层毒)",
 		"NAME": "Tyuule"
 	},
 	"animator_Wiz":
@@ -387,53 +426,15 @@
 		"NAME": "百夜优一郎",
 		"UPGRADE_DESCRIPTION": "造成!D!点伤害. NL 遗馈: 将一张[#EFC851]阿修[#EFC851]罗丸+放到你的弃牌堆."
 	},
-	"animator_GoblinSoldier":
-	{
-		"DESCRIPTION": "抽到这张牌时，额外抽一张牌.回合结束时,受到2 点伤害.",
-		"NAME": "哥布林小鬼"
-	},
-	"animator_GoblinShaman":
-	{
-		"DESCRIPTION": "在你的回合结束时, 获得1层脆弱. 消耗.",
-		"NAME": "哥布林萨满"
-	},
-	"animator_GoblinChampion":
-	{
-		"DESCRIPTION": "在你的回合结束时,往抽牌堆中加入1张随机哥布林牌.",
-		"NAME": "哥布林冠军"
-	},
-	"animator_GoblinKing":
-	{
-		"DESCRIPTION": "回合结束时,往抽牌堆中加入如3张随机哥布林牌.",
-		"NAME": "哥布林王"
-	},
-	"animator_GoblinSlayer":
-	{
-		"DESCRIPTION": "[#EFC851]哥布林杀手. NL 造成!D!点伤害. NL 获得!B!点格挡. NL 保留.",
-		"EXTENDED_DESCRIPTION": ["哥布林杀手", "消耗所有位于手牌和弃牌堆中的状态牌和诅咒牌. 已消耗牌堆中每有一张牌，额外造成2点伤害. #yWARNING: 哥布林将开始入侵你的牌堆."],
-		"NAME": "哥布林杀手"
-	},
-	"animator_GuildGirl":
-	{
-		"DESCRIPTION": "回合开始时, 循环!M!张牌.",
-		"UPGRADE_DESCRIPTION": "回合开始时,循环!M!张牌.",
-		"NAME": "柜台小姐"
-	},
 	"animator_Priestess":
 	{
 		"DESCRIPTION": "预热 !M! : 获得!SV!层再生. NL 同调: 获得 !SV! 点临时生命.",
 		"NAME": "女神官"
 	},
-	"animator_DwarfShaman":
-	{
-		"DESCRIPTION": "造成!D!点伤害.若打破目标格挡，抽!M!张牌并升级([#EFC851]*[#FFFFFF]).",
-		"UPGRADE_DESCRIPTION": "造成!D!点伤害.若打破目标格挡，抽!M!张牌并升级([#EFC851]*[#FFFFFF]).",
-		"EXTENDED_DESCRIPTION": ["* 注", "优先抽未升级的牌，若全部升级则随机抽."],
-		"NAME": "'Dwarf Shaman'"
-	},
+	
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "使一个敌人的格挡值变为 !M! ，获得 !B! 点格挡. 同调:[#EFC851]循环 一张牌.",
+		"DESCRIPTION": "使一个敌人的格挡值变为 !M! ，获得 !B! 点格挡. 同调:循环 一张牌.",
 		"NAME": "蜥蜴僧侣"
 	},
 	"animator_HighElfArcher":

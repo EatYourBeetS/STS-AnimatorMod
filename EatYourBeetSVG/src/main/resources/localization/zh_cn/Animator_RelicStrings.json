@@ -1,0 +1,30 @@
+{
+	"Animator_LivingPicture":
+	{
+		"NAME": "活着的油画",
+		"FLAVOR": "他...他在看着.",
+		"DESCRIPTIONS":
+		[
+			"每回合一次每当协同生效时抽1张牌."
+		]
+	},
+	"Animator_TheMissingPiece":
+	{
+		"NAME": "缺失部分",
+		"FLAVOR": "这啥玩意?",
+		"DESCRIPTIONS":
+		[
+			"每",
+			"场战斗,获得一次同系列卡牌的奖励机会."
+		]
+	},
+	"Animator_PurgingStone":
+	{
+		"NAME": "解咒石",
+		"FLAVOR": "人类无法对抗诅咒，但可以利用它.",
+		"DESCRIPTIONS":
+		[
+			"在一般卡牌奖励中，你可以  ban掉某些牌使它们不再出现.每次使用后获得更多可用次数."
+		]
+	}
+}

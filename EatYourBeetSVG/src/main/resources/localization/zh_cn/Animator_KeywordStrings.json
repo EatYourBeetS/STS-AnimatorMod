@@ -1,0 +1,67 @@
+[
+	{
+		"DESCRIPTION": "连续使用同一系列的牌时生效",
+		"NAMES": ["同调","synergy", "synergies", "synergize"],
+		"PROPERNAME": "同调"
+	},
+	{
+		"DESCRIPTION": "这张卡被消耗时触发.",
+		"NAMES": ["legacy","遗馈"],
+		"PROPERNAME": "遗馈"
+	},
+	{
+		"DESCRIPTION": "被丢弃或打出时，返回抽牌堆.",
+		"NAMES": ["loyal","忠诚"],
+		"PROPERNAME": "忠诚"
+	},
+	{
+		"DESCRIPTION": "拥有者受到 #y攻击 时造成特定的 #y负面效果. 持续一回合.",
+		"NAMES": ["mark", "marks","印记"],
+		"PROPERNAME": "印记"
+	},
+	{
+		"DESCRIPTION": "如果目标的血量低于 50% , 造成双倍伤害.",
+		"NAMES": ["heartseeker","渴血"],
+		"PROPERNAME": "渴血"
+	},
+	{
+		"DESCRIPTION": "无视目标的格挡.",
+		"NAMES": ["piercing","穿刺"],
+		"PROPERNAME": "穿刺"
+	},
+	{
+		"DESCRIPTION": "受到致命伤害时，无论这张牌在哪，永久移除这张牌，阻挡那次伤害.这张牌位于被消耗牌堆中时，不会生效",
+		"NAMES": ["resurrect","苟活"],
+		"PROPERNAME": "苟活"
+	},
+	{
+		"DESCRIPTION": "每打出一次减少一层预热层数,当预热层数为0时，打出时将触发 预热 效果，并重置预热层数. Preserved between fights.",
+		"NAMES": ["cooldown","预热"],
+		"PROPERNAME": "预热"
+	},
+	{
+		"DESCRIPTION": " #b1 回合不能行动.",
+		"NAMES": ["stun","眩晕"],
+		"PROPERNAME": "眩晕"
+	},
+	{
+		"DESCRIPTION": "回合内每打出一张牌，使敌人受到的伤害增加 #b10% .",
+		"NAMES": ["slow","缓慢"],
+		"PROPERNAME": "缓慢"
+	},
+	{
+		"DESCRIPTION": "与所有系列都可产生同调效果.",
+		"NAMES": ["shapeshifter", "shapeshift","穿越者"],
+		"PROPERNAME": "穿越者"
+	},
+	{
+		"DESCRIPTION": "弃掉一定数量的牌然后抽出同等数量的牌.",
+		"NAMES": ["cycle","循环"],
+		"PROPERNAME": "循环"
+	},
+	{
+		"DESCRIPTION": "可被多次升级.",
+		"NAMES": ["augmentable","多重进化"],
+		"PROPERNAME": "多重进化"
+	}
+]

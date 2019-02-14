@@ -1,0 +1,67 @@
+{
+	"animator_AinzPower":
+	{
+		"DESCRIPTIONS": ["在你的回合开始时添加一张", " 随机形态卡到手牌."],
+		"NAME": "安兹·乌尔·恭"
+	},
+	"animator_ArcherPower":
+	{
+		"DESCRIPTIONS": ["在你的回合结束时对所有敌人造成", " 点伤害并造成负面效果."],
+		"NAME": "Archer"
+	},
+	"animator_DarknessPower":
+	{
+		"DESCRIPTIONS": ["每当你受伤时随机升级", " 张牌, 手牌优先."],
+		"NAME": "拉拉蒂娜!"
+	},
+	"animator_EntouJyuuPower":
+	{
+		"DESCRIPTIONS": ["每打出一张攻击牌，增加那张牌", " 点伤害."],
+		"NAME": "炎刃·铳"
+	},
+	"animator_ShiroPower":
+	{
+		"DESCRIPTIONS": ["在你的回合开始时获得", " 点能量."],
+		"NAME": "白"
+	},
+	"animator_EvePower":
+	{
+		"DESCRIPTIONS": ["当同调生效时对一个随机敌人造成", " 点伤害."],
+		"NAME": "EVE的觉醒"
+	},
+	"animator_FeridBathoryPower":
+	{
+		"DESCRIPTIONS": ["每回合两次，当一张牌被消耗时增加", " 点力量并治疗", " 点生命."],
+		"NAME": "费里德·巴特利"
+	},
+	"animator_HiteiPower":
+	{
+		"DESCRIPTIONS": ["在你的回合开始时获得", "个金币,从你的抽牌堆中随机消耗", " 张牌."],
+		"NAME": "否定姫"
+	},
+	"animator_GuildGirlPower":
+	{
+		"DESCRIPTIONS": ["在你的回合开始时循环", " 张牌."],
+		"NAME": "簿记"
+	},
+	"animator_MarkOfPoisonPower":
+	{
+		"DESCRIPTIONS": ["每当攻击 对你造成伤害时，获得", " 层毒."],
+		"NAME": "毒标记"
+	},
+	"animator_PinaCoLadaPower":
+	{
+		"DESCRIPTIONS": ["每当同调生效时获得", " 层格挡."],
+		"NAME": "Piña Co Lada"
+	},
+	"animator_PlayerStatistics":
+	{
+		"DESCRIPTIONS": ["Hidden Player Statistics power."],
+		"NAME": "Player Statistics"
+	},
+	"animator_RoryMercuryPower":
+	{
+		"DESCRIPTIONS": ["本回合下", "次伤害翻倍."],
+		"NAME": "萝莉·麦丘利"
+	}
+}

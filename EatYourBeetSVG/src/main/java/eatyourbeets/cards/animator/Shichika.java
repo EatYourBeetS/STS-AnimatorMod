@@ -40,7 +40,7 @@ public class Shichika extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
+            upgradeBlock(1);
             upgradeMagicNumber(1);
         }
     }

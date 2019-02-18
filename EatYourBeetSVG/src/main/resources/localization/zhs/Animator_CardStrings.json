@@ -5,6 +5,12 @@
 		"DESCRIPTION": "对一个敌人造成 !M! 印记 中毒 。 同调 : 下回合多抽一张牌 。",
 		"NAME": "阿卡莉"
 	},
+	"animator_AcuraShin":
+	{
+		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 ， 并给予 !M! 层 中毒 。 获得 !SV! 层 [#EFC851]毒素亲和[] 。",
+		"EXTENDED_DESCRIPTION": ["毒素亲和", "每当给予敌人毒效果时 ， 额外给予一层毒 。"],
+		"NAME": "辛·亚裘拉"
+	},
 	"animator_AcuraTooru":
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 !M! 次 。 同调 : 额外造成 1 次伤害 。",
@@ -36,7 +42,7 @@
 	"animator_Ara":
 	{
 		"DESCRIPTION": "造成 !D! 点伤害 2 次 。 如果破坏敌人的 格挡 则 !M! 点 力量 。",
-		"NAME": "Ara"
+		"NAME": "爱拉"
 	},
 	"animator_Archer":
 	{
@@ -46,7 +52,7 @@
 	"animator_Asuramaru":
 	{
 		"DESCRIPTION": "造成 !D! 点伤害 。 获得 !M! 层 无实体 ， 力量 ， 敏捷 ， 人工制品 。 抹除 。",
-		"NAME": "Asuramaru"
+		"NAME": "阿朱罗丸"
 	},
 	"animator_Azekura":
 	{
@@ -72,7 +78,7 @@
 	"animator_ChlammyZell":
 	{
 		"DESCRIPTION": "造成 !M! 点 伤害 。 伤害等同于本回合你所抽到的牌的数量 。 NL (造成 !D! 点 伤害)",
-		"NAME": "Kurami"
+		"NAME": "克拉米·杰尔"
 	},
 	"animator_Chung":
 	{
@@ -81,7 +87,7 @@
 	},
 	"animator_Cocytus":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 本回合获得 [#EFC851]吸收效果[] 。 同调 : 额外造成 !M! 点 伤害 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 本回合获得 [#EFC851]吸收效果[] 。 同调 : 本次战斗中，这张牌的伤害提高 !M! 点 。",
 		"EXTENDED_DESCRIPTION": ["吸收效果", "获得敌人失去的所有格挡 。"],
 		"NAME": "科赛特斯"
 	},
@@ -189,6 +195,11 @@
 		"EXTENDED_DESCRIPTION": ["巴比伦的宝藏", "每当你获得遗物时升级这张牌并获得 ", " 个金币 。 买的遗物不会触发该效果 。"],
 		"NAME": "英雄王·吉尔伽美什"
 	},
+	"animator_Gillette":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害 。 给予 !M! 层 虚弱 。 遗赠 : 对血量最多的敌人造成 眩晕 效果 。",
+		"NAME": "Gillette"
+	},
 	"animator_GoblinChampion":
 	{
 		"DESCRIPTION": "在你的回合结束时 ， 往抽牌堆中加入1张随机哥布林牌 。",
@@ -220,6 +231,12 @@
 		"DESCRIPTION": "回合开始时 ， 循环 !M! 张牌 。",
 		"NAME": "柜台小姐",
 		"UPGRADE_DESCRIPTION": "回合开始时 ， 循环 !M! 张牌 。"
+	},
+	"animator_Guren":
+	{
+		"DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 [#EFC851]支援[] 中 。",
+		"EXTENDED_DESCRIPTION": ["支援", "回合结束时对生命值较低的敌人造成预存的伤害"],
+		"NAME": "红莲"
 	},
 	"animator_Guy":
 	{
@@ -304,7 +321,7 @@
 	},
 	"animator_Megumin":
 	{
-		"DESCRIPTION": "多重进化 。 对所有敌人造成 !D! 点 伤害 。 消耗 。 NL 同调 : 伤害永久增加 !M! 点 。",
+		"DESCRIPTION": "多重进化 。 对所有敌人造成 !D! 点 伤害 。 消耗 。 NL 同调 : 在本局游戏中，永久升级这张牌 。",
 		"NAME": "惠惠"
 	},
 	"animator_Mikaela":
@@ -312,6 +329,11 @@
 		"DESCRIPTION": "造成 !D! 点 伤害 两次 。 从你的弃牌堆中随机 消耗 一张牌 。",
 		"NAME": "米迦尔",
 		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害两次 。 从你的弃牌堆中选择并 消耗 一张牌 。"
+	},
+	"animator_Mitsuba":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害 。 若目标生命值比你高 ， 获得 !B! 点 格挡 。",
+		"NAME": "三宫三叶"
 	},
 	"animator_Mitsurugi":
 	{
@@ -424,9 +446,14 @@
 		"DESCRIPTION": "手牌中每有一张 [#EFC851]技能牌[] ， 给予一个敌人 !M! 层 中毒 。 NL ( 给予 !SV! 层 中毒 )",
 		"NAME": "蒂尤蕾"
 	},
+	"animator_Viivi":
+	{
+		"DESCRIPTION": "对随机敌人造成 !D! 点 伤害 !M! 次 。 对击中的敌人造成 1 层 易伤 。",
+		"NAME": "薇薇·荷罗派涅"
+	},
 	"animator_Wiz":
 	{
-		"DESCRIPTION": "消耗 一张牌， 从已 消耗 的牌中选择一张假如你的手牌。 使用 !M! 次后 抹除 。",
+		"DESCRIPTION": "消耗 一张牌， 从已 消耗 的牌中选择一张假如你的手牌 。 使用 !M! 次后 抹除 。",
 		"EXTENDED_DESCRIPTION": ["检索限制", "不能在被消耗牌中选另一张<维兹> 。"],
 		"NAME": "维兹"
 	},
@@ -447,31 +474,9 @@
 		"NAME": "百夜优一郎",
 		"UPGRADE_DESCRIPTION": "造成!D!点伤害 。 NL 遗赠 : 将一张 [#EFC851]阿修罗丸+[] 放到你的弃牌堆 。"
 	},
-	"animator_Mitsuba":
+	"animator_Caster":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 若目标生命值比你高 ， 获得 !B! 点 格挡 。",
-		"NAME": "三宫三叶"
-	},
-	"animator_Guren":
-	{
-		"DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 [#EFC851]支援[] 中 。",
-		"EXTENDED_DESCRIPTION": ["支援", "回合结束时对生命值较低的敌人造成预存的伤害"],
-		"NAME": "Guren"
-	},
-	"animator_AcuraShin":
-	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 ， 并给予 !M! 层 中毒 。 获得 !SV! 层 [#EFC851]毒素亲和[] 。",
-		"EXTENDED_DESCRIPTION": ["毒素亲和", "每当给予敌人毒效果时 ， 额外给予一层毒 。"],
-		"NAME": "Shin"
-	},
-	"animator_Gillette":
-	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 给予 !M! 层 虚弱 。 遗赠 : 对血量最多的敌人造成 眩晕 效果 。",
-		"NAME": "Gillette"
-	},
-	"animator_Viivi":
-	{
-		"DESCRIPTION": "对随机敌人造成 !D! 点 伤害 !M! 次 。 对击中的敌人造成 1 层 易伤 。",
-		"NAME": "Viivi"
+		"DESCRIPTION": "使敌人失去 !SV! 点 力量 。 NL 遗赠 : 生成 1 个 黑暗 充能球 。 使用 !M! 次后 抹除 。",
+		"NAME": "Caster"
 	}
 }

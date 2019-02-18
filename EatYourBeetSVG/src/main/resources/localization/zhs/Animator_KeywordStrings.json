@@ -16,7 +16,7 @@
 	},
 	{
 		"DESCRIPTION": "拥有者受到 #y攻击 时造成特定的 #y负面效果。 持续一回合。",
-		"NAMES": ["mark", "marks", "印记"],
+		"NAMES": ["印记"],
 		"PROPERNAME": "印记"
 	},
 	{

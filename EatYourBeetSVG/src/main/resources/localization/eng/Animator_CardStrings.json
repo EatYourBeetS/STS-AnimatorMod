@@ -5,6 +5,12 @@
 		"DESCRIPTION": "Apply !M! Marks of Poison to an enemy. NL Synergy: Draw 1 more card next turn.",
 		"NAME": "Akari"
 	},
+	"animator_AcuraShin":
+	{
+		"DESCRIPTION": "Deal !D! damage to ALL enemies, then NL Apply !M! Poison. NL Gain !SV! [#EFC851]Poison [#EFC851]Affinity.",
+		"EXTENDED_DESCRIPTION": ["Poison Affinity", "Every time you apply Poison, apply 1 additional Poison per stack."],
+		"NAME": "Shin"
+	},
 	"animator_AcuraTooru":
 	{
 		"DESCRIPTION": "Deal !D! damage !M! Times. NL Synergy: Deal damage 1 more time.",
@@ -81,7 +87,7 @@
 	},
 	"animator_Cocytus":
 	{
-		"DESCRIPTION": "Deal !D! damage. [#EFC851]Absorb [#EFC851]Armor. Synergy: Increase this card's damage by !M! this combat.",
+		"DESCRIPTION": "Deal !D! damage. NL [#EFC851]Absorb [#EFC851]Armor. NL Synergy: Increase this card's damage by !M! this combat.",
 		"EXTENDED_DESCRIPTION": ["Absorb Armor", "Gain any block lost by the enemy during this attack."],
 		"NAME": "Cocytus"
 	},
@@ -189,6 +195,11 @@
 		"EXTENDED_DESCRIPTION": ["Gate of Babylon", "Whenever you obtain a relic upgrade this card and gain #b", " gold. Does not activate when purchasing relics."],
 		"NAME": "Gilgamesh"
 	},
+	"animator_Gillette":
+	{
+		"DESCRIPTION": "Deal !D! damage. Apply !M! Weak. Legacy: Stun the enemy with the most HP.",
+		"NAME": "Gillette"
+	},
 	"animator_GoblinChampion":
 	{
 		"DESCRIPTION": "At the end of your turn, shuffle 1 random Goblin into your draw pile.",
@@ -220,6 +231,12 @@
 		"DESCRIPTION": "At the start of each turn, Cycle !M! card.",
 		"NAME": "'Guild Girl'",
 		"UPGRADE_DESCRIPTION": "At the start of each turn, Cycle !M! cards."
+	},
+	"animator_Guren":
+	{
+		"DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile and turn its current damage into [#EFC851]Support [#EFC851]Damage.",
+		"EXTENDED_DESCRIPTION": ["Support Damage", "Deal damage to the enemy with lowest HP at the end of each turn."],
+		"NAME": "Guren"
 	},
 	"animator_Guy":
 	{
@@ -265,7 +282,7 @@
 	},
 	"animator_Konayuki":
 	{
-		"DESCRIPTION": "If you have at least 10 Strength, deal !D! damage, otherwise gain !M! strength.",
+		"DESCRIPTION": "If you have at least 10 Strength, deal !D! damage, otherwise gain !M! Strength.",
 		"NAME": "Konayuki"
 	},
 	"animator_KrulTepes":
@@ -299,7 +316,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "Set an enemy's Block to !M!. Gain !B! Block. Synergy: Cycle 1 card.",
+		"DESCRIPTION": "Set the Block of an enemy to !M!. NL Gain !B! Block. NL Synergy: Cycle 1 card.",
 		"NAME": "'Lizard Priest'"
 	},
 	"animator_Megumin":
@@ -312,6 +329,11 @@
 		"DESCRIPTION": "Deal !D! damage Twice. Exhaust a random card in your discard pile.",
 		"NAME": "Mikaela",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage Twice. Choose and Exhaust a card in your discard pile."
+	},
+	"animator_Mitsuba":
+	{
+		"DESCRIPTION": "Deal !D! damage. If the target had more health than you, gain !B! Block.",
+		"NAME": "Mitsuba"
 	},
 	"animator_Mitsurugi":
 	{
@@ -424,6 +446,11 @@
 		"DESCRIPTION": "Apply !M! Poison to an enemy for each other [#EFC851]Skill in your hand. NL (Apply !SV! Poison)",
 		"NAME": "Tyuule"
 	},
+	"animator_Viivi":
+	{
+		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Apply 1 Vulnerable to each enemy hit.",
+		"NAME": "Viivi"
+	},
 	"animator_Wiz":
 	{
 		"DESCRIPTION": "Exhaust 1 card, choose a card from your Exhaust pile and add a copy to your hand. Purge after !M! uses ([#EFC851]*[#FFFFFF]).",
@@ -447,31 +474,9 @@
 		"NAME": "Yuuichirou",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Legacy: Add [#EFC851]Asuramaru+ to your discard pile."
 	},
-	"animator_Mitsuba":
+	"animator_Caster":
 	{
-		"DESCRIPTION": "Deal !D! damage. If the target had more health than you, gain !B! Block.",
-		"NAME": "Mitsuba"
-	},
-	"animator_Guren":
-	{
-		"DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile and turn its current damage into [#EFC851]Support [#EFC851]Damage.",
-		"EXTENDED_DESCRIPTION": ["Support Damage", "Deal damage to the enemy with lowest HP at the end of each turn."],
-		"NAME": "Guren"
-	},
-	"animator_AcuraShin":
-	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies, then Apply !M! Poison. Gain !SV! [#EFC851]Poison [#EFC851]Affinity.",
-		"EXTENDED_DESCRIPTION": ["Poison Affinity", "Every time you apply Poison, apply 1 additional Poison per stack."],
-		"NAME": "Shin"
-	},
-	"animator_Gillette":
-	{
-		"DESCRIPTION": "Deal !D! damage. Apply !M! Weak. Legacy: Stun the enemy with the most HP.",
-		"NAME": "Gillette"
-	},
-	"animator_Viivi":
-	{
-		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Apply 1 Vulnerable to each enemy hit.",
-		"NAME": "Viivi"
+		"DESCRIPTION": "The enemy loses !SV! Strength. NL Synergy: [#EFC851]Channel 1 Dark. NL Purge after !M! uses.",
+		"NAME": "Caster"
 	}
 }

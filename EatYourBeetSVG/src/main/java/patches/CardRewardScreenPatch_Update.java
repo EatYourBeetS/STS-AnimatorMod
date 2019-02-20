@@ -9,7 +9,7 @@ import eatyourbeets.ui.CardRewardScreenPatch;
 public class CardRewardScreenPatch_Update
 {
     @SpirePostfixPatch
-    public static void Postfix(CardRewardScreen __instance)
+    public static void _(CardRewardScreen __instance)
     {
         CardRewardScreenPatch.Update(__instance);
     }

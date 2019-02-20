@@ -15,19 +15,12 @@ public class AinzPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(AinzPower.class.getSimpleName());
 
-    private int upgradedPowerStack;
     private final AbstractPlayer player;
-    private final boolean upgraded;
 
     public AinzPower(AbstractPlayer owner, boolean upgraded)
     {
         super(owner, POWER_ID);
         this.amount = 1;
-        this.upgraded = upgraded;
-        if (this.upgraded)
-        {
-            this.upgradedPowerStack = 1;
-        }
         this.player = Utilities.SafeCast(this.owner, AbstractPlayer.class);
         updateDescription();
     }
@@ -39,24 +32,12 @@ public class AinzPower extends AnimatorPower
 
         for(int i = 0; i < this.amount; i++)
         {
-            AddPowerForm(i < upgradedPowerStack);
+            AddPowerForm();
             this.flash();
         }
     }
 
-    @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-    {
-        AinzPower other = Utilities.SafeCast(power, AinzPower.class);
-        if (other != null && power.owner == target && other.upgraded)
-        {
-            this.upgradedPowerStack += 1;
-        }
-
-        super.onApplyPower(power, target, source);
-    }
-
-    private void AddPowerForm(boolean upgrade)
+    private void AddPowerForm()
     {
         AbstractCard power;
         int roll = AbstractDungeon.miscRng.random(2);
@@ -71,10 +52,6 @@ public class AinzPower extends AnimatorPower
         }
 
         power.updateCost(-1);
-        if (upgrade)
-        {
-            power.upgrade();
-        }
 
         if (player.hand.size() >= BaseMod.MAX_HAND_SIZE)
         {

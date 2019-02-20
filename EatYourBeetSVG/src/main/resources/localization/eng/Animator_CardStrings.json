@@ -20,8 +20,7 @@
 	{
 		"DESCRIPTION": "Costs 1 less each turn. At the start of your turn add a [#EFC851]Power [#EFC851]Form to your hand, it costs 2 energy.",
 		"EXTENDED_DESCRIPTION": ["Power Form", "Either Demon Form, Wraith Form or Echo Form."],
-		"NAME": "Ainz Ooal Gown",
-		"UPGRADE_DESCRIPTION": "Costs 1 less each turn. At the start of your turn add a [#EFC851]Power [#EFC851]Form+ to your hand, it costs 2 energy."
+		"NAME": "Ainz Ooal Gown"
 	},
 	"animator_Aisha":
 	{
@@ -476,7 +475,7 @@
 	},
 	"animator_Caster":
 	{
-		"DESCRIPTION": "The enemy loses !SV! Strength. NL Synergy: [#EFC851]Channel 1 Dark. NL Purge after !M! uses.",
+		"DESCRIPTION": "[#EFC851]Evoke your first Orb. NL [#EFC851]Channel 1 Dark. NL Synergy: The enemy loses !M! Strength.",
 		"NAME": "Caster"
 	}
 }

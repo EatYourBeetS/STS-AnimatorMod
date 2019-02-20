@@ -48,7 +48,7 @@ public class TheMissingPiece extends AnimatorRelic
     public void onEquip()
     {
         super.onEquip();
-        this.counter = 0;
+        this.counter = 1;
     }
 
     @Override

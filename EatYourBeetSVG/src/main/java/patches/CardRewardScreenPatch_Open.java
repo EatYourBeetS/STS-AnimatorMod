@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class CardRewardScreenPatch_Open
 {
     @SpirePostfixPatch
-    public static void Postfix(CardRewardScreen __instance, ArrayList<AbstractCard> cards, RewardItem rItem, String header)
+    public static void _(CardRewardScreen __instance, ArrayList<AbstractCard> cards, RewardItem rItem, String header)
     {
         CardRewardScreenPatch.Open(__instance, cards, rItem, header);
     }

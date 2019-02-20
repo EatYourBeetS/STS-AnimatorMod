@@ -4,9 +4,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.effects.HideCardEffect;
+import eatyourbeets.misc.BundledRelic;
+import eatyourbeets.misc.BundledRelicContainer;
+import eatyourbeets.misc.BundledRelicProvider;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.PurgingStone;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,58 +23,106 @@ public class CardRewardScreenPatch
     public static final Logger logger = LogManager.getLogger(CardRewardScreenPatch.class.getName());
 
     private static final ArrayList<BanCardButton> buttons = new ArrayList<>();
+    private static BundledRelicContainer rewardBundle;
     private static PurgingStone purgingStone;
     private static RewardItem rewardItem;
     private static boolean canBan;
 
-    public static void Open(CardRewardScreen rewardScreen, ArrayList<AbstractCard> cards, RewardItem rItem, String header)
+    public static void Open(CardRewardScreen screen, ArrayList<AbstractCard> cards, RewardItem rItem, String header)
     {
+        canBan = false;
         buttons.clear();
         rewardItem = rItem;
-        purgingStone = PurgingStone.GetInstance();
+        rewardBundle = null;
 
-        if (purgingStone == null || !purgingStone.CanActivate(rItem))
+        if (PlayerStatistics.InBattle())
         {
             return;
         }
 
-        for (AbstractCard c : cards)
+        rewardBundle = BundledRelicProvider.SetupBundledRelics(rItem, cards);
+        if (rewardBundle != null)
         {
-            if (purgingStone.CanBan(c))
+            rewardBundle.Open();
+        }
+
+        purgingStone = PurgingStone.GetInstance();
+        if (purgingStone != null && purgingStone.CanActivate(rItem))
+        {
+            for (AbstractCard card : cards)
             {
-                BanCardButton b = new BanCardButton(c);
-                b.show();
-                buttons.add(b);
-                canBan = true;
+                if (purgingStone.CanBan(card))
+                {
+                    BanCardButton banButton = new BanCardButton(card);
+                    banButton.show();
+                    buttons.add(banButton);
+                    canBan = true;
+                }
             }
         }
     }
 
-    public static void OnClose(CardRewardScreen instance)
+    public static void OnClose(CardRewardScreen screen)
     {
+        rewardBundle = null;
         buttons.clear();
         canBan = false;
     }
 
-    public static void Update(CardRewardScreen rewardScreen)
+    public static void Update(CardRewardScreen screen)
     {
-        if (!canBan)
+        if (canBan)
         {
-            return;
+            UpdateBanButtons();
         }
 
-        BanCardButton toRemove = null;
-        for (BanCardButton b : buttons)
+        if (rewardBundle != null)
         {
-            b.update();
-            if (b.banned)
+            rewardBundle.Update(screen);
+        }
+    }
+
+    public static void Render(CardRewardScreen screen, SpriteBatch sb)
+    {
+        if (canBan)
+        {
+            for (BanCardButton banButton : buttons)
             {
-                AbstractDungeon.effectsQueue.add(new ExhaustCardEffect(b.card));
-                AbstractDungeon.effectsQueue.add(new HideCardEffect(b.card));
-                rewardItem.cards.remove(b.card);
-                purgingStone.Ban(b.card);
-                b.hideInstantly();
-                toRemove = b;
+                banButton.render(sb);
+            }
+        }
+
+        if (rewardBundle != null)
+        {
+            rewardBundle.Render(screen, sb);
+        }
+    }
+
+    public static void AcquireCard(CardRewardScreen screen, AbstractCard hoveredCard)
+    {
+        if (rewardBundle != null)
+        {
+            rewardBundle.Acquired(hoveredCard);
+        }
+    }
+
+    private static void UpdateBanButtons()
+    {
+        BanCardButton toRemove = null;
+        for (BanCardButton banButton : buttons)
+        {
+            banButton.update();
+            if (banButton.banned)
+            {
+                AbstractDungeon.effectsQueue.add(new ExhaustCardEffect(banButton.card));
+                AbstractDungeon.effectsQueue.add(new HideCardEffect(banButton.card));
+                rewardItem.cards.remove(banButton.card);
+
+                rewardBundle.Remove(banButton.card);
+
+                purgingStone.Ban(banButton.card);
+                banButton.hideInstantly();
+                toRemove = banButton;
 
                 if (rewardItem.cards.size() == 0)
                 {
@@ -89,27 +142,14 @@ public class CardRewardScreenPatch
             buttons.remove(toRemove);
             toRemove = null;
 
-            for (BanCardButton b : buttons)
+            for (BanCardButton banButton : buttons)
             {
-                if (!purgingStone.CanBan(b.card))
+                if (!purgingStone.CanBan(banButton.card))
                 {
-                    toRemove = b;
+                    toRemove = banButton;
                     break;
                 }
             }
-        }
-    }
-
-    public static void Render(CardRewardScreen rewardScreen, SpriteBatch sb)
-    {
-        if (!canBan)
-        {
-            return;
-        }
-
-        for (BanCardButton b : buttons)
-        {
-            b.render(sb);
         }
     }
 }

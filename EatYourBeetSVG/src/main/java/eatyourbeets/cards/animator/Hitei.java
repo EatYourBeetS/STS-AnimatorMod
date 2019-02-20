@@ -4,8 +4,11 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.OrnamentalFan;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.misc.BundledRelic;
+import eatyourbeets.misc.BundledRelicProvider;
 import eatyourbeets.powers.HiteiPower;
 
 public class Hitei extends AnimatorCard

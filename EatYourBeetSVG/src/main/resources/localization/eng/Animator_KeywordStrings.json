@@ -41,7 +41,7 @@
 	},
 	{
 		"DESCRIPTION": "Cannot act for #b1 turn.",
-		"NAMES": ["stun"],
+		"NAMES": ["stun", "stunned", "stslib:stunned"],
 		"PROPERNAME": "Stun"
 	},
 	{

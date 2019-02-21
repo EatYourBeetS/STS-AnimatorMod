@@ -1,21 +1,27 @@
 package eatyourbeets.misc;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class BundledRelic
 {
     public final String cardID;
     public AbstractCard card;
+
+    private static final String[] text = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Rewards).TEXT;
 
     private final AbstractRelic.RelicTier relicTier;
     private final String relicID;
@@ -32,26 +38,17 @@ public class BundledRelic
         this.relicID = relicID;
     }
 
-    public BundledRelic Clone(int roll, AbstractCard card)
+    public BundledRelic Clone(int roll)
     {
         Utilities.Logger.info(cardID + ", " + relicID + ", Rolled: " + roll + " (" + chance + ")");
         BundledRelic bundledRelic = new BundledRelic(cardID, relicID, relicTier, chance);
         bundledRelic.roll = roll;
-        bundledRelic.card = card;
 
         return bundledRelic;
     }
 
     public void Open()
     {
-//        for (BundledRelic b : bundledRelics)
-//        {
-//            if (b.relic != null && b.relic.relicId.equals(relicID))
-//            {
-//                return;
-//            }
-//        }
-
         relic = null;
 
         if (roll < chance)
@@ -69,6 +66,7 @@ public class BundledRelic
                 }
                 Utilities.Logger.info(relicID + " Created");
                 relic = RelicLibrary.getRelic(relicID).makeCopy();
+                relic.beginLongPulse();
             }
         }
     }
@@ -78,6 +76,7 @@ public class BundledRelic
         if (relic != null)
         {
             card.hb.height = AbstractCard.IMG_HEIGHT * 0.6f;
+            relic.hb.width = AbstractCard.IMG_WIDTH * 0.8f;
             relic.update();
         }
     }
@@ -94,7 +93,12 @@ public class BundledRelic
             relic.scale = card.drawScale;
             relic.render(sb);
 
-            relic.hb.move(relic.currentX, relic.currentY);
+            BitmapFont font = FontHelper.buttonLabelFont;
+            font.getData().setScale(relic.scale * 0.8f);
+            FontHelper.renderFontLeft(sb, font, text[1], card.current_x + (offset_x * 0.66f), card.current_y + offset_y, Color.WHITE);
+            font.getData().setScale(1f);
+
+            relic.hb.move(card.current_x, relic.currentY);
             if (relic.hb.hovered)
             {
                 relic.renderTip(sb);

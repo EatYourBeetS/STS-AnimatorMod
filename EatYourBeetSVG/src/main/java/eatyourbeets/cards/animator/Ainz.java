@@ -44,20 +44,6 @@ public class Ainz extends AnimatorCard
     @Override
     public void upgrade() 
     {
-        if (TryUpgrade())
-        {
-            if (this.cost < BASE_COST)
-            {
-                this.upgradeBaseCost(this.cost - 1);
-                if (this.cost < 0)
-                {
-                    this.cost = 0;
-                }
-            }
-            else
-            {
-                this.upgradeBaseCost(7);
-            }
-        }
+        TryUpgrade();
     }
 }

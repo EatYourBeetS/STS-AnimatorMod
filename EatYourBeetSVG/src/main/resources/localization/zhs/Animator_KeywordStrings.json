@@ -41,7 +41,7 @@
 	},
 	{
 		"DESCRIPTION": " #b1 回合不能行动。",
-		"NAMES": ["眩晕"],
+		"NAMES": ["眩晕", "stslib:stunned", "stun", "stunned"],
 		"PROPERNAME": "眩晕"
 	},
 	{

@@ -10,7 +10,7 @@ import eatyourbeets.ui.CardRewardScreenPatch;
 public class CardRewardScreenPatch_AcquireCard
 {
     @SpirePostfixPatch
-    public static void _(CardRewardScreen __instance, AbstractCard hoveredCard)
+    public static void Postfix(CardRewardScreen __instance, AbstractCard hoveredCard)
     {
         CardRewardScreenPatch.AcquireCard(__instance, hoveredCard);
     }

@@ -36,7 +36,7 @@ public class Priestess extends AnimatorCard_Cooldown implements CustomSavable<In
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.Special(new AddTemporaryHPAction(p, p, this.magicNumber));
+            GameActionsHelper.AddToBottom(new AddTemporaryHPAction(p, p, this.magicNumber));
         }
     }
 

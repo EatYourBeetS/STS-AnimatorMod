@@ -78,7 +78,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
         }
     }
 
-    public static AbstractRoom CurrentRoom()
+    public static AbstractRoom GetCurrentRoom()
     {
         MapRoomNode mapNode = AbstractDungeon.currMapNode;
         if (mapNode == null)
@@ -93,7 +93,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
 
     public static boolean InBattle()
     {
-        AbstractRoom room = CurrentRoom();
+        AbstractRoom room = GetCurrentRoom();
         if (room != null && !room.isBattleOver)
         {
             return room.phase == AbstractRoom.RoomPhase.COMBAT || (room.monsters != null && !room.monsters.areMonstersBasicallyDead());
@@ -229,7 +229,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
     public static ArrayList<AbstractMonster> GetCurrentEnemies(boolean aliveOnly)
     {
         ArrayList<AbstractMonster> monsters = new ArrayList<>();
-        AbstractRoom room = CurrentRoom();
+        AbstractRoom room = GetCurrentRoom();
         if (room != null && room.monsters != null)
         {
             for (AbstractMonster m : room.monsters.monsters)

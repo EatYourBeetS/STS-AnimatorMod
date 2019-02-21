@@ -29,7 +29,7 @@ public class ShuffleRandomGoblinAction extends AnimatorAction
         {
             for (int i = 0; i < count; i++)
             {
-                GameActionsHelper.Special(new MakeTempCardInDrawPileAction(GetRandomGoblin(AbstractDungeon.miscRng), 1, true, true, false));
+                GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(GetRandomGoblin(AbstractDungeon.miscRng), 1, true, true, false));
             }
         }
 

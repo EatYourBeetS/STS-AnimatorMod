@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -17,7 +18,7 @@ public class Azekura extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,6,1);
+        Initialize(0,6,2);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -30,7 +31,7 @@ public class Azekura extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
+            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber));
         }
     }
 

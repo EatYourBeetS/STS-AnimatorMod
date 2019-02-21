@@ -38,7 +38,7 @@ public class Sora extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.Special(new WaitAction(1));
+        GameActionsHelper.AddToBottom(new WaitAction(1));
 
         int count = this.magicNumber;
         if (HasActiveSynergy())
@@ -46,10 +46,7 @@ public class Sora extends AnimatorCard
             count += 1;
         }
 
-        for (int i = 0; i < count; i++)
-        {
-            GameActionsHelper.Special(new SoraAction(p));
-        }
+        GameActionsHelper.AddToBottom(new SoraAction(p, count));
     }
 
     @Override

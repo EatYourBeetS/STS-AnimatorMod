@@ -22,9 +22,9 @@ public class AnimatorCustomLoadout
     public int ID;
     public String Name;
     public int StartingGold;
-    public int CardDraw;
-    public int OrbSlots;
-    public int MaxHP;
+    public final int CardDraw;
+    public final int OrbSlots;
+    public final int MaxHP;
     public boolean Locked;
 
     protected String lockedDescription;

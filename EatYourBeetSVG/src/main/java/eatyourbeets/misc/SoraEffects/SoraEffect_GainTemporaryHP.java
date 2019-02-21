@@ -15,6 +15,6 @@ public class SoraEffect_GainTemporaryHP extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper.Special(new AddTemporaryHPAction(player, player, sora.magicNumber));
+        GameActionsHelper.AddToBottom(new AddTemporaryHPAction(player, player, sora.magicNumber));
     }
 }

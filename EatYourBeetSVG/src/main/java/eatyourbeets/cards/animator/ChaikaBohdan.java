@@ -56,6 +56,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
+            upgradeDamage(2);
         }
     }
 

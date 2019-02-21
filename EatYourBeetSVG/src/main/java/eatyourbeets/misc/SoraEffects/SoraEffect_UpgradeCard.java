@@ -16,6 +16,6 @@ public class SoraEffect_UpgradeCard extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper.Special(new ArmamentsAction(true));
+        GameActionsHelper.AddToBottom(new ArmamentsAction(true));
     }
 }

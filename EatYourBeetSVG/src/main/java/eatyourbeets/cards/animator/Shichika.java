@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -26,12 +26,12 @@ public class Shichika extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ThornsPower(p, this.magicNumber), this.magicNumber));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, 1), 1));
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
         if (HasActiveSynergy())
         {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ThornsPower(p, this.magicNumber), this.magicNumber));
         }
     }
 
@@ -40,7 +40,7 @@ public class Shichika extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(1);
+            upgradeBlock(2);
             upgradeMagicNumber(1);
         }
     }

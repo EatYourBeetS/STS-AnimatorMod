@@ -2,12 +2,16 @@ package eatyourbeets;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.CycleCardAction;
+import eatyourbeets.actions.ModifyMagicNumberAction;
 import eatyourbeets.actions.OnCardDrawnAction;
 import eatyourbeets.actions.OnRandomEnemyDamagedAction;
 
@@ -17,9 +21,35 @@ import java.util.function.BiConsumer;
 @SuppressWarnings("UnusedReturnValue")
 public class GameActionsHelper
 {
-    public static void Special(AbstractGameAction action)
+    public static void AddToTop(AbstractGameAction action)
+    {
+        AbstractDungeon.actionManager.addToTop(action);
+    }
+
+    public static void AddToBottom(AbstractGameAction action)
     {
         AbstractDungeon.actionManager.addToBottom(action);
+    }
+
+    public static ExhaustSpecificCardAction ExhaustCard(AbstractCard card, CardGroup group)
+    {
+        ExhaustSpecificCardAction action = new ExhaustSpecificCardAction(card, group);
+        AbstractDungeon.actionManager.addToBottom(action);
+        return action;
+    }
+
+    public static ChannelAction ChannelOrb(AbstractOrb orb, boolean autoEvoke)
+    {
+        ChannelAction action = new ChannelAction(orb, autoEvoke);
+        AbstractDungeon.actionManager.addToBottom(action);
+        return action;
+    }
+
+    public static ModifyMagicNumberAction ModifyMagicNumber(AbstractCard card, int amount)
+    {
+        ModifyMagicNumberAction action = new ModifyMagicNumberAction(card.uuid, amount);
+        AbstractDungeon.actionManager.addToBottom(action);
+        return action;
     }
 
     public static CycleCardAction CycleCardAction(int amount)

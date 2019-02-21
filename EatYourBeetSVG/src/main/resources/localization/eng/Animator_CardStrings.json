@@ -18,7 +18,8 @@
 	},
 	"animator_Ainz":
 	{
-		"DESCRIPTION": "Costs 1 less each turn. At the start of your turn add a [#EFC851]Power [#EFC851]Form to your hand, it costs 2 energy.",
+		"DESCRIPTION": "Costs 1 less each turn. At the start of your turn add a [#EFC851]Power [#EFC851]Form to your hand.",
+		"UPGRADE_DESCRIPTION": "Costs 1 less each turn. At the start of your turn add a [#EFC851]Power [#EFC851]Form to your hand, it costs 2 energy.",
 		"EXTENDED_DESCRIPTION": ["Power Form", "Either Demon Form, Wraith Form or Echo Form."],
 		"NAME": "Ainz Ooal Gown"
 	},
@@ -55,7 +56,7 @@
 	},
 	"animator_Azekura":
 	{
-		"DESCRIPTION": "Gain !B! Block Twice. NL Synergy: Gain !M! Dexterity.",
+		"DESCRIPTION": "Gain !B! Block Twice. NL Synergy: Gain !M! [#EFC851]Plated [#EFC851]Armor.",
 		"NAME": "Azekura"
 	},
 	"animator_Berserker":
@@ -71,7 +72,8 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "Deal !D! damage. If this is the first card you play this turn, Stun the enemy. Ethereal.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply 1 [#EFC851]<Debuff>[].",
+		"EXTENDED_DESCRIPTION": ["<Debuff>", "Changes on every use, alternating between #yWeak, #yStun and #yVulnerable."],
 		"NAME": "Chaika Trabant"
 	},
 	"animator_ChlammyZell":
@@ -103,9 +105,9 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "Gain [B] [B] NL The next time you draw this, lose !M! HP. Synergy: Cycle 1 card.",
+		"DESCRIPTION": "Gain [B] [B] NL Take !M! Damage, then increase this card's damage by 3 this combat.",
 		"NAME": "Demiurge",
-		"UPGRADE_DESCRIPTION": "Gain [B] [B] [B] NL The next time you draw this, lose !M! HP. Synergy: Cycle 1 card."
+		"UPGRADE_DESCRIPTION": "Gain [B] [B] [B] NL Take !M! Damage, then increase this card's damage by 3 this combat."
 	},
 	"animator_DolaCouronne":
 	{
@@ -142,7 +144,7 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage. Synergy: Cycle 2 cards.",
+		"DESCRIPTION": "Deal !D! damage. NL Cycle 2 cards.",
 		"NAME": "Elsword"
 	},
 	"animator_Emonzaemon":
@@ -246,7 +248,8 @@
 	{
 		"DESCRIPTION": "Shapeshifter. NL Behaves erratically...",
 		"NAME": "Higaki Rinne",
-		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Behaves very erratically..."
+		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Behaves very erratically...",
+		"EXTENDED_DESCRIPTION" : ["What Happened?"]
 	},
 	"animator_HighElfArcher":
 	{
@@ -396,7 +399,7 @@
 	},
 	"animator_Shichika":
 	{
-		"DESCRIPTION": "Gain !B! Block and !M! Thorns. NL Synergy: Gain !M! [#EFC851]Plated [#EFC851]Armor.",
+		"DESCRIPTION": "Gain !B! Block and 1 Strength. NL Synergy: Gain !M! Thorns.",
 		"NAME": "Shichika"
 	},
 	"animator_Shimakaze":
@@ -447,7 +450,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Apply 1 Vulnerable to each enemy hit.",
+		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Apply 1 Vulnerable to each different enemy hit.",
 		"NAME": "Viivi"
 	},
 	"animator_Wiz":

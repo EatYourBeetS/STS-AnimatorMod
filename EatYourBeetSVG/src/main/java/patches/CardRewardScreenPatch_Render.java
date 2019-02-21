@@ -10,9 +10,15 @@ import eatyourbeets.ui.CardRewardScreenPatch;
 @SpirePatch(clz= CardRewardScreen.class, method="render")
 public class CardRewardScreenPatch_Render
 {
-    @SpirePostfixPatch
-    public static void _(CardRewardScreen __instance, SpriteBatch sb)
+    @SpirePrefixPatch
+    public static void Prefix(CardRewardScreen __instance, SpriteBatch sb)
     {
-        CardRewardScreenPatch.Render(__instance, sb);
+        CardRewardScreenPatch.PreRender(__instance, sb);
+    }
+
+    @SpirePostfixPatch
+    public static void Postfix(CardRewardScreen __instance, SpriteBatch sb)
+    {
+        CardRewardScreenPatch.PostRender(__instance, sb);
     }
 }

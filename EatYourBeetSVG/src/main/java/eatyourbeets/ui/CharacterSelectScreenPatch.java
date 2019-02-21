@@ -22,13 +22,6 @@ public class CharacterSelectScreenPatch
 {
     protected static final Logger logger = LogManager.getLogger(CharacterSelectScreenPatch.class.getName());
 
-//    private static float drawStartX;
-//    private static float drawStartY;
-//    private static AbstractCard hoveredCard;
-//    private static CardGroup visibleCards;
-//    private static float padX;
-//    private static float padY;
-
     public static final UIStrings UIStrings = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.CharacterSelect);
 
     public static Hitbox startingCardsLabelHb;

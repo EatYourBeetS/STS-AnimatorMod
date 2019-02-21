@@ -73,8 +73,8 @@ public class HiteiPower extends AnimatorPower
                 ShowCardBrieflyEffect effect = new ShowCardBrieflyEffect(card, Settings.WIDTH / 3f, Settings.HEIGHT / 2f);
 
                 AbstractDungeon.effectsQueue.add(effect);
-                GameActionsHelper.Special(new WaitAction(effect.duration));
-                GameActionsHelper.Special(new ExhaustSpecificCardAction(card, group, true));
+                GameActionsHelper.AddToBottom(new WaitAction(effect.duration));
+                GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(card, group, true));
 //                group.moveToExhaustPile(card);
 //                card.exhaustOnUseOnce = false;
 //                card.freeToPlayOnce = false;

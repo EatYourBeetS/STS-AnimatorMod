@@ -27,13 +27,7 @@ public class Elsword extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-
-        if (HasActiveSynergy())
-        {
-            AbstractDungeon.actionManager.addToBottom(new CycleCardAction(p, this.magicNumber));
-//            AbstractDungeon.actionManager.addToBottom(new DiscardAction(p, p, this.magicNumber, false));
-//            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, this.magicNumber));
-        }
+        AbstractDungeon.actionManager.addToBottom(new CycleCardAction(p, this.magicNumber));
     }
 
     @Override

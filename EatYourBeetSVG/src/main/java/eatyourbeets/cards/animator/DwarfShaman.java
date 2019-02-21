@@ -29,7 +29,7 @@ public class DwarfShaman extends AnimatorCard
         DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         OnTargetBlockBreakAction action = new OnTargetBlockBreakAction(m, damageAction, new DrawAndUpgradeCardAction(p, this.magicNumber));
 
-        GameActionsHelper.Special(action);
+        GameActionsHelper.AddToBottom(action);
     }
 
     @Override

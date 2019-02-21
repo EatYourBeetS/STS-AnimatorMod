@@ -18,11 +18,18 @@ public class BundledRelicContainer
         this.bundledRelics = new ArrayList<>();
     }
 
-    public void Open()
+    public void Open(ArrayList<AbstractCard> cards)
     {
         for (BundledRelic bundledRelic : bundledRelics)
         {
-            bundledRelic.Open();
+            for (AbstractCard card : cards)
+            {
+                if (bundledRelic.cardID.equals(card.cardID))
+                {
+                    bundledRelic.card = card;
+                    bundledRelic.Open();
+                }
+            }
         }
     }
 

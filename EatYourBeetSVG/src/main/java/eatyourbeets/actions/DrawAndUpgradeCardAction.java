@@ -50,8 +50,8 @@ public class DrawAndUpgradeCardAction extends AnimatorAction
 
         if (drawPile.size() < count && player.discardPile.size() > 0)
         {
-            GameActionsHelper.Special(new EmptyDeckShuffleAction());
-            GameActionsHelper.Special(new DrawAndUpgradeCardAction(player, count));
+            GameActionsHelper.AddToBottom(new EmptyDeckShuffleAction());
+            GameActionsHelper.AddToBottom(new DrawAndUpgradeCardAction(player, count));
         }
         else if (count > 0)
         {

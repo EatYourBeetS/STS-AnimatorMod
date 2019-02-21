@@ -4,11 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.effects.HideCardEffect;
-import eatyourbeets.misc.BundledRelic;
 import eatyourbeets.misc.BundledRelicContainer;
 import eatyourbeets.misc.BundledRelicProvider;
 import eatyourbeets.powers.PlayerStatistics;
@@ -43,7 +41,7 @@ public class CardRewardScreenPatch
         rewardBundle = BundledRelicProvider.SetupBundledRelics(rItem, cards);
         if (rewardBundle != null)
         {
-            rewardBundle.Open();
+            rewardBundle.Open(cards);
         }
 
         purgingStone = PurgingStone.GetInstance();
@@ -82,7 +80,7 @@ public class CardRewardScreenPatch
         }
     }
 
-    public static void Render(CardRewardScreen screen, SpriteBatch sb)
+    public static void PreRender(CardRewardScreen screen, SpriteBatch sb)
     {
         if (canBan)
         {
@@ -91,7 +89,10 @@ public class CardRewardScreenPatch
                 banButton.render(sb);
             }
         }
+    }
 
+    public static void PostRender(CardRewardScreen screen, SpriteBatch sb)
+    {
         if (rewardBundle != null)
         {
             rewardBundle.Render(screen, sb);

@@ -15,7 +15,7 @@ public class SoraEffect_ReduceRandomCost extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper.Special(new RandomCostReductionAction(sora.magicNumber, false));
-        GameActionsHelper.Special(new RandomCostReductionAction(sora.magicNumber, false));
+        GameActionsHelper.AddToBottom(new RandomCostReductionAction(sora.magicNumber, false));
+        GameActionsHelper.AddToBottom(new RandomCostReductionAction(sora.magicNumber, false));
     }
 }

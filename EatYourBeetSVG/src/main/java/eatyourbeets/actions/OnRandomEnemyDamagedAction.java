@@ -14,9 +14,9 @@ import java.util.function.BiConsumer;
 
 public class OnRandomEnemyDamagedAction extends AbstractGameAction
 {
-    private BiConsumer<Object, AbstractCreature> onDamage;
-    private Object state;
-    private DamageInfo info;
+    private final BiConsumer<Object, AbstractCreature> onDamage;
+    private final Object state;
+    private final DamageInfo info;
     private static final float DURATION = 0.1F;
     private static final float POST_ATTACK_WAIT_DUR = 0.1F;
 

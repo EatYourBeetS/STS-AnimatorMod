@@ -154,7 +154,7 @@ public abstract class AnimatorCard extends CustomCard
 
     private void RenderSynergy(SpriteBatch sb)
     {
-        AbstractRoom room = PlayerStatistics.CurrentRoom();
+        AbstractRoom room = PlayerStatistics.GetCurrentRoom();
         if (this.synergy != null)
         {
             if (!this.isFlipped)//room == null || !(room.event instanceof GremlinMatchGame))
@@ -313,15 +313,26 @@ public abstract class AnimatorCard extends CustomCard
     public HashSet<AbstractCard> GetAllInstances()
     {
         HashSet<AbstractCard> cards = GetAllInBattleInstances.get(uuid);
+
+        AbstractCard masterDeckInstance = GetMasterDeckInstance();
+        if (masterDeckInstance != null)
+        {
+            cards.add(masterDeckInstance);
+        }
+
+        return cards;
+    }
+
+    public AbstractCard GetMasterDeckInstance()
+    {
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
         {
             if (c.uuid == uuid)
             {
-                cards.add(c);
-                break;
+                return c;
             }
         }
 
-        return cards;
+        return null;
     }
 }

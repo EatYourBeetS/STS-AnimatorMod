@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -41,8 +40,8 @@ public class Caster extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.Special(new EvokeOrbAction(1));
-        GameActionsHelper.Special(new ChannelAction(new Dark(), true));
+        GameActionsHelper.AddToBottom(new EvokeOrbAction(1));
+        GameActionsHelper.ChannelOrb(new Dark(), true);
 
         if (HasActiveSynergy())
         {

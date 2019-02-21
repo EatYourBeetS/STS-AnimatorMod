@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.Utilities;
+import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.misc.SoraEffects.*;
 
 import java.util.ArrayList;
@@ -17,35 +17,57 @@ public class SoraAction extends AnimatorAction
     private static final ArrayList<SoraEffect> defendPool = new ArrayList<>();
     private static final ArrayList<SoraEffect> preparePool = new ArrayList<>();
 
+    private final RandomizedList<SoraEffect> attackList = new RandomizedList<>();
+    private final RandomizedList<SoraEffect> defendList = new RandomizedList<>();
+    private final RandomizedList<SoraEffect> prepareList = new RandomizedList<>();
     private final ArrayList<SoraEffect> currentEffects = new ArrayList<>();
+    private int times;
 
-    public SoraAction(AbstractCreature target)
+    public SoraAction(AbstractCreature target, int times)
     {
+        this.times = times;
         this.target = target;
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.CARD_MANIPULATION;
+
+        InitializeRandomLists();
     }
 
     public void update()
     {
         if (this.duration == Settings.ACTION_DUR_FAST)
         {
-            currentEffects.add(Utilities.GetRandomElement(attackPool, AbstractDungeon.miscRng));
-            currentEffects.add(Utilities.GetRandomElement(defendPool, AbstractDungeon.miscRng));
-            currentEffects.add(Utilities.GetRandomElement(preparePool, AbstractDungeon.miscRng));
+            currentEffects.clear();
+            currentEffects.add(attackList.Retrieve(AbstractDungeon.miscRng));
+            currentEffects.add(defendList.Retrieve(AbstractDungeon.miscRng));
+            currentEffects.add(prepareList.Retrieve(AbstractDungeon.miscRng));
 
             CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
             for (SoraEffect e : currentEffects)
             {
-                e.sora.applyPowers();
-                e.sora.initializeDescription();
+                if (e != null)
+                {
+                    e.sora.applyPowers();
+                    e.sora.initializeDescription();
 
-                group.addToTop(e.sora);
+                    group.addToTop(e.sora);
+                }
             }
 
-            AbstractDungeon.gridSelectScreen.open(group, 1, false, "");
+            if (group.size() > 0)
+            {
+                AbstractDungeon.gridSelectScreen.open(group, 1, false, "");
+            }
+            else
+            {
+                InitializeRandomLists();
+                this.duration = Settings.ACTION_DUR_FAST;
+                return;
+            }
         }
+
+        this.tickDuration();
 
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
         {
@@ -62,9 +84,25 @@ public class SoraAction extends AnimatorAction
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-        }
 
-        this.tickDuration();
+            times -= 1;
+            if (times > 0)
+            {
+                this.duration = Settings.ACTION_DUR_FAST;
+            }
+        }
+    }
+
+    private void InitializeRandomLists()
+    {
+        attackList.Clear();
+        attackList.AddAll(attackPool);
+
+        defendList.Clear();
+        defendList.AddAll(defendPool);
+
+        prepareList.Clear();
+        prepareList.AddAll(preparePool);
     }
 
     static

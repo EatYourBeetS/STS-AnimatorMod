@@ -18,7 +18,8 @@
 	},
 	"animator_Ainz":
 	{
-		"DESCRIPTION": "每回合花费减少一点 。 在你的回合开始时添加一张 [#EFC851]形态[] 到你的手牌 。",
+		"DESCRIPTION": "每回合花费减少一 点 。 在你的回合开始时添加一张 [#EFC851]形态[] 到你的手牌 。",
+		"UPGRADE_DESCRIPTION" : "每回合花费减少一点 。 在你的回合开始时添加一张耗能为 2 的 [#EFC851]形态[] 到你的手牌 。",
 		"EXTENDED_DESCRIPTION": ["形态", "恶魔形态 ， 回想形态或幽魂形态。"],
 		"NAME": "安兹·乌尔·恭"
 	},
@@ -29,7 +30,7 @@
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "对随机敌人造成 !D! 点伤害 !M! 次 。 遗赠 : 获得 !SV! 点 [#EFC851]钢化[] 格挡。",
+		"DESCRIPTION": "对随机敌人造成 !D! 点伤害 !M! 次 。 遗赠 : 获得 !SV! 点 [#EFC851]钢化[] 格挡 。",
 		"NAME": "亚历山大大帝"
 	},
 	"animator_Aqua":
@@ -55,7 +56,7 @@
 	},
 	"animator_Azekura":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 2 次 。 NL 同调 : 获得 !M! 点 敏捷 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 2 次 。 NL 同调 : 获得 !M! 点 [#EFC851]钢化[] 格挡 。",
 		"NAME": "校仓必"
 	},
 	"animator_Berserker":
@@ -71,7 +72,8 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 如果这张卡是本回合使用的第一张卡 ， 则 眩晕 目标 。 虚无 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 [#EFC851]<减益>[] 。",
+		"EXTENDED_DESCRIPTION": ["<减益>", "替代在 #y虚弱 ， #y眩晕 和 #y易伤 之间"],
 		"NAME": "嘉依卡·托勒庞特"
 	},
 	"animator_ChlammyZell":
@@ -103,9 +105,9 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "获得 [B] [B] 下次抽到这张牌时失去 !M! 点 生命 。 同调 : 循环1张牌 。",
+		"DESCRIPTION": "获得 [B] [B] ， 受到 !M! 点 伤害 ， 每次使用这张牌都会使下次受到的伤害增加 3 点.",
 		"NAME": "迪米乌哥斯",
-		"UPGRADE_DESCRIPTION": "获得 [B] [B] [B] 下次抽到这张牌时失去 !M! 点 生命 。 同调 : 循环1张牌 。"
+		"UPGRADE_DESCRIPTION": "获得 [B] [B] [B] ， 受到 !M! 点 伤害 ， 每次使用这张牌都会使下次受到的伤害增加 3 点."
 	},
 	"animator_DolaCouronne":
 	{
@@ -142,7 +144,7 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 同调 : 循环2张牌 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 2 张牌 。",
 		"NAME": "艾索德"
 	},
 	"animator_Emonzaemon":
@@ -246,7 +248,8 @@
 	{
 		"DESCRIPTION": "穿越者 。 NL 布朗运动爱好者... (触发随机效果)",
 		"NAME": "彼我木轮回",
-		"UPGRADE_DESCRIPTION": "穿越者 。 NL 真·布朗运动爱好者。。。(触发更多随机效果)"
+		"UPGRADE_DESCRIPTION": "穿越者 。 NL 真·布朗运动爱好者。。。(触发更多随机效果)",
+		"EXTENDED_DESCRIPTION": ["发生了什么？"]
 	},
 	"animator_HighElfArcher":
 	{
@@ -380,7 +383,7 @@
 	},
 	"animator_RoryMercury":
 	{
-		"DESCRIPTION": "本回合下一 [#EFC851]攻击[] 害翻倍。",
+		"DESCRIPTION": "本回合下一 [#EFC851]攻击[] 害翻倍 。",
 		"NAME": "萝莉·麦丘利"
 	},
 	"animator_Saber":
@@ -396,7 +399,7 @@
 	},
 	"animator_Shichika":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡和 !M! 层 荆棘 。 NL 同调 : 获得 !M! 层 [#EFC851]多层护甲[] 。",
+		"DESCRIPTION": "获得 !B! 点 格挡和 1 点 力量 。 NL 同调 : 获得 !M! 层 荆棘 。",
 		"NAME": "鑢七花"
 	},
 	"animator_Shimakaze":
@@ -475,7 +478,7 @@
 	},
 	"animator_Caster":
 	{
-		"DESCRIPTION": "激发 你最右侧的充能球 。 生成 1 个 黑暗 充能球 。 NL 遗赠 : 使敌人失去 !M! 点 力量 。 ",
+		"DESCRIPTION": "激发 你最右侧的充能球 。 生成 1 个 黑暗 充能球 。 NL 同调 : 使敌人失去 !M! 点 力量 。 ",
 		"NAME": "Caster"
 	}
 }

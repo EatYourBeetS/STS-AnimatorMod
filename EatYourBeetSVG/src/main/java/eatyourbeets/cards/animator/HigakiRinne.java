@@ -31,7 +31,7 @@ public class HigakiRinne extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
 
-        Initialize(1,1,2);
+        Initialize(2,2,2);
 
         SetSynergy(Synergies.Katanagatari, true);
     }
@@ -109,14 +109,14 @@ public class HigakiRinne extends AnimatorCard
         logger.info("Rinne says: " + n);
         if (n < 10) // 10%
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
             }
         }
         else if (n < 20) // 10%
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 3; i++)
             {
                 AbstractDungeon.actionManager.addToBottom(new DamageRandomEnemyAction(new DamageInfo(p, this.damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
             }

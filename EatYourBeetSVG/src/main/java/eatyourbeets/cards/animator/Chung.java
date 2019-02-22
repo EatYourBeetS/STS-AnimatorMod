@@ -34,7 +34,7 @@ public class Chung extends AnimatorCard_Cooldown implements CustomSavable<Intege
 
         if (ProgressCooldown())
         {
-            AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.SHIELD));
+            AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH));
         }
     }
 

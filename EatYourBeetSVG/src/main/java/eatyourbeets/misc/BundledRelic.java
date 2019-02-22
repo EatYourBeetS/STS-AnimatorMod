@@ -40,7 +40,7 @@ public class BundledRelic
 
     public BundledRelic Clone(int roll)
     {
-        Utilities.Logger.info(cardID + ", " + relicID + ", Rolled: " + roll + " (" + chance + ")");
+        Utilities.Logger.info(cardID + ", Rolled: " + roll + " (" + chance + ")");
         BundledRelic bundledRelic = new BundledRelic(cardID, relicID, relicTier, chance);
         bundledRelic.roll = roll;
 

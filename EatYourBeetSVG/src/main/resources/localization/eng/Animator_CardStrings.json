@@ -488,6 +488,7 @@
 	"animator_Albedo":
 	{
 		"DESCRIPTION": "Gain !M! % [#EFC851]Damage [#EFC851]Resistance.",
+		"EXTENDED_DESCRIPTION": ["Damage Resistance", "Take less damage from enemy attacks, further stacks are less effective."],
 		"NAME": "Albedo"
 	}
 }

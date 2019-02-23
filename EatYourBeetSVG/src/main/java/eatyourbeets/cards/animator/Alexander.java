@@ -42,7 +42,7 @@ public class Alexander extends AnimatorCard
         super.triggerOnExhaust();
 
         AbstractPlayer p = AbstractDungeon.player;
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new PlatedArmorPower(p, this.secondaryValue), this.secondaryValue));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber));
     }
 
     @Override

@@ -82,7 +82,7 @@
 	},
 	"animator_AlbedoPower":
 	{
-		"DESCRIPTIONS": ["所有敌人造成的伤害降低 #b", "%."],
+		"DESCRIPTIONS": ["受到的所有伤害降低 #b", "%."],
 		"NAME": "Albedo"
 	}
 }

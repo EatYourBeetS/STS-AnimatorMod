@@ -19,14 +19,13 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
 {
     public static final String ID = CreateFullID(ChaikaBohdan.class.getSimpleName());
 
-    private static final int DEFAULT_DAMAGE = 5;
+    private int bonusDamage = 0;
 
     public ChaikaBohdan()
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(DEFAULT_DAMAGE,0,2);
-        this.misc = 0;
+        Initialize(5,0,2);
 
         if (PlayerStatistics.InBattle())
         {
@@ -42,12 +41,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
     {
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
 
-//        if (upgraded)
-//        {
-//            AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-//        }
-
-        SetDamageBonus(0);
+        AddDamageBonus(-bonusDamage);
     }
 
     @Override
@@ -74,17 +68,16 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
         {
             for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
             {
-                SetDamageBonus(misc + this.magicNumber);
+                AddDamageBonus(this.magicNumber);
             }
+
             this.flash();
         }
     }
 
-    private void SetDamageBonus(int newDamageBonus)
+    private void AddDamageBonus(int amount)
     {
-        this.misc = newDamageBonus;
-        baseDamage = DEFAULT_DAMAGE + misc;
-        applyPowers();
-        initializeDescription();
+        bonusDamage += amount;
+        baseDamage += amount;
     }
 }

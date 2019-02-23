@@ -204,7 +204,7 @@
 	"animator_Gillette":
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 。 给予 !M! 层 虚弱 。 遗赠 : 对血量最多的敌人造成 眩晕 效果 。",
-		"NAME": "Gillette"
+		"NAME": "基烈特"
 	},
 	"animator_GoblinChampion":
 	{
@@ -483,12 +483,13 @@
 	},
 	"animator_Biyorigo":
 	{
-		"DESCRIPTION": "每 4 次攻 , 击获得 !M! 点 力量 并且获得 1 点 敏捷 。",
+		"DESCRIPTION": "每 4 次攻击获得 !M! 点 力量 并且获得 1 点 敏捷 。",
 		"NAME": "Biyorigo"
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "获得 !M! ％ 的抗损伤性 。",
+		"DESCRIPTION": "获得 !M! ％ [#EFC851]的抗性[] 。",
+		"EXTENDED_DESCRIPTION": ["的抗性", "对敌人攻击的伤害较小 ， 进一步堆叠更糟糕 。"],
 		"NAME": "Albedo"
 	}
 }

@@ -14,7 +14,7 @@ public class DolaCouronne extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,8);
+        Initialize(0,9);
 
         SetSynergy(Synergies.NoGameNoLife);
     }

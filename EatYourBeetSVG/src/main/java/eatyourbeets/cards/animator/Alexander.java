@@ -1,14 +1,18 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.unique.SwordBoomerangAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Alexander extends AnimatorCard
 {
@@ -16,13 +20,20 @@ public class Alexander extends AnimatorCard
 
     public Alexander()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(4,0,3);
+        Initialize(10,0,3);
 
-        secondaryValue = baseSecondaryValue = 2;
+        secondaryValue = baseSecondaryValue = 5;
 
         SetSynergy(Synergies.Fate);
+    }
+
+    @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+        secondaryValue = baseSecondaryValue = this.damage / 2;
     }
 
     @Override
@@ -37,8 +48,17 @@ public class Alexander extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractMonster m2 = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-        AbstractDungeon.actionManager.addToBottom(new SwordBoomerangAction(m2, new DamageInfo(p, this.baseDamage, damageTypeForTurn), this.magicNumber));
+        for (AbstractCreature m1 : PlayerStatistics.GetCurrentEnemies(true))
+        {
+            if (m1 == m)
+            {
+                GameActionsHelper.DamageTarget(p, m1, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+            }
+            else
+            {
+                GameActionsHelper.DamageTarget(p, m1, this.secondaryValue, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+            }
+        }
     }
 
     @Override
@@ -46,8 +66,9 @@ public class Alexander extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(1);
-            upgradeSecondaryValue(2);
+            upgradeDamage(3);
+            upgradeSecondaryValue(3 / 2);
+            upgradeMagicNumber(2);
         }
     }
 }

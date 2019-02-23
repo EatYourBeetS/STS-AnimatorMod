@@ -73,5 +73,15 @@
 	{
 		"DESCRIPTIONS": ["Whenever you apply #yPoison, apply an additional #b", " #yPoison."],
 		"NAME": "Poison Affinity"
+	},
+	"animator_BiyorigoPower":
+	{
+		"DESCRIPTIONS": ["Every 4 #yAttacks played, gain #b", " Strength and #b", " Dexterity."],
+		"NAME": "Bito Kanzashi"
+	},
+	"animator_AlbedoPower":
+	{
+		"DESCRIPTIONS": ["ALL enemies deal #b", "% less damage."],
+		"NAME": "Albedo"
 	}
 }

@@ -74,5 +74,15 @@
 	{
 		"DESCRIPTIONS": ["每当你给予 #y毒 时, 额外给予一层 #b", " #y毒."],
 		"NAME": "毒素亲和"
+	},
+	"animator_BiyorigoPower":
+	{
+		"DESCRIPTIONS": ["每4次攻 ， 击获得 #b", " 点 力量 并且获得 #b", " 点 敏捷"],
+		"NAME": "Bito Kanzashi"
+	},
+	"animator_AlbedoPower":
+	{
+		"DESCRIPTIONS": ["所有敌人造成的伤害降低 #b", "%."],
+		"NAME": "Albedo"
 	}
 }

@@ -45,8 +45,13 @@ public class GameActionsHelper
         return action;
     }
 
-    public static ModifyMagicNumberAction ModifyMagicNumber(AbstractCard card, int amount)
+    public static ModifyMagicNumberAction ModifyMagicNumber(AbstractCard card, int amount, boolean relative)
     {
+        if (!relative)
+        {
+            amount = amount - card.baseMagicNumber;
+        }
+
         ModifyMagicNumberAction action = new ModifyMagicNumberAction(card.uuid, amount);
         AbstractDungeon.actionManager.addToBottom(action);
         return action;

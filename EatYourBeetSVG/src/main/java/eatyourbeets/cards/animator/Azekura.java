@@ -16,9 +16,9 @@ public class Azekura extends AnimatorCard
 
     public Azekura()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,6,2);
+        Initialize(0,7,2);
 
         SetSynergy(Synergies.Katanagatari);
     }

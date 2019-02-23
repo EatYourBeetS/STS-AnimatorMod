@@ -1,119 +1,86 @@
 package eatyourbeets.cards.animator;
 
-import basemod.abstracts.CustomSavable;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.GameDictionary;
-import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_SavableInteger;
+import eatyourbeets.actions.MoveSpecificCardAction;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.subscribers.OnBattleStartSubscriber;
+import eatyourbeets.subscribers.OnEndOfTurnSubscriber;
 
-public class ChaikaTrabant extends AnimatorCard_SavableInteger implements CustomSavable<Integer>
+public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscriber, OnEndOfTurnSubscriber
 {
     public static final String ID = CreateFullID(ChaikaTrabant.class.getSimpleName());
 
-    private final static String[] KeyWords = new String[3];
-
-    private final String BASE_DESCRIPTION;
+    private int timer;
 
     public ChaikaTrabant()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(7,0);
+        Initialize(7,0, 4);
 
-        this.BASE_DESCRIPTION = this.rawDescription;
-        AddExtendedDescription();
+        if (PlayerStatistics.InBattle())
+        {
+            OnBattleStart();
+        }
 
+        this.exhaust = true;
         SetSynergy(Synergies.Chaika);
     }
 
     @Override
-    public void applyPowers()
+    public void triggerOnExhaust()
     {
-        super.applyPowers();
-        UpdateBattleDescription();
+        super.triggerOnExhaust();
+        this.timer = this.baseMagicNumber;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
-
-        if (secondaryValue == 0)
-        {
-            GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
-        }
-        else if (secondaryValue == 1)
-        {
-            GameActionsHelper.AddToBottom(new StunMonsterAction(m, p));
-        }
-        else if (secondaryValue == 2)
-        {
-            GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 1, false), 1);
-        }
-
-        Rotate();
+        GameActionsHelper.AddToBottom(new StunMonsterAction(m, p));
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {
-            upgradeDamage(5);
+            upgradeDamage(2);
+            upgradeMagicNumber(-1);
         }
     }
 
-    private void Rotate()
+    @Override
+    public void OnEndOfTurn(boolean isPlayer)
     {
-        String keyword = "[#EFC851]" + cardStrings.EXTENDED_DESCRIPTION[0] + "[]";
-
-        int newValue = (this.secondaryValue + 1) % KeyWords.length;
-        for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
+        AbstractPlayer p = AbstractDungeon.player;
+        if (isPlayer && p.exhaustPile.contains(this))
         {
-            ((ChaikaTrabant)c).SetValue(newValue);
-            ((ChaikaTrabant)c).UpdateBattleDescription();
+            if (timer == 0)
+            {
+                timer = baseMagicNumber;
+                GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.drawPile, p.exhaustPile, true));
+            }
+            else
+            {
+                timer -= 1;
+            }
         }
-
-        AbstractCard chaika = GetMasterDeckInstance();
-        if (chaika != null)
-        {
-            ((ChaikaTrabant)chaika).SetValue(newValue);
-        }
     }
 
-    private void UpdateBattleDescription()
+    @Override
+    public void OnBattleStart()
     {
-        logger.info(BASE_DESCRIPTION);
-        logger.info(KeyWords[0]);
-        logger.info(KeyWords[1]);
-        logger.info(KeyWords[2]);
-        String keyword = "[#EFC851]" + cardStrings.EXTENDED_DESCRIPTION[0] + "[]";
-        rawDescription = BASE_DESCRIPTION.replace(keyword, KeyWords[secondaryValue]);
-        initializeDescription();
-    }
-
-    private static String GetKeywordName(String powerName)
-    {
-        String s = GameDictionary.parentWord.get(powerName.toLowerCase());
-        return s.substring(0, 1).toUpperCase() + s.substring(1);
-    }
-
-    static
-    {
-        KeyWords[0] = GetKeywordName(WeakPower.NAME);
-        KeyWords[1] = GetKeywordName(StunMonsterPower.POWER_ID);
-        KeyWords[2] = GetKeywordName(VulnerablePower.NAME);
+        PlayerStatistics.onEndOfTurn.Subscribe(this);
     }
 }

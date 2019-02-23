@@ -19,9 +19,9 @@
 	"animator_Ainz":
 	{
 		"DESCRIPTION": "每回合花费减少一 点 。 在你的回合开始时添加一张 [#EFC851]形态[] 到你的手牌 。",
-		"UPGRADE_DESCRIPTION" : "每回合花费减少一点 。 在你的回合开始时添加一张耗能为 2 的 [#EFC851]形态[] 到你的手牌 。",
 		"EXTENDED_DESCRIPTION": ["形态", "恶魔形态 ， 回想形态或幽魂形态。"],
-		"NAME": "安兹·乌尔·恭"
+		"NAME": "安兹·乌尔·恭",
+		"UPGRADE_DESCRIPTION": "每回合花费减少一点 。 在你的回合开始时添加一张耗能为 2 的 [#EFC851]形态[] 到你的手牌 。"
 	},
 	"animator_Aisha":
 	{
@@ -30,7 +30,7 @@
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "对随机敌人造成 !D! 点伤害 !M! 次 。 遗赠 : 获得 !SV! 点 [#EFC851]钢化[] 格挡 。",
+		"DESCRIPTION": "对目标造成 !D! 点伤害 ，并对其余敌人造成 !SV! 点伤害 。 遗赠 : 获得 !M! 点 [#EFC851]多层格挡[] 。",
 		"NAME": "亚历山大大帝"
 	},
 	"animator_Aqua":
@@ -64,6 +64,11 @@
 		"DESCRIPTION": "造成 !D! 点 伤害 , 若打破目标 格挡 则 造成一层 眩晕 。",
 		"NAME": "Berserker"
 	},
+	"animator_Caster":
+	{
+		"DESCRIPTION": "激发 你最右侧的充能球 。 生成 1 个 黑暗 充能球 。 NL 同调 : 使敌人失去 !M! 点 力量 。 ",
+		"NAME": "Caster"
+	},
 	"animator_ChaikaBohdan":
 	{
 		"DESCRIPTION": " 造成 !D! 点伤害 。 [#EFC851]急躁[] NL !M! ",
@@ -88,8 +93,8 @@
 	},
 	"animator_Cocytus":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 本回合获得 [#EFC851]吸收效果[] 。 同调 : 本次战斗中，这张牌的伤害提高 !M! 点 。",
-		"EXTENDED_DESCRIPTION": ["吸收效果", "获得敌人失去的所有格挡 。"],
+		"DESCRIPTION": "造成 !D! 点 伤害 。 [#EFC851]吸收效果[] 。 同调 : 本次战斗中，这张牌的伤害提高 !M! 点 。",
+		"EXTENDED_DESCRIPTION": ["吸收效果", "获得敌人在本次攻击中失去的所有格挡 。"],
 		"NAME": "科赛特斯"
 	},
 	"animator_Darkness":
@@ -247,9 +252,9 @@
 	"animator_HigakiRinne":
 	{
 		"DESCRIPTION": "穿越者 。 NL 布朗运动爱好者... (触发随机效果)",
+		"EXTENDED_DESCRIPTION": ["发生了什么？"],
 		"NAME": "彼我木轮回",
-		"UPGRADE_DESCRIPTION": "穿越者 。 NL 真·布朗运动爱好者。。。(触发更多随机效果)",
-		"EXTENDED_DESCRIPTION": ["发生了什么？"]
+		"UPGRADE_DESCRIPTION": "穿越者 。 NL 真·布朗运动爱好者。。。(触发更多随机效果)"
 	},
 	"animator_HighElfArcher":
 	{
@@ -466,7 +471,7 @@
 	},
 	"animator_YunYun":
 	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 手牌中每有一张别的 [#EFC851]攻击[] 牌， 增加一点消耗 。",
+		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 手牌中每有一张别的 [#EFC851]攻击[] 牌 ， 增加一点消耗 。",
 		"NAME": "芸芸"
 	},
 	"animator_Yuuichirou":
@@ -476,9 +481,14 @@
 		"NAME": "百夜优一郎",
 		"UPGRADE_DESCRIPTION": "造成!D!点伤害 。 NL 遗赠 : 将一张 [#EFC851]阿修罗丸+[] 放到你的弃牌堆 。"
 	},
-	"animator_Caster":
+	"animator_Biyorigo":
 	{
-		"DESCRIPTION": "激发 你最右侧的充能球 。 生成 1 个 黑暗 充能球 。 NL 同调 : 使敌人失去 !M! 点 力量 。 ",
-		"NAME": "Caster"
+		"DESCRIPTION": "每 4 次攻 , 击获得 !M! 点 力量 并且获得 1 点 敏捷 。",
+		"NAME": "Biyorigo"
+	},
+	"animator_Albedo":
+	{
+		"DESCRIPTION": "获得 !M! ％ 的抗损伤性 。",
+		"NAME": "Albedo"
 	}
 }

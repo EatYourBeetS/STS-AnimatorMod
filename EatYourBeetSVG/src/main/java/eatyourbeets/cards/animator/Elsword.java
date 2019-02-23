@@ -35,7 +35,7 @@ public class Elsword extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(4);
+            upgradeDamage(3);
         }
     }
 }

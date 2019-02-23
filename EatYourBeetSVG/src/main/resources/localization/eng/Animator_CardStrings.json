@@ -19,9 +19,9 @@
 	"animator_Ainz":
 	{
 		"DESCRIPTION": "Costs 1 less each turn. At the start of your turn add a [#EFC851]Power [#EFC851]Form to your hand.",
-		"UPGRADE_DESCRIPTION": "Costs 1 less each turn. At the start of your turn add a [#EFC851]Power [#EFC851]Form to your hand, it costs 2 energy.",
 		"EXTENDED_DESCRIPTION": ["Power Form", "Either Demon Form, Wraith Form or Echo Form."],
-		"NAME": "Ainz Ooal Gown"
+		"NAME": "Ainz Ooal Gown",
+		"UPGRADE_DESCRIPTION": "Costs 1 less each turn. At the start of your turn add a [#EFC851]Power [#EFC851]Form to your hand, it costs 2 energy."
 	},
 	"animator_Aisha":
 	{
@@ -30,7 +30,7 @@
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random enemy !M! times. Legacy: Gain !SV! [#EFC851]Plated [#EFC851]Armor.",
+		"DESCRIPTION": "Deal !D! damage to an enemy and !SV! damage to every other enemy. Legacy: Gain !M! [#EFC851]Plated [#EFC851]Armor.",
 		"NAME": "Alexander"
 	},
 	"animator_Aqua":
@@ -64,6 +64,11 @@
 		"DESCRIPTION": "Deal !D! damage, if you break the target's Block, apply Stun.",
 		"NAME": "Berserker"
 	},
+	"animator_Caster":
+	{
+		"DESCRIPTION": "[#EFC851]Evoke your first Orb. NL [#EFC851]Channel 1 Dark. NL Synergy: The enemy loses !M! Strength.",
+		"NAME": "Caster"
+	},
 	"animator_ChaikaBohdan":
 	{
 		"DESCRIPTION": "[#EFC851]Impatient !M!. NL Deal !D! damage.",
@@ -72,8 +77,7 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply 1 [#EFC851]<Debuff>[].",
-		"EXTENDED_DESCRIPTION": ["<Debuff>", "Changes on every use, alternating between #yWeak, #yStun and #yVulnerable."],
+		"DESCRIPTION": "Deal !D! damage. Stun the enemy. Exhaust. Returns to your draw pile after !M! turns in your Exhaust pile.",
 		"NAME": "Chaika Trabant"
 	},
 	"animator_ChlammyZell":
@@ -247,9 +251,9 @@
 	"animator_HigakiRinne":
 	{
 		"DESCRIPTION": "Shapeshifter. NL Behaves erratically...",
+		"EXTENDED_DESCRIPTION": ["What Happened?"],
 		"NAME": "Higaki Rinne",
-		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Behaves very erratically...",
-		"EXTENDED_DESCRIPTION" : ["What Happened?"]
+		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Behaves very erratically..."
 	},
 	"animator_HighElfArcher":
 	{
@@ -419,7 +423,7 @@
 	},
 	"animator_Sora":
 	{
-		"DESCRIPTION": "Choose and execute !M! custom Effects. Synergy: Choose 1 extra Effect.",
+		"DESCRIPTION": "Choose and execute !M! custom Effects. Synergy: Choose 1 more Effect.",
 		"NAME": "Sora"
 	},
 	"animator_Strike":
@@ -476,9 +480,14 @@
 		"NAME": "Yuuichirou",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Legacy: Add [#EFC851]Asuramaru+ to your discard pile."
 	},
-	"animator_Caster":
+	"animator_Biyorigo":
 	{
-		"DESCRIPTION": "[#EFC851]Evoke your first Orb. NL [#EFC851]Channel 1 Dark. NL Synergy: The enemy loses !M! Strength.",
-		"NAME": "Caster"
+		"DESCRIPTION": "Every 4 Attacks played, gain !M! Strength and 1 Dexterity.",
+		"NAME": "Biyorigo"
+	},
+	"animator_Albedo":
+	{
+		"DESCRIPTION": "Gain !M! % [#EFC851]Damage [#EFC851]Resistance.",
+		"NAME": "Albedo"
 	}
 }

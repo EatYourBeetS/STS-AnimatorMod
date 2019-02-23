@@ -57,6 +57,7 @@ public class BundledRelicProvider
         {
             relic = relic.Clone(AbstractDungeon.miscRng.random(99));
             bundledRelics.add(relic);
+            bundledRelics.add(relic);
         }
         else
         {
@@ -74,6 +75,7 @@ public class BundledRelicProvider
     static
     {
         // <Common>
+        AddBundle(Azekura.ID, ChampionsBelt.ID, AbstractRelic.RelicTier.SPECIAL, 8);
         AddBundle(DwarfShaman.ID, HandDrill.ID, AbstractRelic.RelicTier.SHOP, 6);
         AddBundle(GuildGirl.ID, LetterOpener.ID, AbstractRelic.RelicTier.UNCOMMON, 6);
         AddBundle(Priestess.ID, IceCream.ID, AbstractRelic.RelicTier.RARE, 4);
@@ -114,7 +116,6 @@ public class BundledRelicProvider
         AddBundle(LizardPriest.ID, LizardTail.ID, AbstractRelic.RelicTier.BOSS, 5);
         AddBundle(Aisha.ID, Cauldron.ID, AbstractRelic.RelicTier.SHOP, 7);
         AddBundle(Alexander.ID, ArtOfWar.ID, AbstractRelic.RelicTier.COMMON, 8);
-        AddBundle(Azekura.ID, ChampionsBelt.ID, AbstractRelic.RelicTier.SPECIAL, 8);
         AddBundle(Caster.ID, SymbioticVirus.ID, AbstractRelic.RelicTier.SPECIAL, 11);
         AddBundle(Entoma.ID, TheSpecimen.ID, AbstractRelic.RelicTier.SPECIAL, 9);
         AddBundle(Fredrika.ID, Matryoshka.ID, AbstractRelic.RelicTier.UNCOMMON, 7);
@@ -142,7 +143,9 @@ public class BundledRelicProvider
 
         // <Rare>
         AddBundle(SwordMaiden.ID, BlueCandle.ID, AbstractRelic.RelicTier.UNCOMMON, 7);
+        AddBundle(Albedo.ID, DarkstonePeriapt.ID, AbstractRelic.RelicTier.UNCOMMON, 7);
         AddBundle(Ainz.ID, GremlinHorn.ID, AbstractRelic.RelicTier.UNCOMMON, 8);
+        AddBundle(Biyorigo.ID, Inserter.ID, AbstractRelic.RelicTier.SPECIAL, 8);
         AddBundle(ChaikaTrabant.ID, MummifiedHand.ID, AbstractRelic.RelicTier.UNCOMMON, 7);
         AddBundle(Elesis.ID, MoltenEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, 9);
         AddBundle(Eris.ID, TinyChest.ID, AbstractRelic.RelicTier.COMMON, 8);

@@ -18,6 +18,7 @@ public class HiteiPower extends AnimatorPower
     public static final String POWER_ID = CreateFullID(HiteiPower.class.getSimpleName());
 
     private final AbstractPlayer player;
+    private int stacks;
     private int exhaustCards;
     private int goldGain;
     private int goldCap = 100;
@@ -30,6 +31,7 @@ public class HiteiPower extends AnimatorPower
         this.amount = 0;
         this.goldGain = goldGain;
         this.exhaustCards = 1;
+        this.stacks = 1;
 
         updateDescription();
     }
@@ -75,9 +77,6 @@ public class HiteiPower extends AnimatorPower
                 AbstractDungeon.effectsQueue.add(effect);
                 GameActionsHelper.AddToBottom(new WaitAction(effect.duration));
                 GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(card, group, true));
-//                group.moveToExhaustPile(card);
-//                card.exhaustOnUseOnce = false;
-//                card.freeToPlayOnce = false;
             }
         }
 
@@ -100,7 +99,8 @@ public class HiteiPower extends AnimatorPower
         {
             this.goldGain += other.goldGain;
             this.exhaustCards += 1;
-            this.goldCap += 10;
+            this.goldCap += 100 / (stacks * 3);
+            this.stacks += 1;
         }
 
         super.onApplyPower(power, target, source);

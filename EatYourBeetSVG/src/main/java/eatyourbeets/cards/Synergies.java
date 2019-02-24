@@ -10,18 +10,19 @@ public class Synergies
     private final static UIStrings uiStrings = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Synergies);
     private final static HashMap<Integer, Synergy> All = new HashMap<>();
 
-    public final static Synergy ANY =            CreateSynergy(0 );
-    public final static Synergy Elsword =        CreateSynergy(1 );
-    public final static Synergy Kancolle =       CreateSynergy(2 );
-    public final static Synergy Chaika =         CreateSynergy(3 );
-    public final static Synergy Konosuba =       CreateSynergy(4 );
-    public final static Synergy Katanagatari =   CreateSynergy(5 );
-    public final static Synergy OwariNoSeraph =  CreateSynergy(6 );
-    public final static Synergy Overlord =       CreateSynergy(7 );
-    public final static Synergy NoGameNoLife =   CreateSynergy(8 );
-    public final static Synergy Gate =           CreateSynergy(9 );
-    public final static Synergy Fate =           CreateSynergy(10);
-    public final static Synergy GoblinSlayer =   CreateSynergy(11);
+    public final static Synergy ANY =                  CreateSynergy(0 );
+    public final static Synergy Elsword =              CreateSynergy(1 );
+    public final static Synergy Kancolle =             CreateSynergy(2 );
+    public final static Synergy Chaika =               CreateSynergy(3 );
+    public final static Synergy Konosuba =             CreateSynergy(4 );
+    public final static Synergy Katanagatari =         CreateSynergy(5 );
+    public final static Synergy OwariNoSeraph =        CreateSynergy(6 );
+    public final static Synergy Overlord =             CreateSynergy(7 );
+    public final static Synergy NoGameNoLife =         CreateSynergy(8 );
+    public final static Synergy Gate =                 CreateSynergy(9 );
+    public final static Synergy Fate =                 CreateSynergy(10);
+    public final static Synergy GoblinSlayer =         CreateSynergy(11);
+    public final static Synergy FullmetalAlchemist =   CreateSynergy(12);
 
     private static Synergy CreateSynergy(int id)
     {
@@ -46,5 +47,6 @@ public class Synergies
         All.put(Gate.ID, Gate);
         All.put(Fate.ID, Fate);
         All.put(GoblinSlayer.ID, GoblinSlayer);
+        All.put(FullmetalAlchemist.ID, FullmetalAlchemist);
     }
 }

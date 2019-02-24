@@ -27,6 +27,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
     public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
     public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
+    public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
     public static final GameEvent<OnCardDrawnSubscriber> onCardDrawn = new GameEvent<>();
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
@@ -69,6 +70,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
     public void OnBattleStart()
     {
         ClearStats();
+        onBattleEnd.Clear();
         onBattleStart.Clear();
         for (AbstractCard c : AbstractDungeon.player.drawPile.group)
         {
@@ -79,6 +81,15 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
                 s.OnBattleStart();
             }
         }
+    }
+
+    public void OnBattleEnd()
+    {
+        for (OnBattleEndSubscriber s : onBattleEnd.GetSubscribers())
+        {
+            s.OnBattleEnd();
+        }
+        onBattleEnd.Clear();
     }
 
     public static AbstractRoom GetCurrentRoom()

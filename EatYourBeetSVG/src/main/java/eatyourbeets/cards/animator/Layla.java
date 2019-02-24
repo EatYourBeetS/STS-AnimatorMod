@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,6 +12,8 @@ import eatyourbeets.Utilities;
 import eatyourbeets.actions.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+
+import java.util.ArrayList;
 
 public class Layla extends AnimatorCard
 {
@@ -43,15 +46,15 @@ public class Layla extends AnimatorCard
         }
     }
 
-    private void OnDiscard(Object state, int discarded)
+    private void OnDiscard(Object state, ArrayList<AbstractCard> discarded)
     {
         AbstractMonster m = Utilities.SafeCast(state, AbstractMonster.class);
-        if (state == null || discarded <= 0)
+        if (state == null || discarded == null)
         {
             return;
         }
 
-        for (int i = 0; i < discarded; i++)
+        for (int i = 0; i < discarded.size(); i++)
         {
             DamageInfo info = new DamageInfo(AbstractDungeon.player, this.damage, upgraded ? DamageInfo.DamageType.HP_LOSS : this.damageTypeForTurn);
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.BLUNT_LIGHT));

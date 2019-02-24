@@ -7,7 +7,7 @@
 	},
 	"animator_AcuraShin":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies, then NL Apply !M! Poison. NL Gain !SV! [#EFC851]Poison [#EFC851]Affinity.",
+		"DESCRIPTION": "Deal !D! damage to ALL enemies, then NL Apply !M! Poison. NL Gain 1 [#EFC851]Poison [#EFC851]Affinity.",
 		"EXTENDED_DESCRIPTION": ["Poison Affinity", "Every time you apply Poison, apply 1 additional Poison per stack."],
 		"NAME": "Shin"
 	},
@@ -490,5 +490,62 @@
 		"DESCRIPTION": "Gain !M! % [#EFC851]Damage [#EFC851]Resistance.",
 		"EXTENDED_DESCRIPTION": ["Damage Resistance", "Take less damage from enemy attacks, further stacks are less effective."],
 		"NAME": "Albedo"
+	},
+	"animator_Sloth":
+	{
+		"DESCRIPTION": "Deal !D! Damage. NL Double this card's base damage this combat.",
+		"NAME": "Sloth"
+	},
+	"animator_MaesHughes":
+	{
+		"DESCRIPTION": "Draw 1 card and reduce its cost by 2 this turn. Legacy: Deal !D! Damage to ALL enemies.",
+		"NAME": "Maes Hughes"
+	},
+	"animator_ElricEdward":
+	{
+		"DESCRIPTION": "Cycle !M! card. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the card you cycled.",
+		"UPGRADE_DESCRIPTION": "Cycle !M! cards. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the cards you cycled.",
+		"EXTENDED_DESCRIPTION": [ "Bonus Effect", "#yAttack: Channel 1 Lightning, NL #ySkill: Channel 1 Frost, NL #yPower: Channel 1 Dark" ],
+		"NAME": "Edward Elric"
+	},
+	"animator_Greed":
+	{
+		"DESCRIPTION": "Gain !M! Malleable. NL [#EFC851]Greed[].",
+		"EXTENDED_DESCRIPTION": ["Greed", "At the end of combat, gain Gold equal to your missing Health, does not stack."],
+		"NAME": "Greed"
+	},
+	"animator_Envy":
+	{
+		"DESCRIPTION": "Shapeshifter. NL The first card you play each turn will Synergize.",
+		"UPGRADE_DESCRIPTION": "Innate. Shapeshifter. NL The first card you play each turn will Synergize.",
+		"NAME": "Envy"
+	},
+	"animator_Gluttony":
+	{
+		"DESCRIPTION": "Exhaust up to !M! Cards in your hand, activate a [#EFC851]Bonus [#EFC851]Effect based on each card type. Exhaust.",
+		"EXTENDED_DESCRIPTION": [ "Bonus Effect", "#yAttack: Gain 1 Strength, NL #ySkill: Gain 3 Temporary HP, NL #yPower: Heal 6 HP" ],
+		"NAME": "Gluttony"
+	},
+	"animator_AlphonseElric":
+	{
+		"DESCRIPTION": "Cooldown !SV! : Gain 1 Focus. NL Legacy: Turn this card into [#EFC851]Armored [#EFC851]Alphonse and move it to discard pile..",
+		"UPGRADE_DESCRIPTION": "Cooldown !SV! : Gain 1 Focus. NL Legacy: Turn this card into [#EFC851]Armored [#EFC851]Alphonse+ and move it to discard pile.",
+		"NAME": "Alphonse Elric"
+	},
+	"animator_AlphonseElricAlt":
+	{
+		"DESCRIPTION": "Gain !M! [#EFC851]Plated [#EFC851]Armor. Synergy: Channel !SV! Lightning.",
+		"NAME": "Armored Alphonse"
+	},
+	"animator_Scar":
+	{
+		"DESCRIPTION": "Deal !D! Piercing damage. If this kills a non-minion enemy, Purge and permanently Upgrade a random card.",
+		"NAME": "Scar"
+	},
+	"animator_RoyMustang":
+	{
+		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply !M! [#EFC851]Burning[].",
+		"EXTENDED_DESCRIPTION": [ "Burning", "Take damage at the start of your turn. Also take 5% more Attack damage per stack." ],
+		"NAME": "Roy Mustang"
 	}
 }

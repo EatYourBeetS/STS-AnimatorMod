@@ -7,7 +7,7 @@
 	},
 	"animator_AcuraShin":
 	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 ， 并给予 !M! 层 中毒 。 获得 !SV! 层 [#EFC851]毒素亲和[] 。",
+		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 ， 并给予 !M! 层 中毒 。 获得 1 层 [#EFC851]毒素亲和[] 。",
 		"EXTENDED_DESCRIPTION": ["毒素亲和", "每当给予敌人毒效果时 ， 额外给予一层毒 。"],
 		"NAME": "辛·亚裘拉"
 	},
@@ -61,7 +61,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 , 若打破目标 格挡 则 造成 获得 [B] [B] 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 , 若打破目标 格挡 则 获得 [B] [B] 。",
 		"NAME": "Berserker"
 	},
 	"animator_Caster":

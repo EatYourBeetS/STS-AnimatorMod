@@ -10,15 +10,15 @@ import eatyourbeets.AnimatorResources;
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
 
-public class VariableDiscardAction extends AnimatorAction
+public class VariableExhaustAction extends AnimatorAction
 {
     private final Object state;
     private final BiConsumer<Object, ArrayList<AbstractCard>> onDiscard;
 
-    public VariableDiscardAction(AbstractPlayer player, int discard, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onDiscard)
+    public VariableExhaustAction(AbstractPlayer player, int discard, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onExhaust)
     {
         this.state = state;
-        this.onDiscard = onDiscard;
+        this.onDiscard = onExhaust;
         this.target = player;
         this.amount = discard;
         this.duration = Settings.ACTION_DUR_FAST;
@@ -46,20 +46,18 @@ public class VariableDiscardAction extends AnimatorAction
 
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved)
         {
-            ArrayList<AbstractCard> discarded = new ArrayList<>();
+            ArrayList<AbstractCard> exhausted = new ArrayList<>();
             for (AbstractCard card : AbstractDungeon.handCardSelectScreen.selectedCards.group)
             {
-                p.hand.moveToDiscardPile(card);
-                card.triggerOnManualDiscard();
-                GameActionManager.incrementDiscard(false);
+                p.hand.moveToExhaustPile(card);
                 AbstractDungeon.player.hand.applyPowers();
 
-                discarded.add(card);
+                exhausted.add(card);
             }
 
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
 
-            onDiscard.accept(state, discarded);
+            onDiscard.accept(state, exhausted);
         }
 
         this.tickDuration();

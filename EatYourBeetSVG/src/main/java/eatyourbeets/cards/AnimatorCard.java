@@ -29,6 +29,8 @@ public abstract class AnimatorCard extends CustomCard
     protected static final Logger logger = LogManager.getLogger(AnimatorCard.class.getName());
     //private static final Color SYNERGY_COLOR = new Color(0.565f, 0.933f, 0.565f, 1);
 
+    public static int SynergyReserves;
+
     private static AnimatorCard previousCard = null;
     private static AnimatorCard lastCardPlayed = null;
 
@@ -52,6 +54,11 @@ public abstract class AnimatorCard extends CustomCard
 
     public static void SetLastCardPlayed(AbstractCard card)
     {
+        if (SynergyReserves > 0)
+        {
+            SynergyReserves -= 1;
+        }
+
         if (card == null)
         {
             previousCard = null;
@@ -66,7 +73,11 @@ public abstract class AnimatorCard extends CustomCard
 
     public boolean HasActiveSynergy()
     {
-        if (this == lastCardPlayed)
+        if (SynergyReserves > 0)
+        {
+            return true;
+        }
+        else if (this == lastCardPlayed)
         {
             return previousCard != null && previousCard.HasSynergy(this);
         }

@@ -1,9 +1,11 @@
+
+{
 	"animator_AlphonseElric":
 	{
 		"DESCRIPTION": "Gain 1 Focus. NL Legacy: Turn this card into [#EFC851]Armored [#EFC851]Alphonse and place it in your discard pile.",
 		"UPGRADE_DESCRIPTION": "Gain 1 Focus. NL Legacy: Turn this card into [#EFC851]Armored [#EFC851]Alphonse+ and place it in your discard pile.",
 		"NAME": "Alphonse"
-	},	
+	},
 	"animator_AlphonseElricAlt":
 	{
 		"DESCRIPTION": "Gain !M! [#EFC851]Plated [#EFC851]Armor. Synergy: Channel !SV! Lightning.",
@@ -13,13 +15,13 @@
 	{
 		"DESCRIPTION": "Cycle !M! card. NL Activate a Bonus Effect based on the cycled card.",
 		"UPGRADE_DESCRIPTION": "Cycle !M! cards. NL Activate a Bonus Effect based on the cycled cards.",
-		"EXTENDED_DESCRIPTION": ["Bonus Effect", "Attack: Channel 1 Lightning, Skill: Channel 1 Frost, Power: Channel 1 Dark"],
+		"EXTENDED_DESCRIPTION": [ "Bonus Effect", "Attack: Channel 1 Lightning, Skill: Channel 1 Frost, Power: Channel 1 Dark" ],
 		"NAME": "Edward Elric"
 	},
 	"animator_Gluttony":
 	{
-		"DESCRIPTION": "Exhaust up to !M! Cards in your hand, activate a Bonus Effect for each card. Exhaust.",
-		"EXTENDED_DESCRIPTION": ["Bonus Effect", "Based on the exhausted card type. Attack: Gain 1 Strength, Skill: Gain 3 Temporary HP, Power: Heal 6 HP"],
+		"DESCRIPTION": "Exhaust up to !M! Cards in your hand, activate a [#EFC851]Bonus [#EFC851]Effect for each card. Exhaust.",
+		"EXTENDED_DESCRIPTION": [ "Bonus Effect", "Based on the exhausted card type. Attack: Gain 1 Strength, Skill: Gain 3 Temporary HP, Power: Heal 6 HP" ],
 		"NAME": "Gluttony"
 	},
 	"animator_Greed":
@@ -38,11 +40,11 @@
 	{
 		"DESCRIPTION": "Deal !D! Damage. NL Double this card's base damage this combat.",
 		"NAME": "Sloth"
-	},	
+	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply !M! Burning.",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn."],
+		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply !M! [#EFC851]Burning[].",
+		"EXTENDED_DESCRIPTION": [ "Burning", "Take damage at the start of your turn. Also take 5% more Attack damage per stack." ],
 		"NAME": "Roy Mustang"
 	},
 	"animator_MaesHughes":
@@ -50,3 +52,4 @@
 		"DESCRIPTION": "Draw 2 cards and reduce their cost by 1 this turn. Legacy: Deal !D! Damage to ALL enemies.",
 		"NAME": "Maes Hughes"
 	}
+}

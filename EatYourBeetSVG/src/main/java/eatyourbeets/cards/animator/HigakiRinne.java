@@ -85,6 +85,13 @@ public class HigakiRinne extends AnimatorCard
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+        AbstractDungeon.actionManager.addToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         for (int i = 0; i < this.magicNumber; i++)

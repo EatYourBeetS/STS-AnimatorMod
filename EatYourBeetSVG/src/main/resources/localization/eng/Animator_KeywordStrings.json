@@ -63,5 +63,10 @@
 		"DESCRIPTION": "Can be upgraded any number of times.",
 		"NAMES": ["augmentable"],
 		"PROPERNAME": "Augmentable"
+	},
+	{
+		"DESCRIPTION": "Upon receiving attack damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of your turn.",
+		"NAMES": ["malleable"],
+		"PROPERNAME": "Malleable"
 	}
 ]

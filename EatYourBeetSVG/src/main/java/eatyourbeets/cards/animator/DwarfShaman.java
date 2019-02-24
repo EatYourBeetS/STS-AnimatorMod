@@ -41,21 +41,4 @@ public class DwarfShaman extends AnimatorCard
             upgradeMagicNumber(1);
         }
     }
-
-//
-//    private void OnCardsDraw(Object context, ArrayList<AbstractCard> cards)
-//    {
-//        if (cards.size() != 1)
-//        {
-//            return;
-//        }
-//
-//        AbstractCard c = cards.get(0);
-//        if (c.canUpgrade())
-//        {
-//            c.upgrade();
-//            c.superFlash();
-//            AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(c.target_x, c.target_y));
-//        }
-//    }
 }

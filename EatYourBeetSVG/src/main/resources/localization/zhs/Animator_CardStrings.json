@@ -61,7 +61,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 , 若打破目标 格挡 则 造成一层 眩晕 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 , 若打破目标 格挡 则 造成 获得 [B] [B] 。",
 		"NAME": "Berserker"
 	},
 	"animator_Caster":
@@ -323,7 +323,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "使一个敌人的 格挡 值变为 !M! ， 获得 !B! 点 格挡 。 同调 : 循环 一张牌 。",
+		"DESCRIPTION": "使一个敌人的 格挡 值变为 !M! ， 获得 !B! 点 格挡 。 同调 : 抽 一张牌 。",
 		"NAME": "蜥蜴僧侣"
 	},
 	"animator_Megumin":
@@ -372,7 +372,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "预热 !M! : 获得 !SV! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !SV! 点 临时生命 。",
+		"DESCRIPTION": "预热 !M! : 获得 !SV! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 。",
 		"NAME": "女神官"
 	},
 	"animator_Rena":
@@ -488,8 +488,8 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "获得 !M! ％ [#EFC851]的抗性[] 。",
-		"EXTENDED_DESCRIPTION": ["的抗性", "对敌人攻击的伤害较小 ， 进一步堆叠更糟糕 。"],
+		"DESCRIPTION": "获得 !M! % 的 [#EFC851]抗性[] 。",
+		"EXTENDED_DESCRIPTION": ["抗性", "减少受到的伤害，效果由层数决定 。"],
 		"NAME": "Albedo"
 	}
 }

@@ -20,7 +20,6 @@ public class AcuraShin extends AnimatorCard
 
         Initialize(1,0, 3);
 
-        this.secondaryValue = this.baseSecondaryValue = 1;
         this.isMultiDamage = true;
 
         AddExtendedDescription();
@@ -37,7 +36,7 @@ public class AcuraShin extends AnimatorCard
             GameActionsHelper.ApplyPower(p, m1, new PoisonPower(m1, p, this.magicNumber), this.magicNumber);
         }
 
-        GameActionsHelper.ApplyPower(p, p, new PoisonAffinityPower(p, this.secondaryValue), this.secondaryValue);
+        GameActionsHelper.ApplyPower(p, p, new PoisonAffinityPower(p, 1), 1);
     }
 
     @Override

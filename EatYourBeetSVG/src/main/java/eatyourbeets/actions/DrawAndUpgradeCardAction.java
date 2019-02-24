@@ -38,7 +38,8 @@ public class DrawAndUpgradeCardAction extends AnimatorAction
             {
                 count -= 1;
                 c.upgrade();
-                AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(c.target_x, c.target_y));
+                c.flash();
+                //AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(c.target_x, c.target_y));
                 AbstractDungeon.actionManager.addToBottom(new DrawSpecificCardAction(c));
 
                 if (count == 0)

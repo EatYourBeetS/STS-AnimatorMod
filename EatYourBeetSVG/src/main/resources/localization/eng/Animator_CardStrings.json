@@ -61,7 +61,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "Deal !D! damage, if you break the target's Block, apply Stun.",
+		"DESCRIPTION": "Deal !D! damage, if you break the target's Block, gain [B] [B] .",
 		"NAME": "Berserker"
 	},
 	"animator_Caster":
@@ -87,7 +87,7 @@
 	},
 	"animator_Chung":
 	{
-		"DESCRIPTION": "Gain !B! Block. Cooldown !SV!: NL Deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Gain !B! Block. Cooldown !SV! : NL Deal !D! damage to ALL enemies.",
 		"NAME": "Chung"
 	},
 	"animator_Cocytus":
@@ -322,7 +322,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "Set the Block of an enemy to !M!. NL Gain !B! Block. NL Synergy: Cycle 1 card.",
+		"DESCRIPTION": "Set the Block of an enemy to !M!. NL Gain !B! Block. NL Synergy: Draw 1 card.",
 		"NAME": "'Lizard Priest'"
 	},
 	"animator_Megumin":
@@ -371,7 +371,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "Cooldown !SV!: Gain !M! Regeneration. NL Synergy: Gain !M! temporary HP.",
+		"DESCRIPTION": "Cooldown !SV! : Gain !M! Regeneration. NL Synergy: Gain !B! temporary HP.",
 		"NAME": "'Priestess'"
 	},
 	"animator_Rena":

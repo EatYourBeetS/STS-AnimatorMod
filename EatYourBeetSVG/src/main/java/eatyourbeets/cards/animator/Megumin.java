@@ -44,12 +44,12 @@ public class Megumin extends AnimatorCard//_SavableInteger implements CustomSava
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.1F));
-        GameActionsHelper.AddToBottom(new WaitAction(1f));
+        GameActionsHelper.AddToBottom(new WaitAction(0.5f));
         GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.2F));
         GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
-        GameActionsHelper.AddToBottom(new WaitAction(1f));
+        GameActionsHelper.AddToBottom(new WaitAction(0.5f));
         GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.3F));
-        GameActionsHelper.AddToBottom(new WaitAction(1f));
+        GameActionsHelper.AddToBottom(new WaitAction(0.5f));
         GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.RED)));
         GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5f));
         for (AbstractCreature m1 : PlayerStatistics.GetCurrentEnemies(true))

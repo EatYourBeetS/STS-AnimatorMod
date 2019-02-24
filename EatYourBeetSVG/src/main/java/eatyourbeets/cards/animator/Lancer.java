@@ -19,7 +19,7 @@ public class Lancer extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(6,0);
+        Initialize(7,0);
 
         SetSynergy(Synergies.Fate);
     }
@@ -59,7 +59,7 @@ public class Lancer extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(3);
+            upgradeDamage(2);
         }
     }
 }

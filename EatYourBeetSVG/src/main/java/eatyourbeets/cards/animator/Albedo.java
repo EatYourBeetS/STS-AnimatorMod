@@ -16,7 +16,7 @@ public class Albedo extends AnimatorCard
     {
         super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0,15);
+        Initialize(0,0,20);
 
         AddExtendedDescription();
 

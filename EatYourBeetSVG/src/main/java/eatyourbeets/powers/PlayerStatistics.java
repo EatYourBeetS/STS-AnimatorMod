@@ -1,5 +1,6 @@
 package eatyourbeets.powers;
 
+import basemod.interfaces.OnStartBattleSubscriber;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnCardDrawPower;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -29,6 +30,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
     public static final GameEvent<OnCardDrawnSubscriber> onCardDrawn = new GameEvent<>();
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
+    public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
 
     private static int turnCount = 0;
     private static int cardsDrawnThisTurn = 0;
@@ -51,6 +53,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
         onLoseHp.Clear();
         onEndOfTurn.Clear();
         onApplyPower.Clear();
+        onStartOfTurnPostDraw.Clear();
     }
 
     public static void EnsurePowerIsApplied()
@@ -224,6 +227,19 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
         }
 
         return super.onLoseHp(damage);
+    }
+
+    @Override
+    public void atStartOfTurnPostDraw()
+    {
+        super.atStartOfTurnPostDraw();
+        if (onStartOfTurnPostDraw.Count() > 0)
+        {
+            for (OnStartOfTurnPostDrawSubscriber s : onStartOfTurnPostDraw.GetSubscribers())
+            {
+                s.OnStartOfTurnPostDraw();
+            }
+        }
     }
 
     public static ArrayList<AbstractMonster> GetCurrentEnemies(boolean aliveOnly)

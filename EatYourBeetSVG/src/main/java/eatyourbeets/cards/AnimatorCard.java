@@ -257,14 +257,6 @@ public abstract class AnimatorCard extends CustomCard
     {
         this.synergy = synergy;
         this.anySynergy = anySynergy;
-//        if (anySynergy)
-//        {
-//            customTooltips.add(new TooltipInfo("Synergies", Synergies.ANY.NAME));
-//        }
-//        else
-//        {
-//            customTooltips.add(new TooltipInfo("Synergies", synergy.NAME));
-//        }
     }
 
     protected void AddExtendedDescription(Object param)

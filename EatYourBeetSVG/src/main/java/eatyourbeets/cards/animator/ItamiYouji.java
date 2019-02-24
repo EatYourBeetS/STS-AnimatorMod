@@ -47,7 +47,6 @@ public class ItamiYouji extends AnimatorCard
         {
             GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
             GameActionsHelper.DamageRandomEnemy(p, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-            //AbstractDungeon.actionManager.addToBottom(new DamageRandomEnemyAction(new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
         }
     }
 

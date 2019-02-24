@@ -13,9 +13,9 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.subscribers.OnBattleStartSubscriber;
-import eatyourbeets.subscribers.OnEndOfTurnSubscriber;
+import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
 
-public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscriber, OnEndOfTurnSubscriber
+public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscriber, OnStartOfTurnPostDrawSubscriber
 {
     public static final String ID = CreateFullID(ChaikaTrabant.class.getSimpleName());
 
@@ -61,10 +61,16 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
     }
 
     @Override
-    public void OnEndOfTurn(boolean isPlayer)
+    public void OnBattleStart()
+    {
+        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+    }
+
+    @Override
+    public void OnStartOfTurnPostDraw()
     {
         AbstractPlayer p = AbstractDungeon.player;
-        if (isPlayer && p.exhaustPile.contains(this))
+        if (p.exhaustPile.contains(this))
         {
             if (timer == 0)
             {
@@ -76,11 +82,5 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
                 timer -= 1;
             }
         }
-    }
-
-    @Override
-    public void OnBattleStart()
-    {
-        PlayerStatistics.onEndOfTurn.Subscribe(this);
     }
 }

@@ -23,7 +23,7 @@ public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavabl
 
     public ElricAlphonse()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
         Initialize(0,0);
 
@@ -34,8 +34,6 @@ public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavabl
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
-
-        AbstractDungeon.player.exhaustPile.removeCard(this);
 
         ElricAlphonseAlt other = new ElricAlphonseAlt();
         if (this.upgraded)
@@ -58,12 +56,15 @@ public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavabl
     @Override
     public void upgrade() 
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeBaseCost(0);
+        }
     }
 
     @Override
     protected int GetBaseCooldown()
     {
-        return upgraded ? 1 : 2;
+        return 1;
     }
 }

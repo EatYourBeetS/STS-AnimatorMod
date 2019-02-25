@@ -7,46 +7,44 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.subscribers.OnCardDrawnSubscriber;
 
-public class ChlammyZell extends AnimatorCard implements OnBattleStartSubscriber, OnCardDrawnSubscriber
+public class ChlammyZell extends AnimatorCard
 {
     public static final String ID = CreateFullID(ChlammyZell.class.getSimpleName());
 
     public ChlammyZell()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(0, 0, 1);
+        Initialize(16, 0, 4);
 
-        secondaryValue = baseSecondaryValue = 0;
-        this.damage = 0;
-
-        if (PlayerStatistics.InBattle())
-        {
-            OnBattleStart();
-        }
+        this.isMultiDamage = true;
 
         SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override
-    public void calculateCardDamage(AbstractMonster mo)
-    {
-        this.secondaryValue = PlayerStatistics.getCardsDrawnThisTurn();
-        this.baseDamage = this.secondaryValue * this.magicNumber;
-
-        super.calculateCardDamage(mo);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        for (int i = 0; i < this.multiDamage.length; i++)
+        {
+            if (this.magicNumber < this.multiDamage[i])
+            {
+                this.multiDamage[i] = AbstractDungeon.miscRng.random(this.magicNumber, this.multiDamage[i]);
+            }
+            else
+            {
+                this.multiDamage[i] = this.magicNumber;
+            }
+        }
+
+        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
     }
 
     @Override
@@ -54,21 +52,8 @@ public class ChlammyZell extends AnimatorCard implements OnBattleStartSubscriber
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(2);
+            upgradeDamage(5);
         }
-    }
-
-    @Override
-    public void OnBattleStart()
-    {
-        PlayerStatistics.onCardDrawn.Subscribe(this);
-
-        OnCardDrawn(null);
-    }
-
-    @Override
-    public void OnCardDrawn(AbstractCard card)
-    {
-        this.baseDamage = PlayerStatistics.getCardsDrawnThisTurn() * this.magicNumber;
     }
 }

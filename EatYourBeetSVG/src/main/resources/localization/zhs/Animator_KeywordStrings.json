@@ -63,5 +63,10 @@
 		"DESCRIPTION": "可被多次升级。",
 		"NAMES": [ "多重进化"],
 		"PROPERNAME": "多重进化"
+	},
+	{
+		"DESCRIPTION": "Upon receiving attack damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of your turn.",
+		"NAMES": ["malleable"],
+		"PROPERNAME": "Malleable"
 	}
 ]

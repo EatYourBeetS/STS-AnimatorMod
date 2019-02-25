@@ -63,6 +63,7 @@ public class AnimatorCharacterSelect
         AddLoadout(new Fate(), 3, veryUnbalanced);
         AddLoadout(new Overlord(), 3, veryUnbalanced);
         AddLoadout(new Chaika(), 3, veryUnbalanced);
+        AddLoadout(new FullmetalAlchemist(), 3, veryUnbalanced);
         AddLoadout(new Kancolle(), 4, special);
     }
 }

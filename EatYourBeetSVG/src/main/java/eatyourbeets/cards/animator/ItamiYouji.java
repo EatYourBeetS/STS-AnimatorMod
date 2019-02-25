@@ -2,12 +2,16 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+
+import java.util.ArrayList;
 
 public class ItamiYouji extends AnimatorCard
 {
@@ -15,39 +19,17 @@ public class ItamiYouji extends AnimatorCard
 
     public ItamiYouji()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(4,0,0);
-
-        this.retain = true;
+        Initialize(3,0,3);
 
         SetSynergy(Synergies.Gate);
     }
 
     @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        this.magicNumber = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-        this.isMagicNumberModified = this.magicNumber > 0;
-    }
-
-    @Override
-    public void atTurnStart()
-    {
-        super.atTurnStart();
-        this.retain = true;
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        for (int i = 0; i < this.magicNumber; i++)
-        {
-            GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-            GameActionsHelper.DamageRandomEnemy(p, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-        }
+        GameActionsHelper.DrawCard(p, this.magicNumber, this::OnDraw, m);
     }
 
     @Override
@@ -55,7 +37,24 @@ public class ItamiYouji extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(1);
+        }
+    }
+
+    private void OnDraw(Object state, ArrayList<AbstractCard> cards)
+    {
+        AbstractMonster m = Utilities.SafeCast(state, AbstractMonster.class);
+        if (m != null && cards != null && cards.size() > 0)
+        {
+            for (AbstractCard c : cards)
+            {
+                int damage = this.damage - c.costForTurn;
+                if (damage > 0)
+                {
+                    GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
+                    GameActionsHelper.DamageTarget(AbstractDungeon.player, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+                }
+            }
         }
     }
 }

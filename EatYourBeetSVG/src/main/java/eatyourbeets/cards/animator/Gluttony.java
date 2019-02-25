@@ -6,18 +6,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.powers.MalleablePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.VariableExhaustAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnBattleEndSubscriber;
 
 import java.util.ArrayList;
 
@@ -27,7 +20,7 @@ public class Gluttony extends AnimatorCard
 
     public Gluttony()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0,0, 3);
 
@@ -50,7 +43,7 @@ public class Gluttony extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(1);
         }
     }
 
@@ -71,11 +64,19 @@ public class Gluttony extends AnimatorCard
                     break;
 
                 case SKILL:
-                    GameActionsHelper.AddToBottom(new AddTemporaryHPAction(p, p, 4));
+                    GameActionsHelper.AddToBottom(new AddTemporaryHPAction(p, p, 6));
                     break;
 
                 case POWER:
-                    GameActionsHelper.AddToBottom(new HealAction(p, p, 6));
+                    GameActionsHelper.AddToBottom(new HealAction(p, p, 7));
+                    break;
+
+                case CURSE:
+                    GameActionsHelper.GainBlock(p, 6);
+                    break;
+
+                case STATUS:
+                    GameActionsHelper.GainEnergy(1);
                     break;
             }
         }

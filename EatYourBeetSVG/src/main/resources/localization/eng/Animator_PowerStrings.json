@@ -87,11 +87,11 @@
 	"animator_EnvyPower":
 	{
 		"DESCRIPTIONS": ["The first #b", " card/s you play every turn have their Synergy active."],
-		"NAME": "Albedo"
+		"NAME": "Envy"
 	},
 	"animator_BurningPower":
 	{
 		"DESCRIPTIONS": ["Take #b", " damage at the end of turn. Receive #b", "% more #yAttack damage."],
-		"NAME": "Albedo"
+		"NAME": "Burning"
 	}
 }

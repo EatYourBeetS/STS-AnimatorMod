@@ -83,7 +83,7 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "造成 !M! 点 伤害 。 伤害等同于本回合你所抽到的牌的数量 。 NL (造成 !D! 点 伤害)",
+		"DESCRIPTION": "Deal a random amount of damage to each enemy, ranging from !M! to !D!.",
 		"NAME": "克拉米·杰尔"
 	},
 	"animator_Chung":
@@ -274,7 +274,7 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "保留 。 对随机敌人造成 !D! 点伤害， 伤害取决于本回合打出的牌的数量。 (打出 !M! 张)",
+		"DESCRIPTION": "Draw !M! Cards. Deal !D! damage for each card drawn, subtracting its cost.",
 		"NAME": "伊丹耀司"
 	},
 	"animator_Jibril":
@@ -372,7 +372,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "预热 !M! : 获得 !SV! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 。",
+		"DESCRIPTION": "预热 !SV! : 获得 !M! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 。",
 		"NAME": "女神官"
 	},
 	"animator_Rena":
@@ -491,5 +491,62 @@
 		"DESCRIPTION": "获得 !M! % 的 [#EFC851]抗性[] 。",
 		"EXTENDED_DESCRIPTION": ["抗性", "减少受到的伤害，效果由层数决定 。"],
 		"NAME": "Albedo"
+	},
+	"animator_Sloth":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 本场战斗中使这张牌的伤害翻倍 。 同调 : 获得 !B! 点 格挡 。",
+		"NAME": "懒惰"
+	},
+	"animator_MaesHughes":
+	{
+		"DESCRIPTION": "抽 1 张牌 ， 在本回合中减少其 !M! 点 耗能 。 遗赠 : 对所有敌人造成 !D! 点 伤害 。",
+		"NAME": "马斯·休斯"
+	},
+	"animator_ElricEdward":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 循环 !M! 张牌 。 NL 使循环获得的牌获得一个 [#EFC851]额外充能[] ， 效果由该牌种类决定 。",
+		"EXTENDED_DESCRIPTION": ["额外充能", "攻击牌 : 获得 1 个闪电充能球 , 技能 : 获得 1 个冰霜充能球 , 能力 : 获得 1 个黑暗充能球"],
+		"NAME": "爱德华·艾尔利克"
+	},
+	"animator_Greed":
+	{
+		"DESCRIPTION": "获得 !M! 点 [#EFC851]多层格挡[] 。 Gain !M! Malleable. NL [#EFC851]贪婪[] 。",
+		"EXTENDED_DESCRIPTION": ["贪婪", "在你的回合结束时 , 获得 获得等同于当前失去血量的金币 ，该效果不叠加 。"],
+		"NAME": "贪婪"
+	},
+	"animator_Envy":
+	{
+		"DESCRIPTION": "穿越者 。 NL The first card you play each turn will Synergize.",
+		"UPGRADE_DESCRIPTION": "固有 。 穿越者 。 NL The first card you play each turn will Synergize.",
+		"NAME": "嫉妒"
+	},
+	"animator_Gluttony":
+	{
+		"DESCRIPTION": "从你的手牌消耗最多 !M! 张牌, 每消耗一张牌 ， 对自身附加一层 [#EFC851]额外效果[] ， 效果取决于消耗的牌的种类 。 消耗 。",
+		"EXTENDED_DESCRIPTION": ["额外效果", "#y攻击 : 获得 1 力量, NL #y技能 : 获得 6 点 临时 血量, NL #y能力 : 治愈 7 点 血量 NL #yStatus: Gain 1 Energy NL #yCurse: Gain 6 Block"],
+		"NAME": "暴食"
+	},
+	"animator_ElricAlphonse":
+	{
+		"DESCRIPTION": "预热 !SV! : 获得 1 点 集中 。 NL 遗赠 : 将一张 [#EFC851]阿尔冯斯护甲[] 加入到你的弃牌堆 。",
+		"UPGRADE_DESCRIPTION": "预热 !SV! : 获得 1 点 集中 。 NL 遗赠 : 将一张 [#EFC851]阿尔冯斯护甲+[] 加入到你的弃牌堆 。",
+		"NAME": "阿尔冯斯"
+	},
+	"animator_ElricAlphonseAlt":
+	{
+		"DESCRIPTION": "获得 !M! [#EFC851]多层护甲[] 。 获得 !B! 点 格挡 。 获得一个 1 闪电球 。",
+		"NAME": "阿尔冯斯护甲"
+	},
+	"animator_Scar":
+	{
+		"DESCRIPTION": "Deal !D! Piercing damage. NL [#EFC851]Dragon's[] [#EFC851]Pulse[].",
+		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "If this kills a non-minion enemy, #yPurge this card and permanently #yUpgrade a random card in your deck"],
+		"NAME": "Scar"
+	},
+	"animator_RoyMustang":
+	{
+		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 并赋予 2 层 [#EFC851]燃烧[] 。 遗赠 : Apply !M! more 燃烧 。",
+		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 点 伤害 。 每层使收到的伤害额外增加 5% 。"],
+		"NAME": "罗伊·马斯坦"
 	}
 }

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -20,9 +21,9 @@ public class ElricEdward extends AnimatorCard
 
     public ElricEdward()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(0,0, 1);
+        Initialize(5,0, 1);
 
         AddExtendedDescription();
 
@@ -32,6 +33,7 @@ public class ElricEdward extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
         GameActionsHelper.AddToBottom(new VariableDiscardAction(p, this.magicNumber, this, this::OnCardDiscard));
     }
 
@@ -40,7 +42,7 @@ public class ElricEdward extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeDamage(3);
         }
     }
 

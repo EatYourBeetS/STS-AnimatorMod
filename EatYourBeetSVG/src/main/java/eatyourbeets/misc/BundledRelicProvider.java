@@ -168,5 +168,20 @@ public class BundledRelicProvider
         AddBundle(Shiro.ID, Dodecahedron.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
         AddBundle(Sora.ID, QuestionCard.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
         AddBundle(Wiz.ID, JuzuBracelet.ID, AbstractRelic.RelicTier.COMMON, R5);
+
+        // Common
+        AddBundle(ElricEdward.ID, Pocketwatch.ID, AbstractRelic.RelicTier.RARE, R2);
+        AddBundle(ElricAlphonse.ID, ToyOrnithopter.ID, AbstractRelic.RelicTier.SHOP, R2);
+        AddBundle(Sloth.ID, Sundial.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
+
+        // Uncommon
+        AddBundle(Scar.ID, FrozenEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
+        AddBundle(RoyMustang.ID, MoltenEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
+        AddBundle(MaesHughes.ID, PeacePipe.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
+        AddBundle(Gluttony.ID, Pear.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
+
+        // Rare
+        AddBundle(Envy.ID, DollysMirror.ID, AbstractRelic.RelicTier.SHOP, R1);
+        AddBundle(Greed.ID, MawBank.ID, AbstractRelic.RelicTier.SHOP, R3);
     }
 }

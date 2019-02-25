@@ -22,7 +22,7 @@ public class MaesHughes extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(12,0);
+        Initialize(12,0,2);
 
         this.isMultiDamage = true;
 
@@ -49,6 +49,7 @@ public class MaesHughes extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(6);
+            upgradeMagicNumber(1);
         }
     }
 
@@ -64,7 +65,7 @@ public class MaesHughes extends AnimatorCard
             AbstractCard card = cards.get(0);
             if (card.costForTurn > 0)
             {
-                card.setCostForTurn(card.costForTurn - 2);
+                card.setCostForTurn(card.costForTurn - this.magicNumber);
             }
         }
     }

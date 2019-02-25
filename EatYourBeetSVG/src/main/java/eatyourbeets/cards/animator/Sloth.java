@@ -18,7 +18,7 @@ public class Sloth extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(2,0, 0);
+        Initialize(2,5, 0);
 
         baseSecondaryValue = secondaryValue = 2;
 
@@ -39,6 +39,11 @@ public class Sloth extends AnimatorCard
                 card.secondaryValue *= 2;
             }
         }
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.GainBlock(p, this.block);
+        }
     }
 
     @Override
@@ -48,6 +53,7 @@ public class Sloth extends AnimatorCard
         {
             upgradeDamage(1);
             upgradeSecondaryValue(1);
+            upgradeBlock(1);
         }
     }
 }

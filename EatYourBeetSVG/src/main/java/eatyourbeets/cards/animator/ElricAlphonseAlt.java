@@ -1,14 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
 
 public class ElricAlphonseAlt extends AnimatorCard
@@ -19,7 +16,7 @@ public class ElricAlphonseAlt extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,0, 4);
+        Initialize(0,4, 2);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -28,6 +25,7 @@ public class ElricAlphonseAlt extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.GainBlock(p, this.block);
 
         if (HasActiveSynergy())
         {
@@ -41,6 +39,7 @@ public class ElricAlphonseAlt extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
+            upgradeBlock(2);
         }
     }
 }

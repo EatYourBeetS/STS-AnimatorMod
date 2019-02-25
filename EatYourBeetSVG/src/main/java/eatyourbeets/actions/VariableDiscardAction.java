@@ -30,7 +30,7 @@ public class VariableDiscardAction extends AnimatorAction
         AbstractPlayer p = (AbstractPlayer)target;
         if (this.duration == Settings.ACTION_DUR_FAST)
         {
-            if (p.hand.size() == 0)
+            if (p.hand.size() == 0 || this.amount == 0)
             {
                 this.isDone = true;
             }

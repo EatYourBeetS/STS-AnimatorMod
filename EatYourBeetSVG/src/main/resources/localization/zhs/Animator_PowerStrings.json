@@ -83,6 +83,16 @@
 	"animator_AlbedoPower":
 	{
 		"DESCRIPTIONS": ["受到的所有伤害降低 #b", "%."],
-		"NAME": "Albedo"
+		"NAME": "雅尔贝德"
+	},
+	"animator_EnvyPower":
+	{
+		"DESCRIPTIONS": ["The first #b", " card/s you play every turn have their Synergy active."],
+		"NAME": "Envy"
+	},
+	"animator_BurningPower":
+	{
+		"DESCRIPTIONS": ["Take #b", " damage at the end of turn. Receive #b", "% more #yAttack damage."],
+		"NAME": "Burning"
 	}
 }

@@ -36,7 +36,15 @@ public class Sloth extends AnimatorCard
             if (card != null)
             {
                 card.baseDamage += card.secondaryValue;
-                card.secondaryValue *= 2;
+
+                if (card.baseDamage > 999)
+                {
+                    card.baseDamage = 999;
+                }
+                else
+                {
+                    card.secondaryValue *= 2;
+                }
             }
         }
 

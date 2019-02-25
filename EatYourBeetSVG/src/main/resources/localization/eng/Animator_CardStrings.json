@@ -82,7 +82,7 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "Deal a random amount of damage to ALL enemies, NL ranging from !M! to !D!.",
+		"DESCRIPTION": "Deal from !M! to !D! random damage to each enemy.",
 		"NAME": "Kurami"
 	},
 	"animator_Chung":
@@ -510,7 +510,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "Gain !M! [#EFC851]Plated[] [#EFC851]Armor[]. NL Gain !M! Malleable. NL [#EFC851]Greed[].",
-		"EXTENDED_DESCRIPTION": ["Greed", "At the end of combat, gain Gold equal to your missing Health. Does not stack."],
+		"EXTENDED_DESCRIPTION": ["Greed", "At the end of combat, gain Gold equal to your missing Health percentage. Does not stack."],
 		"NAME": "Greed"
 	},
 	"animator_Envy":

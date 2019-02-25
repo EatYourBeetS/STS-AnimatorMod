@@ -97,7 +97,13 @@ public class SynergyCardsReward extends AnimatorReward
         @Override
         public RewardSave onSave(CustomReward customReward)
         {
-            return new RewardSave(customReward.type.toString(), null, ((SynergyCardsReward) customReward).synergy.ID, 0);
+            SynergyCardsReward reward = Utilities.SafeCast(customReward, SynergyCardsReward.class);
+            if (reward != null)
+            {
+                return new RewardSave(reward.type.toString(), null, reward.synergy.ID, 0);
+            }
+
+            return null;
         }
     }
 }

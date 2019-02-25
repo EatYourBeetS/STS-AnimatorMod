@@ -26,7 +26,7 @@ public class Hitei extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new HiteiPower(p, this.magicNumber), 0));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new HiteiPower(p, this.magicNumber, this.originalName), 0));
     }
 
     @Override

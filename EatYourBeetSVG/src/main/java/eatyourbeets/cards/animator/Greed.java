@@ -10,6 +10,7 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.subscribers.OnBattleEndSubscriber;
 
 public class Greed extends AnimatorCard implements OnBattleEndSubscriber
@@ -55,13 +56,15 @@ public class Greed extends AnimatorCard implements OnBattleEndSubscriber
     @Override
     public void OnBattleEnd()
     {
-        int gold = AbstractDungeon.player.maxHealth - AbstractDungeon.player.currentHealth;
+        int gold = (int)((1 - AbstractDungeon.player.currentHealth / (float)AbstractDungeon.player.maxHealth) * 100);
+        logger.info("Gaining " + gold + " gold.");
         if (gold > 0)
         {
             AbstractRoom room = PlayerStatistics.GetCurrentRoom();
             if (room != null && room.rewardAllowed)
             {
-                room.addGoldToRewards(gold);
+                room.rewards.add(0, new SpecialGoldReward(this.originalName, gold));
+                //room.addGoldToRewards(gold);
             }
         }
     }

@@ -30,5 +30,8 @@ public class AbstractEnums
     {
         @SpireEnum
         public static RewardItem.RewardType SYNERGY_CARDS;
+
+        @SpireEnum
+        public static RewardItem.RewardType SPECIAL_GOLD;
     }
 }

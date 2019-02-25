@@ -15,4 +15,9 @@ public abstract class AnimatorReward extends CustomReward
     {
         super(new Texture(AnimatorResources.GetRewardImage(id)), text, type);
     }
+
+    public AnimatorReward(Texture rewardImage, String text, RewardType type)
+    {
+        super(rewardImage, text, type);
+    }
 }

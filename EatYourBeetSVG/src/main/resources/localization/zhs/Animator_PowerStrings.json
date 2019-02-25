@@ -87,12 +87,12 @@
 	},
 	"animator_EnvyPower":
 	{
-		"DESCRIPTIONS": ["The first #b", " card/s you play every turn have their Synergy active."],
-		"NAME": "Envy"
+		"DESCRIPTIONS": ["每回合打出的第一张 #b", " 牌 触发自身的 同调 效果."],
+		"NAME": "嫉妒"
 	},
 	"animator_BurningPower":
 	{
-		"DESCRIPTIONS": ["Take #b", " damage at the end of turn. Receive #b", "% more #yAttack damage."],
-		"NAME": "Burning"
+		"DESCRIPTIONS": ["在回合结束时受到 #b", " 点伤害. 额外受到 #b", "%  #y攻击 伤害."],
+		"NAME": "燃烧"
 	}
 }

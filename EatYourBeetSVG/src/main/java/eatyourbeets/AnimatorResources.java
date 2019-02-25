@@ -15,6 +15,7 @@ import eatyourbeets.cards.Synergy;
 import eatyourbeets.relics.LivingPicture;
 import eatyourbeets.relics.PurgingStone;
 import eatyourbeets.relics.TheMissingPiece;
+import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.rewards.SynergyCardsReward;
 import eatyourbeets.variables.SecondaryValueVariable;
 import org.apache.logging.log4j.LogManager;
@@ -191,8 +192,11 @@ public class AnimatorResources
 
     public static void LoadCustomRewards()
     {
-        SynergyCardsReward.Serializer serializer = new SynergyCardsReward.Serializer();
-        BaseMod.registerCustomReward(AbstractEnums.Rewards.SYNERGY_CARDS, serializer, serializer);
+        SynergyCardsReward.Serializer synergySerializer = new SynergyCardsReward.Serializer();
+        BaseMod.registerCustomReward(AbstractEnums.Rewards.SYNERGY_CARDS, synergySerializer, synergySerializer);
+
+        SpecialGoldReward.Serializer goldSerializer = new SpecialGoldReward.Serializer();
+        BaseMod.registerCustomReward(AbstractEnums.Rewards.SPECIAL_GOLD, goldSerializer, goldSerializer);
     }
 
     private static void AddAndUnlock(Class cardClass) throws Exception

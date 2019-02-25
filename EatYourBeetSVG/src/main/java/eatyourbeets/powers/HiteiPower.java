@@ -9,24 +9,28 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
+import eatyourbeets.rewards.SpecialGoldReward;
 
 public class HiteiPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(HiteiPower.class.getSimpleName());
 
     private final AbstractPlayer player;
+    private String originalName;
     private int stacks;
     private int exhaustCards;
     private int goldGain;
     private int goldCap = 100;
 
-    public HiteiPower(AbstractPlayer owner, int goldGain)
+    public HiteiPower(AbstractPlayer owner, int goldGain, String originalName)
     {
         super(owner, POWER_ID);
 
+        this.originalName = originalName;
         this.player = Utilities.SafeCast(this.owner, AbstractPlayer.class);
         this.amount = 0;
         this.goldGain = goldGain;
@@ -88,7 +92,11 @@ public class HiteiPower extends AnimatorPower
     {
         super.onVictory();
 
-        AbstractDungeon.getCurrRoom().addGoldToRewards(this.amount);
+        AbstractRoom room = PlayerStatistics.GetCurrentRoom();
+        if (room != null && room.rewardAllowed)
+        {
+            room.rewards.add(0, new SpecialGoldReward(this.originalName, amount));
+        }
     }
 
     @Override

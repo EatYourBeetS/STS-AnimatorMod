@@ -65,8 +65,8 @@
 		"PROPERNAME": "多重进化"
 	},
 	{
-		"DESCRIPTION": "Upon receiving attack damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of your turn.",
-		"NAMES": ["malleable"],
-		"PROPERNAME": "Malleable"
+		"DESCRIPTION": "每次受到伤害时，获得 #y格挡. #y格挡的获取量随触发次数增加而增加. 你的回合开始时重置.",
+		"NAMES": ["锻铸"],
+		"PROPERNAME": "锻铸"
 	}
 ]

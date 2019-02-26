@@ -64,7 +64,8 @@ public class MoveSpecificCardAction extends AnimatorAction
                     {
                         case DRAW_PILE:
                         {
-                            AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(card, true, false));
+                            //AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(card, true, false));
+                            this.source.moveToDeck(card, true);
                             this.source.removeCard(card);
                             break;
                         }

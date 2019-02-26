@@ -2,6 +2,7 @@ package eatyourbeets.powers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.actions.AnimatorAction;
 
 public class GuildGirlPower extends AnimatorPower
 {
@@ -19,7 +20,22 @@ public class GuildGirlPower extends AnimatorPower
     public void atStartOfTurnPostDraw()
     {
         super.atStartOfTurnPostDraw();
+        GameActionsHelper.AddToBottom(new GuildGirlAction(this.amount));
+    }
 
-        GameActionsHelper.CycleCardAction(this.amount);
+    private class GuildGirlAction extends AnimatorAction
+    {
+        public GuildGirlAction(int amount)
+        {
+            this.amount = amount;
+        }
+
+        @Override
+        public void update()
+        {
+            GameActionsHelper.CycleCardAction(this.amount);
+
+            isDone = true;
+        }
     }
 }

@@ -94,14 +94,12 @@ public class AnimatorResources
 
     static
     {
-//        final String filePath = "c:/temp/localization/";
-//        File f = new File(filePath);
-//        if (f.exists() && f.isDirectory())
+//        if (Settings.language == Settings.GameLanguage.ZHT)
 //        {
-//            languagePath = filePath;
+//            languagePath = "localization/zht/";
 //        }
 //        else
-        if (Settings.language == Settings.GameLanguage.ZHS)
+            if (Settings.language == Settings.GameLanguage.ZHS)
         {
             languagePath = "localization/zhs/";
         }

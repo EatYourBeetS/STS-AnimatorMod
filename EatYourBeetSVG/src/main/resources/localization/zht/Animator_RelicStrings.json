@@ -1,0 +1,30 @@
+{
+	"Animator_LivingPicture":
+	{
+		"NAME": "活著的畫作",
+		"FLAVOR": "他一直看著",
+		"DESCRIPTIONS":
+		[
+			"當#y同#y調發生時抽一張#b1張牌，每回合一次"
+		]
+	},
+	"Animator_TheMissingPiece":
+	{
+		"NAME": "缺少的部分",
+		"FLAVOR": "這是什麼?",
+		"DESCRIPTIONS":
+		[
+			"每場",
+			" 戰鬥, 獲得同系列卡牌的獎勵。"
+		]
+	},
+	"Animator_PurgingStone":
+	{
+		"NAME": "淨化石",
+		"FLAVOR": "詛咒使人們感到無助，只能轉移詛咒的影響。",
+		"DESCRIPTIONS":
+		[
+			"你可以從一般卡牌獎勵中虛無掉某些牌使其不再出現，擊敗王之後使用次數會增加。"
+		]
+	}
+}

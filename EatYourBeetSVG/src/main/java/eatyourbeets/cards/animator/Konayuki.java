@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -27,7 +28,7 @@ public class Konayuki extends AnimatorCard implements OnBattleStartSubscriber, O
 
         Initialize(20,0, 3);
 
-        if (PlayerStatistics.InBattle())
+        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
         {
             OnBattleStart();
         }

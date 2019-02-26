@@ -13,7 +13,7 @@ public class Shiro extends AnimatorCard
 
     public Shiro()
     {
-        super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0,0);
 
@@ -31,7 +31,7 @@ public class Shiro extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(1);
+            upgradeBaseCost(2);
         }
     }
 }

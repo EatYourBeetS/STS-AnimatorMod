@@ -2,7 +2,7 @@ package eatyourbeets.subscribers;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
-public interface OnCardDrawnSubscriber
+public interface OnAfterCardDrawnSubscriber
 {
-    void OnCardDrawn(AbstractCard card);
+    void OnAfterCardDrawn(AbstractCard card);
 }

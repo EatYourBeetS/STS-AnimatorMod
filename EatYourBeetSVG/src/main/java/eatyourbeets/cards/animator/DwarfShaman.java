@@ -19,7 +19,9 @@ public class DwarfShaman extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(9, 0,1);
+
         AddExtendedDescription();
+
         SetSynergy(Synergies.GoblinSlayer);
     }
 

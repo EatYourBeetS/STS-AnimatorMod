@@ -1,0 +1,72 @@
+[
+	{
+		"DESCRIPTION": "連續使用同一系列的牌時生效",
+		"NAMES": ["同調"],
+		"PROPERNAME": "同調"
+	},
+	{
+		"DESCRIPTION": "這張卡被消耗時觸發。",
+		"NAMES": [ "遺產"],
+		"PROPERNAME": "遺產"
+	},
+	{
+		"DESCRIPTION": "被丟棄或打出時，返回抽牌堆。",
+		"NAMES": ["忠誠"],
+		"PROPERNAME": "忠誠"
+	},
+	{
+		"DESCRIPTION": "擁有者受到 #y攻擊 時造成特定的 #y負面效果。 持續一回合。",
+		"NAMES": ["mark", "marks", "印記"],
+		"PROPERNAME": "印記"
+	},
+	{
+		"DESCRIPTION": "如果目標的血量低於 50% , 造成雙倍傷害。",
+		"NAMES": ["嗜血"],
+		"PROPERNAME": "嗜血"
+	},
+	{
+		"DESCRIPTION": "忽略目標的格擋 ，荊棘和其他在受到傷害時觸發的效果 。",
+		"NAMES": ["穿刺"],
+		"PROPERNAME": "穿刺"
+	},
+	{
+		"DESCRIPTION": "受到致命傷害時，無論這張牌在哪， 永久移除這張牌， 阻擋那次傷害。 這張牌位於被消耗牌堆中時， 不會生效",
+		"NAMES": ["根性"],
+		"PROPERNAME": "根性"
+	},
+	{
+		"DESCRIPTION": "每打出一次減少一層冷卻層數， 當冷卻層數為0時，打出時將觸發 冷卻效果，並重置冷卻層數。 層數在本局遊戲中保留。",
+		"NAMES": ["冷卻"],
+		"PROPERNAME": "冷卻"
+	},
+	{
+		"DESCRIPTION": " #b1 回合不能行動。",
+		"NAMES": ["眩暈"],
+		"PROPERNAME": "眩暈"
+	},
+	{
+		"DESCRIPTION": "回合內每打出一張牌， 使敵人受到的傷害增加 #b10% 。",
+		"NAMES": ["緩慢"],
+		"PROPERNAME": "緩慢"
+	},
+	{
+		"DESCRIPTION": "與所有系列都可產生同調效果。",
+		"NAMES": ["變形者"],
+		"PROPERNAME": "變形者"
+	},
+	{
+		"DESCRIPTION": "棄掉一定數量的牌然後抽出同等數量的牌。",
+		"NAMES": ["循環"],
+		"PROPERNAME": "循環"
+	},
+	{
+		"DESCRIPTION": "可被多次升級。",
+		"NAMES": [ "多重升級"],
+		"PROPERNAME": "多重升級"
+	},
+	{
+		"DESCRIPTION": "當受到傷害時，獲得 #y點格擋。 #y每次這能力觸發時獲得的格擋值會提升。你的回合開始時重置。",
+		"NAMES": ["鍛鑄"],
+		"PROPERNAME": "鍛鑄"
+	}
+]

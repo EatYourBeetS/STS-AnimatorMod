@@ -28,6 +28,12 @@
 		"DESCRIPTION": "Put a random [#EFC851]Skill from your draw pile into your hand. Synergy: It costs !M! less this combat.",
 		"NAME": "Aisha"
 	},
+	"animator_Albedo":
+	{
+		"DESCRIPTION": "Gain !M! % [#EFC851]Damage [#EFC851]Resistance.",
+		"EXTENDED_DESCRIPTION": ["Damage Resistance", "Take less damage from enemy attacks, further stacks are less effective."],
+		"NAME": "Albedo"
+	},
 	"animator_Alexander":
 	{
 		"DESCRIPTION": "Deal !D! damage to an enemy and !SV! damage to every other enemy. Legacy: Gain !M! [#EFC851]Plated [#EFC851]Armor.",
@@ -63,6 +69,11 @@
 	{
 		"DESCRIPTION": "Deal !D! damage, if you break the target's Block, gain [B] [B] .",
 		"NAME": "Berserker"
+	},
+	"animator_Biyorigo":
+	{
+		"DESCRIPTION": "Every 4 Attacks played, gain !M! Strength and 1 Dexterity.",
+		"NAME": "Biyorigo"
 	},
 	"animator_Caster":
 	{
@@ -146,6 +157,23 @@
 		"DESCRIPTION": "Deal !D! damage. Retain. Increase this card's damage by !M! each turn while in your hand.",
 		"NAME": "Elesis"
 	},
+	"animator_ElricAlphonse":
+	{
+		"DESCRIPTION": "Cooldown !SV! : NL Gain 1 Focus. NL Legacy: Add [#EFC851]Armored [#EFC851]Alphonse to your discard pile.",
+		"NAME": "Alphonse Elric",
+		"UPGRADE_DESCRIPTION": "Cooldown !SV! : NL Gain 1 Focus. NL Legacy: Add [#EFC851]Armored [#EFC851]Alphonse+ to your discard pile."
+	},
+	"animator_ElricAlphonseAlt":
+	{
+		"DESCRIPTION": "Gain !M! [#EFC851]Plated [#EFC851]Armor. NL Gain !B! Block. NL Synergy: [#EFC851]Channel[] 1 Lightning.",
+		"NAME": "Armored Alphonse"
+	},
+	"animator_ElricEdward":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Cycle 1 card. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the card you cycled.",
+		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#yAttack: Channel 1 Lightning NL #ySkill: Channel 1 Frost NL #yPower: Channel 1 Dark"],
+		"NAME": "Edward Elric"
+	},
 	"animator_Elsword":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Cycle 2 cards.",
@@ -168,6 +196,12 @@
 	{
 		"DESCRIPTION": "Every time you play an [#EFC851]Attack increase its damage by !M! for this combat.",
 		"NAME": "Entou Jyuu"
+	},
+	"animator_Envy":
+	{
+		"DESCRIPTION": "Shapeshifter. NL The first card you play each turn will Synergize.",
+		"NAME": "Envy",
+		"UPGRADE_DESCRIPTION": "Innate. Shapeshifter. NL The first card you play each turn will Synergize."
 	},
 	"animator_Eris":
 	{
@@ -205,6 +239,12 @@
 		"DESCRIPTION": "Deal !D! damage. Apply !M! Weak. Legacy: Stun the enemy with the most HP.",
 		"NAME": "Gillette"
 	},
+	"animator_Gluttony":
+	{
+		"DESCRIPTION": "Exhaust up to !M! Cards in your hand, activate a [#EFC851]Bonus [#EFC851]Effect based on each card type. Exhaust.",
+		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#yAttack: Gain 1 Strength NL #ySkill: Gain 6 Temporary HP NL #yPower: Heal 7 HP NL #yStatus: Gain 1 Energy NL #yCurse: Gain 6 Block"],
+		"NAME": "Gluttony"
+	},
 	"animator_GoblinChampion":
 	{
 		"DESCRIPTION": "At the end of your turn, shuffle 1 random Goblin into your draw pile.",
@@ -231,11 +271,17 @@
 		"DESCRIPTION": "When you draw this, draw another card. At the end of your turn, take 2 damage.",
 		"NAME": "Goblin Soldier"
 	},
+	"animator_Greed":
+	{
+		"DESCRIPTION": "Gain !M! [#EFC851]Plated[] [#EFC851]Armor[]. NL Gain !M! Malleable. NL [#EFC851]Greed[].",
+		"EXTENDED_DESCRIPTION": ["Greed", "At the end of combat, gain Gold equal to your missing Health percentage. Does not stack."],
+		"NAME": "Greed"
+	},
 	"animator_GuildGirl":
 	{
-		"DESCRIPTION": "At the start of each turn, Cycle !M! card.",
+		"DESCRIPTION": "At the start of each turn, Cycle 1 card.",
 		"NAME": "'Guild Girl'",
-		"UPGRADE_DESCRIPTION": "At the start of each turn, Cycle !M! cards."
+		"UPGRADE_DESCRIPTION": "Innate. At the start of each turn, Cycle 1 card."
 	},
 	"animator_Guren":
 	{
@@ -325,6 +371,11 @@
 		"DESCRIPTION": "Set the Block of an enemy to !M!. NL Gain !B! Block. NL Synergy: Draw 1 card.",
 		"NAME": "'Lizard Priest'"
 	},
+	"animator_MaesHughes":
+	{
+		"DESCRIPTION": "Draw 1 card and reduce its cost by !M! this turn. Legacy: Deal !D! Damage to ALL enemies.",
+		"NAME": "Maes Hughes"
+	},
 	"animator_Megumin":
 	{
 		"DESCRIPTION": "Augmentable. Deal !D! damage to ALL Enemies. Exhaust. Synergy: Permanently Upgrade this card.",
@@ -390,11 +441,23 @@
 		"DESCRIPTION": "Your next attack this turn deals double damage.",
 		"NAME": "Rory Mercury"
 	},
+	"animator_RoyMustang":
+	{
+		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply 2 [#EFC851]Burning[]. NL Synergy: Apply !M! more [#EFC851]Burning[].",
+		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take 5% more Attack damage per stack."],
+		"NAME": "Roy Mustang"
+	},
 	"animator_Saber":
 	{
 		"DESCRIPTION": "Loyal. Deal !D! damage, if this Synergizes !M! times, Purge and obtain [#EFC851]Excalibur.",
 		"NAME": "Saber",
 		"UPGRADE_DESCRIPTION": "Loyal. Deal !D! damage, if this Synergizes !M! times, Purge and obtain [#EFC851]Excalibur+."
+	},
+	"animator_Scar":
+	{
+		"DESCRIPTION": "Deal !D! Piercing damage. NL [#EFC851]Dragon's[] [#EFC851]Pulse[].",
+		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "If this kills a non-minion enemy, #yPurge this card and permanently #yUpgrade a random card in your deck"],
+		"NAME": "Scar"
 	},
 	"animator_Shalltear":
 	{
@@ -421,6 +484,11 @@
 		"DESCRIPTION": "Gain [B] at the start of each turn.",
 		"NAME": "Shiro"
 	},
+	"animator_Sloth":
+	{
+		"DESCRIPTION": "Deal !D! Damage. NL Double this card's base damage this combat. NL Synergy: Gain !B! Block.",
+		"NAME": "Sloth"
+	},
 	"animator_Sora":
 	{
 		"DESCRIPTION": "Choose and execute !M! custom Effects. Synergy: Choose 1 more Effect.",
@@ -439,7 +507,8 @@
 	},
 	"animator_Togame":
 	{
-		"DESCRIPTION": "Draw !SV! cards, then you may choose and Exhaust 1 card. NL Purge after !M! uses.",
+		"DESCRIPTION": "Draw !M! cards. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the number of cards in your hand.",
+		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#y7 : Exhaust 1 card NL #y6 : Gain 6 Block. NL #y5 : Gain 1 Artifact NL #y4 : Gain 2 Energy and Exhaust this card"],
 		"NAME": "Togame"
 	},
 	"animator_TukaLunaMarceau":
@@ -451,6 +520,12 @@
 	{
 		"DESCRIPTION": "Apply !M! Poison to an enemy for each other [#EFC851]Skill in your hand. NL (Apply !SV! Poison)",
 		"NAME": "Tyuule"
+	},
+	"animator_Urushihara":
+	{
+		"DESCRIPTION": "[#EFC851]Channel[] 1 Dark. NL Deal !D! damage to ALL enemies. NL [#EFC851]Lazy[].",
+		"EXTENDED_DESCRIPTION": ["Lazy", "When drawn, has a 50% chance of swapping itself with another card in your draw pile."],
+		"NAME": "Urushihara"
 	},
 	"animator_Viivi":
 	{
@@ -479,73 +554,5 @@
 		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 0-Cost #yAttack."],
 		"NAME": "Yuuichirou",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Legacy: Add [#EFC851]Asuramaru+ to your discard pile."
-	},
-	"animator_Biyorigo":
-	{
-		"DESCRIPTION": "Every 4 Attacks played, gain !M! Strength and 1 Dexterity.",
-		"NAME": "Biyorigo"
-	},
-	"animator_Albedo":
-	{
-		"DESCRIPTION": "Gain !M! % [#EFC851]Damage [#EFC851]Resistance.",
-		"EXTENDED_DESCRIPTION": ["Damage Resistance", "Take less damage from enemy attacks, further stacks are less effective."],
-		"NAME": "Albedo"
-	},
-	"animator_Sloth":
-	{
-		"DESCRIPTION": "Deal !D! Damage. NL Double this card's base damage this combat. NL Synergy: Gain !B! Block.",
-		"NAME": "Sloth"
-	},
-	"animator_MaesHughes":
-	{
-		"DESCRIPTION": "Draw 1 card and reduce its cost by !M! this turn. Legacy: Deal !D! Damage to ALL enemies.",
-		"NAME": "Maes Hughes"
-	},
-	"animator_ElricEdward":
-	{
-		"DESCRIPTION": "Deal !D! damage. NL Cycle 1 card. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the card you cycled.",
-		"EXTENDED_DESCRIPTION": [ "Bonus Effect", "#yAttack: Channel 1 Lightning NL #ySkill: Channel 1 Frost NL #yPower: Channel 1 Dark" ],
-		"NAME": "Edward Elric"
-	},
-	"animator_Greed":
-	{
-		"DESCRIPTION": "Gain !M! [#EFC851]Plated[] [#EFC851]Armor[]. NL Gain !M! Malleable. NL [#EFC851]Greed[].",
-		"EXTENDED_DESCRIPTION": ["Greed", "At the end of combat, gain Gold equal to your missing Health percentage. Does not stack."],
-		"NAME": "Greed"
-	},
-	"animator_Envy":
-	{
-		"DESCRIPTION": "Shapeshifter. NL The first card you play each turn will Synergize.",
-		"UPGRADE_DESCRIPTION": "Innate. Shapeshifter. NL The first card you play each turn will Synergize.",
-		"NAME": "Envy"
-	},
-	"animator_Gluttony":
-	{
-		"DESCRIPTION": "Exhaust up to !M! Cards in your hand, activate a [#EFC851]Bonus [#EFC851]Effect based on each card type. Exhaust.",
-		"EXTENDED_DESCRIPTION": [ "Bonus Effect", "#yAttack: Gain 1 Strength NL #ySkill: Gain 6 Temporary HP NL #yPower: Heal 7 HP NL #yStatus: Gain 1 Energy NL #yCurse: Gain 6 Block" ],
-		"NAME": "Gluttony"
-	},
-	"animator_ElricAlphonse":
-	{
-		"DESCRIPTION": "Cooldown !SV! : NL Gain 1 Focus. NL Legacy: Add [#EFC851]Armored [#EFC851]Alphonse to your discard pile.",
-		"UPGRADE_DESCRIPTION": "Cooldown !SV! : NL Gain 1 Focus. NL Legacy: Add [#EFC851]Armored [#EFC851]Alphonse+ to your discard pile.",
-		"NAME": "Alphonse Elric"
-	},
-	"animator_ElricAlphonseAlt":
-	{
-		"DESCRIPTION": "Gain !M! [#EFC851]Plated [#EFC851]Armor. NL Gain !B! Block. NL Synergy: [#EFC851]Channel[] 1 Lightning.",
-		"NAME": "Armored Alphonse"
-	},
-	"animator_Scar":
-	{
-		"DESCRIPTION": "Deal !D! Piercing damage. NL [#EFC851]Dragon's[] [#EFC851]Pulse[].",
-		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "If this kills a non-minion enemy, #yPurge this card and permanently #yUpgrade a random card in your deck"],
-		"NAME": "Scar"
-	},
-	"animator_RoyMustang":
-	{
-		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply 2 [#EFC851]Burning[]. NL Synergy: Apply !M! more [#EFC851]Burning[].",
-		"EXTENDED_DESCRIPTION": [ "Burning", "Take damage at the start of your turn. Also take 5% more Attack damage per stack." ],
-		"NAME": "Roy Mustang"
 	}
 }

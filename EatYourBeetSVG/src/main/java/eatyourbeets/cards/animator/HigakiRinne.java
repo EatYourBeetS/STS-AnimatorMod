@@ -68,27 +68,24 @@ public class HigakiRinne extends AnimatorCard
         int n = AbstractDungeon.miscRng.random(100);
         if (n < 3)
         {
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(1f));
+            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.6f));
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy()));
         }
         else if (n < 12)
         {
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(1f));
+            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.6f));
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Shiv()));
         }
         else if (n < 35)
         {
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(1f));
+            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.8f));
             AbstractDungeon.actionManager.addToBottom(new DiscardSpecificCardAction(this, AbstractDungeon.player.hand));
             AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, 1));
         }
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-        AbstractDungeon.actionManager.addToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
+        else if (n < 41)
+        {
+            AbstractDungeon.actionManager.addToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
+        }
     }
 
     @Override
@@ -96,7 +93,7 @@ public class HigakiRinne extends AnimatorCard
     {
         for (int i = 0; i < this.magicNumber; i++)
         {
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(1));
+            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.6f));
             ExecuteRandomAction(p, AbstractDungeon.miscRng);
         }
     }
@@ -112,27 +109,27 @@ public class HigakiRinne extends AnimatorCard
 
     private void ExecuteRandomAction(AbstractPlayer p, Random rng)
     {
-        int n = rng.random(97);
+        int n = rng.random(100);
         logger.info("Rinne says: " + n);
-        if (n < 10) // 10%
+        if (n < 8) // 8%
         {
             for (int i = 0; i < 3; i++)
             {
                 AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
             }
         }
-        else if (n < 20) // 10%
+        else if (n < 16) // 8%
         {
             for (int i = 0; i < 3; i++)
             {
                 AbstractDungeon.actionManager.addToBottom(new DamageRandomEnemyAction(new DamageInfo(p, this.damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
             }
         }
-        else if (n < 25) // 5%
+        else if (n < 22) // 6%
         {
             GameActionsHelper.DrawCard(p, 1);
         }
-        else if (n < 30) // 5%
+        else if (n < 30) // 8%
         {
             GameActionsHelper.AddToBottom(new UpgradeRandomCardAction());
         }
@@ -194,7 +191,7 @@ public class HigakiRinne extends AnimatorCard
         {
             AbstractDungeon.actionManager.addToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
         }
-        else
+        else if (n < 97)
         {
             AbstractDungeon.actionManager.addToBottom(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[0], 1.0F, 2.0F));
         }

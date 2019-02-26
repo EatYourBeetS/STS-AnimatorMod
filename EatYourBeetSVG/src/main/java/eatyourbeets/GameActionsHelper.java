@@ -1,5 +1,6 @@
 package eatyourbeets;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
@@ -130,6 +131,13 @@ public class GameActionsHelper
     public static ApplyPowerAction ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
     {
         ApplyPowerAction action = new ApplyPowerAction(target, source, power, stacks);
+        AbstractDungeon.actionManager.addToBottom(action);
+        return action;
+    }
+
+    public static AddTemporaryHPAction GainTemporaryHP(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        AddTemporaryHPAction action = new AddTemporaryHPAction(target, source, amount);
         AbstractDungeon.actionManager.addToBottom(action);
         return action;
     }

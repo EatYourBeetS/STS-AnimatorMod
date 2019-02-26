@@ -2,6 +2,7 @@ package eatyourbeets.actions;
 
 import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -29,36 +30,29 @@ public class ScarAction extends AnimatorAction
 
     public void update()
     {
-        AbstractCard toUpgrade = player.masterDeck.getUpgradableCards().getRandomCard(true);
-        if (toUpgrade != null)
+        CardGroup ugradableCards = player.masterDeck.getUpgradableCards();
+        if (ugradableCards.size() > 0)
         {
-            for (AbstractCard c : GetAllInBattleInstances.get(toUpgrade.uuid))
+            AbstractCard toUpgrade = ugradableCards.getRandomCard(true);
+            if (toUpgrade != null)
             {
-                if (c.canUpgrade())
+                for (AbstractCard c : GetAllInBattleInstances.get(toUpgrade.uuid))
                 {
-                    c.upgrade();
-                    c.flash();
+                    if (c.canUpgrade())
+                    {
+                        c.upgrade();
+                        c.flash();
+                    }
                 }
-            }
 
-            toUpgrade.upgrade();
-            player.bottledCardUpgradeCheck(toUpgrade);
-            AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
-            AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(toUpgrade.makeStatEquivalentCopy(), (float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
+                toUpgrade.upgrade();
+                player.bottledCardUpgradeCheck(toUpgrade);
+                AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
+                AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(toUpgrade.makeStatEquivalentCopy(), (float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
+            }
         }
 
         scar.purgeOnUse = true;
-
-        if (player.limbo.contains(scar))
-        {
-            logger.info("Found Scar in Limbo");
-            player.limbo.removeCard(scar);
-            AbstractDungeon.player.cardInUse = null;
-        }
-//
-//        player.discardPile.removeCard(scar);
-//        player.hand.removeCard(scar);
-//        player.drawPile.removeCard(scar);
 
         this.isDone = true;
     }

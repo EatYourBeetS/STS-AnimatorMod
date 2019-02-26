@@ -60,10 +60,10 @@ public class AnimatorCharacterSelect
         AddLoadout(new OwariNoSeraph(), 2, unbalanced);
         AddLoadout(new GoblinSlayer(), 2, unbalanced);
         AddLoadout(new Katanagatari(), 2, unbalanced);
+        AddLoadout(new FullmetalAlchemist(), 2, unbalanced);
         AddLoadout(new Fate(), 3, veryUnbalanced);
         AddLoadout(new Overlord(), 3, veryUnbalanced);
         AddLoadout(new Chaika(), 3, veryUnbalanced);
-        AddLoadout(new FullmetalAlchemist(), 3, veryUnbalanced);
         AddLoadout(new Kancolle(), 4, special);
     }
 }

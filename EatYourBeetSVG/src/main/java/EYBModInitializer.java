@@ -3,6 +3,7 @@ import basemod.interfaces.*;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -17,7 +18,8 @@ import patches.AbstractEnums;
 @SpireInitializer
 public class EYBModInitializer
         implements EditCharactersSubscriber, EditStringsSubscriber, EditCardsSubscriber, EditKeywordsSubscriber, EditRelicsSubscriber,
-                   OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber, PostInitializeSubscriber, PostEnergyRechargeSubscriber
+                   OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber, PostInitializeSubscriber, PostEnergyRechargeSubscriber,
+                   PostDrawSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
 
@@ -50,6 +52,13 @@ public class EYBModInitializer
     public void receivePostBattle(AbstractRoom abstractRoom)
     {
         PlayerStatistics.Instance.OnBattleEnd();
+    }
+
+    @Override
+    public void receivePostDraw(AbstractCard abstractCard)
+    {
+        logger.info("Drawn: " + abstractCard.name);
+        PlayerStatistics.Instance.OnAfterDraw(abstractCard);
     }
 
     @Override

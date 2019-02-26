@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -27,7 +28,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
 
         Initialize(5,0,2);
 
-        if (PlayerStatistics.InBattle())
+        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
         {
             OnBattleStart();
         }

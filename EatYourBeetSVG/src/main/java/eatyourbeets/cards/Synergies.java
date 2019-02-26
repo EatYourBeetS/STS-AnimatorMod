@@ -23,6 +23,7 @@ public class Synergies
     public final static Synergy Fate =                 CreateSynergy(10);
     public final static Synergy GoblinSlayer =         CreateSynergy(11);
     public final static Synergy FullmetalAlchemist =   CreateSynergy(12);
+    public final static Synergy HatarakuMaouSama   =   CreateSynergy(13);
 
     private static Synergy CreateSynergy(int id)
     {
@@ -48,5 +49,6 @@ public class Synergies
         All.put(Fate.ID, Fate);
         All.put(GoblinSlayer.ID, GoblinSlayer);
         All.put(FullmetalAlchemist.ID, FullmetalAlchemist);
+        All.put(HatarakuMaouSama.ID, HatarakuMaouSama);
     }
 }

@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -27,7 +28,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
         this.purgeOnUse = true;
         this.tags.add(CardTags.HEALING);
 
-        if (PlayerStatistics.InBattle())
+        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
         {
             OnBattleStart();
         }

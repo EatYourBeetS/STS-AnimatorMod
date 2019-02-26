@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
@@ -27,7 +28,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
 
         Initialize(7,0, 4);
 
-        if (PlayerStatistics.InBattle())
+        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
         {
             OnBattleStart();
         }

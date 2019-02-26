@@ -1,0 +1,96 @@
+{
+	"animator_AinzPower":
+	{
+		"DESCRIPTIONS": ["你的回合開始時加入 #b張", " 隨機 #y威#y力 #y型#y態 到手中."],
+		"NAME": "安兹·烏爾·恭"
+	},
+	"animator_ArcherPower":
+	{
+		"DESCRIPTIONS": ["在你的回合結束時對所有敵人造成 #b", " 傷害 並給予負面效果."],
+		"NAME": "Archer"
+	},
+	"animator_DarknessPower":
+	{
+		"DESCRIPTIONS": ["當你受到傷害時升級 #b", " 張隨機牌，以手牌為優先"],
+		"NAME": "拉拉蒂娜"
+	},
+	"animator_EntouJyuuPower":
+	{
+		"DESCRIPTIONS": ["每當你打出攻擊牌，本次戰鬥此牌提升 #b", " 點傷害。"],
+		"NAME": "炎刃·銃"
+	},
+	"animator_ShiroPower":
+	{
+		"DESCRIPTIONS": ["你的回合開始時獲得 #b", " 點能量。"],
+		"NAME": "白"
+	},
+	"animator_EvePower":
+	{
+		"DESCRIPTIONS": ["當#y同#y調 發動時對隨機敵人造成", " 點傷害。"],
+		"NAME": "依芙的覺醒"
+	},
+	"animator_FeridBathoryPower":
+	{
+		"DESCRIPTIONS": ["一回合兩次，當一張牌被消耗時增加", "點力量和 回復", " 點生命。"],
+		"NAME": "費里德·巴特利"
+	},
+	"animator_HiteiPower":
+	{
+		"DESCRIPTIONS": ["在你的回合開始時獲得", " 金幣和從抽牌堆消耗 ", " 張隨機牌 。"],
+		"NAME": "否定姫"
+	},
+	"animator_GuildGirlPower":
+	{
+		"DESCRIPTIONS": ["在你的回合開始時循環 ", " 張牌。"],
+		"NAME": "簿記"
+	},
+	"animator_MarkOfPoisonPower":
+	{
+		"DESCRIPTIONS": ["當你受到傷害同時也會獲得", " 層中毒。"],
+		"NAME": "毒之印記"
+	},
+	"animator_PinaCoLadaPower":
+	{
+		"DESCRIPTIONS": ["當同調發動時獲得", " 點格擋。"],
+		"NAME": "平娜·戈·蘭達"
+	},
+	"animator_PlayerStatistics":
+	{
+		"DESCRIPTIONS": ["隱藏玩家統計數據的力量。"],
+		"NAME": "玩家統計數據"
+	},
+	"animator_RoryMercuryPower":
+	{
+		"DESCRIPTIONS": ["這回合你下一次攻擊", " 造成兩倍傷害。"],
+		"NAME": "蘿莉·麥丘利-"
+	},
+	"animator_SupportDamagePower":
+	{
+		"DESCRIPTIONS": ["回合結束時對生命值最低的敵人造成 ", " 點傷害。"],
+		"NAME": "輔助傷害"
+	},
+	"animator_PoisonAffinityPower":
+	{
+		"DESCRIPTIONS": ["當你造成一層中毒時，再度造成一層", " 中毒。"],
+		"NAME": "毒素親合"
+	},"animator_BiyorigoPower":
+	{
+		"DESCRIPTIONS": ["Every 4 #yAttacks played, gain #b", " Strength and #b", " Dexterity."],
+		"NAME": "Bito Kanzashi"
+	},
+	"animator_AlbedoPower":
+	{
+		"DESCRIPTIONS": ["ALL enemies deal #b", "% less damage."],
+		"NAME": "Albedo"
+	},
+	"animator_EnvyPower":
+	{
+		"DESCRIPTIONS": ["The first #b", " card/s you play every turn have their Synergy active."],
+		"NAME": "Albedo"
+	},
+	"animator_BurningPower":
+	{
+		"DESCRIPTIONS": ["Take #b", " damage at the end of turn. Receive #b", "% more #yAttack damage."],
+		"NAME": "Albedo"
+	}
+}

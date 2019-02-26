@@ -1,8 +1,6 @@
 package eatyourbeets.powers;
 
-import basemod.interfaces.OnStartBattleSubscriber;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnCardDrawPower;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -18,7 +16,7 @@ import eatyourbeets.subscribers.*;
 
 import java.util.ArrayList;
 
-public class PlayerStatistics extends AnimatorPower implements InvisiblePower, OnCardDrawPower
+public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 {
     public static final String POWER_ID = CreateFullID(PlayerStatistics.class.getSimpleName());
 
@@ -28,7 +26,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
     public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
-    public static final GameEvent<OnCardDrawnSubscriber> onCardDrawn = new GameEvent<>();
+    public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
@@ -187,14 +185,12 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, O
         AnimatorCard.SetLastCardPlayed(null);
     }
 
-    @Override
-    public void onCardDraw(AbstractCard abstractCard)
+    public void OnAfterDraw(AbstractCard abstractCard)
     {
         cardsDrawnThisTurn += 1;
-
-        for (OnCardDrawnSubscriber s : onCardDrawn.GetSubscribers())
+        for (OnAfterCardDrawnSubscriber s : onAfterCardDrawn.GetSubscribers())
         {
-            s.OnCardDrawn(abstractCard);
+            s.OnAfterCardDrawn(abstractCard);
         }
     }
 

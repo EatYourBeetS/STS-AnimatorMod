@@ -15,7 +15,8 @@
 			"GATE",
 			"Fate",
 			"Goblin Slayer",
-			"Fullmetal Alchemist"
+			"Fullmetal Alchemist",
+			"Hataraku Maou-sama"
 		]
 	},
 	
@@ -75,7 +76,7 @@
 		"TEXT": 
 		[
 			"Starting Cards: ",
-			"#############",
+			"###############",
 			"Unlocks at Level ",
 			" (You are Level ",
 			")",

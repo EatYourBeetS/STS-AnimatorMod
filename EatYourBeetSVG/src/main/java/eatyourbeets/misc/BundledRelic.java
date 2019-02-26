@@ -40,7 +40,7 @@ public class BundledRelic
 
     public BundledRelic Clone(int roll)
     {
-        Utilities.Logger.info(cardID + ", Rolled: " + roll + " (" + chance + ")");
+        //Utilities.Logger.info(cardID + ", Rolled: " + roll + " (" + chance + ")");
         BundledRelic bundledRelic = new BundledRelic(cardID, relicID, relicTier, chance);
         bundledRelic.roll = roll;
 
@@ -116,6 +116,7 @@ public class BundledRelic
                 relicPool.remove(relic.relicId);
             }
 
+            relic.hb.resize(AbstractRelic.PAD_X, AbstractRelic.PAD_X);
             relic.instantObtain();
             CardCrawlGame.metricData.addRelicObtainData(relic);
         }

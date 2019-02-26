@@ -17,7 +17,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 {
     public static final String ID = CreateFullID(PurgingStone.class.getSimpleName());
 
-    private static final int CHARGES = 3;
+    private static final int CHARGES = 4;
 
     private final ArrayList<String> bannedCards;
 

@@ -179,6 +179,7 @@ public class BundledRelicProvider
         AddBundle(RoyMustang.ID, MoltenEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
         AddBundle(MaesHughes.ID, PeacePipe.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
         AddBundle(Gluttony.ID, Pear.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
+        AddBundle(Urushihara.ID, WingBoots.ID, AbstractRelic.RelicTier.RARE, R1);
 
         // Rare
         AddBundle(Envy.ID, DollysMirror.ID, AbstractRelic.RelicTier.SHOP, R1);

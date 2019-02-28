@@ -36,7 +36,7 @@
 	},
 	"animator_HiteiPower":
 	{
-		"DESCRIPTIONS": ["在你的回合開始時獲得", " 金幣和從抽牌堆消耗 ", " 張隨機牌 。"],
+		"DESCRIPTIONS": ["在你的回合開始時獲得", " choose and exhaust ", " 張隨機牌 。"],
 		"NAME": "否定姫"
 	},
 	"animator_GuildGirlPower":
@@ -73,7 +73,8 @@
 	{
 		"DESCRIPTIONS": ["當你造成一層中毒時，再度造成一層", " 中毒。"],
 		"NAME": "毒素親合"
-	},"animator_BiyorigoPower":
+	},
+	"animator_BiyorigoPower":
 	{
 		"DESCRIPTIONS": ["Every 4 #yAttacks played, gain #b", " Strength and #b", " Dexterity."],
 		"NAME": "Bito Kanzashi"

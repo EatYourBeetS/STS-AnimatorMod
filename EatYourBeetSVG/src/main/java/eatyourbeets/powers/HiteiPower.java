@@ -6,23 +6,25 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
+import eatyourbeets.actions.HiteiAction;
+import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.rewards.SpecialGoldReward;
 
 public class HiteiPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(HiteiPower.class.getSimpleName());
 
-    private final AbstractPlayer player;
-    private String originalName;
+    private final String originalName;
     private int stacks;
-    private int exhaustCards;
     private int goldGain;
     private int goldCap = 100;
 
@@ -31,10 +33,8 @@ public class HiteiPower extends AnimatorPower
         super(owner, POWER_ID);
 
         this.originalName = originalName;
-        this.player = Utilities.SafeCast(this.owner, AbstractPlayer.class);
         this.amount = 0;
         this.goldGain = goldGain;
-        this.exhaustCards = 1;
         this.stacks = 1;
 
         updateDescription();
@@ -43,7 +43,7 @@ public class HiteiPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        this.description = (powerStrings.DESCRIPTIONS[0] + goldGain + powerStrings.DESCRIPTIONS[1] + exhaustCards + powerStrings.DESCRIPTIONS[2]);
+        this.description = (powerStrings.DESCRIPTIONS[0] + goldGain + powerStrings.DESCRIPTIONS[1] + stacks + powerStrings.DESCRIPTIONS[2]);
     }
 
     @Override
@@ -51,37 +51,11 @@ public class HiteiPower extends AnimatorPower
     {
         super.atStartOfTurn();
 
-        if (this.amount < goldCap)
+        this.amount = Math.min(goldCap, this.amount + goldGain);
+
+        for (int i = 0; i < stacks; i++)
         {
-            this.amount += goldGain;
-        }
-
-        for (int i = 0; i < exhaustCards; i++)
-        {
-            AbstractCard card;
-            CardGroup group;
-            if (player.drawPile.size() > 0)
-            {
-                group = player.drawPile;
-            }
-            else if (player.discardPile.size() > 0)
-            {
-                group = player.discardPile;
-            }
-            else
-            {
-                return;
-            }
-
-            card = group.getRandomCard(true);
-            if (card != null)
-            {
-                ShowCardBrieflyEffect effect = new ShowCardBrieflyEffect(card, Settings.WIDTH / 3f, Settings.HEIGHT / 2f);
-
-                AbstractDungeon.effectsQueue.add(effect);
-                GameActionsHelper.AddToBottom(new WaitAction(effect.duration));
-                GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(card, group, true));
-            }
+            GameActionsHelper.AddToBottom(new HiteiAction());
         }
 
         this.flash();
@@ -105,10 +79,15 @@ public class HiteiPower extends AnimatorPower
         HiteiPower other = Utilities.SafeCast(power, HiteiPower.class);
         if (other != null && power.owner == target)
         {
-            this.goldGain += other.goldGain;
-            this.exhaustCards += 1;
-            this.goldCap += 100 / (stacks * 3);
+            int bonus = (60 - (10 * stacks));
+
+            if (bonus > 0)
+            {
+                this.goldCap += bonus;
+            }
+
             this.stacks += 1;
+            this.goldGain += other.goldGain;
         }
 
         super.onApplyPower(power, target, source);

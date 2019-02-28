@@ -18,14 +18,14 @@
 	},
 	"animator_Ainz":
 	{
-		"DESCRIPTION": "每回合花費減少一點 。 在你的回合開始時添加一張 [#EFC851]威力形態[] 到你的手牌 。",
+		"DESCRIPTION": "每回合耗能減少一點 。 在你的回合開始時添加一張 [#EFC851]威力形態[] 到你的手牌 。",
 		"EXTENDED_DESCRIPTION": ["威力形態", "惡魔形態、迴響形態、幽魂形態 。"],
 		"NAME": "安茲·烏爾·恭",
-		"UPGRADE_DESCRIPTION": "每回合花費減少一點 。 在你的回合開始時添加一張 [#EFC851]威力形態[] 到你的手牌 ， it costs 2 energy 。"
+		"UPGRADE_DESCRIPTION": "每回合耗能減少一點 。 在你的回合開始時添加一張 [#EFC851]威力形態[] 到你的手牌 ， 需要 2 點耗能 。"
 	},
 	"animator_Aisha":
 	{
-		"DESCRIPTION": "從抽牌堆中加入一張 [#EFC851]技能[] 牌到手牌 。 同調 : 本次戰鬥中減少 !M! 點花費 。",
+		"DESCRIPTION": "從抽牌堆中加入一張 [#EFC851]技能[] 牌到手牌 。 同調 : 本次戰鬥中減少 !M! 點耗能 。",
 		"NAME": "愛莎"
 	},
 	"animator_Albedo":
@@ -36,7 +36,7 @@
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "Deal !D! damage to an enemy and !SV! damage to every other enemy. Legacy: Gain !M! [#EFC851]Plated [#EFC851]Armor.",
+		"DESCRIPTION": "對一名敵人造成 !D! 傷害 然後對其他的敵人造成 !SV! 點傷害 。 遺產 : 獲得 !M! 層 [#EFC851]多層護甲[] 。",
 		"NAME": "亞歷山大大帝"
 	},
 	"animator_Aqua":
@@ -62,38 +62,38 @@
 	},
 	"animator_Azekura":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 2 次 。 NL 同調 : Gain !M! [#EFC851]Plated [#EFC851]Armor.",
+		"DESCRIPTION": "獲得 !B! 點 格擋 2 次 。 NL 同調 : 獲得 !M! 層 [#EFC851]多層護甲[] 。",
 		"NAME": "校倉必"
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 ， if you break the target's Block ， gain [B] [B] .",
+		"DESCRIPTION": "造成 !D! 點 傷害 ， 如果打破目標的格擋 ， 獲得 [B] [B] 。",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
 	{
-		"DESCRIPTION": "每次打出4張牌後， 獲得 !M! 點 力量 和 1 點 敏捷。",
+		"DESCRIPTION": "每次打出 4 張牌後 ， 獲得 !M! 點 力量 和 1 點 敏捷 。",
 		"NAME": "日和號"
 	},
 	"animator_Caster":
 	{
-		"DESCRIPTION": "[#EFC851]Evoke your first Orb. NL [#EFC851]Channel 1 Dark. NL Synergy: The enemy loses !M! Strength.",
+		"DESCRIPTION": "[#EFC851]激發第[] 一個充能球 。 NL [#EFC851]獲得 1 顆 黑暗充能球 。 NL 同調 : 敵人失去 !M! 點 力量 。",
 		"NAME": "Caster"
 	},
 	"animator_ChaikaBohdan":
 	{
 		"DESCRIPTION": " [#EFC851]急躁[] NL !M! 。 造成 !D! 點 傷害 。",
-		"EXTENDED_DESCRIPTION": ["急躁", "當此牌在手牌中時，你打出的 #y攻擊牌額外增加等同於急躁層數的傷害。使用後重置傷害 。"],
+		"EXTENDED_DESCRIPTION": ["急躁", "當此牌在手牌中時，你打出的 #y攻擊 牌額外增加等同於急躁層數的傷害 。 使用後重置傷害 。"],
 		"NAME": "嘉依卡·布芙丹"
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 Stun the enemy. Exhaust. Returns to your draw pile after !M! turns in your Exhaust pile.",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 暈眩敵人 。 消耗 。 在 消耗 牌堆 !M! 回合後回到你的抽牌堆 。",
 		"NAME": "嘉依卡·托勒龐特"
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "對每個敵人造成 !M! 至 !D! 點的隨機傷害。",
+		"DESCRIPTION": "對每個敵人造成 !M! 至 !D! 點 的隨機傷害。",
 		"NAME": "克拉米·傑爾"
 	},
 	"animator_Chung":
@@ -120,18 +120,18 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "獲得 [B] [B] 。 NL Take !M! Damage, then increase this card's damage by 3 this combat.",
+		"DESCRIPTION": "獲得 [B] [B] 。 NL 受到 !M! 點 傷害 ， 然後這場戰鬥增加這張牌 3 點 的傷害 。",
 		"NAME": "迪米烏哥斯",
-		"UPGRADE_DESCRIPTION": "獲得 [B] [B] [B] 。 NL Take !M! Damage, then increase this card's damage by 3 this combat."
+		"UPGRADE_DESCRIPTION": "獲得 [B] [B] [B] 。 NL 受到 !M! 點 傷害 ， 然後這場戰鬥增加這張牌 3 點 的傷害 。"
 	},
 	"animator_DolaCouronne":
 	{
-		"DESCRIPTION": "獲得 !B! 點 護甲 。 NL 同調 : 抽一張牌。",
+		"DESCRIPTION": "獲得 !B! 點 護甲 。 NL 同調 : 抽一張牌 。",
 		"NAME": "克洛妮"
 	},
 	"animator_DolaRiku":
 	{
-		"DESCRIPTION": "消耗 一張手牌並獲得一張同樣稀有度的牌並減少 !M! 點消耗。",
+		"DESCRIPTION": "消耗 一張手牌並獲得一張同樣稀有度的牌並減少 !M! 點 耗能 。",
 		"NAME": "裡克"
 	},
 	"animator_DolaSchwi":
@@ -148,7 +148,7 @@
 	"animator_DwarfShaman":
 	{
 		"DESCRIPTION": "造成 !D! 點 傷害 。 若打破目標格擋 ， 抽 !M! 張未升級的牌並 升級 。",
-		"EXTENDED_DESCRIPTION": ["* Note", "It will prioritize upgradable cards, if there are none it will work as normal card draw."],
+		"EXTENDED_DESCRIPTION": ["* 注意", "會優先升級可以升級的牌，如果沒有可升級的牌就跟一般抽牌一樣 。"],
 		"NAME": "矮人薩滿",
 		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 若打破目標格擋 ， 抽 !M! 張牌並 升級 。"
 	},
@@ -176,13 +176,14 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 2 張牌 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。",
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。",
 		"NAME": "艾索德"
 	},
 	"animator_Emonzaemon":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害。如果這是連續的第三次 [#EFC851]攻擊[] ， 消耗並獲得獲得 [#EFC851]炎刀·銃[] 。",
-		"EXTENDED_DESCRIPTION": ["炎刀·銃", "一個特殊的無消耗的#y能力 。"],
+		"EXTENDED_DESCRIPTION": ["炎刀·銃", "一個特殊的無耗能的#y能力 。"],
 		"NAME": "左右田右衛門左衛門",
 		"UPGRADE_DESCRIPTION": " 造成 !D! 點傷害。 NL 如果這是連續的第三次 [#EFC851]攻擊[] ， 消耗並獲得獲得 [#EFC851]炎刀·銃+[] 。"
 	},
@@ -242,7 +243,7 @@
 	"animator_Gluttony":
 	{
 		"DESCRIPTION": "消耗 手上最多!M! 張牌，根據你消耗的卡片種類發動一個 [#EFC851]額外效果[] 。 消耗 。",
-		"EXTENDED_DESCRIPTION": ["額外效果", "#y攻擊牌: 獲得 1 點力量， NL #y技能:獲得3點臨時生命， NL #y能力牌: 回復6點生命 NL #yStatus: Gain 1 Energy NL #yCurse: Gain 6 Block"],
+		"EXTENDED_DESCRIPTION": ["額外效果", "#y攻擊牌: 獲得 1 點 力量 NL #y技能: 獲得3 點 臨時生命 NL #y能力牌: 回復 6 點 生命 NL #y狀態牌: 獲得 1 點 能量 NL #y詛咒: 獲得 6 點 格擋"],
 		"NAME": "庫拉多尼"
 	},
 	"animator_GoblinChampion":
@@ -307,7 +308,7 @@
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "在你的回合開始時獲得 !M! 個金幣 隨機 消耗 一張抽牌堆中的牌 [#EFC851]*[] 。",
+		"DESCRIPTION": "在你的回合開始時獲得 !M! 個金幣  。 Choose and Exhaust 1 of 3 random cards in your deck [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "每場戰鬥最多獲得100個金幣。 堆疊這種狀態會使金幣獲得上限增加。"],
 		"NAME": "否定姬"
 	},
@@ -318,7 +319,7 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "抽 !M! 張牌。 每抽一張牌造成 !D! 點傷害，並減少其消耗。",
+		"DESCRIPTION": "抽 !M! 張牌。 每抽一張牌造成 !D! 點傷害，並減少其耗能。",
 		"NAME": "伊丹耀司"
 	},
 	"animator_Jibril":
@@ -377,7 +378,7 @@
 	},
 	"animator_Megumin":
 	{
-		"DESCRIPTION": "多重升級 。 對所有敵人造成 !D! 點傷害 。 消耗 。 NL 同調 : Permanently Upgrade this card 。",
+		"DESCRIPTION": "多重升級 。 對所有敵人造成 !D! 點傷害 。 消耗 。 NL 同調 : 永久 升級 這張牌 。",
 		"NAME": "惠惠"
 	},
 	"animator_Mikaela":
@@ -422,6 +423,7 @@
 	"animator_Priestess":
 	{
 		"DESCRIPTION": "冷卻 !SV! : 獲得 !M! 層 [#EFC851]再生[] 。 NL 同調 : 獲得 !B! 點 臨時生命 。",
+		"EXTENDED_DESCRIPTION": ["* 備註", "受到格擋修飾詞影響 。"],
 		"NAME": "女神官"
 	},
 	"animator_Rena":
@@ -465,7 +467,7 @@
 	},
 	"animator_Shichika":
 	{
-		"DESCRIPTION": "Gain !B! Block and 1 Strength. NL Synergy: Gain !M! Thorns.",
+		"DESCRIPTION": "獲得 !B! 點 格擋 和 1 點 力量 。 NL 同調 : !M! 層 荊棘 。",
 		"NAME": "鑢七花"
 	},
 	"animator_Shimakaze":
@@ -506,8 +508,8 @@
 	},
 	"animator_Togame":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the number of cards in your hand.",
-		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#y7 : Exhaust 1 card NL #y6 : Gain 6 Block. NL #y5 : Gain 1 Artifact NL #y4 : Gain 2 Energy and Exhaust this card"],
+		"DESCRIPTION": "抽 !M! 張牌 。 NL 根據手上的牌數量觸發 [#EFC851]額外效果[] 。",
+		"EXTENDED_DESCRIPTION": ["額外效果", "#y7: 消耗 1 張牌  NL #y6: 獲得 6 點 格擋 NL #y5: 獲得 1 層 人工製品 NL #y4: 獲得 2 點 能量並且 NL 消耗 這張牌"],
 		"NAME": "咎兒"
 	},
 	"animator_TukaLunaMarceau":

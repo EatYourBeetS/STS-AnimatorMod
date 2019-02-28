@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
-import eatyourbeets.cards.animator.Biyorigo;
 
 public class BiyorigoPower extends AnimatorPower
 {

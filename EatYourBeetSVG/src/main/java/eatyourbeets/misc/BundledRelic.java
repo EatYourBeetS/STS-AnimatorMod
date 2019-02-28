@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.AnimatorResources;
@@ -66,7 +65,7 @@ public class BundledRelic
                 }
                 Utilities.Logger.info(relicID + " Created");
                 relic = RelicLibrary.getRelic(relicID).makeCopy();
-                relic.beginLongPulse();
+                relic.flash();
             }
         }
     }

@@ -2,10 +2,8 @@ package eatyourbeets.characters.Loadouts;
 
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.Cocytus;
 import eatyourbeets.cards.animator.ElricAlphonse;
 import eatyourbeets.cards.animator.ElricEdward;
-import eatyourbeets.cards.animator.NarberalGamma;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 
 import java.util.ArrayList;

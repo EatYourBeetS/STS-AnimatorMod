@@ -177,7 +177,8 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 2 张牌 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。",
+		"UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。",
 		"NAME": "艾索德"
 	},
 	"animator_Emonzaemon":
@@ -309,7 +310,7 @@
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "在你的回合开始时获得 !M! 个金币 随机 消耗 一张抽牌堆中的牌 [#EFC851]*[] 。",
+		"DESCRIPTION": "在你的回合开始时获得 !M! 个金币 。 从你的牌库中选择并 消耗 3张随机卡的1张 [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "每场战斗最多获得100个金币。 堆叠这种状态会使金币获得上限增加。"],
 		"NAME": "否定姬"
 	},
@@ -423,7 +424,8 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "预热 !SV! : 获得 !M! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 。",
+		"DESCRIPTION": "预热 !SV! : 获得 !M! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 [#EFC851]*[] 。",
+		"EXTENDED_DESCRIPTION": ["* 注", "受块修饰符影响 。"],
 		"NAME": "女神官"
 	},
 	"animator_Rena":
@@ -508,8 +510,8 @@
 	},
 	"animator_Togame":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 对自身附加一层 [#EFC851]额外效果[] , 取决于您手中的牌数",
-		"EXTENDED_DESCRIPTION": ["额外效果", "#y7 : 消耗 1张牌 。 NL #y6 : 获得 6 点 格挡 。 NL #y5 : 获得 1 层 人工制品 。 NL #y4 : 消耗 并 获得 2 点 能量 。"],
+		"DESCRIPTION": "抽 !M! 张牌 。 获得一种 [#EFC851]额外效果[] , 效果种类由手中剩余的牌数量决定",
+		"EXTENDED_DESCRIPTION": ["额外效果", "#y7 : 消耗 1张牌 。 NL #y6 : 获得 6 点 格挡 。 NL #y5 : 获得 1 层 人工制品 。 NL #y4 : 消耗 并 获得 2 点 能量 。 NL --切利哦！！"],
 		"NAME": "咎儿"
 	},
 	"animator_TukaLunaMarceau":

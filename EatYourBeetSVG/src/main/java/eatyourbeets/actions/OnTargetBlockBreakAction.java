@@ -4,28 +4,17 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.GameActionsHelper;
 
 public class OnTargetBlockBreakAction extends AnimatorAction
 {
     private final DamageAction damageAction;
     private final AbstractGameAction action;
-    private final int initialBlock;
-
-    public OnTargetBlockBreakAction(AbstractCreature target, AbstractGameAction action)
-    {
-        this.target = target;
-        this.initialBlock = target.currentBlock;
-        this.damageAction = null;
-        this.action = action;
-        this.duration = Settings.ACTION_DUR_FAST;
-        this.actionType = action.actionType;
-    }
+    private int initialBlock;
 
     public OnTargetBlockBreakAction(AbstractCreature target, DamageAction damageAction, AbstractGameAction action)
     {
         this.target = target;
-        this.initialBlock = target.currentBlock;
         this.damageAction = damageAction;
         this.action = action;
         this.duration = Settings.ACTION_DUR_FAST;
@@ -34,17 +23,29 @@ public class OnTargetBlockBreakAction extends AnimatorAction
 
     public void update()
     {
-        if (this.damageAction != null && !this.damageAction.isDone)
+        if (this.duration == Settings.ACTION_DUR_FAST)
+        {
+            this.initialBlock = target.currentBlock;
+            this.tickDuration();
+        }
+
+        if (!this.damageAction.isDone)
         {
             this.damageAction.update();
 
-            return;
+            if (this.damageAction.isDone && action != null)
+            {
+                if (initialBlock > 0 && target.currentBlock <= 0)
+                {
+                    GameActionsHelper.AddToTop(action);
+                }
+            }
+            else
+            {
+                return;
+            }
         }
 
-        if (initialBlock > 0 && target.currentBlock <= 0)
-        {
-            AbstractDungeon.actionManager.addToTop(action);
-        }
         this.isDone = true;
     }
 }

@@ -38,7 +38,7 @@ public class Togame extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(0);
+            upgradeMagicNumber(1);
         }
     }
 

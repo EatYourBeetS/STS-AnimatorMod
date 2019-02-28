@@ -15,7 +15,7 @@ public class SpecialGoldReward extends AnimatorReward
 
     private static final String GOLD_STRING = CardCrawlGame.languagePack.getUIString("RewardItem").TEXT[1];
 
-    private String text;
+    private final String text;
 
     public SpecialGoldReward(String text, int amount)
     {

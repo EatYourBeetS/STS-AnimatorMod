@@ -1,16 +1,11 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.MalleablePower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.EnvyPower;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnBattleEndSubscriber;
 
 public class Envy extends AnimatorCard
 {

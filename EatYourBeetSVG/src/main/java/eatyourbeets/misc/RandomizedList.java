@@ -34,6 +34,8 @@ public class RandomizedList<T>
         items.clear();
     }
 
+    public int Count() { return items.size(); }
+
     public T Retrieve(Random rng)
     {
         T item = Utilities.GetRandomElement(items, rng);

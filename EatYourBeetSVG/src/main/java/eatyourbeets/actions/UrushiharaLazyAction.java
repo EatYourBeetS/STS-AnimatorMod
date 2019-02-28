@@ -3,15 +3,9 @@ package eatyourbeets.actions;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-
-import java.util.ArrayList;
 
 public class UrushiharaLazyAction extends AnimatorAction
 {

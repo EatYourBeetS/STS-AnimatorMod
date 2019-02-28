@@ -176,7 +176,8 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Cycle 2 cards.",
+		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards.",
 		"NAME": "Elsword"
 	},
 	"animator_Emonzaemon":
@@ -308,7 +309,7 @@
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "At the start of your turn gain !M! Gold NL and Exhaust a random card in your draw pile ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "At the start of your turn gain !M! Gold then choose and Exhaust 1 of 3 random cards in your deck ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "You cannot gain more than 100 Gold per combat. Stacking this power increases the gold cap a little."],
 		"NAME": "Hitei"
 	},
@@ -422,7 +423,8 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "Cooldown !SV! : Gain !M! Regeneration. NL Synergy: Gain !B! temporary HP.",
+		"DESCRIPTION": "Cooldown !SV! : Gain !M! Regeneration. NL Synergy: Gain !B! temporary HP ([#EFC851]*[#FFFFFF]).",
+		"EXTENDED_DESCRIPTION": ["* Note", "Affected by Block modifiers."],
 		"NAME": "'Priestess'"
 	},
 	"animator_Rena":

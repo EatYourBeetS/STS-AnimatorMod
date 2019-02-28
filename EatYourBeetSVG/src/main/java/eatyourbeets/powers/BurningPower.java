@@ -3,21 +3,17 @@ package eatyourbeets.powers;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
 
 public class BurningPower extends AnimatorPower implements HealthBarRenderPower
 {
     public static final String POWER_ID = CreateFullID(BurningPower.class.getSimpleName());
-    private AbstractCreature source;
+    private final AbstractCreature source;
 
     public BurningPower(AbstractCreature owner, AbstractCreature source, int amount)
     {

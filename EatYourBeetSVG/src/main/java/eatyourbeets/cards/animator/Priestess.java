@@ -23,6 +23,8 @@ public class Priestess extends AnimatorCard_Cooldown implements CustomSavable<In
         this.tags.add(CardTags.HEALING);
         this.baseSecondaryValue = this.secondaryValue = COOLDOWN;
 
+        AddExtendedDescription();
+
         SetSynergy(Synergies.GoblinSlayer);
     }
 

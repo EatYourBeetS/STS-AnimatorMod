@@ -1,21 +1,13 @@
 package eatyourbeets.cards.animator;
 
 import basemod.abstracts.CustomSavable;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
-import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
-
-import java.util.ArrayList;
 
 public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavable<Integer>
 {
@@ -23,7 +15,7 @@ public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavabl
 
     public ElricAlphonse()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
         Initialize(0,0);
 
@@ -58,13 +50,16 @@ public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavabl
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(0);
+            if (secondaryValue > 0)
+            {
+                baseSecondaryValue = secondaryValue = secondaryValue - 1;
+            }
         }
     }
 
     @Override
     protected int GetBaseCooldown()
     {
-        return 1;
+        return upgraded ? 1 : 2;
     }
 }

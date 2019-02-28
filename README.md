@@ -2,8 +2,6 @@
 
 [Steam Workshop Link](https://steamcommunity.com/sharedfiles/filedetails/?id=1638308801)
 
-![](https://i.imgur.com/66YwpAo.jpg)
-
 Mod which adds a new playable character with cards based on different anime series.
 I have tried to design each card in a way that resembles its character as much as possible,
 e.g. Megumin that Exhausts after 1 use, or Darkness which likes to receive damage...

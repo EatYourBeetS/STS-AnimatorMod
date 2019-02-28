@@ -18,7 +18,7 @@ public class HighElfArcher extends AnimatorCard
     {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(2, 0);
+        Initialize(2, 0, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -40,7 +40,7 @@ public class HighElfArcher extends AnimatorCard
 
         if (count <= 1) // cardsPlayedThisTurn contains this card
         {
-            GameActionsHelper.DrawCard(p, 1);
+            GameActionsHelper.DrawCard(p, this.magicNumber);
         }
     }
 
@@ -49,6 +49,7 @@ public class HighElfArcher extends AnimatorCard
     {
         if (TryUpgrade())
         {
+            upgradeMagicNumber(1);
             upgradeDamage(1);
         }
     }

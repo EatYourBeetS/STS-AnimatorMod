@@ -16,9 +16,9 @@ public class Priestess extends AnimatorCard_Cooldown implements CustomSavable<In
 
     public Priestess()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0, 5, 4);
+        Initialize(0, 3, 4);
 
         this.tags.add(CardTags.HEALING);
         this.baseSecondaryValue = this.secondaryValue = COOLDOWN;
@@ -48,7 +48,7 @@ public class Priestess extends AnimatorCard_Cooldown implements CustomSavable<In
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
-            upgradeBlock(2);
+            upgradeBlock(1);
         }
     }
 

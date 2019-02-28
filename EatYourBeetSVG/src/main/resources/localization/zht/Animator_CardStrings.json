@@ -47,7 +47,7 @@
 	},
 	"animator_Ara":
 	{
-		"DESCRIPTION": "造成!D! 點傷害2次 。 如果打破敵人的 格擋 則獲得 !M! 點 力量 。",
+		"DESCRIPTION": "造成!D! 點傷害2次 。 压倒 : 獲得 !M! 點 力量 。",
 		"NAME": "艾拉"
 	},
 	"animator_Archer":
@@ -67,7 +67,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 ， 如果打破目標的格擋 ， 獲得 [B] [B] 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 压倒 : 獲得 [B] [B] 。",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -147,10 +147,10 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 若打破目標格擋 ， 抽 !M! 張未升級的牌並 升級 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 压倒 : 抽 !M! 張未升級的牌並 升級 。",
 		"EXTENDED_DESCRIPTION": ["* 注意", "會優先升級可以升級的牌，如果沒有可升級的牌就跟一般抽牌一樣 。"],
 		"NAME": "矮人薩滿",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 若打破目標格擋 ， 抽 !M! 張牌並 升級 。"
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 压倒 : 抽 !M! 張牌並 升級 。"
 	},
 	"animator_Elesis":
 	{
@@ -159,9 +159,9 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "冷卻 !SV! : 獲得 1 點 集中 。 NL 遺產 : 這張牌轉變為 [#EFC851]裝甲阿爾馮斯[] 並加入棄牌堆。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 冷卻 !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯[] 。",
 		"NAME": "阿爾馮斯·艾力克",
-		"UPGRADE_DESCRIPTION": "冷卻 !SV! : 獲得 1 點 集中 。 NL 遺產 : 這張牌轉變為 [#EFC851]裝甲阿爾馮斯+[] 並加入棄牌堆。"
+		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 冷卻 !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯+[] 。"
 	},
 	"animator_ElricAlphonseAlt":
 	{
@@ -286,13 +286,14 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將其傷害預存到 [#EFC851]支援[] 中 。",
+		"DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將其基础傷害預存到 [#EFC851]支援[] 中 。",
+		"UPGRADE_DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將其傷害預存到 [#EFC851]支援[] 中 。",
 		"EXTENDED_DESCRIPTION": ["支援", "回合結束時對生命值較低的敵人造成預存的傷害"],
 		"NAME": "紅蓮"
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "給予一個敵人 !B! 點 格擋 ， 然後獲得等同於目標的 格擋 值 。 同調 : 獲得 !M! 點 集中 。",
+		"DESCRIPTION": "給予一個敵人 !B! 點 格擋 ， 然後獲得等同於目標的 格擋 值 。 同調 : 獲得1個冰霜充能球 。",
 		"NAME": "奇伊"
 	},
 	"animator_HigakiRinne":
@@ -462,7 +463,7 @@
 	},
 	"animator_Shalltear":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 每有一個敵人失去 格擋 ， 治療 !M! HP 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 压倒 : 治療 !M! HP 。",
 		"NAME": "夏提雅"
 	},
 	"animator_Shichika":

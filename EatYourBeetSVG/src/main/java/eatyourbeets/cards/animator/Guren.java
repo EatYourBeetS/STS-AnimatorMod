@@ -35,8 +35,18 @@ public class Guren extends AnimatorCard
         AbstractCard attack = GetRandomAttack(p);
         if (attack != null)
         {
-            attack.calculateCardDamage(null);
-            if (attack.damage > 0)
+            int damage;
+            if (upgraded)
+            {
+                attack.calculateCardDamage(null);
+                damage = attack.damage;
+            }
+            else
+            {
+                damage = attack.baseDamage;
+            }
+
+            if (damage > 0)
             {
                 ShowCardBrieflyEffect effect = new ShowCardBrieflyEffect(attack, Settings.WIDTH / 3f, Settings.HEIGHT / 2f);
 
@@ -44,7 +54,7 @@ public class Guren extends AnimatorCard
                 AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(attack, p.drawPile, true));
                 AbstractDungeon.actionManager.addToTop(new WaitAction(effect.duration));
 
-                GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, attack.damage), attack.damage);
+                GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, damage), damage);
             }
         }
     }
@@ -52,10 +62,7 @@ public class Guren extends AnimatorCard
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(2);
-        }
+        TryUpgrade();
     }
 
     private AbstractCard GetRandomAttack(AbstractPlayer p)

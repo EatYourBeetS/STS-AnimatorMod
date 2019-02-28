@@ -68,5 +68,10 @@
 		"DESCRIPTION": "Upon receiving attack damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of your turn.",
 		"NAMES": ["malleable"],
 		"PROPERNAME": "Malleable"
+	},
+	{
+		"DESCRIPTION": "Activates for each enemy that loses its block during this attack.",
+		"NAMES": ["overrun"],
+		"PROPERNAME": "Overrun"
 	}
 ]

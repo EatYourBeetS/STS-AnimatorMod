@@ -17,7 +17,7 @@ public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavabl
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0,2);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -39,6 +39,8 @@ public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavabl
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        GameActionsHelper.GainBlock(p, this.block);
+
         if (ProgressCooldown())
         {
             GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
@@ -50,16 +52,13 @@ public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavabl
     {
         if (TryUpgrade())
         {
-            if (secondaryValue > 0)
-            {
-                baseSecondaryValue = secondaryValue = secondaryValue - 1;
-            }
+            upgradeBlock(2);
         }
     }
 
     @Override
     protected int GetBaseCooldown()
     {
-        return upgraded ? 1 : 2;
+        return 1;
     }
 }

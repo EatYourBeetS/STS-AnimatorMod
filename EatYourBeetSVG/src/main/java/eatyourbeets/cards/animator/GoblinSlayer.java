@@ -6,9 +6,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.actions.MoveSpecificCardAction;
 import eatyourbeets.actions.ShuffleRandomGoblinAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class GoblinSlayer extends AnimatorCard
 {
@@ -18,19 +20,29 @@ public class GoblinSlayer extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(9,9);
+        Initialize(7,9);
 
         this.retain = true;
+
         AddExtendedDescription();
         SetSynergy(Synergies.GoblinSlayer);
     }
+
 
     @Override
     public void atTurnStart()
     {
         super.atTurnStart();
-        GameActionsHelper.AddToBottom(new ShuffleRandomGoblinAction(1));
+
         this.retain = true;
+
+        int turnCount = PlayerStatistics.getTurnCount();
+        if (turnCount % 2 == 1)
+        {
+            int goblins = turnCount < 6 ? 1 : turnCount < 12 ? 2 : 3;
+
+            GameActionsHelper.AddToBottom(new ShuffleRandomGoblinAction(goblins));
+        }
     }
 
     @Override
@@ -38,13 +50,6 @@ public class GoblinSlayer extends AnimatorCard
     {
         return super.calculateModifiedCardDamage(player, mo, tmp + (AbstractDungeon.player.exhaustPile.size() * 2));
     }
-
-//    @Override
-//    public void applyPowers()
-//    {
-//        this.baseDamage = BASE_DAMAGE + (AbstractDungeon.player.exhaustPile.size() * 2);
-//        super.applyPowers();
-//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
@@ -70,12 +75,6 @@ public class GoblinSlayer extends AnimatorCard
                 //exhausted += 1;
             }
         }
-//
-//        if (exhausted > 0)
-//        {
-//            GameActionsHelper.Special(new ModifyDamageAction(this.uuid, exhausted * 3));
-//            GameActionsHelper.Special(new ModifyBlockAction(this.uuid, exhausted * 2));
-//        }
     }
 
     @Override
@@ -83,8 +82,8 @@ public class GoblinSlayer extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
-            upgradeBlock(4);
+            upgradeDamage(3);
+            upgradeBlock(3);
         }
     }
 }

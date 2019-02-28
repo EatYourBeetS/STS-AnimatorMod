@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.orbs.Frost;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.GuyAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -18,7 +18,7 @@ public class Guy extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(0,4, 1);
+        Initialize(0,4);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -31,7 +31,8 @@ public class Guy extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FocusPower(m, this.magicNumber), this.magicNumber));
+            GameActionsHelper.ChannelOrb(new Frost(), true);
+            //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FocusPower(m, this.magicNumber), this.magicNumber));
         }
     }
 

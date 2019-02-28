@@ -68,5 +68,10 @@
 		"DESCRIPTION": "當受到傷害時，獲得 #y點格擋。 #y每次這能力觸發時獲得的格擋值會提升。你的回合開始時重置。",
 		"NAMES": ["鍛鑄"],
 		"PROPERNAME": "鍛鑄"
+	},
+	{
+		"DESCRIPTION": "Activates when an enemy loses its block.",
+		"NAMES": ["压倒"],
+		"PROPERNAME": "压倒"
 	}
 ]

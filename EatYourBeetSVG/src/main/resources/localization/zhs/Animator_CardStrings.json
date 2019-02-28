@@ -47,7 +47,7 @@
 	},
 	"animator_Ara":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 2 次 。 如果破坏敌人的 格挡 则 !M! 点 力量 。",
+		"DESCRIPTION": "造成 !D! 点伤害 2 次 。 压倒 : 获得 !M! 点 力量 。",
 		"NAME": "爱拉"
 	},
 	"animator_Archer":
@@ -67,7 +67,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 , 若打破目标 格挡 则 获得 [B] [B] 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 压倒 : 获得 [B] [B] 。",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -82,7 +82,7 @@
 	},
 	"animator_ChaikaBohdan":
 	{
-		"DESCRIPTION": " 造成 !D! 点伤害 。 [#EFC851]急躁[] NL !M! ",
+		"DESCRIPTION": " 造成 !D! 点伤害。 NL [#EFC851]急躁[] !M! ",
 		"EXTENDED_DESCRIPTION": ["急躁", "若此牌位于手牌中 ， 则每当你打出一张 #y攻击 牌 ， 此牌伤害额外增加等同于急躁层数的数值 。 仅在使用后重置伤害 。"],
 		"NAME": "嘉依卡·布芙丹"
 	},
@@ -148,10 +148,10 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 若打破目标格挡， 抽 !M! 张牌并 升级 [#EFC851]*[] 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 压倒 : 抽 !M! 张牌并 升级 [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "优先抽未升级的牌 ， 若全部升级则随机抽 。"],
 		"NAME": "矮人萨满",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害。若打破目标格挡， 抽 !M! 张牌并 升级 [#EFC851]*[] 。"
+		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 压倒 :抽 !M! 张牌并 升级 [#EFC851]*[] 。"
 	},
 	"animator_Elesis":
 	{
@@ -160,9 +160,9 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "预热 !SV! : 获得 1 点 集中 。 NL 遗赠 : 将一张 [#EFC851]阿尔冯斯护甲[] 加入到你的弃牌堆 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 预热 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲[] 。",
 		"NAME": "阿尔冯斯",
-		"UPGRADE_DESCRIPTION": "预热 !SV! : 获得 1 点 集中 。 NL 遗赠 : 将一张 [#EFC851]阿尔冯斯护甲+[] 加入到你的弃牌堆 。"
+		"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 预热 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲+[] 。"
 	},
 	"animator_ElricAlphonseAlt":
 	{
@@ -287,13 +287,14 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 [#EFC851]支援[] 中 。",
+		"DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其基础伤害预存到 [#EFC851]支援[] 中 。",
+		"UPGRADE_DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 [#EFC851]支援[] 中 。",
 		"EXTENDED_DESCRIPTION": ["支援", "回合结束时对生命值较低的敌人造成预存的伤害"],
 		"NAME": "红莲"
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "给予一个敌人 !B! 点 格挡 ， 然后获得等同于目标的 格挡 值 。 同调 : 获得 !M! 点 集中 。",
+		"DESCRIPTION": "给予一个敌人 !B! 点 格挡 ， 然后获得等同于目标的 格挡 值 。 同调 : 获得 1 个冰霜充能球 。",
 		"NAME": "奇伊"
 	},
 	"animator_HigakiRinne":
@@ -305,12 +306,13 @@
 	},
 	"animator_HighElfArcher":
 	{
-		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 ， 重复两次 。 本回合第一次使用这张牌时 ， 抽一张牌 。",
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 ， 重复两次 。 本回合第一次使用这张牌时 ， 抽 !M! 张牌 。",
+		"UPGRADE_DESCRIPTION": "造成 !D! 点 穿刺 伤害 ， 重复两次 。 本回合第一次使用这张牌时 ， 抽 !M! 张牌 。",
 		"NAME": "精灵弓手"
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "在你的回合开始时获得 !M! 个金币 。 从你的牌库中选择并 消耗 3张随机卡的1张 [#EFC851]*[] 。",
+		"DESCRIPTION": "在你的回合开始时获得 !M! 个金币 。 从你的牌库中随机选择三张卡，选择并 消耗 其中一张1张 [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "每场战斗最多获得100个金币。 堆叠这种状态会使金币获得上限增加。"],
 		"NAME": "否定姬"
 	},
@@ -464,7 +466,7 @@
 	},
 	"animator_Shalltear":
 	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 NL 每有一个敌人失去 格挡 ， 治疗 !M! HP 。",
+		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 NL 压倒 : 治疗 !M! HP 。",
 		"NAME": "夏提雅"
 	},
 	"animator_Shichika":

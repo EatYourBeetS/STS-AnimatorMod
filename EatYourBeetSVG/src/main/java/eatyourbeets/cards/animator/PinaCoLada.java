@@ -32,7 +32,8 @@ public class PinaCoLada extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBaseCost(0);
+            //upgradeMagicNumber(1);
         }
     }
 }

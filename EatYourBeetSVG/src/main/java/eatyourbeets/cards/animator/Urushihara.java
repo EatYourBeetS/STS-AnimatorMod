@@ -23,7 +23,7 @@ public class Urushihara extends AnimatorCard implements OnBattleStartSubscriber,
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(8,0);
+        Initialize(9,0);
 
         AddExtendedDescription();
         this.isMultiDamage = true;
@@ -63,7 +63,7 @@ public class Urushihara extends AnimatorCard implements OnBattleStartSubscriber,
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(3);
         }
     }
 }

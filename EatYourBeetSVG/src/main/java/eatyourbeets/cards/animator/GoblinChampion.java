@@ -14,7 +14,7 @@ public class GoblinChampion extends AnimatorCard_Status
 
     public GoblinChampion()
     {
-        super(ID, 0, CardRarity.UNCOMMON, CardTarget.NONE);
+        super(ID, 1, CardRarity.UNCOMMON, CardTarget.NONE);
 
         Initialize(0,0);
 

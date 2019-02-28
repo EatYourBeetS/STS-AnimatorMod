@@ -21,7 +21,7 @@ public class Ara extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(4,0, 1);
+        Initialize(5,0, 1);
 
         SetSynergy(Synergies.Elsword);
     }

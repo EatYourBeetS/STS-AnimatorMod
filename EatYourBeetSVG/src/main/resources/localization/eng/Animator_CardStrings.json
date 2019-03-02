@@ -47,7 +47,7 @@
 	},
 	"animator_Ara":
 	{
-		"DESCRIPTION": "Deal !D! damage twice. NL Overrun: Gain !M! Strength.",
+		"DESCRIPTION": "Deal !D! damage twice. NL Overrun: Apply !M! Vulnerable.",
 		"NAME": "Ara"
 	},
 	"animator_Archer":
@@ -286,8 +286,8 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile and turn its base damage into [#EFC851]Support [#EFC851]Damage.",
-		"UPGRADE_DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile and turn its current damage into [#EFC851]Support [#EFC851]Damage.",
+		"DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into [#EFC851]Support [#EFC851]Damage.",
+		"UPGRADE_DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into Block and [#EFC851]Support [#EFC851]Damage.",
 		"EXTENDED_DESCRIPTION": ["Support Damage", "Deal damage to the enemy with lowest HP at the end of each turn."],
 		"NAME": "Guren"
 	},
@@ -403,9 +403,11 @@
 	},
 	"animator_Nanami":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Synergy: Add [#EFC851]Pummel to your hand.",
+		"DESCRIPTION": "Activate an [#EFC851]Effect based on the enemy intent.",
 		"NAME": "Nanami",
-		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Synergy: Add [#EFC851]Pummel+ to your hand."
+		"UPGRADE_DESCRIPTION": "Activate an improved [#EFC851]Effect based on the enemy intent.",
+		"EXTENDED_DESCRIPTION": ["Deal !D! Damage.", "Gain !B! Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", 
+								 "Channel 1 Lightning.", "Channel 1 Dark.", "Channel 1 Frost.", "Apply !M! Poison.", "Gain [B]", "Gain !M! Temporary HP.", "Draw !M! cards."]
 	},
 	"animator_NarberalGamma":
 	{
@@ -528,7 +530,7 @@
 	"animator_Urushihara":
 	{
 		"DESCRIPTION": "[#EFC851]Channel[] 1 Dark. NL Deal !D! damage to ALL enemies. NL [#EFC851]Lazy[].",
-		"EXTENDED_DESCRIPTION": ["Lazy", "When drawn, has a 50% chance of swapping itself with another card in your draw pile."],
+		"EXTENDED_DESCRIPTION": ["Lazy", "When drawn, has a 50% chance of swapping itself with another card in your discard pile."],
 		"NAME": "Urushihara"
 	},
 	"animator_Viivi":

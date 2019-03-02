@@ -36,23 +36,21 @@ public class Guren extends AnimatorCard
         if (attack != null)
         {
             int damage;
-            if (upgraded)
-            {
-                attack.calculateCardDamage(null);
-                damage = attack.damage;
-            }
-            else
-            {
-                damage = attack.baseDamage;
-            }
+            attack.calculateCardDamage(null);
+            damage = attack.damage;
 
             if (damage > 0)
             {
                 ShowCardBrieflyEffect effect = new ShowCardBrieflyEffect(attack, Settings.WIDTH / 3f, Settings.HEIGHT / 2f);
 
                 AbstractDungeon.effectsQueue.add(effect);
-                AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(attack, p.drawPile, true));
-                AbstractDungeon.actionManager.addToTop(new WaitAction(effect.duration));
+                GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(attack, p.drawPile, true));
+                GameActionsHelper.AddToBottom(new WaitAction(effect.duration));
+
+                if (upgraded)
+                {
+                    GameActionsHelper.GainBlock(p, damage);
+                }
 
                 GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, damage), damage);
             }

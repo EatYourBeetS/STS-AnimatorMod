@@ -1,5 +1,6 @@
 package eatyourbeets.actions;
 
+import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -21,11 +22,11 @@ public class UrushiharaLazyAction extends AnimatorAction
     public void update()
     {
         AbstractPlayer p = AbstractDungeon.player;
-        if (p.drawPile.size() > 0 && p.hand.contains(target))
+        if (p.discardPile.size() > 0 && p.hand.contains(target))
         {
-            AbstractCard replacement = p.drawPile.getRandomCard(true);
-            GameActionsHelper.AddToTop(new DrawSpecificCardAction(replacement));
-            GameActionsHelper.AddToTop(new MoveSpecificCardAction(target, p.drawPile, p.hand, true));
+            AbstractCard replacement = p.discardPile.getRandomCard(true);
+            GameActionsHelper.AddToTop(new MoveSpecificCardAction(replacement, p.hand, p.discardPile, false));
+            GameActionsHelper.AddToTop(new DiscardSpecificCardAction(target, p.hand));
             GameActionsHelper.AddToTop(new WaitAction(0.5f));
         }
 

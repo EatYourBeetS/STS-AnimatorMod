@@ -121,7 +121,7 @@ public class BundledRelicProvider
         AddBundle(AcuraAkari.ID, TwistedFunnel.ID, AbstractRelic.RelicTier.SPECIAL, R3);
         AddBundle(HighElfArcher.ID, OddlySmoothStone.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(LizardPriest.ID, LizardTail.ID, AbstractRelic.RelicTier.BOSS, R1);
-        AddBundle(Aisha.ID, Cauldron.ID, AbstractRelic.RelicTier.SHOP, R4);
+        AddBundle(Aisha.ID, Omamori.ID, AbstractRelic.RelicTier.COMMON, R2);
         AddBundle(Alexander.ID, ArtOfWar.ID, AbstractRelic.RelicTier.COMMON, R4);
         AddBundle(Caster.ID, SymbioticVirus.ID, AbstractRelic.RelicTier.SPECIAL, R4);
         AddBundle(Entoma.ID, TheSpecimen.ID, AbstractRelic.RelicTier.SPECIAL, R3);

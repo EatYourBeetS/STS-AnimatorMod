@@ -84,6 +84,11 @@
 		"DESCRIPTIONS": ["ALL enemies deal #b", "% less damage."],
 		"NAME": "Albedo"
 	},
+	"animator_HigakiRinnePower":
+	{
+		"DESCRIPTIONS": ["???"],
+		"NAME": "???"
+	},
 	"animator_EnvyPower":
 	{
 		"DESCRIPTIONS": ["The first #b", " card/s you play every turn have their Synergy active."],

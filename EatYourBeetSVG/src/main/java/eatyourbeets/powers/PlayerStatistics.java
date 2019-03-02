@@ -9,9 +9,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
+import eatyourbeets.actions.WaitRealtimeAction;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.animator.HigakiRinne;
 import eatyourbeets.subscribers.*;
 
 import java.util.ArrayList;

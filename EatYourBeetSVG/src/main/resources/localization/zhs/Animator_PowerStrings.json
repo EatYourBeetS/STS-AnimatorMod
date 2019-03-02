@@ -85,6 +85,11 @@
 		"DESCRIPTIONS": ["受到的所有伤害降低 #b", "%."],
 		"NAME": "雅尔贝德"
 	},
+	"animator_HigakiRinnePower":
+	{
+		"DESCRIPTIONS": ["???"],
+		"NAME": "???"
+	},
 	"animator_EnvyPower":
 	{
 		"DESCRIPTIONS": ["每回合打出的第一张 #b", " 牌 触发自身的 同调 效果."],

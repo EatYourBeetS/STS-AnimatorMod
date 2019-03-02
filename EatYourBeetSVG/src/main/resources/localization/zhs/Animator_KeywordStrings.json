@@ -70,7 +70,7 @@
 		"PROPERNAME": "锻铸"
 	},
 	{
-		"DESCRIPTION": "启用若打破目标 格挡 则 。",
+		"DESCRIPTION": "打破目标格挡时生效 。",
 		"NAMES": ["压倒"],
 		"PROPERNAME": "压倒"
 	}

@@ -51,7 +51,7 @@ public class MoveSpecificCardAction extends AnimatorAction
                 card.unfadeOut();
             }
 
-            if (this.destination == player.hand && player.hand.size() == BaseMod.MAX_HAND_SIZE)
+            if (this.destination == player.hand && player.hand.size() >= BaseMod.MAX_HAND_SIZE)
             {
                 this.source.moveToDiscardPile(card);
                 this.player.createHandIsFullDialog();

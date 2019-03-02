@@ -46,7 +46,7 @@ public class HiteiAction extends AnimatorAction
 
             if (group.size() > 0)
             {
-                AbstractDungeon.gridSelectScreen.open(group, 1, false, uiStrings.TEXT[0]);
+                AbstractDungeon.gridSelectScreen.open(group, 1, uiStrings.TEXT[0], false, false, false, false);
             }
             else
             {

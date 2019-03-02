@@ -47,7 +47,7 @@
 	},
 	"animator_Ara":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 2 次 。 压倒 : 获得 !M! 点 力量 。",
+		"DESCRIPTION": "造成 !D! 点伤害 2 次 。 压倒 : 给予 !M! 层 易伤 。",
 		"NAME": "爱拉"
 	},
 	"animator_Archer":
@@ -88,8 +88,7 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 [#EFC851]<减益>[] 。",
-		"EXTENDED_DESCRIPTION": ["<减益>", "替代在 #y虚弱 ， #y眩晕 和 #y易伤 之间"],
+		"DESCRIPTION": "造成 !D! 点 伤害 。 获得 1 层 眩晕 。 消耗 。 在的消耗 的牌堆中转3圈后返回到您的弃牌堆 。",
 		"NAME": "嘉依卡·托勒庞特"
 	},
 	"animator_ChlammyZell":
@@ -287,8 +286,8 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其基础伤害预存到 [#EFC851]支援[] 中 。",
-		"UPGRADE_DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 [#EFC851]支援[] 中 。",
+		"DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 [#EFC851]支援[] 中 。",
+		"UPGRADE_DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害转换为等量 格挡 并预存到 [#EFC851]支援[] 中 。",
 		"EXTENDED_DESCRIPTION": ["支援", "回合结束时对生命值较低的敌人造成预存的伤害"],
 		"NAME": "红莲"
 	},
@@ -404,9 +403,11 @@
 	},
 	"animator_Nanami":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 同调 : 将一张 [#EFC851]连续拳[] 放入你的手牌 。",
+		"DESCRIPTION": "根据敌人的意图激活 [#EFC851]效果[] 。",
 		"NAME": "鑢七实",
-		"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 同调 : 添加一张 [#EFC851]连续拳+[] 到你的手牌 。"
+		"UPGRADE_DESCRIPTION": "根据敌人的意图激活改进的 [#EFC851]效果[] 。",
+		"EXTENDED_DESCRIPTION": ["造成 !D! 点 伤害 。", "获得 !B! 点 格挡 。", "获得 # 点 力量 。", "给予 # 层 虚弱 。", "获得 # 层 易伤 。", "获得 1 层 眩晕 。", 
+								 "生成 1 个闪电 充能球 。", "生成 1 个 黑暗 充能球 。", "获得 1 个冰霜充能球 。", "给予 !M! 层 中毒", "获得 [B]", "获得 !M! 点 临时生命 。", "抽 !M! 张牌 。"]
 	},
 	"animator_NarberalGamma":
 	{
@@ -529,7 +530,7 @@
 	"animator_Urushihara":
 	{
 		"DESCRIPTION": "[#EFC851]生成[] 1 个 黑暗 充能球 。 对所有敌人造成 !D! 点 伤害 。 [#EFC851]懒惰[] 。",
-		"EXTENDED_DESCRIPTION": ["懒惰", "抽到这张牌时 ， 有50％的几率与抽牌堆中的另一张卡交换 。"],
+		"EXTENDED_DESCRIPTION": ["懒惰", "抽到这张牌时 ， 有50％的几率的弃牌堆中的另一张卡交换 。"],
 		"NAME": "漆原半藏-路西法"
 	},
 	"animator_Viivi":

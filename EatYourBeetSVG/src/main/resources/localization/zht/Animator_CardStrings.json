@@ -2,7 +2,7 @@
 {
 	"animator_AcuraAkari":
 	{
-		"DESCRIPTION": "對一個敵人造成 !M! 毒 之 印記 。 同調 : 下回合多抽一張牌 。",
+		"DESCRIPTION": "對一個敵人造成 !M! 毒 之 印記 。",
 		"NAME": "阿卡莉"
 	},
 	"animator_AcuraShin":
@@ -77,7 +77,7 @@
 	},
 	"animator_Caster":
 	{
-		"DESCRIPTION": "[#EFC851]激發第[] 一個充能球 。 NL [#EFC851]獲得 1 顆 黑暗充能球 。 NL 同調 : 敵人失去 !M! 點 力量 。",
+		"DESCRIPTION": "[#EFC851]激發第[] 一個充能球 。 NL [#EFC851]獲得 1 顆 黑暗充能球 。 NL Boost : 敵人失去 !M! 點 力量 。",
 		"NAME": "Caster"
 	},
 	"animator_ChaikaBohdan":
@@ -121,8 +121,7 @@
 	"animator_Demiurge":
 	{
 		"DESCRIPTION": "獲得 [B] [B] 。 NL 受到 !M! 點 傷害 ， 然後這場戰鬥增加這張牌 3 點 的傷害 。",
-		"NAME": "迪米烏哥斯",
-		"UPGRADE_DESCRIPTION": "獲得 [B] [B] [B] 。 NL 受到 !M! 點 傷害 ， 然後這場戰鬥增加這張牌 3 點 的傷害 。"
+		"NAME": "迪米烏哥斯"
 	},
 	"animator_DolaCouronne":
 	{
@@ -159,9 +158,9 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 冷卻 !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯[] 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 Boost !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯[] 。",
 		"NAME": "阿爾馮斯·艾力克",
-		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 冷卻 !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯+[] 。"
+		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 Boost !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯+[] 。"
 	},
 	"animator_ElricAlphonseAlt":
 	{
@@ -287,7 +286,7 @@
 	"animator_Guren":
 	{
 		"DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將其傷害預存到 [#EFC851]支援[] 中 。",
-		"UPGRADE_DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將其傷害預存到 護甲 和 [#EFC851]支援[] 中 。",
+		"UPGRADE_DESCRIPTION": "保留 。 從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將其傷害預存到 [#EFC851]支援[] 中 。",
 		"EXTENDED_DESCRIPTION": ["支援", "回合結束時對生命值較低的敵人造成預存的傷害"],
 		"NAME": "紅蓮"
 	},
@@ -425,7 +424,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "冷卻 !SV! : 獲得 !M! 層 [#EFC851]再生[] 。 NL 同調 : 獲得 !B! 點 臨時生命 。",
+		"DESCRIPTION": "Boost !SV! : 獲得 !M! 層 [#EFC851]再生[] 。 NL 同調 : 獲得 !B! 點 臨時生命 。",
 		"EXTENDED_DESCRIPTION": ["* 備註", "受到格擋修飾詞影響 。"],
 		"NAME": "女神官"
 	},
@@ -485,7 +484,7 @@
 	},
 	"animator_Shiro":
 	{
-		"DESCRIPTION": "每回合開始時獲得 [B] 。",
+		"DESCRIPTION": "Costs 1 less for each Synergy you activated this turn. 每回合開始時獲得 [B] 。",
 		"NAME": "白"
 	},
 	"animator_Sloth":
@@ -561,7 +560,7 @@
 	},
 	"animator_Spearman":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. NL Boost !SV! : Deal !M! more damage.",
+		"DESCRIPTION": "Deal !D! damage. NL Boost !SV! : Gain !M! Dexterity.",
 		"NAME": "Spearman"
 	}
 }

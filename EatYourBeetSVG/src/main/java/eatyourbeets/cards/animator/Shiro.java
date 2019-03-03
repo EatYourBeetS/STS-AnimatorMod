@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.ShiroPower;
 
 public class Shiro extends AnimatorCard
@@ -13,11 +14,19 @@ public class Shiro extends AnimatorCard
 
     public Shiro()
     {
-        super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0,0);
 
         SetSynergy(Synergies.NoGameNoLife);
+    }
+
+    @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+
+        this.setCostForTurn(this.cost - PlayerStatistics.getSynergiesThisTurn());
     }
 
     @Override
@@ -31,7 +40,7 @@ public class Shiro extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(2);
+            upgradeBaseCost(3);
         }
     }
 }

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
+import eatyourbeets.cards.Synergy;
 import eatyourbeets.effects.HideCardEffect;
 import eatyourbeets.misc.BundledRelicContainer;
 import eatyourbeets.misc.BundledRelicProvider;
@@ -109,26 +110,37 @@ public class CardRewardScreenPatch
 
     private static void UpdateBanButtons()
     {
+        Synergy bannedSynergy = null;
+        BanCardButton toBan = null;
         BanCardButton toRemove = null;
         for (BanCardButton banButton : buttons)
         {
             banButton.update();
+
             if (banButton.banned)
             {
-                AbstractDungeon.effectsQueue.add(new ExhaustCardEffect(banButton.card));
-                AbstractDungeon.effectsQueue.add(new HideCardEffect(banButton.card));
-                rewardItem.cards.remove(banButton.card);
-
-                rewardBundle.Remove(banButton.card);
-
                 purgingStone.Ban(banButton.card);
-                banButton.hideInstantly();
-                toRemove = banButton;
+                toBan = banButton;
+            }
+        }
+
+        while (toBan != null || toRemove != null)
+        {
+            buttons.remove(toRemove);
+
+            if (toBan != null)
+            {
+                AbstractDungeon.effectsQueue.add(new ExhaustCardEffect(toBan.card));
+                AbstractDungeon.effectsQueue.add(new HideCardEffect(toBan.card));
+                rewardItem.cards.remove(toBan.card);
+                rewardBundle.Remove(toBan.card);
+                toBan.hideInstantly();
 
                 if (rewardItem.cards.size() == 0)
                 {
                     AbstractDungeon.combatRewardScreen.rewards.remove(rewardItem);
                     AbstractDungeon.combatRewardScreen.positionRewards();
+
                     if (AbstractDungeon.combatRewardScreen.rewards.isEmpty())
                     {
                         AbstractDungeon.combatRewardScreen.hasTakenAll = true;
@@ -136,16 +148,18 @@ public class CardRewardScreenPatch
                     }
                 }
             }
-        }
 
-        while (toRemove != null)
-        {
-            buttons.remove(toRemove);
             toRemove = null;
-
+            toBan = null;
             for (BanCardButton banButton : buttons)
             {
-                if (!purgingStone.CanBan(banButton.card))
+                if (purgingStone.IsBanned(banButton.card))
+                {
+                    toRemove = banButton;
+                    toBan = banButton;
+                    break;
+                }
+                else if (!purgingStone.CanBan(banButton.card))
                 {
                     toRemove = banButton;
                     break;

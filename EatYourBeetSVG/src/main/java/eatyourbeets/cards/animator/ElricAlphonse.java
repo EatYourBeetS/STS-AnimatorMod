@@ -1,15 +1,14 @@
 package eatyourbeets.cards.animator;
 
-import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Cooldown;
+import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
-public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavable<Integer>
+public class ElricAlphonse extends AnimatorCard_Boost
 {
     public static final String ID = CreateFullID(ElricAlphonse.class.getSimpleName());
 
@@ -41,7 +40,7 @@ public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavabl
     {
         GameActionsHelper.GainBlock(p, this.block);
 
-        if (ProgressCooldown())
+        if (ProgressBoost())
         {
             GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
         }
@@ -53,12 +52,13 @@ public class ElricAlphonse extends AnimatorCard_Cooldown implements CustomSavabl
         if (TryUpgrade())
         {
             upgradeBlock(2);
+            upgradeSecondaryValue(1);
         }
     }
 
     @Override
-    protected int GetBaseCooldown()
+    protected int GetBaseBoost()
     {
-        return 1;
+        return upgraded ? 3 : 2;
     }
 }

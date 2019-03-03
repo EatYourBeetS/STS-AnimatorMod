@@ -45,6 +45,7 @@ public class ScarAction extends AnimatorAction
             }
         }
 
+        player.hand.refreshHandLayout();
         scar.purgeOnUse = true;
 
         this.isDone = true;

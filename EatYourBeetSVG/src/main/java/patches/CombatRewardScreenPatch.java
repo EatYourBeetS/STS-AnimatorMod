@@ -4,7 +4,6 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import com.megacrit.cardcrawl.ui.buttons.DynamicButton;
-import eatyourbeets.relics.PurgingStone;
 import eatyourbeets.relics.TheMissingPiece;
 import javassist.CtBehavior;
 
@@ -19,11 +18,11 @@ public class CombatRewardScreenPatch
         {
             relic.receiveRewards(__instance.rewards);
         }
-        PurgingStone relic2 = (PurgingStone) AbstractDungeon.player.getRelic(PurgingStone.ID);
-        if (relic2 != null)
-        {
-            relic2.receiveRewards(__instance.rewards);
-        }
+//        PurgingStone relic2 = (PurgingStone) AbstractDungeon.player.getRelic(PurgingStone.ID);
+//        if (relic2 != null)
+//        {
+//            relic2.receiveRewards(__instance.rewards);
+//        }
     }
 
     @SuppressWarnings("unused")

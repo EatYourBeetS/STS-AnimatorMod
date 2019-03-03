@@ -15,6 +15,8 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     public static final String POWER_ID = CreateFullID(BurningPower.class.getSimpleName());
     private final AbstractCreature source;
 
+    private static final float ATTACK_MULTIPLIER = 4;
+
     public BurningPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
         super(owner, POWER_ID);
@@ -35,7 +37,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     @Override
     public void updateDescription()
     {
-        this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1] + (this.amount * 5) + powerStrings.DESCRIPTIONS[2];
+        this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1] + (this.amount * ATTACK_MULTIPLIER) + powerStrings.DESCRIPTIONS[2];
     }
 
     @Override
@@ -59,7 +61,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     {
         if (type == DamageInfo.DamageType.NORMAL)
         {
-            return Math.round(damage * ((100 + this.amount * 4) / 100f));
+            return Math.round(damage * ((100 + this.amount * ATTACK_MULTIPLIER) / 100f));
         }
         else
         {

@@ -10,4 +10,9 @@ public final class Synergy
         ID = id;
         NAME = name;
     }
+
+    public boolean Equals(Synergy other)
+    {
+        return other != null && ID == other.ID;
+    }
 }

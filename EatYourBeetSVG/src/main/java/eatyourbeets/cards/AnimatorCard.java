@@ -30,6 +30,7 @@ public abstract class AnimatorCard extends CustomCard
     //private static final Color SYNERGY_COLOR = new Color(0.565f, 0.933f, 0.565f, 1);
 
     public static int SynergyReserves;
+    public static int SynergiesActivatedThisTurn;
 
     private static AnimatorCard previousCard = null;
     private static AnimatorCard lastCardPlayed = null;

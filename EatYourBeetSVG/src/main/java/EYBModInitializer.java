@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.relics.PurgingStone;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
@@ -18,7 +19,7 @@ import patches.AbstractEnums;
 public class EYBModInitializer
         implements EditCharactersSubscriber, EditStringsSubscriber, EditCardsSubscriber, EditKeywordsSubscriber, EditRelicsSubscriber,
                    OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber, PostInitializeSubscriber, PostEnergyRechargeSubscriber,
-                   PostDrawSubscriber
+                   PostDrawSubscriber, StartGameSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
 
@@ -125,5 +126,15 @@ public class EYBModInitializer
     public void receivePostInitialize()
     {
         AnimatorResources.LoadCustomRewards();
+    }
+
+    @Override
+    public void receiveStartGame()
+    {
+        PurgingStone purgingStone = PurgingStone.GetInstance();
+        if (purgingStone != null)
+        {
+            purgingStone.receiveStartGame();
+        }
     }
 }

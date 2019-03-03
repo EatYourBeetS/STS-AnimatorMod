@@ -132,18 +132,23 @@ public class TheMissingPiece extends AnimatorRelic
         WeightedList<Synergy> list = new WeightedList<>();
         Map<Synergy, List<AbstractCard>> synergyListMap = AbstractDungeon.player.masterDeck.group.stream().collect(Collectors.groupingBy(this::Group));
 
+        PurgingStone purgingStone = PurgingStone.GetInstance();
+
         for (Synergy s : possibleRewards)
         {
-            int weight = 8;
-            if (synergyListMap.containsKey(s))
+            if (purgingStone == null || !purgingStone.IsBanned(s))
             {
-                int size = synergyListMap.get(s).size();
+                int weight = 8;
+                if (synergyListMap.containsKey(s))
+                {
+                    int size = synergyListMap.get(s).size();
 
-                weight += 2 + Math.min(18, size * 3);
+                    weight += 2 + Math.min(18, size * 3);
+                }
+
+                logger.info(s.NAME + " : " + weight);
+                list.Add(s, weight);
             }
-
-            logger.info(s.NAME + " : " + weight);
-            list.Add(s, weight);
         }
 
         return list;

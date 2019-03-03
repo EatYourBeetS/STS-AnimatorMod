@@ -16,7 +16,9 @@ public class Demiurge extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0,5);
+        Initialize(0,0,3);
+
+        this.baseSecondaryValue = this.secondaryValue = 3;
 
         SetSynergy(Synergies.Overlord);
     }
@@ -24,18 +26,17 @@ public class Demiurge extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainEnergy(upgraded ? 3 : 2);
+        GameActionsHelper.GainEnergy(2);
         GameActionsHelper.DamageTarget(p, p, this.magicNumber, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper.ModifyMagicNumber(this, 3, true);
+        GameActionsHelper.ModifyMagicNumber(this, this.secondaryValue, true);
     }
 
     @Override
     public void upgrade() 
     {
-        TryUpgrade();
-        //if (TryUpgrade())
-        //{
-        //    upgradeMagicNumber(-2);
-        //}
+        if (TryUpgrade())
+        {
+            upgradeSecondaryValue(-2);
+        }
     }
 }

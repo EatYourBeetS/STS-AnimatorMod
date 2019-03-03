@@ -1,10 +1,10 @@
 package eatyourbeets.relics;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 
@@ -46,7 +46,7 @@ public class LivingPicture extends AnimatorRelic
         AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
         if (active && card != null && card.HasActiveSynergy())
         {
-            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, 1));
+            GameActionsHelper.DrawCard(AbstractDungeon.player, 1);
             active = false;
             this.flash();
         }

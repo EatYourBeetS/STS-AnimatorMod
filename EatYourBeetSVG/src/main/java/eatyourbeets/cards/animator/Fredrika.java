@@ -34,7 +34,10 @@ public class Fredrika extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            AbstractDungeon.actionManager.addToBottom(new RetainCardsAction(p, this.magicNumber));
+            if (!AbstractDungeon.player.hand.isEmpty() && !AbstractDungeon.player.hasRelic("Runic Pyramid") && !AbstractDungeon.player.hasPower("Equilibrium"))
+            {
+                AbstractDungeon.actionManager.addToBottom(new RetainCardsAction(p, this.magicNumber));
+            }
         }
     }
 

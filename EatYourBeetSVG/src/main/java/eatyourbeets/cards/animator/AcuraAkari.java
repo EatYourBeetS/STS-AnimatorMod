@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.MarkOfPoisonPower;
@@ -27,10 +26,10 @@ public class AcuraAkari extends AnimatorCard
     {
         AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, p, new MarkOfPoisonPower(p, m, this.magicNumber), this.magicNumber));
 
-        if (HasActiveSynergy())
-        {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, 1), 1));
-        }
+//        if (HasActiveSynergy())
+//        {
+//            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, 1), 1));
+//        }
     }
 
     @Override

@@ -4,6 +4,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
+import com.megacrit.cardcrawl.relics.FrozenEgg2;
+import com.megacrit.cardcrawl.relics.MoltenEgg2;
+import com.megacrit.cardcrawl.relics.ToxicEgg2;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
@@ -12,6 +16,8 @@ import java.util.ArrayList;
 
 public class CustomAbstractDungeon extends AbstractDungeon
 {
+    private static final MonsterRoom rollRarityRoom = new MonsterRoom();
+
     public CustomAbstractDungeon(String name, String levelId, AbstractPlayer p, ArrayList<String> newSpecialOneTimeEventList)
     {
         super(name, levelId, p, newSpecialOneTimeEventList);
@@ -95,7 +101,10 @@ public class CustomAbstractDungeon extends AbstractDungeon
         AbstractCard c;
         for(int i = 0; i < numCards; ++i)
         {
-            AbstractCard.CardRarity rarity = rollRarity();
+            int roll = cardRng.random(99);
+            roll += cardBlizzRandomizer;
+
+            AbstractCard.CardRarity rarity = rollRarityRoom.getCardRarity(roll);
             c = null;
             switch(rarity)
             {
@@ -107,11 +116,13 @@ public class CustomAbstractDungeon extends AbstractDungeon
                     }
                 case UNCOMMON:
                     break;
+
                 case RARE:
                     cardBlizzRandomizer = cardBlizzStartOffset;
                     break;
+
                 default:
-                    logger.info("WTF?");
+                    logger.info("I don't know");
             }
 
             if (rarity == AbstractCard.CardRarity.COMMON && common.size() == 0)
@@ -173,15 +184,15 @@ public class CustomAbstractDungeon extends AbstractDungeon
                 {
                     copy.upgrade();
                 }
-                else if (copy.type == AbstractCard.CardType.ATTACK && player.hasRelic("Molten Egg 2"))
+                else if (copy.type == AbstractCard.CardType.ATTACK && player.hasRelic(MoltenEgg2.ID))
                 {
                     copy.upgrade();
                 }
-                else if (copy.type == AbstractCard.CardType.SKILL && player.hasRelic("Toxic Egg 2"))
+                else if (copy.type == AbstractCard.CardType.SKILL && player.hasRelic(ToxicEgg2.ID))
                 {
                     copy.upgrade();
                 }
-                else if (copy.type == AbstractCard.CardType.POWER && player.hasRelic("Frozen Egg 2"))
+                else if (copy.type == AbstractCard.CardType.POWER && player.hasRelic(FrozenEgg2.ID))
                 {
                     copy.upgrade();
                 }

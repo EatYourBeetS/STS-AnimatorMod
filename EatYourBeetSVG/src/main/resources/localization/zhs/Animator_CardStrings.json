@@ -2,7 +2,7 @@
 {
 	"animator_AcuraAkari":
 	{
-		"DESCRIPTION": "对一个敌人造成 !M! 印记 中毒 。 同调 : 下回合多抽一张牌 。",
+		"DESCRIPTION": "对一个敌人造成 !M! 印记 中毒 。",
 		"NAME": "阿卡莉"
 	},
 	"animator_AcuraShin":
@@ -77,7 +77,7 @@
 	},
 	"animator_Caster":
 	{
-		"DESCRIPTION": "激发 你最右侧的充能球 。 生成 1 个 黑暗 充能球 。 NL 促进 !SV! : 使敌人失去 !M! 点 力量 。 ",
+		"DESCRIPTION": "激发 你最右侧的充能球 。 生成 1 个 黑暗 充能球 。 NL 鼓舞 !SV! : 使敌人失去 !M! 点 力量 。 ",
 		"NAME": "Caster"
 	},
 	"animator_ChaikaBohdan":
@@ -121,8 +121,7 @@
 	"animator_Demiurge":
 	{
 		"DESCRIPTION": "获得 [B] [B] ， 受到 !M! 点 伤害 ， 每次使用这张牌都会使下次受到的伤害增加 3 点.",
-		"NAME": "迪米乌哥斯",
-		"UPGRADE_DESCRIPTION": "获得 [B] [B] [B] ， 受到 !M! 点 伤害 ， 每次使用这张牌都会使下次受到的伤害增加 3 点."
+		"NAME": "迪米乌哥斯"
 	},
 	"animator_DolaCouronne":
 	{
@@ -159,9 +158,9 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 预热 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲[] 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 鼓舞 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲[] 。",
 		"NAME": "阿尔冯斯",
-		"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 预热 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲+[] 。"
+		"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 鼓舞 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲+[] 。"
 	},
 	"animator_ElricAlphonseAlt":
 	{
@@ -287,7 +286,7 @@
 	"animator_Guren":
 	{
 		"DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 [#EFC851]支援[] 中 。",
-		"UPGRADE_DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害转换为等量 格挡 并预存到 [#EFC851]支援[] 中 。",
+		"UPGRADE_DESCRIPTION": "保留 。 从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 [#EFC851]支援[] 中 。",
 		"EXTENDED_DESCRIPTION": ["支援", "回合结束时对生命值较低的敌人造成预存的伤害"],
 		"NAME": "红莲"
 	},
@@ -427,7 +426,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "促进 !SV! : 获得 !M! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 [#EFC851]*[] 。",
+		"DESCRIPTION": "鼓舞 !SV! : 获得 !M! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "受块修饰符影响 。"],
 		"NAME": "女神官"
 	},
@@ -487,7 +486,7 @@
 	},
 	"animator_Shiro":
 	{
-		"DESCRIPTION": "每回合开始时获得 [B] 。",
+		"DESCRIPTION": "本回合每触发一次 同调 效果,这张牌的耗能就减少 [B] 。 每回合开始时获得 [B] 。",
 		"NAME": "白"
 	},
 	"animator_Sloth":
@@ -515,7 +514,7 @@
 	"animator_Togame":
 	{
 		"DESCRIPTION": "抽 !M! 张牌 。 获得一种 [#EFC851]额外效果[] , 效果种类由手中剩余的牌数量决定",
-		"EXTENDED_DESCRIPTION": ["额外效果", "#y7+ : 消耗 1张牌 。 NL #y6 : 获得 6 点 格挡 。 NL #y5 : 获得 1 层 人工制品 。 NL #y4- : 消耗 并 获得 2 点 能量 。", "切利哦！！"],
+		"EXTENDED_DESCRIPTION": ["额外效果", "#y7+ : 消耗 1张牌 。 NL #y6 : 获得 6 点 格挡 。 NL #y5 : 获得 1 层 人工制品 。 NL #y4- : 消耗 并 获得 2 点 能量 。", " "],
 		"NAME": "咎儿"
 	},
 	"animator_TukaLunaMarceau":
@@ -564,7 +563,7 @@
 	},
 	"animator_Spearman":
 	{
-		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 NL 促进 !SV! : 获得 !M! 点 敏捷 。 ",
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 NL 鼓舞 !SV! : 获得 !M! 点 敏捷 。 ",
 		"NAME": "斯皮尔曼"
 	}
 }

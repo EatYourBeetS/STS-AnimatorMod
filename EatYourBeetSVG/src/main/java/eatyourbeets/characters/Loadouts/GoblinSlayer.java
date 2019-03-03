@@ -4,7 +4,6 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.cards.animator.DwarfShaman;
 import eatyourbeets.cards.animator.Priestess;
-import eatyourbeets.cards.animator.Spearman;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 
 import java.util.ArrayList;

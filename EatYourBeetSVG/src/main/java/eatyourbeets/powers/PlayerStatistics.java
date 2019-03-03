@@ -33,6 +33,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
     private static int turnCount = 0;
     private static int cardsDrawnThisTurn = 0;
+    private static int synergiesThisTurn = 0;
 
     protected PlayerStatistics()
     {
@@ -114,6 +115,16 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         return false;
     }
 
+    public static int getSynergiesThisTurn()
+    {
+        if(!InBattle() && synergiesThisTurn != 0)
+        {
+            ClearStats();
+        }
+
+        return synergiesThisTurn;
+    }
+
     public static int getCardsDrawnThisTurn()
     {
         if(!InBattle() && cardsDrawnThisTurn != 0)
@@ -161,6 +172,12 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     {
         super.onAfterUseCard(card, action);
 
+        AnimatorCard c = Utilities.SafeCast(card, AnimatorCard.class);
+        if (c != null && c.HasActiveSynergy())
+        {
+            synergiesThisTurn += 1;
+        }
+
         AnimatorCard.SetLastCardPlayed(card);
     }
 
@@ -180,6 +197,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
             s.OnEndOfTurn(isPlayer);
         }
 
+        synergiesThisTurn = 0;
         cardsDrawnThisTurn = 0;
         turnCount += 1;
         AnimatorCard.SetLastCardPlayed(null);

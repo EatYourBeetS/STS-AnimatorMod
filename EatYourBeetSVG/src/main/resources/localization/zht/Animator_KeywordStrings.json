@@ -70,13 +70,13 @@
 		"PROPERNAME": "鍛鑄"
 	},
 	{
-		"DESCRIPTION": "Activates when an enemy loses its block.",
-		"NAMES": ["压倒"],
-		"PROPERNAME": "压倒"
+		"DESCRIPTION": "當敵人失去格擋時發動。",
+		"NAMES": ["壓倒"],
+		"PROPERNAME": "壓倒"
 	},
 	{
-		"DESCRIPTION": "If the counter is greater than 0, activate the effect then reduce the counter by 1. Resets at the end of each fight.",
-		"NAMES": ["boost"],
-		"PROPERNAME": "Boost"
+		"DESCRIPTION": "如果計數器大於0， 則觸發效果後把計數器減1。戰鬥結束後重製。",
+		"NAMES": ["增強"],
+		"PROPERNAME": "增強"
 	}
 ]

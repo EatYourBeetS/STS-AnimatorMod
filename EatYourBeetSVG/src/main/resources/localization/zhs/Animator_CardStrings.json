@@ -565,5 +565,11 @@
 	{
 		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 NL 鼓舞 !SV! : 获得 !M! 点 敏捷 。 ",
 		"NAME": "斯皮尔曼"
+	},
+	"animator_Witch":
+	{
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 同调 : 赋予 !M! 层 [#EFC851]燃烧[] 。 遗赠 : 获得一瓶随机药水 。",
+		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 点 伤害 。 每层使收到的伤害额外增加 4% 。"],
+		"NAME": "巫婆"
 	}
 }

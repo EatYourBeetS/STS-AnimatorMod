@@ -36,7 +36,7 @@
 	},
 	"animator_HiteiPower":
 	{
-		"DESCRIPTIONS": ["在你的回合開始時獲得", " choose and exhaust ", " 張隨機牌 。"],
+		"DESCRIPTIONS": ["在你的回合開始時獲得", "選擇並且消耗", " 張隨機牌 。"],
 		"NAME": "否定姫"
 	},
 	"animator_GuildGirlPower":
@@ -76,13 +76,13 @@
 	},
 	"animator_BiyorigoPower":
 	{
-		"DESCRIPTIONS": ["Every 4 #yAttacks played, gain #b", " Strength and #b", " Dexterity."],
-		"NAME": "Bito Kanzashi"
+		"DESCRIPTIONS": ["每當打出 4 #y次攻擊牌 ， 獲得 #b", " 力量 和 #b", " 敏捷。"],
+		"NAME": "微刀．釵"
 	},
 	"animator_AlbedoPower":
 	{
-		"DESCRIPTIONS": ["ALL enemies deal #b", "% less damage."],
-		"NAME": "Albedo"
+		"DESCRIPTIONS": ["所有敵人減少 #b", "% 傷害。"],
+		"NAME": "雅爾貝德"
 	},
 	"animator_HigakiRinnePower":
 	{
@@ -91,12 +91,12 @@
 	},
 	"animator_EnvyPower":
 	{
-		"DESCRIPTIONS": ["The first #b", " card/s you play every turn have their Synergy active."],
-		"NAME": "Albedo"
+		"DESCRIPTIONS": ["每回合打出的第一張 #b", " 牌出發自己的同調。"],
+		"NAME": "忌妒"
 	},
 	"animator_BurningPower":
 	{
-		"DESCRIPTIONS": ["Take #b", " damage at the end of turn. Receive #b", "% more #yAttack damage."],
-		"NAME": "Albedo"
+		"DESCRIPTIONS": ["在回合結束時受到 #b", " 點傷害 。 獲得 #b", "% 更多 #y攻擊傷害 。"],
+		"NAME": "燃燒"
 	}
 }

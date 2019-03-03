@@ -91,7 +91,7 @@
 	},
 	"animator_EnvyPower":
 	{
-		"DESCRIPTIONS": ["The first #b", " card/s you play every turn have their Synergy active."],
+		"DESCRIPTIONS": ["The first #b", " card/s you play every turn will Synergize."],
 		"NAME": "Envy"
 	},
 	"animator_BurningPower":

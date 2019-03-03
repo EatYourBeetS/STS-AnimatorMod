@@ -37,7 +37,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     @Override
     public void updateDescription()
     {
-        this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1] + (this.amount * ATTACK_MULTIPLIER) + powerStrings.DESCRIPTIONS[2];
+        this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1] + (int)(this.amount * ATTACK_MULTIPLIER) + powerStrings.DESCRIPTIONS[2];
     }
 
     @Override

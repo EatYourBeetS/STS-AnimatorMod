@@ -94,12 +94,11 @@ public class AnimatorResources
 
     static
     {
-//        if (Settings.language == Settings.GameLanguage.ZHT)
-//        {
-//            languagePath = "localization/zht/";
-//        }
-//        else
-            if (Settings.language == Settings.GameLanguage.ZHS)
+        if (Settings.language == Settings.GameLanguage.ZHT)
+        {
+            languagePath = "localization/zht/";
+        }
+        else if (Settings.language == Settings.GameLanguage.ZHS)
         {
             languagePath = "localization/zhs/";
         }

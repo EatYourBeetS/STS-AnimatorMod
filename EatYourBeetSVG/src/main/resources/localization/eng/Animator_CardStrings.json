@@ -565,5 +565,11 @@
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Boost !SV! : Gain !M! Dexterity.",
 		"NAME": "'Spearman'"
+	},
+	"animator_Witch":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Synergy: Apply !M! [#EFC851]Burning. NL Legacy: Obtain a random Potion.",
+		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take 4% more Attack damage per stack."],
+		"NAME": "'Witch'"
 	}
 }

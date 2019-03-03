@@ -41,8 +41,8 @@ public class Jibril extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(3);
-            //upgradeMagicNumber(1);
+            upgradeDamage(2);
+            upgradeMagicNumber(1);
         }
     }
 }

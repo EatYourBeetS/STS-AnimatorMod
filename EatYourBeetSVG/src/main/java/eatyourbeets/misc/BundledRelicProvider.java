@@ -74,12 +74,12 @@ public class BundledRelicProvider
 
     static
     {
-        final int R1 = 3;
-        final int R2 = 4;
-        final int R3 = 5;
-        final int R4 = 6;
-        final int R5 = 7;
-        final int R6 = 9;
+        final int R1 = 2;
+        final int R2 = 3;
+        final int R3 = 4;
+        final int R4 = 5;
+        final int R5 = 6;
+        final int R6 = 8;
 
         // <Common>
         AddBundle(Azekura.ID, ChampionsBelt.ID, AbstractRelic.RelicTier.SPECIAL, R4);
@@ -184,5 +184,8 @@ public class BundledRelicProvider
         // Rare
         AddBundle(Envy.ID, DollysMirror.ID, AbstractRelic.RelicTier.SHOP, R1);
         AddBundle(Greed.ID, MawBank.ID, AbstractRelic.RelicTier.SHOP, R3);
+
+        AddBundle(Spearman.ID, Pantograph.ID, AbstractRelic.RelicTier.SHOP, R1);
+        AddBundle(Witch.ID, Omamori.ID, AbstractRelic.RelicTier.SHOP, R2);
     }
 }

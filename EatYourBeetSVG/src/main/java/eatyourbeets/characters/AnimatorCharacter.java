@@ -112,64 +112,26 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public void doCharSelectScreenSelectEffect() 
     {
-        CardCrawlGame.sound.playA("ATTACK_MAGIC_BEAM_SHORT", MathUtils.random(-0.2F, 0.2F));
+        CardCrawlGame.sound.playA("TINGSHA", MathUtils.random(-0.1F, 0.2F));
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
     }
 
     @Override
     public String getCustomModeCharacterButtonSoundKey() 
     {
-        return "ATTACK_MAGIC_BEAM_SHORT";
+        return "TINGSHA";
     }
 
     @Override
     public ArrayList<String> getStartingDeck() 
     {
         return AnimatorCharacterSelect.GetSelectedLoadout().GetStartingDeck();
-
-//        ArrayList<String> res = new ArrayList<>();
-//        AnimatorCharacterSelect.PrepareCharacterDeck(res);
-//
-//        if (res.size() == 0)
-//        {
-//            res.add(Strike.ID);
-//            res.add(Strike.ID);
-//            res.add(Strike.ID);
-//            res.add(Strike.ID);
-//            res.add(Defend.ID);
-//            res.add(Defend.ID);
-//            res.add(Defend.ID);
-//            res.add(Defend.ID);
-//            res.add(Kazuma.ID);
-//            res.add(Aqua.ID);
-//        }
-//
-//        return res;
     }
 
     @Override
     public ArrayList<String> getStartingRelics() 
     {
         return AnimatorCharacterSelect.GetSelectedLoadout().GetStartingRelics();
-
-//        if (!UnlockTracker.isRelicSeen(LivingPicture.ID))
-//        {
-//            UnlockTracker.markRelicAsSeen(LivingPicture.ID);
-//        }
-//        if (!UnlockTracker.isRelicSeen(PurgingStone.ID))
-//        {
-//            UnlockTracker.markRelicAsSeen(PurgingStone.ID);
-//        }
-//        if (!UnlockTracker.isRelicSeen(TheMissingPiece.ID))
-//        {
-//            UnlockTracker.markRelicAsSeen(TheMissingPiece.ID);
-//        }
-//
-//        ArrayList<String> res = new ArrayList<>();
-//        res.add(LivingPicture.ID);
-//        res.add(PurgingStone.ID);
-//        res.add(TheMissingPiece.ID);
-//        return res;
     }
 
     @Override
@@ -182,8 +144,6 @@ public class AnimatorCharacter extends CustomPlayer
     public CharSelectInfo getLoadout()
     {
         return AnimatorCharacterSelect.GetSelectedLoadout().GetLoadout(NAMES[0], TEXT[0], this);
-
-        //return new CharSelectInfo(NAMES[0], TEXT[0], 75, 75, 3, 99, 5, this, getStartingRelics(), getStartingDeck(), false);
     }
 
     @Override

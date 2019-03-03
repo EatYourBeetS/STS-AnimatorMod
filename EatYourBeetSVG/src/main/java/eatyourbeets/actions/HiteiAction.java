@@ -1,6 +1,5 @@
 package eatyourbeets.actions;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -10,8 +9,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.misc.RandomizedList;
 
 public class HiteiAction extends AnimatorAction

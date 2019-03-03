@@ -73,5 +73,10 @@
 		"DESCRIPTION": "打破目标格挡时生效 。",
 		"NAMES": ["压倒"],
 		"PROPERNAME": "压倒"
+	},
+	{
+		"DESCRIPTION": "如果计数器大于0， 则激活效果然后将计数器减1。 每次战斗结束时重置。",
+		"NAMES": ["促进"],
+		"PROPERNAME": "促进"
 	}
 ]

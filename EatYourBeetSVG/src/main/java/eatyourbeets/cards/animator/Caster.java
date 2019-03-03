@@ -6,16 +6,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
-public class Caster extends AnimatorCard
+public class Caster extends AnimatorCard_Boost
 {
     public static final String ID = CreateFullID(Caster.class.getSimpleName());
 
     public Caster()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
         Initialize(0,0, 1);
 
@@ -27,7 +27,7 @@ public class Caster extends AnimatorCard
     {
         super.applyPowers();
 
-        if (HasActiveSynergy())
+        if (this.secondaryValue > 0)
         {
             this.target = CardTarget.SELF_AND_ENEMY;
         }
@@ -43,7 +43,7 @@ public class Caster extends AnimatorCard
         GameActionsHelper.AddToBottom(new EvokeOrbAction(1));
         GameActionsHelper.ChannelOrb(new Dark(), true);
 
-        if (HasActiveSynergy())
+        if (ProgressBoost())
         {
             GameActionsHelper.ApplyPower(p, m, new StrengthPower(m, -this.magicNumber), -this.magicNumber);
         }
@@ -56,5 +56,11 @@ public class Caster extends AnimatorCard
         {
             upgradeMagicNumber(1);
         }
+    }
+
+    @Override
+    protected int GetBaseBoost()
+    {
+        return 2;
     }
 }

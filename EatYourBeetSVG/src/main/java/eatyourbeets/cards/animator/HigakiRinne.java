@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
@@ -119,7 +120,8 @@ public class HigakiRinne extends AnimatorCard
             for (int i = 0; i < count; i++)
             {
                 int damage = AbstractDungeon.miscRng.random(1);
-                GameActionsHelper.DamageTarget(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
+                DamageInfo info = new DamageInfo(p, damage, DamageInfo.DamageType.THORNS);
+                GameActionsHelper.AddToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.POISON, true));
             }
 
             this.loadCardImage(AnimatorResources.GetCardImage(ID));
@@ -130,7 +132,7 @@ public class HigakiRinne extends AnimatorCard
         {
             for (int i = 0; i < this.magicNumber; i++)
             {
-                AbstractDungeon.actionManager.addToBottom(new WaitAction(0.6f));
+                AbstractDungeon.actionManager.addToBottom(new WaitAction(0.2f));
                 GameActionsHelper.AddToBottom(new HigakiRinneAction(this));
             }
         }

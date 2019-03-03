@@ -59,7 +59,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     {
         if (type == DamageInfo.DamageType.NORMAL)
         {
-            return Math.round(damage * ((100 + this.amount * 5) / 100f));
+            return Math.round(damage * ((100 + this.amount * 4) / 100f));
         }
         else
         {

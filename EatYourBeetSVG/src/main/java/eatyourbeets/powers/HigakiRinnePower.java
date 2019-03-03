@@ -1,22 +1,15 @@
 package eatyourbeets.powers;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
 import eatyourbeets.actions.HigakiRinneAction;
-import eatyourbeets.actions.HiteiAction;
 import eatyourbeets.cards.animator.HigakiRinne;
-import eatyourbeets.rewards.SpecialGoldReward;
 
 public class HigakiRinnePower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(HigakiRinnePower.class.getSimpleName());
 
-    private HigakiRinne higakiRinne;
+    private final HigakiRinne higakiRinne;
 
     public HigakiRinnePower(AbstractPlayer owner, HigakiRinne higakiRinne, int amount)
     {

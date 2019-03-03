@@ -27,7 +27,8 @@
 			"fetch Cards with the same synergy.",
 			"discard and draw that many cards.",
 			"activate this card's effect that many times.",
-			"reduce its cost for this combat."
+			"reduce its cost for this combat.",
+			"Draw # card/s."
 		]
 	},
 	

@@ -30,7 +30,7 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "獲得 !M! % 點 [#EFC851]傷害抵抗[] 。",
+		"DESCRIPTION": "獲得 !M! % 點 [#EFC851]傷害抵抗[] 。 同調 : 獲得 [B]",
 		"EXTENDED_DESCRIPTION": ["傷害抵抗", "受到敵人更少的傷害T，效果被層數影響。"],
 		"NAME": "雅兒貝德"
 	},
@@ -448,7 +448,7 @@
 	"animator_RoyMustang":
 	{
 		"DESCRIPTION": "對所有敵人造成 !D! 點傷害並且給予2層 [#EFC851]燃燒[] 。 NL 同調 : 再給予 !M! 層 [#EFC851]燃燒[] 。",
-		"EXTENDED_DESCRIPTION": ["燃燒", "在你回合開始受到傷害，另外每層提供  5%更多攻擊傷害。"],
+		"EXTENDED_DESCRIPTION": ["燃燒", "在你回合開始受到傷害，另外每層提供  4% 更多攻擊傷害。"],
 		"NAME": "羅伊·馬斯坦古"
 	},
 	"animator_Saber":
@@ -512,7 +512,7 @@
 	"animator_Togame":
 	{
 		"DESCRIPTION": "抽 !M! 張牌 。 NL 根據手上的牌數量觸發 [#EFC851]額外效果[] 。",
-		"EXTENDED_DESCRIPTION": ["額外效果", "#y7: 消耗 1 張牌  NL #y6: 獲得 6 點 格擋 NL #y5: 獲得 1 層 人工製品 NL #y4: 獲得 2 點 能量並且 NL 消耗 這張牌"],
+		"EXTENDED_DESCRIPTION": ["額外效果", "#y7+ : 消耗 1 張牌  NL #y6 : 獲得 6 點 格擋 NL #y5 : 獲得 1 層 人工製品 NL #y4- : 獲得 2 點 能量並且 NL 消耗 這張牌", "切利哦！！"],
 		"NAME": "咎兒"
 	},
 	"animator_TukaLunaMarceau":
@@ -558,5 +558,10 @@
 		"EXTENDED_DESCRIPTION": ["阿修羅丸", "特殊的0耗#y攻擊牌 。"],
 		"NAME": "百夜優一郎",
 		"UPGRADE_DESCRIPTION": "造成!D!點傷害 。 NL 遺產 : 將一張 [#EFC851]阿修羅丸+[] 放到你的棄牌堆 。"
+	},
+	"animator_Spearman":
+	{
+		"DESCRIPTION": "Deal !D! Piercing damage. NL Boost !SV! : Deal !M! more damage.",
+		"NAME": "Spearman"
 	}
 }

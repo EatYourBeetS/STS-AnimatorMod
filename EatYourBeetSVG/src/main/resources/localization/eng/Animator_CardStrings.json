@@ -30,7 +30,7 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "Gain !M! % [#EFC851]Damage [#EFC851]Resistance.",
+		"DESCRIPTION": "Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance. NL Synergy: Gain [B]",
 		"EXTENDED_DESCRIPTION": ["Damage Resistance", "Take less damage from enemy attacks, further stacks are less effective."],
 		"NAME": "Albedo"
 	},
@@ -77,7 +77,7 @@
 	},
 	"animator_Caster":
 	{
-		"DESCRIPTION": "[#EFC851]Evoke your first Orb. NL [#EFC851]Channel 1 Dark. NL Synergy: The enemy loses !M! Strength.",
+		"DESCRIPTION": "[#EFC851]Evoke your first Orb. NL [#EFC851]Channel 1 Dark. NL Boost !SV! : The enemy loses !M! Strength.",
 		"NAME": "Caster"
 	},
 	"animator_ChaikaBohdan":
@@ -264,7 +264,7 @@
 	"animator_GoblinSlayer":
 	{
 		"DESCRIPTION": "[#EFC851]Goblin [#EFC851]Slayer. NL NL Deal !D! damage. NL Gain !B! Block. NL Retain.",
-		"EXTENDED_DESCRIPTION": ["Goblin Slayer", "Exhaust every Status and Curse in your hand and discard pile. Deal 2 extra damage for every card in your exhaust pile. NL #yWARNING: Goblins will start invading your deck."],
+		"EXTENDED_DESCRIPTION": ["Goblin Slayer", "Exhaust every Status and Curse in your hand and discard pile. Deal 3 extra damage for every card in your exhaust pile. NL #yWARNING: Goblins will start invading your deck."],
 		"NAME": "Goblin Slayer"
 	},
 	"animator_GoblinSoldier":
@@ -403,9 +403,9 @@
 	},
 	"animator_Nanami":
 	{
-		"DESCRIPTION": "Activate an [#EFC851]Effect based on the enemy intent.",
+		"DESCRIPTION": "Execute an [#EFC851]Effect based on the enemy intent.",
 		"NAME": "Nanami",
-		"UPGRADE_DESCRIPTION": "Activate an improved [#EFC851]Effect based on the enemy intent.",
+		"UPGRADE_DESCRIPTION": "Execute an improved [#EFC851]Effect based on the enemy intent.",
 		"EXTENDED_DESCRIPTION": ["Deal !D! Damage.", "Gain !B! Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", 
 								 "Channel 1 Lightning.", "Channel 1 Dark.", "Channel 1 Frost.", "Apply !M! Poison.", "Gain [B]", "Gain !M! Temporary HP.", "Draw !M! cards."]
 	},
@@ -427,7 +427,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "Cooldown !SV! : Gain !M! Regeneration. NL Synergy: Gain !B! temporary HP ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "Boost !SV! : Gain !M! Regeneration. NL Synergy: Gain !B! temporary HP ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "Affected by Block modifiers."],
 		"NAME": "'Priestess'"
 	},
@@ -450,7 +450,7 @@
 	"animator_RoyMustang":
 	{
 		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply 2 [#EFC851]Burning[]. NL Synergy: Apply !M! more [#EFC851]Burning[].",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take 5% more Attack damage per stack."],
+		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take 4% more Attack damage per stack."],
 		"NAME": "Roy Mustang"
 	},
 	"animator_Saber":
@@ -508,13 +508,14 @@
 	},
 	"animator_SwordMaiden":
 	{
-		"DESCRIPTION": "Retain. NL Gain !M! Artifact. NL Gain !M! Intangible. NL Exhaust.",
+		"DESCRIPTION": "Gain !M! Artifact. NL Gain !M! Intangible. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Retain. NL Gain !M! Artifact. NL Gain !M! Intangible. NL Exhaust.",
 		"NAME": "'Sword Maiden'"
 	},
 	"animator_Togame":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the number of cards in your hand.",
-		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#y7 : Exhaust 1 card NL #y6 : Gain 6 Block. NL #y5 : Gain 1 Artifact NL #y4 : Gain 2 Energy and Exhaust this card"],
+		"DESCRIPTION": "Draw up to !M! cards. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the number of cards in your hand.",
+		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#y7+ : Exhaust 1 card NL #y6 : Gain 6 Block. NL #y5 : Gain 1 Artifact NL #y4 : Gain 2 Energy and Exhaust this card", "Cheerio!"],
 		"NAME": "Togame"
 	},
 	"animator_TukaLunaMarceau":
@@ -560,5 +561,10 @@
 		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 0-Cost #yAttack."],
 		"NAME": "Yuuichirou",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Legacy: Add [#EFC851]Asuramaru+ to your discard pile."
+	},
+	"animator_Spearman":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Boost !SV! : Gain !M! Dexterity.",
+		"NAME": "'Spearman'"
 	}
 }

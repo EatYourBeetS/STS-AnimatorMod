@@ -1,27 +1,24 @@
 package eatyourbeets.cards.animator;
 
-import basemod.abstracts.CustomSavable;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Cooldown;
+import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
-public class Priestess extends AnimatorCard_Cooldown implements CustomSavable<Integer>
+public class Priestess extends AnimatorCard_Boost
 {
     public static final String ID = CreateFullID(Priestess.class.getSimpleName());
-    private static final int COOLDOWN = 3;
 
     public Priestess()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0, 3, 4);
+        Initialize(0, 4, 2);
 
         this.tags.add(CardTags.HEALING);
-        this.baseSecondaryValue = this.secondaryValue = COOLDOWN;
 
         AddExtendedDescription();
 
@@ -31,7 +28,7 @@ public class Priestess extends AnimatorCard_Cooldown implements CustomSavable<In
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (ProgressCooldown())
+        if (ProgressBoost())
         {
             GameActionsHelper.ApplyPower(p, p, new RegenPower(p, this.magicNumber), this.magicNumber);
         }
@@ -47,14 +44,14 @@ public class Priestess extends AnimatorCard_Cooldown implements CustomSavable<In
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeSecondaryValue(1);
             upgradeBlock(1);
         }
     }
 
     @Override
-    protected int GetBaseCooldown()
+    protected int GetBaseBoost()
     {
-        return COOLDOWN;
+        return upgraded ? 4 : 3;
     }
 }

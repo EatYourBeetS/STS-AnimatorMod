@@ -19,7 +19,7 @@ public class SwordMaiden extends AnimatorCard
         Initialize(0, 0, 1);
 
         this.exhaust = true;
-        this.retain = true;
+
         SetSynergy(Synergies.GoblinSlayer);
     }
 
@@ -28,7 +28,8 @@ public class SwordMaiden extends AnimatorCard
     {
         super.atTurnStart();
         initializeDescription();
-        this.retain = true;
+
+        this.retain = upgraded;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class SwordMaiden extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(1);
+            this.retain = true;
         }
     }
 }

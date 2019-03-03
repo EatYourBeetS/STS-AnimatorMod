@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -30,6 +30,14 @@ public class Guren extends AnimatorCard
     }
 
     @Override
+    public void atTurnStart()
+    {
+        super.atTurnStart();
+
+        this.retain = upgraded;
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         AbstractCard attack = GetRandomAttack(p);
@@ -44,15 +52,15 @@ public class Guren extends AnimatorCard
                 ShowCardBrieflyEffect effect = new ShowCardBrieflyEffect(attack, Settings.WIDTH / 3f, Settings.HEIGHT / 2f);
 
                 AbstractDungeon.effectsQueue.add(effect);
-                GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(attack, p.drawPile, true));
-                GameActionsHelper.AddToBottom(new WaitAction(effect.duration));
+                GameActionsHelper.AddToTop(new ApplyPowerAction(p, p, new SupportDamagePower(p, damage), damage));
+                //GameActionsHelper.AddToTop(new WaitAction(effect.duration));
+                GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(attack, p.drawPile, true));
+//                if (upgraded)
+//                {
+//                    GameActionsHelper.GainBlock(p, damage);
+//                }
 
-                if (upgraded)
-                {
-                    GameActionsHelper.GainBlock(p, damage);
-                }
-
-                GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, damage), damage);
+                //GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, damage), damage);
             }
         }
     }
@@ -60,7 +68,10 @@ public class Guren extends AnimatorCard
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            this.retain = true;
+        }
     }
 
     private AbstractCard GetRandomAttack(AbstractPlayer p)

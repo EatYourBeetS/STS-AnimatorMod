@@ -73,5 +73,10 @@
 		"DESCRIPTION": "Activates when an enemy loses its block.",
 		"NAMES": ["压倒"],
 		"PROPERNAME": "压倒"
+	},
+	{
+		"DESCRIPTION": "If the counter is greater than 0, activate the effect then reduce the counter by 1. Resets at the end of each fight.",
+		"NAMES": ["boost"],
+		"PROPERNAME": "Boost"
 	}
 ]

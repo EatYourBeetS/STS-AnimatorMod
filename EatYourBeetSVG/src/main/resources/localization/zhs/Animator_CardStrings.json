@@ -30,7 +30,7 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "获得 !M! % 的 [#EFC851]抗性[] 。",
+		"DESCRIPTION": "获得 !M! % 的 [#EFC851]抗性[] 。 同调 : 获得 [B]",
 		"EXTENDED_DESCRIPTION": ["抗性", "减少受到的伤害，效果由层数决定 。"],
 		"NAME": "雅儿贝德"
 	},
@@ -77,7 +77,7 @@
 	},
 	"animator_Caster":
 	{
-		"DESCRIPTION": "激发 你最右侧的充能球 。 生成 1 个 黑暗 充能球 。 NL 同调 : 使敌人失去 !M! 点 力量 。 ",
+		"DESCRIPTION": "激发 你最右侧的充能球 。 生成 1 个 黑暗 充能球 。 NL 促进 !SV! : 使敌人失去 !M! 点 力量 。 ",
 		"NAME": "Caster"
 	},
 	"animator_ChaikaBohdan":
@@ -264,7 +264,7 @@
 	"animator_GoblinSlayer":
 	{
 		"DESCRIPTION": "[#EFC851]哥布林杀手[] 。 造成 !D! 点伤害 。 NL 获得 !B! 点 格挡 。 NL 保留 。",
-		"EXTENDED_DESCRIPTION": ["哥布林杀手", "消耗所有位于手牌和弃牌堆中的状态牌和诅咒牌 。 已消耗牌堆中每有一张牌 ， 额外造成2 点 伤害 。 #yWARNING: 哥布林将开始入侵你的牌堆 。"],
+		"EXTENDED_DESCRIPTION": ["哥布林杀手", "消耗所有位于手牌和弃牌堆中的状态牌和诅咒牌 。 已消耗牌堆中每有一张牌 ， 额外造成3 点 伤害 。 #yWARNING: 哥布林将开始入侵你的牌堆 。"],
 		"NAME": "哥布林杀手"
 	},
 	"animator_GoblinSoldier":
@@ -427,7 +427,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "预热 !SV! : 获得 !M! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 [#EFC851]*[] 。",
+		"DESCRIPTION": "促进 !SV! : 获得 !M! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "受块修饰符影响 。"],
 		"NAME": "女神官"
 	},
@@ -450,7 +450,7 @@
 	"animator_RoyMustang":
 	{
 		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 并赋予 2 层 [#EFC851]燃烧[] 。 遗赠 : 额外造成 !M! 层 [#EFC851]燃烧[] 。",
-		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 点 伤害 。 每层使收到的伤害额外增加 5% 。"],
+		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 点 伤害 。 每层使收到的伤害额外增加 4% 。"],
 		"NAME": "罗伊·马斯坦"
 	},
 	"animator_Saber":
@@ -508,13 +508,14 @@
 	},
 	"animator_SwordMaiden":
 	{
-		"DESCRIPTION": "保留 。 NL 获得 !M! 层 人工制品 。 NL 获得 !M! 无实体 。 NL 消耗 。",
+		"DESCRIPTION": "获得 !M! 层 人工制品 。 NL 获得 !M! 无实体 。 NL 消耗 。",
+		"UPGRADE_DESCRIPTION": "保留 。 NL 获得 !M! 层 人工制品 。 NL 获得 !M! 无实体 。 NL 消耗 。",
 		"NAME": "剑之圣女"
 	},
 	"animator_Togame":
 	{
 		"DESCRIPTION": "抽 !M! 张牌 。 获得一种 [#EFC851]额外效果[] , 效果种类由手中剩余的牌数量决定",
-		"EXTENDED_DESCRIPTION": ["额外效果", "#y7 : 消耗 1张牌 。 NL #y6 : 获得 6 点 格挡 。 NL #y5 : 获得 1 层 人工制品 。 NL #y4 : 消耗 并 获得 2 点 能量 。 NL --切利哦！！"],
+		"EXTENDED_DESCRIPTION": ["额外效果", "#y7+ : 消耗 1张牌 。 NL #y6 : 获得 6 点 格挡 。 NL #y5 : 获得 1 层 人工制品 。 NL #y4- : 消耗 并 获得 2 点 能量 。", "切利哦！！"],
 		"NAME": "咎儿"
 	},
 	"animator_TukaLunaMarceau":
@@ -560,5 +561,10 @@
 		"EXTENDED_DESCRIPTION": ["阿修罗丸", "特殊的0耗#y攻击牌 。"],
 		"NAME": "百夜优一郎",
 		"UPGRADE_DESCRIPTION": "造成!D!点伤害 。 NL 遗赠 : 将一张 [#EFC851]阿修罗丸+[] 放到你的弃牌堆 。"
+	},
+	"animator_Spearman":
+	{
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 NL 促进 !SV! : 获得 !M! 点 敏捷 。 ",
+		"NAME": "斯皮尔曼"
 	}
 }

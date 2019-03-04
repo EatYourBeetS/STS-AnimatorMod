@@ -18,7 +18,7 @@ import eatyourbeets.powers.PlayerStatistics;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class PurgingStone extends AnimatorRelic implements CustomSavable<String>, StartGameSubscriber
+public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 {
     public static final String ID = CreateFullID(PurgingStone.class.getSimpleName());
 
@@ -250,8 +250,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
         logger.info("Banned " + synergy.NAME + " " + banCount + ", " + srcBanCount);
     }
 
-    @Override
-    public void receiveStartGame()
+    public void UpdateBannedCards()
     {
         logger.info("Banned " + bannedSynergies.size() + " Synergies:");
         for (Synergy s : bannedSynergies)

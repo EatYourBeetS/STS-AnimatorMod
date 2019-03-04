@@ -19,7 +19,7 @@ import patches.AbstractEnums;
 public class EYBModInitializer
         implements EditCharactersSubscriber, EditStringsSubscriber, EditCardsSubscriber, EditKeywordsSubscriber, EditRelicsSubscriber,
                    OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber, PostInitializeSubscriber, PostEnergyRechargeSubscriber,
-                   PostDrawSubscriber, StartGameSubscriber
+                   PostDrawSubscriber, StartGameSubscriber, StartActSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
 
@@ -134,7 +134,17 @@ public class EYBModInitializer
         PurgingStone purgingStone = PurgingStone.GetInstance();
         if (purgingStone != null)
         {
-            purgingStone.receiveStartGame();
+            purgingStone.UpdateBannedCards();
+        }
+    }
+
+    @Override
+    public void receiveStartAct()
+    {
+        PurgingStone purgingStone = PurgingStone.GetInstance();
+        if (purgingStone != null)
+        {
+            purgingStone.UpdateBannedCards();
         }
     }
 }

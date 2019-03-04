@@ -326,7 +326,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 若敌人有 易伤 效果获得 !M! 点 力量 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 如果敌人有减益效果 ， 伤害提高50％ 。",
 		"NAME": "吉普莉尔"
 	},
 	"animator_Kazuma":
@@ -364,9 +364,9 @@
 	},
 	"animator_LeleiLaLalena":
 	{
-		"DESCRIPTION": "给予一个敌人 !M! 层 易伤 ， NL 循环 !M! 张牌 。 同调 : 同时给予 !M! 层 虚弱 。",
+		"DESCRIPTION": "获得 !M! 个冰霜充能球 。 NL 同调 : 给予所有敌人 !SV! 层 虚弱 。 ",
 		"NAME": "蕾莱·拉·列娜",
-		"UPGRADE_DESCRIPTION": "给予一个敌人 !M! 层 易伤， NL 循环 !M! 张牌 。 同调 : 同时给予 !M! 层 虚弱 。"
+		"UPGRADE_DESCRIPTION": "获得 !M! 个冰霜充能球 。 NL 循环 1 张牌 。 NL 同调 : 给予所有敌人 !SV! 层 虚弱 。"
 	},
 	"animator_LizardPriest":
 	{
@@ -569,7 +569,7 @@
 	"animator_Witch":
 	{
 		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 同调 : 赋予 !M! 层 [#EFC851]燃烧[] 。 遗赠 : 获得一瓶随机药水 。",
-		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 点 伤害 。 每层使收到的伤害额外增加 4% 。"],
-		"NAME": "巫婆"
+		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 伤害 。 每层使收到的伤害额外增加 4% 。"],
+		"NAME": "魔女"
 	}
 }

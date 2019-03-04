@@ -326,7 +326,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If the enemy has Vulnerable gain !M! Strength.",
+		"DESCRIPTION": "Deal !D! damage. NL If the enemy has a [#EFC851]Debuff deal 50% more damage.",
 		"NAME": "Jibril"
 	},
 	"animator_Kazuma":
@@ -364,9 +364,9 @@
 	},
 	"animator_LeleiLaLalena":
 	{
-		"DESCRIPTION": "Apply !M! Vulnerable. NL Cycle !M! card. NL Synergy: Also apply !M! Weak.",
-		"NAME": "Lelei La Lalena",
-		"UPGRADE_DESCRIPTION": "Apply !M! Vulnerable. NL Cycle !M! cards. NL Synergy: Also apply !M! Weak."
+		"DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Synergy: Apply !SV! Weak to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Cycle 1 card. NL Synergy: Apply !SV! Weak to ALL enemies.",
+		"NAME": "Lelei La Lalena"
 	},
 	"animator_LizardPriest":
 	{
@@ -402,9 +402,9 @@
 	},
 	"animator_Nanami":
 	{
-		"DESCRIPTION": "Execute an [#EFC851]Effect based on the enemy intent.",
+		"DESCRIPTION": "Execute an [#EFC851]Effect to counter the enemy intent.",
 		"NAME": "Nanami",
-		"UPGRADE_DESCRIPTION": "Execute an improved [#EFC851]Effect based on the enemy intent.",
+		"UPGRADE_DESCRIPTION": "Execute an improved [#EFC851]Effect to counter the enemy intent.",
 		"EXTENDED_DESCRIPTION": ["Deal !D! Damage.", "Gain !B! Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", 
 								 "Channel 1 Lightning.", "Channel 1 Dark.", "Channel 1 Frost.", "Apply !M! Poison.", "Gain [B]", "Gain !M! Temporary HP.", "Draw !M! cards."]
 	},

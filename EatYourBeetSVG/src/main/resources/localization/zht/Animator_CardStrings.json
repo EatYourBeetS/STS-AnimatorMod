@@ -324,7 +324,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 若敵人有 易傷 效果獲得 !M! 點 力量 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 如果敵人具有debuff效果 ， 則傷害提高50％ 。",
 		"NAME": "吉普莉爾"
 	},
 	"animator_Kazuma":
@@ -362,9 +362,9 @@
 	},
 	"animator_LeleiLaLalena":
 	{
-		"DESCRIPTION": "給予一個敵人 !M! 層 易傷 ， NL 循環 !M! 張牌 。 同調 : 同時給予 !M! 層 虛弱 。",
+		"DESCRIPTION": "獲得 !M! 個冰霜充能球 。 NL 同調 : 給予所有敵人 !SV! 層 虛弱 。",
 		"NAME": "蕾萊·拉·列娜",
-		"UPGRADE_DESCRIPTION": "給予一個敵人 !M! 層 易傷 ， NL 循環 !M! 張牌 。 同調 : 同時給予 !M! 層 虛弱 。"
+		"UPGRADE_DESCRIPTION": "獲得 !M! 個冰霜充能球 。 NL 循環 1 張牌 。 NL 同調 : 給予所有敵人 !SV! 層 虛弱 。"
 	},
 	"animator_LizardPriest":
 	{

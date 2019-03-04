@@ -22,13 +22,13 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
     public static final PlayerStatistics Instance = new PlayerStatistics();
 
-    public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
-    public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
     public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
-    public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
+    public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
+    public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
+    public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
 
     private static int turnCount = 0;
@@ -45,11 +45,12 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         logger.info("Clearing Player Stats");
 
         AnimatorCard.SetLastCardPlayed(null);
+        synergiesThisTurn = 0;
         cardsDrawnThisTurn = 0;
         turnCount = 0;
 
+        onAfterCardDrawn.Clear();
         onAttack.Clear();
-        onLoseHp.Clear();
         onLoseHp.Clear();
         onEndOfTurn.Clear();
         onApplyPower.Clear();
@@ -89,6 +90,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
             s.OnBattleEnd();
         }
         onBattleEnd.Clear();
+        ClearStats();
     }
 
     public static AbstractRoom GetCurrentRoom()

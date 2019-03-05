@@ -146,9 +146,9 @@
 	},
 	"animator_DolaStephanie":
 	{
-		"DESCRIPTION": "选择一张手牌 ， 从你的抽牌堆中取一张同系列的牌 。",
+		"DESCRIPTION": "选择一张手牌 ， 从你的抽牌堆中取一张同系列的牌 。 消耗 。",
 		"NAME": "史蒂芬妮·多拉",
-		"UPGRADE_DESCRIPTION": "固有 。 选择一张手牌 ， 从你的抽牌堆中取一张同系列的牌 。"
+		"UPGRADE_DESCRIPTION": "选择一张手牌 ， 从你的抽牌堆中取一张同系列的牌 。"
 	},
 	"animator_DwarfShaman":
 	{
@@ -327,7 +327,7 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "抽 !M! 张牌. 每抽一张牌造成 !D! 点伤害, 并减少其消耗 .",
+		"DESCRIPTION": "抽 !M! 张牌 。 每抽一张牌造成 !D! 点伤害, 并减少其消耗 。",
 		"NAME": "伊丹耀司"
 	},
 	"animator_Jibril":
@@ -583,7 +583,7 @@
 	},
 	"animator_Ain":
 	{
-		"DESCRIPTION": "[#EFC851]施法者[] 。 对所有敌人造成 !D! 点 伤害 !M! 次 。 同调 : 获得 1 点 集中 。",
+		"DESCRIPTION": "[#EFC851]施法者[] 。 对所有敌人造成 !D! 点 伤害 !M! 次 。 鼓舞 !SV! : 获得 1 点 集中 。",
 		"EXTENDED_DESCRIPTION": ["施法者", "此牌的伤害受 集中  的影响。"],
 		"NAME": "艾因"
 	},
@@ -597,5 +597,16 @@
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 。 获得 !B! 点 格挡 。 将抽牌堆中伤害最低的 [#EFC851]攻击[] 牌 加入手牌 。",
 		"NAME": "雷文"
+	},
+	"animator_Tet":
+	{
+		"DESCRIPTION": "在你的抽牌堆堆中选择 !M! 张牌 。 在弃牌堆中用 !M! 张牌交换它们 。",
+		"NAME": "Tet"
+	},
+	"animator_IzunaHatsuse":
+	{
+		"DESCRIPTION": "[#EFC851]blood [#EFC851]destruction[] 。 NL 抽 !M! 张牌 。 NL 同调 : 获得 !B! 点 格挡 。",
+		"EXTENDED_DESCRIPTION": ["blood destruction", "当你的HP低于25％时，这张卡将成为一个特殊的0成本 #y攻击 。", "造成 !D! 点 伤害 两次 。 NL 恢复 !M! 点 生命 。"],
+		"NAME": "Izuna Hatsuse"
 	}
 }

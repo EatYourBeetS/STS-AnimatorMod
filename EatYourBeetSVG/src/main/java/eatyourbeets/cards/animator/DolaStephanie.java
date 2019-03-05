@@ -17,6 +17,8 @@ public class DolaStephanie extends AnimatorCard
 
         Initialize(0,0);
 
+        this.exhaust = true;
+
         SetSynergy(Synergies.NoGameNoLife);
     }
 
@@ -31,7 +33,7 @@ public class DolaStephanie extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            this.isInnate = true;
+            this.exhaust = false;
         }
     }
 }

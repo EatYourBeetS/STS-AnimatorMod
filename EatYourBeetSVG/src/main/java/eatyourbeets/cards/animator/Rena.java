@@ -15,7 +15,7 @@ public class Rena extends AnimatorCard
 
     public Rena()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
         Initialize(0, 4, 2);
 

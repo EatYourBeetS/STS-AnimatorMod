@@ -75,7 +75,7 @@
 		"PROPERNAME": "Overrun"
 	},
 	{
-		"DESCRIPTION": "If this counter is greater than 0, activate the effect then reduce this counter by 1. Resets at the end of each fight.",
+		"DESCRIPTION": "If this counter is greater NL than 0, activate the effect then reduce this counter by 1. Resets at the end of each fight.",
 		"NAMES": ["boost"],
 		"PROPERNAME": "Boost"
 	}

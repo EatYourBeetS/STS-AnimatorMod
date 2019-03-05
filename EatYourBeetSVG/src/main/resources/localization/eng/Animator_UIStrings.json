@@ -32,6 +32,15 @@
 		]
 	},
 	
+	"Animator_TetAction": 
+	{
+		"TEXT": 
+		[
+		  "Move # card/s to your Discard Pile.",
+		  "Shuffle # card/s into your Draw Pile."
+		]
+	},
+	
 	"Animator_SoraEffects":
 	{
 		"TEXT": 
@@ -88,4 +97,5 @@
 			"Special"
 		]
 	}
+
 }

@@ -32,6 +32,15 @@
 		]
 	},
 	
+	"Animator_TetAction": 
+	{
+		"TEXT": 
+		[
+		  "将 # 张卡片移到弃牌堆。",
+		  "将 # 张卡片放入你的抽牌堆"
+		]
+	},
+	
 	"Animator_SoraEffects":
 	{
 		"TEXT": 

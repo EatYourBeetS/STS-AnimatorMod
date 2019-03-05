@@ -146,9 +146,9 @@
 	},
 	"animator_DolaStephanie":
 	{
-		"DESCRIPTION": "選擇一張手牌， 從你的抽牌堆中取一張 同系 列的牌 。",
+		"DESCRIPTION": "選擇一張手牌， 從你的抽牌堆中取一張 同系 列的牌 。 消耗 。",
 		"NAME": "史蒂芬妮·多拉",
-		"UPGRADE_DESCRIPTION": "固有 。 選擇一張手牌， 從抽牌堆中抽一張 同系 列的牌 。"
+		"UPGRADE_DESCRIPTION": "選擇一張手牌， 從抽牌堆中抽一張 同系 列的牌 。"
 	},
 	"animator_DwarfShaman":
 	{
@@ -581,7 +581,7 @@
 	},
 	"animator_Ain":
 	{
-		"DESCRIPTION": "[#EFC851]施法者[] 。 對所有敵人造成 !D! 傷害 !M! 次 。 同調 : 獲得 1 點 集中 。",
+		"DESCRIPTION": "[#EFC851]施法者[] 。 對所有敵人造成 !D! 傷害 !M! 次 。 增強 !SV! : 獲得 1 點 集中 。",
 		"EXTENDED_DESCRIPTION": ["施法者", "此卡的傷害也會與集中一起擴展 。"],
 		"NAME": "Ain"
 	},
@@ -595,5 +595,16 @@
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 獲得 !B! 點 格擋 。 將抽牌堆中傷害最低 的 [#EFC851]攻擊[] 牌 加入手牌 。",
 		"NAME": "Raven"
+	},
+	"animator_Tet":
+	{
+		"DESCRIPTION": "在你的抽牌堆堆中選擇 !M! 張牌 。 在棄牌堆中用 !M! 張牌交換它們。",
+		"NAME": "Tet"
+	},
+	"animator_IzunaHatsuse":
+	{
+		"DESCRIPTION": "[#EFC851]blood [#EFC851]destruction[] 。 NL 抽 1 張牌 。 NL 同調 : 獲得 !B! 點 格擋 。",
+		"EXTENDED_DESCRIPTION": ["blood destruction", "當你的HP低於25％時， 這張卡將成為一個特殊的0成本 #攻擊 。", "造成 !D! 點 傷害 兩次 。 NL 回復 !M! 點 生命 。"],
+		"NAME": "Izuna Hatsuse"
 	}
 }

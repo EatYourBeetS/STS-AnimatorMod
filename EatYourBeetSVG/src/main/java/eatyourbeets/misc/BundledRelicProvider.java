@@ -100,12 +100,12 @@ public class BundledRelicProvider
         AddBundle(Ara.ID, Kunai.ID, AbstractRelic.RelicTier.UNCOMMON, R3);
         AddBundle(Chung.ID, MercuryHourglass.ID, AbstractRelic.RelicTier.UNCOMMON, R4);
         AddBundle(Elsword.ID, Whetstone.ID, AbstractRelic.RelicTier.COMMON, R3);
-        AddBundle(Rena.ID, BagOfMarbles.ID, AbstractRelic.RelicTier.COMMON, R2);
         AddBundle(Raven.ID, BurningBlood.ID, AbstractRelic.RelicTier.SPECIAL, R1);
 
+        AddBundle(Rena.ID, BagOfMarbles.ID, AbstractRelic.RelicTier.COMMON, R2);
         AddBundle(Aisha.ID, Omamori.ID, AbstractRelic.RelicTier.COMMON, R2);
-        AddBundle(Ain.ID, OrangePellets.ID, AbstractRelic.RelicTier.SHOP, R2);
         AddBundle(Add.ID, SmilingMask.ID, AbstractRelic.RelicTier.COMMON, R2);
+        AddBundle(Ain.ID, OrangePellets.ID, AbstractRelic.RelicTier.SHOP, R2);
 
         AddBundle(Elesis.ID, MoltenEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, R5);
         AddBundle(Eve.ID, DataDisk.ID, AbstractRelic.RelicTier.SPECIAL, R6);

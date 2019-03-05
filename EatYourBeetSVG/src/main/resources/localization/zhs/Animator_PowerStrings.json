@@ -103,7 +103,6 @@
 	"animator_StolenGoldPower":
 	{
 		"DESCRIPTIONS": ["你偷了 #b", " 金币。 你可以再盗取 #b", " 枚金币。"],
-		"NAME": "被盗的黄金
-"
+		"NAME": "被盗的黄金"
 	}
 }

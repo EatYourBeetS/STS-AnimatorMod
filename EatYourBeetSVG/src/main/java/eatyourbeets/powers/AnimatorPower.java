@@ -1,5 +1,6 @@
 package eatyourbeets.powers;
 
+import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.StringJoiner;
 
-public abstract class AnimatorPower extends AbstractPower
+public abstract class AnimatorPower extends AbstractPower implements CloneablePowerInterface
 {
     protected static final Logger logger = LogManager.getLogger(AnimatorCard.class.getName());
 
@@ -69,5 +70,18 @@ public abstract class AnimatorPower extends AbstractPower
         }
         //logger.info(powerStrings.DESCRIPTIONS.length + ": " + powerStrings.DESCRIPTIONS[0]);
         //logger.info(this.description);
+    }
+
+    @Override
+    public AbstractPower makeCopy()
+    {
+        try
+        {
+            return this.getClass().newInstance();
+        }
+        catch (InstantiationException | IllegalAccessException e)
+        {
+            return null;
+        }
     }
 }

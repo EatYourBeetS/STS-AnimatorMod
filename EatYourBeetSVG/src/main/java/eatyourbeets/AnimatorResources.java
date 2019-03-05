@@ -42,7 +42,8 @@ public class AnimatorResources
         Rewards,
         Actions,
         SoraEffects,
-        CardSelect
+        CardSelect,
+        TetAction
     }
 
     private static final Logger logger = LogManager.getLogger(AnimatorResources.class.getName());

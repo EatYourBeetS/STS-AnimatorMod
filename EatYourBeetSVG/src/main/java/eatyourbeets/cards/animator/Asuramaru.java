@@ -20,7 +20,7 @@ public class Asuramaru extends AnimatorCard
 
     public Asuramaru()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
         Initialize(12,0,1);
 

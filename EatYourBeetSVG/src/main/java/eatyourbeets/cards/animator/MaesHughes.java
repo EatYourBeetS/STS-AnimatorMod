@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,12 @@ public class MaesHughes extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+        applyPowers();
+
+        if (this.multiDamage != null && this.multiDamage.length > 0)
+        {
+            GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+        }
     }
 
     @Override

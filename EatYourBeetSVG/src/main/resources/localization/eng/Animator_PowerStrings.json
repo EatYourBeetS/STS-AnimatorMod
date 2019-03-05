@@ -98,5 +98,10 @@
 	{
 		"DESCRIPTIONS": ["Take #b", " damage at the end of turn. Receive #b", "% more #yAttack damage."],
 		"NAME": "Burning"
+	},
+	"animator_StolenGoldPower":
+	{
+		"DESCRIPTIONS": ["You stole #b", " Gold. You can steal #b", " more Gold."],
+		"NAME": "Stolen Gold"
 	}
 }

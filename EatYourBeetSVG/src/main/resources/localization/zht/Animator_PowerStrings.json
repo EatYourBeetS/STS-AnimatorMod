@@ -98,5 +98,10 @@
 	{
 		"DESCRIPTIONS": ["在回合結束時受到 #b", " 點傷害 。 獲得 #b", "% 更多 #y攻擊傷害 。"],
 		"NAME": "燃燒"
+	},
+	"animator_StolenGoldPower":
+	{
+		"DESCRIPTIONS": ["你偷了 #b", " 金幣。 你可以再盜取 #b", " 枚金幣。"],
+		"NAME": "被盜的黃金"
 	}
 }

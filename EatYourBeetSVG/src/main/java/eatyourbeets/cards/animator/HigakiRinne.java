@@ -53,13 +53,13 @@ public class HigakiRinne extends AnimatorCard
             AbstractDungeon.actionManager.addToBottom(new WaitAction(0.6f));
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Shiv()));
         }
-        else if (n < 34)
+        else if (n < 38)
         {
             AbstractDungeon.actionManager.addToBottom(new WaitAction(0.8f));
             AbstractDungeon.actionManager.addToBottom(new DiscardSpecificCardAction(this, AbstractDungeon.player.hand));
             AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, 1));
         }
-        else if (n < 42)
+        else if (n < 45)
         {
             AbstractDungeon.actionManager.addToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
         }
@@ -69,7 +69,7 @@ public class HigakiRinne extends AnimatorCard
             this.type = CardType.ATTACK;
             this.target = CardTarget.ENEMY;
         }
-        else if (n < 68)
+        else if (n < 65)
         {
             this.loadCardImage(AnimatorResources.GetCardImage(ID + "Power"));
             this.type = CardType.POWER;
@@ -123,10 +123,6 @@ public class HigakiRinne extends AnimatorCard
                 DamageInfo info = new DamageInfo(p, damage, DamageInfo.DamageType.THORNS);
                 GameActionsHelper.AddToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.POISON, true));
             }
-
-            this.loadCardImage(AnimatorResources.GetCardImage(ID));
-            this.type = CardType.SKILL;
-            this.target = CardTarget.ALL;
         }
         else
         {

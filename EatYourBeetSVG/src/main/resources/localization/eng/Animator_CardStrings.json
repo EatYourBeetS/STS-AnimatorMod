@@ -96,6 +96,12 @@
 		"DESCRIPTION": "Deal from !M! to !D! random damage to each enemy.",
 		"NAME": "Kurami"
 	},
+	"animator_Chris":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL [#EFC851]Steal Gold equal to this card's damage ([#EFC851]*[#FFFFFF]).",
+		"EXTENDED_DESCRIPTION" : ["* Note", "You cannot steal more than 50 Gold from a boss, 25 Gold from an elite, or 10 gold from other non-minion enemies."],
+		"NAME": "Chris"
+	},
 	"animator_Chung":
 	{
 		"DESCRIPTION": "Gain !B! Block. Cooldown !SV! : NL Deal !D! damage to ALL enemies.",
@@ -176,8 +182,8 @@
 	"animator_Elsword":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card.",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards.",
-		"NAME": "Elsword"
+		"NAME": "Elsword",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards."
 	},
 	"animator_Emonzaemon":
 	{
@@ -215,7 +221,7 @@
 	},
 	"animator_Excalibur":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. Exhaust ALL [#EFC851]Attacks in your hand and gain their damage.",
+		"DESCRIPTION": "Retain. Deal !D! damage to ALL enemies. Exhaust ALL [#EFC851]Attacks in your hand and gain their damage.",
 		"NAME": "Excalibur"
 	},
 	"animator_FeridBathory":
@@ -286,9 +292,9 @@
 	"animator_Guren":
 	{
 		"DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into [#EFC851]Support [#EFC851]Damage.",
-		"UPGRADE_DESCRIPTION": "Retain. Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into [#EFC851]Support [#EFC851]Damage.",
 		"EXTENDED_DESCRIPTION": ["Support Damage", "Deal damage to the enemy with lowest HP at the end of each turn."],
-		"NAME": "Guren"
+		"NAME": "Guren",
+		"UPGRADE_DESCRIPTION": "Retain. Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into [#EFC851]Support [#EFC851]Damage."
 	},
 	"animator_Guy":
 	{
@@ -305,8 +311,8 @@
 	"animator_HighElfArcher":
 	{
 		"DESCRIPTION": "Deal !D! Piercing damage twice. If you haven't played other copies of this card this turn, draw !M! card.",
-		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage twice. If you haven't played other copies of this card this turn, draw !M! cards.",
-		"NAME": "'High Elf Archer'"
+		"NAME": "'High Elf Archer'",
+		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage twice. If you haven't played other copies of this card this turn, draw !M! cards."
 	},
 	"animator_Hitei":
 	{
@@ -365,8 +371,8 @@
 	"animator_LeleiLaLalena":
 	{
 		"DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Synergy: Apply !SV! Weak to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Cycle 1 card. NL Synergy: Apply !SV! Weak to ALL enemies.",
-		"NAME": "Lelei La Lalena"
+		"NAME": "Lelei La Lalena",
+		"UPGRADE_DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Cycle 1 card. NL Synergy: Apply !SV! Weak to ALL enemies."
 	},
 	"animator_LizardPriest":
 	{
@@ -403,10 +409,9 @@
 	"animator_Nanami":
 	{
 		"DESCRIPTION": "Execute an [#EFC851]Effect to counter the enemy intent.",
+		"EXTENDED_DESCRIPTION": ["Deal !D! Damage.", "Gain !B! Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", "Channel 1 Lightning.", "Channel 1 Dark.", "Channel 1 Frost.", "Apply !M! Poison.", "Gain [B]", "Gain !M! Temporary HP.", "Draw !M! cards."],
 		"NAME": "Nanami",
-		"UPGRADE_DESCRIPTION": "Execute an improved [#EFC851]Effect to counter the enemy intent.",
-		"EXTENDED_DESCRIPTION": ["Deal !D! Damage.", "Gain !B! Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", 
-								 "Channel 1 Lightning.", "Channel 1 Dark.", "Channel 1 Frost.", "Apply !M! Poison.", "Gain [B]", "Gain !M! Temporary HP.", "Draw !M! cards."]
+		"UPGRADE_DESCRIPTION": "Execute an improved [#EFC851]Effect to counter the enemy intent."
 	},
 	"animator_NarberalGamma":
 	{
@@ -464,6 +469,11 @@
 		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "If this kills a non-minion enemy, #yPurge this card and permanently #yUpgrade a random card in your deck"],
 		"NAME": "Scar"
 	},
+	"animator_Sebas":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Synergy: Next turn, gain !M! Block.",
+		"NAME": "Sebas"
+	},
 	"animator_Shalltear":
 	{
 		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Overrun: Heal !M! HP.",
@@ -499,6 +509,11 @@
 		"DESCRIPTION": "Choose and execute !M! custom Effects. Synergy: Choose 1 more Effect.",
 		"NAME": "Sora"
 	},
+	"animator_Spearman":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Boost !SV! : Gain !M! Dexterity.",
+		"NAME": "'Spearman'"
+	},
 	"animator_Strike":
 	{
 		"DESCRIPTION": "Deal !D! damage.",
@@ -508,7 +523,6 @@
 	"animator_SwordMaiden":
 	{
 		"DESCRIPTION": "Gain !M! Artifact. NL Gain !M! Intangible. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Retain. NL Gain !M! Artifact. NL Gain !M! Intangible. NL Exhaust.",
 		"NAME": "'Sword Maiden'"
 	},
 	"animator_Togame":
@@ -538,6 +552,12 @@
 		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Apply 1 Vulnerable to each different enemy hit.",
 		"NAME": "Viivi"
 	},
+	"animator_Witch":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Synergy: Apply !M! [#EFC851]Burning. NL Legacy: Obtain a random Potion.",
+		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take 4% more Attack damage per stack."],
+		"NAME": "'Witch'"
+	},
 	"animator_Wiz":
 	{
 		"DESCRIPTION": "Exhaust 1 card, choose a card from your Exhaust pile and add a copy to your hand. Purge after !M! uses ([#EFC851]*[#FFFFFF]).",
@@ -557,19 +577,25 @@
 	"animator_Yuuichirou":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Legacy: Add [#EFC851]Asuramaru to your discard pile.",
-		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 0-Cost #yAttack."],
+		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 1-Cost #yAttack."],
 		"NAME": "Yuuichirou",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Legacy: Add [#EFC851]Asuramaru+ to your discard pile."
 	},
-	"animator_Spearman":
+	"animator_Ain":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Boost !SV! : Gain !M! Dexterity.",
-		"NAME": "'Spearman'"
+		"DESCRIPTION": "[#EFC851]Spellcaster. Deal !D! damage to ALL enemies !M! times. Synergy: Gain 1 Focus.",
+		"EXTENDED_DESCRIPTION": ["Spellcaster", "This card's damage also scales with Focus."],
+		"NAME": "Ain"
 	},
-	"animator_Witch":
+	"animator_Add":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Synergy: Apply !M! [#EFC851]Burning. NL Legacy: Obtain a random Potion.",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take 4% more Attack damage per stack."],
-		"NAME": "'Witch'"
+		"DESCRIPTION": "Exhaust 1 card in your draw pile. [#EFC851]Channel !M! random Orbs. NL Ethereal.",
+		"UPGRADE_DESCRIPTION": "Exhaust 1 card in your draw pile. [#EFC851]Channel !M! random Orbs.",
+		"NAME": "Add"
+	},
+	"animator_Raven":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Draw your lowest damage [#EFC851]Attack.",
+		"NAME": "Raven"
 	}
 }

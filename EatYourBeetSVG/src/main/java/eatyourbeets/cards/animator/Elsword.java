@@ -18,7 +18,7 @@ public class Elsword extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,0, 1);
+        Initialize(9,0, 1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -35,7 +35,7 @@ public class Elsword extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(3);
+            upgradeDamage(2);
             upgradeMagicNumber(1);
         }
     }

@@ -99,5 +99,11 @@
 	{
 		"DESCRIPTIONS": ["在回合结束时受到 #b", " 点伤害. 额外受到 #b", "%  #y攻击 伤害."],
 		"NAME": "燃烧"
+	},
+	"animator_StolenGoldPower":
+	{
+		"DESCRIPTIONS": ["你偷了 #b", " 金币。 你可以再盗取 #b", " 枚金币。"],
+		"NAME": "被盗的黄金
+"
 	}
 }

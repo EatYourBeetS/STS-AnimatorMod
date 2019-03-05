@@ -20,7 +20,7 @@ public class Saber extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(9,0,3);
+        Initialize(11,0,3);
 
         SetSynergy(Synergies.Fate);
     }

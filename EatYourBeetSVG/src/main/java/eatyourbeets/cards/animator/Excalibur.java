@@ -28,8 +28,16 @@ public class Excalibur extends AnimatorCard
 
         Initialize(12,0);
 
+        this.retain = true;
         this.isMultiDamage = true;
         SetSynergy(Synergies.Fate);
+    }
+
+    @Override
+    public void atTurnStart()
+    {
+        super.atTurnStart();
+        this.retain = true;
     }
 
     @Override

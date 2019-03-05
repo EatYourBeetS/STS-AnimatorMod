@@ -16,9 +16,9 @@ public class AcuraShin extends AnimatorCard
 
     public AcuraShin()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY);
 
-        Initialize(1,0, 3);
+        Initialize(1,0, 1);
 
         this.isMultiDamage = true;
 
@@ -44,7 +44,7 @@ public class AcuraShin extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(3);
+            upgradeMagicNumber(2);
         }
     }
 }

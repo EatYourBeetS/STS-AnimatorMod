@@ -26,7 +26,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5,0,2);
+        Initialize(6,0,2);
 
         if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
         {
@@ -51,7 +51,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
-            upgradeDamage(2);
+            upgradeDamage(1);
         }
     }
 

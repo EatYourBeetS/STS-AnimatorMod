@@ -1,7 +1,6 @@
 package eatyourbeets.relics;
 
 import basemod.abstracts.CustomSavable;
-import basemod.interfaces.StartGameSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

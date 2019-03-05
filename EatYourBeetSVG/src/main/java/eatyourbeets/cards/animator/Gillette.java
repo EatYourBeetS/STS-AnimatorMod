@@ -19,7 +19,7 @@ public class Gillette extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(13,0, 2);
+        Initialize(12,0, 2);
 
         SetSynergy(Synergies.Chaika);
     }

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.ExhaustFromDiscardPileAction;
+import eatyourbeets.actions.ExhaustFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -31,14 +31,7 @@ public class Mikaela extends AnimatorCard
 
         if (p.discardPile.size() > 0)
         {
-            if (upgraded)
-            {
-                AbstractDungeon.actionManager.addToBottom(new ExhaustFromDiscardPileAction(1, false));
-            }
-            else
-            {
-                AbstractDungeon.actionManager.addToBottom(new ExhaustFromDiscardPileAction(1, true));
-            }
+            AbstractDungeon.actionManager.addToBottom(new ExhaustFromPileAction(1, !upgraded, p.discardPile));
         }
     }
 
@@ -46,9 +39,5 @@ public class Mikaela extends AnimatorCard
     public void upgrade() 
     {
         TryUpgrade();
-//        if (TryUpgrade())
-//        {
-//            upgradeDamage(1);
-//        }
     }
 }

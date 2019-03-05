@@ -12,15 +12,17 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 
 import java.util.Iterator;
 
-public class ExhaustFromDiscardPileAction extends AbstractGameAction
+public class ExhaustFromPileAction extends AbstractGameAction
 {
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
     private AbstractPlayer p;
     private boolean random;
+    private final CardGroup sourceGroup;
 
-    public ExhaustFromDiscardPileAction(int amount, boolean random)
+    public ExhaustFromPileAction(int amount, boolean random, CardGroup sourceGroup)
     {
+        this.sourceGroup = sourceGroup;
         this.random = random;
         this.p = AbstractDungeon.player;
         this.setValues(this.p, AbstractDungeon.player, amount);
@@ -34,7 +36,7 @@ public class ExhaustFromDiscardPileAction extends AbstractGameAction
         if (this.duration == Settings.ACTION_DUR_MED)
         {
             CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            Iterator var5 = this.p.discardPile.group.iterator();
+            Iterator var5 = sourceGroup.group.iterator();
 
             AbstractCard card2;
             while (var5.hasNext())
@@ -52,7 +54,7 @@ public class ExhaustFromDiscardPileAction extends AbstractGameAction
                 for (int i = 0; i < tmp.size(); ++i)
                 {
                     card = tmp.getNCardFromTop(i);
-                    AbstractDungeon.player.discardPile.moveToExhaustPile(card);
+                    sourceGroup.moveToExhaustPile(card);
                 }
 
                 this.isDone = true;
@@ -66,7 +68,7 @@ public class ExhaustFromDiscardPileAction extends AbstractGameAction
                         card = tmp.getRandomCard(true);
                         tmp.removeCard(card);
 
-                        AbstractDungeon.player.discardPile.moveToExhaustPile(card);
+                        sourceGroup.moveToExhaustPile(card);
                     }
 
                     this.p.hand.applyPowers();
@@ -92,7 +94,7 @@ public class ExhaustFromDiscardPileAction extends AbstractGameAction
                 {
                     card = abstractCard;
                     card.unhover();
-                    AbstractDungeon.player.discardPile.moveToExhaustPile(card);
+                    sourceGroup.moveToExhaustPile(card);
 
                     this.p.hand.refreshHandLayout();
                     this.p.hand.applyPowers();

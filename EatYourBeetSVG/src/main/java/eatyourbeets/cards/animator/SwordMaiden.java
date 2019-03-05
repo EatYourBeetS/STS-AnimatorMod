@@ -24,15 +24,6 @@ public class SwordMaiden extends AnimatorCard
     }
 
     @Override
-    public void atTurnStart()
-    {
-        super.atTurnStart();
-        initializeDescription();
-
-        this.retain = upgraded;
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.ApplyPower(p, p, new IntangiblePlayerPower(p, this.magicNumber), this.magicNumber);
@@ -44,7 +35,7 @@ public class SwordMaiden extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            this.retain = true;
+            upgradeBaseCost(1);
         }
     }
 }

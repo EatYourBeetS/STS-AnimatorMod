@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Tyuule extends AnimatorCard
 {
@@ -14,7 +15,7 @@ public class Tyuule extends AnimatorCard
 
     public Tyuule()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
         Initialize(0,0,2);
 
@@ -38,7 +39,10 @@ public class Tyuule extends AnimatorCard
         int poison = this.secondaryValue;
         if (poison > 0)
         {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new PoisonPower(m, p, poison), poison));
+            for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+            {
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m1, p, new PoisonPower(m1, p, poison), poison));
+            }
         }
     }
 

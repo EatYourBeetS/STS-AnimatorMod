@@ -15,7 +15,7 @@ public class PandorasActor extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,4, 4);
+        Initialize(0,3, 4);
 
         SetSynergy(Synergies.Overlord, true);
     }
@@ -37,8 +37,7 @@ public class PandorasActor extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
-            upgradeMagicNumber(1);
+            upgradeBlock(3);
         }
     }
 }

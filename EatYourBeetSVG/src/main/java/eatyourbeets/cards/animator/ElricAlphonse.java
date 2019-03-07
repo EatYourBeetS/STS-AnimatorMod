@@ -51,7 +51,7 @@ public class ElricAlphonse extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
+            upgradeBlock(1);
             upgradeSecondaryValue(1);
         }
     }

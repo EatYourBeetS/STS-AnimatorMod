@@ -103,7 +103,7 @@ public class Togame extends AnimatorCard
             {
                 GameActionsHelper.GainBlock(p, 6);
             }
-            else
+            else if (cards >= 7)
             {
                 GameActionsHelper.AddToBottom(new ExhaustAction(p, p, 1, false, false, false));
             }

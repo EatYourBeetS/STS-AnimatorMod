@@ -42,7 +42,7 @@ public class ElricEdward extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(4);
         }
     }
 

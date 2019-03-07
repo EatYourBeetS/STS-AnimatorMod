@@ -30,7 +30,7 @@ public class Saber extends AnimatorCard
     {
         super.onMoveToDiscard();
         AbstractPlayer player = AbstractDungeon.player;
-        AbstractDungeon.actionManager.addToBottom(new MoveSpecificCardAction(this, player.drawPile, player.discardPile, false));
+        AbstractDungeon.actionManager.addToBottom(new MoveSpecificCardAction(this, player.drawPile, player.discardPile, true));
     }
 
     @Override

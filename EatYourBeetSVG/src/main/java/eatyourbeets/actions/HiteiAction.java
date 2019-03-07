@@ -33,7 +33,7 @@ public class HiteiAction extends AnimatorAction
             randomizedList.AddAll(player.discardPile.group);
 
             CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (randomizedList.Count() > 0)
                 {

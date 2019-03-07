@@ -18,7 +18,7 @@ public class HighElfArcher extends AnimatorCard
     {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(2, 0, 1);
+        Initialize(5, 0, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -27,7 +27,7 @@ public class HighElfArcher extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActionsHelper.DamageTarget(p, m, this.damage, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        //GameActionsHelper.DamageTarget(p, m, this.damage, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
         int count = 0;
         for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisTurn)
@@ -50,7 +50,6 @@ public class HighElfArcher extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
-            upgradeDamage(1);
         }
     }
 }

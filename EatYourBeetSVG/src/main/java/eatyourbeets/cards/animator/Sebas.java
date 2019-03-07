@@ -39,7 +39,7 @@ public class Sebas extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBlock(2);
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(3);
         }
     }
 }

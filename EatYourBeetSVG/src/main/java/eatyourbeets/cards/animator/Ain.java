@@ -5,18 +5,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Boost;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Ain extends AnimatorCard_Boost
+public class Ain extends AnimatorCard
 {
     public static final String ID = CreateFullID(Ain.class.getSimpleName());
 
     public Ain()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
+        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(3,0, 2);
+        Initialize(2,0, 2);
 
         this.isMultiDamage = true;
 
@@ -39,7 +39,7 @@ public class Ain extends AnimatorCard_Boost
             GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         }
 
-        if (ProgressBoost())
+        if (HasActiveSynergy())
         {
             GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
         }
@@ -50,7 +50,7 @@ public class Ain extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(1);
+            upgradeMagicNumber(1);
         }
     }
 
@@ -63,11 +63,5 @@ public class Ain extends AnimatorCard_Boost
         }
 
         return 0;
-    }
-
-    @Override
-    protected int GetBaseBoost()
-    {
-        return upgraded ? 3 : 2;
     }
 }

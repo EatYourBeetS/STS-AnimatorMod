@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -19,7 +18,7 @@ public class Gillette extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(13,0, 1);
+        Initialize(12,0, 2);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -29,20 +28,9 @@ public class Gillette extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        AbstractMonster target = null;
-        int maxHP = Integer.MIN_VALUE;
         for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {
-            if (m.currentHealth > maxHP)
-            {
-                maxHP = m.currentHealth;
-                target = m;
-            }
-        }
-
-        if (target != null)
-        {
-            GameActionsHelper.ApplyPower(AbstractDungeon.player, target, new StunMonsterPower(target, 1), 1);
+            GameActionsHelper.ApplyPower(AbstractDungeon.player, m, new WeakPower(m, this.magicNumber, false), this.magicNumber);
         }
     }
 
@@ -58,8 +46,7 @@ public class Gillette extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
-            upgradeMagicNumber(1);
+            upgradeDamage(4);
         }
     }
 }

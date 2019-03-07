@@ -1,7 +1,7 @@
 {
 	"animator_AinzPower":
 	{
-		"DESCRIPTIONS": ["你的回合開始時加入 #b張", " 隨機 #y威#y力 #y型#y態 到手中."],
+		"DESCRIPTIONS": ["at the start of your turn activate 1 of 4 random effects #b", " time/s."],
 		"NAME": "安兹·烏爾·恭"
 	},
 	"animator_ArcherPower":
@@ -91,7 +91,7 @@
 	},
 	"animator_EnvyPower":
 	{
-		"DESCRIPTIONS": ["每回合打出的第一張 #b", " 牌出發自己的同調。"],
+		"DESCRIPTIONS": ["每回合打出的第一張 #b", " 牌觸發自己的同調。"],
 		"NAME": "忌妒"
 	},
 	"animator_BurningPower":
@@ -101,7 +101,7 @@
 	},
 	"animator_StolenGoldPower":
 	{
-		"DESCRIPTIONS": ["你偷了 #b", " 金幣。 你可以再盜取 #b", " 枚金幣。"],
+		"DESCRIPTIONS": ["你偷了 #b", " 個金幣。 你可以再盜取 #b", " 個金幣。"],
 		"NAME": "被盜的黃金"
 	}
 }

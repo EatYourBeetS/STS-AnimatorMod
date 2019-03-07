@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.actions.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -23,18 +24,37 @@ public class Layla extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(4,0, 3);
+        Initialize(4,0, 2);
 
         AddExtendedDescription();
         SetSynergy(Synergies.Chaika);
     }
+
+//    @SuppressWarnings("SuspiciousNameCombination")
+//    @Override
+//    public void triggerOnExhaust()
+//    {
+//        super.triggerOnExhaust();
+//
+//        AbstractPlayer p = AbstractDungeon.player;
+//        AbstractMonster randomMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+//        if (randomMonster != null)
+//        {
+//            AbstractDungeon.actionManager.addToBottom(new VFXAction(new PotionBounceEffect(p.hb.cY, p.hb.cX, randomMonster.hb.cX, this.hb.cY), 0.3F));
+//        }
+//
+//        AbstractDungeon.actionManager.addToBottom(new BouncingFlaskAction(randomMonster, this.magicNumber, 3));
+//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         AbstractDungeon.actionManager.addToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
 
-        initializeDescription();
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.DrawCard(p, 1);
+        }
     }
 
     @Override
@@ -43,6 +63,7 @@ public class Layla extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(1);
+            upgradeMagicNumber(1);
         }
     }
 

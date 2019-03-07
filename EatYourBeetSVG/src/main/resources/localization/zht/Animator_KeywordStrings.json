@@ -15,7 +15,7 @@
 		"PROPERNAME": "忠誠"
 	},
 	{
-		"DESCRIPTION": "擁有者受到 #y攻擊 時造成特定的 #y負面效果。 持續一回合。",
+		"DESCRIPTION": "擁有者受到 攻擊 時造成特定的 負面效果。 持續一回合。",
 		"NAMES": ["mark", "marks", "印記"],
 		"PROPERNAME": "印記"
 	},
@@ -45,7 +45,7 @@
 		"PROPERNAME": "眩暈"
 	},
 	{
-		"DESCRIPTION": "回合內每打出一張牌， 使敵人受到的傷害增加 #b10% 。",
+		"DESCRIPTION": "回合內每打出一張牌， 使敵人受到的傷害增加 10% 。",
 		"NAMES": ["緩慢"],
 		"PROPERNAME": "緩慢"
 	},

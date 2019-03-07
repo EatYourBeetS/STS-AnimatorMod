@@ -16,12 +16,23 @@
 		"DESCRIPTION": "Deal !D! damage !M! times. NL Synergy: Deal damage 1 more time.",
 		"NAME": "Tooru"
 	},
+	"animator_Add":
+	{
+		"DESCRIPTION": "Exhaust 1 card in your draw pile. [#EFC851]Channel !M! random Orbs. NL Ethereal.",
+		"NAME": "Add",
+		"UPGRADE_DESCRIPTION": "Exhaust 1 card in your draw pile. [#EFC851]Channel !M! random Orbs."
+	},
+	"animator_Ain":
+	{
+		"DESCRIPTION": "[#EFC851]Spellcaster. NL Deal !D! damage to ALL enemies !M! times. NL Synergy : Gain 1 Focus.",
+		"EXTENDED_DESCRIPTION": ["Spellcaster", "This card's damage also scales with Focus."],
+		"NAME": "Ain"
+	},
 	"animator_Ainz":
 	{
-		"DESCRIPTION": "Costs 1 less each turn. At the start of your turn add a [#EFC851]Power [#EFC851]Form to your hand.",
-		"EXTENDED_DESCRIPTION": ["Power Form", "Either Demon Form, Wraith Form or Echo Form."],
+		"DESCRIPTION": "Costs 1 less each turn. At the start of your turn, activate 1 of 4 random [#EFC851]Effects.",
 		"NAME": "Ainz Ooal Gown",
-		"UPGRADE_DESCRIPTION": "Costs 1 less each turn. At the start of your turn add a [#EFC851]Power [#EFC851]Form to your hand, it costs 2 energy."
+		"UPGRADE_DESCRIPTION": "Costs 1 less each turn. At the start of your turn, activate 1 of 4 random Upgraded [#EFC851]Effects."
 	},
 	"animator_Aisha":
 	{
@@ -99,7 +110,7 @@
 	"animator_Chris":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL [#EFC851]Steal Gold equal to this card's damage ([#EFC851]*[#FFFFFF]).",
-		"EXTENDED_DESCRIPTION" : ["* Note", "You cannot steal more than 50 Gold from a boss, 25 Gold from an elite, or 10 gold from other non-minion enemies."],
+		"EXTENDED_DESCRIPTION": ["* Note", "You cannot steal more than 50 Gold from a boss, 25 Gold from an elite, or 10 gold from other non-minion enemies."],
 		"NAME": "Chris"
 	},
 	"animator_Chung":
@@ -115,9 +126,10 @@
 	},
 	"animator_Darkness":
 	{
-		"DESCRIPTION": "Whenever you take damage Upgrade !M! random card, prioritizing those in your hand.",
+		"DESCRIPTION": "Gain !M! [#EFC851]Plated [#EFC851]Armor. Whenever you take damage Upgrade !M! random card ([#EFC851]*[#FFFFFF]).",
+		"EXTENDED_DESCRIPTION": ["* Note", "It will prioritize cards in your hand."],
 		"NAME": "Darkness",
-		"UPGRADE_DESCRIPTION": "Whenever you take damage Upgrade !M! random cards, prioritizing those in your hand."
+		"UPGRADE_DESCRIPTION": "Gain !M! [#EFC851]Plated [#EFC851]Armor. Whenever you take damage Upgrade !M! random cards ([#EFC851]*[#FFFFFF])."
 	},
 	"animator_Defend":
 	{
@@ -237,12 +249,12 @@
 	"animator_Gilgamesh":
 	{
 		"DESCRIPTION": "Augmentable. NL Deal !D! damage to an enemy 3 times. NL [#EFC851]Gate [#EFC851]of [#EFC851]Babylon.",
-		"EXTENDED_DESCRIPTION": ["Gate of Babylon", "Whenever you obtain a relic upgrade this card and gain #b", " gold. Does not activate when purchasing relics."],
+		"EXTENDED_DESCRIPTION": ["Gate of Babylon", "Whenever you obtain a relic upgrade this card and gain #b", " gold. Does not activate when purchasing relics or with some event relics."],
 		"NAME": "Gilgamesh"
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Legacy: Stun the enemy with the most HP.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Legacy: Apply !M! Weak to ALL enemies.",
 		"NAME": "Gillette"
 	},
 	"animator_Gluttony":
@@ -294,7 +306,7 @@
 		"DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into [#EFC851]Support [#EFC851]Damage.",
 		"EXTENDED_DESCRIPTION": ["Support Damage", "Deal damage to the enemy with lowest HP at the end of each turn."],
 		"NAME": "Guren",
-		"UPGRADE_DESCRIPTION": "Retain. Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into [#EFC851]Support [#EFC851]Damage."
+		"UPGRADE_DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into Block and [#EFC851]Support [#EFC851]Damage."
 	},
 	"animator_Guy":
 	{
@@ -310,13 +322,13 @@
 	},
 	"animator_HighElfArcher":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage twice. If you haven't played other copies of this card this turn, draw !M! card.",
+		"DESCRIPTION": "Deal !D! Piercing damage. If you haven't played other copies of this card this turn, draw !M! card.",
 		"NAME": "'High Elf Archer'",
-		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage twice. If you haven't played other copies of this card this turn, draw !M! cards."
+		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage. If you haven't played other copies of this card this turn, draw !M! cards."
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "At the start of your turn gain !M! Gold then choose and Exhaust 1 of 3 random cards in your deck ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "At the start of your turn gain !M! Gold then choose and Exhaust 1 of 2 random cards in your deck ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "You cannot gain more than 100 Gold per combat. Stacking this power increases the gold cap a little."],
 		"NAME": "Hitei"
 	},
@@ -329,6 +341,12 @@
 	{
 		"DESCRIPTION": "Draw !M! Cards. Deal !D! damage for each card drawn, subtracting its cost.",
 		"NAME": "Itami Youji"
+	},
+	"animator_IzunaHatsuse":
+	{
+		"DESCRIPTION": "Apply 1 Weak. NL Gain !B! Block. NL [#EFC851]Blood [#EFC851]Destruction.",
+		"EXTENDED_DESCRIPTION": ["Blood Destruction", "While you are below 25% max HP, this card will turn into a special 0-cost #yAttack.", "Deal !D! damage twice. NL Heal !M! HP."],
+		"NAME": "Izuna Hatsuse"
 	},
 	"animator_Jibril":
 	{
@@ -363,10 +381,10 @@
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "[#EFC851]Reload: Deal !D! damage.",
+		"DESCRIPTION": "[#EFC851]Reload: Deal !D! damage. NL Synergy: Draw 1 card.",
 		"EXTENDED_DESCRIPTION": ["Reload", "Discard any number of cards, activate this effect that many times."],
 		"NAME": "Layla",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Reload: Deal !D! Piercing damage."
+		"UPGRADE_DESCRIPTION": "[#EFC851]Reload: Deal !D! Piercing damage. NL Synergy: Draw 1 card."
 	},
 	"animator_LeleiLaLalena":
 	{
@@ -391,9 +409,9 @@
 	},
 	"animator_Mikaela":
 	{
-		"DESCRIPTION": "Deal !D! damage Twice. Exhaust a random card in your discard pile.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Exhaust a random card in your discard pile.",
 		"NAME": "Mikaela",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage Twice. Choose and Exhaust a card in your discard pile."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Choose and Exhaust a card in your discard pile."
 	},
 	"animator_Mitsuba":
 	{
@@ -411,13 +429,13 @@
 		"DESCRIPTION": "Execute an [#EFC851]Effect to counter the enemy intent.",
 		"EXTENDED_DESCRIPTION": ["Deal !D! Damage.", "Gain !B! Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", "Channel 1 Lightning.", "Channel 1 Dark.", "Channel 1 Frost.", "Apply !M! Poison.", "Gain [B]", "Gain !M! Temporary HP.", "Draw !M! cards."],
 		"NAME": "Nanami",
-		"UPGRADE_DESCRIPTION": "Execute an improved [#EFC851]Effect to counter the enemy intent."
+		"UPGRADE_DESCRIPTION": "Execute an Upgraded [#EFC851]Effect to counter the enemy intent."
 	},
 	"animator_NarberalGamma":
 	{
-		"DESCRIPTION": "Channel !M! Lightning. Next turn, gain [B]. Shapeshifter.",
+		"DESCRIPTION": "Channel !M! Lightning. Shapeshifter.",
 		"NAME": "Gamma Narberal",
-		"UPGRADE_DESCRIPTION": "Channel !M! Lightning. Next turn, gain [B]. Shapeshifter. NL Synergy: Gain 1 Orb slot."
+		"UPGRADE_DESCRIPTION": "Channel !M! Lightning. Shapeshifter. NL Synergy: Gain 1 Orb slot."
 	},
 	"animator_PandorasActor":
 	{
@@ -434,6 +452,11 @@
 		"DESCRIPTION": "Boost !SV! : Gain !M! Regeneration. NL Synergy: Gain !B! temporary HP ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "Affected by Block modifiers."],
 		"NAME": "'Priestess'"
+	},
+	"animator_Raven":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Draw your lowest damage [#EFC851]Attack.",
+		"NAME": "Raven"
 	},
 	"animator_Rena":
 	{
@@ -484,6 +507,12 @@
 		"DESCRIPTION": "Gain !B! Block and 1 Strength. NL Synergy: Gain !M! Thorns.",
 		"NAME": "Shichika"
 	},
+	"animator_Shigure":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Synergy and Legacy: Gain !M! [#EFC851]Support [#EFC851]Damage.",
+		"EXTENDED_DESCRIPTION": ["Support Damage", "Deal damage to the enemy with lowest HP at the end of each turn."],
+		"NAME": "Shigure"
+	},
 	"animator_Shimakaze":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Draw !M! cards. NL Shuffle 1 Dazed in your draw pile.",
@@ -525,6 +554,11 @@
 		"DESCRIPTION": "Gain !M! Artifact. NL Gain !M! Intangible. NL Exhaust.",
 		"NAME": "'Sword Maiden'"
 	},
+	"animator_Tet":
+	{
+		"DESCRIPTION": "Choose up to !M! cards in your draw pile. Swap them with cards in your discard pile.",
+		"NAME": "Tet"
+	},
 	"animator_Togame":
 	{
 		"DESCRIPTION": "Draw up to !M! cards. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the number of cards in your hand.",
@@ -538,7 +572,7 @@
 	},
 	"animator_Tyuule":
 	{
-		"DESCRIPTION": "Apply !M! Poison to an enemy for each other [#EFC851]Skill in your hand. NL (Apply !SV! Poison)",
+		"DESCRIPTION": "Apply !M! Poison to ALL enemies for each other [#EFC851]Skill in your hand. NL (Apply !SV! Poison)",
 		"NAME": "Tyuule"
 	},
 	"animator_Urushihara":
@@ -580,33 +614,5 @@
 		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 1-Cost #yAttack."],
 		"NAME": "Yuuichirou",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Legacy: Add [#EFC851]Asuramaru+ to your discard pile."
-	},
-	"animator_Ain":
-	{
-		"DESCRIPTION": "[#EFC851]Spellcaster. NL Deal !D! damage to ALL enemies !M! times. NL Boost !SV! : Gain 1 Focus.",
-		"EXTENDED_DESCRIPTION": ["Spellcaster", "This card's damage also scales with Focus."],
-		"NAME": "Ain"
-	},
-	"animator_Add":
-	{
-		"DESCRIPTION": "Exhaust 1 card in your draw pile. [#EFC851]Channel !M! random Orbs. NL Ethereal.",
-		"UPGRADE_DESCRIPTION": "Exhaust 1 card in your draw pile. [#EFC851]Channel !M! random Orbs.",
-		"NAME": "Add"
-	},
-	"animator_Raven":
-	{
-		"DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Draw your lowest damage [#EFC851]Attack.",
-		"NAME": "Raven"
-	},
-	"animator_Tet":
-	{
-		"DESCRIPTION": "Choose !M! cards in your draw pile. Swap them with !M! cards in your discard pile.",
-		"NAME": "Tet"
-	},
-	"animator_IzunaHatsuse":
-	{
-		"DESCRIPTION": "[#EFC851]Blood [#EFC851]Destruction. NL Draw 1 Card. NL Synergy: Gain !B! Block.",
-		"EXTENDED_DESCRIPTION": ["Blood Destruction", "While you are below 25% max HP, this card will turn into a special 0-cost #yAttack.", "Deal !D! damage twice. NL Heal !M! HP."],
-		"NAME": "Izuna Hatsuse"
 	}
 }

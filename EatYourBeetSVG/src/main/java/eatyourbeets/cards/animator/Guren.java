@@ -30,14 +30,6 @@ public class Guren extends AnimatorCard
     }
 
     @Override
-    public void atTurnStart()
-    {
-        super.atTurnStart();
-
-        this.retain = upgraded;
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         AbstractCard attack = GetRandomAttack(p);
@@ -55,12 +47,11 @@ public class Guren extends AnimatorCard
                 GameActionsHelper.AddToTop(new ApplyPowerAction(p, p, new SupportDamagePower(p, damage), damage));
                 //GameActionsHelper.AddToTop(new WaitAction(effect.duration));
                 GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(attack, p.drawPile, true));
-//                if (upgraded)
-//                {
-//                    GameActionsHelper.GainBlock(p, damage);
-//                }
 
-                //GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, damage), damage);
+                if (upgraded)
+                {
+                    GameActionsHelper.GainBlock(p, damage);
+                }
             }
         }
     }
@@ -68,10 +59,7 @@ public class Guren extends AnimatorCard
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            this.retain = true;
-        }
+        TryUpgrade();
     }
 
     private AbstractCard GetRandomAttack(AbstractPlayer p)

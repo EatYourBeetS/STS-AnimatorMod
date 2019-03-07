@@ -18,7 +18,7 @@ public class DwarfShaman extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9, 0,1);
+        Initialize(10, 0,1);
 
         AddExtendedDescription();
 
@@ -39,7 +39,7 @@ public class DwarfShaman extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(2);
             upgradeMagicNumber(1);
         }
     }

@@ -1,8 +1,6 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.TetAction;
@@ -22,18 +20,18 @@ public class Tet extends AnimatorCard
         SetSynergy(Synergies.NoGameNoLife);
     }
 
-    @Override
-    public boolean canPlay(AbstractCard card)
-    {
-        if (card == this)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-
-            return p.drawPile.size() >= this.magicNumber && p.discardPile.size() >= this.magicNumber;
-        }
-
-        return super.canPlay(card);
-    }
+//    @Override
+//    public boolean canPlay(AbstractCard card)
+//    {
+//        if (card == this)
+//        {
+//            AbstractPlayer p = AbstractDungeon.player;
+//
+//            return p.drawPile.size() >= this.magicNumber && p.discardPile.size() >= this.magicNumber;
+//        }
+//
+//        return super.canPlay(card);
+//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 

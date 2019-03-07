@@ -36,12 +36,12 @@
 	{
 		"TEXT": 
 		[
-		  "Move # card/s to your Discard Pile.",
+		  "Move up to # card/s to your Discard Pile.",
 		  "Shuffle # card/s into your Draw Pile."
 		]
 	},
 	
-	"Animator_SoraEffects":
+	"Animator_SpecialEffects":
 	{
 		"TEXT": 
 		[
@@ -60,7 +60,15 @@
 			"Apply !M! Vulnerable to ALL enemies.",
 			"Cycle !M! cards",
 			"Draw !M! cards.",
-			"Gain !M! temporary HP."
+			"Gain !M! temporary HP.",
+			"Gain !M! Focus.",
+			"Gain !M! Energy.",
+			"Apply !M! Poison to ALL enemies.",
+			"Apply !M! [#EFC851]Burning to ALL enemies.",
+			"Gain !M! Intangible",
+			"Gain !M! Artifact. NL Remove all of your debuffs.",
+			"Play the top card of your draw pile.",
+			"Channel !M! random Orbs."
 		]
 	},
 	
@@ -94,7 +102,7 @@
 			"Balanced start.",
 			"Strong start.",
 			"Very strong start.",
-			"Special"
+			"Special: More Gold"
 		]
 	}
 

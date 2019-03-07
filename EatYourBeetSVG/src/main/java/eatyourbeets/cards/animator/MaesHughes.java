@@ -22,6 +22,7 @@ public class MaesHughes extends AnimatorCard
 
         Initialize(12,0,2);
 
+        this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
         this.isMultiDamage = true;
 
         SetSynergy(Synergies.FullmetalAlchemist);
@@ -36,7 +37,7 @@ public class MaesHughes extends AnimatorCard
 
         if (this.multiDamage != null && this.multiDamage.length > 0)
         {
-            GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+            GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
         }
     }
 

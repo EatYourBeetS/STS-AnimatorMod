@@ -4,6 +4,8 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.DarknessPower;
@@ -18,12 +20,16 @@ public class Darkness extends AnimatorCard
 
         Initialize(0,0,1);
 
+        AddExtendedDescription();
+
         SetSynergy(Synergies.Konosuba);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber);
+
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DarknessPower(p, this.magicNumber), this.magicNumber));
     }
 

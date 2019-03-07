@@ -38,7 +38,7 @@ public class DolaSchwi extends AnimatorCard
             damage = (int)power.atDamageReceive(damage, DamageInfo.DamageType.NORMAL);
         }
 
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SHIELD));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
 
         if (HasActiveSynergy())
         {

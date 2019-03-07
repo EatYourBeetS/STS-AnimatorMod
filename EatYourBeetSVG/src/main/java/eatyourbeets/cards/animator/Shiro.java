@@ -26,7 +26,10 @@ public class Shiro extends AnimatorCard
     {
         super.applyPowers();
 
-        this.setCostForTurn(this.cost - PlayerStatistics.getSynergiesThisTurn());
+        if (!this.freeToPlayOnce)
+        {
+            this.setCostForTurn(this.cost - PlayerStatistics.getSynergiesThisTurn());
+        }
     }
 
     @Override

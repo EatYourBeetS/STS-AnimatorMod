@@ -2,7 +2,7 @@
 {
 	"animator_AinzPower":
 	{
-		"DESCRIPTIONS": ["在你的回合开始时添加一张", " 随机形态卡到手牌."],
+		"DESCRIPTIONS": ["at the start of your turn activate 1 of 4 random effects #b", " time/s."],
 		"NAME": "安兹·乌尔·恭"
 	},
 	"animator_ArcherPower":
@@ -102,7 +102,7 @@
 	},
 	"animator_StolenGoldPower":
 	{
-		"DESCRIPTIONS": ["你偷了 #b", " 金币。 你可以再盗取 #b", " 枚金币。"],
+		"DESCRIPTIONS": ["你偷了 #b", " 个金币。 你可以再盗取 #b", " 个金币。"],
 		"NAME": "被盗的黄金"
 	}
 }

@@ -11,7 +11,7 @@ public abstract class SoraEffect
 
     protected SoraEffect(int descriptionIndex, int nameIndex)
     {
-        String[] text = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.SoraEffects).TEXT;
+        String[] text = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.SpecialEffects).TEXT;
         this.typeIndex = nameIndex;
         sora = new Sora(this);
         sora.rawDescription = text[descriptionIndex];

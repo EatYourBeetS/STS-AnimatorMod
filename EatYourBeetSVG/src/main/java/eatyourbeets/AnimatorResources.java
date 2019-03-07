@@ -41,7 +41,7 @@ public class AnimatorResources
         Synergies,
         Rewards,
         Actions,
-        SoraEffects,
+        SpecialEffects,
         CardSelect,
         TetAction
     }

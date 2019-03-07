@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -18,7 +19,7 @@ public class IzunaHatsuse extends AnimatorCard
 
     public IzunaHatsuse()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
         Initialize(4, 2, 4);
 
@@ -41,7 +42,6 @@ public class IzunaHatsuse extends AnimatorCard
             {
                 this.loadCardImage(AnimatorResources.GetCardImage(ID + "Alt"));
                 this.type = CardType.ATTACK;
-                this.target = CardTarget.SELF_AND_ENEMY;
                 rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
                 initializeDescription();
                 transformed = true;
@@ -53,7 +53,6 @@ public class IzunaHatsuse extends AnimatorCard
             {
                 this.loadCardImage(AnimatorResources.GetCardImage(ID));
                 this.type = CardType.SKILL;
-                this.target = CardTarget.SELF;
                 rawDescription = cardStrings.DESCRIPTION;
                 initializeDescription();
                 transformed = false;
@@ -72,7 +71,7 @@ public class IzunaHatsuse extends AnimatorCard
         }
         else
         {
-            GameActionsHelper.DrawCard(p, 1);
+            GameActionsHelper.ApplyPower(p, m, new WeakPower(p, 1, false), 1);
             GameActionsHelper.GainBlock(p, this.block);
         }
     }
@@ -84,7 +83,7 @@ public class IzunaHatsuse extends AnimatorCard
         {
             upgradeMagicNumber(2);
             upgradeDamage(2);
-            upgradeBlock(1);
+            upgradeBlock(2);
         }
     }
 }

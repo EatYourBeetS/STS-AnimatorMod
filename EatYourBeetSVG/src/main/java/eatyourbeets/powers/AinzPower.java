@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
+import eatyourbeets.actions.AinzAction;
 
 public class AinzPower extends AnimatorPower
 {
@@ -53,39 +55,9 @@ public class AinzPower extends AnimatorPower
 
         for(int i = 0; i < this.amount; i++)
         {
-            AddPowerForm(i < upgradedPowerStack);
+            GameActionsHelper.AddToBottom(new AinzAction(player, i < upgradedPowerStack));
         }
 
         this.flash();
-    }
-
-    private void AddPowerForm(boolean applyDiscount)
-    {
-        AbstractCard power;
-        int roll = AbstractDungeon.miscRng.random(2);
-        switch (roll)
-        {
-            case 0: power = new DemonForm(); break;
-            case 1: power = new EchoForm(); break;
-            case 2: power = new WraithForm(); break;
-
-            default:
-                throw new IndexOutOfBoundsException();
-        }
-
-        if (applyDiscount)
-        {
-            power.updateCost(-1);
-        }
-
-        if (player.hand.size() >= BaseMod.MAX_HAND_SIZE)
-        {
-            AbstractDungeon.player.createHandIsFullDialog();
-            player.discardPile.addToBottom(power);
-        }
-        else
-        {
-            player.hand.addToHand(power);
-        }
     }
 }

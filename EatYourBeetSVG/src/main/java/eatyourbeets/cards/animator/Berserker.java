@@ -6,10 +6,14 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.Utilities;
+import eatyourbeets.actions.OnDamageAction;
 import eatyourbeets.actions.OnTargetBlockBreakAction;
+import eatyourbeets.actions.OnTargetDeadAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -21,7 +25,7 @@ public class Berserker extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(27,0);
+        Initialize(25,0);
 
         SetSynergy(Synergies.Fate);
     }
@@ -34,7 +38,7 @@ public class Berserker extends AnimatorCard
             DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
             GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
-            GameActionsHelper.AddToBottom(new OnTargetBlockBreakAction(m, damageAction, new GainEnergyAction(2)));
+            GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
         }
     }
 
@@ -44,6 +48,23 @@ public class Berserker extends AnimatorCard
         if (TryUpgrade())
         {          
             upgradeDamage(7);
+        }
+    }
+
+    private void OnDamage(Object state, AbstractMonster monster)
+    {
+        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
+        if (initialBlock != null && monster != null)
+        {
+            if ((monster.isDying || monster.currentHealth <= 0) && !monster.halfDead)
+            {
+                GameActionsHelper.GainEnergy(1);
+            }
+
+            if (initialBlock > 0 && monster.currentBlock <= 0)
+            {
+                GameActionsHelper.GainEnergy(1);
+            }
         }
     }
 }

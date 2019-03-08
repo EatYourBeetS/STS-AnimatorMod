@@ -2,27 +2,28 @@ package eatyourbeets.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class OnTargetDeadAction extends AnimatorAction
+import java.util.ArrayList;
+import java.util.function.BiConsumer;
+
+public class OnDamageAction extends AnimatorAction
 {
     private final DamageAction damageAction;
-    private final AbstractGameAction action;
     private final boolean includeMinions;
+    private final BiConsumer<Object, AbstractMonster> onDamage;
+    private final Object state;
 
-    public OnTargetDeadAction(AbstractCreature target, DamageAction damageAction, AbstractGameAction action)
+    public OnDamageAction(AbstractCreature target, DamageAction damageAction, BiConsumer<Object, AbstractMonster> onDamage, Object context, boolean includeMinions)
     {
-        this(target, damageAction, action, false);
-    }
-
-    public OnTargetDeadAction(AbstractCreature target, DamageAction damageAction, AbstractGameAction action, boolean includeMinions)
-    {
+        this.onDamage = onDamage;
+        this.state = context;
         this.includeMinions = includeMinions;
         this.target = target;
-        this.action = action;
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.DAMAGE;
         this.damageAction = damageAction;
@@ -33,9 +34,9 @@ public class OnTargetDeadAction extends AnimatorAction
         if (updateDamageAction())
         {
             AbstractMonster monster = ((AbstractMonster)this.target);
-            if ((monster.isDying || monster.currentHealth <= 0) && !monster.halfDead && (includeMinions || !monster.hasPower("Minion")))
+            if (includeMinions || !monster.hasPower("Minion"))
             {
-                AbstractDungeon.actionManager.addToTop(action);
+                onDamage.accept(state, monster);
             }
 
             this.isDone = true;
@@ -44,11 +45,7 @@ public class OnTargetDeadAction extends AnimatorAction
 
     private boolean updateDamageAction()
     {
-        if (damageAction == null)
-        {
-            return true;
-        }
-        else if (!damageAction.isDone)
+        if (!damageAction.isDone)
         {
             damageAction.update();
         }

@@ -97,7 +97,7 @@ public class BundledRelicProvider
 
     private static void AddElsword()
     {
-        AddBundle(Ara.ID, Kunai.ID, AbstractRelic.RelicTier.UNCOMMON, R3);
+        AddBundle(Ara.ID, Nunchaku.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
         AddBundle(Chung.ID, MercuryHourglass.ID, AbstractRelic.RelicTier.UNCOMMON, R4);
         AddBundle(Elsword.ID, Whetstone.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(Raven.ID, BurningBlood.ID, AbstractRelic.RelicTier.SPECIAL, R1);
@@ -116,11 +116,12 @@ public class BundledRelicProvider
         AddBundle(Archer.ID, ArtOfWar.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(Berserker.ID, Girya.ID, AbstractRelic.RelicTier.RARE, R4);
         AddBundle(RinTohsaka.ID, GoldPlatedCables.ID, AbstractRelic.RelicTier.SPECIAL, R4);
+        AddBundle(EmiyaShirou.ID, Shovel.ID, AbstractRelic.RelicTier.SPECIAL, R1);
 
-        AddBundle(Alexander.ID, ArtOfWar.ID, AbstractRelic.RelicTier.COMMON, R4);
+        AddBundle(Alexander.ID, ArtOfWar.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(Caster.ID, SymbioticVirus.ID, AbstractRelic.RelicTier.SPECIAL, R4);
         AddBundle(Illya.ID, SelfFormingClay.ID, AbstractRelic.RelicTier.SPECIAL, R4);
-        AddBundle(Lancer.ID, Nunchaku.ID, AbstractRelic.RelicTier.RARE, R2);
+        AddBundle(Lancer.ID, ArtOfWar.ID, AbstractRelic.RelicTier.RARE, R3);
 
         AddBundle(Gilgamesh.ID, RegalPillow.ID, AbstractRelic.RelicTier.COMMON, R1);
         AddBundle(Saber.ID, Orichalcum.ID, AbstractRelic.RelicTier.COMMON, R2);
@@ -221,9 +222,10 @@ public class BundledRelicProvider
         AddBundle(Jibril.ID, WhiteBeast.ID, AbstractRelic.RelicTier.BOSS, R1);
         AddBundle(DolaCouronne.ID, ClockworkSouvenir.ID, AbstractRelic.RelicTier.SHOP, R3);
         AddBundle(ChlammyZell.ID, GamblingChip.ID, AbstractRelic.RelicTier.RARE, R3);
-
-        AddBundle(DolaRiku.ID, UnceasingTop.ID, AbstractRelic.RelicTier.RARE, R1);
         AddBundle(DolaSchwi.ID, EmotionChip.ID, AbstractRelic.RelicTier.SPECIAL, R6);
+
+        AddBundle(IzunaHatsuse.ID, Torii.ID, AbstractRelic.RelicTier.RARE, R1);
+        AddBundle(DolaRiku.ID, UnceasingTop.ID, AbstractRelic.RelicTier.RARE, R1);
         AddBundle(DolaStephanie.ID, HappyFlower.ID, AbstractRelic.RelicTier.COMMON, R3);
 
         AddBundle(Shiro.ID, Dodecahedron.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
@@ -253,6 +255,7 @@ public class BundledRelicProvider
 
         AddBundle(KrulTepes.ID, MagicFlower.ID, AbstractRelic.RelicTier.SPECIAL, R2);
         AddBundle(Shinoa.ID, Calipers.ID, AbstractRelic.RelicTier.RARE, R2);
+        AddBundle(Shigure.ID, Kunai.ID, AbstractRelic.RelicTier.RARE, R1);
 
         AddBundle(FeridBathory.ID, MealTicket.ID, AbstractRelic.RelicTier.SHOP, R5);
         AddBundle(Guren.ID, IncenseBurner.ID, AbstractRelic.RelicTier.RARE, R2);

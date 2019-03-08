@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage !M! times. NL Synergy: Deal damage 1 more time.",
+		"DESCRIPTION": "Deal !D! damage NL !M! times. NL Synergy: Deal damage 1 more time.",
 		"NAME": "Tooru"
 	},
 	"animator_Add":
@@ -78,7 +78,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Overrun: Gain [B] [B] .",
+		"DESCRIPTION": "Deal !D! damage. NL Overrun: Gain [B] NL If this kills an enemy gain [B]",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -110,7 +110,7 @@
 	"animator_Chris":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL [#EFC851]Steal Gold equal to this card's damage ([#EFC851]*[#FFFFFF]).",
-		"EXTENDED_DESCRIPTION": ["* Note", "You cannot steal more than 50 Gold from a boss, 25 Gold from an elite, or 10 gold from other non-minion enemies."],
+		"EXTENDED_DESCRIPTION": ["* Note", "You can steal up to 50 Gold from a boss, 25 Gold from an elite, or 10 gold from other non-minion enemies."],
 		"NAME": "Chris"
 	},
 	"animator_Chung":
@@ -197,6 +197,12 @@
 		"NAME": "Elsword",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards."
 	},
+	"animator_EmiyaShirou":
+	{
+		"DESCRIPTION": "Give a random NL enemy !M! Block and 1 Vulnerable. [#EFC851]Unlimited [#EFC851]Blade [#EFC851]Works.",
+		"EXTENDED_DESCRIPTION": ["Unlimited Blade Works", "Whenever an enemy loses its block this turn, gain 1 #yEnergy and draw a random #yAttack from your draw pile. Does not stack."],
+		"NAME": "Emiya Shirou"
+	},
 	"animator_Emonzaemon":
 	{
 		"DESCRIPTION": "Deal !D! damage. If this is your 3rd [#EFC851]Attack in a row, Purge this and obtain [#EFC851]Entou [#EFC851]Jyuu.",
@@ -254,7 +260,7 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Legacy: Apply !M! Weak to ALL enemies.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Legacy: Remove all of your debuffs.",
 		"NAME": "Gillette"
 	},
 	"animator_Gluttony":
@@ -310,7 +316,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "Give an enemy !B! Block, then gain its total Block. NL Synergy: [#EFC851]Channel[] 1 Frost.",
+		"DESCRIPTION": "Give an enemy !B! Block, then gain its total Block. NL Cooldown !SV! : NL [#EFC851]Channel 1 Frost.",
 		"NAME": "Guy"
 	},
 	"animator_HigakiRinne":
@@ -409,9 +415,8 @@
 	},
 	"animator_Mikaela":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Exhaust a random card in your discard pile.",
-		"NAME": "Mikaela",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Choose and Exhaust a card in your discard pile."
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Boost !SV! : Choose and Exhaust a card in your discard pile.",
+		"NAME": "Mikaela"
 	},
 	"animator_Mitsuba":
 	{

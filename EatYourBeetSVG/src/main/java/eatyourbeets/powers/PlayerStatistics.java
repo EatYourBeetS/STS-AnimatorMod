@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
@@ -22,6 +23,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
     public static final PlayerStatistics Instance = new PlayerStatistics();
 
+    public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
     public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
@@ -51,6 +53,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         cardsDrawnThisTurn = 0;
         turnCount = 0;
 
+        onBlockBroken.Clear();
         onAfterCardDrawn.Clear();
         onAttack.Clear();
         onLoseHp.Clear();
@@ -74,7 +77,14 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         ClearStats();
         onBattleEnd.Clear();
         onBattleStart.Clear();
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+
+        AbstractPlayer p = AbstractDungeon.player;
+        ArrayList<AbstractCard> cards = new ArrayList<>(p.drawPile.group);
+        cards.addAll(p.hand.group);
+        cards.addAll(p.discardPile.group);
+        cards.addAll(p.exhaustPile.group);
+
+        for (AbstractCard c : cards)
         {
             OnBattleStartSubscriber s = Utilities.SafeCast(c, OnBattleStartSubscriber.class);
             if (s != null)
@@ -93,6 +103,14 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         }
         onBattleEnd.Clear();
         ClearStats();
+    }
+
+    public void OnBlockBroken(AbstractCreature creature)
+    {
+        for (OnBlockBrokenSubscriber s : onBlockBroken.GetSubscribers())
+        {
+            s.OnBlockBroken(creature);
+        }
     }
 
     public static AbstractRoom GetCurrentRoom()

@@ -71,7 +71,7 @@ public class IzunaHatsuse extends AnimatorCard
         }
         else
         {
-            GameActionsHelper.ApplyPower(p, m, new WeakPower(p, 1, false), 1);
+            GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
             GameActionsHelper.GainBlock(p, this.block);
         }
     }

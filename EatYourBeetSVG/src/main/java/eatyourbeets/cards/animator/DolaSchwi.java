@@ -19,9 +19,9 @@ public class DolaSchwi extends AnimatorCard
 
     public DolaSchwi()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(10,0,1);
+        Initialize(8,0,1);
 
         SetSynergy(Synergies.NoGameNoLife);
     }

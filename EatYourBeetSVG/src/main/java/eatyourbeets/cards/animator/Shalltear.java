@@ -24,7 +24,7 @@ public class Shalltear extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(13,0, 4);
+        Initialize(12,0, 4);
 
         tags.add(CardTags.HEALING);
 

@@ -21,7 +21,7 @@ public class Shigure extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(9,0, 2);
+        Initialize(7,0, 3);
 
         AddExtendedDescription();
 
@@ -58,7 +58,8 @@ public class Shigure extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeDamage(2);
+            upgradeMagicNumber(1);
         }
     }
 }

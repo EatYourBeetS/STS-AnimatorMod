@@ -78,7 +78,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 壓倒 : 獲得 [B] [B] 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 壓倒 : 獲得 [B] NL 以這張牌擊殺敵人時， 獲得 [B]",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -197,6 +197,12 @@
 		"NAME": "艾索德",
 		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。"
 	},
+	"animator_EmiyaShirou":
+	{
+		"DESCRIPTION": "给予随机目标 !M! 点 格挡 与 虚弱 。 [#EFC851]無限刀片工作[] 。",
+		"EXTENDED_DESCRIPTION": ["無限刀片工作", "本回合， 每當打破任意目標的 格擋 時, 獲得 1點能量並抽一張 #y攻擊 牌 。 該效果不疊加 。"],
+		"NAME": "衛宮士郎"
+	},
 	"animator_Emonzaemon":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害。如果這是連續的第三次 [#EFC851]攻擊[] ， 消耗並獲得獲得 [#EFC851]炎刀·銃[] 。",
@@ -254,7 +260,7 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 虛弱 。 遺產 : 給予所有敵人 !M! 層 虛弱 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 虛弱 。 遺產 : 移除你身上的所有負面效果 。",
 		"NAME": "亞伯力克·基烈特"
 	},
 	"animator_Gluttony":
@@ -310,7 +316,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "給予一個敵人 !B! 點 格擋 ， 然後獲得等同於目標的 格擋 值 。 同調 : 獲得1個冰霜充能球 。",
+		"DESCRIPTION": "給予一個敵人 !B! 點 格擋 ， 然後獲得等同於目標的 格擋 值 。 冷卻 !SV! : 獲得1個冰霜充能球 。",
 		"NAME": "奇伊"
 	},
 	"animator_HigakiRinne":
@@ -407,9 +413,8 @@
 	},
 	"animator_Mikaela":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 中毒 。 從你的棄牌堆中隨機 消耗 一張牌 。",
-		"NAME": "米迦爾",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 中毒 。 從你的棄牌堆中選擇並 消耗 一張牌 。"
+		"DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 中毒 。 增強 !SV! :  從你的棄牌堆中選擇並 消耗 一張牌 。",
+		"NAME": "米迦爾"
 	},
 	"animator_Mitsuba":
 	{

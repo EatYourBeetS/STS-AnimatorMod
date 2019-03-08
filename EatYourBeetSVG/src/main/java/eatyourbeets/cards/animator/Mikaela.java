@@ -9,10 +9,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.ExhaustFromPileAction;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
-public class Mikaela extends AnimatorCard
+public class Mikaela extends AnimatorCard_Boost
 {
     public static final String ID = CreateFullID(Mikaela.class.getSimpleName());
 
@@ -20,7 +20,7 @@ public class Mikaela extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,0, 3);
+        Initialize(6,0, 3);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -33,15 +33,24 @@ public class Mikaela extends AnimatorCard
 
         GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, this.magicNumber), this.magicNumber);
 
-        if (p.discardPile.size() > 0)
+        if (p.discardPile.size() > 0 && ProgressBoost())
         {
-            AbstractDungeon.actionManager.addToBottom(new ExhaustFromPileAction(1, !upgraded, p.discardPile));
+            AbstractDungeon.actionManager.addToBottom(new ExhaustFromPileAction(1, false, p.discardPile));
         }
     }
 
     @Override
     public void upgrade() 
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeDamage(5);
+        }
+    }
+
+    @Override
+    protected int GetBaseBoost()
+    {
+        return 2;
     }
 }

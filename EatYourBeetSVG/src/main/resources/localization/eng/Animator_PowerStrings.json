@@ -89,6 +89,11 @@
 		"DESCRIPTIONS": ["???"],
 		"NAME": "???"
 	},
+	"animator_EmiyaShirouPower":
+	{
+		"DESCRIPTIONS": ["Whenever an enemy loses its block this turn, gain #b1 energy and draw #b1 random #yAttack."],
+		"NAME": "Unlimited Blade Works"
+	},
 	"animator_EnvyPower":
 	{
 		"DESCRIPTIONS": ["The first #b", " card/s you play every turn will Synergize."],

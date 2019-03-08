@@ -1,5 +1,7 @@
 package eatyourbeets.subscribers;
 
+import eatyourbeets.Utilities;
+
 import java.util.ArrayList;
 
 public class GameEvent<T>

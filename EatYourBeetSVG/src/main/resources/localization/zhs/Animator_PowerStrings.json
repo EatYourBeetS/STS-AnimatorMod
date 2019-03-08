@@ -2,7 +2,7 @@
 {
 	"animator_AinzPower":
 	{
-		"DESCRIPTIONS": ["at the start of your turn activate 1 of 4 random effects #b", " time/s."],
+		"DESCRIPTIONS": ["在你的回合开始时，从四种特殊效果中选择一种并发动 #b", " 次."],
 		"NAME": "安兹·乌尔·恭"
 	},
 	"animator_ArcherPower":
@@ -89,6 +89,11 @@
 	{
 		"DESCRIPTIONS": ["???"],
 		"NAME": "???"
+	},
+	"animator_EmiyaShirouPower":
+	{
+		"DESCRIPTIONS": ["每当打破任意目标的 格挡 时, 获得 1点能量并抽一张 #y攻击 牌 。 该效果不叠加 。"],
+		"NAME": "无限刀片工作"
 	},
 	"animator_EnvyPower":
 	{

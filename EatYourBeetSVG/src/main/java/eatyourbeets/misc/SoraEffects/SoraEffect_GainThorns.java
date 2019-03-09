@@ -15,6 +15,6 @@ public class SoraEffect_GainThorns extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper.ApplyPower(player, player, new ThornsPower(player, sora.magicNumber));
+        GameActionsHelper.ApplyPower(player, player, new ThornsPower(player, sora.magicNumber), sora.magicNumber);
     }
 }

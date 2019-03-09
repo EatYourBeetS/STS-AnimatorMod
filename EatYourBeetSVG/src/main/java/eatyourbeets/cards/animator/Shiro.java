@@ -35,7 +35,7 @@ public class Shiro extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new ShiroPower(p));
+        GameActionsHelper.ApplyPower(p, p, new ShiroPower(p), 1);
     }
 
     @Override

@@ -15,11 +15,13 @@ public class Albedo extends AnimatorCard
 
     public Albedo()
     {
-        super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0,20);
+        Initialize(0,0,15);
 
         AddExtendedDescription();
+
+        this.baseSecondaryValue = this.secondaryValue = 6;
 
         SetSynergy(Synergies.Overlord);
     }
@@ -31,7 +33,7 @@ public class Albedo extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainEnergy(1);
+            GameActionsHelper.GainTemporaryHP(p, p, this.secondaryValue);
         }
     }
 
@@ -40,6 +42,7 @@ public class Albedo extends AnimatorCard
     {
         if (TryUpgrade())
         {
+            upgradeSecondaryValue(2);
             upgradeMagicNumber(5);
         }
     }

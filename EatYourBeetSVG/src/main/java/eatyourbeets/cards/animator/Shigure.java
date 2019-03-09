@@ -21,7 +21,7 @@ public class Shigure extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(7,0, 3);
+        Initialize(8,0, 3);
 
         AddExtendedDescription();
 

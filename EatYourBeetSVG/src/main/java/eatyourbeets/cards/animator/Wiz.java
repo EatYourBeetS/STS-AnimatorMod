@@ -45,13 +45,14 @@ public class Wiz extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            int temp = this.magicNumber;
-
-            upgradeMagicNumber(1);
-
-            this.magicNumber = temp + 1;
-
-            purgeOnUse = false;
+            upgradeBaseCost(0);
+//            int temp = this.magicNumber;
+//
+//            upgradeMagicNumber(1);
+//
+//            this.magicNumber = temp + 1;
+//
+//            purgeOnUse = false;
         }
     }
 }

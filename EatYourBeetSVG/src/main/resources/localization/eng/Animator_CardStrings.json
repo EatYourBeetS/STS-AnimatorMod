@@ -24,7 +24,7 @@
 	},
 	"animator_Ain":
 	{
-		"DESCRIPTION": "[#EFC851]Spellcaster. NL Deal !D! damage to ALL enemies !M! times. NL Synergy : Gain 1 Focus.",
+		"DESCRIPTION": "[#EFC851]Spellcaster. NL Deal !D! damage to ALL enemies !M! times. NL Gain 1 Focus.",
 		"EXTENDED_DESCRIPTION": ["Spellcaster", "This card's damage also scales with Focus."],
 		"NAME": "Ain"
 	},
@@ -41,7 +41,7 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance. NL Synergy: Gain [B]",
+		"DESCRIPTION": "Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance. NL Synergy: Gain !SV! Temporary HP.",
 		"EXTENDED_DESCRIPTION": ["Damage Resistance", "Take less damage from enemy attacks, further stacks are less effective."],
 		"NAME": "Albedo"
 	},
@@ -244,7 +244,8 @@
 	},
 	"animator_FeridBathory":
 	{
-		"DESCRIPTION": "Twice per turn, when a card is Exhausted gain !M! Strength and Heal 2 HP.",
+		"DESCRIPTION": "Once per turn, when a card is Exhausted gain 1 Strength and Heal 2 HP.",
+		"UPGRADE_DESCRIPTION": "Twice per turn, when a card is Exhausted gain 1 Strength and Heal 2 HP.",
 		"NAME": "Ferid Bathory"
 	},
 	"animator_Fredrika":
@@ -286,7 +287,7 @@
 	},
 	"animator_GoblinSlayer":
 	{
-		"DESCRIPTION": "[#EFC851]Goblin [#EFC851]Slayer. NL NL Deal !D! damage. NL Gain !B! Block. NL Retain.",
+		"DESCRIPTION": "[#EFC851]Goblin [#EFC851]Slayer. NL Deal !D! damage. NL Gain !B! Block. NL Retain.",
 		"EXTENDED_DESCRIPTION": ["Goblin Slayer", "Exhaust every Status and Curse in your hand and discard pile. Deal 3 extra damage for every card in your exhaust pile. NL #yWARNING: Goblins will start invading your deck."],
 		"NAME": "Goblin Slayer"
 	},
@@ -298,7 +299,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "Gain !M! [#EFC851]Plated[] [#EFC851]Armor[]. NL Gain !M! Malleable. NL [#EFC851]Greed[].",
-		"EXTENDED_DESCRIPTION": ["Greed", "At the end of combat, gain Gold equal to your missing Health percentage. Does not stack."],
+		"EXTENDED_DESCRIPTION": ["Greed", "At the end of combat, gain Gold equal to half your missing Health percentage. Does not stack."],
 		"NAME": "Greed"
 	},
 	"animator_GuildGirl":
@@ -476,7 +477,7 @@
 	},
 	"animator_RoryMercury":
 	{
-		"DESCRIPTION": "Your next attack this turn deals double damage.",
+		"DESCRIPTION": "Deal !D! damage. NL Your [#EFC851]Attacks this turn deal !M! % more damage.",
 		"NAME": "Rory Mercury"
 	},
 	"animator_RoyMustang":
@@ -567,7 +568,7 @@
 	"animator_Togame":
 	{
 		"DESCRIPTION": "Draw up to !M! cards. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the number of cards in your hand.",
-		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#y7+ : Exhaust 1 card NL #y6 : Gain 6 Block. NL #y5 : Gain 1 Artifact NL #y4 : Gain 2 Energy and Exhaust this card", "Cheerio!"],
+		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#y7+ : Exhaust 1 card NL #y6 : Gain 6 Block. NL #y5 : Gain 1 Blur NL #y4 : Gain 2 Energy and Exhaust this card", "Cheerio!"],
 		"NAME": "Togame"
 	},
 	"animator_TukaLunaMarceau":

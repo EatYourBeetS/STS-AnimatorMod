@@ -15,6 +15,6 @@ public class SoraEffect_GainStrength extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper.ApplyPower(player, player, new StrengthPower(player, sora.magicNumber));
+        GameActionsHelper.ApplyPower(player, player, new StrengthPower(player, sora.magicNumber), sora.magicNumber);
     }
 }

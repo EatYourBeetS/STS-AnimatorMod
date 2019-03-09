@@ -123,7 +123,7 @@ public class GameActionsHelper
 
     public static ApplyPowerAction ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
     {
-        ApplyPowerAction action = new ApplyPowerAction(target, source, power, power.amount);
+        ApplyPowerAction action = new ApplyPowerAction(target, source, power);
         AbstractDungeon.actionManager.addToBottom(action);
         return action;
     }

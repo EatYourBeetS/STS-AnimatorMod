@@ -21,7 +21,7 @@ public class SoraEffect_ApplyVulnerable extends SoraEffect
         {
             if (!m.isDead && !m.isDying)
             {
-                GameActionsHelper.ApplyPower(player, m, new VulnerablePower(m, sora.magicNumber, false));
+                GameActionsHelper.ApplyPower(player, m, new VulnerablePower(m, sora.magicNumber, false), sora.magicNumber);
             }
         }
     }

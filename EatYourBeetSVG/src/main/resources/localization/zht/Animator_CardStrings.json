@@ -24,7 +24,7 @@
 	},
 	"animator_Ain":
 	{
-		"DESCRIPTION": "[#EFC851]施法者[] 。 對所有敵人造成 !D! 傷害 !M! 次 。 同調 : 獲得 1 點 集中 。",
+		"DESCRIPTION": "[#EFC851]施法者[] 。 對所有敵人造成 !D! 傷害 !M! 次 。 獲得 1 點 集中 。",
 		"EXTENDED_DESCRIPTION": ["施法者", "此牌的傷害會受到集中影響 。"],
 		"NAME": "艾因"
 	},
@@ -41,7 +41,7 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "獲得 !M! % 點 [#EFC851]傷害抵抗[] 。 同調 : 獲得 [B]",
+		"DESCRIPTION": "獲得 !M! % 點 [#EFC851]傷害抵抗[] 。 同調 : 獲得 !SV! 點 臨時生命 。",
 		"EXTENDED_DESCRIPTION": ["傷害抵抗", "受到敵人更少的傷害，效果被層數影響。"],
 		"NAME": "雅兒貝德"
 	},
@@ -199,9 +199,9 @@
 	},
 	"animator_EmiyaShirou":
 	{
-		"DESCRIPTION": "给予随机目标 !M! 点 格挡 与 虚弱 。 [#EFC851]無限刀片工作[] 。",
-		"EXTENDED_DESCRIPTION": ["無限刀片工作", "本回合， 每當打破任意目標的 格擋 時, 獲得 1點能量並抽一張 #y攻擊 牌 。 該效果不疊加 。"],
-		"NAME": "衛宮士郎"
+		"DESCRIPTION": "給予一個隨機敵人 !M! 點格擋 和 易傷 。 [#EFC851]無限刀片工作[] 。",
+		"EXTENDED_DESCRIPTION": ["無限刀片工作", "本回合， 本回合，打破格擋時獲得 1 點 #y能量 和抽一張 隨機 #y攻擊牌 。 該效果不疊加 。"],
+		"NAME": "衛宮四郎"
 	},
 	"animator_Emonzaemon":
 	{
@@ -244,7 +244,8 @@
 	},
 	"animator_FeridBathory":
 	{
-		"DESCRIPTION": "每回合可觸發兩次 ， 消耗 一張牌時 獲得 !M! 點 力量 ， 回復 2 點 生命 。",
+		"DESCRIPTION": "每回合可觸發一旦 ， 消耗 一張牌時 獲得 1 點 力量 ， 回復 2 點 生命 。",
+		"UPGRADE_DESCRIPTION": "每回合可觸發兩次 ， 消耗 一張牌時 獲得 1 點 力量 ， 回復 2 點 生命 。",
 		"NAME": "費里德·巴特利"
 	},
 	"animator_Fredrika":
@@ -298,7 +299,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "獲得 !M! 層 [#EFC851]多層護甲[] 。 NL 獲得 !M! 層 鍛鑄 。 NL [#EFC851]貪婪[] 。",
-		"EXTENDED_DESCRIPTION": ["貪婪", "戰鬥結束後， 獲得相當於你失去生命百分比的金幣 。 不可疊加 。"],
+		"EXTENDED_DESCRIPTION": ["貪婪", "戰鬥結束後， 獲得相當於你失去生命一半百分比的金幣 。 不可疊加 。"],
 		"NAME": "古利德"
 	},
 	"animator_GuildGirl":
@@ -312,7 +313,7 @@
 		"DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將傷害轉換到 [#EFC851]支援[] 中 。",
 		"EXTENDED_DESCRIPTION": ["支援", "回合結束時對生命值較低的敵人造成轉換的傷害"],
 		"NAME": "紅蓮",
-		"UPGRADE_DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 将其伤害转换为等量 格擋 并预存到 [#EFC851]支援[] 中 。"
+		"UPGRADE_DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將傷害轉為 格擋 並預存到[#EFC851]支援[] 中 。"
 	},
 	"animator_Guy":
 	{
@@ -474,7 +475,7 @@
 	},
 	"animator_RoryMercury":
 	{
-		"DESCRIPTION": "本回合下一次 [#EFC851]攻擊[] 傷害翻倍。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 你的攻擊本輪會造成 !M! % 更多傷害 。",
 		"NAME": "蘿莉·麥丘利"
 	},
 	"animator_RoyMustang":
@@ -565,7 +566,7 @@
 	"animator_Togame":
 	{
 		"DESCRIPTION": "抽 !M! 張牌 。 NL 根據手上的牌數量觸發 [#EFC851]額外效果[] 。",
-		"EXTENDED_DESCRIPTION": ["額外效果", "#y7+ : 消耗 1 張牌  NL #y6 : 獲得 6 點 格擋 NL #y5 : 獲得 1 層 人工製品 NL #y4 : 獲得 2 點 能量並且 NL 消耗 這張牌", "再見！！"],
+		"EXTENDED_DESCRIPTION": ["額外效果", "#y7+ : 消耗 1 張牌  NL #y6 : 獲得 6 點 格擋 NL #y5 : 獲得 1 層 殘影 NL #y4 : 獲得 2 點 能量並且 NL 消耗 這張牌", "再見！！"],
 		"NAME": "咎兒"
 	},
 	"animator_TukaLunaMarceau":

@@ -56,8 +56,9 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(-1);
+            upgradeBaseCost(1);
+            //upgradeDamage(2);
+            //upgradeMagicNumber(-1);
         }
     }
 

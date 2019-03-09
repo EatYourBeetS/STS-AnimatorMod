@@ -39,10 +39,7 @@ public class Ain extends AnimatorCard
             GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         }
 
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
-        }
+        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
     }
 
     @Override

@@ -1,7 +1,7 @@
 {
 	"animator_AinzPower":
 	{
-		"DESCRIPTIONS": ["at the start of your turn activate 1 of 4 random effects #b", " time/s."],
+		"DESCRIPTIONS": ["在你的回合開始時隨機發動4個效果中的其中1個", " 次"],
 		"NAME": "安兹·烏爾·恭"
 	},
 	"animator_ArcherPower":
@@ -26,7 +26,7 @@
 	},
 	"animator_EvePower":
 	{
-		"DESCRIPTIONS": ["當#y同#y調 發動時對隨機敵人造成", " 點傷害。"],
+		"DESCRIPTIONS": ["當同調 發動時對隨機敵人造成", " 點傷害。"],
 		"NAME": "依芙的覺醒"
 	},
 	"animator_FeridBathoryPower":
@@ -61,7 +61,7 @@
 	},
 	"animator_RoryMercuryPower":
 	{
-		"DESCRIPTIONS": ["這回合你下一次攻擊", " 造成兩倍傷害。"],
+		"DESCRIPTIONS": ["你的攻擊本輪會造成 #b", " % 更多傷害。"],
 		"NAME": "蘿莉·麥丘利-"
 	},
 	"animator_SupportDamagePower":

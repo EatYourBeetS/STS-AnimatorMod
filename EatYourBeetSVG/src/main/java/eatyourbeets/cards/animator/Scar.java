@@ -19,7 +19,7 @@ public class Scar extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(14,0);
+        Initialize(13,0);
 
         AddExtendedDescription();
 

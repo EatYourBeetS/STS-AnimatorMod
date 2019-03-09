@@ -15,6 +15,6 @@ public class SoraEffect_GainDexterity extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper.ApplyPower(player, player, new DexterityPower(player, sora.magicNumber));
+        GameActionsHelper.ApplyPower(player, player, new DexterityPower(player, sora.magicNumber), sora.magicNumber);
     }
 }

@@ -34,7 +34,7 @@ public class FeridBathory extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(1);
+            upgradeMagicNumber(1);
         }
     }
 }

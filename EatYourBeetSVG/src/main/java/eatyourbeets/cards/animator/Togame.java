@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.BlurPower;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.AnimatorAction;
@@ -97,7 +97,7 @@ public class Togame extends AnimatorCard
             }
             else if (cards == 5)
             {
-                GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
+                GameActionsHelper.ApplyPower(p, p, new BlurPower(p, 1), 1);
             }
             else if (cards == 6)
             {

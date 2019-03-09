@@ -24,7 +24,7 @@
 	},
 	"animator_Ain":
 	{
-		"DESCRIPTION": "[#EFC851]施法者[] 。 对所有敌人造成 !D! 点 伤害 !M! 次 。 同调 : 获得 1 点 集中 。",
+		"DESCRIPTION": "[#EFC851]施法者[] 。 对所有敌人造成 !D! 点 伤害 !M! 次 。 获得 1 点 集中 。",
 		"EXTENDED_DESCRIPTION": ["施法者", "此牌的伤害受 集中  的影响。"],
 		"NAME": "艾因"
 	},
@@ -41,7 +41,7 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "获得 !M! % 的 [#EFC851]抗性[] 。 同调 : 获得 [B]",
+		"DESCRIPTION": "获得 !M! % 的 [#EFC851]抗性[] 。 同调 : 获得 !SV! 点 临时生命 。",
 		"EXTENDED_DESCRIPTION": ["抗性", "减少受到的伤害，效果由层数决定 。"],
 		"NAME": "雅儿贝德"
 	},
@@ -244,7 +244,8 @@
 	},
 	"animator_FeridBathory":
 	{
-		"DESCRIPTION": "每回合可触发两次 ， 消耗 一张牌时 获得 !M! 点 力量 ， 治愈 2 点 生命 。",
+		"DESCRIPTION": "每回合可触发一旦 ， 消耗 一张牌时 获得 1 点 力量 ， 治愈 2 点 生命 。",
+		"UPGRADE_DESCRIPTION": "每回合可触发两次 ， 消耗 一张牌时 获得 1 点 力量 ， 治愈 2 点 生命 。",
 		"NAME": "费里德·巴特利"
 	},
 	"animator_Fredrika":
@@ -298,7 +299,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "获得 !M! 点 [#EFC851]多层格挡[] 。 获得 !M! 层 锻铸 . NL [#EFC851]贪婪[] 。",
-		"EXTENDED_DESCRIPTION": ["贪婪", "在你的回合结束时 , 获得等同于当前失去血量百分比的金币 ，该效果不叠加 。"],
+		"EXTENDED_DESCRIPTION": ["贪婪", "在你的回合结束时 , 获得等同于一半当前失去血量百分比的金币 ，该效果不叠加 。"],
 		"NAME": "贪婪"
 	},
 	"animator_GuildGirl":
@@ -476,7 +477,7 @@
 	},
 	"animator_RoryMercury":
 	{
-		"DESCRIPTION": "本回合下一 [#EFC851]攻击[] 害翻倍 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 你的攻击本轮会造成 !M! % 更多伤害 。",
 		"NAME": "萝莉·麦丘利"
 	},
 	"animator_RoyMustang":
@@ -567,7 +568,7 @@
 	"animator_Togame":
 	{
 		"DESCRIPTION": "抽 !M! 张牌 。 获得一种 [#EFC851]额外效果[] , 效果种类由手中剩余的牌数量决定",
-		"EXTENDED_DESCRIPTION": ["额外效果", "#y7+ : 消耗 1张牌 。 NL #y6 : 获得 6 点 格挡 。 NL #y5 : 获得 1 层 人工制品 。 NL #y4- : 消耗 并 获得 2 点 能量 。", " "],
+		"EXTENDED_DESCRIPTION": ["额外效果", "#y7+ : 消耗 1张牌 。 NL #y6 : 获得 6 点 格挡 。 NL #y5 : 获得 1 层 残影 。 NL #y4- : 消耗 并 获得 2 点 能量 。", " "],
 		"NAME": "咎儿"
 	},
 	"animator_TukaLunaMarceau":

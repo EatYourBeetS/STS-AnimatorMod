@@ -21,7 +21,7 @@ public class SoraEffect_ApplyWeak extends SoraEffect
         {
             if (!m.isDead && !m.isDying)
             {
-                GameActionsHelper.ApplyPower(player, m, new WeakPower(m, sora.magicNumber, false));
+                GameActionsHelper.ApplyPower(player, m, new WeakPower(m, sora.magicNumber, false), sora.magicNumber);
             }
         }
     }

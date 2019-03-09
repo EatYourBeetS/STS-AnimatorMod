@@ -26,12 +26,12 @@ public class Chris extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-
         if (m != null)
         {
             GameActionsHelper.ApplyPower(p, m, new StolenGoldPower(m, this.damage), this.damage);
         }
+
+        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
     }
 
     @Override

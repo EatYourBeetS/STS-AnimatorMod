@@ -31,7 +31,7 @@
 	},
 	"animator_FeridBathoryPower":
 	{
-		"DESCRIPTIONS": ["Twice per turn, when a card is Exhausted gain #b", " Strength and Heal #b", " Hp."],
+		"DESCRIPTIONS": ["When a card is Exhausted gain #b", " Strength and Heal #b", " Hp."],
 		"NAME": "Ferid Bathory"
 	},
 	"animator_HiteiPower":
@@ -61,7 +61,7 @@
 	},
 	"animator_RoryMercuryPower":
 	{
-		"DESCRIPTIONS": ["Your next attack this turn deals double damage. #b", " use/s."],
+		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b", "% more damage."],
 		"NAME": "Rory Mercury"
 	},
 	"animator_SupportDamagePower":

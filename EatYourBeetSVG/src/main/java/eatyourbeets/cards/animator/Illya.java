@@ -17,7 +17,7 @@ public class Illya extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0,4);
+        Initialize(0,0,5);
 
         SetSynergy(Synergies.Fate);
     }
@@ -49,7 +49,7 @@ public class Illya extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(3);
         }
     }
 }

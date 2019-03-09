@@ -1,14 +1,10 @@
 package eatyourbeets.cards.animator;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -64,7 +60,10 @@ public class EmiyaShirou extends AnimatorCard
             GameActionsHelper.ApplyPower(p, target, new VulnerablePower(target, 1, false), 1);
         }
 
-        GameActionsHelper.ApplyPower(p, p, new EmiyaShirouPower(p));
+        if (!p.hasPower(EmiyaShirouPower.POWER_ID))
+        {
+            GameActionsHelper.ApplyPower(p, p, new EmiyaShirouPower(p));
+        }
     }
 
     @Override

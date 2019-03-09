@@ -63,8 +63,13 @@
 	},
 	"animator_Archer":
 	{
-		"DESCRIPTION": "在你的回合結束時 ，敵人每層的負面效果使其受到 !D! 點傷害，可被 力量 效果加成 。",
+		"DESCRIPTION": "在你的回合結束時 ， 敵人每層的負面效果使其受到 !D! 點傷害，可被 力量 效果加成 。",
 		"NAME": "Archer"
+	},
+	"animator_Arpeggio":
+	{
+		"DESCRIPTION": "增強 !SV! : 獲得一個充能球欄位 。 如果增強為 0 ， 重置它 和 生成 1 個 電漿 充能球 。",
+		"NAME": "Arpeggio"
 	},
 	"animator_Asuramaru":
 	{
@@ -85,6 +90,11 @@
 	{
 		"DESCRIPTION": "每次打出 4 張牌後 ， 獲得 !M! 點 力量 和 1 點 敏捷 。",
 		"NAME": "日和號"
+	},
+	"animator_Bozes":
+	{
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 每當一張牌在本回合中同調， 獲得 !M! 點 格擋 。",
+		"NAME": "Bozes"
 	},
 	"animator_Caster":
 	{
@@ -176,9 +186,9 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 增強 !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯[] 。",
+		"DESCRIPTION": "虛無 。 增強 !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯[] 。",
 		"NAME": "阿爾馮斯·艾力克",
-		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 增強 !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯+[] 。"
+		"UPGRADE_DESCRIPTION": "虛無 。 增強 !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯+[] 。"
 	},
 	"animator_ElricAlphonseAlt":
 	{
@@ -448,7 +458,8 @@
 	},
 	"animator_PinaCoLada":
 	{
-		"DESCRIPTION": "每觸發一次 同調 效果獲得 !M! 點 格擋 。",
+		"DESCRIPTION": "你每輪打的第一無耗能張牌打了兩次 。",
+		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 你每輪打的第一無耗能張牌打了兩次 。",
 		"NAME": "平娜·戈·蘭達"
 	},
 	"animator_Priestess":
@@ -571,12 +582,13 @@
 	},
 	"animator_TukaLunaMarceau":
 	{
-		"DESCRIPTION": "獲得 !M! 點 敏捷 。 回合結束時失去 !M! 點 敏捷 。 同調 : 改為減少1 點 敏捷 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 通過 !M! 增加你手中一隨機牌的阻擋",
 		"NAME": "杜嘉"
 	},
 	"animator_Tyuule":
 	{
-		"DESCRIPTION": "手牌中每有一張 [#EFC851]技能牌[] ， 給予所有敵人 !M! 層 中毒 。 NL ( 給予 !SV! 層 中毒 )",
+		"DESCRIPTION": "手牌中每有另一個張 [#EFC851]技能牌[] ， 給予所有敵人 !M! 層 中毒 。 NL ( 給予 !SV! 層 中毒 )",
+		"UPGRADE_DESCRIPTION": "手牌中每有一張 [#EFC851]技能牌[] ， 給予所有敵人 !M! 層 中毒 。 NL ( 給予 !SV! 層 中毒 )",
 		"NAME": "蒂尤蕾"
 	},
 	"animator_Urushihara":

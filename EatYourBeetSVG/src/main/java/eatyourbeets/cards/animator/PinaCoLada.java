@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PinaCoLadaPower;
@@ -14,9 +15,9 @@ public class PinaCoLada extends AnimatorCard
 
     public PinaCoLada()
     {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0,3);
+        Initialize(0,0,1);
 
         SetSynergy(Synergies.Gate);
     }
@@ -24,6 +25,11 @@ public class PinaCoLada extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        if (upgraded)
+        {
+            GameActionsHelper.GainBlock(p, this.block);
+        }
+
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new PinaCoLadaPower(p, this.magicNumber), this.magicNumber));
     }
 
@@ -32,8 +38,7 @@ public class PinaCoLada extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(0);
-            //upgradeMagicNumber(1);
+            upgradeBlock(8);
         }
     }
 }

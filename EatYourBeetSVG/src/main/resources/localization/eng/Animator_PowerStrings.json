@@ -51,7 +51,7 @@
 	},
 	"animator_PinaCoLadaPower":
 	{
-		"DESCRIPTIONS": ["Whenever a #ySynergy is activated gain #b", " block."],
+		"DESCRIPTIONS": ["Your next #b", " #y0-Cost card/s are played twice."],
 		"NAME": "Piña Co Lada"
 	},
 	"animator_PlayerStatistics":
@@ -98,6 +98,11 @@
 	{
 		"DESCRIPTIONS": ["The first #b", " card/s you play every turn will Synergize."],
 		"NAME": "Envy"
+	},
+	"animator_BozesPower":
+	{
+		"DESCRIPTIONS": ["Whenever a card Synergizes this turn, gain #b", " #yBlock."],
+		"NAME": "Bozes Co Palesti"
 	},
 	"animator_BurningPower":
 	{

@@ -16,7 +16,9 @@ public class ElricAlphonse extends AnimatorCard_Boost
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,2);
+        Initialize(0,0);
+
+        this.isEthereal = true;
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -38,8 +40,6 @@ public class ElricAlphonse extends AnimatorCard_Boost
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, this.block);
-
         if (ProgressBoost())
         {
             GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
@@ -51,7 +51,6 @@ public class ElricAlphonse extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeBlock(1);
             upgradeSecondaryValue(1);
         }
     }

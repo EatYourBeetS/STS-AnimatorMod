@@ -7,9 +7,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import eatyourbeets.ui.CardRewardScreenPatch;
-import eatyourbeets.ui.GridCardSelectScreenPatch;
 
 import java.util.ArrayList;
 

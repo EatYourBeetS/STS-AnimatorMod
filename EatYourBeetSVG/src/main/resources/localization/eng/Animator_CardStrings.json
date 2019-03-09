@@ -66,6 +66,11 @@
 		"DESCRIPTION": "At the end of your turn, deal !D! damage to all enemies for each Debuff they have. Scales with Strength.",
 		"NAME": "Archer"
 	},
+	"animator_Arpeggio":
+	{
+		"DESCRIPTION": "Boost !SV! : NL Gain 1 Orb Slot. NL If this card's Boost is at 0, [#EFC851]Channel 1 Plasma and reset it.",
+		"NAME": "Arpeggio"
+	},
 	"animator_Asuramaru":
 	{
 		"DESCRIPTION": "Deal !D! damage. Gain !M! Intangible, Strength, Dexterity and Artifact. Purge.",
@@ -85,6 +90,11 @@
 	{
 		"DESCRIPTION": "Every 4 Attacks played, gain !M! Strength and 1 Dexterity.",
 		"NAME": "Biyorigo"
+	},
+	"animator_Bozes":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Whenever a card Synergizes this turn, gain !M! Block.",
+		"NAME": "Bozes"
 	},
 	"animator_Caster":
 	{
@@ -176,13 +186,13 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "Gain !B! [#EFC851]Block[]. NL Boost !SV! : NL Gain 1 Focus. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse.",
+		"DESCRIPTION": "[#EFC851]Ethereal. Boost !SV! : NL Gain 1 Focus. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse.",
 		"NAME": "Alphonse Elric",
-		"UPGRADE_DESCRIPTION": "Gain !B! [#EFC851]Block[]. NL Boost !SV! : NL Gain 1 Focus. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse+."
+		"UPGRADE_DESCRIPTION": "[#EFC851]Ethereal. Boost !SV! : NL Gain 1 Focus. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse+."
 	},
 	"animator_ElricAlphonseAlt":
 	{
-		"DESCRIPTION": "Gain !M! [#EFC851]Plated [#EFC851]Armor. NL Gain !B! Block. NL Synergy: [#EFC851]Channel[] 1 Lightning.",
+		"DESCRIPTION": "Gain !B! Block. NL Gain !M! [#EFC851]Plated [#EFC851]Armor. NL Synergy: [#EFC851]Channel[] 1 Lightning.",
 		"NAME": "Armored Alphonse"
 	},
 	"animator_ElricEdward":
@@ -450,7 +460,8 @@
 	},
 	"animator_PinaCoLada":
 	{
-		"DESCRIPTION": "When a Synergy is activated gain !M! Block.",
+		"DESCRIPTION": "The first [#EFC851]0-Cost card you play each turn is played twice.",
+		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL The first [#EFC851]0-Cost card you play each turn is played twice.",
 		"NAME": "Piña Co Lada"
 	},
 	"animator_Priestess":
@@ -573,12 +584,13 @@
 	},
 	"animator_TukaLunaMarceau":
 	{
-		"DESCRIPTION": "Gain !M! Dexterity. At the end of your turn lose !M! Dexterity. Synergy: lose 1 less Dexterity.",
+		"DESCRIPTION": "Gain !B! Block. Increase the Block of a random card in your hand by !M! this combat.",
 		"NAME": "Tuka"
 	},
 	"animator_Tyuule":
 	{
 		"DESCRIPTION": "Apply !M! Poison to ALL enemies for each other [#EFC851]Skill in your hand. NL (Apply !SV! Poison)",
+		"UPGRADE_DESCRIPTION": "Apply !M! Poison to ALL enemies for each [#EFC851]Skill in your hand. NL (Apply !SV! Poison)",
 		"NAME": "Tyuule"
 	},
 	"animator_Urushihara":

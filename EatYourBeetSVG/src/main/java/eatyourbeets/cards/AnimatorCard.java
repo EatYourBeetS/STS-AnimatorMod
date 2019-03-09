@@ -216,7 +216,8 @@ public abstract class AnimatorCard extends CustomCard
         AnimatorCard copy = Utilities.SafeCast(result, AnimatorCard.class);
         if (copy != null)
         {
-            copy.secondaryValue = copy.baseSecondaryValue = this.baseSecondaryValue;
+            copy.secondaryValue = this.secondaryValue;
+            copy.baseSecondaryValue = this.baseSecondaryValue;
         }
 
         return result;

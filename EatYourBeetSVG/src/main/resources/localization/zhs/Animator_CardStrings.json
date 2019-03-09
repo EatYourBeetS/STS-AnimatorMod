@@ -66,6 +66,11 @@
 		"DESCRIPTION": "在你的回合结束时 ， 对每个敌人造成伤害 ， 伤害值由每个敌人各自的负面效果层数决定 (造成 !D! 点 伤害) ， 可受 力量 效果加成 。",
 		"NAME": "Archer"
 	},
+	"animator_Arpeggio":
+	{
+		"DESCRIPTION": "鼓舞 !SV! : 获得一个充能球栏位 。 NL 如果鼓舞为 0 ， 重置它 和 生成 1 个 等离子 充能球 。",
+		"NAME": "Arpeggio"
+	},
 	"animator_Asuramaru":
 	{
 		"DESCRIPTION": "造成 !D! 点伤害 。 获得 !M! 层 无实体 ， 力量 ， 敏捷 ， 人工制品 。 抹除 。",
@@ -85,6 +90,11 @@
 	{
 		"DESCRIPTION": "每 4 次攻击获得 !M! 点 力量 并且获得 1 点 敏捷 。",
 		"NAME": "大和号"
+	},
+	"animator_Bozes":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 每当一张牌在本回合中同调， 获得 !M! 点 格挡 。",
+		"NAME": "Bozes"
 	},
 	"animator_Caster":
 	{
@@ -176,9 +186,9 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 鼓舞 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲[] 。",
+		"DESCRIPTION": "虚无 。 鼓舞 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲[] 。",
 		"NAME": "阿尔冯斯",
-		"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 鼓舞 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲+[] 。"
+		"UPGRADE_DESCRIPTION": "虚无 。 鼓舞 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲+[] 。"
 	},
 	"animator_ElricAlphonseAlt":
 	{
@@ -450,7 +460,8 @@
 	},
 	"animator_PinaCoLada":
 	{
-		"DESCRIPTION": "每触发一次 同调 效果获得 !M! 点 格挡 。",
+		"DESCRIPTION": "你每轮打的第一無耗能张牌打了两次 。",
+		"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 你每轮打的第一無耗能张牌打了两次 。",
 		"NAME": "平娜·戈·兰达"
 	},
 	"animator_Priestess":
@@ -573,12 +584,13 @@
 	},
 	"animator_TukaLunaMarceau":
 	{
-		"DESCRIPTION": "获得 !M! 点 敏捷 。 回合结束时失去 !M! 点 敏捷 。 同调 : 改为减少1 点 敏捷 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 通过 !M! 增加你手中一随机牌的阻挡 。",
 		"NAME": "杜嘉"
 	},
 	"animator_Tyuule":
 	{
-		"DESCRIPTION": "手牌中每有一张 [#EFC851]技能牌[] ， 给予所有敌人 !M! 层 中毒 。 NL ( 给予 !SV! 层 中毒 )",
+		"DESCRIPTION": "手牌中每有另一个张 [#EFC851]技能牌[] ， 给予所有敌人 !M! 层 中毒 。 NL ( 给予 !SV! 层 中毒 )",
+		"UPGRADE_DESCRIPTION": "手牌中每有一张 [#EFC851]技能牌[] ， 给予所有敌人 !M! 层 中毒 。 NL ( 给予 !SV! 层 中毒 )",
 		"NAME": "蒂尤蕾"
 	},
 	"animator_Urushihara":

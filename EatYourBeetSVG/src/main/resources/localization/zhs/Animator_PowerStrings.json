@@ -2,67 +2,67 @@
 {
 	"animator_AinzPower":
 	{
-		"DESCRIPTIONS": ["在你的回合开始时，从四种特殊效果中选择一种并发动 #b", " 次."],
+		"DESCRIPTIONS": ["在你的回合开始时，从四种特殊效果中选择一种并发动 #b", " 次。"],
 		"NAME": "安兹·乌尔·恭"
 	},
 	"animator_ArcherPower":
 	{
-		"DESCRIPTIONS": ["在你的回合结束时对所有敌人造成", " 点 伤害并造成负面效果."],
+		"DESCRIPTIONS": ["在你的回合结束时对所有敌人造成", " 点 伤害并造成负面效果。"],
 		"NAME": "Archer"
 	},
 	"animator_DarknessPower":
 	{
-		"DESCRIPTIONS": ["每当你受伤时随机升级", " 张牌, 手牌优先."],
+		"DESCRIPTIONS": ["每当你受伤时随机升级", " 张牌, 手牌优先。"],
 		"NAME": "拉拉蒂娜!"
 	},
 	"animator_EntouJyuuPower":
 	{
-		"DESCRIPTIONS": ["每打出一张攻击牌，增加那张牌", " 点伤害."],
+		"DESCRIPTIONS": ["每打出一张攻击牌，增加那张牌", " 点伤害。"],
 		"NAME": "炎刃·铳"
 	},
 	"animator_ShiroPower":
 	{
-		"DESCRIPTIONS": ["在你的回合开始时获得", " 点能量."],
+		"DESCRIPTIONS": ["在你的回合开始时获得", " 点能量。"],
 		"NAME": "白"
 	},
 	"animator_EvePower":
 	{
-		"DESCRIPTIONS": ["当同调生效时对一个随机敌人造成", " 点伤害."],
+		"DESCRIPTIONS": ["当同调生效时对一个随机敌人造成", " 点伤害。"],
 		"NAME": "EVE的觉醒"
 	},
 	"animator_FeridBathoryPower":
 	{
-		"DESCRIPTIONS": ["每回合两次，当一张牌被消耗时增加", " 点力量并治疗", " 点生命."],
+		"DESCRIPTIONS": ["每回合两次，当一张牌被消耗时增加", " 点力量并治疗", " 点生命。"],
 		"NAME": "费里德·巴特利"
 	},
 	"animator_HiteiPower":
 	{
-		"DESCRIPTIONS": ["在你的回合开始时获得", "个金币, 从你的牌库中选择并 消耗", " 张牌."],
+		"DESCRIPTIONS": ["在你的回合开始时获得", "个金币, 从你的牌库中选择并 消耗", " 张牌。"],
 		"NAME": "否定姫"
 	},
 	"animator_GuildGirlPower":
 	{
-		"DESCRIPTIONS": ["在你的回合开始时循环", " 张牌."],
+		"DESCRIPTIONS": ["在你的回合开始时循环", " 张牌。"],
 		"NAME": "簿记"
 	},
 	"animator_MarkOfPoisonPower":
 	{
-		"DESCRIPTIONS": ["每当攻击 对你造成伤害时，获得", " 层毒."],
+		"DESCRIPTIONS": ["每当攻击 对你造成伤害时，获得", " 层毒。"],
 		"NAME": "毒标记"
 	},
 	"animator_PinaCoLadaPower":
 	{
-		"DESCRIPTIONS": ["每当同调生效时获得", " 层格挡."],
+		"DESCRIPTIONS": ["Your next #b", " #y0-Cost card/s are played twice."],
 		"NAME": "平娜·戈·兰达"
 	},
 	"animator_PlayerStatistics":
 	{
-		"DESCRIPTIONS": ["Hidden Player Statistics power."],
+		"DESCRIPTIONS": ["Hidden Player Statistics power。"],
 		"NAME": "Player Statistics"
 	},
 	"animator_RoryMercuryPower":
 	{
-		"DESCRIPTIONS": ["你的攻击本轮会造成 #b", "% 更多伤害."],
+		"DESCRIPTIONS": ["你的攻击本轮会造成 #b", "% 更多伤害。"],
 		"NAME": "萝莉·麦丘利"
 	},
 	"animator_SupportDamagePower":
@@ -72,7 +72,7 @@
 	},
 	"animator_PoisonAffinityPower":
 	{
-		"DESCRIPTIONS": ["每当你给予 #y毒 时, 额外给予一层 #b", " #y毒."],
+		"DESCRIPTIONS": ["每当你给予 #y毒 时, 额外给予一层 #b", " #y毒。"],
 		"NAME": "毒素亲和"
 	},
 	"animator_BiyorigoPower":
@@ -82,7 +82,7 @@
 	},
 	"animator_AlbedoPower":
 	{
-		"DESCRIPTIONS": ["受到的所有伤害降低 #b", "%."],
+		"DESCRIPTIONS": ["受到的所有伤害降低 #b", "%。"],
 		"NAME": "雅尔贝德"
 	},
 	"animator_HigakiRinnePower":
@@ -97,12 +97,17 @@
 	},
 	"animator_EnvyPower":
 	{
-		"DESCRIPTIONS": ["每回合打出的第一张 #b", " 牌 触发自身的 同调 效果."],
+		"DESCRIPTIONS": ["每回合打出的第一张 #b", " 牌 触发自身的 同调 效果。"],
 		"NAME": "嫉妒"
+	},
+	"animator_BozesPower":
+	{
+		"DESCRIPTIONS": ["每当一张牌在本回合中同调， 获得 #b", " 点 格挡 。"],
+		"NAME": "Bozes Co Palesti"
 	},
 	"animator_BurningPower":
 	{
-		"DESCRIPTIONS": ["在回合结束时受到 #b", " 点伤害. 额外受到 #b", "%  #y攻击 伤害."],
+		"DESCRIPTIONS": ["在回合结束时受到 #b", " 点伤害。 额外受到 #b", "%  #y攻击 伤害。"],
 		"NAME": "燃烧"
 	},
 	"animator_StolenGoldPower":

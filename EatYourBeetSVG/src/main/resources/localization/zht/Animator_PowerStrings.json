@@ -51,7 +51,7 @@
 	},
 	"animator_PinaCoLadaPower":
 	{
-		"DESCRIPTIONS": ["當同調發動時獲得", " 點格擋。"],
+		"DESCRIPTIONS": ["Your next #b", " #y0-Cost card/s are played twice."],
 		"NAME": "平娜·戈·蘭達"
 	},
 	"animator_PlayerStatistics":
@@ -103,6 +103,11 @@
 	{
 		"DESCRIPTIONS": ["在回合結束時受到 #b", " 點傷害 。 獲得 #b", "% 更多 #y攻擊傷害 。"],
 		"NAME": "燃燒"
+	},
+	"animator_BozesPower":
+	{
+		"DESCRIPTIONS": ["每當一張牌在本回合中同調， 獲得 #b", " 點 格擋 。"],
+		"NAME": "Bozes Co Palesti"
 	},
 	"animator_StolenGoldPower":
 	{

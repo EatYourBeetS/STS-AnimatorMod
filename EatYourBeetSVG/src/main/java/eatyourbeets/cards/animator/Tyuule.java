@@ -15,7 +15,7 @@ public class Tyuule extends AnimatorCard
 
     public Tyuule()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
         Initialize(0,0,2);
 
@@ -29,7 +29,13 @@ public class Tyuule extends AnimatorCard
     {
         super.applyPowers();
 
-        this.secondaryValue = Math.max(0, AbstractDungeon.player.hand.getSkills().size() - 1) * this.magicNumber;
+        int skillCounts = AbstractDungeon.player.hand.getSkills().size();
+        if (!upgraded)
+        {
+            skillCounts -= 1;
+        }
+
+        this.secondaryValue = Math.max(0, skillCounts) * this.magicNumber;
         this.isSecondaryValueModified = secondaryValue > 0;
     }
 
@@ -49,9 +55,6 @@ public class Tyuule extends AnimatorCard
     @Override
     public void upgrade() 
     {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
+        TryUpgrade();
     }
 }

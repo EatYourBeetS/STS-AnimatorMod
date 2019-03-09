@@ -14,6 +14,12 @@ public abstract class AnimatorCard_Boost extends AnimatorCard
         this.baseSecondaryValue = this.secondaryValue = GetBaseBoost();
     }
 
+    protected void ResetBoost()
+    {
+        this.baseSecondaryValue = this.secondaryValue = GetBaseBoost();
+        this.isSecondaryValueModified = false;
+    }
+
     protected boolean ProgressBoost()
     {
         if (this.secondaryValue > 0)

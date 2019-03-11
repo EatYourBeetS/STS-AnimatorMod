@@ -68,7 +68,7 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "鼓舞 !SV! : 获得一个充能球栏位 。 NL 如果鼓舞为 0 ， 重置它 和 生成 1 个 等离子 充能球 。",
+		"DESCRIPTION": "鼓舞 !SV! : 获得一个充能球栏位 。 NL 如果鼓舞为 0 ， 重置 并 生成 1 个 等离子 充能球 。",
 		"NAME": "Arpeggio"
 	},
 	"animator_Asuramaru":
@@ -93,8 +93,8 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 每当一张牌在本回合中同调， 获得 !M! 点 格挡 。",
-		"NAME": "Bozes"
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 本回合中每有一张牌触发同调效果， 获得 !M! 点 格挡 。",
+		"NAME": "波赛斯"
 	},
 	"animator_Caster":
 	{
@@ -209,8 +209,8 @@
 	},
 	"animator_EmiyaShirou":
 	{
-		"DESCRIPTION": "给予随机目标 !M! 点 格挡 与 虚弱 。 [#EFC851]无限刀片工作[] 。",
-		"EXTENDED_DESCRIPTION": ["无限刀片工作", "本回合， 每当打破任意目标的 格挡 时, 获得 1点能量并抽一张 #y攻击 牌 。 该效果不叠加 。"],
+		"DESCRIPTION": "给予随机目标 !M! 点 格挡 与 虚弱 。 [#EFC851]无限剑制[] 。",
+		"EXTENDED_DESCRIPTION": ["无限剑制", "本回合， 每当打破任意目标的 格挡 时, 获得 1点能量并抽一张 #y攻击 牌 。 该效果不叠加 。"],
 		"NAME": "卫宫士郎"
 	},
 	"animator_Emonzaemon":
@@ -460,8 +460,8 @@
 	},
 	"animator_PinaCoLada":
 	{
-		"DESCRIPTION": "你每轮打的第一無耗能张牌打了两次 。",
-		"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 你每轮打的第一無耗能张牌打了两次 。",
+		"DESCRIPTION": "每回合打出的第一张0耗牌打出两次 。",
+		"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 每回合打出的第一张0耗牌打出两次 。",
 		"NAME": "平娜·戈·兰达"
 	},
 	"animator_Priestess":

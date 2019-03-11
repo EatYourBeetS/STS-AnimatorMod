@@ -1,6 +1,8 @@
 package eatyourbeets.cards.animator;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -14,10 +16,13 @@ import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.actions.HigakiRinneAction;
+import eatyourbeets.actions.WaitRealtimeAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.HigakiRinnePower;
@@ -41,6 +46,13 @@ public class HigakiRinne extends AnimatorCard
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
+
+        if (this.type != CardType.SKILL)
+        {
+            this.loadCardImage(AnimatorResources.GetCardImage(ID));
+            this.type = CardType.SKILL;
+            this.target = CardTarget.ALL;
+        }
 
         int n = AbstractDungeon.miscRng.random(100);
         if (n < 3)
@@ -73,12 +85,6 @@ public class HigakiRinne extends AnimatorCard
         {
             this.loadCardImage(AnimatorResources.GetCardImage(ID + "Power"));
             this.type = CardType.POWER;
-            this.target = CardTarget.ALL;
-        }
-        else if (this.type != CardType.SKILL)
-        {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID));
-            this.type = CardType.SKILL;
             this.target = CardTarget.ALL;
         }
     }
@@ -116,13 +122,7 @@ public class HigakiRinne extends AnimatorCard
         }
         else if (this.type == CardType.ATTACK)
         {
-            int count = upgraded ? 20 : 15;
-            for (int i = 0; i < count; i++)
-            {
-                int damage = AbstractDungeon.miscRng.random(1);
-                DamageInfo info = new DamageInfo(p, damage, DamageInfo.DamageType.THORNS);
-                GameActionsHelper.AddToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.POISON, true));
-            }
+            AttackAction(p, m);
         }
         else
         {
@@ -140,6 +140,39 @@ public class HigakiRinne extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
+        }
+    }
+
+    private void AttackAction(AbstractPlayer p, AbstractMonster m)
+    {
+        int n = AbstractDungeon.miscRng.random(15);
+        if (n < 5)
+        {
+            int count = upgraded ? 20 : 15;
+            for (int i = 0; i < count; i++)
+            {
+                int damage = AbstractDungeon.miscRng.random(1);
+                DamageInfo info = new DamageInfo(p, damage, DamageInfo.DamageType.THORNS);
+                GameActionsHelper.AddToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.POISON, true));
+            }
+        }
+        else if (n < 10)
+        {
+            GameActionsHelper.AddToBottom(new WaitAction(0.35f));
+            GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.RED)));
+            GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5f));
+            GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
+            GameActionsHelper.DamageTarget(p, m, 1, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+            GameActionsHelper.AddToBottom(new WaitRealtimeAction(0.8f));
+            GameActionsHelper.DamageTarget(p, m, 12, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
+        }
+        else
+        {
+            int d = upgraded ? 8 : 6;
+
+            GameActionsHelper.DamageTarget(p, m, AbstractDungeon.miscRng.random(2,d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
+            GameActionsHelper.DamageTarget(p, m, AbstractDungeon.miscRng.random(2,d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
+            AbstractDungeon.actionManager.addToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
         }
     }
 

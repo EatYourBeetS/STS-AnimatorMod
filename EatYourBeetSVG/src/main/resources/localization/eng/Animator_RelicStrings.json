@@ -24,7 +24,7 @@
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
 		"DESCRIPTIONS":
 		[
-			"You may banish card #yseries from appearing in all future rewards and shops. Gain more uses after defeating a boss."
+			"You may banish card #yseries from appearing in all future rewards and shops. Gain more uses after defeating a boss.", "Removed Series:"
 		]
 	}
 }

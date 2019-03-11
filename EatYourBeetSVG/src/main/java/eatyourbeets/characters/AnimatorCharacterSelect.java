@@ -1,9 +1,13 @@
 package eatyourbeets.characters;
 
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.AnimatorResources;
+import eatyourbeets.cards.animator.Defend;
+import eatyourbeets.cards.animator.Strike;
 import eatyourbeets.characters.Loadouts.*;
 
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public class AnimatorCharacterSelect
 {
@@ -37,8 +41,17 @@ public class AnimatorCharacterSelect
 
     private static void AddLoadout(AnimatorCustomLoadout loadout, int level, String description)
     {
+        StringJoiner sj = new StringJoiner(", ");
+        for (String s : loadout.GetStartingDeck())
+        {
+            if (!s.equals(Strike.ID) && !s.equals(Defend.ID))
+            {
+                sj.add(CardLibrary.getCardNameFromKey(s));
+            }
+        }
+        loadout.description = sj.toString();
+        //loadout.description = description;
         loadout.unlockLevel = level;
-        loadout.description = description;
         customLoadouts.add(loadout);
     }
 
@@ -53,17 +66,17 @@ public class AnimatorCharacterSelect
         String veryUnbalanced = uiText[8];
         String special = uiText[9];
 
-        AddLoadout(new Konosuba(), 0, recommended);
-        AddLoadout(new Gate(), 1, balanced);
-        AddLoadout(new Elsword(), 1, balanced);
-        AddLoadout(new NoGameNoLife(), 1, balanced);
-        AddLoadout(new OwariNoSeraph(), 2, unbalanced);
-        AddLoadout(new GoblinSlayer(), 2, unbalanced);
-        AddLoadout(new Katanagatari(), 2, unbalanced);
-        AddLoadout(new FullmetalAlchemist(), 2, unbalanced);
-        AddLoadout(new Fate(), 3, veryUnbalanced);
-        AddLoadout(new Overlord(), 3, veryUnbalanced);
-        AddLoadout(new Chaika(), 3, veryUnbalanced);
-        AddLoadout(new Kancolle(), 4, special);
+        AddLoadout(new Konosuba()           , 0, recommended);
+        AddLoadout(new Gate()               , 1, balanced);
+        AddLoadout(new Elsword()            , 1, balanced);
+        AddLoadout(new NoGameNoLife()       , 1, balanced);
+        AddLoadout(new OwariNoSeraph()      , 2, unbalanced);
+        AddLoadout(new GoblinSlayer()       , 2, unbalanced);
+        AddLoadout(new Katanagatari()       , 2, unbalanced);
+        AddLoadout(new FullmetalAlchemist() , 2, unbalanced);
+        AddLoadout(new Fate()               , 3, veryUnbalanced);
+        AddLoadout(new Overlord()           , 3, veryUnbalanced);
+        AddLoadout(new Chaika()             , 3, veryUnbalanced);
+        AddLoadout(new Kancolle()           , 4, special);
     }
 }

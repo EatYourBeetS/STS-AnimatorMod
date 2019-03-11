@@ -16,7 +16,7 @@ public class ChlammyZell extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(13, 0, 4);
+        Initialize(14, 0, 4);
 
         this.isMultiDamage = true;
 
@@ -47,7 +47,7 @@ public class ChlammyZell extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(2);
-            upgradeDamage(3);
+            upgradeDamage(2);
         }
     }
 }

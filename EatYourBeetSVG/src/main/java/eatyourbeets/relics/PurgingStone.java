@@ -16,6 +16,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.StringJoiner;
 
 public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 {
@@ -42,12 +43,48 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
         return DESCRIPTIONS[0];
     }
 
+    private void UpdateBannedTip()
+    {
+        String message;
+        if (bannedSynergies != null && bannedSynergies.size() > 0)
+        {
+            StringJoiner sj = new StringJoiner(" NL ");
+            sj.add(DESCRIPTIONS[0]);
+            sj.add("");
+            sj.add(DESCRIPTIONS[1]);
+
+            for (Synergy bannedSynergy : bannedSynergies)
+            {
+                StringJoiner java = new StringJoiner(" ");
+                java.add("- ");
+                for (String s : bannedSynergy.NAME.split(" "))
+                {
+                    java.add("#r" + s);
+                }
+                sj.add(java.toString());
+            }
+
+            message = sj.toString();
+        }
+        else
+        {
+            message = DESCRIPTIONS[0];
+        }
+
+        if (this.tips.size() > 0)
+        {
+            this.tips.get(0).body = message;
+        }
+    }
+
     @Override
     public void onEquip()
     {
         super.onEquip();
 
         counter = 0;
+        UpdateBannedTip();
+
         AddUses(2);
     }
 
@@ -152,6 +189,8 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
                 this.flash();
             }
         }
+
+        UpdateBannedTip();
     }
 
     @Override
@@ -256,5 +295,6 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
         {
             RemoveSynergy(s);
         }
+        UpdateBannedTip();
     }
 }

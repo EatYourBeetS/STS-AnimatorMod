@@ -254,13 +254,13 @@
 	},
 	"animator_FeridBathory":
 	{
-		"DESCRIPTION": "每回合可触发一旦 ， 消耗 一张牌时 获得 1 点 力量 ， 治愈 2 点 生命 。",
+		"DESCRIPTION": "每回合可触发一次 ， 消耗 一张牌时 获得 1 点 力量 ， 治愈 2 点 生命 。",
 		"UPGRADE_DESCRIPTION": "每回合可触发两次 ， 消耗 一张牌时 获得 1 点 力量 ， 治愈 2 点 生命 。",
 		"NAME": "费里德·巴特利"
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "穿越者 。 每个敌人使你获得获得 !B! 点 格挡 。 同调 : 选择并 保留 最多 !M! 张牌 。",
+		"DESCRIPTION": "穿越者 。 每个敌人使你获得获得 !B! 点 格挡 。 撤回 : 获得 !M! 点 [#EFC851]多层格挡[] 。",
 		"NAME": "芙蕾多妮卡"
 	},
 	"animator_Gilgamesh":
@@ -327,7 +327,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "给予一个敌人 !B! 点 格挡 ， 然后获得等同于目标的 格挡 值 。 预热 !SV! : 获得 1 个冰霜充能球 。",
+		"DESCRIPTION": "给予一个敌人 !M! 点 格挡 ， 然后获得等同于目标的 格挡 值 。 循环 1 张牌 。",
 		"NAME": "奇伊"
 	},
 	"animator_HigakiRinne":
@@ -467,7 +467,7 @@
 	"animator_Priestess":
 	{
 		"DESCRIPTION": "鼓舞 !SV! : 获得 !M! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 [#EFC851]*[] 。",
-		"EXTENDED_DESCRIPTION": ["* 注", "受块修饰符影响 。"],
+		"EXTENDED_DESCRIPTION": ["* 注", "受格挡修饰词影响 。"],
 		"NAME": "女神官"
 	},
 	"animator_Raven":
@@ -625,6 +625,45 @@
 	{
 		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 手牌中每有一张别的 [#EFC851]攻击[] 牌 ， 增加一点消耗 。",
 		"NAME": "芸芸"
+	},
+	"animator_CowGirl":
+	{
+		"DESCRIPTION": "获得 [B] NL 获得 !M! 点临时 生命 。 NL 消耗 。",
+		"NAME": "奶牛妹"
+	},
+	"animator_HiiragiShinya":
+	{
+		"DESCRIPTION": "造成 !D! 点伤害 。 如果这是你本轮第一次进攻 ， 给予目标一个随机的 [#EFC851]负面效果[] 。",
+		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害 。 如果这是你本轮第一次进攻 ， 给予目标一个随机的强力 [#EFC851]负面效果[] 。",
+		"NAME": "Shinya Hiiragi"
+	},
+	"animator_Vanir":
+	{
+		"DESCRIPTION": "穿越者. [#EFC851]巴尼尔[] 。 造成 !D! 点伤害. 鼓舞 !SV! : 造成 !M! 点 伤害 。",
+		"EXTENDED_DESCRIPTION": ["巴尼尔", "如果这张卡被消耗了 ， 将手牌中的一张牌变为这张牌的复制 。"],
+		"NAME": "巴尼尔"
+	},
+	"animator_ZankiKiguchi":
+	{
+		"DESCRIPTION": "造成 !D! 点伤害. NL 压倒 和 撤回 : 本次战斗中，提高手牌中所有攻击牌的伤害 !SV! 点 。",
+		"NAME": "Zanki"
+	},
+	"animator_Evileye":
+	{
+		"DESCRIPTION": "造成 !D! 点伤害 。 NL [#EFC851]重装填[] : 使用你最右侧的1个充能球的被动能力 。",
+		"EXTENDED_DESCRIPTION": ["重装填", "丢弃任意数量的牌 ， 触发同等次数 。"],
+		"NAME": "Evileye"
+	},
+	"animator_Pride":
+	{
+		"DESCRIPTION": "穿越者 。 [#EFC851]傲慢[] 。 [#EFC851]获得[] !M! 个 黑暗充能球 。NL 同调 : 赋予 !SV! 层 缠绕 。",
+		"EXTENDED_DESCRIPTION": ["傲慢", "直到你的下个回合 ， 当你受到格挡外的伤害时 ， 你的伤害最高的黑暗充能球抵消这个伤害并损失同等的伤害充能 。"],
+		"NAME": "傲慢"
+	},
+	"animator_CrowleyEusford":
+	{
+		"DESCRIPTION": "对敌人和另一个随机敌人造成 !D! 点伤害 。 NL 撤回 : 在本次战斗中提高其 !M! 点 伤害 。",
+		"NAME": "Crowley Eusford"
 	},
 	"animator_Yuuichirou":
 	{

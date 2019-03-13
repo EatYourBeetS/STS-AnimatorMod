@@ -45,7 +45,7 @@ public class Priestess extends AnimatorCard_Boost
         if (TryUpgrade())
         {
             upgradeSecondaryValue(1);
-            upgradeBlock(1);
+            upgradeBlock(2);
         }
     }
 

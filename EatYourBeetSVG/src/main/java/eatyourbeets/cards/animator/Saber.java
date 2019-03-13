@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.ModifyMagicNumberAction;
-import eatyourbeets.actions.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import patches.AbstractEnums;
 
 public class Saber extends AnimatorCard
 {
@@ -22,16 +22,18 @@ public class Saber extends AnimatorCard
 
         Initialize(11,0,3);
 
+        tags.add(AbstractEnums.CardTags.LOYAL);
+
         SetSynergy(Synergies.Fate);
     }
 
-    @Override
-    public void onMoveToDiscard()
-    {
-        super.onMoveToDiscard();
-        AbstractPlayer player = AbstractDungeon.player;
-        AbstractDungeon.actionManager.addToBottom(new MoveSpecificCardAction(this, player.drawPile, player.discardPile, true));
-    }
+//    @Override
+//    public void onMoveToDiscard()
+//    {
+//        super.onMoveToDiscard();
+//        AbstractPlayer player = AbstractDungeon.player;
+//        AbstractDungeon.actionManager.addToBottom(new MoveSpecificCardAction(this, player.drawPile, player.discardPile, true));
+//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 

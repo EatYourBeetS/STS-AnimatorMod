@@ -75,6 +75,16 @@
 		"PROPERNAME": "壓倒"
 	},
 	{
+		"DESCRIPTION": "受到傷害 在你的回合結束 。",
+		"NAMES": ["纏繞"],
+		"PROPERNAME": "纏繞"
+	},
+	{
+		"DESCRIPTION": "手動丟棄或循環此卡時觸發 。",
+		"NAMES": ["撤回"],
+		"PROPERNAME": "撤回"
+	},
+	{
 		"DESCRIPTION": "如果計數器大於0， 則觸發效果後把計數器減1。戰鬥結束後重製。",
 		"NAMES": ["增強"],
 		"PROPERNAME": "增強"

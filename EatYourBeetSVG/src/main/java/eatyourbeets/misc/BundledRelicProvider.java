@@ -132,10 +132,11 @@ public class BundledRelicProvider
         AddBundle(ElricEdward.ID, Pocketwatch.ID, AbstractRelic.RelicTier.RARE, R2);
         AddBundle(ElricAlphonse.ID, ToyOrnithopter.ID, AbstractRelic.RelicTier.SHOP, R2);
         AddBundle(Sloth.ID, Sundial.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
+        AddBundle(MaesHughes.ID, PeacePipe.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
 
+        AddBundle(Pride.ID, ToxicEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
         AddBundle(Scar.ID, FrozenEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
         AddBundle(RoyMustang.ID, MoltenEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
-        AddBundle(MaesHughes.ID, PeacePipe.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
         AddBundle(Gluttony.ID, Pear.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
 
         AddBundle(Envy.ID, DollysMirror.ID, AbstractRelic.RelicTier.SHOP, R1);
@@ -165,6 +166,7 @@ public class BundledRelicProvider
         AddBundle(Priestess.ID, IceCream.ID, AbstractRelic.RelicTier.RARE, R1);
         AddBundle(Spearman.ID, Pantograph.ID, AbstractRelic.RelicTier.SHOP, R1);
 
+        AddBundle(CowGirl.ID, Turnip.ID, AbstractRelic.RelicTier.RARE, R1);
         AddBundle(HighElfArcher.ID, OddlySmoothStone.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(LizardPriest.ID, LizardTail.ID, AbstractRelic.RelicTier.BOSS, R1);
         AddBundle(Witch.ID, Omamori.ID, AbstractRelic.RelicTier.SHOP, R2);
@@ -193,9 +195,10 @@ public class BundledRelicProvider
     {
         AddBundle(Azekura.ID, ChampionsBelt.ID, AbstractRelic.RelicTier.SPECIAL, R4);
         AddBundle(Emonzaemon.ID, Shuriken.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
-        AddBundle(Hitei.ID, OrnamentalFan.ID, AbstractRelic.RelicTier.UNCOMMON, R6);
         AddBundle(Konayuki.ID, Girya.ID, AbstractRelic.RelicTier.RARE, R4);
+        AddBundle(ZankiKiguchi.ID, Tingsha.ID, AbstractRelic.RelicTier.SPECIAL, R2);
 
+        AddBundle(Hitei.ID, OrnamentalFan.ID, AbstractRelic.RelicTier.UNCOMMON, R5);
         AddBundle(Nanami.ID, PaperCrane.ID, AbstractRelic.RelicTier.SPECIAL, R3);
         AddBundle(Shichika.ID, PaperFrog.ID, AbstractRelic.RelicTier.SPECIAL, R3);
         AddBundle(Togame.ID, AncientTeaSet.ID, AbstractRelic.RelicTier.COMMON, R2);
@@ -214,6 +217,7 @@ public class BundledRelicProvider
         AddBundle(Megumin.ID, StoneCalendar.ID, AbstractRelic.RelicTier.RARE, R2);
         AddBundle(YunYun.ID, WarPaint.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(Chris.ID, OldCoin.ID, AbstractRelic.RelicTier.COMMON, R1);
+        AddBundle(Vanir.ID, SmilingMask.ID, AbstractRelic.RelicTier.COMMON, R2);
 
         AddBundle(Eris.ID, TinyChest.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(Wiz.ID, JuzuBracelet.ID, AbstractRelic.RelicTier.COMMON, R5);
@@ -226,6 +230,7 @@ public class BundledRelicProvider
         AddBundle(ChlammyZell.ID, GamblingChip.ID, AbstractRelic.RelicTier.RARE, R3);
         AddBundle(DolaSchwi.ID, EmotionChip.ID, AbstractRelic.RelicTier.SPECIAL, R6);
 
+        AddBundle(Tet.ID, Sundial.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
         AddBundle(IzunaHatsuse.ID, Torii.ID, AbstractRelic.RelicTier.RARE, R1);
         AddBundle(DolaRiku.ID, UnceasingTop.ID, AbstractRelic.RelicTier.RARE, R1);
         AddBundle(DolaStephanie.ID, HappyFlower.ID, AbstractRelic.RelicTier.COMMON, R3);
@@ -241,6 +246,7 @@ public class BundledRelicProvider
         AddBundle(PandorasActor.ID, SelfFormingClay.ID, AbstractRelic.RelicTier.SPECIAL, R4);
         AddBundle(Shalltear.ID, Vajra.ID, AbstractRelic.RelicTier.COMMON, R2);
 
+        AddBundle(Evileye.ID, BloodVial.ID, AbstractRelic.RelicTier.SPECIAL, R3);
         AddBundle(NarberalGamma.ID, CrackedCore.ID, AbstractRelic.RelicTier.SPECIAL, R2);
         AddBundle(Entoma.ID, TheSpecimen.ID, AbstractRelic.RelicTier.SPECIAL, R3);
         AddBundle(Sebas.ID, SingingBowl.ID, AbstractRelic.RelicTier.SPECIAL, R1);
@@ -251,13 +257,15 @@ public class BundledRelicProvider
 
     private static void AddOwariNoSeraph()
     {
-        AddBundle(Mikaela.ID, CharonsAshes.ID, AbstractRelic.RelicTier.SPECIAL, R4);
+        AddBundle(Shinoa.ID, Calipers.ID, AbstractRelic.RelicTier.RARE, R2);
         AddBundle(Mitsuba.ID, Courier.ID, AbstractRelic.RelicTier.UNCOMMON, R3);
         AddBundle(Yuuichirou.ID, Sling.ID, AbstractRelic.RelicTier.SHOP, R3);
+        AddBundle(CrowleyEusford.ID, BloodVial.ID, AbstractRelic.RelicTier.SPECIAL, R2);
 
         AddBundle(KrulTepes.ID, MagicFlower.ID, AbstractRelic.RelicTier.SPECIAL, R2);
-        AddBundle(Shinoa.ID, Calipers.ID, AbstractRelic.RelicTier.RARE, R2);
+        AddBundle(Mikaela.ID, CharonsAshes.ID, AbstractRelic.RelicTier.SPECIAL, R4);
         AddBundle(Shigure.ID, Kunai.ID, AbstractRelic.RelicTier.RARE, R1);
+        AddBundle(HiiragiShinya.ID, Pantograph.ID, AbstractRelic.RelicTier.UNCOMMON, R3);
 
         AddBundle(FeridBathory.ID, MealTicket.ID, AbstractRelic.RelicTier.SHOP, R5);
         AddBundle(Guren.ID, IncenseBurner.ID, AbstractRelic.RelicTier.RARE, R2);

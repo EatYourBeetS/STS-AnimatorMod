@@ -4,11 +4,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.characters.AnimatorCharacter;
+import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.PurgingStone;
 import org.apache.logging.log4j.LogManager;
@@ -131,6 +134,14 @@ public class EYBModInitializer
     @Override
     public void receiveStartGame()
     {
+        if (Settings.isStandardRun())
+        {
+            if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+            {
+                AnimatorMetrics.SaveTrophies();
+            }
+        }
+
         PurgingStone purgingStone = PurgingStone.GetInstance();
         if (purgingStone != null)
         {

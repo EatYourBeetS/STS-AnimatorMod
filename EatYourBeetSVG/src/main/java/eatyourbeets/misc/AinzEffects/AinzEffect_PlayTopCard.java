@@ -9,21 +9,37 @@ import eatyourbeets.GameActionsHelper;
 
 public class AinzEffect_PlayTopCard extends AinzEffect
 {
-    public AinzEffect_PlayTopCard(int descriptionIndex)
+    private int upgradedDescriptionIndex;
+
+    public AinzEffect_PlayTopCard(int descriptionIndex, int upgradedDescriptionIndex)
     {
         super(descriptionIndex);
+
+        this.upgradedDescriptionIndex = upgradedDescriptionIndex;
     }
 
     @Override
     protected void Setup(boolean upgraded)
     {
-
+        if (upgraded)
+        {
+            ainz.rawDescription = text[upgradedDescriptionIndex];
+            ainz.baseMagicNumber = ainz.magicNumber = 2;
+        }
+        else
+        {
+            ainz.rawDescription = text[descriptionIndex];
+            ainz.baseMagicNumber = ainz.magicNumber = 1;
+        }
     }
 
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
         AbstractMonster target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-        GameActionsHelper.AddToBottom(new PlayTopCardAction(target, false));
+        for (int i = 0; i < ainz.magicNumber; i++)
+        {
+            GameActionsHelper.AddToBottom(new PlayTopCardAction(target, false));
+        }
     }
 }

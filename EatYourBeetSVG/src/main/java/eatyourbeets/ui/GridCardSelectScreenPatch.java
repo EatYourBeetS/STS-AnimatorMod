@@ -14,28 +14,37 @@ import java.util.function.Function;
 
 public class GridCardSelectScreenPatch
 {
-    public static Hitbox startingCardsSelectedHb;
-    public static Hitbox startingCardsLeftHb;
-    public static Hitbox startingCardsRightHb;
+    public static Hitbox effectTextHb;
+    public static Hitbox effectDescriptionHb;
+    public static Hitbox leftSelectionHb;
+    public static Hitbox rightSelectionHb;
 
     private static boolean renderChoice;
     private static Function<Integer, String> onClick;
     private static AbstractCard card;
     private static String currentText;
+    private static String currentDescription;
+
+    public static void SetDescription(String description)
+    {
+        currentDescription = description;
+    }
 
     public static void Load(AbstractCard card, Function<Integer, String> onClick)
     {
         GridCardSelectScreenPatch.card = card;
         GridCardSelectScreenPatch.onClick = onClick;
         renderChoice = true;
+        currentDescription = "";
         UpdateCurrentText(0);
     }
 
     public static void Open(GridCardSelectScreen selectScreen)
     {
-        startingCardsSelectedHb = new Hitbox(AbstractCard.IMG_WIDTH, 60.0F * Settings.scale);
-        startingCardsLeftHb = new Hitbox(90.0F * Settings.scale, 60.0F * Settings.scale);
-        startingCardsRightHb = new Hitbox(90.0F * Settings.scale, 60.0F * Settings.scale);
+        effectDescriptionHb = new Hitbox(AbstractCard.IMG_WIDTH, 60.0F * Settings.scale);
+        effectTextHb = new Hitbox(AbstractCard.IMG_WIDTH, 60.0F * Settings.scale);
+        leftSelectionHb = new Hitbox(120.0F * Settings.scale, 60.0F * Settings.scale);
+        rightSelectionHb = new Hitbox(120.0F * Settings.scale, 60.0F * Settings.scale);
 
         if (!renderChoice)
         {
@@ -62,40 +71,41 @@ public class GridCardSelectScreenPatch
             return;
         }
 
-        startingCardsSelectedHb.update();
-        startingCardsRightHb.update();
-        startingCardsLeftHb.update();
+        effectTextHb.update();
+        rightSelectionHb.update();
+        leftSelectionHb.update();
 
         if (InputHelper.justClickedLeft)
         {
-            if (startingCardsRightHb.hovered)
+            if (rightSelectionHb.hovered)
             {
-                startingCardsRightHb.clickStarted = true;
+                rightSelectionHb.clickStarted = true;
             }
-            else if (startingCardsLeftHb.hovered)
+            else if (leftSelectionHb.hovered)
             {
-                startingCardsLeftHb.clickStarted = true;
+                leftSelectionHb.clickStarted = true;
             }
         }
 
         float midPointX = card.current_x + (AbstractCard.IMG_WIDTH * 1.1f);
         float midPointY = card.current_y;
-        float offsetY = startingCardsSelectedHb.height / 2f;
-        float offsetX = startingCardsLeftHb.width;
+        float offsetY = effectTextHb.height / 2f;
+        float offsetX = leftSelectionHb.width;
 
-        startingCardsSelectedHb.move(midPointX, midPointY + offsetY);
-        startingCardsLeftHb.move(midPointX - offsetX, midPointY - offsetY);
-        startingCardsRightHb.move(midPointX + offsetX, midPointY - offsetY);
+        effectDescriptionHb.move(midPointX, midPointY + offsetY);
+        effectTextHb.move(midPointX, midPointY - offsetY);
+        leftSelectionHb.move(midPointX - offsetX, midPointY - offsetY);
+        rightSelectionHb.move(midPointX + offsetX, midPointY - offsetY);
 
-        if (startingCardsLeftHb.clicked)
+        if (leftSelectionHb.clicked)
         {
-            startingCardsLeftHb.clicked = false;
+            leftSelectionHb.clicked = false;
             UpdateCurrentText(-1);
         }
 
-        if (startingCardsRightHb.clicked)
+        if (rightSelectionHb.clicked)
         {
-            startingCardsRightHb.clicked = false;
+            rightSelectionHb.clicked = false;
             UpdateCurrentText(+1);
         }
     }
@@ -109,9 +119,11 @@ public class GridCardSelectScreenPatch
 
         RenderBox(sb);
 
-        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_N, currentText, startingCardsSelectedHb.cX, startingCardsSelectedHb.cY - 5 * Settings.scale, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);
+        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_N, currentDescription, effectDescriptionHb.cX, effectDescriptionHb.cY - 5 * Settings.scale, Settings.BLUE_TEXT_COLOR, 0.8f);
 
-        if (!startingCardsLeftHb.hovered)
+        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_N, currentText, effectTextHb.cX, effectTextHb.cY, Settings.CREAM_COLOR);
+
+        if (!leftSelectionHb.hovered)
         {
             sb.setColor(Color.LIGHT_GRAY);
         }
@@ -119,9 +131,9 @@ public class GridCardSelectScreenPatch
         {
             sb.setColor(Color.WHITE);
         }
-        sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24.0F, startingCardsLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+        sb.draw(ImageMaster.CF_LEFT_ARROW, leftSelectionHb.cX - 24.0F, leftSelectionHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
-        if (!startingCardsRightHb.hovered)
+        if (!rightSelectionHb.hovered)
         {
             sb.setColor(Color.LIGHT_GRAY);
         }
@@ -129,11 +141,11 @@ public class GridCardSelectScreenPatch
         {
             sb.setColor(Color.WHITE);
         }
-        sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24.0F, startingCardsRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+        sb.draw(ImageMaster.CF_RIGHT_ARROW, rightSelectionHb.cX - 24.0F, rightSelectionHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
-        startingCardsSelectedHb.render(sb);
-        startingCardsLeftHb.render(sb);
-        startingCardsRightHb.render(sb);
+        effectTextHb.render(sb);
+        leftSelectionHb.render(sb);
+        rightSelectionHb.render(sb);
     }
 
     private static final float SHADOW_DIST_Y = 14.0F * Settings.scale;
@@ -145,8 +157,8 @@ public class GridCardSelectScreenPatch
 
     private static void RenderBox(SpriteBatch sb)
     {
-        float x = startingCardsSelectedHb.x;
-        float y = startingCardsSelectedHb.cY;
+        float x = effectDescriptionHb.x - (5 * Settings.scale);
+        float y = effectDescriptionHb.cY;
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
         sb.draw(ImageMaster.KEYWORD_TOP, x + SHADOW_DIST_X, y - SHADOW_DIST_Y, BOX_W, BOX_EDGE_H);

@@ -75,6 +75,16 @@
 		"PROPERNAME": "压倒"
 	},
 	{
+		"DESCRIPTION": "受到伤害 在你的回合结束 。",
+		"NAMES": ["缠绕"],
+		"PROPERNAME": "缠绕"
+	},
+	{
+		"DESCRIPTION": "手动丢弃或循环此卡时触发 。",
+		"NAMES": ["撤回"],
+		"PROPERNAME": "撤回"
+	},
+	{
 		"DESCRIPTION": "如果计数器大于0， 则激活效果然后将计数器减1。 每次战斗结束时重置。",
 		"NAMES": ["鼓舞"],
 		"PROPERNAME": "鼓舞"

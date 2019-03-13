@@ -1,10 +1,11 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -16,9 +17,18 @@ public class Fredrika extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 4, 2);
+        Initialize(0, 4, 1);
 
         SetSynergy(Synergies.Chaika, true);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        AbstractPlayer p = AbstractDungeon.player;
+        GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override
@@ -32,13 +42,13 @@ public class Fredrika extends AnimatorCard
             }
         }
 
-        if (HasActiveSynergy())
-        {
-            if (!AbstractDungeon.player.hand.isEmpty() && !AbstractDungeon.player.hasRelic("Runic Pyramid") && !AbstractDungeon.player.hasPower("Equilibrium"))
-            {
-                AbstractDungeon.actionManager.addToBottom(new RetainCardsAction(p, this.magicNumber));
-            }
-        }
+//        if (HasActiveSynergy())
+//        {
+//            if (!AbstractDungeon.player.hand.isEmpty() && !AbstractDungeon.player.hasRelic("Runic Pyramid") && !AbstractDungeon.player.hasPower("Equilibrium"))
+//            {
+//                AbstractDungeon.actionManager.addToBottom(new RetainCardsAction(p, this.magicNumber));
+//            }
+//        }
     }
 
     @Override
@@ -46,7 +56,7 @@ public class Fredrika extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(1);
+            upgradeBlock(2);
             upgradeMagicNumber(1);
         }
     }

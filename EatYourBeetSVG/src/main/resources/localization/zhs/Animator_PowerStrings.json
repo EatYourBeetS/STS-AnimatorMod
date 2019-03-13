@@ -52,7 +52,7 @@
 	},
 	"animator_PinaCoLadaPower":
 	{
-		"DESCRIPTIONS": ["Your next #b", " #y0-Cost card/s are played twice."],
+		"DESCRIPTIONS": ["你的下一张 #b", " #y0耗牌将被打出两次."],
 		"NAME": "平娜·戈·兰达"
 	},
 	"animator_PlayerStatistics":
@@ -93,7 +93,7 @@
 	"animator_EmiyaShirouPower":
 	{
 		"DESCRIPTIONS": ["每当打破任意目标的 格挡 时, 获得 1点能量并抽一张 #y攻击 牌 。 该效果不叠加 。"],
-		"NAME": "无限刀片工作"
+		"NAME": "无限剑制"
 	},
 	"animator_EnvyPower":
 	{
@@ -103,7 +103,12 @@
 	"animator_BozesPower":
 	{
 		"DESCRIPTIONS": ["每当一张牌在本回合中同调， 获得 #b", " 点 格挡 。"],
-		"NAME": "Bozes Co Palesti"
+		"NAME": "波赛斯·戈·芭蕾丝蒂"
+	},
+	"animator_PridePower":
+	{
+		"DESCRIPTIONS": ["直到你的下个回合 ， 当你受到格挡外的伤害时 ， 你的伤害的黑暗充能球抵消这个伤害并损失同等的伤害充能 。"],
+		"NAME": "Pride"
 	},
 	"animator_BurningPower":
 	{

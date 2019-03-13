@@ -1,11 +1,22 @@
 package eatyourbeets.characters;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
+import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.Synergy;
 import eatyourbeets.cards.animator.Defend;
 import eatyourbeets.cards.animator.Strike;
 import eatyourbeets.relics.LivingPicture;
@@ -17,6 +28,14 @@ import java.util.ArrayList;
 
 public class AnimatorCustomLoadout
 {
+    protected static final String[] trophyStrings = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Trophies).TEXT;
+    protected static final Texture bronze = new Texture(AnimatorResources.GetRewardImage("Animator_Bronze"));
+    protected static final Texture silver = new Texture(AnimatorResources.GetRewardImage("Animator_Silver"));
+    protected static final Texture gold = new Texture(AnimatorResources.GetRewardImage("Animator_Gold"));
+    protected static final Texture locked = new Texture(AnimatorResources.GetRewardImage("Animator_Locked"));
+    protected static final Texture slot = new Texture(AnimatorResources.GetRewardImage("Animator_Slot"));
+    protected static final Texture slot2 = new Texture(AnimatorResources.GetRewardImage("Animator_Slot2"));
+
     private static Field goldField;
 
     public int ID;
@@ -27,6 +46,7 @@ public class AnimatorCustomLoadout
     public final int MaxHP;
     public boolean Locked;
 
+    protected AnimatorTrophies trophies;
     protected String lockedDescription;
     protected String description;
     protected int unlockLevel;
@@ -48,6 +68,7 @@ public class AnimatorCustomLoadout
             ex.printStackTrace();
         }
 
+        trophies = GetTrophies();
         selectScreen.bgCharImg = AnimatorResources.GetCharacterPortrait(ID);
         Locked = unlockLevel > currentLevel;
         if (Locked)
@@ -111,7 +132,7 @@ public class AnimatorCustomLoadout
 
     public CharSelectInfo GetLoadout(String name, String description, AnimatorCharacter animatorCharacter)
     {
-        return new CharSelectInfo(name, description, MaxHP, MaxHP, OrbSlots, StartingGold, CardDraw, animatorCharacter,
+        return new CharSelectInfo(name + "-" + ID, description, MaxHP, MaxHP, OrbSlots, StartingGold, CardDraw, animatorCharacter,
                 GetStartingRelics(), GetStartingDeck(), false);
     }
 
@@ -121,5 +142,152 @@ public class AnimatorCustomLoadout
         this.StartingGold = 99;
         this.OrbSlots = 3;
         this.CardDraw = 5;
+    }
+
+    protected String GetTrophyMessage(int trophy)
+    {
+        if (trophy == 1)
+        {
+            return trophyStrings[3];
+        }
+        else if (trophy == 2)
+        {
+            return trophyStrings[4];
+        }
+        else if (trophy == 3)
+        {
+            return trophyStrings[5];
+        }
+
+        return null;
+    }
+
+    public AnimatorTrophies GetTrophies()
+    {
+        AnimatorTrophies selected = null;
+        for (AnimatorTrophies trophyLevel : AnimatorMetrics.trophiesData)
+        {
+            if (trophyLevel.id == this.ID)
+            {
+                selected = trophyLevel;
+                break;
+            }
+        }
+
+        if (selected == null)
+        {
+            Utilities.Logger.info("Trophy not found");
+            selected = new AnimatorTrophies(this.ID);
+            AnimatorMetrics.trophiesData.add(selected);
+            AnimatorMetrics.SaveTrophies();
+        }
+
+        return selected;
+    }
+
+    public void RenderTrophies(Hitbox trophy1Hb, Hitbox trophy2Hb, Hitbox trophy3Hb, SpriteBatch sb)
+    {
+        FontHelper.tipHeaderFont.getData().setScale(0.6f);
+
+        RenderTrophy(trophy1Hb, trophies.trophy1, bronze, sb);
+        RenderTrophy(trophy2Hb, trophies.trophy2, silver, sb);
+        RenderTrophy(trophy3Hb, trophies.trophy3, gold, sb);
+
+        FontHelper.tipHeaderFont.getData().setScale(1);
+    }
+
+    public void UpdateTrophies(Hitbox trophy1Hb, Hitbox trophy2Hb, Hitbox trophy3Hb)
+    {
+        trophy1Hb.update();
+        trophy2Hb.update();
+        trophy3Hb.update();
+
+        float offsetX = 60 * Settings.scale;
+        float offsetY = 0 * Settings.scale;
+        if (trophy1Hb.hovered)
+        {
+            TipHelper.renderGenericTip(trophy1Hb.cX + offsetX, trophy1Hb.cY + offsetY, trophyStrings[0], GetTrophyMessage(1));
+        }
+        else if (trophy2Hb.hovered)
+        {
+            TipHelper.renderGenericTip(trophy2Hb.cX + offsetX, trophy2Hb.cY + offsetY, trophyStrings[1], GetTrophyMessage(2));
+        }
+        else if (trophy3Hb.hovered)
+        {
+            TipHelper.renderGenericTip(trophy3Hb.cX + offsetX, trophy3Hb.cY + offsetY, trophyStrings[2], GetTrophyMessage(3));
+        }
+    }
+
+    private void RenderTrophy(Hitbox trophyHb, int trophyLevel, Texture texture, SpriteBatch sb)
+    {
+        Texture slotTexture = trophyLevel > 0 ? slot2 : slot;
+
+        if (!trophyHb.hovered)
+        {
+            sb.setColor(Color.LIGHT_GRAY);
+        }
+        else
+        {
+            sb.setColor(Color.WHITE);
+        }
+        sb.draw(slotTexture, trophyHb.x, trophyHb.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
+
+        if (trophyLevel < 0)
+        {
+            texture = locked;
+        }
+        sb.setColor(Color.WHITE);
+        sb.draw(texture, trophyHb.x, trophyHb.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
+
+        if (trophyLevel > 0)
+        {
+            FontHelper.renderFontCentered(sb, FontHelper.tipHeaderFont, trophyLevel + "/20", trophyHb.cX + (5 * Settings.scale), trophyHb.y, Settings.GOLD_COLOR);
+        }
+    }
+
+    public void OnTrueVictory(AnimatorCustomLoadout currentLoadout, int ascensionLevel)
+    {
+        if (trophies == null)
+        {
+            trophies = GetTrophies();
+        }
+
+        if (AnimatorMetrics.lastLoadout == ID)
+        {
+            trophies.trophy1 = Math.max(trophies.trophy1, ascensionLevel);
+        }
+
+        ArrayList<String> cardsWithSynergy = new ArrayList<>();
+        int synergyCount = 0;
+        int uniqueCards = 0;
+
+        ArrayList<AbstractCard> cards = AbstractDungeon.player.masterDeck.group;
+        for (AbstractCard c : cards)
+        {
+            AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+            if (card != null)
+            {
+                Synergy synergy = card.GetSynergy();
+                if (synergy != null && synergy.ID == ID)
+                {
+                    synergyCount += 1;
+                    if (!cardsWithSynergy.contains(card.cardID))
+                    {
+                        uniqueCards += 1;
+                        cardsWithSynergy.add(card.cardID);
+                    }
+                }
+            }
+        }
+
+        if (synergyCount >= cards.size() / 2)
+        {
+            trophies.trophy2 = Math.max(trophies.trophy2, ascensionLevel);
+        }
+
+        if (uniqueCards >= 8)
+        {
+            trophies.trophy3 = Math.max(trophies.trophy3, ascensionLevel);
+        }
     }
 }

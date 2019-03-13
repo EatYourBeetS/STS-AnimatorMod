@@ -29,6 +29,10 @@ public class CharacterSelectScreenPatch
     public static Hitbox startingCardsLeftHb;
     public static Hitbox startingCardsRightHb;
 
+    public static Hitbox trophy1Hb;
+    public static Hitbox trophy2Hb;
+    public static Hitbox trophy3Hb;
+
     public static CharacterOption selectedOption;
 
     public static float POS_Y;
@@ -47,10 +51,21 @@ public class CharacterSelectScreenPatch
         startingCardsLeftHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
         startingCardsRightHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
 
+        trophy1Hb = new Hitbox(48 * Settings.scale, 48 * Settings.scale);
+        trophy2Hb = new Hitbox(48 * Settings.scale, 48 * Settings.scale);
+        trophy3Hb = new Hitbox(48 * Settings.scale, 48 * Settings.scale);
+
         startingCardsLabelHb.move(POS_X + (leftTextWidth / 2f), POS_Y);
         startingCardsLeftHb.move(startingCardsLabelHb.x + startingCardsLabelHb.width + (20 * Settings.scale), POS_Y - (10 * Settings.scale));
         startingCardsSelectedHb.move(startingCardsLeftHb.x + startingCardsLeftHb.width + (rightTextWidth / 2f), POS_Y);
         startingCardsRightHb.move(startingCardsSelectedHb.x + startingCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));
+
+        float baseX = 200.0F * Settings.scale;
+        float baseY = (float)Settings.HEIGHT / 2.0F;
+
+        trophy1Hb.move(baseX + 380.0F * Settings.scale, baseY + 94.0F * Settings.scale);
+        trophy2Hb.move(baseX + 440.0F * Settings.scale, baseY + 94.0F * Settings.scale);
+        trophy3Hb.move(baseX + 500.0F * Settings.scale, baseY + 94.0F * Settings.scale);
 
         selectedOption = null;
     }
@@ -98,6 +113,8 @@ public class CharacterSelectScreenPatch
 
             RefreshLoadout(selectScreen, selectedOption);
         }
+
+        AnimatorCharacterSelect.GetSelectedLoadout().UpdateTrophies(trophy1Hb, trophy2Hb, trophy3Hb);
     }
 
     public static void Render(CharacterSelectScreen selectScreen, SpriteBatch sb)
@@ -114,7 +131,8 @@ public class CharacterSelectScreenPatch
         {
             float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
             FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * 0.8f);
-            FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.GREEN_TEXT_COLOR);
+            Color color = info.Locked ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
+            FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), color);
             FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * originalScale);
         }
 
@@ -144,6 +162,8 @@ public class CharacterSelectScreenPatch
         startingCardsLabelHb.render(sb);
         startingCardsLeftHb.render(sb);
         startingCardsRightHb.render(sb);
+
+        AnimatorCharacterSelect.GetSelectedLoadout().RenderTrophies(trophy1Hb, trophy2Hb, trophy3Hb, sb);
     }
 
     private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)

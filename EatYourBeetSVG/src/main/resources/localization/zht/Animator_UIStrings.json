@@ -28,7 +28,8 @@
 			"丟棄並且抽同樣的張數",
 			"多次觸發效果",
 			"在本次戰鬥減少消耗",
-			"抽 # 張牌"
+			"抽 # 張牌",
+			"轉變成"
 		]
 	},
 	
@@ -68,7 +69,8 @@
 			"獲得 !M! 無實體",
 			"獲得 !M! 層 人工制品 。 NL 移除你身上的所有負面效果",
 			"打出抽牌堆頂部的牌",
-			"生成 !M! 個隨機充能球"
+			"生成 !M! 個隨機充能球",
+			"打出抽牌堆頂部的牌兩次"
 		]
 	},
 	
@@ -86,6 +88,21 @@
 		"TEXT": 
 		[
 			"放逐"
+		]
+	},
+	
+	"Animator_Trophies":
+	{
+		"TEXT": 
+		[
+			"青銅",
+			"銀",
+			"金",
+			"(將很快翻譯) choose this starting deck and complete act 4.",
+			"(將很快翻譯) complete act 4 with at least #yhalf of the cards in your deck being from this series.",
+			"(將很快翻譯) complete act 4 with at least 8 #ydifferent cards from this series in your deck.",
+			"(將很快翻譯) complete act 4 with at least 7 #ydifferent card series in your deck.",
+			"(將很快翻譯) complete act 4 with at least 11 #ydifferent card series in your deck, and without banishing any series."
 		]
 	},
 	

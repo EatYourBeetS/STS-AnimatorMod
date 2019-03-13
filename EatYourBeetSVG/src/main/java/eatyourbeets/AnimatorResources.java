@@ -43,7 +43,8 @@ public class AnimatorResources
         Actions,
         SpecialEffects,
         CardSelect,
-        TetAction
+        TetAction,
+        Trophies
     }
 
     private static final Logger logger = LogManager.getLogger(AnimatorResources.class.getName());

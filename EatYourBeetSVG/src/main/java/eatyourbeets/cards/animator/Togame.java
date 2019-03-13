@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BlurPower;
 import eatyourbeets.AnimatorResources;
@@ -12,6 +13,7 @@ import eatyourbeets.actions.AnimatorAction;
 import eatyourbeets.actions.OptionalNumberAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.ui.GridCardSelectScreenPatch;
 
 public class Togame extends AnimatorCard
 {
@@ -61,6 +63,31 @@ public class Togame extends AnimatorCard
             cardDraw = remainder;
         }
 
+        String description;
+        int totalDraw = AbstractDungeon.player.hand.size() + cardDraw;
+        if (totalDraw >= 7)
+        {
+            description = effects[0];
+        }
+        else if (totalDraw == 6)
+        {
+            description = effects[1];
+        }
+        else if (totalDraw == 5)
+        {
+            description = effects[2];
+        }
+        else if (totalDraw == 4)
+        {
+            description = effects[3];
+        }
+        else
+        {
+            description = "-";
+        }
+
+        GridCardSelectScreenPatch.SetDescription(description.replace("#y",""));
+
         return cardDrawString.replace("#", String.valueOf(cardDraw));
     }
 
@@ -70,6 +97,18 @@ public class Togame extends AnimatorCard
         {
             GameActionsHelper.DrawCard(AbstractDungeon.player, cardDraw);
             GameActionsHelper.AddToBottom(new TogameAction(this));
+        }
+    }
+
+    private static final String[] effects;
+
+    static
+    {
+        CardStrings strings = AnimatorResources.GetCardStrings(ID);
+        effects = strings.EXTENDED_DESCRIPTION[1].split(" NL ");
+        for (int i = 0; i < effects.length; i++)
+        {
+            effects[i] = effects[i].split(": ")[1];
         }
     }
 

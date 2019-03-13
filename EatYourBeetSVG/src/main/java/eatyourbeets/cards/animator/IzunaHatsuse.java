@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -58,6 +59,22 @@ public class IzunaHatsuse extends AnimatorCard
                 transformed = false;
             }
         }
+    }
+
+    @Override
+    public AbstractCard makeSameInstanceOf()
+    {
+        IzunaHatsuse other = (IzunaHatsuse) super.makeSameInstanceOf();
+        if (transformed)
+        {
+            other.loadCardImage(AnimatorResources.GetCardImage(ID + "Alt"));
+            other.type = CardType.ATTACK;
+            other.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
+            other.initializeDescription();
+            other.transformed = true;
+        }
+
+        return other;
     }
 
     @Override

@@ -31,6 +31,11 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
         bannedSynergies = new ArrayList<>();
     }
 
+    public int GetBannedCount()
+    {
+        return bannedSynergies.size();
+    }
+
     @Override
     public AbstractRelic makeCopy()
     {
@@ -208,6 +213,9 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
     @Override
     public void onLoad(String value)
     {
+//        logger.info("Standard run: " + Settings.isStandardRun());
+//        logger.info("Ascension Level: " + AbstractDungeon.ascensionLevel);
+
         ArrayList<String> synergies = new ArrayList<>();
         Collections.addAll(synergies, value.split("\u001F"));
         for (String s : synergies)

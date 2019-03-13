@@ -28,7 +28,8 @@
 			"discard and draw that many cards.",
 			"activate this card's effect that many times.",
 			"reduce its cost for this combat.",
-			"Draw # card/s."
+			"Draw # card/s.",
+			"Transform into "
 		]
 	},
 	
@@ -68,7 +69,23 @@
 			"Gain !M! Intangible",
 			"Gain !M! Artifact. NL Remove all of your debuffs.",
 			"Play the top card of your draw pile.",
-			"Channel !M! random Orbs."
+			"Channel !M! random Orbs.",
+			"Play the top card of your draw pile twice."
+		]
+	},
+	
+	"Animator_Trophies":
+	{
+		"TEXT": 
+		[
+			"Bronze",
+			"Silver",
+			"Gold",
+			"Choose this starting deck and complete act 4.",
+			"Complete act 4 with at least #yhalf of the cards in your deck being from this series.",
+			"Complete act 4 with at least 8 #ydifferent cards from this series in your deck.",
+			"Complete act 4 with at least 7 #ydifferent card series in your deck.",
+			"Complete act 4 with at least 11 #ydifferent card series in your deck, and without banishing any series."
 		]
 	},
 	

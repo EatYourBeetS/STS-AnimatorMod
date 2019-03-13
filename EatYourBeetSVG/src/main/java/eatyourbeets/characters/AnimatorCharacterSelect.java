@@ -2,6 +2,7 @@ package eatyourbeets.characters;
 
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.AnimatorResources;
+import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.Defend;
 import eatyourbeets.cards.animator.Strike;
 import eatyourbeets.characters.Loadouts.*;
@@ -11,8 +12,8 @@ import java.util.StringJoiner;
 
 public class AnimatorCharacterSelect
 {
-    private static int index;
-    private static final ArrayList<AnimatorCustomLoadout> customLoadouts;
+    private static int index = 0;
+    private static final ArrayList<AnimatorCustomLoadout> customLoadouts = new ArrayList<>();
 
     protected static final String[] uiText = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.CharacterSelect).TEXT;
 
@@ -39,6 +40,15 @@ public class AnimatorCharacterSelect
         }
     }
 
+    public static void OnTrueVictory(int ascensionLevel)
+    {
+        for (AnimatorCustomLoadout loadout : customLoadouts)
+        {
+            loadout.OnTrueVictory(GetSelectedLoadout(), ascensionLevel);
+        }
+        AnimatorMetrics.SaveTrophies();
+    }
+
     private static void AddLoadout(AnimatorCustomLoadout loadout, int level, String description)
     {
         StringJoiner sj = new StringJoiner(", ");
@@ -57,9 +67,6 @@ public class AnimatorCharacterSelect
 
     static
     {
-        index = 0;
-        customLoadouts = new ArrayList<>();
-
         String recommended = uiText[5];
         String balanced = uiText[6];
         String unbalanced = uiText[7];
@@ -78,5 +85,20 @@ public class AnimatorCharacterSelect
         AddLoadout(new Overlord()           , 3, veryUnbalanced);
         AddLoadout(new Chaika()             , 3, veryUnbalanced);
         AddLoadout(new Kancolle()           , 4, special);
+
+        int synergyID = AnimatorMetrics.lastLoadout;
+
+        Utilities.Logger.info("Last Layout: " + synergyID);
+
+        //noinspection ConstantConditions
+        for (int i = 0; i < customLoadouts.size(); i++)
+        {
+            Utilities.Logger.info(customLoadouts.get(i).Name + " (" + customLoadouts.get(i).ID + ")");
+            if (synergyID == customLoadouts.get(i).ID)
+            {
+                index = i;
+                break;
+            }
+        }
     }
 }

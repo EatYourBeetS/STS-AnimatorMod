@@ -6,11 +6,14 @@ import eatyourbeets.cards.animator.Ainz;
 
 public abstract class AinzEffect
 {
+    protected final static String[] text = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.SpecialEffects).TEXT;
+    protected final int descriptionIndex;
+
     public final Ainz ainz;
 
     protected AinzEffect(int descriptionIndex)
     {
-        String[] text = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.SpecialEffects).TEXT;
+        this.descriptionIndex = descriptionIndex;
 
         ainz = new Ainz(this);
         ainz.setUpgraded(false);

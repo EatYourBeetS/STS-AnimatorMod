@@ -70,6 +70,16 @@
 		"PROPERNAME": "Malleable"
 	},
 	{
+		"DESCRIPTION": "Take damage at the end of your turn.",
+		"NAMES": ["constricted"],
+		"PROPERNAME": "Constricted"
+	},
+	{
+		"DESCRIPTION": "Trigger when this card is manually discarded or cycled.",
+		"NAMES": ["recall"],
+		"PROPERNAME": "Recall"
+	},
+	{
 		"DESCRIPTION": "Activates for each enemy that loses its block during this attack.",
 		"NAMES": ["overrun"],
 		"PROPERNAME": "Overrun"

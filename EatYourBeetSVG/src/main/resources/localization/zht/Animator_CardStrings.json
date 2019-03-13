@@ -68,7 +68,7 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "增強 !SV! : 獲得一個充能球欄位 。 如果增強為 0 ， 重置它 和 生成 1 個 電漿 充能球 。",
+		"DESCRIPTION": "增強 !SV! : 獲得一個充能球欄位 。 如果增強為 0 ， 重置 和 生成 1 個 電漿 充能球 。",
 		"NAME": "Arpeggio"
 	},
 	"animator_Asuramaru":
@@ -93,8 +93,8 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 每當一張牌在本回合中同調， 獲得 !M! 點 格擋 。",
-		"NAME": "Bozes"
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 每當一張牌在本回合中觸發同調， 獲得 !M! 點 格擋 。",
+		"NAME": "波賽斯"
 	},
 	"animator_Caster":
 	{
@@ -209,8 +209,8 @@
 	},
 	"animator_EmiyaShirou":
 	{
-		"DESCRIPTION": "給予一個隨機敵人 !M! 點格擋 和 易傷 。 [#EFC851]無限刀片工作[] 。",
-		"EXTENDED_DESCRIPTION": ["無限刀片工作", "本回合， 本回合，打破格擋時獲得 1 點 #y能量 和抽一張 隨機 #y攻擊牌 。 該效果不疊加 。"],
+		"DESCRIPTION": "給予一個隨機敵人 !M! 點格擋 和 易傷 。 [#EFC851]無限劍制[] 。",
+		"EXTENDED_DESCRIPTION": ["無限劍制", "本回合， 本回合，打破格擋時獲得 1 點 #y能量 和抽一張 隨機 #y攻擊牌 。 該效果不疊加 。"],
 		"NAME": "衛宮四郎"
 	},
 	"animator_Emonzaemon":
@@ -260,7 +260,7 @@
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "變形者 。 每個敵人使你獲得獲得 !B! 點 格擋 。 同調 : 選擇並保留 最多 !M! 張牌 。",
+		"DESCRIPTION": "變形者 。 每個敵人使你獲得獲得 !B! 點 格擋 。 撤回 : 獲得 !M! 層 [#EFC851]多層護甲[] 。",
 		"NAME": "弗蕾德麗卡"
 	},
 	"animator_Gilgamesh":
@@ -327,7 +327,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "給予一個敵人 !B! 點 格擋 ， 然後獲得等同於目標的 格擋 值 。 冷卻 !SV! : 獲得1個冰霜充能球 。",
+		"DESCRIPTION": "給予一個敵人 !M! 點 格擋 ， 然後獲得等同於目標的 格擋 值 。 循環 1 張牌 。",
 		"NAME": "奇伊"
 	},
 	"animator_HigakiRinne":
@@ -458,8 +458,8 @@
 	},
 	"animator_PinaCoLada":
 	{
-		"DESCRIPTION": "你每輪打的第一無耗能張牌打了兩次 。",
-		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 你每輪打的第一無耗能張牌打了兩次 。",
+		"DESCRIPTION": "你每輪打出的第一張無耗能張牌打出兩次 。",
+		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 你每輪打出的第一張無耗能張牌打出兩次 。",
 		"NAME": "平娜·戈·蘭達"
 	},
 	"animator_Priestess":
@@ -577,12 +577,12 @@
 	"animator_Togame":
 	{
 		"DESCRIPTION": "抽 !M! 張牌 。 NL 根據手上的牌數量觸發 [#EFC851]額外效果[] 。",
-		"EXTENDED_DESCRIPTION": ["額外效果", "#y7+ : 消耗 1 張牌  NL #y6 : 獲得 6 點 格擋 NL #y5 : 獲得 1 層 殘影 NL #y4 : 獲得 2 點 能量並且 NL 消耗 這張牌", "再見！！"],
+		"EXTENDED_DESCRIPTION": ["額外效果", "#y7+ : 消耗 1 張牌  NL #y6 : 獲得 6 點 格擋 NL #y5 : 獲得 1 層 殘影 NL #y4 : 獲得 2 點 能量並且 消耗 這張牌", "再見！！"],
 		"NAME": "咎兒"
 	},
 	"animator_TukaLunaMarceau":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 通過 !M! 增加你手中一隨機牌的阻擋",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 這回合隨機提高手牌中的牌 !M! 點格擋。",
 		"NAME": "杜嘉"
 	},
 	"animator_Tyuule":
@@ -606,7 +606,7 @@
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 給予 !M! 層 [#EFC851]燃燒[] NL 遺產 : 獲得1瓶隨機藥水 。",
 		"EXTENDED_DESCRIPTION": ["燃燒", "在你回合開始受到傷害，另外每層提供  4% 更多攻擊傷害。"],
-		"NAME": "巫婆"
+		"NAME": "魔女"
 	},
 	"animator_Wiz":
 	{
@@ -630,5 +630,44 @@
 		"EXTENDED_DESCRIPTION": ["阿修羅丸", "特殊的1耗#y攻擊牌 。"],
 		"NAME": "百夜優一郎",
 		"UPGRADE_DESCRIPTION": "造成!D!點傷害 。 NL 遺產 : 將一張 [#EFC851]阿修羅丸+[] 放到你的棄牌堆 。"
+	},
+	"animator_Vanir":
+	{
+		"DESCRIPTION": "變形者 。 [#EFC851]巴尼爾[] 。 造成 !D! 點傷害. 鼓舞 !SV! : 造成 !M! 點 傷害 。",
+		"EXTENDED_DESCRIPTION": ["巴尼爾", "如果這張卡被消耗了 ， 將手牌中的一張牌變為這張牌的複制 。"],
+		"NAME": "巴尼爾"
+	},
+	"animator_CowGirl":
+	{
+		"DESCRIPTION": "獲得 !M! 臨時生命。 NL 獲得 [B] NL 消耗 。",
+		"NAME": "牧牛妹"
+	},
+	"animator_ZankiKiguchi":
+	{
+		"DESCRIPTION": "造成 !D! 點傷害. NL 壓倒 和 撤回 : 本次戰鬥中，提高手牌中所有攻擊牌的傷害 !SV! 點 。",
+		"NAME": "Zanki"
+	},
+	"animator_Evileye":
+	{
+		"DESCRIPTION": "造成 !D! 點傷害 。 NL [#EFC851]重新裝填[] : 使用你最右側的1個充能球的被動能力 。",
+		"EXTENDED_DESCRIPTION": ["重新裝填", "丟棄任意數量的牌 ， 觸發同等次數 。"],
+		"NAME": "Evileye"
+	},
+	"animator_Pride":
+	{
+		"DESCRIPTION": "變形者 。 [#EFC851]普萊德[] 。 NL  [#EFC851]生成[] !M! 顆黑暗充能球 。 NL 同調 : 賦予 !SV! 層 纏繞 。 ",
+		"EXTENDED_DESCRIPTION": ["普萊德", "直到你的下個回合 ， 當你受到格擋外的傷害時 ， 你的傷害的黑暗充能球抵消這個傷害並損失同等的傷害充能 。"],
+		"NAME": "普萊德"
+	},
+	"animator_CrowleyEusford":
+	{
+		"DESCRIPTION": "對敵人和另一個隨機敵人造成 !D! 點傷害 。 NL 撤回 : 在本次戰鬥中提高其 !M! 點 傷害 。",
+		"NAME": "Crowley Eusford"
+	},
+	"animator_HiiragiShinya":
+	{
+		"DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本輪第一次進攻 ， 給予目標一個隨機的 [#EFC851]負面效果[] 。",
+		"UPGRADE_DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本輪第一次進攻 ， 給予目標一個隨機的強力 [#EFC851]負面效果[] 。",
+		"NAME": "Shinya Hiiragi"
 	}
 }

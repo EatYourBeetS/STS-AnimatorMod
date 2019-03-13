@@ -111,6 +111,6 @@ public class AinzAction extends AnimatorAction
         effectPool.add(new AinzEffect_GainStrength(7));
         effectPool.add(new AinzEffect_GainTemporaryHP(15));
         effectPool.add(new AinzEffect_GainThorns(9));
-        effectPool.add(new AinzEffect_PlayTopCard(22));
+        effectPool.add(new AinzEffect_PlayTopCard(22, 24));
     }
 }

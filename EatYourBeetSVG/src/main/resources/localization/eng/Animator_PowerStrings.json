@@ -99,6 +99,11 @@
 		"DESCRIPTIONS": ["The first #b", " card/s you play every turn will Synergize."],
 		"NAME": "Envy"
 	},
+	"animator_PridePower":
+	{
+		"DESCRIPTIONS": ["Until your next turn, when you would take unblocked damage, your rightmost #yDark Orb loses that much damage instead."],
+		"NAME": "Pride"
+	},
 	"animator_BozesPower":
 	{
 		"DESCRIPTIONS": ["Whenever a card Synergizes this turn, gain #b", " #yBlock."],

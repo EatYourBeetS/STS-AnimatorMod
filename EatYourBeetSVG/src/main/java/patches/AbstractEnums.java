@@ -34,4 +34,10 @@ public class AbstractEnums
         @SpireEnum
         public static RewardItem.RewardType SPECIAL_GOLD;
     }
+
+    public static class CardTags
+    {
+        @SpireEnum
+        public static AbstractCard.CardTags LOYAL;
+    }
 }

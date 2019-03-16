@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.GuyAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -17,23 +18,27 @@ public class Guy extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(0,0, 4);
+        Initialize(0,0, 5);
+
+        this.baseSecondaryValue = this.secondaryValue = 2;
 
         SetSynergy(Synergies.Chaika);
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActionsHelper.GainEnergy(1);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(m, p, this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new GuyAction(m, p));
+        GameActionsHelper.AddToBottom(new GainBlockAction(m, p, this.magicNumber));
+        GameActionsHelper.ApplyPower(p, m, new WeakPower(m, this.secondaryValue, false), this.secondaryValue);
         GameActionsHelper.CycleCardAction(1);
-
-//        if (ProgressCooldown())
-//        {
-//            GameActionsHelper.ChannelOrb(new Frost(), true);
-//            //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FocusPower(m, this.magicNumber), this.magicNumber));
-//        }
     }
 
     @Override
@@ -41,7 +46,8 @@ public class Guy extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(0);
+            upgradeMagicNumber(-2);
+            upgradeSecondaryValue(1);
         }
     }
 }

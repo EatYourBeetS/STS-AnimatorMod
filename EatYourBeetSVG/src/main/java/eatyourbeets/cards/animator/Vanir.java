@@ -29,7 +29,10 @@ public class Vanir extends AnimatorCard_Boost
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.AddToBottom(new TransformIntoSpecificCardAction(this, AbstractDungeon.player.drawPile, 1));
+        if (AbstractDungeon.player.drawPile.size() > 0)
+        {
+            GameActionsHelper.AddToBottom(new TransformIntoSpecificCardAction(this, AbstractDungeon.player.drawPile, 1));
+        }
     }
 
     @Override

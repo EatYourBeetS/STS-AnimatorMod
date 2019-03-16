@@ -68,8 +68,8 @@ public class HiiragiShinya extends AnimatorCard
         result.Add(new VulnerablePower(m, upgraded ? 2 : 1, false), 5);
         result.Add(new PoisonPower(m, p, upgraded ? 6 : 4), 4);
         result.Add(new BurningPower(m, p, upgraded ? 3 : 2), 3);
+        result.Add(new LoseStrengthPower(m, upgraded ? 2 : 1), 2);
         result.Add(new StunMonsterPower(m, 1), 1);
-        result.Add(new LoseStrengthPower(m, upgraded ? 2 : 1), 1);
 
         return result;
     }

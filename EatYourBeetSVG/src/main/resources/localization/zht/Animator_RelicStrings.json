@@ -26,5 +26,113 @@
 		[
 			"你可以 放逐 掉某些系列的牌使它們不再出現， 擊敗王之後使用次數會增加。", "去除系列"
 		]
+	},
+	"Animator_CerealBox":
+	{
+		"NAME": "穀物箱",
+		"FLAVOR": "保證後備補給! 由 凍空粉雪 提供.",
+		"DESCRIPTIONS":
+		[
+			"右鍵使用，治療 #b1 點血量. NL 初始獲得 #b20 次使用次數, 每次進入商店時獲得 #b5 次使用次數 . NL 最多存儲 #b30 次使用次數."
+		]
+	},
+	"Animator_WizardHat":
+	{
+		"NAME": "巫師帽",
+		"FLAVOR": "爆裂魔法天下第一！ .......當然，需要時間準備.",
+		"DESCRIPTIONS":
+		[
+			"在同一場戰鬥中觸發 7次 #y同調 時, 對所有敵人造成 #b14 點傷害."
+		]
+	},
+	"Animator_AlchemistGlove":
+	{
+		"NAME": "alchemist glove",
+		"FLAVOR": "使你可以通過一根手指控制火焰.",
+		"DESCRIPTIONS":
+		[
+			"每 #b3 回合, 给予所有敌人 #b2 层 #y燃烧."
+		]
+	},
+	"Animator_HallowedScabbard":
+	{
+		"NAME": "阿瓦隆",
+		"FLAVOR": "劍鞘的持有者被授予強力恢復能力,能夠迅速恢復致命傷.",
+		"DESCRIPTIONS":
+		[
+			"每場戰鬥可觸發一次, 當你再一次受傷中損失超過15點血量時, 獲得 #b5 層 #y再生 和 #b2 點 #y力量."
+		]
+	},	
+	"Animator_RacePiece":
+	{
+		"NAME": "race piece",
+		"FLAVOR": "你看到 Mr. Mind Reader 從那邊來了沒? 將死！",
+		"DESCRIPTIONS":
+		[
+			"選擇一張牌, 將你的牌庫中的三張牌轉換為與選中牌同系列的三張隨機牌."
+		]
+	},
+	"Animator_WornHelmet":
+	{
+		"NAME": "破碎的頭盔",
+		"FLAVOR": "哥布林.",
+		"DESCRIPTIONS":
+		[
+			"每當你抽到詛咒牌或狀態牌時, 對一個隨機敵人造成 3 點傷害."
+		]
+	},
+	"Animator_HeavyHalberd":
+	{
+		"NAME": "重戟",
+		"FLAVOR": "統治死亡即統治生命， 死即生之巔峰, 崇敬生命吧.",
+		"DESCRIPTIONS":
+		[
+			"你的 #y攻擊牌 造成 #b15% 點額外傷害."
+		]
+	},
+	"Animator_OldCoffin":
+	{
+		"NAME": "舊棺材",
+		"FLAVOR": "震驚的真相！",
+		"DESCRIPTIONS":
+		[
+			"四回合後開始啟用，當你的回合開始時, 給予一個隨機敵人一層隨機的 #y負面效果."
+		]
+	},
+	"Animator_CursedBlade":
+	{
+		"NAME": "詛咒之刃",
+		"FLAVOR": "它從持有者的血液中汲取力量, 對一個吸血鬼來說再適合不過了.",
+		"DESCRIPTIONS":
+		[
+			"每當一次攻擊 並造成傷害時, 恢復 #b2 點 生命 . 失去 #b50％ 的最大健康."
+		]
+	},
+	"Animator_BattleDrones":
+	{
+		"NAME": "戰鬥無人機",
+		"FLAVOR": "完美的工程學造物.",
+		"DESCRIPTIONS":
+		[
+			"每當你觸發一次同調時, 對一個隨機敵人造成 #b1 點傷害並獲得 #b1 點格擋."
+		]
+	},
+	"Animator_EngravedStaff":
+	{
+		"NAME": "雕塑",
+		"FLAVOR": "公會最寶貴的財產之一.",
+		"DESCRIPTIONS":
+		[
+			"在你的回合結束時，保留手牌中消耗最高的牌,直到被打出之前消耗減 #1 ."
+		]
+	},
+	"Animator_Buoy":
+	{
+		"NAME": "浮标",
+		"FLAVOR": "我的速度天下第一, 迅疾如風!",
+		"DESCRIPTIONS":
+		[
+			"每 #b4 回合, 獲得 #b6 點 格擋 並給予所有敵人 #b2 點 格擋 ."
+		]
 	}
 }

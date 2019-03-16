@@ -2,8 +2,8 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.MarkOfPoisonPower;
@@ -14,9 +14,9 @@ public class AcuraAkari extends AnimatorCard
 
     public AcuraAkari()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(0,0, 2);
+        Initialize(0,4, 1);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -24,12 +24,9 @@ public class AcuraAkari extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, p, new MarkOfPoisonPower(p, m, this.magicNumber), this.magicNumber));
-
-//        if (HasActiveSynergy())
-//        {
-//            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, 1), 1));
-//        }
+        GameActionsHelper.ChooseAndDiscard(1, false);
+        GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new MarkOfPoisonPower(p, m, this.magicNumber), this.magicNumber));
+        GameActionsHelper.GainBlock(p, this.block);
     }
 
     @Override

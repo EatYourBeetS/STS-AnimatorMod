@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -139,6 +140,14 @@ public class GameActionsHelper
     {
         AddTemporaryHPAction action = new AddTemporaryHPAction(target, source, amount);
         AbstractDungeon.actionManager.addToBottom(action);
+        return action;
+    }
+
+    public static DiscardAction ChooseAndDiscard(int amount, boolean random)
+    {
+        DiscardAction action = new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, amount, random);
+        AbstractDungeon.actionManager.addToBottom(action);
+        AbstractDungeon.actionManager.addToBottom(new WaitAction(0.2f));
         return action;
     }
 }

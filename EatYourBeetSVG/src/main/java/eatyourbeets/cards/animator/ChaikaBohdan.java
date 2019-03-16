@@ -10,6 +10,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
+import eatyourbeets.Utilities;
+import eatyourbeets.actions.MoveSpecificCardAction;
+import eatyourbeets.actions.OnDamageAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -21,6 +25,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
     public static final String ID = CreateFullID(ChaikaBohdan.class.getSimpleName());
 
     private int bonusDamage = 0;
+    private boolean returnToHand = false;
 
     public ChaikaBohdan()
     {
@@ -38,9 +43,24 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
     }
 
     @Override
+    public void onMoveToDiscard()
+    {
+        super.onMoveToDiscard();
+
+        if (returnToHand)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.discardPile));
+            this.retain = true;
+            returnToHand = false;
+        }
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
 
         AddDamageBonus(-bonusDamage);
     }
@@ -80,5 +100,17 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
     {
         bonusDamage += amount;
         baseDamage += amount;
+    }
+
+    private void OnDamage(Object state, AbstractMonster monster)
+    {
+        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
+        if (initialBlock != null && monster != null)
+        {
+            if (initialBlock > 0 && monster.currentBlock <= 0)
+            {
+                returnToHand = true;
+            }
+        }
     }
 }

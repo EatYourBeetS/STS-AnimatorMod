@@ -66,7 +66,7 @@ public class Pride extends AnimatorCard
         if (TryUpgrade())
         {
             //upgradeMagicNumber(1);
-            upgradeSecondaryValue(2);
+            upgradeSecondaryValue(3);
         }
     }
 }

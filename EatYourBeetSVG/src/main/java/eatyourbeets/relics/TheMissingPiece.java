@@ -2,7 +2,6 @@ package eatyourbeets.relics;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
@@ -30,12 +29,6 @@ public class TheMissingPiece extends AnimatorRelic
     public TheMissingPiece()
     {
         super(ID, RelicTier.STARTER, LandingSound.FLAT);
-    }
-
-    @Override
-    public AbstractRelic makeCopy()
-    {
-        return new TheMissingPiece();
     }
 
     @Override

@@ -26,7 +26,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 
     public PurgingStone()
     {
-        super(ID, RelicTier.STARTER, LandingSound.CLINK);
+        super(ID, RelicTier.STARTER, LandingSound.SOLID);
 
         bannedSynergies = new ArrayList<>();
     }
@@ -34,18 +34,6 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
     public int GetBannedCount()
     {
         return bannedSynergies.size();
-    }
-
-    @Override
-    public AbstractRelic makeCopy()
-    {
-        return new PurgingStone();
-    }
-
-    @Override
-    public String getUpdatedDescription()
-    {
-        return DESCRIPTIONS[0];
     }
 
     private void UpdateBannedTip()
@@ -213,9 +201,6 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
     @Override
     public void onLoad(String value)
     {
-//        logger.info("Standard run: " + Settings.isStandardRun());
-//        logger.info("Ascension Level: " + AbstractDungeon.ascensionLevel);
-
         ArrayList<String> synergies = new ArrayList<>();
         Collections.addAll(synergies, value.split("\u001F"));
         for (String s : synergies)

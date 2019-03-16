@@ -70,7 +70,7 @@
 		"PROPERNAME": "Malleable"
 	},
 	{
-		"DESCRIPTION": "Take damage at the end of your turn.",
+		"DESCRIPTION": "Take damage at the end of each turn.",
 		"NAMES": ["constricted"],
 		"PROPERNAME": "Constricted"
 	},

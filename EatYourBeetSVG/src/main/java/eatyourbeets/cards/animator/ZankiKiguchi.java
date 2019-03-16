@@ -73,6 +73,7 @@ public class ZankiKiguchi extends AnimatorCard
             if (c != this)
             {
                 GameActionsHelper.AddToBottom(new ModifyDamageAction(c.uuid, this.magicNumber));
+                c.flash();
             }
         }
     }

@@ -24,7 +24,115 @@
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
 		"DESCRIPTIONS":
 		[
-			"You may banish card #yseries from appearing in all future rewards and shops. Gain more uses after defeating a boss.", "Removed Series:"
+			"You may banish card #ySeries from appearing in all future rewards and shops. Gain more uses after defeating a boss.", "Removed Series:"
+		]
+	},
+	"Animator_CerealBox":
+	{
+		"NAME": "Cereal Box",
+		"FLAVOR": "Whole Grain Guaranteed! Approved by Konayuki.",
+		"DESCRIPTIONS":
+		[
+			"#pRight #pClick to #yHeal #b1 HP. NL Starts at #b20 uses, gain #b5 uses when entering a shop room. NL You can store up to #b30 uses."
+		]
+	},
+	"Animator_WizardHat":
+	{
+		"NAME": "Wizard Hat",
+		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
+		"DESCRIPTIONS":
+		[
+			"Every time you activate #b7 #ySynergies in a combat, deal #b14 damage to ALL enemies."
+		]
+	},
+	"Animator_AlchemistGlove":
+	{
+		"NAME": "Alchemist Glove",
+		"FLAVOR": "Allows you to control fire with the snap of a finger.",
+		"DESCRIPTIONS":
+		[
+			"Every #b3 turns, apply #b2 #yBurning to ALL enemies."
+		]
+	},
+	"Animator_HallowedScabbard":
+	{
+		"NAME": "Hallowed Scabbard",
+		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
+		"DESCRIPTIONS":
+		[
+			"If you lose a total of #b15 HP or more in a combat, gain #b5 #yRegeneration and #b2 #yStrength. Activates once per combat."
+		]
+	},
+	"Animator_RacePiece":
+	{
+		"NAME": "Race Piece",
+		"FLAVOR": "Did you see that coming Mr. Mind Reader? Checkmate.",
+		"DESCRIPTIONS":
+		[
+			"Choose #b1 card, transform #b3 cards in your deck into #b3 random cards of the same #ySeries."
+		]
+	},
+	"Animator_WornHelmet":
+	{
+		"NAME": "Worn Helmet",
+		"FLAVOR": "Goblins.",
+		"DESCRIPTIONS":
+		[
+			"Whenever you draw a #yCurse or #yStatus, deal #b3 damage to a random enemy."
+		]
+	},
+	"Animator_HeavyHalberd":
+	{
+		"NAME": "Heavy Halberd",
+		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
+		"DESCRIPTIONS":
+		[
+			"Your #yAttacks deal #b15% more damage."
+		]
+	},
+	"Animator_OldCoffin":
+	{
+		"NAME": "Old Coffin",
+		"FLAVOR": "Shocking Truth!",
+		"DESCRIPTIONS":
+		[
+			"Starting from your #b4th turn, apply a random #yDebuff to a random enemy at the start of each turn."
+		]
+	},
+	"Animator_CursedBlade":
+	{
+		"NAME": "Cursed Blade",
+		"FLAVOR": "It draws strength from the blood of its user, truly fitting for a vampire.",
+		"DESCRIPTIONS":
+		[
+			"Whenever you deal unblocked damage, #yHeal #b2 HP. NL Permanently #rLose #rHalf of your Max HP. Effects that increase your max HP are reduced by half."
+		]
+	},
+	"Animator_BattleDrones":
+	{
+		"NAME": "Battle Drones",
+		"FLAVOR": "Engineering perfection.",
+		"DESCRIPTIONS":
+		[
+			"Whenever a card #ySynergizes, deal #b1 damage to a random enemy and gain #b1 #yBlock."
+		]
+	},
+	"Animator_EngravedStaff":
+	{
+		"NAME": "Engraved Staff",
+		"FLAVOR": "One of the most treasured possessions of the Guild.",
+		"DESCRIPTIONS":
+		[
+			"At the end of your turn, #yRetain your highest cost card, it costs #b1 less next turn."
+		]
+	},
+	"Animator_Buoy":
+	{
+		"NAME": "Buoy",
+		"FLAVOR": "When it comes to speed I'm the best there is, swift like the island breeze!",
+		"DESCRIPTIONS":
+		[
+			"Every #b4 turns, gain #b6 #yBlock and give all enemies #b2 #yBlock."
 		]
 	}
 }

@@ -2,7 +2,7 @@
 {
 	"animator_AcuraAkari":
 	{
-		"DESCRIPTION": "對一個敵人造成 !M! 毒 之 印記 。",
+		"DESCRIPTION": "丟棄 1 張牌 。 對一個敵人造成 !M! 毒 之 印記 。 NL 獲得 !B! 點 格擋 。",
 		"NAME": "阿卡莉"
 	},
 	"animator_AcuraShin":
@@ -36,7 +36,7 @@
 	},
 	"animator_Aisha":
 	{
-		"DESCRIPTION": "從抽牌堆中加入一張 [#EFC851]技能[] 牌到手牌 。 同調 : 本次戰鬥中減少 !M! 點耗能 。",
+		"DESCRIPTION": "丟棄 1 張牌 。 從你的抽牌堆中取一 [#EFC851]技能[] 的牌， 本次戰鬥中減少 !M! 點耗能 。",
 		"NAME": "愛莎"
 	},
 	"animator_Albedo":
@@ -103,7 +103,7 @@
 	},
 	"animator_ChaikaBohdan":
 	{
-		"DESCRIPTION": " [#EFC851]急躁[] NL !M! 。 造成 !D! 點 傷害 。",
+		"DESCRIPTION": " [#EFC851]急躁[] NL !M! 。 造成 !D! 點 傷害 。 壓倒 : 將此卡退還給您 和 保留 。",
 		"EXTENDED_DESCRIPTION": ["急躁", "當此牌在手牌中時，你打出的 #y攻擊 牌額外增加等同於急躁層數的傷害 。 使用後重置傷害 。"],
 		"NAME": "嘉依卡·布芙丹"
 	},
@@ -134,6 +134,16 @@
 		"EXTENDED_DESCRIPTION": ["吸收裝甲", "獲得敵人損失的格擋 。"],
 		"NAME": "科賽特斯"
 	},
+	"animator_CowGirl":
+	{
+		"DESCRIPTION": "獲得 !M! 臨時生命。 NL 獲得 [B] NL 消耗 。",
+		"NAME": "牧牛妹"
+	},
+	"animator_CrowleyEusford":
+	{
+		"DESCRIPTION": "對敵人和另一個隨機敵人造成 !D! 點傷害 。 NL 撤回 : 在本次戰鬥中提高其 !M! 點 傷害 。",
+		"NAME": "Crowley Eusford"
+	},
 	"animator_Darkness":
 	{
 		"DESCRIPTION": "獲得 !M! 層 [#EFC851]多層護甲[] 。 每次受傷時隨機 升級 !M! 張卡 ， 以手牌優先 。",
@@ -163,7 +173,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "造成 !M 層 易傷 並造成 !D! 點 傷害 。 NL 同調 :獲得 [B] 。",
+		"DESCRIPTION": "造成 !M! 層 易傷 並造成 !D! 點 傷害 。 NL 同調 :獲得 [B] 。",
 		"NAME": "休比"
 	},
 	"animator_DolaStephanie":
@@ -209,7 +219,7 @@
 	},
 	"animator_EmiyaShirou":
 	{
-		"DESCRIPTION": "給予一個隨機敵人 !M! 點格擋 和 易傷 。 [#EFC851]無限劍制[] 。",
+		"DESCRIPTION": "給予一個隨機敵人 !M! 點格擋 和 1 層 易傷 。 [#EFC851]無限劍制[] 。",
 		"EXTENDED_DESCRIPTION": ["無限劍制", "本回合， 本回合，打破格擋時獲得 1 點 #y能量 和抽一張 隨機 #y攻擊牌 。 該效果不疊加 。"],
 		"NAME": "衛宮四郎"
 	},
@@ -244,8 +254,14 @@
 	},
 	"animator_Eve":
 	{
-		"DESCRIPTION": "每當觸發一次 同調 ， 對隨機敵人造成 1 點傷害並增加這張牌 1 點傷害 。",
+		"DESCRIPTION": "每當觸發一次 同調 ， 對隨機敵人造成 !M! 點傷害並增加這張牌 1 點傷害 。",
 		"NAME": "伊芙"
+	},
+	"animator_Evileye":
+	{
+		"DESCRIPTION": "造成 !D! 點傷害 。 NL [#EFC851]重新裝填[] : 使用你最右側的1個充能球的被動能力 。",
+		"EXTENDED_DESCRIPTION": ["重新裝填", "丟棄任意數量的牌 ， 觸發同等次數 。"],
+		"NAME": "Evileye"
 	},
 	"animator_Excalibur":
 	{
@@ -255,8 +271,8 @@
 	"animator_FeridBathory":
 	{
 		"DESCRIPTION": "每回合可觸發一旦 ， 消耗 一張牌時 獲得 1 點 力量 ， 回復 2 點 生命 。",
-		"UPGRADE_DESCRIPTION": "每回合可觸發兩次 ， 消耗 一張牌時 獲得 1 點 力量 ， 回復 2 點 生命 。",
-		"NAME": "費里德·巴特利"
+		"NAME": "費里德·巴特利",
+		"UPGRADE_DESCRIPTION": "每回合可觸發兩次 ， 消耗 一張牌時 獲得 1 點 力量 ， 回復 2 點 生命 。"
 	},
 	"animator_Fredrika":
 	{
@@ -327,7 +343,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "給予一個敵人 !M! 點 格擋 ， 然後獲得等同於目標的 格擋 值 。 循環 1 張牌 。",
+		"DESCRIPTION": "給予一個敵人 !M! 點 格擋 和 !SV! 層 虛弱 。 循環 1 張牌 。 撤回 : 獲得 [B]",
 		"NAME": "奇伊"
 	},
 	"animator_HigakiRinne":
@@ -340,6 +356,12 @@
 	{
 		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 本回合第一次使用這張牌時 ， 抽一張牌 。",
 		"NAME": "精靈弓手"
+	},
+	"animator_HiiragiShinya":
+	{
+		"DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本輪第一次進攻 ， 給予目標一個隨機的 [#EFC851]負面效果[] 。",
+		"NAME": "Shinya Hiiragi",
+		"UPGRADE_DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本輪第一次進攻 ， 給予目標一個隨機的強力 [#EFC851]負面效果[] 。"
 	},
 	"animator_Hitei":
 	{
@@ -359,7 +381,7 @@
 	},
 	"animator_IzunaHatsuse":
 	{
-		"DESCRIPTION": "給予 !M! 層 虛弱 。 NL 獲得 !B! 點 格擋 。 NL [#EFC851]血液破壞[] 。",
+		"DESCRIPTION": "給予 1 層 虛弱 。 NL 獲得 !B! 點 格擋 。 NL [#EFC851]血液破壞[] 。",
 		"EXTENDED_DESCRIPTION": ["血液破壞", "當你的HP低於25％時， 這張卡將成為一個特殊的0耗能 #攻擊牌 。", "造成 !D! 點 傷害 兩次 。 NL 回復 !M! 點 生命 。"],
 		"NAME": "初賴伊剛"
 	},
@@ -459,8 +481,14 @@
 	"animator_PinaCoLada":
 	{
 		"DESCRIPTION": "你每輪打出的第一張無耗能張牌打出兩次 。",
-		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 你每輪打出的第一張無耗能張牌打出兩次 。",
-		"NAME": "平娜·戈·蘭達"
+		"NAME": "平娜·戈·蘭達",
+		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 你每輪打出的第一張無耗能張牌打出兩次 。"
+	},
+	"animator_Pride":
+	{
+		"DESCRIPTION": "變形者 。 [#EFC851]普萊德[] 。 NL  [#EFC851]生成[] !M! 顆黑暗充能球 。 NL 同調 : 賦予 !SV! 層 纏繞 。 ",
+		"EXTENDED_DESCRIPTION": ["普萊德", "直到你的下個回合 ， 當你受到格擋外的傷害時 ， 你的傷害的黑暗充能球抵消這個傷害並損失同等的傷害充能 。"],
+		"NAME": "普萊德"
 	},
 	"animator_Priestess":
 	{
@@ -588,14 +616,20 @@
 	"animator_Tyuule":
 	{
 		"DESCRIPTION": "手牌中每有另一個張 [#EFC851]技能牌[] ， 給予所有敵人 !M! 層 中毒 。 NL ( 給予 !SV! 層 中毒 )",
-		"UPGRADE_DESCRIPTION": "手牌中每有一張 [#EFC851]技能牌[] ， 給予所有敵人 !M! 層 中毒 。 NL ( 給予 !SV! 層 中毒 )",
-		"NAME": "蒂尤蕾"
+		"NAME": "蒂尤蕾",
+		"UPGRADE_DESCRIPTION": "手牌中每有一張 [#EFC851]技能牌[] ， 給予所有敵人 !M! 層 中毒 。 NL ( 給予 !SV! 層 中毒 )"
 	},
 	"animator_Urushihara":
 	{
 		"DESCRIPTION": "[#EFC851]產生[] 1 個黑暗充能球 ， NL 對所有敵人造成 !D! 傷害 。 NL [#EFC851]怠惰[] 。 ",
 		"EXTENDED_DESCRIPTION": ["怠惰", "抽到這張牌時， 有50%機率跟的棄牌堆裡的牌交換。"],
 		"NAME": "漆原半藏"
+	},
+	"animator_Vanir":
+	{
+		"DESCRIPTION": "變形者 。 [#EFC851]巴尼爾[] 。 造成 !D! 點傷害. 鼓舞 !SV! : 造成 !M! 點 傷害 。",
+		"EXTENDED_DESCRIPTION": ["巴尼爾", "如果這張卡被消耗了 ， 將手牌中的一張牌變為這張牌的複制 。"],
+		"NAME": "巴尼爾"
 	},
 	"animator_Viivi":
 	{
@@ -610,8 +644,9 @@
 	},
 	"animator_Wiz":
 	{
-		"DESCRIPTION": "消耗 一張牌， 從已 消耗 的牌中選擇一張加入你的手牌。 使用 !M! 次後 抹除 。",
-		"EXTENDED_DESCRIPTION": ["檢索限制", "不能在被消耗牌中選另一張<維茲> 。"],
+		"DESCRIPTION": "消耗 一張牌， 從已 消耗 的牌中選擇一張加入你的手牌。 抹除 [#EFC851]*[] 。",
+		"UPGRADE_DESCRIPTION": "消耗 一張牌， 從已 消耗 的牌中選擇一張加入你的手牌。 使用 !M! 次後 抹除 [#EFC851]*[] 。",
+		"EXTENDED_DESCRIPTION": ["* 注", "不能在被消耗牌中選另一張<維茲> 。"],
 		"NAME": "維茲"
 	},
 	"animator_YaoHaDucy":
@@ -631,43 +666,9 @@
 		"NAME": "百夜優一郎",
 		"UPGRADE_DESCRIPTION": "造成!D!點傷害 。 NL 遺產 : 將一張 [#EFC851]阿修羅丸+[] 放到你的棄牌堆 。"
 	},
-	"animator_Vanir":
-	{
-		"DESCRIPTION": "變形者 。 [#EFC851]巴尼爾[] 。 造成 !D! 點傷害. 鼓舞 !SV! : 造成 !M! 點 傷害 。",
-		"EXTENDED_DESCRIPTION": ["巴尼爾", "如果這張卡被消耗了 ， 將手牌中的一張牌變為這張牌的複制 。"],
-		"NAME": "巴尼爾"
-	},
-	"animator_CowGirl":
-	{
-		"DESCRIPTION": "獲得 !M! 臨時生命。 NL 獲得 [B] NL 消耗 。",
-		"NAME": "牧牛妹"
-	},
 	"animator_ZankiKiguchi":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害. NL 壓倒 和 撤回 : 本次戰鬥中，提高手牌中所有攻擊牌的傷害 !SV! 點 。",
 		"NAME": "Zanki"
-	},
-	"animator_Evileye":
-	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 NL [#EFC851]重新裝填[] : 使用你最右側的1個充能球的被動能力 。",
-		"EXTENDED_DESCRIPTION": ["重新裝填", "丟棄任意數量的牌 ， 觸發同等次數 。"],
-		"NAME": "Evileye"
-	},
-	"animator_Pride":
-	{
-		"DESCRIPTION": "變形者 。 [#EFC851]普萊德[] 。 NL  [#EFC851]生成[] !M! 顆黑暗充能球 。 NL 同調 : 賦予 !SV! 層 纏繞 。 ",
-		"EXTENDED_DESCRIPTION": ["普萊德", "直到你的下個回合 ， 當你受到格擋外的傷害時 ， 你的傷害的黑暗充能球抵消這個傷害並損失同等的傷害充能 。"],
-		"NAME": "普萊德"
-	},
-	"animator_CrowleyEusford":
-	{
-		"DESCRIPTION": "對敵人和另一個隨機敵人造成 !D! 點傷害 。 NL 撤回 : 在本次戰鬥中提高其 !M! 點 傷害 。",
-		"NAME": "Crowley Eusford"
-	},
-	"animator_HiiragiShinya":
-	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本輪第一次進攻 ， 給予目標一個隨機的 [#EFC851]負面效果[] 。",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本輪第一次進攻 ， 給予目標一個隨機的強力 [#EFC851]負面效果[] 。",
-		"NAME": "Shinya Hiiragi"
 	}
 }

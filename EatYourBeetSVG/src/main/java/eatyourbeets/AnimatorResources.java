@@ -1,6 +1,7 @@
 package eatyourbeets;
 
 import basemod.BaseMod;
+import basemod.helpers.RelicType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.google.gson.Gson;
@@ -12,9 +13,7 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.relics.LivingPicture;
-import eatyourbeets.relics.PurgingStone;
-import eatyourbeets.relics.TheMissingPiece;
+import eatyourbeets.relics.*;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.rewards.SynergyCardsReward;
 import eatyourbeets.variables.SecondaryValueVariable;
@@ -170,6 +169,18 @@ public class AnimatorResources
         BaseMod.addRelicToCustomPool(new LivingPicture(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new TheMissingPiece(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new PurgingStone(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new WizardHat(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new Buoy(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new RacePiece(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new BattleDrones(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelic(new AlchemistGlove(), RelicType.SHARED);
+        BaseMod.addRelic(new OldCoffin(), RelicType.SHARED);
+        BaseMod.addRelic(new WornHelmet(), RelicType.SHARED);
+        BaseMod.addRelic(new HeavyHalberd(), RelicType.SHARED);
+        BaseMod.addRelic(new HallowedScabbard(), RelicType.SHARED);
+        BaseMod.addRelic(new EngravedStaff(), RelicType.SHARED);
+        BaseMod.addRelic(new CursedBlade(), RelicType.SHARED);
+        BaseMod.addRelic(new CerealBox(), RelicType.SHARED);
     }
 
     public static void LoadCustomCards() throws Exception

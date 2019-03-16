@@ -20,7 +20,7 @@ public class Ara extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5,0, 1);
+        Initialize(5,0, 2);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -41,7 +41,7 @@ public class Ara extends AnimatorCard
         if (TryUpgrade())
         {          
             upgradeDamage(2);
-            upgradeMagicNumber(1);
+            //upgradeMagicNumber(1);
         }
     }
 }

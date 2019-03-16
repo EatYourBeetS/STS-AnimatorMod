@@ -38,8 +38,8 @@ public class ElricAlphonseAlt extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
-            upgradeMagicNumber(1);
+            upgradeBlock(4);
+            //upgradeMagicNumber(1);
         }
     }
 }

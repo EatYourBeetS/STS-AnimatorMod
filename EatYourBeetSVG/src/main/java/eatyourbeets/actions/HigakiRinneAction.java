@@ -3,6 +3,7 @@ package eatyourbeets.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -16,6 +17,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
@@ -50,83 +52,83 @@ public class HigakiRinneAction extends AnimatorAction
         roll = AbstractDungeon.miscRng.random(160);
         
         AbstractPlayer p = AbstractDungeon.player;
-        if (lucky(6))
+        if (lucky(6)) // 6
         {
             for (int i = 0; i < 3; i++)
             {
                 GameActionsHelper.GainBlock(p, higakiRinne.block);
             }
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 12
         {
             for (int i = 0; i < 3; i++)
             {
                 GameActionsHelper.AddToBottom(new DamageRandomEnemyAction(new DamageInfo(p, higakiRinne.damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
             }
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 18
         {
             GameActionsHelper.ChannelOrb(AbstractOrb.getRandomOrb(true), true);
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 24
         {
             GameActionsHelper.DrawCard(p, 1);
         }
-        else if (lucky(8))
+        else if (lucky(8)) // 32
         {
             GameActionsHelper.AddToBottom(new UpgradeRandomCardAction());
         }
-        else if (lucky(8))
+        else if (lucky(8)) // 40
         {
             GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 46
         {
             GameActionsHelper.AddToBottom(new ApplyPoisonOnRandomMonsterAction(p, 5, false, AbstractGameAction.AttackEffect.POISON));
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 52
         {
             GameActionsHelper.GainEnergy(1);
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 58
         {
             GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, 1), 1);
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 64
         {
             GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
         }
-        else if (lucky(4))
+        else if (lucky(4)) // 68
         {
             GameActionsHelper.ApplyPower(p, p, new IntangiblePlayerPower(p, 1), 1);
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 74
         {
             GameActionsHelper.AddToBottom(new ApplyPowerAction(p, p, new ArtifactPower(p, 1), 1));
         }
-        else if (lucky(8))
+        else if (lucky(8)) // 82
         {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
             GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, 2, false), 2));
         }
-        else if (lucky(8))
+        else if (lucky(8)) // 90
         {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
             GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new WeakPower(m, 2, false), 2));
         }
-        else if (lucky(8))
+        else if (lucky(8)) // 98
         {
             GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new Shiv()));
         }
-        else if (lucky(4))
+        else if (lucky(4)) // 102
         {
             GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new Madness()));
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 108
         {
             GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new Slimed()));
         }
-        else if (lucky(3))
+        else if (lucky(3)) // 111
         {
             AbstractCard card = CardLibrary.getRandomColorSpecificCard(higakiRinne.color, AbstractDungeon.miscRng);
             if (!card.tags.contains(AbstractCard.CardTags.HEALING))
@@ -134,15 +136,15 @@ public class HigakiRinneAction extends AnimatorAction
                 GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(card));
             }
         }
-        else if (lucky(7))
+        else if (lucky(7)) // 118
         {
             GameActionsHelper.AddToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 124
         {
             GameActionsHelper.AddToBottom(new TalkAction(true, "???", 1.0F, 2.0F));
         }
-        else if (lucky(2))
+        else if (lucky(2)) // 126
         {
             ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
             String key = Utilities.GetRandomElement(keys, AbstractDungeon.miscRng);
@@ -152,30 +154,39 @@ public class HigakiRinneAction extends AnimatorAction
                 GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(card));
             }
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 132
         {
             for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
             {
                 GameActionsHelper.GainBlock(m, 4);
             }
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 138
         {
             for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
             {
                 GameActionsHelper.AddToBottom(new HealAction(m, m, 3));
             }
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 144
         {
             for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
             {
                 GameActionsHelper.DamageTarget(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.POISON);
             }
         }
-        else if (lucky(6))
+        else if (lucky(6)) // 150
         {
             GameActionsHelper.GainBlock(p, 1);
+        }
+        else if (lucky(6)) // 156
+        {
+            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+            GameActionsHelper.ChannelOrb(new Lightning(), true);
+        }
+        else if (lucky(4)) // 160
+        {
+            GameActionsHelper.GainTemporaryHP(p, p, 5);
         }
 
         this.isDone = true;

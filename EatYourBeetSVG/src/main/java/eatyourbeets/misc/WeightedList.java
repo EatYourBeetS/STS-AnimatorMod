@@ -28,6 +28,11 @@ public class WeightedList<T>
         items = new ArrayList<>();
     }
 
+    public int Count()
+    {
+        return items.size();
+    }
+
     public void Add(T object, int weight)
     {
         totalWeight += weight;

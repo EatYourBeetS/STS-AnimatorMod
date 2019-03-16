@@ -21,7 +21,7 @@ public class Cocytus extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,0,4);
+        Initialize(8,0,6);
 
         AddExtendedDescription();
 

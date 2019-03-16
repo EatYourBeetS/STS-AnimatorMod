@@ -24,6 +24,12 @@ public abstract class AnimatorRelic extends CustomRelic
     }
 
     @Override
+    public String getUpdatedDescription()
+    {
+        return DESCRIPTIONS[0];
+    }
+
+    @Override
     public AbstractRelic makeCopy()
     {
         try

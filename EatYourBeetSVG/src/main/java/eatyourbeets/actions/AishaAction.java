@@ -1,64 +1,75 @@
 package eatyourbeets.actions;
 
-import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
+import com.megacrit.cardcrawl.actions.unique.SkillFromDeckToHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.Utilities;
-
-import java.util.ArrayList;
+import eatyourbeets.misc.RandomizedList;
 
 public class AishaAction extends AnimatorAction
 {
+    private final int choices;
     private final int costReduction;
     private final AbstractPlayer p;
 
-    public AishaAction(int costReduction)
+    public AishaAction(int choices, int costReduction)
     {
+        this.choices = choices;
         this.costReduction = costReduction;
         this.p = AbstractDungeon.player;
-        this.setValues(this.p, AbstractDungeon.player, this.amount);
         this.actionType = ActionType.CARD_MANIPULATION;
+        this.duration = Settings.ACTION_DUR_FAST;
     }
 
     public void update()
     {
-        if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
+        if (this.duration == Settings.ACTION_DUR_FAST)
         {
-            this.p.createHandIsFullDialog();
-        }
-        else
-        {
-            CardGroup skills = this.p.drawPile.getSkills();
-            if (skills.size() > 0)
+            if (p.hand.size() == 0)
             {
-                AbstractCard card;
-                ArrayList<AbstractCard> priorityCards = Utilities.Where(skills.group, (c) -> (c.cost > 0));
-                if (priorityCards.size() > 0)
+                this.isDone = true;
+            }
+            else
+            {
+                CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                RandomizedList<AbstractCard> randomSkills = new RandomizedList<>(p.drawPile.getSkills().group);
+                for (int i = 0; i < choices; i++)
                 {
-                    card = Utilities.GetRandomElement(priorityCards);
+                    if (randomSkills.Count() > 0)
+                    {
+                        group.addToTop(randomSkills.Retrieve(AbstractDungeon.miscRng));
+                    }
+                }
+
+                if (group.size() > 0)
+                {
+                    AbstractDungeon.gridSelectScreen.open(group, 1, false, SkillFromDeckToHandAction.TEXT[0]);
                 }
                 else
                 {
-                    card = skills.getRandomCard(AbstractDungeon.cardRandomRng);
+                    this.isDone = true;
                 }
-
-                if (card == null)
-                {
-                    this.isDone=true;
-                    return;
-                }
-
-                if (costReduction > 0)
-                {
-                    AbstractDungeon.actionManager.addToBottom(new ReduceCostAction(card.uuid, costReduction));
-                }
-                AbstractDungeon.actionManager.addToBottom(new DrawSpecificCardAction(card));
             }
         }
 
-        this.isDone = true;
+        if (AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
+        {
+            AbstractCard card = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
+
+            if (costReduction > 0)
+            {
+                AbstractDungeon.actionManager.addToBottom(new ReduceCostAction(card.uuid, costReduction));
+            }
+            AbstractDungeon.actionManager.addToBottom(new DrawSpecificCardAction(card));
+
+            AbstractDungeon.gridSelectScreen.selectedCards.clear();
+
+            this.isDone = true;
+        }
+
+        this.tickDuration();
     }
 }

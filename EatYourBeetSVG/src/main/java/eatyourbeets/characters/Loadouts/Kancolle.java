@@ -2,7 +2,6 @@ package eatyourbeets.characters.Loadouts;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;

@@ -33,6 +33,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
 
+    private static int turnDamageMultiplier = 0;
     private static int turnCount = 0;
     private static int cardsDrawnThisTurn = 0;
     private static int cardsExhaustedThisTurn = 0;
@@ -51,6 +52,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         synergiesThisTurn = 0;
         cardsExhaustedThisTurn = 0;
         cardsDrawnThisTurn = 0;
+        turnDamageMultiplier = 0;
         turnCount = 0;
 
         onBlockBroken.Clear();
@@ -137,6 +139,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         return false;
     }
 
+    public static void AddTurnDamageMultiplier(int value)
+    {
+        turnDamageMultiplier += value;
+    }
+
     public static int getCardsExhaustedThisTurn()
     {
         return cardsExhaustedThisTurn;
@@ -217,6 +224,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
             s.OnEndOfTurn(isPlayer);
         }
 
+        turnDamageMultiplier = 0;
         cardsExhaustedThisTurn = 0;
         synergiesThisTurn = 0;
         cardsDrawnThisTurn = 0;
@@ -233,18 +241,18 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         }
     }
 
-    //@Override
-    //public void onRemove()
-    //{
-    //    super.onRemove();
-    //    if (AbstractDungeon.getCurrRoom() != null && !AbstractDungeon.getCurrRoom().isBattleOver)
-    //    {
-    //        if (!AbstractDungeon.player.powers.contains(this))
-    //        {
-    //            AbstractDungeon.player.powers.add(this);
-    //        }
-    //    }
-    //}
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type)
+    {
+        if (turnDamageMultiplier != 0 && type == DamageInfo.DamageType.NORMAL)
+        {
+            return Math.round(damage * (1 + turnDamageMultiplier / 100f));
+        }
+        else
+        {
+            return damage;
+        }
+    }
 
     @Override
     public void onDeath()

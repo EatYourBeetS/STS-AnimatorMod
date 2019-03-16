@@ -1,14 +1,13 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Shinoa extends AnimatorCard
 {
@@ -26,14 +25,13 @@ public class Shinoa extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-
-        for (AbstractMonster m2 : AbstractDungeon.getCurrRoom().monsters.monsters)
+        GameActionsHelper.GainBlock(p, this.block);
+        for (AbstractMonster m2 : PlayerStatistics.GetCurrentEnemies(true))
         {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m2, p, new VulnerablePower(m2, this.magicNumber, false), this.magicNumber));
+            GameActionsHelper.ApplyPower(p, m2, new VulnerablePower(m2, this.magicNumber, false), this.magicNumber);
             if (HasActiveSynergy())
             {
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m2, p, new WeakPower(m2, this.magicNumber, false), this.magicNumber));
+                GameActionsHelper.ApplyPower(p, m2, new WeakPower(m2, this.magicNumber, false), this.magicNumber);
             }
         }
     }

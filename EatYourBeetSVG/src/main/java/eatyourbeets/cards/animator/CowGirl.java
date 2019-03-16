@@ -33,7 +33,7 @@ public class CowGirl extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(3);
         }
     }
 }

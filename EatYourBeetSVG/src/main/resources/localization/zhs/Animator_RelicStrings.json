@@ -26,5 +26,113 @@
 		[
 			"你可以 放逐 掉某些牌系列使它们不再出现. 击败boss后获得额外使用次数.", "去除:"
 		]
+	},
+	"Animator_CerealBox":
+	{
+		"NAME": "谷物箱",
+		"FLAVOR": "保证后备补给! 由 冻空粉雪 提供.",
+		"DESCRIPTIONS":
+		[
+			"右键使用，治疗 #b1 点血量. NL 初始获得 #b20 次使用次数, 每次进入商店时获得 #b5 次使用次数 . NL 最多存储 #b30 次使用次数."
+		]
+	},
+	"Animator_WizardHat":
+	{
+		"NAME": "巫师帽",
+		"FLAVOR": "爆裂魔法天下第一！ .......当然，需要时间准备.",
+		"DESCRIPTIONS":
+		[
+			"在同一场战斗中触发 #b7 次 #y同调 时, 对所有敌人造成 #b14 点伤害."
+		]
+	},
+	"Animator_AlchemistGlove":
+	{
+		"NAME": "alchemist glove",
+		"FLAVOR": "使你可以通过一根手指控制火焰.",
+		"DESCRIPTIONS":
+		[
+			"每 #b3 回合, 给予所有敌人 #b2 层 #y燃烧."
+		]
+	},
+	"Animator_HallowedScabbard":
+	{
+		"NAME": "阿瓦隆",
+		"FLAVOR": "剑鞘的持有者被授予强力恢复能力,能够迅速恢复致命伤.",
+		"DESCRIPTIONS":
+		[
+			"每场战斗可触发一次, 当你再一次受伤中损失超过15点血量时, 获得 #b5 层 #y再生 和 #b2 点 #y力量."
+		]
+	},	
+	"Animator_RacePiece":
+	{
+		"NAME": "race piece",
+		"FLAVOR": "你看到 Mr. Mind Reader 从那边来了没? 将死！",
+		"DESCRIPTIONS":
+		[
+			"选择一张牌, 将你的牌库中的三张牌转换为与选中牌同系列的三张随机牌."
+		]
+	},
+	"Animator_WornHelmet":
+	{
+		"NAME": "破碎的头盔",
+		"FLAVOR": "哥布林.",
+		"DESCRIPTIONS":
+		[
+			"每当你抽到诅咒牌或状态牌时, 对一个随机敌人造成 #b3 点伤害."
+		]
+	},
+	"Animator_HeavyHalberd":
+	{
+		"NAME": "重戟",
+		"FLAVOR": "统治死亡即统治生命，死即生之巅峰,崇敬生命吧.",
+		"DESCRIPTIONS":
+		[
+			"你的 #y攻击牌 造成 #b15% 点额外伤害."
+		]
+	},
+	"Animator_OldCoffin":
+	{
+		"NAME": "旧棺材",
+		"FLAVOR": "震惊的真相！",
+		"DESCRIPTIONS":
+		[
+			"四回合后开始启用，当你的回合开始时， 给予一个随机敌人一层随机的 #y负面效果."
+		]
+	},
+	"Animator_CursedBlade":
+	{
+		"NAME": "诅咒之刃",
+		"FLAVOR": "它从持有者的血液中汲取力量， 对一个吸血鬼来说再适合不过了.",
+		"DESCRIPTIONS":
+		[
+			"每当一次攻击 并造成伤害时, 恢复 #b2 点 生命 . 失去 #b50％ 的最大健康."
+		]
+	},
+	"Animator_BattleDrones":
+	{
+		"NAME": "战斗无人机",
+		"FLAVOR": "完美的工程学造物.",
+		"DESCRIPTIONS":
+		[
+			"每当你触发一次同调时, 对一个随机敌人造成 #b1 点伤害并获得 #b1 点格挡."
+		]
+	},
+	"Animator_EngravedStaff":
+	{
+		"NAME": "雕塑",
+		"FLAVOR": "公会最宝贵的财产之一.",
+		"DESCRIPTIONS":
+		[
+			"在你的回合结束时， 保留手牌中消耗最高的牌， 直到被打出之前消耗减 #b1 ."
+		]
+	},
+	"Animator_Buoy":
+	{
+		"NAME": "浮标",
+		"FLAVOR": "我的速度天下第一, 迅疾如风!",
+		"DESCRIPTIONS":
+		[
+			"每 #b4 回合, 获得 #b6 点 格挡 并给予所有敌人 #b2 点 格挡 ."
+		]
 	}
 }

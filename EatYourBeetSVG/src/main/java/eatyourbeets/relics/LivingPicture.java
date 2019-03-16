@@ -3,7 +3,6 @@ package eatyourbeets.relics;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -17,18 +16,6 @@ public class LivingPicture extends AnimatorRelic
     public LivingPicture()
     {
         super(ID, RelicTier.STARTER, LandingSound.MAGICAL);
-    }
-
-    @Override
-    public String getUpdatedDescription()
-    {
-        return DESCRIPTIONS[0];
-    }
-
-    @Override
-    public AbstractRelic makeCopy()
-    {
-        return new LivingPicture();
     }
 
     @Override

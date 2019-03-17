@@ -41,6 +41,11 @@ public class WeightedList<T>
 
     public T Retrieve(Random rng)
     {
+        return Retrieve(rng, true);
+    }
+
+    public T Retrieve(Random rng, boolean remove)
+    {
         int r = rng.random(totalWeight);
         int currentWeight = 0;
 
@@ -58,7 +63,11 @@ public class WeightedList<T>
 
         if (selected != null)
         {
-            Remove(selected);
+            if (remove)
+            {
+                Remove(selected);
+            }
+
             return selected.object;
         }
         else

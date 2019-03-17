@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.HigakiRinne;
+import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class HigakiRinneAction extends AnimatorAction
 
     public void update()
     {
-        roll = AbstractDungeon.miscRng.random(160);
+        roll = AbstractDungeon.miscRng.random(166);
         
         AbstractPlayer p = AbstractDungeon.player;
         if (lucky(6)) // 6
@@ -109,12 +110,18 @@ public class HigakiRinneAction extends AnimatorAction
         else if (lucky(8)) // 82
         {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
-            GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, 2, false), 2));
+            if (m != null)
+            {
+                GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, 2, false), 2));
+            }
         }
         else if (lucky(8)) // 90
         {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
-            GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new WeakPower(m, 2, false), 2));
+            if (m != null)
+            {
+                GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new WeakPower(m, 2, false), 2));
+            }
         }
         else if (lucky(8)) // 98
         {
@@ -187,6 +194,22 @@ public class HigakiRinneAction extends AnimatorAction
         else if (lucky(4)) // 160
         {
             GameActionsHelper.GainTemporaryHP(p, p, 5);
+        }
+        else if (lucky(3)) // 163
+        {
+            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            if (m != null)
+            {
+                GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new ConstrictedPower(m, p, 3), 3));
+            }
+        }
+        else if (lucky(3)) // 166
+        {
+            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            if (m != null)
+            {
+                GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new BurningPower(m, p, 2), 2));
+            }
         }
 
         this.isDone = true;

@@ -18,7 +18,7 @@ public class AnimatorMetrics
     public static final ArrayList<AnimatorTrophies> trophiesData = new ArrayList<>();
     public static int lastLoadout = 0;
 
-    public static void SaveTrophies()
+    public static void SaveTrophies(boolean flush)
     {
         Utilities.Logger.info("Saving Trophies");
 
@@ -32,7 +32,10 @@ public class AnimatorMetrics
         }
 
         prefs.putString(TROPHY_DATA_KEY, Base64Coder.encodeString(sj.toString()));
-        prefs.flush();
+        if (flush)
+        {
+            prefs.flush();
+        }
     }
 
     static

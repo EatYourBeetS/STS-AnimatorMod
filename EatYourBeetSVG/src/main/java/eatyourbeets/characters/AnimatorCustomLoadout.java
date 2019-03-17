@@ -68,7 +68,7 @@ public class AnimatorCustomLoadout
             ex.printStackTrace();
         }
 
-        trophies = GetTrophies();
+        trophies = GetTrophies(true);
         selectScreen.bgCharImg = AnimatorResources.GetCharacterPortrait(ID);
         Locked = unlockLevel > currentLevel;
         if (Locked)
@@ -162,7 +162,7 @@ public class AnimatorCustomLoadout
         return null;
     }
 
-    public AnimatorTrophies GetTrophies()
+    public AnimatorTrophies GetTrophies(boolean flush)
     {
         AnimatorTrophies selected = null;
         for (AnimatorTrophies trophyLevel : AnimatorMetrics.trophiesData)
@@ -179,7 +179,7 @@ public class AnimatorCustomLoadout
             Utilities.Logger.info("Trophy not found");
             selected = new AnimatorTrophies(this.ID);
             AnimatorMetrics.trophiesData.add(selected);
-            AnimatorMetrics.SaveTrophies();
+            AnimatorMetrics.SaveTrophies(flush);
         }
 
         return selected;
@@ -249,7 +249,7 @@ public class AnimatorCustomLoadout
     {
         if (trophies == null)
         {
-            trophies = GetTrophies();
+            trophies = GetTrophies(false);
         }
 
         if (AnimatorMetrics.lastLoadout == ID)

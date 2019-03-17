@@ -3,18 +3,15 @@ package eatyourbeets.cards.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.OnTargetBlockBreakAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Shalltear extends AnimatorCard
 {
@@ -24,9 +21,7 @@ public class Shalltear extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(12,0, 4);
-
-        tags.add(CardTags.HEALING);
+        Initialize(12,0, 3);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -34,19 +29,16 @@ public class Shalltear extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        for (AbstractMonster m2 : AbstractDungeon.getCurrRoom().monsters.monsters)
+        boolean hasActiveSynergy = HasActiveSynergy();
+
+        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
         {
-            if (!m2.isDying && m2.currentHealth > 0 && !m2.halfDead)
+            GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m1.hb.cX, m1.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
+            GameActionsHelper.DamageTarget(p, m1, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+
+            if (hasActiveSynergy)
             {
-                DamageAction damageAction = new DamageAction(m2, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE);
-
-                GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m2.hb.cX, m2.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
-                GameActionsHelper.AddToBottom(new OnTargetBlockBreakAction(m2, damageAction, new HealAction(p, p, this.magicNumber)));
-
-//                if (m2.currentBlock > 0 && m2.currentBlock <= (this.damage * 2))
-//                {
-//                    AbstractDungeon.actionManager.addToTop(new HealAction(p, p, this.magicNumber));
-//                }
+                GameActionsHelper.ApplyPower(p, m1, new PoisonPower(m1, p, this.magicNumber), this.magicNumber);
             }
         }
     }
@@ -56,7 +48,7 @@ public class Shalltear extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(3);
+            upgradeDamage(2);
             upgradeMagicNumber(1);
         }
     }

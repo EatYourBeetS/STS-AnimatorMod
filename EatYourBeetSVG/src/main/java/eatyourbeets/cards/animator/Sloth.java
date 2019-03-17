@@ -37,9 +37,9 @@ public class Sloth extends AnimatorCard
             {
                 card.baseDamage += card.secondaryValue;
 
-                if (card.baseDamage > 999)
+                if (card.baseDamage > 9999)
                 {
-                    card.baseDamage = 999;
+                    card.baseDamage = 9999;
                 }
                 else
                 {

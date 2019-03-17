@@ -46,7 +46,7 @@ public class AnimatorCharacterSelect
         {
             loadout.OnTrueVictory(GetSelectedLoadout(), ascensionLevel);
         }
-        AnimatorMetrics.SaveTrophies();
+        AnimatorMetrics.SaveTrophies(false);
     }
 
     private static void AddLoadout(AnimatorCustomLoadout loadout, int level, String description)

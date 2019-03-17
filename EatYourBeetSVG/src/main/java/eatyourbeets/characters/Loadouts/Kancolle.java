@@ -56,7 +56,7 @@ public class Kancolle extends AnimatorCustomLoadout
     {
         if (trophies == null)
         {
-            trophies = GetTrophies();
+            trophies = GetTrophies(false);
         }
 
         if (AnimatorMetrics.lastLoadout == ID)

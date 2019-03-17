@@ -4,11 +4,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
 import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
-
-import java.util.ArrayList;
 
 public class AlchemistGlove extends AnimatorRelic
 {
@@ -50,15 +47,10 @@ public class AlchemistGlove extends AnimatorRelic
 
         if (this.counter >= 3)
         {
-            ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
-            if (enemies != null && enemies.size() > 0)
+            AbstractPlayer p = AbstractDungeon.player;
+            for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
             {
-                AbstractPlayer p = AbstractDungeon.player;
-                AbstractMonster m = Utilities.GetRandomElement(enemies, AbstractDungeon.miscRng);
-                if (m != null)
-                {
-                    GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, 2), 2);
-                }
+                GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, 2), 2);
             }
 
             this.flash();

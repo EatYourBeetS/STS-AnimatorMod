@@ -139,7 +139,7 @@ public class EYBModInitializer
         {
             if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
             {
-                AnimatorMetrics.SaveTrophies();
+                AnimatorMetrics.SaveTrophies(true);
             }
         }
 

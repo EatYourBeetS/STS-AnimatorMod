@@ -7,7 +7,7 @@
 	},
 	"animator_AcuraShin":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 ， 並給予 !M! 層 中毒 。 獲得 !SV! 層 [#EFC851]毒素親和[] 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 ， 並給予 !M! 層 中毒 。 獲得 1 層 [#EFC851]毒素親和[] 。",
 		"EXTENDED_DESCRIPTION": ["毒素親和", "每當給予敵人毒效果時 ， 額外給予一層毒 。"],
 		"NAME": "辛·亞裘拉"
 	},
@@ -41,7 +41,8 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "獲得 !M! % 點 [#EFC851]傷害抵抗[] 。 同調 : 獲得 !SV! 點 臨時生命 。",
+		"DESCRIPTION": "獲得 !M! % 點 [#EFC851]傷害抵抗[] 。",
+		"UPGRADE_DESCRIPTION": "獲得 !M! % 點 [#EFC851]傷害抵抗[] 。 獲得 !SV! 點 臨時生命 。",
 		"EXTENDED_DESCRIPTION": ["傷害抵抗", "受到敵人更少的傷害，效果被層數影響。"],
 		"NAME": "雅兒貝德"
 	},
@@ -339,7 +340,7 @@
 		"DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將傷害轉換到 [#EFC851]支援[] 中 。",
 		"EXTENDED_DESCRIPTION": ["支援", "回合結束時對生命值較低的敵人造成轉換的傷害"],
 		"NAME": "紅蓮",
-		"UPGRADE_DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將傷害轉為 格擋 並預存到[#EFC851]支援[] 中 。"
+		"UPGRADE_DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將傷害轉為 格擋 並預存到 [#EFC851]支援[] 中 。"
 	},
 	"animator_Guy":
 	{
@@ -354,7 +355,7 @@
 	},
 	"animator_HighElfArcher":
 	{
-		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 本回合第一次使用這張牌時 ， 抽一張牌 。",
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 本回合第一次使用這張牌時 ， 抽 !M! 張牌 。",
 		"NAME": "精靈弓手"
 	},
 	"animator_HiiragiShinya":
@@ -542,7 +543,7 @@
 	},
 	"animator_Shalltear":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 壓倒 : 治療 !M! HP 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 同調 : 給予 !M! 層 中毒 。",
 		"NAME": "夏提雅"
 	},
 	"animator_Shichika":

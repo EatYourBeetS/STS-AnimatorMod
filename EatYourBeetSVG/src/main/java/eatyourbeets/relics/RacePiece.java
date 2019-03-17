@@ -3,6 +3,8 @@ package eatyourbeets.relics;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.curses.AscendersBane;
+import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,7 +17,6 @@ import eatyourbeets.cards.Synergy;
 import eatyourbeets.misc.WeightedList;
 
 import java.util.ArrayList;
-import java.util.StringJoiner;
 
 public class RacePiece extends AnimatorRelic
 {
@@ -75,7 +76,7 @@ public class RacePiece extends AnimatorRelic
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
-            if (!SoulboundField.soulbound.get(c))
+            if (!SoulboundField.soulbound.get(c) && !c.cardID.equals(Necronomicurse.ID) && !c.cardID.equals(AscendersBane.ID))
             {
                 group.addToTop(c);
             }
@@ -148,20 +149,21 @@ public class RacePiece extends AnimatorRelic
 
             ArrayList<AnimatorCard> cards = new ArrayList<>();
             Synergies.AddCardsWithSynergy(synergy, CardLibrary.getAllCards(), cards);
+
             for (AnimatorCard c : cards)
             {
                 switch (c.rarity)
                 {
                     case COMMON:
-                        rewards.Add(c, 4);
+                        rewards.Add(c, 45);
                         break;
 
                     case UNCOMMON:
-                        rewards.Add(c, 4);
+                        rewards.Add(c, 40);
                         break;
 
                     case RARE:
-                        rewards.Add(c, 2);
+                        rewards.Add(c, 15);
                         break;
                 }
             }
@@ -169,7 +171,7 @@ public class RacePiece extends AnimatorRelic
             float displayCount = 0.0F;
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
             {
-                AbstractCard reward = rewards.Retrieve(AbstractDungeon.miscRng);
+                AbstractCard reward = rewards.Retrieve(AbstractDungeon.miscRng, false);
                 if (reward != null)
                 {
                     reward = reward.makeCopy();

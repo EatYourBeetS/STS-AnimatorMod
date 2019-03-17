@@ -139,7 +139,7 @@ public class BundledRelicProvider
         AddBundle(RoyMustang.ID, MoltenEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
         AddBundle(Gluttony.ID, Pear.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
 
-        AddBundle(Envy.ID, DollysMirror.ID, AbstractRelic.RelicTier.SHOP, R1);
+        AddBundle(Envy.ID, PreservedInsect.ID, AbstractRelic.RelicTier.SHOP, R2);
         AddBundle(Greed.ID, MawBank.ID, AbstractRelic.RelicTier.SHOP, R3);
     }
 

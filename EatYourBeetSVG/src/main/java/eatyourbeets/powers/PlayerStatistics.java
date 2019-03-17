@@ -31,6 +31,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
     public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
+    public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
 
     private static int turnDamageMultiplier = 0;
@@ -55,6 +56,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         turnDamageMultiplier = 0;
         turnCount = 0;
 
+        onSynergy.Clear();
         onBlockBroken.Clear();
         onAfterCardDrawn.Clear();
         onAttack.Clear();
@@ -203,6 +205,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         if (c != null && c.HasActiveSynergy())
         {
             synergiesThisTurn += 1;
+
+            for (OnSynergySubscriber s : onSynergy.GetSubscribers())
+            {
+                s.OnSynergy(c);
+            }
         }
 
         AnimatorCard.SetLastCardPlayed(card);
@@ -304,6 +311,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         {
             for (AbstractMonster m : room.monsters.monsters)
             {
+                logger.info("ENEMY: " + m.name + ", DeadOrEscaped: " + m.isDeadOrEscaped() + ", Dying: " + m.isDying);
                 if (!aliveOnly || (!m.isDeadOrEscaped() && !m.isDying))
                 {
                     monsters.add(m);

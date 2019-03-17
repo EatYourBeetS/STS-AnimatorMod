@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class HallowedScabbard extends AnimatorRelic
 {
@@ -15,7 +16,6 @@ public class HallowedScabbard extends AnimatorRelic
     private static final int STRENGTH = 2;
 
     private boolean used = false;
-    private int damageThisCombat = 0;
 
     public HallowedScabbard()
     {
@@ -27,8 +27,16 @@ public class HallowedScabbard extends AnimatorRelic
     {
         super.atBattleStart();
 
-        damageThisCombat = 0;
+        counter = 0;
         used = false;
+    }
+
+    @Override
+    public void onVictory()
+    {
+        super.onVictory();
+
+        counter = -1;
     }
 
     @Override
@@ -36,14 +44,17 @@ public class HallowedScabbard extends AnimatorRelic
     {
         super.onLoseHp(damageAmount);
 
-        damageThisCombat += damageAmount;
-        if (!used && damageThisCombat >= DAMAGE_THRESHOLD)
+        if (PlayerStatistics.InBattle())
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.ApplyPower(p, p, new RegenPower(p, REGENERATION), REGENERATION);
-            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, STRENGTH), STRENGTH);
-            used = true;
-            this.flash();
+            counter += damageAmount;
+            if (!used && counter >= DAMAGE_THRESHOLD)
+            {
+                AbstractPlayer p = AbstractDungeon.player;
+                GameActionsHelper.ApplyPower(p, p, new RegenPower(p, REGENERATION), REGENERATION);
+                GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, STRENGTH), STRENGTH);
+                used = true;
+                this.flash();
+            }
         }
     }
 }

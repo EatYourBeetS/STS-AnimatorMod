@@ -14,9 +14,9 @@ public class AcuraAkari extends AnimatorCard
 
     public AcuraAkari()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(0,4, 1);
+        Initialize(0,4, 2);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -34,7 +34,7 @@ public class AcuraAkari extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBlock(4);
         }
     }
 }

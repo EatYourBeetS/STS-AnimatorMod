@@ -1,32 +1,28 @@
 package eatyourbeets.cards.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.powers.PoisonPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
-import eatyourbeets.GameActionsHelper;
+import com.megacrit.cardcrawl.relics.ChemicalX;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import eatyourbeets.AnimatorResources;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.misc.NanamiEffects.*;
 
 public class Nanami extends AnimatorCard
 {
     public static final String ID = CreateFullID(Nanami.class.getSimpleName());
+    public static final String[] DESCRIPTIONS = AnimatorResources.GetCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private AbstractMonster lastTarget = null;
     private AbstractMonster target = null;
 
     public Nanami()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, -1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(8,7, 6);
+        Initialize(5,4, 3);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -57,85 +53,83 @@ public class Nanami extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        int stack = upgraded ? 3 : 2;
+        this.energyOnUse = EnergyPanel.totalCount;
+        if (p.hasRelic(ChemicalX.ID))
+        {
+            this.energyOnUse += ChemicalX.BOOST;
+        }
+
         switch (m.intent)
         {
             case ATTACK:
-                GameActionsHelper.GainBlock(p, this.block);
+                NanamiEffect_Attack.Execute(p, m, this);
                 break;
 
             case ATTACK_BUFF:
-                GameActionsHelper.GainBlock(p, this.block);
-                GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
+                NanamiEffect_Attack_Buff.Execute(p, m, this);
                 break;
 
             case ATTACK_DEBUFF:
-                GameActionsHelper.GainBlock(p, this.block);
-                GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
+                NanamiEffect_Attack_Debuff.Execute(p, m, this);
                 break;
 
             case ATTACK_DEFEND:
-                GameActionsHelper.GainBlock(p, this.block);
-                GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+                NanamiEffect_Attack_Defend.Execute(p, m, this);
                 break;
 
             case BUFF:
-                GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, stack), stack);
+                NanamiEffect_Buff.Execute(p, m, this);
                 break;
 
             case DEBUFF:
-                GameActionsHelper.ApplyPower(p, m, new WeakPower(m, stack, false), stack);
-                GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, stack, false), stack);
+                NanamiEffect_Debuff.Execute(p, m, this);
                 break;
 
             case STRONG_DEBUFF:
-                GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, this.magicNumber), this.magicNumber);
-                GameActionsHelper.ApplyPower(p, m, new WeakPower(m, stack, false), stack);
-                GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, stack, false), stack);
+                NanamiEffect_Strong_Debuff.Execute(p, m, this);
                 break;
 
             case DEFEND:
-                GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+                NanamiEffect_Defend.Execute(p, m, this);
                 break;
 
             case DEFEND_DEBUFF:
-                GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-                GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 1, false), 1);
+                NanamiEffect_Defend_Debuff.Execute(p, m, this);
                 break;
 
             case DEFEND_BUFF:
-                GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-                GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
+                NanamiEffect_Defend_Buff.Execute(p, m, this);
                 break;
 
             case ESCAPE:
-                GameActionsHelper.ApplyPower(p, m, new StunMonsterPower(m, 1), 1);
+                NanamiEffect_Escape.Execute(p, m, this);
                 break;
 
             case MAGIC:
-                GameActionsHelper.ChannelOrb(new Lightning(), true);
-                GameActionsHelper.ChannelOrb(new Dark(), true);
-                GameActionsHelper.ChannelOrb(new Frost(), true);
+                NanamiEffect_Magic.Execute(p, m, this);
                 break;
 
             case SLEEP:
-                GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, this.magicNumber), this.magicNumber);
+                NanamiEffect_Sleep.Execute(p, m, this);
                 break;
 
             case STUN:
-                GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-                GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, stack, false), stack);
+                NanamiEffect_Stun.Execute(p, m, this);
                 break;
 
             case UNKNOWN:
-                GameActionsHelper.GainEnergy(1);
-                GameActionsHelper.GainTemporaryHP(p, p, this.magicNumber);
+                NanamiEffect_Unknown.Execute(p, m, this);
                 break;
 
             case DEBUG:
             case NONE:
-                GameActionsHelper.DrawCard(p, this.magicNumber);
+                NanamiEffect_None.Execute(p, m, this);
                 break;
+        }
+
+        if (!this.freeToPlayOnce)
+        {
+            p.energy.use(EnergyPanel.totalCount);
         }
     }
 
@@ -144,9 +138,9 @@ public class Nanami extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeBlock(2);
-            upgradeMagicNumber(2);
+            upgradeDamage(1);
+            upgradeBlock(1);
+            upgradeMagicNumber(1);
         }
     }
 
@@ -168,103 +162,77 @@ public class Nanami extends AnimatorCard
             return;
         }
 
-        String[] desc = cardStrings.EXTENDED_DESCRIPTION;
-
-        String stack = upgraded ? "3" : "2";
+        this.energyOnUse = EnergyPanel.totalCount;
+        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
+        {
+            this.energyOnUse += ChemicalX.BOOST;
+        }
 
         switch (monster.intent)
         {
             case ATTACK:
-                rawDescription = desc[1];
-                //GameActionsHelper.GainBlock(p, this.block);
+                NanamiEffect_Attack.UpdateDescription(this);
                 break;
 
             case ATTACK_BUFF:
-                rawDescription = desc[1] + " NL " + desc[2].replace("#","1");
-                //GameActionsHelper.GainBlock(p, this.block);
-                //GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
+                NanamiEffect_Attack_Buff.UpdateDescription(this);
                 break;
 
             case ATTACK_DEBUFF:
-                rawDescription = desc[1] + " NL " + desc[3].replace("#", "1");
-                //GameActionsHelper.GainBlock(p, this.block);
-                //GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
+                NanamiEffect_Attack_Debuff.UpdateDescription(this);
                 break;
 
             case ATTACK_DEFEND:
-                rawDescription = desc[1] + " NL " + desc[0];
-                //GameActionsHelper.GainBlock(p, this.block);
-                //GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+                NanamiEffect_Attack_Defend.UpdateDescription(this);
                 break;
 
             case BUFF:
-                rawDescription = desc[2].replace("#", stack);
-                //GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 2), 2);
+                NanamiEffect_Buff.UpdateDescription(this);
                 break;
 
             case DEBUFF:
-                rawDescription = desc[3].replace("#", stack) + " NL " + desc[4].replace("#", stack);
-                //GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 2, false), 2);
-                //GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 2, false), 2);
+                NanamiEffect_Debuff.UpdateDescription(this);
                 break;
 
             case STRONG_DEBUFF:
-                rawDescription = desc[9] + " NL " + desc[3].replace("#", stack) + " NL " + desc[4].replace("#", stack);
-                //GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, this.magicNumber), this.magicNumber);
-                //GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 2, false), 2);
-                //GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 2, false), 2);
+                NanamiEffect_Strong_Debuff.UpdateDescription(this);
                 break;
 
             case DEFEND:
-                rawDescription = desc[0];
-                //GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+                NanamiEffect_Defend.UpdateDescription(this);
                 break;
 
             case DEFEND_DEBUFF:
-                rawDescription = desc[0] + " NL " + desc[4].replace("#", "1");
-                //GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-                //GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 1, false), 1);
+                NanamiEffect_Defend_Debuff.UpdateDescription(this);
                 break;
 
             case DEFEND_BUFF:
-                rawDescription = desc[0] + " NL " + desc[2].replace("#", "1");
-                //GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-                //GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
+                NanamiEffect_Defend_Buff.UpdateDescription(this);
                 break;
 
             case ESCAPE:
-                rawDescription = desc[5];
-                //GameActionsHelper.ApplyPower(p, m, new StunMonsterPower(m, 1), 1);
+                NanamiEffect_Escape.UpdateDescription(this);
                 break;
 
             case MAGIC:
-                rawDescription = desc[6] + " NL " + desc[7] + " NL " + desc[8];
-                //GameActionsHelper.ChannelOrb(new Lightning(), true);
-                //GameActionsHelper.ChannelOrb(new Dark(), true);
-                //GameActionsHelper.ChannelOrb(new Frost(), true);
+                NanamiEffect_Magic.UpdateDescription(this);
                 break;
 
             case SLEEP:
-                rawDescription = desc[9];
-                //GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, this.magicNumber), this.magicNumber);
+                NanamiEffect_Sleep.UpdateDescription(this);
                 break;
 
             case STUN:
-                rawDescription = desc[0] + " NL " + desc[4].replace("#", stack);
-                //GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-                //GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 2, false), 2);
+                NanamiEffect_Stun.UpdateDescription(this);
                 break;
 
             case UNKNOWN:
-                rawDescription = desc[10] + " NL " + desc[11];
-                //GameActionsHelper.GainEnergy(1);
-                //GameActionsHelper.GainTemporaryHP(p, p, this.magicNumber);
+                NanamiEffect_Unknown.UpdateDescription(this);
                 break;
 
             case DEBUG:
             case NONE:
-                rawDescription = desc[12];
-                //GameActionsHelper.DrawCard(p, 1);
+                NanamiEffect_None.UpdateDescription(this);
                 break;
         }
 

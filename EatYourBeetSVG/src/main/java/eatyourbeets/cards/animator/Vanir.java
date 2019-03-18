@@ -53,7 +53,7 @@ public class Vanir extends AnimatorCard_Boost
         if (TryUpgrade())
         {
             upgradeDamage(2);
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(2);
         }
     }
 

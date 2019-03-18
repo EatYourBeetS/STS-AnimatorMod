@@ -14,7 +14,7 @@ public class Arpeggio extends AnimatorCard_Boost
 
     public Arpeggio()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
         Initialize(0,0);
 
@@ -40,13 +40,13 @@ public class Arpeggio extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(0);
+            upgradeSecondaryValue(-1);
         }
     }
 
     @Override
     protected int GetBaseBoost()
     {
-        return 2;
+        return upgraded ? 1 : 2;
     }
 }

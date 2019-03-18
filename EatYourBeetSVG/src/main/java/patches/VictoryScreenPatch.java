@@ -15,7 +15,7 @@ public class VictoryScreenPatch
     {
         if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR && Settings.isStandardRun())
         {
-            AnimatorCharacterSelect.OnTrueVictory(AbstractDungeon.ascensionLevel);
+            AnimatorCharacterSelect.OnTrueVictory(AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0);
         }
     }
 }

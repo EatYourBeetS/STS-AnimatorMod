@@ -35,7 +35,7 @@ public class StephanieAction extends AnimatorAction
             else
             {
                 String fetchMessage = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Actions).TEXT[0];
-                AbstractDungeon.handCardSelectScreen.open(fetchMessage, 1, false, false);
+                AbstractDungeon.handCardSelectScreen.open(fetchMessage, 1, false, false, false, false, false);
                 this.tickDuration();
             }
 
@@ -44,8 +44,12 @@ public class StephanieAction extends AnimatorAction
 
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved)
         {
+            AbstractPlayer p = AbstractDungeon.player;
+
             AbstractCard card = AbstractDungeon.handCardSelectScreen.selectedCards.getBottomCard();
+
             AbstractDungeon.player.hand.addToTop(card);
+            AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
 
             AnimatorCard selectedCard = Utilities.SafeCast(card, AnimatorCard.class);
             if (selectedCard == null)
@@ -55,7 +59,6 @@ public class StephanieAction extends AnimatorAction
             }
 
             AbstractDungeon.actionManager.addToBottom(new FetchAction(player.drawPile, selectedCard::HasSynergy, cardDraw));
-            AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
         }
 
         this.tickDuration();

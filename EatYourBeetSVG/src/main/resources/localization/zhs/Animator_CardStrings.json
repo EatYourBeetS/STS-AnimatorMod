@@ -84,7 +84,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 压倒 : 获得 [B] NL 如果这张牌杀死了敌人， 则获得 [B]",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 压倒 : 获得 [E] NL 如果这张牌杀死了敌人， 则获得 [E]",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -110,7 +110,8 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 获得 1 层 眩晕 。 消耗 。 在的消耗 的牌堆中转3圈后返回到您的弃牌堆 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 获得 1 层 眩晕 [#EFC851]*[] 。 消耗 。 在的消耗 的牌堆中转3圈后返回到您的弃牌堆 。",
+		"EXTENDED_DESCRIPTION": ["* 注", "该效果不叠加 。"],
 		"NAME": "嘉依卡·托勒庞特"
 	},
 	"animator_ChlammyZell":
@@ -137,7 +138,7 @@
 	},
 	"animator_CowGirl":
 	{
-		"DESCRIPTION": "获得 [B] NL 获得 !M! 点临时 生命 。 NL 消耗 。",
+		"DESCRIPTION": "获得 [E] NL 获得 !M! 点临时 生命 。 NL 消耗 。",
 		"NAME": "奶牛妹"
 	},
 	"animator_CrowleyEusford":
@@ -159,7 +160,7 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "获得 [B] [B] ， 受到 !M! 点 伤害 ， 每次使用这张牌都会使下次受到的伤害增加 3 点.",
+		"DESCRIPTION": "获得 [E] [E] ， 受到 !M! 点 伤害 ， 每次使用这张牌都会使下次受到的伤害增加 3 点.",
 		"NAME": "迪米乌哥斯"
 	},
 	"animator_DolaCouronne":
@@ -174,7 +175,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "给予 !M! 层 易伤 并造成 !D! 点 伤害 。 NL 同调 : 获得 [B] 。",
+		"DESCRIPTION": "给予 !M! 层 易伤 并造成 !D! 点 伤害 。 NL 同调 : 获得 [E] 。",
 		"NAME": "休比"
 	},
 	"animator_DolaStephanie":
@@ -344,7 +345,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "给予一个敌人 !M! 点 格挡 与 !SV! 层 虚弱 。 循环 1 张牌 。 撤回 : 获得 [B]",
+		"DESCRIPTION": "给予一个敌人 !M! 点 格挡 与 !SV! 层 虚弱 。 循环 1 张牌 。 撤回 : 获得 [E]",
 		"NAME": "奇伊"
 	},
 	"animator_HigakiRinne":
@@ -416,7 +417,7 @@
 	},
 	"animator_Lancer":
 	{
-		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 渴血 。 若此牌消灭了一个敌人 ， 获得 [B] 。",
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 渴血 。 若此牌消灭了一个敌人 ， 获得 [E] 。",
 		"NAME": "Lancer"
 	},
 	"animator_Layla":
@@ -466,7 +467,7 @@
 	"animator_Nanami":
 	{
 		"DESCRIPTION": "根据敌人的意图激活 [#EFC851]效果[] 。",
-		"EXTENDED_DESCRIPTION": ["造成 !D! 点 伤害 。", "获得 !B! 点 格挡 。", "获得 # 点 力量 。", "给予 # 层 虚弱 。", "获得 # 层 易伤 。", "获得 1 层 眩晕 。", "生成 1 个闪电 充能球 。", "生成 1 个 黑暗 充能球 。", "获得 1 个冰霜充能球 。", "给予 !M! 层 中毒", "获得 [B]", "获得 !M! 点 临时生命 。", "抽 !M! 张牌 。"],
+		"EXTENDED_DESCRIPTION": ["造成 # 点 伤害 。", "获得 # 点 格挡 。", "获得 # 点 力量 。", "给予 # 层 虚弱 。", "获得 # 层 易伤 。", "获得 # 层 眩晕 。", "生成 # 个随机充能球 。", "UNUSED", "UNUSED", "给予 # 层 中毒", "获得 [E]", "获得 # 点 临时生命 。", "抽 # 张牌 。"],
 		"NAME": "鑢七实",
 		"UPGRADE_DESCRIPTION": "根据敌人的意图激活改进的 [#EFC851]效果[] 。"
 	},
@@ -571,7 +572,7 @@
 	},
 	"animator_Shiro":
 	{
-		"DESCRIPTION": "本回合每触发一次 同调 效果,这张牌的耗能就减少 [B] 。 每回合开始时获得 [B] 。",
+		"DESCRIPTION": "本回合每触发一次 同调 效果,这张牌的耗能就减少 [E] 。 每回合开始时获得 [E] 。",
 		"NAME": "白"
 	},
 	"animator_Sloth":

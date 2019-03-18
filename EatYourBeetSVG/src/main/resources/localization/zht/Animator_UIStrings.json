@@ -98,14 +98,14 @@
 			"青銅",
 			"銀",
 			"金",
-			"choose this starting deck and complete act 4.",
-			"complete act 4 with at least #yhalf of the cards in your deck being from this series.",
-			"complete act 4 with at least 8 #ydifferent cards from this series in your deck.",
-			"complete act 4 with at least 7 #ydifferent card series in your deck.",
-			"complete act 4 with at least 11 #ydifferent card series in your deck, and without banishing any series."
+			"選擇這個初始卡組並且擊敗高塔心臟。",
+			"用至少有一半的牌為該系列的卡組並擊敗高塔心髒。",
+			"用至少有8張來自該系列且不同的牌的卡組並擊敗高塔心髒。",
+			"用至少有7張來自該系列且不同的牌的卡組並擊敗高塔心髒。",
+			"用至少有11張來自該系列且不同的牌的卡組完成並擊敗高塔心髒，並且沒有放逐過任何牌。"
 		]
 	},
-	
+
 	"Animator_CharacterSelect":
 	{
 		"TEXT": 

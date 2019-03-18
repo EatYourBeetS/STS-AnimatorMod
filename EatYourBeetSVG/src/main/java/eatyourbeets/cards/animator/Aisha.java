@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
-import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -46,7 +45,7 @@ public class Aisha extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
-                GameActionsHelper.AddToBottom(new ReduceCostAction(c.uuid, this.magicNumber));
+                c.setCostForTurn(c.costForTurn - this.magicNumber);
             }
         }
     }

@@ -84,7 +84,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 壓倒 : 獲得 [B] NL 以這張牌擊殺敵人時， 獲得 [B]",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 壓倒 : 獲得 [E] NL 以這張牌擊殺敵人時， 獲得 [E]",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -110,7 +110,8 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 暈眩敵人 。 消耗 。 在 消耗 牌堆 !M! 回合後回到你的抽牌堆 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 暈眩敵人 [#EFC851]*[] 。 消耗 。 在 消耗 牌堆 !M! 回合後回到你的抽牌堆 。",
+		"EXTENDED_DESCRIPTION": ["* 注", "不可疊加 。"],
 		"NAME": "嘉依卡·托勒龐特"
 	},
 	"animator_ChlammyZell":
@@ -137,13 +138,13 @@
 	},
 	"animator_CowGirl":
 	{
-		"DESCRIPTION": "獲得 !M! 臨時生命。 NL 獲得 [B] NL 消耗 。",
+		"DESCRIPTION": "獲得 !M! 臨時生命。 NL 獲得 [E] NL 消耗 。",
 		"NAME": "牧牛妹"
 	},
 	"animator_CrowleyEusford":
 	{
 		"DESCRIPTION": "對敵人和另一個隨機敵人造成 !D! 點傷害 。 NL 撤回 : 在本次戰鬥中提高其 !M! 點 傷害 。",
-		"NAME": "Crowley Eusford"
+		"NAME": "克羅里·尤斯福德"
 	},
 	"animator_Darkness":
 	{
@@ -159,7 +160,7 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "獲得 [B] [B] 。 NL 受到 !M! 點 傷害 ， 然後這場戰鬥增加這張牌 3 點 的傷害 。",
+		"DESCRIPTION": "獲得 [E] [E] 。 NL 受到 !M! 點 傷害 ， 然後這場戰鬥增加這張牌 3 點 的傷害 。",
 		"NAME": "迪米烏哥斯"
 	},
 	"animator_DolaCouronne":
@@ -174,7 +175,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "造成 !M! 層 易傷 並造成 !D! 點 傷害 。 NL 同調 :獲得 [B] 。",
+		"DESCRIPTION": "造成 !M! 層 易傷 並造成 !D! 點 傷害 。 NL 同調 :獲得 [E] 。",
 		"NAME": "休比"
 	},
 	"animator_DolaStephanie":
@@ -344,7 +345,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "給予一個敵人 !M! 點 格擋 和 !SV! 層 虛弱 。 循環 1 張牌 。 撤回 : 獲得 [B]",
+		"DESCRIPTION": "給予一個敵人 !M! 點 格擋 和 !SV! 層 虛弱 。 循環 1 張牌 。 撤回 : 獲得 [E]",
 		"NAME": "奇伊"
 	},
 	"animator_HigakiRinne":
@@ -360,9 +361,9 @@
 	},
 	"animator_HiiragiShinya":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本輪第一次進攻 ， 給予目標一個隨機的 [#EFC851]負面效果[] 。",
-		"NAME": "Shinya Hiiragi",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本輪第一次進攻 ， 給予目標一個隨機的強力 [#EFC851]負面效果[] 。"
+		"DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本回合第一次攻擊 ， 給予目標一個隨機的 [#EFC851]負面效果[] 。",
+		"NAME": "柊深夜",
+		"UPGRADE_DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本回合第一次攻擊 ， 給予目標一個隨機的強力 [#EFC851]負面效果[] 。"
 	},
 	"animator_Hitei":
 	{
@@ -414,7 +415,7 @@
 	},
 	"animator_Lancer":
 	{
-		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 嗜血 。 若此牌消滅了一個敵人 ， 獲得 [B] 。",
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 嗜血 。 若此牌消滅了一個敵人 ， 獲得 [E] 。",
 		"NAME": "Lancer"
 	},
 	"animator_Layla":
@@ -464,7 +465,7 @@
 	"animator_Nanami":
 	{
 		"DESCRIPTION": "根據敵人的意圖觸發一個 [#EFC851]效果[] 。 ",
-		"EXTENDED_DESCRIPTION": ["造成 !D! 點 傷害。", "獲得 !B! 點 格擋 。", "獲得 # 點 力量 。", "造成 # 點 虛弱 。", "造成 # 點 易傷 。 ", "暈眩 敵人 。", "生成 1 個閃電充能球 。", "生成 1 個黑暗充能球 。", "生成 1 個冰霜充能球 。", "造成 !M! 點 中毒 。", "獲得 [B]", "獲得 !M! 暫時生命 。", "抽 !M! 張牌 。"],
+		"EXTENDED_DESCRIPTION": ["造成 # 點 傷害。", "獲得 # 點 格擋 。", "獲得 # 點 力量 。", "造成 # 點 虛弱 。", "造成 # 點 易傷 。 ", "暈眩 敵人 。", "生成 # 個隨機充能球 。", "UNUSED", "UNUSED", "造成 # 點 中毒 。", "獲得 [E]", "獲得 # 暫時生命 。", "抽 # 張牌 。"],
 		"NAME": "鑢七實",
 		"UPGRADE_DESCRIPTION": "根據敵人的意圖觸發一個 [#EFC851]效果+[] 。"
 	},
@@ -488,7 +489,7 @@
 	"animator_Pride":
 	{
 		"DESCRIPTION": "變形者 。 [#EFC851]普萊德[] 。 NL  [#EFC851]生成[] !M! 顆黑暗充能球 。 NL 同調 : 賦予 !SV! 層 纏繞 。 ",
-		"EXTENDED_DESCRIPTION": ["普萊德", "直到你的下個回合 ， 當你受到格擋外的傷害時 ， 你的傷害的黑暗充能球抵消這個傷害並損失同等的傷害充能 。"],
+		"EXTENDED_DESCRIPTION": ["普萊德", "直到你的下個回合 ， 當你受到未格擋的傷害時 ， 你最右邊的黑暗充能球失去該數值的傷害 。"],
 		"NAME": "普萊德"
 	},
 	"animator_Priestess":
@@ -569,7 +570,7 @@
 	},
 	"animator_Shiro":
 	{
-		"DESCRIPTION": "這回合發動的 同調 減少此牌 1 點 耗能 。 每回合開始時獲得 [B] 。",
+		"DESCRIPTION": "這回合發動的 同調 減少此牌 1 點 耗能 。 每回合開始時獲得 [E] 。",
 		"NAME": "白"
 	},
 	"animator_Sloth":

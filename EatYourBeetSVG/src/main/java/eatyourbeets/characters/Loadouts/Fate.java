@@ -2,7 +2,7 @@ package eatyourbeets.characters.Loadouts;
 
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.Lancer;
+import eatyourbeets.cards.animator.Alexander;
 import eatyourbeets.cards.animator.RinTohsaka;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 
@@ -23,7 +23,7 @@ public class Fate extends AnimatorCustomLoadout
     {
         ArrayList<String> res = super.GetStartingDeck();
         res.add(RinTohsaka.ID);
-        res.add(Lancer.ID);
+        res.add(Alexander.ID);
 
         return res;
     }

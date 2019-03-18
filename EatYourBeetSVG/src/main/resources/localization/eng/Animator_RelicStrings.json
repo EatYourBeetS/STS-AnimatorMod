@@ -105,7 +105,8 @@
 		"FLAVOR": "It draws strength from the blood of its user, truly fitting for a vampire.",
 		"DESCRIPTIONS":
 		[
-			"Whenever you deal unblocked damage, #yHeal #b2 HP. NL Permanently #rLose #rHalf of your Max HP. Effects that increase your max HP are reduced by half."
+			"Whenever you deal unblocked damage, #yHeal #b2 HP. NL Permanently #rLose #rHalf of your Max HP. Effects that increase your Max HP are reduced by half.",
+			"Whenever you deal unblocked damage, #yHeal #b2 HP. NL If your HP is full, gain #b3 Temporary HP at the end of your turn. NL Permanently #rLose #rHalf of your Max HP. Effects that increase your Max HP are reduced by half."
 		]
 	},
 	"Animator_BattleDrones":

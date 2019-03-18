@@ -36,11 +36,39 @@ public class CursedBlade extends AnimatorRelic
 //    }
 
     @Override
+    public String getUpdatedDescription()
+    {
+        if (IsImproved())
+        {
+            return DESCRIPTIONS[1];
+        }
+        else
+        {
+            return DESCRIPTIONS[0];
+        }
+    }
+
+    @Override
     public void onEquip()
     {
         super.onEquip();
 
         AbstractDungeon.player.decreaseMaxHealth(AbstractDungeon.player.maxHealth / 2);
+    }
+
+    @Override
+    public void onPlayerEndTurn()
+    {
+        super.onPlayerEndTurn();
+
+        if (IsImproved())
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            if (p.currentHealth >= p.maxHealth)
+            {
+                GameActionsHelper.GainTemporaryHP(p, p, 3);
+            }
+        }
     }
 
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
@@ -54,5 +82,10 @@ public class CursedBlade extends AnimatorRelic
                 GameActionsHelper.AddToBottom(new HealAction(p, p, 2));
             }
         }
+    }
+
+    private boolean IsImproved()
+    {
+        return AbstractDungeon.isAscensionMode && AbstractDungeon.ascensionLevel >= 14;
     }
 }

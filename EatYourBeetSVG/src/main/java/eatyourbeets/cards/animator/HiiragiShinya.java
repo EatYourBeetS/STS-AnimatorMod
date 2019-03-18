@@ -22,7 +22,7 @@ public class HiiragiShinya extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(9,0, 3);
+        Initialize(10,0, 3);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -64,10 +64,10 @@ public class HiiragiShinya extends AnimatorCard
     private static WeightedList<AbstractPower> GetRandomDebuffs(AbstractPlayer p, AbstractMonster m, boolean upgraded)
     {
         WeightedList<AbstractPower> result = new WeightedList<>();
-        result.Add(new WeakPower(m, upgraded ? 2 : 1, false), 5);
-        result.Add(new VulnerablePower(m, upgraded ? 2 : 1, false), 5);
-        result.Add(new PoisonPower(m, p, upgraded ? 6 : 4), 4);
-        result.Add(new BurningPower(m, p, upgraded ? 3 : 2), 3);
+        result.Add(new WeakPower(m, upgraded ? 2 : 1, false), 4);
+        result.Add(new VulnerablePower(m, upgraded ? 2 : 1, false), 4);
+        result.Add(new PoisonPower(m, p, upgraded ? 5 : 3), 4);
+        result.Add(new BurningPower(m, p, upgraded ? 3 : 2), 2);
         result.Add(new LoseStrengthPower(m, upgraded ? 2 : 1), 2);
         result.Add(new StunMonsterPower(m, 1), 1);
 

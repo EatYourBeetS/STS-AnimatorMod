@@ -9,7 +9,7 @@ import eatyourbeets.GameActionsHelper;
 
 public class AinzEffect_PlayTopCard extends AinzEffect
 {
-    private int upgradedDescriptionIndex;
+    private final int upgradedDescriptionIndex;
 
     public AinzEffect_PlayTopCard(int descriptionIndex, int upgradedDescriptionIndex)
     {

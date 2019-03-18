@@ -23,6 +23,7 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.HigakiRinne;
 import eatyourbeets.powers.BurningPower;
+import eatyourbeets.powers.MarkOfPoisonPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 public class HigakiRinneAction extends AnimatorAction
 {
     private final HigakiRinne higakiRinne;
+    private int roll;
 
     public HigakiRinneAction(HigakiRinne higakiRinne)
     {
@@ -38,8 +40,6 @@ public class HigakiRinneAction extends AnimatorAction
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.SPECIAL;
     }
-
-    private int roll;
 
     private boolean lucky(int chances)
     {
@@ -50,7 +50,7 @@ public class HigakiRinneAction extends AnimatorAction
 
     public void update()
     {
-        roll = AbstractDungeon.miscRng.random(166);
+        roll = AbstractDungeon.miscRng.random(175);
         
         AbstractPlayer p = AbstractDungeon.player;
         if (lucky(6)) // 6
@@ -209,6 +209,30 @@ public class HigakiRinneAction extends AnimatorAction
             if (m != null)
             {
                 GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new BurningPower(m, p, 2), 2));
+            }
+        }
+        else if (lucky(3)) // 169
+        {
+            GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, 1), 1);
+        }
+        else if (lucky(3)) // 172
+        {
+            if (p.hand.size() > 0)
+            {
+                AbstractCard c = p.hand.getRandomCard(true);
+                if (c.costForTurn > 0)
+                {
+                    c.setCostForTurn(c.costForTurn - 1);
+                    c.flash();
+                }
+            }
+        }
+        else if (lucky(3)) // 175
+        {
+            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            if (m != null)
+            {
+                GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new MarkOfPoisonPower(m, p, 2), 2));
             }
         }
 

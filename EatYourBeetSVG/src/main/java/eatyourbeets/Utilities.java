@@ -1,6 +1,8 @@
 package eatyourbeets;
 
-import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.orbs.*;
+import com.megacrit.cardcrawl.random.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,12 +13,19 @@ public class Utilities
 {
     public static final Logger Logger = LogManager.getLogger(Utilities.class.getName());
 
+    private static final ArrayList<AbstractOrb> orbs = new ArrayList<>();
+
     public static <T> T SafeCast(Object o, Class<T> type)
     {
         return type.isInstance(o) ? type.cast(o) : null;
     }
 
-    public static <T> T GetRandomElement(ArrayList<T> list, com.megacrit.cardcrawl.random.Random rng)
+    public static <T> T GetRandomElement(ArrayList<T> list)
+    {
+        return GetRandomElement(list, AbstractDungeon.miscRng);
+    }
+
+    public static <T> T GetRandomElement(ArrayList<T> list, Random rng)
     {
         int size = list.size();
         if (size > 0)
@@ -27,15 +36,17 @@ public class Utilities
         return null;
     }
 
-    public static <T> T GetRandomElement(ArrayList<T> list)
+    public static AbstractOrb GetRandomOrb()
     {
-        int size = list.size();
-        if (size > 0)
+        if (orbs.isEmpty())
         {
-            return list.get(MathUtils.random(list.size() - 1));
+            orbs.add(new Lightning());
+            orbs.add(new Frost());
+            orbs.add(new Dark());
+            orbs.add(new Plasma());
         }
 
-        return null;
+        return GetRandomElement(orbs).makeCopy();
     }
 
     public static <T> ArrayList<T> Where(ArrayList<T> list, Predicate<T> predicate)

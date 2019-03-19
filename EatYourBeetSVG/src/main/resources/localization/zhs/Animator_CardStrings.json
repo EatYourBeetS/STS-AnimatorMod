@@ -19,8 +19,7 @@
 	"animator_Add":
 	{
 		"DESCRIPTION": "在你的抽牌堆中消耗1张牌 。 生成 !M! 个随机充能球 。 虚无 。",
-		"NAME": "艾迪",
-		"UPGRADE_DESCRIPTION": "在你的抽牌堆中消耗1张牌 。 生成 !M! 个随机充能球 。"
+		"NAME": "艾迪"
 	},
 	"animator_Ain":
 	{
@@ -375,7 +374,7 @@
 	},
 	"animator_Illya":
 	{
-		"DESCRIPTION": "将抽牌堆中伤害最高的 [#EFC851]攻击[] 牌 加入手牌并在本次战斗中使其伤害提高 !M! 点 。",
+		"DESCRIPTION": "将抽牌堆中伤害最高的 [#EFC851]攻击[] 牌 加入手牌并在本次战斗中使其伤害提高 !M! 点 。 同调 : 保留它",
 		"NAME": "伊莉雅"
 	},
 	"animator_ItamiYouji":
@@ -417,15 +416,15 @@
 	},
 	"animator_Lancer":
 	{
-		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 渴血 。 若此牌消灭了一个敌人 ， 获得 [E] 。",
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 渴血 。 同调 : 获得 [E] 。",
 		"NAME": "Lancer"
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "[#EFC851]重装填[] : 造成 !D! 点 伤害 。 NL 同调 : 抽一张牌 。",
+		"DESCRIPTION": "[#EFC851]重装填[] : 造成 !D! 点 伤害 。 NL 同调 : 给予 !M! 层 中毒 每次打击 。",
 		"EXTENDED_DESCRIPTION": ["重装填", "丢弃任意数量的牌 ， 触发同等次数 。"],
 		"NAME": "蕾拉",
-		"UPGRADE_DESCRIPTION": "[#EFC851]重装填[] : 造成 !D! 穿刺 点 伤害 。 NL 同调 : 抽一张牌 。"
+		"UPGRADE_DESCRIPTION": "[#EFC851]重装填[] : 造成 !D! 穿刺 点 伤害 。 NL 同调 : 给予 !M! 层 中毒 每次打击 。"
 	},
 	"animator_LeleiLaLalena":
 	{
@@ -475,7 +474,7 @@
 	{
 		"DESCRIPTION": "生成 !M! 个闪电 充能球 。 NL 穿越者 。",
 		"NAME": "娜贝拉尔·伽玛",
-		"UPGRADE_DESCRIPTION": "生成 !M! 个闪电 充能球 。 NL 穿越者 。 同调 : 获得一个充能球栏位 。"
+		"UPGRADE_DESCRIPTION": "生成 !M! 个闪电 充能球 。 NL 穿越者 。 同调 : 闪电 本回合击中所有敌人 。"
 	},
 	"animator_PandorasActor":
 	{
@@ -513,7 +512,8 @@
 	},
 	"animator_RinTohsaka":
 	{
-		"DESCRIPTION": "生成 一个随机充能球 。 同调 : 每个充能球使你获得 !M! 层 格挡 。",
+		"DESCRIPTION": "生成 !M! 个随机充能球 。 同调 : 获得 !B! 点 格挡 。",
+		"UPGRADE_DESCRIPTION": "给予所有敌人 1 跟踪锁定 。 生成 !M! 个随机充能球 。 同调 : 获得 !B! 点 格挡 。",
 		"NAME": "远坂凛"
 	},
 	"animator_RoryMercury":

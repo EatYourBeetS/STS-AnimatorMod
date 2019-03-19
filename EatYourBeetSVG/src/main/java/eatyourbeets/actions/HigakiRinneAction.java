@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.GameActionsHelper;
@@ -69,7 +68,7 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (lucky(6)) // 18
         {
-            GameActionsHelper.ChannelOrb(AbstractOrb.getRandomOrb(true), true);
+            GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
         }
         else if (lucky(6)) // 24
         {
@@ -154,7 +153,7 @@ public class HigakiRinneAction extends AnimatorAction
         else if (lucky(2)) // 126
         {
             ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
-            String key = Utilities.GetRandomElement(keys, AbstractDungeon.miscRng);
+            String key = Utilities.GetRandomElement(keys);
             AbstractCard card = CardLibrary.cards.get(key).makeCopy();
             if (!card.tags.contains(AbstractCard.CardTags.HEALING))
             {

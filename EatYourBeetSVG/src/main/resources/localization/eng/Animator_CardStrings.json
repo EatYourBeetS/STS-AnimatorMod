@@ -19,8 +19,7 @@
 	"animator_Add":
 	{
 		"DESCRIPTION": "Exhaust 1 card in your draw pile. [#EFC851]Channel !M! random Orbs. NL Ethereal.",
-		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Exhaust 1 card in your draw pile. [#EFC851]Channel !M! random Orbs."
+		"NAME": "Add"
 	},
 	"animator_Ain":
 	{
@@ -84,7 +83,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Overrun: Gain [E] NL If this kills an enemy gain [E]",
+		"DESCRIPTION": "Deal !D! damage. NL Overrun: Gain [E]. NL If this kills an enemy gain [E].",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -138,7 +137,7 @@
 	},
 	"animator_CowGirl":
 	{
-		"DESCRIPTION": "Gain [E] NL Gain !M! Temporary HP. NL Exhaust",
+		"DESCRIPTION": "Gain !M! Temporary HP. NL Gain [E]. NL Exhaust.",
 		"NAME": "'Cow Girl'"
 	},
 	"animator_CrowleyEusford":
@@ -160,7 +159,7 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "Gain [E] [E] NL Take !M! damage. NL Increase this card's damage by !SV! this combat.",
+		"DESCRIPTION": "Gain [E] [E]. NL Take !M! damage. NL Increase this card's damage by !SV! this combat.",
 		"NAME": "Demiurge"
 	},
 	"animator_DolaCouronne":
@@ -375,7 +374,7 @@
 	},
 	"animator_Illya":
 	{
-		"DESCRIPTION": "Draw your highest damage [#EFC851]Attack and increase its damage by !M! this combat.",
+		"DESCRIPTION": "Draw your highest damage [#EFC851]Attack and increase its damage by !M! this combat. Synergy: Retain it.",
 		"NAME": "Illya"
 	},
 	"animator_ItamiYouji":
@@ -417,15 +416,15 @@
 	},
 	"animator_Lancer":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. Heartseeker. If this kills an enemy gain [E].",
+		"DESCRIPTION": "Deal !D! Piercing damage. Heartseeker. NL Synergy: Gain [E].",
 		"NAME": "Lancer"
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "[#EFC851]Reload: Deal !D! damage. NL Synergy: Draw 1 card.",
+		"DESCRIPTION": "[#EFC851]Reload: Deal !D! damage. NL Synergy: Apply !M! [#EFC851]Poison on every hit.",
 		"EXTENDED_DESCRIPTION": ["Reload", "Discard any number of cards, activate this effect that many times."],
 		"NAME": "Layla",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Reload: Deal !D! Piercing damage. NL Synergy: Draw 1 card."
+		"UPGRADE_DESCRIPTION": "[#EFC851]Reload: Deal !D! Piercing damage. NL Synergy: Apply !M! [#EFC851]Poison on every hit."
 	},
 	"animator_LeleiLaLalena":
 	{
@@ -467,19 +466,19 @@
 	"animator_Nanami":
 	{
 		"DESCRIPTION": "[#EFC851]Counter the enemy intent.",
-		"EXTENDED_DESCRIPTION": ["Deal # Damage.", "Gain # Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", "Channel # Random Orb/s.", "UNUSED", "UNUSED", "Apply # Poison.", "Gain [E]", "Gain # Temporary HP.", "Draw # cards."],
+		"EXTENDED_DESCRIPTION": ["Deal # Damage.", "Gain # Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", "Channel # Random Orb/s.", "UNUSED", "UNUSED", "Apply # Poison.", "Gain [E].", "Gain # Temporary HP.", "Draw # cards."],
 		"NAME": "Nanami",
 		"UPGRADE_DESCRIPTION": "Strongly [#EFC851]Counter the enemy intent."
 	},
 	"animator_NarberalGamma":
 	{
-		"DESCRIPTION": "Channel !M! Lightning. Shapeshifter.",
+		"DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning.",
 		"NAME": "Gamma Narberal",
-		"UPGRADE_DESCRIPTION": "Channel !M! Lightning. Shapeshifter. NL Synergy: Gain 1 Orb slot."
+		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning. NL Synergy: Lightning hits ALL enemies this turn."
 	},
 	"animator_PandorasActor":
 	{
-		"DESCRIPTION": "Gain !B! Block. Shapeshifter. NL Synergy: Gain !M! extra Block.",
+		"DESCRIPTION": "Shapeshifter. NL Gain !B! Block. NL Synergy: Gain !M! extra Block.",
 		"NAME": "Pandora's Actor"
 	},
 	"animator_PinaCoLada":
@@ -513,7 +512,8 @@
 	},
 	"animator_RinTohsaka":
 	{
-		"DESCRIPTION": "Channel 1 random Orb. Synergy: Gain !M! Block for each Channeled Orb.",
+		"DESCRIPTION": "Channel !M! random Orb. Synergy: Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Apply 1 Lock-On to ALL enemies. [#EFC851]Channel !M! random Orb. Synergy: Gain !B! Block.",
 		"NAME": "Rin Tohsaka"
 	},
 	"animator_RoryMercury":

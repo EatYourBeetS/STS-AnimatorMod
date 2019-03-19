@@ -2,8 +2,8 @@ package eatyourbeets.misc.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.Nanami;
 
 public class NanamiEffect_Magic extends NanamiEffect
@@ -14,7 +14,7 @@ public class NanamiEffect_Magic extends NanamiEffect
 
         for (int i = 0; i < orbs; i++)
         {
-            GameActionsHelper.ChannelOrb(AbstractOrb.getRandomOrb(true), true);
+            GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
         }
     }
 

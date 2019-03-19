@@ -41,6 +41,11 @@ public class Illya extends AnimatorCard
         {
             AbstractDungeon.actionManager.addToBottom(new DrawSpecificCardAction(bestCard));
             AbstractDungeon.actionManager.addToBottom(new ModifyDamageAction(bestCard.uuid, this.magicNumber));
+
+            if (HasActiveSynergy())
+            {
+                bestCard.retain = true;
+            }
         }
     }
 

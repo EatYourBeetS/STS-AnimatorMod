@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.actions.VariableDiscardAction;
@@ -24,7 +25,7 @@ public class Layla extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(4,0, 2);
+        Initialize(4,0, 1);
 
         AddExtendedDescription();
         SetSynergy(Synergies.Chaika);
@@ -51,10 +52,10 @@ public class Layla extends AnimatorCard
     {
         AbstractDungeon.actionManager.addToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
 
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.DrawCard(p, 1);
-        }
+//        if (HasActiveSynergy())
+//        {
+//            GameActionsHelper.DrawCard(p, 1);
+//        }
     }
 
     @Override
@@ -63,7 +64,6 @@ public class Layla extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(1);
-            upgradeMagicNumber(1);
         }
     }
 
@@ -75,10 +75,19 @@ public class Layla extends AnimatorCard
             return;
         }
 
+        boolean hasSynergy = HasActiveSynergy();
+        AbstractPlayer p = AbstractDungeon.player;
+
+
         for (int i = 0; i < discarded.size(); i++)
         {
-            DamageInfo info = new DamageInfo(AbstractDungeon.player, this.damage, upgraded ? DamageInfo.DamageType.HP_LOSS : this.damageTypeForTurn);
+            DamageInfo info = new DamageInfo(p, this.damage, upgraded ? DamageInfo.DamageType.HP_LOSS : this.damageTypeForTurn);
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+
+            if (hasSynergy)
+            {
+                GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, this.magicNumber), this.magicNumber);
+            }
         }
     }
 }

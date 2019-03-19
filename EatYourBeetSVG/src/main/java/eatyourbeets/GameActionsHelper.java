@@ -23,6 +23,11 @@ import java.util.function.BiConsumer;
 @SuppressWarnings("UnusedReturnValue")
 public class GameActionsHelper
 {
+    public static void AddToTurnStart(AbstractGameAction action)
+    {
+        AbstractDungeon.actionManager.addToTurnStart(action);
+    }
+
     public static void AddToTop(AbstractGameAction action)
     {
         AbstractDungeon.actionManager.addToTop(action);

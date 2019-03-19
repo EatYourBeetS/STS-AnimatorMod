@@ -1,13 +1,10 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.OnTargetDeadAction;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -50,8 +47,12 @@ public class Lancer extends AnimatorCard
             attackEffect = AbstractGameAction.AttackEffect.SLASH_VERTICAL;
         }
 
-        DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.HP_LOSS), attackEffect);
-        AbstractDungeon.actionManager.addToBottom(new OnTargetDeadAction(m, damageAction, new GainEnergyAction(1), true));
+        GameActionsHelper.DamageTarget(p, m, this.damage, DamageInfo.DamageType.HP_LOSS, attackEffect);
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.GainEnergy(1);
+        }
     }
 
     @Override

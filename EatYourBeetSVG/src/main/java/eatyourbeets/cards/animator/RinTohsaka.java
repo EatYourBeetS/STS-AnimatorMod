@@ -1,13 +1,13 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.actions.RinTohsakaAction;
+import com.megacrit.cardcrawl.powers.LockOnPower;
+import eatyourbeets.GameActionsHelper;
+import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class RinTohsaka extends AnimatorCard
 {
@@ -17,7 +17,7 @@ public class RinTohsaka extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0, 3);
+        Initialize(0,6, 1);
 
         SetSynergy(Synergies.Fate);
     }
@@ -25,11 +25,22 @@ public class RinTohsaka extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new ChannelAction(AbstractOrb.getRandomOrb(true)));
+        if (upgraded)
+        {
+            for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+            {
+                GameActionsHelper.ApplyPower(p, m1, new LockOnPower(m1, 1), 1);
+            }
+        }
+
+        for (int i = 0; i < this.magicNumber; i++)
+        {
+            GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
+        }
 
         if (HasActiveSynergy())
         {
-            AbstractDungeon.actionManager.addToBottom(new RinTohsakaAction(this.magicNumber, this));
+            GameActionsHelper.GainBlock(p, this.block);
         }
     }
 
@@ -38,7 +49,8 @@ public class RinTohsaka extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBlock(2);
+            target = CardTarget.ALL;
         }
     }
 }

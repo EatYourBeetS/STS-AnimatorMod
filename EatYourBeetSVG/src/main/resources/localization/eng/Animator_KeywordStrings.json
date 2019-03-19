@@ -20,7 +20,7 @@
 		"PROPERNAME": "Mark"
 	},
 	{
-		"DESCRIPTION": "If the target has less than 50% HP, deal Double Damage.",
+		"DESCRIPTION": "If the target has less than #b50% HP, deal double damage.",
 		"NAMES": ["heartseeker"],
 		"PROPERNAME": "Heartseeker"
 	},

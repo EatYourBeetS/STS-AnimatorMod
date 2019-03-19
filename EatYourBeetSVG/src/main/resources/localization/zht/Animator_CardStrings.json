@@ -19,8 +19,7 @@
 	"animator_Add":
 	{
 		"DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 生成 !M! 個隨機充能球 。 虛無 。",
-		"NAME": "艾迪",
-		"UPGRADE_DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 生成 !M! 個隨機充能球 。"
+		"NAME": "艾迪"
 	},
 	"animator_Ain":
 	{
@@ -373,7 +372,7 @@
 	},
 	"animator_Illya":
 	{
-		"DESCRIPTION": "將抽牌堆中傷害最高的 [#EFC851]攻擊[] 牌 加入手牌並在本次戰鬥中使其傷害提高 !M! 點 。",
+		"DESCRIPTION": "將抽牌堆中傷害最高的 [#EFC851]攻擊[] 牌 加入手牌並在本次戰鬥中使其傷害提高 !M! 點 。 同調 : 保留它 。",
 		"NAME": "伊莉雅"
 	},
 	"animator_ItamiYouji":
@@ -415,15 +414,15 @@
 	},
 	"animator_Lancer":
 	{
-		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 嗜血 。 若此牌消滅了一個敵人 ， 獲得 [E] 。",
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 嗜血 。 同調 : 獲得 [E] 。",
 		"NAME": "Lancer"
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "[#EFC851]重新裝填[] : 造成 !D! 點 傷害 。 NL 同調 : 抽一張牌 。",
+		"DESCRIPTION": "[#EFC851]重新裝填[] : 造成 !D! 點 傷害 。 NL 同調 : 給予 !M! 層 中毒 每次打擊 。",
 		"EXTENDED_DESCRIPTION": ["重新裝填", "丟棄任意數量的牌 ，觸發同等次數 。"],
 		"NAME": "蕾拉",
-		"UPGRADE_DESCRIPTION": "[#EFC851]重新裝填[] : 造成 !D! 穿刺 點 傷害 。 NL 同調 : 抽一張牌 。"
+		"UPGRADE_DESCRIPTION": "[#EFC851]重新裝填[] : 造成 !D! 穿刺 點 傷害 。 NL 同調 : 給予 !M! 層 中毒 每次打擊 。"
 	},
 	"animator_LeleiLaLalena":
 	{
@@ -473,7 +472,7 @@
 	{
 		"DESCRIPTION": "生成 !M! 個閃電充能球 。 NL 變形者 。",
 		"NAME": "娜貝拉爾·伽瑪",
-		"UPGRADE_DESCRIPTION": "生成 !M! 個閃電充能球 。 NL 變形者 。 同調 : 獲得一個充能球欄位 。"
+		"UPGRADE_DESCRIPTION": "生成 !M! 個 閃電 充能球 。 NL 變形者 。 同調 : 閃電 本回合擊中所有敵人。"
 	},
 	"animator_PandorasActor":
 	{
@@ -511,7 +510,8 @@
 	},
 	"animator_RinTohsaka":
 	{
-		"DESCRIPTION": "生成 一個隨機充能球 。 同調 : 每個充能球使你獲得 !M! 層 格擋 。",
+		"DESCRIPTION": "生成 !M! 個隨機充能球 。 同調 : 獲得 !B! 點 格擋 。",
+		"UPGRADE_DESCRIPTION": "給予所有敵人 1 跟蹤鎖定 。 生成 !M! 個隨機充能球 。 同調 : 獲得 !B! 點 格擋 。",
 		"NAME": "遠阪凜"
 	},
 	"animator_RoryMercury":

@@ -2,8 +2,8 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.Utilities;
 import eatyourbeets.actions.ExhaustFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -30,7 +30,7 @@ public class Add extends AnimatorCard
 
         for (int i = 0; i < this.magicNumber; i++)
         {
-            GameActionsHelper.ChannelOrb(AbstractOrb.getRandomOrb(true), true);
+            GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
         }
     }
 
@@ -39,7 +39,7 @@ public class Add extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            this.isEthereal = false;
+            upgradeMagicNumber(1);
         }
     }
 }

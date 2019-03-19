@@ -46,7 +46,7 @@ public class OldCoffin extends AnimatorRelic
         counter += 1;
         if (counter > ACTIVATION_THRESHOLD)
         {
-            AbstractMonster m = Utilities.GetRandomElement(PlayerStatistics.GetCurrentEnemies(true), AbstractDungeon.miscRng);
+            AbstractMonster m = Utilities.GetRandomElement(PlayerStatistics.GetCurrentEnemies(true));
             if (m != null)
             {
                 AbstractPlayer p = AbstractDungeon.player;

@@ -311,7 +311,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         {
             for (AbstractMonster m : room.monsters.monsters)
             {
-                logger.info("ENEMY: " + m.name + ", DeadOrEscaped: " + m.isDeadOrEscaped() + ", Dying: " + m.isDying);
+                //logger.info("ENEMY: " + m.name + ", DeadOrEscaped: " + m.isDeadOrEscaped() + ", Dying: " + m.isDying);
                 if (!aliveOnly || (!m.isDeadOrEscaped() && !m.isDying))
                 {
                     monsters.add(m);

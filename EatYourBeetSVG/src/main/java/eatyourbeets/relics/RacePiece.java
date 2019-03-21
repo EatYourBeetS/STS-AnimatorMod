@@ -152,19 +152,22 @@ public class RacePiece extends AnimatorRelic
 
             for (AnimatorCard c : cards)
             {
-                switch (c.rarity)
+                if (c.type != AbstractCard.CardType.CURSE && c.type != AbstractCard.CardType.STATUS)
                 {
-                    case COMMON:
-                        rewards.Add(c, 45);
-                        break;
+                    switch (c.rarity)
+                    {
+                        case COMMON:
+                            rewards.Add(c, 45);
+                            break;
 
-                    case UNCOMMON:
-                        rewards.Add(c, 40);
-                        break;
+                        case UNCOMMON:
+                            rewards.Add(c, 40);
+                            break;
 
-                    case RARE:
-                        rewards.Add(c, 15);
-                        break;
+                        case RARE:
+                            rewards.Add(c, 15);
+                            break;
+                    }
                 }
             }
 

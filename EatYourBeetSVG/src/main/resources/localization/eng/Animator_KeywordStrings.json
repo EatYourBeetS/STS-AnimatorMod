@@ -88,5 +88,9 @@
 		"DESCRIPTION": "If this counter is greater NL than 0, activate the effect then reduce this counter by 1. Resets at the end of each fight.",
 		"NAMES": ["boost"],
 		"PROPERNAME": "Boost"
-	}
+	},
+	{
+      "NAMES": [ "earth", "earth+"],
+      "DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage randomly split amongst ALL enemies."
+    }
 ]

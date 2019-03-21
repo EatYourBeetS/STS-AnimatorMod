@@ -8,6 +8,15 @@
 			"Once per turn, when a #ySynergy is activated draw #b1 card."
 		]
 	},
+	"Animator_VividPicture":
+	{
+		"NAME": "Vivid Picture",
+		"FLAVOR": "It's always watching.",
+		"DESCRIPTIONS":
+		[
+			"Once per turn, when a #ySynergy is activated draw #b1 card and gain [E]"
+		]
+	},
 	"Animator_TheMissingPiece":
 	{
 		"NAME": "The Missing Piece",
@@ -133,7 +142,7 @@
 		"FLAVOR": "When it comes to speed I'm the best there is, swift like the island breeze!",
 		"DESCRIPTIONS":
 		[
-			"Every #b4 turns, gain #b6 #yBlock and give all enemies #b2 #yBlock."
+			"Every #b", " turns, gain #b", " #yBlock and give all enemies #b", " #yBlock."
 		]
 	}
 }

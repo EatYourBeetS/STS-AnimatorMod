@@ -41,7 +41,7 @@
 	"animator_Albedo":
 	{
 		"DESCRIPTION": "Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance.",
-		"UPGRADE_DESCRIPTION": "Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance. NL Gain !SV! Temporary HP.",
+		"UPGRADE_DESCRIPTION": "Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance. NL Next turn, gain [E].",
 		"EXTENDED_DESCRIPTION": ["Damage Resistance", "Take less damage from enemy attacks, further stacks are less effective."],
 		"NAME": "Albedo"
 	},
@@ -185,10 +185,9 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "Deal !D! damage. Overrun: Draw !M! card and Upgrade it ([#EFC851]*[#FFFFFF]).",
-		"EXTENDED_DESCRIPTION": ["* Note", "It will prioritize upgradable cards, if there are none it will work as normal card draw."],
-		"NAME": "'Dwarf Shaman'",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. Overrun: Draw !M! cards and Upgrade them ([#EFC851]*[#FFFFFF])."
+		"DESCRIPTION": "Deal !D! damage. NL Channel 1 Earth.",
+		"UPGRADE_DESCRIPTION": "Deal !D! Damage. NL Gain !B! Block. NL Channel 1 Earth.",
+		"NAME": "'Dwarf Shaman'"
 	},
 	"animator_Elesis":
 	{
@@ -209,7 +208,7 @@
 	"animator_ElricEdward":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Cycle 1 card. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the card you cycled.",
-		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#yAttack: Channel 1 Lightning NL #ySkill: Channel 1 Frost NL #yPower: Channel 1 Dark"],
+		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#yAttack: Channel 1 #yLightning NL #ySkill: Channel 1 #yFrost NL #yPower: Channel 1 #yEarth"],
 		"NAME": "Edward Elric"
 	},
 	"animator_Elsword":
@@ -546,7 +545,7 @@
 	},
 	"animator_Shalltear":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Synergy: Apply !M! Poison.",
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Synergy and Overrun: Apply !M! Poison.",
 		"NAME": "Shalltear"
 	},
 	"animator_Shichika":

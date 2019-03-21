@@ -1,6 +1,7 @@
 package eatyourbeets.relics;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.HitboxRightClick;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -46,6 +47,31 @@ public class CerealBox extends AnimatorRelic
     }
 
     @Override
+    public void onVictory()
+    {
+        super.onVictory();
+
+        this.stopPulse();
+    }
+
+    @Override
+    public void atTurnStartPostDraw()
+    {
+        super.atTurnStartPostDraw();
+
+        AbstractPlayer p = AbstractDungeon.player;
+        if (counter > 0 && (p.currentHealth / (float)p.maxHealth) < 0.25f)
+        {
+            AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.beginLongPulse();
+        }
+        else
+        {
+            this.stopPulse();
+        }
+    }
+
+    @Override
     public void justEnteredRoom(AbstractRoom room)
     {
         if (room instanceof ShopRoom)
@@ -70,14 +96,6 @@ public class CerealBox extends AnimatorRelic
             if (p.currentHealth < p.maxHealth)
             {
                 p.heal(HEAL_AMOUNT);
-//                if (PlayerStatistics.InBattle())
-//                {
-//                    GameActionsHelper.AddToBottom(new HealAction(AbstractDungeon.player, AbstractDungeon.player, HEAL_AMOUNT));
-//                }
-//                else
-//                {
-//                    p.heal(HEAL_AMOUNT);
-//                }
 
                 counter -= 1;
             }

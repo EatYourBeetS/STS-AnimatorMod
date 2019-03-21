@@ -15,7 +15,7 @@ import java.util.StringJoiner;
 
 public abstract class AnimatorPower extends AbstractPower implements CloneablePowerInterface
 {
-    protected static final Logger logger = LogManager.getLogger(AnimatorCard.class.getName());
+    protected static final Logger logger = LogManager.getLogger(AnimatorPower.class.getName());
 
     protected final PowerStrings powerStrings;
 

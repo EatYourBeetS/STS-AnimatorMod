@@ -41,7 +41,7 @@
 	"animator_Albedo":
 	{
 		"DESCRIPTION": "获得 !M! % 的 [#EFC851]抗性[] 。",
-		"UPGRADE_DESCRIPTION": "获得 !M! % 的 [#EFC851]抗性[] 。 获得 !SV! 点 临时生命 。",
+		"UPGRADE_DESCRIPTION": "获得 !M! % 的 [#EFC851]抗性[] 。 下回合 获得 [E]",
 		"EXTENDED_DESCRIPTION": ["抗性", "减少受到的伤害，效果由层数决定 。"],
 		"NAME": "雅儿贝德"
 	},
@@ -185,10 +185,9 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 压倒 : 抽 !M! 张牌并 升级 [#EFC851]*[] 。",
-		"EXTENDED_DESCRIPTION": ["* 注", "优先抽未升级的牌 ， 若全部升级则随机抽 。"],
-		"NAME": "矮人萨满",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 压倒 :抽 !M! 张牌并 升级 [#EFC851]*[] 。"
+		"DESCRIPTION": "造成 !D! 点伤害 。 获得 1 个 土素 充能球 。",
+		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害 。 获得 !B! 点 格挡 。 获得 1 个 土素 充能球 。",
+		"NAME": "矮人萨满"
 	},
 	"animator_Elesis":
 	{
@@ -209,7 +208,7 @@
 	"animator_ElricEdward":
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 循环 !M! 张牌 。 NL 使循环获得的牌获得一个 [#EFC851]额外充能[] ， 效果由该牌种类决定 。",
-		"EXTENDED_DESCRIPTION": ["额外充能", "#y攻击牌 : 获得 1 个闪电充能球 NL #y技能 : 获得 1 个冰霜充能球 NL #y能力 : 获得 1 个黑暗充能球"],
+		"EXTENDED_DESCRIPTION": ["额外充能", "#y攻击牌 : 获得 1 个闪电充能球 NL #y技能 : 获得 1 个冰霜充能球 NL #y能力 : 获得 1 个 土素 充能球"],
 		"NAME": "爱德华·艾尔利克"
 	},
 	"animator_Elsword":
@@ -374,7 +373,7 @@
 	},
 	"animator_Illya":
 	{
-		"DESCRIPTION": "将抽牌堆中伤害最高的 [#EFC851]攻击[] 牌 加入手牌并在本次战斗中使其伤害提高 !M! 点 。 同调 : 保留它",
+		"DESCRIPTION": "将抽牌堆中伤害最高的 [#EFC851]攻击[] 牌 加入手牌并在本次战斗中使其伤害提高 !M! 点 。 同调 : 并使其获得 保留 效果",
 		"NAME": "伊莉雅"
 	},
 	"animator_ItamiYouji":
@@ -421,10 +420,10 @@
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "[#EFC851]重装填[] : 造成 !D! 点 伤害 。 NL 同调 : 给予 !M! 层 中毒 每次打击 。",
+		"DESCRIPTION": "[#EFC851]重装填[] : 造成 !D! 点 伤害 。 NL 同调 : 每次攻击给予目标 !M! 层 中毒  。",
 		"EXTENDED_DESCRIPTION": ["重装填", "丢弃任意数量的牌 ， 触发同等次数 。"],
 		"NAME": "蕾拉",
-		"UPGRADE_DESCRIPTION": "[#EFC851]重装填[] : 造成 !D! 穿刺 点 伤害 。 NL 同调 : 给予 !M! 层 中毒 每次打击 。"
+		"UPGRADE_DESCRIPTION": "[#EFC851]重装填[] : 造成 !D! 穿刺 点 伤害 。 NL 同调 : 每次攻击给予目标 !M! 层 中毒 。"
 	},
 	"animator_LeleiLaLalena":
 	{
@@ -474,7 +473,7 @@
 	{
 		"DESCRIPTION": "生成 !M! 个闪电 充能球 。 NL 穿越者 。",
 		"NAME": "娜贝拉尔·伽玛",
-		"UPGRADE_DESCRIPTION": "生成 !M! 个闪电 充能球 。 NL 穿越者 。 同调 : 闪电 本回合击中所有敌人 。"
+		"UPGRADE_DESCRIPTION": "生成 !M! 个闪电 充能球 。 NL 穿越者 。 同调 : 本回合 闪电球 攻击全部敌人 。"
 	},
 	"animator_PandorasActor":
 	{
@@ -513,7 +512,7 @@
 	"animator_RinTohsaka":
 	{
 		"DESCRIPTION": "生成 !M! 个随机充能球 。 同调 : 获得 !B! 点 格挡 。",
-		"UPGRADE_DESCRIPTION": "给予所有敌人 1 跟踪锁定 。 生成 !M! 个随机充能球 。 同调 : 获得 !B! 点 格挡 。",
+		"UPGRADE_DESCRIPTION": "给予所有敌人 1 层 跟踪锁定 。 生成 !M! 个随机充能球 。 同调 : 获得 !B! 点 格挡 。",
 		"NAME": "远坂凛"
 	},
 	"animator_RoryMercury":
@@ -546,7 +545,7 @@
 	},
 	"animator_Shalltear":
 	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 NL 同调 : 给予 !M! 层 中毒 。",
+		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 NL 同调 和 压倒 : 给予 !M! 层 中毒 。",
 		"NAME": "夏提雅"
 	},
 	"animator_Shichika":

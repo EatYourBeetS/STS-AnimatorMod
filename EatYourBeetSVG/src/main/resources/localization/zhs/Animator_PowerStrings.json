@@ -119,5 +119,10 @@
 	{
 		"DESCRIPTIONS": ["你偷了 #b", " 个金币。 你可以再盗取 #b", " 个金币。"],
 		"NAME": "被盗的黄金"
+	},
+	"animator_EarthenThornsPower":
+	{
+	    "DESCRIPTIONS": ["每受到一次 #y攻击 ，造成 #b", " 点反伤。"],
+		"NAME": "土刺"
 	}
 }

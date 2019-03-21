@@ -111,6 +111,7 @@ public class AnimatorResources
 
     public static void LoadGameStrings()
     {
+        BaseMod.loadCustomStringsFile(OrbStrings.class, languagePath + "Animator_OrbStrings.json");
         BaseMod.loadCustomStringsFile(CharacterStrings.class, languagePath + "Animator_CharacterStrings.json");
         BaseMod.loadCustomStringsFile(CardStrings.class, languagePath + "Animator_CardStrings.json");
         BaseMod.loadCustomStringsFile(RelicStrings.class, languagePath + "Animator_RelicStrings.json");
@@ -126,6 +127,11 @@ public class AnimatorResources
     public static CardStrings GetCardStrings(String cardID)
     {
         return CardCrawlGame.languagePack.getCardStrings(cardID);
+    }
+
+    public static OrbStrings GetOrbStrings(String cardID)
+    {
+        return CardCrawlGame.languagePack.getOrbString(cardID);
     }
 
     public static UIStrings GetUIStrings(UIStringType type) { return CardCrawlGame.languagePack.getUIString("Animator_" + type.name()); }
@@ -174,6 +180,7 @@ public class AnimatorResources
         BaseMod.addRelicToCustomPool(new RacePiece(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new BattleDrones(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new CursedBlade(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new VividPicture(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelic(new AlchemistGlove(), RelicType.SHARED);
         BaseMod.addRelic(new OldCoffin(), RelicType.SHARED);
         BaseMod.addRelic(new WornHelmet(), RelicType.SHARED);
@@ -181,6 +188,12 @@ public class AnimatorResources
         BaseMod.addRelic(new HallowedScabbard(), RelicType.SHARED);
         BaseMod.addRelic(new EngravedStaff(), RelicType.SHARED);
         BaseMod.addRelic(new CerealBox(), RelicType.SHARED);
+    }
+
+    public static void LoadAudio()
+    {
+        BaseMod.addAudio("ANIMATOR_ORB_EARTH_EVOKE", "audio/sound/ANIMATOR_ORB_EARTH_EVOKE.ogg");
+        BaseMod.addAudio("ANIMATOR_ORB_EARTH_CHANNEL", "audio/sound/ANIMATOR_ORB_EARTH_CHANNEL.ogg");
     }
 
     public static void LoadCustomCards() throws Exception

@@ -22,7 +22,7 @@ public class ZankiKiguchi extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,0,1);
+        Initialize(9,0,2);
 
         AddExtendedDescription();
 
@@ -49,7 +49,7 @@ public class ZankiKiguchi extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(2);
             upgradeMagicNumber(1);
         }
     }
@@ -70,7 +70,7 @@ public class ZankiKiguchi extends AnimatorCard
     {
         for (AbstractCard c : AbstractDungeon.player.hand.group)
         {
-            if (c != this)
+            if (c != this && c.baseDamage > 0)
             {
                 GameActionsHelper.AddToBottom(new ModifyDamageAction(c.uuid, this.magicNumber));
                 c.flash();

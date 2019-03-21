@@ -14,7 +14,7 @@ public class MarkOfPoisonPower extends AnimatorPower
 
     private final AbstractCreature source;
 
-    public MarkOfPoisonPower(AbstractCreature source, AbstractCreature owner, int stacks)
+    public MarkOfPoisonPower(AbstractCreature owner, AbstractCreature source, int stacks)
     {
         super(owner, POWER_ID);
         this.source = source;

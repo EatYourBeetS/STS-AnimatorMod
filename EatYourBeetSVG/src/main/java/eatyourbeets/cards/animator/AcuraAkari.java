@@ -25,7 +25,7 @@ public class AcuraAkari extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.ChooseAndDiscard(1, false);
-        GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new MarkOfPoisonPower(p, m, this.magicNumber), this.magicNumber));
+        GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new MarkOfPoisonPower(m, p, this.magicNumber), this.magicNumber));
         GameActionsHelper.GainBlock(p, this.block);
     }
 

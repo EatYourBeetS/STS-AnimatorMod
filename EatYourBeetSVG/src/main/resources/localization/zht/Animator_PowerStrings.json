@@ -1,3 +1,4 @@
+
 {
 	"animator_AinzPower":
 	{
@@ -118,5 +119,10 @@
 	{
 		"DESCRIPTIONS": ["你偷了 #b", " 個金幣。 你可以再盜取 #b", " 個金幣。"],
 		"NAME": "被盜的黃金"
+	},
+	"animator_EarthenThornsPower":
+	{
+		"DESCRIPTIONS": ["每次受到 #y攻擊 傷害時，就造成 #b", " 點反傷"],
+		"NAME": "土製的荊棘"
 	}
 }

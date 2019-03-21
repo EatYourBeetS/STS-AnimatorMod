@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -33,7 +34,7 @@ public class Albedo extends AnimatorCard
 
         if (upgraded)
         {
-            GameActionsHelper.GainTemporaryHP(p, p, this.secondaryValue);
+            GameActionsHelper.ApplyPower(p, p, new EnergizedPower(p, 1), 1);
         }
     }
 

@@ -12,6 +12,7 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.orbs.Earth;
 
 import java.util.ArrayList;
 
@@ -66,7 +67,7 @@ public class ElricEdward extends AnimatorCard
                     break;
 
                 case POWER:
-                    GameActionsHelper.ChannelOrb(new Dark(), true);
+                    GameActionsHelper.ChannelOrb(new Earth(), true);
                     break;
             }
         }

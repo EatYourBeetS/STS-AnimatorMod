@@ -39,9 +39,9 @@ public class AinzPower extends AnimatorPower
     {
         super.onInitialApplication();
 
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.05f));
+        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.1f));
         GameActionsHelper.AddToTop(new VFXAction(new BorderLongFlashEffect(Color.valueOf("3d0066"))));
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_DARK_EVOKE", 0.05f));
+        GameActionsHelper.AddToBottom(new SFXAction("ORB_DARK_EVOKE", 0.1f));
     }
 
     @Override

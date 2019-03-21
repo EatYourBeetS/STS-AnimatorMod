@@ -19,7 +19,7 @@ public class CrowleyEusford extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(7,0,6);
+        Initialize(8,0,6);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }

@@ -23,7 +23,7 @@ import patches.AbstractEnums;
 public class EYBModInitializer
         implements EditCharactersSubscriber, EditStringsSubscriber, EditCardsSubscriber, EditKeywordsSubscriber, EditRelicsSubscriber,
                    OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber, PostInitializeSubscriber, PostEnergyRechargeSubscriber,
-                   PostDrawSubscriber, StartGameSubscriber, StartActSubscriber, MaxHPChangeSubscriber
+                   PostDrawSubscriber, StartGameSubscriber, StartActSubscriber, MaxHPChangeSubscriber, AddAudioSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
 
@@ -169,5 +169,11 @@ public class EYBModInitializer
         }
 
         return amount;
+    }
+
+    @Override
+    public void receiveAddAudio()
+    {
+        AnimatorResources.LoadAudio();
     }
 }

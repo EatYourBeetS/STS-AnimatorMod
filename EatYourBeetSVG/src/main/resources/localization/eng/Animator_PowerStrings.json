@@ -118,5 +118,10 @@
 	{
 		"DESCRIPTIONS": ["You stole #b", " Gold. You can steal #b", " more Gold."],
 		"NAME": "Stolen Gold"
+	},
+	"animator_EarthenThornsPower":
+	{
+		"DESCRIPTIONS": ["When attacked, deals #b", " damage back."],
+		"NAME": "Earthen Thorns"
 	}
 }

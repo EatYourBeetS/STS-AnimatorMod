@@ -105,10 +105,6 @@ public class Nanami extends AnimatorCard
                 NanamiEffect_Escape.Execute(p, m, this);
                 break;
 
-            case MAGIC:
-                NanamiEffect_Magic.Execute(p, m, this);
-                break;
-
             case SLEEP:
                 NanamiEffect_Sleep.Execute(p, m, this);
                 break;
@@ -124,6 +120,11 @@ public class Nanami extends AnimatorCard
             case DEBUG:
             case NONE:
                 NanamiEffect_None.Execute(p, m, this);
+                break;
+
+            case MAGIC:
+            default:
+                NanamiEffect_Magic.Execute(p, m, this);
                 break;
         }
 
@@ -214,10 +215,6 @@ public class Nanami extends AnimatorCard
                 NanamiEffect_Escape.UpdateDescription(this);
                 break;
 
-            case MAGIC:
-                NanamiEffect_Magic.UpdateDescription(this);
-                break;
-
             case SLEEP:
                 NanamiEffect_Sleep.UpdateDescription(this);
                 break;
@@ -233,6 +230,11 @@ public class Nanami extends AnimatorCard
             case DEBUG:
             case NONE:
                 NanamiEffect_None.UpdateDescription(this);
+                break;
+
+            case MAGIC:
+            default:
+                NanamiEffect_Magic.UpdateDescription(this);
                 break;
         }
 

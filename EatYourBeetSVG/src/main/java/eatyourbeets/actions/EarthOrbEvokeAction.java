@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 public class EarthOrbEvokeAction extends AnimatorAction
 {
-    private AbstractPlayer p;
+    private final AbstractPlayer p;
     private int step;
-    private int orbDamage;
+    private final int orbDamage;
     private int damageDealt;
 
     public EarthOrbEvokeAction(int orbDamage)

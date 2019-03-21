@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.cards.AnimatorCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

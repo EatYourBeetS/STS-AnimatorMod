@@ -18,7 +18,7 @@ public class RoryMercury extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(8,0, 30);
+        Initialize(7,0, 35);
 
         SetSynergy(Synergies.Gate);
     }
@@ -36,8 +36,8 @@ public class RoryMercury extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(10);
+            upgradeDamage(1);
+            upgradeMagicNumber(15);
         }
     }
 }

@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.orbs.Earth;
 
 public class EarthenThornsPower extends AnimatorPower
 {

@@ -49,7 +49,8 @@ public class Greed extends AnimatorCard implements OnBattleEndSubscriber
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBaseCost(1);
+            //upgradeMagicNumber(1);
         }
     }
 

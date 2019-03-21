@@ -25,8 +25,8 @@ public class Earth extends AnimatorOrb
     public static Texture imgRight;
     public static Texture imgLeft;
     public static Texture imgMid;
-    private boolean hFlip1;
-    private boolean hFlip2;
+    private final boolean hFlip1;
+    private final boolean hFlip2;
 
     private int turns;
 

@@ -16,7 +16,7 @@ public class Guy extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(0,0, 5);
+        Initialize(0,0, 4);
 
         this.baseSecondaryValue = this.secondaryValue = 2;
 

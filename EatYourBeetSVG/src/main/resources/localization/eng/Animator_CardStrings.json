@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage NL !M! times. NL Synergy: Deal damage 1 more time.",
+		"DESCRIPTION": "Deal !D! damage to an enemy !M! times. NL Synergy: Deal damage 1 more time.",
 		"NAME": "Tooru"
 	},
 	"animator_Add":
@@ -104,7 +104,7 @@
 	"animator_ChaikaBohdan":
 	{
 		"DESCRIPTION": "[#EFC851]Impatient !M!. NL Deal !D! damage. NL Overrun: Return this card to your hand and Retain.",
-		"EXTENDED_DESCRIPTION": ["Impatient", "Whenever you attack an enemy while this is in your hand, gain this much damage. Reset after use."],
+		"EXTENDED_DESCRIPTION": ["Impatient", "Whenever you attack an enemy while this is in your hand, gain this much damage."],
 		"NAME": "Chaika Bohdan"
 	},
 	"animator_ChaikaTrabant":
@@ -343,7 +343,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "Give an enemy !M! Block and !SV! Weak. NL Cycle 1 card. NL Recall: Gain [E]",
+		"DESCRIPTION": "Give an enemy !M! Block and apply !SV! Weak. NL Cycle 1 card. NL Recall: Gain [E]",
 		"NAME": "Guy"
 	},
 	"animator_HigakiRinne":

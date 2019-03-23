@@ -28,10 +28,19 @@ public class Synergies
     public final static Synergy GoblinSlayer = CreateSynergy(11);
     public final static Synergy FullmetalAlchemist = CreateSynergy(12);
     public final static Synergy HatarakuMaouSama = CreateSynergy(13);
+    public final static Synergy GrimoireOfZero = CreateSynergy(14);
+    public final static Synergy SteinsGate = CreateSynergy(15);
+    public final static Synergy MadokaMagica = CreateSynergy(16);
 
     private static Synergy CreateSynergy(int id)
     {
-        return new Synergy(id, uiStrings.TEXT[id]);
+        Synergy s = new Synergy(id, uiStrings.TEXT[id]);
+        if (id > 0)
+        {
+            All.put(id, s);
+        }
+
+        return s;
     }
 
     public static Synergy GetByID(int id)
@@ -64,22 +73,5 @@ public class Synergies
                 destination.add(card);
             }
         }
-    }
-
-    static
-    {
-        All.put(Elsword.ID, Elsword);
-        All.put(Kancolle.ID, Kancolle);
-        All.put(Chaika.ID, Chaika);
-        All.put(Konosuba.ID, Konosuba);
-        All.put(Katanagatari.ID, Katanagatari);
-        All.put(OwariNoSeraph.ID, OwariNoSeraph);
-        All.put(Overlord.ID, Overlord);
-        All.put(NoGameNoLife.ID, NoGameNoLife);
-        All.put(Gate.ID, Gate);
-        All.put(Fate.ID, Fate);
-        All.put(GoblinSlayer.ID, GoblinSlayer);
-        All.put(FullmetalAlchemist.ID, FullmetalAlchemist);
-        All.put(HatarakuMaouSama.ID, HatarakuMaouSama);
     }
 }

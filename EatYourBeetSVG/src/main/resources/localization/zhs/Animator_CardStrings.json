@@ -104,7 +104,7 @@
 	"animator_ChaikaBohdan":
 	{
 		"DESCRIPTION": "造成 !D! 点伤害。 NL [#EFC851]急躁[] !M! 。 NL 压倒 : 将这张牌返回到手牌并 保留  。",
-		"EXTENDED_DESCRIPTION": ["急躁", "若此牌位于手牌中 ， 则每当你打出一张 #y攻击 牌 ， 此牌伤害额外增加等同于急躁层数的数值 。"],
+		"EXTENDED_DESCRIPTION": ["急躁", "若此牌位于手牌中 ， 则每当你打出一张 #y攻击 牌 ， 此牌伤害额外增加等同于急躁层数的数值 。 仅在使用后重置伤害 。"],
 		"NAME": "嘉依卡·布芙丹"
 	},
 	"animator_ChaikaTrabant":

@@ -24,14 +24,14 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
 {
     public static final String ID = CreateFullID(ChaikaBohdan.class.getSimpleName());
 
-    //private int bonusDamage = 0;
+    private int bonusDamage = 0;
     private boolean returnToHand = false;
 
     public ChaikaBohdan()
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(3,0,2);
+        Initialize(6,0,2);
 
         if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
         {
@@ -61,7 +61,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
     {
         DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
-        //AddDamageBonus(-bonusDamage);
+        AddDamageBonus(-bonusDamage);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
 
     private void AddDamageBonus(int amount)
     {
-        //bonusDamage += amount;
+        bonusDamage += amount;
         baseDamage += amount;
     }
 

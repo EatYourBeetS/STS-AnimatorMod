@@ -38,7 +38,7 @@ public class Shalltear extends AnimatorCard
         for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
         {
             DamageAction damageAction = new DamageAction(m1, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE);
-            ApplyPowerAction applyPowerAction = new ApplyPowerAction(m1, p, new PoisonPower(m, p, this.magicNumber), this.magicNumber, true);
+            ApplyPowerAction applyPowerAction = new ApplyPowerAction(m1, p, new PoisonPower(m1, p, this.magicNumber), this.magicNumber, true);
 
             GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m1.hb.cX, m1.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
             GameActionsHelper.AddToBottom(new OnTargetBlockBreakAction(m1, damageAction, applyPowerAction));

@@ -31,7 +31,11 @@ public class Wiz extends AnimatorCard
         {
             AbstractDungeon.actionManager.addToBottom(new ExhaustAction(p, p, 1, false));
             AbstractDungeon.actionManager.addToBottom(new WizAction(p));
-            AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(this.uuid, -1));
+
+            if (this.magicNumber > 1)
+            {
+                AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(this.uuid, -1));
+            }
         }
 
         if (this.magicNumber <= 1)

@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -24,7 +23,7 @@ public class Ainz extends AnimatorCard
         super(AnimatorResources.GetCardStrings(ID), ID + "Alt", AnimatorResources.GetCardImage(ID + "Alt"),
                 0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
         this.effect = effect;
-        this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
+        //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
     }
 
     public Ainz()

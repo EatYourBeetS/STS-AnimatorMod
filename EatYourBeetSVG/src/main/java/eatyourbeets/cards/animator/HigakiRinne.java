@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.cards.colorless.Shiv;
@@ -43,15 +44,25 @@ public class HigakiRinne extends AnimatorCard
     }
 
     @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        HigakiRinne c = Utilities.SafeCast(super.makeStatEquivalentCopy(), HigakiRinne.class);
+        if (c != null)
+        {
+            c.ChangeForm(type);
+        }
+
+        return c;
+    }
+
+    @Override
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
 
         if (this.type != CardType.SKILL)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID));
-            this.type = CardType.SKILL;
-            this.target = CardTarget.ALL;
+            ChangeForm(CardType.SKILL);
         }
 
         int n = AbstractDungeon.miscRng.random(100);
@@ -77,15 +88,11 @@ public class HigakiRinne extends AnimatorCard
         }
         else if (n < 55)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID + "Attack"));
-            this.type = CardType.ATTACK;
-            this.target = CardTarget.ENEMY;
+            ChangeForm(CardType.ATTACK);
         }
         else if (n < 65)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID + "Power"));
-            this.type = CardType.POWER;
-            this.target = CardTarget.ALL;
+            ChangeForm(CardType.POWER);
         }
     }
 
@@ -173,6 +180,28 @@ public class HigakiRinne extends AnimatorCard
             GameActionsHelper.DamageTarget(p, m, AbstractDungeon.miscRng.random(2,d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
             GameActionsHelper.DamageTarget(p, m, AbstractDungeon.miscRng.random(2,d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
             AbstractDungeon.actionManager.addToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
+        }
+    }
+
+    private void ChangeForm(CardType type)
+    {
+        if (type == CardType.ATTACK)
+        {
+            this.loadCardImage(AnimatorResources.GetCardImage(ID + "Attack"));
+            this.type = CardType.ATTACK;
+            this.target = CardTarget.ENEMY;
+        }
+        else if (type == CardType.POWER)
+        {
+            this.loadCardImage(AnimatorResources.GetCardImage(ID + "Power"));
+            this.type = CardType.POWER;
+            this.target = CardTarget.ALL;
+        }
+        else
+        {
+            this.loadCardImage(AnimatorResources.GetCardImage(ID));
+            this.type = CardType.SKILL;
+            this.target = CardTarget.ALL;
         }
     }
 

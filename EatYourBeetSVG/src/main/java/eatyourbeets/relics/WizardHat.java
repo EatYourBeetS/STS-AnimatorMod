@@ -1,11 +1,11 @@
 package eatyourbeets.relics;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 
@@ -16,6 +16,15 @@ public class WizardHat extends AnimatorRelic
     public WizardHat()
     {
         super(ID, RelicTier.UNCOMMON, LandingSound.FLAT);
+    }
+
+    private static final int TURNS = 7;
+    private static final int DAMAGE_AMOUNT = 14;
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return DESCRIPTIONS[0] + TURNS + DESCRIPTIONS[1] + DAMAGE_AMOUNT + DESCRIPTIONS[2];
     }
 
     @Override
@@ -43,10 +52,10 @@ public class WizardHat extends AnimatorRelic
         if (card != null && card.HasActiveSynergy())
         {
             counter += 1;
-            if (counter >= 7)
+            if (counter >= TURNS)
             {
                 this.flash();
-                AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(AbstractDungeon.player, DamageInfo.createDamageMatrix(14, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
+                GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
                 counter = 0;
             }
         }

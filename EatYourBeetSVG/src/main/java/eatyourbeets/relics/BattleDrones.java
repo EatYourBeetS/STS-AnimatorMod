@@ -14,9 +14,18 @@ public class BattleDrones extends AnimatorRelic
 {
     public static final String ID = CreateFullID(BattleDrones.class.getSimpleName());
 
+    private static final int DAMAGE_AMOUNT = 3;
+    private static final int BLOCK_AMOUNT = 1;
+
     public BattleDrones()
     {
         super(ID, RelicTier.UNCOMMON, LandingSound.CLINK);
+    }
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return DESCRIPTIONS[0] + DAMAGE_AMOUNT + DESCRIPTIONS[1] + BLOCK_AMOUNT + DESCRIPTIONS[2];
     }
 
     @Override
@@ -28,8 +37,8 @@ public class BattleDrones extends AnimatorRelic
         if (card != null && card.HasActiveSynergy())
         {
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.GainBlock(p, 1);
-            GameActionsHelper.DamageRandomEnemy(p, 1, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+            GameActionsHelper.GainBlock(p, BLOCK_AMOUNT);
+            GameActionsHelper.DamageRandomEnemy(p, DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
 
             this.flash();
         }

@@ -51,7 +51,7 @@
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"DESCRIPTIONS":
 		[
-			"Every time you activate #b7 #ySynergies in a combat, deal #b14 damage to ALL enemies."
+			"Every time you activate #b", " #ySynergies in a combat, deal #b", " damage to ALL enemies."
 		]
 	},
 	"Animator_AlchemistGlove":
@@ -78,7 +78,7 @@
 		"FLAVOR": "Did you see that coming Mr. Mind Reader? Checkmate.",
 		"DESCRIPTIONS":
 		[
-			"Choose #b1 card, transform #b3 cards in your deck into #b3 random cards of the same #ySeries."
+			"Upon pickup, select #b1 card, then choose and #yTransform #b3 cards in your deck into #b3 cards of the selected card's #ySeries."
 		]
 	},
 	"Animator_WornHelmet":
@@ -124,7 +124,7 @@
 		"FLAVOR": "Engineering perfection.",
 		"DESCRIPTIONS":
 		[
-			"Whenever a card #ySynergizes, deal #b1 damage to a random enemy and gain #b1 #yBlock."
+			"Whenever a card #ySynergizes, deal #b", " damage to a random enemy and gain #b", " #yBlock."
 		]
 	},
 	"Animator_EngravedStaff":

@@ -104,7 +104,7 @@
 	"animator_ChaikaBohdan":
 	{
 		"DESCRIPTION": "[#EFC851]Impatient !M!. NL Deal !D! damage. NL Overrun: Return this card to your hand and Retain.",
-		"EXTENDED_DESCRIPTION": ["Impatient", "Whenever you attack an enemy while this is in your hand, gain this much damage."],
+		"EXTENDED_DESCRIPTION": ["Impatient", "Whenever you attack an enemy while this is in your hand, gain this much damage. Reset after use."],
 		"NAME": "Chaika Bohdan"
 	},
 	"animator_ChaikaTrabant":
@@ -673,5 +673,24 @@
 	{
 		"DESCRIPTION": "Deal !D! Damage. NL Overrun and Recall: ALL [#EFC851]Attacks in your hand gain !M! damage this combat.",
 		"NAME": "Zanki"
+	},
+	"animator_Zero":
+	{
+		"DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile.",
+		"NAME": "Zero"
+	},
+	"animator_Kyubey":
+	{
+		"DESCRIPTION": "Draw !M! Cards. NL Gain [E] [E]. NL Add 2 random curses to your discard pile.",
+		"UPGRADE_DESCRIPTION": "Draw !M! Cards. NL Gain [E] [E] [E]. NL Add 2 random curses to your discard pile.",
+		"NAME": "Kyubey"
+	},
+	"animator_HououinKyouma":
+	{
+		"DESCRIPTION": "Choose !M! card you played this combat and add a copy of it to your hand ([#EFC851]*[#FFFFFF]). Purge.",
+		"UPGRADE_DESCRIPTION": "Choose !M! cards you played this combat and add a copy of them to your hand ([#EFC851]*[#FFFFFF]). Purge.",
+		"EXTENDED_DESCRIPTION": ["* Note", "You cannot select another copy of this card. Because that would cause a paradox."],
+		"NAME": "Hououin Kyouma"
 	}
 }

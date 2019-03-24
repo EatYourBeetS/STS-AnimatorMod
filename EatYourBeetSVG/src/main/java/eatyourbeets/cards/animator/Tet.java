@@ -20,19 +20,6 @@ public class Tet extends AnimatorCard
         SetSynergy(Synergies.NoGameNoLife);
     }
 
-//    @Override
-//    public boolean canPlay(AbstractCard card)
-//    {
-//        if (card == this)
-//        {
-//            AbstractPlayer p = AbstractDungeon.player;
-//
-//            return p.drawPile.size() >= this.magicNumber && p.discardPile.size() >= this.magicNumber;
-//        }
-//
-//        return super.canPlay(card);
-//    }
-
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {

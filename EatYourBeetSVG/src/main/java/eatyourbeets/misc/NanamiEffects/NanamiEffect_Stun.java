@@ -39,7 +39,9 @@ public class NanamiEffect_Stun extends NanamiEffect
 
         if (modifier > 0)
         {
-            return (modifier + 1) * nanami.damage;
+            int diff = (nanami.damage - nanami.baseDamage);
+
+            return ((nanami.energyOnUse + 1) * nanami.baseDamage) + diff;
         }
         else
         {

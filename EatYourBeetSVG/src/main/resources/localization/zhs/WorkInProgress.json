@@ -1,13 +1,4 @@
-"animator_Zero":
+
 {
-	"DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile. Exhaust.",
-	"UPGRADE_DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile.",
-	"NAME": "Zero"
-},
-"animator_HououinKyouma":
-{
-	"DESCRIPTION": "Choose !M! card you played this combat and add a copy of it to your hand ([#EFC851]*[#FFFFFF]). Purge.",
-	"UPGRADE_DESCRIPTION": "Choose !M! cards you played this combat and add a copy of them to your hand ([#EFC851]*[#FFFFFF]). Purge.",
-	"EXTENDED_DESCRIPTION": ["* Note", "You cannot select another copy of this card. Because that would cause a paradox."],
-	"NAME": "Hououin Kyouma"
+
 }

@@ -91,6 +91,12 @@
 	},
 	{
       "NAMES": [ "earth", "earth+"],
-      "DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage randomly split amongst ALL enemies."
+	  "DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage randomly split amongst ALL enemies.",
+	  "PROPERNAME": "Earth"
+    },
+	{
+      "NAMES": [ "blur"],
+      "DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
+	  "PROPERNAME": "Blur"
     }
 ]

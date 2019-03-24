@@ -26,6 +26,8 @@ public class NanamiEffect_Defend extends NanamiEffect
 
     private static int GetDamage(Nanami nanami)
     {
-        return (nanami.energyOnUse + 1) * nanami.damage;
+        int diff = (nanami.damage - nanami.baseDamage);
+
+        return ((nanami.energyOnUse + 1) * nanami.baseDamage) + diff;
     }
 }

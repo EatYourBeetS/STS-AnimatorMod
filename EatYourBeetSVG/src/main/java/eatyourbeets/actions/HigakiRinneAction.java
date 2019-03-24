@@ -49,7 +49,7 @@ public class HigakiRinneAction extends AnimatorAction
 
     public void update()
     {
-        roll = AbstractDungeon.miscRng.random(175);
+        roll = AbstractDungeon.miscRng.random(178);
         
         AbstractPlayer p = AbstractDungeon.player;
         if (lucky(6)) // 6
@@ -233,6 +233,10 @@ public class HigakiRinneAction extends AnimatorAction
             {
                 GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new MarkOfPoisonPower(m, p, 2), 2));
             }
+        }
+        else if (lucky(3)) // 178
+        {
+            GameActionsHelper.DrawCard(p, 3);
         }
 
         this.isDone = true;

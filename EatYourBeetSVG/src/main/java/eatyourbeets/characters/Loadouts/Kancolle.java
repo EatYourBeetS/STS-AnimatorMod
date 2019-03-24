@@ -10,6 +10,7 @@ import eatyourbeets.cards.animator.Shimakaze;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.relics.PurgingStone;
+import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
@@ -71,7 +72,7 @@ public class Kancolle extends AnimatorCustomLoadout
         for (AbstractCard c : cards)
         {
             AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
-            if (card != null)
+            if (card != null && card.color == AbstractEnums.Cards.THE_ANIMATOR)
             {
                 Synergy synergy = card.GetSynergy();
                 if (synergy != null)
@@ -91,7 +92,7 @@ public class Kancolle extends AnimatorCustomLoadout
         }
 
         PurgingStone p = PurgingStone.GetInstance();
-        if (uniqueSynergies >= 11 && p != null && p.GetBannedCount() == 0)
+        if (uniqueSynergies >= 10 && p != null && p.GetBannedCount() == 0)
         {
             trophies.trophy3 = Math.max(trophies.trophy3, ascensionLevel);
         }

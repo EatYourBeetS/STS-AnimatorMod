@@ -505,8 +505,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "给予一层 易伤 效果， 获得 !B! 点 格挡 。 同调 : 获得 1 [#EFC851]残影[] 。",
-		"EXTENDED_DESCRIPTION": ["残影", "下回合开始时格挡不会消失 。"],
+		"DESCRIPTION": "给予一层 易伤 效果， 获得 !B! 点 格挡 。 同调 : 获得 1 残影 。",
 		"NAME": "蕾娜‧艾兰黛"
 	},
 	"animator_RinTohsaka":
@@ -541,7 +540,7 @@
 	"animator_Sebas":
 	{
 		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 同调 : 在下一回合获得 !M! 点 格挡 。",
-		"NAME": "Sebas"
+		"NAME": "塞巴斯"
 	},
 	"animator_Shalltear":
 	{
@@ -607,8 +606,7 @@
 	},
 	"animator_Togame":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 获得一种 [#EFC851]额外效果[] , 效果种类由手中剩余的牌数量决定",
-		"EXTENDED_DESCRIPTION": ["额外效果", "#y7+ : 消耗 1张牌 。 NL #y6 : 获得 6 点 格挡 。 NL #y5 : 获得 1 层 残影 。 NL #y4- : 消耗 并 获得 2 点 能量 。", " "],
+		"DESCRIPTION": "抽 !M! 张牌 。 您可以 消耗 1 张牌 ， 否则获得 [E] 并 消耗 。 ",
 		"NAME": "咎儿"
 	},
 	"animator_TukaLunaMarceau":
@@ -671,7 +669,49 @@
 	},
 	"animator_ZankiKiguchi":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害. NL 压倒 和 撤回 : 本次战斗中，提高手牌中所有攻击牌的伤害 !SV! 点 。",
-		"NAME": "Zanki"
+		"DESCRIPTION": "造成 !D! 点伤害. NL 压倒 和 撤回 : 本次战斗中， 提高手牌中所有攻击牌的伤害 !SV! 点 。",
+		"NAME": "汽口惭愧"
+	},
+	"animator_Zero":
+	{
+		"DESCRIPTION": "从你的抽牌堆中打出一张随机的 [#EFC851]技能牌[] 。 消耗 。",
+		"UPGRADE_DESCRIPTION": "从你的抽牌堆中打出一张随机的 [#EFC851]技能牌[] 。",
+		"NAME": "零"
+	},
+	"animator_HououinKyouma":
+	{
+		"DESCRIPTION": "选择 !M! 张本场战斗中使用过的牌 ， 并将它们的复制加入到手牌中 [#EFC851]*[] 。 抹除 。",
+		"UPGRADE_DESCRIPTION": "选择 !M! 张本场战斗中使用过的牌 ， 并将它们的复制加入到手牌中 [#EFC851]*[] 。 抹除 。",
+		"EXTENDED_DESCRIPTION": ["* 注", "你不能复制这张牌 ， 因为这是石头门的选择 。"],
+		"NAME": "凤凰院凶真"
+	},
+	"animator_BlackLotus":
+	{
+		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 NL 获得 !B! 点 格挡 。 NL 获得 !M! 残影 。",
+		"NAME": "黑莲花"
+	},
+	"animator_MisaKurobane":
+	{
+		"DESCRIPTION": "赋予 !M! 层 [#EFC851]燃烧[] 。 NL 抽 1 张牌 。 NL 使用 !M! 次后 抹除 。",
+		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 伤害 。 每层使收到的伤害额外增加 4% 。"],
+		"NAME": "Misa Kurobane"
+	},
+	"animator_Kuroyukihime":
+	{
+		"DESCRIPTION": "丢弃 2 张牌 。 将 [#EFC851]黑莲花[] 加入到你的抽牌堆中 。 消耗 。",
+		"UPGRADE_DESCRIPTION": "丢弃 2 张牌 。 将 [#EFC851]黑莲花+ [] 加入到你的抽牌堆中 。 消耗 。",
+		"EXTENDED_DESCRIPTION": ["黑莲花", "特殊的1耗#y攻击牌 。"],
+		"NAME": "黑雪公主"
+	},
+	"animator_Saitama":
+	{
+		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 点伤害 。 NL 只有在你的绘图堆中没有 [#EFC851]攻击[] 时才能使用 。",
+		"NAME": "Saitama"
+	},
+	"animator_Kyubey":
+	{
+		"DESCRIPTION": "获得 [E] [E] NL 抽 !M! 张牌 。 NL 在你的弃牌堆中添加 2 个随机诅咒 。",
+		"UPGRADE_DESCRIPTION": "获得 [E] [E] [E] NL 抽 !M! 张牌 。 NL 在你的弃牌堆中添加 2 个随机诅咒 。",
+		"NAME": "Kyubey"
 	}
 }

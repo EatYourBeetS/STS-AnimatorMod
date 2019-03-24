@@ -605,8 +605,7 @@
 	},
 	"animator_Togame":
 	{
-		"DESCRIPTION": "抽 !M! 張牌 。 NL 根據手上的牌數量觸發 [#EFC851]額外效果[] 。",
-		"EXTENDED_DESCRIPTION": ["額外效果", "#y7+ : 消耗 1 張牌  NL #y6 : 獲得 6 點 格擋 NL #y5 : 獲得 1 層 殘影 NL #y4 : 獲得 2 點 能量並且 消耗 這張牌", "再見！！"],
+		"DESCRIPTION": "抽 !M! 張牌 。 NL 您可以 消耗 1 張牌 ， 否則獲得 [E] 並 消耗 。",
 		"NAME": "咎兒"
 	},
 	"animator_TukaLunaMarceau":
@@ -671,5 +670,47 @@
 	{
 		"DESCRIPTION": "造成 !D! 點傷害. NL 壓倒 和 撤回 : 本次戰鬥中，提高手牌中所有攻擊牌的傷害 !SV! 點 。",
 		"NAME": "Zanki"
+	},
+	"animator_Zero":
+	{
+		"DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 消耗 。",
+		"UPGRADE_DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 ",
+		"NAME": "零"
+	},
+	"animator_HououinKyouma":
+	{
+		"DESCRIPTION": "選擇 !M! 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 抹除 。",
+		"UPGRADE_DESCRIPTION": "選擇 !M! 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 抹除 。",
+		"EXTENDED_DESCRIPTION": ["* 注", "你不能複制這張牌 ， 因為這是石頭門的選擇 。"],
+		"NAME": "鳳凰院兇真"
+	},
+	"animator_BlackLotus":
+	{
+		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 獲得 !B! 點 格擋 。 NL 獲得 !M! 殘影 。",
+		"NAME": "黑蓮花"
+	},
+	"animator_MisaKurobane":
+	{
+		"DESCRIPTION": "賦予 !M! 層 [#EFC851]燃燒[] 。 NL 畫 1 張牌 。 NL 使用 !M! 次後 抹除 。",
+		"EXTENDED_DESCRIPTION": ["燃燒", "在回合開始時受到 傷害 。 每層使收到的傷害額外增加 4% 。"],
+		"NAME": "Misa Kurobane"
+	},
+	"animator_Kuroyukihime":
+	{
+		"DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花[] 添加到您的繪圖堆中。 消耗 。",
+		"UPGRADE_DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花+[] 添加到您的繪圖堆中。 消耗 。",
+		"EXTENDED_DESCRIPTION": ["黑蓮花", "特殊的1耗#y攻擊牌 。"],
+		"NAME": "黑雪公主"
+	},
+	"animator_Saitama":
+	{
+		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點傷害 。 NL 只有在你的繪圖堆中沒有 [#EFC851]攻擊[] 時才能使用 。",
+		"NAME": "Saitama"
+	},
+	"animator_Kyubey":
+	{
+		"DESCRIPTION": "獲得 [E] [E] NL 畫 !M! 張牌 。 NL 在你的棄牌堆中添加 2 個隨機詛咒 。",
+		"UPGRADE_DESCRIPTION": "獲得 [E] [E] [E] NL 畫 !M! 張牌 。 NL 在你的棄牌堆中添加 2 個隨機詛咒 。",
+		"NAME": "Kyubey"
 	}
 }

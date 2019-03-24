@@ -14,15 +14,17 @@ public class TransformIntoSpecificCardAction extends AnimatorAction
 {
     private static final String[] TEXT = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Actions).TEXT;
 
-    private final ArrayList<AbstractCard> drawPileSelectedCards = new ArrayList<>();
-    private final CardGroup cardGroup;
+    private final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
+    private final CardGroup destination;
+    private final CardGroup source;
     private final AbstractCard card;
 
-    public TransformIntoSpecificCardAction(AbstractCard card, CardGroup cardGroup, int amount)
+    public TransformIntoSpecificCardAction(AbstractCard card, CardGroup source, CardGroup destination, int amount)
     {
         this.amount = amount;
         this.card = card;
-        this.cardGroup = cardGroup;
+        this.destination = destination;
+        this.source = source;
         this.actionType = ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_FAST;
     }
@@ -31,19 +33,18 @@ public class TransformIntoSpecificCardAction extends AnimatorAction
     {
         if (this.duration == Settings.ACTION_DUR_FAST)
         {
-            logger.info("Amount:" + amount);
             if (amount == 0)
             {
                 this.isDone = true;
                 return;
             }
 
-            SelectFromDrawPile(true);
+            SelectCard(true);
         }
 
-        if (SelectFromDrawPile(false))
+        if (SelectCard(false))
         {
-            for (AbstractCard c : drawPileSelectedCards)
+            for (AbstractCard c : selectedCards)
             {
                 AbstractCard replacement = card.makeCopy();
                 if (card.upgraded)
@@ -51,9 +52,9 @@ public class TransformIntoSpecificCardAction extends AnimatorAction
                     replacement.upgrade();
                 }
 
-                int index = cardGroup.group.indexOf(c);
-                cardGroup.group.remove(c);
-                cardGroup.group.add(index, replacement);
+                int index = destination.group.indexOf(c);
+                destination.group.remove(c);
+                destination.group.add(index, replacement);
             }
 
             isDone = true;
@@ -62,7 +63,39 @@ public class TransformIntoSpecificCardAction extends AnimatorAction
         tickDuration();
     }
 
-    private boolean SelectFromDrawPile(boolean initialize)
+    private boolean SelectCard(boolean initialize)
+    {
+        if (source.type == CardGroup.CardGroupType.HAND)
+        {
+            return SelectFromHand(initialize);
+        }
+        else
+        {
+            return SelectFromGrid(initialize);
+        }
+    }
+
+    private boolean SelectFromHand(boolean initialize)
+    {
+        if (initialize)
+        {
+            String message = TEXT[5] + card.name;
+
+            AbstractDungeon.handCardSelectScreen.open(message, this.amount, true);
+        }
+        else if (selectedCards.isEmpty() && AbstractDungeon.handCardSelectScreen.selectedCards.size() > 0)
+        {
+            selectedCards.addAll(AbstractDungeon.handCardSelectScreen.selectedCards.group);
+            AbstractDungeon.handCardSelectScreen.selectedCards.clear();
+            AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean SelectFromGrid(boolean initialize)
     {
         if (initialize)
         {
@@ -87,9 +120,9 @@ public class TransformIntoSpecificCardAction extends AnimatorAction
 
             AbstractDungeon.gridSelectScreen.open(tmp, this.amount, true, message);
         }
-        else if (drawPileSelectedCards.isEmpty() && AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
+        else if (selectedCards.isEmpty() && AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
         {
-            drawPileSelectedCards.addAll(AbstractDungeon.gridSelectScreen.selectedCards);
+            selectedCards.addAll(AbstractDungeon.gridSelectScreen.selectedCards);
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
 
             return true;

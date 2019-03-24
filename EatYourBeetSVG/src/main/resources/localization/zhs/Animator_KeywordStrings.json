@@ -1,5 +1,5 @@
 [
-	
+
 	{
 		"DESCRIPTION": "连续使用同一系列的牌时生效",
 		"NAMES": ["同调"],
@@ -7,7 +7,7 @@
 	},
 	{
 		"DESCRIPTION": "这张卡被消耗时触发。",
-		"NAMES": [ "遗赠"],
+		"NAMES": ["遗赠"],
 		"PROPERNAME": "遗赠"
 	},
 	{
@@ -62,7 +62,7 @@
 	},
 	{
 		"DESCRIPTION": "可被多次升级。",
-		"NAMES": [ "多重进化"],
+		"NAMES": ["多重进化"],
 		"PROPERNAME": "多重进化"
 	},
 	{
@@ -91,8 +91,13 @@
 		"PROPERNAME": "鼓舞"
 	},
 	{
-      "DESCRIPTION": "被动：回合结束时，获得 临时荆棘 。 #y激活 : 造成伤害，在敌人之间分裂。每过三回合， #y激活 该充能球",
-	  "NAMES": ["土素"],
-	  "PROPERNAME": "土素"
-    }
+		"DESCRIPTION": "被动：回合结束时，获得 临时荆棘 。 #y激活 : 造成伤害，在敌人之间分裂。每过三回合， #y激活 该充能球",
+		"NAMES": ["土素"],
+		"PROPERNAME": "土素"
+	},
+	{
+		"DESCRIPTION": "下回合开始时格挡不会消失 。",
+		"NAMES": ["残影"],
+		"PROPERNAME": "残影"
+	}
 ]

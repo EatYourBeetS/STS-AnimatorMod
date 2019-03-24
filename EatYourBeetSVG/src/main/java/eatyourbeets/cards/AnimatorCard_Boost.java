@@ -8,6 +8,12 @@ public abstract class AnimatorCard_Boost extends AnimatorCard
 {
     protected abstract int GetBaseBoost();
 
+    protected AnimatorCard_Boost(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
+    {
+        super(id, cost, type, color, rarity, target);
+        this.baseSecondaryValue = this.secondaryValue = GetBaseBoost();
+    }
+
     protected AnimatorCard_Boost(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
         super(id, cost, type, rarity, target);

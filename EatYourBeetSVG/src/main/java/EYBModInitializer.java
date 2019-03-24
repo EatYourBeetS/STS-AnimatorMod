@@ -4,12 +4,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.AnimatorResources;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.powers.PlayerStatistics;
@@ -18,6 +20,8 @@ import eatyourbeets.relics.PurgingStone;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
+
+import java.util.ArrayList;
 
 @SpireInitializer
 public class EYBModInitializer
@@ -141,6 +145,11 @@ public class EYBModInitializer
             {
                 AnimatorMetrics.SaveTrophies(true);
             }
+            else
+            {
+                RemoveColorless(AbstractDungeon.srcColorlessCardPool);
+                RemoveColorless(AbstractDungeon.colorlessCardPool);
+            }
         }
 
         PurgingStone purgingStone = PurgingStone.GetInstance();
@@ -153,6 +162,12 @@ public class EYBModInitializer
     @Override
     public void receiveStartAct()
     {
+        if (AbstractDungeon.player.chosenClass != AbstractEnums.Characters.THE_ANIMATOR)
+        {
+            RemoveColorless(AbstractDungeon.srcColorlessCardPool);
+            RemoveColorless(AbstractDungeon.colorlessCardPool);
+        }
+
         PurgingStone purgingStone = PurgingStone.GetInstance();
         if (purgingStone != null)
         {
@@ -175,5 +190,23 @@ public class EYBModInitializer
     public void receiveAddAudio()
     {
         AnimatorResources.LoadAudio();
+    }
+
+    private void RemoveColorless(CardGroup group)
+    {
+        ArrayList<AbstractCard> toRemove = new ArrayList<>();
+        for (AbstractCard c : group.group)
+        {
+            if (c instanceof AnimatorCard)
+            {
+                toRemove.add(c);
+                logger.info("REMOVING: " + c.name);
+            }
+        }
+
+        for (AbstractCard c : toRemove)
+        {
+            group.removeCard(c);
+        }
     }
 }

@@ -505,8 +505,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "Apply !M! Vulnerable. NL Gain !B! Block. NL Synergy: Gain 1 [#EFC851]Blur.",
-		"EXTENDED_DESCRIPTION": ["Blur", "Your #yBlock is not removed at the start of your next turn."],
+		"DESCRIPTION": "Apply !M! Vulnerable. NL Gain !B! Block. NL Synergy: Gain 1 Blur.",
 		"NAME": "Rena"
 	},
 	"animator_RinTohsaka":
@@ -523,7 +522,7 @@
 	"animator_RoyMustang":
 	{
 		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply 2 [#EFC851]Burning[]. NL Synergy: Apply !M! more [#EFC851]Burning[].",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take 4% more Attack damage per stack."],
+		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
 		"NAME": "Roy Mustang"
 	},
 	"animator_Saber":
@@ -607,8 +606,7 @@
 	},
 	"animator_Togame":
 	{
-		"DESCRIPTION": "Draw up to !M! cards. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the number of cards in your hand.",
-		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#y7+ : Exhaust 1 card NL #y6 : Gain 6 Block. NL #y5 : Gain 1 Blur NL #y4 : Gain 2 Energy and Exhaust", "Cheerio!"],
+		"DESCRIPTION": "Draw !M! cards. NL You may Exhaust a card, otherwise gain [E] and Exhaust.",
 		"NAME": "Togame"
 	},
 	"animator_TukaLunaMarceau":
@@ -642,7 +640,7 @@
 	"animator_Witch":
 	{
 		"DESCRIPTION": "Gain !B! Block. NL Synergy: Apply !M! [#EFC851]Burning. NL Legacy: Obtain a random Potion.",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take 4% more Attack damage per stack."],
+		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
 		"NAME": "'Witch'"
 	},
 	"animator_Wiz":
@@ -680,11 +678,23 @@
 		"UPGRADE_DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile.",
 		"NAME": "Zero"
 	},
-	"animator_Kyubey":
+	"animator_BlackLotus":
 	{
-		"DESCRIPTION": "Draw !M! Cards. NL Gain [E] [E]. NL Add 2 random curses to your discard pile.",
-		"UPGRADE_DESCRIPTION": "Draw !M! Cards. NL Gain [E] [E] [E]. NL Add 2 random curses to your discard pile.",
-		"NAME": "Kyubey"
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !B! Block. NL Gain !M! Blur.",
+		"NAME": "Black Lotus"
+	},
+	"animator_MisaKurobane":
+	{
+		"DESCRIPTION": "Apply !SV! [#EFC851]Burning. NL Draw 1 Card. NL Purge after !M! uses.",
+		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
+		"NAME": "Misa Kurobane"
+	},
+	"animator_Kuroyukihime":
+	{
+		"DESCRIPTION": "Discard 2 cards. Add [#EFC851]Black [#EFC851]Lotus to your draw pile. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Discard 2 cards. Add [#EFC851]Black [#EFC851]Lotus+ to your draw pile. Exhaust.",
+		"EXTENDED_DESCRIPTION": ["Black Lotus", "A special 1-cost #yAttack."],
+		"NAME": "Kuroyukihime"
 	},
 	"animator_HououinKyouma":
 	{
@@ -692,5 +702,16 @@
 		"UPGRADE_DESCRIPTION": "Choose !M! cards you played this combat and add a copy of them to your hand ([#EFC851]*[#FFFFFF]). Purge.",
 		"EXTENDED_DESCRIPTION": ["* Note", "You cannot select another copy of this card. Because that would cause a paradox."],
 		"NAME": "Hououin Kyouma"
+	},
+	"animator_Saitama":
+	{
+		"DESCRIPTION": "Innate. Retain. NL Deal !D! Damage. NL Can only be played if you have no [#EFC851]Attacks in your draw pile.",
+		"NAME": "Saitama"
+	},
+	"animator_Kyubey":
+	{
+		"DESCRIPTION": "Gain [E] [E]. NL Draw !M! Cards. NL Add 2 random [#EFC851]Curses to your discard pile.",
+		"UPGRADE_DESCRIPTION": "Gain [E] [E] [E]. NL Draw !M! Cards. NL Add 2 random [#EFC851]Curses to your discard pile.",
+		"NAME": "Kyubey"
 	}
 }

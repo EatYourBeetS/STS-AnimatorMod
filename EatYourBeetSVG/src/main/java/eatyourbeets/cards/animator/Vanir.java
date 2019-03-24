@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -29,9 +30,10 @@ public class Vanir extends AnimatorCard_Boost
     {
         super.triggerOnExhaust();
 
-        if (AbstractDungeon.player.drawPile.size() > 0)
+        CardGroup drawPile = AbstractDungeon.player.drawPile;
+        if (drawPile.size() > 0)
         {
-            GameActionsHelper.AddToBottom(new TransformIntoSpecificCardAction(this, AbstractDungeon.player.drawPile, 1));
+            GameActionsHelper.AddToBottom(new TransformIntoSpecificCardAction(this, drawPile, drawPile, 1));
         }
     }
 

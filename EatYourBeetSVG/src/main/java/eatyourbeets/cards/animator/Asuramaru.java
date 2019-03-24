@@ -22,7 +22,7 @@ public class Asuramaru extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        Initialize(12,0,1);
+        Initialize(16,0,1);
 
         this.purgeOnUse = true;
 

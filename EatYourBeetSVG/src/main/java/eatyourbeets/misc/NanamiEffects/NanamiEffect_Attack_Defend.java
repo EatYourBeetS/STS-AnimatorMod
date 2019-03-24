@@ -21,11 +21,15 @@ public class NanamiEffect_Attack_Defend extends NanamiEffect
 
     private static int GetBlock(Nanami nanami)
     {
-        return (nanami.energyOnUse + 1) * nanami.block;
+        int diff = (nanami.block - nanami.baseBlock);
+
+        return ((nanami.energyOnUse + 1) * nanami.baseBlock) + diff;
     }
 
     private static int GetDamage(Nanami nanami)
     {
-        return (nanami.energyOnUse + 1) * nanami.damage;
+        int diff = (nanami.damage - nanami.baseDamage);
+
+        return ((nanami.energyOnUse + 1) * nanami.baseDamage) + diff;
     }
 }

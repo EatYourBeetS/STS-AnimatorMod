@@ -8,14 +8,12 @@ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.actions.CycleCardAction;
-import eatyourbeets.actions.ModifyMagicNumberAction;
-import eatyourbeets.actions.OnCardDrawnAction;
-import eatyourbeets.actions.OnRandomEnemyDamagedAction;
+import eatyourbeets.actions.*;
 
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
@@ -36,6 +34,13 @@ public class GameActionsHelper
     public static void AddToBottom(AbstractGameAction action)
     {
         AbstractDungeon.actionManager.addToBottom(action);
+    }
+
+    public static ExhaustAnywhereAction ExhaustCard(AbstractCard card)
+    {
+        ExhaustAnywhereAction action = new ExhaustAnywhereAction(card);
+        AbstractDungeon.actionManager.addToBottom(action);
+        return action;
     }
 
     public static ExhaustSpecificCardAction ExhaustCard(AbstractCard card, CardGroup group)
@@ -104,6 +109,13 @@ public class GameActionsHelper
         OnRandomEnemyDamagedAction action = new OnRandomEnemyDamagedAction(new DamageInfo(source, amount, damageType), effect, state, onDamage);
         AbstractDungeon.actionManager.addToBottom(action);
         return action;
+    }
+
+    public static CallbackAction Callback(AbstractGameAction action, BiConsumer<Object, AbstractGameAction> onCompletion, Object state)
+    {
+        CallbackAction callbackAction = new CallbackAction(action, onCompletion, state);
+        AbstractDungeon.actionManager.addToBottom(callbackAction);
+        return callbackAction;
     }
 
     public static OnCardDrawnAction DrawCard(AbstractCreature source, int amount, BiConsumer<Object, ArrayList<AbstractCard>> onDraw, Object context)

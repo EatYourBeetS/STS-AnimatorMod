@@ -39,7 +39,9 @@ public class NanamiEffect_Attack_Buff extends NanamiEffect
 
         if (modifier > 0)
         {
-            return (modifier + 1) * nanami.block;
+            int diff = (nanami.block - nanami.baseBlock);
+
+            return ((nanami.energyOnUse + 1) * nanami.baseBlock) + diff;
         }
         else
         {

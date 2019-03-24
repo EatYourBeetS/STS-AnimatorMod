@@ -30,7 +30,16 @@ public class Synergies
     public final static Synergy HatarakuMaouSama = CreateSynergy(13);
     public final static Synergy GrimoireOfZero = CreateSynergy(14);
     public final static Synergy SteinsGate = CreateSynergy(15);
-    public final static Synergy MadokaMagica = CreateSynergy(16);
+    public final static Synergy TenSura = CreateSynergy(16);
+    public final static Synergy ReZero = CreateSynergy(17);
+    public final static Synergy MadokaMagica = CreateSynergy(18);
+    public final static Synergy Charlotte = CreateSynergy(19);
+    public final static Synergy AccelWorld = CreateSynergy(20);
+    public final static Synergy Noragami = CreateSynergy(21);
+    public final static Synergy OnePunchMan = CreateSynergy(22);
+    public final static Synergy PandoraHearts = CreateSynergy(23);
+    public final static Synergy ZeroNoTsukaima = CreateSynergy(24);
+    public final static Synergy GabrielDropOut = CreateSynergy(25);
 
     private static Synergy CreateSynergy(int id)
     {

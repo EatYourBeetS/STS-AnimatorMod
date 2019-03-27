@@ -41,6 +41,14 @@ public class Excalibur extends AnimatorCard
     }
 
     @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        this.retain = true;
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.AddToBottom(new VFXAction(new BorderLongFlashEffect(Color.GOLD)));

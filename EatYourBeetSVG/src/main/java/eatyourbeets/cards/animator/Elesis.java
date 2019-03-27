@@ -38,6 +38,14 @@ public class Elesis extends AnimatorCard
     }
 
     @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        this.retain = true;
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));

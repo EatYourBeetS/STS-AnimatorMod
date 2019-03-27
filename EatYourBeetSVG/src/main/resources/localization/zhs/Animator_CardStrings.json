@@ -69,7 +69,7 @@
 	"animator_Arpeggio":
 	{
 		"DESCRIPTION": "鼓舞 !SV! : 获得一个充能球栏位 。 NL 如果鼓舞为 0 ， 重置 并 生成 1 个 等离子 充能球 。",
-		"NAME": "Arpeggio"
+		"NAME": "阿尔蓓吉欧"
 	},
 	"animator_Asuramaru":
 	{
@@ -143,7 +143,7 @@
 	"animator_CrowleyEusford":
 	{
 		"DESCRIPTION": "对敌人和另一个随机敌人造成 !D! 点伤害 。 NL 撤回 : 在本次战斗中提高其 !M! 点 伤害 。",
-		"NAME": "Crowley Eusford"
+		"NAME": " 克劳利·尤斯福德"
 	},
 	"animator_Darkness":
 	{
@@ -261,7 +261,7 @@
 	{
 		"DESCRIPTION": "造成 !D! 点伤害 。 NL [#EFC851]重装填[] : 使用你最右侧的1个充能球的被动能力 。",
 		"EXTENDED_DESCRIPTION": ["重装填", "丢弃任意数量的牌 ， 触发同等次数 。"],
-		"NAME": "Evileye"
+		"NAME": "邪眼"
 	},
 	"animator_Excalibur":
 	{
@@ -389,7 +389,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 如果敌人有减益效果 ， 伤害提高50％ 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 造成 !M! ％ 的额外伤害 ， 乘以敌人的减益效果数 。",
 		"NAME": "吉普莉尔"
 	},
 	"animator_Kazuma":
@@ -473,7 +473,7 @@
 	{
 		"DESCRIPTION": "生成 !M! 个闪电 充能球 。 NL 穿越者 。",
 		"NAME": "娜贝拉尔·伽玛",
-		"UPGRADE_DESCRIPTION": "生成 !M! 个闪电 充能球 。 NL 穿越者 。 同调 : 本回合 闪电球 攻击全部敌人 。"
+		"UPGRADE_DESCRIPTION": "生成 !M! 个闪电 充能球 。 NL 穿越者 。 本回合 闪电球 攻击全部敌人 。"
 	},
 	"animator_PandorasActor":
 	{
@@ -601,12 +601,12 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中选择 !M! 张牌 。 在弃牌堆中用 !M! 张牌与它们交换 。",
+		"DESCRIPTION": "在你的抽牌堆中选择 !M! 张牌 。 在弃牌堆中用 !M! 张牌与它们交换 。 同调 : 获得 [E] 。",
 		"NAME": "特图"
 	},
 	"animator_Togame":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 您可以 消耗 1 张牌 ， 否则获得 [E] 并 消耗 。 ",
+		"DESCRIPTION": "抽 !M! 张牌 。 选择并消耗一张牌 ， 否则获得 [E] 并 消耗 这张牌 。 ",
 		"NAME": "咎儿"
 	},
 	"animator_TukaLunaMarceau":
@@ -669,7 +669,7 @@
 	},
 	"animator_ZankiKiguchi":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害. NL 压倒 和 撤回 : 本次战斗中， 提高手牌中所有攻击牌的伤害 !SV! 点 。",
+		"DESCRIPTION": "造成 !D! 点伤害. NL 压倒 和 撤回 : 本次战斗中， 提高手牌中所有攻击牌的伤害 !M! 点 。",
 		"NAME": "汽口惭愧"
 	},
 	"animator_Zero":
@@ -706,7 +706,7 @@
 	"animator_Saitama":
 	{
 		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 点伤害 。 NL 只有在你的绘图堆中没有 [#EFC851]攻击[] 时才能使用 。",
-		"NAME": "Saitama"
+		"NAME": "秃头披风侠"
 	},
 	"animator_Kyubey":
 	{

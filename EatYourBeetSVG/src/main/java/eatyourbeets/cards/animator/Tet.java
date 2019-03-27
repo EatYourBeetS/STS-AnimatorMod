@@ -24,6 +24,11 @@ public class Tet extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.AddToBottom(new TetAction(this.magicNumber));
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.GainEnergy(1);
+        }
     }
 
     @Override

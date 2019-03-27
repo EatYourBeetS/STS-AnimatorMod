@@ -67,24 +67,25 @@ public class AnimatorCharacterSelect
 
     static
     {
-        String recommended = uiText[5];
-        String balanced = uiText[6];
-        String unbalanced = uiText[7];
-        String veryUnbalanced = uiText[8];
-        String special = uiText[9];
+//        String recommended = uiText[5];
+//        String balanced = uiText[6];
+//        String unbalanced = uiText[7];
+//        String veryUnbalanced = uiText[8];
+//        String special = uiText[9];
 
-        AddLoadout(new Konosuba()           , 0, recommended);
-        AddLoadout(new Gate()               , 1, balanced);
-        AddLoadout(new Elsword()            , 1, balanced);
-        AddLoadout(new NoGameNoLife()       , 1, balanced);
-        AddLoadout(new OwariNoSeraph()      , 2, unbalanced);
-        AddLoadout(new GoblinSlayer()       , 2, unbalanced);
-        AddLoadout(new Katanagatari()       , 2, unbalanced);
-        AddLoadout(new FullmetalAlchemist() , 2, unbalanced);
-        AddLoadout(new Fate()               , 3, veryUnbalanced);
-        AddLoadout(new Overlord()           , 3, veryUnbalanced);
-        AddLoadout(new Chaika()             , 3, veryUnbalanced);
-        AddLoadout(new Kancolle()           , 4, special);
+        AddLoadout(new Konosuba()           , 0, "");
+        AddLoadout(new Gate()               , 1, "");
+        AddLoadout(new Elsword()            , 1, "");
+        AddLoadout(new NoGameNoLife()       , 1, "");
+        AddLoadout(new OwariNoSeraph()      , 2, "");
+        AddLoadout(new GoblinSlayer()       , 2, "");
+        AddLoadout(new Katanagatari()       , 2, "");
+        AddLoadout(new FullmetalAlchemist() , 2, "");
+        AddLoadout(new Fate()               , 3, "");
+        AddLoadout(new Overlord()           , 3, "");
+        AddLoadout(new Chaika()             , 3, "");
+        AddLoadout(new Kancolle()           , 4, "");
+        AddLoadout(new AccelWorld()         , 4, "");
 
         int synergyID = AnimatorMetrics.lastLoadout;
 

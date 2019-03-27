@@ -11,14 +11,20 @@ public class CerealBox extends AnimatorRelic
 {
     public static final String ID = CreateFullID(CerealBox.class.getSimpleName());
 
-    private static final int HEAL_AMOUNT = 1;
-    private static final int BASE_CHARGES = 20;
-    private static final int SHOP_CHARGES = 5;
-    private static final int MAX_CHARGES = 30;
+    private static final int HEAL_AMOUNT = 2;
+    private static final int BASE_CHARGES = 12;
+    private static final int SHOP_CHARGES = 4;
+    private static final int MAX_CHARGES = 20;
 
     public CerealBox()
     {
         super(ID, RelicTier.SHOP, LandingSound.FLAT);
+    }
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return DESCRIPTIONS[0] + HEAL_AMOUNT + DESCRIPTIONS[1] + BASE_CHARGES + DESCRIPTIONS[2] + SHOP_CHARGES + DESCRIPTIONS[3] + MAX_CHARGES + DESCRIPTIONS[4];
     }
 
     @Override

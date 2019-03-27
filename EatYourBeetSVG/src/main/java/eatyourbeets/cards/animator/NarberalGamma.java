@@ -31,7 +31,7 @@ public class NarberalGamma extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         AbstractDungeon.actionManager.addToBottom(new ChannelAction(new Lightning(), true));
 
-        if (upgraded && HasActiveSynergy() && !p.hasPower(ElectroPower.POWER_ID))
+        if (upgraded && !p.hasPower(ElectroPower.POWER_ID))
         {
             GameActionsHelper.ApplyPower(p, p, new ElectroPower(p), 1);
             PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);

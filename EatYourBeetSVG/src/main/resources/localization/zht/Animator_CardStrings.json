@@ -185,8 +185,8 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 獲得1個 土素 充能球 。",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 !B! 點 護甲 。 NL 獲得1個 土素 充能球 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 獲得1個 大地充能球 。",
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 !B! 點 護甲 。 NL 獲得1個 大地充能球 。",
 		"NAME": "矮人薩滿"
 	},
 	"animator_Elesis":
@@ -387,7 +387,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 若敵人有 易傷 效果獲得 !M! 點 力量 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 造成 !M! ％ 的額外傷害 ， 乘以敵人的減益效果數 。",
 		"NAME": "吉普莉爾"
 	},
 	"animator_Kazuma":
@@ -471,7 +471,7 @@
 	{
 		"DESCRIPTION": "生成 !M! 個閃電充能球 。 NL 變形者 。",
 		"NAME": "娜貝拉爾·伽瑪",
-		"UPGRADE_DESCRIPTION": "生成 !M! 個 閃電 充能球 。 NL 變形者 。 同調 : 閃電 本回合擊中所有敵人。"
+		"UPGRADE_DESCRIPTION": "生成 !M! 個 閃電 充能球 。 NL 變形者 。 閃電 本回合擊中所有敵人。"
 	},
 	"animator_PandorasActor":
 	{
@@ -600,12 +600,12 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中選擇 !M! 張牌 。 在棄牌堆中用 !M! 張牌與它們交換。",
+		"DESCRIPTION": "在你的抽牌堆中選擇 !M! 張牌 。 在棄牌堆中用 !M! 張牌與它們交換 。 同調 :獲得 [E] 。",
 		"NAME": "特圖"
 	},
 	"animator_Togame":
 	{
-		"DESCRIPTION": "抽 !M! 張牌 。 NL 您可以 消耗 1 張牌 ， 否則獲得 [E] 並 消耗 。",
+		"DESCRIPTION": "抽 !M! 張牌 。 NL 可以 消耗 1 張牌 ， 否則獲得 [E] 並 消耗 。",
 		"NAME": "咎兒"
 	},
 	"animator_TukaLunaMarceau":
@@ -668,8 +668,8 @@
 	},
 	"animator_ZankiKiguchi":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害. NL 壓倒 和 撤回 : 本次戰鬥中，提高手牌中所有攻擊牌的傷害 !SV! 點 。",
-		"NAME": "Zanki"
+		"DESCRIPTION": "造成 !D! 點傷害. NL 壓倒 和 撤回 : 本次戰鬥中，提高手牌中所有攻擊牌的傷害 !M! 點 。",
+		"NAME": "汽口慚愧"
 	},
 	"animator_Zero":
 	{
@@ -691,26 +691,26 @@
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "賦予 !M! 層 [#EFC851]燃燒[] 。 NL 畫 1 張牌 。 NL 使用 !M! 次後 抹除 。",
+		"DESCRIPTION": "賦予 !M! 層 [#EFC851]燃燒[] 。 NL 抽 1 張牌 。 NL 使用 !M! 次後 抹除 。",
 		"EXTENDED_DESCRIPTION": ["燃燒", "在回合開始時受到 傷害 。 每層使收到的傷害額外增加 4% 。"],
-		"NAME": "Misa Kurobane"
+		"NAME": "黑羽美砂"
 	},
 	"animator_Kuroyukihime":
 	{
-		"DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花[] 添加到您的繪圖堆中。 消耗 。",
-		"UPGRADE_DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花+[] 添加到您的繪圖堆中。 消耗 。",
+		"DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花[] 加入到抽牌堆中。 消耗 。",
+		"UPGRADE_DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花+[] 加入到抽牌堆中。 消耗 。",
 		"EXTENDED_DESCRIPTION": ["黑蓮花", "特殊的1耗#y攻擊牌 。"],
 		"NAME": "黑雪公主"
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點傷害 。 NL 只有在你的繪圖堆中沒有 [#EFC851]攻擊[] 時才能使用 。",
-		"NAME": "Saitama"
+		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點傷害 。 NL 只有在你的抽牌堆中沒有 [#EFC851]攻擊[] 時才能使用 。",
+		"NAME": "埼玉"
 	},
 	"animator_Kyubey":
 	{
-		"DESCRIPTION": "獲得 [E] [E] NL 畫 !M! 張牌 。 NL 在你的棄牌堆中添加 2 個隨機詛咒 。",
-		"UPGRADE_DESCRIPTION": "獲得 [E] [E] [E] NL 畫 !M! 張牌 。 NL 在你的棄牌堆中添加 2 個隨機詛咒 。",
-		"NAME": "Kyubey"
+		"DESCRIPTION": "獲得 [E] [E] NL 抽 !M! 張牌 。 NL 在你的棄牌堆中添加 2 個隨機詛咒 。",
+		"UPGRADE_DESCRIPTION": "獲得 [E] [E] [E] NL 抽 !M! 張牌 。 NL 在你的棄牌堆中添加 2 個隨機詛咒 。",
+		"NAME": "QB"
 	}
 }

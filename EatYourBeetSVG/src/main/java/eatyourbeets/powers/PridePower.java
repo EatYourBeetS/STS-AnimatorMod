@@ -85,7 +85,7 @@ public class PridePower extends AnimatorPower
             {
                 darkOrbs.remove(best);
                 best.evokeAmount = 0;
-                GameActionsHelper.AddToBottom(new EvokeSpecificOrbAction(best));
+                GameActionsHelper.AddToTop(new EvokeSpecificOrbAction(best));
             }
 
             if (damage > 0 && darkOrbs.size() > 0)

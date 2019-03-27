@@ -28,6 +28,7 @@ public class Earth extends AnimatorOrb
     private final boolean hFlip1;
     private final boolean hFlip2;
 
+    private boolean evoked;
     private int turns;
 
     public Earth()
@@ -44,6 +45,7 @@ public class Earth extends AnimatorOrb
         this.hFlip1 = MathUtils.randomBoolean();
         this.hFlip2 = MathUtils.randomBoolean();
         this.turns = 3;
+        this.evoked = false;
         this.baseEvokeAmount = 16;
         this.evokeAmount = this.baseEvokeAmount;
         this.basePassiveAmount = 2;
@@ -66,21 +68,21 @@ public class Earth extends AnimatorOrb
         {
             GameActionsHelper.AddToBottom(new EarthOrbEvokeAction(evokeAmount));
         }
+        evoked = true;
     }
 
     public void onEndOfTurn()
     {
-//      float speedTime = 0.6F / (float) AbstractDungeon.player.orbs.size();
-//      if (Settings.FAST_MODE)
-//      {
-//          speedTime = 0.0F;
-//      }
-//      AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), speedTime));
+        if (evoked)
+        {
+            return;
+        }
 
         this.turns -= 1;
         if (turns <= 0)
         {
             GameActionsHelper.AddToBottom(new EvokeSpecificOrbAction(this));
+            evoked = true;
         }
         else
         {

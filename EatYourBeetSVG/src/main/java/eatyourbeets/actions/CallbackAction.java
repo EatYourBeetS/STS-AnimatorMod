@@ -2,7 +2,6 @@ package eatyourbeets.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.function.BiConsumer;
 

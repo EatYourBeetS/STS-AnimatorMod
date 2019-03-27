@@ -389,7 +389,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If the enemy has a [#EFC851]Debuff deal 50% more damage.",
+		"DESCRIPTION": "Deal !D! damage. NL Increase this damage by !M! % for each [#EFC851]Debuff on enemy.",
 		"NAME": "Jibril"
 	},
 	"animator_Kazuma":
@@ -464,16 +464,16 @@
 	},
 	"animator_Nanami":
 	{
-		"DESCRIPTION": "[#EFC851]Counter the enemy intent.",
+		"DESCRIPTION": "[#EFC851]Counter the enemy intent. NL [#c6be6f]This [#c6be6f]text [#c6be6f]will [#c6be6f]change [#c6be6f]while [#c6be6f]targeting [#c6be6f]an [#c6be6f]enemy.",
 		"EXTENDED_DESCRIPTION": ["Deal # Damage.", "Gain # Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", "Channel # Random Orb/s.", "UNUSED", "UNUSED", "Apply # Poison.", "Gain [E].", "Gain # Temporary HP.", "Draw # cards."],
 		"NAME": "Nanami",
-		"UPGRADE_DESCRIPTION": "Strongly [#EFC851]Counter the enemy intent."
+		"UPGRADE_DESCRIPTION": "Strongly [#EFC851]Counter the enemy intent. NL [#c6be6f]This [#c6be6f]text [#c6be6f]will [#c6be6f]change [#c6be6f]while [#c6be6f]targeting [#c6be6f]an [#c6be6f]enemy."
 	},
 	"animator_NarberalGamma":
 	{
 		"DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning.",
 		"NAME": "Gamma Narberal",
-		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning. NL Synergy: Lightning hits ALL enemies this turn."
+		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning. NL Lightning hits ALL enemies this turn."
 	},
 	"animator_PandorasActor":
 	{
@@ -601,7 +601,7 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "Choose up to !M! cards in your draw pile. Swap them with cards in your discard pile.",
+		"DESCRIPTION": "Choose up to !M! cards in your draw pile. Swap them with cards in your discard pile. Synergy: Gain [E].",
 		"NAME": "Tet"
 	},
 	"animator_Togame":

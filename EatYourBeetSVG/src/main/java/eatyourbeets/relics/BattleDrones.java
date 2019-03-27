@@ -1,6 +1,7 @@
 package eatyourbeets.relics;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -37,8 +38,8 @@ public class BattleDrones extends AnimatorRelic
         if (card != null && card.HasActiveSynergy())
         {
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.GainBlock(p, BLOCK_AMOUNT);
-            GameActionsHelper.DamageRandomEnemy(p, DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+            GameActionsHelper.AddToBottom(new GainBlockAction(p, p, BLOCK_AMOUNT, true));
+            GameActionsHelper.DamageRandomEnemy(p, DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
 
             this.flash();
         }

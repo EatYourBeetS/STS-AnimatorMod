@@ -95,9 +95,11 @@
 			"Gold",
 			"Choose this starting deck and complete act 4.",
 			"Complete act 4 with at least #yhalf of the cards in your deck being from this series.",
-			"Complete act 4 with at least 8 #ydifferent cards from this series in your deck.",
-			"Complete act 4 with at least 7 #ydifferent card series in your deck. (Colorless cards will not count)",
-			"Complete act 4 with at least 10 #ydifferent card series in your deck, and without banishing any series. (Colorless cards will not count)"
+			"Complete act 4 with at least #b8 #ydifferent cards from this series in your deck.",
+			"Complete act 4 with at least #b7 #ydifferent card series in your deck. (Colorless cards will not count)",
+			"Complete act 4 with at least #b10 #ydifferent card series in your deck, and without banishing any series. (Colorless cards will not count)",
+			"Complete act 4 with at least #b20 cards in your deck, and without any duplicate.",
+			"Complete act 4 with at least #b30 cards in your deck, and without any duplicate."
 		]
 	},
 	

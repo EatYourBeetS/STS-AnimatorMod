@@ -42,7 +42,7 @@
 		"FLAVOR": "Whole Grain Guaranteed! Approved by Konayuki.",
 		"DESCRIPTIONS":
 		[
-			"#pRight #pClick to #yHeal #b1 HP. NL Starts at #b20 uses, gain #b5 uses when entering a shop room. NL You can store up to #b30 uses."
+			"#pRight #pClick to #yHeal #b", " HP. NL Starts at #b", " uses, gain #b", " uses when entering a shop room. NL You can store up to #b", " uses."
 		]
 	},
 	"Animator_WizardHat":

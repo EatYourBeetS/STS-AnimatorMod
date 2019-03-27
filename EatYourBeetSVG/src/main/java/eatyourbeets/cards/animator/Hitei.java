@@ -16,7 +16,7 @@ public class Hitei extends AnimatorCard
     {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0,4);
+        Initialize(0,0,6);
 
         AddExtendedDescription();
 

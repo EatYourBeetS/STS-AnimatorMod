@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.*;
+import eatyourbeets.relics.EngravedStaff;
+import eatyourbeets.relics.WornHelmet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -171,7 +173,7 @@ public class BundledRelicProvider
         AddBundle(LizardPriest.ID, LizardTail.ID, AbstractRelic.RelicTier.BOSS, R1);
         AddBundle(Witch.ID, Omamori.ID, AbstractRelic.RelicTier.SHOP, R2);
 
-        AddBundle(GoblinSlayer.ID, MarkOfPain.ID, AbstractRelic.RelicTier.SPECIAL, R2);
+        AddBundle(GoblinSlayer.ID, WornHelmet.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(SwordMaiden.ID, BlueCandle.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
     }
 
@@ -252,7 +254,7 @@ public class BundledRelicProvider
         AddBundle(Sebas.ID, SingingBowl.ID, AbstractRelic.RelicTier.SPECIAL, R1);
 
         AddBundle(Albedo.ID, DarkstonePeriapt.ID, AbstractRelic.RelicTier.UNCOMMON, R5);
-        AddBundle(Ainz.ID, GremlinHorn.ID, AbstractRelic.RelicTier.UNCOMMON, R3);
+        AddBundle(Ainz.ID, EngravedStaff.ID, AbstractRelic.RelicTier.RARE, R3);
     }
 
     private static void AddOwariNoSeraph()

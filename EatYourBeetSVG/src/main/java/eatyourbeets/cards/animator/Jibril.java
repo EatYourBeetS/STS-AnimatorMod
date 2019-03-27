@@ -19,7 +19,7 @@ public class Jibril extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,0);
+        Initialize(10,0, 20);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -27,23 +27,20 @@ public class Jibril extends AnimatorCard
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
+        float multiplier = 1;
+
         if (mo != null && mo.powers != null)
         {
-            if (mo.hasPower(VulnerablePower.POWER_ID))
-            {
-                return super.calculateModifiedCardDamage(player, mo, tmp * 1.25f);
-            }
-
             for (AbstractPower p : mo.powers)
             {
                 if (p.type == AbstractPower.PowerType.DEBUFF)
                 {
-                    return super.calculateModifiedCardDamage(player, mo, tmp * 1.5f);
+                    multiplier += this.magicNumber * 0.01f;
                 }
             }
         }
 
-        return super.calculateModifiedCardDamage(player, mo, tmp);
+        return super.calculateModifiedCardDamage(player, mo, tmp * multiplier);
     }
 
     @Override
@@ -56,8 +53,8 @@ public class Jibril extends AnimatorCard
     public void upgrade() 
     {
         if (TryUpgrade())
-        {          
-            upgradeDamage(3);
+        {
+            upgradeMagicNumber(10);
         }
     }
 }

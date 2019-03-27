@@ -37,6 +37,14 @@ public class Saitama extends AnimatorCard
     }
 
     @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        this.retain = true;
+    }
+
+    @Override
     public boolean cardPlayable(AbstractMonster m)
     {
         return super.cardPlayable(m) && AbstractDungeon.player.drawPile.getAttacks().size() == 0;

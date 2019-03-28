@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 同調 : 額外造成 1 次傷害 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 這張牌每被打出一次，它在本場戰鬥中的耗能減少 1 。",
 		"NAME": "托魯"
 	},
 	"animator_Add":
@@ -41,9 +41,9 @@
 	"animator_Albedo":
 	{
 		"DESCRIPTION": "獲得 !M! % 點 [#EFC851]傷害抵抗[] 。",
-		"UPGRADE_DESCRIPTION": "獲得 !M! % 點 [#EFC851]傷害抵抗[] 。 下回合  獲得 [E] 。",
 		"EXTENDED_DESCRIPTION": ["傷害抵抗", "受到敵人更少的傷害，效果被層數影響。"],
-		"NAME": "雅兒貝德"
+		"NAME": "雅兒貝德",
+		"UPGRADE_DESCRIPTION": "獲得 !M! % 點 [#EFC851]傷害抵抗[] 。 下回合  獲得 [E] 。"
 	},
 	"animator_Alexander":
 	{
@@ -91,6 +91,11 @@
 		"DESCRIPTION": "每次打出 4 張牌後 ， 獲得 !M! 點 力量 和 1 點 敏捷 。",
 		"NAME": "日和號"
 	},
+	"animator_BlackLotus":
+	{
+		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 獲得 !B! 點 格擋 。 NL 獲得 !M! 殘影 。",
+		"NAME": "黑蓮花"
+	},
 	"animator_Bozes":
 	{
 		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 每當一張牌在本回合中觸發同調， 獲得 !M! 點 格擋 。",
@@ -103,7 +108,7 @@
 	},
 	"animator_ChaikaBohdan":
 	{
-		"DESCRIPTION": " [#EFC851]急躁[] NL !M! 。 造成 !D! 點 傷害 。 壓倒 : 將此卡退還給您 和 保留 。",
+		"DESCRIPTION": " [#EFC851]急躁[] NL !M! 。 造成 !D! 點 傷害 。 壓倒 : 獲得 1 點 力量 。",
 		"EXTENDED_DESCRIPTION": ["急躁", "當此牌在手牌中時，你打出的 #y攻擊 牌額外增加等同於急躁層數的傷害 。 使用後重置傷害 。"],
 		"NAME": "嘉依卡·布芙丹"
 	},
@@ -186,8 +191,8 @@
 	"animator_DwarfShaman":
 	{
 		"DESCRIPTION": "造成 !D! 點 傷害 。 獲得1個 大地充能球 。",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 !B! 點 護甲 。 NL 獲得1個 大地充能球 。",
-		"NAME": "矮人薩滿"
+		"NAME": "矮人薩滿",
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 !B! 點 護甲 。 NL 獲得1個 大地充能球 。"
 	},
 	"animator_Elesis":
 	{
@@ -213,9 +218,9 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : 獲得 !B! 點 護甲 。",
 		"NAME": "艾索德",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。"
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : 獲得 !B! 點 護甲 。"
 	},
 	"animator_EmiyaShirou":
 	{
@@ -225,10 +230,10 @@
 	},
 	"animator_Emonzaemon":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害。如果這是連續的第三次 [#EFC851]攻擊[] ， 消耗並獲得獲得 [#EFC851]炎刀·銃[] 。",
+		"DESCRIPTION": "造成 !D! 點傷害。如果這是連續的第三次 [#EFC851]攻擊[] ， 抹除 并 獲得獲得 [#EFC851]炎刀·銃[] 。",
 		"EXTENDED_DESCRIPTION": ["炎刀·銃", "一個特殊的無耗能的#y能力 。"],
 		"NAME": "左右田右衛門左衛門",
-		"UPGRADE_DESCRIPTION": " 造成 !D! 點傷害。 NL 如果這是連續的第三次 [#EFC851]攻擊[] ， 消耗並獲得獲得 [#EFC851]炎刀·銃+[] 。"
+		"UPGRADE_DESCRIPTION": " 造成 !D! 點傷害。 NL 如果這是連續的第三次 [#EFC851]攻擊[] ， 抹除 并 獲得獲得 [#EFC851]炎刀·銃+[] 。"
 	},
 	"animator_Entoma":
 	{
@@ -238,7 +243,7 @@
 	},
 	"animator_EntouJyuu":
 	{
-		"DESCRIPTION": "每當打出 [#EFC851]攻擊[] 牌時使其增加 !M! 點 傷害 。",
+		"DESCRIPTION": "每輪一次，什麼時候打出 [#EFC851]攻擊[] 牌時使其增加 !M! 點 傷害 和 抽一張牌 。",
 		"NAME": "炎刀·銃"
 	},
 	"animator_Envy":
@@ -287,7 +292,7 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 虛弱 。 遺產 : 移除你身上的所有負面效果 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 抽 2 張牌 。遺贈 : 眩暈一個隨機的敵人 。",
 		"NAME": "亞伯力克·基烈特"
 	},
 	"animator_Gluttony":
@@ -314,7 +319,7 @@
 	"animator_GoblinSlayer":
 	{
 		"DESCRIPTION": "[#EFC851]哥布林殺手[] 。 造成 !D! 點傷害 。 NL 獲得 !B! 點 格擋 。 NL 保留 。",
-		"EXTENDED_DESCRIPTION": ["哥布林殺手", "消耗所有位於手牌和棄牌堆中的狀態牌和詛咒牌 。 已消耗牌堆中每有一張牌 ， 額外造成 2 點 傷害 。 #y警告: 哥布林將開始入侵你的牌堆 。"],
+		"EXTENDED_DESCRIPTION": ["哥布林殺手", "消耗所有位於手牌和棄牌堆中的狀態牌和詛咒牌 。 已消耗牌堆中每有一張牌 ， 額外造成 3 點 傷害 。 #y警告 : 哥布林將開始入侵你的牌堆 。"],
 		"NAME": "哥布林殺手"
 	},
 	"animator_GoblinSoldier":
@@ -343,7 +348,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "給予一個敵人 !M! 點 格擋 和 !SV! 層 虛弱 。 循環 1 張牌 。 撤回 : 獲得 [E]",
+		"DESCRIPTION": "給予所有敵人 !M! 點 格擋 和 !SV! 層 虛弱 。 循環 1 張牌 。 撤回 : 獲得 [E]",
 		"NAME": "奇伊"
 	},
 	"animator_HigakiRinne":
@@ -354,7 +359,7 @@
 	},
 	"animator_HighElfArcher":
 	{
-		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 本回合第一次使用這張牌時 ， 抽 !M! 張牌 。",
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 增強 !SV! : 抽 !M! 張牌 。",
 		"NAME": "精靈弓手"
 	},
 	"animator_HiiragiShinya":
@@ -368,6 +373,13 @@
 		"DESCRIPTION": "在你的回合開始時獲得 !M! 個金幣  。 選擇並且 消耗 抽牌堆1到2張的隨機卡牌 [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "每場戰鬥最多獲得100個金幣。 堆疊這種狀態會使金幣獲得上限增加。"],
 		"NAME": "否定姬"
+	},
+	"animator_HououinKyouma":
+	{
+		"DESCRIPTION": "選擇 !M! 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 抹除 。",
+		"EXTENDED_DESCRIPTION": ["* 注", "你不能複制這張牌 ， 因為這是石頭門的選擇 。"],
+		"NAME": "鳳凰院兇真",
+		"UPGRADE_DESCRIPTION": "選擇 !M! 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 抹除 。"
 	},
 	"animator_Illya":
 	{
@@ -411,6 +423,19 @@
 		"DESCRIPTION": "造成 !D! 點 傷害 。 同調 : 本回合目標失去 !M! 點 力量 。",
 		"NAME": "栗林志乃"
 	},
+	"animator_Kuroyukihime":
+	{
+		"DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花[] 加入到抽牌堆中。 消耗 。",
+		"EXTENDED_DESCRIPTION": ["黑蓮花", "特殊的1耗#y攻擊牌 。"],
+		"NAME": "黑雪公主",
+		"UPGRADE_DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花+[] 加入到抽牌堆中。 消耗 。"
+	},
+	"animator_Kyubey":
+	{
+		"DESCRIPTION": "獲得 [E] [E] NL 抽 !M! 張牌 。 NL 在你的棄牌堆中添加 2 個隨機詛咒 。",
+		"NAME": "QB",
+		"UPGRADE_DESCRIPTION": "獲得 [E] [E] [E] NL 抽 !M! 張牌 。 NL 在你的棄牌堆中添加 2 個隨機詛咒 。"
+	},
 	"animator_Lancer":
 	{
 		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 嗜血 。 同調 : 獲得 [E] 。",
@@ -448,6 +473,12 @@
 	{
 		"DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 中毒 。 增強 !SV! :  從你的棄牌堆中選擇並 消耗 一張牌 。",
 		"NAME": "米迦爾"
+	},
+	"animator_MisaKurobane":
+	{
+		"DESCRIPTION": "賦予 !M! 層 [#EFC851]燃燒[] 。 NL 抽 1 張牌 。 NL 使用 !M! 次後 抹除 。",
+		"EXTENDED_DESCRIPTION": ["燃燒", "在回合開始時受到 傷害 。 每層使收到的傷害額外增加 4% 。"],
+		"NAME": "黑羽美砂"
 	},
 	"animator_Mitsuba":
 	{
@@ -503,15 +534,15 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "給予一層 易傷 效果， 獲得 !B! 點 格擋 。 同調 : 獲得 1 [#EFC851]殘影[] 。",
+		"DESCRIPTION": "給予一層 易傷 效果， 獲得 !B! 點 格擋 。 同調 和 撤回 : 獲得 1 [#EFC851]殘影[] 。",
 		"EXTENDED_DESCRIPTION": ["殘影", "下回合開始時格擋不會消失 。"],
 		"NAME": "蕾娜‧艾蘭黛"
 	},
 	"animator_RinTohsaka":
 	{
 		"DESCRIPTION": "生成 !M! 個隨機充能球 。 同調 : 獲得 !B! 點 格擋 。",
-		"UPGRADE_DESCRIPTION": "給予所有敵人 1 跟蹤鎖定 。 生成 !M! 個隨機充能球 。 同調 : 獲得 !B! 點 格擋 。",
-		"NAME": "遠阪凜"
+		"NAME": "遠阪凜",
+		"UPGRADE_DESCRIPTION": "給予所有敵人 1 跟蹤鎖定 。 生成 !M! 個隨機充能球 。 同調 : 獲得 !B! 點 格擋 。"
 	},
 	"animator_RoryMercury":
 	{
@@ -529,6 +560,11 @@
 		"DESCRIPTION": "忠誠 。 造成 !D! 點傷害 ， 當這張牌觸發 !M! 次 同調 效果後 ， 抹除並獲得 [#EFC851]誓約勝利之劍[] 。",
 		"NAME": "Saber",
 		"UPGRADE_DESCRIPTION": "忠誠 。 造成 !D! 點傷害 ， 當這張牌觸發 !M! 次 同調 效果後 ， 抹除並獲得 [#EFC851]誓約勝利之劍+[] 。"
+	},
+	"animator_Saitama":
+	{
+		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點傷害 。 NL 只有在你的抽牌堆中沒有 [#EFC851]攻擊[] 時才能使用 。",
+		"NAME": "埼玉"
 	},
 	"animator_Scar":
 	{
@@ -645,9 +681,9 @@
 	"animator_Wiz":
 	{
 		"DESCRIPTION": "消耗 一張牌， 從已 消耗 的牌中選擇一張加入你的手牌。 抹除 [#EFC851]*[] 。",
-		"UPGRADE_DESCRIPTION": "消耗 一張牌， 從已 消耗 的牌中選擇一張加入你的手牌。 使用 !M! 次後 抹除 [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "不能在被消耗牌中選另一張<維茲> 。"],
-		"NAME": "維茲"
+		"NAME": "維茲",
+		"UPGRADE_DESCRIPTION": "消耗 一張牌， 從已 消耗 的牌中選擇一張加入你的手牌。 使用 !M! 次後 抹除 [#EFC851]*[] 。"
 	},
 	"animator_YaoHaDucy":
 	{
@@ -674,43 +710,7 @@
 	"animator_Zero":
 	{
 		"DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 消耗 。",
-		"UPGRADE_DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 ",
-		"NAME": "零"
-	},
-	"animator_HououinKyouma":
-	{
-		"DESCRIPTION": "選擇 !M! 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 抹除 。",
-		"UPGRADE_DESCRIPTION": "選擇 !M! 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 抹除 。",
-		"EXTENDED_DESCRIPTION": ["* 注", "你不能複制這張牌 ， 因為這是石頭門的選擇 。"],
-		"NAME": "鳳凰院兇真"
-	},
-	"animator_BlackLotus":
-	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 獲得 !B! 點 格擋 。 NL 獲得 !M! 殘影 。",
-		"NAME": "黑蓮花"
-	},
-	"animator_MisaKurobane":
-	{
-		"DESCRIPTION": "賦予 !M! 層 [#EFC851]燃燒[] 。 NL 抽 1 張牌 。 NL 使用 !M! 次後 抹除 。",
-		"EXTENDED_DESCRIPTION": ["燃燒", "在回合開始時受到 傷害 。 每層使收到的傷害額外增加 4% 。"],
-		"NAME": "黑羽美砂"
-	},
-	"animator_Kuroyukihime":
-	{
-		"DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花[] 加入到抽牌堆中。 消耗 。",
-		"UPGRADE_DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花+[] 加入到抽牌堆中。 消耗 。",
-		"EXTENDED_DESCRIPTION": ["黑蓮花", "特殊的1耗#y攻擊牌 。"],
-		"NAME": "黑雪公主"
-	},
-	"animator_Saitama":
-	{
-		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點傷害 。 NL 只有在你的抽牌堆中沒有 [#EFC851]攻擊[] 時才能使用 。",
-		"NAME": "埼玉"
-	},
-	"animator_Kyubey":
-	{
-		"DESCRIPTION": "獲得 [E] [E] NL 抽 !M! 張牌 。 NL 在你的棄牌堆中添加 2 個隨機詛咒 。",
-		"UPGRADE_DESCRIPTION": "獲得 [E] [E] [E] NL 抽 !M! 張牌 。 NL 在你的棄牌堆中添加 2 個隨機詛咒 。",
-		"NAME": "QB"
+		"NAME": "零",
+		"UPGRADE_DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 "
 	}
 }

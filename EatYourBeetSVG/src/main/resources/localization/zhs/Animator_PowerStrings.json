@@ -17,7 +17,7 @@
 	},
 	"animator_EntouJyuuPower":
 	{
-		"DESCRIPTIONS": ["每打出一张攻击牌，增加那张牌", " 点伤害。"],
+		"DESCRIPTIONS": ["The next #b", " #yAttack/s you play this turn will gain #b", " damage and draw you 1 card."],
 		"NAME": "炎刃·铳"
 	},
 	"animator_ShiroPower":

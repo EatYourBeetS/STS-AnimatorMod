@@ -14,7 +14,7 @@ public class EntouJyuu extends AnimatorCard
 
     public EntouJyuu()
     {
-        super(ID, 0, CardType.POWER, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0, 0, 2);
 
@@ -24,7 +24,7 @@ public class EntouJyuu extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EntouJyuuPower(p, this.magicNumber), this.magicNumber));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EntouJyuuPower(p, this.magicNumber), 1));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class EntouJyuu extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBaseCost(0);
         }
     }
 }

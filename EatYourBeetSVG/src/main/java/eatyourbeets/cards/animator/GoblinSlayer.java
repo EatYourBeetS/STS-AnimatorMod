@@ -17,9 +17,9 @@ public class GoblinSlayer extends AnimatorCard
 
     public GoblinSlayer()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(7,9);
+        Initialize(4,7);
 
         this.retain = true;
 
@@ -42,6 +42,14 @@ public class GoblinSlayer extends AnimatorCard
 
             GameActionsHelper.AddToBottom(new ShuffleRandomGoblinAction(goblins));
         }
+    }
+
+    @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        this.retain = true;
     }
 
     @Override
@@ -82,7 +90,7 @@ public class GoblinSlayer extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(3);
-            upgradeBlock(3);
+            upgradeBlock(2);
         }
     }
 }

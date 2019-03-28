@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.actions.MoveSpecificCardAction;
@@ -25,7 +26,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
     public static final String ID = CreateFullID(ChaikaBohdan.class.getSimpleName());
 
     private int bonusDamage = 0;
-    private boolean returnToHand = false;
+    //private boolean returnToHand = false;
 
     public ChaikaBohdan()
     {
@@ -42,19 +43,19 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
         SetSynergy(Synergies.Chaika);
     }
 
-    @Override
-    public void onMoveToDiscard()
-    {
-        super.onMoveToDiscard();
-
-        if (returnToHand)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.discardPile));
-            this.retain = true;
-            returnToHand = false;
-        }
-    }
+//    @Override
+//    public void onMoveToDiscard()
+//    {
+//        super.onMoveToDiscard();
+//
+//        if (returnToHand)
+//        {
+//            AbstractPlayer p = AbstractDungeon.player;
+//            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.discardPile));
+//            this.retain = true;
+//            returnToHand = false;
+//        }
+//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
@@ -108,7 +109,9 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
         {
             if (initialBlock > 0 && monster.currentBlock <= 0)
             {
-                returnToHand = true;
+                AbstractPlayer p = AbstractDungeon.player;
+                GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
+                //returnToHand = true;
             }
         }
     }

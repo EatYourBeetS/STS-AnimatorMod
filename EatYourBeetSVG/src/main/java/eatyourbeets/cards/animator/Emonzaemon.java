@@ -52,7 +52,7 @@ public class Emonzaemon extends AnimatorCard
                 {
                     toAdd.upgrade();
                 }
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(toAdd));
+                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(toAdd, 1, true, true));
                 this.purgeOnUse = true;
             }
         }

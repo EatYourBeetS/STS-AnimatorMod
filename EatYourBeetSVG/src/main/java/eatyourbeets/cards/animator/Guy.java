@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Guy extends AnimatorCard
 {
@@ -14,11 +15,11 @@ public class Guy extends AnimatorCard
 
     public Guy()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(0,0, 4);
+        Initialize(0,0, 3);
 
-        this.baseSecondaryValue = this.secondaryValue = 2;
+        this.baseSecondaryValue = this.secondaryValue = 1;
 
         SetSynergy(Synergies.Chaika);
     }
@@ -34,8 +35,12 @@ public class Guy extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new GainBlockAction(m, p, this.magicNumber));
-        GameActionsHelper.ApplyPower(p, m, new WeakPower(m, this.secondaryValue, false), this.secondaryValue);
+        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        {
+            GameActionsHelper.AddToBottom(new GainBlockAction(m1, p, this.magicNumber));
+            GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, this.secondaryValue, false), this.secondaryValue);
+        }
+
         GameActionsHelper.CycleCardAction(1);
     }
 
@@ -44,7 +49,6 @@ public class Guy extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(-2);
             upgradeSecondaryValue(1);
         }
     }

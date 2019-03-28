@@ -4,11 +4,13 @@ import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -21,6 +23,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
 {
     public static final String ID = CreateFullID(ChaikaTrabant.class.getSimpleName());
 
+    private boolean purged;
     private int timer;
 
     public ChaikaTrabant()
@@ -36,7 +39,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
 
         AddExtendedDescription();
 
-        this.exhaust = true;
+        this.purgeOnUse = true;
         SetSynergy(Synergies.Chaika);
     }
 
@@ -56,6 +59,9 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
         {
             GameActionsHelper.AddToBottom(new StunMonsterAction(m, p));
         }
+
+        this.purgeOnUse = true;
+        this.purged = true;
     }
 
     @Override
@@ -79,12 +85,13 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
     public void OnStartOfTurnPostDraw()
     {
         AbstractPlayer p = AbstractDungeon.player;
-        if (p.exhaustPile.contains(this))
+        if (this.purged)
         {
             if (timer == 0)
             {
                 timer = baseMagicNumber;
-                GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.drawPile, p.exhaustPile, true));
+                this.purged = false;
+                AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(this, true, false));
             }
             else
             {

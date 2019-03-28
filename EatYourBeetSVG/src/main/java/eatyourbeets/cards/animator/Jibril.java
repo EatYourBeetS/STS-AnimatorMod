@@ -35,7 +35,14 @@ public class Jibril extends AnimatorCard
             {
                 if (p.type == AbstractPower.PowerType.DEBUFF)
                 {
-                    multiplier += this.magicNumber * 0.01f;
+                    if (p.ID.equals(VulnerablePower.POWER_ID))
+                    {
+                        multiplier += this.magicNumber * 0.005f;
+                    }
+                    else
+                    {
+                        multiplier += this.magicNumber * 0.01f;
+                    }
                 }
             }
         }
@@ -54,7 +61,8 @@ public class Jibril extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(10);
+            upgradeDamage(2);
+            upgradeMagicNumber(5);
         }
     }
 }

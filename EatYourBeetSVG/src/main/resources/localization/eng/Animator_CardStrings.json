@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage to an enemy !M! times. NL Synergy: Deal damage 1 more time.",
+		"DESCRIPTION": "Deal !D! damage to an enemy !M! times. NL Reduce this card's cost by 1 this combat.",
 		"NAME": "Tooru"
 	},
 	"animator_Add":
@@ -41,9 +41,9 @@
 	"animator_Albedo":
 	{
 		"DESCRIPTION": "Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance.",
-		"UPGRADE_DESCRIPTION": "Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance. NL Next turn, gain [E].",
 		"EXTENDED_DESCRIPTION": ["Damage Resistance", "Take less damage from enemy attacks, further stacks are less effective."],
-		"NAME": "Albedo"
+		"NAME": "Albedo",
+		"UPGRADE_DESCRIPTION": "Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance. NL Next turn, gain [E]."
 	},
 	"animator_Alexander":
 	{
@@ -91,6 +91,11 @@
 		"DESCRIPTION": "Every 4 Attacks played, gain !M! Strength and 1 Dexterity.",
 		"NAME": "Biyorigo"
 	},
+	"animator_BlackLotus":
+	{
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !B! Block. NL Gain !M! Blur.",
+		"NAME": "Black Lotus"
+	},
 	"animator_Bozes":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Whenever a card Synergizes this turn, gain !M! Block.",
@@ -103,13 +108,13 @@
 	},
 	"animator_ChaikaBohdan":
 	{
-		"DESCRIPTION": "[#EFC851]Impatient !M!. NL Deal !D! damage. NL Overrun: Return this card to your hand and Retain.",
-		"EXTENDED_DESCRIPTION": ["Impatient", "Whenever you attack an enemy while this is in your hand, gain this much damage. Reset after use."],
+		"DESCRIPTION": "[#EFC851]Impatient !M!. NL Deal !D! damage. NL Overrun: Gain 1 Strength.",
+		"EXTENDED_DESCRIPTION": ["Impatient", "Whenever you attack an enemy while this is in your hand, gain this much damage. Reset after use. Multi-hits trigger this effect multiple times."],
 		"NAME": "Chaika Bohdan"
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "Deal !D! damage. Stun the enemy ([#EFC851]*[#FFFFFF]). Exhaust. Returns to your draw pile after !M! turns in your Exhaust pile.",
+		"DESCRIPTION": "Deal !D! damage. Stun the enemy ([#EFC851]*[#FFFFFF]). Exhaust. Returns to your draw pile after !M! turns.",
 		"EXTENDED_DESCRIPTION": ["* Note", "Does not stack."],
 		"NAME": "Chaika Trabant"
 	},
@@ -186,8 +191,8 @@
 	"animator_DwarfShaman":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Channel 1 Earth.",
-		"UPGRADE_DESCRIPTION": "Deal !D! Damage. NL Gain !B! Block. NL Channel 1 Earth.",
-		"NAME": "'Dwarf Shaman'"
+		"NAME": "'Dwarf Shaman'",
+		"UPGRADE_DESCRIPTION": "Deal !D! Damage. NL Gain !B! Block. NL Channel 1 Earth."
 	},
 	"animator_Elesis":
 	{
@@ -213,9 +218,9 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card.",
+		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card. NL Recall: Gain !B! Block.",
 		"NAME": "Elsword",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards. NL Recall: Gain !B! Block."
 	},
 	"animator_EmiyaShirou":
 	{
@@ -226,7 +231,7 @@
 	"animator_Emonzaemon":
 	{
 		"DESCRIPTION": "Deal !D! damage. If this is your 3rd [#EFC851]Attack in a row, Purge this and obtain [#EFC851]Entou [#EFC851]Jyuu.",
-		"EXTENDED_DESCRIPTION": ["Entou Jyuu", "A special 0-Cost #yPower."],
+		"EXTENDED_DESCRIPTION": ["Entou Jyuu", "A special 1-Cost #yPower, which costs 0 when upgraded."],
 		"NAME": "Emonzaemon",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. If this is your 3rd [#EFC851]Attack in a row, Purge this and obtain [#EFC851]Entou [#EFC851]Jyuu+."
 	},
@@ -238,7 +243,7 @@
 	},
 	"animator_EntouJyuu":
 	{
-		"DESCRIPTION": "Every time you play an [#EFC851]Attack increase its damage by !M! for this combat.",
+		"DESCRIPTION": "Once per turn, after you play an [#EFC851]Attack, increase its damage by !M! this combat and draw 1 card.",
 		"NAME": "Entou Jyuu"
 	},
 	"animator_Envy":
@@ -287,7 +292,8 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Legacy: Remove all of your debuffs.",
+		"DESCRIPTION": "Deal !D! damage. NL Draw 2 cards. NL Legacy: Stun a random enemy ([#EFC851]*[#FFFFFF]).",
+		"EXTENDED_DESCRIPTION": ["* Note", "Does not stack."],
 		"NAME": "Gillette"
 	},
 	"animator_Gluttony":
@@ -343,7 +349,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "Give an enemy !M! Block and apply !SV! Weak. NL Cycle 1 card. NL Recall: Gain [E]",
+		"DESCRIPTION": "Give all enemies !M! Block and apply !SV! Weak. NL Cycle 1 card. NL Recall: Gain [E]",
 		"NAME": "Guy"
 	},
 	"animator_HigakiRinne":
@@ -355,9 +361,9 @@
 	},
 	"animator_HighElfArcher":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. If you haven't played other copies of this card this turn, draw !M! card.",
+		"DESCRIPTION": "Deal !D! Piercing damage. NL Boost !SV!: Draw !M! card.",
 		"NAME": "'High Elf Archer'",
-		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage. If you haven't played other copies of this card this turn, draw !M! cards."
+		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage. NL Boost !SV!: Draw !M! cards."
 	},
 	"animator_HiiragiShinya":
 	{
@@ -370,6 +376,13 @@
 		"DESCRIPTION": "At the start of your turn gain !M! Gold then choose and Exhaust 1 of 2 random cards in your deck ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "You cannot gain more than 100 Gold per combat. Stacking this power increases the gold cap a little."],
 		"NAME": "Hitei"
+	},
+	"animator_HououinKyouma":
+	{
+		"DESCRIPTION": "Choose !M! card you played this combat and add a copy of it to your hand ([#EFC851]*[#FFFFFF]). Purge.",
+		"EXTENDED_DESCRIPTION": ["* Note", "You cannot select another copy of this card. Because that would cause a paradox."],
+		"NAME": "Hououin Kyouma",
+		"UPGRADE_DESCRIPTION": "Choose !M! cards you played this combat and add a copy of them to your hand ([#EFC851]*[#FFFFFF]). Purge."
 	},
 	"animator_Illya":
 	{
@@ -389,7 +402,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Increase this damage by !M! % for each [#EFC851]Debuff on enemy.",
+		"DESCRIPTION": "Deal !D! damage. NL Increase this damage by !M! % for each [#EFC851]Debuff on the enemy.",
 		"NAME": "Jibril"
 	},
 	"animator_Kazuma":
@@ -412,6 +425,19 @@
 	{
 		"DESCRIPTION": "Deal !D! damage. Synergy: The enemy loses !M! Strength this turn.",
 		"NAME": "Kuribayashi"
+	},
+	"animator_Kuroyukihime":
+	{
+		"DESCRIPTION": "Discard 2 cards. Add [#EFC851]Black [#EFC851]Lotus to your draw pile. Exhaust.",
+		"EXTENDED_DESCRIPTION": ["Black Lotus", "A special 1-cost #yAttack."],
+		"NAME": "Kuroyukihime",
+		"UPGRADE_DESCRIPTION": "Discard 2 cards. Add [#EFC851]Black [#EFC851]Lotus+ to your draw pile. Exhaust."
+	},
+	"animator_Kyubey":
+	{
+		"DESCRIPTION": "Gain [E] [E]. NL Draw !M! Cards. NL Add 2 random [#EFC851]Curses to your discard pile.",
+		"NAME": "Kyubey",
+		"UPGRADE_DESCRIPTION": "Gain [E] [E] [E]. NL Draw !M! Cards. NL Add 2 random [#EFC851]Curses to your discard pile."
 	},
 	"animator_Lancer":
 	{
@@ -450,6 +476,12 @@
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Boost !SV! : Choose and Exhaust a card in your discard pile.",
 		"NAME": "Mikaela"
+	},
+	"animator_MisaKurobane":
+	{
+		"DESCRIPTION": "Apply !SV! [#EFC851]Burning. NL Draw 1 Card. NL Purge after !M! uses.",
+		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
+		"NAME": "Misa Kurobane"
 	},
 	"animator_Mitsuba":
 	{
@@ -505,14 +537,14 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "Apply !M! Vulnerable. NL Gain !B! Block. NL Synergy: Gain 1 Blur.",
+		"DESCRIPTION": "Apply !M! Vulnerable. NL Gain !B! Block. NL Synergy and Recall: Gain 1 Blur.",
 		"NAME": "Rena"
 	},
 	"animator_RinTohsaka":
 	{
 		"DESCRIPTION": "Channel !M! random Orb. Synergy: Gain !B! Block.",
-		"UPGRADE_DESCRIPTION": "Apply 1 Lock-On to ALL enemies. [#EFC851]Channel !M! random Orb. Synergy: Gain !B! Block.",
-		"NAME": "Rin Tohsaka"
+		"NAME": "Rin Tohsaka",
+		"UPGRADE_DESCRIPTION": "Apply 1 Lock-On to ALL enemies. [#EFC851]Channel !M! random Orb. Synergy: Gain !B! Block."
 	},
 	"animator_RoryMercury":
 	{
@@ -530,6 +562,11 @@
 		"DESCRIPTION": "Loyal. Deal !D! damage. If this Synergizes !M! times, Purge and obtain [#EFC851]Excalibur.",
 		"NAME": "Saber",
 		"UPGRADE_DESCRIPTION": "Loyal. Deal !D! damage. If this Synergizes !M! times, Purge and obtain [#EFC851]Excalibur+."
+	},
+	"animator_Saitama":
+	{
+		"DESCRIPTION": "Innate. Retain. NL Deal !D! Damage. NL Can only be played if you have no [#EFC851]Attacks in your draw pile.",
+		"NAME": "Saitama"
 	},
 	"animator_Scar":
 	{
@@ -616,9 +653,9 @@
 	},
 	"animator_Tyuule":
 	{
-		"DESCRIPTION": "Apply !M! Poison to ALL enemies for each other [#EFC851]Skill in your hand. NL (Apply !SV! Poison)",
+		"DESCRIPTION": "Apply !M! Poison to ALL enemies for each other [#EFC851]Non-Attack card in your hand. NL (Apply !SV! Poison)",
 		"NAME": "Tyuule",
-		"UPGRADE_DESCRIPTION": "Apply !M! Poison to ALL enemies for each [#EFC851]Skill in your hand. NL (Apply !SV! Poison)"
+		"UPGRADE_DESCRIPTION": "Apply !M! Poison to ALL enemies for each [#EFC851]Non-Attack card in your hand. NL (Apply !SV! Poison)"
 	},
 	"animator_Urushihara":
 	{
@@ -646,9 +683,9 @@
 	"animator_Wiz":
 	{
 		"DESCRIPTION": "Exhaust 1 card, choose a card from your Exhaust pile and add a copy to your hand ([#EFC851]*[#FFFFFF]). Purge.",
-		"UPGRADE_DESCRIPTION": "Exhaust 1 card, choose a card from your Exhaust pile and add a copy to your hand ([#EFC851]*[#FFFFFF]). Purge after !M! uses.",
 		"EXTENDED_DESCRIPTION": ["* Note", "You cannot retrieve another Wiz from your exhaust pile."],
-		"NAME": "Wiz"
+		"NAME": "Wiz",
+		"UPGRADE_DESCRIPTION": "Exhaust 1 card, choose a card from your Exhaust pile and add a copy to your hand ([#EFC851]*[#FFFFFF]). Purge after !M! uses."
 	},
 	"animator_YaoHaDucy":
 	{
@@ -675,43 +712,7 @@
 	"animator_Zero":
 	{
 		"DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile.",
-		"NAME": "Zero"
-	},
-	"animator_BlackLotus":
-	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !B! Block. NL Gain !M! Blur.",
-		"NAME": "Black Lotus"
-	},
-	"animator_MisaKurobane":
-	{
-		"DESCRIPTION": "Apply !SV! [#EFC851]Burning. NL Draw 1 Card. NL Purge after !M! uses.",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
-		"NAME": "Misa Kurobane"
-	},
-	"animator_Kuroyukihime":
-	{
-		"DESCRIPTION": "Discard 2 cards. Add [#EFC851]Black [#EFC851]Lotus to your draw pile. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Discard 2 cards. Add [#EFC851]Black [#EFC851]Lotus+ to your draw pile. Exhaust.",
-		"EXTENDED_DESCRIPTION": ["Black Lotus", "A special 1-cost #yAttack."],
-		"NAME": "Kuroyukihime"
-	},
-	"animator_HououinKyouma":
-	{
-		"DESCRIPTION": "Choose !M! card you played this combat and add a copy of it to your hand ([#EFC851]*[#FFFFFF]). Purge.",
-		"UPGRADE_DESCRIPTION": "Choose !M! cards you played this combat and add a copy of them to your hand ([#EFC851]*[#FFFFFF]). Purge.",
-		"EXTENDED_DESCRIPTION": ["* Note", "You cannot select another copy of this card. Because that would cause a paradox."],
-		"NAME": "Hououin Kyouma"
-	},
-	"animator_Saitama":
-	{
-		"DESCRIPTION": "Innate. Retain. NL Deal !D! Damage. NL Can only be played if you have no [#EFC851]Attacks in your draw pile.",
-		"NAME": "Saitama"
-	},
-	"animator_Kyubey":
-	{
-		"DESCRIPTION": "Gain [E] [E]. NL Draw !M! Cards. NL Add 2 random [#EFC851]Curses to your discard pile.",
-		"UPGRADE_DESCRIPTION": "Gain [E] [E] [E]. NL Draw !M! Cards. NL Add 2 random [#EFC851]Curses to your discard pile.",
-		"NAME": "Kyubey"
+		"NAME": "Zero",
+		"UPGRADE_DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile."
 	}
 }

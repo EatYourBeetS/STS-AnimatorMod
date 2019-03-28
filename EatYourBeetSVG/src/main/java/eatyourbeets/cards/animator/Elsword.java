@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.CycleCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -18,9 +19,17 @@ public class Elsword extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,0, 1);
+        Initialize(8,4, 1);
 
         SetSynergy(Synergies.Elsword);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
     }
 
     @Override
@@ -36,6 +45,7 @@ public class Elsword extends AnimatorCard
         if (TryUpgrade())
         {          
             upgradeDamage(2);
+            upgradeBlock(2);
             upgradeMagicNumber(1);
         }
     }

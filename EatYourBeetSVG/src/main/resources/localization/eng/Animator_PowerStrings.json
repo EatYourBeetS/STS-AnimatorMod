@@ -16,7 +16,7 @@
 	},
 	"animator_EntouJyuuPower":
 	{
-		"DESCRIPTIONS": ["Every time you play an Attack increase its damage by #b", " this combat."],
+		"DESCRIPTIONS": ["The next #b", " #yAttack/s you play this turn will gain #b", " damage and draw you 1 card."],
 		"NAME": "Entou Jyuu"
 	},
 	"animator_ShiroPower":

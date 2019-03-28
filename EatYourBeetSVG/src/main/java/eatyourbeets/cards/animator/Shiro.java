@@ -80,14 +80,10 @@ public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSy
     }
 
     @Override
-    public AbstractCard makeCopy()
+    public void triggerWhenDrawn()
     {
-        AbstractCard copy = super.makeCopy();
-        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
-        {
-            copy.setCostForTurn(copy.cost - PlayerStatistics.getSynergiesThisTurn());
-        }
+        super.triggerWhenDrawn();
 
-        return copy;
+        setCostForTurn(this.cost - PlayerStatistics.getSynergiesThisTurn());
     }
 }

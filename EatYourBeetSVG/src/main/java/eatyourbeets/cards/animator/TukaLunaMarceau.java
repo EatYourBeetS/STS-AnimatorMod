@@ -18,7 +18,7 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,3,1);
+        Initialize(0,4,1);
 
         SetSynergy(Synergies.Gate);
     }

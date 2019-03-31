@@ -1,0 +1,15 @@
+{
+  "Animator_TheMaskedTraveler1": {
+    "NAME": "The Masked Traveler",
+    "DESCRIPTIONS": [
+      "While passing by this #ytotally not #yreused game asset, a masked figure with a large backpack approaches you. NL NL \"Greetings friend, are you perchance carrying some @'special'@ weaponry?\" NL ... NL \"Are you willing to sell it?\" NL NL \"Or peraphs you would prefer to buy some from my ... #ycollection ?\"",
+      "\"Did he actually accept?\" NL .. NL \"Ahem, I am @grateful@ for the @trade@ , be safe on your journey.\" NL NL That said, he disappeared from your sight."
+    ],
+    "OPTIONS": [
+      "[Sell] #gRemove ", ". #gGain #g", " #gGold.",
+      "[Trade] #gImprove #gall Strikes #gand Defends. #rLose #r", " #rGold.",
+      "[Leave]",
+	  "[Locked] No card to sell."
+    ]
+  }
+}

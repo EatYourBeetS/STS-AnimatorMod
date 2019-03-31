@@ -6,7 +6,7 @@ import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.Shimakaze;
+import eatyourbeets.cards.animator.*;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.relics.PurgingStone;
@@ -28,7 +28,15 @@ public class Kancolle extends AnimatorCustomLoadout
     @Override
     public ArrayList<String> GetStartingDeck()
     {
-        ArrayList<String> res = super.GetStartingDeck();
+        ArrayList<String> res = new ArrayList<>();
+        res.add(Strike_Kancolle.ID);
+        res.add(Defend_Kancolle.ID);
+        res.add(Strike.ID);
+        res.add(Strike.ID);
+        res.add(Strike.ID);
+        res.add(Defend.ID);
+        res.add(Defend.ID);
+        res.add(Defend.ID);
         res.add(Shimakaze.ID);
 
         return res;

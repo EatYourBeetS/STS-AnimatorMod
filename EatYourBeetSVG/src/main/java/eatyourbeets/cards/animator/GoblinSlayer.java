@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.actions.AnimatorAction;
 import eatyourbeets.actions.ShuffleRandomGoblinAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -63,25 +64,7 @@ public class GoblinSlayer extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActionsHelper.GainBlock(p, this.block);
-
-        //int exhausted = 0;
-        for (AbstractCard c : p.discardPile.group)
-        {
-            if (c.type == CardType.STATUS || c.type == CardType.CURSE)
-            {
-                GameActionsHelper.ExhaustCard(c, p.discardPile);
-                //exhausted += 1;
-            }
-        }
-
-        for (AbstractCard c : p.hand.group)
-        {
-            if (c.type == CardType.STATUS || c.type == CardType.CURSE)
-            {
-                GameActionsHelper.ExhaustCard(c, p.hand);
-                //exhausted += 1;
-            }
-        }
+        GameActionsHelper.AddToBottom(new GoblinSlayerAction());
     }
 
     @Override
@@ -91,6 +74,32 @@ public class GoblinSlayer extends AnimatorCard
         {
             upgradeDamage(3);
             upgradeBlock(2);
+        }
+    }
+
+    protected class GoblinSlayerAction extends AnimatorAction
+    {
+        @Override
+        public void update()
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            for (AbstractCard c : p.discardPile.group)
+            {
+                if (c.type == CardType.STATUS || c.type == CardType.CURSE)
+                {
+                    GameActionsHelper.ExhaustCard(c, p.discardPile);
+                }
+            }
+
+            for (AbstractCard c : p.hand.group)
+            {
+                if (c.type == CardType.STATUS || c.type == CardType.CURSE)
+                {
+                    GameActionsHelper.ExhaustCard(c, p.hand);
+                }
+            }
+
+            this.isDone = true;
         }
     }
 }

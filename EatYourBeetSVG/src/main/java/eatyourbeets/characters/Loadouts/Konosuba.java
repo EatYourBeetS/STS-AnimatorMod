@@ -2,8 +2,7 @@ package eatyourbeets.characters.Loadouts;
 
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.Aqua;
-import eatyourbeets.cards.animator.Kazuma;
+import eatyourbeets.cards.animator.*;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 
 import java.util.ArrayList;
@@ -21,7 +20,15 @@ public class Konosuba extends AnimatorCustomLoadout
     @Override
     public ArrayList<String> GetStartingDeck()
     {
-        ArrayList<String> res = super.GetStartingDeck();
+        ArrayList<String> res = new ArrayList<>();
+        res.add(Strike_Konosuba.ID);
+        res.add(Defend_Konosuba.ID);
+        res.add(Strike.ID);
+        res.add(Strike.ID);
+        res.add(Strike.ID);
+        res.add(Defend.ID);
+        res.add(Defend.ID);
+        res.add(Defend.ID);
         res.add(Kazuma.ID);
         res.add(Aqua.ID);
 

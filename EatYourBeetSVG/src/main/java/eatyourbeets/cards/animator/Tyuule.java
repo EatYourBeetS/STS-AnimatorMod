@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -29,13 +30,16 @@ public class Tyuule extends AnimatorCard
     {
         super.applyPowers();
 
-        int skillCounts = AbstractDungeon.player.hand.getSkills().size();
-        if (!upgraded)
+        int nonAttackCount = 0;
+        for (AbstractCard card : AbstractDungeon.player.hand.group)
         {
-            skillCounts -= 1;
+            if (card.type != CardType.ATTACK && (card != this || upgraded))
+            {
+                nonAttackCount += 1;
+            }
         }
 
-        this.secondaryValue = Math.max(0, skillCounts) * this.magicNumber;
+        this.secondaryValue = Math.max(0, nonAttackCount) * this.magicNumber;
         this.isSecondaryValueModified = secondaryValue > 0;
     }
 

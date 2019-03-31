@@ -2,8 +2,7 @@ package eatyourbeets.characters.Loadouts;
 
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.ElricAlphonse;
-import eatyourbeets.cards.animator.ElricEdward;
+import eatyourbeets.cards.animator.*;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 
 import java.util.ArrayList;
@@ -21,7 +20,15 @@ public class FullmetalAlchemist extends AnimatorCustomLoadout
     @Override
     public ArrayList<String> GetStartingDeck()
     {
-        ArrayList<String> res = super.GetStartingDeck();
+        ArrayList<String> res = new ArrayList<>();
+        res.add(Strike_FullmetalAlchemist.ID);
+        res.add(Defend_FullmetalAlchemist.ID);
+        res.add(Strike.ID);
+        res.add(Strike.ID);
+        res.add(Strike.ID);
+        res.add(Defend.ID);
+        res.add(Defend.ID);
+        res.add(Defend.ID);
         res.add(ElricEdward.ID);
         res.add(ElricAlphonse.ID);
 

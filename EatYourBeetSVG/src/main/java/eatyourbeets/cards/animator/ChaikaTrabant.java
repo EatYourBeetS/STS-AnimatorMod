@@ -7,23 +7,18 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
 
-public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscriber, OnStartOfTurnPostDrawSubscriber
+public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ID = CreateFullID(ChaikaTrabant.class.getSimpleName());
 
-    private boolean purged;
     private int timer;
 
     public ChaikaTrabant()
@@ -32,22 +27,10 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
 
         Initialize(7,0, 4);
 
-        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
-        {
-            OnBattleStart();
-        }
-
         AddExtendedDescription();
 
         this.purgeOnUse = true;
         SetSynergy(Synergies.Chaika);
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-        this.timer = this.baseMagicNumber;
     }
 
     @Override
@@ -60,8 +43,10 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
             GameActionsHelper.AddToBottom(new StunMonsterAction(m, p));
         }
 
+        timer = baseMagicNumber;
         this.purgeOnUse = true;
-        this.purged = true;
+
+        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
@@ -76,27 +61,19 @@ public class ChaikaTrabant extends AnimatorCard implements OnBattleStartSubscrib
     }
 
     @Override
-    public void OnBattleStart()
-    {
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
-    }
-
-    @Override
     public void OnStartOfTurnPostDraw()
     {
         AbstractPlayer p = AbstractDungeon.player;
-        if (this.purged)
+        if (timer == 0)
         {
-            if (timer == 0)
-            {
-                timer = baseMagicNumber;
-                this.purged = false;
-                AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(this, true, false));
-            }
-            else
-            {
-                timer -= 1;
-            }
+            timer = baseMagicNumber;
+
+            GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(this, 1, true, true));
+            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+        }
+        else
+        {
+            timer -= 1;
         }
     }
 }

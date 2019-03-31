@@ -98,5 +98,15 @@
       "NAMES": [ "blur"],
       "DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
 	  "PROPERNAME": "Blur"
-    }
+    },
+	{
+		"PROPER_NAME": "Plated Armor",
+		"NAMES": ["plated armor", "plated_armor"],
+		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving unblocked damage."
+	},
+	{
+		"PROPER_NAME": "Support Damage",
+		"NAMES": ["support damage", "support_damage"],
+		"DESCRIPTION": "Deal damage to the enemy with lowest HP at the end of each turn."
+	}
 ]

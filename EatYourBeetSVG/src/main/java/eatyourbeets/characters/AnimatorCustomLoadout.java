@@ -17,8 +17,6 @@ import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.Defend;
-import eatyourbeets.cards.animator.Strike;
 import eatyourbeets.relics.LivingPicture;
 import eatyourbeets.relics.PurgingStone;
 import eatyourbeets.relics.TheMissingPiece;
@@ -26,7 +24,7 @@ import eatyourbeets.relics.TheMissingPiece;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public class AnimatorCustomLoadout
+public abstract class AnimatorCustomLoadout
 {
     protected static final String[] trophyStrings = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Trophies).TEXT;
     protected static final Texture bronze = new Texture(AnimatorResources.GetRewardImage("Animator_Bronze"));
@@ -115,20 +113,7 @@ public class AnimatorCustomLoadout
         return res;
     }
 
-    public ArrayList<String> GetStartingDeck()
-    {
-        ArrayList<String> res = new ArrayList<>();
-        res.add(Strike.ID);
-        res.add(Strike.ID);
-        res.add(Strike.ID);
-        res.add(Strike.ID);
-        res.add(Defend.ID);
-        res.add(Defend.ID);
-        res.add(Defend.ID);
-        res.add(Defend.ID);
-
-        return res;
-    }
+    public abstract ArrayList<String> GetStartingDeck();
 
     public CharSelectInfo GetLoadout(String name, String description, AnimatorCharacter animatorCharacter)
     {

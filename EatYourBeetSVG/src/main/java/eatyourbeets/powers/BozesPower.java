@@ -1,16 +1,18 @@
 package eatyourbeets.powers;
 
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 
 public class BozesPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(BozesPower.class.getSimpleName());
+
+    private final static int PLATED_ARMOR = 1;
 
     public BozesPower(AbstractCreature owner, int value)
     {
@@ -22,11 +24,19 @@ public class BozesPower extends AnimatorPower
     }
 
     @Override
+    public void updateDescription()
+    {
+        String[] desc = powerStrings.DESCRIPTIONS;
+
+        description = desc[0] + amount + desc[1] + PLATED_ARMOR + desc[2];
+    }
+
+    @Override
     public void atEndOfTurn(boolean isPlayer)
     {
         super.atEndOfTurn(isPlayer);
 
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 
     @Override
@@ -37,8 +47,13 @@ public class BozesPower extends AnimatorPower
         AnimatorCard card = Utilities.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasActiveSynergy())
         {
-            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this.owner, this.owner, this.amount));
-            this.flash();
+            if (amount > 0)
+            {
+                GameActionsHelper.ApplyPower(owner, owner, new PlatedArmorPower(owner, PLATED_ARMOR), PLATED_ARMOR);
+                amount -= 1;
+                updateDescription();
+                this.flash();
+            }
         }
     }
 }

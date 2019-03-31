@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.animator.Scar;
 
 public class ScarAction extends AnimatorAction
@@ -45,8 +46,8 @@ public class ScarAction extends AnimatorAction
             }
         }
 
-        player.hand.refreshHandLayout();
         scar.purgeOnUse = true;
+        GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
 
         this.isDone = true;
     }

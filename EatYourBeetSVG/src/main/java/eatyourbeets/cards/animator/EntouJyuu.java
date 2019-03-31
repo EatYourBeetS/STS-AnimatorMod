@@ -16,7 +16,7 @@ public class EntouJyuu extends AnimatorCard
     {
         super(ID, 1, CardType.POWER, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 3);
 
         SetSynergy(Synergies.Katanagatari);
     }

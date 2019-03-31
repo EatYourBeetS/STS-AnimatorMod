@@ -39,5 +39,11 @@ public class AbstractEnums
     {
         @SpireEnum
         public static AbstractCard.CardTags LOYAL;
+
+        @SpireEnum
+        public static AbstractCard.CardTags IMPROVED_STRIKE;
+
+        @SpireEnum
+        public static AbstractCard.CardTags IMPROVED_DEFEND;
     }
 }

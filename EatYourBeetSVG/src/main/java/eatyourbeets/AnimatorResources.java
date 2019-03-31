@@ -9,10 +9,12 @@ import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
+import eatyourbeets.events.TheMaskedTraveler1;
 import eatyourbeets.relics.*;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.rewards.SynergyCardsReward;
@@ -117,6 +119,7 @@ public class AnimatorResources
         BaseMod.loadCustomStringsFile(RelicStrings.class, languagePath + "Animator_RelicStrings.json");
         BaseMod.loadCustomStringsFile(PowerStrings.class, languagePath + "Animator_PowerStrings.json");
         BaseMod.loadCustomStringsFile(UIStrings.class, languagePath + "Animator_UIStrings.json");
+        BaseMod.loadCustomStringsFile(EventStrings.class, languagePath + "Animator_EventStrings.json");
     }
 
     public static CharacterStrings GetCharacterStrings()
@@ -127,6 +130,11 @@ public class AnimatorResources
     public static CardStrings GetCardStrings(String cardID)
     {
         return CardCrawlGame.languagePack.getCardStrings(cardID);
+    }
+
+    public static EventStrings GetEventStrings(String eventID)
+    {
+        return CardCrawlGame.languagePack.getEventString(eventID);
     }
 
     public static OrbStrings GetOrbStrings(String cardID)
@@ -194,6 +202,11 @@ public class AnimatorResources
     {
         BaseMod.addAudio("ANIMATOR_ORB_EARTH_EVOKE", "audio/sound/ANIMATOR_ORB_EARTH_EVOKE.ogg");
         BaseMod.addAudio("ANIMATOR_ORB_EARTH_CHANNEL", "audio/sound/ANIMATOR_ORB_EARTH_CHANNEL.ogg");
+    }
+
+    public static void LoadCustomEvents()
+    {
+        BaseMod.addEvent(TheMaskedTraveler1.ID, TheMaskedTraveler1.class, Exordium.ID);
     }
 
     public static void LoadCustomCards() throws Exception

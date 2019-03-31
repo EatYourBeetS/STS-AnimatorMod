@@ -39,7 +39,7 @@ public class Azekura extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(1);
+            upgradeBlock(2);
             upgradeMagicNumber(1);
         }
     }

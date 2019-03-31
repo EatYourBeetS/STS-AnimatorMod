@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import basemod.patches.com.megacrit.cardcrawl.characters.AbstractPlayer.MaxHandSizePatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -7,6 +8,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
+import eatyourbeets.actions.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -20,7 +23,7 @@ public class Emonzaemon extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,0);
+        Initialize(8,0);
 
         AddExtendedDescription();
 
@@ -30,7 +33,7 @@ public class Emonzaemon extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
 
         ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
         int size = cardsPlayed.size();
@@ -52,7 +55,10 @@ public class Emonzaemon extends AnimatorCard
                 {
                     toAdd.upgrade();
                 }
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(toAdd, 1, true, true));
+
+                GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(toAdd, 1, true, true));
+                GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
+
                 this.purgeOnUse = true;
             }
         }
@@ -63,7 +69,7 @@ public class Emonzaemon extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(3);
         }
     }
 }

@@ -2,16 +2,11 @@ package eatyourbeets.characters.Loadouts;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.Utilities;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.Kuroyukihime;
-import eatyourbeets.cards.animator.Shimakaze;
+import eatyourbeets.cards.animator.*;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.characters.AnimatorMetrics;
-import eatyourbeets.relics.PurgingStone;
-import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
@@ -28,7 +23,15 @@ public class AccelWorld extends AnimatorCustomLoadout
     @Override
     public ArrayList<String> GetStartingDeck()
     {
-        ArrayList<String> res = super.GetStartingDeck();
+        ArrayList<String> res = new ArrayList<>();
+        res.add(Strike_AccelWorld.ID);
+        res.add(Defend_AccelWorld.ID);
+        res.add(Strike.ID);
+        res.add(Strike.ID);
+        res.add(Strike.ID);
+        res.add(Defend.ID);
+        res.add(Defend.ID);
+        res.add(Defend.ID);
         res.add(Kuroyukihime.ID);
 
         return res;
@@ -75,6 +78,10 @@ public class AccelWorld extends AnimatorCustomLoadout
             {
                 uniqueCards += 1;
                 cardIDs.add(c.cardID);
+            }
+            else
+            {
+                return;
             }
         }
 

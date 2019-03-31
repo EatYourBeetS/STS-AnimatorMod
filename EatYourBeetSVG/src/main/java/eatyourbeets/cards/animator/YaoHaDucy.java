@@ -15,7 +15,7 @@ public class YaoHaDucy extends AnimatorCard
 
     public YaoHaDucy()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
         Initialize(4,4);
         isMultiDamage = true;

@@ -114,6 +114,7 @@ public class EYBModInitializer
     {
         try
         {
+            AnimatorResources.LoadCustomEvents();
             AnimatorResources.LoadCustomCards();
         }
         catch (Exception e)

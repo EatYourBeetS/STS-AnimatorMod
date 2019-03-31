@@ -54,7 +54,7 @@ public class AnimatorCharacterSelect
         StringJoiner sj = new StringJoiner(", ");
         for (String s : loadout.GetStartingDeck())
         {
-            if (!s.equals(Strike.ID) && !s.equals(Defend.ID))
+            if (!s.contains(Strike.ID) && !s.contains(Defend.ID))
             {
                 sj.add(CardLibrary.getCardNameFromKey(s));
             }

@@ -106,7 +106,7 @@
 	},
 	"animator_BozesPower":
 	{
-		"DESCRIPTIONS": ["Whenever a card Synergizes this turn, gain #b", " #yBlock."],
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yPlated #yArmor."],
 		"NAME": "Bozes Co Palesti"
 	},
 	"animator_BurningPower":

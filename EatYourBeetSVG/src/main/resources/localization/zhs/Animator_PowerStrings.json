@@ -17,7 +17,7 @@
 	},
 	"animator_EntouJyuuPower":
 	{
-		"DESCRIPTIONS": ["The next #b", " #yAttack/s you play this turn will gain #b", " damage and draw you 1 card."],
+		"DESCRIPTIONS": ["本回合你打出的下一张攻击牌 #b", " #y获得额外的 #b", " 点伤害，抽一张牌."],
 		"NAME": "炎刃·铳"
 	},
 	"animator_ShiroPower":
@@ -102,7 +102,7 @@
 	},
 	"animator_BozesPower":
 	{
-		"DESCRIPTIONS": ["每当一张牌在本回合中同调， 获得 #b", " 点 格挡 。"],
+		"DESCRIPTIONS": ["接下来 #b", " 次触发 #y同调 效果时 ，每次获得 #b", " 层 [#EFC851]多层护甲[] 。"],
 		"NAME": "波赛斯·戈·芭蕾丝蒂"
 	},
 	"animator_PridePower":

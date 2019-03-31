@@ -12,8 +12,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.metrics.Metrics;
-import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
-import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.characters.AnimatorCharacterSelect;
@@ -80,6 +78,7 @@ public class MetricsPatches
             }
         }
 
+        @SuppressWarnings("unchecked")
         private static void AddOrUpdate(String cardMetricID, boolean picked)
         {
             if (!cardMetricID.equals("SKIP") && !cardMetricID.equals("Singing Bowl"))

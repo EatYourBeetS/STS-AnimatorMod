@@ -5,11 +5,24 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.AnimatorResources;
 import eatyourbeets.cards.AnimatorCard;
+import patches.AbstractEnums;
 
 public class Defend extends AnimatorCard
 {
     public static final String ID = CreateFullID(Defend.class.getSimpleName());
+
+    public Defend(String id, int cost, CardTarget target)
+    {
+        super(AnimatorResources.GetCardStrings(id), id, AnimatorResources.GetCardImage(ID), cost, CardType.SKILL, CardColor.COLORLESS,
+                CardRarity.BASIC, target);
+
+        //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");
+
+        this.tags.add(BaseModCardTags.BASIC_DEFEND);
+        this.tags.add(AbstractEnums.CardTags.IMPROVED_DEFEND);
+    }
 
     public Defend() 
     {

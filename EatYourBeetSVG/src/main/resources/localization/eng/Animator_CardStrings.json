@@ -98,7 +98,7 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Whenever a card Synergizes this turn, gain !M! Block.",
+		"DESCRIPTION": "Deal !D! damage to the lowest health enemy. On your next !M! Synergies this turn, gain 1 [#EFC851]Plated [#EFC851]Armor.",
 		"NAME": "Bozes"
 	},
 	"animator_Caster":
@@ -114,7 +114,7 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "Deal !D! damage. Stun the enemy ([#EFC851]*[#FFFFFF]). Exhaust. Returns to your draw pile after !M! turns.",
+		"DESCRIPTION": "Deal !D! damage. Stun the enemy ([#EFC851]*[#FFFFFF]). Purge. Returns to your draw pile after !M! turns.",
 		"EXTENDED_DESCRIPTION": ["* Note", "Does not stack."],
 		"NAME": "Chaika Trabant"
 	},
@@ -161,6 +161,71 @@
 	{
 		"DESCRIPTION": "Gain !B! Block.",
 		"NAME": "Defend"
+	},
+	"animator_Defend_AccelWorld":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Recall: Gain !M! Block.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_Elsword":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Next turn, gain !M! Block.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_Fate":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Gain !M! extra Block for each enemy.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_FullmetalAlchemist":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Cooldown !SV!: NL [#EFC851]Channel 1 Frost.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_GATE":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Retain.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_GoblinSlayer":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Exhaust.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_HitsugiNoChaika":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Cycle 1 card.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_Kancolle":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL If this is removed from your deck, gain !M! Gold.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_Katanagatari":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Gain !M! temporary [#EFC851]Thorns.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_NoGameNoLife":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Retain your leftmost playable card.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_Konosuba":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Boost !SV!: Heal !M! HP.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_Overlord":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Increase this card's Block by !M! this combat.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_OwariNoSeraph":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Legacy: Apply !M! Weak to ALL enemies.",
+		"NAME": "Improved Defend"
 	},
 	"animator_Demiurge":
 	{
@@ -349,7 +414,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "Give all enemies !M! Block and apply !SV! Weak. NL Cycle 1 card. NL Recall: Gain [E]",
+		"DESCRIPTION": "Apply !SV! Weak to ALL enemies and give them !M! Block. NL Cycle 1 card. NL Recall: Gain [E]",
 		"NAME": "Guy"
 	},
 	"animator_HigakiRinne":
@@ -479,9 +544,10 @@
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "Apply !SV! [#EFC851]Burning. NL Draw 1 Card. NL Purge after !M! uses.",
+		"DESCRIPTION": "Apply !SV! [#EFC851]Burning. NL Draw 1 Card. NL After !M! uses, Purge and obtain [#EFC851]Yusarin.",
 		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
-		"NAME": "Misa Kurobane"
+		"NAME": "Misa Kurobane",
+		"UPGRADE_DESCRIPTION": "Apply !SV! [#EFC851]Burning. NL Draw 1 Card. NL After !M! uses, Purge and obtain [#EFC851]Yusarin+."
 	},
 	"animator_Mitsuba":
 	{
@@ -581,7 +647,7 @@
 	},
 	"animator_Shalltear":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Synergy and Overrun: Apply !M! Poison.",
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Synergy and Overrun: Apply !M! Weak.",
 		"NAME": "Shalltear"
 	},
 	"animator_Shichika":
@@ -631,6 +697,71 @@
 		"NAME": "Strike",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage."
 	},
+	"animator_Strike_AccelWorld":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Recall: Deal !M! damage to a random enemy.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_Elsword":
+	{
+		"DESCRIPTION": "Deal !D! damage to ALL enemies.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_Fate":
+	{
+		"DESCRIPTION": "Deal !D! Piercing damage.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_FullmetalAlchemist":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Cooldown !SV!: NL [#EFC851]Channel 1 Lightning.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_GATE":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Next turn, draw 1 card.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_GoblinSlayer":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Exhaust.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_HitsugiNoChaika":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_Kancolle":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL If this is removed from your deck, gain !M! Gold.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_Katanagatari":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL If you have less than 3 cards in hand, NL gain [E].",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_Konosuba":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Boost !SV!: Heal !M! HP.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_NoGameNoLife":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Retain your rightmost playable card.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_Overlord":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat.",
+		"NAME": "Improved Strike"
+	},
+	"animator_Strike_OwariNoSeraph":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Legacy: Apply !M! Vulnerable to ALL enemies.",
+		"NAME": "Improved Strike"
+	},
 	"animator_SwordMaiden":
 	{
 		"DESCRIPTION": "Gain !M! Artifact. NL Gain !M! Intangible. NL Exhaust.",
@@ -659,8 +790,7 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "[#EFC851]Channel[] 1 Dark. NL Deal !D! damage to ALL enemies. NL [#EFC851]Lazy[].",
-		"EXTENDED_DESCRIPTION": ["Lazy", "When drawn, has a 50% chance of swapping itself with another card in your discard pile."],
+		"DESCRIPTION": "In one of your next turns, [#EFC851]Channel[] 1 Dark and deal !D! damage to ALL enemies.",
 		"NAME": "Urushihara"
 	},
 	"animator_Vanir":
@@ -696,6 +826,12 @@
 	{
 		"DESCRIPTION": "Deal !D! damage to ALL enemies. Costs 1 more for each other [#EFC851]Attack in your hand.",
 		"NAME": "YunYun"
+	},
+	"animator_Yusarin":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Next turn, Gain [E] and draw !M! card.",
+		"NAME": "Yusarin",
+		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Next turn, Gain [E] and draw !M! cards."
 	},
 	"animator_Yuuichirou":
 	{

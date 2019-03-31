@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.OnTargetBlockBreakAction;
@@ -25,7 +26,7 @@ public class Shalltear extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(12,0, 2);
+        Initialize(13,0, 1);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -45,7 +46,7 @@ public class Shalltear extends AnimatorCard
 
             if (hasActiveSynergy)
             {
-                GameActionsHelper.ApplyPower(p, m1, new PoisonPower(m1, p, this.magicNumber), this.magicNumber);
+                GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, this.magicNumber, false), this.magicNumber);
             }
         }
     }
@@ -55,7 +56,7 @@ public class Shalltear extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(2);
+            upgradeDamage(3);
             upgradeMagicNumber(1);
         }
     }

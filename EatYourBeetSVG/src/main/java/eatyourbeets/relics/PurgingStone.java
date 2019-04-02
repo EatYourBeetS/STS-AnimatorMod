@@ -78,7 +78,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
         counter = 0;
         UpdateBannedTip();
 
-        AddUses(2);
+        AddUses(3);
     }
 
     @Override

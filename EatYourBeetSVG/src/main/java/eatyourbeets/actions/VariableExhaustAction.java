@@ -11,12 +11,17 @@ import java.util.function.BiConsumer;
 
 public class VariableExhaustAction extends AnimatorAction
 {
+    public boolean canPickZero;
+    public boolean anyNumber;
+
     private final Object state;
     private final ArrayList<AbstractCard> exhausted;
     private final BiConsumer<Object, ArrayList<AbstractCard>> onExhaust;
 
     public VariableExhaustAction(AbstractPlayer player, int exhaust, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onExhaust)
     {
+        this.canPickZero = true;
+        this.anyNumber = true;
         this.exhausted = new ArrayList<>();
         this.state = state;
         this.onExhaust = onExhaust;
@@ -28,7 +33,7 @@ public class VariableExhaustAction extends AnimatorAction
 
     public void update()
     {
-        AbstractPlayer p = (AbstractPlayer)target;
+        AbstractPlayer p = (AbstractPlayer) target;
         if (this.duration == Settings.ACTION_DUR_FAST)
         {
             if (p.hand.size() == 0)
@@ -39,7 +44,7 @@ public class VariableExhaustAction extends AnimatorAction
             else
             {
                 String discardMessage = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Actions).TEXT[2];
-                AbstractDungeon.handCardSelectScreen.open(discardMessage, this.amount, true,true);
+                AbstractDungeon.handCardSelectScreen.open(discardMessage, this.amount, this.anyNumber, this.canPickZero);
             }
         }
         else if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved)

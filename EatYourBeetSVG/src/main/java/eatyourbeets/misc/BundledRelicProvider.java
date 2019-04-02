@@ -94,6 +94,7 @@ public class BundledRelicProvider
         AddNoGameNoLife();
         AddOverlord();
         AddOwariNoSeraph();
+        AddTenSura();
         AddSpecial();
     }
 
@@ -271,6 +272,22 @@ public class BundledRelicProvider
 
         AddBundle(FeridBathory.ID, MealTicket.ID, AbstractRelic.RelicTier.SHOP, R5);
         AddBundle(Guren.ID, IncenseBurner.ID, AbstractRelic.RelicTier.RARE, R2);
+    }
+
+    private static void AddTenSura()
+    {
+        AddBundle(Millim.ID, RedSkull.ID, AbstractRelic.RelicTier.SPECIAL, R1);
+        AddBundle(Kaijin.ID, Orichalcum.ID, AbstractRelic.RelicTier.COMMON, R2);
+        AddBundle(Hakurou.ID, Nunchaku.ID, AbstractRelic.RelicTier.RARE, R2);
+        AddBundle(Benimaru.ID, BurningBlood.ID, AbstractRelic.RelicTier.SPECIAL, R2);
+
+        AddBundle(Souei.ID, NinjaScroll.ID, AbstractRelic.RelicTier.SPECIAL, R2);
+        AddBundle(Shuna.ID, Torii.ID, AbstractRelic.RelicTier.RARE, R2);
+        AddBundle(GazelDwargon.ID, RegalPillow.ID, AbstractRelic.RelicTier.COMMON, R4);
+        AddBundle(Vesta.ID, ChemicalX.ID, AbstractRelic.RelicTier.SHOP, R6);
+
+        AddBundle(Shizu.ID, BurningBlood.ID, AbstractRelic.RelicTier.SPECIAL, R1);
+        AddBundle(Rimuru.ID, OddlySmoothStone.ID, AbstractRelic.RelicTier.COMMON, R2);
     }
 
     private static void AddSpecial()

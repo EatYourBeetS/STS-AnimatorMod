@@ -45,6 +45,7 @@ public class Aisha extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
+                c.triggerWhenDrawn();
                 c.setCostForTurn(c.costForTurn - this.magicNumber);
             }
         }

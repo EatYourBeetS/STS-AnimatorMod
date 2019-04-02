@@ -49,21 +49,21 @@ public class HigakiRinneAction extends AnimatorAction
 
     public void update()
     {
-        roll = AbstractDungeon.miscRng.random(178);
+        roll = AbstractDungeon.miscRng.random(180);
         
         AbstractPlayer p = AbstractDungeon.player;
         if (lucky(6)) // 6
         {
             for (int i = 0; i < 3; i++)
             {
-                GameActionsHelper.GainBlock(p, higakiRinne.block);
+                GameActionsHelper.GainBlock(p, 2);
             }
         }
         else if (lucky(6)) // 12
         {
             for (int i = 0; i < 3; i++)
             {
-                GameActionsHelper.AddToBottom(new DamageRandomEnemyAction(new DamageInfo(p, higakiRinne.damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
+                GameActionsHelper.AddToBottom(new DamageRandomEnemyAction(new DamageInfo(p, 3, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
             }
         }
         else if (lucky(6)) // 18
@@ -237,6 +237,12 @@ public class HigakiRinneAction extends AnimatorAction
         else if (lucky(3)) // 178
         {
             GameActionsHelper.DrawCard(p, 3);
+        }
+        else if (lucky(2)) // 178
+        {
+            GameActionsHelper.AddToBottom(new HigakiRinneAction(higakiRinne));
+            GameActionsHelper.AddToBottom(new HigakiRinneAction(higakiRinne));
+            GameActionsHelper.AddToBottom(new HigakiRinneAction(higakiRinne));
         }
 
         this.isDone = true;

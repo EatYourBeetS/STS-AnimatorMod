@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.GameActionsHelper;
@@ -39,7 +38,7 @@ public class Shalltear extends AnimatorCard
         for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
         {
             DamageAction damageAction = new DamageAction(m1, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE);
-            ApplyPowerAction applyPowerAction = new ApplyPowerAction(m1, p, new PoisonPower(m1, p, this.magicNumber), this.magicNumber, true);
+            ApplyPowerAction applyPowerAction = new ApplyPowerAction(m1, p, new WeakPower(m1, this.magicNumber, false), this.magicNumber);
 
             GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m1.hb.cX, m1.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
             GameActionsHelper.AddToBottom(new OnTargetBlockBreakAction(m1, damageAction, applyPowerAction));
@@ -56,8 +55,7 @@ public class Shalltear extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(3);
-            upgradeMagicNumber(1);
+            upgradeDamage(4);
         }
     }
 }

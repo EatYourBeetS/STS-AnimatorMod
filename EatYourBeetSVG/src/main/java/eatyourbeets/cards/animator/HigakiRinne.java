@@ -41,7 +41,7 @@ public class HigakiRinne extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
 
-        Initialize(2,2,2);
+        Initialize(0,0,2);
 
         SetSynergy(Synergies.Katanagatari, true);
     }

@@ -13,9 +13,9 @@ public class AbstractDungeonPatches
     @SpirePrefixPatch
     public static void Prefix(AbstractDungeon dungeon_instance)
     {
-        if (!(AbstractDungeon.player instanceof AnimatorCharacter)
-                || Settings.language == Settings.GameLanguage.ZHT  //
-                || Settings.language == Settings.GameLanguage.ZHS) // waiting for translation
+        if (!(AbstractDungeon.player instanceof AnimatorCharacter))
+//                || Settings.language == Settings.GameLanguage.ZHT  //
+//                || Settings.language == Settings.GameLanguage.ZHS) // waiting for translation
         {
             AbstractDungeon.eventList.remove(TheMaskedTraveler1.ID);
         }

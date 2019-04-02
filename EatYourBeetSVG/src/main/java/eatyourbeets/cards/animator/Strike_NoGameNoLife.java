@@ -29,7 +29,7 @@ public class Strike_NoGameNoLife extends Strike
         for (int i = cards.size() - 1; i >= 0; i--)
         {
             AbstractCard card = cards.get(i);
-            if (card != this && card.type != CardType.CURSE && card.type != CardType.STATUS)
+            if (card != this && card.type != CardType.CURSE && card.type != CardType.STATUS && !card.retain)
             {
                 card.retain = true;
                 card.flash();

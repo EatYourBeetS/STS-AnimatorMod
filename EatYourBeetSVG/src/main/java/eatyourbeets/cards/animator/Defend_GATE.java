@@ -18,6 +18,14 @@ public class Defend_GATE extends Defend
     }
 
     @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        this.retain = true;
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.GainBlock(p, this.block);

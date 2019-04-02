@@ -9,7 +9,7 @@ import eatyourbeets.GameActionsHelper;
 
 public class ExhaustAnywhereAction extends AbstractGameAction
 {
-    private AbstractCard card;
+    private final AbstractCard card;
 
     public ExhaustAnywhereAction(AbstractCard card)
     {

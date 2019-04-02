@@ -114,7 +114,7 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 暈眩敵人 [#EFC851]*[] 。 抹除 。 在 已 !M! 回合後回到你的抽牌堆 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 暈眩敵人 [#EFC851]*[] 。 抹除 。 !M! 回合後 ， 回到你的抽牌堆中 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "不可疊加 。"],
 		"NAME": "嘉依卡·托勒龐特"
 	},
@@ -147,7 +147,7 @@
 	},
 	"animator_CrowleyEusford":
 	{
-		"DESCRIPTION": "對敵人和另一個隨機敵人造成 !D! 點傷害 。 NL 撤回 : 在本次戰鬥中提高其 !M! 點 傷害 。",
+		"DESCRIPTION": "對指定目標和另一個隨機敵人造成 !D! 點傷害 。 NL 撤回 : 在本次戰鬥中提高其 !M! 點 傷害 。",
 		"NAME": "克羅里·尤斯福德"
 	},
 	"animator_Darkness":
@@ -165,67 +165,72 @@
 	"animator_Defend_AccelWorld":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 撤回 : 獲得 !B! 點 格擋 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_Elsword":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 下一轮 ， 獲得 !B! 點 格擋 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_Fate":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 獲得 !M! 點 格擋 為每個敵人 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_FullmetalAlchemist":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 冷卻 !SV! : [#EFC851]產生[] 1 個 冰霜 充能球 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_GATE":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 保留 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_GoblinSlayer":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 消耗 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_HitsugiNoChaika":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 循環 1 張牌 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_Kancolle":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 如果這是從您的套牌中刪除 ， 獲得 !M! 金幣 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_Katanagatari":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 獲得3臨時 [＃EFC851]荊棘[] 。",
-		"NAME": "Defend"
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 獲得3層臨時 [＃EFC851]荊棘[] 。",
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_NoGameNoLife":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 保留 你最左邊的可玩牌 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_Konosuba":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 增強 !SV! : 回復 !M! 點 生命 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_Overlord":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 這場戰鬥使這張卡的格擋提高 !M! 點 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
 	},
 	"animator_Defend_OwariNoSeraph":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 遺產 : 給予所有敵人 !M! 層 虛弱 。",
-		"NAME": "Defend"
+		"NAME": "優越防禦"
+	},
+	"animator_Defend_TenSura":
+	{
+		"DESCRIPTION": "獲得 !B! 點 格擋 2 次 。",
+		"NAME": "優越防禦"
 	},
 	"animator_Demiurge":
 	{
@@ -308,7 +313,7 @@
 	},
 	"animator_EntouJyuu":
 	{
-		"DESCRIPTION": "每輪一次，什麼時候打出 [#EFC851]攻擊[] 牌時使其增加 !M! 點 傷害 和 抽一張牌 。",
+		"DESCRIPTION": "每輪一次，打出[#EFC851]攻擊[] 牌之後時使其增加 !M! 點 傷害 和 抽一張牌 。",
 		"NAME": "炎刀·銃"
 	},
 	"animator_Envy":
@@ -400,9 +405,9 @@
 	},
 	"animator_GuildGirl":
 	{
-		"DESCRIPTION": "回合開始時 ， 循環 1 張牌 。",
+		"DESCRIPTION": "獲得 !M! 金幣 。 回合開始時 ， 循環 1 張牌 。",
 		"NAME": "櫃台小姐",
-		"UPGRADE_DESCRIPTION": "固有 。 回合開始時 ， 循環 1 張牌 。"
+		"UPGRADE_DESCRIPTION": "獲得 !M! 金幣 。 回合開始時 ， 循環 1 張牌 。"
 	},
 	"animator_Guren":
 	{
@@ -435,7 +440,7 @@
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "在你的回合開始時獲得 !M! 個金幣  。 選擇並且 消耗 抽牌堆1到2張的隨機卡牌 [#EFC851]*[] 。",
+		"DESCRIPTION": "在你的回合開始時獲得 !M! 個金幣  。 選擇並且 消耗 抽牌堆 1 到 !SV! 張的隨機卡牌 [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "每場戰鬥最多獲得100個金幣。 堆疊這種狀態會使金幣獲得上限增加。"],
 		"NAME": "否定姬"
 	},
@@ -541,10 +546,10 @@
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "賦予 !SV! 層 [#EFC851]燃燒[] 。 NL 抽 1 張牌 。 NL 使用 !M! 次後 抹除 併 獲得 [#EFC851]yusarin[] 。",
+		"DESCRIPTION": "賦予 !M! 層 [#EFC851]燃燒[] 。 NL 抽 1 張牌 。 NL 使用 !SV! 次後 抹除 ， 獲得 [#EFC851]西森柚咲[] 。",
 		"EXTENDED_DESCRIPTION": ["燃燒", "在回合開始時受到 傷害 。 每層使收到的傷害額外增加 4% 。"],
 		"NAME": "黑羽美砂",
-		"UPGRADE_DESCRIPTION": "賦予 !SV! 層 [#EFC851]燃燒[] 。 NL 抽 1 張牌 。 NL 使用 !M! 次後 抹除 併 獲得 [#EFC851]yusarin+[] 。"
+		"UPGRADE_DESCRIPTION": "賦予 !M! 層 [#EFC851]燃燒[] 。 NL 抽 1 張牌 。 NL 使用 !SV! 次後 抹除 ， 獲得 [#EFC851]西森柚咲+[] 。"
 	},
 	"animator_Mitsuba":
 	{
@@ -600,7 +605,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "給予一層 易傷 效果， 獲得 !B! 點 格擋 。 同調 和 撤回 : 獲得 1 [#EFC851]殘影[] 。",
+		"DESCRIPTION": "給予一層 易傷 效果， 獲得 !B! 點 格擋 。 同調 ， 撤回 : 獲得 1 [#EFC851]殘影[] 。",
 		"EXTENDED_DESCRIPTION": ["殘影", "下回合開始時格擋不會消失 。"],
 		"NAME": "蕾娜‧艾蘭黛"
 	},
@@ -645,7 +650,7 @@
 	},
 	"animator_Shalltear":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 同調 和 壓倒 : 給予 !M! 層 虛弱 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 同調， 壓倒 : 給予 !M! 層 虛弱 。",
 		"NAME": "夏提雅"
 	},
 	"animator_Shichika":
@@ -697,67 +702,72 @@
 	"animator_Strike_AccelWorld":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 撤回 : 造成 !M! 點 傷害 對一個隨機的敵人",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_Elsword":
 	{
 		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_Fate":
 	{
 		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_FullmetalAlchemist":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 冷卻 !SV! : NL [#EFC851]產生[] 1 個 閃電 充能球 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_GATE":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 下一轮 ， 抽一張牌 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_GoblinSlayer":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 消耗 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_HitsugiNoChaika":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 造成 !M! 點 中毒 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_Kancolle":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 如果這是從您的套牌中刪除 ， 獲得 !M! 金幣 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_Katanagatari":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 如果你手中的卡少於 3 張 ， 獲得 [E] 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_Konosuba":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 增強 !SV! : 回復 !M! 點 生命 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_NoGameNoLife":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 保留 你最右的可玩牌 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_Overlord":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 這場戰鬥使這張卡的傷害提高 !M! 點 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
 	},
 	"animator_Strike_OwariNoSeraph":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 遺產 : 給予所有敵人 !M! 層 易傷 。",
-		"NAME": "Strike"
+		"NAME": "優越打擊"
+	},
+	"animator_Strike_TenSura":
+	{
+		"DESCRIPTION": "造成 !D! 点伤害 。 NL 獲得 !M! 點 臨時生命 。",
+		"NAME": "優越打擊"
 	},
 	"animator_SwordMaiden":
 	{
@@ -787,7 +797,8 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "在隨機數輪之後 ， [#EFC851]產生[] 1 個黑暗充能球 ， NL 對所有敵人造成 !D! 傷害 。",
+		"DESCRIPTION": "[#EFC851]產生[] 1 個黑暗充能球 ， NL 對所有敵人造成 !D! 傷害 。 [#EFC851]懶惰[] 。",
+		"EXTENDED_DESCRIPTION": ["懶惰", "此卡效果將被延遲一輪隨機數 。"],
 		"NAME": "漆原半藏"
 	},
 	"animator_Vanir":
@@ -826,9 +837,9 @@
 	},
 	"animator_Yusarin":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 下一轮 ， 抽 !M! 張牌 併 獲得 [E]",
-		"NAME": "Yusarin",
-		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 NL 下一轮 ， 抽 !M! 張牌 併 獲得 [E]"
+		"DESCRIPTION": "下一個回合， 抽 !M! 張牌 並且 獲得 [E] 。 NL !SV! 次使用后 ， 将其更改为 [#EFC851]黑羽美砂[] 。",
+		"NAME": "西森柚咲",
+		"UPGRADE_DESCRIPTION": "下一個回合， 抽 !M! 張牌 並且 獲得 [E] 。 NL !SV! 次使用后 ， 将其更改为 [#EFC851]黑羽美砂+[] 。"
 	},
 	"animator_Yuuichirou":
 	{
@@ -839,7 +850,7 @@
 	},
 	"animator_ZankiKiguchi":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害. NL 壓倒 和 撤回 : 本次戰鬥中，提高手牌中所有攻擊牌的傷害 !M! 點 。",
+		"DESCRIPTION": "造成 !D! 點傷害. NL 壓倒 ， 撤回 : 本次戰鬥中，提高手牌中所有攻擊牌的傷害 !M! 點 。",
 		"NAME": "汽口慚愧"
 	},
 	"animator_Zero":
@@ -847,5 +858,62 @@
 		"DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 消耗 。",
 		"NAME": "零",
 		"UPGRADE_DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 "
+	},
+	"animator_Rimuru":
+	{
+		"DESCRIPTION": "[#EFC851]drawn[] : become a copy of a random card, it has 變形者",
+		"NAME": "Rimuru",
+		"UPGRADE_DESCRIPTION": "[#EFC851]drawn[] : become an 升級 copy of a random card, it has 變形者"
+	},
+	"animator_Shizu":
+	{
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 !M! 張牌 。 NL [#EFC851]ifrit[]",
+		"EXTENDED_DESCRIPTION": ["ifrit", "#y消耗 up to 4 cards in your hand, apply that much #y燃燒 to all enemies. NL Add 2 #yBurns to your discard pile."],
+		"NAME": "Shizu"
+	},
+	"animator_GazelDwargon":
+	{
+		"DESCRIPTION": "whenever your 格擋 is removed, deal that much damage to all enemies [#EFC851]*[]",
+		"EXTENDED_DESCRIPTION": ["* note", "#y格擋 used to reduce damage does not count as removed."],
+		"NAME": "Gazel Dwargon"
+	},
+	"animator_Souei":
+	{
+		"DESCRIPTION": "造成 !M! 點 中毒 。 NL trigger the 中毒 of all enemies, if any of them dies, gain 無實體 。",
+		"NAME": "Souei"
+	},
+	"animator_Shuna":
+	{
+		"DESCRIPTION": "[#EFC851]drawn[] : 獲得 !B! 點 格擋 。 NL 抽 2 張牌 。 NL 同調 : this card gains !M! 格擋 this combat.",
+		"NAME": "Shuna"
+	},
+	"animator_Vesta":
+	{
+		"DESCRIPTION": "choose a card in your discard pile, after !M! turns, add an 升級 copy of it to your hand. 抹除 。",
+		"EXTENDED_DESCRIPTION": ["select a card, after # turns, add an 升級 copy of it to your hand."],
+		"NAME": "Vesta"
+	},
+	"animator_Kaijin":
+	{
+		"DESCRIPTION": "at the end of each turn, give a random card in your draw pile !M! more damage and 格擋 this combat.",
+		"NAME": "Kaijin"
+	},
+	"animator_Hakurou":
+	{
+		"DESCRIPTION": "[#EFC851]武術家[] 。 造成 !D! 點傷害 !M! 次 。 NL [#EFC851]drawn[] : 獲得 !SV! 點 临时 敏捷 。",
+		"EXTENDED_DESCRIPTION": ["武術家", "此牌的傷害會受到敏捷影響"],
+		"NAME": "Hakurou"
+	},
+	"animator_Benimaru":
+	{
+		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 壓倒 : 獲得 !B! 點 格擋 。 NL 同調: 造成 !M! 點 [#EFC851]燃燒[] 。",
+		"EXTENDED_DESCRIPTION": ["燃燒", "在你回合開始受到傷害，另外每層提供  4% 更多攻擊傷害。"],
+		"NAME": "Benimaru"
+	},
+	"animator_Millim":
+	{
+		"DESCRIPTION": "多重升級 。 [#EFC851]unique[] NL 造成 !D! 點 傷害 。 NL 同調 : 獲得 !B! 點 格擋 。",
+		"EXTENDED_DESCRIPTION": ["unique", "you can only have 1 copy of this card in your deck, additional copies will #升級 this card instead."],
+		"NAME": "Millim"
 	}
 }

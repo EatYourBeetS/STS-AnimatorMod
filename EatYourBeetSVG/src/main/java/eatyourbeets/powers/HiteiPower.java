@@ -14,18 +14,28 @@ public class HiteiPower extends AnimatorPower
     public static final String POWER_ID = CreateFullID(HiteiPower.class.getSimpleName());
 
     private final String originalName;
-    private int stacks;
+
+    private int upgradeStack;
+    private int unupgradedStacks;
     private int goldGain;
     private int goldCap = 100;
 
-    public HiteiPower(AbstractPlayer owner, int goldGain, String originalName)
+    public HiteiPower(AbstractPlayer owner, int goldGain, boolean upgraded, String originalName)
     {
         super(owner, POWER_ID);
+
+        if (upgraded)
+        {
+            this.upgradeStack += 1;
+        }
+        else
+        {
+            this.unupgradedStacks = 1;
+        }
 
         this.originalName = originalName;
         this.amount = 0;
         this.goldGain = goldGain;
-        this.stacks = 1;
 
         updateDescription();
     }
@@ -33,7 +43,7 @@ public class HiteiPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        this.description = (powerStrings.DESCRIPTIONS[0] + goldGain + powerStrings.DESCRIPTIONS[1] + stacks + powerStrings.DESCRIPTIONS[2]);
+        this.description = (powerStrings.DESCRIPTIONS[0] + goldGain + powerStrings.DESCRIPTIONS[1] + unupgradedStacks + powerStrings.DESCRIPTIONS[2]);
     }
 
     @Override
@@ -43,9 +53,14 @@ public class HiteiPower extends AnimatorPower
 
         this.amount = Math.min(goldCap, this.amount + goldGain);
 
-        for (int i = 0; i < stacks; i++)
+        for (int i = 0; i < unupgradedStacks; i++)
         {
-            GameActionsHelper.AddToBottom(new HiteiAction());
+            GameActionsHelper.AddToBottom(new HiteiAction(2));
+        }
+
+        for (int i = 0; i < upgradeStack; i++)
+        {
+            GameActionsHelper.AddToBottom(new HiteiAction(3));
         }
 
         this.flash();
@@ -69,14 +84,16 @@ public class HiteiPower extends AnimatorPower
         HiteiPower other = Utilities.SafeCast(power, HiteiPower.class);
         if (other != null && power.owner == target)
         {
-            int bonus = (60 - (10 * stacks));
+            int bonus = (60 - (10 * (unupgradedStacks + upgradeStack)));
 
             if (bonus > 0)
             {
                 this.goldCap += bonus;
             }
 
-            this.stacks += 1;
+            this.unupgradedStacks += other.unupgradedStacks;
+            this.upgradeStack += other.upgradeStack;
+
             this.goldGain += other.goldGain;
         }
 

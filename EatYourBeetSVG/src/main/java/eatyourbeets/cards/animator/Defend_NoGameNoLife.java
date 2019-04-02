@@ -28,7 +28,7 @@ public class Defend_NoGameNoLife extends Defend
         for (int i = 0; i < cards.size(); i++)
         {
             AbstractCard card = cards.get(i);
-            if (card != this && card.type != CardType.CURSE && card.type != CardType.STATUS)
+            if (card != this && card.type != CardType.CURSE && card.type != CardType.STATUS && !card.retain)
             {
                 card.retain = true;
                 card.flash();

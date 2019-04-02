@@ -84,6 +84,7 @@ public class AnimatorCharacterSelect
         AddLoadout(new Fate()               , 3, "");
         AddLoadout(new Overlord()           , 3, "");
         AddLoadout(new Chaika()             , 3, "");
+        AddLoadout(new TenSura()            , 3, "");
         AddLoadout(new Kancolle()           , 4, "");
         AddLoadout(new AccelWorld()         , 4, "");
 

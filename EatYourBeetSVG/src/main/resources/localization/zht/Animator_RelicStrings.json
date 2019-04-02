@@ -127,6 +127,15 @@
 			"每當你觸發一次同調時, 對一個隨機敵人造成 #b", " 點傷害並獲得 #b", " 點格擋."
 		]
 	},
+	"Animator_ShionDessert":
+	{
+		"NAME": "Shion's Dessert",
+		"FLAVOR": "Here, have a taste, how bad can it be?",
+		"DESCRIPTIONS":
+		[
+			"Every #b", " #yAttacks, apply #b", " #yPoison to a random enemy."
+		]
+	},
 	"Animator_EngravedStaff":
 	{
 		"NAME": "雕塑",

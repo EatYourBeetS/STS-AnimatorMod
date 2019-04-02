@@ -17,7 +17,7 @@
 	},
 	"animator_EntouJyuuPower":
 	{
-		"DESCRIPTIONS": ["The next #b", " #yAttack/s you play this turn will gain #b", " damage and draw you 1 card."],
+		"DESCRIPTIONS": ["這回合打出的下一張攻擊牌 #b", " #y獲得額外的 #b", " 傷害，然後抽一張牌。"],
 		"NAME": "炎刃·銃"
 	},
 	"animator_ShiroPower":
@@ -119,6 +119,16 @@
 	{
 		"DESCRIPTIONS": ["你偷了 #b", " 個金幣。 你可以再盜取 #b", " 個金幣。"],
 		"NAME": "被盜的黃金"
+	},
+	"animator_KaijinPower":
+	{
+		"DESCRIPTIONS": ["At the end of your turn, increase the #yBlock and damage of a random card in your draw pile by #b", "."],
+		"NAME": "Kaijin"
+	},
+	"animator_GazelDwargonPower":
+	{
+		"DESCRIPTIONS": ["Whenever your #yBlock is removed, deal that much damage #b", " times to ALL enemies."],
+		"NAME": "Gazel Dwargon"
 	},
 	"animator_EarthenThornsPower":
 	{

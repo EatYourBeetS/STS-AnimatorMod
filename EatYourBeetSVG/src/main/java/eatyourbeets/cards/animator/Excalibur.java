@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -26,7 +25,7 @@ public class Excalibur extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
 
-        Initialize(12,0);
+        Initialize(8,0);
 
         this.retain = true;
         this.isMultiDamage = true;
@@ -49,25 +48,47 @@ public class Excalibur extends AnimatorCard
     }
 
     @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        for (AbstractCard card : player.hand.group)
+        {
+            if (card != this && card.type == CardType.ATTACK && card.damage > 0)
+            {
+                if (card.cardID.equals(this.cardID))
+                {
+                    tmp += card.baseDamage;
+                }
+                else
+                {
+                    tmp += card.damage;
+                }
+            }
+        }
+
+        return super.calculateModifiedCardDamage(player, mo, tmp);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToBottom(new VFXAction(new BorderLongFlashEffect(Color.GOLD)));
-        for (AbstractCreature m1 : PlayerStatistics.GetCurrentEnemies(true))
-        {
-            GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m1.hb_x, m1.hb_y)));
-        }
-        AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY));
-
         int damageUpgrade = 0;
         for (AbstractCard c : p.hand.group)
         {
             if (c.type == CardType.ATTACK && c != this)
             {
-                damageUpgrade += c.baseDamage;
+                damageUpgrade += c.damage;
                 AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(c, p.hand, true));
             }
         }
-        AbstractDungeon.actionManager.addToBottom(new ModifyDamageAction(this.uuid, damageUpgrade));
+
+        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, damageUpgrade));
+
+        GameActionsHelper.AddToBottom(new VFXAction(new BorderLongFlashEffect(Color.GOLD)));
+        for (AbstractCreature m1 : PlayerStatistics.GetCurrentEnemies(true))
+        {
+            GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m1.hb_x, m1.hb_y)));
+        }
+        GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override

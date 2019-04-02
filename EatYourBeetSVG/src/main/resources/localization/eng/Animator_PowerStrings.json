@@ -119,9 +119,19 @@
 		"DESCRIPTIONS": ["You stole #b", " Gold. You can steal #b", " more Gold."],
 		"NAME": "Stolen Gold"
 	},
+	"animator_KaijinPower":
+	{
+		"DESCRIPTIONS": ["At the end of your turn, increase the #yBlock and damage of a random card in your draw pile by #b", "."],
+		"NAME": "Kaijin"
+	},
+	"animator_GazelDwargonPower":
+	{
+		"DESCRIPTIONS": ["Whenever your #yBlock is removed, deal that much damage #b", " time/s to ALL enemies."],
+		"NAME": "Gazel Dwargon"
+	},
 	"animator_EarthenThornsPower":
 	{
-		"DESCRIPTIONS": ["When attacked, deals #b", " damage back."],
+		"DESCRIPTIONS": ["When attacked, deal #b", " damage back."],
 		"NAME": "Earthen Thorns"
 	}
 }

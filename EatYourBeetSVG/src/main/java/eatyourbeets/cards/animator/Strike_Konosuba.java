@@ -18,7 +18,7 @@ public class Strike_Konosuba extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(5,0, 2);
+        Initialize(6,0, 2);
 
         this.baseSecondaryValue = this.secondaryValue = 1;
     }

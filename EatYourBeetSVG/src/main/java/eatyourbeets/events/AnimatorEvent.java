@@ -1,8 +1,6 @@
 package eatyourbeets.events;
 
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.actions.AnimatorAction;

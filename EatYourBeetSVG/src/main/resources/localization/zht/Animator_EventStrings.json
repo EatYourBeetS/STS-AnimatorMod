@@ -1,15 +1,16 @@
 {
   "Animator_TheMaskedTraveler1": {
-    "NAME": "The Masked Traveler",
+    "NAME": "戴面具的旅行者",
     "DESCRIPTIONS": [
       "While passing by this #ytotally not #yreused game asset, a masked figure with a large backpack approaches you. NL NL \"Greetings friend, are you perchance carrying some @'special'@ weaponry?\" NL ... NL \"Are you willing to sell it?\" NL NL \"Or peraphs you would prefer to buy some from my ... #ycollection ?\"",
       "\"Did he actually accept?\" NL .. NL \"Ahem, I am @grateful@ for the @trade@ , be safe on your journey.\" NL NL That said, he disappeared from your sight."
     ],
     "OPTIONS": [
-      "[Sell] #gRemove ", ". #gGain #g", " #gGold.",
-      "[Trade] #gImprove #gall Strikes #gand Defends. #rLose #r", " #rGold.",
-      "[Leave]",
-	  "[Locked] No card to sell."
+      "[販賣] 移除 ", ". #g獲得 #g", " #g金幣",
+      "[交易] #g增強 #g所有 打擊牌 #g和 防禦牌. #r失去 #r", " #r金幣.",
+      "[離開]",
+	  "[鎖定] 沒有牌可以賣",
+	  "[鎖定] 沒有足夠的金幣"
     ]
   }
 }

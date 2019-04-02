@@ -37,6 +37,9 @@ public class AbstractEnums
 
     public static class CardTags
     {
+        //@SpireEnum
+        //public static AbstractCard.CardTags SHAPESHIFTER;
+
         @SpireEnum
         public static AbstractCard.CardTags LOYAL;
 

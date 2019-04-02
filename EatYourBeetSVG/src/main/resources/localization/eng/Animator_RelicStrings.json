@@ -127,6 +127,15 @@
 			"Whenever a card #ySynergizes, deal #b", " damage to a random enemy and gain #b", " #yBlock."
 		]
 	},
+	"Animator_ShionDessert":
+	{
+		"NAME": "Shion's Dessert",
+		"FLAVOR": "Here, have a taste, how bad can it be?",
+		"DESCRIPTIONS":
+		[
+			"Every #b", " #yAttacks, apply #b", " #yPoison to a random enemy."
+		]
+	},
 	"Animator_EngravedStaff":
 	{
 		"NAME": "Engraved Staff",

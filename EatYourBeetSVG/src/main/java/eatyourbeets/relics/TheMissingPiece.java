@@ -173,5 +173,6 @@ public class TheMissingPiece extends AnimatorRelic
         possibleRewards.add(Synergies.OwariNoSeraph);
         possibleRewards.add(Synergies.GoblinSlayer);
         possibleRewards.add(Synergies.FullmetalAlchemist);
+        possibleRewards.add(Synergies.TenSura);
     }
 }

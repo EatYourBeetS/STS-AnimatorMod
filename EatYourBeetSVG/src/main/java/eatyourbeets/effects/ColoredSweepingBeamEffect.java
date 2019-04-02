@@ -17,12 +17,12 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class ColoredSweepingBeamEffect extends AbstractGameEffect
 {
-    private float sX;
-    private float sY;
+    private final float sX;
+    private final float sY;
     private float dX;
     private float dY;
     private float dst;
-    private boolean isFlipped;
+    private final boolean isFlipped;
     private final float DUR = 0.3F;
     private static AtlasRegion img;
 

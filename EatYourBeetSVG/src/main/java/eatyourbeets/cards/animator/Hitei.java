@@ -18,6 +18,8 @@ public class Hitei extends AnimatorCard
 
         Initialize(0,0,6);
 
+        baseSecondaryValue = secondaryValue = 2;
+
         AddExtendedDescription();
 
         SetSynergy(Synergies.Katanagatari);
@@ -26,7 +28,7 @@ public class Hitei extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new HiteiPower(p, this.magicNumber, this.originalName), 0));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new HiteiPower(p, this.magicNumber, upgraded, this.originalName), 0));
     }
 
     @Override
@@ -34,7 +36,8 @@ public class Hitei extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(4);
+            upgradeMagicNumber(2);
+            upgradeSecondaryValue(1);
         }
     }
 }

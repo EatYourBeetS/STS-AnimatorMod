@@ -58,7 +58,15 @@ public class TheMaskedTraveler1 extends AnimatorEvent
             this.imageEventText.updateDialogOption(CHOICE_SELL, OPTIONS[6], true);
         }
 
-        this.imageEventText.updateDialogOption(CHOICE_IMPROVE, OPTIONS[3] + BUYING_PRICE + OPTIONS[4]);
+        if (p.gold >= BUYING_PRICE)
+        {
+            this.imageEventText.updateDialogOption(CHOICE_IMPROVE, OPTIONS[3] + BUYING_PRICE + OPTIONS[4]);
+        }
+        else
+        {
+            this.imageEventText.updateDialogOption(CHOICE_IMPROVE, OPTIONS[7], true);
+        }
+
         this.imageEventText.updateDialogOption(CHOICE_LEAVE, OPTIONS[5]);
     }
 
@@ -97,6 +105,8 @@ public class TheMaskedTraveler1 extends AnimatorEvent
                     this.imageEventText.updateBodyText(eventStrings.DESCRIPTIONS[1]);
                     this.imageEventText.clearAllDialogs();
                     this.imageEventText.setDialogOption(OPTIONS[5]);
+
+                    AbstractDungeon.player.loseGold(BUYING_PRICE);
 
                     SetupCards();
 

@@ -4,8 +4,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
-import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.AlbedoPower;
@@ -22,20 +20,24 @@ public class Albedo extends AnimatorCard
 
         AddExtendedDescription();
 
-        this.baseSecondaryValue = this.secondaryValue = 0;
-
         SetSynergy(Synergies.Overlord);
+    }
+
+    @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        if (this.upgraded)
+        {
+            this.retain = true;
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new AlbedoPower(p, this.magicNumber), this.magicNumber));
-
-        if (upgraded)
-        {
-            GameActionsHelper.ApplyPower(p, p, new EnergizedPower(p, 1), 1);
-        }
     }
 
     @Override
@@ -43,7 +45,7 @@ public class Albedo extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(7);
+            this.retain = true;
         }
     }
 }

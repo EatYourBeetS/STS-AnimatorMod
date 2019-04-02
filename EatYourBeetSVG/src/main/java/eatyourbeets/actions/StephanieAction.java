@@ -10,6 +10,8 @@ import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 
+import java.util.List;
+
 public class StephanieAction extends AnimatorAction
 {
     private final AbstractPlayer player;
@@ -58,9 +60,20 @@ public class StephanieAction extends AnimatorAction
                 return;
             }
 
-            AbstractDungeon.actionManager.addToBottom(new FetchAction(player.drawPile, selectedCard::HasSynergy, cardDraw));
+            AbstractDungeon.actionManager.addToBottom(new FetchAction(player.drawPile, selectedCard::HasSynergy, cardDraw, this::OnFetch));
         }
 
         this.tickDuration();
+    }
+
+    private void OnFetch(List<AbstractCard> cards)
+    {
+        if (cards != null && cards.size() > 0)
+        {
+            for (AbstractCard c : cards)
+            {
+                c.triggerWhenDrawn();
+            }
+        }
     }
 }

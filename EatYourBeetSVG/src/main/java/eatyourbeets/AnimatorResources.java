@@ -196,6 +196,7 @@ public class AnimatorResources
         BaseMod.addRelic(new HallowedScabbard(), RelicType.SHARED);
         BaseMod.addRelic(new EngravedStaff(), RelicType.SHARED);
         BaseMod.addRelic(new CerealBox(), RelicType.SHARED);
+        BaseMod.addRelic(new ShionDessert(), RelicType.SHARED);
     }
 
     public static void LoadAudio()

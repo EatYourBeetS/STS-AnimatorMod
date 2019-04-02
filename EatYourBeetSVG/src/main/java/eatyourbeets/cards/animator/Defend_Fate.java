@@ -13,7 +13,7 @@ public class Defend_Fate extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 4, 1);
+        Initialize(0, 3, 2);
     }
 
     @Override

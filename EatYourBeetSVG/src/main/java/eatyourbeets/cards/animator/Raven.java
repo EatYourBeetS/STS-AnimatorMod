@@ -17,7 +17,7 @@ public class Raven extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(6,2);
+        Initialize(7,2);
 
         SetSynergy(Synergies.Elsword);
     }

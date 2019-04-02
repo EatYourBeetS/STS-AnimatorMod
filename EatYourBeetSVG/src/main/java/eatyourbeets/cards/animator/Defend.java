@@ -15,7 +15,7 @@ public class Defend extends AnimatorCard
 
     public Defend(String id, int cost, CardTarget target)
     {
-        super(AnimatorResources.GetCardStrings(id), id, AnimatorResources.GetCardImage(ID), cost, CardType.SKILL, CardColor.COLORLESS,
+        super(AnimatorResources.GetCardStrings(id), id, AnimatorResources.GetCardImage(ID + "Alt"), cost, CardType.SKILL, CardColor.COLORLESS,
                 CardRarity.BASIC, target);
 
         //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");

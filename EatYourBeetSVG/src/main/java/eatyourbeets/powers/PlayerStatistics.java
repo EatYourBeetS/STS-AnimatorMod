@@ -24,6 +24,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static final PlayerStatistics Instance = new PlayerStatistics();
 
     public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
+    public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
     public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
@@ -58,6 +59,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
         onSynergy.Clear();
         onBlockBroken.Clear();
+        onBeforeLoseBlock.Clear();
         onAfterCardDrawn.Clear();
         onAttack.Clear();
         onLoseHp.Clear();
@@ -114,6 +116,14 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         for (OnBlockBrokenSubscriber s : onBlockBroken.GetSubscribers())
         {
             s.OnBlockBroken(creature);
+        }
+    }
+
+    public void OnBeforeLoseBlock(AbstractCreature creature, int amount, boolean noAnimation)
+    {
+        for (OnBeforeLoseBlockSubscriber s : onBeforeLoseBlock.GetSubscribers())
+        {
+            s.OnBeforeLoseBlock(creature, amount, noAnimation);
         }
     }
 

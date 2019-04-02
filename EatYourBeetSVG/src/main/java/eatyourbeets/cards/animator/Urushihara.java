@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -23,9 +22,9 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(12,0);
+        Initialize(13,0);
 
-        //AddExtendedDescription();
+        AddExtendedDescription();
         this.isMultiDamage = true;
         this.lazyCounter = 0;
 

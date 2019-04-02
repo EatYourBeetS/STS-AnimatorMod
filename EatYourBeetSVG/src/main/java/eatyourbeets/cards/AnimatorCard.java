@@ -38,11 +38,11 @@ public abstract class AnimatorCard extends CustomCard
     private String upgradedDescription = null;
     private final List<TooltipInfo> customTooltips = new ArrayList<>();
     private Synergy synergy;
-    private boolean anySynergy;
     private boolean lastHovered = false;
 
     protected final CardStrings cardStrings;
 
+    public boolean anySynergy;
     public boolean isSecondaryValueModified = false;
     public boolean upgradedSecondaryValue = false;
     public int baseSecondaryValue = 0;
@@ -93,7 +93,7 @@ public abstract class AnimatorCard extends CustomCard
         AnimatorCard card = Utilities.SafeCast(other, AnimatorCard.class);
         if (card != null && card.synergy != null)
         {
-            return this.synergy != null && (this.anySynergy || card.anySynergy || HasExactSynergy(card.synergy));
+            return this.synergy != null && (HasExactSynergy(card.synergy) || this.anySynergy || card.anySynergy);
         }
 
         return false;
@@ -126,10 +126,13 @@ public abstract class AnimatorCard extends CustomCard
             ArrayList<AbstractCard> hand = AbstractDungeon.player.hand.group;
             for (AbstractCard c : hand)
             {
-                AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
-                if (c != this && (card != null && card.HasSynergy(this)))
+                if (c != this)
                 {
-                    c.targetDrawScale = 0.9f;
+                    AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+                    if ((card != null && card.HasSynergy(this)))
+                    {
+                        c.targetDrawScale = 0.9f;
+                    }
                 }
             }
         }
@@ -266,10 +269,10 @@ public abstract class AnimatorCard extends CustomCard
         SetSynergy(synergy, false);
     }
 
-    protected void SetSynergy(Synergy synergy, boolean anySynergy)
+    protected void SetSynergy(Synergy synergy, boolean shapeshifter)
     {
         this.synergy = synergy;
-        this.anySynergy = anySynergy;
+        this.anySynergy = shapeshifter;
     }
 
     protected void AddExtendedDescription(Object param)

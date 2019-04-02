@@ -15,9 +15,11 @@ public class HiteiAction extends AnimatorAction
 {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("ExhaustAction");
     private final AbstractPlayer player;
+    private final int cards;
 
-    public HiteiAction()
+    public HiteiAction(int cards)
     {
+        this.cards = cards;
         this.player = AbstractDungeon.player;
         this.setValues(this.player, AbstractDungeon.player, this.amount);
         this.duration = Settings.ACTION_DUR_FAST;
@@ -33,7 +35,7 @@ public class HiteiAction extends AnimatorAction
             randomizedList.AddAll(player.discardPile.group);
 
             CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < cards; i++)
             {
                 if (randomizedList.Count() > 0)
                 {

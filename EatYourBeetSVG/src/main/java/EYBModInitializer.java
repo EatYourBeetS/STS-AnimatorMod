@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.cards.AnimatorCard;
@@ -16,6 +17,7 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.CursedBlade;
+import eatyourbeets.relics.ExquisiteBloodVial;
 import eatyourbeets.relics.PurgingStone;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -114,7 +116,6 @@ public class EYBModInitializer
     {
         try
         {
-            AnimatorResources.LoadCustomEvents();
             AnimatorResources.LoadCustomCards();
         }
         catch (Exception e)
@@ -135,6 +136,8 @@ public class EYBModInitializer
     public void receivePostInitialize()
     {
         AnimatorResources.LoadCustomRewards();
+        AnimatorResources.LoadMonsters();
+        AnimatorResources.LoadCustomEvents();
     }
 
     @Override

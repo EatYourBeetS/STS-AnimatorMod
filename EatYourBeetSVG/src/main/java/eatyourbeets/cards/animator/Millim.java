@@ -15,7 +15,7 @@ public class Millim extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(13,7);
+        Initialize(14,7);
 
         AddExtendedDescription();
 
@@ -27,7 +27,7 @@ public class Millim extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
-        if (m.currentHealth > p.currentHealth)
+        if (HasActiveSynergy())
         {
             GameActionsHelper.GainBlock(p, this.block);
         }

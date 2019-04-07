@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.*;
 import eatyourbeets.relics.EngravedStaff;
+import eatyourbeets.relics.Rinne;
 import eatyourbeets.relics.WornHelmet;
 
 import java.util.ArrayList;
@@ -207,7 +208,7 @@ public class BundledRelicProvider
         AddBundle(Togame.ID, AncientTeaSet.ID, AbstractRelic.RelicTier.COMMON, R2);
 
         AddBundle(Biyorigo.ID, Inserter.ID, AbstractRelic.RelicTier.SPECIAL, R4);
-        AddBundle(HigakiRinne.ID, SpiritPoop.ID, AbstractRelic.RelicTier.SPECIAL, R5);
+        AddBundle(HigakiRinne.ID, Rinne.ID, AbstractRelic.RelicTier.SPECIAL, R6);
     }
 
     private static void AddKonosuba()

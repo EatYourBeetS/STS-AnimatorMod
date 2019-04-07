@@ -21,9 +21,9 @@ public class Evileye extends AnimatorCard
 
     public Evileye()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(4,0);
+        Initialize(6,0);
 
         this.baseSecondaryValue = this.secondaryValue = 3;
 
@@ -38,7 +38,8 @@ public class Evileye extends AnimatorCard
         CardCrawlGame.sound.play("ORB_FROST_EVOKE", 0.2F);
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
 
-        AbstractDungeon.actionManager.addToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
+        GameActionsHelper.DrawCard(p, 1);
+        GameActionsHelper.AddToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
     }
 
     @Override
@@ -46,7 +47,7 @@ public class Evileye extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(5);
+            upgradeDamage(4);
         }
     }
 

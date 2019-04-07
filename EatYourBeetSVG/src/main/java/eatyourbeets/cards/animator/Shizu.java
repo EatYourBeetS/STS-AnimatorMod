@@ -46,8 +46,8 @@ public class Shizu extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
+            upgradeDamage(6);
+            //upgradeMagicNumber(1);
         }
     }
 

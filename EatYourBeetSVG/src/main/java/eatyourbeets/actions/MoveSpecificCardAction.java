@@ -123,5 +123,6 @@ public class MoveSpecificCardAction extends AnimatorAction
         this.destination.addToRandomSpot(card);
         AbstractDungeon.player.hand.refreshHandLayout();
         AbstractDungeon.player.hand.applyPowers();
+        AbstractDungeon.player.hand.glowCheck();
     }
 }

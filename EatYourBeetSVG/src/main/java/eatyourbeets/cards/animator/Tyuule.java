@@ -1,16 +1,15 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.cards.AnimatorCard;
+import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.GameActionsHelper;
+import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Tyuule extends AnimatorCard
+public class Tyuule extends AnimatorCard_Boost
 {
     public static final String ID = CreateFullID(Tyuule.class.getSimpleName());
 
@@ -18,47 +17,38 @@ public class Tyuule extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(0,0,2);
-
-        this.secondaryValue = this.baseSecondaryValue = 0;
+        Initialize(0, 0, 3);
 
         SetSynergy(Synergies.Gate);
     }
 
     @Override
-    public void applyPowers()
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        super.applyPowers();
-
-        int nonAttackCount = 0;
-        for (AbstractCard card : AbstractDungeon.player.hand.group)
+        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
         {
-            if (card.type != CardType.ATTACK && (card != this || upgraded))
-            {
-                nonAttackCount += 1;
-            }
+            GameActionsHelper.ApplyPower(p, m1, new PoisonPower(m1, p, this.magicNumber), this.magicNumber);
+            GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, 1, false), 1);
         }
 
-        this.secondaryValue = Math.max(0, nonAttackCount) * this.magicNumber;
-        this.isSecondaryValueModified = secondaryValue > 0;
-    }
-
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-        int poison = this.secondaryValue;
-        if (poison > 0)
+        if (ProgressBoost())
         {
-            for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
-            {
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m1, p, new PoisonPower(m1, p, poison), poison));
-            }
+            GameActionsHelper.GainEnergy(1);
         }
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeMagicNumber(1);
+        }
+    }
+
+    @Override
+    protected int GetBaseBoost()
+    {
+        return 2;
     }
 }

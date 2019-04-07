@@ -1,3 +1,4 @@
+
 {
 	"Animator_LivingPicture":
 	{
@@ -5,7 +6,7 @@
 		"FLAVOR": "他...他在看着.",
 		"DESCRIPTIONS":
 		[
-			"每回合一次每当协同生效时抽1张牌."
+			"每回合一次每当协 #y同生 效时抽1张牌."
 		]
 	},
 	"Animator_VividPicture":
@@ -14,7 +15,7 @@
 		"FLAVOR": "他...他在看着.",
 		"DESCRIPTIONS":
 		[
-			"每回合一次每当协同生效时抽1张牌 获得 [E]"
+			"每回合一次每当协 #y同生 效时抽1张牌 获得 [E]"
 		]
 	},
 	"Animator_TheMissingPiece":
@@ -71,7 +72,7 @@
 		[
 			"每场战斗可触发一次, 当你再一次受伤中损失超过15点血量时, 获得 #b5 层 #y再生 和 #b2 点 #y力量."
 		]
-	},	
+	},
 	"Animator_RacePiece":
 	{
 		"NAME": "race piece",
@@ -129,11 +130,11 @@
 	},
 	"Animator_ShionDessert":
 	{
-		"NAME": "Shion's Dessert",
-		"FLAVOR": "Here, have a taste, how bad can it be?",
+		"NAME": "紫苑的甜品",
+		"FLAVOR": "来，尝尝吧，味道不会太差......吧?",
 		"DESCRIPTIONS":
 		[
-			"Every #b", " #yAttacks, apply #b", " #yPoison to a random enemy."
+			"每#b次 ", " 攻击给予随机敌人一层 #b", " #y中毒 效果."
 		]
 	},
 	"Animator_EngravedStaff":
@@ -145,9 +146,30 @@
 			"在你的回合结束时， 保留手牌中消耗最高的牌， 直到被打出之前消耗减 #b1 ."
 		]
 	},
+	"Animator_Rinne":
+	{
+		"NAME": "???",
+		"FLAVOR": "???",
+		"DESCRIPTIONS":
+		[
+			"NzQ="
+		]
+	},
+	"Animator_ExquisiteBloodVial":
+	{
+		"NAME": "精致的血瓶",
+		"FLAVOR": "一个装着远古纯种吸血鬼血液的瓶子.",
+		[
+			"每场战斗开始时, 治愈 #b",
+			" 点生命. NL NL #y[Special #yRelic] NL #p在篝火处右击时 ， 将开启一场特殊且 #y困难 的战斗 ， 胜利后可以解锁该遗物的真正力量.",
+			"每场战斗开始时, 获得 #b",
+			" 层 #y再生 和 #b",
+			" 点生命上限. NL NL 失去所有 #y小血瓶 , 每当你获得一个 #y小血瓶 时, 只提升该遗物的效果."
+		]
+	},
 	"Animator_Buoy":
 	{
-		"NAME": "浮标",
+		"NAME": "泳圈",
 		"FLAVOR": "我的速度天下第一, 迅疾如风!",
 		"DESCRIPTIONS":
 		[

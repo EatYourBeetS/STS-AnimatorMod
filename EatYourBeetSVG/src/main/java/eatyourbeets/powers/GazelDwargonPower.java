@@ -47,7 +47,7 @@ public class GazelDwargonPower extends AnimatorPower implements OnBeforeLoseBloc
                 {
                     for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
                     {
-                        GameActionsHelper.DamageTarget(creature, m, blockLost, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+                        GameActionsHelper.DamageTarget(creature, m, blockLost, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
                     }
                 }
             }

@@ -23,8 +23,7 @@ public class GuildGirl extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        p.gainGold(this.magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new GuildGirlPower(p, 1), 1);
+        GameActionsHelper.ApplyPower(p, p, new GuildGirlPower(p, 1, this), 1);
     }
 
     @Override
@@ -32,7 +31,7 @@ public class GuildGirl extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(6);
+            upgradeMagicNumber(4);
         }
     }
 }

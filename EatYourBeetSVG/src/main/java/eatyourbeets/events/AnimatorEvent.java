@@ -17,6 +17,7 @@ public abstract class AnimatorEvent extends AbstractImageEvent
     }
 
     protected final EventStrings eventStrings;
+    protected final String[] DESCRIPTIONS;
 
     public AnimatorEvent(String id)
     {
@@ -25,6 +26,7 @@ public abstract class AnimatorEvent extends AbstractImageEvent
         this.eventStrings = AnimatorResources.GetEventStrings(id);
         NAME = eventStrings.NAME;
         OPTIONS = eventStrings.OPTIONS;
+        DESCRIPTIONS = eventStrings.DESCRIPTIONS;
 
         this.title = NAME;
         this.body = eventStrings.DESCRIPTIONS[0];

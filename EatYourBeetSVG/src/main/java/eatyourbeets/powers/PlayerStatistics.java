@@ -23,6 +23,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
     public static final PlayerStatistics Instance = new PlayerStatistics();
 
+    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying  = new GameEvent<>();
     public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
     public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
@@ -58,6 +59,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         turnCount = 0;
 
         onSynergy.Clear();
+        onEnemyDying.Clear();
         onBlockBroken.Clear();
         onBeforeLoseBlock.Clear();
         onAfterCardDrawn.Clear();
@@ -109,6 +111,14 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         }
         onBattleEnd.Clear();
         ClearStats();
+    }
+
+    public void OnEnemyDying(AbstractMonster enemy, boolean triggerRelics)
+    {
+        for (OnEnemyDyingSubscriber s : onEnemyDying.GetSubscribers())
+        {
+            s.OnEnemyDying(enemy, triggerRelics);
+        }
     }
 
     public void OnBlockBroken(AbstractCreature creature)

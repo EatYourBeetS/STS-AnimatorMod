@@ -45,10 +45,13 @@ public class SoulPatches
                         {
                             first = c;
                         }
-                        else for (int i = 0; i <= c.timesUpgraded; i++)
+                        else
                         {
-                            first.upgrade();
                             toRemove.add(c);
+                            for (int i = 0; i <= c.timesUpgraded; i++)
+                            {
+                                first.upgrade();
+                            }
                         }
                     }
                 }

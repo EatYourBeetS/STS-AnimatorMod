@@ -36,7 +36,7 @@
 	},
 	"animator_HiteiPower":
 	{
-		"DESCRIPTIONS": ["At the start of your turn gain #b", " gold, then choose and Exhaust #b", " card/s in your deck."],
+		"DESCRIPTIONS": ["At the start of your turn gain a random #yBuff, then choose and Exhaust #b", " card/s in your deck."],
 		"NAME": "Princess Hitei"
 	},
 	"animator_GuildGirlPower":

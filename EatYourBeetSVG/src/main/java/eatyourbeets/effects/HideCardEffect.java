@@ -17,8 +17,9 @@ public class HideCardEffect extends AbstractGameEffect
 
     public void update()
     {
-        this.c.target_y = -10000;
+        this.c.current_y = this.c.target_y = -10000;
         this.c.isFlipped = true;
+        this.isDone = true;
     }
 
     public void render(SpriteBatch sb)

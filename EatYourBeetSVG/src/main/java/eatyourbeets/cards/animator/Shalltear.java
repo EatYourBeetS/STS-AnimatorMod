@@ -3,49 +3,66 @@ package eatyourbeets.cards.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.OnTargetBlockBreakAction;
+import eatyourbeets.Utilities;
+import eatyourbeets.actions.MoveSpecificCardAction;
+import eatyourbeets.actions.OnDamageAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class Shalltear extends AnimatorCard
 {
     public static final String ID = CreateFullID(Shalltear.class.getSimpleName());
 
+//    private boolean returnToHand;
+
     public Shalltear()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(13,0, 1);
+        Initialize(6,0, 1);
+
+        AddExtendedDescription();
 
         SetSynergy(Synergies.Overlord);
     }
 
+//    @Override
+//    public void onMoveToDiscard()
+//    {
+//        super.onMoveToDiscard();
+//
+//        if (returnToHand)
+//        {
+//            AbstractPlayer p = AbstractDungeon.player;
+//            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.discardPile));
+//            returnToHand = false;
+//        }
+//    }
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        boolean hasActiveSynergy = HasActiveSynergy();
+        DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE);
+        GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
+        GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
 
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        if (HasActiveSynergy())
         {
-            DamageAction damageAction = new DamageAction(m1, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE);
-            ApplyPowerAction applyPowerAction = new ApplyPowerAction(m1, p, new WeakPower(m1, this.magicNumber, false), this.magicNumber);
+            GameActionsHelper.ApplyPower(p, m, new StrengthPower(m, -1), -1);
 
-            GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m1.hb.cX, m1.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
-            GameActionsHelper.AddToBottom(new OnTargetBlockBreakAction(m1, damageAction, applyPowerAction));
-
-            if (hasActiveSynergy)
+            if (!m.hasPower(ArtifactPower.POWER_ID))
             {
-                GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, this.magicNumber, false), this.magicNumber);
+                GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
             }
         }
     }
@@ -55,7 +72,21 @@ public class Shalltear extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(4);
+            upgradeDamage(3);
+        }
+    }
+
+    private void OnDamage(Object state, AbstractMonster monster)
+    {
+        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
+        if (initialBlock != null && monster != null)
+        {
+            if ((monster.isDying || monster.currentHealth <= 0) && !monster.halfDead)
+            {
+                GameActionsHelper.GainEnergy(1);
+                AbstractDungeon.player.heal(4, true);
+                //returnToHand = true;
+            }
         }
     }
 }

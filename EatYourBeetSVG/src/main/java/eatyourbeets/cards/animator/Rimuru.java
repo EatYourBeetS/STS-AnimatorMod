@@ -98,6 +98,7 @@ public class Rimuru extends AnimatorCard implements OnEndOfTurnSubscriber
                 if (c.type != CardType.CURSE && c.type != CardType.STATUS)
                 {
                     if (c instanceof AnimatorCard &&
+                            !(c instanceof Rimuru) &&
                             !c.tags.contains(CardTags.HEALING) &&
                             !c.tags.contains(BaseModCardTags.BASIC_DEFEND) &&
                             !c.tags.contains(BaseModCardTags.BASIC_STRIKE))

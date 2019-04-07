@@ -23,7 +23,7 @@ public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(2,0, 2);
+        Initialize(1,0, 3);
 
         baseSecondaryValue = secondaryValue = 1;
 
@@ -74,7 +74,7 @@ public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeDamage(1);
         }
     }
 

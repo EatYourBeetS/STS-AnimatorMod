@@ -22,7 +22,7 @@ public class ZankiKiguchi extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,0,2);
+        Initialize(9,0,1);
 
         AddExtendedDescription();
 
@@ -68,12 +68,11 @@ public class ZankiKiguchi extends AnimatorCard
 
     private void BuffCards()
     {
-        for (AbstractCard c : AbstractDungeon.player.hand.group)
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group)
         {
             if (c != this && c.baseDamage > 0)
             {
                 GameActionsHelper.AddToBottom(new ModifyDamageAction(c.uuid, this.magicNumber));
-                c.flash();
             }
         }
     }

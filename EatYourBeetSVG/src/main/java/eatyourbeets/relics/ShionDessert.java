@@ -39,7 +39,7 @@ public class ShionDessert extends AnimatorRelic
         if (card.type == AbstractCard.CardType.ATTACK)
         {
             this.counter += 1;
-            if (this.counter % 3 == 0)
+            if (this.counter % ATTACKS_COUNTER == 0)
             {
                 this.counter = 0;
                 this.flash();

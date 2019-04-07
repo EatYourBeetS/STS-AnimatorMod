@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.defect.TriggerPassiveAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -28,12 +29,13 @@ public class DwarfShaman extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH);
 
-        if (upgraded)
-        {
-            GameActionsHelper.GainBlock(p, this.block);
-        }
+        Earth earth = new Earth();
+        GameActionsHelper.ChannelOrb(earth, true);
 
-        GameActionsHelper.ChannelOrb(new Earth(), true);
+        if (upgraded && HasActiveSynergy())
+        {
+            GameActionsHelper.AddToBottom(new TriggerPassiveAction(earth, 1));
+        }
     }
 
     @Override
@@ -41,7 +43,7 @@ public class DwarfShaman extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
+            upgradeDamage(1);
         }
     }
 }

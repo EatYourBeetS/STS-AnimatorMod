@@ -20,7 +20,7 @@ public class Mikaela extends AnimatorCard_Boost
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(7,0, 2);
+        Initialize(7,0, 3);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -45,13 +45,13 @@ public class Mikaela extends AnimatorCard_Boost
         if (TryUpgrade())
         {
             upgradeDamage(4);
-            upgradeMagicNumber(1);
+            upgradeSecondaryValue(1);
         }
     }
 
     @Override
     protected int GetBaseBoost()
     {
-        return 2;
+        return upgraded ? 3 : 2;
     }
 }

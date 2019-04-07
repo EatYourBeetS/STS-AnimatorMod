@@ -16,6 +16,9 @@ import eatyourbeets.actions.KrulTepesAction;
 import eatyourbeets.actions.OnTargetDeadAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.relics.ExquisiteBloodVial;
+
+import java.util.ArrayList;
 
 public class KrulTepes extends AnimatorCard
 {
@@ -70,6 +73,28 @@ public class KrulTepes extends AnimatorCard
 
     public void ObtainReward()
     {
-        AbstractDungeon.getCurrRoom().addRelicToRewards(relicReward.makeCopy());
+        int ownedRelics = 0;
+        ArrayList<AbstractRelic> relics = AbstractDungeon.player.relics;
+        for (AbstractRelic relic : relics)
+        {
+            if (relic.relicId.equals(relicReward.relicId))
+            {
+                ownedRelics += 1;
+            }
+            else if (relic.relicId.equals(ExquisiteBloodVial.ID))
+            {
+                ownedRelics = -1;
+                break;
+            }
+        }
+
+        if (ownedRelics > 3 && AbstractDungeon.miscRng.randomBoolean())
+        {
+            AbstractDungeon.getCurrRoom().addRelicToRewards(new ExquisiteBloodVial());
+        }
+        else
+        {
+            AbstractDungeon.getCurrRoom().addRelicToRewards(relicReward.makeCopy());
+        }
     }
 }

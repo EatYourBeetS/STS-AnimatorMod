@@ -1,3 +1,4 @@
+
 {
 	"Animator_LivingPicture":
 	{
@@ -143,6 +144,28 @@
 		"DESCRIPTIONS":
 		[
 			"At the end of your turn, #yRetain your highest cost card, it costs #b1 less next turn."
+		]
+	},
+	"Animator_Rinne":
+	{
+		"NAME": "???",
+		"FLAVOR": "???",
+		"DESCRIPTIONS":
+		[
+			"NzQ="
+		]
+	},
+	"Animator_ExquisiteBloodVial":
+	{
+		"NAME": "Exquisite Blood Vial",
+		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
+		"DESCRIPTIONS":
+		[
+			"At the start of each combat, heal #b",
+			" HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special and #ydifficult fight, winning it will activate this relic's true effect.",
+			"At the start of each combat, gain #b",
+			" #yRegeneration and #b",
+			" Max HP. NL NL Lose all #yBlood #yVials, whenever you would obtain a #yBlood #yVial, improve this relic's effect instead."
 		]
 	},
 	"Animator_Buoy":

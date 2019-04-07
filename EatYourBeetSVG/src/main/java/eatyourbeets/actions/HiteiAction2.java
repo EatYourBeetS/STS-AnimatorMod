@@ -11,20 +11,19 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.misc.RandomizedList;
 
-public class HiteiAction extends AnimatorAction
+public class HiteiAction2 extends AnimatorAction
 {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("ExhaustAction");
     private final AbstractPlayer player;
+    private final int cards;
 
-    private final CardGroup cardGroup;
-
-    public HiteiAction()
+    public HiteiAction2(int cards)
     {
+        this.cards = cards;
         this.player = AbstractDungeon.player;
         this.setValues(this.player, AbstractDungeon.player, this.amount);
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.EXHAUST;
-        this.cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     }
 
     public void update()
@@ -35,18 +34,18 @@ public class HiteiAction extends AnimatorAction
             randomizedList.AddAll(player.drawPile.group);
             randomizedList.AddAll(player.discardPile.group);
 
-            cardGroup.clear();
-            for (int i = 0; i < 2; i++)
+            CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            for (int i = 0; i < cards; i++)
             {
                 if (randomizedList.Count() > 0)
                 {
-                    cardGroup.addToTop(randomizedList.Retrieve(AbstractDungeon.miscRng));
+                    group.addToTop(randomizedList.Retrieve(AbstractDungeon.miscRng));
                 }
             }
 
-            if (cardGroup.size() > 0)
+            if (group.size() > 0)
             {
-                AbstractDungeon.gridSelectScreen.open(cardGroup, 1, uiStrings.TEXT[0], false, false, false, false);
+                AbstractDungeon.gridSelectScreen.open(group, 1, uiStrings.TEXT[0], false, false, false, false);
             }
             else
             {
@@ -59,22 +58,23 @@ public class HiteiAction extends AnimatorAction
         {
             AbstractCard card = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 
-            GameActionsHelper.ExhaustCard(card);
-
-            for (AbstractCard c : cardGroup.group)
+            CardGroup group = null;
+            if (player.drawPile.contains(card))
             {
-                if (c != card)
-                {
-                    if (player.discardPile.contains(c))
-                    {
-                        player.discardPile.removeCard(c);
-                        player.drawPile.addToTop(c);
-                    }
-                    GameActionsHelper.AddToBottom(new DrawSpecificCardAction(c));
-                    c.setCostForTurn(0);
+                group = player.drawPile;
+            }
+            else if (player.discardPile.contains(card))
+            {
+                group = player.discardPile;
+            }
+            else if (player.hand.contains(card))
+            {
+                group = player.hand;
+            }
 
-                    break;
-                }
+            if (group != null)
+            {
+                GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(card, group));
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();

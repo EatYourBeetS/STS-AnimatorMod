@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -18,7 +19,7 @@ public class Sloth extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(2,4, 0);
+        Initialize(2,0, 1);
 
         baseSecondaryValue = secondaryValue = 2;
 
@@ -50,7 +51,7 @@ public class Sloth extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainBlock(p, this.block);
+            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber);
         }
     }
 
@@ -61,7 +62,6 @@ public class Sloth extends AnimatorCard
         {
             upgradeDamage(1);
             upgradeSecondaryValue(1);
-            upgradeBlock(2);
         }
     }
 }

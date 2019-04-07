@@ -136,7 +136,7 @@ public class TheMissingPiece extends AnimatorRelic
                 {
                     int size = synergyListMap.get(s).size();
 
-                    weight += 2 + Math.min(18, size * 3);
+                    weight += 2 + Math.min(12, size * 4);
                 }
 
                 logger.info(s.NAME + " : " + weight);

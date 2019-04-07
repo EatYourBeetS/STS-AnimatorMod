@@ -1,11 +1,13 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.actions.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.misc.RandomizedList;
@@ -17,9 +19,9 @@ public class CrowleyEusford extends AnimatorCard
 
     public CrowleyEusford()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(8,0,6);
+        Initialize(11,0,7);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -29,30 +31,24 @@ public class CrowleyEusford extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        this.baseDamage += this.magicNumber;
+        AbstractPlayer p = AbstractDungeon.player;
+
+        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, this.magicNumber));
+        GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.drawPile, p.discardPile, true));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-
-        RandomizedList<AbstractMonster> enemies = new RandomizedList<>(PlayerStatistics.GetCurrentEnemies(true));
-        enemies.Remove(m);
-
-        AbstractMonster m1 = enemies.Retrieve(AbstractDungeon.miscRng);
-        if (m1 != null)
-        {
-            GameActionsHelper.DamageTarget(p, m1, this.damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        }
+        GameActionsHelper.DamageRandomEnemy(p, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override
     public void upgrade() 
     {
         if (TryUpgrade())
-        {          
-            upgradeDamage(2);
+        {
+            upgradeDamage(3);
             upgradeMagicNumber(2);
         }
     }

@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.events.TheMaskedTraveler1;
+import eatyourbeets.monsters.KrulTepes;
 import eatyourbeets.relics.*;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.rewards.SynergyCardsReward;
@@ -95,22 +96,6 @@ public class AnimatorResources
         return result;
     }
 
-    static
-    {
-        if (Settings.language == Settings.GameLanguage.ZHT)
-        {
-            languagePath = "localization/zht/";
-        }
-        else if (Settings.language == Settings.GameLanguage.ZHS)
-        {
-            languagePath = "localization/zhs/";
-        }
-        else
-        {
-            languagePath = "localization/eng/";
-        }
-    }
-
     public static void LoadGameStrings()
     {
         BaseMod.loadCustomStringsFile(OrbStrings.class, languagePath + "Animator_OrbStrings.json");
@@ -164,6 +149,11 @@ public class AnimatorResources
         return "images/ui/rewards/" + rewardID + ".png";
     }
 
+    public static String GetMonsterImage(String monsterID)
+    {
+        return "images/monsters/" + monsterID + ".png";
+    }
+
     public static void LoadCustomKeywords()
     {
         final String json = Gdx.files.internal(languagePath + "Animator_KeywordStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
@@ -181,6 +171,8 @@ public class AnimatorResources
     public static void LoadCustomRelics()
     {
         BaseMod.addRelicToCustomPool(new LivingPicture(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new Rinne(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new ExquisiteBloodVial(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new TheMissingPiece(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new PurgingStone(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new WizardHat(), AbstractEnums.Cards.THE_ANIMATOR);
@@ -203,6 +195,11 @@ public class AnimatorResources
     {
         BaseMod.addAudio("ANIMATOR_ORB_EARTH_EVOKE", "audio/sound/ANIMATOR_ORB_EARTH_EVOKE.ogg");
         BaseMod.addAudio("ANIMATOR_ORB_EARTH_CHANNEL", "audio/sound/ANIMATOR_ORB_EARTH_CHANNEL.ogg");
+    }
+
+    public static void LoadMonsters()
+    {
+        BaseMod.addMonster(KrulTepes.ID, KrulTepes::new);
     }
 
     public static void LoadCustomEvents()
@@ -314,5 +311,21 @@ public class AnimatorResources
         }
 
         return false;
+    }
+
+    static
+    {
+        if (Settings.language == Settings.GameLanguage.ZHT)
+        {
+            languagePath = "localization/zht/";
+        }
+        else if (Settings.language == Settings.GameLanguage.ZHS)
+        {
+            languagePath = "localization/zhs/";
+        }
+        else
+        {
+            languagePath = "localization/eng/";
+        }
     }
 }

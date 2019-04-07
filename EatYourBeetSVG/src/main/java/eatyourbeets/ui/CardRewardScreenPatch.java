@@ -124,6 +124,8 @@ public class CardRewardScreenPatch
             }
         }
 
+        buttons.remove(toBan);
+
         while (toBan != null || toRemove != null)
         {
             buttons.remove(toRemove);
@@ -136,17 +138,30 @@ public class CardRewardScreenPatch
                 rewardBundle.Remove(toBan.card);
                 toBan.hideInstantly();
 
-                if (rewardItem.cards.size() == 0)
-                {
-                    AbstractDungeon.combatRewardScreen.rewards.remove(rewardItem);
-                    AbstractDungeon.combatRewardScreen.positionRewards();
+                AbstractCard replacement = AbstractDungeon.returnRandomCard();
+                replacement.target_x = replacement.current_x = toBan.card.target_x;
+                replacement.target_y = replacement.current_y = toBan.card.target_y;
+                rewardItem.cards.add(replacement);
 
-                    if (AbstractDungeon.combatRewardScreen.rewards.isEmpty())
-                    {
-                        AbstractDungeon.combatRewardScreen.hasTakenAll = true;
-                        AbstractDungeon.overlayMenu.proceedButton.show();
-                    }
+                if (purgingStone.CanBan(replacement))
+                {
+                    BanCardButton banButton = new BanCardButton(replacement);
+                    banButton.show();
+                    buttons.add(banButton);
                 }
+
+
+//                if (rewardItem.cards.size() == 0)
+//                {
+//                    AbstractDungeon.combatRewardScreen.rewards.remove(rewardItem);
+//                    AbstractDungeon.combatRewardScreen.positionRewards();
+//
+//                    if (AbstractDungeon.combatRewardScreen.rewards.isEmpty())
+//                    {
+//                        AbstractDungeon.combatRewardScreen.hasTakenAll = true;
+//                        AbstractDungeon.overlayMenu.proceedButton.show();
+//                    }
+//                }
             }
 
             toRemove = null;

@@ -2,25 +2,20 @@ package eatyourbeets.powers;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
-import eatyourbeets.actions.HiteiAction;
-import eatyourbeets.rewards.SpecialGoldReward;
+import eatyourbeets.actions.HiteiAction2;
 
 public class HiteiPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(HiteiPower.class.getSimpleName());
 
-    private final String originalName;
-
     private int upgradeStack;
     private int unupgradedStacks;
-    private int goldGain;
-    private int goldCap = 100;
 
-    public HiteiPower(AbstractPlayer owner, int goldGain, boolean upgraded, String originalName)
+    public HiteiPower(AbstractPlayer owner, boolean upgraded)
     {
         super(owner, POWER_ID);
 
@@ -33,9 +28,7 @@ public class HiteiPower extends AnimatorPower
             this.unupgradedStacks = 1;
         }
 
-        this.originalName = originalName;
-        this.amount = 0;
-        this.goldGain = goldGain;
+        this.amount = 1;
 
         updateDescription();
     }
@@ -43,7 +36,7 @@ public class HiteiPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        this.description = (powerStrings.DESCRIPTIONS[0] + goldGain + powerStrings.DESCRIPTIONS[1] + unupgradedStacks + powerStrings.DESCRIPTIONS[2]);
+        this.description = (powerStrings.DESCRIPTIONS[0] + amount + powerStrings.DESCRIPTIONS[1]);
     }
 
     @Override
@@ -51,31 +44,21 @@ public class HiteiPower extends AnimatorPower
     {
         super.atStartOfTurn();
 
-        this.amount = Math.min(goldCap, this.amount + goldGain);
+        AbstractPlayer p = AbstractDungeon.player;
 
         for (int i = 0; i < unupgradedStacks; i++)
         {
-            GameActionsHelper.AddToBottom(new HiteiAction(2));
+            GameActionsHelper.AddToBottom(new HiteiAction2(2));
+            GainRandomBuff(p);
         }
 
         for (int i = 0; i < upgradeStack; i++)
         {
-            GameActionsHelper.AddToBottom(new HiteiAction(3));
+            GameActionsHelper.AddToBottom(new HiteiAction2(3));
+            GainRandomBuff(p);
         }
 
         this.flash();
-    }
-
-    @Override
-    public void onVictory()
-    {
-        super.onVictory();
-
-        AbstractRoom room = PlayerStatistics.GetCurrentRoom();
-        if (room != null && room.rewardAllowed)
-        {
-            room.rewards.add(0, new SpecialGoldReward(this.originalName, amount));
-        }
     }
 
     @Override
@@ -84,19 +67,59 @@ public class HiteiPower extends AnimatorPower
         HiteiPower other = Utilities.SafeCast(power, HiteiPower.class);
         if (other != null && power.owner == target)
         {
-            int bonus = (60 - (10 * (unupgradedStacks + upgradeStack)));
-
-            if (bonus > 0)
-            {
-                this.goldCap += bonus;
-            }
-
             this.unupgradedStacks += other.unupgradedStacks;
             this.upgradeStack += other.upgradeStack;
-
-            this.goldGain += other.goldGain;
         }
 
         super.onApplyPower(power, target, source);
+    }
+
+    private void GainRandomBuff(AbstractPlayer p)
+    {
+        int roll = AbstractDungeon.miscRng.random(38);
+        if (roll <= 4)
+        {
+            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
+        }
+        else if (roll <= 8)
+        {
+            GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, 1), 1);
+        }
+        else if (roll <= 12)
+        {
+            GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
+        }
+        else if (roll <= 16)
+        {
+            GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
+        }
+        else if (roll <= 20)
+        {
+            GameActionsHelper.ApplyPower(p, p, new BlurPower(p, 1), 1);
+        }
+        else if (roll <= 24)
+        {
+            GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, 2), 2);
+        }
+        else if (roll <= 28)
+        {
+            GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, 2), 2);
+        }
+        else if (roll <= 32)
+        {
+            GameActionsHelper.ApplyPower(p, p, new DrawCardNextTurnPower(p, 1), 1);
+        }
+        else if (roll <= 36)
+        {
+            GameActionsHelper.ApplyPower(p, p, new EnergizedPower(p, 1), 1);
+        }
+        else if (roll <= 37)
+        {
+            GameActionsHelper.ApplyPower(p, p, new IntangiblePlayerPower(p, 1), 1);
+        }
+        else
+        {
+            GameActionsHelper.ApplyPower(p, p, new BufferPower(p, 1), 1);
+        }
     }
 }

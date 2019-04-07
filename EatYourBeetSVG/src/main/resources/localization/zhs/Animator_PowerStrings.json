@@ -37,7 +37,7 @@
 	},
 	"animator_HiteiPower":
 	{
-		"DESCRIPTIONS": ["在你的回合开始时获得", "个金币, 从你的牌库中选择并 消耗", " 张牌。"],
+		"DESCRIPTIONS": ["在你的回合开始时获得随机 #y积极影响, 从你的牌库中选择并 消耗", " 张牌。"],
 		"NAME": "否定姫"
 	},
 	"animator_GuildGirlPower":
@@ -78,7 +78,7 @@
 	"animator_BiyorigoPower":
 	{
 		"DESCRIPTIONS": ["每4次攻 ， 击获得 #b", " 点 力量 并且获得 #b", " 点 敏捷"],
-		"NAME": "Bito Kanzashi"
+		"NAME": "大和号"
 	},
 	"animator_AlbedoPower":
 	{
@@ -108,7 +108,7 @@
 	"animator_PridePower":
 	{
 		"DESCRIPTIONS": ["直到你的下个回合 ， 当你受到格挡外的伤害时 ， 你的伤害的黑暗充能球抵消这个伤害并损失同等的伤害充能 。"],
-		"NAME": "Pride"
+		"NAME": "傲慢"
 	},
 	"animator_BurningPower":
 	{
@@ -122,13 +122,13 @@
 	},
 	"animator_KaijinPower":
 	{
-		"DESCRIPTIONS": ["At the end of your turn, increase the #yBlock and damage of a random card in your draw pile by #b", "."],
-		"NAME": "Kaijin"
+		"DESCRIPTIONS": ["每回合结束时 ， 随机选择一张抽牌堆中的牌 ， 在本场战斗中使其造成的伤害与获得的格挡量提高#b", "点."],
+		"NAME": "凯·金"
 	},
 	"animator_GazelDwargonPower":
 	{
-		"DESCRIPTIONS": ["Whenever your #yBlock is removed, deal that much damage #b", " times to ALL enemies."],
-		"NAME": "Gazel Dwargon"
+		"DESCRIPTIONS": ["当你的格挡消失时, 对所有敌人造成等量伤害 #b", " ."],
+		"NAME": "矮人王"
 	},
 	"animator_EarthenThornsPower":
 	{

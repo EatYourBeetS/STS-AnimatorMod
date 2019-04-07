@@ -16,7 +16,7 @@ public class AcuraAkari extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(0,4, 2);
+        Initialize(0,5, 2);
 
         SetSynergy(Synergies.Chaika);
     }

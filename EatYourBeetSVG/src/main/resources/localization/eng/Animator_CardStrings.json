@@ -58,7 +58,7 @@
 	},
 	"animator_Ara":
 	{
-		"DESCRIPTION": "Deal !D! damage twice. NL Overrun: Apply !M! Vulnerable.",
+		"DESCRIPTION": "Deal !D! damage twice. NL Overrun: Gain !M! Dexterity.",
 		"NAME": "Ara"
 	},
 	"animator_Archer":
@@ -80,6 +80,12 @@
 	{
 		"DESCRIPTION": "Gain !B! Block Twice. NL Synergy: Gain !M! [#EFC851]Plated [#EFC851]Armor.",
 		"NAME": "Azekura"
+	},
+	"animator_Benimaru":
+	{
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. Overrun: Gain !B! Block. Synergy: Apply !M! [#EFC851]Burning[].",
+		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
+		"NAME": "Benimaru"
 	},
 	"animator_Berserker":
 	{
@@ -147,7 +153,7 @@
 	},
 	"animator_CrowleyEusford":
 	{
-		"DESCRIPTION": "Deal !D! damage to the enemy and to another random enemy. NL Recall: Gain !M! damage this combat.",
+		"DESCRIPTION": "Deal !D! damage to a random enemy. NL Recall: Gain !M! damage and return to your draw pile",
 		"NAME": "Crowley Eusford"
 	},
 	"animator_Darkness":
@@ -207,14 +213,14 @@
 		"DESCRIPTION": "Gain !B! Block. NL Gain !M! temporary [#EFC851]Thorns.",
 		"NAME": "Improved Defend"
 	},
-	"animator_Defend_NoGameNoLife":
-	{
-		"DESCRIPTION": "Gain !B! Block. NL Retain your leftmost playable card.",
-		"NAME": "Improved Defend"
-	},
 	"animator_Defend_Konosuba":
 	{
 		"DESCRIPTION": "Gain !B! Block. NL Boost !SV!: Heal !M! HP.",
+		"NAME": "Improved Defend"
+	},
+	"animator_Defend_NoGameNoLife":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Retain your leftmost playable card.",
 		"NAME": "Improved Defend"
 	},
 	"animator_Defend_Overlord":
@@ -234,7 +240,7 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "Gain [E] [E]. NL Take !M! damage. NL Increase this card's damage by !SV! this combat.",
+		"DESCRIPTION": "Gain [E] [E]. NL Take !M! damage at the end of this turn, then increase this damage by !SV!.",
 		"NAME": "Demiurge"
 	},
 	"animator_DolaCouronne":
@@ -262,7 +268,7 @@
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Channel 1 Earth.",
 		"NAME": "'Dwarf Shaman'",
-		"UPGRADE_DESCRIPTION": "Deal !D! Damage. NL Gain !B! Block. NL Channel 1 Earth."
+		"UPGRADE_DESCRIPTION": "Deal !D! Damage. NL [#EFC851]Channel 1 Earth. NL Synergy: Trigger its passive ability."
 	},
 	"animator_Elesis":
 	{
@@ -334,7 +340,7 @@
 	},
 	"animator_Evileye":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL [#EFC851]Reload: Trigger the passive ability of your next Orb.",
+		"DESCRIPTION": "Deal !D! damage. NL Draw 1 card. NL [#EFC851]Reload: Trigger the passive ability of your next Orb.",
 		"EXTENDED_DESCRIPTION": ["Reload", "Discard any number of cards, activate this effect that many times."],
 		"NAME": "Evileye"
 	},
@@ -353,6 +359,12 @@
 	{
 		"DESCRIPTION": "Shapeshifter. Gain !B! Block for each enemy. Recall: Gain !M! [#EFC851]Plated [#EFC851]Armor.",
 		"NAME": "Fredrika"
+	},
+	"animator_GazelDwargon":
+	{
+		"DESCRIPTION": "Whenever your Block is removed, deal that much damage to ALL enemies ([#EFC851]*[#FFFFFF]).",
+		"EXTENDED_DESCRIPTION": ["* Note", "Block used to reduce damage will not count as removed."],
+		"NAME": "Gazel Dwargon"
 	},
 	"animator_Gilgamesh":
 	{
@@ -406,7 +418,7 @@
 	},
 	"animator_GuildGirl":
 	{
-		"DESCRIPTION": "Gain !M! [#EFC851]Gold. NL At the start of each turn, Cycle 1 card.",
+		"DESCRIPTION": "At the start of each turn, Cycle 1 card. NL When a non-minion enemy dies, gain !M! [#EFC851]Gold.",
 		"NAME": "'Guild Girl'"
 	},
 	"animator_Guren":
@@ -421,6 +433,12 @@
 		"DESCRIPTION": "Apply !SV! Weak to ALL enemies and give them !M! Block. NL Cycle 1 card. NL Recall: Gain [E]",
 		"NAME": "Guy"
 	},
+	"animator_Hakurou":
+	{
+		"DESCRIPTION": "[#EFC851]Martial [#EFC851]Artist. Deal !D! damage !M! times. NL [#EFC851]Drawn: Gain !SV! Temporary Dexterity.",
+		"EXTENDED_DESCRIPTION": ["Martial Artist", "This card's damage also scales with #yDexterity."],
+		"NAME": "Hakurou"
+	},
 	"animator_HigakiRinne":
 	{
 		"DESCRIPTION": "Shapeshifter. NL Behaves erratically...",
@@ -430,9 +448,9 @@
 	},
 	"animator_HighElfArcher":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. NL Boost !SV!: Draw !M! card.",
+		"DESCRIPTION": "Deal !D! Piercing damage. NL Boost !SV! : Draw !M! card.",
 		"NAME": "'High Elf Archer'",
-		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage. NL Boost !SV!: Draw !M! cards."
+		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage. NL Boost !SV! : Draw !M! cards."
 	},
 	"animator_HiiragiShinya":
 	{
@@ -442,8 +460,7 @@
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "At the start of your turn gain !M! [#EFC851]Gold then choose and Exhaust 1 of !SV! random cards in your deck ([#EFC851]*[#FFFFFF]).",
-		"EXTENDED_DESCRIPTION": ["* Note", "You cannot gain more than 100 #yGold per combat. Stacking this power increases the #yGold cap a little."],
+		"DESCRIPTION": "At the start of your turn, gain a random [#EFC851]Buff, then choose and Exhaust 1 of !M! cards in your deck.",
 		"NAME": "Hitei"
 	},
 	"animator_HououinKyouma":
@@ -473,6 +490,11 @@
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Increase this damage by !M! % for each [#EFC851]Debuff on the enemy.",
 		"NAME": "Jibril"
+	},
+	"animator_Kaijin":
+	{
+		"DESCRIPTION": "At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat.",
+		"NAME": "Kaijin"
 	},
 	"animator_Kazuma":
 	{
@@ -546,6 +568,12 @@
 		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Boost !SV! : Choose and Exhaust a card in your discard pile.",
 		"NAME": "Mikaela"
 	},
+	"animator_Millim":
+	{
+		"DESCRIPTION": "Augmentable. [#EFC851]Unique. NL Deal !D! damage. NL Synergy: Gain !B! Block.",
+		"EXTENDED_DESCRIPTION": ["Unique", "You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead."],
+		"NAME": "Millim"
+	},
 	"animator_MisaKurobane":
 	{
 		"DESCRIPTION": "Apply !M! [#EFC851]Burning. NL Draw 1 Card. NL After !SV! uses, change into [#EFC851]Yusarin.",
@@ -610,6 +638,12 @@
 		"DESCRIPTION": "Apply !M! Vulnerable. NL Gain !B! Block. NL Synergy and Recall: Gain 1 Blur.",
 		"NAME": "Rena"
 	},
+	"animator_Rimuru":
+	{
+		"DESCRIPTION": "[#EFC851]Drawn: Become a copy of a random card, it has Shapeshifter.",
+		"NAME": "Rimuru",
+		"UPGRADE_DESCRIPTION": "[#EFC851]Drawn: Become an Upgraded copy of a random card, it has Shapeshifter."
+	},
 	"animator_RinTohsaka":
 	{
 		"DESCRIPTION": "Channel !M! random Orb. Synergy: Gain !B! Block.",
@@ -651,7 +685,8 @@
 	},
 	"animator_Shalltear":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Synergy and Overrun: Apply !M! Weak.",
+		"DESCRIPTION": "[#EFC851]Bloodlust. NL Deal !D! damage. NL Synergy: Steal !M! Strength.",
+		"EXTENDED_DESCRIPTION": ["Bloodlust", "If this kills a non-minion enemy, heal 5 HP and gain [E]"],
 		"NAME": "Shalltear"
 	},
 	"animator_Shichika":
@@ -680,15 +715,31 @@
 		"DESCRIPTION": "Cost 1 less for each Synergy you activated this turn. Gain [E] at the start of each turn.",
 		"NAME": "Shiro"
 	},
+	"animator_Shizu":
+	{
+		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! cards. NL [#EFC851]Ifrit.",
+		"EXTENDED_DESCRIPTION": ["Ifrit", "Exhaust up to 4 cards in your hand, apply that much #yBurning to ALL enemies. NL Add 2 #yBurns to your discard pile."],
+		"NAME": "Shizu"
+	},
+	"animator_Shuna":
+	{
+		"DESCRIPTION": "[#EFC851]Drawn: Gain !B! Block. NL Draw 2 cards. NL Synergy: This card gains !M! Block this combat.",
+		"NAME": "Shuna"
+	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Double this card's base damage this combat. NL Synergy: Gain !B! Block.",
+		"DESCRIPTION": "Deal !D! Damage. NL Double this card's base damage. NL Synergy: Gain !M! Strength.",
 		"NAME": "Sloth"
 	},
 	"animator_Sora":
 	{
 		"DESCRIPTION": "Choose and execute !M! custom Effects. Synergy: Choose 1 more Effect.",
 		"NAME": "Sora"
+	},
+	"animator_Souei":
+	{
+		"DESCRIPTION": "Apply !M! Poison. NL Trigger the Poison of ALL enemies, if any of them dies gain Intangible.",
+		"NAME": "Souei"
 	},
 	"animator_Spearman":
 	{
@@ -793,9 +844,8 @@
 	},
 	"animator_Tyuule":
 	{
-		"DESCRIPTION": "Apply !M! Poison to ALL enemies for each other [#EFC851]Non-Attack card in your hand. NL (Apply !SV! Poison)",
-		"NAME": "Tyuule",
-		"UPGRADE_DESCRIPTION": "Apply !M! Poison to ALL enemies for each [#EFC851]Non-Attack card in your hand. NL (Apply !SV! Poison)"
+		"DESCRIPTION": "Apply !M! Poison and 1 Weak to ALL enemies. NL Boost !SV! : Gain [E]",
+		"NAME": "Tyuule"
 	},
 	"animator_Urushihara":
 	{
@@ -808,6 +858,12 @@
 		"DESCRIPTION": "Shapeshifter. [#EFC851]Vanir. NL Deal !D! Damage. NL Boost !SV! : Deal !M! more damage.",
 		"EXTENDED_DESCRIPTION": ["Vanir", "If this card is exhausted, choose a card in your draw pile and transform it into a new copy of this card."],
 		"NAME": "Vanir"
+	},
+	"animator_Vesta":
+	{
+		"DESCRIPTION": "Choose a card in your Discard pile, after !M! turns, add an Upgraded copy of it to your hand. Purge.",
+		"EXTENDED_DESCRIPTION": ["Select a card, after # turns, add an Upgraded copy of it to your hand."],
+		"NAME": "Vesta"
 	},
 	"animator_Viivi":
 	{
@@ -852,7 +908,7 @@
 	},
 	"animator_ZankiKiguchi":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Overrun and Recall: ALL [#EFC851]Attacks in your hand gain !M! damage this combat.",
+		"DESCRIPTION": "Deal !D! Damage. NL Overrun and Recall: ALL [#EFC851]Attacks in your draw pile gain !M! damage.",
 		"NAME": "Zanki"
 	},
 	"animator_Zero":
@@ -860,62 +916,5 @@
 		"DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile. Exhaust.",
 		"NAME": "Zero",
 		"UPGRADE_DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile."
-	},
-	"animator_Rimuru":
-	{
-		"DESCRIPTION": "[#EFC851]Drawn: Become a copy of a random card, it has Shapeshifter.",
-		"NAME": "Rimuru",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Drawn: Become an Upgraded copy of a random card, it has Shapeshifter."
-	},
-	"animator_Shizu":
-	{
-		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! cards. NL [#EFC851]Ifrit.",
-		"EXTENDED_DESCRIPTION": ["Ifrit", "Exhaust up to 4 cards in your hand, apply that much #yBurning to ALL enemies. NL Add 2 #yBurns to your discard pile."],
-		"NAME": "Shizu"
-	},
-	"animator_GazelDwargon":
-	{
-		"DESCRIPTION": "Whenever your Block is removed, deal that much damage to ALL enemies ([#EFC851]*[#FFFFFF]).",
-		"EXTENDED_DESCRIPTION": ["* Note", "Block used to reduce damage will not count as removed."],
-		"NAME": "Gazel Dwargon"
-	},
-	"animator_Souei":
-	{
-		"DESCRIPTION": "Apply !M! Poison. NL Trigger the Poison of ALL enemies, if any of them dies, gain Intangible.",
-		"NAME": "Souei"
-	},
-	"animator_Shuna":
-	{
-		"DESCRIPTION": "[#EFC851]Drawn: Gain !B! Block. NL Draw 2 cards. NL Synergy: This card gains !M! Block this combat.",
-		"NAME": "Shuna"
-	},
-	"animator_Vesta":
-	{
-		"DESCRIPTION": "Choose a card in your Discard pile, after !M! turns, add an Upgraded copy of it to your hand. Purge.",
-		"EXTENDED_DESCRIPTION": ["Select a card, after # turns, add an Upgraded copy of it to your hand."],
-		"NAME": "Vesta"
-	},
-	"animator_Kaijin":
-	{
-		"DESCRIPTION": "At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat.",
-		"NAME": "Kaijin"
-	},
-	"animator_Hakurou":
-	{
-		"DESCRIPTION": "[#EFC851]Martial [#EFC851]Artist. Deal !D! damage !M! times. NL [#EFC851]Drawn: Gain !SV! Temporary Dexterity.",
-		"EXTENDED_DESCRIPTION": ["Martial Artist", "This card's damage also scales with #yDexterity."],
-		"NAME": "Hakurou"
-	},
-	"animator_Benimaru":
-	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. Overrun: Gain !B! Block. NL Synergy: Apply !M! [#EFC851]Burning[].",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
-		"NAME": "Benimaru"
-	},
-	"animator_Millim":
-	{
-		"DESCRIPTION": "Augmentable. [#EFC851]Unique. NL Deal !D! damage. NL Synergy: Gain !B! Block.",
-		"EXTENDED_DESCRIPTION": ["Unique", "You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead."],
-		"NAME": "Millim"
 	}
 }

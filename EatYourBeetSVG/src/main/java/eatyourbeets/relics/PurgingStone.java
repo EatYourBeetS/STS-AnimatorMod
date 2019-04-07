@@ -1,5 +1,6 @@
 package eatyourbeets.relics;
 
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -14,6 +15,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.powers.PlayerStatistics;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringJoiner;
@@ -22,6 +24,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 {
     public static final String ID = CreateFullID(PurgingStone.class.getSimpleName());
 
+    private static Field isBoss = null;
     private final ArrayList<Synergy> bannedSynergies;
 
     public PurgingStone()
@@ -29,6 +32,25 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
         super(ID, RelicTier.STARTER, LandingSound.SOLID);
 
         bannedSynergies = new ArrayList<>();
+
+        if (isBoss == null)
+        {
+            try
+            {
+                isBoss = RewardItem.class.getDeclaredField("isBoss");
+                isBoss.setAccessible(true);
+            }
+            catch (NoSuchFieldException e)
+            {
+                e.printStackTrace();
+                isBoss = null;
+            }
+        }
+    }
+
+    public ArrayList<Synergy> GetBannedSeries()
+    {
+        return new ArrayList<>(bannedSynergies);
     }
 
     public int GetBannedCount()
@@ -78,7 +100,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
         counter = 0;
         UpdateBannedTip();
 
-        AddUses(3);
+        AddUses(4);
     }
 
     @Override
@@ -143,7 +165,17 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
     {
         if (!PlayerStatistics.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD)
         {
-            return counter > 0;
+            try
+            {
+                if (!(boolean)isBoss.get(rewardItem))
+                {
+                    return counter > 0;
+                }
+            }
+            catch (IllegalAccessException | ClassCastException e)
+            {
+                e.printStackTrace();
+            }
         }
 
         return false;

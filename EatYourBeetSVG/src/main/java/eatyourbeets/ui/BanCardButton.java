@@ -24,6 +24,7 @@ public class BanCardButton
     private static final int W = 512;
     private static final int H = 256;
 
+    private float showTimer;
     private float current_x;
     private float target_x;
     private boolean isHidden;
@@ -37,10 +38,11 @@ public class BanCardButton
     private final float HIDE_X;
     private final float SHOW_X;
     private final float SHOW_Y;
-    public final AbstractCard card;
+    public AbstractCard card;
 
     public BanCardButton(AbstractCard card)
     {
+        this.showTimer = -1;
         this.card = card;
         this.SHOW_X = card.target_x;
         this.SHOW_Y = card.target_y + (Settings.scale * 200);
@@ -56,7 +58,15 @@ public class BanCardButton
 
     public void update()
     {
-        if (!this.isHidden && card.targetDrawScale == 0.75f)
+        if (showTimer >= 0)
+        {
+            showTimer -= Gdx.graphics.getDeltaTime();
+            if (showTimer < 0)
+            {
+                this.isHidden = false;
+            }
+        }
+        else if (!this.isHidden)
         {
             this.hb.update();
             if (this.hb.justHovered)
@@ -107,12 +117,18 @@ public class BanCardButton
 
     public void show()
     {
-        this.isHidden = false;
+        this.showTimer = 0.5f;
         this.textColor.a = 0.0F;
         this.btnColor.a = 0.0F;
-        this.current_x = HIDE_X;
+        this.current_x = SHOW_X; //HIDE_X;
         this.target_x = SHOW_X;
         this.hb.move(SHOW_X, SHOW_Y);
+//        this.isHidden = false;
+//        this.textColor.a = 0.0F;
+//        this.btnColor.a = 0.0F;
+//        this.current_x = HIDE_X;
+//        this.target_x = SHOW_X;
+//        this.hb.move(SHOW_X, SHOW_Y);
     }
 
     public void render(SpriteBatch sb)

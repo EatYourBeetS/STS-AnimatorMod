@@ -1,14 +1,24 @@
 
 {
-  "Animator_Earth": 
-  {
-    "NAME": "土素",
-    "DESCRIPTION": 
-	[
-      "#y被动: 回合结束时， 获得 #b",
-	  " 层 临时荆棘. NL #y激活: 造成 #b",
-	  " 点伤害，在敌人之间分裂. NL 触发 #b",
-	  " 次被动效果后, #y激活 该充能球."
-    ]
-  }
+	"Animator_Earth":
+	{
+		"NAME": "土素",
+		"DESCRIPTION":
+		[
+			"#y被动: 回合结束时， 获得 #b",
+			" 层 临时荆棘. NL #y激活: 造成 #b",
+			" 点伤害，在敌人之间分裂. NL 触发 #b",
+			" 次被动效果后, #y激活 该充能球."
+		]
+	},
+	"Animator_Fire":
+	{
+		"NAME": "Fire",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, apply #b",
+			" #yBurning to a random enemy. NL #yEvoke: Apply #b",
+			" #yBurning to ALL enemies."
+		]
+	}
 }

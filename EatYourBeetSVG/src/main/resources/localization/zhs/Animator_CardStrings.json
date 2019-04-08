@@ -47,7 +47,7 @@
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "对目标造成 !D! 点伤害 ，并对其余敌人造成 !SV! 点伤害 。 遗赠 : 获得 !M! 点 [#EFC851]多层格挡[] 。",
+		"DESCRIPTION": "对目标造成 !D! 点伤害 ， 并对其余敌人造成 !SV! 点伤害 。 遗赠 : 获得 !M! 点 多层护甲 。",
 		"NAME": "亚历山大大帝"
 	},
 	"animator_Aqua":
@@ -78,13 +78,12 @@
 	},
 	"animator_Azekura":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 2 次 。 NL 同调 : 获得 !M! 点 [#EFC851]多层护甲[] 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 2 次 。 NL 同调 : 获得 !M! 点 多层护甲 。",
 		"NAME": "校仓必"
 	},
 	"animator_Benimaru":
 	{
 		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 NL 压倒 : 获得 !B! 点 格挡 。 同调 : 给予 !M! 层 燃烧 。",
-		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 伤害 。 每层使收到的伤害额外增加 4% 。"],
 		"NAME": "红丸"
 	},
 	"animator_Berserker":
@@ -104,7 +103,7 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "对生命值最低的敌人造成 !D! 点 伤害 。 本回合中 ， 接下来 !M! 次触发 同调 效果时 ，每次获得一层 [#EFC851]多层护甲[] 。",
+		"DESCRIPTION": "对生命值最低的敌人造成 !D! 点 伤害 。 本回合中 ， 接下来 !M! 次触发 同调 效果时 ，每次获得一层 多层护甲 。",
 		"NAME": "波赛斯"
 	},
 	"animator_Caster":
@@ -158,10 +157,9 @@
 	},
 	"animator_Darkness":
 	{
-		"DESCRIPTION": "获得 !M! 点 [#EFC851]多层护甲[] 。 每次受伤时随机 升级 !M! 张卡 ， 手牌优先 。",
+		"DESCRIPTION": "获得 !M! 点 多层护甲 。 每次受伤时随机 升级 !M! 张卡 ， 手牌优先 。",
 		"EXTENDED_DESCRIPTION": ["", ""],
-		"NAME": "达克尼斯",
-		"UPGRADE_DESCRIPTION": "获得 !M! 点 [#EFC851]多层护甲[] 。 每次受伤时随机 升级 !M! 张卡 , 手牌优先 。"
+		"NAME": "达克尼斯"
 	},
 	"animator_Defend":
 	{
@@ -283,7 +281,7 @@
 	},
 	"animator_ElricAlphonseAlt":
 	{
-		"DESCRIPTION": "获得 !M! [#EFC851]多层护甲[] 。 获得 !B! 点 格挡 。 获得一个 1 闪电球 。",
+		"DESCRIPTION": "获得 !M! 多层护甲 。 获得 !B! 点 格挡 。 同调 : 获得一个 1 闪电球 。",
 		"NAME": "阿尔冯斯护甲"
 	},
 	"animator_ElricEdward":
@@ -357,7 +355,7 @@
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "穿越者 。 每个敌人使你获得获得 !B! 点 格挡 。 撤回 : 获得 !M! 点 [#EFC851]多层格挡[] 。",
+		"DESCRIPTION": "穿越者 。 每个敌人使你获得获得 !B! 点 格挡 。 撤回 : 获得 !M! 点 多层护甲 。",
 		"NAME": "芙蕾多妮卡"
 	},
 	"animator_GazelDwargon":
@@ -412,7 +410,7 @@
 	},
 	"animator_Greed":
 	{
-		"DESCRIPTION": "获得 !M! 点 [#EFC851]多层格挡[] 。 获得 !M! 层 锻铸 . NL [#EFC851]贪婪[] 。",
+		"DESCRIPTION": "获得 !M! 点 多层护甲 。 获得 !M! 层 锻铸 . NL [#EFC851]贪婪[] 。",
 		"EXTENDED_DESCRIPTION": ["贪婪", "在你的回合结束时 , 获得等同于一半当前失去血量百分比的金币 ，该效果不叠加 。"],
 		"NAME": "贪婪"
 	},
@@ -423,10 +421,9 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 [#EFC851]支援[] 中 。",
-		"EXTENDED_DESCRIPTION": ["支援", "回合结束时对生命值较低的敌人造成预存的伤害"],
+		"DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 支援 中 。",
 		"NAME": "红莲",
-		"UPGRADE_DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害转换为等量 格挡 ，并预存到 [#EFC851]支援[] 中 。"
+		"UPGRADE_DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害转换为等量 格挡 ，并预存到 支援 中 。"
 	},
 	"animator_Guy":
 	{
@@ -576,10 +573,9 @@
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "赋予 !M! 层 [#EFC851]燃烧[] 。 NL 抽 1 张牌 。 NL 使用 !SV! 次后 抹除 ， 获得 [#EFC851]西森柚咲[] 。",
-		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 伤害 。 每层使收到的伤害额外增加 4% 。"],
+		"DESCRIPTION": "赋予 !M! 层 燃烧 。 NL 抽 1 张牌 。 NL 使用 !SV! 次后 抹除 ， 获得 [#EFC851]西森柚咲[] 。",
 		"NAME": "黑羽美砂",
-		"UPGRADE_DESCRIPTION": "赋予 !M! 层 [#EFC851]燃烧[] 。 NL 抽 1 张牌 。 NL 使用 !SV! 次后 抹除 ， 获得 [#EFC851]西森柚咲+[] 。"
+		"UPGRADE_DESCRIPTION": "赋予 !M! 层 燃烧 。 NL 抽 1 张牌 。 NL 使用 !SV! 次后 抹除 ， 获得 [#EFC851]西森柚咲+[] 。"
 	},
 	"animator_Mitsuba":
 	{
@@ -594,10 +590,10 @@
 	},
 	"animator_Nanami":
 	{
-		"DESCRIPTION": "根据敌人的意图激活 [#EFC851]效果[] 。 NL [#c6be6f]选择目标时[]， [#c6be6f]这段文本会变为效果文本[] 。",
+		"DESCRIPTION": "根据敌人的意图激活 [#EFC851]效果[] 。 NL [#c6be6f]选择目标时[] ， [#c6be6f]这段文本会变为效果文本[] 。",
 		"EXTENDED_DESCRIPTION": ["造成 # 点 伤害 。", "获得 # 点 格挡 。", "获得 # 点 力量 。", "给予 # 层 虚弱 。", "给予 # 层 易伤 。", "获得 # 层 眩晕 。", "生成 # 个随机充能球 。", "UNUSED", "UNUSED", "给予 # 层 中毒", "获得 [E]", "获得 # 点 临时生命 。", "抽 # 张牌 。"],
 		"NAME": "鑢七实",
-		"UPGRADE_DESCRIPTION": "根据敌人的意图激活改进的 [#EFC851]效果[] 。 NL [#c6be6f]选择目标时[]， [#c6be6f]这段文本会变为效果文本[] 。"
+		"UPGRADE_DESCRIPTION": "根据敌人的意图激活改进的 [#EFC851]效果[] 。 NL [#c6be6f]选择目标时[] ， [#c6be6f]这段文本会变为效果文本[] 。"
 	},
 	"animator_NarberalGamma":
 	{
@@ -657,8 +653,7 @@
 	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 并赋予 2 层 [#EFC851]燃烧[] 。 遗赠 : 额外造成 !M! 层 [#EFC851]燃烧[] 。",
-		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 点 伤害 。 每层使收到的伤害额外增加 4% 。"],
+		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 并赋予 2 层 燃烧 。 遗赠 : 额外造成 !M! 层 燃烧 。",
 		"NAME": "罗伊·马斯坦"
 	},
 	"animator_Saber":
@@ -696,8 +691,7 @@
 	},
 	"animator_Shigure":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 同调 或 遗赠 : 预存 !M! 点伤害到 [#EFC851]支援[] 。",
-		"EXTENDED_DESCRIPTION": ["支援", "回合结束时对生命值较低的敌人造成预存的伤害"],
+		"DESCRIPTION": "造成 !D! 点 伤害 。 同调 或 遗赠 : 预存 !M! 点伤害到 支援 。",
 		"NAME": "时雨"
 	},
 	"animator_Shimakaze":
@@ -872,8 +866,7 @@
 	},
 	"animator_Witch":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 同调 : 赋予 !M! 层 [#EFC851]燃烧[] 。 遗赠 : 获得一瓶随机药水 。",
-		"EXTENDED_DESCRIPTION": ["燃烧", "在回合开始时受到 伤害 。 每层使收到的伤害额外增加 4% 。"],
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 同调 : 赋予 !M! 层 燃烧 。 遗赠 : 获得一瓶随机药水 。",
 		"NAME": "魔女"
 	},
 	"animator_Wiz":

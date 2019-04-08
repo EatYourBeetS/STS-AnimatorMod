@@ -21,9 +21,9 @@ public class Shigure extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(8,0, 3);
+        Initialize(9,0, 2);
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.OwariNoSeraph);
     }

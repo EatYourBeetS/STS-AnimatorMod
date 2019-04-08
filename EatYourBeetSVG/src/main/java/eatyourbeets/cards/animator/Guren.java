@@ -24,7 +24,7 @@ public class Guren extends AnimatorCard
 
         Initialize(0, 0);
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.OwariNoSeraph);
     }

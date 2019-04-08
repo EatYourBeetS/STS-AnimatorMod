@@ -28,7 +28,7 @@ public class Benimaru extends AnimatorCard
 
         Initialize(7, 3, 1);
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.TenSura);
     }

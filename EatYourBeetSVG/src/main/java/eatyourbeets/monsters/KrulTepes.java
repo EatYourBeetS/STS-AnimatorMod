@@ -90,7 +90,7 @@ public class KrulTepes extends CustomMonster
         GameActionsHelper.ApplyPower(this, this, new IntangiblePlayerPower(this, 1), 1);
         GameActionsHelper.ApplyPower(this, this, new ArtifactPower(this, 2), 2);
 
-        AbstractDungeon.monsterList.removeIf(s -> s.equals(ID));
+//        AbstractDungeon.monsterList.removeIf(s -> s.equals(ID));
 
         AbstractPlayer p = AbstractDungeon.player;
         p.drawPile.group.removeIf(c -> c instanceof eatyourbeets.cards.animator.KrulTepes);

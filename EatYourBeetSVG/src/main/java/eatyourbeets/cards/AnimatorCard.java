@@ -112,7 +112,7 @@ public abstract class AnimatorCard extends CustomCard
     @Override
     public List<TooltipInfo> getCustomTooltips()
     {
-        if (isLocked || !isSeen || !isFlipped)
+        if (isLocked || !isSeen || isFlipped)
         {
             return super.getCustomTooltips();
         }

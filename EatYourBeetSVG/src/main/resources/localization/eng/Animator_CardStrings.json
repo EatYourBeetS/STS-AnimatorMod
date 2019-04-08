@@ -47,7 +47,7 @@
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "Deal !D! damage to an enemy and !SV! damage to every other enemy. Legacy: Gain !M! [#EFC851]Plated [#EFC851]Armor.",
+		"DESCRIPTION": "Deal !D! damage to an enemy and !SV! damage to every other enemy. Legacy: Gain !M! Plated_Armor.",
 		"NAME": "Alexander"
 	},
 	"animator_Aqua":
@@ -78,13 +78,12 @@
 	},
 	"animator_Azekura":
 	{
-		"DESCRIPTION": "Gain !B! Block Twice. NL Synergy: Gain !M! [#EFC851]Plated [#EFC851]Armor.",
+		"DESCRIPTION": "Gain !B! Block Twice. NL Synergy: Gain !M! Plated_Armor.",
 		"NAME": "Azekura"
 	},
 	"animator_Benimaru":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. Overrun: Gain !B! Block. Synergy: Apply !M! [#EFC851]Burning[].",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. Overrun: Gain !B! Block. NL Synergy: Apply !M! Burning.",
 		"NAME": "Benimaru"
 	},
 	"animator_Berserker":
@@ -104,7 +103,7 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "Deal !D! damage to the lowest health enemy. On your next !M! Synergies this turn, gain 1 [#EFC851]Plated [#EFC851]Armor.",
+		"DESCRIPTION": "Deal !D! damage to the lowest health enemy. On your next !M! Synergies this turn, gain 1 Plated_Armor.",
 		"NAME": "Bozes"
 	},
 	"animator_Caster":
@@ -158,10 +157,10 @@
 	},
 	"animator_Darkness":
 	{
-		"DESCRIPTION": "Gain !M! [#EFC851]Plated [#EFC851]Armor. Whenever you take damage Upgrade !M! random card ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "Gain !M! Plated_Armor. Whenever you take damage Upgrade !M! random card ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "It will prioritize cards in your hand."],
 		"NAME": "Darkness",
-		"UPGRADE_DESCRIPTION": "Gain !M! [#EFC851]Plated [#EFC851]Armor. Whenever you take damage Upgrade !M! random cards ([#EFC851]*[#FFFFFF])."
+		"UPGRADE_DESCRIPTION": "Gain !M! Plated_Armor. Whenever you take damage Upgrade !M! random cards ([#EFC851]*[#FFFFFF])."
 	},
 	"animator_Defend":
 	{
@@ -283,7 +282,7 @@
 	},
 	"animator_ElricAlphonseAlt":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Gain !M! [#EFC851]Plated [#EFC851]Armor. NL Synergy: [#EFC851]Channel[] 1 Lightning.",
+		"DESCRIPTION": "Gain !B! Block. NL Gain !M! Plated_Armor. NL Synergy: [#EFC851]Channel[] 1 Lightning.",
 		"NAME": "Armored Alphonse"
 	},
 	"animator_ElricEdward":
@@ -357,7 +356,7 @@
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "Shapeshifter. Gain !B! Block for each enemy. Recall: Gain !M! [#EFC851]Plated [#EFC851]Armor.",
+		"DESCRIPTION": "Shapeshifter. Gain !B! Block for each enemy. Recall: Gain !M! Plated_Armor.",
 		"NAME": "Fredrika"
 	},
 	"animator_GazelDwargon":
@@ -412,7 +411,7 @@
 	},
 	"animator_Greed":
 	{
-		"DESCRIPTION": "Gain !M! [#EFC851]Plated[] [#EFC851]Armor[]. NL Gain !M! Malleable. NL [#EFC851]Greed[].",
+		"DESCRIPTION": "Gain !M! Plated_Armor. NL Gain !M! Malleable. NL [#EFC851]Greed[].",
 		"EXTENDED_DESCRIPTION": ["Greed", "At the end of combat, gain #yGold equal to half your missing Health percentage. Does not stack."],
 		"NAME": "Greed"
 	},
@@ -423,10 +422,9 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into [#EFC851]Support [#EFC851]Damage.",
-		"EXTENDED_DESCRIPTION": ["Support Damage", "Deal damage to the enemy with lowest HP at the end of each turn."],
+		"DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into Support_Damage.",
 		"NAME": "Guren",
-		"UPGRADE_DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into Block and [#EFC851]Support [#EFC851]Damage."
+		"UPGRADE_DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into Block and Support_Damage."
 	},
 	"animator_Guy":
 	{
@@ -576,10 +574,9 @@
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "Apply !M! [#EFC851]Burning. NL Draw 1 Card. NL After !SV! uses, change into [#EFC851]Yusarin.",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
+		"DESCRIPTION": "Apply !M! Burning. NL Draw 1 Card. NL After !SV! uses, change into [#EFC851]Yusarin.",
 		"NAME": "Misa Kurobane",
-		"UPGRADE_DESCRIPTION": "Apply !M! [#EFC851]Burning. NL Draw 1 Card. NL After !SV! uses, change into [#EFC851]Yusarin+."
+		"UPGRADE_DESCRIPTION": "Apply !M! Burning. NL Draw 1 Card. NL After !SV! uses, change into [#EFC851]Yusarin+."
 	},
 	"animator_Mitsuba":
 	{
@@ -657,8 +654,7 @@
 	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply 2 [#EFC851]Burning[]. NL Synergy: Apply !M! more [#EFC851]Burning[].",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
+		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply 2 Burning. NL Synergy: Apply !M! more Burning.",
 		"NAME": "Roy Mustang"
 	},
 	"animator_Saber":
@@ -696,8 +692,7 @@
 	},
 	"animator_Shigure":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Synergy and Legacy: Gain !M! [#EFC851]Support [#EFC851]Damage.",
-		"EXTENDED_DESCRIPTION": ["Support Damage", "Deal damage to the enemy with lowest HP at the end of each turn."],
+		"DESCRIPTION": "Deal !D! damage. NL Synergy and Legacy: Gain !M! Support_Damage.",
 		"NAME": "Shigure"
 	},
 	"animator_Shimakaze":
@@ -738,7 +733,7 @@
 	},
 	"animator_Souei":
 	{
-		"DESCRIPTION": "Apply !M! Poison. NL Trigger the Poison of ALL enemies, if any of them dies gain Intangible.",
+		"DESCRIPTION": "Apply !M! Poison. NL Trigger the Poison of ALL enemies, if any of them dies, gain Intangible.",
 		"NAME": "Souei"
 	},
 	"animator_Spearman":
@@ -872,8 +867,7 @@
 	},
 	"animator_Witch":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Synergy: Apply !M! [#EFC851]Burning. NL Legacy: Obtain a random Potion.",
-		"EXTENDED_DESCRIPTION": ["Burning", "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack."],
+		"DESCRIPTION": "Gain !B! Block. NL Synergy: Apply !M! Burning. NL Legacy: Obtain a random Potion.",
 		"NAME": "'Witch'"
 	},
 	"animator_Wiz":

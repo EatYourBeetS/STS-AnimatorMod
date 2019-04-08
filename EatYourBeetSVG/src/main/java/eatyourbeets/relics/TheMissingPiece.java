@@ -131,12 +131,15 @@ public class TheMissingPiece extends AnimatorRelic
         {
             if (purgingStone == null || !purgingStone.IsBanned(s))
             {
-                int weight = 8;
+                int weight = 2;
                 if (synergyListMap.containsKey(s))
                 {
                     int size = synergyListMap.get(s).size();
 
-                    weight += 2 + Math.min(12, size * 4);
+                    if (size >= 2)
+                    {
+                        weight += 12 + (size * 3);
+                    }
                 }
 
                 logger.info(s.NAME + " : " + weight);

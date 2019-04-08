@@ -10,5 +10,15 @@
 			" 點傷害，在敵人之間分裂. NL 每過 #b",
 			" 回合, #y激發 該充能球."
 		]
+	},
+	"Animator_Fire":
+	{
+		"NAME": "Fire",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, apply #b",
+			" #yBurning to a random enemy. NL #yEvoke: Apply #b",
+			" #yBurning to ALL enemies."
+		]
 	}
 }

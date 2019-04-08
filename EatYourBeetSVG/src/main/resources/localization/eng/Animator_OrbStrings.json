@@ -10,5 +10,15 @@
 			" damage randomly split amongst ALL enemies. NL After #b",
 			" turns have passed, automatically #yEvoke this Orb."
 		]
+	},
+	"Animator_Fire":
+	{
+		"NAME": "Fire",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, apply #b",
+			" #yBurning to a random enemy. NL #yEvoke: Apply #b",
+			" #yBurning to ALL enemies."
+		]
 	}
 }

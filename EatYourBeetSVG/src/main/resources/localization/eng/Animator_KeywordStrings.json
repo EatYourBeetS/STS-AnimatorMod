@@ -90,15 +90,25 @@
 		"PROPERNAME": "Boost"
 	},
 	{
-      "NAMES": [ "earth", "earth+"],
-	  "DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage randomly split amongst ALL enemies.",
-	  "PROPERNAME": "Earth"
-    },
+		"NAMES": ["earth", "earth+"],
+		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage randomly split amongst ALL enemies.",
+		"PROPERNAME": "Earth"
+	},
 	{
-      "NAMES": [ "blur"],
-      "DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
-	  "PROPERNAME": "Blur"
-    },
+		"NAMES": ["fire", "fire+"],
+		"DESCRIPTION": "Orb: Apply #yBurning to a random enemy. Apply #yBurning to ALL enemies when #yEvoked.",
+		"PROPERNAME": "Fire"
+	},
+	{
+		"NAMES": ["blur"],
+		"DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
+		"PROPERNAME": "Blur"
+	},
+	{
+		"NAMES": ["burning"],
+		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack.",
+		"PROPERNAME": "Burning"
+	},
 	{
 		"PROPER_NAME": "Plated Armor",
 		"NAMES": ["plated armor", "plated_armor"],

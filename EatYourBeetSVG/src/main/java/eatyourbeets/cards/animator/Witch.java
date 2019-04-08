@@ -21,7 +21,7 @@ public class Witch extends AnimatorCard
 
         this.tags.add(CardTags.HEALING);
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.GoblinSlayer);
     }

@@ -47,7 +47,7 @@
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "對一名敵人造成 !D! 傷害 然後對其他的敵人造成 !SV! 點傷害 。 遺產 : 獲得 !M! 層 [#EFC851]多層護甲[] 。",
+		"DESCRIPTION": "對一名敵人造成 !D! 傷害 然後對其他的敵人造成 !SV! 點傷害 。 遺產 : 獲得 !M! 層 多層護甲 。",
 		"NAME": "亞歷山大大帝"
 	},
 	"animator_Aqua":
@@ -78,13 +78,12 @@
 	},
 	"animator_Azekura":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 2 次 。 NL 同調 : 獲得 !M! 層 [#EFC851]多層護甲[] 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 2 次 。 NL 同調 : 獲得 !M! 層 多層護甲 。",
 		"NAME": "校倉必"
 	},
 	"animator_Benimaru":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 壓倒 : 獲得 !B! 點 格擋 。 NL 同調 : 造成 !M! 點 [#EFC851]燃燒[] 。",
-		"EXTENDED_DESCRIPTION": ["燃燒", "在你回合開始受到傷害，另外每層提供  4% 更多攻擊傷害。"],
+		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 壓倒 : 獲得 !B! 點 格擋 。 NL 同調 : 造成 !M! 點 燃燒 。",
 		"NAME": "紅丸"
 	},
 	"animator_Berserker":
@@ -104,7 +103,7 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "對生命值最低的敵人造成 !D! 點 傷害 。本回合中 ， 接下來 !M! 次觸發 同調 效果時 ， 每次獲得一層 [#EFC851]多層護甲[] 。",
+		"DESCRIPTION": "對生命值最低的敵人造成 !D! 點 傷害 。本回合中 ， 接下來 !M! 次觸發 同調 效果時 ， 每次獲得一層 多層護甲 。",
 		"NAME": "波賽斯"
 	},
 	"animator_Caster":
@@ -158,10 +157,9 @@
 	},
 	"animator_Darkness":
 	{
-		"DESCRIPTION": "獲得 !M! 層 [#EFC851]多層護甲[] 。 每次受傷時隨機 升級 !M! 張卡 ， 以手牌優先 。",
+		"DESCRIPTION": "獲得 !M! 層 多層護甲 。 每次受傷時隨機 升級 !M! 張卡 ， 以手牌優先 。",
 		"EXTENDED_DESCRIPTION": ["", ""],
-		"NAME": "達克尼斯",
-		"UPGRADE_DESCRIPTION": "獲得 !M! 層 [#EFC851]多層護甲[] 。 每次受傷時隨機 升級 !M! 張卡 ， 以手牌優先 。"
+		"NAME": "達克尼斯"
 	},
 	"animator_Defend":
 	{
@@ -283,7 +281,7 @@
 	},
 	"animator_ElricAlphonseAlt":
 	{
-		"DESCRIPTION": "獲得 !M! 層 [#EFC851]多層護甲[] 。 NL 獲得 !B! 點 護甲 。 NL 同調 : 獲得 1 個閃電球 。",
+		"DESCRIPTION": "獲得 !M! 層 多層護甲 。 NL 獲得 !B! 點 格擋 。 NL 同調 : 獲得 1 個閃電球 。",
 		"NAME": "裝甲阿爾馮斯+"
 	},
 	"animator_ElricEdward":
@@ -294,9 +292,9 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : 獲得 !B! 點 護甲 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : 獲得 !B! 點 格擋 。",
 		"NAME": "艾索德",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : 獲得 !B! 點 護甲 。"
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : 獲得 !B! 點 格擋 。"
 	},
 	"animator_EmiyaShirou":
 	{
@@ -357,7 +355,7 @@
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "變形者 。 每個敵人使你獲得獲得 !B! 點 格擋 。 撤回 : 獲得 !M! 層 [#EFC851]多層護甲[] 。",
+		"DESCRIPTION": "變形者 。 每個敵人使你獲得獲得 !B! 點 格擋 。 撤回 : 獲得 !M! 層 多層護甲 。",
 		"NAME": "弗蕾德麗卡"
 	},
 	"animator_GazelDwargon":
@@ -411,7 +409,7 @@
 	},
 	"animator_Greed":
 	{
-		"DESCRIPTION": "獲得 !M! 層 [#EFC851]多層護甲[] 。 NL 獲得 !M! 層 鍛鑄 。 NL [#EFC851]貪婪[] 。",
+		"DESCRIPTION": "獲得 !M! 層 多層護甲 。 NL 獲得 !M! 層 鍛鑄 。 NL [#EFC851]貪婪[] 。",
 		"EXTENDED_DESCRIPTION": ["貪婪", "戰鬥結束後， 獲得相當於你失去生命一半百分比的金幣 。 不可疊加 。"],
 		"NAME": "古利德"
 	},
@@ -422,10 +420,9 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將傷害轉換到 [#EFC851]支援[] 中 。",
-		"EXTENDED_DESCRIPTION": ["支援", "回合結束時對生命值較低的敵人造成轉換的傷害"],
+		"DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將傷害轉換到 支援 中 。",
 		"NAME": "紅蓮",
-		"UPGRADE_DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將傷害轉為 格擋 並預存到 [#EFC851]支援[] 中 。"
+		"UPGRADE_DESCRIPTION": "從抽牌堆隨機 消耗 一張 [#EFC851]攻擊[] 牌 。 將傷害轉為 格擋 並預存到 支援 中 。"
 	},
 	"animator_Guy":
 	{
@@ -573,10 +570,9 @@
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "賦予 !M! 層 [#EFC851]燃燒[] 。 NL 抽 1 張牌 。 NL 使用 !SV! 次後 抹除 ， 獲得 [#EFC851]西森柚咲[] 。",
-		"EXTENDED_DESCRIPTION": ["燃燒", "在回合開始時受到 傷害 。 每層使收到的傷害額外增加 4% 。"],
+		"DESCRIPTION": "賦予 !M! 層 燃燒 。 NL 抽 1 張牌 。 NL 使用 !SV! 次後 抹除 ， 獲得 [#EFC851]西森柚咲[] 。",
 		"NAME": "黑羽美砂",
-		"UPGRADE_DESCRIPTION": "賦予 !M! 層 [#EFC851]燃燒[] 。 NL 抽 1 張牌 。 NL 使用 !SV! 次後 抹除 ， 獲得 [#EFC851]西森柚咲+[] 。"
+		"UPGRADE_DESCRIPTION": "賦予 !M! 層 燃燒 。 NL 抽 1 張牌 。 NL 使用 !SV! 次後 抹除 ， 獲得 [#EFC851]西森柚咲+[] 。"
 	},
 	"animator_Mitsuba":
 	{
@@ -591,10 +587,10 @@
 	},
 	"animator_Nanami":
 	{
-		"DESCRIPTION": "根據敵人的意圖觸發一個 [#EFC851]效果[] 。 NL [#c6be6f]選擇目標時[]， [#c6be6f]這段文本會變為效果文本[] 。",
+		"DESCRIPTION": "根據敵人的意圖觸發一個 [#EFC851]效果[] 。 [#c6be6f]選擇目標時[] ， [#c6be6f]這段文本會變為效果文本[] 。",
 		"EXTENDED_DESCRIPTION": ["造成 # 點 傷害。", "獲得 # 點 格擋 。", "獲得 # 點 力量 。", "造成 # 點 虛弱 。", "造成 # 點 易傷 。 ", "暈眩 敵人 。", "生成 # 個隨機充能球 。", "UNUSED", "UNUSED", "造成 # 點 中毒 。", "獲得 [E]", "獲得 # 暫時生命 。", "抽 # 張牌 。"],
 		"NAME": "鑢七實",
-		"UPGRADE_DESCRIPTION": "根據敵人的意圖觸發一個 [#EFC851]效果+[] 。 NL [#c6be6f]選擇目標時[]， [#c6be6f]這段文本會變為效果文本[] 。。"
+		"UPGRADE_DESCRIPTION": "根據敵人的意圖觸發一個 [#EFC851]效果+[] 。 [#c6be6f]選擇目標時[] ， [#c6be6f]這段文本會變為效果文本[] 。"
 	},
 	"animator_NarberalGamma":
 	{
@@ -655,8 +651,7 @@
 	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點傷害並且給予2層 [#EFC851]燃燒[] 。 NL 同調 : 再給予 !M! 層 [#EFC851]燃燒[] 。",
-		"EXTENDED_DESCRIPTION": ["燃燒", "在你回合開始受到傷害，另外每層提供  4% 更多攻擊傷害。"],
+		"DESCRIPTION": "對所有敵人造成 !D! 點傷害並且給予2層 燃燒 。 NL 同調 : 再給予 !M! 層 燃燒 。",
 		"NAME": "羅伊·馬斯坦古"
 	},
 	"animator_Saber":
@@ -694,8 +689,7 @@
 	},
 	"animator_Shigure":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害。 遺產 和 同調 : 獲得 !M! 點 [#EFC851]支援[] 。",
-		"EXTENDED_DESCRIPTION": ["支援", "回合結束時對生命值較低的敵人造成轉換的傷害"],
+		"DESCRIPTION": "造成 !D! 點傷害。 遺產 和 同調 : 獲得 !M! 點 支援 。",
 		"NAME": "時雨"
 	},
 	"animator_Shimakaze":
@@ -869,8 +863,7 @@
 	},
 	"animator_Witch":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 給予 !M! 層 [#EFC851]燃燒[] NL 遺產 : 獲得1瓶隨機藥水 。",
-		"EXTENDED_DESCRIPTION": ["燃燒", "在你回合開始受到傷害，另外每層提供  4% 更多攻擊傷害。"],
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 給予 !M! 層 燃燒 NL 遺產 : 獲得1瓶隨機藥水 。",
 		"NAME": "魔女"
 	},
 	"animator_Wiz":

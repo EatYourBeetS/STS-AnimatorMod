@@ -15,7 +15,7 @@ public class Strike_Kancolle extends Strike implements OnRemoveFromDeckSubscribe
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6,0, 35);
+        Initialize(6,0, 40);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Strike_Kancolle extends Strike implements OnRemoveFromDeckSubscribe
         if (TryUpgrade())
         {
             upgradeDamage(3);
-            upgradeMagicNumber(15);
+            upgradeMagicNumber(20);
         }
     }
 

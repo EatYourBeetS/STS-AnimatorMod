@@ -21,7 +21,7 @@ public class MisaKurobane extends AnimatorCard
 
         this.baseSecondaryValue = this.secondaryValue = 2;
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.Charlotte);
     }

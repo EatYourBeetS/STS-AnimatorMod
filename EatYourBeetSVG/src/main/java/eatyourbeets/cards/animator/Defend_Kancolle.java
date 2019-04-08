@@ -14,7 +14,7 @@ public class Defend_Kancolle extends Defend implements OnRemoveFromDeckSubscribe
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 5, 35);
+        Initialize(0, 5, 40);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Defend_Kancolle extends Defend implements OnRemoveFromDeckSubscribe
         if (TryUpgrade())
         {
             upgradeBlock(3);
-            upgradeMagicNumber(15);
+            upgradeMagicNumber(20);
         }
     }
 

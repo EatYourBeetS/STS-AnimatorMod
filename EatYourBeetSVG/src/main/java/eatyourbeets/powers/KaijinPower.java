@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
+import eatyourbeets.cards.animator.Nanami;
 import eatyourbeets.misc.RandomizedList;
 
 public class KaijinPower extends AnimatorPower
@@ -35,15 +36,18 @@ public class KaijinPower extends AnimatorPower
         while (cards.Count() > 0)
         {
             AbstractCard card = cards.Retrieve(AbstractDungeon.miscRng);
-            if (card.baseDamage > 0)
+            if (!card.cardID.equals(Nanami.ID))
             {
-                card.baseDamage += amount;
-                used = true;
-            }
-            if (card.baseBlock > 0)
-            {
-                card.baseBlock += amount;
-                used = true;
+                if (card.baseDamage > 0)
+                {
+                    card.baseDamage += amount;
+                    used = true;
+                }
+                if (card.baseBlock > 0)
+                {
+                    card.baseBlock += amount;
+                    used = true;
+                }
             }
 
             if (used)

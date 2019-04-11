@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
@@ -12,17 +11,17 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
 
-public class Chung extends AnimatorCard_Cooldown implements CustomSavable<Integer>
+public class Chung extends AnimatorCard_Cooldown
 {
     public static final String ID = CreateFullID(Chung.class.getSimpleName());
 
-    private static final int COOLDOWN = 3;
+    private static final int COOLDOWN = 2;
 
     public Chung()
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(16, 7);
+        Initialize(14, 7);
 
         this.baseSecondaryValue = this.secondaryValue = COOLDOWN;
         //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
@@ -51,7 +50,7 @@ public class Chung extends AnimatorCard_Cooldown implements CustomSavable<Intege
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(2);
             upgradeBlock(2);
         }
     }

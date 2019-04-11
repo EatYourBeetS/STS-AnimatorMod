@@ -1,12 +1,19 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+
+import java.util.ArrayList;
 
 public class YunYun extends AnimatorCard
 {
@@ -39,7 +46,20 @@ public class YunYun extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
+        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE"));
+
+        ArrayList<AbstractMonster> enemies = AbstractDungeon.getCurrRoom().monsters.monsters;
+        for(int i = 0; i < enemies.size(); ++i)
+        {
+            AbstractMonster enemy = enemies.get(i);
+            if (!enemy.isDeadOrEscaped())
+            {
+                GameActionsHelper.AddToBottom(new VFXAction(new LightningEffect(enemy.drawX, enemy.drawY)));
+                GameActionsHelper.AddToBottom(new DamageAction(enemy, new DamageInfo(p, this.multiDamage[i], this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE, true));
+            }
+        }
+
+        //GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
     }
 
     @Override

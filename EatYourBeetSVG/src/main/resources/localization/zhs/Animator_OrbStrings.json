@@ -13,12 +13,12 @@
 	},
 	"Animator_Fire":
 	{
-		"NAME": "Fire",
+		"NAME": "火素",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, apply #b",
-			" #yBurning to a random enemy. NL #yEvoke: Apply #b",
-			" #yBurning to ALL enemies."
+			"#y被动: 回合结束时, 给予一个随即敌人 #b",
+			"层 #y燃烧 . NL #y激活: 给予所有敌人 #b",
+			"层 #y燃烧 ."
 		]
 	}
 }

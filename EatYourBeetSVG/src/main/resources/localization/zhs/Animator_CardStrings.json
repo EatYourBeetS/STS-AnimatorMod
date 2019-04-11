@@ -40,10 +40,9 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "获得 !M! % 的 [#EFC851]抗性[] 。",
-		"EXTENDED_DESCRIPTION": ["抗性", "减少受到的伤害，效果由层数决定 。"],
-		"NAME": "雅儿贝德",
-		"UPGRADE_DESCRIPTION": "保留 。 获得 !M! % 的 [#EFC851]抗性[] 。"
+		"DESCRIPTION": "获得 !M! 层 [#EFC851]魔法护甲[] 。",
+		"EXTENDED_DESCRIPTION": ["魔法护甲", "减少受到的伤害，效果由层数决定 。"],
+		"NAME": "雅儿贝德"
 	},
 	"animator_Alexander":
 	{
@@ -68,7 +67,7 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "鼓舞 !SV! : 获得一个充能球栏位 。 NL 如果鼓舞为 0 ， 重置 并 生成 1 个 等离子 充能球 。",
+		"DESCRIPTION": "获得一个充能球栏位 。 NL 预热 !SV! : [#EFC851]生成[] 1 个 等离子 充能球，取代主效果。",
 		"NAME": "阿尔蓓吉欧"
 	},
 	"animator_Asuramaru":
@@ -94,7 +93,8 @@
 	"animator_Biyorigo":
 	{
 		"DESCRIPTION": "每 4 次攻击获得 !M! 点 力量 并且获得 1 点 敏捷 。",
-		"NAME": "大和号"
+		"NAME": "大和号",
+		"UPGRADE_DESCRIPTION": "获得 !SV! 层 荆棘 。 每 4 次攻击获得 !M! 点 力量 并且获得 1 点 敏捷 。"
 	},
 	"animator_BlackLotus":
 	{
@@ -238,7 +238,7 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "获得 [E] [E] ， 在本轮结束时 ， 受到 !M! 点 伤害 ， 每次使用这张牌都会使下次受到的伤害增加 !SV! 点.",
+		"DESCRIPTION": "获得 [E] [E] ， 在本轮结束时 ， 受到 !M! 点 伤害 。 遗赠 ， 撤回 : 获得 [E]",
 		"NAME": "迪米乌哥斯"
 	},
 	"animator_DolaCouronne":
@@ -349,7 +349,8 @@
 	},
 	"animator_FeridBathory":
 	{
-		"DESCRIPTION": "每回合可触发一次 ， 消耗 一张牌时 获得 1 点 力量 ， 治愈 2 点 生命 。",
+		"DESCRIPTION": "每回合可触发一次 ， 消耗 一张牌时 获得 1 点 力量 ， 治愈 2 点 生命 [#EFC851]*[] 。",
+		"EXTENDED_DESCRIPTION": ["*备注", "当你的生活充满时 ， 你会得到 #b2 分临时生命。"],
 		"NAME": "费里德·巴特利",
 		"UPGRADE_DESCRIPTION": "每回合可触发两次 ， 消耗 一张牌时 获得 1 点 力量 ， 治愈 2 点 生命 。"
 	},
@@ -372,7 +373,7 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 抽 2 张牌 。 遗赠 : 眩晕一个随机的敌人 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 下一轮 ， 抽 !M! 张牌 。 遗赠 : 眩晕一个随机的敌人 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "该效果不叠加 。"],
 		"NAME": "基烈特"
 	},
@@ -421,9 +422,8 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 支援 中 。",
-		"NAME": "红莲",
-		"UPGRADE_DESCRIPTION": "从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害转换为等量 格挡 ，并预存到 支援 中 。"
+		"DESCRIPTION": "获得 !B! 点 格挡 。 从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 支援 中 。",
+		"NAME": "红莲"
 	},
 	"animator_Guy":
 	{
@@ -624,6 +624,12 @@
 		"EXTENDED_DESCRIPTION": ["* 注", "受格挡修饰词影响 。"],
 		"NAME": "女神官"
 	},
+	"animator_QuestionMark":
+	{
+		"DESCRIPTION": "[#EFC851]被抽到时[] : 变成一张随机牌的复制 ， 并 带有 穿越者 。",
+		"NAME": "问号",
+		"UPGRADE_DESCRIPTION": "[#EFC851]被抽到时[] : 变成一张升级过的随机牌的复制 ， 并 带有 穿越者 。"
+	},
 	"animator_Raven":
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 。 获得 !B! 点 格挡 。 将抽牌堆中伤害最低的 [#EFC851]攻击[] 牌 加入手牌 。",
@@ -636,9 +642,9 @@
 	},
 	"animator_Rimuru":
 	{
-		"DESCRIPTION": "[#EFC851]被抽到时[] : 变成一张随机牌的复制 ， 并 带有 穿越者 。",
+		"DESCRIPTION": "当你打出一张牌时，变成那张牌的复制。",
 		"NAME": "利姆鲁",
-		"UPGRADE_DESCRIPTION": "[#EFC851]被抽到时[] : 变成一张升级过的随机牌的复制 ， 并 带有 穿越者 。"
+		"UPGRADE_DESCRIPTION": "保留 。当你打出一张牌时，变成那张牌的复制 。"
 	},
 	"animator_RinTohsaka":
 	{
@@ -838,7 +844,7 @@
 	},
 	"animator_Tyuule":
 	{
-		"DESCRIPTION": "给予所有敌人 !M! 层 虚弱 和 1 层 中毒 。 鼓舞 !SV! : 获得 [E]",
+		"DESCRIPTION": "给予所有敌人 !M! 层 中毒 和 1 层 易伤 。 鼓舞 !SV! : 获得 [E]",
 		"NAME": "蒂尤蕾"
 	},
 	"animator_Urushihara":

@@ -82,6 +82,20 @@ public class GameActionsHelper
         return action;
     }
 
+    public static PiercingDamageAction DamageTargetPiercing(AbstractCreature source, AbstractCreature target, AbstractCard card, AbstractGameAction.AttackEffect effect)
+    {
+        PiercingDamageAction action = new PiercingDamageAction(target, new DamageInfo(source, card.damage, card.damageTypeForTurn), effect);
+        AbstractDungeon.actionManager.addToBottom(action);
+        return action;
+    }
+
+    public static DamageAction DamageTarget(AbstractCreature source, AbstractCreature target, AbstractCard card, AbstractGameAction.AttackEffect effect)
+    {
+        DamageAction action = new DamageAction(target, new DamageInfo(source, card.damage, card.damageTypeForTurn), effect);
+        AbstractDungeon.actionManager.addToBottom(action);
+        return action;
+    }
+
     public static DamageAction DamageTarget(AbstractCreature source, AbstractCreature target, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
         DamageAction action = new DamageAction(target, new DamageInfo(source, amount, damageType), effect);

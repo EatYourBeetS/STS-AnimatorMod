@@ -2,15 +2,15 @@ package eatyourbeets.relics;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.animator.HigakiRinne;
 
 public class Rinne extends AnimatorRelic
 {
+    private static final int RINNE_DOES = 3 + 1 + 1;
+    private static final int RINNE_SAYS = 33 + 27 + 9 + RINNE_DOES;
+
     public static final String ID = CreateFullID(Rinne.class.getSimpleName());
 
     public Rinne()
@@ -39,28 +39,26 @@ public class Rinne extends AnimatorRelic
     {
         super.onPlayCard(c, m);
 
-        counter += 1 + ((c.damage + c.block) % 4);
-        if (counter == 74)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new HigakiRinne()));
-            }
-        }
+        DoSomething(c.damage + c.block);
     }
 
     @Override
     public int onPlayerGainBlock(int blockAmount)
     {
-        counter += 1 + (blockAmount % 4);
-        if (counter == 74)
+        DoSomething(blockAmount);
+
+        return super.onPlayerGainBlock(blockAmount);
+    }
+
+    private void DoSomething(int value)
+    {
+        counter += 1 + (value % 4);
+        if (counter == RINNE_SAYS)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < RINNE_DOES; i++)
             {
                 GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new HigakiRinne()));
             }
         }
-
-        return super.onPlayerGainBlock(blockAmount);
     }
 }

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.cards.Synergy;
+import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.effects.HideCardEffect;
 import eatyourbeets.misc.BundledRelicContainer;
 import eatyourbeets.misc.BundledRelicProvider;
@@ -34,7 +35,7 @@ public class CardRewardScreenPatch
         rewardItem = rItem;
         rewardBundle = null;
 
-        if (PlayerStatistics.InBattle())
+        if (PlayerStatistics.InBattle() || !(AbstractDungeon.player instanceof AnimatorCharacter))
         {
             return;
         }
@@ -138,7 +139,10 @@ public class CardRewardScreenPatch
                 rewardBundle.Remove(toBan.card);
                 toBan.hideInstantly();
 
-                AbstractCard replacement = AbstractDungeon.returnRandomCard();
+                AbstractCard replacement = AbstractDungeon.returnRandomCard().makeCopy();
+
+                replacement.drawScale = replacement.targetDrawScale = 0.75f;
+                replacement.isSeen = true;
                 replacement.target_x = replacement.current_x = toBan.card.target_x;
                 replacement.target_y = replacement.current_y = toBan.card.target_y;
                 rewardItem.cards.add(replacement);

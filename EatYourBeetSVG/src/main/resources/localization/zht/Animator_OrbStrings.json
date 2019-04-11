@@ -13,12 +13,12 @@
 	},
 	"Animator_Fire":
 	{
-		"NAME": "Fire",
+		"NAME": "火焰",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, apply #b",
-			" #yBurning to a random enemy. NL #yEvoke: Apply #b",
-			" #yBurning to ALL enemies."
+			"#y被動: 回合結束時，對隨機一名敵人造成 #b",
+			" 層#y燃燒。 NL #y激發: 對所有敵人造成 #b",
+			" 層#y燃燒。"
 		]
 	}
 }

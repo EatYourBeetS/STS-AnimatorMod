@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.metrics.Metrics;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.characters.AnimatorCharacterSelect;
 import eatyourbeets.relics.PurgingStone;

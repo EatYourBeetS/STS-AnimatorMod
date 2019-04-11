@@ -22,7 +22,7 @@ public class Guren extends AnimatorCard
     {
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0, 0);
+        Initialize(0, 12);
 
         //AddExtendedDescription();
 
@@ -32,6 +32,8 @@ public class Guren extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActionsHelper.GainBlock(p, this.block);
+
         AbstractCard attack = GetRandomAttack(p);
         if (attack != null)
         {
@@ -47,11 +49,6 @@ public class Guren extends AnimatorCard
                 GameActionsHelper.AddToTop(new ApplyPowerAction(p, p, new SupportDamagePower(p, damage), damage));
                 //GameActionsHelper.AddToTop(new WaitAction(effect.duration));
                 GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(attack, p.drawPile, true));
-
-                if (upgraded)
-                {
-                    GameActionsHelper.GainBlock(p, damage);
-                }
             }
         }
     }
@@ -59,7 +56,10 @@ public class Guren extends AnimatorCard
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeBlock(4);
+        }
     }
 
     private AbstractCard GetRandomAttack(AbstractPlayer p)

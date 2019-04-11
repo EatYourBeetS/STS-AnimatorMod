@@ -35,7 +35,7 @@
 		"PROPERNAME": "Resurrect"
 	},
 	{
-		"DESCRIPTION": "Gets reduced by 1 each time you play this card, if it is at 0, activate the effect and reset the Cooldown. Preserved between fights.",
+		"DESCRIPTION": "Gets reduced by 1 every time this card is played or manually discarded, if it is at 0, activate the effect and reset the Cooldown. NL Resets at the end of each fight.",
 		"NAMES": ["cooldown"],
 		"PROPERNAME": "Cooldown"
 	},

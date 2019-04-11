@@ -1,29 +1,22 @@
 package eatyourbeets.cards.animator;
 
-import basemod.helpers.BaseModCardTags;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.actions.AnimatorAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnEndOfTurnSubscriber;
+import eatyourbeets.subscribers.OnAfterCardPlayedSubscriber;
+import eatyourbeets.subscribers.OnBattleStartSubscriber;
 
-import java.util.ArrayList;
-
-public class Rimuru extends AnimatorCard implements OnEndOfTurnSubscriber
+public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardPlayedSubscriber
 {
     public static final String ID = CreateFullID(Rimuru.class.getSimpleName());
 
-    private static ArrayList<AnimatorCard> cardPool;
-    private AnimatorCard copy = null;
+    private AbstractCard copy;
 
     public Rimuru()
     {
@@ -31,129 +24,90 @@ public class Rimuru extends AnimatorCard implements OnEndOfTurnSubscriber
 
         Initialize(0, 0);
 
-        SetSynergy(Synergies.TenSura);
+        this.copy = this;
+
+        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
+        {
+            OnBattleStart();
+        }
+
+        SetSynergy(Synergies.TenSura, true);
+    }
+
+    @Override
+    public void OnBattleStart()
+    {
+        PlayerStatistics.onAfterCardPlayed.Subscribe(this);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new HigakiRinne()));
+        //GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new HigakiRinne()));
     }
 
     @Override
     public void upgrade()
     {
-        TryUpgrade();
-    }
-
-    @Override
-    public void OnEndOfTurn(boolean isPlayer)
-    {
-        AbstractPlayer p = AbstractDungeon.player;
-        if (!p.hand.contains(copy))
+        if (TryUpgrade())
         {
-            if (!transformBack(p.drawPile))
-            {
-                if (!transformBack(p.discardPile))
-                {
-                    boolean reallyJava = transformBack(p.exhaustPile);
-                }
-            }
-
-            PlayerStatistics.onEndOfTurn.Unsubscribe(this);
+            this.retain = true;
         }
     }
 
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActionsHelper.AddToBottom(new RimuruAction(this));
-    }
-
-    private boolean transformBack(CardGroup group)
+    private boolean transform_BUT_INVERTED_BECAUSE_OF_SENSELESS_WARNINGS(CardGroup group, AbstractCard card)
     {
         int index = group.group.indexOf(copy);
         if (index >= 0)
         {
-            group.group.remove(index);
-            group.group.add(index, this);
-            this.untip();
-            this.stopGlowing();
+            AbstractCard newCopy = card.makeStatEquivalentCopy();
 
-            return true;
+            group.group.remove(index);
+            group.group.add(index, newCopy);
+
+            if (this.upgraded)
+            {
+                newCopy.retain = true;
+            }
+
+            newCopy.name = this.name;
+
+            if (group.type == CardGroup.CardGroupType.HAND)
+            {
+                newCopy.current_x = copy.current_x;
+                newCopy.current_y = copy.current_y;
+                newCopy.target_x = copy.target_x;
+                newCopy.target_y = copy.target_y;
+            }
+
+            this.copy = newCopy;
+
+            return false; // WHICH IS ACTUALLY TRUE, THANKS JAVA
         }
 
-        return false;
+        return true;
     }
 
-    private static AnimatorCard GetRandomCard()
+    @Override
+    public void OnAfterCardPlayed(AbstractCard card)
     {
-        if (cardPool == null)
+        if (card == copy || card instanceof Rimuru)
         {
-            cardPool = new ArrayList<>();
-            for (AbstractCard c : CardLibrary.getAllCards())
+            return;
+        }
+
+        AbstractPlayer p = AbstractDungeon.player;
+        if (transform_BUT_INVERTED_BECAUSE_OF_SENSELESS_WARNINGS(p.hand, card))
+        {
+            if (transform_BUT_INVERTED_BECAUSE_OF_SENSELESS_WARNINGS(p.drawPile, card))
             {
-                if (c.type != CardType.CURSE && c.type != CardType.STATUS)
+                if (transform_BUT_INVERTED_BECAUSE_OF_SENSELESS_WARNINGS(p.discardPile, card))
                 {
-                    if (c instanceof AnimatorCard &&
-                            !(c instanceof Rimuru) &&
-                            !c.tags.contains(CardTags.HEALING) &&
-                            !c.tags.contains(BaseModCardTags.BASIC_DEFEND) &&
-                            !c.tags.contains(BaseModCardTags.BASIC_STRIKE))
+                    if (transform_BUT_INVERTED_BECAUSE_OF_SENSELESS_WARNINGS(p.exhaustPile, card))
                     {
-                        cardPool.add((AnimatorCard) c);
+                        PlayerStatistics.onAfterCardPlayed.Unsubscribe(this);
                     }
                 }
-            }
-        }
-
-        return (AnimatorCard) Utilities.GetRandomElement(cardPool).makeCopy();
-    }
-
-    private class RimuruAction extends AnimatorAction
-    {
-        private final Rimuru rimuru;
-
-        public RimuruAction(Rimuru rimuru)
-        {
-            this.rimuru = rimuru;
-        }
-
-        @Override
-        public void update()
-        {
-            this.isDone = true;
-
-            AbstractPlayer p = AbstractDungeon.player;
-            int index = p.hand.group.indexOf(rimuru);
-
-            rimuru.copy = GetRandomCard();
-
-            AnimatorCard copy = rimuru.copy;
-            if (copy != null && index >= 0)
-            {
-                copy.originalName = rimuru.originalName;
-                copy.name = rimuru.name;
-                copy.rarity = rimuru.rarity;
-                copy.anySynergy = true;
-
-                if (rimuru.upgraded)
-                {
-                    copy.upgrade();
-                }
-
-                copy.current_x = rimuru.current_x;
-                copy.current_y = rimuru.current_y;
-                copy.target_x = rimuru.target_x;
-                copy.target_y = rimuru.target_y;
-
-                p.hand.group.remove(index);
-                p.hand.group.add(index, copy);
-                p.hand.glowCheck();
-
-                PlayerStatistics.onEndOfTurn.Subscribe(rimuru);
             }
         }
     }

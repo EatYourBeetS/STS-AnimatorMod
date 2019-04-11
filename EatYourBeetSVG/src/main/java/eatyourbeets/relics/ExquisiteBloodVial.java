@@ -1,6 +1,5 @@
 package eatyourbeets.relics;
 
-import basemod.abstracts.CustomSavable;
 import com.evacipated.cardcrawl.mod.stslib.patches.HitboxRightClick;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;

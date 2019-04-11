@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Boost;
+import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
 
-public class Arpeggio extends AnimatorCard_Boost
+public class Arpeggio extends AnimatorCard_Cooldown
 {
     public static final String ID = CreateFullID(Arpeggio.class.getSimpleName());
 
@@ -24,14 +24,13 @@ public class Arpeggio extends AnimatorCard_Boost
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (ProgressBoost())
+        if (ProgressCooldown())
         {
-            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+            GameActionsHelper.ChannelOrb(new Plasma(), true);
         }
         else
         {
-            ResetBoost();
-            GameActionsHelper.ChannelOrb(new Plasma(), true);
+            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
         }
     }
 
@@ -45,7 +44,7 @@ public class Arpeggio extends AnimatorCard_Boost
     }
 
     @Override
-    protected int GetBaseBoost()
+    protected int GetBaseCooldown()
     {
         return upgraded ? 1 : 2;
     }

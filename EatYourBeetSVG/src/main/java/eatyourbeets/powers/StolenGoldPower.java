@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.RegrowPower;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 
 public class StolenGoldPower extends AnimatorPower
@@ -21,7 +22,7 @@ public class StolenGoldPower extends AnimatorPower
         type = PowerType.DEBUFF;
 
         AbstractMonster m = (AbstractMonster) owner;
-        if (m.hasPower(MinionPower.POWER_ID))
+        if (m.hasPower(MinionPower.POWER_ID) || m.hasPower(RegrowPower.POWER_ID))
         {
             goldCap = 0;
         }

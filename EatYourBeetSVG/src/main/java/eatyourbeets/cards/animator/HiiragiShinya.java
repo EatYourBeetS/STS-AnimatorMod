@@ -57,7 +57,7 @@ public class HiiragiShinya extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(2);
         }
     }
 

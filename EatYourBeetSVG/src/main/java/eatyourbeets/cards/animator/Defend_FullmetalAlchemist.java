@@ -1,14 +1,14 @@
 package eatyourbeets.cards.animator;
 
-import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 
-public class Defend_FullmetalAlchemist extends Defend implements CustomSavable<Integer>
+public class Defend_FullmetalAlchemist extends Defend
 {
     public static final String ID = CreateFullID(Defend_FullmetalAlchemist.class.getSimpleName());
 
@@ -69,7 +69,7 @@ public class Defend_FullmetalAlchemist extends Defend implements CustomSavable<I
             activate = false;
         }
 
-        for (AbstractCard c : GetAllInstances())
+        for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
         {
             AnimatorCard card = (AnimatorCard)c;
             card.baseSecondaryValue = card.secondaryValue = newValue;
@@ -77,19 +77,6 @@ public class Defend_FullmetalAlchemist extends Defend implements CustomSavable<I
         }
 
         return activate;
-    }
-
-    @Override
-    public Integer onSave()
-    {
-        return this.secondaryValue;
-    }
-
-    @Override
-    public void onLoad(Integer integer)
-    {
-        SetValue(integer);
-        initializeDescription();
     }
 
     protected void SetValue(Integer integer)

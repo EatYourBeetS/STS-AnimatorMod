@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.RegrowPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
@@ -59,7 +60,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     @Override
     public void OnEnemyDying(AbstractMonster monster, boolean triggerRelics)
     {
-        if (!monster.hasPower(MinionPower.POWER_ID))
+        if (!monster.hasPower(MinionPower.POWER_ID) && !monster.hasPower(RegrowPower.POWER_ID))
         {
             this.goldReward += this.goldGain;
         }

@@ -1,5 +1,6 @@
 package eatyourbeets.actions;
 
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -13,8 +14,12 @@ public class RefreshHandLayoutAction extends AnimatorAction
 
     public void update()
     {
-        AbstractDungeon.player.hand.refreshHandLayout();
-        AbstractDungeon.player.hand.glowCheck();
+        CardGroup hand = AbstractDungeon.player.hand;
+
+        hand.refreshHandLayout();
+        hand.glowCheck();
+        hand.applyPowers();
+
         this.isDone = true;
     }
 }

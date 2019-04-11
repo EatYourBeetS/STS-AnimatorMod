@@ -64,7 +64,7 @@ public class BundledRelicProvider
         }
         else
         {
-            Utilities.Logger.error("Key not found: " + cardID);
+            Utilities.Logger.info("Key not found: " + cardID);
         }
 
         return relic;

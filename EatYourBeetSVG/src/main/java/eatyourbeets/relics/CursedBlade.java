@@ -1,6 +1,5 @@
 package eatyourbeets.relics;
 
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -9,6 +8,8 @@ import eatyourbeets.GameActionsHelper;
 
 public class CursedBlade extends AnimatorRelic
 {
+    private static final int HEAL_AMOUNT = 2;
+
     public static final String ID = CreateFullID(CursedBlade.class.getSimpleName());
 
     public CursedBlade()
@@ -74,12 +75,12 @@ public class CursedBlade extends AnimatorRelic
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
     {
         AbstractPlayer p = AbstractDungeon.player;
-        if (p.currentHealth < p.maxHealth)
+        if (p.currentHealth > 0 && p.currentHealth < p.maxHealth)
         {
             if (damageAmount > 0 && target != p)
             {
                 this.flash();
-                GameActionsHelper.AddToBottom(new HealAction(p, p, 2));
+                p.heal(HEAL_AMOUNT);
             }
         }
     }

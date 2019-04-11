@@ -13,8 +13,6 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-import java.util.ArrayList;
-
 public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
 {
     public static final String ID = CreateFullID(Hakurou.class.getSimpleName());

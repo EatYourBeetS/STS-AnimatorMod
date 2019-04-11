@@ -59,11 +59,6 @@ public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSy
         if (TryUpgrade())
         {
             upgradeBaseCost(3);
-
-            if (costForTurn > 0)
-            {
-                setCostForTurn(costForTurn - 1);
-            }
         }
     }
 

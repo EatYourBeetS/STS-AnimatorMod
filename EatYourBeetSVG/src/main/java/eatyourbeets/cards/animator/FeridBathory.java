@@ -19,6 +19,7 @@ public class FeridBathory extends AnimatorCard
         Initialize(0,0, 1);
 
         this.tags.add(CardTags.HEALING);
+        AddExtendedDescription();
 
         SetSynergy(Synergies.OwariNoSeraph);
     }

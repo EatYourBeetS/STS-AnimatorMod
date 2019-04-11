@@ -23,7 +23,7 @@ public class Evileye extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(6,0);
+        Initialize(7,0);
 
         this.baseSecondaryValue = this.secondaryValue = 3;
 
@@ -35,8 +35,9 @@ public class Evileye extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        CardCrawlGame.sound.play("ORB_FROST_EVOKE", 0.2F);
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+        CardCrawlGame.sound.play("ORB_FROST_CHANNEL", 0.2F);
+        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        CardCrawlGame.sound.play("ORB_FROST_Evoke", 0.2F);
 
         GameActionsHelper.DrawCard(p, 1);
         GameActionsHelper.AddToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));

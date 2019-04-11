@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
-import eatyourbeets.actions.MoveSpecificCardAction;
 import eatyourbeets.actions.OnDamageAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -84,7 +83,7 @@ public class Shalltear extends AnimatorCard
             if ((monster.isDying || monster.currentHealth <= 0) && !monster.halfDead)
             {
                 GameActionsHelper.GainEnergy(1);
-                AbstractDungeon.player.heal(4, true);
+                AbstractDungeon.player.heal(5, true);
                 //returnToHand = true;
             }
         }

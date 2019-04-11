@@ -22,9 +22,15 @@ public class GazelDwargonPower extends AnimatorPower implements OnBeforeLoseBloc
 
         this.amount = amount;
 
-        PlayerStatistics.onBeforeLoseBlock.Subscribe(this);
-
         updateDescription();
+    }
+
+    @Override
+    public void onInitialApplication()
+    {
+        super.onInitialApplication();
+
+        PlayerStatistics.onBeforeLoseBlock.Subscribe(this);
     }
 
     @Override

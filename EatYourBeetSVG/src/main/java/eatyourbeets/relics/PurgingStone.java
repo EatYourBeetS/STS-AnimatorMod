@@ -1,6 +1,5 @@
 package eatyourbeets.relics;
 
-import basemod.ReflectionHacks;
 import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;

@@ -80,10 +80,10 @@
 		"DESCRIPTIONS": ["每當打出 4 #y次攻擊牌 ， 獲得 #b", " 力量 和 #b", " 敏捷。"],
 		"NAME": "微刀．釵"
 	},
-	"animator_AlbedoPower":
+	"animator_EnchantedArmorPower":
 	{
 		"DESCRIPTIONS": ["所有敵人減少 #b", "% 傷害。"],
-		"NAME": "雅爾貝德"
+		"NAME": "魔法盔甲"
 	},
 	"animator_HigakiRinnePower":
 	{

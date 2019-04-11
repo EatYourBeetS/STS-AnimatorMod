@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.RegrowPower;
 
 public class OnTargetDeadAction extends AnimatorAction
 {
@@ -33,7 +35,8 @@ public class OnTargetDeadAction extends AnimatorAction
         if (updateDamageAction())
         {
             AbstractMonster monster = ((AbstractMonster)this.target);
-            if ((monster.isDying || monster.currentHealth <= 0) && !monster.halfDead && (includeMinions || !monster.hasPower("Minion")))
+            if ((monster.isDying || monster.currentHealth <= 0) && !monster.halfDead &&
+                 (includeMinions || !monster.hasPower(MinionPower.POWER_ID) || !monster.hasPower(RegrowPower.POWER_ID)))
             {
                 AbstractDungeon.actionManager.addToTop(action);
             }

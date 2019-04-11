@@ -80,10 +80,10 @@
 		"DESCRIPTIONS": ["每4次攻 ， 击获得 #b", " 点 力量 并且获得 #b", " 点 敏捷"],
 		"NAME": "大和号"
 	},
-	"animator_AlbedoPower":
+	"animator_EnchantedArmorPower":
 	{
 		"DESCRIPTIONS": ["受到的所有伤害降低 #b", "%。"],
-		"NAME": "雅尔贝德"
+		"NAME": "魔法盔甲"
 	},
 	"animator_HigakiRinnePower":
 	{

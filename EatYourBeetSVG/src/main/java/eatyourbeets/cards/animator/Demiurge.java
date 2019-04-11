@@ -20,11 +20,27 @@ public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0,3);
+        Initialize(0,0,6);
 
-        this.baseSecondaryValue = this.secondaryValue = 3;
+        //this.baseSecondaryValue = this.secondaryValue = 3;
 
         SetSynergy(Synergies.Overlord);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        GameActionsHelper.GainEnergy(1);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActionsHelper.GainEnergy(1);
     }
 
     @Override
@@ -39,7 +55,7 @@ public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(-2);
+            upgradeMagicNumber(-3);
         }
     }
 

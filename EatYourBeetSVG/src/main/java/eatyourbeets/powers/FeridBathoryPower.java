@@ -5,12 +5,17 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.GameActionsHelper;
 
 public class FeridBathoryPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(FeridBathoryPower.class.getSimpleName());
     private int baseAmount;
+
+    private static final int STRENGTH_AMOUNT = 1;
+    private static final int HEAL_AMOUNT = 2;
 
     public FeridBathoryPower(AbstractCreature owner, int amount)
     {
@@ -25,7 +30,7 @@ public class FeridBathoryPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        this.description = powerStrings.DESCRIPTIONS[0] + "1" + powerStrings.DESCRIPTIONS[1] + "2" + powerStrings.DESCRIPTIONS[2];
+        this.description = powerStrings.DESCRIPTIONS[0] + STRENGTH_AMOUNT + powerStrings.DESCRIPTIONS[1] + HEAL_AMOUNT + powerStrings.DESCRIPTIONS[2];
     }
 
     @Override
@@ -50,9 +55,15 @@ public class FeridBathoryPower extends AnimatorPower
 
         if (this.amount > 0)
         {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner, owner, new StrengthPower(owner, 1), 1));
-            AbstractDungeon.actionManager.addToBottom(new HealAction(owner, owner, 2));
-
+            GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, STRENGTH_AMOUNT), STRENGTH_AMOUNT);
+            if (owner.currentHealth < owner.maxHealth)
+            {
+                GameActionsHelper.AddToBottom(new HealAction(owner, owner, HEAL_AMOUNT));
+            }
+            else
+            {
+                GameActionsHelper.GainTemporaryHP(owner, owner, HEAL_AMOUNT);
+            }
             this.flash();
             this.amount -= 1;
         }

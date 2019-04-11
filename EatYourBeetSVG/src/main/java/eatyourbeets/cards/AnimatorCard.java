@@ -269,12 +269,12 @@ public abstract class AnimatorCard extends CustomCard
         this.upgradedSecondaryValue = true;
     }
 
-    protected void SetSynergy(Synergy synergy)
+    public void SetSynergy(Synergy synergy)
     {
         SetSynergy(synergy, false);
     }
 
-    protected void SetSynergy(Synergy synergy, boolean shapeshifter)
+    public void SetSynergy(Synergy synergy, boolean shapeshifter)
     {
         this.synergy = synergy;
         this.anySynergy = shapeshifter;

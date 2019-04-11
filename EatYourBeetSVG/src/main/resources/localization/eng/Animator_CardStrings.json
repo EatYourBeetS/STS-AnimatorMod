@@ -40,10 +40,9 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance.",
-		"EXTENDED_DESCRIPTION": ["Damage Resistance", "Take less damage from enemy attacks, further stacks are less effective."],
-		"NAME": "Albedo",
-		"UPGRADE_DESCRIPTION": "Retain. NL Gain !M! % NL [#EFC851]Damage [#EFC851]Resistance."
+		"DESCRIPTION": "Gain !M! [#EFC851]Enchanted [#EFC851]Armor.",
+		"EXTENDED_DESCRIPTION": ["Enchanted Armor", "Take less damage from enemy attacks, further stacks are less effective."],
+		"NAME": "Albedo"
 	},
 	"animator_Alexander":
 	{
@@ -68,7 +67,7 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "Boost !SV! : NL Gain 1 Orb Slot. NL If this card's Boost is at 0, [#EFC851]Channel 1 Plasma and reset it.",
+		"DESCRIPTION": "Gain 1 Orb Slot. NL Cooldown !SV! : NL [#EFC851]Channel 1 Plasma instead.",
 		"NAME": "Arpeggio"
 	},
 	"animator_Asuramaru":
@@ -78,7 +77,7 @@
 	},
 	"animator_Azekura":
 	{
-		"DESCRIPTION": "Gain !B! Block Twice. NL Synergy: Gain !M! Plated_Armor.",
+		"DESCRIPTION": "Gain !B! Block twice. NL Synergy: Gain !M! Plated_Armor.",
 		"NAME": "Azekura"
 	},
 	"animator_Benimaru":
@@ -94,7 +93,8 @@
 	"animator_Biyorigo":
 	{
 		"DESCRIPTION": "Every 4 Attacks played, gain !M! Strength and 1 Dexterity.",
-		"NAME": "Biyorigo"
+		"NAME": "Biyorigo",
+		"UPGRADE_DESCRIPTION": "Gain !SV! Thorns. NL Every 4 Attacks played, gain !M! Strength and 1 Dexterity."
 	},
 	"animator_BlackLotus":
 	{
@@ -114,7 +114,7 @@
 	"animator_ChaikaBohdan":
 	{
 		"DESCRIPTION": "[#EFC851]Impatient !M!. NL Deal !D! damage. NL Overrun: Gain 1 Strength.",
-		"EXTENDED_DESCRIPTION": ["Impatient", "Whenever you attack an enemy while this is in your hand, gain this much damage. Reset after use. Multi-hits trigger this effect multiple times."],
+		"EXTENDED_DESCRIPTION": ["Impatient", "Whenever you attack an enemy while this is in your hand, gain this much damage. Multi-hits trigger this effect multiple times. Reset after use."],
 		"NAME": "Chaika Bohdan"
 	},
 	"animator_ChaikaTrabant":
@@ -136,7 +136,7 @@
 	},
 	"animator_Chung":
 	{
-		"DESCRIPTION": "Gain !B! Block. Cooldown !SV! : NL Deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Gain !B! Block. NL Cooldown !SV! : NL Deal !D! damage to ALL enemies.",
 		"NAME": "Chung"
 	},
 	"animator_Cocytus":
@@ -152,7 +152,7 @@
 	},
 	"animator_CrowleyEusford":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random enemy. NL Recall: Gain !M! damage and return to your draw pile",
+		"DESCRIPTION": "Deal !D! damage to a random enemy. NL Recall: Gain !M! damage and return to your draw pile.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator_Darkness":
@@ -239,7 +239,7 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "Gain [E] [E]. NL Take !M! damage at the end of this turn, then increase this damage by !SV!.",
+		"DESCRIPTION": "Gain [E] [E]. NL Take !M! damage at the end of this turn. NL Legacy and Recall: Gain [E].",
 		"NAME": "Demiurge"
 	},
 	"animator_DolaCouronne":
@@ -350,9 +350,10 @@
 	},
 	"animator_FeridBathory":
 	{
-		"DESCRIPTION": "Once per turn, when a card is Exhausted gain 1 Strength and Heal 2 HP.",
+		"DESCRIPTION": "Once per turn, NL when a card is Exhausted gain 1 Strength and Heal 2 HP ([#EFC851]*[]).",
+		"EXTENDED_DESCRIPTION": ["*Note", "If you are at Max HP, the healing is converted to Temporary HP."],
 		"NAME": "Ferid Bathory",
-		"UPGRADE_DESCRIPTION": "Twice per turn, when a card is Exhausted gain 1 Strength and Heal 2 HP."
+		"UPGRADE_DESCRIPTION": "Twice per turn, NL when a card is Exhausted gain 1 Strength and Heal 2 HP ([#EFC851]*[])."
 	},
 	"animator_Fredrika":
 	{
@@ -373,7 +374,7 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Draw 2 cards. NL Legacy: Stun a random enemy ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! cards. NL Legacy: Stun a random enemy ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "Does not stack."],
 		"NAME": "Gillette"
 	},
@@ -422,9 +423,8 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into Support_Damage.",
-		"NAME": "Guren",
-		"UPGRADE_DESCRIPTION": "Exhaust a random [#EFC851]Attack in your draw pile. Turn its current damage into Block and Support_Damage."
+		"DESCRIPTION": "Gain !B! Block. NL Exhaust a random [#EFC851]Attack in your draw pile. Turn its damage to Support_Damage.",
+		"NAME": "Guren"
 	},
 	"animator_Guy":
 	{
@@ -625,6 +625,12 @@
 		"EXTENDED_DESCRIPTION": ["* Note", "Affected by Block modifiers."],
 		"NAME": "'Priestess'"
 	},
+	"animator_QuestionMark":
+	{
+		"DESCRIPTION": "When drawn, turns into a copy of a random card and gains Shapeshifter.",
+		"NAME": "Question Mark",
+		"UPGRADE_DESCRIPTION": "When drawn, turns into an Upgraded copy of a random card and gains Shapeshifter."
+	},
 	"animator_Raven":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Draw your lowest damage [#EFC851]Attack.",
@@ -637,9 +643,9 @@
 	},
 	"animator_Rimuru":
 	{
-		"DESCRIPTION": "[#EFC851]Drawn: Become a copy of a random card, it has Shapeshifter.",
+		"DESCRIPTION": "Whenever you play a card, turn this card into a copy of it.",
 		"NAME": "Rimuru",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Drawn: Become an Upgraded copy of a random card, it has Shapeshifter."
+		"UPGRADE_DESCRIPTION": "Retain. Whenever you play a card, turn this card into a copy of it."
 	},
 	"animator_RinTohsaka":
 	{
@@ -839,7 +845,7 @@
 	},
 	"animator_Tyuule":
 	{
-		"DESCRIPTION": "Apply !M! Poison and 1 Weak to ALL enemies. NL Boost !SV! : Gain [E]",
+		"DESCRIPTION": "Apply !M! Poison and 1 Vulnerable to ALL enemies. NL Boost !SV! : Gain [E]",
 		"NAME": "Tyuule"
 	},
 	"animator_Urushihara":

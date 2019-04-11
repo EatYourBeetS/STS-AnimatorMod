@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
@@ -28,7 +28,7 @@ public class Tyuule extends AnimatorCard_Boost
         for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(p, m1, new PoisonPower(m1, p, this.magicNumber), this.magicNumber);
-            GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, 1, false), 1);
+            GameActionsHelper.ApplyPower(p, m1, new VulnerablePower(m1, 1, false), 1);
         }
 
         if (ProgressBoost())
@@ -49,6 +49,6 @@ public class Tyuule extends AnimatorCard_Boost
     @Override
     protected int GetBaseBoost()
     {
-        return 2;
+        return 1;
     }
 }

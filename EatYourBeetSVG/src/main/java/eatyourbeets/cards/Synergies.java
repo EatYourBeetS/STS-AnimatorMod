@@ -40,6 +40,7 @@ public class Synergies
     public final static Synergy PandoraHearts = CreateSynergy(23);
     public final static Synergy ZeroNoTsukaima = CreateSynergy(24);
     public final static Synergy GabrielDropOut = CreateSynergy(25);
+    public final static Synergy DeathNote = CreateSynergy(26);
 
     private static Synergy CreateSynergy(int id)
     {

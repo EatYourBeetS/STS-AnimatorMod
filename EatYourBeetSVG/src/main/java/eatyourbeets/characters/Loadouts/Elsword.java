@@ -29,8 +29,8 @@ public class Elsword extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Defend.ID);
-        res.add(Chung.ID);
-        res.add(eatyourbeets.cards.animator.Elsword.ID);
+        res.add(Ara.ID);
+        res.add(Raven.ID);
 
         return res;
     }

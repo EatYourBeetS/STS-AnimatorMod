@@ -1,7 +1,7 @@
 package eatyourbeets.powers;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 
 import java.text.DecimalFormat;
 
@@ -11,7 +11,7 @@ public class EnchantedArmorPower extends AnimatorPower
 
     private float percentage;
 
-    public EnchantedArmorPower(AbstractPlayer owner, int resistance)
+    public EnchantedArmorPower(AbstractCreature owner, int resistance)
     {
         super(owner, POWER_ID);
         this.amount = resistance;

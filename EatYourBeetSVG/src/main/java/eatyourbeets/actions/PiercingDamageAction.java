@@ -2,8 +2,6 @@ package eatyourbeets.actions;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
@@ -11,8 +9,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+
+import java.util.ArrayList;
 
 public class PiercingDamageAction extends AbstractGameAction
 {
@@ -22,6 +23,8 @@ public class PiercingDamageAction extends AbstractGameAction
     private static final float POST_ATTACK_WAIT_DUR = 0.1F;
     private boolean skipWait;
     private boolean muteSfx;
+
+    private ArrayList<AbstractPower> ignoredPowers = new ArrayList<>();
 
     public PiercingDamageAction(AbstractCreature target, DamageInfo info, AttackEffect effect)
     {
@@ -33,6 +36,7 @@ public class PiercingDamageAction extends AbstractGameAction
         this.actionType = ActionType.DAMAGE;
         this.attackEffect = effect;
         this.duration = 0.1F;
+        addIgnoredPower(SharpHidePower.POWER_ID);
     }
 
     public PiercingDamageAction(AbstractCreature target, DamageInfo info, int stealGoldAmount)
@@ -69,6 +73,7 @@ public class PiercingDamageAction extends AbstractGameAction
         if (this.shouldCancelAction() && this.info.type != DamageType.THORNS)
         {
             this.isDone = true;
+            reapplyIgnoredPowers();
         }
         else
         {
@@ -77,6 +82,7 @@ public class PiercingDamageAction extends AbstractGameAction
                 if (this.info.type != DamageType.THORNS && (this.info.owner.isDying || this.info.owner.halfDead))
                 {
                     this.isDone = true;
+                    reapplyIgnoredPowers();
                     return;
                 }
 
@@ -103,13 +109,20 @@ public class PiercingDamageAction extends AbstractGameAction
                     this.target.tint.changeColor(Color.WHITE.cpy());
                 }
 
+
                 int block = this.target.currentBlock;
+
+                addIgnoredPower(ThornsPower.POWER_ID);
+                addIgnoredPower(FlameBarrierPower.POWER_ID);
+                addIgnoredPower(CurlUpPower.POWER_ID);
+
                 this.target.currentBlock = 0;
                 this.target.damage(this.info);
 
                 if (this.target.currentHealth > 0)
                 {
                     this.target.currentBlock = block;
+                    reapplyIgnoredPowers();
                 }
 
                 if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
@@ -122,7 +135,21 @@ public class PiercingDamageAction extends AbstractGameAction
                     AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
                 }
             }
+        }
+    }
 
+    private void reapplyIgnoredPowers()
+    {
+        this.target.powers.addAll(ignoredPowers);
+    }
+
+    private void addIgnoredPower(String powerID)
+    {
+        AbstractPower power = target.getPower(powerID);
+        if (power != null)
+        {
+            ignoredPowers.add(power);
+            this.target.powers.remove(power);
         }
     }
 

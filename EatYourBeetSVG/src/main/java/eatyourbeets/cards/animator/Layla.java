@@ -2,9 +2,7 @@ package eatyourbeets.cards.animator;
 
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -23,9 +21,9 @@ public class Layla extends AnimatorCard
 
     public Layla()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(4,0, 1);
+        Initialize(3,0, 1);
 
         AddExtendedDescription();
         SetSynergy(Synergies.Chaika);
@@ -81,8 +79,7 @@ public class Layla extends AnimatorCard
 
         for (int i = 0; i < discarded.size(); i++)
         {
-            DamageInfo info = new DamageInfo(p, this.damage, upgraded ? DamageInfo.DamageType.HP_LOSS : this.damageTypeForTurn);
-            AbstractDungeon.actionManager.addToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+            GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
             if (hasSynergy)
             {

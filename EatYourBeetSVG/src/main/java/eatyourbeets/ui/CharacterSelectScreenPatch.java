@@ -114,7 +114,7 @@ public class CharacterSelectScreenPatch
             RefreshLoadout(selectScreen, selectedOption);
         }
 
-        AnimatorCharacterSelect.GetSelectedLoadout().UpdateTrophies(trophy1Hb, trophy2Hb, trophy3Hb);
+        AnimatorCharacterSelect.GetSelectedLoadout(false).UpdateTrophies(trophy1Hb, trophy2Hb, trophy3Hb);
     }
 
     public static void Render(CharacterSelectScreen selectScreen, SpriteBatch sb)
@@ -124,7 +124,7 @@ public class CharacterSelectScreenPatch
             return;
         }
 
-        AnimatorCustomLoadout info = AnimatorCharacterSelect.GetSelectedLoadout();
+        AnimatorCustomLoadout info = AnimatorCharacterSelect.GetSelectedLoadout(false);
         String description = info.GetDescription();
         selectScreen.confirmButton.isDisabled = info.Locked;
         if (description != null)
@@ -163,7 +163,7 @@ public class CharacterSelectScreenPatch
         startingCardsLeftHb.render(sb);
         startingCardsRightHb.render(sb);
 
-        AnimatorCharacterSelect.GetSelectedLoadout().RenderTrophies(trophy1Hb, trophy2Hb, trophy3Hb, sb);
+        AnimatorCharacterSelect.GetSelectedLoadout(false).RenderTrophies(trophy1Hb, trophy2Hb, trophy3Hb, sb);
     }
 
     private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)
@@ -192,6 +192,6 @@ public class CharacterSelectScreenPatch
     private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
     {
         int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
-        AnimatorCharacterSelect.GetSelectedLoadout().Refresh(currentLevel, selectScreen, option);
+        AnimatorCharacterSelect.GetSelectedLoadout(false).Refresh(currentLevel, selectScreen, option);
     }
 }

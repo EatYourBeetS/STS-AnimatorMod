@@ -1,12 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.MarkOfPoisonPower;
+import eatyourbeets.powers.TemporaryEnvenomPower;
 
 public class AcuraAkari extends AnimatorCard
 {
@@ -14,9 +13,9 @@ public class AcuraAkari extends AnimatorCard
 
     public AcuraAkari()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,5, 2);
+        Initialize(0,4, 2);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -25,8 +24,8 @@ public class AcuraAkari extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.ChooseAndDiscard(1, false);
-        GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new MarkOfPoisonPower(m, p, this.magicNumber), this.magicNumber));
         GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, this.magicNumber));
     }
 
     @Override

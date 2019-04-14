@@ -16,7 +16,7 @@ public class Strike_OwariNoSeraph extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6,0, 1);
+        Initialize(7,0, 1);
     }
 
     @Override
@@ -44,7 +44,6 @@ public class Strike_OwariNoSeraph extends Strike
         if (TryUpgrade())
         {
             upgradeDamage(3);
-            upgradeMagicNumber(1);
         }
     }
 }

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
 {
@@ -25,15 +26,13 @@ public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
 
         baseSecondaryValue = secondaryValue = 1;
 
-        AddExtendedDescription();
-
         SetSynergy(Synergies.TenSura);
     }
 
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + GetDexterity(player));
+        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetDexterity(player));
     }
 
     @Override
@@ -75,45 +74,4 @@ public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
             upgradeDamage(1);
         }
     }
-
-    private int GetDexterity(AbstractPlayer player)
-    {
-        DexterityPower dexterity = (DexterityPower) player.getPower(DexterityPower.POWER_ID);
-        if (dexterity != null)
-        {
-            return dexterity.amount;
-        }
-
-        return 0;
-    }
-//
-//    @Override
-//    public void OnEndOfTurn(boolean isPlayer)
-//    {
-//        int loseDex = 0;
-//        AbstractPlayer p = AbstractDungeon.player;
-//        for (int i = dexterityCounters.size() - 1; i >= 0; i--)
-//        {
-//            int value = dexterityCounters.get(i) - 1;
-//            if (value <= 0)
-//            {
-//                loseDex += 1;
-//                dexterityCounters.remove(i);
-//            }
-//            else
-//            {
-//                dexterityCounters.set(i, value - 1);
-//            }
-//        }
-//
-//        if (loseDex > 0)
-//        {
-//            GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, DexterityPower.POWER_ID, loseDex));
-//        }
-//
-//        if (dexterityCounters.size() == 0)
-//        {
-//            PlayerStatistics.onEndOfTurn.Unsubscribe(this);
-//        }
-//    }
 }

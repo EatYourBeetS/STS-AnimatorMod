@@ -1,25 +1,26 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.StrategicInformationPower;
 
-public class Guy extends AnimatorCard
+public class Guy extends AnimatorCard_Boost
 {
     public static final String ID = CreateFullID(Guy.class.getSimpleName());
 
     public Guy()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0,0, 3);
+        Initialize(0,0, 1);
 
         this.baseSecondaryValue = this.secondaryValue = 1;
+
+        AddExtendedDescription();
 
         SetSynergy(Synergies.Chaika);
     }
@@ -35,13 +36,13 @@ public class Guy extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
-        {
-            GameActionsHelper.AddToBottom(new GainBlockAction(m1, p, this.magicNumber));
-            GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, this.secondaryValue, false), this.secondaryValue);
-        }
+        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 2, false), 2);
+        GameActionsHelper.CycleCardAction(this.magicNumber);
 
-        GameActionsHelper.CycleCardAction(1);
+        if (ProgressBoost())
+        {
+            GameActionsHelper.ApplyPower(p, p, new StrategicInformationPower(p, 1), 1);
+        }
     }
 
     @Override
@@ -49,7 +50,13 @@ public class Guy extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(1);
+            upgradeMagicNumber(1);
         }
+    }
+
+    @Override
+    protected int GetBaseBoost()
+    {
+        return 1;
     }
 }

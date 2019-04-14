@@ -2,16 +2,13 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-
-import java.util.ArrayList;
 
 public class Emonzaemon extends AnimatorCard
 {
@@ -21,7 +18,7 @@ public class Emonzaemon extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,0);
+        Initialize(4,0);
 
         AddExtendedDescription();
 
@@ -29,37 +26,27 @@ public class Emonzaemon extends AnimatorCard
     }
 
     @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        EntouJyuu toAdd = new EntouJyuu();
+        if (upgraded)
+        {
+            toAdd.upgrade();
+        }
+
+        GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(toAdd, 1, true, true));
+        GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
-
-        ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
-        int size = cardsPlayed.size();
-        if (size >= 3)
-        {
-            boolean threeInARow = true;
-            for (int i = 1; i <= 3; i++)
-            {
-                if (cardsPlayed.get(size - i).type != CardType.ATTACK)
-                {
-                    threeInARow = false;
-                }
-            }
-
-            if (threeInARow)
-            {
-                EntouJyuu toAdd = new EntouJyuu();
-                if (upgraded)
-                {
-                    toAdd.upgrade();
-                }
-
-                GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(toAdd, 1, true, true));
-                GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
-
-                this.purgeOnUse = true;
-            }
-        }
+        GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
+        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
+        GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
+        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
     }
 
     @Override
@@ -67,7 +54,7 @@ public class Emonzaemon extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(2);
         }
     }
 }

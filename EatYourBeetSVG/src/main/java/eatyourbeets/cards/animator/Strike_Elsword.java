@@ -1,8 +1,13 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.LoseDexterityPower;
+import com.megacrit.cardcrawl.powers.LoseStrengthPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 
 public class Strike_Elsword extends Strike
@@ -11,17 +16,27 @@ public class Strike_Elsword extends Strike
 
     public Strike_Elsword()
     {
-        super(ID, 1, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(4,0);
-
-        this.isMultiDamage = true;
+        Initialize(6,0, 1);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageType, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
+
+        LoseStrengthPower power = (LoseStrengthPower) p.getPower(LoseStrengthPower.POWER_ID);
+        if (power != null)
+        {
+            power.amount += magicNumber;
+        }
+        else
+        {
+            p.powers.add(new LoseStrengthPower(p, this.magicNumber));
+        }
+
     }
 
     @Override

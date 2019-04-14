@@ -1,11 +1,13 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.actions.OnDamageAction;
@@ -13,6 +15,8 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
+
+import java.util.ArrayList;
 
 public class Benimaru extends AnimatorCard
 {
@@ -26,20 +30,27 @@ public class Benimaru extends AnimatorCard
 
         //AddExtendedDescription();
 
+        this.isMultiDamage = true;
+
         SetSynergy(Synergies.TenSura);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        ArrayList<AbstractMonster> enemies = AbstractDungeon.getCurrRoom().monsters.monsters;
+        for(int i = 0; i < enemies.size(); ++i)
         {
-            DamageAction damageAction = new DamageAction(m1, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE);
-            GameActionsHelper.AddToBottom(new OnDamageAction(m1, damageAction, this::OnDamage, m1.currentBlock, true));
-
-            if (HasActiveSynergy())
+            AbstractMonster enemy = enemies.get(i);
+            if (!enemy.isDeadOrEscaped())
             {
-                GameActionsHelper.ApplyPower(p, m1, new BurningPower(m1, p, this.magicNumber), this.magicNumber);
+                DamageAction damageAction = new DamageAction(enemy, new DamageInfo(p, this.multiDamage[i], this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE);
+                GameActionsHelper.AddToBottom(new OnDamageAction(enemy, damageAction, this::OnDamage, enemy.currentBlock, true));
+
+                if (HasActiveSynergy())
+                {
+                    GameActionsHelper.ApplyPower(p, enemy, new BurningPower(enemy, p, this.magicNumber), this.magicNumber);
+                }
             }
         }
     }

@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
@@ -47,7 +46,7 @@ public class Lancer extends AnimatorCard
             attackEffect = AbstractGameAction.AttackEffect.SLASH_VERTICAL;
         }
 
-        GameActionsHelper.DamageTarget(p, m, this.damage, DamageInfo.DamageType.HP_LOSS, attackEffect);
+        GameActionsHelper.DamageTargetPiercing(p, m, this, attackEffect);
 
         if (HasActiveSynergy())
         {

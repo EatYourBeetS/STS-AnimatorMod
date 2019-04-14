@@ -22,7 +22,7 @@ public class AnimatorMetrics
     {
         Utilities.Logger.info("Saving Trophies");
 
-        lastLoadout = AnimatorCharacterSelect.GetSelectedLoadout().ID;
+        lastLoadout = AnimatorCharacterSelect.GetSelectedLoadout(false).ID;
 
         StringJoiner sj = new StringJoiner("|");
         sj.add(String.valueOf(lastLoadout));

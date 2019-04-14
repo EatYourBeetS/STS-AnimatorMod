@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Ain extends AnimatorCard
 {
@@ -28,7 +29,7 @@ public class Ain extends AnimatorCard
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + GetFocus(player));
+        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetFocus(player));
     }
 
     @Override
@@ -49,16 +50,5 @@ public class Ain extends AnimatorCard
         {
             upgradeMagicNumber(1);
         }
-    }
-
-    private int GetFocus(AbstractPlayer player)
-    {
-        FocusPower focus = (FocusPower) player.getPower(FocusPower.POWER_ID);
-        if (focus != null)
-        {
-            return focus.amount;
-        }
-
-        return 0;
     }
 }

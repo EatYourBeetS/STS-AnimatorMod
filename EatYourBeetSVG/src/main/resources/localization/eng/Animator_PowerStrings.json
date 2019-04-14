@@ -129,6 +129,11 @@
 		"DESCRIPTIONS": ["Whenever your #yBlock is removed, deal that much damage #b", " time/s to ALL enemies."],
 		"NAME": "Gazel Dwargon"
 	},
+	"animator_StrategicInformationPower":
+	{
+		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and reduce the cost of a random card in your hand by 1."],
+		"NAME": "Strategic Information"
+	},
 	"animator_EarthenThornsPower":
 	{
 		"DESCRIPTIONS": ["When attacked, deal #b", " damage back."],

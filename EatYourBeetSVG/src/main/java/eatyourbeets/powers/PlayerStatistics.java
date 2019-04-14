@@ -10,6 +10,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -29,6 +32,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
     public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
+    public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = new GameEvent<>();
     public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
@@ -65,6 +69,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         onBeforeLoseBlock.Clear();
         onAfterCardDrawn.Clear();
         onAfterCardPlayed.Clear();
+        onAfterCardDiscarded.Clear();
         onAttack.Clear();
         onLoseHp.Clear();
         onEndOfTurn.Clear();
@@ -353,5 +358,38 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         }
 
         return monsters;
+    }
+
+    public static int GetDexterity(AbstractCreature creature)
+    {
+        DexterityPower power = (DexterityPower) creature.getPower(DexterityPower.POWER_ID);
+        if (power != null)
+        {
+            return power.amount;
+        }
+
+        return 0;
+    }
+
+    public static int GetStrength(AbstractCreature creature)
+    {
+        StrengthPower power = (StrengthPower) creature.getPower(StrengthPower.POWER_ID);
+        if (power != null)
+        {
+            return power.amount;
+        }
+
+        return 0;
+    }
+
+    public static int GetFocus(AbstractCreature creature)
+    {
+        FocusPower power = (FocusPower) creature.getPower(FocusPower.POWER_ID);
+        if (power != null)
+        {
+            return power.amount;
+        }
+
+        return 0;
     }
 }

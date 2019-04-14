@@ -2,7 +2,7 @@
 {
 	"animator_AcuraAkari":
 	{
-		"DESCRIPTION": "Discard 1 card. NL Apply !M! Marks of Poison to an enemy. NL Gain !B! Block.",
+		"DESCRIPTION": "Discard 1 card. NL Gain !B! Block. NL Gain !M! Envenom until end of turn.",
 		"NAME": "Akari"
 	},
 	"animator_AcuraShin":
@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage to an enemy !M! times. NL Reduce this card's cost by 1 this combat.",
+		"DESCRIPTION": "Deal !D! damage !M! times. Recall: Increase this card's attacks count by 1 this combat.",
 		"NAME": "Tooru"
 	},
 	"animator_Add":
@@ -40,8 +40,7 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "Gain !M! [#EFC851]Enchanted [#EFC851]Armor.",
-		"EXTENDED_DESCRIPTION": ["Enchanted Armor", "Take less damage from enemy attacks, further stacks are less effective."],
+		"DESCRIPTION": "Deal !D! Damage. NL Gain that much Enchanted_Armor. NL Synergy: Return to your draw pile.",
 		"NAME": "Albedo"
 	},
 	"animator_Alexander":
@@ -57,7 +56,7 @@
 	},
 	"animator_Ara":
 	{
-		"DESCRIPTION": "Deal !D! damage twice. NL Overrun: Gain !M! Dexterity.",
+		"DESCRIPTION": "Deal !D! damage twice. NL If the enemy has a Debuff, draw 2 cards, then discard 1 card.",
 		"NAME": "Ara"
 	},
 	"animator_Archer":
@@ -113,7 +112,7 @@
 	},
 	"animator_ChaikaBohdan":
 	{
-		"DESCRIPTION": "[#EFC851]Impatient !M!. NL Deal !D! damage. NL Overrun: Gain 1 Strength.",
+		"DESCRIPTION": "[#EFC851]Impatient !M!. NL Deal !D! damage. NL Synergy: Increase [#EFC851]Impatient by 1.",
 		"EXTENDED_DESCRIPTION": ["Impatient", "Whenever you attack an enemy while this is in your hand, gain this much damage. Multi-hits trigger this effect multiple times. Reset after use."],
 		"NAME": "Chaika Bohdan"
 	},
@@ -130,7 +129,7 @@
 	},
 	"animator_Chris":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Steal [#EFC851]Gold equal to this card's damage ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "Deal !D! damage. NL Steal !M! [#EFC851]Gold ([#EFC851]*[#FFFFFF]). NL Cooldown !SV! : Draw a [#EFC851]0-Cost[] card.",
 		"EXTENDED_DESCRIPTION": ["* Note", "You can steal up to 50 #yGold from a boss, 25 #yGold from an elite, or 10 #yGold from other non-minion enemies."],
 		"NAME": "Chris"
 	},
@@ -152,7 +151,7 @@
 	},
 	"animator_CrowleyEusford":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random enemy. NL Recall: Gain !M! damage and return to your draw pile.",
+		"DESCRIPTION": "Deal !D! damage to a random enemy. NL This card costs 0 if you Exhausted a card this turn.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator_Darkness":
@@ -300,15 +299,15 @@
 	"animator_EmiyaShirou":
 	{
 		"DESCRIPTION": "Give a random NL enemy !M! Block and 1 Vulnerable. [#EFC851]Unlimited [#EFC851]Blade [#EFC851]Works.",
-		"EXTENDED_DESCRIPTION": ["Unlimited Blade Works", "Whenever an enemy loses its block this turn, gain 1 #yEnergy and draw a random #yAttack from your draw pile. Does not stack."],
+		"EXTENDED_DESCRIPTION": ["Unlimited Blade Works", "Whenever an enemy loses its block this turn, gain 1 #yEnergy and draw a random #yAttack from your draw pile."],
 		"NAME": "Emiya Shirou"
 	},
 	"animator_Emonzaemon":
 	{
-		"DESCRIPTION": "Deal !D! damage. If this is your 3rd [#EFC851]Attack in a row, Purge this and obtain [#EFC851]Entou [#EFC851]Jyuu.",
+		"DESCRIPTION": "Deal !D! Piercing damage twice. NL Legacy: Obtain NL [#EFC851]Entou [#EFC851]Jyuu.",
 		"EXTENDED_DESCRIPTION": ["Entou Jyuu", "A special 1-Cost #yPower, which costs 0 when upgraded."],
 		"NAME": "Emonzaemon",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. If this is your 3rd [#EFC851]Attack in a row, Purge this and obtain [#EFC851]Entou [#EFC851]Jyuu+."
+		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage twice. NL Legacy: Obtain NL [#EFC851]Entou [#EFC851]Jyuu+."
 	},
 	"animator_Entoma":
 	{
@@ -357,7 +356,7 @@
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "Shapeshifter. Gain !B! Block for each enemy. Recall: Gain !M! Plated_Armor.",
+		"DESCRIPTION": "Shapeshifter. Gain !B! Block for each enemy. Recall: Gain !M! Metallicize.",
 		"NAME": "Fredrika"
 	},
 	"animator_GazelDwargon":
@@ -374,8 +373,7 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! cards. NL Legacy: Stun a random enemy ([#EFC851]*[#FFFFFF]).",
-		"EXTENDED_DESCRIPTION": ["* Note", "Does not stack."],
+		"DESCRIPTION": "Deal !D! damage. NL If you discarded a card this turn, NL gain !B! Block.",
 		"NAME": "Gillette"
 	},
 	"animator_Gluttony":
@@ -428,13 +426,14 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "Apply !SV! Weak to ALL enemies and give them !M! Block. NL Cycle 1 card. NL Recall: Gain [E]",
-		"NAME": "Guy"
+		"DESCRIPTION": "Apply 2 Vulnerable. NL Cycle !M! card. NL Boost !SV! : Gain [#EFC851]Strategic[] [#EFC851]Information[].",
+		"EXTENDED_DESCRIPTION": ["Strategic Information", "Once per turn, when a card is discarded, gain #b2 Block and reduce the cost of a random card in your hand by #b1 this turn. Can be used multiple times per turn when stacked."],
+		"NAME": "Guy",
+		"UPGRADE_DESCRIPTION": "Apply 2 Vulnerable. NL Cycle !M! cards. NL Boost !SV! : Gain [#EFC851]Strategic[] [#EFC851]Information[]."
 	},
 	"animator_Hakurou":
 	{
-		"DESCRIPTION": "[#EFC851]Martial [#EFC851]Artist. Deal !D! damage !M! times. NL [#EFC851]Drawn: Gain !SV! Temporary Dexterity.",
-		"EXTENDED_DESCRIPTION": ["Martial Artist", "This card's damage also scales with #yDexterity."],
+		"DESCRIPTION": "Martial_Artist. Deal !D! damage !M! times. NL [#EFC851]Drawn: Gain !SV! Temporary Dexterity.",
 		"NAME": "Hakurou"
 	},
 	"animator_HigakiRinne":
@@ -499,6 +498,16 @@
 		"DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Synergy: Draw 1 card.",
 		"NAME": "Kazuma"
 	},
+	"animator_Kira":
+	{
+		"DESCRIPTION": "Ethereal. Kill the enemy after a certain number of turns ([#EFC851]*[]). NL Gain !SV! Vulnerable. NL Exhaust.",
+		"EXTENDED_DESCRIPTION": 
+		[
+			"* Note", "This card's text will change when targeting an enemy, enemies with more health will survive longer. Ignores Artifact.",
+			"Ethereal. The enemy will die in # turns. NL Gain !SV! Vulnerable. NL Exhaust."
+		],
+		"NAME": "Light Yagami"
+	},
 	"animator_Konayuki":
 	{
 		"DESCRIPTION": "If you have at least 10 Strength, deal !D! damage, otherwise gain !M! Strength.",
@@ -517,10 +526,10 @@
 	},
 	"animator_Kuroyukihime":
 	{
-		"DESCRIPTION": "Discard 2 cards. Add [#EFC851]Black [#EFC851]Lotus to your draw pile. Exhaust.",
+		"DESCRIPTION": "Discard !M! cards. Add [#EFC851]Black [#EFC851]Lotus to your draw pile. Exhaust.",
 		"EXTENDED_DESCRIPTION": ["Black Lotus", "A special 1-cost #yAttack."],
 		"NAME": "Kuroyukihime",
-		"UPGRADE_DESCRIPTION": "Discard 2 cards. Add [#EFC851]Black [#EFC851]Lotus+ to your draw pile. Exhaust."
+		"UPGRADE_DESCRIPTION": "Discard !M! card. Add [#EFC851]Black [#EFC851]Lotus+ to your draw pile. Exhaust."
 	},
 	"animator_Kyubey":
 	{
@@ -535,10 +544,9 @@
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "[#EFC851]Reload: Deal !D! damage. NL Synergy: Apply !M! [#EFC851]Poison on every hit.",
+		"DESCRIPTION": "[#EFC851]Reload: Deal !D! Piercing damage. NL Synergy: Apply !M! Poison on every hit.",
 		"EXTENDED_DESCRIPTION": ["Reload", "Discard any number of cards, activate this effect that many times."],
-		"NAME": "Layla",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Reload: Deal !D! Piercing damage. NL Synergy: Apply !M! [#EFC851]Poison on every hit."
+		"NAME": "Layla"
 	},
 	"animator_LeleiLaLalena":
 	{
@@ -633,7 +641,7 @@
 	},
 	"animator_Raven":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Draw your lowest damage [#EFC851]Attack.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Draw your lowest damage [#EFC851]Attack.",
 		"NAME": "Raven"
 	},
 	"animator_Rena":
@@ -649,9 +657,8 @@
 	},
 	"animator_RinTohsaka":
 	{
-		"DESCRIPTION": "Channel !M! random Orb. Synergy: Gain !B! Block.",
-		"NAME": "Rin Tohsaka",
-		"UPGRADE_DESCRIPTION": "Apply 1 Lock-On to ALL enemies. [#EFC851]Channel !M! random Orb. Synergy: Gain !B! Block."
+		"DESCRIPTION": "Channel 1 random Orb. Gain !B! Block. NL Synergy: Gain !M! Enchanted_Armor.",
+		"NAME": "Rin Tohsaka"
 	},
 	"animator_RoryMercury":
 	{
@@ -760,7 +767,7 @@
 	},
 	"animator_Strike_Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength until end of turn.",
 		"NAME": "Improved Strike"
 	},
 	"animator_Strike_Fate":
@@ -868,7 +875,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Apply 1 Vulnerable to each different enemy hit.",
+		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Synergy: Apply 1 Weak to ALL enemies.",
 		"NAME": "Viivi"
 	},
 	"animator_Witch":
@@ -908,8 +915,8 @@
 	},
 	"animator_ZankiKiguchi":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Overrun and Recall: ALL [#EFC851]Attacks in your draw pile gain !M! damage.",
-		"NAME": "Zanki"
+		"DESCRIPTION": "Martial_Artist. NL Deal !D! Damage. NL Synergy: If you have at least 4 Strength, gain 1 Dexterity.",
+		"NAME": "Zanki Kiguchi"
 	},
 	"animator_Zero":
 	{

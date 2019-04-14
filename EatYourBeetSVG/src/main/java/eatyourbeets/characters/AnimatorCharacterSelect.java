@@ -1,11 +1,13 @@
 package eatyourbeets.characters;
 
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.Defend;
 import eatyourbeets.cards.animator.Strike;
 import eatyourbeets.characters.Loadouts.*;
+import patches.AbstractEnums;
 
 import java.util.ArrayList;
 import java.util.StringJoiner;
@@ -17,9 +19,38 @@ public class AnimatorCharacterSelect
 
     protected static final String[] uiText = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.CharacterSelect).TEXT;
 
-    public static AnimatorCustomLoadout GetSelectedLoadout()
+    public static AnimatorCustomLoadout GetSelectedLoadout(boolean startingGame)
     {
-        return customLoadouts.get(index);
+        AnimatorCustomLoadout loadout = customLoadouts.get(index);
+        if (startingGame && loadout instanceof Random)
+        {
+            ArrayList<AnimatorCustomLoadout> unlocked = new ArrayList<>();
+            int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
+            for (AnimatorCustomLoadout item : customLoadouts)
+            {
+                if (!(item instanceof Random) && currentLevel >= item.unlockLevel)
+                {
+                    unlocked.add(item);
+                }
+            }
+
+            AnimatorCustomLoadout newLoadout = Utilities.GetRandomElement(unlocked, new com.megacrit.cardcrawl.random.Random());
+            if (newLoadout == null)
+            {
+                index = 0;
+                newLoadout = customLoadouts.get(0);
+            }
+            else
+            {
+                index = customLoadouts.indexOf(newLoadout);
+            }
+
+            return newLoadout;
+        }
+        else
+        {
+            return loadout;
+        }
     }
 
     public static void NextLoadout()
@@ -44,7 +75,7 @@ public class AnimatorCharacterSelect
     {
         for (AnimatorCustomLoadout loadout : customLoadouts)
         {
-            loadout.OnTrueVictory(GetSelectedLoadout(), ascensionLevel);
+            loadout.OnTrueVictory(GetSelectedLoadout(false), ascensionLevel);
         }
         AnimatorMetrics.SaveTrophies(false);
     }
@@ -87,6 +118,7 @@ public class AnimatorCharacterSelect
         AddLoadout(new TenSura()            , 3, "");
         AddLoadout(new Kancolle()           , 4, "");
         AddLoadout(new AccelWorld()         , 4, "");
+        AddLoadout(new Random()             , 0, "");
 
         int synergyID = AnimatorMetrics.lastLoadout;
 

@@ -23,7 +23,7 @@ public class Berserker extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(25,0);
+        Initialize(24,0);
 
         SetSynergy(Synergies.Fate);
     }
@@ -46,7 +46,7 @@ public class Berserker extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(7);
+            upgradeDamage(6);
         }
     }
 

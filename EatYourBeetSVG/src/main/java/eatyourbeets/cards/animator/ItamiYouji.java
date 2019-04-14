@@ -48,12 +48,10 @@ public class ItamiYouji extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
-                int damage = this.damage - c.costForTurn;
-                if (damage > 0)
-                {
-                    GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-                    GameActionsHelper.DamageTarget(AbstractDungeon.player, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-                }
+                int damage = Math.max(0, this.damage - c.costForTurn);
+
+                GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
+                GameActionsHelper.DamageTarget(AbstractDungeon.player, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
             }
         }
     }

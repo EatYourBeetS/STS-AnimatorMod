@@ -1,23 +1,29 @@
-package eatyourbeets.actions;//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+package eatyourbeets.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
+import java.util.Date;
+import java.time.Instant;
+
 public class WaitRealtimeAction extends AbstractGameAction
 {
+    private Instant targetTime;
+
     public WaitRealtimeAction(float setDur)
     {
         this.setValues(null, null, 0);
 
         this.duration = setDur;
-
         this.actionType = ActionType.WAIT;
+        this.targetTime = Date.from(Instant.now()).toInstant().plusMillis((long)(setDur * 1000));
     }
 
     public void update()
     {
-        this.tickDuration();
+        Instant now = Date.from(Instant.now()).toInstant();
+        if (now.isAfter(targetTime))
+        {
+            this.isDone = true;
+        }
     }
 }

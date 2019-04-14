@@ -130,6 +130,11 @@
 		"DESCRIPTIONS": ["當你的格擋消失時, 對所有敵人造成等量傷害 #b", " 。"],
 		"NAME": "Gazel Dwargon"
 	},
+	"animator_StrategicInformationPower":
+	{
+		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and reduce the cost of a random card in your hand by 1."],
+		"NAME": "戰略信息"
+	},
 	"animator_EarthenThornsPower":
 	{
 		"DESCRIPTIONS": ["每次受到 #y攻擊 傷害時，就造成 #b", " 點反傷"],

@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,7 +22,7 @@ public class Chung extends AnimatorCard_Cooldown
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(14, 7);
+        Initialize(13, 8);
 
         this.baseSecondaryValue = this.secondaryValue = COOLDOWN;
         //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
@@ -37,7 +38,7 @@ public class Chung extends AnimatorCard_Cooldown
 
         if (ProgressCooldown())
         {
-            GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH);
+            GameActionsHelper.DamageAllEnemies(p, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
             if (p.hasPower(PenNibPower.POWER_ID))
             {
                 GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
@@ -51,7 +52,7 @@ public class Chung extends AnimatorCard_Cooldown
         if (TryUpgrade())
         {
             upgradeDamage(2);
-            upgradeBlock(2);
+            upgradeBlock(3);
         }
     }
 

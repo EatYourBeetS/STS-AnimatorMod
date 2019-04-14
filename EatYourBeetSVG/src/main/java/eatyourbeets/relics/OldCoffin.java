@@ -1,5 +1,6 @@
 package eatyourbeets.relics;
 
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -50,6 +51,9 @@ public class OldCoffin extends AnimatorRelic
             if (m != null)
             {
                 AbstractPlayer p = AbstractDungeon.player;
+
+                GameActionsHelper.AddToTop(new RelicAboveCreatureAction(m, this));
+
                 int n = AbstractDungeon.miscRng.random(11);
                 if (n < 4)
                 {

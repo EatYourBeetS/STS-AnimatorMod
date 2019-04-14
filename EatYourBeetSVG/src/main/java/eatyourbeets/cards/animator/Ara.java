@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.OnTargetBlockBreakAction;
@@ -20,7 +21,7 @@ public class Ara extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5,0, 1);
+        Initialize(5,0);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -28,11 +29,18 @@ public class Ara extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        DamageAction damageAction1 = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        DamageAction damageAction2 = (new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
-        GameActionsHelper.AddToBottom(new OnTargetBlockBreakAction(m, damageAction1, new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber)));
-        GameActionsHelper.AddToBottom(new OnTargetBlockBreakAction(m, damageAction2, new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber)));
+        for (AbstractPower power : m.powers)
+        {
+            if (power.type == AbstractPower.PowerType.DEBUFF)
+            {
+                GameActionsHelper.DrawCard(p, 2);
+                GameActionsHelper.ChooseAndDiscard(1, false);
+                return;
+            }
+        }
     }
 
     @Override

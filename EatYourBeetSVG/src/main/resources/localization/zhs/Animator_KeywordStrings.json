@@ -26,7 +26,7 @@
 		"PROPERNAME": "渴血"
 	},
 	{
-		"DESCRIPTION": "忽略目标的格挡 ，荆棘和其他在受到伤害时触发的效果 。",
+		"DESCRIPTION": "忽略目标的格挡 和 荆棘 。",
 		"NAMES": ["穿刺"],
 		"PROPERNAME": "穿刺"
 	},
@@ -106,9 +106,24 @@
 		"PROPERNAME": "支援"
 	},
 	{
+		"NAMES": ["涂毒"],
+		"DESCRIPTION": "每有一次攻击造成未被格挡的伤害，就给予 #b1 层 中毒 。",
+		"PROPERNAME": "涂毒"
+	},
+	{
 		"DESCRIPTION": "每回合结束时获得 格挡 。受到攻击伤害而失去生命时，其层数将会减少 #b1",
 		"NAMES": ["多层护甲"],
 		"PROPERNAME": "多层护甲"
+	},
+	{
+		"PROPER_NAME": "魔法护甲",
+		"NAMES": ["魔法护甲"],
+		"DESCRIPTION": "减少受到的伤害，效果由层数决定 。"
+	},
+	{
+		"PROPER_NAME": "剑圣",
+		"NAMES": ["剑圣"],
+		"DESCRIPTION": "此牌造成的伤害受敏捷影响"
 	},
 	{
 		"DESCRIPTION": "下回合开始时格挡不会消失 。",

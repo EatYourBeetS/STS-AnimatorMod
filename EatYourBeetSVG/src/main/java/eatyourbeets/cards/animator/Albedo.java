@@ -1,11 +1,13 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.EnchantedArmorPower;
+import patches.AbstractEnums;
 
 public class Albedo extends AnimatorCard
 {
@@ -13,19 +15,33 @@ public class Albedo extends AnimatorCard
 
     public Albedo()
     {
-        super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0,0,25);
+        Initialize(12,0);
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.Overlord);
     }
 
     @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        this.tags.remove(AbstractEnums.CardTags.LOYAL);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, this.damage), this.damage);
+
+        if (HasActiveSynergy())
+        {
+            this.tags.add(AbstractEnums.CardTags.LOYAL);
+        }
     }
 
     @Override
@@ -33,8 +49,7 @@ public class Albedo extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            //upgradeDamage(4);
-            upgradeMagicNumber(5);
+            upgradeDamage(2);
         }
     }
 }

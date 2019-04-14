@@ -19,9 +19,9 @@ public class Souei extends AnimatorCard
 
     public Souei()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(0,0, 4);
+        Initialize(0,0, 6);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -37,7 +37,7 @@ public class Souei extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(2);
         }
     }
 

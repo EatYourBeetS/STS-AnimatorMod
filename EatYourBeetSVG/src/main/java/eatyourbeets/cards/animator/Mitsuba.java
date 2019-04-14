@@ -23,12 +23,12 @@ public class Mitsuba extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-
         if (m.currentHealth > p.currentHealth)
         {
             GameActionsHelper.GainBlock(p, this.block);
         }
+
+        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override

@@ -162,7 +162,7 @@
 		"DESCRIPTIONS":
 		[
 			"At the start of each combat, heal #b",
-			" HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special fight (Act 3 deck level suggested), winning it will activate this relic's true effect.",
+			" HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special fight, winning it will activate this relic's true effect. NL NL You may click this after using a rest site option, Act 3 deck level suggested.",
 			"At the start of each combat, gain #b",
 			" #yRegeneration and #b",
 			" Max HP. NL NL Lose all #yBlood #yVials, whenever you would obtain a #yBlood #yVial, improve this relic's effect instead."

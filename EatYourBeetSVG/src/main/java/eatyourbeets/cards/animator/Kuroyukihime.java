@@ -17,7 +17,7 @@ public class Kuroyukihime extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 2);
 
         this.exhaust = true;
 
@@ -42,7 +42,7 @@ public class Kuroyukihime extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ChooseAndDiscard(2, false);
+        GameActionsHelper.ChooseAndDiscard(this.magicNumber, false);
 
         BlackLotus blackLotus = new BlackLotus();
         if (upgraded)
@@ -56,6 +56,9 @@ public class Kuroyukihime extends AnimatorCard
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeMagicNumber(-1);
+        }
     }
 }

@@ -125,13 +125,13 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public ArrayList<String> getStartingDeck() 
     {
-        return AnimatorCharacterSelect.GetSelectedLoadout().GetStartingDeck();
+        return AnimatorCharacterSelect.GetSelectedLoadout(true).GetStartingDeck();
     }
 
     @Override
     public ArrayList<String> getStartingRelics() 
     {
-        return AnimatorCharacterSelect.GetSelectedLoadout().GetStartingRelics();
+        return AnimatorCharacterSelect.GetSelectedLoadout(true).GetStartingRelics();
     }
 
     @Override
@@ -143,7 +143,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public CharSelectInfo getLoadout()
     {
-        return AnimatorCharacterSelect.GetSelectedLoadout().GetLoadout(NAMES[0], TEXT[0], this);
+        return AnimatorCharacterSelect.GetSelectedLoadout(true).GetLoadout(NAMES[0], TEXT[0], this);
     }
 
     @Override

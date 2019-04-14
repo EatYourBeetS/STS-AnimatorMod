@@ -25,7 +25,7 @@
 		"PROPERNAME": "嗜血"
 	},
 	{
-		"DESCRIPTION": "忽略目標的格擋 ，荊棘和其他在受到傷害時觸發的效果 。",
+		"DESCRIPTION": "忽略目標的格擋 和 荊棘 。",
 		"NAMES": ["穿刺"],
 		"PROPERNAME": "穿刺"
 	},
@@ -105,9 +105,24 @@
 		"PROPERNAME": "支援"
 	},
 	{
+		"NAMES": ["塗毒"],
+		"DESCRIPTION": "每有一次攻擊造成未被格擋的傷害，就給予 #b1 層 中毒 。",
+		"PROPERNAME": "塗毒"
+	},
+	{
 		"DESCRIPTION": "每回合結束時獲得 格擋 。 受到攻擊傷害而失去生命時，其層數將會減少 #b1",
 		"NAMES": ["多層護甲"],
 		"PROPERNAME": "多層護甲"
+	},
+	{
+		"PROPER_NAME": "魔法護甲",
+		"NAMES": ["魔法護甲"],
+		"DESCRIPTION": "受到敵人更少的傷害，效果被層數影響 。"
+	},
+	{
+		"PROPER_NAME": "武術家",
+		"NAMES": ["武術家"],
+		"DESCRIPTION": "此牌的傷害會受到敏捷影響 。"
 	},
 	{
 		"DESCRIPTION": "下回合開始時格擋不會消失 。",

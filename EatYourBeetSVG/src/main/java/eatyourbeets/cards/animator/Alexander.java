@@ -66,7 +66,7 @@ public class Alexander extends AnimatorCard
         {          
             upgradeDamage(3);
             upgradeSecondaryValue(3 / 2);
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(1);
         }
     }
 }

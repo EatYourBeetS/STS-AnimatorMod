@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.DrawSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -17,7 +18,7 @@ public class Raven extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(7,2);
+        Initialize(7,0, 1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -26,7 +27,7 @@ public class Raven extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper.ApplyPower(p, m, new WeakPower(m, this.magicNumber, false), this.magicNumber);
 
         if (p.drawPile.size() > 0)
         {
@@ -53,8 +54,8 @@ public class Raven extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(2);
-            upgradeBlock(1);
+            upgradeDamage(1);
+            upgradeMagicNumber(1);
         }
     }
 }

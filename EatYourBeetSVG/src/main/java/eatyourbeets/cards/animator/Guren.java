@@ -22,7 +22,7 @@ public class Guren extends AnimatorCard
     {
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0, 12);
+        Initialize(0, 10);
 
         //AddExtendedDescription();
 

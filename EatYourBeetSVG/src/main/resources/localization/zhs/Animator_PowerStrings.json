@@ -130,6 +130,11 @@
 		"DESCRIPTIONS": ["当你的格挡消失时, 对所有敌人造成等量伤害 #b", " ."],
 		"NAME": "矮人王"
 	},
+	"animator_StrategicInformationPower":
+	{
+		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and reduce the cost of a random card in your hand by 1."],
+		"NAME": "战略信息"
+	},
 	"animator_EarthenThornsPower":
 	{
 	    "DESCRIPTIONS": ["每受到一次 #y攻击 ，造成 #b", " 点反伤。"],

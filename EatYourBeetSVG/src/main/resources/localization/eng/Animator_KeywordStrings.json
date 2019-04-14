@@ -25,7 +25,7 @@
 		"PROPERNAME": "Heartseeker"
 	},
 	{
-		"DESCRIPTION": "Ignore the target's Block, Thorns, and other Effects which trigger when receiving damage.",
+		"DESCRIPTION": "Ignore the target's Block and Thorns.",
 		"NAMES": ["piercing"],
 		"PROPERNAME": "Piercing"
 	},
@@ -110,9 +110,29 @@
 		"PROPERNAME": "Burning"
 	},
 	{
+		"NAMES": ["envenom"],
+		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 Poison per stack.",
+		"PROPERNAME": "Envenom"
+	},
+	{
+		"NAMES": ["metallicize"],
+		"DESCRIPTION": "Gain #yBlock at the start of your turn.",
+		"PROPERNAME": "Metallicize"
+	},
+	{
 		"PROPER_NAME": "Plated Armor",
 		"NAMES": ["plated armor", "plated_armor"],
 		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving unblocked damage."
+	},
+	{
+		"PROPER_NAME": "Enchanted Armor",
+		"NAMES": ["enchanted armor", "enchanted_armor"],
+		"DESCRIPTION": "Take less damage from ALL #yAttacks. Further stacks are less effective."
+	},
+	{
+		"PROPER_NAME": "Martial Artist",
+		"NAMES": ["martial artist", "martial_artist"],
+		"DESCRIPTION": "This card's damage also scales with #yDexterity."
 	},
 	{
 		"PROPER_NAME": "Support Damage",

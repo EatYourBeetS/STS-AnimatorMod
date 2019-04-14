@@ -15,7 +15,7 @@ public class Defend_OwariNoSeraph extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 5, 1);
+        Initialize(0, 6, 1);
     }
 
     @Override
@@ -42,7 +42,6 @@ public class Defend_OwariNoSeraph extends Defend
         if (TryUpgrade())
         {
             upgradeBlock(3);
-            upgradeMagicNumber(1);
         }
     }
 }

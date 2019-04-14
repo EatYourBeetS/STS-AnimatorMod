@@ -1,7 +1,6 @@
 package eatyourbeets.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,16 +10,16 @@ import com.megacrit.cardcrawl.powers.RegrowPower;
 
 public class OnTargetDeadAction extends AnimatorAction
 {
-    private final DamageAction damageAction;
+    private final AbstractGameAction damageAction;
     private final AbstractGameAction action;
     private final boolean includeMinions;
 
-    public OnTargetDeadAction(AbstractCreature target, DamageAction damageAction, AbstractGameAction action)
+    public OnTargetDeadAction(AbstractCreature target, AbstractGameAction damageAction, AbstractGameAction action)
     {
         this(target, damageAction, action, false);
     }
 
-    public OnTargetDeadAction(AbstractCreature target, DamageAction damageAction, AbstractGameAction action, boolean includeMinions)
+    public OnTargetDeadAction(AbstractCreature target, AbstractGameAction damageAction, AbstractGameAction action, boolean includeMinions)
     {
         this.includeMinions = includeMinions;
         this.target = target;

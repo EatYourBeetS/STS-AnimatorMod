@@ -72,7 +72,7 @@ public class MetricsPatches
                     params.put("bannedSeries", bannedSeries);
                     params.put("ascension", AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0);
                     params.put("cards", cardsData);
-                    params.put("startingSeries", AnimatorCharacterSelect.GetSelectedLoadout().ID);
+                    params.put("startingSeries", AnimatorCharacterSelect.GetSelectedLoadout(false).ID);
                     params.put("language", Settings.language.name());
 
                     String data = gson.toJson(params);

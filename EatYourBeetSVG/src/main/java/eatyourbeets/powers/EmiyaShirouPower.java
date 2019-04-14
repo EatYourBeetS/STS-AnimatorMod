@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.DrawSpecificCardAction;
 import eatyourbeets.misc.RandomizedList;
@@ -21,7 +21,8 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
     public EmiyaShirouPower(AbstractCreature owner)
     {
         super(owner, POWER_ID);
-        this.amount = -1;
+
+        this.amount = 1;
 
         updateDescription();
     }
@@ -31,7 +32,7 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
     {
         super.onInitialApplication();
 
-        GameActionsHelper.AddToTop(new VFXAction(new BorderLongFlashEffect(Color.ORANGE)));
+        GameActionsHelper.AddToTop(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
         PlayerStatistics.onBlockBroken.Subscribe(this);
     }
 
@@ -40,20 +41,24 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
     {
         if (!creature.isPlayer)
         {
-            AbstractPlayer p =  AbstractDungeon.player;
+            AbstractPlayer p = AbstractDungeon.player;
             CardGroup attacks = p.drawPile.getAttacks();
             if (attacks != null && attacks.size() > 0)
             {
                 RandomizedList<AbstractCard> randomAttacks = new RandomizedList<>(attacks.group);
 
-                AbstractCard card = randomAttacks.Retrieve(AbstractDungeon.miscRng);
-                if (card != null)
+                for (int i = 0; i < amount; i++)
                 {
-                    GameActionsHelper.AddToBottom(new DrawSpecificCardAction(card));
+                    AbstractCard card = randomAttacks.Retrieve(AbstractDungeon.miscRng);
+                    if (card != null)
+                    {
+                        GameActionsHelper.AddToBottom(new DrawSpecificCardAction(card));
+                    }
                 }
             }
 
-            GameActionsHelper.GainEnergy(1);
+            GameActionsHelper.GainEnergy(amount);
+
             flash();
         }
     }

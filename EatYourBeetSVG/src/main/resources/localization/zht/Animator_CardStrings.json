@@ -2,7 +2,7 @@
 {
 	"animator_AcuraAkari":
 	{
-		"DESCRIPTION": "丟棄 1 張牌 。 對一個敵人造成 !M! 毒 之 印記 。 NL 獲得 !B! 點 格擋 。",
+		"DESCRIPTION": "丟棄 1 張牌 。 NL 獲得 !B! 點 格擋 。 NL 獲得 !M! 點 臨時 塗毒 。",
 		"NAME": "阿卡莉"
 	},
 	"animator_AcuraShin":
@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 這張牌每被打出一次，它在本場戰鬥中的耗能減少 1 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 撤回 : 將此卡的攻擊次數增加 1 。",
 		"NAME": "托魯"
 	},
 	"animator_Add":
@@ -40,8 +40,7 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "獲得 !M! 層 [#EFC851]魔法護甲[] 。",
-		"EXTENDED_DESCRIPTION": ["魔法護甲", "受到敵人更少的傷害，效果被層數影響。"],
+		"DESCRIPTION": "造成 !D! 點 傷害 。 獲得等同於傷害值的 魔法護甲 。 同調 : 返回抽牌堆 。",
 		"NAME": "雅兒貝德"
 	},
 	"animator_Alexander":
@@ -57,7 +56,7 @@
 	},
 	"animator_Ara":
 	{
-		"DESCRIPTION": "造成!D! 點傷害2次 。 壓倒 : 獲得 !M! 點 敏捷 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 2 次 。 如果敵人有 負面效果 ， 抽 2 張牌 ， 然後丟棄 1 張牌 。",
 		"NAME": "艾拉"
 	},
 	"animator_Archer":
@@ -113,7 +112,7 @@
 	},
 	"animator_ChaikaBohdan":
 	{
-		"DESCRIPTION": " [#EFC851]急躁[] NL !M! 。 造成 !D! 點 傷害 。 壓倒 : 獲得 1 點 力量 。",
+		"DESCRIPTION": " [#EFC851]急躁[] NL !M! 。 造成 !D! 點 傷害 。 同調 : 將 [#EFC851]急躁[] 值提高 1 。",
 		"EXTENDED_DESCRIPTION": ["急躁", "當此牌在手牌中時，你打出的 #y攻擊 牌額外增加等同於急躁層數的傷害 。 使用後重置傷害 。"],
 		"NAME": "嘉依卡·布芙丹"
 	},
@@ -130,7 +129,7 @@
 	},
 	"animator_Chris":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 NL 獲得等同於傷害值的金幣 [#EFC851]*[] 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 NL 偷3金幣 [#EFC851]*[] 。 冷卻 !SV! : 張0耗牌 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "首領最多偷取 50 金幣 ， 從精英最多偷取 25 金幣 ， 從其他非爪牙敵人最多偷取 10 金幣 。"],
 		"NAME": "克里斯"
 	},
@@ -152,7 +151,7 @@
 	},
 	"animator_CrowleyEusford":
 	{
-		"DESCRIPTION": "對一個隨機的敵人造成 !D! 點 傷害 。 NL 撤回 : 在本次戰鬥中提高其 !M! 點 傷害 ， 返回抽牌堆。",
+		"DESCRIPTION": "對一個隨機的敵人造成 !D! 點 傷害 。 NL 如果你這一輪消耗一張牌, 將此卡的成本降低到0 。",
 		"NAME": "克羅里·尤斯福德"
 	},
 	"animator_Darkness":
@@ -299,15 +298,15 @@
 	"animator_EmiyaShirou":
 	{
 		"DESCRIPTION": "給予一個隨機敵人 !M! 點 格擋 和 1 層 易傷 。 [#EFC851]無限劍制[] 。",
-		"EXTENDED_DESCRIPTION": ["無限劍制", "本回合， 本回合，打破格擋時獲得 1 點 #y能量 和抽一張 隨機 #y攻擊牌 。 該效果不疊加 。"],
+		"EXTENDED_DESCRIPTION": ["無限劍制", "本回合， 本回合，打破格擋時獲得 1 點 #y能量 和抽一張 隨機 #y攻擊牌 。"],
 		"NAME": "衛宮四郎"
 	},
 	"animator_Emonzaemon":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害。如果這是連續的第三次 [#EFC851]攻擊[] ， 抹除 并 獲得獲得 [#EFC851]炎刀·銃[] 。",
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 2 次 。 遺產 : 獲得獲得 [#EFC851]炎刀·銃[] 。",
 		"EXTENDED_DESCRIPTION": ["炎刀·銃", "一個特殊的無耗能的 #y能力 。"],
 		"NAME": "左右田右衛門左衛門",
-		"UPGRADE_DESCRIPTION": " 造成 !D! 點傷害。 NL 如果這是連續的第三次 [#EFC851]攻擊[] ， 抹除 并 獲得獲得 [#EFC851]炎刀·銃+[] 。"
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 穿刺 傷害 2 次 。 遺產 : 獲得獲得 [#EFC851]炎刀·銃+[] 。"
 	},
 	"animator_Entoma":
 	{
@@ -373,7 +372,7 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 下一回合 ， 抽 !M! 張牌 。 遺贈 : 眩暈一個隨機的敵人 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 如果您在本回合丟棄了一張卡片 ， 獲得 !B! 點 格擋 。",
 		"NAME": "亞伯力克·基烈特"
 	},
 	"animator_Gluttony":
@@ -426,13 +425,13 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "給予所有敵人 !M! 點 格擋 和 !SV! 層 虛弱 。 循環 1 張牌 。 撤回 : 獲得 [E]",
+		"DESCRIPTION": "給予 2 層 易傷 。 循環 1 張牌 。 增強 !SV! : 獲得 1 點 [#EFC851]戰略信息[] 。",
+		"EXTENDED_DESCRIPTION": ["戰略信息", "當一張卡被丟棄時，獲得 #b2 點 格擋 ， 將手中隨機卡的耗能降低 #b1，並損失1層效果。該效果每回合開始充能一次"],
 		"NAME": "奇伊"
 	},
 	"animator_Hakurou":
 	{
-		"DESCRIPTION": "[#EFC851]武術家[] 。 造成 !D! 點傷害 !M! 次 。 NL [#EFC851]被抽到時[] : 獲得 !SV! 點 臨時 敏捷 。",
-		"EXTENDED_DESCRIPTION": ["武術家", "此牌的傷害會受到敏捷影響"],
+		"DESCRIPTION": "武術家 。 造成 !D! 點傷害 !M! 次 。 NL [#EFC851]被抽到時[] : 獲得 !SV! 點 臨時 敏捷 。",
 		"NAME": "白老"
 	},
 	"animator_HigakiRinne":
@@ -495,6 +494,16 @@
 		"DESCRIPTION": "獲得 !B! 點 格擋 ， 造成 !D! 點傷害 。 NL 同調 : 抽一張牌 。",
 		"NAME": "和真"
 	},
+	"animator_Kira":
+	{
+		"DESCRIPTION": "虚无 。 敵人很快就會死去 [#EFC851]*[] 。 NL 獲得 !SV! 層 易傷 。 NL 消耗 。",
+		"EXTENDED_DESCRIPTION": 
+		[
+			"* 注", "這張卡片的文字會在針對敵人時發生變化 ， 擁有更多健康的敵人將會存活更長時間 。 忽略 #y人工製品 。",
+			"虚无 。 敵人將在 # 輪後死亡 。 NL 獲得 !M! 層 易傷 。 NL 消耗 。"
+		],
+		"NAME": "Light Yagami"
+	},
 	"animator_Konayuki":
 	{
 		"DESCRIPTION": "若至少擁有10 點力量 ， 造成 !D! 點傷害 , 否則獲得 !M! 點 力量 。",
@@ -531,10 +540,9 @@
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "[#EFC851]重新裝填[] : 造成 !D! 點 傷害 。 NL 同調 : 給予 !M! 層 中毒 每次打擊 。",
+		"DESCRIPTION": "[#EFC851]重新裝填[] : 造成 !D! 點 穿刺 傷害 。 NL 同調 : 給予 !M! 層 中毒 每次打擊 。",
 		"EXTENDED_DESCRIPTION": ["重新裝填", "丟棄任意數量的牌 ，觸發同等次數 。"],
-		"NAME": "蕾拉",
-		"UPGRADE_DESCRIPTION": "[#EFC851]重新裝填[] : 造成 !D! 穿刺 點 傷害 。 NL 同調 : 給予 !M! 層 中毒 每次打擊 。"
+		"NAME": "蕾拉"
 	},
 	"animator_LeleiLaLalena":
 	{
@@ -629,7 +637,7 @@
 	},
 	"animator_Raven":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 獲得 !B! 點 格擋 。 將抽牌堆中傷害最低 的 [#EFC851]攻擊[] 牌 加入手牌 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 給予 !M! 層 虛弱 。 將抽牌堆中傷害最低 的 [#EFC851]攻擊[] 牌 加入手牌 。",
 		"NAME": "雷文"
 	},
 	"animator_Rena":
@@ -646,9 +654,8 @@
 	},
 	"animator_RinTohsaka":
 	{
-		"DESCRIPTION": "生成 !M! 個隨機充能球 。 同調 : 獲得 !B! 點 格擋 。",
-		"NAME": "遠阪凜",
-		"UPGRADE_DESCRIPTION": "給予所有敵人 1 跟蹤鎖定 。 生成 !M! 個隨機充能球 。 同調 : 獲得 !B! 點 格擋 。"
+		"DESCRIPTION": "生成 !M! 個隨機充能球 。 獲得 !B! 點 格擋 。 同調 : 獲得 !M! 點 魔法護甲 。",
+		"NAME": "遠阪凜"
 	},
 	"animator_RoryMercury":
 	{
@@ -756,7 +763,7 @@
 	},
 	"animator_Strike_Elsword":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 獲得 !M! 點 臨時 力量 。",
 		"NAME": "優越打擊"
 	},
 	"animator_Strike_Fate":
@@ -864,7 +871,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "對隨機敵人造成 !D! 點 傷害 !M! 次 。 對擊中的敵人造成 1 層 易傷 。",
+		"DESCRIPTION": "對隨機敵人造成 !D! 點 傷害 !M! 次 。 同調 : 給予所有敵人 1 層 虛弱 。",
 		"NAME": "薇薇·荷羅派涅"
 	},
 	"animator_Witch":
@@ -904,7 +911,7 @@
 	},
 	"animator_ZankiKiguchi":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害. NL 壓倒 ， 撤回 : 本次戰鬥中 ， 提高抽牌堆中所有攻擊牌的傷害 !M! 點 。",
+		"DESCRIPTION": "武術家 。 造成 !D! 點 傷害 。 NL 獲得 !B! 點 格擋 。 NL 同調 : 將 !M! 點 力量 轉換為 敏捷 。",
 		"NAME": "汽口慚愧"
 	},
 	"animator_Zero":

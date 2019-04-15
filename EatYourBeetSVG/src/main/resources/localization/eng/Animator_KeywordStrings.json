@@ -1,6 +1,6 @@
 [
 	{
-		"DESCRIPTION": "Activates if the last card played was from the same series.",
+		"DESCRIPTION": "Activates if the last card played this turn was from the same series.",
 		"NAMES": ["synergy", "synergies", "synergize", "synergizes"],
 		"PROPERNAME": "Synergy"
 	},
@@ -35,7 +35,7 @@
 		"PROPERNAME": "Resurrect"
 	},
 	{
-		"DESCRIPTION": "Gets reduced by 1 every time this card is played or manually discarded, if it is at 0, activate the effect and reset the Cooldown. NL Resets at the end of each fight.",
+		"DESCRIPTION": "Gets reduced by #b1 every time this card is #gplayed or #gdiscarded, if it is at #b0, activate the effect and reset the Cooldown. NL Resets at the end of each fight.",
 		"NAMES": ["cooldown"],
 		"PROPERNAME": "Cooldown"
 	},
@@ -106,7 +106,7 @@
 	},
 	{
 		"NAMES": ["burning"],
-		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack.",
+		"DESCRIPTION": "Take damage at the start of your turn. Also take #b5% more #yAttack damage per stack. Reduced by 1 each turn.",
 		"PROPERNAME": "Burning"
 	},
 	{
@@ -115,9 +115,19 @@
 		"PROPERNAME": "Envenom"
 	},
 	{
+		"NAMES": ["fire", "fire+"],
+		"DESCRIPTION": "Orb: Applies #yBurning to a random enemy.",
+		"PROPERNAME": "Fire"
+	},
+	{
 		"NAMES": ["metallicize"],
 		"DESCRIPTION": "Gain #yBlock at the start of your turn.",
 		"PROPERNAME": "Metallicize"
+	},
+	{
+		"NAMES": ["choked"],
+		"DESCRIPTION": "Whenever you play a card this turn, the target loses 1 HP.",
+		"PROPERNAME": "Choked"
 	},
 	{
 		"PROPER_NAME": "Plated Armor",

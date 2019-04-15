@@ -66,9 +66,9 @@ public class HiiragiShinya extends AnimatorCard
         WeightedList<AbstractPower> result = new WeightedList<>();
         result.Add(new WeakPower(m, upgraded ? 2 : 1, false), 4);
         result.Add(new VulnerablePower(m, upgraded ? 2 : 1, false), 4);
-        result.Add(new PoisonPower(m, p, upgraded ? 5 : 3), 3);
+        result.Add(new PoisonPower(m, p, upgraded ? 4 : 3), 3);
         result.Add(new ConstrictedPower(m, p, upgraded ? 3 : 2), 3);
-        result.Add(new BurningPower(m, p, upgraded ? 3 : 2), 2);
+        result.Add(new BurningPower(m, p, upgraded ? 4 : 3), 2);
         result.Add(new StrengthPower(m, upgraded ? -2 : -1), 2);
         result.Add(new StunMonsterPower(m, 1), 1);
 

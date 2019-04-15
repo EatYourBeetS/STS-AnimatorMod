@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.DrawSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -39,8 +40,8 @@ public class Illya extends AnimatorCard
 
         if (bestCard != null)
         {
-            AbstractDungeon.actionManager.addToBottom(new DrawSpecificCardAction(bestCard));
-            AbstractDungeon.actionManager.addToBottom(new ModifyDamageAction(bestCard.uuid, this.magicNumber));
+            GameActionsHelper.AddToTop(new ModifyDamageAction(bestCard.uuid, this.magicNumber));
+            GameActionsHelper.AddToTop(new DrawSpecificCardAction(bestCard));
 
             if (HasActiveSynergy())
             {

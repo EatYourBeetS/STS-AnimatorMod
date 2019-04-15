@@ -61,7 +61,7 @@ public class Layla extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
+            upgradeDamage(2);
         }
     }
 

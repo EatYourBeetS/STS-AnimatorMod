@@ -39,7 +39,7 @@ public class GoblinSlayer extends AnimatorCard
         int turnCount = PlayerStatistics.getTurnCount();
         if (turnCount % 2 == 1)
         {
-            int goblins = turnCount < 6 ? 1 : turnCount < 12 ? 2 : 3;
+            int goblins = turnCount < 6 ? 1 : turnCount < 10 ? 2 : 3;
 
             GameActionsHelper.AddToBottom(new ShuffleRandomGoblinAction(goblins));
         }

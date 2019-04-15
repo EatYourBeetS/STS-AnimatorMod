@@ -26,7 +26,7 @@ public class Arpeggio extends AnimatorCard_Cooldown
     {
         if (ProgressCooldown())
         {
-            GameActionsHelper.ChannelOrb(new Plasma(), true);
+            OnCooldownCompleted(p, m);
         }
         else
         {
@@ -47,5 +47,11 @@ public class Arpeggio extends AnimatorCard_Cooldown
     protected int GetBaseCooldown()
     {
         return upgraded ? 1 : 2;
+    }
+
+    @Override
+    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActionsHelper.ChannelOrb(new Plasma(), true);
     }
 }

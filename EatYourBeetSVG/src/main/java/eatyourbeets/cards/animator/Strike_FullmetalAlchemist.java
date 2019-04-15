@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -20,6 +21,17 @@ public class Strike_FullmetalAlchemist extends Strike
         Initialize(5,0);
 
         this.baseSecondaryValue = this.secondaryValue = GetBaseCooldown();
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        if (ProgressCooldown())
+        {
+            GameActionsHelper.ChannelOrb(new Lightning(), true);
+        }
     }
 
     @Override

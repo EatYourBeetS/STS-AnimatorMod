@@ -203,7 +203,7 @@
 	},
 	"animator_Defend_Kancolle":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL If this is removed from your deck, gain !M! [#EFC851]Gold.",
+		"DESCRIPTION": "Gain !B! Block. NL Boost !SV! : Gain !M! [#EFC851]Gold.",
 		"NAME": "Improved Defend"
 	},
 	"animator_Defend_Katanagatari":
@@ -213,7 +213,7 @@
 	},
 	"animator_Defend_Konosuba":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Boost !SV!: Heal !M! HP.",
+		"DESCRIPTION": "Gain !B! Block. NL Boost !SV! : Heal !M! HP.",
 		"NAME": "Improved Defend"
 	},
 	"animator_Defend_NoGameNoLife":
@@ -253,7 +253,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "Apply !M! Vulnerable, then deal !D! damage. NL Synergy: Gain [E].",
+		"DESCRIPTION": "Apply !M! Vulnerable. NL Deal !D! damage. NL Synergy: Gain [E].",
 		"NAME": "Schwi"
 	},
 	"animator_DolaStephanie":
@@ -328,7 +328,7 @@
 	},
 	"animator_Eris":
 	{
-		"DESCRIPTION": "Heal !M! HP. Purge. NL Resurrect.",
+		"DESCRIPTION": "Heal !M! HP. Exhaust. NL Resurrect.",
 		"NAME": "Eris"
 	},
 	"animator_Eve":
@@ -349,10 +349,10 @@
 	},
 	"animator_FeridBathory":
 	{
-		"DESCRIPTION": "Once per turn, NL when a card is Exhausted gain 1 Strength and Heal 2 HP ([#EFC851]*[]).",
+		"DESCRIPTION": "Once per turn, NL when a card is Exhausted, gain 1 Strength and Heal 2 HP ([#EFC851]*[]).",
 		"EXTENDED_DESCRIPTION": ["*Note", "If you are at Max HP, the healing is converted to Temporary HP."],
 		"NAME": "Ferid Bathory",
-		"UPGRADE_DESCRIPTION": "Twice per turn, NL when a card is Exhausted gain 1 Strength and Heal 2 HP ([#EFC851]*[])."
+		"UPGRADE_DESCRIPTION": "Twice per turn, NL when a card is Exhausted, gain 1 Strength and Heal 2 HP ([#EFC851]*[])."
 	},
 	"animator_Fredrika":
 	{
@@ -521,7 +521,7 @@
 	},
 	"animator_Kuribayashi":
 	{
-		"DESCRIPTION": "Deal !D! damage. Synergy: The enemy loses !M! Strength this turn.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !SV! Choked. NL Synergy: The enemy loses !M! Strength this turn.",
 		"NAME": "Kuribayashi"
 	},
 	"animator_Kuroyukihime":
@@ -556,7 +556,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "Set the Block of an enemy to !M!. NL Gain !B! Block. NL Synergy: Draw 1 card.",
+		"DESCRIPTION": "Set the Block of an enemy to !M!. NL Gain !B! Block. NL Synergy: Retain your hand this turn.",
 		"NAME": "'Lizard Priest'"
 	},
 	"animator_MaesHughes":
@@ -588,7 +588,7 @@
 	},
 	"animator_Mitsuba":
 	{
-		"DESCRIPTION": "Deal !D! damage. If the enemy had more health than you, gain !B! Block.",
+		"DESCRIPTION": "Deal !D! damage. NL If the enemy had more health than you, gain !B! Block.",
 		"NAME": "Mitsuba"
 	},
 	"animator_Mitsurugi":
@@ -667,7 +667,7 @@
 	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply 2 Burning. NL Synergy: Apply !M! more Burning.",
+		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply !M! Burning. NL Synergy: Apply 2 more Burning.",
 		"NAME": "Roy Mustang"
 	},
 	"animator_Saber":
@@ -726,7 +726,7 @@
 	"animator_Shizu":
 	{
 		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! cards. NL [#EFC851]Ifrit.",
-		"EXTENDED_DESCRIPTION": ["Ifrit", "Exhaust up to 4 cards in your hand, apply that much #yBurning to ALL enemies. NL Add 2 #yBurns to your discard pile."],
+		"EXTENDED_DESCRIPTION": ["Ifrit", "Exhaust up to 3 cards in your hand, apply twice that much #yBurning to ALL enemies. NL Add 2 #yBurns to your discard pile."],
 		"NAME": "Shizu"
 	},
 	"animator_Shuna":
@@ -797,7 +797,7 @@
 	},
 	"animator_Strike_Kancolle":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If this is removed from your deck, gain !M! [#EFC851]Gold.",
+		"DESCRIPTION": "Deal !D! damage. NL Boost !SV! : Gain !M! [#EFC851]Gold.",
 		"NAME": "Improved Strike"
 	},
 	"animator_Strike_Katanagatari":
@@ -807,7 +807,7 @@
 	},
 	"animator_Strike_Konosuba":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Boost !SV!: Heal !M! HP.",
+		"DESCRIPTION": "Deal !D! damage. NL Boost !SV! : Heal !M! HP.",
 		"NAME": "Improved Strike"
 	},
 	"animator_Strike_NoGameNoLife":
@@ -875,7 +875,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Synergy: Apply 1 Weak to ALL enemies.",
+		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Synergy: Apply !SV! Weak to ALL enemies.",
 		"NAME": "Viivi"
 	},
 	"animator_Witch":
@@ -892,7 +892,7 @@
 	},
 	"animator_YaoHaDucy":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. Synergy: Gain !B! Block.",
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. All copies of this card gain !M! damage this combat.",
 		"NAME": "Yao Ha Ducy"
 	},
 	"animator_YunYun":
@@ -915,7 +915,7 @@
 	},
 	"animator_ZankiKiguchi":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Deal !D! Damage. NL Synergy: If you have at least 4 Strength, gain 1 Dexterity.",
+		"DESCRIPTION": "Martial_Artist. NL Deal !D! Damage. NL Synergy: Convert !M! Block to 1 Dexterity.",
 		"NAME": "Zanki Kiguchi"
 	},
 	"animator_Zero":

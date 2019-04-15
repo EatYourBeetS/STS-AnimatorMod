@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
@@ -27,6 +28,17 @@ public class Defend_FullmetalAlchemist extends Defend
         super.applyPowers();
         this.isSecondaryValueModified = (this.secondaryValue == 0);
         initializeDescription();
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        if (ProgressCooldown())
+        {
+            GameActionsHelper.ChannelOrb(new Frost(), true);
+        }
     }
 
     @Override

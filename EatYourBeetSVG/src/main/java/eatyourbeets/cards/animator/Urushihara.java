@@ -58,6 +58,8 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
         other.lazyCounter = AbstractDungeon.miscRng.random(4);
 
+        GameActionsHelper.ChannelOrb(new Dark(), true);
+
         PlayerStatistics.onStartOfTurnPostDraw.Subscribe(other);
     }
 
@@ -82,7 +84,6 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
             applyPowers();
             AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this));
             GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
-            GameActionsHelper.ChannelOrb(new Dark(), true);
 
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
         }

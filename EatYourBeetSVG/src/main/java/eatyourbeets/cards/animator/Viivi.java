@@ -22,6 +22,8 @@ public class Viivi extends AnimatorCard
 
         Initialize(3,0, 3);
 
+        this.baseSecondaryValue = this.secondaryValue = 1;
+
         SetSynergy(Synergies.Chaika);
     }
 
@@ -38,7 +40,7 @@ public class Viivi extends AnimatorCard
         {
             for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
             {
-                GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, 1, false), 1);
+                GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, this.secondaryValue, false), this.secondaryValue);
             }
         }
     }
@@ -49,6 +51,7 @@ public class Viivi extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
+            upgradeSecondaryValue(1);
         }
     }
 

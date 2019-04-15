@@ -1,13 +1,16 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+
+import java.util.HashSet;
+import java.util.Iterator;
 
 public class YaoHaDucy extends AnimatorCard
 {
@@ -17,20 +20,27 @@ public class YaoHaDucy extends AnimatorCard
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(4,4);
-        isMultiDamage = true;
+        Initialize(3, 0, 1);
+
+        this.isMultiDamage = true;
+
         SetSynergy(Synergies.Gate);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+//        if (HasActiveSynergy())
+//        {
+//            GameActionsHelper.GainBlock(p, this.block);
+//        }
 
-        if (HasActiveSynergy())
+        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+
+        for (AbstractCard c : getAllCopies())
         {
-            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-            //AbstractDungeon.actionManager.addToBottom(new CycleCardAction(p, 1));
+            c.baseDamage += this.magicNumber;
+            c.applyPowers();
         }
     }
 
@@ -39,8 +49,71 @@ public class YaoHaDucy extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
             upgradeDamage(2);
         }
+    }
+
+    public HashSet<AbstractCard> getAllCopies()
+    {
+        HashSet<AbstractCard> cards = new HashSet<>();
+        AbstractCard c;
+
+        c = AbstractDungeon.player.cardInUse;
+        if (c != null && c.cardID.equals(cardID))
+        {
+            cards.add(c);
+        }
+
+        Iterator var2 = AbstractDungeon.player.drawPile.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.discardPile.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.exhaustPile.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.limbo.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.hand.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        return cards;
     }
 }

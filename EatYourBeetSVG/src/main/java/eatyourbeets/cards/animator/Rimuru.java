@@ -55,7 +55,7 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
         }
     }
 
-    private boolean transform_BUT_INVERTED_BECAUSE_OF_SENSELESS_WARNINGS(CardGroup group, AbstractCard card)
+    private boolean transform(CardGroup group, AbstractCard card)
     {
         int index = group.group.indexOf(copy);
         if (index >= 0)
@@ -81,11 +81,12 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
             }
 
             this.copy = newCopy;
+            this.copy.applyPowers();
 
-            return false; // WHICH IS ACTUALLY TRUE, THANKS JAVA
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     @Override
@@ -97,18 +98,23 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
         }
 
         AbstractPlayer p = AbstractDungeon.player;
-        if (transform_BUT_INVERTED_BECAUSE_OF_SENSELESS_WARNINGS(p.hand, card))
+        if (!transform(p.hand, card))
         {
-            if (transform_BUT_INVERTED_BECAUSE_OF_SENSELESS_WARNINGS(p.drawPile, card))
+            if (!transform(p.drawPile, card))
             {
-                if (transform_BUT_INVERTED_BECAUSE_OF_SENSELESS_WARNINGS(p.discardPile, card))
+                if (!transform(p.discardPile, card))
                 {
-                    if (transform_BUT_INVERTED_BECAUSE_OF_SENSELESS_WARNINGS(p.exhaustPile, card))
+                    if (!transform(p.exhaustPile, card))
                     {
                         PlayerStatistics.onAfterCardPlayed.Unsubscribe(this);
                     }
                 }
             }
         }
+    }
+
+    public void ShutUpJava()
+    {
+        transform(AbstractDungeon.player.limbo, null);
     }
 }

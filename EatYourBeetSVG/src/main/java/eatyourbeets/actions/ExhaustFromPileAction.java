@@ -35,25 +35,19 @@ public class ExhaustFromPileAction extends AbstractGameAction
         AbstractCard card;
         if (this.duration == Settings.ACTION_DUR_MED)
         {
-            CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            Iterator var5 = sourceGroup.group.iterator();
+            CardGroup cards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-            AbstractCard card2;
-            while (var5.hasNext())
-            {
-                card2 = (AbstractCard) var5.next();
-                tmp.addToRandomSpot(card2);
-            }
+            cards.group.addAll(sourceGroup.group);
 
-            if (tmp.size() == 0)
+            if (cards.size() == 0)
             {
                 this.isDone = true;
             }
-            else if (tmp.size() <= this.amount)
+            else if (cards.size() <= this.amount)
             {
-                for (int i = 0; i < tmp.size(); ++i)
+                for (int i = 0; i < cards.size(); ++i)
                 {
-                    card = tmp.getNCardFromTop(i);
+                    card = cards.getNCardFromTop(i);
                     sourceGroup.moveToExhaustPile(card);
                 }
 
@@ -65,8 +59,8 @@ public class ExhaustFromPileAction extends AbstractGameAction
                 {
                     for (int i = 0; i < this.amount; i++)
                     {
-                        card = tmp.getRandomCard(true);
-                        tmp.removeCard(card);
+                        card = cards.getRandomCard(true);
+                        cards.removeCard(card);
 
                         sourceGroup.moveToExhaustPile(card);
                     }
@@ -75,11 +69,11 @@ public class ExhaustFromPileAction extends AbstractGameAction
                 }
                 else if (this.amount == 1)
                 {
-                    AbstractDungeon.gridSelectScreen.open(tmp, this.amount, TEXT[0], false);
+                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, TEXT[0], false);
                 }
                 else
                 {
-                    AbstractDungeon.gridSelectScreen.open(tmp, this.amount, TEXT[1], false);
+                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, TEXT[1], false);
                 }
 
                 this.tickDuration();

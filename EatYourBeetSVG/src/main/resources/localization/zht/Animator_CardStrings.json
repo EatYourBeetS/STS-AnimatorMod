@@ -151,7 +151,7 @@
 	},
 	"animator_CrowleyEusford":
 	{
-		"DESCRIPTION": "對一個隨機的敵人造成 !D! 點 傷害 。 NL 如果你這一輪消耗一張牌, 將此卡的成本降低到0 。",
+		"DESCRIPTION": "對一個隨機的敵人造成 !D! 點 傷害 。 NL 如果該回合你 消耗 了一張牌, 將此卡的消耗降低到0 。",
 		"NAME": "克羅里·尤斯福德"
 	},
 	"animator_Darkness":
@@ -202,12 +202,12 @@
 	},
 	"animator_Defend_Kancolle":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 如果這是從您的套牌中刪除 ， 獲得 !M! 金幣 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 增強 !SV! : 獲得 !M! 金幣 。",
 		"NAME": "優越防禦"
 	},
 	"animator_Defend_Katanagatari":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 獲得3層臨時 [＃EFC851]荊棘[] 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 獲得 !M! 層 臨時 [＃EFC851]荊棘[] 。",
 		"NAME": "優越防禦"
 	},
 	"animator_Defend_Konosuba":
@@ -327,7 +327,7 @@
 	},
 	"animator_Eris":
 	{
-		"DESCRIPTION": "治療 !M! 點 生命 。 抹除 。 NL 根性 。",
+		"DESCRIPTION": "治療 !M! 點 生命 。 消耗 。 根性 。",
 		"NAME": "厄里斯"
 	},
 	"animator_Eve":
@@ -355,7 +355,7 @@
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "變形者 。 每個敵人使你獲得獲得 !B! 點 格擋 。 撤回 : 獲得 !M! 層 多層護甲 。",
+		"DESCRIPTION": "變形者 。 每個敵人使你獲得獲得 !B! 點 格擋 。 撤回 : 獲得 !M! 層 金屬化 。",
 		"NAME": "弗蕾德麗卡"
 	},
 	"animator_GazelDwargon":
@@ -517,15 +517,15 @@
 	},
 	"animator_Kuribayashi":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 同調 : 本回合目標失去 !M! 點 力量 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 造成 !SV! 點 勒脖 。 同調 : 本回合目標失去 !M! 點 力量 。",
 		"NAME": "栗林志乃"
 	},
 	"animator_Kuroyukihime":
 	{
-		"DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花[] 加入到抽牌堆中。 消耗 。",
+		"DESCRIPTION": "丟棄 !M! 張牌。 將 [#EFC851]黑蓮花[] 加入到抽牌堆中。 消耗 。",
 		"EXTENDED_DESCRIPTION": ["黑蓮花", "特殊的1耗#y攻擊牌 。"],
 		"NAME": "黑雪公主",
-		"UPGRADE_DESCRIPTION": "丟棄2張牌。 將 [#EFC851]黑蓮花+[] 加入到抽牌堆中。 消耗 。"
+		"UPGRADE_DESCRIPTION": "丟棄 !M! 張牌。 將 [#EFC851]黑蓮花+[] 加入到抽牌堆中。 消耗 。"
 	},
 	"animator_Kyubey":
 	{
@@ -552,7 +552,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "使一個敵人的 格擋 值變為 !M! ， 獲得 !B! 點 格擋 。 同調 : 抽 1 張牌 。",
+		"DESCRIPTION": "使一個敵人的 格擋 值變為 !M! ， 獲得 !B! 點 格擋 。 同調 : 保留 本回合的手牌 。",
 		"NAME": "蜥蜴僧侶"
 	},
 	"animator_MaesHughes":
@@ -664,7 +664,7 @@
 	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點傷害並且給予2層 燃燒 。 NL 同調 : 再給予 !M! 層 燃燒 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點傷害並且給予 !M! 層 燃燒 。 NL 同調 : 再給予 2 層 燃燒 。",
 		"NAME": "羅伊·馬斯坦古"
 	},
 	"animator_Saber":
@@ -723,7 +723,7 @@
 	"animator_Shizu":
 	{
 		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 !M! 張牌 。 NL [#EFC851]伊芙利特[]",
-		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多4張手牌 ， 對所有敵人造成等量層數的 #y燃燒 。向你的棄牌堆中加入 2 張 #y灼燒 。"],
+		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 張手牌 ， 對所有敵人造成雙倍層數的 #y燃燒 。 向你的棄牌堆中加入 2 張 #y灼燒 。"],
 		"NAME": "靜"
 	},
 	"animator_Shuna":
@@ -793,7 +793,7 @@
 	},
 	"animator_Strike_Kancolle":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 NL 如果這是從您的套牌中刪除 ， 獲得 !M! 金幣 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 NL 增強 !SV! : 獲得 !M! 金幣 。",
 		"NAME": "優越打擊"
 	},
 	"animator_Strike_Katanagatari":
@@ -871,12 +871,12 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "對隨機敵人造成 !D! 點 傷害 !M! 次 。 同調 : 給予所有敵人 1 層 虛弱 。",
+		"DESCRIPTION": "對隨機敵人造成 !D! 點 傷害 !M! 次 。 同調 : 給予所有敵人 !SV! 層 虛弱 。",
 		"NAME": "薇薇·荷羅派涅"
 	},
 	"animator_Witch":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 給予 !M! 層 燃燒 NL 遺產 : 獲得1瓶隨機藥水 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 給予 !M! 層 燃燒 。 NL 遺產 : 獲得1瓶隨機藥水 。",
 		"NAME": "魔女"
 	},
 	"animator_Wiz":
@@ -888,7 +888,7 @@
 	},
 	"animator_YaoHaDucy":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點傷害 。 同調 : 獲得 !B! 點 格擋 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點傷害 。 該卡的所有副本均獲得 1 點 傷害 。",
 		"NAME": "姚·漢·蒂修"
 	},
 	"animator_YunYun":
@@ -911,7 +911,7 @@
 	},
 	"animator_ZankiKiguchi":
 	{
-		"DESCRIPTION": "武術家 。 造成 !D! 點 傷害 。 NL 獲得 !B! 點 格擋 。 NL 同調 : 將 !M! 點 力量 轉換為 敏捷 。",
+		"DESCRIPTION": "武術家 。 造成 !D! 點 傷害 。 NL 同調 : 將 !M! 點 格擋 轉換為 1 點 敏捷 。",
 		"NAME": "汽口慚愧"
 	},
 	"animator_Zero":

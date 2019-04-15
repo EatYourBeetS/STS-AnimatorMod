@@ -19,7 +19,7 @@ public class Elsword extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,4, 1);
+        Initialize(9,6, 1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -35,8 +35,8 @@ public class Elsword extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-        AbstractDungeon.actionManager.addToBottom(new CycleCardAction(p, this.magicNumber));
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActionsHelper.CycleCardAction(this.magicNumber);
     }
 
     @Override
@@ -45,7 +45,6 @@ public class Elsword extends AnimatorCard
         if (TryUpgrade())
         {          
             upgradeDamage(2);
-            upgradeBlock(2);
             upgradeMagicNumber(1);
         }
     }

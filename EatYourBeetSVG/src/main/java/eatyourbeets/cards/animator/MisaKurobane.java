@@ -17,7 +17,7 @@ public class MisaKurobane extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(0, 0,1);
+        Initialize(0, 0,2);
 
         this.baseSecondaryValue = this.secondaryValue = 2;
 

@@ -18,7 +18,7 @@ public class RoyMustang extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(8,0, 1);
+        Initialize(8,0, 3);
 
         this.isMultiDamage = true;
 
@@ -30,10 +30,10 @@ public class RoyMustang extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        int burning = 2;
+        int burning = this.magicNumber;
         if (HasActiveSynergy())
         {
-            burning += this.magicNumber;
+            burning += 2;
         }
 
         GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);

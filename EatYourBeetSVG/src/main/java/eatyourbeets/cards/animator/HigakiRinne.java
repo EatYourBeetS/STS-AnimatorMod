@@ -128,7 +128,8 @@ public class HigakiRinne extends AnimatorCard
     {
         if (this.type == CardType.POWER)
         {
-            GameActionsHelper.ApplyPower(p, p, new HigakiRinnePower(p, this, upgraded ? 2 : 1), 2);
+            int stacks = upgraded ? 2 : 1;
+            GameActionsHelper.ApplyPower(p, p, new HigakiRinnePower(p, this, stacks), stacks);
         }
         else if (this.type == CardType.ATTACK)
         {

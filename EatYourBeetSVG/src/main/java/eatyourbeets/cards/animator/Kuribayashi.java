@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.ChokePower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
@@ -21,7 +22,9 @@ public class Kuribayashi extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,0,4);
+        Initialize(8,0,4);
+
+        this.baseSecondaryValue = this.secondaryValue = 2;
 
         SetSynergy(Synergies.Gate);
     }
@@ -31,7 +34,7 @@ public class Kuribayashi extends AnimatorCard
     {
         GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
         GameActionsHelper.DamageTarget(p, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-        //AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        GameActionsHelper.ApplyPower(p, m, new ChokePower(m, this.secondaryValue), this.secondaryValue);
 
         if (HasActiveSynergy())
         {
@@ -48,7 +51,8 @@ public class Kuribayashi extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(1);
+            upgradeSecondaryValue(1);
             upgradeMagicNumber(2);
         }
     }

@@ -1,13 +1,18 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.Utilities;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.subscribers.OnRemoveFromDeckSubscriber;
 
-public class Strike_Kancolle extends Strike implements OnRemoveFromDeckSubscriber
+public class Strike_Kancolle extends Strike// implements OnRemoveFromDeckSubscriber
 {
     public static final String ID = CreateFullID(Strike_Kancolle.class.getSimpleName());
 
@@ -15,28 +20,61 @@ public class Strike_Kancolle extends Strike implements OnRemoveFromDeckSubscribe
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6,0, 40);
+        Initialize(6,0, 5);
+
+        this.baseSecondaryValue = this.secondaryValue = 1;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
+        if (ProgressBoost())
         {
-            upgradeDamage(3);
-            upgradeMagicNumber(20);
+            for(int i = 0; i < this.magicNumber; ++i)
+            {
+                AbstractDungeon.effectList.add(new GainPennyEffect(p.hb.cX, p.hb.cY + (p.hb.height / 2)));
+            }
+            p.gainGold(this.magicNumber);
         }
     }
 
     @Override
-    public void OnRemoveFromDeck()
+    public void upgrade()
     {
-        AbstractDungeon.player.gainGold(this.magicNumber);
+        if (TryUpgrade())
+        {
+            upgradeDamage(3);
+        }
+    }
+
+    protected boolean ProgressBoost()
+    {
+        if (this.secondaryValue > 0)
+        {
+            int newValue = this.secondaryValue - 1;
+
+            for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
+            {
+                AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+                if (card != null)
+                {
+                    if (newValue == 0)
+                    {
+                        card.baseSecondaryValue = 1;
+                        card.secondaryValue = 0;
+                        card.isSecondaryValueModified = true;
+                    }
+                    else
+                    {
+                        card.baseSecondaryValue = card.secondaryValue = newValue;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

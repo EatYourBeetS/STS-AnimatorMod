@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
@@ -18,9 +19,9 @@ public class ZankiKiguchi extends AnimatorCard
 
     public ZankiKiguchi()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,0,1);
+        Initialize(5,0,5);
 
         //AddExtendedDescription();
 
@@ -48,14 +49,10 @@ public class ZankiKiguchi extends AnimatorCard
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         //DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         //GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
-        if (HasActiveSynergy())
+        if (HasActiveSynergy() && p.currentBlock >= this.magicNumber)
         {
-           StrengthPower strength = (StrengthPower)p.getPower(StrengthPower.POWER_ID);
-           if (strength != null && strength.amount >= 4)
-           {
-               //GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, strength, this.magicNumber));
-               GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber);
-           }
+            GameActionsHelper.AddToBottom(new LoseBlockAction(p, p, this.magicNumber));
+            GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, 1), 1);
         }
     }
 
@@ -64,8 +61,8 @@ public class ZankiKiguchi extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeBlock(1);
+            upgradeDamage(1);
+            upgradeMagicNumber(-1);
         }
     }
 

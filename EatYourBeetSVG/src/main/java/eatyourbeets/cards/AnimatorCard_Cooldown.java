@@ -1,7 +1,10 @@
 package eatyourbeets.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public abstract class AnimatorCard_Cooldown extends AnimatorCard// extends AnimatorCard_SavableInteger
 {
@@ -18,9 +21,9 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard// extends Anima
     {
         super.triggerOnManualDiscard();
 
-        if (this.secondaryValue > 0)
+        if (ProgressCooldown())
         {
-            ProgressCooldown();
+            OnCooldownCompleted(AbstractDungeon.player, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true));
         }
     }
 
@@ -56,4 +59,6 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard// extends Anima
 
         return activate;
     }
+
+    protected abstract void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m);
 }

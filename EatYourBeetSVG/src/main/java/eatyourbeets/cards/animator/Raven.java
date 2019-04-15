@@ -44,7 +44,7 @@ public class Raven extends AnimatorCard
 
             if (selected != null)
             {
-                GameActionsHelper.AddToBottom(new DrawSpecificCardAction(selected));
+                GameActionsHelper.AddToTop(new DrawSpecificCardAction(selected));
             }
         }
     }

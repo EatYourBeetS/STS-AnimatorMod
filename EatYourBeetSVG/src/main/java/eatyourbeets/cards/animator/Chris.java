@@ -51,14 +51,7 @@ public class Chris extends AnimatorCard_Cooldown
 
         if (ProgressCooldown())
         {
-            for (AbstractCard c : p.drawPile.group)
-            {
-                if (c.costForTurn == 0 && c.type != CardType.CURSE && c.type != CardType.STATUS)
-                {
-                    GameActionsHelper.AddToBottom(new DrawSpecificCardAction(c));
-                    return;
-                }
-            }
+            OnCooldownCompleted(p, m);
         }
     }
 
@@ -76,5 +69,18 @@ public class Chris extends AnimatorCard_Cooldown
     protected int GetBaseCooldown()
     {
         return 1;
+    }
+
+    @Override
+    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
+    {
+        for (AbstractCard c : p.drawPile.group)
+        {
+            if (c.costForTurn == 0 && c.type != CardType.CURSE && c.type != CardType.STATUS)
+            {
+                GameActionsHelper.AddToBottom(new DrawSpecificCardAction(c));
+                return;
+            }
+        }
     }
 }

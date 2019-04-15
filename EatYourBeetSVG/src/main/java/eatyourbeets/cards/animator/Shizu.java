@@ -38,7 +38,7 @@ public class Shizu extends AnimatorCard
         GameActionsHelper.DrawCard(p, this.magicNumber);
 
         GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(new Burn(), 2));
-        GameActionsHelper.AddToBottom(new VariableExhaustAction(p, 4, this, this::OnExhaust));
+        GameActionsHelper.AddToBottom(new VariableExhaustAction(p, 3, this, this::OnExhaust));
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Shizu extends AnimatorCard
         }
 
         AbstractPlayer p = AbstractDungeon.player;
-        int burning = cards.size();
+        int burning = cards.size() * 2;
         for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, burning), burning);

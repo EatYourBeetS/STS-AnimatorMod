@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.EquilibriumPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -33,7 +34,8 @@ public class LizardPriest extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.DrawCard(p,1);
+            GameActionsHelper.ApplyPower(p, p, new EquilibriumPower(p, 1), 1);
+            //GameActionsHelper.DrawCard(p,1);
         }
     }
 

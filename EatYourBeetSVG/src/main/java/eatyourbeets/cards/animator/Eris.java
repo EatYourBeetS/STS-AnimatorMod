@@ -25,7 +25,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
 
         Initialize(0,0, 4);
 
-        this.purgeOnUse = true;
+        this.exhaust = true;
         this.tags.add(CardTags.HEALING);
 
         if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)

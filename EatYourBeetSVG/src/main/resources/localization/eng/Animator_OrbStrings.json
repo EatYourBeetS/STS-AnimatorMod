@@ -17,8 +17,8 @@
 		"DESCRIPTION":
 		[
 			"#yPassive: At the end of turn, apply #b",
-			" #yBurning to a random enemy. NL #yEvoke: Apply #b",
-			" #yBurning to ALL enemies."
+			" #yBurning to the highest health enemy. NL #yEvoke: Apply #b",
+			" #yBurning to ALL enemies. NL Not affected by #yFocus."
 		]
 	}
 }

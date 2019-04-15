@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.orbs.Earth;
+import eatyourbeets.orbs.Fire;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -46,6 +47,7 @@ public class Utilities
             orbs.add(new Dark());
             orbs.add(new Plasma());
             orbs.add(new Earth());
+            //orbs.add(new Fire());
         }
 
         return GetRandomElement(orbs).makeCopy();

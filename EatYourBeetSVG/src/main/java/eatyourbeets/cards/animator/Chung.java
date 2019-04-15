@@ -22,7 +22,7 @@ public class Chung extends AnimatorCard_Cooldown
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(13, 8);
+        Initialize(14, 8);
 
         this.baseSecondaryValue = this.secondaryValue = COOLDOWN;
         //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
@@ -38,11 +38,35 @@ public class Chung extends AnimatorCard_Cooldown
 
         if (ProgressCooldown())
         {
-            GameActionsHelper.DamageAllEnemies(p, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
+            OnCooldownCompleted(p, m);
+        }
+    }
+
+    @Override
+    protected boolean ProgressCooldown()
+    {
+        boolean active = super.ProgressCooldown();
+        if (active)
+        {
+            int[] multiDamage = DamageInfo.createDamageMatrix(this.baseDamage);
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.DamageAllEnemies(p, multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
             if (p.hasPower(PenNibPower.POWER_ID))
             {
                 GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
             }
+        }
+
+        return active;
+    }
+
+    @Override
+    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
+        if (p.hasPower(PenNibPower.POWER_ID))
+        {
+            GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
         }
     }
 
@@ -52,7 +76,7 @@ public class Chung extends AnimatorCard_Cooldown
         if (TryUpgrade())
         {
             upgradeDamage(2);
-            upgradeBlock(3);
+            upgradeBlock(2);
         }
     }
 

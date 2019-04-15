@@ -11,7 +11,7 @@ public class Buoy extends AnimatorRelic
     public static final String ID = CreateFullID(Buoy.class.getSimpleName());
 
     private static final int PLAYER_BLOCK = 6;
-    private static final int ENEMY_BLOCK = 2;
+    private static final int ENEMY_BLOCK = 1;
     private static final int TURN_COUNTER = 3;
 
     public Buoy()

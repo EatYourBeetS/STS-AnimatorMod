@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
+import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class OldCoffin extends AnimatorRelic
@@ -54,7 +55,7 @@ public class OldCoffin extends AnimatorRelic
 
                 GameActionsHelper.AddToTop(new RelicAboveCreatureAction(m, this));
 
-                int n = AbstractDungeon.miscRng.random(11);
+                int n = AbstractDungeon.miscRng.random(12);
                 if (n < 4)
                 {
                     GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
@@ -66,6 +67,10 @@ public class OldCoffin extends AnimatorRelic
                 else if (n <= 10)
                 {
                     GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, 3), 3);
+                }
+                else if (n <= 11)
+                {
+                    GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, 3), 3);
                 }
                 else
                 {

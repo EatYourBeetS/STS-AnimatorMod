@@ -226,6 +226,7 @@ public abstract class AnimatorCard extends CustomCard
         {
             copy.secondaryValue = this.secondaryValue;
             copy.baseSecondaryValue = this.baseSecondaryValue;
+            copy.isSecondaryValueModified = this.isSecondaryValueModified;
         }
 
         return result;

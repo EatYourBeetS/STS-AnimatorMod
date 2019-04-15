@@ -7,7 +7,7 @@
 	},
 	"animator_ArcherPower":
 	{
-		"DESCRIPTIONS": ["在你的回合结束时对所有敌人造成", " 点 伤害并造成负面效果。"],
+		"DESCRIPTIONS": ["在你的回合结束时对所有敌人造成", " 点 伤害，伤害次数等同于各目标的负面效果种类个数。"],
 		"NAME": "Archer"
 	},
 	"animator_DarknessPower":

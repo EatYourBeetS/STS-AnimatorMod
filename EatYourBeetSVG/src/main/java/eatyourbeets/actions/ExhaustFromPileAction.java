@@ -10,8 +10,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-import java.util.Iterator;
-
 public class ExhaustFromPileAction extends AbstractGameAction
 {
     private static final UIStrings uiStrings;

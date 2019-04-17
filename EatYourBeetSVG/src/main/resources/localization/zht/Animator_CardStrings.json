@@ -61,12 +61,12 @@
 	},
 	"animator_Archer":
 	{
-		"DESCRIPTION": "在你的回合結束時 ， 敵人每層的負面效果使其受到 !D! 點傷害，可被 力量 效果加成 。",
+		"DESCRIPTION": "在你的回合結束時 ， 敵人每種的負面效果使其受到 !D! 點傷害，可被 力量 效果加成 。",
 		"NAME": "Archer"
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "獲得一個充能球欄位 。 冷卻 !SV! : [#EFC851]生成[] 1 個 電漿 充能球，取代主效果 。",
+		"DESCRIPTION": "獲得一個充能球欄位 。 冷卻 !SV! : [#EFC851]生成[] 1 個 電漿 充能球 ， 取代主效果 。",
 		"NAME": "阿爾貝吉歐"
 	},
 	"animator_Asuramaru":
@@ -81,7 +81,7 @@
 	},
 	"animator_Benimaru":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 NL 壓倒 : 獲得 !B! 點 格擋 。 NL 同調 : 造成 !M! 點 燃燒 。",
+		"DESCRIPTION": "[#EFC851]生成[] 1 個 火焰 充能球 。 對所有敵人造成 !D! 點 傷害 。 NL 同調 : 造成 !M! 點 燃燒 。",
 		"NAME": "紅丸"
 	},
 	"animator_Berserker":
@@ -151,7 +151,7 @@
 	},
 	"animator_CrowleyEusford":
 	{
-		"DESCRIPTION": "對一個隨機的敵人造成 !D! 點 傷害 。 NL 如果該回合你 消耗 了一張牌, 將此卡的消耗降低到0 。",
+		"DESCRIPTION": "對一個隨機的敵人造成 !D! 點 傷害 。 NL 如果該回合你 消耗 了一張牌, 將此卡的耗能降低到0 。",
 		"NAME": "克羅里·尤斯福德"
 	},
 	"animator_Darkness":
@@ -207,7 +207,7 @@
 	},
 	"animator_Defend_Katanagatari":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 獲得 !M! 層 臨時 [＃EFC851]荊棘[] 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 獲得 !M! 層  [＃EFC851]臨時荊棘[] 。",
 		"NAME": "優越防禦"
 	},
 	"animator_Defend_Konosuba":
@@ -316,7 +316,7 @@
 	},
 	"animator_EntouJyuu":
 	{
-		"DESCRIPTION": "每輪一次， 打出 [#EFC851]攻擊[] 牌之後時使其增加 !M! 點 傷害 和 抽一張牌 。",
+		"DESCRIPTION": "每輪一次， 打出 [#EFC851]攻擊牌[] 之後時使其增加 !M! 點 傷害 和 抽一張牌 。",
 		"NAME": "炎刀·銃"
 	},
 	"animator_Envy":
@@ -332,7 +332,7 @@
 	},
 	"animator_Eve":
 	{
-		"DESCRIPTION": "每當觸發一次 同調 ， 對隨機敵人造成 !M! 點傷害並增加這張牌 1 點傷害 。",
+		"DESCRIPTION": "獲得 !M! 點 集中 。 觸發 3 次 同調 時 ， 生成 !M! 個 隨機 充能球 併 獲得 [E] 。",
 		"NAME": "伊芙"
 	},
 	"animator_Evileye":
@@ -349,7 +349,7 @@
 	"animator_FeridBathory":
 	{
 		"DESCRIPTION": "每回合可觸發一旦 ， 消耗 一張牌時 獲得 1 點 力量 ， 回復 2 點 生命 [#EFC851]*[] 。",
-		"EXTENDED_DESCRIPTION": ["*備註", "當你的生活充滿時，你會得到 #b2 分臨時生命。"],
+		"EXTENDED_DESCRIPTION": ["*備註", "當你的生命為滿時，你會得到 #b2 點臨時生命。"],
 		"NAME": "費里德·巴特利",
 		"UPGRADE_DESCRIPTION": "每回合可觸發兩次 ， 消耗 一張牌時 獲得 1 點 力量 ， 回復 2 點 生命 。"
 	},
@@ -453,7 +453,7 @@
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "在你的回合開始時 獲 得隨機 [#EFC851]積極影響[] 。 選擇並且 消耗 抽牌堆 1 到 !SV! 張的隨機卡牌 。",
+		"DESCRIPTION": "在你的回合開始時 獲 得隨機 [#EFC851]積極影響[] 。 選擇並且 消耗 抽牌堆 1 到 !M! 張的隨機卡牌 。",
 		"NAME": "否定姬"
 	},
 	"animator_HououinKyouma":
@@ -470,7 +470,7 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "抽 !M! 張牌。 每抽一張牌造成 !D! 點傷害，並減少其耗能。",
+		"DESCRIPTION": "抽 !M! 張牌。 每抽一張牌造成 !D! 點傷害减去抽到的牌的消耗的傷害。",
 		"NAME": "伊丹耀司"
 	},
 	"animator_IzunaHatsuse":
@@ -496,13 +496,13 @@
 	},
 	"animator_Kira":
 	{
-		"DESCRIPTION": "虚无 。 敵人很快就會死去 [#EFC851]*[] 。 NL 獲得 !SV! 層 易傷 。 NL 消耗 。",
+		"DESCRIPTION": "虛無 。 敵人很快就會死去 [#EFC851]*[] 。 NL 獲得 !SV! 層 易傷 。 NL 消耗 。",
 		"EXTENDED_DESCRIPTION": 
 		[
-			"* 注", "這張卡片的文字會在針對敵人時發生變化 ， 擁有更多健康的敵人將會存活更長時間 。 忽略 #y人工製品 。",
-			"虚无 。 敵人將在 # 輪後死亡 。 NL 獲得 !M! 層 易傷 。 NL 消耗 。"
+			"* 注", "這張卡片的文字會在針對敵人時發生變化 ， 生命值較多的敵人將會存活更長時間 。 忽略 #y人工製品 。",
+			"虛無 。 敵人將在 # 回合後死亡 。 NL 獲得 !M! 層 易傷 。 NL 消耗 。"
 		],
-		"NAME": "Light Yagami"
+		"NAME": "夜神月"
 	},
 	"animator_Konayuki":
 	{
@@ -654,7 +654,7 @@
 	},
 	"animator_RinTohsaka":
 	{
-		"DESCRIPTION": "生成 !M! 個隨機充能球 。 獲得 !B! 點 格擋 。 同調 : 獲得 !M! 點 魔法護甲 。",
+		"DESCRIPTION": "生成 1 個 隨機 充能球 。 獲得 !B! 點 格擋 。 同調 : 獲得 !M! 點 魔法護甲 。",
 		"NAME": "遠阪凜"
 	},
 	"animator_RoryMercury":
@@ -888,7 +888,7 @@
 	},
 	"animator_YaoHaDucy":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點傷害 。 該卡的所有副本均獲得 1 點 傷害 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點傷害 。 該卡的所有同名牌均獲得 1 點 傷害 。",
 		"NAME": "姚·漢·蒂修"
 	},
 	"animator_YunYun":

@@ -56,7 +56,7 @@ public class Kyubey extends AnimatorCard
             curses.add(new Injury());
             curses.add(new Necronomicurse());
             //curses.add(new Normality());
-            curses.add(new Pain());
+            //curses.add(new Pain());
             curses.add(new Parasite());
             curses.add(new Pride());
             curses.add(new Regret());

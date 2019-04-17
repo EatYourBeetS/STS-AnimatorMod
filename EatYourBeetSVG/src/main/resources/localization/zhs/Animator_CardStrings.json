@@ -66,7 +66,7 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "获得一个充能球栏位 。 NL 预热 !SV! : [#EFC851]生成[] 1 个 等离子 充能球，取代主效果。",
+		"DESCRIPTION": "获得一个充能球栏位 。 NL 预热 !SV! : [#EFC851]生成[] 1 个 等离子 充能球 ， 取代主效果。",
 		"NAME": "阿尔蓓吉欧"
 	},
 	"animator_Asuramaru":
@@ -81,7 +81,7 @@
 	},
 	"animator_Benimaru":
 	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 NL 压倒 : 获得 !B! 点 格挡 。 同调 : 给予 !M! 层 燃烧 。",
+		"DESCRIPTION": "[#EFC851]生成[] 1 个 火素 充能球 。 对所有敌人造成 !D! 点 伤害 。 NL 同调 : 给予 !M! 层 燃烧 。",
 		"NAME": "红丸"
 	},
 	"animator_Berserker":
@@ -332,7 +332,7 @@
 	},
 	"animator_Eve":
 	{
-		"DESCRIPTION": "每当触发一次 同调 ， 对随机敌人造成 !M! 点 伤害并增加这张牌 1 点 伤害 。",
+		"DESCRIPTION": "获得 !M! 点 集中 。 触发 3 次 同调 时 ， 生成 1 个 随机 充能球 和 获得 [E] 。",
 		"NAME": "伊芙"
 	},
 	"animator_Evileye":
@@ -655,7 +655,7 @@
 	},
 	"animator_RinTohsaka":
 	{
-		"DESCRIPTION": "生成 !M! 个随机充能球 。 获得 !B! 点 格挡 。 同调 : 获得 !M! 点 魔法护甲 。",
+		"DESCRIPTION": "生成 1 个随机充能球 。 获得 !B! 点 格挡 。 同调 : 获得 !M! 点 魔法护甲 。",
 		"NAME": "远坂凛"
 	},
 	"animator_RoryMercury":
@@ -890,7 +890,7 @@
 	},
 	"animator_YaoHaDucy":
 	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点伤害 。 该卡的所有副本均获得 1 点 伤害 。",
+		"DESCRIPTION": "对所有敌人造成 !D! 点伤害 。 所有同名卡均获得 1 点 额外伤害 。",
 		"NAME": "姚·汉·蒂修"
 	},
 	"animator_YunYun":

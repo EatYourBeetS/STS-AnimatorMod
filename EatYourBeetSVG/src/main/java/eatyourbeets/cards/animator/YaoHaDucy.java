@@ -20,7 +20,7 @@ public class YaoHaDucy extends AnimatorCard
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(3, 0, 1);
+        Initialize(2, 0, 1);
 
         this.isMultiDamage = true;
 

@@ -96,7 +96,7 @@
 	},
 	{
 		"NAMES": ["fire", "fire+"],
-		"DESCRIPTION": "Orb: Apply #yBurning to a random enemy. Apply #yBurning to ALL enemies when #yEvoked.",
+		"DESCRIPTION": "Orb: Apply #yBurning and damage the highest health enemy.",
 		"PROPERNAME": "Fire"
 	},
 	{
@@ -113,11 +113,6 @@
 		"NAMES": ["envenom"],
 		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 Poison per stack.",
 		"PROPERNAME": "Envenom"
-	},
-	{
-		"NAMES": ["fire", "fire+"],
-		"DESCRIPTION": "Orb: Applies #yBurning to a random enemy.",
-		"PROPERNAME": "Fire"
 	},
 	{
 		"NAMES": ["metallicize"],

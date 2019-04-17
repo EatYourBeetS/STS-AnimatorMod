@@ -38,7 +38,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     {
         String message = cardStrings.EXTENDED_DESCRIPTION[0].replace("#", String.valueOf(this.magicNumber));
 
-        GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, p.discardPile, this::OnSelected,this, message));
+        GameActionsHelper.AddToTop(new ChooseFromPileAction(1, false, p.discardPile, this::OnSelected,this, message));
     }
 
     @Override

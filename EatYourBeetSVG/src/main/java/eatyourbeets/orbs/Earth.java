@@ -12,11 +12,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.EarthOrbEvokeAction;
 import eatyourbeets.powers.EarthenThornsPower;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Earth extends AnimatorOrb
 {
@@ -66,7 +66,7 @@ public class Earth extends AnimatorOrb
     {
         if (evokeAmount > 0)
         {
-            GameActionsHelper.AddToBottom(new EarthOrbEvokeAction(evokeAmount));
+            GameActionsHelper.AddToTop(new EarthOrbEvokeAction(evokeAmount));
         }
         evoked = true;
     }
@@ -81,7 +81,7 @@ public class Earth extends AnimatorOrb
         this.turns -= 1;
         if (turns <= 0)
         {
-            GameActionsHelper.AddToBottom(new EvokeSpecificOrbAction(this));
+            GameActionsHelper.AddToTop(new EvokeSpecificOrbAction(this));
             evoked = true;
         }
         else
@@ -93,19 +93,21 @@ public class Earth extends AnimatorOrb
         this.updateDescription();
     }
 
+    @Override
     public void triggerEvokeAnimation()
     {
-        CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1F);
+        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1F);
+        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1F);
         AbstractDungeon.effectsQueue.add(new DarkOrbActivateEffect(this.cX, this.cY));
     }
 
     public void applyFocus()
     {
-        AbstractPower power = AbstractDungeon.player.getPower("Focus");
-        if (power != null)
+        int focus = PlayerStatistics.GetFocus(AbstractDungeon.player);
+        if (focus > 0)
         {
-            this.passiveAmount = Math.max(0, this.basePassiveAmount + power.amount);
-            this.evokeAmount = Math.max(0, this.baseEvokeAmount + (power.amount * 2));
+            this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
+            this.evokeAmount = Math.max(0, this.baseEvokeAmount + (focus * 2));
         }
         else
         {

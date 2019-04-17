@@ -21,9 +21,12 @@ public class FireOrbEvokeAction extends AnimatorAction
 
     public void update()
     {
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        if (this.amount > 0)
         {
-            GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, this.amount), this.amount);
+            for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+            {
+                GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, this.amount), this.amount);
+            }
         }
 
         this.isDone = true;

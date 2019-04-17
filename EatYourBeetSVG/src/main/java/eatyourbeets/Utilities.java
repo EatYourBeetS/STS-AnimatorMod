@@ -3,6 +3,7 @@ package eatyourbeets;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.misc.WeightedList;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +16,7 @@ public class Utilities
 {
     public static final Logger Logger = LogManager.getLogger(Utilities.class.getName());
 
-    private static final ArrayList<AbstractOrb> orbs = new ArrayList<>();
+    private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
     public static <T> T SafeCast(Object o, Class<T> type)
     {
@@ -40,17 +41,17 @@ public class Utilities
 
     public static AbstractOrb GetRandomOrb()
     {
-        if (orbs.isEmpty())
+        if (orbs.Count() == 0)
         {
-            orbs.add(new Lightning());
-            orbs.add(new Frost());
-            orbs.add(new Dark());
-            orbs.add(new Plasma());
-            orbs.add(new Earth());
-            //orbs.add(new Fire());
+            orbs.Add(new Lightning(), 8);
+            orbs.Add(new Frost()    , 7);
+            orbs.Add(new Earth()    , 6);
+            orbs.Add(new Plasma()   , 5);
+            orbs.Add(new Dark()     , 4);
+            //orbs.Add(new Fire()     , 3);
         }
 
-        return GetRandomElement(orbs).makeCopy();
+        return orbs.Retrieve(AbstractDungeon.miscRng, false).makeCopy();
     }
 
     public static <T> ArrayList<T> Where(ArrayList<T> list, Predicate<T> predicate)

@@ -16,9 +16,9 @@
 		"NAME": "Fire",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, apply #b",
-			" #yBurning to the highest health enemy. NL #yEvoke: Apply #b",
-			" #yBurning to ALL enemies. NL Not affected by #yFocus."
+			"#yPassive: At the end of turn, deal #b", " damage to the highest health enemy and apply #b",
+			" #yBurning. NL #yEvoke: Apply #b",
+			" #yBurning to ALL enemies. NL NL Lasts #b", " turn/s."
 		]
 	}
 }

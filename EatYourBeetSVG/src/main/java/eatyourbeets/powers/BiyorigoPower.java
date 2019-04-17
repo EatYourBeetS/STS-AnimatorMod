@@ -1,10 +1,13 @@
 package eatyourbeets.powers;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -35,7 +38,23 @@ public class BiyorigoPower extends AnimatorPower
     }
 
     @Override
-    public void stackPower(int stackAmount) { }
+    public void renderAmount(SpriteBatch sb, float x, float y, Color c)
+    {
+        if (amount >= 0)
+        {
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, c);
+        }
+        else
+        {
+            super.renderAmount(sb, x, y, c);
+        }
+    }
+
+    @Override
+    public void stackPower(int stackAmount)
+    {
+        // done on onApplyPower
+    }
 
     @Override
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)

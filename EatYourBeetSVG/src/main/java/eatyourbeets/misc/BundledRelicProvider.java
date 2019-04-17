@@ -75,12 +75,12 @@ public class BundledRelicProvider
         bundledRelicsPool.put(cardID, new BundledRelic(cardID, relicID, tier, chance));
     }
 
-    final static int R1 = 2;
-    final static int R2 = 3;
-    final static int R3 = 4;
-    final static int R4 = 5;
-    final static int R5 = 6;
-    final static int R6 = 8;
+    final static int R1 = 1;
+    final static int R2 = 2;
+    final static int R3 = 2;
+    final static int R4 = 3;
+    final static int R5 = 4;
+    final static int R6 = 7;
 
     static
     {
@@ -112,7 +112,7 @@ public class BundledRelicProvider
         AddBundle(Ain.ID, OrangePellets.ID, AbstractRelic.RelicTier.SHOP, R2);
 
         AddBundle(Elesis.ID, MoltenEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, R5);
-        AddBundle(Eve.ID, DataDisk.ID, AbstractRelic.RelicTier.SPECIAL, R6);
+        AddBundle(Eve.ID, DataDisk.ID, AbstractRelic.RelicTier.SPECIAL, R2);
     }
 
     private static void AddFate()

@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.subscribers.OnRemoveFromDeckSubscriber;
 
 public class Strike_Kancolle extends Strike// implements OnRemoveFromDeckSubscriber
 {

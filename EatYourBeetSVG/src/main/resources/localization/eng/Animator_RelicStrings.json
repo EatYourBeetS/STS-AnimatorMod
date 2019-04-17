@@ -58,10 +58,10 @@
 	"Animator_AlchemistGlove":
 	{
 		"NAME": "Alchemist Glove",
-		"FLAVOR": "Allows you to control fire with the snap of a finger.",
+		"FLAVOR": "It allows you to control fire with the snap of a finger.",
 		"DESCRIPTIONS":
 		[
-			"Every #b3 turns, apply #b2 #yBurning to ALL enemies."
+			"Every #b", " turns, apply #b", " #yBurning to ALL enemies."
 		]
 	},
 	"Animator_HallowedScabbard":

@@ -169,14 +169,14 @@ public class KrulTepes extends CustomMonster
                 FRAIL_AMOUNT = 2;
                 WEAK_AMOUNT = 3;
                 VULNERABLE_AMOUNT = 3;
-                BLOCK_AMOUNT = 14;
+                BLOCK_AMOUNT = 19;
             }
             else
             {
                 FRAIL_AMOUNT = 2;
                 WEAK_AMOUNT = 2;
                 VULNERABLE_AMOUNT = 2;
-                BLOCK_AMOUNT = 12;
+                BLOCK_AMOUNT = 16;
             }
         }
 
@@ -286,13 +286,13 @@ public class KrulTepes extends CustomMonster
 
             if (ascensionLevel >= 6)
             {
-                damageInfo = new DamageInfo(owner, 18);
+                damageInfo = new DamageInfo(owner, 22);
                 STRENGTH_AMOUNT = 2;
                 WEAK_AMOUNT = 2;
             }
             else
             {
-                damageInfo = new DamageInfo(owner, 20);
+                damageInfo = new DamageInfo(owner, 26);
                 STRENGTH_AMOUNT = 3;
                 WEAK_AMOUNT = 2;
             }
@@ -324,13 +324,13 @@ public class KrulTepes extends CustomMonster
 
             if (ascensionLevel >= 6)
             {
-                damageInfo = new DamageInfo(owner, 17);
-                BLOCK_AMOUNT = 17;
+                damageInfo = new DamageInfo(owner, 18);
+                BLOCK_AMOUNT = 18;
             }
             else
             {
-                damageInfo = new DamageInfo(owner, 19);
-                BLOCK_AMOUNT = 19;
+                damageInfo = new DamageInfo(owner, 20);
+                BLOCK_AMOUNT = 20;
             }
         }
 

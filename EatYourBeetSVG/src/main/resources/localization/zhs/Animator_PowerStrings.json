@@ -22,12 +22,12 @@
 	},
 	"animator_ShiroPower":
 	{
-		"DESCRIPTIONS": ["在你的回合开始时获得", " 点能量。"],
+		"DESCRIPTIONS": ["在你的回合开始时获得", " 点 能量。"],
 		"NAME": "白"
 	},
 	"animator_EvePower":
 	{
-		"DESCRIPTIONS": ["当同调生效时对一个随机敌人造成", " 点伤害。"],
+		"DESCRIPTIONS": ["触发 3 次 同调 时 ， 生成 #b", " 个 随机 充能球 和 获得 #b", " 点 能量 。"],
 		"NAME": "EVE的觉醒"
 	},
 	"animator_FeridBathoryPower":

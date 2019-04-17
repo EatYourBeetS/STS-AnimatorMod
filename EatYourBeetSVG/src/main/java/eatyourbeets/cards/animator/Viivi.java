@@ -51,7 +51,6 @@ public class Viivi extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
-            upgradeSecondaryValue(1);
         }
     }
 

@@ -81,7 +81,7 @@
 	},
 	"animator_Benimaru":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. Overrun: Gain !B! Block. NL Synergy: Apply !M! Burning.",
+		"DESCRIPTION": "Channel 1 Fire. NL Deal !D! damage to ALL enemies. Synergy: Apply !M! Burning.",
 		"NAME": "Benimaru"
 	},
 	"animator_Berserker":
@@ -328,12 +328,12 @@
 	},
 	"animator_Eris":
 	{
-		"DESCRIPTION": "Heal !M! HP. Exhaust. NL Resurrect.",
+		"DESCRIPTION": "Heal !M! HP. NL Exhaust. NL Resurrect.",
 		"NAME": "Eris"
 	},
 	"animator_Eve":
 	{
-		"DESCRIPTION": "When you activate a Synergy deal !M! damage to a random enemy and increase this damage by 1.",
+		"DESCRIPTION": "Gain !M! Focus. NL Every 3 Synergies, Channel a random Orb and gain [E].",
 		"NAME": "Eve"
 	},
 	"animator_Evileye":
@@ -457,7 +457,7 @@
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "At the start of your turn, gain a random [#EFC851]Buff, then choose and Exhaust 1 of !M! cards in your deck.",
+		"DESCRIPTION": "At the start of your turn, gain a random [#EFC851]Buff, then choose and Exhaust 1 of !M! cards in your draw or discard pile.",
 		"NAME": "Hitei"
 	},
 	"animator_HououinKyouma":
@@ -503,7 +503,7 @@
 		"DESCRIPTION": "Ethereal. Kill the enemy after a certain number of turns ([#EFC851]*[]). NL Gain !SV! Vulnerable. NL Exhaust.",
 		"EXTENDED_DESCRIPTION": 
 		[
-			"* Note", "This card's text will change when targeting an enemy, enemies with more health will survive longer. Ignores Artifact.",
+			"* Note", "This card's text will change while targeting an enemy, enemies with more health will survive longer. Ignores Artifact.",
 			"Ethereal. The enemy will die in # turns. NL Gain !SV! Vulnerable. NL Exhaust."
 		],
 		"NAME": "Light Yagami"

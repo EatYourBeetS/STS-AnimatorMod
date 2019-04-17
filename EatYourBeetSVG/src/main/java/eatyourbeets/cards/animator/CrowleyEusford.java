@@ -1,15 +1,11 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.DamageRandomEnemy2Action;
-import eatyourbeets.actions.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -22,7 +18,7 @@ public class CrowleyEusford extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(12,0);
+        Initialize(14,0);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -35,6 +31,7 @@ public class CrowleyEusford extends AnimatorCard
         if (costForTurn > 0 && PlayerStatistics.getCardsExhaustedThisTurn() > 0)
         {
             this.setCostForTurn(0);
+            this.flash();
         }
     }
 

@@ -26,8 +26,8 @@
 	},
 	"animator_EvePower":
 	{
-		"DESCRIPTIONS": ["Whenever a #ySynergy is activated deal #b", " damage to a random enemy."],
-		"NAME": "Eve's Awakening"
+		"DESCRIPTIONS": ["Every 3 #ySynergies, #yChannel #b", " random Orb/s and gain #b", " Energy."],
+		"NAME": "Eve"
 	},
 	"animator_FeridBathoryPower":
 	{

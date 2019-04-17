@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.AnimatorResources;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 
@@ -60,7 +61,7 @@ public class StephanieAction extends AnimatorAction
                 return;
             }
 
-            AbstractDungeon.actionManager.addToBottom(new FetchAction(player.drawPile, selectedCard::HasSynergy, cardDraw, this::OnFetch));
+            GameActionsHelper.AddToTop(new FetchAction(player.drawPile, selectedCard::HasSynergy, cardDraw, this::OnFetch));
         }
 
         this.tickDuration();

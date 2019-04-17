@@ -1,18 +1,17 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.actions.OnDamageAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -26,7 +25,7 @@ public class Benimaru extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(7, 3, 2);
+        Initialize(4, 0, 1);
 
         //AddExtendedDescription();
 
@@ -38,19 +37,14 @@ public class Benimaru extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        ArrayList<AbstractMonster> enemies = AbstractDungeon.getCurrRoom().monsters.monsters;
-        for(int i = 0; i < enemies.size(); ++i)
-        {
-            AbstractMonster enemy = enemies.get(i);
-            if (!enemy.isDeadOrEscaped())
-            {
-                DamageAction damageAction = new DamageAction(enemy, new DamageInfo(p, this.multiDamage[i], this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE);
-                GameActionsHelper.AddToBottom(new OnDamageAction(enemy, damageAction, this::OnDamage, enemy.currentBlock, true));
+        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
+        GameActionsHelper.ChannelOrb(new Fire(), true);
 
-                if (HasActiveSynergy())
-                {
-                    GameActionsHelper.ApplyPower(p, enemy, new BurningPower(enemy, p, this.magicNumber), this.magicNumber);
-                }
+        if (HasActiveSynergy())
+        {
+            for (AbstractMonster m1: PlayerStatistics.GetCurrentEnemies(true))
+            {
+                GameActionsHelper.ApplyPower(p, m1, new BurningPower(m1, p, this.magicNumber), this.magicNumber);
             }
         }
     }
@@ -61,19 +55,18 @@ public class Benimaru extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(3);
-            upgradeBlock(1);
         }
     }
 
-    private void OnDamage(Object state, AbstractMonster monster)
-    {
-        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
-        if (initialBlock != null && monster != null)
-        {
-            if (initialBlock > 0 && monster.currentBlock <= 0)
-            {
-                GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
-            }
-        }
-    }
+//    private void OnDamage(Object state, AbstractMonster monster)
+//    {
+//        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
+//        if (initialBlock != null && monster != null)
+//        {
+//            if (initialBlock > 0 && monster.currentBlock <= 0)
+//            {
+//                GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
+//            }
+//        }
+//    }
 }

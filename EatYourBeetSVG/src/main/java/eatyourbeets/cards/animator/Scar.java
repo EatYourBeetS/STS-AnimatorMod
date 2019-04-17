@@ -30,7 +30,7 @@ public class Scar extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         PiercingDamageAction damageAction = new PiercingDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActionsHelper.AddToBottom(new OnTargetDeadAction(m, damageAction, new ScarAction(p, this)));
+        GameActionsHelper.AddToBottom(new OnTargetDeadAction(m, damageAction, new ScarAction(p, this), false));
 
 //        if (HasActiveSynergy())
 //        {

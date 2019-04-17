@@ -36,6 +36,11 @@ public class EarthOrbEvokeAction extends AnimatorAction
     {
         if (damageDealt < orbDamage)
         {
+            if (damageDealt == 0)
+            {
+                CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1F);
+            }
+
             if ((damageDealt + step) > orbDamage)
             {
                 step = orbDamage - damageDealt;
@@ -47,9 +52,20 @@ public class EarthOrbEvokeAction extends AnimatorAction
             {
                 int actualDamage = AbstractOrb.applyLockOn(m, step);
 
-                CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", AbstractDungeon.miscRng.random(0.1f, 0.3f));
+                //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", AbstractDungeon.miscRng.random(0.1f, 0.3f));
+                //CardCrawlGame.sound.play("ATTACK_HEAVY", AbstractDungeon.miscRng.random(0.1f, 0.3f));
 
-                GameActionsHelper.AddToTop(new DamageAction(m, new DamageInfo(p, actualDamage, DamageInfo.DamageType.THORNS), AttackEffect.NONE, true));
+                AttackEffect effect;
+                switch (AbstractDungeon.miscRng.random(2))
+                {
+                    case 0: effect = AttackEffect.SMASH; break;
+                    case 1: effect = AttackEffect.BLUNT_LIGHT; break;
+//                    case 2: effect = AttackEffect.BLUNT_HEAVY; break;
+//                    case 3: effect = AttackEffect.SLASH_VERTICAL; break;
+                    default: effect = AttackEffect.NONE; break;
+                }
+
+                GameActionsHelper.AddToTop(new DamageAction(m, new DamageInfo(p, actualDamage, DamageInfo.DamageType.THORNS), effect, true));
                 damageDealt += step;
             }
             else

@@ -27,7 +27,7 @@
 	},
 	"animator_EvePower":
 	{
-		"DESCRIPTIONS": ["當同調 發動時對隨機敵人造成", " 點傷害。"],
+		"DESCRIPTIONS": ["觸發 3 次 同調 時, 生成 #b", " 個 隨機 充能球 併 獲得 #b", " 點 能量 。"],
 		"NAME": "依芙的覺醒"
 	},
 	"animator_FeridBathoryPower":

@@ -9,6 +9,8 @@ public class StrategicInformationPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(StrategicInformationPower.class.getSimpleName());
 
+    private static final int BLOCK_AMOUNT = 2;
+
     private int lastDiscardCount;
     private int uses;
 
@@ -20,6 +22,12 @@ public class StrategicInformationPower extends AnimatorPower
         this.uses = amount;
 
         updateDescription();
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1] + BLOCK_AMOUNT + powerStrings.DESCRIPTIONS[2];
     }
 
     @Override
@@ -48,7 +56,7 @@ public class StrategicInformationPower extends AnimatorPower
         {
             while (amount > 0 && lastDiscardCount < discarded)
             {
-                GameActionsHelper.GainBlock(owner, 2);
+                GameActionsHelper.GainBlock(owner, BLOCK_AMOUNT);
                 GameActionsHelper.AddToBottom(new RandomCostReductionAction(1, false));
                 amount -= 1;
                 lastDiscardCount += 1;

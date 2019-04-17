@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -26,8 +27,8 @@ public class Aisha extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ChooseAndDiscard(1, false);
-        GameActionsHelper.AddToBottom(new FetchAction(p.drawPile, this::Filter, 1, this::OnFetch));
+        GameActionsHelper.AddToTop(new DiscardAction(p, p, 1, false));
+        GameActionsHelper.AddToTop(new FetchAction(p.drawPile, this::Filter, 1, this::OnFetch));
     }
 
     @Override

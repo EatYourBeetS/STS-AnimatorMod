@@ -61,7 +61,7 @@
 		"FLAVOR": "使你可以通過一根手指控制火焰.",
 		"DESCRIPTIONS":
 		[
-			"每 #b3 回合, 给予所有敌人 #b2 层 #y燃烧."
+			"每 #b", " 回合, 给予所有敌人 #b", " 层 #y燃烧."
 		]
 	},
 	"Animator_HallowedScabbard":

@@ -53,7 +53,7 @@ public class PridePower extends AnimatorPower
     @Override
     public void atStartOfTurn()
     {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
 
         super.atStartOfTurn();
     }

@@ -4,6 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,8 +15,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
 import eatyourbeets.actions.FireOrbEvokeAction;
+import eatyourbeets.actions.RemoveOrbAction;
 import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -24,7 +28,8 @@ public class Fire extends AnimatorOrb
     public static Texture imtInt;
     private final boolean hFlip1;
 
-    private boolean evoked;
+    private static final int DAMAGE_AMOUNT = 3;
+    private static final int BURNING_AMOUNT = 1;
 
     public Fire()
     {
@@ -37,11 +42,10 @@ public class Fire extends AnimatorOrb
         }
 
         this.hFlip1 = MathUtils.randomBoolean();
-        this.evoked = false;
-        this.baseEvokeAmount = 4;
-        this.evokeAmount = this.baseEvokeAmount;
-        this.basePassiveAmount = 2;
-        this.passiveAmount = this.basePassiveAmount;
+
+        this.baseEvokeAmount = this.evokeAmount = BURNING_AMOUNT + 2;
+        this.basePassiveAmount = this.passiveAmount = 2;
+
         this.updateDescription();
         this.channelAnimTimer = 0.5F;
     }
@@ -51,26 +55,19 @@ public class Fire extends AnimatorOrb
         String[] desc = orbStrings.DESCRIPTION;
 
         this.applyFocus();
-        this.description = desc[0] + this.passiveAmount + desc[1] + this.evokeAmount + desc[2];
+        this.description = desc[0] + DAMAGE_AMOUNT + desc[1] + BURNING_AMOUNT + desc[2] + this.evokeAmount + desc[3] + passiveAmount + desc[4];
     }
 
     public void onEvoke()
     {
-        if (evokeAmount > 0)
+        if (passiveAmount > 0)
         {
             GameActionsHelper.AddToBottom(new FireOrbEvokeAction(evokeAmount));
         }
-
-        evoked = true;
     }
 
     public void onEndOfTurn()
     {
-        if (evoked)
-        {
-            return;
-        }
-
         int maxHealth = Integer.MIN_VALUE;
         AbstractMonster enemy = null;
         AbstractPlayer p = AbstractDungeon.player;
@@ -85,10 +82,18 @@ public class Fire extends AnimatorOrb
 
         if (enemy != null)
         {
-            GameActionsHelper.ApplyPower(p, enemy, new BurningPower(enemy, p, this.passiveAmount), this.passiveAmount);
+            GameActionsHelper.DamageTarget(p, enemy, DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+            GameActionsHelper.ApplyPower(p, enemy, new BurningPower(enemy, p, BURNING_AMOUNT), BURNING_AMOUNT);
         }
 
+        this.basePassiveAmount -= 1;
+        this.applyFocus();
         this.updateDescription();
+
+        if (passiveAmount <= 0)
+        {
+            GameActionsHelper.AddToTop(new EvokeSpecificOrbAction(this));
+        }
     }
 
     public void triggerEvokeAnimation()
@@ -99,17 +104,15 @@ public class Fire extends AnimatorOrb
 
     public void applyFocus()
     {
-//        AbstractPower power = AbstractDungeon.player.getPower("Focus");
-//        if (power != null)
-//        {
-//            this.passiveAmount = Math.max(0, this.basePassiveAmount + power.amount);
-//            this.evokeAmount = Math.max(0, this.baseEvokeAmount + power.amount);
-//        }
-//        else
-//        {
-//            this.evokeAmount = this.baseEvokeAmount;
-//            this.passiveAmount = this.basePassiveAmount;
-//        }
+        int focus = PlayerStatistics.GetFocus(AbstractDungeon.player);
+        if (focus > 0)
+        {
+            this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
+        }
+        else
+        {
+            this.passiveAmount = this.basePassiveAmount;
+        }
     }
 
     public void updateAnimation()

@@ -226,9 +226,16 @@ public class AnimatorResources
         }.getType());
         for (String s : map.keySet())
         {
-            logger.info("Adding: " + s);
-
-            AddAndUnlock(Class.forName("eatyourbeets.cards.animator." + s.replace("animator_", "")));
+            Class cardClass;
+            try
+            {
+                logger.info("Adding: " + s);
+                AddAndUnlock(Class.forName("eatyourbeets.cards.animator." + s.replace("animator_", "")));
+            }
+            catch( ClassNotFoundException e )
+            {
+                logger.warn("Class not found : " + s);
+            }
         }
     }
 

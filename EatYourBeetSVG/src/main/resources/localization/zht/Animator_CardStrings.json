@@ -487,8 +487,9 @@
 	},
 	"animator_Kaijin":
 	{
-		"DESCRIPTION": "每回合結束時 ， 隨機選擇一張抽牌堆中的牌 ， 在本場戰鬥中使其造成的傷害與獲得的格擋量提高 !M! 點 。",
-		"NAME": "凱·金"
+		"DESCRIPTION": "墓地 。 每回合結束時 ， 隨機選擇一張抽牌堆中的牌 ， 在本場戰鬥中使其造成的傷害與獲得的格擋量提高 !M! 點 。",
+		"NAME": "凱·金",
+		"UPGRADE_DESCRIPTION": "每回合結束時 ， 隨機選擇一張抽牌堆中的牌 ， 在本場戰鬥中使其造成的傷害與獲得的格擋量提高 !M! 點 。"
 	},
 	"animator_Kazuma":
 	{
@@ -629,7 +630,7 @@
 	},
 	"animator_OrbCore_Plasma":
 	{
-		"DESCRIPTION": "產生 1 個 等離子 充能球 。 NL 在你的第二個同調每回合 ， 獲得 [E].",
+		"DESCRIPTION": "產生 1 個 等離子 充能球 。 NL 在你的第二個同調每回合 ， 獲得 [E] 。",
 		"NAME": "等離子 核心"
 	},
 	"animator_PandorasActor":

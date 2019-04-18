@@ -49,7 +49,7 @@ public class Albedo extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(3);
         }
     }
 }

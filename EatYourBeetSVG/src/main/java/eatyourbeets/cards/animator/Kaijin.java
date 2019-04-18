@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
@@ -17,6 +18,8 @@ public class Kaijin extends AnimatorCard
 
         Initialize(0,0, 2);
 
+        GraveField.grave.set(this, true);
+
         SetSynergy(Synergies.TenSura);
     }
 
@@ -31,7 +34,7 @@ public class Kaijin extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            GraveField.grave.set(this, false);
         }
     }
 }

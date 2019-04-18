@@ -491,8 +491,9 @@
 	},
 	"animator_Kaijin":
 	{
-		"DESCRIPTION": "At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat.",
-		"NAME": "Kaijin"
+		"DESCRIPTION": "Grave. At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat.",
+		"NAME": "Kaijin",
+		"UPGRADE_DESCRIPTION": "At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat."
 	},
 	"animator_Kazuma":
 	{

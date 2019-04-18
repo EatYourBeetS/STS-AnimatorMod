@@ -21,7 +21,7 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     {
         super(owner, id);
 
-        this.firstSynergy = false;
+        this.firstSynergy = PlayerStatistics.getSynergiesThisTurn() == 0;
         this.uses = amount;
         this.amount = amount;
     }
@@ -31,7 +31,7 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     {
         if (firstSynergy)
         {
-            this.description = "[Needs 1 more Synergy]";
+            this.description = "Needs 1 more Synergy";
         }
         else
         {

@@ -489,8 +489,9 @@
 	},
 	"animator_Kaijin":
 	{
-		"DESCRIPTION": "每回合结束时 ， 随机选择一张抽牌堆中的牌 ， 在本场战斗中使其造成的伤害与获得的格挡量提高 !M! 点 。",
-		"NAME": "凯·金"
+		"DESCRIPTION": "墓地 。 每回合结束时 ， 随机选择一张抽牌堆中的牌 ， 在本场战斗中使其造成的伤害与获得的格挡量提高 !M! 点 。",
+		"NAME": "凯·金",
+		"UPGRADE_DESCRIPTION": "每回合结束时 ， 随机选择一张抽牌堆中的牌 ， 在本场战斗中使其造成的伤害与获得的格挡量提高 !M! 点 。"
 	},
 	"animator_Kazuma":
 	{
@@ -621,7 +622,7 @@
 	},
 	"animator_OrbCore_Frost":
 	{
-		"DESCRIPTION": "生成 1 个 冰霜充能球 。 NL 在你的第二个同调每回合 ， 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "生成 1 个 冰霜充能球 。 NL 在你的第二个同调每回合 ， 获得 !M! 点 格挡 。",
 		"NAME": "冰霜 核心"
 	},
 	"animator_OrbCore_Lightning":

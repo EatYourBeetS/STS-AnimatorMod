@@ -10,12 +10,15 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.*;
+import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 @SuppressWarnings("UnusedReturnValue")
 public class GameActionsHelper
@@ -150,6 +153,14 @@ public class GameActionsHelper
         GainEnergyAction action = new GainEnergyAction(amount);
         AbstractDungeon.actionManager.addToBottom(action);
         return action;
+    }
+
+    public static void ApplyPowerToAllEnemies(AbstractCreature source, Function<AbstractCreature, AbstractPower> createPower, int stacks)
+    {
+        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        {
+            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, source, createPower.apply(m), stacks));
+        }
     }
 
     public static ApplyPowerAction ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)

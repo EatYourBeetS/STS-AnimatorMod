@@ -27,7 +27,7 @@
 	},
 	"animator_EvePower":
 	{
-		"DESCRIPTIONS": ["触发 3 次 同调 时 ， 生成 #b", " 个 随机 充能球 和 获得 #b", " 点 能量 。"],
+		"DESCRIPTIONS": ["当 #y同调 生效时对一个随机敌人造成", " 点 伤害。"],
 		"NAME": "EVE的觉醒"
 	},
 	"animator_FeridBathoryPower":
@@ -134,6 +134,36 @@
 	{
 		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and reduce the cost of a random card in your hand by 1."],
 		"NAME": "战略信息"
+	},
+	"animator_OrbCore_DarkPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, draw #b", " cards, then discard #b1 card."],
+		"NAME": "Dark Core"
+	},
+	"animator_OrbCore_EarthPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " Temporary #yThorns."],
+		"NAME": "Earth Core"
+	},
+	"animator_OrbCore_FirePower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, apply #b", " #yBurning to ALL enemies."],
+		"NAME": "Fire Core"
+	},
+	"animator_OrbCore_FrostPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yBlock."],
+		"NAME": "Frost Core"
+	},
+	"animator_OrbCore_LightningPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, deal #b", " damage to ALL enemies."],
+		"NAME": "Lightning Core"
+	},
+	"animator_OrbCore_PlasmaPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yEnergy."],
+		"NAME": "Plasma Core"
 	},
 	"animator_EarthenThornsPower":
 	{

@@ -18,8 +18,9 @@
 	},
 	"animator_Add":
 	{
-		"DESCRIPTION": "Exhaust 1 card in your draw pile. [#EFC851]Channel !M! random Orbs. NL Ethereal.",
-		"NAME": "Add"
+		"DESCRIPTION": "Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal. Exhaust.",
+		"NAME": "Add",
+		"UPGRADE_DESCRIPTION": "Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal."
 	},
 	"animator_Ain":
 	{
@@ -333,7 +334,7 @@
 	},
 	"animator_Eve":
 	{
-		"DESCRIPTION": "Gain !M! Focus. NL Every 3 Synergies, Channel a random Orb and gain [E].",
+		"DESCRIPTION": "Play an Orb_Core. NL Whenever a card Synergizes, deal !M! damage to a random enemy and increase this damage by 1.",
 		"NAME": "Eve"
 	},
 	"animator_Evileye":
@@ -501,11 +502,7 @@
 	"animator_Kira":
 	{
 		"DESCRIPTION": "Ethereal. Kill the enemy after a certain number of turns ([#EFC851]*[]). NL Gain !SV! Vulnerable. NL Exhaust.",
-		"EXTENDED_DESCRIPTION": 
-		[
-			"* Note", "This card's text will change while targeting an enemy, enemies with more health will survive longer. Ignores Artifact.",
-			"Ethereal. The enemy will die in # turns. NL Gain !SV! Vulnerable. NL Exhaust."
-		],
+		"EXTENDED_DESCRIPTION": ["* Note", "This card's text will change while targeting an enemy, enemies with more health will survive longer. Ignores Artifact.", "Ethereal. The enemy will die in # turns. NL Gain !SV! Vulnerable. NL Exhaust."],
 		"NAME": "Light Yagami"
 	},
 	"animator_Konayuki":
@@ -609,6 +606,31 @@
 		"DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning.",
 		"NAME": "Gamma Narberal",
 		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning. NL Lightning hits ALL enemies this turn."
+	},
+	"animator_OrbCore_Dark":
+	{
+		"DESCRIPTION": "Channel 1 Dark. NL On your second Synergy each turn, draw !M! cards, then discard 1 card.",
+		"NAME": "Dark Core"
+	},
+	"animator_OrbCore_Fire":
+	{
+		"DESCRIPTION": "Channel 1 Fire. NL On your second Synergy each turn, apply !M! Burning to ALL enemies.",
+		"NAME": "Fire Core"
+	},
+	"animator_OrbCore_Frost":
+	{
+		"DESCRIPTION": "Channel 1 Frost. NL On your second Synergy each turn, gain !M! Block.",
+		"NAME": "Frost Core"
+	},
+	"animator_OrbCore_Lightning":
+	{
+		"DESCRIPTION": "Channel 1 Lightning. NL On your second Synergy each turn, deal !M! damage to ALL enemies.",
+		"NAME": "Lightning Core"
+	},
+	"animator_OrbCore_Plasma":
+	{
+		"DESCRIPTION": "Channel 1 Plasma. NL On your second Synergy each turn, gain [E].",
+		"NAME": "Plasma Core"
 	},
 	"animator_PandorasActor":
 	{
@@ -875,7 +897,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Synergy: Apply !SV! Weak to ALL enemies.",
+		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Apply 1 Weak to each different enemy hit.",
 		"NAME": "Viivi"
 	},
 	"animator_Witch":

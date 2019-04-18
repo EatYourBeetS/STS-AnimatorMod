@@ -18,8 +18,9 @@
 	},
 	"animator_Add":
 	{
-		"DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 生成 !M! 個隨機充能球 。 虛無 。",
-		"NAME": "艾迪"
+		"DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 用 充電球核心 代替它 。 虛無 。 消耗 。",
+		"NAME": "艾迪",
+		"UPGRADE_DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 用 充電球核心 代替它 。 虛無 。"
 	},
 	"animator_Ain":
 	{
@@ -332,7 +333,7 @@
 	},
 	"animator_Eve":
 	{
-		"DESCRIPTION": "獲得 !M! 點 集中 。 觸發 3 次 同調 時 ， 生成 !M! 個 隨機 充能球 併 獲得 [E] 。",
+		"DESCRIPTION": "發揮 充電球核心 。 每当触发一次 同调 ， 对随机敌人造成 !M! 点 伤害并增加这张牌 1 点 伤害 。",
 		"NAME": "伊芙"
 	},
 	"animator_Evileye":
@@ -606,6 +607,31 @@
 		"NAME": "娜貝拉爾·伽瑪",
 		"UPGRADE_DESCRIPTION": "生成 !M! 個 閃電 充能球 。 NL 變形者 。 閃電 本回合擊中所有敵人。"
 	},
+	"animator_OrbCore_Dark":
+	{
+		"DESCRIPTION": "生成 1 個 黑暗 充能球 。 NL 在你的第二個同調每回合 ， 抽 !M! 張牌 ， 然後丟棄 1 張牌 。",
+		"NAME": "黑暗 核心"
+	},
+	"animator_OrbCore_Fire":
+	{
+		"DESCRIPTION": "產生 1 個 火素 充能球 。 NL 在你的第二個同調每回合 ， 對所有敵人造成 !M! 點 燃燒 。",
+		"NAME": "火素 核心"
+	},
+	"animator_OrbCore_Frost":
+	{
+		"DESCRIPTION": "產生 1 個 冰霜 充能球 。 NL 在你的第二個同調每回合 ， 獲得 !M! 點 格擋 。",
+		"NAME": "冰霜 核心"
+	},
+	"animator_OrbCore_Lightning":
+	{
+		"DESCRIPTION": "產生 1 個 閃電充 充能球 。 NL 在你的第二個同調每回合 ， 對所有敵人造成 !M! 點 傷害 。",
+		"NAME": "閃電充 核心"
+	},
+	"animator_OrbCore_Plasma":
+	{
+		"DESCRIPTION": "產生 1 個 等離子 充能球 。 NL 在你的第二個同調每回合 ， 獲得 [E].",
+		"NAME": "等離子 核心"
+	},
 	"animator_PandorasActor":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 變形者 。 NL 同調 : 額外獲得 !M! 點 格擋 。",
@@ -871,7 +897,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "對隨機敵人造成 !D! 點 傷害 !M! 次 。 同調 : 給予所有敵人 !SV! 層 虛弱 。",
+		"DESCRIPTION": "對隨機敵人造成 !D! 點 傷害 !M! 次 。 對擊中的敵人造成 1 層 虛弱 。",
 		"NAME": "薇薇·荷羅派涅"
 	},
 	"animator_Witch":

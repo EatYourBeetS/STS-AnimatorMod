@@ -1,14 +1,20 @@
 package eatyourbeets.cards;
 
+import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.ExceptionHandler;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.AnimatorResources;
@@ -24,7 +30,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class AnimatorCard extends CustomCard 
+public abstract class AnimatorCard extends CustomCard
 {
     protected static final Logger logger = LogManager.getLogger(AnimatorCard.class.getName());
     //private static final Color SYNERGY_COLOR = new Color(0.565f, 0.933f, 0.565f, 1);
@@ -48,7 +54,7 @@ public abstract class AnimatorCard extends CustomCard
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
 
-    public static String CreateFullID(String cardID) 
+    public static String CreateFullID(String cardID)
     {
         return "animator_" + cardID;
     }
@@ -317,13 +323,102 @@ public abstract class AnimatorCard extends CustomCard
 
         if (rarity == CardRarity.SPECIAL)
         {
-            setBannerTexture("images\\cardui\\512\\banner_special.png","images\\cardui\\1024\\banner_special.png");
+            setBannerTexture("images\\cardui\\512\\banner_special.png", "images\\cardui\\1024\\banner_special.png");
         }
 
         cardStrings = strings;
         if (StringUtils.isNotEmpty(strings.UPGRADE_DESCRIPTION))
         {
             this.upgradedDescription = strings.UPGRADE_DESCRIPTION;
+        }
+    }
+
+    private void renderHelper(SpriteBatch sb, Color color, Texture img, float drawX, float drawY)
+    {
+        sb.setColor(color);
+
+        try
+        {
+            sb.draw(img, drawX, drawY, 256.0F, 256.0F, 512.0F, 512.0F, this.drawScale * Settings.scale, this.drawScale * Settings.scale, this.angle, 0, 0, 512, 512, false, false);
+        }
+        catch (Exception var7)
+        {
+            ExceptionHandler.handleException(var7, logger);
+        }
+
+    }
+
+    private Color RENDER_COLOR = Color.WHITE.cpy();
+
+    @SpireOverride
+    protected void renderAttackPortrait(SpriteBatch sb, float x, float y)
+    {
+        switch (this.rarity)
+        {
+            case BASIC:
+            case CURSE:
+            case COMMON:
+                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_ATTACK_COMMON, x, y);
+                return;
+
+            case SPECIAL:
+                this.renderHelper(sb, RENDER_COLOR, AnimatorResources.CARD_FRAME_ATTACK_SPECIAL, x, y);
+                return;
+
+            case UNCOMMON:
+                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_ATTACK_UNCOMMON, x, y);
+                return;
+
+            case RARE:
+                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_ATTACK_RARE, x, y);
+        }
+    }
+
+    @SpireOverride
+    protected void renderSkillPortrait(SpriteBatch sb, float x, float y)
+    {
+        switch (this.rarity)
+        {
+            case BASIC:
+            case CURSE:
+            case COMMON:
+                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_SKILL_COMMON, x, y);
+                return;
+
+            case SPECIAL:
+                this.renderHelper(sb, RENDER_COLOR, AnimatorResources.CARD_FRAME_SKILL_SPECIAL, x, y);
+                return;
+
+            case UNCOMMON:
+                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_SKILL_UNCOMMON, x, y);
+                return;
+
+            case RARE:
+                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_SKILL_RARE, x, y);
+        }
+    }
+
+    @SpireOverride
+    protected void renderPowerPortrait(SpriteBatch sb, float x, float y)
+    {
+        switch (this.rarity)
+        {
+            case BASIC:
+            case CURSE:
+            case COMMON:
+                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_POWER_COMMON, x, y);
+                break;
+
+            case SPECIAL:
+                this.renderHelper(sb, RENDER_COLOR, AnimatorResources.CARD_FRAME_POWER_SPECIAL, x, y);
+                return;
+
+            case UNCOMMON:
+                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_POWER_UNCOMMON, x, y);
+                break;
+
+            case RARE:
+                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_POWER_RARE, x, y);
         }
     }
 

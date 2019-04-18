@@ -26,7 +26,7 @@
 	},
 	"animator_EvePower":
 	{
-		"DESCRIPTIONS": ["Every 3 #ySynergies, #yChannel #b", " random Orb/s and gain #b", " Energy."],
+		"DESCRIPTIONS": ["Whenever a card #ySynergizes, deal #b", " damage to a random enemy, then increase this damage by 1."],
 		"NAME": "Eve"
 	},
 	"animator_FeridBathoryPower":
@@ -133,6 +133,36 @@
 	{
 		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and reduce the cost of a random card in your hand by 1."],
 		"NAME": "Strategic Information"
+	},
+	"animator_OrbCore_DarkPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, draw #b", " cards, then discard #b1 card."],
+		"NAME": "Dark Core"
+	},
+	"animator_OrbCore_EarthPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " Temporary #yThorns."],
+		"NAME": "Earth Core"
+	},
+	"animator_OrbCore_FirePower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, apply #b", " #yBurning to ALL enemies."],
+		"NAME": "Fire Core"
+	},
+	"animator_OrbCore_FrostPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yBlock."],
+		"NAME": "Frost Core"
+	},
+	"animator_OrbCore_LightningPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, deal #b", " damage to ALL enemies."],
+		"NAME": "Lightning Core"
+	},
+	"animator_OrbCore_PlasmaPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yEnergy."],
+		"NAME": "Plasma Core"
 	},
 	"animator_EarthenThornsPower":
 	{

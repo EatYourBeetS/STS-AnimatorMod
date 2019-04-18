@@ -125,6 +125,11 @@
 		"PROPERNAME": "Choked"
 	},
 	{
+		"NAMES": ["orb core", "orb_core", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
+		"DESCRIPTION": "#yPower: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy each turn. Stacking this power increases the uses per turn.",
+		"PROPER_NAME": "Orb Core"
+	},
+	{
 		"PROPER_NAME": "Plated Armor",
 		"NAMES": ["plated armor", "plated_armor"],
 		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving unblocked damage."

@@ -80,6 +80,13 @@ public class AnimatorResources
     public static final String SHOULDER2_PNG = "images/characters/animator/shoulder2.png";
     public static final String CORPSE_PNG = "images/characters/animator/corpse.png";
 
+    public static final Texture CARD_FRAME_ATTACK_SPECIAL = new Texture("images/cardui/512/frame_attack_special.png");
+    public static final Texture CARD_FRAME_SKILL_SPECIAL  = new Texture("images/cardui/512/frame_skill_special.png");
+    public static final Texture CARD_FRAME_POWER_SPECIAL  = new Texture("images/cardui/512/frame_power_special.png");
+    public static final Texture CARD_FRAME_ATTACK_SPECIAL_L = new Texture("images/cardui/1024/frame_attack_special.png");
+    public static final Texture CARD_FRAME_SKILL_SPECIAL_L  = new Texture("images/cardui/1024/frame_skill_special.png");
+    public static final Texture CARD_FRAME_POWER_SPECIAL_L  = new Texture("images/cardui/1024/frame_power_special.png");
+
     public static Texture GetCharacterPortrait(int id)
     {
         Texture result;

@@ -41,11 +41,19 @@ public class RandomizedList<T>
         return items.remove(item);
     }
 
-    public T Retrieve(Random rng)
+    public T Retrieve(Random rng, boolean remove)
     {
         T item = Utilities.GetRandomElement(items, rng);
-        items.remove(item);
+        if (remove)
+        {
+            items.remove(item);
+        }
 
         return item;
+    }
+
+    public T Retrieve(Random rng)
+    {
+        return Retrieve(rng, true);
     }
 }

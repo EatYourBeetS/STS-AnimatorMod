@@ -6,7 +6,7 @@
 		"FLAVOR": "It's always watching.",
 		"DESCRIPTIONS":
 		[
-			"Once per turn, when a #ySynergy is activated draw #b1 card."
+			"Once per turn, when a card #ySynergizes, draw #b1 card."
 		]
 	},
 	"Animator_VividPicture":
@@ -15,7 +15,7 @@
 		"FLAVOR": "It's always watching.",
 		"DESCRIPTIONS":
 		[
-			"Once per turn, when a #ySynergy is activated draw #b1 card and gain [E]"
+			"Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]"
 		]
 	},
 	"Animator_TheMissingPiece":

@@ -1,5 +1,9 @@
 [
-
+	{
+		"NAMES": ["充电球核心", "orb_core", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
+		"DESCRIPTION": "#yPower: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy. Stacking the power increases the uses per turn.",
+		"PROPER_NAME": "充电球核心"
+	},
 	{
 		"DESCRIPTION": "连续使用同一系列的牌时生效",
 		"NAMES": ["同调"],

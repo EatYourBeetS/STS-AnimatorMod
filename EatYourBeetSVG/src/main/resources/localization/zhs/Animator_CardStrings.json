@@ -87,14 +87,13 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 压倒 : 获得 [E] NL 如果这张牌杀死了敌人， 则获得 [E]",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 压倒 : 获得 [E] NL 如果这张牌杀死了敌人， 则获得 [E] 和 获得 !B! 点 格挡 。",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
 	{
-		"DESCRIPTION": "每 4 次攻击获得 !M! 点 力量 并且获得 1 点 敏捷 。",
-		"NAME": "大和号",
-		"UPGRADE_DESCRIPTION": "获得 !SV! 层 荆棘 。 每 4 次攻击获得 !M! 点 力量 并且获得 1 点 敏捷 。"
+		"DESCRIPTION": "获得 1 层 人工制品 。 每 4 次攻击获得 !M! 点 力量 并且获得 1 点 敏捷 。",
+		"NAME": "大和号"
 	},
 	"animator_BlackLotus":
 	{
@@ -322,9 +321,9 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "穿越者 。 NL 每回合打出的第一张牌都会触发自身的 同调 效果.",
+		"DESCRIPTION": "穿越者 。 NL 每回合打出的第一张牌都会触发自身的 同调 效果 。 持续 4 轮 。",
 		"NAME": "嫉妒",
-		"UPGRADE_DESCRIPTION": "固有 。 穿越者 。 NL 每回合打出的第一张牌都会触发自身的 同调 效果."
+		"UPGRADE_DESCRIPTION": "穿越者 。 NL 每回合打出的第一张牌都会触发自身的 同调 效果 。"
 	},
 	"animator_Eris":
 	{
@@ -489,9 +488,9 @@
 	},
 	"animator_Kaijin":
 	{
-		"DESCRIPTION": "墓地 。 每回合结束时 ， 随机选择一张抽牌堆中的牌 ， 在本场战斗中使其造成的伤害与获得的格挡量提高 !M! 点 。",
+		"DESCRIPTION": "每回合结束时 ， 随机选择一张抽牌堆中的牌 ， 在本场战斗中使其造成的伤害与获得的格挡量提高 !M! 点 。",
 		"NAME": "凯·金",
-		"UPGRADE_DESCRIPTION": "每回合结束时 ， 随机选择一张抽牌堆中的牌 ， 在本场战斗中使其造成的伤害与获得的格挡量提高 !M! 点 。"
+		"UPGRADE_DESCRIPTION": "固有 。 每回合结束时 ， 随机选择一张抽牌堆中的牌 ， 在本场战斗中使其造成的伤害与获得的格挡量提高 !M! 点 。"
 	},
 	"animator_Kazuma":
 	{
@@ -857,7 +856,7 @@
 	},
 	"animator_SwordMaiden":
 	{
-		"DESCRIPTION": "获得 !M! 层 人工制品 。 NL 获得 !M! 无实体 。 NL 消耗 。",
+		"DESCRIPTION": "获得 !M! 层 [#EFC851]再生[] 。 NL 移除你身上的所有负面效果 。 NL 消耗 。",
 		"NAME": "剑之圣女"
 	},
 	"animator_Tet":

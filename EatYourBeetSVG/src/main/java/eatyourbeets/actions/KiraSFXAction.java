@@ -9,7 +9,7 @@ import eatyourbeets.GameActionsHelper;
 
 public class KiraSFXAction extends AnimatorAction
 {
-    private String key;
+    private final String key;
     private float pitchVar = 0.0F;
 
     public KiraSFXAction(String key)

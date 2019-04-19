@@ -87,14 +87,13 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Overrun: Gain [E]. NL If this kills an enemy gain [E].",
+		"DESCRIPTION": "Deal !D! damage. NL Overrun: Gain [E]. NL If this kills an enemy, gain [E] and !B! Block.",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
 	{
-		"DESCRIPTION": "Every 4 Attacks played, gain !M! Strength and 1 Dexterity.",
-		"NAME": "Biyorigo",
-		"UPGRADE_DESCRIPTION": "Gain !SV! Thorns. NL Every 4 Attacks played, gain !M! Strength and 1 Dexterity."
+		"DESCRIPTION": "Gain 1 Artifact. NL Every 4 Attacks played, gain !M! Strength and 1 Dexterity.",
+		"NAME": "Biyorigo"
 	},
 	"animator_BlackLotus":
 	{
@@ -323,13 +322,13 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "Shapeshifter. NL The first card you play each turn will Synergize.",
+		"DESCRIPTION": "Shapeshifter. The first card you play each turn will Synergize. Lasts 4 turns.",
 		"NAME": "Envy",
-		"UPGRADE_DESCRIPTION": "Innate. Shapeshifter. NL The first card you play each turn will Synergize."
+		"UPGRADE_DESCRIPTION": "Shapeshifter. The first card you play each turn will Synergize."
 	},
 	"animator_Eris":
 	{
-		"DESCRIPTION": "Heal !M! HP. NL Exhaust. NL Resurrect.",
+		"DESCRIPTION": "Resurrect. NL Heal !M! HP. NL Exhaust.",
 		"NAME": "Eris"
 	},
 	"animator_Eve":
@@ -491,9 +490,9 @@
 	},
 	"animator_Kaijin":
 	{
-		"DESCRIPTION": "Grave. At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat.",
+		"DESCRIPTION": "At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat.",
 		"NAME": "Kaijin",
-		"UPGRADE_DESCRIPTION": "At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat."
+		"UPGRADE_DESCRIPTION": "Innate. At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat."
 	},
 	"animator_Kazuma":
 	{
@@ -855,7 +854,7 @@
 	},
 	"animator_SwordMaiden":
 	{
-		"DESCRIPTION": "Gain !M! Artifact. NL Gain !M! Intangible. NL Exhaust.",
+		"DESCRIPTION": "Gain !M! Temporary HP. NL Remove ALL of your Debuffs. Exhaust.",
 		"NAME": "'Sword Maiden'"
 	},
 	"animator_Tet":

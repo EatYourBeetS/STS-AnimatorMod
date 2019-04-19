@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class AnimatorMetrics
 {
     private static final String TROPHY_DATA_KEY = "TDAL";
-    private static Prefs prefs;
+    private static Prefs prefs = null;
 
     public static final ArrayList<AnimatorTrophies> trophiesData = new ArrayList<>();
     public static int lastLoadout = 0;
@@ -38,11 +38,16 @@ public class AnimatorMetrics
         }
     }
 
+    protected static void ShutUpJava()
+    {
+        prefs = SaveHelper.getPrefs(AbstractEnums.Characters.THE_ANIMATOR.name());
+    }
+
     static
     {
         try
         {
-            prefs = SaveHelper.getPrefs(AbstractEnums.Characters.THE_ANIMATOR.name());
+            ShutUpJava();
 
             String data = prefs.getString(TROPHY_DATA_KEY);
             if (data != null && data.length() > 0)

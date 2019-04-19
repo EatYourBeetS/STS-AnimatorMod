@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.misc.WeightedList;
 import eatyourbeets.orbs.Earth;
-import eatyourbeets.orbs.Fire;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

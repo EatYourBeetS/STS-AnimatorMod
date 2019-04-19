@@ -22,7 +22,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(16,0);
+        Initialize(19,0);
 
         AddExtendedDescription();
         this.isMultiDamage = true;
@@ -68,7 +68,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(7);
         }
     }
 

@@ -145,6 +145,11 @@
 		"DESCRIPTION": "This card's damage also scales with #yDexterity."
 	},
 	{
+		"PROPER_NAME": "Nimble",
+		"NAMES": ["nimble"],
+		"DESCRIPTION": "When this card is drawn, and if your draw pile is not empty, draw 1 more card."
+	},
+	{
 		"PROPER_NAME": "Support Damage",
 		"NAMES": ["support damage", "support_damage"],
 		"DESCRIPTION": "Deal damage to the enemy with lowest HP at the end of each turn."

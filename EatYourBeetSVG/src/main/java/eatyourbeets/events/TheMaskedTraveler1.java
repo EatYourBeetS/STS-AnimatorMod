@@ -21,7 +21,7 @@ public class TheMaskedTraveler1 extends AnimatorEvent
     public static final String ID = CreateFullID(TheMaskedTraveler1.class.getSimpleName());
 
     private boolean completed;
-    private AbstractCard toReplace;
+    private final AbstractCard toReplace;
     private final int SELLING_PRICE;
     private final int BUYING_PRICE;
 

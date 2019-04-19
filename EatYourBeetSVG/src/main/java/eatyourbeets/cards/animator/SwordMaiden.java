@@ -1,9 +1,8 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -16,7 +15,7 @@ public class SwordMaiden extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 18);
 
         this.exhaust = true;
 
@@ -26,8 +25,8 @@ public class SwordMaiden extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new IntangiblePlayerPower(p, this.magicNumber), this.magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.AddToBottom(new RemoveDebuffsAction(p));
+        GameActionsHelper.GainTemporaryHP(p, p, this.magicNumber);
     }
 
     @Override
@@ -35,7 +34,7 @@ public class SwordMaiden extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(1);
+            upgradeMagicNumber(8);
         }
     }
 }

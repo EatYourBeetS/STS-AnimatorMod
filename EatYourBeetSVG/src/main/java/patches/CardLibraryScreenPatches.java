@@ -15,7 +15,7 @@ import java.lang.reflect.Field;
 @SpirePatch(clz=CardLibraryScreen.class, method="didChangeTab", paramtypez = {ColorTabBar.class, ColorTabBar.CurrentTab.class})
 public class CardLibraryScreenPatches
 {
-    private static CustomCardLibSortHeader customHeader;
+    private static final CustomCardLibSortHeader customHeader;
     private static CardLibSortHeader defaultHeader;
     private static Field headerField;
 

@@ -12,8 +12,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.animator.OrbCore_Lightning;
 
 import java.util.ArrayList;

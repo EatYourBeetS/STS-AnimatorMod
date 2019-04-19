@@ -12,7 +12,7 @@ import java.util.function.BiConsumer;
 
 public class ChooseFromPileAction extends AbstractGameAction
 {
-    private boolean random;
+    private final boolean random;
     private final String message;
     private final CardGroup sourceGroup;
     private final ArrayList<AbstractCard> selectedCards;

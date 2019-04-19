@@ -12,7 +12,7 @@ public class EntouJyuuPower extends AnimatorPower
     public static final String POWER_ID = CreateFullID(EntouJyuuPower.class.getSimpleName());
 
     private int baseAmount;
-    private int damageBonus;
+    private final int damageBonus;
 
     public EntouJyuuPower(AbstractCreature owner, int damageBonus)
     {

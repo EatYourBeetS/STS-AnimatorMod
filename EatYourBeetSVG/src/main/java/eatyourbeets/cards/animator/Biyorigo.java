@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ThornsPower;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -16,9 +16,9 @@ public class Biyorigo extends AnimatorCard
     {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0,2);
+        Initialize(0,0,1);
 
-        this.baseSecondaryValue = this.secondaryValue = 0;
+        //this.baseSecondaryValue = this.secondaryValue = 0;
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -26,11 +26,11 @@ public class Biyorigo extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (upgraded)
-        {
-            GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, this.secondaryValue), this.secondaryValue);
-        }
-
+//        if (upgraded)
+//        {
+//            GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, this.secondaryValue), this.secondaryValue);
+//        }
+        GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
         GameActionsHelper.ApplyPower(p, p, new BiyorigoPower(p, this.magicNumber), this.magicNumber);
     }
 
@@ -39,7 +39,7 @@ public class Biyorigo extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(3);
+            upgradeMagicNumber(1);
         }
     }
 }

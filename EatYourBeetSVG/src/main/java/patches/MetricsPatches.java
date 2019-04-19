@@ -28,8 +28,8 @@ public class MetricsPatches
     {
         private static final ArrayList<Integer> bannedSeries = new ArrayList<>();
         private static final ArrayList<HashMap> cardsData = new ArrayList<>();
-        private static HashMap<Object, Object> params = new HashMap<>();
-        private static Gson gson = new Gson();
+        private static final HashMap<Object, Object> params = new HashMap<>();
+        private static final Gson gson = new Gson();
 
         @SpirePrefixPatch
         public static void Postfix(Metrics __instance)

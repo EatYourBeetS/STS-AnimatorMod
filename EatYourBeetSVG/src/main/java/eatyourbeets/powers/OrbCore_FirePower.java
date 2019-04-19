@@ -5,8 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.animator.OrbCore_Fire;
 
 public class OrbCore_FirePower extends OrbCore_AbstractPower
@@ -25,10 +23,14 @@ public class OrbCore_FirePower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActionsHelper.ApplyPowerToAllEnemies(p, m -> new BurningPower(m, p, value), value);
+        GameActionsHelper.ApplyPowerToAllEnemies(p, this::CreateBurning, value);
+    }
+
+    protected BurningPower CreateBurning(AbstractCreature m)
+    {
+        return new BurningPower(m, AbstractDungeon.player, value);
     }
 }
-
 
 //            AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 //            if (target != null)

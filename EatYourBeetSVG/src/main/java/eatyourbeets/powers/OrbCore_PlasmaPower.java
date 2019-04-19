@@ -3,11 +3,7 @@ package eatyourbeets.powers;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.animator.OrbCore_Frost;
 import eatyourbeets.cards.animator.OrbCore_Plasma;
 
 public class OrbCore_PlasmaPower extends OrbCore_AbstractPower

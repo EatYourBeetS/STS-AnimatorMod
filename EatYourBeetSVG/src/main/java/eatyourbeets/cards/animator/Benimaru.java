@@ -1,21 +1,14 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.actions.OnDamageAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
-
-import java.util.ArrayList;
 
 public class Benimaru extends AnimatorCard
 {

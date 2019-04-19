@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,7 +15,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.FireOrbEvokeAction;
-import eatyourbeets.actions.RemoveOrbAction;
 import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -44,7 +42,7 @@ public class Fire extends AnimatorOrb
         this.hFlip1 = MathUtils.randomBoolean();
 
         this.baseEvokeAmount = this.evokeAmount = BURNING_AMOUNT + 2;
-        this.basePassiveAmount = this.passiveAmount = 2;
+        this.basePassiveAmount = this.passiveAmount = 3;
 
         this.updateDescription();
         this.channelAnimTimer = 0.5F;

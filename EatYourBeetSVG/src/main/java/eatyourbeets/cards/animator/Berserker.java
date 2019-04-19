@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
@@ -23,7 +24,7 @@ public class Berserker extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(24,0);
+        Initialize(24,8, 0);
 
         SetSynergy(Synergies.Fate);
     }
@@ -47,6 +48,7 @@ public class Berserker extends AnimatorCard
         if (TryUpgrade())
         {          
             upgradeDamage(6);
+            upgradeBlock(4);
         }
     }
 
@@ -58,6 +60,7 @@ public class Berserker extends AnimatorCard
             if ((monster.isDying || monster.currentHealth <= 0) && !monster.halfDead)
             {
                 GameActionsHelper.GainEnergy(1);
+                GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
             }
 
             if (initialBlock > 0 && monster.currentBlock <= 0)

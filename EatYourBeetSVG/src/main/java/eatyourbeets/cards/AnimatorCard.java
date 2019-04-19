@@ -1,11 +1,9 @@
 package eatyourbeets.cards;
 
-import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -348,7 +346,7 @@ public abstract class AnimatorCard extends CustomCard
 
     }
 
-    private Color RENDER_COLOR = Color.WHITE.cpy();
+    private final Color RENDER_COLOR = Color.WHITE.cpy();
 
     @SpireOverride
     protected void renderAttackPortrait(SpriteBatch sb, float x, float y)

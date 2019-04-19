@@ -87,14 +87,13 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 壓倒 : 獲得 [E] NL 以這張牌擊殺敵人時， 獲得 [E]",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 壓倒 : 獲得 [E] NL 以這張牌擊殺敵人時， 獲得 [E] 併 獲得 !B! 點 格擋 。",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
 	{
-		"DESCRIPTION": "每次打出 4 張牌後 ， 獲得 !M! 點 力量 和 1 點 敏捷 。",
-		"NAME": "日和號",
-		"UPGRADE_DESCRIPTION": "獲得 !SV! 層 荊棘 。 每次打出 4 張牌後 ， 獲得 !M! 點 力量 和 1 點 敏捷 。"
+		"DESCRIPTION": "獲得 1 層 人工制品 。 每次打出 4 張牌後 ， 獲得 !M! 點 力量 和 1 點 敏捷 。",
+		"NAME": "日和號"
 	},
 	"animator_BlackLotus":
 	{
@@ -322,9 +321,9 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "變形者 。 NL 每回合打出的第一張牌出觸發自己的 同調 效果。",
+		"DESCRIPTION": "變形者 。 NL 每回合打出的第一張牌出觸發自己的 同調 效果 。 持續 4 輪 。",
 		"NAME": "恩維",
-		"UPGRADE_DESCRIPTION": "固有。 變形者。 NL每回合打出的第一張牌出觸發自己的同調效果。"
+		"UPGRADE_DESCRIPTION": "變形者 。 NL 每回合打出的第一張牌出觸發自己的 同調 效果 。"
 	},
 	"animator_Eris":
 	{
@@ -487,9 +486,9 @@
 	},
 	"animator_Kaijin":
 	{
-		"DESCRIPTION": "墓地 。 每回合結束時 ， 隨機選擇一張抽牌堆中的牌 ， 在本場戰鬥中使其造成的傷害與獲得的格擋量提高 !M! 點 。",
+		"DESCRIPTION": "每回合結束時 ， 隨機選擇一張抽牌堆中的牌 ， 在本場戰鬥中使其造成的傷害與獲得的格擋量提高 !M! 點 。",
 		"NAME": "凱·金",
-		"UPGRADE_DESCRIPTION": "每回合結束時 ， 隨機選擇一張抽牌堆中的牌 ， 在本場戰鬥中使其造成的傷害與獲得的格擋量提高 !M! 點 。"
+		"UPGRADE_DESCRIPTION": "固有 。 每回合結束時 ， 隨機選擇一張抽牌堆中的牌 ， 在本場戰鬥中使其造成的傷害與獲得的格擋量提高 !M! 點 。"
 	},
 	"animator_Kazuma":
 	{
@@ -855,7 +854,7 @@
 	},
 	"animator_SwordMaiden":
 	{
-		"DESCRIPTION": "獲得 !M! 層 人工制品 。 NL 獲得 !M! 無實體 。 NL 消耗 。",
+		"DESCRIPTION": "獲得 !M! 層 [#EFC851]再生[] 。 移除你身上的所有負面效果 。 NL 消耗 。",
 		"NAME": "劍之聖女"
 	},
 	"animator_Tet":

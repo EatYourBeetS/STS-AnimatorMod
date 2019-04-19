@@ -17,14 +17,14 @@ import java.util.ArrayList;
 
 public class PiercingDamageAction extends AbstractGameAction
 {
-    private DamageInfo info;
+    private final DamageInfo info;
     private int goldAmount;
     private static final float DURATION = 0.1F;
     private static final float POST_ATTACK_WAIT_DUR = 0.1F;
     private boolean skipWait;
     private boolean muteSfx;
 
-    private ArrayList<AbstractPower> ignoredPowers = new ArrayList<>();
+    private final ArrayList<AbstractPower> ignoredPowers = new ArrayList<>();
 
     public PiercingDamageAction(AbstractCreature target, DamageInfo info, AttackEffect effect)
     {

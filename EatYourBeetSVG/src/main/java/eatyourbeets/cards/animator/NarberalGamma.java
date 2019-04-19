@@ -1,19 +1,16 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.powers.ElectroPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.powers.TemporaryElectroPower;
 
-public class NarberalGamma extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
+public class NarberalGamma extends AnimatorCard// implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ID = CreateFullID(NarberalGamma.class.getSimpleName());
 
@@ -31,10 +28,9 @@ public class NarberalGamma extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         AbstractDungeon.actionManager.addToBottom(new ChannelAction(new Lightning(), true));
 
-        if (upgraded && !p.hasPower(ElectroPower.POWER_ID))
+        if (upgraded)
         {
-            GameActionsHelper.ApplyPower(p, p, new ElectroPower(p), 1);
-            PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+            GameActionsHelper.ApplyPower(p, p, new TemporaryElectroPower(p));
         }
     }
 
@@ -42,14 +38,5 @@ public class NarberalGamma extends AnimatorCard implements OnStartOfTurnPostDraw
     public void upgrade()
     {
         TryUpgrade();
-    }
-
-    @Override
-    public void OnStartOfTurnPostDraw()
-    {
-        AbstractPlayer p = AbstractDungeon.player;
-
-        GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, ElectroPower.POWER_ID, 1));
-        PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
     }
 }

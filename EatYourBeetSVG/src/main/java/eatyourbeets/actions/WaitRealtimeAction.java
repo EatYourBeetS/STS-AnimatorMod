@@ -7,7 +7,7 @@ import java.time.Instant;
 
 public class WaitRealtimeAction extends AbstractGameAction
 {
-    private Instant targetTime;
+    private final Instant targetTime;
 
     public WaitRealtimeAction(float setDur)
     {

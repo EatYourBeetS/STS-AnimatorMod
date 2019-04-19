@@ -49,7 +49,7 @@ public class Bozes extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(5);
             //upgradeMagicNumber(1);
         }
     }

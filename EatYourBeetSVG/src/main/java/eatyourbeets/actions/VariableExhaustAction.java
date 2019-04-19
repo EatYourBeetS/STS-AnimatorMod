@@ -11,8 +11,8 @@ import java.util.function.BiConsumer;
 
 public class VariableExhaustAction extends AnimatorAction
 {
-    public boolean canPickZero;
-    public boolean anyNumber;
+    public final boolean canPickZero;
+    public final boolean anyNumber;
 
     private final Object state;
     private final ArrayList<AbstractCard> exhausted;

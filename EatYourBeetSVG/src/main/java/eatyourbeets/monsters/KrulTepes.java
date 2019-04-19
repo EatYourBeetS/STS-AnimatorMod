@@ -26,11 +26,11 @@ import java.util.ArrayList;
 
 public class KrulTepes extends CustomMonster
 {
-    public static String ID = "Animator_KrulTepes";
-    public static String NAME = "Krul Tepes";
+    public static final String ID = "Animator_KrulTepes";
+    public static final String NAME = "Krul Tepes";
 
-    private BobEffect bobEffect = new BobEffect(1);
-    private ArrayList<Move> moveset = new ArrayList<>();
+    private final BobEffect bobEffect = new BobEffect(1);
+    private final ArrayList<Move> moveset = new ArrayList<>();
 
     private static int GetMaxHealth()
     {
@@ -133,9 +133,9 @@ public class KrulTepes extends CustomMonster
 
     public static abstract class Move
     {
-        public AbstractMonster owner;
-        public int ascensionLevel;
-        public byte id;
+        public final AbstractMonster owner;
+        public final int ascensionLevel;
+        public final byte id;
 
         public Move(byte id, int ascensionLevel, AbstractMonster owner)
         {
@@ -155,10 +155,10 @@ public class KrulTepes extends CustomMonster
 
     public static class Move_Cripple extends Move
     {
-        private int FRAIL_AMOUNT;
-        private int WEAK_AMOUNT;
-        private int BLOCK_AMOUNT;
-        private int VULNERABLE_AMOUNT;
+        private final int FRAIL_AMOUNT;
+        private final int WEAK_AMOUNT;
+        private final int BLOCK_AMOUNT;
+        private final int VULNERABLE_AMOUNT;
 
         public Move_Cripple(int id, int ascensionLevel, AbstractMonster owner)
         {
@@ -196,8 +196,8 @@ public class KrulTepes extends CustomMonster
 
     public static class Move_PowerUp extends Move
     {
-        private int ARTIFACT_AMOUNT;
-        private int STRENGTH_AMOUNT;
+        private final int ARTIFACT_AMOUNT;
+        private final int STRENGTH_AMOUNT;
 
         public Move_PowerUp(int id, int ascensionLevel, AbstractMonster owner)
         {
@@ -229,9 +229,9 @@ public class KrulTepes extends CustomMonster
 
     public static class Move_Regenerate extends Move
     {
-        private int REGEN_AMOUNT;
-        private int BLOCK_AMOUNT;
-        private int THORNS_AMOUNT;
+        private final int REGEN_AMOUNT;
+        private final int BLOCK_AMOUNT;
+        private final int THORNS_AMOUNT;
         //private int uses;
 
         public Move_Regenerate(int id, int ascensionLevel, AbstractMonster owner)
@@ -276,9 +276,9 @@ public class KrulTepes extends CustomMonster
 
     public static class Move_Bite extends Move
     {
-        private DamageInfo damageInfo;
-        private int STRENGTH_AMOUNT;
-        private int WEAK_AMOUNT;
+        private final DamageInfo damageInfo;
+        private final int STRENGTH_AMOUNT;
+        private final int WEAK_AMOUNT;
 
         public Move_Bite(int id, int ascensionLevel, AbstractMonster owner)
         {
@@ -315,8 +315,8 @@ public class KrulTepes extends CustomMonster
 
     public static class Move_GuardedAttack extends Move
     {
-        private DamageInfo damageInfo;
-        private int BLOCK_AMOUNT;
+        private final DamageInfo damageInfo;
+        private final int BLOCK_AMOUNT;
 
         public Move_GuardedAttack(int id, int ascensionLevel, AbstractMonster owner)
         {
@@ -349,8 +349,8 @@ public class KrulTepes extends CustomMonster
 
     public static class Move_MultiSlash extends Move
     {
-        private DamageInfo damageInfo;
-        private int TIMES;
+        private final DamageInfo damageInfo;
+        private final int TIMES;
 
         private int timesCounter;
 

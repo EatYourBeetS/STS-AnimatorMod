@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
 public class DamageRandomEnemy2Action extends AbstractGameAction
 {
-    private DamageInfo info;
+    private final DamageInfo info;
 
     public DamageRandomEnemy2Action(DamageInfo info, AttackEffect effect)
     {

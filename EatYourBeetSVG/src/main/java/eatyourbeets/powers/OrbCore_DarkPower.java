@@ -1,18 +1,11 @@
 package eatyourbeets.powers;
 
 import basemod.BaseMod;
-import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
-import com.megacrit.cardcrawl.actions.common.ShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.animator.OrbCore_Dark;
-
-import java.util.ArrayList;
 
 public class OrbCore_DarkPower extends OrbCore_AbstractPower
 {

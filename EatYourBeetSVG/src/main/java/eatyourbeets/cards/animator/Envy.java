@@ -23,15 +23,12 @@ public class Envy extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new EnvyPower(p, 1), 1);
+        GameActionsHelper.ApplyPower(p, p, new EnvyPower(p, 1, upgraded), 1);
     }
 
     @Override
     public void upgrade() 
     {
-        if (TryUpgrade())
-        {
-            this.isInnate = true;
-        }
+        TryUpgrade();
     }
 }

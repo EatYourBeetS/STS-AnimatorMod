@@ -10,6 +10,7 @@ import eatyourbeets.actions.ChooseFromPileAction;
 import eatyourbeets.actions.ExhaustFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.OrbCore_AbstractPower;
 
 import java.util.ArrayList;
 
@@ -36,12 +37,7 @@ public class Add extends AnimatorCard
         {
             GameActionsHelper.AddToBottom(new ExhaustFromPileAction(1, false, p.drawPile));
 
-            CardGroup cores = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-            cores.addToTop(new OrbCore_Dark());
-            cores.addToTop(new OrbCore_Frost());
-            cores.addToTop(new OrbCore_Lightning());
-            cores.addToTop(new OrbCore_Plasma());
-
+            CardGroup cores = OrbCore_AbstractPower.CreateCoresGroup(3);
             GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, cores, this::OrbChosen, this, ""));
         }
     }

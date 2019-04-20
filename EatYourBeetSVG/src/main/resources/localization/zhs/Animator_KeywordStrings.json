@@ -1,8 +1,8 @@
 [
 	{
-		"NAMES": ["充电球核心", "orb_core", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
-		"DESCRIPTION": "#yPower: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy. Stacking the power increases the uses per turn.",
-		"PROPER_NAME": "充电球核心"
+		"NAMES": ["充能球核心", "orb_core", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
+		"DESCRIPTION": "#y能力: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy. Stacking the power increases the uses per turn.",
+		"PROPER_NAME": "充能球核心"
 	},
 	{
 		"DESCRIPTION": "连续使用同一系列的牌时生效",
@@ -143,6 +143,16 @@
 		"PROPER_NAME": "剑圣",
 		"NAMES": ["剑圣"],
 		"DESCRIPTION": "此牌造成的伤害受敏捷影响"
+	},
+	{
+		"PROPER_NAME": "重装填",
+		"NAMES": ["重装填"],
+		"DESCRIPTION": "丢弃任意数量的牌 ， 触发同等次数 。"
+	},
+	{
+		"PROPER_NAME": "发现",
+		"NAMES": ["发现"],
+		"DESCRIPTION": "从 3 张随机牌中选择 1 张加入你的手牌 。 这张牌在本回合耗能变为 0 。"
 	},
 	{
 		"DESCRIPTION": "下回合开始时格挡不会消失 。",

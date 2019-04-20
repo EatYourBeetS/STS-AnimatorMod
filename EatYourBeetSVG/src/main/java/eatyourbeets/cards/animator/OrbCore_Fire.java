@@ -15,7 +15,7 @@ public class OrbCore_Fire extends AnimatorCard
 
     public OrbCore_Fire()
     {
-        super(ID, 2, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0,0, VALUE);
     }

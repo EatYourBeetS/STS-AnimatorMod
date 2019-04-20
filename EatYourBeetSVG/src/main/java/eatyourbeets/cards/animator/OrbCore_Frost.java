@@ -15,7 +15,7 @@ public class OrbCore_Frost extends AnimatorCard
 
     public OrbCore_Frost()
     {
-        super(ID, 2, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0,0, VALUE);
     }

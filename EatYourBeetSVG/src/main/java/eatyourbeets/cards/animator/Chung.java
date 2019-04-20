@@ -51,6 +51,7 @@ public class Chung extends AnimatorCard_Cooldown
             int[] multiDamage = DamageInfo.createDamageMatrix(this.baseDamage);
             AbstractPlayer p = AbstractDungeon.player;
             GameActionsHelper.DamageAllEnemies(p, multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
+
             if (p.hasPower(PenNibPower.POWER_ID))
             {
                 GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));

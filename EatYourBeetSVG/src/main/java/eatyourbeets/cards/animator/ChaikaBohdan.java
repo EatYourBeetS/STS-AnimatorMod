@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.ModifyMagicNumberAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -22,7 +21,6 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
     public static final String ID = CreateFullID(ChaikaBohdan.class.getSimpleName());
 
     private int bonusDamage = 0;
-    //private boolean returnToHand = false;
 
     public ChaikaBohdan()
     {
@@ -35,35 +33,25 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
             OnBattleStart();
         }
 
+        this.baseSecondaryValue = this.secondaryValue = 3;
+
         AddExtendedDescription();
         SetSynergy(Synergies.Chaika);
     }
 
-//    @Override
-//    public void onMoveToDiscard()
-//    {
-//        super.onMoveToDiscard();
-//
-//        if (returnToHand)
-//        {
-//            AbstractPlayer p = AbstractDungeon.player;
-//            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.discardPile));
-//            this.retain = true;
-//            returnToHand = false;
-//        }
-//    }
-
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-//        DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-//        GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
-
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
 
-        if (HasActiveSynergy())
+        int handSize = p.hand.size();
+        if (p.hand.contains(this))
         {
-            GameActionsHelper.AddToBottom(new ModifyMagicNumberAction(this.uuid, 1));
+            handSize -= 1;
+        }
+        if (handSize <= 0)
+        {
+            GameActionsHelper.DrawCard(p, this.secondaryValue);
         }
 
         AddDamageBonus(-bonusDamage);
@@ -74,6 +62,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
     {
         if (TryUpgrade())
         {
+            upgradeDamage(1);
             upgradeMagicNumber(1);
         }
     }
@@ -104,18 +93,4 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
         bonusDamage += amount;
         baseDamage += amount;
     }
-
-//    private void OnDamage(Object state, AbstractMonster monster)
-//    {
-//        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
-//        if (initialBlock != null && monster != null)
-//        {
-//            if (initialBlock > 0 && monster.currentBlock <= 0)
-//            {
-//                AbstractPlayer p = AbstractDungeon.player;
-//                GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
-//                //returnToHand = true;
-//            }
-//        }
-//    }
 }

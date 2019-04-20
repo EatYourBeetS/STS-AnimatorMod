@@ -88,7 +88,7 @@ public class KrulTepes extends AnimatorCard
             }
         }
 
-        if (ownedRelics > 3 && AbstractDungeon.miscRng.randomBoolean())
+        if (ownedRelics > 3 && (ownedRelics >= 5 || AbstractDungeon.miscRng.randomBoolean()))
         {
             AbstractDungeon.getCurrRoom().addRelicToRewards(new ExquisiteBloodVial());
         }

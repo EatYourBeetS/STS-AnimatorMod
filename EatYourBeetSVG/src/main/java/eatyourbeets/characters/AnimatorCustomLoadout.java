@@ -35,13 +35,14 @@ public abstract class AnimatorCustomLoadout
     protected static final Texture slot2 = new Texture(AnimatorResources.GetRewardImage("Animator_Slot2"));
 
     private static Field goldField;
+    private static Field hpField;
 
     public int ID;
     public String Name;
     public int StartingGold;
+    public int MaxHP;
     public final int CardDraw;
     public final int OrbSlots;
-    public final int MaxHP;
     public boolean Locked;
 
     protected AnimatorTrophies trophies;
@@ -58,8 +59,14 @@ public abstract class AnimatorCustomLoadout
                 goldField = CharacterOption.class.getDeclaredField("gold");
                 goldField.setAccessible(true);
             }
-            Utilities.Logger.info("Gold Field: " + (goldField != null) + ", " + this.Name + ", " + this.StartingGold + ", Option: " + (option != null));
+            if (hpField == null)
+            {
+                hpField = CharacterOption.class.getDeclaredField("hp");
+                hpField.setAccessible(true);
+            }
+            //Utilities.Logger.info("Gold Field: " + (goldField != null) + ", " + this.Name + ", " + this.StartingGold + ", Option: " + (option != null));
             goldField.set(option, this.StartingGold);
+            hpField.set(option, String.valueOf(this.MaxHP));
         }
         catch (NoSuchFieldException | IllegalAccessException ex)
         {

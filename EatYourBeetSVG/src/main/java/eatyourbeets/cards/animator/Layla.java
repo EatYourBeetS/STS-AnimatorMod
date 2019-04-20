@@ -21,39 +21,17 @@ public class Layla extends AnimatorCard
 
     public Layla()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(3,0, 1);
+        Initialize(4,0, 1);
 
-        AddExtendedDescription();
         SetSynergy(Synergies.Chaika);
     }
-
-//    @SuppressWarnings("SuspiciousNameCombination")
-//    @Override
-//    public void triggerOnExhaust()
-//    {
-//        super.triggerOnExhaust();
-//
-//        AbstractPlayer p = AbstractDungeon.player;
-//        AbstractMonster randomMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-//        if (randomMonster != null)
-//        {
-//            AbstractDungeon.actionManager.addToBottom(new VFXAction(new PotionBounceEffect(p.hb.cY, p.hb.cX, randomMonster.hb.cX, this.hb.cY), 0.3F));
-//        }
-//
-//        AbstractDungeon.actionManager.addToBottom(new BouncingFlaskAction(randomMonster, this.magicNumber, 3));
-//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         AbstractDungeon.actionManager.addToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
-
-//        if (HasActiveSynergy())
-//        {
-//            GameActionsHelper.DrawCard(p, 1);
-//        }
     }
 
     @Override

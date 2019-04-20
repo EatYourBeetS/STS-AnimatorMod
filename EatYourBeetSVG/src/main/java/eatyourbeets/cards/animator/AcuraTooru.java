@@ -1,10 +1,11 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.cards.colorless.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.ModifyMagicNumberAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -18,15 +19,9 @@ public class AcuraTooru extends AnimatorCard
 
         Initialize(5,0, 3);
 
+        baseSecondaryValue = secondaryValue = 1;
+
         SetSynergy(Synergies.Chaika);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        GameActionsHelper.AddToBottom(new ModifyMagicNumberAction(this.uuid, 1));
     }
 
     @Override
@@ -36,6 +31,14 @@ public class AcuraTooru extends AnimatorCard
         {
             GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
+
+        if (HasActiveSynergy())
+        {
+            for (int i = 0 ; i < this.secondaryValue; i++)
+            {
+                GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new Shiv()));
+            }
+        }
     }
 
     @Override
@@ -44,6 +47,7 @@ public class AcuraTooru extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(1);
+            upgradeSecondaryValue(1);
         }
     }
 }

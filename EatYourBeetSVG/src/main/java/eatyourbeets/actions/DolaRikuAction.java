@@ -1,26 +1,30 @@
 package eatyourbeets.actions;
 
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import eatyourbeets.Utilities;
+import eatyourbeets.GameActionsHelper;
+import eatyourbeets.misc.RandomizedList;
 
 import java.util.ArrayList;
 
 public class DolaRikuAction extends AnimatorAction
 {
+    private static final String discoveryMessage = CardCrawlGame.languagePack.getUIString("CardRewardScreen").TEXT[1];
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString("ExhaustAction").TEXT;
     private final AbstractPlayer player;
-    private final int costReduction;
+    private final int choices;
 
-    public DolaRikuAction(AbstractCreature target, int costReduction)
+    public DolaRikuAction(AbstractCreature target, int choices)
     {
         this.target = target;
-        this.costReduction = -costReduction;
+        this.choices = choices;
         this.player = (AbstractPlayer)target;
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.CARD_MANIPULATION;
@@ -50,6 +54,8 @@ public class DolaRikuAction extends AnimatorAction
 
             boolean status = selectedCard.type == AbstractCard.CardType.STATUS;
             boolean curse = selectedCard.type == AbstractCard.CardType.CURSE;
+            boolean special = selectedCard.rarity == AbstractCard.CardRarity.SPECIAL;
+
             AbstractCard.CardColor mainColor;
             if (selectedCard.color == AbstractCard.CardColor.COLORLESS)
             {
@@ -60,47 +66,50 @@ public class DolaRikuAction extends AnimatorAction
                 mainColor = selectedCard.color;
             }
 
-            ArrayList<AbstractCard> sameRarity = new ArrayList<>();
+            RandomizedList<AbstractCard> sameRarity = new RandomizedList<>();
             ArrayList<AbstractCard> allCards = CardLibrary.getAllCards();
             for (AbstractCard c : allCards)
             {
                 if (c.color == AbstractCard.CardColor.COLORLESS || c.color == AbstractCard.CardColor.CURSE || c.color == mainColor)
                 {
-                    if (!c.originalName.equals(selectedCard.originalName) && !c.tags.contains(AbstractCard.CardTags.HEALING))
+                    if (!c.cardID.equals(selectedCard.cardID) && !c.tags.contains(AbstractCard.CardTags.HEALING))
                     {
                         if (c.type == AbstractCard.CardType.CURSE)
                         {
                             if (curse)
                             {
-                                sameRarity.add(c.makeCopy());
+                                sameRarity.Add(c.makeCopy());
                             }
                         }
                         else if (c.type == AbstractCard.CardType.STATUS)
                         {
                             if (status)
                             {
-                                sameRarity.add(c.makeCopy());
+                                sameRarity.Add(c.makeCopy());
                             }
                         }
-                        else if (c.rarity == selectedCard.rarity)
+                        else if (special || c.rarity == selectedCard.rarity)
                         {
                             AbstractCard toAdd = c.makeCopy();
                             if (selectedCard.upgraded && toAdd.canUpgrade())
                             {
                                 toAdd.upgrade();
                             }
-                            sameRarity.add(toAdd);
+                            sameRarity.Add(toAdd);
                         }
                     }
                 }
             }
 
-            AbstractCard randomCard = Utilities.GetRandomElement(sameRarity);
-            if (randomCard != null)
+            CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+
+            int max = Math.min(choices, sameRarity.Count());
+            for (int i = 0; i < max; i++)
             {
-                randomCard.modifyCostForCombat(costReduction);
-                player.hand.addToTop(randomCard);
+                cardGroup.group.add(sameRarity.Retrieve(AbstractDungeon.miscRng));
             }
+
+            GameActionsHelper.AddToTop(new ChooseFromPileAction(1, false, cardGroup, DolaRikuAction::OnCardChosen, this, discoveryMessage));
 
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
 
@@ -108,5 +117,15 @@ public class DolaRikuAction extends AnimatorAction
         }
 
         this.tickDuration();
+    }
+
+    public static void OnCardChosen(Object state, ArrayList<AbstractCard> cards)
+    {
+        if (state != null && cards != null && cards.size() == 1)
+        {
+            AbstractCard card = cards.get(0);
+            card.modifyCostForCombat(-1);
+            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(card));
+        }
     }
 }

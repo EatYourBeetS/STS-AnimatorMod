@@ -19,6 +19,7 @@ public class Random extends AnimatorCustomLoadout
         this.ID = s.ID;
         this.Name = "Random";
         this.StartingGold = 0;
+        this.MaxHP = 0;
     }
 
     @Override

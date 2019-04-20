@@ -7,11 +7,12 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.function.BiConsumer;
 
 public class ChooseFromPileAction extends AbstractGameAction
 {
+    private boolean useSource;
+
     private final boolean random;
     private final String message;
     private final CardGroup sourceGroup;
@@ -33,18 +34,29 @@ public class ChooseFromPileAction extends AbstractGameAction
         this.duration = Settings.ACTION_DUR_MED;
     }
 
+    public ChooseFromPileAction UseSource(boolean value)
+    {
+        useSource = value;
+
+        return this;
+    }
+
     public void update()
     {
         if (this.duration == Settings.ACTION_DUR_MED)
         {
-            CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            Iterator var5 = sourceGroup.group.iterator();
-
-            AbstractCard card2;
-            while (var5.hasNext())
+            CardGroup tmp;
+            if (useSource)
             {
-                card2 = (AbstractCard) var5.next();
-                tmp.addToRandomSpot(card2);
+                tmp = sourceGroup;
+            }
+            else
+            {
+                tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                for (AbstractCard c : sourceGroup.group)
+                {
+                    tmp.addToRandomSpot(c);
+                }
             }
 
             if (tmp.size() == 0)

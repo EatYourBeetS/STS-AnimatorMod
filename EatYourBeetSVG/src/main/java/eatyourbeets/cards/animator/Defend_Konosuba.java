@@ -19,6 +19,8 @@ public class Defend_Konosuba extends Defend
 
         Initialize(0, 5, 2);
 
+        this.tags.add(CardTags.HEALING);
+
         this.baseSecondaryValue = this.secondaryValue = 1;
     }
 

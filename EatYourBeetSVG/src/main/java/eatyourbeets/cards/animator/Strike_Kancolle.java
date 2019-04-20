@@ -21,6 +21,8 @@ public class Strike_Kancolle extends Strike// implements OnRemoveFromDeckSubscri
 
         Initialize(6,0, 5);
 
+        this.tags.add(CardTags.HEALING);
+
         this.baseSecondaryValue = this.secondaryValue = 1;
     }
 

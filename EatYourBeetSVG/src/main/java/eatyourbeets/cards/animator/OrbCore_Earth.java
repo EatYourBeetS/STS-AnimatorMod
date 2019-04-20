@@ -15,7 +15,7 @@ public class OrbCore_Earth extends AnimatorCard
 
     public OrbCore_Earth()
     {
-        super(ID, 2, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0,0, 3);
     }

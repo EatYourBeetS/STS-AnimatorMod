@@ -27,8 +27,6 @@ public class Evileye extends AnimatorCard
 
         this.baseSecondaryValue = this.secondaryValue = 3;
 
-        AddExtendedDescription();
-
         SetSynergy(Synergies.Overlord);
     }
 

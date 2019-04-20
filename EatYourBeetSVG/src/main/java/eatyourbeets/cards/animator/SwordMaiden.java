@@ -15,7 +15,7 @@ public class SwordMaiden extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0, 0, 18);
+        Initialize(0, 0, 16);
 
         this.exhaust = true;
 
@@ -34,7 +34,7 @@ public class SwordMaiden extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(8);
+            upgradeMagicNumber(6);
         }
     }
 }

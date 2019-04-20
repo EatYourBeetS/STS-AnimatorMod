@@ -20,6 +20,8 @@ public class Defend_Kancolle extends Defend// implements OnRemoveFromDeckSubscri
 
         Initialize(0, 5, 5);
 
+        this.tags.add(CardTags.HEALING);
+
         this.baseSecondaryValue = this.secondaryValue = 1;
     }
 

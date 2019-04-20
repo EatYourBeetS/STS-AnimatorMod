@@ -76,7 +76,7 @@ public class Gillette extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(5);
             upgradeBlock(2);
         }
     }

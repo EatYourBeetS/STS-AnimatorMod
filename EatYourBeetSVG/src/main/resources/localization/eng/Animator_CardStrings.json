@@ -13,8 +13,9 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage !M! times. Recall: Increase this card's attacks count by 1 this combat.",
-		"NAME": "Tooru"
+		"DESCRIPTION": "Deal !D! damage !M! times. Synergy: Add !SV! Shiv to your hand.",
+		"NAME": "Tooru",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. Synergy: Add !SV! Shivs to your hand."
 	},
 	"animator_Add":
 	{
@@ -41,7 +42,7 @@
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Gain that much Enchanted_Armor. NL Synergy: Return to your draw pile.",
+		"DESCRIPTION": "Deal !D! Damage. NL Gain that much Enchanted_Armor. NL Synergy: Returns to your draw pile.",
 		"NAME": "Albedo"
 	},
 	"animator_Alexander":
@@ -112,7 +113,7 @@
 	},
 	"animator_ChaikaBohdan":
 	{
-		"DESCRIPTION": "[#EFC851]Impatient !M!. NL Deal !D! damage. NL Synergy: Increase [#EFC851]Impatient by 1.",
+		"DESCRIPTION": "[#EFC851]Impatient !M!. NL Deal !D! damage. NL If your hand is empty, draw !SV! cards.",
 		"EXTENDED_DESCRIPTION": ["Impatient", "Whenever you attack an enemy while this is in your hand, gain this much damage. Multi-hits trigger this effect multiple times. Reset after use."],
 		"NAME": "Chaika Bohdan"
 	},
@@ -124,7 +125,7 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "Deal from !M! to !D! random damage to each enemy.",
+		"DESCRIPTION": "Deal from !M! to !D! random damage to each enemy. Synergy: Next turn, gain [E].",
 		"NAME": "Kurami"
 	},
 	"animator_Chris":
@@ -243,17 +244,17 @@
 	},
 	"animator_DolaCouronne":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Synergy: Draw 1 card.",
+		"DESCRIPTION": "Gain !B! Block. NL Synergy: Cycle 1 card. NL Legacy: Gain 1 Dexterity.",
 		"NAME": "Couronne"
 	},
 	"animator_DolaRiku":
 	{
-		"DESCRIPTION": "Exhaust a card in your hand and gain one of the same rarity, it costs !M! less.",
+		"DESCRIPTION": "Exhaust a card in your hand, choose and obtain 1 of !M! cards of the same rarity, it costs 1 less.",
 		"NAME": "Riku"
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "Apply !M! Vulnerable. NL Deal !D! damage. NL Synergy: Gain [E].",
+		"DESCRIPTION": "Apply !M! Vulnerable. NL Deal !D! damage. NL Cooldown !SV! : Increase this card's damage by 30 this combat.",
 		"NAME": "Schwi"
 	},
 	"animator_DolaStephanie":
@@ -338,8 +339,7 @@
 	},
 	"animator_Evileye":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Draw 1 card. NL [#EFC851]Reload: Trigger the passive ability of your next Orb.",
-		"EXTENDED_DESCRIPTION": ["Reload", "Discard any number of cards, activate this effect that many times."],
+		"DESCRIPTION": "Deal !D! damage. NL Draw 1 card. NL Reload: Trigger the passive ability of your next Orb.",
 		"NAME": "Evileye"
 	},
 	"animator_Excalibur":
@@ -526,7 +526,7 @@
 		"DESCRIPTION": "Discard !M! cards. Add [#EFC851]Black [#EFC851]Lotus to your draw pile. Exhaust.",
 		"EXTENDED_DESCRIPTION": ["Black Lotus", "A special 1-cost #yAttack."],
 		"NAME": "Kuroyukihime",
-		"UPGRADE_DESCRIPTION": "Discard !M! card. Add [#EFC851]Black [#EFC851]Lotus+ to your draw pile. Exhaust."
+		"UPGRADE_DESCRIPTION": "Discard !M! cards. Add [#EFC851]Black [#EFC851]Lotus+ to your hand. Exhaust."
 	},
 	"animator_Kyubey":
 	{
@@ -542,7 +542,6 @@
 	"animator_Layla":
 	{
 		"DESCRIPTION": "[#EFC851]Reload: Deal !D! Piercing damage. NL Synergy: Apply !M! Poison on every hit.",
-		"EXTENDED_DESCRIPTION": ["Reload", "Discard any number of cards, activate this effect that many times."],
 		"NAME": "Layla"
 	},
 	"animator_LeleiLaLalena":
@@ -550,6 +549,12 @@
 		"DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Synergy: Apply !SV! Weak to ALL enemies.",
 		"NAME": "Lelei La Lalena",
 		"UPGRADE_DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Cycle 1 card. NL Synergy: Apply !SV! Weak to ALL enemies."
+	},
+	"animator_LimeBell":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Reload: Next turn, Heal !M! HP. NL Exhaust.",
+		"NAME": "Lime Bell",
+		"UPGRADE_DESCRIPTION": "Draw 1 card. NL Gain !B! Block. NL Reload: Next turn, Heal !M! HP. NL Exhaust."
 	},
 	"animator_LizardPriest":
 	{
@@ -606,6 +611,11 @@
 		"DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning.",
 		"NAME": "Gamma Narberal",
 		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning. NL Lightning hits ALL enemies this turn."
+	},
+	"animator_OrbCore_Chaos":
+	{
+		"DESCRIPTION": "Channel 1 Random Orb. On your second Synergy each turn, Discover 1 card.",
+		"NAME": "Chaos Core"
 	},
 	"animator_OrbCore_Dark":
 	{
@@ -700,8 +710,9 @@
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "Innate. Retain. NL Deal !D! Damage. NL Can only be played if you have no [#EFC851]Attacks in your draw pile.",
-		"NAME": "Saitama"
+		"DESCRIPTION": "Innate. Retain. NL Deal !D! Damage. NL Can only be played if all other cards in your hand cost 2 or more.",
+		"NAME": "Saitama",
+		"UPGRADE_DESCRIPTION": "Innate. Retain. Deal !D! Piercing Damage. Can only be played if all other cards in your hand cost 2 or more."
 	},
 	"animator_Scar":
 	{
@@ -859,7 +870,7 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "Discard up to !M! cards in your draw pile. Swap them with cards in your discard pile. Synergy: Gain [E].",
+		"DESCRIPTION": "Discard up to !M! cards from your draw pile, then draw 2 cards. NL Synergy: Cycle 1 card.",
 		"NAME": "Tet"
 	},
 	"animator_Togame":
@@ -897,7 +908,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Apply 1 Weak to each different enemy hit.",
+		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Recall: Add 2 Shivs to your hand.",
 		"NAME": "Viivi"
 	},
 	"animator_Witch":

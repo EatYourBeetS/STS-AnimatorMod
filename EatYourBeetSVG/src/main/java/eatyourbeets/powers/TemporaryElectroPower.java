@@ -3,7 +3,6 @@ package eatyourbeets.powers;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.ElectroPower;
-import com.megacrit.cardcrawl.powers.EnvenomPower;
 import eatyourbeets.GameActionsHelper;
 
 public class TemporaryElectroPower extends ElectroPower

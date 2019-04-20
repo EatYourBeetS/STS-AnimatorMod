@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 撤回 : 將此卡的攻擊次數增加 1 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 同調 : 增加 !SV! 張 小刀 到手牌 。",
 		"NAME": "托魯"
 	},
 	"animator_Add":
@@ -112,7 +112,7 @@
 	},
 	"animator_ChaikaBohdan":
 	{
-		"DESCRIPTION": " [#EFC851]急躁[] NL !M! 。 造成 !D! 點 傷害 。 同調 : 將 [#EFC851]急躁[] 值提高 1 。",
+		"DESCRIPTION": " [#EFC851]急躁[] NL !M! 。 造成 !D! 點 傷害 。 如果你的手是空的, 抽 !SV! 張牌",
 		"EXTENDED_DESCRIPTION": ["急躁", "當此牌在手牌中時，你打出的 #y攻擊 牌額外增加等同於急躁層數的傷害 。 使用後重置傷害 。"],
 		"NAME": "嘉依卡·布芙丹"
 	},
@@ -124,7 +124,7 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "對每個敵人造成 !M! 至 !D! 點 的隨機傷害。",
+		"DESCRIPTION": "對每個敵人造成 !M! 至 !D! 點 的隨機傷害 。 同調 : 下一轮 ， 獲得 [E] 。",
 		"NAME": "克拉米·傑爾"
 	},
 	"animator_Chris":
@@ -242,17 +242,17 @@
 	},
 	"animator_DolaCouronne":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 抽一張牌 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 循環 1 張牌 。 遺產 : 獲得 1 點 敏捷 。",
 		"NAME": "克洛妮"
 	},
 	"animator_DolaRiku":
 	{
-		"DESCRIPTION": "消耗 一張手牌並獲得一張同樣稀有度的牌並減少 !M! 點 耗能 。",
+		"DESCRIPTION": "消耗 一張卡 ， 選擇並獲得相同稀有度的 !M! 張卡中的 1 張 ， 費用減少 1 張 。",
 		"NAME": "裡克"
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "造成 !M! 層 易傷 並造成 !D! 點 傷害 。 NL 同調 : 獲得 [E] 。",
+		"DESCRIPTION": "造成 !M! 層 易傷 並 造成 !D! 點 傷害 。 NL 冷卻 !SV! : 額外造成 30 點 傷害 。",
 		"NAME": "休比"
 	},
 	"animator_DolaStephanie":
@@ -337,8 +337,7 @@
 	},
 	"animator_Evileye":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 NL 抽一張牌 。 NL [#EFC851]重新裝填[] : 使用你最右側的1個充能球的被動能力 。",
-		"EXTENDED_DESCRIPTION": ["重新裝填", "丟棄任意數量的牌 ， 觸發同等次數 。"],
+		"DESCRIPTION": "造成 !D! 點傷害 。 NL 抽一張牌 。 NL 重新裝填 : 使用你最右側的1個充能球的被動能力 。",
 		"NAME": "Evileye"
 	},
 	"animator_Excalibur":
@@ -523,10 +522,10 @@
 	},
 	"animator_Kuroyukihime":
 	{
-		"DESCRIPTION": "丟棄 !M! 張牌。 將 [#EFC851]黑蓮花[] 加入到抽牌堆中。 消耗 。",
-		"EXTENDED_DESCRIPTION": ["黑蓮花", "特殊的1耗#y攻擊牌 。"],
+		"DESCRIPTION": "丟棄 !M! 張牌。 將 [#EFC851]黑蓮花[] 加入到抽牌堆中 。 消耗 。",
+		"EXTENDED_DESCRIPTION": ["黑蓮花", "特殊的1耗 #y攻擊牌 。"],
 		"NAME": "黑雪公主",
-		"UPGRADE_DESCRIPTION": "丟棄 !M! 張牌。 將 [#EFC851]黑蓮花+[] 加入到抽牌堆中。 消耗 。"
+		"UPGRADE_DESCRIPTION": "丟棄 !M! 張牌。 將 [#EFC851]黑蓮花+[] 加入到你的手牌中 。 消耗 。"
 	},
 	"animator_Kyubey":
 	{
@@ -542,7 +541,6 @@
 	"animator_Layla":
 	{
 		"DESCRIPTION": "[#EFC851]重新裝填[] : 造成 !D! 點 穿刺 傷害 。 NL 同調 : 給予 !M! 層 中毒 每次打擊 。",
-		"EXTENDED_DESCRIPTION": ["重新裝填", "丟棄任意數量的牌 ，觸發同等次數 。"],
 		"NAME": "蕾拉"
 	},
 	"animator_LeleiLaLalena":
@@ -550,6 +548,12 @@
 		"DESCRIPTION": "獲得 !M! 個冰霜充能球 。 NL 同調 : 給予所有敵人 !SV! 層 虛弱 。",
 		"NAME": "蕾萊·拉·列娜",
 		"UPGRADE_DESCRIPTION": "獲得 !M! 個冰霜充能球 。 NL 循環 1 張牌 。 NL 同調 : 給予所有敵人 !SV! 層 虛弱 。"
+	},
+	"animator_LimeBell":
+	{
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 重新裝填 : 下一轮 ， 回復 !M! 點 生命 。 NL 消耗 。",
+		"NAME": "Lime Bell",
+		"UPGRADE_DESCRIPTION": "抽 1 張牌 。 NL 獲得 !B! 點 格擋 。 NL 重新裝填 : 下一轮 ， 回復 !M! 點 生命 。 NL 消耗 。"
 	},
 	"animator_LizardPriest":
 	{
@@ -607,29 +611,34 @@
 		"NAME": "娜貝拉爾·伽瑪",
 		"UPGRADE_DESCRIPTION": "生成 !M! 個 閃電 充能球 。 NL 變形者 。 閃電 本回合擊中所有敵人。"
 	},
+	"animator_OrbCore_Chaos":
+	{
+		"DESCRIPTION": "生成 1 個 隨機 充能球 。 NL 每回合第二次同調時 ， 發現 1 張牌.",
+		"NAME": "Chaos 核心"
+	},
 	"animator_OrbCore_Dark":
 	{
-		"DESCRIPTION": "生成 1 個 黑暗 充能球 。 NL 在你的第二個同調每回合 ， 抽 !M! 張牌 ， 然後丟棄 1 張牌 。",
+		"DESCRIPTION": "生成 1 黑暗 充能球 。 NL 每回合第二次同調時 ， 抽 !M! 張牌 ， 然後丟棄 1 張牌 。",
 		"NAME": "黑暗 核心"
 	},
 	"animator_OrbCore_Fire":
 	{
-		"DESCRIPTION": "產生 1 個 火素 充能球 。 NL 在你的第二個同調每回合 ， 對所有敵人造成 !M! 點 燃燒 。",
+		"DESCRIPTION": "產生 1 火素 充能球 。 NL 每回合第二次同調時 ， 對所有敵人造成 !M! 點 燃燒 。",
 		"NAME": "火素 核心"
 	},
 	"animator_OrbCore_Frost":
 	{
-		"DESCRIPTION": "產生 1 個 冰霜 充能球 。 NL 在你的第二個同調每回合 ， 獲得 !M! 點 格擋 。",
+		"DESCRIPTION": "產生 1 冰霜 充能球 。 NL 每回合第二次同調時 ， 獲得 !M! 點 格擋 。",
 		"NAME": "冰霜 核心"
 	},
 	"animator_OrbCore_Lightning":
 	{
-		"DESCRIPTION": "產生 1 個 閃電充 充能球 。 NL 在你的第二個同調每回合 ， 對所有敵人造成 !M! 點 傷害 。",
+		"DESCRIPTION": "產生 1 閃電充 充能球 。 NL 每回合第二次同調時 ， 對所有敵人造成 !M! 點 傷害 。",
 		"NAME": "閃電充 核心"
 	},
 	"animator_OrbCore_Plasma":
 	{
-		"DESCRIPTION": "產生 1 個 等離子 充能球 。 NL 在你的第二個同調每回合 ， 獲得 [E] 。",
+		"DESCRIPTION": "產生 1 個 等離子 充能球 。 NL 每回合第二次同調時 ， 獲得 [E] 。",
 		"NAME": "等離子 核心"
 	},
 	"animator_PandorasActor":
@@ -701,8 +710,9 @@
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點傷害 。 NL 只有在你的抽牌堆中沒有 [#EFC851]攻擊[] 時才能使用 。",
-		"NAME": "埼玉"
+		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點 傷害 。 NL 只有在手中的所有其他牌消耗 2 個能量時才能使用 。",
+		"NAME": "埼玉",
+		"UPGRADE_DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點 穿刺 傷害 。 NL 只有在手中的所有其他牌消耗 2 個能量時才能使用 。"
 	},
 	"animator_Scar":
 	{
@@ -859,7 +869,7 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中選擇 !M! 張牌 。 在棄牌堆中用 !M! 張牌與它們交換 。 同調 :獲得 [E] 。",
+		"DESCRIPTION": "在你的抽牌堆中選擇 !M! 張牌 。 抽 2 張牌 。 同調 : 循環 1 張牌 。",
 		"NAME": "特圖"
 	},
 	"animator_Togame":
@@ -897,7 +907,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "對隨機敵人造成 !D! 點 傷害 !M! 次 。 對擊中的敵人造成 1 層 虛弱 。",
+		"DESCRIPTION": "對隨機敵人造成 !D! 點 傷害 !M! 次 。 撤回 : 增加 2 張 小刀 到手牌 。",
 		"NAME": "薇薇·荷羅派涅"
 	},
 	"animator_Witch":

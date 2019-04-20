@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.TetAction;
+import eatyourbeets.actions.DiscardFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -23,11 +23,12 @@ public class Tet extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToTop(new TetAction(this.magicNumber));
+        GameActionsHelper.AddToBottom(new DiscardFromPileAction(p.drawPile, this.magicNumber, true));
+        GameActionsHelper.DrawCard(p, 2);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainEnergy(1);
+            GameActionsHelper.CycleCardAction(1);
         }
     }
 
@@ -36,7 +37,7 @@ public class Tet extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(2);
         }
     }
 }

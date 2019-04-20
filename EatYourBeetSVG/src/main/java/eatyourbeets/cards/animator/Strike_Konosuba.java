@@ -20,6 +20,8 @@ public class Strike_Konosuba extends Strike
 
         Initialize(6,0, 2);
 
+        this.tags.add(CardTags.HEALING);
+
         this.baseSecondaryValue = this.secondaryValue = 1;
     }
 

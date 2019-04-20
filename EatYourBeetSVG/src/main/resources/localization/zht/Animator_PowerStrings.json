@@ -135,6 +135,16 @@
 		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and reduce the cost of a random card in your hand by 1."],
 		"NAME": "戰略信息"
 	},
+	"animator_DelayedHealPower":
+	{
+		"DESCRIPTIONS": ["Heal #g", " HP at the start of your next turn."],
+		"NAME": "Delayed Heal"
+	},
+	"animator_OrbCore_ChaosPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, #yDiscover #b", " card/s."],
+		"NAME": "Chaos Core"
+	},
 	"animator_OrbCore_DarkPower":
 	{
 		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, draw #b", " cards, then discard #b1 card."],

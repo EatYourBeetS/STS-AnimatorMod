@@ -16,6 +16,7 @@ public class AccelWorld extends AnimatorCustomLoadout
     {
         Synergy s = Synergies.AccelWorld;
 
+        this.MaxHP = 71;
         this.ID = s.ID;
         this.Name = s.NAME;
     }
@@ -33,6 +34,7 @@ public class AccelWorld extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Kuroyukihime.ID);
+        res.add(LimeBell.ID);
 
         return res;
     }

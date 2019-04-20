@@ -15,7 +15,7 @@ public class DolaRiku extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0,1);
+        Initialize(0,0,2);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -31,7 +31,7 @@ public class DolaRiku extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(0);
+            upgradeMagicNumber(1);
         }
     }
 }

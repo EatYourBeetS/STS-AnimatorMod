@@ -145,9 +145,14 @@
 		"DESCRIPTION": "This card's damage also scales with #yDexterity."
 	},
 	{
-		"PROPER_NAME": "Nimble",
-		"NAMES": ["nimble"],
-		"DESCRIPTION": "When this card is drawn, and if your draw pile is not empty, draw 1 more card."
+		"PROPER_NAME": "Reload",
+		"NAMES": ["reload"],
+		"DESCRIPTION": "Discard any number of cards, activate this effect that many times."
+	},
+	{
+		"PROPER_NAME": "Discover",
+		"NAMES": ["discover"],
+		"DESCRIPTION": "Choose 1 of 3 random cards to add to your hand. It costs 0 this turn."
 	},
 	{
 		"PROPER_NAME": "Support Damage",

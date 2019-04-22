@@ -45,7 +45,7 @@ public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
         LoseDexterityPower power = (LoseDexterityPower) p.getPower(LoseDexterityPower.POWER_ID);
         if (power != null)
         {
-            power.amount += 1;
+            power.amount += this.secondaryValue;
         }
         else
         {

@@ -10,6 +10,8 @@ public class TemporaryEnvenomPower extends EnvenomPower
     public TemporaryEnvenomPower(AbstractPlayer owner, int amount)
     {
         super(owner, amount);
+
+        this.ID = AnimatorPower.CreateFullID(TemporaryEnvenomPower.class.getSimpleName());
     }
 
     @Override

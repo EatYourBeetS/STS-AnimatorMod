@@ -1,14 +1,17 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Boost;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.TemporaryBiasPower;
 
-public class ElricAlphonse extends AnimatorCard_Boost
+public class ElricAlphonse extends AnimatorCard
 {
     public static final String ID = CreateFullID(ElricAlphonse.class.getSimpleName());
 
@@ -16,7 +19,7 @@ public class ElricAlphonse extends AnimatorCard_Boost
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0,0, 2);
 
         this.isEthereal = true;
 
@@ -34,16 +37,23 @@ public class ElricAlphonse extends AnimatorCard_Boost
             other.upgrade();
         }
 
-        GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(other, 1));
+        GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(other, 1, true, true));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (ProgressBoost())
+        TemporaryBiasPower power = (TemporaryBiasPower) p.getPower(TemporaryBiasPower.POWER_ID);
+        if (power != null)
         {
-            GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
+            power.amount += this.magicNumber;
         }
+        else
+        {
+            p.powers.add(new TemporaryBiasPower(p, this.magicNumber));
+        }
+
+        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override
@@ -51,13 +61,7 @@ public class ElricAlphonse extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(1);
+            upgradeMagicNumber(1);
         }
-    }
-
-    @Override
-    protected int GetBaseBoost()
-    {
-        return upgraded ? 3 : 2;
     }
 }

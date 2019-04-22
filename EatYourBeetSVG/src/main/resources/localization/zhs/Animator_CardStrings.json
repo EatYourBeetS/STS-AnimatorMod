@@ -26,7 +26,7 @@
 	{
 		"DESCRIPTION": "[#EFC851]施法者[] 。 对所有敌人造成 !D! 点 伤害 !M! 次 。 获得 1 点 集中 。",
 		"EXTENDED_DESCRIPTION": ["施法者", "此牌的伤害受 集中  的影响。"],
-		"NAME": "艾因"
+		"NAME":"艾因"
 	},
 	"animator_Ainz":
 	{
@@ -67,7 +67,7 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "获得一个充能球栏位 。 NL 预热 !SV! : [#EFC851]生成[] 1 个 等离子 充能球 ， 取代主效果。",
+		"DESCRIPTION": "获得 1 个 土素 充能球 。 获得一个充能球栏位 。 获得 1 点 集中 。 消耗 。",
 		"NAME": "阿尔蓓吉欧"
 	},
 	"animator_Asuramaru":
@@ -167,12 +167,12 @@
 	},
 	"animator_Defend_AccelWorld":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 撤回 : 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 撤回 : 获得 !M! 点 格挡 。",
 		"NAME": "优越防御"
 	},
 	"animator_Defend_Elsword":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 下回合 ， 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 下回合 ， 获得 !M! 点 格挡 。",
 		"NAME": "优越防御"
 	},
 	"animator_Defend_Fate":
@@ -274,9 +274,9 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "虚无 。 鼓舞 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲[] 。",
+		"DESCRIPTION": "虚无 。 获得 !M! 点 临时 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲[] 。",
 		"NAME": "阿尔冯斯",
-		"UPGRADE_DESCRIPTION": "虚无 。 鼓舞 !SV! : 获得 1 点 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲+[] 。"
+		"UPGRADE_DESCRIPTION": "虚无 。 获得 !M! 点 临时 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲+[] 。"
 	},
 	"animator_ElricAlphonseAlt":
 	{
@@ -291,9 +291,8 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。 撤回 : 获得 !B! 点 格挡 。",
-		"NAME": "艾索德",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。 撤回 : 获得 !B! 点 格挡 。"
+		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。 撤回 : [#EFC851]生成[] 1 个 火素 充能球 。",
+		"NAME": "艾索德"
 	},
 	"animator_EmiyaShirou":
 	{
@@ -408,8 +407,8 @@
 	},
 	"animator_Greed":
 	{
-		"DESCRIPTION": "获得 !M! 点 多层护甲 。 获得 !M! 层 柔韧 . NL [#EFC851]贪婪[] 。",
-		"EXTENDED_DESCRIPTION": ["贪婪", "在你的回合结束时 , 获得等同于一半当前失去血量百分比的金币 ，该效果不叠加 。"],
+		"DESCRIPTION": "获得 !SV! 点 多层护甲 。 NL 获得 !M! 点 金属化 。 NL 获得 3 层 柔韧 . NL [#EFC851]贪婪[] 。",
+		"EXTENDED_DESCRIPTION": ["贪婪", "If this card was in your initial deck, gain #b10 #yGold when played. This card costs 1 less energy for every #b100 #yGold you have 。"],
 		"NAME": "贪婪"
 	},
 	"animator_GuildGirl":
@@ -700,7 +699,7 @@
 	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 并赋予 !M! 层 燃烧 。 遗赠 : 额外造成 2 层 燃烧 。",
+		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 每个敌人使你 [#EFC851]生成[] 1 个 火素 充能球 。 同调 : 获得 !M! 层 火焰屏障 。",
 		"NAME": "罗伊·马斯坦"
 	},
 	"animator_Saber":
@@ -770,7 +769,7 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 本场战斗中使这张牌的伤害翻倍 。 同调 : 获得 !M! 点 力量 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 每一轮 ， 这张牌的伤害提高 !M! 点 。 预热 !SV! : 获得一个充能球栏位 。",
 		"NAME": "懒惰"
 	},
 	"animator_Sora":
@@ -866,7 +865,7 @@
 	},
 	"animator_SwordMaiden":
 	{
-		"DESCRIPTION": "获得 !M! 层 [#EFC851]再生[] 。 NL 移除你身上的所有负面效果 。 NL 消耗 。",
+		"DESCRIPTION": "获得 !M! 层 [#EFC851]临时生命[] 。 NL 移除你身上的所有负面效果 。 NL 消耗 。",
 		"NAME": "剑之圣女"
 	},
 	"animator_Tet":
@@ -891,8 +890,7 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "[#EFC851]生成[] 1 个 黑暗 充能球 。 对所有敌人造成 !D! 点 伤害 。 [#EFC851]懒惰[] 。",
-		"EXTENDED_DESCRIPTION": ["懒惰", "这张牌的效果会在随机回合后生效 。"],
+		"DESCRIPTION": "[#EFC851]生成[] 1 个 黑暗 充能球 。 对所有敌人造成 !D! 点 伤害 。 懒惰 。",
 		"NAME": "漆原半藏"
 	},
 	"animator_Vanir":

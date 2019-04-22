@@ -3,20 +3,23 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Plasma;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Cooldown;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.orbs.Earth;
 
-public class Arpeggio extends AnimatorCard_Cooldown
+public class Arpeggio extends AnimatorCard
 {
     public static final String ID = CreateFullID(Arpeggio.class.getSimpleName());
 
     public Arpeggio()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0,0,1);
+
+        this.exhaust = true;
 
         SetSynergy(Synergies.Gate);
     }
@@ -24,14 +27,9 @@ public class Arpeggio extends AnimatorCard_Cooldown
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (ProgressCooldown())
-        {
-            OnCooldownCompleted(p, m);
-        }
-        else
-        {
-            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
-        }
+        GameActionsHelper.ChannelOrb(new Earth(), true);
+        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
     }
 
     @Override
@@ -39,19 +37,7 @@ public class Arpeggio extends AnimatorCard_Cooldown
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(-1);
+            upgradeBaseCost(0);
         }
-    }
-
-    @Override
-    protected int GetBaseCooldown()
-    {
-        return upgraded ? 1 : 2;
-    }
-
-    @Override
-    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
-    {
-        GameActionsHelper.ChannelOrb(new Plasma(), true);
     }
 }

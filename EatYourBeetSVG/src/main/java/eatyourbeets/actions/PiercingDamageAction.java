@@ -36,6 +36,8 @@ public class PiercingDamageAction extends AbstractGameAction
         this.actionType = ActionType.DAMAGE;
         this.attackEffect = effect;
         this.duration = 0.1F;
+
+        addIgnoredPower("infinitespire:TempThorns");
         addIgnoredPower(SharpHidePower.POWER_ID);
     }
 

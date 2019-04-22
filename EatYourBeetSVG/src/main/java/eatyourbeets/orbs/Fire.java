@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.FireOrbEvokeAction;
+import eatyourbeets.actions.FireOrbPassiveAction;
 import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -26,8 +27,7 @@ public class Fire extends AnimatorOrb
     public static Texture imtInt;
     private final boolean hFlip1;
 
-    private static final int DAMAGE_AMOUNT = 3;
-    private static final int BURNING_AMOUNT = 1;
+    public static final int BURNING_AMOUNT = 1;
 
     public Fire()
     {
@@ -53,7 +53,7 @@ public class Fire extends AnimatorOrb
         String[] desc = orbStrings.DESCRIPTION;
 
         this.applyFocus();
-        this.description = desc[0] + DAMAGE_AMOUNT + desc[1] + BURNING_AMOUNT + desc[2] + this.evokeAmount + desc[3] + passiveAmount + desc[4];
+        this.description = desc[0] + this.passiveAmount + desc[1] + BURNING_AMOUNT + desc[2] + this.evokeAmount + desc[3] + passiveAmount + desc[4];
     }
 
     public void onEvoke()
@@ -66,32 +66,13 @@ public class Fire extends AnimatorOrb
 
     public void onEndOfTurn()
     {
-        int maxHealth = Integer.MIN_VALUE;
-        AbstractMonster enemy = null;
-        AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
-        {
-            if (m.currentHealth > maxHealth)
-            {
-                maxHealth = m.currentHealth;
-                enemy = m;
-            }
-        }
+        GameActionsHelper.AddToBottom(new FireOrbPassiveAction(this));
+    }
 
-        if (enemy != null)
-        {
-            GameActionsHelper.DamageTarget(p, enemy, DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
-            GameActionsHelper.ApplyPower(p, enemy, new BurningPower(enemy, p, BURNING_AMOUNT), BURNING_AMOUNT);
-        }
-
-        this.basePassiveAmount -= 1;
-        this.applyFocus();
-        this.updateDescription();
-
-        if (passiveAmount <= 0)
-        {
-            GameActionsHelper.AddToTop(new EvokeSpecificOrbAction(this));
-        }
+    public void ReduceAmount()
+    {
+        basePassiveAmount -= 1;
+        updateDescription();
     }
 
     public void triggerEvokeAnimation()
@@ -110,6 +91,11 @@ public class Fire extends AnimatorOrb
         else
         {
             this.passiveAmount = this.basePassiveAmount;
+        }
+
+        if (this.passiveAmount <= 0)
+        {
+            GameActionsHelper.AddToTop(new EvokeSpecificOrbAction(this));
         }
     }
 
@@ -138,4 +124,6 @@ public class Fire extends AnimatorOrb
     {
         CardCrawlGame.sound.play("ATTACK_FIRE", 0.2f);
     }
+
+
 }

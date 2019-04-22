@@ -155,6 +155,16 @@
 		"DESCRIPTION": "從 3 張隨機牌中選擇 1 張加入手牌 。 該牌在本回合耗能變為 0 。"
 	},
 	{
+		"PROPER_NAME": "懶惰",
+		"NAMES": ["懶惰"],
+		"DESCRIPTION": "這張牌的效果會在隨機回合後生效 。"
+	},
+	{
+		"PROPER_NAME": "火焰護盾",
+		"NAMES": ["火焰護盾"],
+		"DESCRIPTION": "本回合你每受到1次攻擊，都對攻擊者造成 #b1 點傷害 。"
+	},
+	{
 		"DESCRIPTION": "下回合開始時格擋不會消失 。",
 		"NAMES": ["殘影"],
 		"PROPERNAME": "殘影"

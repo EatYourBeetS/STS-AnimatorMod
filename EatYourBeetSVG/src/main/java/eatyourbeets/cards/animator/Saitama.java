@@ -56,7 +56,7 @@ public class Saitama extends AnimatorCard
             ArrayList<AbstractCard> cards = AbstractDungeon.player.hand.group;
             for (AbstractCard c : cards)
             {
-                if ((c instanceof Saitama) && c.costForTurn < 2)
+                if (!(c instanceof Saitama) && c.costForTurn < 2)
                 {
                     return false;
                 }

@@ -2,22 +2,23 @@ package eatyourbeets.powers;
 
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.powers.BiasPower;
 import com.megacrit.cardcrawl.powers.ElectroPower;
 import eatyourbeets.GameActionsHelper;
 
-public class TemporaryElectroPower extends ElectroPower
+public class TemporaryBiasPower extends BiasPower
 {
-    public TemporaryElectroPower(AbstractPlayer owner)
+    public TemporaryBiasPower(AbstractPlayer owner, int amount)
     {
-        super(owner);
+        super(owner, amount);
 
-        this.ID = AnimatorPower.CreateFullID(TemporaryElectroPower.class.getSimpleName());
+        this.ID = AnimatorPower.CreateFullID(TemporaryBiasPower.class.getSimpleName());
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer)
+    public void atStartOfTurn()
     {
-        super.atEndOfTurn(isPlayer);
+        super.atStartOfTurn();
 
         GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
     }

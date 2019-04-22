@@ -35,7 +35,7 @@
 		"PROPERNAME": "Resurrect"
 	},
 	{
-		"DESCRIPTION": "Gets reduced by #b1 every time this card is #gplayed or #gdiscarded, if it is at #b0, activate the effect and reset the Cooldown. NL Resets at the end of each fight.",
+		"DESCRIPTION": "Gets reduced by #b1 every time this card is #yplayed or #ydiscarded, if it is at #b0, activate the effect and reset the Cooldown. NL Resets at the end of each fight.",
 		"NAMES": ["cooldown"],
 		"PROPERNAME": "Cooldown"
 	},
@@ -148,6 +148,16 @@
 		"PROPER_NAME": "Reload",
 		"NAMES": ["reload"],
 		"DESCRIPTION": "Discard any number of cards, activate this effect that many times."
+	},
+	{
+		"PROPER_NAME": "Lazy",
+		"NAMES": ["lazy"],
+		"DESCRIPTION": "This card's damage might be delayed by a random number of turns."
+	},
+	{
+		"PROPER_NAME": "Flame Barrier",
+		"NAMES": ["flame barrier", "flame_barrier"],
+		"DESCRIPTION": "Until your next turn, whenever you are attacked, deal 1 damage back to the enemy."
 	},
 	{
 		"PROPER_NAME": "Discover",

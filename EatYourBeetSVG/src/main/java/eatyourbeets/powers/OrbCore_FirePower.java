@@ -23,7 +23,11 @@ public class OrbCore_FirePower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
+        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+
         GameActionsHelper.ApplyPowerToAllEnemies(p, this::CreateBurning, value);
+
+        GameActionsHelper.SetOrder();
     }
 
     protected BurningPower CreateBurning(AbstractCreature m)

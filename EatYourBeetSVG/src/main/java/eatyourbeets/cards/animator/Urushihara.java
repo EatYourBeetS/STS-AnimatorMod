@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,34 +23,13 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(19,0);
+        Initialize(18,0);
 
-        AddExtendedDescription();
         this.isMultiDamage = true;
         this.lazyCounter = 0;
 
-//        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
-//        {
-//            PlayerStatistics.onAfterCardDrawn.Subscribe(this);
-//        }
-
         SetSynergy(Synergies.HatarakuMaouSama);
     }
-
-//    @Override
-//    public void OnBattleStart()
-//    {
-//        PlayerStatistics.onAfterCardDrawn.Subscribe(this);
-//    }
-//
-//    @Override
-//    public void OnAfterCardDrawn(AbstractCard card)
-//    {
-//        if (card == this && AbstractDungeon.miscRng.randomBoolean())
-//        {
-//            GameActionsHelper.AddToBottom(new UrushiharaLazyAction(this));
-//        }
-//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
@@ -68,7 +48,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         if (TryUpgrade())
         {
-            upgradeDamage(7);
+            upgradeDamage(6);
         }
     }
 
@@ -83,9 +63,10 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
         {
             applyPowers();
             AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this));
-            GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
+            GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
 
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+            PlayerStatistics.UsePenNib();
         }
     }
 }

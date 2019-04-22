@@ -67,7 +67,7 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "獲得一個充能球欄位 。 冷卻 !SV! : [#EFC851]生成[] 1 個 電漿 充能球 ， 取代主效果 。",
+		"DESCRIPTION": "獲得 1 個 大地 充能球 。 獲得一個充能球欄位 。 獲得 1 點 集中 。 消耗 。",
 		"NAME": "阿爾貝吉歐"
 	},
 	"animator_Asuramaru":
@@ -263,9 +263,9 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 獲得1個 大地 充能球 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 獲得 1 個 大地 充能球 。",
 		"NAME": "矮人薩滿",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得1個 大地 充能球 。 同調 : 觸發其被動能力 。"
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 1 個 大地 充能球 。 同調 : 觸發其被動能力 。"
 	},
 	"animator_Elesis":
 	{
@@ -274,9 +274,9 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "虛無 。 增強 !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯[] 。",
+		"DESCRIPTION": "虛無 。 獲得 !M! 點 臨時 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯[] 。",
 		"NAME": "阿爾馮斯·艾力克",
-		"UPGRADE_DESCRIPTION": "虛無 。 增強 !SV! : 獲得 1 點 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯+[] 。"
+		"UPGRADE_DESCRIPTION": "虛無 。 獲得 !M! 點 臨時 集中 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯+[] 。"
 	},
 	"animator_ElricAlphonseAlt":
 	{
@@ -291,9 +291,8 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : 獲得 !B! 點 格擋 。",
-		"NAME": "艾索德",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : 獲得 !B! 點 格擋 。"
+		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : [#EFC851]生成[] 1 個 火焰 充能球 。",
+		"NAME": "艾索德"
 	},
 	"animator_EmiyaShirou":
 	{
@@ -408,8 +407,8 @@
 	},
 	"animator_Greed":
 	{
-		"DESCRIPTION": "獲得 !M! 層 多層護甲 。 NL 獲得 !M! 層 鍛鑄 。 NL [#EFC851]貪婪[] 。",
-		"EXTENDED_DESCRIPTION": ["貪婪", "戰鬥結束後， 獲得相當於你失去生命一半百分比的金幣 。 不可疊加 。"],
+		"DESCRIPTION": "獲得 !SV! 層 多層護甲 。 NL 獲得 !M! 層 金屬化 。 NL 獲得 3 層 鍛鑄 。 NL [#EFC851]貪婪[] 。",
+		"EXTENDED_DESCRIPTION": ["貪婪", "If this card was in your initial deck, gain #b10 #yGold when played. This card costs 1 less energy for every #b100 #yGold you have 。"],
 		"NAME": "古利德"
 	},
 	"animator_GuildGirl":
@@ -699,7 +698,7 @@
 	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點傷害並且給予 !M! 層 燃燒 。 NL 同調 : 再給予 2 層 燃燒 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點傷害 。 每個敵人使你 [#EFC851]生成[] 1 個 火焰 充能球 。 NL 同調 : 獲得 !M! 層 火焰護盾 。",
 		"NAME": "羅伊·馬斯坦古"
 	},
 	"animator_Saber":
@@ -769,7 +768,7 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 這場戰鬥這張牌的基礎傷害提升兩倍。 NL 同調 : 獲得 !M! 點 力量 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 每一輪 ， 這張牌的傷害提高 !M! 點 。 NL 冷卻 !SV! : 獲得一個充能球欄位 。",
 		"NAME": "斯洛斯"
 	},
 	"animator_Sora":
@@ -889,8 +888,7 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "[#EFC851]產生[] 1 個黑暗充能球 ， NL 對所有敵人造成 !D! 傷害 。 [#EFC851]懶惰[] 。",
-		"EXTENDED_DESCRIPTION": ["懶惰", "這張牌的效果會在隨機回合後生效 。"],
+		"DESCRIPTION": "[#EFC851]產生[] 1 個黑暗充能球 ， NL 對所有敵人造成 !D! 傷害 。 懶惰 。",
 		"NAME": "漆原半藏"
 	},
 	"animator_Vanir":

@@ -1,17 +1,25 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
+import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
 
-public class Sloth extends AnimatorCard
+import java.util.ArrayList;
+
+public class Sloth extends AnimatorCard_Cooldown
 {
     public static final String ID = CreateFullID(Sloth.class.getSimpleName());
 
@@ -19,39 +27,30 @@ public class Sloth extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(2,0, 1);
-
-        baseSecondaryValue = secondaryValue = 2;
+        Initialize(2,0, 2);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 
     @Override
+    public void atTurnStart()
+    {
+        super.atTurnStart();
+
+        if (PlayerStatistics.getTurnCount() > 1)
+        {
+            GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, this.magicNumber));
+        }
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
-        for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
+        if (ProgressCooldown())
         {
-            Sloth card = Utilities.SafeCast(c, Sloth.class);
-            if (card != null)
-            {
-                card.baseDamage += card.secondaryValue;
-
-                if (card.baseDamage > 9999)
-                {
-                    card.baseDamage = 9999;
-                }
-                else
-                {
-                    card.secondaryValue *= 2;
-                }
-            }
-        }
-
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber);
+            OnCooldownCompleted(p, m);
         }
     }
 
@@ -60,8 +59,19 @@ public class Sloth extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
-            upgradeSecondaryValue(1);
+            upgradeDamage(4);
         }
+    }
+
+    @Override
+    protected int GetBaseCooldown()
+    {
+        return 1;
+    }
+
+    @Override
+    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
     }
 }

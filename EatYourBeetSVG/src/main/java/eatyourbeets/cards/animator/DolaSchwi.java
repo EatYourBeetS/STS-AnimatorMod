@@ -20,9 +20,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,0,1);
-
-        this.baseSecondaryValue = this.secondaryValue = 3;
+        Initialize(8,0,2);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -75,14 +73,13 @@ public class DolaSchwi extends AnimatorCard_Cooldown
         if (TryUpgrade())
         {          
             upgradeDamage(4);
-            upgradeMagicNumber(1);
         }
     }
 
     @Override
     protected int GetBaseCooldown()
     {
-        return 3;
+        return 2;
     }
 
     @Override

@@ -68,7 +68,7 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "Gain 1 Orb Slot. NL Cooldown !SV! : NL [#EFC851]Channel 1 Plasma instead.",
+		"DESCRIPTION": "Channel !M! Earth. NL Gain 1 Orb Slot. NL Gain 1 Focus. NL Exhaust.",
 		"NAME": "Arpeggio"
 	},
 	"animator_Asuramaru":
@@ -276,9 +276,9 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "[#EFC851]Ethereal. Boost !SV! : NL Gain 1 Focus. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse.",
+		"DESCRIPTION": "[#EFC851]Ethereal. Gain !M! Temporary Focus. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse.",
 		"NAME": "Alphonse Elric",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Ethereal. Boost !SV! : NL Gain 1 Focus. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse+."
+		"UPGRADE_DESCRIPTION": "[#EFC851]Ethereal. Gain !M! Temporary Focus. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse+."
 	},
 	"animator_ElricAlphonseAlt":
 	{
@@ -293,9 +293,9 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card. NL Recall: Gain !B! Block.",
+		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card. NL Recall: Channel 1 Fire.",
 		"NAME": "Elsword",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards. NL Recall: Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards. NL Recall: Channel 1 Fire."
 	},
 	"animator_EmiyaShirou":
 	{
@@ -410,8 +410,8 @@
 	},
 	"animator_Greed":
 	{
-		"DESCRIPTION": "Gain !M! Plated_Armor. NL Gain !M! Malleable. NL [#EFC851]Greed[].",
-		"EXTENDED_DESCRIPTION": ["Greed", "At the end of combat, gain #yGold equal to half your missing Health percentage. Does not stack."],
+		"DESCRIPTION": "Gain !SV! Plated_Armor. NL Gain !M! Metallicize. NL Gain 3 Malleable. NL [#EFC851]Greed[].",
+		"EXTENDED_DESCRIPTION": ["Greed", "If this card was in your initial deck, gain #b10 #yGold when played. This card costs 1 less energy for every #b100 #yGold you have."],
 		"NAME": "Greed"
 	},
 	"animator_GuildGirl":
@@ -699,7 +699,7 @@
 	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "Deal !D! Damage to ALL enemies and apply !M! Burning. NL Synergy: Apply 2 more Burning.",
+		"DESCRIPTION": "Deal !D! damage to ALL enemies and Channel 1 Fire for each enemy. NL Synergy: Gain !M! Flame_Barrier.",
 		"NAME": "Roy Mustang"
 	},
 	"animator_Saber":
@@ -769,7 +769,7 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Double this card's base damage. NL Synergy: Gain !M! Strength.",
+		"DESCRIPTION": "Deal !D! damage. Increase this card's damage by !M! every turn. Cooldown !SV! : Gain 1 Orb slot.",
 		"NAME": "Sloth"
 	},
 	"animator_Sora":
@@ -890,8 +890,7 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "[#EFC851]Lazy[]. NL [#EFC851]Channel[] 1 Dark and deal !D! damage to ALL enemies.",
-		"EXTENDED_DESCRIPTION": ["Lazy", "This card's effect might be delayed by a random number of turns."],
+		"DESCRIPTION": "Lazy. NL [#EFC851]Channel[] 1 Dark and deal !D! damage to ALL enemies.",
 		"NAME": "Urushihara"
 	},
 	"animator_Vanir":

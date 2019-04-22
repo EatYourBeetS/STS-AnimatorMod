@@ -25,7 +25,7 @@ public class AcuraAkari extends AnimatorCard
     {
         GameActionsHelper.ChooseAndDiscard(1, false);
         GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, this.magicNumber));
+        GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override

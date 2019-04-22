@@ -1,6 +1,7 @@
 package eatyourbeets.powers;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -9,11 +10,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.FocusPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.subscribers.*;
@@ -391,5 +390,14 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         }
 
         return 0;
+    }
+
+    public static void UsePenNib()
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+        if (p.hasPower(PenNibPower.POWER_ID))
+        {
+            GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
+        }
     }
 }

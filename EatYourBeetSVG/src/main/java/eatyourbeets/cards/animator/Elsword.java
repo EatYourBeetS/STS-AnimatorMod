@@ -1,12 +1,14 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.orbs.Fire;
 
 public class Elsword extends AnimatorCard
 {
@@ -16,7 +18,7 @@ public class Elsword extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,6, 1);
+        Initialize(9,0, 1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -26,7 +28,8 @@ public class Elsword extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
+        GameActionsHelper.AddToBottom(new ChannelAction(new Fire()));
+        //GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
     }
 
     @Override

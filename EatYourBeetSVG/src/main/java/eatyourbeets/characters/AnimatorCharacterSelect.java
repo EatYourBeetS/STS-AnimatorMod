@@ -75,9 +75,13 @@ public class AnimatorCharacterSelect
     {
         for (AnimatorCustomLoadout loadout : customLoadouts)
         {
-            loadout.OnTrueVictory(GetSelectedLoadout(false), ascensionLevel);
+            if (!(loadout instanceof Random))
+            {
+                loadout.OnTrueVictory(GetSelectedLoadout(false), ascensionLevel);
+            }
         }
-        AnimatorMetrics.SaveTrophies(false);
+
+        AnimatorMetrics.SaveTrophies(true);
     }
 
     private static void AddLoadout(AnimatorCustomLoadout loadout, int level, String description)

@@ -74,8 +74,9 @@ public class AnimatorResources
                     "images/ui/topPanel/animator_canvas/layer4d.png", "images/ui/topPanel/animator_canvas/layer5d.png"
             };
 
-    public static final String SKELETON_ATLAS = "images/characters/animator/idle/skeleton.atlas";
-    public static final String SKELETON_JSON = "images/characters/animator/idle/skeleton.json";
+    public static final String CHARACTER_PNG = "images/characters/animator/idle/animator.png";
+    public static final String SKELETON_ATLAS = "images/characters/animator/idle/animator.atlas";
+    public static final String SKELETON_JSON = "images/characters/animator/idle/animator.json";
     public static final String SHOULDER1_PNG = "images/characters/animator/shoulder.png";
     public static final String SHOULDER2_PNG = "images/characters/animator/shoulder2.png";
     public static final String CORPSE_PNG = "images/characters/animator/corpse.png";

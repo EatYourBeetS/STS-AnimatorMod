@@ -11,7 +11,7 @@ public class OrbCore_Chaos extends AnimatorCard
 {
     public static final String ID = CreateFullID(OrbCore_Chaos.class.getSimpleName());
 
-    public static final int VALUE = 3;
+    public static final int VALUE = 1;
 
     public OrbCore_Chaos()
     {

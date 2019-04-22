@@ -6,13 +6,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MalleablePower;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.rewards.SpecialGoldReward;
-import eatyourbeets.subscribers.OnBattleEndSubscriber;
 
 public class Greed extends AnimatorCard
 {

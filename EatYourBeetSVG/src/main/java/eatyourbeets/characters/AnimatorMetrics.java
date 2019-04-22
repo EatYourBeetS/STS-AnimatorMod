@@ -1,9 +1,11 @@
 package eatyourbeets.characters;
 
 import com.badlogic.gdx.utils.Base64Coder;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
 import eatyourbeets.Utilities;
+import eatyourbeets.cards.Synergies;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
@@ -31,46 +33,61 @@ public class AnimatorMetrics
             sj.add(t.Serialize());
         }
 
-        prefs.putString(TROPHY_DATA_KEY, Base64Coder.encodeString(sj.toString()));
-        if (flush)
+        if (AbstractDungeon.player != null)
         {
-            prefs.flush();
+            AbstractDungeon.player.getPrefs().putString(TROPHY_DATA_KEY, Base64Coder.encodeString(sj.toString()));
+
+            if (flush)
+            {
+                AbstractDungeon.player.getPrefs().flush();
+            }
+        }
+        else
+        {
+            prefs.putString(TROPHY_DATA_KEY, Base64Coder.encodeString(sj.toString()));
+
+            if (flush)
+            {
+                prefs.flush();
+            }
         }
     }
 
-    protected static void ShutUpJava()
+    public static void LoadPrefs()
     {
         prefs = SaveHelper.getPrefs(AbstractEnums.Characters.THE_ANIMATOR.name());
     }
 
     static
     {
-        try
+        LoadPrefs();
+
+        String data = prefs.getString(TROPHY_DATA_KEY);
+        if (data != null && data.length() > 0)
         {
-            ShutUpJava();
+            trophiesData.clear();
 
-            String data = prefs.getString(TROPHY_DATA_KEY);
-            if (data != null && data.length() > 0)
+            data = Base64Coder.decodeString(data);
+            String[] items = data.split(Pattern.quote("|"));
+
+            if (items.length > 0)
             {
-                trophiesData.clear();
-
-                data = Base64Coder.decodeString(data);
-                String[] items = data.split(Pattern.quote("|"));
-
-                if (items.length > 0)
+                try
                 {
                     lastLoadout = Integer.parseInt(items[0]);
                 }
-
-                for (int i = 1; i < items.length; i++)
+                catch (NumberFormatException e)
                 {
-                    trophiesData.add(new AnimatorTrophies(items[i]));
+                    lastLoadout = Synergies.Konosuba.ID;
+
+                    Utilities.Logger.warn("Could not Parse player prefs, " + e.getMessage());
                 }
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
+
+            for (int i = 1; i < items.length; i++)
+            {
+                trophiesData.add(new AnimatorTrophies(items[i]));
+            }
         }
     }
 }

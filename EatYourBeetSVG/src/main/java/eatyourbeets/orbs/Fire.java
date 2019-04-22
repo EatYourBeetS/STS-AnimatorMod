@@ -5,18 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.FireOrbEvokeAction;
 import eatyourbeets.actions.FireOrbPassiveAction;
-import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class Fire extends AnimatorOrb

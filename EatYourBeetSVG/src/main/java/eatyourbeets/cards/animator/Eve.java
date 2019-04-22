@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -42,9 +41,11 @@ public class Eve extends AnimatorCard
         if (state == this && chosen != null && chosen.size() == 1)
         {
             AbstractCard card = chosen.get(0);
-            AbstractDungeon.player.drawPile.addToTop(card);
             card.applyPowers();
-            GameActionsHelper.AddToBottom(new PlayTopCardAction(null, false));
+            card.use(AbstractDungeon.player, null);
+//            AbstractDungeon.player.drawPile.addToTop(card);
+//            card.applyPowers();
+//            GameActionsHelper.AddToBottom(new PlayTopCardAction(null, false));
         }
     }
 

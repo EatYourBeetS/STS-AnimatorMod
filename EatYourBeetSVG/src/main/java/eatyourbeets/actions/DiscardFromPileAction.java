@@ -2,6 +2,7 @@ package eatyourbeets.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -45,6 +46,8 @@ public class DiscardFromPileAction extends AbstractGameAction
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
             {
                 cardGroup.moveToDiscardPile(c);
+                c.triggerOnManualDiscard();
+                GameActionManager.incrementDiscard(false);
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();

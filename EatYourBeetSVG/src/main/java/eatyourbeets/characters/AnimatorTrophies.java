@@ -25,9 +25,9 @@ public class AnimatorTrophies
     public AnimatorTrophies(int id)
     {
         this.id = id;
-        trophy1 = -1;
-        trophy2 = -1;
-        trophy3 = -1;
+        this.trophy1 = -1;
+        this.trophy2 = -1;
+        this.trophy3 = -1;
     }
 
     public AnimatorTrophies(String deserialize)
@@ -38,9 +38,9 @@ public class AnimatorTrophies
         if (id > 0)
         {
             this.id = id;
-            trophy1 = ParseInt(values[1]);
-            trophy2 = ParseInt(values[2]);
-            trophy3 = ParseInt(values[3]);
+            this.trophy1 = ParseInt(values[1]);
+            this.trophy2 = ParseInt(values[2]);
+            this.trophy3 = ParseInt(values[3]);
         }
     }
 

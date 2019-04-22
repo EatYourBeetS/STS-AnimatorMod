@@ -37,7 +37,6 @@ public class PiercingDamageAction extends AbstractGameAction
         this.attackEffect = effect;
         this.duration = 0.1F;
 
-        addIgnoredPower("infinitespire:TempThorns");
         addIgnoredPower(SharpHidePower.POWER_ID);
     }
 
@@ -117,6 +116,7 @@ public class PiercingDamageAction extends AbstractGameAction
                 addIgnoredPower(ThornsPower.POWER_ID);
                 addIgnoredPower(FlameBarrierPower.POWER_ID);
                 addIgnoredPower(CurlUpPower.POWER_ID);
+                addIgnoredPower("infinitespire:TempThorns");
 
                 this.target.currentBlock = 0;
                 this.target.damage(this.info);
@@ -142,7 +142,18 @@ public class PiercingDamageAction extends AbstractGameAction
 
     private void reapplyIgnoredPowers()
     {
-        this.target.powers.addAll(ignoredPowers);
+        for (AbstractPower p : ignoredPowers)
+        {
+            AbstractPower current = this.target.getPower(p.ID);
+            if (current != null)
+            {
+                current.amount += p.amount;
+            }
+            else
+            {
+                this.target.powers.add(p);
+            }
+        }
     }
 
     private void addIgnoredPower(String powerID)
@@ -150,7 +161,7 @@ public class PiercingDamageAction extends AbstractGameAction
         AbstractPower power = target.getPower(powerID);
         if (power != null)
         {
-            ignoredPowers.add(power);
+            this.ignoredPowers.add(power);
             this.target.powers.remove(power);
         }
     }

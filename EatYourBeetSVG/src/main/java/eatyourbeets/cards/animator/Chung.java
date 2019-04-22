@@ -1,16 +1,13 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PenNibPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Chung extends AnimatorCard_Cooldown
 {
@@ -34,7 +31,7 @@ public class Chung extends AnimatorCard_Cooldown
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
+        GameActionsHelper.GainBlock(p, this.block);
 
         if (ProgressCooldown())
         {
@@ -43,32 +40,10 @@ public class Chung extends AnimatorCard_Cooldown
     }
 
     @Override
-    protected boolean ProgressCooldown()
-    {
-        boolean active = super.ProgressCooldown();
-        if (active)
-        {
-            int[] multiDamage = DamageInfo.createDamageMatrix(this.baseDamage);
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.DamageAllEnemies(p, multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
-
-            if (p.hasPower(PenNibPower.POWER_ID))
-            {
-                GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
-            }
-        }
-
-        return active;
-    }
-
-    @Override
     protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageAllEnemies(p, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
-        if (p.hasPower(PenNibPower.POWER_ID))
-        {
-            GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
-        }
+        PlayerStatistics.UsePenNib();
     }
 
     @Override

@@ -358,8 +358,7 @@
 	},
 	"animator_GazelDwargon":
 	{
-		"DESCRIPTION": "每當你的格擋消失時, 對所有敵人造成等量傷害 [#EFC851]*[] 。",
-		"EXTENDED_DESCRIPTION": ["* 注", "由於抵消傷害而失去的 #y格擋 不會計算在內 。"],
+		"DESCRIPTION": "在每輪開始時 ， 保持一半的點 格擋 。 無論何時你玩一張能耗2或者以上的卡 ， 獲得 !M! 點 格擋 。",
 		"NAME": "矮人王"
 	},
 	"animator_Gilgamesh":
@@ -408,7 +407,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "獲得 !SV! 層 多層護甲 。 NL 獲得 !M! 層 金屬化 。 NL 獲得 3 層 鍛鑄 。 NL [#EFC851]貪婪[] 。",
-		"EXTENDED_DESCRIPTION": ["貪婪", "If this card was in your initial deck, gain #b10 #yGold when played. This card costs 1 less energy for every #b100 #yGold you have 。"],
+		"EXTENDED_DESCRIPTION": ["貪婪", "如果這張卡在你的初始卡組中 ， 打出時獲得 #b10 個 #y金幣。你每擁有 #b100 個 #y金幣 ， 減少這張牌 1 點消耗 。"],
 		"NAME": "古利德"
 	},
 	"animator_GuildGirl":
@@ -597,6 +596,12 @@
 		"EXTENDED_DESCRIPTION": ["敵人不打算攻擊"],
 		"NAME": "御劍響夜"
 	},
+	"animator_MumenRider":
+	{
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 1 張牌 。 NL 抹除 。 下一轮 ， 返回繪製堆的頂部 。",
+		"NAME": "Mumen Rider",
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 with Style 。 NL 抽 1 張牌 。 NL 抹除 。 下一轮 ， 返回繪製堆的頂部 。"
+	},
 	"animator_Nanami":
 	{
 		"DESCRIPTION": "根據敵人的意圖觸發一個 [#EFC851]效果[] 。 [#c6be6f]選擇目標時[] ， [#c6be6f]這段敘述會變為效果敘述[] 。",
@@ -758,7 +763,7 @@
 	"animator_Shizu":
 	{
 		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 !M! 張牌 。 NL [#EFC851]伊芙利特[]",
-		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 張手牌 ， 對所有敵人造成雙倍層數的 #y燃燒 。 向你的棄牌堆中加入 2 張 #y灼燒 。"],
+		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 張手牌 ， 對敵人造成雙倍層數的 #y燃燒 。 向你的棄牌堆中加入 2 張 #y灼燒 。"],
 		"NAME": "靜"
 	},
 	"animator_Shuna":

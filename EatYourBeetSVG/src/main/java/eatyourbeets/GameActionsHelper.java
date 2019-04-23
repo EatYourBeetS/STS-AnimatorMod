@@ -168,7 +168,7 @@ public class GameActionsHelper
     public static CallbackAction Callback(AbstractGameAction action, BiConsumer<Object, AbstractGameAction> onCompletion, Object state)
     {
         CallbackAction callbackAction = new CallbackAction(action, onCompletion, state);
-        AddToDefault(action);
+        AddToDefault(callbackAction);
         return callbackAction;
     }
 

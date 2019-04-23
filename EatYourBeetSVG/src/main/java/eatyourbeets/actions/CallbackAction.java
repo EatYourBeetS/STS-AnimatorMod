@@ -18,7 +18,8 @@ public class CallbackAction extends AnimatorAction
         this.state = state;
         this.target = action.target;
         this.duration = Settings.ACTION_DUR_FAST;
-        this.actionType = action.actionType;
+        this.actionType = ActionType.SPECIAL;
+        this.isDone = false;
     }
 
     public void update()

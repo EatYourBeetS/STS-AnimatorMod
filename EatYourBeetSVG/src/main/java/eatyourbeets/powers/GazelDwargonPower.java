@@ -1,20 +1,18 @@
 package eatyourbeets.powers;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.powers.BlurPower;
-import com.megacrit.cardcrawl.relics.Calipers;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.subscribers.OnBeforeLoseBlockSubscriber;
 
-public class GazelDwargonPower extends AnimatorPower implements OnBeforeLoseBlockSubscriber
+public class GazelDwargonPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(GazelDwargonPower.class.getSimpleName());
+
+    private boolean handlePlayerBlock = false;
 
     public GazelDwargonPower(AbstractPlayer owner, int amount)
     {
@@ -26,37 +24,13 @@ public class GazelDwargonPower extends AnimatorPower implements OnBeforeLoseBloc
     }
 
     @Override
-    public void onInitialApplication()
+    public void onUseCard(AbstractCard card, UseCardAction action)
     {
-        super.onInitialApplication();
+        super.onUseCard(card, action);
 
-        PlayerStatistics.onBeforeLoseBlock.Subscribe(this);
-    }
-
-    @Override
-    public void onRemove()
-    {
-        super.onRemove();
-
-        PlayerStatistics.onBeforeLoseBlock.Unsubscribe(this);
-    }
-
-    @Override
-    public void OnBeforeLoseBlock(AbstractCreature creature, int blockAmount, boolean noAnimation)
-    {
-        if (creature.isPlayer && noAnimation)
+        if (card.costForTurn >= 2)
         {
-            int blockLost = Math.min(creature.currentBlock, blockAmount);
-            if (blockLost > 0)
-            {
-                for (int i = 0; i < this.amount; i++)
-                {
-                    for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
-                    {
-                        GameActionsHelper.DamageTarget(creature, m, blockLost, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-                    }
-                }
-            }
+            GameActionsHelper.GainBlock(AbstractDungeon.player, this.amount);
         }
     }
 
@@ -65,17 +39,23 @@ public class GazelDwargonPower extends AnimatorPower implements OnBeforeLoseBloc
     {
         super.atStartOfTurn();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        if ((!p.hasPower(BarricadePower.POWER_ID)) && (!p.hasPower(BlurPower.POWER_ID)))
+        handlePlayerBlock = (!owner.hasPower(BarricadePower.POWER_ID) && !owner.hasPower(BlurPower.POWER_ID));
+
+        if (handlePlayerBlock)
         {
-            if (!p.hasRelic(Calipers.ID))
-            {
-                p.loseBlock(true);
-            }
-            else
-            {
-                p.loseBlock(15, true);
-            }
+            this.ID = BarricadePower.POWER_ID;
+        }
+    }
+
+    @Override
+    public void atStartOfTurnPostDraw()
+    {
+        super.atStartOfTurnPostDraw();
+
+        if (handlePlayerBlock)
+        {
+            this.ID = POWER_ID;
+            owner.loseBlock(owner.currentBlock / 2, true);
         }
     }
 }

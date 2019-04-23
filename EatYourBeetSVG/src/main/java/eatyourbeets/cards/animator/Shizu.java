@@ -12,7 +12,6 @@ import eatyourbeets.actions.VariableExhaustAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.BurningPower;
-import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ public class Shizu extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(14, 0, 2);
+        Initialize(16, 0, 2);
 
         AddExtendedDescription();
 
@@ -38,7 +37,7 @@ public class Shizu extends AnimatorCard
         GameActionsHelper.DrawCard(p, this.magicNumber);
 
         GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(new Burn(), 2));
-        GameActionsHelper.AddToBottom(new VariableExhaustAction(p, 3, this, this::OnExhaust));
+        GameActionsHelper.AddToBottom(new VariableExhaustAction(p, 3, m, this::OnExhaust));
     }
 
     @Override
@@ -53,16 +52,16 @@ public class Shizu extends AnimatorCard
 
     private void OnExhaust(Object state, ArrayList<AbstractCard> cards)
     {
-        if (state != this || cards == null || cards.size() == 0)
+        if (state == null || cards == null || cards.size() == 0)
         {
             return;
         }
 
+        AbstractMonster m = (AbstractMonster)state;
         AbstractPlayer p = AbstractDungeon.player;
+
         int burning = cards.size() * 2;
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
-        {
-            GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, burning), burning);
-        }
+
+        GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, burning), burning);
     }
 }

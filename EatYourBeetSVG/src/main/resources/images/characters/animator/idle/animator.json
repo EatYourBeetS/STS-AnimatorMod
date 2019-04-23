@@ -10,8 +10,8 @@
   "bones": [
     {
       "y": 100,
-      "scaleX": -0.6,
-      "scaleY": 0.6,
+      "scaleX": -0.5,
+      "scaleY": 0.5,
       "name": "root"
     },
     {

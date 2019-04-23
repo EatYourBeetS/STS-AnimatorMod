@@ -10,20 +10,55 @@
 		"DESCRIPTIONS": ["在你的回合结束时对所有敌人造成", " 点 伤害，伤害次数等同于各目标的负面效果种类个数。"],
 		"NAME": "Archer"
 	},
+	"animator_BiyorigoPower":
+	{
+		"DESCRIPTIONS": ["每4次攻 ， 击获得 #b", " 点 力量 并且获得 #b", " 点 敏捷"],
+		"NAME": "大和号"
+	},
+	"animator_BozesPower":
+	{
+		"DESCRIPTIONS": ["接下来 #b", " 次触发 #y同调 效果时 ，每次获得 #b", " 层 [#EFC851]多层护甲[] 。"],
+		"NAME": "波赛斯·戈·芭蕾丝蒂"
+	},
+	"animator_BurningPower":
+	{
+		"DESCRIPTIONS": ["在回合结束时受到 #b", " 点伤害。 额外受到 #b", "%  #y攻击 伤害。"],
+		"NAME": "燃烧"
+	},
 	"animator_DarknessPower":
 	{
 		"DESCRIPTIONS": ["每当你受伤时随机升级", " 张牌, 手牌优先。"],
 		"NAME": "拉拉蒂娜!"
+	},
+	"animator_DelayedHealPower":
+	{
+		"DESCRIPTIONS": ["你的回合开始时治愈 #g", " 点 生命."],
+		"NAME": "延迟治愈"
+	},
+	"animator_EarthenThornsPower":
+	{
+		"DESCRIPTIONS": ["每受到一次 #y攻击 ，造成 #b", " 点反伤。"],
+		"NAME": "临时荆棘"
+	},
+	"animator_EmiyaShirouPower":
+	{
+		"DESCRIPTIONS": ["每当打破任意目标的 格挡 时, 获得 1点能量并抽一张 #y攻击 牌 。 该效果不叠加 。"],
+		"NAME": "无限剑制"
+	},
+	"animator_EnchantedArmorPower":
+	{
+		"DESCRIPTIONS": ["受到的所有伤害降低 #b", "%。"],
+		"NAME": "魔法盔甲"
 	},
 	"animator_EntouJyuuPower":
 	{
 		"DESCRIPTIONS": ["本回合你打出的下一张攻击牌 #b", " #y获得额外的 #b", " 点伤害，抽一张牌."],
 		"NAME": "炎刃·铳"
 	},
-	"animator_ShiroPower":
+	"animator_EnvyPower":
 	{
-		"DESCRIPTIONS": ["在你的回合开始时获得", " 点 能量。"],
-		"NAME": "白"
+		"DESCRIPTIONS": ["每回合打出的第一张 #b", " 牌 触发自身的 同调 效果。"],
+		"NAME": "嫉妒"
 	},
 	"animator_EvePower":
 	{
@@ -35,110 +70,35 @@
 		"DESCRIPTIONS": ["每回合两次，当一张牌被消耗时增加", " 点力量并治疗", " 点生命。"],
 		"NAME": "费里德·巴特利"
 	},
-	"animator_HiteiPower":
+	"animator_GazelDwargonPower":
 	{
-		"DESCRIPTIONS": ["在你的回合开始时获得随机 #y积极影响, 从你的牌库中选择并 消耗", " 张牌。"],
-		"NAME": "否定姫"
+		"DESCRIPTIONS": ["在每轮开始时 ， 保持一半的点 格挡 。 无论何时你玩一张能耗2或者以上的卡 ， 获得 #b", " 点 格挡 。"],
+		"NAME": "矮人王"
 	},
 	"animator_GuildGirlPower":
 	{
 		"DESCRIPTIONS": ["在你的回合开始时循环", " 张牌。"],
 		"NAME": "簿记"
 	},
-	"animator_MarkOfPoisonPower":
-	{
-		"DESCRIPTIONS": ["每当攻击 对你造成伤害时，获得", " 层毒。"],
-		"NAME": "毒标记"
-	},
-	"animator_PinaCoLadaPower":
-	{
-		"DESCRIPTIONS": ["你的下一张 #b", " #y0耗牌将被打出两次."],
-		"NAME": "平娜·戈·兰达"
-	},
-	"animator_PlayerStatistics":
-	{
-		"DESCRIPTIONS": ["Hidden Player Statistics power。"],
-		"NAME": "Player Statistics"
-	},
-	"animator_RoryMercuryPower":
-	{
-		"DESCRIPTIONS": ["你的攻击本轮会造成 #b", "% 更多伤害。"],
-		"NAME": "萝莉·麦丘利"
-	},
-	"animator_SupportDamagePower":
-	{
-		"DESCRIPTIONS": ["回合结束时对血量较低的敌人造成 #b", " 点 伤害"],
-		"NAME": "支持"
-	},
-	"animator_PoisonAffinityPower":
-	{
-		"DESCRIPTIONS": ["每当你给予 #y毒 时, 额外给予一层 #b", " #y毒。"],
-		"NAME": "毒素亲和"
-	},
-	"animator_BiyorigoPower":
-	{
-		"DESCRIPTIONS": ["每4次攻 ， 击获得 #b", " 点 力量 并且获得 #b", " 点 敏捷"],
-		"NAME": "大和号"
-	},
-	"animator_EnchantedArmorPower":
-	{
-		"DESCRIPTIONS": ["受到的所有伤害降低 #b", "%。"],
-		"NAME": "魔法盔甲"
-	},
 	"animator_HigakiRinnePower":
 	{
 		"DESCRIPTIONS": ["???"],
 		"NAME": "???"
 	},
-	"animator_EmiyaShirouPower":
+	"animator_HiteiPower":
 	{
-		"DESCRIPTIONS": ["每当打破任意目标的 格挡 时, 获得 1点能量并抽一张 #y攻击 牌 。 该效果不叠加 。"],
-		"NAME": "无限剑制"
-	},
-	"animator_EnvyPower":
-	{
-		"DESCRIPTIONS": ["每回合打出的第一张 #b", " 牌 触发自身的 同调 效果。"],
-		"NAME": "嫉妒"
-	},
-	"animator_BozesPower":
-	{
-		"DESCRIPTIONS": ["接下来 #b", " 次触发 #y同调 效果时 ，每次获得 #b", " 层 [#EFC851]多层护甲[] 。"],
-		"NAME": "波赛斯·戈·芭蕾丝蒂"
-	},
-	"animator_PridePower":
-	{
-		"DESCRIPTIONS": ["直到你的下个回合 ， 当你受到格挡外的伤害时 ， 你的伤害的黑暗充能球抵消这个伤害并损失同等的伤害充能 。"],
-		"NAME": "傲慢"
-	},
-	"animator_BurningPower":
-	{
-		"DESCRIPTIONS": ["在回合结束时受到 #b", " 点伤害。 额外受到 #b", "%  #y攻击 伤害。"],
-		"NAME": "燃烧"
-	},
-	"animator_StolenGoldPower":
-	{
-		"DESCRIPTIONS": ["你偷了 #b", " 个金币。 你可以再盗取 #b", " 个金币。"],
-		"NAME": "被盗的黄金"
+		"DESCRIPTIONS": ["在你的回合开始时获得随机 #y积极影响, 从你的牌库中选择并 消耗", " 张牌。"],
+		"NAME": "否定姫"
 	},
 	"animator_KaijinPower":
 	{
 		"DESCRIPTIONS": ["每回合结束时 ， 随机选择一张抽牌堆中的牌 ， 在本场战斗中使其造成的伤害与获得的格挡量提高#b", "点."],
 		"NAME": "凯·金"
 	},
-	"animator_GazelDwargonPower":
+	"animator_MarkOfPoisonPower":
 	{
-		"DESCRIPTIONS": ["当你的格挡消失时, 对所有敌人造成等量伤害 #b", " ."],
-		"NAME": "矮人王"
-	},
-	"animator_StrategicInformationPower":
-	{
-		"DESCRIPTIONS": ["接下来 #b", " 次主动弃牌时, 获得 #b", " #y格挡 ，减少随机手牌一点消耗."],
-		"NAME": "战略信息"
-	},
-	"animator_DelayedHealPower":
-	{
-		"DESCRIPTIONS": ["你的回合开始时治愈 #g", " 点 生命."],
-		"NAME": "延迟治愈"
+		"DESCRIPTIONS": ["每当攻击 对你造成伤害时，获得", " 层毒。"],
+		"NAME": "毒标记"
 	},
 	"animator_OrbCore_ChaosPower":
 	{
@@ -175,9 +135,49 @@
 		"DESCRIPTIONS": ["本回合中，你接下来第 #b", " 次触发 #y同调 后 , 获得 #b点", " #y能量."],
 		"NAME": "等离子核心"
 	},
-	"animator_EarthenThornsPower":
+	"animator_PinaCoLadaPower":
 	{
-	    "DESCRIPTIONS": ["每受到一次 #y攻击 ，造成 #b", " 点反伤。"],
-		"NAME": "临时荆棘"
+		"DESCRIPTIONS": ["你的下一张 #b", " #y0耗牌将被打出两次."],
+		"NAME": "平娜·戈·兰达"
+	},
+	"animator_PlayerStatistics":
+	{
+		"DESCRIPTIONS": ["Hidden Player Statistics power。"],
+		"NAME": "Player Statistics"
+	},
+	"animator_PoisonAffinityPower":
+	{
+		"DESCRIPTIONS": ["每当你给予 #y毒 时, 额外给予一层 #b", " #y毒。"],
+		"NAME": "毒素亲和"
+	},
+	"animator_PridePower":
+	{
+		"DESCRIPTIONS": ["直到你的下个回合 ， 当你受到格挡外的伤害时 ， 你的伤害的黑暗充能球抵消这个伤害并损失同等的伤害充能 。"],
+		"NAME": "傲慢"
+	},
+	"animator_RoryMercuryPower":
+	{
+		"DESCRIPTIONS": ["你的攻击本轮会造成 #b", "% 更多伤害。"],
+		"NAME": "萝莉·麦丘利"
+	},
+	"animator_ShiroPower":
+	{
+		"DESCRIPTIONS": ["在你的回合开始时获得", " 点 能量。"],
+		"NAME": "白"
+	},
+	"animator_StolenGoldPower":
+	{
+		"DESCRIPTIONS": ["你偷了 #b", " 个金币。 你可以再盗取 #b", " 个金币。"],
+		"NAME": "被盗的黄金"
+	},
+	"animator_StrategicInformationPower":
+	{
+		"DESCRIPTIONS": ["接下来 #b", " 次主动弃牌时, 获得 #b", " #y格挡 ，减少随机手牌一点消耗."],
+		"NAME": "战略信息"
+	},
+	"animator_SupportDamagePower":
+	{
+		"DESCRIPTIONS": ["回合结束时对血量较低的敌人造成 #b", " 点 伤害"],
+		"NAME": "支持"
 	}
 }

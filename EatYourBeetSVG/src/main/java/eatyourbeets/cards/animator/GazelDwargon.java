@@ -15,9 +15,7 @@ public class GazelDwargon extends AnimatorCard
     {
         super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0);
-
-        AddExtendedDescription();
+        Initialize(0,0, 3);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -25,7 +23,7 @@ public class GazelDwargon extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new GazelDwargonPower(p, 1), 1);
+        GameActionsHelper.ApplyPower(p, p, new GazelDwargonPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override
@@ -33,8 +31,7 @@ public class GazelDwargon extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(1);
-            //this.isInnate = true;
+            upgradeMagicNumber(1);
         }
     }
 }

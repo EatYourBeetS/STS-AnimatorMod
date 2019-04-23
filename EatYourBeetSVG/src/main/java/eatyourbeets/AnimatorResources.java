@@ -209,6 +209,7 @@ public class AnimatorResources
     public static void LoadMonsters()
     {
         BaseMod.addMonster(KrulTepes.ID, KrulTepes::new);
+        //BaseMod.addMonster(Momon.ID, Momon::new);
     }
 
     public static void LoadCustomEvents()

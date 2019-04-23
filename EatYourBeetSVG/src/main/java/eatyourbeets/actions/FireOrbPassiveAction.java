@@ -23,6 +23,12 @@ public class FireOrbPassiveAction extends AnimatorAction
 
     public void update()
     {
+        if (fire.evoked)
+        {
+            this.isDone = true;
+            return;
+        }
+
         int maxHealth = Integer.MIN_VALUE;
         AbstractMonster enemy = null;
         AbstractPlayer p = AbstractDungeon.player;

@@ -37,7 +37,7 @@ public class DolaCouronne extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.DrawCard(p,1);
+            GameActionsHelper.CycleCardAction(1);
         }
     }
 

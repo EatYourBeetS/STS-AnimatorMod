@@ -361,8 +361,7 @@
 	},
 	"animator_GazelDwargon":
 	{
-		"DESCRIPTION": "Whenever your Block is removed, deal that much damage to ALL enemies ([#EFC851]*[#FFFFFF]).",
-		"EXTENDED_DESCRIPTION": ["* Note", "Block used to reduce damage will not count as removed."],
+		"DESCRIPTION": "Maintain half your Block at the start of each turn, whenever you spend 2 or more Energy on a card, gain !M! Block.",
 		"NAME": "Gazel Dwargon"
 	},
 	"animator_Gilgamesh":
@@ -445,9 +444,9 @@
 	},
 	"animator_HighElfArcher":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. NL Boost !SV! : Draw !M! card.",
+		"DESCRIPTION": "Deal !D! Piercing damage. Boost !SV! : Draw !M! card.",
 		"NAME": "'High Elf Archer'",
-		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage. NL Boost !SV! : Draw !M! cards."
+		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage. Boost !SV! : Draw !M! cards."
 	},
 	"animator_HiiragiShinya":
 	{
@@ -598,6 +597,12 @@
 		"DESCRIPTION": "Deal !D! damage, can only be used if the enemy intends to attack. Legacy: Gain !M! Strength.",
 		"EXTENDED_DESCRIPTION": ["The enemy does not intend to attack."],
 		"NAME": "Mitsurugi"
+	},
+	"animator_MumenRider":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Draw 1 card. NL Purge. Next turn, add this card to the top of your draw pile.",
+		"NAME": "Mumen Rider",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage with Style. Draw 1 card. NL Purge. Next turn, add this card to the top of your draw pile."
 	},
 	"animator_Nanami":
 	{
@@ -759,7 +764,7 @@
 	"animator_Shizu":
 	{
 		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! cards. NL [#EFC851]Ifrit.",
-		"EXTENDED_DESCRIPTION": ["Ifrit", "Exhaust up to 3 cards in your hand, apply twice that much #yBurning to ALL enemies. NL Add 2 #yBurns to your discard pile."],
+		"EXTENDED_DESCRIPTION": ["Ifrit", "Exhaust up to 3 cards in your hand, apply twice that much #yBurning to the enemy. NL Add 2 #yBurns to your discard pile."],
 		"NAME": "Shizu"
 	},
 	"animator_Shuna":

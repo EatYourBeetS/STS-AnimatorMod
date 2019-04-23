@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import patches.AbstractEnums;
 
 public class PinaCoLadaPower extends AnimatorPower
 {
@@ -40,7 +41,7 @@ public class PinaCoLadaPower extends AnimatorPower
 
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
-        if ((card.costForTurn == 0 || card.freeToPlayOnce) && !card.purgeOnUse && this.amount > 0)
+        if ((card.costForTurn == 0 || card.freeToPlayOnce) && this.amount > 0 && !card.tags.contains(AbstractEnums.CardTags.TEMPORARY))
         {
             this.amount -= 1;
             this.flash();
@@ -64,6 +65,7 @@ public class PinaCoLadaPower extends AnimatorPower
                 tmp.calculateCardDamage(m);
             }
 
+            tmp.tags.add(AbstractEnums.CardTags.TEMPORARY);
             tmp.purgeOnUse = true;
             AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(tmp, m, card.energyOnUse));
         }

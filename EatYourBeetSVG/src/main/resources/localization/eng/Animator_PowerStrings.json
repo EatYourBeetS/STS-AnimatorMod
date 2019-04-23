@@ -1,3 +1,4 @@
+
 {
 	"animator_AinzPower":
 	{
@@ -9,100 +10,10 @@
 		"DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to all enemies with a Debuff."],
 		"NAME": "Archer"
 	},
-	"animator_DarknessPower":
-	{
-		"DESCRIPTIONS": ["Whenever you take damage upgrade #b", " random card/s, prioritizing those in your hand."],
-		"NAME": "Dustiness Ford Lalatina"
-	},
-	"animator_EntouJyuuPower":
-	{
-		"DESCRIPTIONS": ["The next #b", " #yAttack/s you play this turn will gain #b", " damage and draw you 1 card."],
-		"NAME": "Entou Jyuu"
-	},
-	"animator_ShiroPower":
-	{
-		"DESCRIPTIONS": ["At the start of you turn gain #b", " energy."],
-		"NAME": "Shiro"
-	},
-	"animator_EvePower":
-	{
-		"DESCRIPTIONS": ["Whenever a card #ySynergizes, deal #b", " damage to a random enemy, then increase this damage by 1."],
-		"NAME": "Eve"
-	},
-	"animator_FeridBathoryPower":
-	{
-		"DESCRIPTIONS": ["When a card is Exhausted gain #b", " Strength and Heal #b", " Hp."],
-		"NAME": "Ferid Bathory"
-	},
-	"animator_HiteiPower":
-	{
-		"DESCRIPTIONS": ["At the start of your turn gain a random #yBuff, then choose and Exhaust #b", " card/s in your deck."],
-		"NAME": "Princess Hitei"
-	},
-	"animator_GuildGirlPower":
-	{
-		"DESCRIPTIONS": ["At the start of your turn Cycle #b", " cards."],
-		"NAME": "Bookkeeping"
-	},
-	"animator_MarkOfPoisonPower":
-	{
-		"DESCRIPTIONS": ["Whenever you receive damage also receive #b", " #yPoison."],
-		"NAME": "Mark of Poison"
-	},
-	"animator_PinaCoLadaPower":
-	{
-		"DESCRIPTIONS": ["Your next #b", " #y0-Cost card/s are played twice."],
-		"NAME": "Piña Co Lada"
-	},
-	"animator_PlayerStatistics":
-	{
-		"DESCRIPTIONS": ["Hidden Player Statistics power."],
-		"NAME": "Player Statistics"
-	},
-	"animator_RoryMercuryPower":
-	{
-		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b", "% more damage."],
-		"NAME": "Rory Mercury"
-	},
-	"animator_SupportDamagePower":
-	{
-		"DESCRIPTIONS": ["Deal #b", " damage to the enemy with lowest HP at the end of your turn."],
-		"NAME": "Support Damage"
-	},
-	"animator_PoisonAffinityPower":
-	{
-		"DESCRIPTIONS": ["Whenever you apply #yPoison, apply an additional #b", " #yPoison."],
-		"NAME": "Poison Affinity"
-	},
 	"animator_BiyorigoPower":
 	{
 		"DESCRIPTIONS": ["Every 4 #yAttacks played, gain #b", " Strength and #b", " Dexterity."],
 		"NAME": "Bito Kanzashi"
-	},
-	"animator_EnchantedArmorPower":
-	{
-		"DESCRIPTIONS": ["ALL enemies deal #b", "% less damage."],
-		"NAME": "Enchanted Armor"
-	},
-	"animator_HigakiRinnePower":
-	{
-		"DESCRIPTIONS": ["???"],
-		"NAME": "???"
-	},
-	"animator_EmiyaShirouPower":
-	{
-		"DESCRIPTIONS": ["Whenever an enemy loses its block this turn, gain #b1 energy and draw #b1 random #yAttack."],
-		"NAME": "Unlimited Blade Works"
-	},
-	"animator_EnvyPower":
-	{
-		"DESCRIPTIONS": ["The first #b", " card/s you play every turn will Synergize."],
-		"NAME": "Envy"
-	},
-	"animator_PridePower":
-	{
-		"DESCRIPTIONS": ["Until your next turn, when you would take unblocked damage, your rightmost #yDark Orb loses that much damage instead."],
-		"NAME": "Pride"
 	},
 	"animator_BozesPower":
 	{
@@ -114,30 +25,80 @@
 		"DESCRIPTIONS": ["Take #b", " damage at the end of turn. Receive #b", "% more #yAttack damage."],
 		"NAME": "Burning"
 	},
-	"animator_StolenGoldPower":
+	"animator_DarknessPower":
 	{
-		"DESCRIPTIONS": ["You stole #b", " Gold. You can steal #b", " more Gold."],
-		"NAME": "Stolen Gold"
+		"DESCRIPTIONS": ["Whenever you take damage upgrade #b", " random card/s, prioritizing those in your hand."],
+		"NAME": "Dustiness Ford Lalatina"
+	},
+	"animator_DelayedHealPower":
+	{
+		"DESCRIPTIONS": ["Heal #g", " HP at the start of your next turn."],
+		"NAME": "Delayed Heal"
+	},
+	"animator_EarthenThornsPower":
+	{
+		"DESCRIPTIONS": ["When attacked, deal #b", " damage back."],
+		"NAME": "Earthen Thorns"
+	},
+	"animator_EmiyaShirouPower":
+	{
+		"DESCRIPTIONS": ["Whenever an enemy loses its block this turn, gain #b1 energy and draw #b1 random #yAttack."],
+		"NAME": "Unlimited Blade Works"
+	},
+	"animator_EnchantedArmorPower":
+	{
+		"DESCRIPTIONS": ["ALL enemies deal #b", "% less damage."],
+		"NAME": "Enchanted Armor"
+	},
+	"animator_EntouJyuuPower":
+	{
+		"DESCRIPTIONS": ["The next #b", " #yAttack/s you play this turn will gain #b", " damage and draw you 1 card."],
+		"NAME": "Entou Jyuu"
+	},
+	"animator_EnvyPower":
+	{
+		"DESCRIPTIONS": ["The first #b", " card/s you play every turn will Synergize."],
+		"NAME": "Envy"
+	},
+	"animator_EvePower":
+	{
+		"DESCRIPTIONS": ["Whenever a card #ySynergizes, deal #b", " damage to a random enemy, then increase this damage by 1."],
+		"NAME": "Eve"
+	},
+	"animator_FeridBathoryPower":
+	{
+		"DESCRIPTIONS": ["When a card is Exhausted gain #b", " Strength and Heal #b", " Hp."],
+		"NAME": "Ferid Bathory"
+	},
+	"animator_GazelDwargonPower":
+	{
+		"DESCRIPTIONS": ["Maintain half your Block at the start of each turn, whenever you spend 2 or more energy on a card, gain #b", " Block."],
+		"NAME": "Gazel Dwargon"
+	},
+	"animator_GuildGirlPower":
+	{
+		"DESCRIPTIONS": ["At the start of your turn Cycle #b", " cards."],
+		"NAME": "Bookkeeping"
+	},
+	"animator_HigakiRinnePower":
+	{
+		"DESCRIPTIONS": ["???"],
+		"NAME": "???"
+	},
+	"animator_HiteiPower":
+	{
+		"DESCRIPTIONS": ["At the start of your turn gain a random #yBuff, then choose and Exhaust #b", " card/s in your deck."],
+		"NAME": "Princess Hitei"
 	},
 	"animator_KaijinPower":
 	{
 		"DESCRIPTIONS": ["At the end of your turn, increase the #yBlock and damage of a random card in your draw pile by #b", "."],
 		"NAME": "Kaijin"
 	},
-	"animator_GazelDwargonPower":
+	"animator_MarkOfPoisonPower":
 	{
-		"DESCRIPTIONS": ["Whenever your #yBlock is removed, deal that much damage #b", " time/s to ALL enemies."],
-		"NAME": "Gazel Dwargon"
-	},
-	"animator_StrategicInformationPower":
-	{
-		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and reduce the cost of a random card in your hand by 1."],
-		"NAME": "Strategic Information"
-	},
-	"animator_DelayedHealPower":
-	{
-		"DESCRIPTIONS": ["Heal #g", " HP at the start of your next turn."],
-		"NAME": "Delayed Heal"
+		"DESCRIPTIONS": ["Whenever you receive damage also receive #b", " #yPoison."],
+		"NAME": "Mark of Poison"
 	},
 	"animator_OrbCore_ChaosPower":
 	{
@@ -174,9 +135,49 @@
 		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yEnergy."],
 		"NAME": "Plasma Core"
 	},
-	"animator_EarthenThornsPower":
+	"animator_PinaCoLadaPower":
 	{
-		"DESCRIPTIONS": ["When attacked, deal #b", " damage back."],
-		"NAME": "Earthen Thorns"
+		"DESCRIPTIONS": ["Your next #b", " #y0-Cost card/s are played twice."],
+		"NAME": "Piña Co Lada"
+	},
+	"animator_PlayerStatistics":
+	{
+		"DESCRIPTIONS": ["Hidden Player Statistics power."],
+		"NAME": "Player Statistics"
+	},
+	"animator_PoisonAffinityPower":
+	{
+		"DESCRIPTIONS": ["Whenever you apply #yPoison, apply an additional #b", " #yPoison."],
+		"NAME": "Poison Affinity"
+	},
+	"animator_PridePower":
+	{
+		"DESCRIPTIONS": ["Until your next turn, when you would take unblocked damage, your rightmost #yDark Orb loses that much damage instead."],
+		"NAME": "Pride"
+	},
+	"animator_RoryMercuryPower":
+	{
+		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b", "% more damage."],
+		"NAME": "Rory Mercury"
+	},
+	"animator_ShiroPower":
+	{
+		"DESCRIPTIONS": ["At the start of you turn gain #b", " energy."],
+		"NAME": "Shiro"
+	},
+	"animator_StolenGoldPower":
+	{
+		"DESCRIPTIONS": ["You stole #b", " Gold. You can steal #b", " more Gold."],
+		"NAME": "Stolen Gold"
+	},
+	"animator_StrategicInformationPower":
+	{
+		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and reduce the cost of a random card in your hand by 1."],
+		"NAME": "Strategic Information"
+	},
+	"animator_SupportDamagePower":
+	{
+		"DESCRIPTIONS": ["Deal #b", " damage to the enemy with lowest HP at the end of your turn."],
+		"NAME": "Support Damage"
 	}
 }

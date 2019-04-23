@@ -54,7 +54,7 @@ public class Add extends AnimatorCard
     public void upgrade() 
     {
         if (TryUpgrade())
-        {          
+        {
             this.exhaust = false;
         }
     }

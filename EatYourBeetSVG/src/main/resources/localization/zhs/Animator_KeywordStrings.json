@@ -1,7 +1,7 @@
 [
 	{
 		"NAMES": ["充能球核心", "orb_core", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
-		"DESCRIPTION": "#y能力: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy. Stacking the power increases the uses per turn.",
+		"DESCRIPTION": "#y能力: 获得 一个特定充能球, 每回合第二次触发 #y同调效果时获得额外效果. 堆叠该能力层数将会增加每回合额外效果的触发次数.",
 		"PROPER_NAME": "充能球核心"
 	},
 	{

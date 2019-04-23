@@ -358,8 +358,7 @@
 	},
 	"animator_GazelDwargon":
 	{
-		"DESCRIPTION": "每当你的格挡消失时, 对所有敌人造成等量伤害 [#EFC851]*[] 。",
-		"EXTENDED_DESCRIPTION": ["* 注", "由于抵消伤害而失去的 #y格挡 不会计算在内 。"],
+		"DESCRIPTION": "在每轮开始时 ， 保持一半的点 格挡 。 无论何时你玩一张能耗2或者以上的卡 ， 获得 !M! 点 格挡 。",
 		"NAME": "矮人王"
 	},
 	"animator_Gilgamesh":
@@ -408,7 +407,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "获得 !SV! 点 多层护甲 。 NL 获得 !M! 点 金属化 。 NL 获得 3 层 柔韧 . NL [#EFC851]贪婪[] 。",
-		"EXTENDED_DESCRIPTION": ["贪婪", "If this card was in your initial deck, gain #b10 #yGold when played. This card costs 1 less energy for every #b100 #yGold you have 。"],
+		"EXTENDED_DESCRIPTION": ["贪婪", "如果这张卡在你的初始卡组中 ， 打出时获得 #b10 个 #y金币 。 你每拥有 #b100 个 #y金币 ， 减少这张牌 1 点消耗 。"],
 		"NAME": "贪婪"
 	},
 	"animator_GuildGirl":
@@ -599,6 +598,12 @@
 		"EXTENDED_DESCRIPTION": ["敌人不打算攻击"],
 		"NAME": "御剑响夜"
 	},
+	"animator_MumenRider":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 1 张牌 。 NL 抹除 。 下一轮 ， 返回绘制堆的顶部 。",
+		"NAME": "Mumen Rider",
+		"UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 with Style 。 NL 抽 !M! 张牌 。 NL 抹除 。 下一轮 ， 返回绘制堆的顶部 。"
+	},
 	"animator_Nanami":
 	{
 		"DESCRIPTION": "根据敌人的意图激活 [#EFC851]效果[] 。 NL [#c6be6f]选择目标时[] ， [#c6be6f]这段文本会变为效果文本[] 。",
@@ -759,7 +764,7 @@
 	"animator_Shizu":
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 !M! 张牌 。 NL [#EFC851]伊芙利特[]",
-		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 张手牌 ， 对所有敌人造成双倍层数的 #y燃烧 。 向你的弃牌堆中加入 2 张 #y灼烧 。"],
+		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 张手牌 ， 对敌人造成双倍层数的 #y燃烧 。 向你的弃牌堆中加入 2 张 #y灼烧 。"],
 		"NAME": "静"
 	},
 	"animator_Shuna":

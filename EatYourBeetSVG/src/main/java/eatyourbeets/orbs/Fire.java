@@ -24,6 +24,8 @@ public class Fire extends AnimatorOrb
 
     public static final int BURNING_AMOUNT = 1;
 
+    public boolean evoked;
+
     public Fire()
     {
         super(ORB_ID);
@@ -57,6 +59,7 @@ public class Fire extends AnimatorOrb
         {
             GameActionsHelper.AddToBottom(new FireOrbEvokeAction(evokeAmount));
         }
+        this.evoked = true;
     }
 
     public void onEndOfTurn()

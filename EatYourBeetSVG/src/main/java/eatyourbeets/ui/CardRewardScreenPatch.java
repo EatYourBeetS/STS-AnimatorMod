@@ -2,7 +2,11 @@ package eatyourbeets.ui;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.FrozenEgg2;
+import com.megacrit.cardcrawl.relics.MoltenEgg2;
+import com.megacrit.cardcrawl.relics.ToxicEgg2;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
@@ -111,6 +115,7 @@ public class CardRewardScreenPatch
 
     private static void UpdateBanButtons()
     {
+        AbstractPlayer player = AbstractDungeon.player;
         Synergy bannedSynergy = null;
         BanCardButton toBan = null;
         BanCardButton toRemove = null;
@@ -139,7 +144,33 @@ public class CardRewardScreenPatch
                 rewardBundle.Remove(toBan.card);
                 toBan.hideInstantly();
 
-                AbstractCard replacement = AbstractDungeon.returnRandomCard().makeCopy();
+                AbstractCard replacement = null;
+                boolean searchingCard = true;
+                while (searchingCard)
+                {
+                    searchingCard = false;
+
+                    AbstractCard temp = AbstractDungeon.returnRandomCard();
+                    for (AbstractCard c : rewardItem.cards)
+                    {
+                        if (temp.cardID.equals(c.cardID))
+                        {
+                            searchingCard = true;
+                        }
+                    }
+
+                    if (!searchingCard)
+                    {
+                        replacement = temp.makeCopy();
+                    }
+                }
+
+                if (replacement.type == AbstractCard.CardType.ATTACK && player.hasRelic(MoltenEgg2.ID) ||
+                   (replacement.type == AbstractCard.CardType.SKILL  && player.hasRelic(ToxicEgg2.ID)) ||
+                   (replacement.type == AbstractCard.CardType.POWER  && player.hasRelic(FrozenEgg2.ID)))
+                {
+                    replacement.upgrade();
+                }
 
                 replacement.drawScale = replacement.targetDrawScale = 0.75f;
                 replacement.isSeen = true;

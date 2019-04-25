@@ -39,6 +39,11 @@ public class ChlammyZell extends AnimatorCard
         }
 
         GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.DrawCard(p, 1);
+        }
     }
 
     @Override

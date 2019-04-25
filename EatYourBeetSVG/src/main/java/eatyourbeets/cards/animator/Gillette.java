@@ -16,7 +16,7 @@ public class Gillette extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(18, 8, 1);
+        Initialize(19, 9, 1);
 
         //AddExtendedDescription();
 
@@ -76,7 +76,7 @@ public class Gillette extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(5);
+            upgradeDamage(4);
             upgradeBlock(2);
         }
     }

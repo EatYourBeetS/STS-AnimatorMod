@@ -16,7 +16,7 @@ public class Strike_OwariNoSeraph extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(7,0, 1);
+        Initialize(6,0, 1);
     }
 
     @Override

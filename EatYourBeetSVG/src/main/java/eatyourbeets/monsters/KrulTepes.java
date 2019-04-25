@@ -34,7 +34,7 @@ public class KrulTepes extends CustomMonster
 
     private static int GetMaxHealth()
     {
-        return AbstractDungeon.ascensionLevel >= 6 ? 366 : 322;
+        return AbstractDungeon.ascensionLevel >= 6 ? 366 : 333;
     }
 
     public KrulTepes()
@@ -286,7 +286,7 @@ public class KrulTepes extends CustomMonster
 
             if (ascensionLevel >= 6)
             {
-                damageInfo = new DamageInfo(owner, 22);
+                damageInfo = new DamageInfo(owner, 24);
                 STRENGTH_AMOUNT = 2;
                 WEAK_AMOUNT = 2;
             }
@@ -325,12 +325,12 @@ public class KrulTepes extends CustomMonster
             if (ascensionLevel >= 6)
             {
                 damageInfo = new DamageInfo(owner, 18);
-                BLOCK_AMOUNT = 18;
+                BLOCK_AMOUNT = 22;
             }
             else
             {
                 damageInfo = new DamageInfo(owner, 20);
-                BLOCK_AMOUNT = 20;
+                BLOCK_AMOUNT = 22;
             }
         }
 

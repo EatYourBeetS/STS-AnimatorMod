@@ -18,9 +18,9 @@
 	},
 	"animator_Add":
 	{
-		"DESCRIPTION": "在你的抽牌堆中消耗1张牌 。 加入一张 充能球核心 到抽牌堆。 虚无 。 消耗 。",
+		"DESCRIPTION": "获得一个充能球栏位 。 在你的抽牌堆中 消耗 1 张牌 。 加入一张 充能球核心 到抽牌堆。 虚无 。 消耗 。",
 		"NAME": "艾迪",
-		"UPGRADE_DESCRIPTION": "在你的抽牌堆中消耗1张牌 。 加入一张 充能球核心 到抽牌堆。 虚无 。"
+		"UPGRADE_DESCRIPTION": "获得一个充能球栏位 。 在你的抽牌堆中 消耗 1 张牌 。 加入一张 充能球核心 到抽牌堆。 虚无 。"
 	},
 	"animator_Ain":
 	{
@@ -124,7 +124,7 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "对每个敌人造成 !M! 到 !D! 点 伤害 。 同调 : 下一轮 ， 获得 [E] 。",
+		"DESCRIPTION": "对每个敌人造成 !M! 到 !D! 点 伤害 。 同调 : 抽 1 张牌 。",
 		"NAME": "克拉米·杰尔"
 	},
 	"animator_Chris":
@@ -358,7 +358,7 @@
 	},
 	"animator_GazelDwargon":
 	{
-		"DESCRIPTION": "在每轮开始时 ， 保持一半的点 格挡 。 无论何时你玩一张能耗2或者以上的卡 ， 获得 !M! 点 格挡 。",
+		"DESCRIPTION": "在每回合开始时 ， 保持一半的 格挡 。 打出2点耗能以上的牌时 ， 获得 !M! 点 格挡 。",
 		"NAME": "矮人王"
 	},
 	"animator_Gilgamesh":
@@ -423,7 +423,7 @@
 	"animator_Guy":
 	{
 		"DESCRIPTION": "给予 2 层 易伤 。 NL 循环 !M! 张牌 。 NL 鼓舞 !SV! : 获得 1 点 [#EFC851]战略信息[] 。",
-		"EXTENDED_DESCRIPTION": ["战略信息", "当一张卡被丢弃时， 获得 #b2 点 格挡 ， 将手中随机卡的耗能降低 #b1， 并 损失1层效果。该效果每回合开始充能一次"],
+		"EXTENDED_DESCRIPTION": ["战略信息", "当一张卡被丢弃时， 获得 #b2 点 格挡 ， 将一张随机手牌的耗能降低 #b1 点， 并 损失1层效果。该效果每回合开始充能一次"],
 		"NAME": "奇伊"
 	},
 	"animator_Hakurou":
@@ -600,9 +600,9 @@
 	},
 	"animator_MumenRider":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 1 张牌 。 NL 抹除 。 下一轮 ， 返回绘制堆的顶部 。",
-		"NAME": "Mumen Rider",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 with Style 。 NL 抽 !M! 张牌 。 NL 抹除 。 下一轮 ， 返回绘制堆的顶部 。"
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 1 张牌 。 NL 抹除 。 下回合，回到抽牌堆顶部 。",
+		"NAME": "无证骑士",
+		"UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 !M! 张牌 。 NL 抹除 。 下回合，回到抽牌堆顶部  。"
 	},
 	"animator_Nanami":
 	{
@@ -875,7 +875,7 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中选择 !M! 张牌 。 抽 2 张牌 。 同调 : 循环 1 张牌 。",
+		"DESCRIPTION": "在你的抽牌堆中选择 !M! 张牌 。 抽 2 张牌 。 同调 : 下一轮 ， 获得 [E]",
 		"NAME": "特图"
 	},
 	"animator_Togame":
@@ -931,6 +931,13 @@
 	{
 		"DESCRIPTION": "对所有敌人造成 !D! 点伤害 。 所有同名卡均获得 1 点 额外伤害 。",
 		"NAME": "姚·汉·蒂修"
+	},
+	"animator_YukoShionji":
+	{
+		"DESCRIPTION": "虚无 。 显示您的绘图堆的顶部卡片 。 每回合一次 ， 您可以绘制和/或丢弃它 [#EFC851]*[] 。",
+		"EXTENDED_DESCRIPTION": ["* 注意", "您可以左键单击卡片进行绘制，也可以右键单击它以丢弃它。"],
+		"NAME": "Yuuko Shionji",
+		"UPGRADE_DESCRIPTION": "显示您的绘图堆的顶部卡片 。 每回合一次 ， 您可以绘制和/或丢弃它 [#EFC851]*[] 。"
 	},
 	"animator_YunYun":
 	{

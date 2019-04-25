@@ -17,7 +17,7 @@ public class AcuraTooru extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5,0, 3);
+        Initialize(6,0, 3);
 
         baseSecondaryValue = secondaryValue = 1;
 

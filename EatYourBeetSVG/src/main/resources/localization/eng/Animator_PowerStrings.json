@@ -179,5 +179,10 @@
 	{
 		"DESCRIPTIONS": ["Deal #b", " damage to the enemy with lowest HP at the end of your turn."],
 		"NAME": "Support Damage"
+	},
+	"animator_YukoShionjiPower":
+	{
+		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use/s ), or #pRight-Click to discard it ( #b", " use/s)."],
+		"NAME": "Yuko Shionji"
 	}
 }

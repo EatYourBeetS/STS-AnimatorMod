@@ -124,7 +124,7 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "對每個敵人造成 !M! 至 !D! 點 的隨機傷害 。 同調 : 下一轮 ， 獲得 [E] 。",
+		"DESCRIPTION": "對每個敵人造成 !M! 至 !D! 點 的隨機傷害 。 同調 : 抽 1 張牌 。",
 		"NAME": "克拉米·傑爾"
 	},
 	"animator_Chris":
@@ -873,7 +873,7 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中選擇 !M! 張牌 。 抽 2 張牌 。 同調 : 循環 1 張牌 。",
+		"DESCRIPTION": "在你的抽牌堆中選擇 !M! 張牌 。 抽 2 張牌 。 同調 : 下一轮 ， 獲得 [E]",
 		"NAME": "特圖"
 	},
 	"animator_Togame":
@@ -929,6 +929,13 @@
 	{
 		"DESCRIPTION": "對所有敵人造成 !D! 點傷害 。 該卡的所有同名牌均獲得 1 點 傷害 。",
 		"NAME": "姚·漢·蒂修"
+	},
+	"animator_YukoShionji":
+	{
+		"DESCRIPTION": "虛無 。 顯示您的繪圖堆的頂部卡片 。每回合一次 ， 您可以繪製和/或丟棄它 [#EFC851]*[] 。",
+		"EXTENDED_DESCRIPTION": ["* 注意", "您可以左鍵單擊卡片進行繪製 ， 也可以右鍵單擊它以丟棄它 。"],
+		"NAME": "Yuuko Shionji",
+		"UPGRADE_DESCRIPTION": "顯示您的繪圖堆的頂部卡片 。 每回合一次 ， 您可以繪製和/或丟棄它 [#EFC851]*[] "
 	},
 	"animator_YunYun":
 	{

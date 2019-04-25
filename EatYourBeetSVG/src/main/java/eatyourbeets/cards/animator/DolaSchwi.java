@@ -12,11 +12,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
+import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.effects.LaserBeam2Effect;
 
 public class DolaSchwi extends AnimatorCard_Cooldown
 {
@@ -64,22 +67,17 @@ public class DolaSchwi extends AnimatorCard_Cooldown
 
             if (damage > 30)
             {
-                AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.5F));
-                AbstractDungeon.actionManager.addToBottom(new VFXAction(new BorderFlashEffect(Color.SKY)));
+                GameActionsHelper.AddToBottom(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.5F));
+                GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.SKY)));
+                GameActionsHelper.AddToBottom(new SFXAction("ATTACK_HEAVY"));
+                GameActionsHelper.AddToBottom(new VFXAction(p, new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.1F));
 
-                if (Settings.FAST_MODE)
-                {
-                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffect(m.hb.cX, m.hb.cY, p.hb.cX, p.hb.cY), 0.1F));
-                }
-                else
-                {
-                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffect(m.hb.cX, m.hb.cY, p.hb.cX, p.hb.cY), 0.3F));
-                }
+                GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
             }
-
-            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-
-            //AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            else
+            {
+                GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+            }
 
             if (ProgressCooldown())
             {

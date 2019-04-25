@@ -23,7 +23,7 @@ public class Layla extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(4,0, 1);
+        Initialize(4,0, 2);
 
         SetSynergy(Synergies.Chaika);
     }

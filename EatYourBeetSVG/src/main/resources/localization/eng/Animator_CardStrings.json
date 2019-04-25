@@ -19,9 +19,9 @@
 	},
 	"animator_Add":
 	{
-		"DESCRIPTION": "Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal. Exhaust.",
+		"DESCRIPTION": "Gain 1 Orb Slot. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal. Exhaust.",
 		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal."
+		"UPGRADE_DESCRIPTION": "Gain 1 Orb Slot. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal."
 	},
 	"animator_Ain":
 	{
@@ -125,7 +125,7 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "Deal from !M! to !D! random damage to each enemy. Synergy: Next turn, gain [E].",
+		"DESCRIPTION": "Deal from !M! to !D! random damage to each enemy. Synergy: Draw 1 card.",
 		"NAME": "Kurami"
 	},
 	"animator_Chris":
@@ -147,7 +147,7 @@
 	},
 	"animator_CowGirl":
 	{
-		"DESCRIPTION": "Gain !M! Temporary HP. NL Gain [E]. NL Exhaust.",
+		"DESCRIPTION": "Gain [E]. NL Gain !M! Temporary HP. NL Exhaust.",
 		"NAME": "'Cow Girl'"
 	},
 	"animator_CrowleyEusford":
@@ -361,7 +361,7 @@
 	},
 	"animator_GazelDwargon":
 	{
-		"DESCRIPTION": "Maintain half your Block at the start of each turn, whenever you spend 2 or more Energy on a card, gain !M! Block.",
+		"DESCRIPTION": "Maintain half your Block at the start of each turn. Whenever you spend 2 or more Energy on a card, gain !M! Block.",
 		"NAME": "Gazel Dwargon"
 	},
 	"animator_Gilgamesh":
@@ -738,7 +738,7 @@
 	},
 	"animator_Shichika":
 	{
-		"DESCRIPTION": "Gain !B! Block and 1 Strength. NL Synergy: Gain !M! Thorns.",
+		"DESCRIPTION": "Gain !B! Block. NL Gain 1 Strength. NL Synergy: Gain !M! Thorns.",
 		"NAME": "Shichika"
 	},
 	"animator_Shigure":
@@ -784,7 +784,7 @@
 	},
 	"animator_Souei":
 	{
-		"DESCRIPTION": "Apply !M! Poison. NL Trigger the Poison of ALL enemies, if any of them dies, gain Intangible.",
+		"DESCRIPTION": "Apply !M! Poison. NL Trigger the Poison of ALL enemies. If any of them dies, gain Intangible.",
 		"NAME": "Souei"
 	},
 	"animator_Spearman":
@@ -875,7 +875,7 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "Discard up to !M! cards from your draw pile, then draw 2 cards. NL Synergy: Cycle 1 card.",
+		"DESCRIPTION": "Discard up to !M! cards from your draw pile. Draw 2 cards. Synergy: Next turn, gain [E].",
 		"NAME": "Tet"
 	},
 	"animator_Togame":
@@ -931,6 +931,13 @@
 	{
 		"DESCRIPTION": "Deal !D! damage to ALL enemies. All copies of this card gain !M! damage this combat.",
 		"NAME": "Yao Ha Ducy"
+	},
+	"animator_YukoShionji":
+	{
+		"DESCRIPTION": "Ethereal. Reveal the top card of your draw pile. Once per turn, you may draw it and/or discard it ([#EFC851]*[#FFFFFF]).",
+		"EXTENDED_DESCRIPTION": ["* Note", "You may #pLeft-Click on the card to draw it or #pRight-Click on it to discard it."],
+		"NAME": "Yuuko Shionji",
+		"UPGRADE_DESCRIPTION": "Reveal the top card of your draw pile. NL Once per turn, you may draw it and/or discard it ([#EFC851]*[#FFFFFF])."
 	},
 	"animator_YunYun":
 	{

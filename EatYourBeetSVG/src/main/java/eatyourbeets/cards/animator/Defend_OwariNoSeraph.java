@@ -15,7 +15,7 @@ public class Defend_OwariNoSeraph extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 6, 1);
+        Initialize(0, 5, 1);
     }
 
     @Override

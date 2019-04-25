@@ -21,6 +21,8 @@ import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.HigakiRinne;
+import eatyourbeets.effects.ShuffleEnemiesEffect;
+import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.MarkOfPoisonPower;
 import eatyourbeets.powers.PlayerStatistics;
@@ -49,7 +51,7 @@ public class HigakiRinneAction extends AnimatorAction
 
     public void update()
     {
-        roll = AbstractDungeon.miscRng.random(180);
+        roll = AbstractDungeon.miscRng.random(185);
         
         AbstractPlayer p = AbstractDungeon.player;
         if (lucky(6)) // 6
@@ -238,11 +240,15 @@ public class HigakiRinneAction extends AnimatorAction
         {
             GameActionsHelper.DrawCard(p, 3);
         }
-        else if (lucky(2)) // 178
+        else if (lucky(2)) // 180
         {
             GameActionsHelper.AddToBottom(new HigakiRinneAction(higakiRinne));
             GameActionsHelper.AddToBottom(new HigakiRinneAction(higakiRinne));
             GameActionsHelper.AddToBottom(new HigakiRinneAction(higakiRinne));
+        }
+        else if (lucky(5)) // 185
+        {
+            AbstractDungeon.effectsQueue.add(new ShuffleEnemiesEffect());
         }
 
         this.isDone = true;

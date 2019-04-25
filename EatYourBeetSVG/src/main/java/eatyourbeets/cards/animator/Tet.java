@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.DiscardFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -28,7 +29,7 @@ public class Tet extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.CycleCardAction(1);
+            GameActionsHelper.ApplyPower(p, p, new EnergizedBluePower(p, 1), 1);
         }
     }
 

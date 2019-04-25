@@ -17,7 +17,7 @@ public class Ain extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(3,0, 2);
+        Initialize(2,0, 3);
 
         this.isMultiDamage = true;
 

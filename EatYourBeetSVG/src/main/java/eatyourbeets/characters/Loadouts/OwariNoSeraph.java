@@ -30,7 +30,7 @@ public class OwariNoSeraph extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Shinoa.ID);
-        res.add(Yuuichirou.ID);
+        res.add(Mikaela.ID);
 
         return res;
     }

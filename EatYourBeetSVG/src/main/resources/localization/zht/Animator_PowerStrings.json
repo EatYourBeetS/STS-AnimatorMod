@@ -179,5 +179,10 @@
 	{
 		"DESCRIPTIONS": ["回合結束時對生命值最低的敵人造成 ", " 點傷害。"],
 		"NAME": "輔助傷害"
+	},
+	"animator_YukoShionjiPower":
+	{
+		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use/s ), or #pRight-Click to discard it ( #b", " use/s)."],
+		"NAME": "Yuko Shionji"
 	}
 }

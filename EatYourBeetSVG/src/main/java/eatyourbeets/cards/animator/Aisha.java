@@ -27,8 +27,8 @@ public class Aisha extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToTop(new DiscardAction(p, p, 1, false));
         GameActionsHelper.AddToTop(new FetchAction(p.drawPile, this::Filter, 1, this::OnFetch));
+        GameActionsHelper.AddToTop(new DiscardAction(p, p, 1, false));
     }
 
     @Override

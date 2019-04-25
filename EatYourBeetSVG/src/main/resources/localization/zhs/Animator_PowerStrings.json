@@ -72,7 +72,7 @@
 	},
 	"animator_GazelDwargonPower":
 	{
-		"DESCRIPTIONS": ["在每轮开始时 ， 保持一半的点 格挡 。 无论何时你玩一张能耗2或者以上的卡 ， 获得 #b", " 点 格挡 。"],
+		"DESCRIPTIONS": ["在每轮开始时 ， 保持一半的 格挡 。 打出2点耗能以上的牌时 ， 获得 #b", " 点 格挡 。"],
 		"NAME": "矮人王"
 	},
 	"animator_GuildGirlPower":
@@ -178,6 +178,11 @@
 	"animator_SupportDamagePower":
 	{
 		"DESCRIPTIONS": ["回合结束时对血量较低的敌人造成 #b", " 点 伤害"],
-		"NAME": "支持"
+		"NAME": "支援"
+	},
+	"animator_YukoShionjiPower":
+	{
+		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use/s ), or #pRight-Click to discard it ( #b", " use/s)."],
+		"NAME": "Yuko Shionji"
 	}
 }

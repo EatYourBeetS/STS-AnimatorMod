@@ -47,7 +47,10 @@ public class LimeBell extends AnimatorCard
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeBlock(1);
+        }
     }
 
     private void OnDiscard(Object state, ArrayList<AbstractCard> discarded)

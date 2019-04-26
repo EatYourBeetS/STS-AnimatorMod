@@ -23,9 +23,11 @@ public class Shizu extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(16, 0, 2);
+        Initialize(18, 0, 2);
 
         AddExtendedDescription();
+
+        this.isEthereal = true;
 
         SetSynergy(Synergies.TenSura);
     }

@@ -22,7 +22,6 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.HigakiRinne;
 import eatyourbeets.effects.ShuffleEnemiesEffect;
-import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.MarkOfPoisonPower;
 import eatyourbeets.powers.PlayerStatistics;

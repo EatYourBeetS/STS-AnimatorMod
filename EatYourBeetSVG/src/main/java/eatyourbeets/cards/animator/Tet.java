@@ -2,13 +2,12 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.DiscardFromPileAction;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
-public class Tet extends AnimatorCard
+public class Tet extends AnimatorCard_Boost
 {
     public static final String ID = CreateFullID(Tet.class.getSimpleName());
 
@@ -27,9 +26,9 @@ public class Tet extends AnimatorCard
         GameActionsHelper.AddToBottom(new DiscardFromPileAction(p.drawPile, this.magicNumber, true));
         GameActionsHelper.DrawCard(p, 2);
 
-        if (HasActiveSynergy())
+        if (ProgressBoost())
         {
-            GameActionsHelper.ApplyPower(p, p, new EnergizedBluePower(p, 1), 1);
+            GameActionsHelper.GainEnergy(1);
         }
     }
 
@@ -38,7 +37,13 @@ public class Tet extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(1);
         }
+    }
+
+    @Override
+    protected int GetBaseBoost()
+    {
+        return 1;
     }
 }

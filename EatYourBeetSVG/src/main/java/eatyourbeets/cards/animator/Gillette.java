@@ -18,32 +18,8 @@ public class Gillette extends AnimatorCard
 
         Initialize(19, 9, 1);
 
-        //AddExtendedDescription();
-
         SetSynergy(Synergies.Chaika);
     }
-
-//    @Override
-//    public void triggerOnExhaust()
-//    {
-//        super.triggerOnExhaust();
-//
-//        RandomizedList<AbstractMonster> enemies = new RandomizedList<>();
-//        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
-//        {
-//            if (!m.hasPower(StunMonsterPower.POWER_ID))
-//            {
-//                enemies.Add(m);
-//            }
-//        }
-//
-//        AbstractMonster enemy = enemies.Retrieve(AbstractDungeon.miscRng);
-//        if (enemy != null)
-//        {
-//            AbstractPlayer p = AbstractDungeon.player;
-//            GameActionsHelper.ApplyPower(p, enemy, new StunMonsterPower(enemy, 1), 1);
-//        }
-//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
@@ -54,21 +30,6 @@ public class Gillette extends AnimatorCard
         }
 
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-
-//        int discarded = 0;
-//        for (AbstractCard c : p.hand.getAttacks().group)
-//        {
-//            if (c != this)
-//            {
-//                GameActionsHelper.AddToBottom(new DiscardSpecificCardAction(c, p.hand));
-//                discarded += 1;
-//            }
-//        }
-//
-//        if (discarded > 0)
-//        {
-//            GameActionsHelper.ApplyPower(p, p, new DrawCardNextTurnPower(p, discarded), discarded);
-//        }
     }
 
     @Override

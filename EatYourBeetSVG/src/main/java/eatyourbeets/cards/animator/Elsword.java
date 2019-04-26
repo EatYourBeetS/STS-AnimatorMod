@@ -36,6 +36,11 @@ public class Elsword extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActionsHelper.CycleCardAction(this.magicNumber);
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.AddToBottom(new ChannelAction(new Fire()));
+        }
     }
 
     @Override

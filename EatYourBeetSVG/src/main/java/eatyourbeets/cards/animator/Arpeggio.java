@@ -17,7 +17,7 @@ public class Arpeggio extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0,1);
+        Initialize(0,0);
 
         this.exhaust = true;
 
@@ -28,16 +28,18 @@ public class Arpeggio extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.ChannelOrb(new Earth(), true);
-        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+
+        if (upgraded)
+        {
+            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+        }
+
         GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
     }
 
     @Override
     public void upgrade() 
     {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(0);
-        }
+        TryUpgrade();
     }
 }

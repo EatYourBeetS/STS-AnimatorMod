@@ -28,6 +28,16 @@ public class EnchantedArmorPower extends AnimatorPower
         String value = df.format(((1 - this.percentage) * 100));
 
         this.description = powerStrings.DESCRIPTIONS[0] + value + powerStrings.DESCRIPTIONS[1];
+
+        this.description += " NL NL Example: NL ";
+        this.description += GetExampleDamage(5) + " NL ";
+        this.description += GetExampleDamage(10) + " NL ";
+        this.description += GetExampleDamage(20);
+    }
+
+    private String GetExampleDamage(int value)
+    {
+        return value + " -> " + "#g" + (int)(value * percentage);
     }
 
     @Override

@@ -68,12 +68,13 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "Channel !M! Earth. NL Gain 1 Orb Slot. NL Gain 1 Focus. NL Exhaust.",
-		"NAME": "Arpeggio"
+		"DESCRIPTION": "Channel 1 Earth. NL Gain 1 Focus. NL Exhaust.",
+		"NAME": "Arpeggio",
+		"UPGRADE_DESCRIPTION": "Channel 1 Earth. NL Gain 1 Orb Slot. NL Gain 1 Focus. NL Exhaust."
 	},
 	"animator_Asuramaru":
 	{
-		"DESCRIPTION": "Deal !D! damage. Gain !M! Intangible, Strength, Dexterity and Artifact. Purge.",
+		"DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Gain !M! Strength, Dexterity and Focus. Exhaust.",
 		"NAME": "Asuramaru"
 	},
 	"animator_Azekura":
@@ -125,7 +126,7 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "Deal from !M! to !D! random damage to each enemy. Synergy: Draw 1 card.",
+		"DESCRIPTION": "Deal from !M! to !D! random damage to each enemy. Synergy: Apply 1 Vulnerable to ALL enemies.",
 		"NAME": "Kurami"
 	},
 	"animator_Chris":
@@ -147,7 +148,7 @@
 	},
 	"animator_CowGirl":
 	{
-		"DESCRIPTION": "Gain [E]. NL Gain !M! Temporary HP. NL Exhaust.",
+		"DESCRIPTION": "Gain [E]. NL Gain !M! Temporary HP. Exhaust.",
 		"NAME": "'Cow Girl'"
 	},
 	"animator_CrowleyEusford":
@@ -157,10 +158,10 @@
 	},
 	"animator_Darkness":
 	{
-		"DESCRIPTION": "Gain !M! Plated_Armor. Whenever you take damage Upgrade !M! random card ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "Gain !M! Plated_Armor. Whenever you take damage, Upgrade !M! random card ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "It will prioritize cards in your hand."],
 		"NAME": "Darkness",
-		"UPGRADE_DESCRIPTION": "Gain !M! Plated_Armor. Whenever you take damage Upgrade !M! random cards ([#EFC851]*[#FFFFFF])."
+		"UPGRADE_DESCRIPTION": "Gain !M! Plated_Armor. Whenever you take damage, Upgrade !M! random cards ([#EFC851]*[#FFFFFF])."
 	},
 	"animator_Defend":
 	{
@@ -254,7 +255,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "Apply !M! Vulnerable. NL Deal !D! damage. NL Cooldown !SV! : Increase this card's damage by 30 this combat.",
+		"DESCRIPTION": "Apply !M! Lock-On. NL Channel 1 Lightning. NL Cooldown !SV! : NL Deal !D! Damage.",
 		"NAME": "Schwi"
 	},
 	"animator_DolaStephanie":
@@ -293,9 +294,9 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card. NL Recall: Channel 1 Fire.",
+		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card. NL Synergy and Recall: Channel 1 Fire.",
 		"NAME": "Elsword",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards. NL Recall: Channel 1 Fire."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards. NL Synergy and Recall: Channel 1 Fire."
 	},
 	"animator_EmiyaShirou":
 	{
@@ -361,13 +362,13 @@
 	},
 	"animator_GazelDwargon":
 	{
-		"DESCRIPTION": "Maintain half your Block at the start of each turn. Whenever you spend 2 or more Energy on a card, gain !M! Block.",
+		"DESCRIPTION": "Maintain half your Block at the start of each turn. Whenever you play an [#EFC851]Attack[], gain !M! Block.",
 		"NAME": "Gazel Dwargon"
 	},
 	"animator_Gilgamesh":
 	{
 		"DESCRIPTION": "Augmentable. NL Deal !D! damage to an enemy 3 times. NL [#EFC851]Gate [#EFC851]of [#EFC851]Babylon.",
-		"EXTENDED_DESCRIPTION": ["Gate of Babylon", "Whenever you obtain a relic #yUpgrade this card and gain #b", " #yGold. Does not activate when purchasing relics or with some event relics."],
+		"EXTENDED_DESCRIPTION": ["Gate of Babylon", "Whenever you obtain a relic, #yUpgrade this card and gain #b", " #yGold. Does not activate when purchasing relics or with some event relics."],
 		"NAME": "Gilgamesh"
 	},
 	"animator_Gillette":
@@ -410,7 +411,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "Gain !SV! Plated_Armor. NL Gain !M! Metallicize. NL Gain 3 Malleable. NL [#EFC851]Greed[].",
-		"EXTENDED_DESCRIPTION": ["Greed", "If this card was in your initial deck, gain #b10 #yGold when played. This card costs 1 less energy for every #b100 #yGold you have."],
+		"EXTENDED_DESCRIPTION": ["Greed", "If this card was in your initial deck, gain #b8 #yGold when played. This card costs 1 less energy for every #b100 #yGold you have."],
 		"NAME": "Greed"
 	},
 	"animator_GuildGirl":
@@ -456,7 +457,7 @@
 	},
 	"animator_Hitei":
 	{
-		"DESCRIPTION": "At the start of your turn, gain a random [#EFC851]Buff, then choose and Exhaust 1 of !M! cards in your draw or discard pile.",
+		"DESCRIPTION": "Gain a random [#EFC851]Buff at the start of your turn, then Exhaust 1 of !M! random cards in your draw or discard pile.",
 		"NAME": "Hitei"
 	},
 	"animator_HououinKyouma":
@@ -577,7 +578,7 @@
 	},
 	"animator_Millim":
 	{
-		"DESCRIPTION": "Augmentable. [#EFC851]Unique. NL Deal !D! damage. NL Synergy: Gain !B! Block.",
+		"DESCRIPTION": "Augmentable. [#EFC851]Unique. NL Deal !D! damage. NL Synergy: Gain [E].",
 		"EXTENDED_DESCRIPTION": ["Unique", "You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead."],
 		"NAME": "Millim"
 	},
@@ -753,7 +754,7 @@
 	},
 	"animator_Shinoa":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Apply !M! Vulnerable to ALL enemies. NL Synergy: Also apply !M! Weak.",
+		"DESCRIPTION": "Gain !B! Block. NL Apply !M! Vulnerable to ALL enemies. Synergy: Also apply !M! Weak.",
 		"NAME": "Shinoa"
 	},
 	"animator_Shiro":
@@ -763,7 +764,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! cards. NL [#EFC851]Ifrit.",
+		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! cards. NL Ethereal. [#EFC851]Ifrit.",
 		"EXTENDED_DESCRIPTION": ["Ifrit", "Exhaust up to 3 cards in your hand, apply twice that much #yBurning to the enemy. NL Add 2 #yBurns to your discard pile."],
 		"NAME": "Shizu"
 	},
@@ -774,7 +775,7 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "Deal !D! damage. Increase this card's damage by !M! every turn. Cooldown !SV! : Gain 1 Orb slot.",
+		"DESCRIPTION": "Deal !D! damage. At the start of each turn, increase this card damage by !M! for each unique Orb you have.",
 		"NAME": "Sloth"
 	},
 	"animator_Sora":
@@ -875,7 +876,7 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "Discard up to !M! cards from your draw pile. Draw 2 cards. Synergy: Next turn, gain [E].",
+		"DESCRIPTION": "Discard up to !M! cards from your draw pile. NL Draw 2 cards. NL Boost !SV! : gain [E].",
 		"NAME": "Tet"
 	},
 	"animator_Togame":
@@ -934,10 +935,9 @@
 	},
 	"animator_YukoShionji":
 	{
-		"DESCRIPTION": "Ethereal. Reveal the top card of your draw pile. Once per turn, you may draw it and/or discard it ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "Reveal the top card of your draw pile. Once per turn, you may draw it and/or discard it ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "You may #pLeft-Click on the card to draw it or #pRight-Click on it to discard it."],
-		"NAME": "Yuuko Shionji",
-		"UPGRADE_DESCRIPTION": "Reveal the top card of your draw pile. NL Once per turn, you may draw it and/or discard it ([#EFC851]*[#FFFFFF])."
+		"NAME": "Yuuko Shionji"
 	},
 	"animator_YunYun":
 	{
@@ -952,10 +952,10 @@
 	},
 	"animator_Yuuichirou":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Legacy: Add [#EFC851]Asuramaru to your discard pile.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. NL Legacy: Obtain [#EFC851]Asuramaru.",
 		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 1-Cost #yAttack."],
 		"NAME": "Yuuichirou",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Legacy: Add [#EFC851]Asuramaru+ to your discard pile."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. NL Legacy: Obtain [#EFC851]Asuramaru+."
 	},
 	"animator_ZankiKiguchi":
 	{

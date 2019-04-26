@@ -2,15 +2,18 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
-import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Cooldown;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 
-public class Sloth extends AnimatorCard_Cooldown
+import java.util.ArrayList;
+
+public class Sloth extends AnimatorCard
 {
     public static final String ID = CreateFullID(Sloth.class.getSimpleName());
 
@@ -28,9 +31,20 @@ public class Sloth extends AnimatorCard_Cooldown
     {
         super.atTurnStart();
 
-        if (PlayerStatistics.getTurnCount() > 1)
+        int count = 0;
+        ArrayList<String> orbs = new ArrayList<>();
+        for (AbstractOrb orb : AbstractDungeon.player.orbs)
         {
-            GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, this.magicNumber));
+            if (!(orb instanceof EmptyOrbSlot) && !orbs.contains(orb.ID))
+            {
+                orbs.add(orb.ID);
+                count += 1;
+            }
+        }
+
+        if (count > 0)
+        {
+            GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, count * this.magicNumber));
         }
     }
 
@@ -38,11 +52,6 @@ public class Sloth extends AnimatorCard_Cooldown
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-
-        if (ProgressCooldown())
-        {
-            OnCooldownCompleted(p, m);
-        }
     }
 
     @Override
@@ -50,19 +59,8 @@ public class Sloth extends AnimatorCard_Cooldown
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(1);
+            upgradeMagicNumber(1);
         }
-    }
-
-    @Override
-    protected int GetBaseCooldown()
-    {
-        return 1;
-    }
-
-    @Override
-    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
-    {
-        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
     }
 }

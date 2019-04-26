@@ -55,7 +55,7 @@ public class RoyMustang extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(4);
             upgradeMagicNumber(2);
         }
     }

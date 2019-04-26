@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -16,7 +17,7 @@ public class ChlammyZell extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(14, 0, 4);
+        Initialize(13, 0, 4);
 
         this.isMultiDamage = true;
 
@@ -42,7 +43,7 @@ public class ChlammyZell extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.DrawCard(p, 1);
+            GameActionsHelper.ApplyPowerToAllEnemies(p, m1 -> new VulnerablePower(m1, 1, false), 1);
         }
     }
 

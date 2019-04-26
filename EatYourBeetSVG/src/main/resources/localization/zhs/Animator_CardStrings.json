@@ -67,12 +67,13 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "获得 1 个 土素 充能球 。 获得一个充能球栏位 。 获得 1 点 集中 。 消耗 。",
-		"NAME": "阿尔蓓吉欧"
+		"DESCRIPTION": "获得 1 个 土素 充能球 。 获得 1 点 集中 。 消耗 。",
+		"NAME": "阿尔蓓吉欧",
+		"UPGRADE_DESCRIPTION": "获得 1 个 土素 充能球 。 获得一个充能球栏位 。 获得 1 点 集中 。 消耗 。"
 	},
 	"animator_Asuramaru":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 获得 !M! 层 无实体 ， 力量 ， 敏捷 ， 人工制品 。 抹除 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 获得 !B! 点 格挡 。 获得 !M! 层 力量 ， 敏捷 ， 集中 。 消耗 。",
 		"NAME": "阿朱罗丸"
 	},
 	"animator_Azekura":
@@ -124,7 +125,7 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "对每个敌人造成 !M! 到 !D! 点 伤害 。 同调 : 抽 1 张牌 。",
+		"DESCRIPTION": "对每个敌人造成 !M! 到 !D! 点 伤害 。 同调 : 给予所有敌人 !M! 层 易伤 。",
 		"NAME": "克拉米·杰尔"
 	},
 	"animator_Chris":
@@ -252,7 +253,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "给予 !M! 层 易伤 并 造成 !D! 点 伤害 。 NL 预热 !SV! : 本次战斗中 ， 这张牌的伤害提高 30 点 。",
+		"DESCRIPTION": "给予 !M! 层 跟踪锁定 并 生成 !M! 个闪电 充能球 。 NL 预热 !SV! : 造成 !D! 点 伤害 。",
 		"NAME": "休比"
 	},
 	"animator_DolaStephanie":
@@ -291,7 +292,7 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。 撤回 : [#EFC851]生成[] 1 个 火素 充能球 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。 同调 ， 撤回 : [#EFC851]生成[] 1 个 火素 充能球 。",
 		"NAME": "艾索德"
 	},
 	"animator_EmiyaShirou":
@@ -358,7 +359,7 @@
 	},
 	"animator_GazelDwargon":
 	{
-		"DESCRIPTION": "在每回合开始时 ， 保持一半的 格挡 。 打出2点耗能以上的牌时 ， 获得 !M! 点 格挡 。",
+		"DESCRIPTION": "在每回合开始时 ， 保持一半的 格挡 。 每当你玩攻击卡时 ， 获得 !M! 点 格挡 。",
 		"NAME": "矮人王"
 	},
 	"animator_Gilgamesh":
@@ -407,7 +408,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "获得 !SV! 点 多层护甲 。 NL 获得 !M! 点 金属化 。 NL 获得 3 层 柔韧 . NL [#EFC851]贪婪[] 。",
-		"EXTENDED_DESCRIPTION": ["贪婪", "如果这张卡在你的初始卡组中 ， 打出时获得 #b10 个 #y金币 。 你每拥有 #b100 个 #y金币 ， 减少这张牌 1 点消耗 。"],
+		"EXTENDED_DESCRIPTION": ["贪婪", "如果这张卡在你的初始卡组中 ， 打出时获得 #b8 个 #y金币 。 你每拥有 #b100 个 #y金币 ， 减少这张牌 1 点消耗 。"],
 		"NAME": "贪婪"
 	},
 	"animator_GuildGirl":
@@ -577,7 +578,7 @@
 	},
 	"animator_Millim":
 	{
-		"DESCRIPTION": "多重进化 。 [#EFC851]唯一[] 。 造成 !D! 点 伤害 。 NL 同调 : 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "多重进化 。 [#EFC851]唯一[] 。 造成 !D! 点 伤害 。 NL 同调 : 获得 [E] 。",
 		"EXTENDED_DESCRIPTION": ["唯一", "卡组中只能存在一张该牌 ， 额外获得的同名牌会 #y升级 这张牌 。"],
 		"NAME": "米莉姆"
 	},
@@ -753,7 +754,7 @@
 	},
 	"animator_Shinoa":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 并给予所有敌人 !M! 层 易伤 。 NL 同调 : 额外给予 !M! 层 虚弱 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 并 给予所有敌人 !M! 层 易伤 。 NL 同调 : 额外给予 !M! 层 虚弱 。",
 		"NAME": "柊筱娅"
 	},
 	"animator_Shiro":
@@ -763,7 +764,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 !M! 张牌 。 NL [#EFC851]伊芙利特[]",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 !M! 张牌 。 NL 虚无 。 [#EFC851]伊芙利特[]",
 		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 张手牌 ， 对敌人造成双倍层数的 #y燃烧 。 向你的弃牌堆中加入 2 张 #y灼烧 。"],
 		"NAME": "静"
 	},
@@ -774,7 +775,7 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 每一轮 ， 这张牌的伤害提高 !M! 点 。 预热 !SV! : 获得一个充能球栏位 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 在每轮开始时 ， 对于你拥有的每个独特的充电球 ， 这个卡的伤害提高 !M! 点 。",
 		"NAME": "懒惰"
 	},
 	"animator_Sora":
@@ -875,7 +876,7 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中选择 !M! 张牌 。 抽 2 张牌 。 同调 : 下一轮 ， 获得 [E]",
+		"DESCRIPTION": "在你的抽牌堆中选择 !M! 张牌 。 抽 2 张牌 。 鼓舞 !SV! : 获得 [E]",
 		"NAME": "特图"
 	},
 	"animator_Togame":
@@ -934,10 +935,9 @@
 	},
 	"animator_YukoShionji":
 	{
-		"DESCRIPTION": "虚无 。 显示您的绘图堆的顶部卡片 。 每回合一次 ， 您可以绘制和/或丢弃它 [#EFC851]*[] 。",
+		"DESCRIPTION": "显示您的绘图堆的顶部卡片 。 每回合一次 ， 您可以绘制和/或丢弃它 [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注意", "您可以左键单击卡片进行绘制，也可以右键单击它以丢弃它。"],
-		"NAME": "Yuuko Shionji",
-		"UPGRADE_DESCRIPTION": "显示您的绘图堆的顶部卡片 。 每回合一次 ， 您可以绘制和/或丢弃它 [#EFC851]*[] 。"
+		"NAME": "Yuuko Shionji"
 	},
 	"animator_YunYun":
 	{
@@ -952,10 +952,10 @@
 	},
 	"animator_Yuuichirou":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 遗赠 : 将一张 [#EFC851]阿修罗丸[] 放到你的弃牌堆 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 获得 !M! 点 临时 敏捷 。 NL 遗赠 : 将一张 [#EFC851]阿修罗丸[] 放到你的弃牌堆 。",
 		"EXTENDED_DESCRIPTION": ["阿修罗丸", "特殊的1耗#y攻击牌 。"],
 		"NAME": "百夜优一郎",
-		"UPGRADE_DESCRIPTION": "造成!D!点伤害 。 NL 遗赠 : 将一张 [#EFC851]阿修罗丸+[] 放到你的弃牌堆 。"
+		"UPGRADE_DESCRIPTION": "造成!D!点伤害 。 NL 获得 !M! 点 临时 敏捷 。 NL 遗赠 : 将一张 [#EFC851]阿修罗丸+[] 放到你的弃牌堆 。"
 	},
 	"animator_ZankiKiguchi":
 	{

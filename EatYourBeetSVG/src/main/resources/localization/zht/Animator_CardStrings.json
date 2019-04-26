@@ -67,12 +67,13 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "獲得 1 個 大地 充能球 。 獲得一個充能球欄位 。 獲得 1 點 集中 。 消耗 。",
-		"NAME": "阿爾貝吉歐"
+		"DESCRIPTION": "獲得 1 個 大地 充能球 。 獲得 1 點 集中 。 消耗 。",
+		"NAME": "阿爾貝吉歐",
+		"UPGRADE_DESCRIPTION": "獲得 1 個 大地 充能球 。 獲得一個充能球欄位 。 獲得 1 點 集中 。 消耗 。"
 	},
 	"animator_Asuramaru":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 獲得 !M! 層 無實體 、 力量 、 敏捷 、 人工制品 。 抹除 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 獲得 !B! 點 格擋 。 獲得 !M! 層 力量 、 敏捷 、 集中 。 消耗 。",
 		"NAME": "阿修羅丸"
 	},
 	"animator_Azekura":
@@ -124,7 +125,7 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "對每個敵人造成 !M! 至 !D! 點 的隨機傷害 。 同調 : 抽 1 張牌 。",
+		"DESCRIPTION": "對每個敵人造成 !M! 至 !D! 點 的隨機傷害 。 同調 : 給予所有敵人 !M! 層 易傷 。",
 		"NAME": "克拉米·傑爾"
 	},
 	"animator_Chris":
@@ -252,7 +253,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "造成 !M! 層 易傷 並 造成 !D! 點 傷害 。 NL 冷卻 !SV! : 額外造成 30 點 傷害 。",
+		"DESCRIPTION": "造成 !M! 層 跟蹤鎖定 並 造成 !D! 點 傷害 。 NL 冷卻 !SV! : 額外造成 30 點 傷害 。",
 		"NAME": "休比"
 	},
 	"animator_DolaStephanie":
@@ -291,7 +292,7 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : [#EFC851]生成[] 1 個 火焰 充能球 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 同調 ， 撤回 : [#EFC851]生成[] 1 個 火焰 充能球 。",
 		"NAME": "艾索德"
 	},
 	"animator_EmiyaShirou":
@@ -358,7 +359,7 @@
 	},
 	"animator_GazelDwargon":
 	{
-		"DESCRIPTION": "在每輪開始時 ， 保持一半的點 格擋 。 無論何時你玩一張能耗2或者以上的卡 ， 獲得 !M! 點 格擋 。",
+		"DESCRIPTION": "在每輪開始時 ， 保持一半的點 格擋 。 每當你玩攻擊卡時 ， 獲得 !M! 點 格擋 。",
 		"NAME": "矮人王"
 	},
 	"animator_Gilgamesh":
@@ -407,7 +408,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "獲得 !SV! 層 多層護甲 。 NL 獲得 !M! 層 金屬化 。 NL 獲得 3 層 鍛鑄 。 NL [#EFC851]貪婪[] 。",
-		"EXTENDED_DESCRIPTION": ["貪婪", "如果這張卡在你的初始卡組中 ， 打出時獲得 #b10 個 #y金幣。你每擁有 #b100 個 #y金幣 ， 減少這張牌 1 點消耗 。"],
+		"EXTENDED_DESCRIPTION": ["貪婪", "如果這張卡在你的初始卡組中 ， 打出時獲得 #b8 個 #y金幣。你每擁有 #b100 個 #y金幣 ， 減少這張牌 1 點消耗 。"],
 		"NAME": "古利德"
 	},
 	"animator_GuildGirl":
@@ -575,7 +576,7 @@
 	},
 	"animator_Millim":
 	{
-		"DESCRIPTION": "多重升級 。 [#EFC851]唯一[] NL 造成 !D! 點 傷害 。 NL 同調 : 獲得 !B! 點 格擋 。",
+		"DESCRIPTION": "多重升級 。 [#EFC851]唯一[] NL 造成 !D! 點 傷害 。 NL 同調 : 獲得 [E] 。",
 		"EXTENDED_DESCRIPTION": ["唯一", "卡組中只能存在一張該牌 ， 額外獲得的同名牌會 #y升級 這張牌 。"],
 		"NAME": "米莉姆"
 	},
@@ -752,7 +753,7 @@
 	},
 	"animator_Shinoa":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 並給予所有敵人 !M! 層 易傷 。 NL 同調 : 額外給予 !M! 層 虛弱 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 並 給予所有敵人 !M! 層 易傷 。 NL 同調 : 額外給予 !M! 層 虛弱 。",
 		"NAME": "柊筱婭"
 	},
 	"animator_Shiro":
@@ -762,7 +763,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 !M! 張牌 。 NL [#EFC851]伊芙利特[]",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 !M! 張牌 。 NL 虚无 。 [#EFC851]伊芙利特[]",
 		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 張手牌 ， 對敵人造成雙倍層數的 #y燃燒 。 向你的棄牌堆中加入 2 張 #y灼燒 。"],
 		"NAME": "靜"
 	},
@@ -773,7 +774,7 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 每一輪 ， 這張牌的傷害提高 !M! 點 。 NL 冷卻 !SV! : 獲得一個充能球欄位 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 在每輪開始時 ， 對於你擁有的每個獨特的充電球 ， 這個卡的傷害提高 !M! 點 。",
 		"NAME": "斯洛斯"
 	},
 	"animator_Sora":
@@ -873,7 +874,7 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中選擇 !M! 張牌 。 抽 2 張牌 。 同調 : 下一轮 ， 獲得 [E]",
+		"DESCRIPTION": "在你的抽牌堆中選擇 !M! 張牌 。 抽 2 張牌 。 增強 !SV! : 獲得 [E]",
 		"NAME": "特圖"
 	},
 	"animator_Togame":
@@ -932,10 +933,9 @@
 	},
 	"animator_YukoShionji":
 	{
-		"DESCRIPTION": "虛無 。 顯示您的繪圖堆的頂部卡片 。每回合一次 ， 您可以繪製和/或丟棄它 [#EFC851]*[] 。",
+		"DESCRIPTION": "顯示您的繪圖堆的頂部卡片 。每回合一次 ， 您可以繪製和/或丟棄它 [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注意", "您可以左鍵單擊卡片進行繪製 ， 也可以右鍵單擊它以丟棄它 。"],
-		"NAME": "Yuuko Shionji",
-		"UPGRADE_DESCRIPTION": "顯示您的繪圖堆的頂部卡片 。 每回合一次 ， 您可以繪製和/或丟棄它 [#EFC851]*[] "
+		"NAME": "Yuuko Shionji"
 	},
 	"animator_YunYun":
 	{
@@ -950,10 +950,10 @@
 	},
 	"animator_Yuuichirou":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 遺產 : 將一張 [#EFC851]阿修羅丸[] 放到你的棄牌堆 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 !M! 點 臨時 敏捷 。 NL 遺產 : 將一張 [#EFC851]阿修羅丸[] 放到你的棄牌堆 。",
 		"EXTENDED_DESCRIPTION": ["阿修羅丸", "特殊的1耗#y攻擊牌 。"],
 		"NAME": "百夜優一郎",
-		"UPGRADE_DESCRIPTION": "造成!D!點傷害 。 NL 遺產 : 將一張 [#EFC851]阿修羅丸+[] 放到你的棄牌堆 。"
+		"UPGRADE_DESCRIPTION": "造成!D!點傷害 。 NL 獲得 !M! 點 臨時 敏捷 。 NL 遺產 : 將一張 [#EFC851]阿修羅丸+[] 放到你的棄牌堆 。"
 	},
 	"animator_ZankiKiguchi":
 	{

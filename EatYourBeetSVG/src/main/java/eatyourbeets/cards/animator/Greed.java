@@ -48,7 +48,7 @@ public class Greed extends AnimatorCard
 
         if (GetMasterDeckInstance() != null)
         {
-            p.gainGold(10);
+            p.gainGold(8);
         }
     }
 

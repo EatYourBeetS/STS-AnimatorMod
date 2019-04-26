@@ -160,6 +160,11 @@
 		"DESCRIPTION": "Until your next turn, whenever you are attacked, deal 1 damage back to the enemy."
 	},
 	{
+		"PROPER_NAME": "Rebound",
+		"NAMES": ["rebound"],
+		"DESCRIPTION": "Put the next card you play this turn on top of your draw pile."
+	},
+	{
 		"PROPER_NAME": "Discover",
 		"NAMES": ["discover"],
 		"DESCRIPTION": "Choose 1 of 3 random cards to add to your hand. It costs 0 this turn."

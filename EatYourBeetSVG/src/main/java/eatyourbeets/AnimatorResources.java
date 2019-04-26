@@ -250,8 +250,13 @@ public class AnimatorResources
         BaseMod.registerCustomReward(AbstractEnums.Rewards.SPECIAL_GOLD, goldSerializer, goldSerializer);
     }
 
-    private static void AddAndUnlock(Class cardClass) throws Exception
+    private static void AddAndUnlock(Class<?> cardClass) throws Exception
     {
+        if (Ignored.class.isAssignableFrom(cardClass))
+        {
+            return;
+        }
+
         AbstractCard card = (AbstractCard) cardClass.newInstance();
         String id = card.cardID;
 
@@ -344,5 +349,10 @@ public class AnimatorResources
         {
             languagePath = "localization/eng/";
         }
+    }
+
+    public interface Ignored
+    {
+
     }
 }

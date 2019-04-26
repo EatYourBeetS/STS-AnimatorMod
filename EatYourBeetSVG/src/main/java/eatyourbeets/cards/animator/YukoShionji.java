@@ -2,12 +2,13 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.YukoShionjiPower;
 
-public class YukoShionji extends AnimatorCard
+public class YukoShionji extends AnimatorCard implements AnimatorResources.Ignored
 {
     public static final String ID = CreateFullID(YukoShionji.class.getSimpleName());
 
@@ -18,8 +19,6 @@ public class YukoShionji extends AnimatorCard
         Initialize(0,0);
 
         AddExtendedDescription();
-
-        this.isEthereal = true;
 
         SetSynergy(Synergies.KamisamaNoMemochu);
     }
@@ -35,7 +34,7 @@ public class YukoShionji extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            this.isEthereal = false;
+            upgradeBaseCost(1);
         }
     }
 }

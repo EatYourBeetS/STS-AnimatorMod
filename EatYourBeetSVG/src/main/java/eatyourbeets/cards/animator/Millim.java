@@ -15,7 +15,7 @@ public class Millim extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(14,7);
+        Initialize(14,0);
 
         AddExtendedDescription();
 
@@ -29,7 +29,7 @@ public class Millim extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainBlock(p, this.block);
+            GameActionsHelper.GainEnergy(1);
         }
     }
 
@@ -44,7 +44,7 @@ public class Millim extends AnimatorCard
     {
         this.timesUpgraded += 1;
         upgradeDamage(3);
-        upgradeBlock(1);
+        //upgradeBlock(1);
         this.upgraded = true;
         this.name = cardStrings.NAME + "+" + this.timesUpgraded;
         this.initializeTitle();

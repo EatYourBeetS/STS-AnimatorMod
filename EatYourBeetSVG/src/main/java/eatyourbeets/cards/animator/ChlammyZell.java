@@ -1,13 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.ChlammyZellPower;
 
 public class ChlammyZell extends AnimatorCard
 {
@@ -15,11 +13,9 @@ public class ChlammyZell extends AnimatorCard
 
     public ChlammyZell()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(13, 0, 4);
-
-        this.isMultiDamage = true;
+        Initialize(0, 0, 6);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -27,24 +23,7 @@ public class ChlammyZell extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < this.multiDamage.length; i++)
-        {
-            if (this.magicNumber < this.multiDamage[i])
-            {
-                this.multiDamage[i] = AbstractDungeon.miscRng.random(this.magicNumber, this.multiDamage[i]);
-            }
-            else
-            {
-                this.multiDamage[i] = this.magicNumber;
-            }
-        }
-
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.ApplyPowerToAllEnemies(p, m1 -> new VulnerablePower(m1, 1, false), 1);
-        }
+        GameActionsHelper.ApplyPower(p, p, new ChlammyZellPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override
@@ -53,7 +32,6 @@ public class ChlammyZell extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(2);
-            upgradeDamage(2);
         }
     }
 }

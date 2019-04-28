@@ -25,6 +25,11 @@
 		"DESCRIPTIONS": ["在回合结束时受到 #b", " 点伤害。 额外受到 #b", "%  #y攻击 伤害。"],
 		"NAME": "燃烧"
 	},
+	"animator_ChlammyZellPower":
+	{
+		"DESCRIPTIONS": ["当你交替打出不同类型的牌时 ， 循环 1 张牌 并 对所有敌人造成 #b", " 点 伤害 。 NL NL 你上一次打出的牌的类型是 : #y"],
+		"NAME": "克拉米·杰尔"
+	},
 	"animator_DarknessPower":
 	{
 		"DESCRIPTIONS": ["每当你受伤时随机升级", " 张牌, 手牌优先。"],
@@ -182,7 +187,7 @@
 	},
 	"animator_YukoShionjiPower":
 	{
-		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use/s ), or #pRight-Click to discard it ( #b", " use/s)."],
-		"NAME": "Yuko Shionji"
+		"DESCRIPTIONS": ["查看抽牌堆顶部的牌, NL 鼠标 #p左击 将其拿进手牌 ( #b", " 次 ), 或 #p右击 将其丢弃 ( #b", " 次)."],
+		"NAME": "紫苑寺有子"
 	}
 }

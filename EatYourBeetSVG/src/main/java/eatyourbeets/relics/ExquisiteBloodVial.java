@@ -4,10 +4,8 @@ import com.evacipated.cardcrawl.mod.stslib.patches.HitboxRightClick;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.RegenPower;
@@ -19,8 +17,6 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.effects.ExquisiteBloodVialIncreaseCounterEffect;
 import eatyourbeets.monsters.KrulTepes;
-
-import java.util.ArrayList;
 
 public class ExquisiteBloodVial extends AnimatorRelic
 {
@@ -40,14 +36,16 @@ public class ExquisiteBloodVial extends AnimatorRelic
 
     public static void OnRelicReceived(AbstractRelic relic)
     {
-        if (relic.relicId.equals(BloodVial.ID))
+        if (relic instanceof BloodVial)
         {
             AbstractPlayer p = AbstractDungeon.player;
             ExquisiteBloodVial exquisiteBloodVial = (ExquisiteBloodVial) p.getRelic(ExquisiteBloodVial.ID);
             if (exquisiteBloodVial != null && exquisiteBloodVial.truePotential)
             {
-                AbstractDungeon.player.relics.remove(relic);
-                exquisiteBloodVial.IncreaseCounter();
+                AbstractDungeon.effectsQueue.add(new ExquisiteBloodVialIncreaseCounterEffect(exquisiteBloodVial, (BloodVial) relic));
+
+//                AbstractDungeon.player.relics.remove(relic);
+//                exquisiteBloodVial.IncreaseCounter();
                 exquisiteBloodVial.flash();
                 //AbstractDungeon.player.reorganizeRelics();
                 //AbstractDungeon.topPanel.adjustRelicHbs();
@@ -102,42 +100,23 @@ public class ExquisiteBloodVial extends AnimatorRelic
         }
         else if (HitboxRightClick.rightClicked.get(this.hb))
         {
+            MonsterGroup enemies = new MonsterGroup(new KrulTepes());
             RestRoom room = Utilities.SafeCast(AbstractDungeon.getCurrRoom(), RestRoom.class);
             if (room != null && room.event == null)
             {
-                //AbstractDungeon.player.masterDeck.group.removeIf(c -> c instanceof eatyourbeets.cards.animator.KrulTepes);
-
                 MapRoomNode cur = AbstractDungeon.currMapNode;
 
-//                if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom)
-//                {
-//                    AbstractDungeon.monsterList.add(1, KrulTepes.ID);
-//                }
-//                else
-//                {
-//                    AbstractDungeon.monsterList.add(0, KrulTepes.ID);
-//                }
+                cur.room = new MonsterRoom();
+                cur.room.rewardAllowed = false;
+                cur.room.rewards.clear();
+                cur.room.monsters = enemies;
+                cur.room.monsters.init();
 
-                MapRoomNode node = new MapRoomNode(cur.x, cur.y);
-                node.room = new MonsterRoom();
-                node.room.rewardAllowed = false;
-                node.room.rewards.clear();
-                node.room.monsters = new MonsterGroup(new KrulTepes());
-                node.room.monsters.init();
-
-                ArrayList<MapEdge> curEdges = cur.getEdges();
-                for (MapEdge edge : curEdges)
-                {
-                    node.addEdge(edge);
-                }
-
-                AbstractDungeon.nextRoom = node;
+                AbstractDungeon.currMapNode = new MapRoomNode(cur.x, cur.y - 1);
+                AbstractDungeon.currMapNode.room = room;
+                AbstractDungeon.nextRoom = cur;
+                AbstractDungeon.lastCombatMetricKey = KrulTepes.ID;
                 AbstractDungeon.nextRoomTransitionStart();
-
-                room.cutFireSound();
-
-                CardCrawlGame.music.unsilenceBGM();
-                AbstractDungeon.scene.fadeOutAmbiance();
             }
         }
     }
@@ -172,7 +151,7 @@ public class ExquisiteBloodVial extends AnimatorRelic
             AbstractPlayer p = AbstractDungeon.player;
             for (AbstractRelic relic : p.relics)
             {
-                if (relic.relicId.equals(BloodVial.ID))
+                if (relic instanceof BloodVial)
                 {
                     AbstractDungeon.effectsQueue.add(new ExquisiteBloodVialIncreaseCounterEffect(this, (BloodVial) relic));
                 }

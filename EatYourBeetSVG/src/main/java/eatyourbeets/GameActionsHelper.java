@@ -130,6 +130,13 @@ public class GameActionsHelper
         return action;
     }
 
+    public static PiercingDamageAction DamageTargetPiercing(AbstractCreature source, AbstractCreature target, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
+    {
+        PiercingDamageAction action = new PiercingDamageAction(target, new DamageInfo(source, amount, damageType), effect);
+        AddToDefault(action);
+        return action;
+    }
+
     public static DamageAction DamageTarget(AbstractCreature source, AbstractCreature target, AbstractCard card, AbstractGameAction.AttackEffect effect)
     {
         DamageAction action = new DamageAction(target, new DamageInfo(source, card.damage, card.damageTypeForTurn), effect);
@@ -211,6 +218,13 @@ public class GameActionsHelper
     public static ApplyPowerAction ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
     {
         ApplyPowerAction action = new ApplyPowerAction(target, source, power, stacks);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static ApplyPowerSilentlyAction ApplyPowerSilently(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
+    {
+        ApplyPowerSilentlyAction action = new ApplyPowerSilentlyAction(target, source, power, stacks);
         AddToDefault(action);
         return action;
     }

@@ -25,6 +25,11 @@
 		"DESCRIPTIONS": ["在回合結束時受到 #b", " 點傷害 。 獲得 #b", "% 更多 #y攻擊傷害 。"],
 		"NAME": "燃燒"
 	},
+	"animator_ChlammyZellPower":
+	{
+		"DESCRIPTIONS": ["當你交替打出不同類型的牌時 ， 循環 1 張牌 並 對所有敵人造成 #b", " 點 傷害 。 NL NL 你上一次打出的牌的類型是 : #y"],
+		"NAME": "Chlammy Zell"
+	},
 	"animator_DarknessPower":
 	{
 		"DESCRIPTIONS": ["當你受到傷害時升級 #b", " 張隨機牌，以手牌為優先"],

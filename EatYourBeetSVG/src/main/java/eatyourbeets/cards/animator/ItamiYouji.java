@@ -21,7 +21,7 @@ public class ItamiYouji extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(3,0,3);
+        Initialize(2,0,3);
 
         SetSynergy(Synergies.Gate);
     }
@@ -29,7 +29,13 @@ public class ItamiYouji extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DrawCard(p, this.magicNumber, this::OnDraw, m);
+        int draw = magicNumber;
+        if (HasActiveSynergy())
+        {
+            draw += 1;
+        }
+
+        GameActionsHelper.DrawCard(p, draw, this::OnDraw, m);
     }
 
     @Override
@@ -48,8 +54,6 @@ public class ItamiYouji extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
-                int damage = Math.max(0, this.damage - c.costForTurn);
-
                 GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
                 GameActionsHelper.DamageTarget(AbstractDungeon.player, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
             }

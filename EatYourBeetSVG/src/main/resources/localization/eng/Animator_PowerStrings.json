@@ -25,6 +25,11 @@
 		"DESCRIPTIONS": ["Take #b", " damage at the end of turn. Receive #b", "% more #yAttack damage."],
 		"NAME": "Burning"
 	},
+	"animator_ChlammyZellPower":
+	{
+		"DESCRIPTIONS": ["Whenever you play alternating card types this turn, deal #b", " damage to ALL enemies and #yCycle #b1 card. NL NL Last Type played: #y"],
+		"NAME": "Chlammy Zell"
+	},
 	"animator_DarknessPower":
 	{
 		"DESCRIPTIONS": ["Whenever you take damage upgrade #b", " random card/s, prioritizing those in your hand."],

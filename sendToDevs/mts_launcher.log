@@ -1,0 +1,820 @@
+Apr 27, 2019 3:33:16 PM com.megacrit.mtslauncher.MtsFinder writeSteamAppIDFile
+FINE: The file 'steam_appid.txt' does not exist. Creating it...
+Apr 27, 2019 3:33:17 PM com.megacrit.mtslauncher.MtsFinder findModLauncher
+INFO: ModTheSpire appears to be installed.
+Apr 27, 2019 3:33:17 PM com.megacrit.mtslauncher.Main main
+INFO: Executing jar from: D:\SteamLibrary\steamapps\workshop\content\646570\1605060445\ModTheSpire.jar
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WToolkit <clinit>
+FINE: Win version: 0x4563000a = 1164115978 (Windows Vista)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.properties.version=3
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.captionFont.height=12
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionHeight=22
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonWidth=36
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.captionButtonHeight=22
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.frame.smallCaptionFont.height=12
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionHeight=22
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonWidth=22
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.smallCaptionButtonHeight=22
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.frame.sizingBorderWidth=5
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.menu.font.height=12
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.height=19
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.menu.buttonWidth=19
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.width=17
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.scrollbar.height=17
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.status.font.height=12
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.tooltip.font.height=12
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.messagebox.font.height=12
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.hspacing=75
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.icon.vspacing=75
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.icon.titleWrappingOn=true
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font=java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.icon.font.height=12
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionGradientColor=java.awt.Color[r=185,g=209,b=234]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionGradientColor=java.awt.Color[r=215,g=228,b=242]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.hotTrackedColor=java.awt.Color[r=0,g=102,b=204]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.darkShadowColor=java.awt.Color[r=105,g=105,b=105]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.highlightColor=java.awt.Color[r=255,g=255,b=255]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.lightColor=java.awt.Color[r=227,g=227,b=227]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.3d.shadowColor=java.awt.Color[r=160,g=160,b=160]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.button.textColor=java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.desktop.backgroundColor=java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeCaptionColor=java.awt.Color[r=153,g=180,b=209]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.activeBorderColor=java.awt.Color[r=180,g=180,b=180]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.color=java.awt.Color[r=100,g=100,b=100]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.backgroundColor=java.awt.Color[r=255,g=255,b=255]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.captionTextColor=java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveBorderColor=java.awt.Color[r=244,g=247,b=252]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionColor=java.awt.Color[r=191,g=205,b=219]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.inactiveCaptionTextColor=java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.frame.textColor=java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightColor=java.awt.Color[r=0,g=120,b=215]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.item.highlightTextColor=java.awt.Color[r=255,g=255,b=255]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.mdi.backgroundColor=java.awt.Color[r=171,g=171,b=171]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menu.textColor=java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.menubar.backgroundColor=java.awt.Color[r=240,g=240,b=240]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.scrollbar.backgroundColor=java.awt.Color[r=200,g=200,b=200]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.text.grayedTextColor=java.awt.Color[r=109,g=109,b=109]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.backgroundColor=java.awt.Color[r=255,g=255,b=225]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setColorProperty
+FINE: win.tooltip.textColor=java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.caret.width=1
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.fullWindowDragsOn=true
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.text.fontSmoothingOn=true
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingType=2
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingContrast=1400
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.text.fontSmoothingOrientation=1
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.width=4
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: win.drag.height=4
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: DnD.gestureMotionThreshold=2
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.mouse.numButtons=5
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setIntegerProperty
+FINE: awt.multiClickInterval=550
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.dynamicLayoutSupported=true
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.wheelMousePresent=true
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.frame.captionGradientsOn=true
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.item.hotTrackingOn=true
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.menu.keyboardCuesOn=false
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.highContrast.on=false
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showHiddenFiles=true
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: awt.file.showAttribCol=false
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.default=WinPlaySound(.Default)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.close=WinPlaySound(Close)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.maximize=WinPlaySound(Maximize)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.minimize=WinPlaySound(Minimize)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuCommand=WinPlaySound(MenuCommand)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.menuPopup=WinPlaySound(MenuPopup)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.open=WinPlaySound(Open)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreDown=WinPlaySound(RestoreDown)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.restoreUp=WinPlaySound(RestoreUp)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.asterisk=WinPlaySound(SystemAsterisk)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exclamation=WinPlaySound(SystemExclamation)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.exit=WinPlaySound(SystemExit)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.hand=WinPlaySound(SystemHand)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.question=WinPlaySound(SystemQuestion)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setSoundProperty
+FINE: win.sound.start=WinPlaySound(SystemStart)
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font=java.awt.Font[family=Monospaced,name=Monospaced,style=plain,size=13]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiFixed.font.height=13
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font=java.awt.Font[family=Microsoft Sans Serif,name=Microsoft Sans Serif,style=plain,size=11]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.ansiVar.font.height=11
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=13]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.deviceDefault.font.height=13
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font=java.awt.Font[family=Tahoma,name=Tahoma,style=plain,size=11]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.defaultGUI.font.height=11
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font=java.awt.Font[family=Dialog,name=Dialog,style=plain,size=12]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.oemFixed.font.height=12
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font=java.awt.Font[family=Dialog,name=Dialog,style=bold,size=13]
+Apr 27, 2019 3:33:17 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.system.font.height=13
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font=java.awt.Font[family=Dialog,name=Fixedsys,style=plain,size=12]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WDesktopProperties setFontProperty
+FINE: win.systemFixed.font.height=12
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WDesktopProperties setBooleanProperty
+FINE: win.xpstyle.themeActive=true
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.dllName=C:\WINDOWS\resources\themes\Aero\Aero.msstyles
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.sizeName=NormalSize
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WDesktopProperties setStringProperty
+FINE: win.xpstyle.colorName=NormalColor
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.systemFixed.font to java.awt.Font[family=Dialog,name=Fixedsys,style=plain,size=12]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.inactiveBorderColor to java.awt.Color[r=244,g=247,b=252]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.captionGradientsOn to true
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.messagebox.font to java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.smallCaptionButtonHeight to 22
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.inactiveCaptionGradientColor to java.awt.Color[r=215,g=228,b=242]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.ansiFixed.font to java.awt.Font[family=Monospaced,name=Monospaced,style=plain,size=13]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.xpstyle.themeActive to true
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.xpstyle.dllName to C:\WINDOWS\resources\themes\Aero\Aero.msstyles
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.3d.highlightColor to java.awt.Color[r=255,g=255,b=255]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.smallCaptionFont to java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed awt.dynamicLayoutSupported to true
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.captionFont.height to 12
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.button.textColor to java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.asterisk to WinPlaySound(SystemAsterisk)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.restoreUp to WinPlaySound(RestoreUp)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.sizingBorderWidth to 5
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.smallCaptionHeight to 22
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.open to WinPlaySound(Open)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.drag.width to 4
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.item.highlightColor to java.awt.Color[r=0,g=120,b=215]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.inactiveCaptionColor to java.awt.Color[r=191,g=205,b=219]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.captionButtonWidth to 36
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.activeCaptionColor to java.awt.Color[r=153,g=180,b=209]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed awt.wheelMousePresent to true
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.maximize to WinPlaySound(Maximize)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed DnD.gestureMotionThreshold to 2
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.mdi.backgroundColor to java.awt.Color[r=171,g=171,b=171]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.menuCommand to WinPlaySound(MenuCommand)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.menubar.backgroundColor to java.awt.Color[r=240,g=240,b=240]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.drag.height to 4
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.oemFixed.font.height to 12
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.scrollbar.height to 17
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.color to java.awt.Color[r=100,g=100,b=100]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.scrollbar.width to 17
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.textColor to java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.3d.lightColor to java.awt.Color[r=227,g=227,b=227]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.hand to WinPlaySound(SystemHand)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.properties.version to 3
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.deviceDefault.font.height to 13
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.system.font to java.awt.Font[family=Dialog,name=Dialog,style=bold,size=13]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.icon.vspacing to 75
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.3d.darkShadowColor to java.awt.Color[r=105,g=105,b=105]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.menu.font to java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.start to WinPlaySound(SystemStart)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.xpstyle.sizeName to NormalSize
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.smallCaptionFont.height to 12
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.activeCaptionGradientColor to java.awt.Color[r=185,g=209,b=234]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.exclamation to WinPlaySound(SystemExclamation)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.item.hotTrackedColor to java.awt.Color[r=0,g=102,b=204]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.scrollbar.backgroundColor to java.awt.Color[r=200,g=200,b=200]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.defaultGUI.font.height to 11
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.menu.backgroundColor to java.awt.Color[r=240,g=240,b=240]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.text.fontSmoothingType to 2
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.tooltip.font to java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.menu.font.height to 12
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.menu.keyboardCuesOn to false
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.ansiVar.font to java.awt.Font[family=Microsoft Sans Serif,name=Microsoft Sans Serif,style=plain,size=11]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.3d.shadowColor to java.awt.Color[r=160,g=160,b=160]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed awt.font.desktophints to {Text-specific LCD contrast key=140, Text-specific antialiasing enable key=LCD HRGB antialiasing text mode}
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed awt.file.showHiddenFiles to true
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.ansiFixed.font.height to 13
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed DnD.Autoscroll.cursorHysteresis to null
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.tooltip.textColor to java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.ansiVar.font.height to 11
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.fullWindowDragsOn to true
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.minimize to WinPlaySound(Minimize)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.restoreDown to WinPlaySound(RestoreDown)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.close to WinPlaySound(Close)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.status.font.height to 12
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.3d.backgroundColor to java.awt.Color[r=240,g=240,b=240]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.smallCaptionButtonWidth to 22
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.icon.font to java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.menu.buttonWidth to 19
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.deviceDefault.font to java.awt.Font[family=Dialog,name=Dialog,style=bold,size=13]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.text.fontSmoothingOn to true
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.oemFixed.font to java.awt.Font[family=Dialog,name=Dialog,style=plain,size=12]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.menuPopup to WinPlaySound(MenuPopup)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.system.font.height to 13
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.captionButtonHeight to 22
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.captionFont to java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.xpstyle.colorName to NormalColor
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.inactiveCaptionTextColor to java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.highContrast.on to false
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.activeBorderColor to java.awt.Color[r=180,g=180,b=180]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.item.hotTrackingOn to true
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.question to WinPlaySound(SystemQuestion)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.exit to WinPlaySound(SystemExit)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.propNames to [Ljava.lang.String;@1dced80
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.text.fontSmoothingContrast to 1400
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.icon.titleWrappingOn to true
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed awt.file.showAttribCol to false
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.backgroundColor to java.awt.Color[r=255,g=255,b=255]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.tooltip.font.height to 12
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.captionHeight to 22
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.defaultGUI.font to java.awt.Font[family=Tahoma,name=Tahoma,style=plain,size=11]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.systemFixed.font.height to 12
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.caret.width to 1
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.text.fontSmoothingOrientation to 1
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.icon.font.height to 12
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.text.grayedTextColor to java.awt.Color[r=109,g=109,b=109]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.menu.textColor to java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed awt.mouse.numButtons to 5
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.tooltip.backgroundColor to java.awt.Color[r=255,g=255,b=225]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.status.font to java.awt.Font[family=Segoe UI,name=Segoe UI,style=plain,size=12]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed awt.multiClickInterval to 550
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.menu.height to 19
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.messagebox.font.height to 12
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.frame.captionTextColor to java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.icon.hspacing to 75
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.sound.default to WinPlaySound(.Default)
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.item.highlightTextColor to java.awt.Color[r=255,g=255,b=255]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WToolkit updateProperties
+FINER: changed win.desktop.backgroundColor to java.awt.Color[r=0,g=0,b=0]
+Apr 27, 2019 3:33:18 PM sun.awt.SunDisplayChanger add
+FINER: Adding listener: javax.swing.RepaintManager$DisplayChangedHandler@10e8f8e
+Apr 27, 2019 3:33:18 PM sun.awt.SunDisplayChanger add
+FINER: Adding listener: D3DGraphicsConfig[dev=D3DGraphicsDevice[screen=0],pixfmt=0]
+Apr 27, 2019 3:33:18 PM java.awt.Window setGraphicsConfiguration
+FINER: + Window.setGraphicsConfiguration(): new GC is 
++ D3DGraphicsConfig[dev=D3DGraphicsDevice[screen=0],pixfmt=0]
++ this is javax.swing.SwingUtilities$SharedOwnerFrame[frame0,0,0,0x0,invalid,hidden,normal]
+Apr 27, 2019 3:33:18 PM java.awt.Window setGraphicsConfiguration
+FINER: + Window.setGraphicsConfiguration(): new GC is 
++ D3DGraphicsConfig[dev=D3DGraphicsDevice[screen=0],pixfmt=0]
++ this is javax.swing.JDialog[dialog0,0,0,0x0,invalid,hidden,null,defaultCloseOperation=DO_NOTHING_ON_CLOSE,rootPane=,rootPaneCheckingEnabled=false]
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,0x0,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight=false
+Apr 27, 2019 3:33:18 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,0x0,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight = false
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,0x0,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; containing window is null
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,0x0,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; containing window is null
+Apr 27, 2019 3:33:18 PM sun.awt.SunDisplayChanger add
+FINER: Adding listener: sun.awt.windows.WFramePeer[javax.swing.SwingUtilities$SharedOwnerFrame[frame0,0,0,136x39,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal]]
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.SwingUtilities$SharedOwnerFrame[frame0,0,0,136x39,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.SwingUtilities$SharedOwnerFrame[frame0,0,0,136x39,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal]; has h/w descendants = false; has l/w descendants = false; disposing = false
+Apr 27, 2019 3:33:18 PM sun.awt.SunDisplayChanger add
+FINER: Adding listener: sun.awt.windows.WDialogPeer[javax.swing.JDialog[dialog0,0,0,136x39,invalid,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]]
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JDialog[dialog0,0,0,136x39,invalid,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,0,0,136x39,invalid,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = false; disposing = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,0x0,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,0x0,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JLayeredPane[null.layeredPane,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JLayeredPane[null.layeredPane,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JPanel[null.contentPane,0,0,0x0,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,0,0,136x39,invalid,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JOptionPane[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@fbd1f6,flags=392,maximumSize=,minimumSize=,preferredSize=,icon=,initialValue=,message=mts-launcher must be launched in the same directory as desktop-1.0.jar,messageType=PLAIN_MESSAGE,optionType=DEFAULT_OPTION,wantsInput=false]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JOptionPane[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@fbd1f6,flags=392,maximumSize=,minimumSize=,preferredSize=,icon=,initialValue=,message=mts-launcher must be launched in the same directory as desktop-1.0.jar,messageType=PLAIN_MESSAGE,optionType=DEFAULT_OPTION,wantsInput=false]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JPanel[,0,0,0x0,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@e24091,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[,0,0,0x0,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@e24091,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JPanel[OptionPane.realBody,0,0,0x0,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[OptionPane.realBody,0,0,0x0,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JPanel[OptionPane.body,0,0,0x0,invalid,layout=java.awt.GridBagLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[OptionPane.body,0,0,0x0,invalid,layout=java.awt.GridBagLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JLabel[OptionPane.label,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=8388608,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=mts-launcher must be launched in the same directory as desktop-1.0.jar,verticalAlignment=CENTER,verticalTextPosition=CENTER]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JLabel[OptionPane.label,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=8388608,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=mts-launcher must be launched in the same directory as desktop-1.0.jar,verticalAlignment=CENTER,verticalTextPosition=CENTER]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JPanel[OptionPane.buttonArea,0,0,0x0,invalid,layout=javax.swing.plaf.basic.BasicOptionPaneUI$ButtonAreaLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@1da768f,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[OptionPane.buttonArea,0,0,0x0,invalid,layout=javax.swing.plaf.basic.BasicOptionPaneUI$ButtonAreaLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@1da768f,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JButton[OptionPane.button,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JButton[OptionPane.button,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JLayeredPane[null.layeredPane,0,0,428x90,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JLayeredPane[null.layeredPane,0,0,428x90,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,428x90,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,428x90,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JPanel[null.contentPane,0,0,428x90,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,0,0,434x119,invalid,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,428x90,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,428x90,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JOptionPane[,0,0,428x90,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@fbd1f6,flags=392,maximumSize=,minimumSize=,preferredSize=,icon=,initialValue=,message=mts-launcher must be launched in the same directory as desktop-1.0.jar,messageType=PLAIN_MESSAGE,optionType=DEFAULT_OPTION,wantsInput=false]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JOptionPane[,0,0,428x90,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@fbd1f6,flags=392,maximumSize=,minimumSize=,preferredSize=,icon=,initialValue=,message=mts-launcher must be launched in the same directory as desktop-1.0.jar,messageType=PLAIN_MESSAGE,optionType=DEFAULT_OPTION,wantsInput=false]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JPanel[,10,10,408x35,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@e24091,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[,10,10,408x35,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@e24091,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JPanel[OptionPane.buttonArea,10,45,408x32,invalid,layout=javax.swing.plaf.basic.BasicOptionPaneUI$ButtonAreaLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@1da768f,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[OptionPane.buttonArea,10,45,408x32,invalid,layout=javax.swing.plaf.basic.BasicOptionPaneUI$ButtonAreaLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@1da768f,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JPanel[OptionPane.realBody,0,0,408x35,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[OptionPane.realBody,0,0,408x35,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JPanel[OptionPane.body,0,0,408x35,invalid,layout=java.awt.GridBagLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[OptionPane.body,0,0,408x35,invalid,layout=java.awt.GridBagLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JLabel[OptionPane.label,0,8,408x16,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=8388608,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=mts-launcher must be launched in the same directory as desktop-1.0.jar,verticalAlignment=CENTER,verticalTextPosition=CENTER]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JLabel[OptionPane.label,0,8,408x16,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=8388608,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=mts-launcher must be launched in the same directory as desktop-1.0.jar,verticalAlignment=CENTER,verticalTextPosition=CENTER]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JLabel[OptionPane.label,0,8,408x16,alignmentX=0.0,alignmentY=0.0,border=,flags=8388608,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=mts-launcher must be launched in the same directory as desktop-1.0.jar,verticalAlignment=CENTER,verticalTextPosition=CENTER]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JLabel[OptionPane.label,0,8,408x16,alignmentX=0.0,alignmentY=0.0,border=,flags=8388608,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=mts-launcher must be launched in the same directory as desktop-1.0.jar,verticalAlignment=CENTER,verticalTextPosition=CENTER]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JPanel[OptionPane.body,0,0,408x35,layout=java.awt.GridBagLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[OptionPane.body,0,0,408x35,layout=java.awt.GridBagLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JPanel[OptionPane.realBody,0,0,408x35,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[OptionPane.realBody,0,0,408x35,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JPanel[,10,10,408x35,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@e24091,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[,10,10,408x35,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@e24091,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnReshaping
+FINE: this = javax.swing.JButton[OptionPane.button,184,6,39x26,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JButton[OptionPane.button,184,6,39x26,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JPanel[OptionPane.buttonArea,10,45,408x32,layout=javax.swing.plaf.basic.BasicOptionPaneUI$ButtonAreaLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@1da768f,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JPanel[OptionPane.buttonArea,10,45,408x32,layout=javax.swing.plaf.basic.BasicOptionPaneUI$ButtonAreaLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@1da768f,flags=9,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JOptionPane[,0,0,428x90,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@fbd1f6,flags=392,maximumSize=,minimumSize=,preferredSize=,icon=,initialValue=,message=mts-launcher must be launched in the same directory as desktop-1.0.jar,messageType=PLAIN_MESSAGE,optionType=DEFAULT_OPTION,wantsInput=false]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JOptionPane[,0,0,428x90,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@fbd1f6,flags=392,maximumSize=,minimumSize=,preferredSize=,icon=,initialValue=,message=mts-launcher must be launched in the same directory as desktop-1.0.jar,messageType=PLAIN_MESSAGE,optionType=DEFAULT_OPTION,wantsInput=false]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JPanel[null.contentPane,0,0,428x90,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,0,0,434x119,invalid,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JLayeredPane[null.layeredPane,0,0,428x90,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JLayeredPane[null.layeredPane,0,0,428x90,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: this = javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JDialog[dialog0,0,0,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,0,0,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnValidating
+FINE: this = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+Apr 27, 2019 3:33:18 PM java.awt.DefaultKeyboardFocusManager enqueueKeyEvents
+FINER: Enqueue at 1556371997460 for javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM java.awt.Container mixOnShowing
+FINE: this = javax.swing.JDialog[dialog0,743,461,434x119,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+Apr 27, 2019 3:33:18 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WWindowPeer updateGC
+FINER: Screen number: 0
+Apr 27, 2019 3:33:18 PM java.awt.Window setGraphicsConfiguration
+FINER: + Window.setGraphicsConfiguration(): new GC is 
++ D3DGraphicsConfig[dev=D3DGraphicsDevice[screen=0],pixfmt=0]
++ this is javax.swing.JDialog[dialog0,743,461,434x119,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+Apr 27, 2019 3:33:18 PM java.awt.KeyboardFocusManager retargetFocusEvent
+FINER: >>> sun.awt.TimedWindowEvent[WINDOW_GAINED_FOCUS,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:18 PM java.awt.DefaultKeyboardFocusManager dispatchEvent
+FINE: sun.awt.TimedWindowEvent[WINDOW_GAINED_FOCUS,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:18 PM java.awt.KeyboardFocusManager retargetFocusEvent
+FINER: >>> java.awt.event.WindowEvent[WINDOW_ACTIVATED,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:18 PM java.awt.DefaultKeyboardFocusManager dispatchEvent
+FINE: java.awt.event.WindowEvent[WINDOW_ACTIVATED,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:18 PM java.awt.KeyboardFocusManager setGlobalActiveWindow
+FINER: Setting global active window to javax.swing.JDialog[dialog0,743,461,434x119,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true], old active null
+Apr 27, 2019 3:33:18 PM java.awt.DefaultKeyboardFocusManager dispatchEvent
+FINER: tempLost null, toFocus javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM java.awt.KeyboardFocusManager shouldNativelyFocusHeavyweight
+FINER: SNFH for javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true] in javax.swing.JDialog[dialog0,743,461,434x119,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+Apr 27, 2019 3:33:18 PM java.awt.DefaultKeyboardFocusManager enqueueKeyEvents
+FINER: Enqueue at 1556371997460 for javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WComponentPeer requestFocus
+FINER: Proceeding with request to javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true] in javax.swing.JDialog[dialog0,743,461,434x119,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WComponentPeer requestFocus
+FINER: Requested window focus: true
+Apr 27, 2019 3:33:18 PM sun.awt.KeyboardFocusManagerPeerImpl deliverFocus
+FINER: Posting focus event: java.awt.FocusEvent[FOCUS_GAINED,permanent,opposite=null,cause=ACTIVATION] on javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM java.awt.WaitDispatchSupport enter
+FINE: enter(): blockingEDT=false, blockingCT=false
+Apr 27, 2019 3:33:18 PM java.awt.KeyboardFocusManager shouldNativelyFocusHeavyweight
+FINER: SNFH for javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true] in javax.swing.JDialog[dialog0,743,461,434x119,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+Apr 27, 2019 3:33:18 PM java.awt.WaitDispatchSupport$2 run
+FINE: Starting a new event pump
+Apr 27, 2019 3:33:18 PM sun.awt.SunGraphicsCallback runComponents
+FINER: x = 3, y = 26, width = 428, height = 90
+Apr 27, 2019 3:33:18 PM sun.awt.SunDisplayChanger add
+FINER: Adding listener: D3DGraphicsConfig[dev=D3DGraphicsDevice[screen=1],pixfmt=0]
+Apr 27, 2019 3:33:18 PM sun.awt.SunDisplayChanger add
+FINER: Adding listener: sun.java2d.d3d.D3DVolatileSurfaceManager@16e1946
+Apr 27, 2019 3:33:18 PM sun.awt.SunDisplayChanger add
+FINER: Adding listener: sun.java2d.d3d.D3DVolatileSurfaceManager@df3bbf
+Apr 27, 2019 3:33:18 PM java.awt.KeyboardFocusManager retargetFocusEvent
+FINER: >>> java.awt.event.WindowEvent[WINDOW_OPENED,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:18 PM java.awt.DefaultKeyboardFocusManager dispatchEvent
+FINE: java.awt.event.WindowEvent[WINDOW_OPENED,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:18 PM java.awt.KeyboardFocusManager retargetFocusEvent
+FINER: >>> java.awt.FocusEvent[FOCUS_GAINED,permanent,opposite=null,cause=ACTIVATION] on javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM java.awt.DefaultKeyboardFocusManager dispatchEvent
+FINE: java.awt.FocusEvent[FOCUS_GAINED,permanent,opposite=null,cause=ACTIVATION] on javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM sun.awt.im.InputContext activateInputMethod
+FINE: Current client component javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM sun.awt.windows.WComponentPeer handleJavaFocusEvent
+FINER: java.awt.FocusEvent[FOCUS_GAINED,permanent,opposite=null,cause=ACTIVATION] on javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:18 PM sun.awt.SunGraphicsCallback runComponents
+FINER: x = 0, y = 0, width = 434, height = 119
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; isLightweight=false
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; isLightweight = false
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+Apr 27, 2019 3:33:25 PM java.awt.Component transferFocus
+FINER: clearOnFailure = true
+Apr 27, 2019 3:33:25 PM java.awt.Component getNextFocusCandidate
+FINER: comp = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true], root = null
+Apr 27, 2019 3:33:25 PM java.awt.Component getNextFocusCandidate
+FINER: Focus transfer candidate: null
+Apr 27, 2019 3:33:25 PM java.awt.Component transferFocus
+FINER: clear global focus owner
+Apr 27, 2019 3:33:25 PM sun.awt.KeyboardFocusManagerPeerImpl clearGlobalFocusOwner
+FINE: Clearing global focus owner javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:25 PM java.awt.Component transferFocus
+FINER: returning result: false
+Apr 27, 2019 3:33:25 PM java.awt.WaitDispatchSupport exit
+FINE: exit(): blockingEDT=true, blockingCT=true
+Apr 27, 2019 3:33:25 PM java.awt.KeyboardFocusManager retargetFocusEvent
+FINER: >>> java.awt.FocusEvent[FOCUS_LOST,permanent,opposite=null,cause=CLEAR_GLOBAL_FOCUS_OWNER] on javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:25 PM java.awt.DefaultKeyboardFocusManager dispatchEvent
+FINE: java.awt.FocusEvent[FOCUS_LOST,permanent,opposite=null,cause=CLEAR_GLOBAL_FOCUS_OWNER] on javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:25 PM sun.awt.windows.WComponentPeer handleJavaFocusEvent
+FINER: java.awt.FocusEvent[FOCUS_LOST,permanent,opposite=null,cause=CLEAR_GLOBAL_FOCUS_OWNER] on javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:25 PM java.awt.WaitDispatchSupport$5 run
+FINE: Wake up EDT
+Apr 27, 2019 3:33:25 PM java.awt.WaitDispatchSupport$5 run
+FINE: Wake up EDT done
+Apr 27, 2019 3:33:25 PM java.awt.WaitDispatchSupport enter
+FINE: waitDone false false
+Apr 27, 2019 3:33:25 PM java.awt.DefaultKeyboardFocusManager dequeueKeyEvents
+FINER: Dequeue at 1556371997460 for javax.swing.JButton[OptionPane.button,184,6,39x26,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]
+Apr 27, 2019 3:33:25 PM java.awt.KeyboardFocusManager retargetFocusEvent
+FINER: >>> sun.awt.TimedWindowEvent[WINDOW_LOST_FOCUS,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:25 PM java.awt.DefaultKeyboardFocusManager dispatchEvent
+FINE: sun.awt.TimedWindowEvent[WINDOW_LOST_FOCUS,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:25 PM java.awt.DefaultKeyboardFocusManager dispatchEvent
+FINE: Active javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true], Current focused javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true], losing focus javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true] opposite null
+Apr 27, 2019 3:33:25 PM java.awt.KeyboardFocusManager retargetFocusEvent
+FINER: >>> java.awt.event.WindowEvent[WINDOW_DEACTIVATED,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:25 PM java.awt.DefaultKeyboardFocusManager dispatchEvent
+FINE: java.awt.event.WindowEvent[WINDOW_DEACTIVATED,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:25 PM java.awt.KeyboardFocusManager setGlobalActiveWindow
+FINER: Setting global active window to null, old active javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JButton[OptionPane.button,184,6,39x26,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JButton[OptionPane.button,184,6,39x26,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@8c8dcf,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=java.awt.Insets[top=2,left=8,bottom=2,right=8],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=OK,defaultCapable=true]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JPanel[OptionPane.buttonArea,10,45,408x32,invalid,layout=javax.swing.plaf.basic.BasicOptionPaneUI$ButtonAreaLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@1da768f,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JPanel[OptionPane.buttonArea,10,45,408x32,invalid,layout=javax.swing.plaf.basic.BasicOptionPaneUI$ButtonAreaLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@1da768f,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JLabel[OptionPane.label,0,8,408x16,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=8388608,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=mts-launcher must be launched in the same directory as desktop-1.0.jar,verticalAlignment=CENTER,verticalTextPosition=CENTER]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JLabel[OptionPane.label,0,8,408x16,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=8388608,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=LEADING,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=mts-launcher must be launched in the same directory as desktop-1.0.jar,verticalAlignment=CENTER,verticalTextPosition=CENTER]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JPanel[OptionPane.body,0,0,408x35,invalid,layout=java.awt.GridBagLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JPanel[OptionPane.body,0,0,408x35,invalid,layout=java.awt.GridBagLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JPanel[OptionPane.realBody,0,0,408x35,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JPanel[OptionPane.realBody,0,0,408x35,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JPanel[,10,10,408x35,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@e24091,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JPanel[,10,10,408x35,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@e24091,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JOptionPane[,0,0,428x90,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@fbd1f6,flags=392,maximumSize=,minimumSize=,preferredSize=,icon=,initialValue=,message=mts-launcher must be launched in the same directory as desktop-1.0.jar,messageType=PLAIN_MESSAGE,optionType=DEFAULT_OPTION,wantsInput=false]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JOptionPane[,0,0,428x90,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=javax.swing.plaf.BorderUIResource$EmptyBorderUIResource@fbd1f6,flags=392,maximumSize=,minimumSize=,preferredSize=,icon=,initialValue=,message=mts-launcher must be launched in the same directory as desktop-1.0.jar,messageType=PLAIN_MESSAGE,optionType=DEFAULT_OPTION,wantsInput=false]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JPanel[null.contentPane,0,0,428x90,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JPanel[null.contentPane,0,0,428x90,invalid,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JLayeredPane[null.layeredPane,0,0,428x90,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JLayeredPane[null.layeredPane,0,0,428x90,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,428x90,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JPanel[null.glassPane,0,0,428x90,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]; isLightweight=true
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]; isLightweight = true
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = false; disposing = true
+Apr 27, 2019 3:33:25 PM sun.awt.SunDisplayChanger remove
+FINER: Removing listener: sun.awt.windows.WDialogPeer[javax.swing.JDialog[dialog0,743,461,434x119,invalid,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]]
+Apr 27, 2019 3:33:25 PM java.awt.Container mixOnHiding
+FINE: this = javax.swing.JDialog[dialog0,743,461,434x119,invalid,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; isLightweight=false
+Apr 27, 2019 3:33:25 PM java.awt.Component mixOnHiding
+FINE: this = javax.swing.JDialog[dialog0,743,461,434x119,invalid,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; isLightweight = false
+Apr 27, 2019 3:33:25 PM java.awt.Component isMixingNeeded
+FINE: containing window = javax.swing.JDialog[dialog0,743,461,434x119,invalid,hidden,layout=java.awt.BorderLayout,APPLICATION_MODAL,title=Error,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,3,26,428x90,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = false; disposing = true
+Apr 27, 2019 3:33:25 PM java.awt.KeyboardFocusManager retargetFocusEvent
+FINER: >>> java.awt.event.WindowEvent[WINDOW_CLOSED,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:25 PM com.megacrit.mtslauncher.Main main
+SEVERE: The ModTheSpire process was not launched with desktop-1.0.jar in its current working directory! cwd=D:\EatYourBeetS\WorkSpace\GitHub\EatYourBeetS\STS-AnimatorMod
+Apr 27, 2019 3:33:25 PM java.awt.DefaultKeyboardFocusManager dispatchEvent
+FINE: java.awt.event.WindowEvent[WINDOW_CLOSED,opposite=null,oldState=0,newState=0] on dialog0
+Apr 27, 2019 3:33:25 PM com.megacrit.mtslauncher.Main main
+INFO: Successfully launched Mod the Spire! Exiting cleanly.

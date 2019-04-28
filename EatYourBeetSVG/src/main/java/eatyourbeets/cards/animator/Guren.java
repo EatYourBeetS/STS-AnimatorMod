@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,6 +11,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.powers.SupportDamagePower;
 
 public class Guren extends AnimatorCard
@@ -64,12 +64,32 @@ public class Guren extends AnimatorCard
 
     private AbstractCard GetRandomAttack(AbstractPlayer p)
     {
-        CardGroup attacks = p.drawPile.getAttacks();
-        if (attacks.size() > 0)
+        RandomizedList<AbstractCard> attacks = new RandomizedList<>(p.drawPile.getAttacks().group);
+
+        while (attacks.Count() > 0)
         {
-            return attacks.getRandomCard(true);
+            AbstractCard card = attacks.Retrieve(AbstractDungeon.miscRng);
+            if (card != null)
+            {
+                if (card instanceof SupportDamageConvertible)
+                {
+                    if (((SupportDamageConvertible)card).CanConvertToSupportDamage())
+                    {
+                        return card;
+                    }
+                }
+                else
+                {
+                    return card;
+                }
+            }
         }
 
         return null;
+    }
+
+    public interface SupportDamageConvertible
+    {
+        boolean CanConvertToSupportDamage();
     }
 }

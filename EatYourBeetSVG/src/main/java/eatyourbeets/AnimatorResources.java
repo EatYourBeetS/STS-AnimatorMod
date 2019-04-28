@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
+import eatyourbeets.events.TheDomVedeloper1;
 import eatyourbeets.events.TheMaskedTraveler1;
 import eatyourbeets.monsters.KrulTepes;
 import eatyourbeets.relics.*;
@@ -215,6 +216,7 @@ public class AnimatorResources
     public static void LoadCustomEvents()
     {
         BaseMod.addEvent(TheMaskedTraveler1.ID, TheMaskedTraveler1.class, Exordium.ID);
+        //BaseMod.addEvent(TheDomVedeloper1.ID, TheDomVedeloper1.class, Exordium.ID);
     }
 
     public static void LoadCustomCards() throws Exception

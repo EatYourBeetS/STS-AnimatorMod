@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.characters.AnimatorCharacter;
+import eatyourbeets.events.TheDomVedeloper1;
 import eatyourbeets.events.TheMaskedTraveler1;
 
 @SpirePatch(clz= AbstractDungeon.class,method="initializeCardPools")
@@ -17,6 +18,7 @@ public class AbstractDungeonPatches
 //                || Settings.language == Settings.GameLanguage.ZHS) // waiting for translation
         {
             AbstractDungeon.eventList.remove(TheMaskedTraveler1.ID);
+            AbstractDungeon.eventList.remove(TheDomVedeloper1.ID);
         }
     }
 }

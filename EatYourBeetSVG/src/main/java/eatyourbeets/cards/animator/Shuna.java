@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,7 +17,7 @@ public class Shuna extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,3, 2);
+        Initialize(0,3, 3);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -44,7 +43,7 @@ public class Shuna extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.AddToBottom(new ModifyBlockAction(this.uuid, this.magicNumber));
+            GameActionsHelper.GainTemporaryHP(p, p, this.magicNumber);
         }
     }
 
@@ -53,8 +52,7 @@ public class Shuna extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
-            upgradeMagicNumber(1);
+            upgradeBlock(3);
         }
     }
 }

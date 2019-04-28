@@ -56,4 +56,9 @@ public class RandomizedList<T>
     {
         return Retrieve(rng, true);
     }
+
+    public ArrayList<T> GetInnerList()
+    {
+        return items;
+    }
 }

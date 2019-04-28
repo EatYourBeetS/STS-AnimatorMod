@@ -119,13 +119,12 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 暈眩敵人 [#EFC851]*[] 。 抹除 。 !M! 回合後 ， 回到你的抽牌堆中 。",
-		"EXTENDED_DESCRIPTION": ["* 注", "不可疊加 。"],
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 下一轮 ， 造成 !D! 點 傷害 並 給予目標 !M! 個隨機的 [#EFC851]負面效果[] 。",
 		"NAME": "嘉依卡·托勒龐特"
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "對每個敵人造成 !M! 至 !D! 點 的隨機傷害 。 同調 : 給予所有敵人 !M! 層 易傷 。",
+		"DESCRIPTION": "當你交替打出不同類型的牌時 ， 循環 1 張牌 並 對所有敵人造成 !M! 點 傷害 。",
 		"NAME": "克拉米·傑爾"
 	},
 	"animator_Chris":
@@ -253,7 +252,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "造成 !M! 層 跟蹤鎖定 並 造成 !D! 點 傷害 。 NL 冷卻 !SV! : 額外造成 30 點 傷害 。",
+		"DESCRIPTION": "造成 !M! 層 跟蹤鎖定 並 生成 !M! 個 閃電 充能球 。 NL 冷卻 !SV! : 造成 !D! 點 傷害 。",
 		"NAME": "休比"
 	},
 	"animator_DolaStephanie":
@@ -468,7 +467,7 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "抽 !M! 張牌。 每抽一張牌造成 !D! 點傷害减去抽到的牌的消耗的傷害。",
+		"DESCRIPTION": "抽 !M! 張牌 。 每抽一張牌造成 !D! 點 傷害 。 同調 : 再抽一張卡片 。",
 		"NAME": "伊丹耀司"
 	},
 	"animator_IzunaHatsuse":
@@ -571,7 +570,7 @@
 	},
 	"animator_Mikaela":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 中毒 。 增強 !SV! :  從你的棄牌堆中選擇並 消耗 一張牌 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 中毒 。 你可以 從你的棄牌堆中選擇並 消耗 一張牌 。",
 		"NAME": "米迦爾"
 	},
 	"animator_Millim":
@@ -612,7 +611,7 @@
 	},
 	"animator_NarberalGamma":
 	{
-		"DESCRIPTION": "生成 !M! 個閃電充能球 。 NL 變形者 。",
+		"DESCRIPTION": "生成 !M! 個 閃電 充能球 。 NL 變形者 。",
 		"NAME": "娜貝拉爾·伽瑪",
 		"UPGRADE_DESCRIPTION": "生成 !M! 個 閃電 充能球 。 NL 變形者 。 閃電 本回合擊中所有敵人。"
 	},
@@ -665,7 +664,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "增強 !SV! : 獲得 !M! 層 [#EFC851]再生[] 。 NL 同調 : 獲得 !B! 點 臨時生命 。",
+		"DESCRIPTION": "獲得 !B! 點 臨時生命 [#EFC851]*[] 。 同調 : 最多 !SV! 次 ， 獲得 !M! 層 [#EFC851]再生[] 。",
 		"EXTENDED_DESCRIPTION": ["* 備註", "受到格擋修飾詞影響 。"],
 		"NAME": "女神官"
 	},
@@ -699,7 +698,7 @@
 	},
 	"animator_RoryMercury":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 你的攻擊本輪會造成 !M! % 更多傷害 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 [#EFC851]被抽到時[] ， 同調 : 對一個隨機的敵人造成 !M! 點 傷害 。",
 		"NAME": "蘿莉·麥丘利"
 	},
 	"animator_RoyMustang":
@@ -769,7 +768,7 @@
 	},
 	"animator_Shuna":
 	{
-		"DESCRIPTION": "[#EFC851]被抽到時[] : 獲得 !B! 點 格擋 。 NL 抽 2 張牌 。 NL 同調 : 該牌額外獲得 !M! 點 格擋 。",
+		"DESCRIPTION": "[#EFC851]被抽到時[] : 獲得 !B! 點 格擋 。 NL 抽 2 張牌 。 NL 同調 : 獲得 !M! 點 臨時生命 。",
 		"NAME": "朱菜"
 	},
 	"animator_Sloth":

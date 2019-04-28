@@ -64,6 +64,16 @@ public class Synergies
         return All.size() - 1;
     }
 
+    public static ArrayList<AnimatorCard> GetAnimatorCards()
+    {
+        ArrayList<AnimatorCard> result = new ArrayList<>();
+        AddAnimatorCards(AbstractDungeon.srcCommonCardPool.group, result);
+        AddAnimatorCards(AbstractDungeon.srcUncommonCardPool.group, result);
+        AddAnimatorCards(AbstractDungeon.srcRareCardPool.group, result);
+
+        return result;
+    }
+
     public static ArrayList<AnimatorCard> GetCardsWithSynergy(Synergy synergy)
     {
         ArrayList<AnimatorCard> result = new ArrayList<>();
@@ -72,6 +82,18 @@ public class Synergies
         AddCardsWithSynergy(synergy, AbstractDungeon.srcRareCardPool.group, result);
 
         return result;
+    }
+
+    public static void AddAnimatorCards(ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
+    {
+        for (AbstractCard c : source)
+        {
+            AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+            if (card != null)
+            {
+                destination.add(card);
+            }
+        }
     }
 
     public static void AddCardsWithSynergy(Synergy synergy, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)

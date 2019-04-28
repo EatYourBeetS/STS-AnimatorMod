@@ -41,6 +41,8 @@ public class KrulTepes extends CustomMonster
     {
         super(NAME, ID, GetMaxHealth(), 0.0F, 0.0F, 200.0F, 280.0F, AnimatorResources.GetMonsterImage(ID));
 
+        this.type = EnemyType.BOSS;
+
         int level = AbstractDungeon.ascensionLevel;
 
         moveset.add(new Move_Regenerate(0, level, this));

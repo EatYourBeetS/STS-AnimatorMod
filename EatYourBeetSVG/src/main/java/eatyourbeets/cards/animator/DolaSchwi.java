@@ -16,7 +16,7 @@ import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class DolaSchwi extends AnimatorCard_Cooldown
+public class DolaSchwi extends AnimatorCard_Cooldown implements Guren.SupportDamageConvertible
 {
     public static final String ID = CreateFullID(DolaSchwi.class.getSimpleName());
 
@@ -24,7 +24,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(20,0,2);
+        Initialize(20,0,1);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -73,5 +73,11 @@ public class DolaSchwi extends AnimatorCard_Cooldown
         GameActionsHelper.AddToBottom(new VFXAction(p, new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.1F));
 
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
+    }
+
+    @Override
+    public boolean CanConvertToSupportDamage()
+    {
+        return secondaryValue == 0;
     }
 }

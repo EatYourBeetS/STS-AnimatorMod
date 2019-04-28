@@ -340,6 +340,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         }
     }
 
+    public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
+    {
+        return Utilities.GetRandomElement(GetCurrentEnemies(aliveOnly));
+    }
+
     public static ArrayList<AbstractMonster> GetCurrentEnemies(boolean aliveOnly)
     {
         ArrayList<AbstractMonster> monsters = new ArrayList<>();

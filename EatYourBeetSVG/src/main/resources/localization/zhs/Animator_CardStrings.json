@@ -119,13 +119,12 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 给予目标 1 层 眩晕 [#EFC851]*[] 。 抹除 。 !M! 回合后 ， 回到你的抽牌堆中 。",
-		"EXTENDED_DESCRIPTION": ["* 注", "该效果不叠加 。"],
+		"DESCRIPTION": "获得 !B! 点 格挡 。 下一轮 ， 造成 !D! 点 伤害 和 给予目标 !M! 个随机的 [#EFC851]负面效果[] 。",
 		"NAME": "嘉依卡·托勒庞特"
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "对每个敌人造成 !M! 到 !D! 点 伤害 。 同调 : 给予所有敌人 !M! 层 易伤 。",
+		"DESCRIPTION": "当你交替打出不同类型的牌时 ， 循环 1 张牌 并 对所有敌人造成 !M! 点 伤害 。",
 		"NAME": "克拉米·杰尔"
 	},
 	"animator_Chris":
@@ -253,7 +252,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "给予 !M! 层 跟踪锁定 并 生成 !M! 个闪电 充能球 。 NL 预热 !SV! : 造成 !D! 点 伤害 。",
+		"DESCRIPTION": "给予 !M! 层 跟踪锁定 并 生成 1 个闪电 充能球 。 NL 预热 !SV! : 造成 !D! 点 伤害 。",
 		"NAME": "休比"
 	},
 	"animator_DolaStephanie":
@@ -470,7 +469,7 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 每抽一张牌造成 !D! 减去抽到的牌的消耗的伤害 。",
+		"DESCRIPTION": "抽 !M! 张牌 。 每抽一张牌造成 !D! 点 伤害 。 同调 : 再抽一张卡片 。",
 		"NAME": "伊丹耀司"
 	},
 	"animator_IzunaHatsuse":
@@ -573,7 +572,7 @@
 	},
 	"animator_Mikaela":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害。 给予 !M! 层 中毒 。 鼓舞 !SV! : 从你的弃牌堆中选择并 消耗 一张牌 。",
+		"DESCRIPTION": "造成 !D! 点 伤害。 给予 !M! 层 中毒 。 你可以 从你的弃牌堆中选择并 消耗 一张牌 。",
 		"NAME": "米迦尔"
 	},
 	"animator_Millim":
@@ -667,7 +666,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "鼓舞 !SV! : 获得 !M! 层 [#EFC851]再生[] 。 NL 同调 : 获得 !B! 点 临时生命 [#EFC851]*[] 。",
+		"DESCRIPTION": "获得 !B! 点 临时生命 [#EFC851]*[] 。 同调 : 最多 !SV! 次 ， 获得 !M! 层 [#EFC851]再生[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "受格挡修饰词影响 。"],
 		"NAME": "女神官"
 	},
@@ -700,7 +699,7 @@
 	},
 	"animator_RoryMercury":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 你的攻击本轮会造成 !M! % 更多伤害 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 [#EFC851]被抽到时[] ， 同调 : 对一个随机的敌人造成 !M! 点 伤害  。",
 		"NAME": "萝莉·麦丘利"
 	},
 	"animator_RoyMustang":
@@ -770,7 +769,7 @@
 	},
 	"animator_Shuna":
 	{
-		"DESCRIPTION": "[#EFC851]被抽到时[] : 获得 !B! 点 格挡 。 NL 抽 2 张牌 。 NL 同调 : 本场战斗中 ， 该牌额外获得 !M! 点 格挡 。",
+		"DESCRIPTION": "[#EFC851]被抽到时[] : 获得 !B! 点 格挡 。 NL 抽 2 张牌 。 NL 同调 : 获得 !M! 点 临时生命 。",
 		"NAME": "朱菜"
 	},
 	"animator_Sloth":
@@ -935,9 +934,9 @@
 	},
 	"animator_YukoShionji":
 	{
-		"DESCRIPTION": "显示您的绘图堆的顶部卡片 。 每回合一次 ， 您可以绘制和/或丢弃它 [#EFC851]*[] 。",
-		"EXTENDED_DESCRIPTION": ["* 注意", "您可以左键单击卡片进行绘制，也可以右键单击它以丢弃它。"],
-		"NAME": "Yuuko Shionji"
+		"DESCRIPTION": "查看抽牌堆顶端的卡牌 。每回合一次 ， 你可以将其纳入手牌或是丢弃 [#EFC851]*[] 。",
+		"EXTENDED_DESCRIPTION": ["* 注意", "您可以左键单击以纳入手牌，也可以右键单击以丢弃它。"],
+		"NAME": "紫苑寺有子"
 	},
 	"animator_YunYun":
 	{

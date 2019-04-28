@@ -16,10 +16,17 @@ public class ExhaustFromPileAction extends AbstractGameAction
     public static final String[] TEXT;
     private AbstractPlayer p;
     private boolean random;
+    private boolean canCancel;
     private final CardGroup sourceGroup;
 
     public ExhaustFromPileAction(int amount, boolean random, CardGroup sourceGroup)
     {
+        this(amount, random, sourceGroup, false);
+    }
+
+    public ExhaustFromPileAction(int amount, boolean random, CardGroup sourceGroup, boolean canCancel)
+    {
+        this.canCancel = canCancel;
         this.sourceGroup = sourceGroup;
         this.random = random;
         this.p = AbstractDungeon.player;
@@ -67,11 +74,11 @@ public class ExhaustFromPileAction extends AbstractGameAction
                 }
                 else if (this.amount == 1)
                 {
-                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, TEXT[0], false);
+                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, TEXT[0], false, false, canCancel, false);
                 }
                 else
                 {
-                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, TEXT[1], false);
+                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, TEXT[1], false, false, canCancel, false);
                 }
 
                 this.tickDuration();

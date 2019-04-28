@@ -1,17 +1,18 @@
 package eatyourbeets.cards.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.misc.WeightedList;
+import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
 
@@ -19,34 +20,27 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 {
     public static final String ID = CreateFullID(ChaikaTrabant.class.getSimpleName());
 
-    private int timer;
+    private AbstractMonster target;
 
     public ChaikaTrabant()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(7,0, 4);
+        Initialize(13,5, 2);
 
-        AddExtendedDescription();
-
-        this.purgeOnUse = true;
         SetSynergy(Synergies.Chaika);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        GameActionsHelper.GainBlock(p, this.block);
 
-        if (m.intent != AbstractMonster.Intent.STUN && !m.hasPower(StunMonsterPower.POWER_ID))
-        {
-            GameActionsHelper.AddToBottom(new StunMonsterAction(m, p));
-        }
+        ChaikaTrabant other = (ChaikaTrabant)makeStatEquivalentCopy();
 
-        timer = baseMagicNumber;
-        this.purgeOnUse = true;
+        other.target = m;
 
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(other);
     }
 
     @Override
@@ -54,24 +48,47 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         if (TryUpgrade())
         {
-            upgradeDamage(7);
+            upgradeBlock(2);
+            upgradeDamage(1);
+            upgradeMagicNumber(1);
         }
+    }
+
+    private static WeightedList<AbstractPower> GetRandomDebuffs(AbstractPlayer p, AbstractMonster m, boolean upgraded)
+    {
+        WeightedList<AbstractPower> result = new WeightedList<>();
+        result.Add(new WeakPower(m, upgraded ? 2 : 1, false), 4);
+        result.Add(new VulnerablePower(m, upgraded ? 2 : 1, false), 4);
+        result.Add(new PoisonPower(m, p, upgraded ? 4 : 3), 3);
+        result.Add(new ConstrictedPower(m, p, upgraded ? 3 : 2), 3);
+        result.Add(new BurningPower(m, p, upgraded ? 4 : 3), 2);
+        result.Add(new StrengthPower(m, upgraded ? -2 : -1), 2);
+        result.Add(new StunMonsterPower(m, 1), 1);
+
+        return result;
     }
 
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-        if (timer == 0)
+        if (target == null || target.isDeadOrEscaped())
         {
-            timer = baseMagicNumber;
-
-            GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(this, 1, true, true));
-            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+            target = Utilities.GetRandomElement(PlayerStatistics.GetCurrentEnemies(true));
         }
-        else
+
+        AbstractPlayer p = AbstractDungeon.player;
+        AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this.makeStatEquivalentCopy()));
+        PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+
+        this.applyPowers();
+
+        GameActionsHelper.DamageTargetPiercing(p, target, this, AbstractGameAction.AttackEffect.FIRE).bypassBlock = false;
+
+        WeightedList<AbstractPower> debuffs = GetRandomDebuffs(p, target, false);
+        for (int i = 0; i < magicNumber; i++)
         {
-            timer -= 1;
+            AbstractPower debuff = debuffs.Retrieve(AbstractDungeon.miscRng);
+            GameActionsHelper.ApplyPower(p, target, debuff, debuff.amount);
         }
     }
 }

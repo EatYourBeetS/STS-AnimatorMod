@@ -12,5 +12,29 @@
 	  "[鎖定] 沒有牌可以賣",
 	  "[鎖定] 沒有足夠的金幣"
     ]
+  },
+  "Animator_TheDomVedeloper1": {
+    "NAME": "The Dom Vedeloper",
+    "DESCRIPTIONS": [
+      "You hear someone shouting in the distance: NL NL \" Rinne should behave more @erratically@ \" NL \" #yGilgamesh probably deserves a buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL You are slightly intrigued by those strange words... NL Do you decide to approach him?",
+	  "\"Oh hello, hello! Those are some #pinteresting cards, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your cards, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
+	  "\"Wonderful! Wonderful! Here, tell me, what do you think of this card?\"",
+	  "\"Nice, how about this one?\"",
+	  "\"Interesting, and this one?\"",
+	  "\"I see... Lastly, what's your opinion on this one?\"",
+	  "\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you accept, your answers will be sent to the developer)",
+	  "\"Perfect, have a nice day!\" NL NL \"... So... the next series could be...\""
+    ],
+    "OPTIONS": [
+	  "[Leave]",
+      "[Accept] Answer 4 questions. #gGain #g100 #gGold.",
+	  "[1] It is definitely too strong...",
+      "[2] It is a very strong card!",
+	  "[3] It is a good card in most situations.",
+	  "[4] It has its uses sometimes.",
+	  "[5] What? Never show me that thing again.",
+	  "[Sign the paper]",
+	  "[Continue]"
+    ]
   }
 }

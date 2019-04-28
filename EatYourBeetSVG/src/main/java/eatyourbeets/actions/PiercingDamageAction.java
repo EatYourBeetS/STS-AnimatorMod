@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 public class PiercingDamageAction extends AbstractGameAction
 {
+    public boolean bypassBlock = true;
+
     private final DamageInfo info;
     private int goldAmount;
     private static final float DURATION = 0.1F;
@@ -118,12 +120,20 @@ public class PiercingDamageAction extends AbstractGameAction
                 addIgnoredPower(CurlUpPower.POWER_ID);
                 addIgnoredPower("infinitespire:TempThorns");
 
-                this.target.currentBlock = 0;
+                if (bypassBlock)
+                {
+                    this.target.currentBlock = 0;
+                }
+
                 this.target.damage(this.info);
 
                 if (this.target.currentHealth > 0)
                 {
-                    this.target.currentBlock = block;
+                    if (bypassBlock)
+                    {
+                        this.target.currentBlock = block;
+                    }
+
                     reapplyIgnoredPowers();
                 }
 

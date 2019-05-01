@@ -6,9 +6,17 @@ public class HeavyHalberd extends AnimatorRelic
 {
     public static final String ID = CreateFullID(HeavyHalberd.class.getSimpleName());
 
+    private static final int DAMAGE_MULTIPLIER = 15;
+
     public HeavyHalberd()
     {
         super(ID, RelicTier.UNCOMMON, LandingSound.HEAVY);
+    }
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return DESCRIPTIONS[0] + DAMAGE_MULTIPLIER + DESCRIPTIONS[1];
     }
 
     @Override
@@ -16,7 +24,7 @@ public class HeavyHalberd extends AnimatorRelic
     {
         super.atTurnStartPostDraw();
 
-        PlayerStatistics.AddTurnDamageMultiplier(15);
+        PlayerStatistics.AddTurnDamageMultiplier(DAMAGE_MULTIPLIER);
         this.flash();
     }
 }

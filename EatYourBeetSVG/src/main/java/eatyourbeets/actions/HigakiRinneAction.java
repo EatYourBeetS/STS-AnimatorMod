@@ -41,7 +41,7 @@ public class HigakiRinneAction extends AnimatorAction
         this.actionType = ActionType.SPECIAL;
     }
 
-    private boolean lucky(int chances)
+    private boolean tryActivate(int chances)
     {
         roll -= chances;
 
@@ -53,61 +53,61 @@ public class HigakiRinneAction extends AnimatorAction
         roll = AbstractDungeon.miscRng.random(185);
         
         AbstractPlayer p = AbstractDungeon.player;
-        if (lucky(6)) // 6
+        if (tryActivate(6)) // 6
         {
             for (int i = 0; i < 3; i++)
             {
                 GameActionsHelper.GainBlock(p, 2);
             }
         }
-        else if (lucky(6)) // 12
+        else if (tryActivate(6)) // 12
         {
             for (int i = 0; i < 3; i++)
             {
                 GameActionsHelper.AddToBottom(new DamageRandomEnemyAction(new DamageInfo(p, 3, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
             }
         }
-        else if (lucky(6)) // 18
+        else if (tryActivate(6)) // 18
         {
             GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
         }
-        else if (lucky(6)) // 24
+        else if (tryActivate(6)) // 24
         {
             GameActionsHelper.DrawCard(p, 1);
         }
-        else if (lucky(8)) // 32
+        else if (tryActivate(8)) // 32
         {
             GameActionsHelper.AddToBottom(new UpgradeRandomCardAction());
         }
-        else if (lucky(8)) // 40
+        else if (tryActivate(8)) // 40
         {
             GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
         }
-        else if (lucky(6)) // 46
+        else if (tryActivate(6)) // 46
         {
             GameActionsHelper.AddToBottom(new ApplyPoisonOnRandomMonsterAction(p, 5, false, AbstractGameAction.AttackEffect.POISON));
         }
-        else if (lucky(6)) // 52
+        else if (tryActivate(6)) // 52
         {
             GameActionsHelper.GainEnergy(1);
         }
-        else if (lucky(6)) // 58
+        else if (tryActivate(6)) // 58
         {
             GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, 1), 1);
         }
-        else if (lucky(6)) // 64
+        else if (tryActivate(6)) // 64
         {
             GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
         }
-        else if (lucky(4)) // 68
+        else if (tryActivate(4)) // 68
         {
             GameActionsHelper.ApplyPower(p, p, new IntangiblePlayerPower(p, 1), 1);
         }
-        else if (lucky(6)) // 74
+        else if (tryActivate(6)) // 74
         {
             GameActionsHelper.AddToBottom(new ApplyPowerAction(p, p, new ArtifactPower(p, 1), 1));
         }
-        else if (lucky(8)) // 82
+        else if (tryActivate(8)) // 82
         {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
             if (m != null)
@@ -115,7 +115,7 @@ public class HigakiRinneAction extends AnimatorAction
                 GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, 2, false), 2));
             }
         }
-        else if (lucky(8)) // 90
+        else if (tryActivate(8)) // 90
         {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
             if (m != null)
@@ -123,19 +123,19 @@ public class HigakiRinneAction extends AnimatorAction
                 GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new WeakPower(m, 2, false), 2));
             }
         }
-        else if (lucky(8)) // 98
+        else if (tryActivate(8)) // 98
         {
             GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new Shiv()));
         }
-        else if (lucky(4)) // 102
+        else if (tryActivate(4)) // 102
         {
             GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new Madness()));
         }
-        else if (lucky(6)) // 108
+        else if (tryActivate(6)) // 108
         {
             GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new Slimed()));
         }
-        else if (lucky(3)) // 111
+        else if (tryActivate(3)) // 111
         {
             AbstractCard card = CardLibrary.getRandomColorSpecificCard(higakiRinne.color, AbstractDungeon.miscRng);
             if (!card.tags.contains(AbstractCard.CardTags.HEALING))
@@ -143,15 +143,15 @@ public class HigakiRinneAction extends AnimatorAction
                 GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(card));
             }
         }
-        else if (lucky(7)) // 118
+        else if (tryActivate(7)) // 118
         {
             GameActionsHelper.AddToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
         }
-        else if (lucky(6)) // 124
+        else if (tryActivate(6)) // 124
         {
             GameActionsHelper.AddToBottom(new TalkAction(true, "???", 1.0F, 2.0F));
         }
-        else if (lucky(2)) // 126
+        else if (tryActivate(2)) // 126
         {
             ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
             String key = Utilities.GetRandomElement(keys);
@@ -161,41 +161,41 @@ public class HigakiRinneAction extends AnimatorAction
                 GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(card));
             }
         }
-        else if (lucky(6)) // 132
+        else if (tryActivate(6)) // 132
         {
             for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
             {
                 GameActionsHelper.GainBlock(m, 4);
             }
         }
-        else if (lucky(6)) // 138
+        else if (tryActivate(6)) // 138
         {
             for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
             {
                 GameActionsHelper.AddToBottom(new HealAction(m, m, 3));
             }
         }
-        else if (lucky(6)) // 144
+        else if (tryActivate(6)) // 144
         {
             for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
             {
                 GameActionsHelper.DamageTarget(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.POISON);
             }
         }
-        else if (lucky(6)) // 150
+        else if (tryActivate(6)) // 150
         {
             GameActionsHelper.GainBlock(p, 1);
         }
-        else if (lucky(6)) // 156
+        else if (tryActivate(6)) // 156
         {
             GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
             GameActionsHelper.ChannelOrb(new Lightning(), true);
         }
-        else if (lucky(4)) // 160
+        else if (tryActivate(4)) // 160
         {
             GameActionsHelper.GainTemporaryHP(p, p, 5);
         }
-        else if (lucky(3)) // 163
+        else if (tryActivate(3)) // 163
         {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
             if (m != null)
@@ -203,7 +203,7 @@ public class HigakiRinneAction extends AnimatorAction
                 GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new ConstrictedPower(m, p, 3), 3));
             }
         }
-        else if (lucky(3)) // 166
+        else if (tryActivate(3)) // 166
         {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
             if (m != null)
@@ -211,11 +211,11 @@ public class HigakiRinneAction extends AnimatorAction
                 GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new BurningPower(m, p, 2), 2));
             }
         }
-        else if (lucky(3)) // 169
+        else if (tryActivate(3)) // 169
         {
             GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, 1), 1);
         }
-        else if (lucky(3)) // 172
+        else if (tryActivate(3)) // 172
         {
             if (p.hand.size() > 0)
             {
@@ -227,7 +227,7 @@ public class HigakiRinneAction extends AnimatorAction
                 }
             }
         }
-        else if (lucky(3)) // 175
+        else if (tryActivate(3)) // 175
         {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
             if (m != null)
@@ -235,17 +235,17 @@ public class HigakiRinneAction extends AnimatorAction
                 GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new MarkOfPoisonPower(m, p, 2), 2));
             }
         }
-        else if (lucky(3)) // 178
+        else if (tryActivate(3)) // 178
         {
             GameActionsHelper.DrawCard(p, 3);
         }
-        else if (lucky(2)) // 180
+        else if (tryActivate(2)) // 180
         {
             GameActionsHelper.AddToBottom(new HigakiRinneAction(higakiRinne));
             GameActionsHelper.AddToBottom(new HigakiRinneAction(higakiRinne));
             GameActionsHelper.AddToBottom(new HigakiRinneAction(higakiRinne));
         }
-        else if (lucky(5)) // 185
+        else if (tryActivate(5)) // 185
         {
             AbstractDungeon.effectsQueue.add(new ShuffleEnemiesEffect());
         }

@@ -2,31 +2,33 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-import java.util.ArrayList;
-
 public class Saitama extends AnimatorCard
 {
     public static final String ID = CreateFullID(Saitama.class.getSimpleName());
+
+    private static final int DAMAGE_STEP = 10;
 
     public Saitama()
     {
         super(ID, 2, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(50, 0);
+        Initialize(20, 0);
 
         this.isInnate = true;
         this.retain = true;
+
+        AddExtendedDescription();
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -48,22 +50,28 @@ public class Saitama extends AnimatorCard
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        boolean playable = super.cardPlayable(m);
-        if (playable)
+        float bonusDamage = 0;
+        int energy = EnergyPanel.getCurrentEnergy();
+
+        for (int i = 0; i < energy - 2; i++)
         {
-            ArrayList<AbstractCard> cards = AbstractDungeon.player.hand.group;
-            for (AbstractCard c : cards)
-            {
-                if (!(c instanceof Saitama) && c.costForTurn < 2)
-                {
-                    return false;
-                }
-            }
+            bonusDamage += DAMAGE_STEP * (i + 1);
         }
 
-        return playable;
+        if (upgraded)
+        {
+            bonusDamage += (Math.floorDiv(energy, 3) + 1) * 10;
+        }
+
+        tmp += bonusDamage;
+        if (tmp > 99999)
+        {
+            tmp = 99999;
+        }
+
+        return super.calculateModifiedCardDamage(player, mo, tmp);
     }
 
     @Override
@@ -71,24 +79,15 @@ public class Saitama extends AnimatorCard
     {
         GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
 
-        if (upgraded)
-        {
-            GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
-        }
-        else
-        {
-            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
-        }
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
 
         GameActionsHelper.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
+        GameActionsHelper.AddToBottom(new LoseEnergyAction(EnergyPanel.getCurrentEnergy()));
     }
 
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeDamage(10);
-        }
+        TryUpgrade();
     }
 }

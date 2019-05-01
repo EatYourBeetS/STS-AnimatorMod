@@ -46,26 +46,10 @@ public class EarthOrbEvokeAction extends AnimatorAction
                 step = orbDamage - damageDealt;
             }
 
-            ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
-            AbstractMonster m = Utilities.GetRandomElement(enemies);
-            if (m != null && step > 0)
+            if (step > 0)
             {
-                int actualDamage = AbstractOrb.applyLockOn(m, step);
+                GameActionsHelper.AddToTop(new EarthDamageAction(step));
 
-                //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", AbstractDungeon.miscRng.random(0.1f, 0.3f));
-                //CardCrawlGame.sound.play("ATTACK_HEAVY", AbstractDungeon.miscRng.random(0.1f, 0.3f));
-
-                AttackEffect effect;
-                switch (AbstractDungeon.miscRng.random(2))
-                {
-                    case 0: effect = AttackEffect.SMASH; break;
-                    case 1: effect = AttackEffect.BLUNT_LIGHT; break;
-//                    case 2: effect = AttackEffect.BLUNT_HEAVY; break;
-//                    case 3: effect = AttackEffect.SLASH_VERTICAL; break;
-                    default: effect = AttackEffect.NONE; break;
-                }
-
-                GameActionsHelper.AddToTop(new DamageAction(m, new DamageInfo(p, actualDamage, DamageInfo.DamageType.THORNS), effect, true));
                 damageDealt += step;
             }
             else
@@ -75,6 +59,51 @@ public class EarthOrbEvokeAction extends AnimatorAction
         }
         else
         {
+            this.isDone = true;
+        }
+    }
+
+
+    private class EarthDamageAction extends AnimatorAction
+    {
+        private int baseDamage;
+
+        private EarthDamageAction(int baseDamage)
+        {
+            this.baseDamage = baseDamage;
+        }
+
+        @Override
+        public void update()
+        {
+            ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
+            AbstractMonster m = Utilities.GetRandomElement(enemies);
+            if (m != null && baseDamage > 0)
+            {
+                int actualDamage = AbstractOrb.applyLockOn(m, baseDamage);
+
+                //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", AbstractDungeon.miscRng.random(0.1f, 0.3f));
+                //CardCrawlGame.sound.play("ATTACK_HEAVY", AbstractDungeon.miscRng.random(0.1f, 0.3f));
+
+                AttackEffect effect;
+                switch (AbstractDungeon.miscRng.random(2))
+                {
+                    case 0:
+                        effect = AttackEffect.SMASH;
+                        break;
+                    case 1:
+                        effect = AttackEffect.BLUNT_LIGHT;
+                        break;
+//                    case 2: effect = AttackEffect.BLUNT_HEAVY; break;
+//                    case 3: effect = AttackEffect.SLASH_VERTICAL; break;
+                    default:
+                        effect = AttackEffect.NONE;
+                        break;
+                }
+
+                GameActionsHelper.AddToTop(new DamageAction(m, new DamageInfo(p, actualDamage, DamageInfo.DamageType.THORNS), effect, true));
+            }
+
             this.isDone = true;
         }
     }

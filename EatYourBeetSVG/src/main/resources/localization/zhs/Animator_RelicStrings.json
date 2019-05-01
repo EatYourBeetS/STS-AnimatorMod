@@ -1,180 +1,117 @@
 
 {
-	"Animator_LivingPicture":
-	{
-		"NAME": "活着的油画",
-		"FLAVOR": "他...他在看着.",
-		"DESCRIPTIONS":
-		[
-			"每回合一次每当协 #y同生 效时抽1张牌."
-		]
-	},
-	"Animator_VividPicture":
-	{
-		"NAME": "生動著的畫作",
-		"FLAVOR": "他...他在看着.",
-		"DESCRIPTIONS":
-		[
-			"每回合一次每当协 #y同生 效时抽1张牌 获得 [E]"
-		]
-	},
-	"Animator_TheMissingPiece":
-	{
-		"NAME": "缺失部分",
-		"FLAVOR": "这啥玩意?",
-		"DESCRIPTIONS":
-		[
-			"每",
-			"场战斗,获得一次同系列卡牌的奖励机会。 你当前牌组中数量最多的系列出现几率会提高。"
-		]
-	},
-	"Animator_PurgingStone":
-	{
-		"NAME": "解咒石",
-		"FLAVOR": "人类无法对抗诅咒，但可以利用它.",
-		"DESCRIPTIONS":
-		[
-			"你可以 放逐 掉某些牌系列使它们不再出现. 击败boss后获得额外使用次数.", "去除:"
-		]
-	},
-	"Animator_CerealBox":
-	{
-		"NAME": "谷物箱",
-		"FLAVOR": "保证后备补给! 由 冻空粉雪 提供.",
-		"DESCRIPTIONS":
-		[
-			"右键使用，治疗 #b", " 点血量. NL 初始获得 #b", " 次使用次数, 每次进入商店时获得 #b", " 次使用次数 . NL 最多存储 #b", " 次使用次数."
-		]
-	},
-	"Animator_WizardHat":
-	{
-		"NAME": "巫师帽",
-		"FLAVOR": "爆裂魔法天下第一！ .......当然，需要时间准备.",
-		"DESCRIPTIONS":
-		[
-			"在同一场战斗中触发 #b", " 次 #y同调 时, 对所有敌人造成 #b", " 点伤害."
-		]
-	},
 	"Animator_AlchemistGlove":
 	{
-		"NAME": "alchemist glove",
+		"DESCRIPTIONS": ["每 #b", " 回合, 给予所有敌人 #b", " 层 #y燃烧."],
 		"FLAVOR": "使你可以通过一根手指控制火焰.",
-		"DESCRIPTIONS":
-		[
-			"每 #b", " 回合, 给予所有敌人 #b", " 层 #y燃烧."
-		]
-	},
-	"Animator_HallowedScabbard":
-	{
-		"NAME": "阿瓦隆",
-		"FLAVOR": "剑鞘的持有者被授予强力恢复能力,能够迅速恢复致命伤.",
-		"DESCRIPTIONS":
-		[
-			"每场战斗可触发一次, 当你再一次受伤中损失超过15点血量时, 获得 #b5 层 #y再生 和 #b2 点 #y力量."
-		]
-	},
-	"Animator_RacePiece":
-	{
-		"NAME": "race piece",
-		"FLAVOR": "你看到 Mr. Mind Reader 从那边来了没? 将死！",
-		"DESCRIPTIONS":
-		[
-			"选择一张牌, 将你的牌库中的三张牌转换为与选中牌同系列的三张随机牌."
-		]
-	},
-	"Animator_WornHelmet":
-	{
-		"NAME": "破碎的头盔",
-		"FLAVOR": "哥布林.",
-		"DESCRIPTIONS":
-		[
-			"每当你抽到诅咒牌或状态牌时, 对一个随机敌人造成 #b3 点伤害."
-		]
-	},
-	"Animator_HeavyHalberd":
-	{
-		"NAME": "重戟",
-		"FLAVOR": "统治死亡即统治生命，死即生之巅峰,崇敬生命吧.",
-		"DESCRIPTIONS":
-		[
-			"你的 #y攻击牌 造成 #b15% 点额外伤害."
-		]
-	},
-	"Animator_OldCoffin":
-	{
-		"NAME": "旧棺材",
-		"FLAVOR": "震惊的真相！",
-		"DESCRIPTIONS":
-		[
-			"四回合后开始启用，当你的回合开始时， 给予一个随机敌人一层随机的 #y负面效果."
-		]
-	},
-	"Animator_CursedBlade":
-	{
-		"NAME": "诅咒之刃",
-		"FLAVOR": "它从持有者的血液中汲取力量,对一个吸血鬼来说再适合不过了.",
-		"DESCRIPTIONS":
-		[
-			"每当一次攻击 并造成伤害时, 恢复 #b2 点 生命 . 失去 #b50％ 的生命上限.",
-			"每当一次攻击 并造成伤害时, 恢复 #b2 点 生命 . 在你生命值为满时，每回合结束时获得 #b3 点 临时生命 . 失去 #b50％ 的生命上限."
-		]
+		"NAME": "alchemist glove"
 	},
 	"Animator_BattleDrones":
 	{
-		"NAME": "战斗无人机",
+		"DESCRIPTIONS": ["每当你触发一次同调时, 对一个随机敌人造成 #b", " 点伤害并获得 #b", " 点格挡."],
 		"FLAVOR": "完美的工程学造物.",
-		"DESCRIPTIONS":
-		[
-			"每当你触发一次同调时, 对一个随机敌人造成 #b", " 点伤害并获得 #b", " 点格挡."
-		]
-	},
-	"Animator_ShionDessert":
-	{
-		"NAME": "紫苑的甜品",
-		"FLAVOR": "来，尝尝吧，味道不会太差......吧?",
-		"DESCRIPTIONS":
-		[
-			"每 #b ", " 次攻击给予随机敌人 #b", "层 #y中毒 效果."
-		]
-	},
-	"Animator_EngravedStaff":
-	{
-		"NAME": "雕塑",
-		"FLAVOR": "公会最宝贵的财产之一.",
-		"DESCRIPTIONS":
-		[
-			"在你的回合结束时， 保留手牌中消耗最高的牌， 直到被打出之前消耗减 #b1 ."
-		]
-	},
-	"Animator_Rinne":
-	{
-		"NAME": "???",
-		"FLAVOR": "???",
-		"DESCRIPTIONS":
-		[
-			"YmVoYXZlcw== ZXJyYXRpY2FsbHk=, ZG9uJ3Q= dGFsaw== dG8= bWU= b3I= bXk= c29u ZXZlcg== YWdhaW4=, NzQ="
-		]
-	},
-	"Animator_ExquisiteBloodVial":
-	{
-		"NAME": "精致的血瓶",
-		"FLAVOR": "一个装着远古纯种吸血鬼血液的瓶子.",
-		"DESCRIPTIONS":
-		[
-			"每场战斗开始时, 治愈 #b",
-			" 点生命. NL NL #y[Special #yRelic] NL #p在篝火处右击时 ， 将开启一场特殊且 #y困难 的战斗 ， 胜利后可以解锁该遗物的真正力量.",
-			"每场战斗开始时, 获得 #b",
-			" 层 #y再生 和 #b",
-			" 点生命上限. NL NL 失去所有 #y小血瓶 , 每当你获得一个 #y小血瓶 时, 只提升该遗物的效果."
-		]
+		"NAME": "战斗无人机"
 	},
 	"Animator_Buoy":
 	{
-		"NAME": "泳圈",
+		"DESCRIPTIONS": ["Once per turn, when you draw a total of 3 or more cards, gain #b", " #yBlock and #b", " #yDexterity until end of turn."],
 		"FLAVOR": "我的速度天下第一, 迅疾如风!",
-		"DESCRIPTIONS":
-		[
-			"每 #b", " 回合, 获得 #b", " 点 格挡 并给予所有敌人 #b", " 点 格挡 ."
-		]
+		"NAME": "泳圈"
+	},
+	"Animator_CerealBox":
+	{
+		"DESCRIPTIONS": ["右键使用，治疗 #b", " 点血量. NL 初始获得 #b", " 次使用次数, 每次进入商店时获得 #b", " 次使用次数 . NL 最多存储 #b", " 次使用次数."],
+		"FLAVOR": "保证后备补给! 由 冻空粉雪 提供.",
+		"NAME": "谷物箱"
+	},
+	"Animator_CursedBlade":
+	{
+		"DESCRIPTIONS": ["每当一次攻击 并造成伤害时, 恢复 #b2 点 生命 . 失去 #b50％ 的生命上限.", "每当一次攻击 并造成伤害时, 恢复 #b2 点 生命 . 在你生命值为满时，每回合结束时获得 #b3 点 临时生命 . 失去 #b50％ 的生命上限."],
+		"FLAVOR": "它从持有者的血液中汲取力量,对一个吸血鬼来说再适合不过了.",
+		"NAME": "诅咒之刃"
+	},
+	"Animator_EngravedStaff":
+	{
+		"DESCRIPTIONS": ["在你的回合结束时， 保留手牌中消耗最高的牌， 直到被打出之前消耗减 #b1 ."],
+		"FLAVOR": "公会最宝贵的财产之一.",
+		"NAME": "雕塑"
+	},
+	"Animator_ExquisiteBloodVial":
+	{
+		"DESCRIPTIONS": ["每场战斗开始时, 治愈 #b", " 点生命. NL NL #y[Special #yRelic] NL #p在篝火处右击时 ， 将开启一场特殊且 #y困难 的战斗 ， 胜利后可以解锁该遗物的真正力量.", "每场战斗开始时, 获得 #b", " 层 #y再生 和 #b", " 点生命上限. NL NL 失去所有 #y小血瓶 , 每当你获得一个 #y小血瓶 时, 只提升该遗物的效果."],
+		"FLAVOR": "一个装着远古纯种吸血鬼血液的瓶子.",
+		"NAME": "精致的血瓶"
+	},
+	"Animator_HallowedScabbard":
+	{
+		"DESCRIPTIONS": ["每场战斗可触发一次, 当你再一次受伤中损失超过15点血量时, 获得 #b5 层 #y再生 和 #b2 点 #y力量."],
+		"FLAVOR": "剑鞘的持有者被授予强力恢复能力,能够迅速恢复致命伤.",
+		"NAME": "阿瓦隆"
+	},
+	"Animator_HeavyHalberd":
+	{
+		"DESCRIPTIONS": ["你的 #y攻击牌 造成 #b", "% 点额外伤害."],
+		"FLAVOR": "统治死亡即统治生命，死即生之巅峰,崇敬生命吧.",
+		"NAME": "重戟"
+	},
+	"Animator_LivingPicture":
+	{
+		"DESCRIPTIONS": ["每回合一次每当协 #y同生 效时抽1张牌."],
+		"FLAVOR": "他...他在看着.",
+		"NAME": "活着的油画"
+	},
+	"Animator_OldCoffin":
+	{
+		"DESCRIPTIONS": ["四回合后开始启用，当你的回合开始时， 给予一个随机敌人一层随机的 #y负面效果."],
+		"FLAVOR": "震惊的真相！",
+		"NAME": "旧棺材"
+	},
+	"Animator_PurgingStone":
+	{
+		"DESCRIPTIONS": ["你可以 放逐 掉某些牌系列使它们不再出现. 击败boss后获得额外使用次数.", "去除:"],
+		"FLAVOR": "人类无法对抗诅咒，但可以利用它.",
+		"NAME": "解咒石"
+	},
+	"Animator_RacePiece":
+	{
+		"DESCRIPTIONS": ["选择一张牌, 将你的牌库中的三张牌转换为与选中牌同系列的三张随机牌."],
+		"FLAVOR": "你看到 Mr. Mind Reader 从那边来了没? 将死！",
+		"NAME": "race piece"
+	},
+	"Animator_Rinne":
+	{
+		"DESCRIPTIONS": ["YmVoYXZlcw== ZXJyYXRpY2FsbHk=, ZG9uJ3Q= dGFsaw== dG8= bWU= b3I= bXk= c29u ZXZlcg== YWdhaW4=, NzQ="],
+		"FLAVOR": "???",
+		"NAME": "???"
+	},
+	"Animator_ShionDessert":
+	{
+		"DESCRIPTIONS": ["每 #b ", " 次攻击给予随机敌人 #b", "层 #y中毒 效果."],
+		"FLAVOR": "来，尝尝吧，味道不会太差......吧?",
+		"NAME": "紫苑的甜品"
+	},
+	"Animator_TheMissingPiece":
+	{
+		"DESCRIPTIONS": ["每", "场战斗,获得一次同系列卡牌的奖励机会。 你当前牌组中数量最多的系列出现几率会提高。"],
+		"FLAVOR": "这啥玩意?",
+		"NAME": "缺失部分"
+	},
+	"Animator_VividPicture":
+	{
+		"DESCRIPTIONS": ["每回合一次每当协 #y同生 效时抽1张牌 获得 [E]"],
+		"FLAVOR": "他...他在看着.",
+		"NAME": "生動著的畫作"
+	},
+	"Animator_WizardHat":
+	{
+		"DESCRIPTIONS": ["在同一场战斗中触发 #b", " 次 #y同调 时, 对所有敌人造成 #b", " 点伤害."],
+		"FLAVOR": "爆裂魔法天下第一！ .......当然，需要时间准备.",
+		"NAME": "巫师帽"
+	},
+	"Animator_WornHelmet":
+	{
+		"DESCRIPTIONS": ["每当你抽到诅咒牌或状态牌时, 对一个随机敌人造成 #b", " 点伤害."],
+		"FLAVOR": "哥布林.",
+		"NAME": "破碎的头盔"
 	}
 }

@@ -13,9 +13,9 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage !M! times. Synergy: Add !SV! Shiv to your hand.",
+		"DESCRIPTION": "Deal !D! damage !M! times. Next turn, draw 1 card. Synergy: Add !SV! Shiv to your hand.",
 		"NAME": "Tooru",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. Synergy: Add !SV! Shivs to your hand."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. Next turn, draw 1 card. Synergy: Add !SV! Shivs to your hand."
 	},
 	"animator_Add":
 	{
@@ -147,7 +147,7 @@
 	},
 	"animator_CowGirl":
 	{
-		"DESCRIPTION": "Gain [E]. NL Gain !M! Extra HP. Exhaust.",
+		"DESCRIPTION": "Gain [E]. NL Gain !M! Temp._HP. Exhaust.",
 		"NAME": "'Cow Girl'"
 	},
 	"animator_CrowleyEusford":
@@ -244,7 +244,7 @@
 	},
 	"animator_DolaCouronne":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Synergy: Cycle 1 card. NL Legacy: Gain 1 Dexterity.",
+		"DESCRIPTION": "Gain !B! Block. NL Synergy: Draw 1 card. NL Legacy: Gain 1 Dexterity.",
 		"NAME": "Couronne"
 	},
 	"animator_DolaRiku":
@@ -254,7 +254,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "Apply !M! Lock-On. NL Channel 1 Lightning. NL Cooldown !SV! : NL Deal !D! Damage.",
+		"DESCRIPTION": "Apply !M! Lock-On. NL Channel 1 Lightning. NL Cooldown !SV! : NL Deal !D! damage.",
 		"NAME": "Schwi"
 	},
 	"animator_DolaStephanie":
@@ -334,7 +334,7 @@
 	},
 	"animator_Eve":
 	{
-		"DESCRIPTION": "Play an Orb_Core. NL Whenever a card Synergizes, deal !M! damage to a random enemy and increase this damage by 1.",
+		"DESCRIPTION": "Play an Orb_Core. NL When you Synergize, deal !M! damage to an enemy and increase this damage by 1.",
 		"NAME": "Eve"
 	},
 	"animator_Evileye":
@@ -344,19 +344,25 @@
 	},
 	"animator_Excalibur":
 	{
-		"DESCRIPTION": "Retain. NL Exhaust ALL [#EFC851]Attacks in your hand and gain their damage. Deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Retain. Exhaust ALL [#EFC851]Attacks in your hand and gain their damage. Deal !D! damage to ALL enemies.",
 		"NAME": "Excalibur"
 	},
 	"animator_FeridBathory":
 	{
 		"DESCRIPTION": "Once per turn, NL when a card is Exhausted, gain 1 Strength and Heal 2 HP ([#EFC851]*[]).",
-		"EXTENDED_DESCRIPTION": ["*Note", "If you are at Max HP, the healing is converted to Extra HP."],
+		"EXTENDED_DESCRIPTION": ["*Note", "If you are at Max HP, the healing is converted to Temp._HP."],
 		"NAME": "Ferid Bathory",
 		"UPGRADE_DESCRIPTION": "Twice per turn, NL when a card is Exhausted, gain 1 Strength and Heal 2 HP ([#EFC851]*[])."
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "Shapeshifter. Gain !B! Block for each enemy. Recall: Gain !M! Metallicize.",
+		"DESCRIPTION": "Shapeshifter. Gain !B! Block for each enemy. Recall: Return to your hand and choose a new form this turn.",
+		"EXTENDED_DESCRIPTION": 
+		[
+			"Shapeshifter. NL Draw 1 card.",
+			"Shapeshifter. NL Deal !D! damage twice. Gain 2 Metallicize.",
+			"Shapeshifter. NL Deal !D! damage. NL Apply 1 Vulnerable. NL Apply 1 Weak."
+		],
 		"NAME": "Fredrika"
 	},
 	"animator_GazelDwargon":
@@ -372,13 +378,13 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If you discarded a card this turn, NL gain !B! Block.",
+		"DESCRIPTION": "Deal !D! damage. NL Next turn, gain [E]. Recall: Apply !M! Weak to ALL enemies.",
 		"NAME": "Gillette"
 	},
 	"animator_Gluttony":
 	{
 		"DESCRIPTION": "Exhaust up to !M! Cards in your hand, activate a [#EFC851]Bonus [#EFC851]Effect based on each card type. Exhaust.",
-		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#yAttack: Gain 1 Strength NL #ySkill: Gain 6 Extra HP NL #yPower: Heal 7 HP NL #yStatus: Gain 1 Energy NL #yCurse: Gain 6 Block"],
+		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#yAttack: Gain 1 Strength NL #ySkill: Gain 6 #yTemporary #yHP NL #yPower: Heal 7 HP NL #yStatus: Gain 1 Energy NL #yCurse: Gain 6 Block"],
 		"NAME": "Gluttony"
 	},
 	"animator_GoblinChampion":
@@ -425,10 +431,10 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "Apply 2 Vulnerable. NL Cycle !M! card. NL Boost !SV! : Gain [#EFC851]Strategic[] [#EFC851]Information[].",
-		"EXTENDED_DESCRIPTION": ["Strategic Information", "Once per turn, when a card is discarded, gain #b2 Block and reduce the cost of a random card in your hand by #b1 this turn. Can be used multiple times per turn when stacked."],
+		"DESCRIPTION": "Draw !M! card. NL Discard !M! card. NL Synergy : Gain [#EFC851]Strategic[] [#EFC851]Information[].",
+		"EXTENDED_DESCRIPTION": ["Strategic Information", "Once per turn, when a card is discarded, gain #b2 Block and deal #b2 damage to the lowest health enemy. Can be used multiple times per turn when stacked."],
 		"NAME": "Guy",
-		"UPGRADE_DESCRIPTION": "Apply 2 Vulnerable. NL Cycle !M! cards. NL Boost !SV! : Gain [#EFC851]Strategic[] [#EFC851]Information[]."
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard !M! cards. NL Synergy : Gain [#EFC851]Strategic[] [#EFC851]Information[]."
 	},
 	"animator_Hakurou":
 	{
@@ -540,7 +546,7 @@
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "[#EFC851]Reload: Deal !D! Piercing damage. NL Synergy: Apply !M! Poison on every hit.",
+		"DESCRIPTION": "Deal !D! Piercing damage. Reload: Apply !M! Poison to a random enemy.",
 		"NAME": "Layla"
 	},
 	"animator_LeleiLaLalena":
@@ -607,7 +613,7 @@
 	"animator_Nanami":
 	{
 		"DESCRIPTION": "[#EFC851]Counter the enemy intent. NL [#c6be6f]This [#c6be6f]text [#c6be6f]will [#c6be6f]change [#c6be6f]while [#c6be6f]targeting [#c6be6f]an [#c6be6f]enemy.",
-		"EXTENDED_DESCRIPTION": ["Deal # Damage.", "Gain # Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", "Channel # Random Orb/s.", "UNUSED", "UNUSED", "Apply # Poison.", "Gain [E].", "Gain # Extra HP.", "Draw # cards."],
+		"EXTENDED_DESCRIPTION": ["Deal # Damage.", "Gain # Block.", "Gain # Strength.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", "Channel # Random Orb/s.", "UNUSED", "UNUSED", "Apply # Poison.", "Gain [E].", "Gain # Temp._HP.", "Draw # cards."],
 		"NAME": "Nanami",
 		"UPGRADE_DESCRIPTION": "Strongly [#EFC851]Counter the enemy intent. NL [#c6be6f]This [#c6be6f]text [#c6be6f]will [#c6be6f]change [#c6be6f]while [#c6be6f]targeting [#c6be6f]an [#c6be6f]enemy."
 	},
@@ -666,7 +672,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "Gain !B! Extra HP ([#EFC851]*[]). Synergy: Gain !M! [#EFC851]Regeneration[], can activate !SV! times.",
+		"DESCRIPTION": "Gain !B! Temp._HP ([#EFC851]*[]). Synergy: Gain !M! [#EFC851]Regeneration[], can activate !SV! times.",
 		"EXTENDED_DESCRIPTION": ["* Note", "Affected by Block modifiers."],
 		"NAME": "'Priestess'"
 	},
@@ -715,9 +721,10 @@
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "Innate. Retain. NL Deal !D! Damage. NL Can only be played if all other cards in your hand cost 2 or more.",
+		"DESCRIPTION": "Innate. Retain. NL Deal !D! Damage. NL [#EFC851]One[] [#EFC851]Punch[].",
+		"EXTENDED_DESCRIPTION": ["One Punch", "Spend ALL your energy, this card deals #yincreasingly more damage for each point spent."],
 		"NAME": "Saitama",
-		"UPGRADE_DESCRIPTION": "Innate. Retain. Deal !D! Piercing Damage. Can only be played if all other cards in your hand cost 2 or more."
+		"UPGRADE_DESCRIPTION": "Innate. Retain. NL Deal !D! Damage. NL [#EFC851]One[] [#EFC851]Punch+[]."
 	},
 	"animator_Scar":
 	{
@@ -769,7 +776,7 @@
 	},
 	"animator_Shuna":
 	{
-		"DESCRIPTION": "Draw 2 cards. Synergy: NL Gain !M! Extra HP. NL [#EFC851]Drawn: Gain !B! Block.",
+		"DESCRIPTION": "Draw 2 cards. Synergy: NL Gain !M! Temp._HP. NL [#EFC851]Drawn: Gain !B! Block.",
 		"NAME": "Shuna"
 	},
 	"animator_Sloth":
@@ -865,12 +872,12 @@
 	},
 	"animator_Strike_TenSura":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Extra HP.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Temp._HP.",
 		"NAME": "Improved Strike"
 	},
 	"animator_SwordMaiden":
 	{
-		"DESCRIPTION": "Gain !M! Extra HP. NL Remove ALL of your Debuffs. Exhaust.",
+		"DESCRIPTION": "Gain !M! Temp._HP. NL Remove ALL of your Debuffs. Exhaust.",
 		"NAME": "'Sword Maiden'"
 	},
 	"animator_Tet":

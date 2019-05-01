@@ -1,180 +1,117 @@
 
 {
-	"Animator_LivingPicture":
-	{
-		"NAME": "Living Picture",
-		"FLAVOR": "It's always watching.",
-		"DESCRIPTIONS":
-		[
-			"Once per turn, when a card #ySynergizes, draw #b1 card."
-		]
-	},
-	"Animator_VividPicture":
-	{
-		"NAME": "Vivid Picture",
-		"FLAVOR": "It's always watching.",
-		"DESCRIPTIONS":
-		[
-			"Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]"
-		]
-	},
-	"Animator_TheMissingPiece":
-	{
-		"NAME": "The Missing Piece",
-		"FLAVOR": "What is this thing?",
-		"DESCRIPTIONS":
-		[
-			"Every #b",
-			" combats, receive improved card rewards. You will have more chances of finding a series if you have multiple cards from that series."
-		]
-	},
-	"Animator_PurgingStone":
-	{
-		"NAME": "Purging Stone",
-		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
-		"DESCRIPTIONS":
-		[
-			"You may banish card #ySeries from appearing in all future rewards and shops. Gain more uses after defeating a boss.", "Removed Series:"
-		]
-	},
-	"Animator_CerealBox":
-	{
-		"NAME": "Cereal Box",
-		"FLAVOR": "Whole Grain Guaranteed! Approved by Konayuki.",
-		"DESCRIPTIONS":
-		[
-			"#pRight #pClick to #yHeal #b", " HP. NL Starts at #b", " uses, gain #b", " uses when entering a shop room. NL You can store up to #b", " uses."
-		]
-	},
-	"Animator_WizardHat":
-	{
-		"NAME": "Wizard Hat",
-		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
-		"DESCRIPTIONS":
-		[
-			"Every time you activate #b", " #ySynergies in a combat, deal #b", " damage to ALL enemies."
-		]
-	},
 	"Animator_AlchemistGlove":
 	{
-		"NAME": "Alchemist Glove",
+		"DESCRIPTIONS": ["Every #b", " turns, apply #b", " #yBurning to ALL enemies."],
 		"FLAVOR": "It allows you to control fire with the snap of a finger.",
-		"DESCRIPTIONS":
-		[
-			"Every #b", " turns, apply #b", " #yBurning to ALL enemies."
-		]
-	},
-	"Animator_HallowedScabbard":
-	{
-		"NAME": "Hallowed Scabbard",
-		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
-		"DESCRIPTIONS":
-		[
-			"If you lose a total of #b15 HP or more in a combat, gain #b5 #yRegeneration and #b2 #yStrength. Activates once per combat."
-		]
-	},
-	"Animator_RacePiece":
-	{
-		"NAME": "Race Piece",
-		"FLAVOR": "Did you see that coming Mr. Mind Reader? Checkmate.",
-		"DESCRIPTIONS":
-		[
-			"Upon pickup, select #b1 card, then choose and #yTransform #b3 cards in your deck into #b3 cards of the selected card's #ySeries."
-		]
-	},
-	"Animator_WornHelmet":
-	{
-		"NAME": "Worn Helmet",
-		"FLAVOR": "Goblins.",
-		"DESCRIPTIONS":
-		[
-			"Whenever you draw a #yCurse or #yStatus, deal #b3 damage to a random enemy."
-		]
-	},
-	"Animator_HeavyHalberd":
-	{
-		"NAME": "Heavy Halberd",
-		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
-		"DESCRIPTIONS":
-		[
-			"Your #yAttacks deal #b15% more damage."
-		]
-	},
-	"Animator_OldCoffin":
-	{
-		"NAME": "Old Coffin",
-		"FLAVOR": "Shocking Truth!",
-		"DESCRIPTIONS":
-		[
-			"Starting from your #b4th turn, apply a random #yDebuff to a random enemy at the start of each turn."
-		]
-	},
-	"Animator_CursedBlade":
-	{
-		"NAME": "Cursed Blade",
-		"FLAVOR": "It draws strength from the blood of its user, truly fitting for a vampire.",
-		"DESCRIPTIONS":
-		[
-			"Whenever you deal unblocked damage, #yHeal #b2 HP. NL Permanently #rLose #rHalf of your Max HP. Effects that increase your Max HP are reduced by half.",
-			"Whenever you deal unblocked damage, #yHeal #b2 HP. NL If your HP is full, gain #b3 Temporary HP at the end of your turn. NL Permanently #rLose #rHalf of your Max HP. Effects that increase your Max HP are reduced by half."
-		]
+		"NAME": "Alchemist Glove"
 	},
 	"Animator_BattleDrones":
 	{
-		"NAME": "Battle Drones",
+		"DESCRIPTIONS": ["Whenever a card #ySynergizes, deal #b", " damage to a random enemy and gain #b", " #yBlock."],
 		"FLAVOR": "Engineering perfection.",
-		"DESCRIPTIONS":
-		[
-			"Whenever a card #ySynergizes, deal #b", " damage to a random enemy and gain #b", " #yBlock."
-		]
-	},
-	"Animator_ShionDessert":
-	{
-		"NAME": "Shion's Dessert",
-		"FLAVOR": "Here, have a taste, how bad can it be?",
-		"DESCRIPTIONS":
-		[
-			"Every #b", " #yAttacks, apply #b", " #yPoison to a random enemy."
-		]
-	},
-	"Animator_EngravedStaff":
-	{
-		"NAME": "Engraved Staff",
-		"FLAVOR": "One of the most treasured possessions of the Guild.",
-		"DESCRIPTIONS":
-		[
-			"At the end of your turn, #yRetain your highest cost card, it costs #b1 less next turn."
-		]
-	},
-	"Animator_Rinne":
-	{
-		"NAME": "???",
-		"FLAVOR": "???",
-		"DESCRIPTIONS":
-		[
-			"YmVoYXZlcw== ZXJyYXRpY2FsbHk=, ZG9uJ3Q= dGFsaw== dG8= bWU= b3I= bXk= c29u ZXZlcg== YWdhaW4=, NzQ="
-		]
-	},
-	"Animator_ExquisiteBloodVial":
-	{
-		"NAME": "Exquisite Blood Vial",
-		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
-		"DESCRIPTIONS":
-		[
-			"At the start of each combat, heal #b",
-			" HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special fight, winning it will activate this relic's true effect. NL NL You can click this after using a rest site option, Act 3 deck level suggested.",
-			"At the start of each combat, gain #b",
-			" #yRegeneration and #b",
-			" Max HP. NL NL Lose all #yBlood #yVials, whenever you would obtain a #yBlood #yVial, improve this relic's effect instead."
-		]
+		"NAME": "Battle Drones"
 	},
 	"Animator_Buoy":
 	{
-		"NAME": "Buoy",
+		"DESCRIPTIONS": ["Once per turn, when you draw a total of 3 or more cards, gain #b", " #yBlock and #b", " #yDexterity until end of turn."],
 		"FLAVOR": "When it comes to speed I'm the best there is, swift like the island breeze!",
-		"DESCRIPTIONS":
-		[
-			"Every #b", " turns, gain #b", " #yBlock and give all enemies #b", " #yBlock."
-		]
+		"NAME": "Buoy"
+	},
+	"Animator_CerealBox":
+	{
+		"DESCRIPTIONS": ["#pRight #pClick to #yHeal #b", " HP. NL Starts at #b", " uses, gain #b", " uses when entering a shop room. NL You can store up to #b", " uses."],
+		"FLAVOR": "Whole Grain Guaranteed! Approved by Konayuki.",
+		"NAME": "Cereal Box"
+	},
+	"Animator_CursedBlade":
+	{
+		"DESCRIPTIONS": ["Whenever you deal unblocked damage, #yHeal #b2 HP. NL Permanently #rLose #rHalf of your Max HP. Effects that increase your Max HP are reduced by half.", "Whenever you deal unblocked damage, #yHeal #b2 HP. NL If your HP is full, gain #b3 Temporary HP at the end of your turn. NL Permanently #rLose #rHalf of your Max HP. Effects that increase your Max HP are reduced by half."],
+		"FLAVOR": "It draws strength from the blood of its user, truly fitting for a vampire.",
+		"NAME": "Cursed Blade"
+	},
+	"Animator_EngravedStaff":
+	{
+		"DESCRIPTIONS": ["At the end of your turn, #yRetain your highest cost card, it costs #b1 less next turn."],
+		"FLAVOR": "One of the most treasured possessions of the Guild.",
+		"NAME": "Engraved Staff"
+	},
+	"Animator_ExquisiteBloodVial":
+	{
+		"DESCRIPTIONS": ["At the start of each combat, heal #b", " HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special fight, winning it will activate this relic's true effect. NL NL You can click this after using a rest site option, Act 3 deck level suggested.", "At the start of each combat, gain #b", " #yRegeneration and #b", " Max HP. NL NL Lose all #yBlood #yVials, whenever you would obtain a #yBlood #yVial, improve this relic's effect instead."],
+		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
+		"NAME": "Exquisite Blood Vial"
+	},
+	"Animator_HallowedScabbard":
+	{
+		"DESCRIPTIONS": ["If you lose a total of #b15 HP or more in a combat, gain #b5 #yRegeneration and #b2 #yStrength. Activates once per combat."],
+		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
+		"NAME": "Hallowed Scabbard"
+	},
+	"Animator_HeavyHalberd":
+	{
+		"DESCRIPTIONS": ["Your #yAttacks deal #b", "% more damage."],
+		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
+		"NAME": "Heavy Halberd"
+	},
+	"Animator_LivingPicture":
+	{
+		"DESCRIPTIONS": ["Once per turn, when a card #ySynergizes, draw #b1 card."],
+		"FLAVOR": "It's always watching.",
+		"NAME": "Living Picture"
+	},
+	"Animator_OldCoffin":
+	{
+		"DESCRIPTIONS": ["Starting from your #b4th turn, apply a random #yDebuff to a random enemy at the start of each turn."],
+		"FLAVOR": "Shocking Truth!",
+		"NAME": "Old Coffin"
+	},
+	"Animator_PurgingStone":
+	{
+		"DESCRIPTIONS": ["You may banish card #ySeries from appearing in all future rewards and shops. Gain more uses after defeating a boss.", "Removed Series:"],
+		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
+		"NAME": "Purging Stone"
+	},
+	"Animator_RacePiece":
+	{
+		"DESCRIPTIONS": ["Upon pickup, select #b1 card, then choose and #yTransform #b3 cards in your deck into #b3 cards of the selected card's #ySeries."],
+		"FLAVOR": "Did you see that coming Mr. Mind Reader? Checkmate.",
+		"NAME": "Race Piece"
+	},
+	"Animator_Rinne":
+	{
+		"DESCRIPTIONS": ["YmVoYXZlcw== ZXJyYXRpY2FsbHk=, ZG9uJ3Q= dGFsaw== dG8= bWU= b3I= bXk= c29u ZXZlcg== YWdhaW4=, NzQ="],
+		"FLAVOR": "???",
+		"NAME": "???"
+	},
+	"Animator_ShionDessert":
+	{
+		"DESCRIPTIONS": ["Every time you play #b", " #yAttacks in a turn, apply #b", " #yPoison to a random enemy."],
+		"FLAVOR": "Here, have a taste, how bad can it be?",
+		"NAME": "Shion's Dessert"
+	},
+	"Animator_TheMissingPiece":
+	{
+		"DESCRIPTIONS": ["Every #b", " combats, receive improved card rewards. You will have more chances of finding a series if you have multiple cards from that series."],
+		"FLAVOR": "What is this thing?",
+		"NAME": "The Missing Piece"
+	},
+	"Animator_VividPicture":
+	{
+		"DESCRIPTIONS": ["Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]"],
+		"FLAVOR": "It's always watching.",
+		"NAME": "Vivid Picture"
+	},
+	"Animator_WizardHat":
+	{
+		"DESCRIPTIONS": ["Every time you activate #b", " #ySynergies in a combat, deal #b", " damage to ALL enemies."],
+		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
+		"NAME": "Wizard Hat"
+	},
+	"Animator_WornHelmet":
+	{
+		"DESCRIPTIONS": ["Whenever you draw a #yCurse or #yStatus, deal #b", " damage to a random enemy."],
+		"FLAVOR": "Goblins.",
+		"NAME": "Worn Helmet"
 	}
 }

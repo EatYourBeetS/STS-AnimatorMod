@@ -60,7 +60,7 @@ public class EmiyaShirou extends AnimatorCard
             GameActionsHelper.ApplyPower(p, target, new VulnerablePower(target, 1, false), 1);
         }
 
-        GameActionsHelper.ApplyPower(p, p, new EmiyaShirouPower(p));
+        GameActionsHelper.ApplyPower(p, p, new EmiyaShirouPower(p), 1);
     }
 
     @Override

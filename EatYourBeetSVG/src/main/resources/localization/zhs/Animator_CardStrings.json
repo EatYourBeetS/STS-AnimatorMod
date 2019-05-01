@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 !M! 次 。 同调 : 增加 !SV! 张 小刀 到你的手牌 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 !M! 次 。 下一轮 ， 抽 1 张牌 。 同调 : 增加 !SV! 张 小刀 到你的手牌 。",
 		"NAME": "托鲁"
 	},
 	"animator_Add":
@@ -242,7 +242,7 @@
 	},
 	"animator_DolaCouronne":
 	{
-		"DESCRIPTION": "获得 !B! 点 护甲 。 NL 同调 : 循环 1 张牌 。 遗赠 : 获得 1 点 敏捷 。",
+		"DESCRIPTION": "获得 !B! 点 护甲 。 NL 同调 : 抽 1 张牌 。 遗赠 : 获得 1 点 敏捷 。",
 		"NAME": "克洛妮"
 	},
 	"animator_DolaRiku":
@@ -353,7 +353,13 @@
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "穿越者 。 每个敌人使你获得获得 !B! 点 格挡 。 撤回 : 获得 !M! 点 金属化 。",
+		"DESCRIPTION": "穿越者 。 每个敌人使你获得获得 !B! 点 格挡 。 撤回 : 将此卡退还给您并选择其他表格 。",
+		"EXTENDED_DESCRIPTION":
+		[
+			"穿越者 。 抽 1 张牌 。",
+			"穿越者 。 造成 !D! 点伤害 2 次 。 获得 2 点 金属化 。 撤回 : 获得 !M! 点 金属化 。",
+			"穿越者 。 造成 !D! 点 伤害 。 给予 1 层 虚弱 。 给予 !M! 层 易伤 。"
+		],
 		"NAME": "芙蕾多妮卡"
 	},
 	"animator_GazelDwargon":
@@ -369,7 +375,7 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 如果您在本回合丢弃了一张卡片 ， 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 下一轮 ， 获得 [E] 。 撤回 : 给予所有敌人 !M! 层 虚弱 。",
 		"NAME": "基烈特"
 	},
 	"animator_Gluttony":
@@ -422,8 +428,8 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "给予 2 层 易伤 。 NL 循环 !M! 张牌 。 NL 鼓舞 !SV! : 获得 1 点 [#EFC851]战略信息[] 。",
-		"EXTENDED_DESCRIPTION": ["战略信息", "当一张卡被丢弃时， 获得 #b2 点 格挡 ， 将一张随机手牌的耗能降低 #b1 点， 并 损失1层效果。该效果每回合开始充能一次"],
+		"DESCRIPTION": "抽 !M! 张牌 。 NL 丢弃 !M! 张牌 。 NL 同调 : 获得 1 点 [#EFC851]战略信息[] 。",
+		"EXTENDED_DESCRIPTION": ["战略信息", "当一张卡被丢弃时， 获得 #b2 点 格挡 ， 对生命值最低的敌人造成 #b2 点 伤害， 并 损失1层效果。该效果每回合开始充能一次"],
 		"NAME": "奇伊"
 	},
 	"animator_Hakurou":
@@ -540,7 +546,7 @@
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "重装填 : 造成 !D! 点 穿刺 伤害 。 NL 同调 : 每次攻击给予目标 !M! 层 中毒  。",
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 NL 重装填 : 给予 !M! 层 中毒 对一个随机的敌人 。",
 		"NAME": "蕾拉"
 	},
 	"animator_LeleiLaLalena":
@@ -715,9 +721,10 @@
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 点伤害 。 NL 只有在手中的所有其他牌消耗 2 个能量时才能使用 。",
+		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 点伤害 。 NL [#EFC851]one[] [#EFC851]punch[] 。",
+		"EXTENDED_DESCRIPTION": ["One Punch", "Spend ALL your energy, this card deals #yincreasingly more damage for each point spent."],
 		"NAME": "秃头披风侠",
-		"UPGRADE_DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 点 穿刺 伤害 。 NL 只有在手中的所有其他牌消耗 2 个能量时才能使用 。"
+		"UPGRADE_DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 点伤害 。 NL [#EFC851]one[] [#EFC851]punch+[] 。"
 	},
 	"animator_Scar":
 	{

@@ -15,13 +15,13 @@ public class AcuraAkari extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,4, 2);
+        Initialize(0, 4, 2);
 
         SetSynergy(Synergies.Chaika);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.ChooseAndDiscard(1, false);
         GameActionsHelper.GainBlock(p, this.block);
@@ -29,11 +29,12 @@ public class AcuraAkari extends AnimatorCard
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {
             upgradeBlock(4);
+            upgradeMagicNumber(1);
         }
     }
 }

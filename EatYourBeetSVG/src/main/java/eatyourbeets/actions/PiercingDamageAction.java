@@ -116,6 +116,7 @@ public class PiercingDamageAction extends AbstractGameAction
                 int block = this.target.currentBlock;
 
                 addIgnoredPower(ThornsPower.POWER_ID);
+                addIgnoredPower(MalleablePower.POWER_ID);
                 addIgnoredPower(FlameBarrierPower.POWER_ID);
                 addIgnoredPower(CurlUpPower.POWER_ID);
                 addIgnoredPower("infinitespire:TempThorns");

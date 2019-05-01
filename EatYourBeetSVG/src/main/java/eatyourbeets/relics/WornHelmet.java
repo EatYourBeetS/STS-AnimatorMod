@@ -10,11 +10,17 @@ public class WornHelmet extends AnimatorRelic
 {
     public static final String ID = CreateFullID(WornHelmet.class.getSimpleName());
 
-    private static final int DAMAGE_AMOUNT = 3;
+    private static final int DAMAGE_AMOUNT = 4;
 
     public WornHelmet()
     {
         super(ID, RelicTier.COMMON, LandingSound.HEAVY);
+    }
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return DESCRIPTIONS[0] + DAMAGE_AMOUNT + DESCRIPTIONS[1];
     }
 
     @Override

@@ -88,7 +88,7 @@ public class ExquisiteBloodVial extends AnimatorRelic
     {
         super.update();
 
-        if (truePotential)
+        if (truePotential || AbstractDungeon.currMapNode == null)
         {
             return;
         }
@@ -100,7 +100,6 @@ public class ExquisiteBloodVial extends AnimatorRelic
         }
         else if (HitboxRightClick.rightClicked.get(this.hb))
         {
-            MonsterGroup enemies = new MonsterGroup(new KrulTepes());
             RestRoom room = Utilities.SafeCast(AbstractDungeon.getCurrRoom(), RestRoom.class);
             if (room != null && room.event == null)
             {
@@ -109,7 +108,7 @@ public class ExquisiteBloodVial extends AnimatorRelic
                 cur.room = new MonsterRoom();
                 cur.room.rewardAllowed = false;
                 cur.room.rewards.clear();
-                cur.room.monsters = enemies;
+                cur.room.monsters = new MonsterGroup(new KrulTepes());
                 cur.room.monsters.init();
 
                 AbstractDungeon.currMapNode = new MapRoomNode(cur.x, cur.y - 1);

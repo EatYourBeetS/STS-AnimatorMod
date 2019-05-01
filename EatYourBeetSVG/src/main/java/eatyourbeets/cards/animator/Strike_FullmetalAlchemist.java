@@ -88,6 +88,8 @@ public class Strike_FullmetalAlchemist extends Strike
             //card.applyPowers();
         }
 
+        this.baseSecondaryValue = this.secondaryValue = newValue;
+
         return activate;
     }
 

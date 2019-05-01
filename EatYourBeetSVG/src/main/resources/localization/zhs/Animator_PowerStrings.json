@@ -177,7 +177,7 @@
 	},
 	"animator_StrategicInformationPower":
 	{
-		"DESCRIPTIONS": ["接下来 #b", " 次主动弃牌时, 获得 #b", " #y格挡 ，减少随机手牌一点消耗."],
+		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and deal #b", " damage to the lowest health enemy."],
 		"NAME": "战略信息"
 	},
 	"animator_SupportDamagePower":

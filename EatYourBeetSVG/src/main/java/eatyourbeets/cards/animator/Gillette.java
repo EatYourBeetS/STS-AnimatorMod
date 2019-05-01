@@ -1,9 +1,13 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -14,22 +18,32 @@ public class Gillette extends AnimatorCard
 
     public Gillette()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(19, 9, 1);
+        Initialize(7, 0, 1);
 
         SetSynergy(Synergies.Chaika);
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        AbstractPlayer p = AbstractDungeon.player;
+        GameActionsHelper.ApplyPowerToAllEnemies(p, this::CreatePower, this.magicNumber);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (GameActionManager.totalDiscardedThisTurn > 0)
-        {
-            GameActionsHelper.GainBlock(p, this.block);
-        }
+//        if (GameActionManager.totalDiscardedThisTurn > 0)
+//        {
+//            GameActionsHelper.GainBlock(p, this.block);
+//        }
 
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActionsHelper.ApplyPower(p, p, new EnergizedPower(p, 1), 1);
     }
 
     @Override
@@ -38,7 +52,11 @@ public class Gillette extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(4);
-            upgradeBlock(2);
         }
+    }
+
+    private AbstractPower CreatePower(AbstractCreature m)
+    {
+        return new WeakPower(m, this.magicNumber, false);
     }
 }

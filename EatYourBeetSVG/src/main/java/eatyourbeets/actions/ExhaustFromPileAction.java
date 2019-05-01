@@ -1,7 +1,6 @@
 package eatyourbeets.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,7 +15,7 @@ public class ExhaustFromPileAction extends AbstractGameAction
     public static final String[] TEXT;
     private AbstractPlayer p;
     private boolean random;
-    private boolean canCancel;
+    private boolean anyNumber;
     private final CardGroup sourceGroup;
 
     public ExhaustFromPileAction(int amount, boolean random, CardGroup sourceGroup)
@@ -24,9 +23,9 @@ public class ExhaustFromPileAction extends AbstractGameAction
         this(amount, random, sourceGroup, false);
     }
 
-    public ExhaustFromPileAction(int amount, boolean random, CardGroup sourceGroup, boolean canCancel)
+    public ExhaustFromPileAction(int amount, boolean random, CardGroup sourceGroup, boolean anyNumber)
     {
-        this.canCancel = canCancel;
+        this.anyNumber = anyNumber;
         this.sourceGroup = sourceGroup;
         this.random = random;
         this.p = AbstractDungeon.player;
@@ -48,7 +47,7 @@ public class ExhaustFromPileAction extends AbstractGameAction
             {
                 this.isDone = true;
             }
-            else if (cards.size() <= this.amount)
+            else if (cards.size() <= this.amount && !anyNumber)
             {
                 for (int i = 0; i < cards.size(); ++i)
                 {
@@ -74,11 +73,11 @@ public class ExhaustFromPileAction extends AbstractGameAction
                 }
                 else if (this.amount == 1)
                 {
-                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, TEXT[0], false, false, canCancel, false);
+                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, anyNumber, TEXT[0]);
                 }
                 else
                 {
-                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, TEXT[1], false, false, canCancel, false);
+                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, anyNumber, TEXT[1]);
                 }
 
                 this.tickDuration();

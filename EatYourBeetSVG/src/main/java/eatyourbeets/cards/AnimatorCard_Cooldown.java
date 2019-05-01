@@ -57,6 +57,8 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard// extends Anima
             //card.applyPowers();
         }
 
+        this.baseSecondaryValue = this.secondaryValue = newValue;
+
         return activate;
     }
 

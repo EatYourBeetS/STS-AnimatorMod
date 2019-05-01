@@ -1,15 +1,16 @@
 package eatyourbeets.relics;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.actions.HigakiRinneAction;
 import eatyourbeets.cards.animator.HigakiRinne;
 
 public class Rinne extends AnimatorRelic
 {
-    private static final int RINNE_DOES = 3 + 1 + 1;
-    private static final int RINNE_SAYS = 33 + 27 + 9 + RINNE_DOES;
+    public static final int RINNE_DOES = 3 + 1 + 1;
+    public static final int RINNE_SAYS = 33 + 27 + 9 + RINNE_DOES;
 
     public static final String ID = CreateFullID(Rinne.class.getSimpleName());
 
@@ -19,11 +20,25 @@ public class Rinne extends AnimatorRelic
     }
 
     @Override
+    public int getPrice()
+    {
+        return 500;
+    }
+
+    @Override
+    public void onEquip()
+    {
+        super.onEquip();
+
+        this.counter = 0;
+    }
+
+    @Override
     public void atBattleStart()
     {
         super.atBattleStart();
 
-        counter = 1;
+        this.counter = 0;
     }
 
     @Override
@@ -31,7 +46,13 @@ public class Rinne extends AnimatorRelic
     {
         super.onVictory();
 
-        counter = -1;
+        this.counter = 0;
+
+        if (AbstractDungeon.player.currentHealth == 1)
+        {
+            this.flash();
+            AbstractDungeon.player.heal(AbstractDungeon.miscRng.random(5, 20));
+        }
     }
 
     @Override
@@ -50,15 +71,14 @@ public class Rinne extends AnimatorRelic
         return super.onPlayerGainBlock(blockAmount);
     }
 
+    private static HigakiRinne RINNE_ITSELF = new HigakiRinne();
+
     private void DoSomething(int value)
     {
-        counter += 1 + (value % 4);
-        if (counter == RINNE_SAYS)
+        counter += 1 + (value % 8);
+        if (counter % 8 == RINNE_DOES)
         {
-            for (int i = 0; i < RINNE_DOES; i++)
-            {
-                GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new HigakiRinne()));
-            }
+            GameActionsHelper.AddToBottom(new HigakiRinneAction(RINNE_ITSELF));
         }
     }
 }

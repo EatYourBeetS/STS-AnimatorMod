@@ -77,7 +77,7 @@
 	},
 	"animator_GazelDwargonPower":
 	{
-		"DESCRIPTIONS": ["Maintain half your Block at the start of each turn, whenever you spend 2 or more energy on a card, gain #b", " Block."],
+		"DESCRIPTIONS": ["Maintain half your Block at the start of each turn, whenever you play an #yAttack, gain #b", " Block."],
 		"NAME": "Gazel Dwargon"
 	},
 	"animator_GuildGirlPower":
@@ -177,7 +177,7 @@
 	},
 	"animator_StrategicInformationPower":
 	{
-		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and reduce the cost of a random card in your hand by 1."],
+		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and deal #b", " damage to the lowest health enemy."],
 		"NAME": "Strategic Information"
 	},
 	"animator_SupportDamagePower":

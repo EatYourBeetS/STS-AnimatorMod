@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 同調 : 增加 !SV! 張 小刀 到手牌 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 下一轮 ， 抽 1 張牌 。 同調 : 增加 !SV! 張 小刀 到手牌 。",
 		"NAME": "托魯"
 	},
 	"animator_Add":
@@ -242,7 +242,7 @@
 	},
 	"animator_DolaCouronne":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 循環 1 張牌 。 遺產 : 獲得 1 點 敏捷 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 抽一張牌 。 遺產 : 獲得 1 點 敏捷 。",
 		"NAME": "克洛妮"
 	},
 	"animator_DolaRiku":
@@ -353,8 +353,14 @@
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "變形者 。 每個敵人使你獲得獲得 !B! 點 格擋 。 撤回 : 獲得 !M! 層 金屬化 。",
-		"NAME": "弗蕾德麗卡"
+		"DESCRIPTION": "變形者 。 每个敌人使你获得获得 !B! 点 格挡 。 撤回 : 將此卡退還給您並選擇其他表格 。",
+		"EXTENDED_DESCRIPTION":
+		[
+			"變形者 。 抽 1 張牌 。",
+			"變形者 。 造成 !D! 點傷害 2 次 。 獲得 2 層 金屬化 。 撤回 : 获得 !M! 点 金属化 。",
+			"變形者 。 造成 !D! 點 傷害 。 給予 1 層 虛弱 。 給予 1 層 易傷 。"
+		],
+		"NAME": "芙蕾多妮卡"
 	},
 	"animator_GazelDwargon":
 	{
@@ -369,7 +375,7 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 如果您在本回合丟棄了一張卡片 ， 獲得 !B! 點 格擋 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 下一轮 ， 獲得 [E] 。 撤回 : 給予所有敵人 !M! 層 虛弱 。",
 		"NAME": "亞伯力克·基烈特"
 	},
 	"animator_Gluttony":
@@ -422,8 +428,8 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "給予 2 層 易傷 。 循環 1 張牌 。 增強 !SV! : 獲得 1 點 [#EFC851]戰略信息[] 。",
-		"EXTENDED_DESCRIPTION": ["戰略信息", "當一張卡被丟棄時，獲得 #b2 點 格擋 ， 將手中隨機卡的耗能降低 #b1，並損失1層效果。該效果每回合開始充能一次"],
+		"DESCRIPTION": "抽 !M! 張牌 。 丟棄 !M! 張牌 。 同調 : 獲得 1 點 [#EFC851]戰略信息[] 。",
+		"EXTENDED_DESCRIPTION": ["戰略信息", "當一張卡被丟棄時，獲得 #b2 點 格擋 ， 對生命值最低的敵人造成 #b2 點 傷害 ， 並損失1層效果 。 該效果每回合開始充能一次"],
 		"NAME": "奇伊"
 	},
 	"animator_Hakurou":
@@ -538,7 +544,7 @@
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "[#EFC851]重新裝填[] : 造成 !D! 點 穿刺 傷害 。 NL 同調 : 給予 !M! 層 中毒 每次打擊 。",
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 NL 重新裝填 : 給予 !M! 層 中毒 對一個隨機的敵人 。",
 		"NAME": "蕾拉"
 	},
 	"animator_LeleiLaLalena":
@@ -714,9 +720,10 @@
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點 傷害 。 NL 只有在手中的所有其他牌消耗 2 個能量時才能使用 。",
+		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點 傷害 。 NL [#EFC851]one[] [#EFC851]punch[] 。",
+		"EXTENDED_DESCRIPTION": ["One Punch", "Spend ALL your energy, this card deals #yincreasingly more damage for each point spent."],
 		"NAME": "埼玉",
-		"UPGRADE_DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點 穿刺 傷害 。 NL 只有在手中的所有其他牌消耗 2 個能量時才能使用 。"
+		"UPGRADE_DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點 傷害 。 NL [#EFC851]one[] [#EFC851]punch+[] 。"
 	},
 	"animator_Scar":
 	{

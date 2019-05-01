@@ -38,7 +38,8 @@ public class Guren extends AnimatorCard
         if (attack != null)
         {
             int damage;
-            attack.calculateCardDamage(null);
+            attack.applyPowers();
+            //attack.calculateCardDamage(null);
             damage = attack.damage;
 
             if (damage > 0)

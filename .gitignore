@@ -10,5 +10,6 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 **/images/cards/temp/
+**/java/eatyourbeets/hidden/
 *.psd
 *.jar

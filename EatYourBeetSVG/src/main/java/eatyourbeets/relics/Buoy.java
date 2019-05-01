@@ -1,18 +1,23 @@
 package eatyourbeets.relics;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.subscribers.OnAfterCardDrawnSubscriber;
 
-public class Buoy extends AnimatorRelic
+public class Buoy extends AnimatorRelic implements OnAfterCardDrawnSubscriber
 {
     public static final String ID = CreateFullID(Buoy.class.getSimpleName());
 
-    private static final int PLAYER_BLOCK = 6;
-    private static final int ENEMY_BLOCK = 1;
-    private static final int TURN_COUNTER = 3;
+    private static final int BLOCK_AMOUNT = 3;
+    private static final int DEXTERITY_AMOUNT = 1;
+
+    private int startingCardCount = 0;
+    private boolean enabled = false;
 
     public Buoy()
     {
@@ -20,9 +25,23 @@ public class Buoy extends AnimatorRelic
     }
 
     @Override
+    public void onEquip()
+    {
+        super.onEquip();
+
+        if (PlayerStatistics.InBattle())
+        {
+            atBattleStart();
+            atTurnStartPostDraw();
+        }
+    }
+
+    @Override
     public void atBattleStart()
     {
         super.atBattleStart();
+
+        PlayerStatistics.onAfterCardDrawn.Subscribe(this);
 
         this.counter = 0;
     }
@@ -36,28 +55,35 @@ public class Buoy extends AnimatorRelic
     }
 
     @Override
+    public void OnAfterCardDrawn(AbstractCard card)
+    {
+        this.counter = (PlayerStatistics.getCardsDrawnThisTurn() - startingCardCount);
+
+        if (enabled && counter >= 3)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.GainBlock(p, BLOCK_AMOUNT);
+            GameActionsHelper.ApplyPowerSilently(p, p, new LoseDexterityPower(p, DEXTERITY_AMOUNT), DEXTERITY_AMOUNT);
+            GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, DEXTERITY_AMOUNT), DEXTERITY_AMOUNT);
+
+            enabled = false;
+            this.flash();
+        }
+    }
+
+    @Override
     public void atTurnStartPostDraw()
     {
         super.atTurnStartPostDraw();
 
-        counter += 1;
-        if (counter == TURN_COUNTER)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.GainBlock(p, PLAYER_BLOCK);
-            for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
-            {
-                GameActionsHelper.GainBlock(m, ENEMY_BLOCK);
-            }
-
-            this.flash();
-            counter = 0;
-        }
+        counter = 0;
+        startingCardCount = AbstractDungeon.player.masterHandSize;
+        enabled = true;
     }
 
     @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0] + TURN_COUNTER + DESCRIPTIONS[1] + PLAYER_BLOCK + DESCRIPTIONS[2] + ENEMY_BLOCK + DESCRIPTIONS[3];
+        return DESCRIPTIONS[0] + BLOCK_AMOUNT + DESCRIPTIONS[1] + DEXTERITY_AMOUNT + DESCRIPTIONS[2];
     }
 }

@@ -32,7 +32,7 @@ public class Zero extends AnimatorCard
             p.drawPile.removeCard(skill);
             p.drawPile.addToTop(skill);
             skill.applyPowers();
-            GameActionsHelper.AddToBottom(new PlayTopCardAction(m, false));
+            GameActionsHelper.AddToTop(new PlayTopCardAction(m, false));
         }
     }
 

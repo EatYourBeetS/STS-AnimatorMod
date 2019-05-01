@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.events.TheDomVedeloper1;
 import eatyourbeets.events.TheMaskedTraveler1;
 import eatyourbeets.monsters.KrulTepes;
 import eatyourbeets.relics.*;

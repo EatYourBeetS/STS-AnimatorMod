@@ -170,6 +170,11 @@
 		"DESCRIPTION": "Choose 1 of 3 random cards to add to your hand. It costs 0 this turn."
 	},
 	{
+		"PROPER_NAME": "Temporary HP",
+		"NAMES": ["temp. hp", "temp._hp"],
+		"DESCRIPTION": "Temporary HP disappears at the end of combat."
+	},
+	{
 		"PROPER_NAME": "Support Damage",
 		"NAMES": ["support damage", "support_damage"],
 		"DESCRIPTION": "Deal damage to the enemy with lowest HP at the end of each turn."

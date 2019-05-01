@@ -291,13 +291,18 @@ public abstract class AnimatorCard extends CustomCard
         AddTooltip(new TooltipInfo(info[0], info[1] + param + info[2]));
     }
 
-    protected void AddExtendedDescription()
+    protected void AddExtendedDescription(int headerIndex, int contentIndex)
     {
         String[] info = this.cardStrings.EXTENDED_DESCRIPTION;
-        if (info != null && info.length >= 2 && info[0].length() > 0)
+        if (info != null && info.length >= 2 && info[headerIndex].length() > 0)
         {
-            AddTooltip(new TooltipInfo(info[0], info[1]));
+            AddTooltip(new TooltipInfo(info[headerIndex], info[contentIndex]));
         }
+    }
+
+    protected void AddExtendedDescription()
+    {
+        AddExtendedDescription(0, 1);
     }
 
     protected void AddTooltip(TooltipInfo tooltip)

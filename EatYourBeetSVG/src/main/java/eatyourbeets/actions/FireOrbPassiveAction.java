@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.BurningPower;
@@ -46,7 +47,10 @@ public class FireOrbPassiveAction extends AnimatorAction
             GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
 
             GameActionsHelper.ApplyPower(p, enemy, new BurningPower(enemy, p, Fire.BURNING_AMOUNT), Fire.BURNING_AMOUNT);
-            GameActionsHelper.DamageTarget(p, enemy, fire.passiveAmount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+
+            int actualDamage = AbstractOrb.applyLockOn(enemy, fire.passiveAmount);
+
+            GameActionsHelper.DamageTarget(p, enemy, actualDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
 
             GameActionsHelper.SetOrder();
         }

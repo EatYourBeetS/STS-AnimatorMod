@@ -87,12 +87,8 @@ public class Defend_FullmetalAlchemist extends Defend
             //card.applyPowers();
         }
 
-        return activate;
-    }
+        this.baseSecondaryValue = this.secondaryValue = newValue;
 
-    protected void SetValue(Integer integer)
-    {
-        this.baseSecondaryValue = integer != null ? integer : 0;
-        this.secondaryValue = this.baseSecondaryValue;
+        return activate;
     }
 }

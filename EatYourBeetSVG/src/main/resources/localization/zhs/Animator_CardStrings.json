@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 !M! 次 。 下一轮 ， 抽 1 张牌 。 同调 : 增加 !SV! 张 小刀 到你的手牌 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 !M! 次 。 下一轮 ， 抽 1 张牌 。 同调 : 增加 !SV! 张 投掷刀 到你的手牌 。",
 		"NAME": "托鲁"
 	},
 	"animator_Add":
@@ -771,7 +771,7 @@
 	"animator_Shizu":
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 !M! 张牌 。 NL 虚无 。 [#EFC851]伊芙利特[]",
-		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 张手牌 ， 对敌人造成双倍层数的 #y燃烧 。 向你的弃牌堆中加入 2 张 #y灼烧 。"],
+		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 张手牌 。 对于你消耗的每张卡 ， 生成1个火焰充能球 。 向你的弃牌堆中加入 2 张 #y灼烧 。"],
 		"NAME": "静"
 	},
 	"animator_Shuna":
@@ -885,6 +885,21 @@
 		"DESCRIPTION": "在你的抽牌堆中选择 !M! 张牌 。 抽 2 张牌 。 鼓舞 !SV! : 获得 [E]",
 		"NAME": "特图"
 	},
+	"animator_ThrowingKnife_0":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 虚弱 。 NL 消耗 。 撤回 : 玩这张卡。",
+		"NAME": "投掷刀"
+	},
+	"animator_ThrowingKnife_1":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 消耗 。 撤回 : 玩这张卡。",
+		"NAME": "投掷刀"
+	},
+	"animator_ThrowingKnife_2":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 中毒 。 NL 消耗 。 撤回 : 玩这张卡。",
+		"NAME": "投掷刀"
+	},
 	"animator_Togame":
 	{
 		"DESCRIPTION": "抽 !M! 张牌 。 选择并消耗一张牌 ， 否则获得 [E] 并 消耗 这张牌 。 ",
@@ -919,7 +934,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "对随机敌人造成 !D! 点 伤害 !M! 次 。 撤回 : 增加 2 张 小刀 到你的手牌 。",
+		"DESCRIPTION": "对随机敌人造成 !D! 点 伤害 !M! 次 。 撤回 : 增加 2 张 投掷刀 到你的手牌 。",
 		"NAME": "薇薇·荷罗派涅"
 	},
 	"animator_Witch":
@@ -973,5 +988,36 @@
 		"DESCRIPTION": "从你的抽牌堆中打出一张随机的 [#EFC851]技能牌[] 。 消耗 。",
 		"NAME": "零",
 		"UPGRADE_DESCRIPTION": "从你的抽牌堆中打出一张随机的 [#EFC851]技能牌[] 。"
-	}
+	},
+	"animator_HiiragiTenri":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Play and Exhaust NL ALL cards in your discard pile.",
+		"NAME": "Tenri Hiiragi"
+	},
+	"animator_ShikizakiKiki":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Draw !M! cards. NL Double the damage of all [#EFC851]Attacks in your hand this combat.",
+		"NAME": "Shikizaki Kiki"
+	},
+	"animator_Chomusuke":
+	{
+		"DESCRIPTION": "Gain [E] and draw !M! card for each card you Exhausted this turn ( !SV! ). Exhaust.",
+		"NAME": "Chomusuke",
+		"UPGRADE_DESCRIPTION": "Gain [E] and draw !M! cards for each card you Exhausted this turn ( !SV! ). Exhaust."
+	},
+	"animator_Hero":
+	{
+		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! Cards. NL While in your deck, increase the chances of [#EFC851]Bonus [#EFC851]Relics.",
+		"NAME": "'Hero'"
+	},
+	"animator_Rose":
+	{
+		"DESCRIPTION": "Augmentable. Deal !D! Piercing damage !M! times. If this kills an enemy, target another random enemy.",
+		"NAME": "Rose"
+	},
+	"animator_NivaLada":
+	{
+		"DESCRIPTION": "Cooldown !SV! : NL Deal 300 damage. NL When you Exhaust or discard a card, reduce this Cooldown by 1.",
+		"NAME": "Niva Lada"
+	},
 }

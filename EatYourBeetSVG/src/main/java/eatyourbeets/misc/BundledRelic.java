@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
+import eatyourbeets.cards.animator.Hero;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,15 @@ public class BundledRelic
 
     public BundledRelic Clone(int roll)
     {
+        int chance = this.chance;
+        for (AbstractCard c : AbstractDungeon.player.masterDeck.getAttacks().group)
+        {
+            if (c instanceof Hero)
+            {
+                chance += 8;
+            }
+        }
+
         //Utilities.Logger.info(cardID + ", Rolled: " + roll + " (" + chance + ")");
         BundledRelic bundledRelic = new BundledRelic(cardID, relicID, relicTier, chance);
         bundledRelic.roll = roll;

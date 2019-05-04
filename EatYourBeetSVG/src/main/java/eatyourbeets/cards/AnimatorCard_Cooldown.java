@@ -10,6 +10,12 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard// extends Anima
 {
     protected abstract int GetBaseCooldown();
 
+    protected AnimatorCard_Cooldown(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
+    {
+        super(id, cost, type, color, rarity, target);
+        this.baseSecondaryValue = this.secondaryValue = GetBaseCooldown();
+    }
+
     protected AnimatorCard_Cooldown(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
         super(id, cost, type, rarity, target);

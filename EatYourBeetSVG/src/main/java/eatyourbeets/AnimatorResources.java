@@ -338,7 +338,13 @@ public class AnimatorResources
 
     static
     {
-        if (Settings.language == Settings.GameLanguage.ZHT)
+        final String filePath = "c:/temp/animator-localization/";
+        File f = new File(filePath);
+        if(f.exists() && f.isDirectory())
+        {
+            languagePath = filePath;
+        }
+        else if (Settings.language == Settings.GameLanguage.ZHT)
         {
             languagePath = "localization/zht/";
         }

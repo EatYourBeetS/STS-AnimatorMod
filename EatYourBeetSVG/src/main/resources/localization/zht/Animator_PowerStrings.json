@@ -28,7 +28,7 @@
 	"animator_ChlammyZellPower":
 	{
 		"DESCRIPTIONS": ["當你交替打出不同類型的牌時 ， 循環 1 張牌 並 對所有敵人造成 #b", " 點 傷害 。 NL NL 你上一次打出的牌的類型是 : #y"],
-		"NAME": "Chlammy Zell"
+		"NAME": "克拉米·杰爾"
 	},
 	"animator_DarknessPower":
 	{
@@ -37,13 +37,13 @@
 	},
 	"animator_DelayedHealPower":
 	{
-		"DESCRIPTIONS": ["Heal #g", " HP at the start of your next turn."],
-		"NAME": "Delayed Heal"
+		"DESCRIPTIONS": ["下回合開始時治療 #g", "點生命。"],
+		"NAME": "延遲治療"
 	},
 	"animator_EarthenThornsPower":
 	{
 		"DESCRIPTIONS": ["每次受到 #y攻擊 傷害時，就造成 #b", " 點反傷"],
-		"NAME": "土製的荊棘"
+		"NAME": "臨時荊棘"
 	},
 	"animator_EmiyaShirouPower":
 	{
@@ -107,38 +107,38 @@
 	},
 	"animator_OrbCore_ChaosPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, #yDiscover #b", " card/s."],
-		"NAME": "Chaos Core"
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", " 次觸發 #y同調後，#y發現 #b", " 張牌。"],
+		"NAME": "混沌充能球"
 	},
 	"animator_OrbCore_DarkPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, draw #b", " cards, then discard #b1 card."],
-		"NAME": "Dark Core"
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", " 次觸發 #y同調後，抽 #b", " 張牌, 然後 丢 #b1 張牌。"],
+		"NAME": "黑暗充能球"
 	},
 	"animator_OrbCore_EarthPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " Temporary #yThorns."],
-		"NAME": "Earth Core"
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", " 次觸發 #y同調後，獲得 #b", " 點 臨時 #y荆棘。"],
+		"NAME": "大地充能球"
 	},
 	"animator_OrbCore_FirePower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, apply #b", " #yBurning to ALL enemies."],
-		"NAME": "Fire Core"
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", "次觸發 #y同調後，给予所有敵人 #b層 ", " #y燃燒。"],
+		"NAME": "火焰充能球"
 	},
 	"animator_OrbCore_FrostPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yBlock."],
-		"NAME": "Frost Core"
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", "次觸發 #y同調後, 獲得 #b", " #y層護甲。"],
+		"NAME": "冰霜充能球"
 	},
 	"animator_OrbCore_LightningPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, deal #b", " damage to ALL enemies."],
-		"NAME": "Lightning Core"
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", "次觸發 #y同調後， 對所有敵人造成 #b點", " 傷害。"],
+		"NAME": "閃電充能球"
 	},
 	"animator_OrbCore_PlasmaPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yEnergy."],
-		"NAME": "Plasma Core"
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", "次觸發 #y同調後", " #yEnergy."],
+		"NAME": "等離子充能球"
 	},
 	"animator_PinaCoLadaPower":
 	{
@@ -177,7 +177,7 @@
 	},
 	"animator_StrategicInformationPower":
 	{
-		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and deal #b", " damage to the lowest health enemy."],
+		"DESCRIPTIONS": ["下#b", " 次你丟棄這張牌，獲得 #b", " 點格擋和對生命值最低的敵人造成 #b", " 點傷害。"],
 		"NAME": "戰略信息"
 	},
 	"animator_SupportDamagePower":
@@ -187,7 +187,7 @@
 	},
 	"animator_YukoShionjiPower":
 	{
-		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use/s ), or #pRight-Click to discard it ( #b", " use/s)."],
-		"NAME": "Yuko Shionji"
+		"DESCRIPTIONS": ["查看抽牌堆頂部的牌，NL 點滑鼠#p左鍵 把牌加入手牌中( #b", " 次 ), 或者 點滑鼠#p右鍵 丟棄 ( #b", " 使用)."],
+		"NAME": "紫苑寺有子"
 	}
 }

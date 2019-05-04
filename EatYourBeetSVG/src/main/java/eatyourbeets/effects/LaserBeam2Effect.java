@@ -14,23 +14,19 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 
 public class LaserBeam2Effect extends AbstractGameEffect
 {
-    private float originX;
-    private float originY;
     private float x;
     private float y;
     private static final float DUR = 2.0F;
     private static AtlasRegion img;
     private boolean playedSfx = false;
 
-    public LaserBeam2Effect(float originX, float originY, float x, float y)
+    public LaserBeam2Effect(float x, float y)
     {
         if (img == null)
         {
             img = ImageMaster.vfxAtlas.findRegion("combat/laserThick");
         }
 
-        this.originX = originX;
-        this.originY = originY;
         this.x = x;
         this.y = y;
         this.color = Color.CYAN.cpy();
@@ -69,16 +65,15 @@ public class LaserBeam2Effect extends AbstractGameEffect
     {
         sb.setBlendFunction(770, 1);
         sb.setColor(new Color(0.5F, 0.7F, 1.0F, this.color.a));
-        sb.draw(img, this.x, this.y - (float) (img.packedHeight / 2), originX, originY, (float) img.packedWidth, (float) img.packedHeight, this.scale * 2.0F + MathUtils.random(-0.05F, 0.05F), this.scale * 1.5F + MathUtils.random(-0.1F, 0.1F), MathUtils.random(186.0F, 189.0F));
-        sb.draw(img, this.x, this.y - (float) (img.packedHeight / 2), originX, originY, (float) img.packedWidth, (float) img.packedHeight, this.scale * 2.0F + MathUtils.random(-0.05F, 0.05F), this.scale * 1.5F + MathUtils.random(-0.1F, 0.1F), MathUtils.random(186.0F, 189.0F));
+        sb.draw(img, this.x, this.y - (float) (img.packedHeight / 2), 0.0F, (float) img.packedHeight / 2.0F, (float) img.packedWidth, (float) img.packedHeight, this.scale * 2.0F + MathUtils.random(-0.05F, 0.05F), this.scale * 1.5F + MathUtils.random(-0.1F, 0.1F), MathUtils.random(6.0F, 9.0F));
+        sb.draw(img, this.x, this.y - (float) (img.packedHeight / 2), 0.0F, (float) img.packedHeight / 2.0F, (float) img.packedWidth, (float) img.packedHeight, this.scale * 2.0F + MathUtils.random(-0.05F, 0.05F), this.scale * 1.5F + MathUtils.random(-0.1F, 0.1F), MathUtils.random(6.0F, 9.0F));
         sb.setColor(this.color);
-        sb.draw(img, this.x, this.y - (float) (img.packedHeight / 2), originX, originY, (float) img.packedWidth, (float) img.packedHeight, this.scale * 2.0F, this.scale / 2.0F, MathUtils.random(187.0F, 188.0F));
-        sb.draw(img, this.x, this.y - (float) (img.packedHeight / 2), originX, originY, (float) img.packedWidth, (float) img.packedHeight, this.scale * 2.0F, this.scale / 2.0F, MathUtils.random(187.0F, 188.0F));
+        sb.draw(img, this.x, this.y - (float) (img.packedHeight / 2), 0.0F, (float) img.packedHeight / 2.0F, (float) img.packedWidth, (float) img.packedHeight, this.scale * 2.0F, this.scale / 2.0F, -MathUtils.random(7.0F, 8.0F));
+        sb.draw(img, this.x, this.y - (float) (img.packedHeight / 2), 0.0F, (float) img.packedHeight / 2.0F, (float) img.packedWidth, (float) img.packedHeight, this.scale * 2.0F, this.scale / 2.0F, -MathUtils.random(7.0F, 8.0F));
         sb.setBlendFunction(770, 771);
     }
 
     public void dispose()
     {
-
     }
 }

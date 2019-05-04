@@ -25,50 +25,36 @@ public class Saitama extends AnimatorCard
 
         Initialize(20, 0);
 
-        this.isInnate = true;
-        this.retain = true;
-
         AddExtendedDescription();
 
         SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
-    public void atTurnStart()
-    {
-        super.atTurnStart();
-
-        this.retain = true;
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        super.triggerOnEndOfTurnForPlayingCard();
-
-        this.retain = true;
-    }
-
-    @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        float bonusDamage = 0;
-        int energy = EnergyPanel.getCurrentEnergy();
-
-        for (int i = 0; i < energy - 2; i++)
+        if (!player.drawPile.contains(this) && !player.discardPile.contains(this) && !player.exhaustPile.contains(this))
         {
-            bonusDamage += DAMAGE_STEP * (i + 1);
-        }
+            int energy = EnergyPanel.getCurrentEnergy() - 2;
+            int multiplier = Math.floorDiv((energy * (energy + 1)), 2);
 
-        if (upgraded)
-        {
-            bonusDamage += (Math.floorDiv(energy, 3) + 1) * 10;
-        }
+            if (energy > 3)
+            {
+                multiplier += Math.floorDiv(energy, 4);
+            }
 
-        tmp += bonusDamage;
-        if (tmp > 99999)
-        {
-            tmp = 99999;
+            float bonusDamage = DAMAGE_STEP * multiplier;
+
+            if (upgraded)
+            {
+                bonusDamage += (Math.floorDiv(energy, 3) + 1) * 10;
+            }
+
+            tmp += bonusDamage;
+            if (tmp > 99999)
+            {
+                tmp = 99999;
+            }
         }
 
         return super.calculateModifiedCardDamage(player, mo, tmp);

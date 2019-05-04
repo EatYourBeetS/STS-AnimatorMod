@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.colorless.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
@@ -39,7 +38,7 @@ public class AcuraTooru extends AnimatorCard
         {
             for (int i = 0; i < this.secondaryValue; i++)
             {
-                GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new Shiv()));
+                GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomSubtype()));
             }
         }
     }

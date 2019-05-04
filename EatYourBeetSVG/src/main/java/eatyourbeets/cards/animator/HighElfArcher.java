@@ -45,7 +45,7 @@ public class HighElfArcher extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(1);
             upgradeMagicNumber(1);
         }
     }

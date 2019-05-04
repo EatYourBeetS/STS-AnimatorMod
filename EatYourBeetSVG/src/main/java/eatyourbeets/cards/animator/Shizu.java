@@ -11,7 +11,7 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.VariableExhaustAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.BurningPower;
+import eatyourbeets.orbs.Fire;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class Shizu extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(18, 0, 2);
+        Initialize(16, 0, 2);
 
         AddExtendedDescription();
 
@@ -47,7 +47,7 @@ public class Shizu extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(6);
+            upgradeDamage(4);
             //upgradeMagicNumber(1);
         }
     }
@@ -62,8 +62,11 @@ public class Shizu extends AnimatorCard
         AbstractMonster m = (AbstractMonster)state;
         AbstractPlayer p = AbstractDungeon.player;
 
-        int burning = cards.size() * 2;
-
-        GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, burning), burning);
+        for (int i = 0; i < cards.size(); i++)
+        {
+            GameActionsHelper.ChannelOrb(new Fire(), true);
+        }
+        //int burning = cards.size() * 2;
+        //GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, burning), burning);
     }
 }

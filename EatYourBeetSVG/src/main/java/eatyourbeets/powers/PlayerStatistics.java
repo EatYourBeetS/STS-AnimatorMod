@@ -32,6 +32,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
     public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
     public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = new GameEvent<>();
+    public static final GameEvent<OnAfterCardExhaustedSubscriber> onAfterCardExhausted = new GameEvent<>();
     public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
@@ -69,6 +70,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         onAfterCardDrawn.Clear();
         onAfterCardPlayed.Clear();
         onAfterCardDiscarded.Clear();
+        onAfterCardExhausted.Clear();
         onAttack.Clear();
         onLoseHp.Clear();
         onEndOfTurn.Clear();
@@ -208,7 +210,19 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     {
         super.onExhaust(card);
 
+        for (OnAfterCardExhaustedSubscriber p : onAfterCardExhausted.GetSubscribers())
+        {
+            p.OnAfterCardExhausted(card);
+        }
         cardsExhaustedThisTurn += 1;
+    }
+
+    public void OnManualDiscard()
+    {
+        for (OnAfterCardDiscardedSubscriber p : onAfterCardDiscarded.GetSubscribers())
+        {
+            p.OnAfterCardDiscarded();
+        }
     }
 
     @Override

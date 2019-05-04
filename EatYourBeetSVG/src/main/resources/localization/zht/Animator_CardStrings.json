@@ -13,14 +13,14 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 下一轮 ， 抽 1 張牌 。 同調 : 增加 !SV! 張 小刀 到手牌 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 下一輪 ， 抽 1 張牌 。 同調 : 增加 !SV! 張 投擲刀 到手牌 。",
 		"NAME": "托魯"
 	},
 	"animator_Add":
 	{
-		"DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 用 充電球核心 代替它 。 虛無 。 消耗 。",
+		"DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 用 閃電充能球 代替它 。 虛無 。 消耗 。",
 		"NAME": "艾迪",
-		"UPGRADE_DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 用 充電球核心 代替它 。 虛無 。"
+		"UPGRADE_DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 用 閃電充能球 代替它 。 虛無 。"
 	},
 	"animator_Ain":
 	{
@@ -83,7 +83,7 @@
 	},
 	"animator_Benimaru":
 	{
-		"DESCRIPTION": "[#EFC851]生成[] 1 個 火焰 充能球 。 對所有敵人造成 !D! 點 傷害 。 NL 同調 : 造成 !M! 點 燃燒 。",
+		"DESCRIPTION": "生成 1 個 火焰 充能球 。 對所有敵人造成 !D! 點 傷害 。 NL 同調 : 造成 !M! 點 燃燒 。",
 		"NAME": "紅丸"
 	},
 	"animator_Berserker":
@@ -119,7 +119,7 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 下一轮 ， 造成 !D! 點 傷害 並 給予目標 !M! 個隨機的 [#EFC851]負面效果[] 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 下一輪 ， 造成 !D! 點 傷害 並 給予目標 !M! 個隨機的 [#EFC851]負面效果[] 。",
 		"NAME": "嘉依卡·托勒龐特"
 	},
 	"animator_ChlammyZell":
@@ -172,7 +172,7 @@
 	},
 	"animator_Defend_Elsword":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 下一轮 ， 獲得 !B! 點 格擋 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 下一輪 ， 獲得 !B! 點 格擋 。",
 		"NAME": "優越防禦"
 	},
 	"animator_Defend_Fate":
@@ -331,13 +331,13 @@
 	},
 	"animator_Eve":
 	{
-		"DESCRIPTION": "發揮 充電球核心 。 每当触发一次 同调 ， 对随机敌人造成 !M! 点 伤害并增加这张牌 1 点 伤害 。",
+		"DESCRIPTION": "發揮 閃電充能球 。 每當觸發一次同調 ， 對隨機敵人造成 !M! 點 傷害並增加這張牌 1 點 傷害 。",
 		"NAME": "伊芙"
 	},
 	"animator_Evileye":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 抽一張牌 。 NL 重新裝填 : 使用你最右側的1個充能球的被動能力 。",
-		"NAME": "Evileye"
+		"NAME": "邪眼"
 	},
 	"animator_Excalibur":
 	{
@@ -353,18 +353,18 @@
 	},
 	"animator_Fredrika":
 	{
-		"DESCRIPTION": "變形者 。 每个敌人使你获得获得 !B! 点 格挡 。 撤回 : 將此卡退還給您並選擇其他表格 。",
+		"DESCRIPTION": "變形者 。 每個敵人使你獲得 !B! 點 格擋 。 撤回 : 此卡回到手牌並選擇其他型態 。",
 		"EXTENDED_DESCRIPTION":
 		[
 			"變形者 。 抽 1 張牌 。",
-			"變形者 。 造成 !D! 點傷害 2 次 。 獲得 2 層 金屬化 。 撤回 : 获得 !M! 点 金属化 。",
+			"變形者 。 造成 !D! 點傷害 2 次 。 獲得 2 層 金屬化 。 撤回 : 獲得 !M! 點 金属化 。",
 			"變形者 。 造成 !D! 點 傷害 。 給予 1 層 虛弱 。 給予 1 層 易傷 。"
 		],
 		"NAME": "芙蕾多妮卡"
 	},
 	"animator_GazelDwargon":
 	{
-		"DESCRIPTION": "在每輪開始時 ， 保持一半的點 格擋 。 每當你玩攻擊卡時 ， 獲得 !M! 點 格擋 。",
+		"DESCRIPTION": "在每輪開始時 ， 保持一半的點 格擋 。 每當你打出攻擊卡時 ， 獲得 !M! 點 格擋 。",
 		"NAME": "矮人王"
 	},
 	"animator_Gilgamesh":
@@ -375,7 +375,7 @@
 	},
 	"animator_Gillette":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 下一轮 ， 獲得 [E] 。 撤回 : 給予所有敵人 !M! 層 虛弱 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 下一輪 ， 獲得 [E] 。 撤回 : 給予所有敵人 !M! 層 虛弱 。",
 		"NAME": "亞伯力克·基烈特"
 	},
 	"animator_Gluttony":
@@ -544,7 +544,7 @@
 	},
 	"animator_Layla":
 	{
-		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 NL 重新裝填 : 給予 !M! 層 中毒 對一個隨機的敵人 。",
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 NL 重新裝填 : 對一個隨機的敵人給予 !M! 層 中毒  。",
 		"NAME": "蕾拉"
 	},
 	"animator_LeleiLaLalena":
@@ -555,9 +555,9 @@
 	},
 	"animator_LimeBell":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 重新裝填 : 下一轮 ， 回復 !M! 點 生命 。 NL 消耗 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 重新裝填 : 下一輪 ， 回復 !M! 點 生命 。 NL 消耗 。",
 		"NAME": "Lime Bell",
-		"UPGRADE_DESCRIPTION": "抽 1 張牌 。 NL 獲得 !B! 點 格擋 。 NL 重新裝填 : 下一轮 ， 回復 !M! 點 生命 。 NL 消耗 。"
+		"UPGRADE_DESCRIPTION": "抽 1 張牌 。 NL 獲得 !B! 點 格擋 。 NL 重新裝填 : 下一輪 ， 回復 !M! 點 生命 。 NL 消耗 。"
 	},
 	"animator_LizardPriest":
 	{
@@ -604,9 +604,9 @@
 	},
 	"animator_MumenRider":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 1 張牌 。 NL 抹除 。 下一轮 ， 返回繪製堆的頂部 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 1 張牌 。 NL 抹除 。 下一輪 ， 返回繪製堆的頂部 。",
 		"NAME": "Mumen Rider",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 with Style 。 NL 抽 1 張牌 。 NL 抹除 。 下一轮 ， 返回繪製堆的頂部 。"
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 with Style 。 NL 抽 1 張牌 。 NL 抹除 。 下一輪 ， 返回繪製堆的頂部 。"
 	},
 	"animator_Nanami":
 	{
@@ -671,7 +671,7 @@
 	"animator_Priestess":
 	{
 		"DESCRIPTION": "獲得 !B! 點 臨時生命 [#EFC851]*[] 。 同調 : 最多 !SV! 次 ， 獲得 !M! 層 [#EFC851]再生[] 。",
-		"EXTENDED_DESCRIPTION": ["* 備註", "受到格擋修飾詞影響 。"],
+		"EXTENDED_DESCRIPTION": ["* 備註", "受到格擋增幅影響 。"],
 		"NAME": "女神官"
 	},
 	"animator_QuestionMark":
@@ -720,10 +720,10 @@
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點 傷害 。 NL [#EFC851]one[] [#EFC851]punch[] 。",
-		"EXTENDED_DESCRIPTION": ["One Punch", "Spend ALL your energy, this card deals #yincreasingly more damage for each point spent."],
+		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點 傷害 。 NL [#EFC851]一[] [#EFC851]拳[] 。",
+		"EXTENDED_DESCRIPTION": ["一拳", "花費所有能量，每點能量增加此牌更多傷害。"],
 		"NAME": "埼玉",
-		"UPGRADE_DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點 傷害 。 NL [#EFC851]one[] [#EFC851]punch+[] 。"
+		"UPGRADE_DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 點 傷害 。 NL [#EFC851]一[] [#EFC851]拳+[] 。"
 	},
 	"animator_Scar":
 	{
@@ -770,7 +770,7 @@
 	"animator_Shizu":
 	{
 		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 !M! 張牌 。 NL 虚无 。 [#EFC851]伊芙利特[]",
-		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 張手牌 ， 對敵人造成雙倍層數的 #y燃燒 。 向你的棄牌堆中加入 2 張 #y灼燒 。"],
+		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 張手牌 。 對於你消耗的每張卡 ， 生成1個火焰充能球 。 向你的棄牌堆中加入 2 張 #y灼燒 。"],
 		"NAME": "靜"
 	},
 	"animator_Shuna":
@@ -825,7 +825,7 @@
 	},
 	"animator_Strike_GATE":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 NL 下一轮 ， 抽一張牌 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 NL 下一輪 ， 抽一張牌 。",
 		"NAME": "優越打擊"
 	},
 	"animator_Strike_GoblinSlayer":
@@ -870,7 +870,7 @@
 	},
 	"animator_Strike_TenSura":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 NL 獲得 !M! 點 臨時生命 。",
+		"DESCRIPTION": "造成 !D! 點伤害 。 NL 獲得 !M! 點 臨時生命 。",
 		"NAME": "優越打擊"
 	},
 	"animator_SwordMaiden":
@@ -882,6 +882,21 @@
 	{
 		"DESCRIPTION": "在你的抽牌堆中選擇 !M! 張牌 。 抽 2 張牌 。 增強 !SV! : 獲得 [E]",
 		"NAME": "特圖"
+	},
+	"animator_ThrowingKnife_0":
+	{
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 造成 !M! 層 虛弱 。 NL 消耗 。 撤回 : 打這張牌。",
+		"NAME": "投擲刀"
+	},
+	"animator_ThrowingKnife_1":
+	{
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 造成 !M! 層 易傷 。 NL 消耗 。 撤回 : 打這張牌。",
+		"NAME": "投擲刀"
+	},
+	"animator_ThrowingKnife_2":
+	{
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 造成 !M! 層 中毒 。 NL 消耗 。 撤回 : 打這張牌。",
+		"NAME": "投擲刀"
 	},
 	"animator_Togame":
 	{
@@ -917,7 +932,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "對隨機敵人造成 !D! 點 傷害 !M! 次 。 撤回 : 增加 2 張 小刀 到手牌 。",
+		"DESCRIPTION": "對隨機敵人造成 !D! 點 傷害 !M! 次 。 撤回 : 增加 2 張 投擲刀 到手牌 。",
 		"NAME": "薇薇·荷羅派涅"
 	},
 	"animator_Witch":
@@ -971,5 +986,36 @@
 		"DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 消耗 。",
 		"NAME": "零",
 		"UPGRADE_DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 "
+	},
+	"animator_HiiragiTenri":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Play and Exhaust NL ALL cards in your discard pile.",
+		"NAME": "Tenri Hiiragi"
+	},
+	"animator_ShikizakiKiki":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Draw !M! cards. NL Double the damage of all [#EFC851]Attacks in your hand this combat.",
+		"NAME": "Shikizaki Kiki"
+	},
+	"animator_Chomusuke":
+	{
+		"DESCRIPTION": "Gain [E] and draw !M! card for each card you Exhausted this turn ( !SV! ). Exhaust.",
+		"NAME": "Chomusuke",
+		"UPGRADE_DESCRIPTION": "Gain [E] and draw !M! cards for each card you Exhausted this turn ( !SV! ). Exhaust."
+	},
+	"animator_Hero":
+	{
+		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! Cards. NL While in your deck, increase the chances of [#EFC851]Bonus [#EFC851]Relics.",
+		"NAME": "'Hero'"
+	},
+	"animator_Rose":
+	{
+		"DESCRIPTION": "Augmentable. Deal !D! Piercing damage !M! times. If this kills an enemy, target another random enemy.",
+		"NAME": "Rose"
+	},
+	"animator_NivaLada":
+	{
+		"DESCRIPTION": "Cooldown !SV! : NL Deal 300 damage. NL When you Exhaust or discard a card, reduce this Cooldown by 1.",
+		"NAME": "Niva Lada"
 	}
 }

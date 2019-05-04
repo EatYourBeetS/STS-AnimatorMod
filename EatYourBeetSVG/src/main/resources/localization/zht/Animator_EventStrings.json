@@ -1,16 +1,16 @@
 {
   "Animator_TheMaskedTraveler1": {
-    "NAME": "戴面具的旅行者",
+    "NAME": "覆面旅者",
     "DESCRIPTIONS": [
-      "While passing by this #ytotally not #yreused game asset, a masked figure with a large backpack approaches you. NL NL \"Greetings friend, are you perchance carrying some @'special'@ weaponry?\" NL ... NL \"Are you willing to sell it?\" NL NL \"Or perhaps you would prefer to buy some from my ... #ycollection ?\"",
-      "\"Did he actually accept?\" NL .. NL \"Ahem, I am @grateful@ for the @trade@ , be safe on your journey.\" NL NL That said, he disappeared from your sight."
+      "經過這個陌生的全新場景時，一個揹著巨大包裹的覆面旅者突然向你靠近。NL NL \"你好啊，兄弟, 你有没有正好帶著一些... @'特别的'@ 武器?\" NL ... NL \"你願意把它們賣給我嗎?\" NL NL \"又或者你更願意從我的... #y收藏裡買些東西?\"",
+      "\"他真的接受了?\" NL .. NL \"咳咳咳, @感谢@ 您的 @交易@ , 祝你一路順風.\" NL NL 說著，他逐漸從你的視野中消失了。"
     ],
     "OPTIONS": [
-      "[販賣] 移除 ", ". #g獲得 #g", " #g金幣",
-      "[交易] #g增強 #g所有 打擊牌 #g和 防禦牌. #r失去 #r", " #r金幣.",
+      "[出售] #g移除 ", ". #g獲得 #g", " #g個 金幣。",
+      "[交易] #g升级 #g所有 打擊牌 #g和 防禦牌 . #r失去 #r", " #r個金幣。",
       "[離開]",
-	  "[鎖定] 沒有牌可以賣",
-	  "[鎖定] 沒有足夠的金幣"
+	  "[鎖定] 没有牌可以出售。",
+	  "[鎖定] 没有足夠的金幣。"
     ]
   },
   "Animator_TheDomVedeloper1": {
@@ -26,15 +26,15 @@
 	  "\"Perfect, have a nice day!\" NL NL \"... So... the next series could be...\""
     ],
     "OPTIONS": [
-	  "[Leave]",
-      "[Accept] Answer 4 questions. #gGain #g100 #gGold.",
-	  "[1] It is definitely too strong...",
-      "[2] It is a very strong card!",
-	  "[3] It is a good card in most situations.",
-	  "[4] It has its uses sometimes.",
-	  "[5] What? Never show me that thing again.",
-	  "[Sign the paper]",
-	  "[Continue]"
+	  "[離開]",
+      "[接受] 回答四個問題。 #g獲得 #g100 #g金幣.",
+	  "[1] 這個絕對太強了...",
+      "[2] 這是張強力的牌!",
+	  "[3] 這是張大部分情況下不錯的牌。",
+	  "[4] 有時候會發揮作用。",
+	  "[5] 甚麼? 不要再給我看到這東西。",
+	  "[簽名]",
+	  "[繼續]"
     ]
   }
 }

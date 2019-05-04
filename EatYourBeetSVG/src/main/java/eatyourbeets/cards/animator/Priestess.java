@@ -15,7 +15,7 @@ public class Priestess extends AnimatorCard_Boost
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0, 5, 2);
+        Initialize(0, 4, 2);
 
         this.tags.add(CardTags.HEALING);
 
@@ -40,14 +40,13 @@ public class Priestess extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
-            upgradeSecondaryValue(1);
+            upgradeBlock(3);
         }
     }
 
     @Override
     protected int GetBaseBoost()
     {
-        return upgraded ? 3 : 2;
+        return 2;
     }
 }

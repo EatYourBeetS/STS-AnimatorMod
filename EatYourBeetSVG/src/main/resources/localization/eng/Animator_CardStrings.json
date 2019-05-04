@@ -13,9 +13,9 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage !M! times. Next turn, draw 1 card. Synergy: Add !SV! Shiv to your hand.",
+		"DESCRIPTION": "Deal !D! damage !M! times. Next turn, draw 1 card. Synergy: Add !SV! Throwing-Knife to your hand.",
 		"NAME": "Tooru",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. Next turn, draw 1 card. Synergy: Add !SV! Shivs to your hand."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. Next turn, draw 1 card. Synergy: Add !SV! Throwing-Knives to your hand."
 	},
 	"animator_Add":
 	{
@@ -721,10 +721,10 @@
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "Innate. Retain. NL Deal !D! Damage. NL [#EFC851]One[] [#EFC851]Punch[].",
+		"DESCRIPTION": "Deal !D! Damage. NL [#EFC851]One[] [#EFC851]Punch[].",
 		"EXTENDED_DESCRIPTION": ["One Punch", "Spend ALL your energy, this card deals #yincreasingly more damage for each point spent."],
 		"NAME": "Saitama",
-		"UPGRADE_DESCRIPTION": "Innate. Retain. NL Deal !D! Damage. NL [#EFC851]One[] [#EFC851]Punch+[]."
+		"UPGRADE_DESCRIPTION": "Deal !D! Damage. NL [#EFC851]One[] [#EFC851]Punch+[]."
 	},
 	"animator_Scar":
 	{
@@ -771,7 +771,7 @@
 	"animator_Shizu":
 	{
 		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! cards. NL Ethereal. [#EFC851]Ifrit.",
-		"EXTENDED_DESCRIPTION": ["Ifrit", "Exhaust up to 3 cards in your hand, apply twice that much #yBurning to the enemy. NL Add 2 #yBurns to your discard pile."],
+		"EXTENDED_DESCRIPTION": ["Ifrit", "Exhaust up to 3 cards in your hand, #yChannel that much #yFire. Add 2 #yBurns to your discard pile."],
 		"NAME": "Shizu"
 	},
 	"animator_Shuna":
@@ -885,6 +885,21 @@
 		"DESCRIPTION": "Discard up to !M! cards from your draw pile. NL Draw 2 cards. NL Boost !SV! : gain [E].",
 		"NAME": "Tet"
 	},
+	"animator_ThrowingKnife_0":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Exhaust. Recall: Play this card.",
+		"NAME": "Throwing-Knife"
+	},
+	"animator_ThrowingKnife_1":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Exhaust. Recall: Play this card.",
+		"NAME": "Throwing-Knife"
+	},
+	"animator_ThrowingKnife_2":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Exhaust. Recall: Play this card.",
+		"NAME": "Throwing-Knife"
+	},
 	"animator_Togame":
 	{
 		"DESCRIPTION": "Draw !M! cards. NL You may Exhaust a card, otherwise gain [E] and Exhaust.",
@@ -919,7 +934,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Recall: Add 2 Shivs to your hand.",
+		"DESCRIPTION": "Deal !D! damage to a random Enemy !M! times. Recall: Add 1 Throwing-Knife to your hand.",
 		"NAME": "Viivi"
 	},
 	"animator_Witch":
@@ -958,10 +973,10 @@
 	},
 	"animator_Yuuichirou":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. NL Legacy: Obtain [#EFC851]Asuramaru.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. Legacy: Obtain [#EFC851]Asuramaru.",
 		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 1-Cost #yAttack."],
 		"NAME": "Yuuichirou",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. NL Legacy: Obtain [#EFC851]Asuramaru+."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. Legacy: Obtain [#EFC851]Asuramaru+."
 	},
 	"animator_ZankiKiguchi":
 	{
@@ -973,5 +988,61 @@
 		"DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile. Exhaust.",
 		"NAME": "Zero",
 		"UPGRADE_DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile."
+	},
+	"animator_Azriel":
+	{
+		"DESCRIPTION": "Gain Flight. NL Whenever you apply a debuff to an enemy, gain !M! Strength.",
+		"NAME": "Azriel"
+	},
+	"animator_Giselle":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning. NL Deal triple damage to normal enemies.",
+		"NAME": "Giselle"
+	},
+	"animator_HiiragiTenri":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Play and Exhaust NL ALL cards in your discard pile.",
+		"NAME": "Tenri Hiiragi"
+	},
+	"animator_SirTouchMe":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Juggernaut. NL Gain !B! Block.",
+		"NAME": "Sir Touch Me"
+	},
+	"animator_ShikizakiKiki":
+	{
+		"DESCRIPTION": "Draw !M! cards. NL Double the damage of all [#EFC851]Attacks in your hand for the rest of this combat.",
+		"NAME": "Shikizaki Kiki"
+	},
+	"animator_Chomusuke":
+	{
+		"DESCRIPTION": "Gain [E] and draw !M! card for each card you Exhausted this turn ( !SV! ). Exhaust.",
+		"NAME": "Chomusuke",
+		"UPGRADE_DESCRIPTION": "Gain [E] and draw !M! cards for each card you Exhausted this turn ( !SV! ). Exhaust."
+	},
+	"animator_JeanneDArc":
+	{
+		"DESCRIPTION": "Deal !D! Damage. NL Gain !M! Temp._HP. NL Exhaust a random Curse or Status.",
+		"NAME": "Jeanne D'Arc"
+	},
+	"animator_Hero":
+	{
+		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! Cards. NL While in your deck, increase the chances of [#EFC851]Bonus [#EFC851]Relics.",
+		"NAME": "'Hero'"
+	},
+	"animator_Truth":
+	{
+		"DESCRIPTION": "Gain !SV! Focus. NL Gain !M! Strength. NL Permanently replace a card in your deck with a [#EFC851]Wound.",
+		"NAME": "Truth"
+	},
+	"animator_Rose":
+	{
+		"DESCRIPTION": "Draw !M! cards. NL Reload: Deal !D! Piercing damage. If the enemy dies, hit another enemy.",
+		"NAME": "Rose"
+	},
+	"animator_NivaLada":
+	{
+		"DESCRIPTION": "Cooldown !SV! : NL Deal 300 damage. NL When you Exhaust or discard a card, reduce this Cooldown by 1.",
+		"NAME": "Niva Lada"
 	}
 }

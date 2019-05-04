@@ -150,6 +150,11 @@
 		"DESCRIPTION": "丢弃任意数量的牌 ， 触发同等次数 。"
 	},
 	{
+		"PROPER_NAME": "投掷刀",
+		"NAMES": ["投掷刀"],
+		"DESCRIPTION": "0-Cost #yAttack which applies a randomized debuff and #yExhausts."
+	},
+	{
 		"PROPER_NAME": "发现",
 		"NAMES": ["发现"],
 		"DESCRIPTION": "从 3 张随机牌中选择 1 张加入你的手牌 。 这张牌在本回合耗能变为 0 。"

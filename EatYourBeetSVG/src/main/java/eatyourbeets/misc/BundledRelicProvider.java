@@ -59,7 +59,7 @@ public class BundledRelicProvider
         if (relic != null)
         {
             relic = relic.Clone(AbstractDungeon.miscRng.random(99));
-            bundledRelics.add(relic);
+            //bundledRelics.add(relic);
             bundledRelics.add(relic);
         }
         else

@@ -150,6 +150,11 @@
 		"DESCRIPTION": "丟棄任意數量的牌 ，觸發同等次數 。"
 	},
 	{
+		"PROPER_NAME": "投擲刀",
+		"NAMES": ["投擲刀"],
+		"DESCRIPTION": "0-Cost #yAttack which applies a randomized debuff and #yExhausts."
+	},
+	{
 		"PROPER_NAME": "發現",
 		"NAMES": ["發現"],
 		"DESCRIPTION": "從 3 張隨機牌中選擇 1 張加入手牌 。 該牌在本回合耗能變為 0 。"

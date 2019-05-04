@@ -10,6 +10,11 @@
 		"DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to all enemies with a Debuff."],
 		"NAME": "Archer"
 	},
+	"animator_AzrielPower":
+	{
+		"DESCRIPTIONS": ["Whenever you apply a debuff to an enemy, gain #b", " Strength."],
+		"NAME": "Azriel"
+	},
 	"animator_BiyorigoPower":
 	{
 		"DESCRIPTIONS": ["Every 4 #yAttacks played, gain #b", " Strength and #b", " Dexterity."],

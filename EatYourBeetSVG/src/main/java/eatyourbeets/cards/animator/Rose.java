@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.GameActionsHelper;
@@ -28,7 +29,9 @@ public class Rose extends AnimatorCard_UltraRare
     {
         super(ID, 3, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(7,0, 4);
+        Initialize(8,0, 2);
+
+        this.baseSecondaryValue = this.secondaryValue = 30;
 
         SetSynergy(Synergies.Elsword);
     }
@@ -45,7 +48,8 @@ public class Rose extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeMagicNumber(1);
+            upgradeSecondaryValue(10);
         }
     }
 
@@ -87,21 +91,20 @@ public class Rose extends AnimatorCard_UltraRare
 
                 if (action.isDone)
                 {
-                    if (times > 1)
+                    if (enemy.currentHealth <= 0 || enemy.isDeadOrEscaped() || enemy.isDying)
                     {
-                        if (enemy.isDeadOrEscaped() || enemy.isDying)
+                        int[] damageMatrix = DamageInfo.createDamageMatrix(rose.secondaryValue, true);
+
+                        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
                         {
-                            AbstractMonster newTarget = PlayerStatistics.GetRandomEnemy(true);
-                            if (newTarget != null)
-                            {
-                                rose.calculateCardDamage(newTarget);
-                                GameActionsHelper.AddToBottom(new RoseDamageAction(newTarget, rose, times - 1, rose.damage));
-                            }
+                            Explosion(m.hb);
                         }
-                        else
-                        {
-                            GameActionsHelper.AddToBottom(new RoseDamageAction(enemy, rose, times - 1, damage));
-                        }
+
+                        GameActionsHelper.DamageAllEnemies(p, damageMatrix, DamageInfo.DamageType.THORNS, AttackEffect.NONE);
+                    }
+                    else  if (times > 1)
+                    {
+                        GameActionsHelper.AddToBottom(new RoseDamageAction(enemy, rose, times - 1, damage));
                     }
 
                     this.isDone = true;
@@ -109,9 +112,14 @@ public class Rose extends AnimatorCard_UltraRare
             }
             else
             {
-                GameActionsHelper.AddToTop(new VFXAction(new ExplosionSmallEffect(enemy.hb.cX + MathUtils.random(-0.05F, 0.05F), enemy.hb.cY + MathUtils.random(-0.05F, 0.05F)), 0.1F));
+                Explosion(enemy.hb);
                 action = new PiercingDamageAction(enemy, new DamageInfo(p, damage, rose.damageTypeForTurn), true);
             }
+        }
+
+        private void Explosion(Hitbox hb)
+        {
+            GameActionsHelper.AddToTop(new VFXAction(new ExplosionSmallEffect(hb.cX + MathUtils.random(-0.05F, 0.05F), hb.cY + MathUtils.random(-0.05F, 0.05F)), 0.1F));
         }
     }
 }

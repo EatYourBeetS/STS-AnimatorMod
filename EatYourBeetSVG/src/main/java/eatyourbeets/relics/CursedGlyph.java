@@ -45,7 +45,7 @@ public class CursedGlyph extends AnimatorRelic
             }
             else
             {
-                m.increaseMaxHp(160, true);
+                m.increaseMaxHp(140, true);
             }
         }
 

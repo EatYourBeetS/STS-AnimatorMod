@@ -1,7 +1,10 @@
 package eatyourbeets.cards.animator;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.curses.AscendersBane;
+import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -26,9 +29,7 @@ public class Truth extends AnimatorCard_UltraRare
     {
         super(ID, 1, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 5);
-
-        this.baseSecondaryValue = this.secondaryValue = 3;
+        Initialize(0, 0);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -48,11 +49,7 @@ public class Truth extends AnimatorCard_UltraRare
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeSecondaryValue(1);
-            upgradeMagicNumber(1);
-        }
+        TryUpgrade();
     }
 
     private void PayThePrice(AbstractPlayer p)
@@ -60,7 +57,8 @@ public class Truth extends AnimatorCard_UltraRare
         CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
-            if (c.type != CardType.CURSE && c.type != CardType.STATUS && !c.cardID.equals(this.cardID))
+            if (!c.cardID.equals(Wound.ID) && !c.cardID.equals(Necronomicurse.ID) && !c.cardID.equals(AscendersBane.ID)
+                    && !SoulboundField.soulbound.get(c) && !c.cardID.equals(this.cardID))
             {
                 temp.group.add(c);
             }

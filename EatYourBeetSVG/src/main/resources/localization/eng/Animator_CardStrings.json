@@ -563,7 +563,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "Set the Block of an enemy to !M!. NL Gain !B! Block. NL Synergy: Retain your hand this turn.",
+		"DESCRIPTION": "Gain !B! Block. NL Set the Block of the enemy to !M!. NL Synergy: Retain your hand this turn.",
 		"NAME": "'Lizard Priest'"
 	},
 	"animator_MaesHughes":
@@ -1038,7 +1038,7 @@
 	},
 	"animator_Rose":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL Reload: Deal !D! Piercing damage. If the enemy dies, hit another enemy.",
+		"DESCRIPTION": "Draw !M! cards. Reload: Deal !D! Piercing damage. If the enemy dies, deal !SV! damage to ALL enemies.",
 		"NAME": "Rose"
 	},	
 	"animator_Veldora":

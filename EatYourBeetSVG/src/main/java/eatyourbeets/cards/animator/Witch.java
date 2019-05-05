@@ -15,9 +15,9 @@ public class Witch extends AnimatorCard
 
     public Witch()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 6,3);
+        Initialize(0, 13,3);
 
         this.tags.add(CardTags.HEALING);
 
@@ -65,8 +65,8 @@ public class Witch extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
-            //upgradeMagicNumber(1);
+            upgradeBlock(2);
+            upgradeMagicNumber(1);
         }
     }
 }

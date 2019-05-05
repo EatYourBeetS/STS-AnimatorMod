@@ -13,7 +13,7 @@ public class Priestess extends AnimatorCard_Boost
 
     public Priestess()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 4, 2);
 

@@ -566,7 +566,7 @@
 	},
 	"animator_MaesHughes":
 	{
-		"DESCRIPTION": "抽 1 張牌然後這回合減少 !M! 點耗能 。 遺產 : 對所有敵人造成 !D! 點傷害。",
+		"DESCRIPTION": "抽 1 張牌然後這回合減少 !M! 點耗能 。 遺產 : 對所有敵人造成 !D! 點傷害 。",
 		"NAME": "馬斯休斯"
 	},
 	"animator_Megumin":
@@ -1035,7 +1035,7 @@
 	},
 	"animator_Rose":
 	{
-		"DESCRIPTION": "抽 !M! 張牌. NL 重新裝填 : 造成 !D! 點 穿刺 傷害 。若目標死亡， 則對別的目標造成溢出傷害 。",
+		"DESCRIPTION": "抽 !M! 張牌. NL 重新裝填 : 造成 !D! 點 穿刺 傷害 。若目標死亡， 對所有敵人造成 !SV! 點傷害 。",
 		"NAME": "Rose"
 	},
 	"animator_Veldora":

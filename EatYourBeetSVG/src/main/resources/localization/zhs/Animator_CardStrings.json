@@ -1037,7 +1037,7 @@
 	},
 	"animator_Rose":
 	{
-		"DESCRIPTION": "抽 !M! 张牌. NL 重装填 : 造成 !D! 点 穿刺 伤害 。 若目标死亡， 则对别的目标造成溢出伤害 。",
+		"DESCRIPTION": "抽 !M! 张牌. NL 重装填 : 造成 !D! 点 穿刺 伤害 。 若目标死亡， 对所有敌人造成 !SV! 点 伤害 。",
 		"NAME": "Rose"
 	},
 	"animator_Veldora":

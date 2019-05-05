@@ -20,7 +20,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     {
         super(ID, 1, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(10,0, 10);
+        Initialize(12,0, 10);
 
         SetSynergy(Synergies.Fate);
     }

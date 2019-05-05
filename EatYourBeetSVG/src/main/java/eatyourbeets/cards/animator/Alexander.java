@@ -18,7 +18,7 @@ public class Alexander extends AnimatorCard
 
     public Alexander()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(10,0,3);
 
@@ -66,7 +66,7 @@ public class Alexander extends AnimatorCard
         {          
             upgradeDamage(3);
             upgradeSecondaryValue(3 / 2);
-            upgradeMagicNumber(1);
+            //upgradeMagicNumber(1);
         }
     }
 }

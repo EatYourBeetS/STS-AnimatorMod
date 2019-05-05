@@ -10,9 +10,14 @@
 		"DESCRIPTIONS": ["在你的回合结束时对所有敌人造成", " 点 伤害，伤害次数等同于各目标的负面效果种类个数。"],
 		"NAME": "Archer"
 	},
+	"animator_AzrielPower":
+	{
+		"DESCRIPTIONS": ["每当给予一个敌人负面效果时, 获得 #b", " 点 力量."],
+		"NAME": "Azriel"
+	},
 	"animator_BiyorigoPower":
 	{
-		"DESCRIPTIONS": ["每4次攻 ， 击获得 #b", " 点 力量 并且获得 #b", " 点 敏捷"],
+		"DESCRIPTIONS": ["每4次攻击获得 #b", " 点 力量 并且获得 #b", " 点 敏捷 "],
 		"NAME": "大和号"
 	},
 	"animator_BozesPower":

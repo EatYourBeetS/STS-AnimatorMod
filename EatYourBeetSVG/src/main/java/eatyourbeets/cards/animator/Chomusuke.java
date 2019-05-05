@@ -1,23 +1,13 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.unique.ExhumeAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.actions.ChooseFromPileAction;
-import eatyourbeets.actions.MoveSpecificCardAction;
-import eatyourbeets.actions.PlayCardFromPileAction;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-
-import java.util.ArrayList;
 
 public class Chomusuke extends AnimatorCard_UltraRare
 {
@@ -29,8 +19,6 @@ public class Chomusuke extends AnimatorCard_UltraRare
 
         Initialize(0, 0, 1);
 
-        this.exhaust = true;
-
         SetSynergy(Synergies.Konosuba);
     }
 
@@ -41,6 +29,20 @@ public class Chomusuke extends AnimatorCard_UltraRare
 
         this.baseSecondaryValue = this.secondaryValue = PlayerStatistics.getCardsExhaustedThisTurn();
         this.isSecondaryValueModified = this.secondaryValue != 0;
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisTurn)
+        {
+            if (c.cardID.equals(cardID))
+            {
+                return false;
+            }
+        }
+
+        return super.cardPlayable(m);
     }
 
     @Override

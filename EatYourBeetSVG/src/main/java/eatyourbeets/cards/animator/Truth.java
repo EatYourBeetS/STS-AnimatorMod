@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.ChooseFromPileAction;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 
@@ -27,19 +26,37 @@ public class Truth extends AnimatorCard_UltraRare
     {
         super(ID, 1, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0,0, 4);
+        Initialize(0, 0, 5);
 
-        this.baseSecondaryValue = this.secondaryValue = 2;
+        this.baseSecondaryValue = this.secondaryValue = 3;
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, this.secondaryValue), this.secondaryValue);
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber);
+        int bonus = upgraded ? 1 : 0;
+        GameActionsHelper.GainEnergy(1 + bonus);
+        GameActionsHelper.DrawCard(p, 2 + bonus);
+        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 3 + bonus), 3 + bonus);
+        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 4 + bonus), 4 + bonus);
 
+        PayThePrice(p);
+    }
+
+    @Override
+    public void upgrade()
+    {
+        if (TryUpgrade())
+        {
+            upgradeSecondaryValue(1);
+            upgradeMagicNumber(1);
+        }
+    }
+
+    private void PayThePrice(AbstractPlayer p)
+    {
         CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
@@ -52,16 +69,6 @@ public class Truth extends AnimatorCard_UltraRare
         if (temp.size() > 0)
         {
             GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, temp, this::OnCardSelected, this, TEXT[5] + Wound.NAME));
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeSecondaryValue(1);
-            upgradeMagicNumber(2);
         }
     }
 

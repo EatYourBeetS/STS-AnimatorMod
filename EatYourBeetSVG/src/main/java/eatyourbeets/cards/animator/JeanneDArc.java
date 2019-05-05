@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 
@@ -21,7 +20,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     {
         super(ID, 1, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(10,0, 6);
+        Initialize(10,0, 10);
 
         SetSynergy(Synergies.Fate);
     }
@@ -47,7 +46,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(4);
             upgradeMagicNumber(2);
         }
     }

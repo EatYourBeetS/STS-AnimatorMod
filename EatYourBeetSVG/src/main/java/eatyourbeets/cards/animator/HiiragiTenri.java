@@ -1,15 +1,12 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.PlayCardFromPileAction;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 
@@ -21,7 +18,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     {
         super(ID, 4, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0,40);
+        Initialize(0,0, 40);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -29,7 +26,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper.GainTemporaryHP(p, p, this.magicNumber);
 
         for (AbstractCard c : p.discardPile.group)
         {
@@ -43,7 +40,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeBlock(20);
+            upgradeMagicNumber(10);
         }
     }
 }

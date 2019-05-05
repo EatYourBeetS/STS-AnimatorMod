@@ -2,9 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.FlightPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.AzrielPower;
@@ -26,7 +24,7 @@ public class Azriel extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new PlayerFlightPower(p, 1), 1);
+        GameActionsHelper.ApplyPower(p, p, new PlayerFlightPower(p, 2), 2);
         GameActionsHelper.ApplyPower(p, p, new AzrielPower(p, this.magicNumber), this.magicNumber);
     }
 

@@ -30,6 +30,12 @@
 		"FLAVOR": "It draws strength from the blood of its user, truly fitting for a vampire.",
 		"NAME": "Cursed Blade"
 	},
+	"Animator_CursedGlyph":
+	{
+		"DESCRIPTIONS": ["Upon pickup, #rlose #r", " #rMax HP, all enemies start with additional Max HP."],
+		"FLAVOR": "Maybe it was a mistake...",
+		"NAME": "Cursed Glyph"
+	},
 	"Animator_EngravedStaff":
 	{
 		"DESCRIPTIONS": ["At the end of your turn, #yRetain your highest cost card, it costs #b1 less next turn."],

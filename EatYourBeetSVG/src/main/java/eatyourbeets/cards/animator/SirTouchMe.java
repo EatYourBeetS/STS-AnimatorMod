@@ -1,20 +1,12 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.JuggernautPower;
-import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.misc.AinzEffects.AinzEffect;
-import eatyourbeets.powers.AinzPower;
-import eatyourbeets.powers.TemporaryJuggernautPower;
-import patches.AbstractEnums;
 
 public class SirTouchMe extends AnimatorCard_UltraRare
 {
@@ -24,7 +16,7 @@ public class SirTouchMe extends AnimatorCard_UltraRare
     {
         super(ID, 2, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(10,10,4);
+        Initialize(10,10,6);
 
         SetSynergy(Synergies.Overlord);
     }

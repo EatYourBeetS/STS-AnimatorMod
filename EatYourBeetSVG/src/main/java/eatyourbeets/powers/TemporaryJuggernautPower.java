@@ -2,7 +2,6 @@ package eatyourbeets.powers;
 
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.powers.EnvenomPower;
 import com.megacrit.cardcrawl.powers.JuggernautPower;
 import eatyourbeets.GameActionsHelper;
 

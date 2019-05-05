@@ -8,7 +8,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.YukoShionjiPower;
 
-public class YukoShionji extends AnimatorCard implements AnimatorResources.Ignored
+public class YukoShionji extends AnimatorCard implements AnimatorResources.Hidden
 {
     public static final String ID = CreateFullID(YukoShionji.class.getSimpleName());
 

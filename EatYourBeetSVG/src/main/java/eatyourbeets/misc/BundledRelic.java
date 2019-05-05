@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.Hero;
+import eatyourbeets.relics.CursedGlyph;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class BundledRelic
         {
             if (c instanceof Hero)
             {
-                chance += 8;
+                chance += 10;
             }
         }
 
@@ -67,7 +68,7 @@ public class BundledRelic
             {
                 for (AbstractRelic r : AbstractDungeon.player.relics)
                 {
-                    if (r.relicId.equals(relicID))
+                    if (r.relicId.equals(relicID) && !relicID.equals(CursedGlyph.ID))
                     {
                         Utilities.Logger.info(relicID + " Skipped");
                         return;
@@ -104,7 +105,14 @@ public class BundledRelic
 
             BitmapFont font = FontHelper.buttonLabelFont;
             font.getData().setScale(relic.scale * 0.8f);
-            FontHelper.renderFontLeft(sb, font, text[1], card.current_x + (offset_x * 0.66f), card.current_y + offset_y, Color.WHITE);
+            if (relicID.equals(CursedGlyph.ID))
+            {
+                FontHelper.renderFontLeft(sb, font, text[2], card.current_x + (offset_x * 0.66f), card.current_y + offset_y, Color.RED);
+            }
+            else
+            {
+                FontHelper.renderFontLeft(sb, font, text[1], card.current_x + (offset_x * 0.66f), card.current_y + offset_y, Color.WHITE);
+            }
             font.getData().setScale(1f);
 
             relic.hb.move(card.current_x, relic.currentY);

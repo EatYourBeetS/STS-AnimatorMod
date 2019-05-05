@@ -9,8 +9,13 @@ import com.megacrit.cardcrawl.relics.MoltenEgg2;
 import com.megacrit.cardcrawl.relics.ToxicEgg2;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.AnimatorCard_UltraRare;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
+import eatyourbeets.cards.animator.*;
+import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
@@ -201,6 +206,96 @@ public class CustomAbstractDungeon extends AbstractDungeon
             }
         }
 
+        AddUltraRare(retVal, synergy);
+
         return retVal;
+    }
+
+    private static void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
+    {
+        int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
+        if (currentLevel <= 2)
+        {
+            return;
+        }
+
+        int chances = 3;
+        if (AbstractDungeon.floorNum < 10)
+        {
+            chances += 1;
+        }
+
+        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+        {
+            if (c instanceof AnimatorCard_UltraRare)
+            {
+                chances -= 1;
+            }
+        }
+
+        int roll = AbstractDungeon.miscRng.random(100);
+        if (roll > chances)
+        {
+            return;
+        }
+
+        AbstractCard card = null;
+
+        if (synergy == Synergies.Konosuba)
+        {
+            card = new Chomusuke();
+        }
+        else if (synergy == Synergies.Gate)
+        {
+            card = new Giselle();
+        }
+        else if (synergy == Synergies.Elsword)
+        {
+            card = new Rose();
+        }
+        else if (synergy == Synergies.Overlord)
+        {
+            card = new SirTouchMe();
+        }
+        else if (synergy == Synergies.Katanagatari)
+        {
+            card = new ShikizakiKiki();
+        }
+        else if (synergy == Synergies.OwariNoSeraph)
+        {
+            card = new HiiragiTenri();
+        }
+        else if (synergy == Synergies.FullmetalAlchemist)
+        {
+            card = new Truth();
+        }
+        else if (synergy == Synergies.GoblinSlayer)
+        {
+            card = new Hero();
+        }
+        else if (synergy == Synergies.Chaika)
+        {
+            card = new NivaLada();
+        }
+        else if (synergy == Synergies.TenSura)
+        {
+//            cards.remove(0);
+        }
+        else if (synergy == Synergies.NoGameNoLife)
+        {
+            card = new Azriel();
+        }
+        else if (synergy == Synergies.Fate)
+        {
+            card = new JeanneDArc();
+        }
+
+        if (card != null)
+        {
+            card.isSeen = true;
+            card.isLocked = false;
+            cards.remove(0);
+            cards.add(card);
+        }
     }
 }

@@ -15,7 +15,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.powers.PlayerStatistics;
 
-public abstract class ThrowingKnife extends AnimatorCard implements AnimatorResources.Ignored
+public abstract class ThrowingKnife extends AnimatorCard implements AnimatorResources.Hidden
 {
     public static final String ID = CreateFullID(ThrowingKnife.class.getSimpleName());
 

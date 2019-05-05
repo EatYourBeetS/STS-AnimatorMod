@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.*;
+import eatyourbeets.relics.CursedGlyph;
 import eatyourbeets.relics.EngravedStaff;
 import eatyourbeets.relics.Rinne;
 import eatyourbeets.relics.WornHelmet;
@@ -113,6 +114,8 @@ public class BundledRelicProvider
 
         AddBundle(Elesis.ID, MoltenEgg2.ID, AbstractRelic.RelicTier.UNCOMMON, R5);
         AddBundle(Eve.ID, DataDisk.ID, AbstractRelic.RelicTier.SPECIAL, R2);
+
+        AddBundle(Rose.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddFate()
@@ -129,6 +132,8 @@ public class BundledRelicProvider
 
         AddBundle(Gilgamesh.ID, RegalPillow.ID, AbstractRelic.RelicTier.COMMON, R1);
         AddBundle(Saber.ID, Orichalcum.ID, AbstractRelic.RelicTier.COMMON, R2);
+
+        AddBundle(JeanneDArc.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddFullmetalAlchemist()
@@ -145,6 +150,8 @@ public class BundledRelicProvider
 
         AddBundle(Envy.ID, PreservedInsect.ID, AbstractRelic.RelicTier.SHOP, R2);
         AddBundle(Greed.ID, MawBank.ID, AbstractRelic.RelicTier.SHOP, R3);
+
+        AddBundle(Truth.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddGATE()
@@ -161,6 +168,8 @@ public class BundledRelicProvider
 
         AddBundle(PinaCoLada.ID, Mango.ID, AbstractRelic.RelicTier.RARE, R2);
         AddBundle(ItamiYouji.ID, Boot.ID, AbstractRelic.RelicTier.COMMON, R2);
+
+        AddBundle(Giselle.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddGoblinSlayer()
@@ -177,6 +186,8 @@ public class BundledRelicProvider
 
         AddBundle(GoblinSlayer.ID, WornHelmet.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(SwordMaiden.ID, BlueCandle.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
+
+        AddBundle(Hero.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddHitsugiNoChaika()
@@ -193,6 +204,8 @@ public class BundledRelicProvider
 
         AddBundle(ChaikaTrabant.ID, MummifiedHand.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
         AddBundle(AcuraShin.ID, NinjaScroll.ID, AbstractRelic.RelicTier.SPECIAL, R3);
+
+        AddBundle(NivaLada.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddKatanagatari()
@@ -209,6 +222,8 @@ public class BundledRelicProvider
 
         AddBundle(Biyorigo.ID, Inserter.ID, AbstractRelic.RelicTier.SPECIAL, R4);
         AddBundle(HigakiRinne.ID, Rinne.ID, AbstractRelic.RelicTier.SPECIAL, R6);
+
+        AddBundle(ShikizakiKiki.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddKonosuba()
@@ -225,6 +240,8 @@ public class BundledRelicProvider
 
         AddBundle(Eris.ID, TinyChest.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(Wiz.ID, JuzuBracelet.ID, AbstractRelic.RelicTier.COMMON, R5);
+
+        AddBundle(Chomusuke.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddNoGameNoLife()
@@ -241,6 +258,8 @@ public class BundledRelicProvider
 
         AddBundle(Shiro.ID, Dodecahedron.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
         AddBundle(Sora.ID, QuestionCard.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
+
+        AddBundle(Azriel.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddOverlord()
@@ -257,6 +276,8 @@ public class BundledRelicProvider
 
         AddBundle(Albedo.ID, DarkstonePeriapt.ID, AbstractRelic.RelicTier.UNCOMMON, R5);
         AddBundle(Ainz.ID, EngravedStaff.ID, AbstractRelic.RelicTier.RARE, R3);
+
+        AddBundle(SirTouchMe.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddOwariNoSeraph()
@@ -273,6 +294,8 @@ public class BundledRelicProvider
 
         AddBundle(FeridBathory.ID, MealTicket.ID, AbstractRelic.RelicTier.SHOP, R5);
         AddBundle(Guren.ID, IncenseBurner.ID, AbstractRelic.RelicTier.RARE, R2);
+
+        AddBundle(HiiragiTenri.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddTenSura()

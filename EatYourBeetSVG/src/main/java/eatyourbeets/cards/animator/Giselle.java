@@ -2,15 +2,11 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.BurningPower;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class Giselle extends AnimatorCard_UltraRare
 {
@@ -18,9 +14,11 @@ public class Giselle extends AnimatorCard_UltraRare
 
     public Giselle()
     {
-        super(ID, 1, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(7,0, 3);
+        Initialize(14,0, 3);
+
+        baseSecondaryValue = secondaryValue = 80;
 
         SetSynergy(Synergies.Gate);
     }
@@ -28,7 +26,7 @@ public class Giselle extends AnimatorCard_UltraRare
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        if (mo != null && mo.type == AbstractMonster.EnemyType.NORMAL)
+        if (mo != null && mo.currentHealth < secondaryValue)
         {
             tmp *= 3;
         }
@@ -49,6 +47,8 @@ public class Giselle extends AnimatorCard_UltraRare
         if (TryUpgrade())
         {
             upgradeDamage(2);
+            upgradeMagicNumber(1);
+            upgradeSecondaryValue(20);
         }
     }
 }

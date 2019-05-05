@@ -3,16 +3,16 @@ package eatyourbeets.cards.animator;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
@@ -101,13 +101,13 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(-3);
+            upgradeSecondaryValue(-2);
         }
     }
 
     protected int GetBaseCooldown()
     {
-        return upgraded ? 15 : 18;
+        return upgraded ? 14 : 16;
     }
 
     protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
@@ -115,6 +115,11 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
         if (m == null || m.isDeadOrEscaped())
         {
             m = PlayerStatistics.GetRandomEnemy(true);
+        }
+
+        if (m.hasPower(IntangiblePower.POWER_ID))
+        {
+            GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(m, m, IntangiblePower.POWER_ID));
         }
 
         GameActionsHelper.AddToBottom(new VFXAction(new LaserBeam2Effect(p.hb.cX, p.hb.cY), 0.1F));

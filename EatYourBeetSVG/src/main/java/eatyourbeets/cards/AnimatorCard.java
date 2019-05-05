@@ -1,13 +1,11 @@
 package eatyourbeets.cards;
 
-import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
-import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.ExceptionHandler;
 import com.megacrit.cardcrawl.core.Settings;
@@ -327,7 +325,11 @@ public abstract class AnimatorCard extends CustomCard
     {
         super(id, strings.NAME, imagePath, cost, strings.DESCRIPTION, type, color, rarity, target);
 
-        if (rarity == CardRarity.SPECIAL)
+        if (this instanceof AnimatorCard_UltraRare)
+        {
+            setBannerTexture("images\\cardui\\512\\banner_special2.png", "images\\cardui\\1024\\banner_special2.png");
+        }
+        else if (rarity == CardRarity.SPECIAL)
         {
             setBannerTexture("images\\cardui\\512\\banner_special.png", "images\\cardui\\1024\\banner_special.png");
         }

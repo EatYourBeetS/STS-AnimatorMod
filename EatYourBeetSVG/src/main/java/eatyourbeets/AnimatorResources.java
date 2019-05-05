@@ -81,6 +81,13 @@ public class AnimatorResources
     public static final String SHOULDER2_PNG = "images/characters/animator/shoulder2.png";
     public static final String CORPSE_PNG = "images/characters/animator/corpse.png";
 
+    public static final Texture CARD_BG_ATTACK = new Texture(ATTACK_PNG);
+    public static final Texture CARD_BG_SKILL = new Texture(SKILL_PNG);
+    public static final Texture CARD_BG_POWER = new Texture(POWER_PNG);
+    public static final Texture CARD_BG_ATTACK_L = new Texture(ATTACK_P_PNG);
+    public static final Texture CARD_BG_SKILL_L = new Texture(SKILL_P_PNG);
+    public static final Texture CARD_BG_POWER_L = new Texture(POWER_P_PNG);
+
     public static final Texture CARD_FRAME_ATTACK_SPECIAL = new Texture("images/cardui/512/frame_attack_special.png");
     public static final Texture CARD_FRAME_SKILL_SPECIAL  = new Texture("images/cardui/512/frame_skill_special.png");
     public static final Texture CARD_FRAME_POWER_SPECIAL  = new Texture("images/cardui/512/frame_power_special.png");
@@ -188,6 +195,7 @@ public class AnimatorResources
         BaseMod.addRelicToCustomPool(new RacePiece(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new BattleDrones(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new CursedBlade(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new CursedGlyph(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new VividPicture(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelic(new AlchemistGlove(), RelicType.SHARED);
         BaseMod.addRelic(new OldCoffin(), RelicType.SHARED);
@@ -253,7 +261,7 @@ public class AnimatorResources
 
     private static void AddAndUnlock(Class<?> cardClass) throws Exception
     {
-        if (Ignored.class.isAssignableFrom(cardClass))
+        if (Hidden.class.isAssignableFrom(cardClass))
         {
             return;
         }
@@ -358,7 +366,7 @@ public class AnimatorResources
         }
     }
 
-    public interface Ignored
+    public interface Hidden
     {
 
     }

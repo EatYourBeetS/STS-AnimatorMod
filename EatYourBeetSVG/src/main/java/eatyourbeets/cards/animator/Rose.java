@@ -28,7 +28,7 @@ public class Rose extends AnimatorCard_UltraRare
     {
         super(ID, 3, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(6,0, 2);
+        Initialize(7,0, 4);
 
         SetSynergy(Synergies.Elsword);
     }

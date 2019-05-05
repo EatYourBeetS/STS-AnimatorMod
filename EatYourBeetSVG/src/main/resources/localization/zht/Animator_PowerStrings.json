@@ -10,6 +10,11 @@
 		"DESCRIPTIONS": ["在你的回合結束時對所有敵人造成 #b", " 傷害 並給予負面效果."],
 		"NAME": "Archer"
 	},
+	"animator_AzrielPower":
+	{
+		"DESCRIPTIONS": ["每當給予一個敵人負面效果時, 獲得 #b", " 點 力量."],
+		"NAME": "Azriel"
+	},
 	"animator_BiyorigoPower":
 	{
 		"DESCRIPTIONS": ["每當打出 4 #y次攻擊牌 ， 獲得 #b", " 力量 和 #b", " 敏捷。"],

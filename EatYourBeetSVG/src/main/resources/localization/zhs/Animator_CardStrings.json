@@ -242,7 +242,7 @@
 	},
 	"animator_DolaCouronne":
 	{
-		"DESCRIPTION": "获得 !B! 点 护甲 。 NL 同调 : 抽 1 张牌 。 遗赠 : 获得 1 点 敏捷 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 同调 : 抽 1 张牌 。 遗赠 : 获得 1 点 敏捷 。",
 		"NAME": "克洛妮"
 	},
 	"animator_DolaRiku":
@@ -722,7 +722,7 @@
 	"animator_Saitama":
 	{
 		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 点伤害 。 NL [#EFC851]one[] [#EFC851]punch[] 。",
-		"EXTENDED_DESCRIPTION": ["One Punch", "Spend ALL your energy, this card deals #yincreasingly more damage for each point spent."],
+		"EXTENDED_DESCRIPTION": ["One Punch", "Spend ALL your energy, this card 造成s #yincreasingly more 点伤害 for each point spent."],
 		"NAME": "秃头披风侠",
 		"UPGRADE_DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 点伤害 。 NL [#EFC851]one[] [#EFC851]punch+[] 。"
 	},
@@ -989,35 +989,60 @@
 		"NAME": "零",
 		"UPGRADE_DESCRIPTION": "从你的抽牌堆中打出一张随机的 [#EFC851]技能牌[] 。"
 	},
+	"animator_Azriel":
+	{
+		"DESCRIPTION": "获得两 2 层 飞行 。 NL 每当给予敌人负面效果时, 获得 !M! 点 力量 。",
+		"NAME": "Azriel"
+	},
+	"animator_Giselle":
+	{
+		"DESCRIPTION": "造成 !D! 点伤害 。 NL 给予 !M! 层 燃烧 。 NL 对生命值低于 !SV! 点 的敌人造成三倍伤害 。",
+		"NAME": "Giselle"
+	},
 	"animator_HiiragiTenri":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Play and Exhaust NL ALL cards in your discard pile.",
+		"DESCRIPTION": "获得 !M! 点 临时生命 。 NL 打出并 消耗 弃牌堆中所有牌 。",
 		"NAME": "Tenri Hiiragi"
+	},
+	"animator_SirTouchMe":
+	{
+		"DESCRIPTION": "获得 !M! 势不可当 。 NL 造成 !D! 点伤害 。 NL 获得 !B! 点 格挡 。",
+		"NAME": "Sir Touch Me"
 	},
 	"animator_ShikizakiKiki":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Draw !M! cards. NL Double the damage of all [#EFC851]Attacks in your hand this combat.",
-		"NAME": "Shikizaki Kiki"
+		"DESCRIPTION": "抽 !M! 张牌 。 NL 在本次战斗中，使你手牌中的所有  [#EFC851]攻击牌[] 造成的伤害翻倍 。",
+		"NAME": "四季崎 記紀"
 	},
 	"animator_Chomusuke":
 	{
-		"DESCRIPTION": "Gain [E] and draw !M! card for each card you Exhausted this turn ( !SV! ). Exhaust.",
-		"NAME": "Chomusuke",
-		"UPGRADE_DESCRIPTION": "Gain [E] and draw !M! cards for each card you Exhausted this turn ( !SV! ). Exhaust."
+		"DESCRIPTION": "获得 [E] ， 本回合每消耗一张牌 ， 抽 !M! 牌 ( 本回合已消耗 !SV! ) 。 每回合可使用一次 。",
+		"NAME": "Chomusuke"
+	},
+	"animator_JeanneDArc":
+	{
+		"DESCRIPTION": "造成 !D! 点伤害 。 NL 获得 !M! 点 临时生命 。 NL 随机消耗一个状态牌或诅咒牌 。",
+		"NAME": "Jeanne D'Arc"
 	},
 	"animator_Hero":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! Cards. NL While in your deck, increase the chances of [#EFC851]Bonus [#EFC851]Relics.",
+		"DESCRIPTION": "造成 !D! 点伤害. NL 抽 !M! 张牌 。 NL 位于牌组中时, 增加获得 [#EFC851]遗物奖励[] 的机会 。",
 		"NAME": "'Hero'"
+	},
+	"animator_Truth":
+	{
+		"DESCRIPTION": "获得 1 点 能量 。 NL 抽 2 张牌 。 NL 获得 3 点 集中 。 NL 获得 4 点 力量 。 NL 永久的将牌组中的一张牌用 [#EFC851]伤口 代替 。",
+		"NAME": "Truth",
+		"UPGRADE_DESCRIPTION": "获得 2 点 能量 。 NL 抽 3 张牌 。 NL 获得 4 点 集中 。 NL 获得 5 点 力量 。 NL 永久的将牌组中的一张牌用 [#EFC851]伤口 代替 。"
 	},
 	"animator_Rose":
 	{
-		"DESCRIPTION": "Augmentable. Deal !D! Piercing damage !M! times. If this kills an enemy, target another random enemy.",
+		"DESCRIPTION": "抽 !M! 张牌. NL 重装填 : 造成 !D! 点 穿刺 伤害 。 若目标死亡， 则对别的目标造成溢出伤害 。",
 		"NAME": "Rose"
 	},
 	"animator_NivaLada":
 	{
-		"DESCRIPTION": "Cooldown !SV! : NL Deal 300 damage. NL When you Exhaust or discard a card, reduce this Cooldown by 1.",
+		"DESCRIPTION": "预热 !SV! : NL 造成 300 点伤害 。 NL 每当你丢弃或消耗牌时 ， 减少 1 层 预热 层数 。",
 		"NAME": "Niva Lada"
-	},
+	}
 }

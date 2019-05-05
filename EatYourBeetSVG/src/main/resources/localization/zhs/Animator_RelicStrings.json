@@ -30,6 +30,12 @@
 		"FLAVOR": "它从持有者的血液中汲取力量,对一个吸血鬼来说再适合不过了.",
 		"NAME": "诅咒之刃"
 	},
+	"Animator_CursedGlyph":
+	{
+		"DESCRIPTIONS": ["Upon pickup, #rlose #r", " #rMax HP, all enemies start with additional Max HP."],
+		"FLAVOR": "Maybe it was a mistake...",
+		"NAME": "Cursed Glyph"
+	},
 	"Animator_EngravedStaff":
 	{
 		"DESCRIPTIONS": ["在你的回合结束时， 保留手牌中消耗最高的牌， 直到被打出之前消耗减 #b1 ."],

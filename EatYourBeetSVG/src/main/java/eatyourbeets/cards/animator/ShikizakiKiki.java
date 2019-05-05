@@ -7,11 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.AnimatorAction;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
-
-import java.util.ArrayList;
 
 public class ShikizakiKiki extends AnimatorCard_UltraRare
 {
@@ -21,7 +18,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     {
         super(ID, 3, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 3);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -38,7 +35,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(2);
         }
     }
 

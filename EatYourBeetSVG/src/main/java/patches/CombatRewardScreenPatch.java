@@ -3,7 +3,6 @@ package patches;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
-import com.megacrit.cardcrawl.ui.buttons.DynamicButton;
 import eatyourbeets.relics.TheMissingPiece;
 import javassist.CtBehavior;
 
@@ -31,7 +30,7 @@ public class CombatRewardScreenPatch
         @Override
         public int[] Locate(CtBehavior ctMethodToPatch) throws Exception
         {
-            Matcher finalMatcher = new Matcher.MethodCallMatcher(DynamicButton.class, "hide");
+            Matcher finalMatcher = new Matcher.MethodCallMatcher(CombatRewardScreen.class, "positionRewards");
             int[] found = LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher);
             return new int[]{found[0]};
         }

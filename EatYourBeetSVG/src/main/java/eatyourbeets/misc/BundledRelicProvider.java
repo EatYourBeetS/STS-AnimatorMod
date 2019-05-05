@@ -312,6 +312,8 @@ public class BundledRelicProvider
 
         AddBundle(Shizu.ID, BurningBlood.ID, AbstractRelic.RelicTier.SPECIAL, R1);
         AddBundle(Rimuru.ID, OddlySmoothStone.ID, AbstractRelic.RelicTier.COMMON, R2);
+
+        AddBundle(Veldora.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddSpecial()

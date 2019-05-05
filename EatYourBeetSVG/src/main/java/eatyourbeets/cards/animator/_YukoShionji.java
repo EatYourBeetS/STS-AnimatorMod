@@ -8,11 +8,11 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.YukoShionjiPower;
 
-public class YukoShionji extends AnimatorCard implements AnimatorResources.Hidden
+public class _YukoShionji extends AnimatorCard implements AnimatorResources.Hidden
 {
-    public static final String ID = CreateFullID(YukoShionji.class.getSimpleName());
+    public static final String ID = CreateFullID(_YukoShionji.class.getSimpleName());
 
-    public YukoShionji()
+    public _YukoShionji()
     {
         super(ID, 2, CardType.POWER, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 

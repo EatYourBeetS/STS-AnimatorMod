@@ -32,7 +32,7 @@
 	},
 	"Animator_CursedGlyph":
 	{
-		"DESCRIPTIONS": ["Upon pickup, #rlose #r", " #rMax HP, all enemies start with additional Max HP."],
+		"DESCRIPTIONS": ["Upon pickup, #rlose #r", " #rMax #rHP, all enemies start with additional Max HP."],
 		"FLAVOR": "Maybe it was a mistake...",
 		"NAME": "Cursed Glyph"
 	},

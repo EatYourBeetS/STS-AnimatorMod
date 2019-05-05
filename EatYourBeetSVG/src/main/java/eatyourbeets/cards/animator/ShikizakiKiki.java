@@ -35,7 +35,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(1);
         }
     }
 

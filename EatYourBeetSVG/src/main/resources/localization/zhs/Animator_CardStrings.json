@@ -1040,6 +1040,11 @@
 		"DESCRIPTION": "抽 !M! 张牌. NL 重装填 : 造成 !D! 点 穿刺 伤害 。 若目标死亡， 则对别的目标造成溢出伤害 。",
 		"NAME": "Rose"
 	},
+	"animator_Veldora":
+	{
+		"DESCRIPTION": "获得 !SV! 点 集中 。 NL 激发 所有 充能球 !M! 次 。 [#EFC851]被抽到时[] : 生成 2 个 随机 充能球 。",
+		"NAME": "Veldora"
+	},
 	"animator_NivaLada":
 	{
 		"DESCRIPTION": "预热 !SV! : NL 造成 300 点伤害 。 NL 每当你丢弃或消耗牌时 ， 减少 1 层 预热 层数 。",

@@ -214,26 +214,21 @@ public class CustomAbstractDungeon extends AbstractDungeon
     private static void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
     {
         int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
-        if (currentLevel <= 2)
+        if (currentLevel <= 2 || AbstractDungeon.floorNum > 40)
         {
             return;
         }
 
-        int chances = 3;
-        if (AbstractDungeon.floorNum < 10)
-        {
-            chances += 1;
-        }
-
+        float chances = 3.5f;
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
         {
             if (c instanceof AnimatorCard_UltraRare)
             {
-                chances -= 1;
+                chances -= 1.5f;
             }
         }
 
-        int roll = AbstractDungeon.miscRng.random(100);
+        float roll = AbstractDungeon.miscRng.random(100f);
         if (roll > chances)
         {
             return;
@@ -279,7 +274,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
         }
         else if (synergy == Synergies.TenSura)
         {
-//            cards.remove(0);
+            card = new Veldora();
         }
         else if (synergy == Synergies.NoGameNoLife)
         {

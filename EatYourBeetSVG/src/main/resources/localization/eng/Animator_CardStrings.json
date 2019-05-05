@@ -1040,6 +1040,11 @@
 	{
 		"DESCRIPTION": "Draw !M! cards. NL Reload: Deal !D! Piercing damage. If the enemy dies, hit another enemy.",
 		"NAME": "Rose"
+	},	
+	"animator_Veldora":
+	{
+		"DESCRIPTION": "Gain !SV! Focus. NL Evoke ALL orbs !M! times. [#EFC851]Drawn: Channel 2 random orbs.",
+		"NAME": "Veldora"
 	},
 	"animator_NivaLada":
 	{

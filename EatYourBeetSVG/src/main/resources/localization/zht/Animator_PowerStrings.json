@@ -79,6 +79,11 @@
 	{
 		"DESCRIPTIONS": ["一回合兩次，當一張牌被消耗時增加", "點力量和 回復", " 點生命。"],
 		"NAME": "費里德·巴特利"
+	},	
+	"animator_FlamingWeaponPower":
+	{
+		"DESCRIPTIONS": ["每有一次攻擊造成未被格擋的傷害，就給予 #b", " 層 燃燒 。"],
+		"NAME": "火紅的武器"
 	},
 	"animator_GazelDwargonPower":
 	{

@@ -38,7 +38,7 @@ public class AcuraTooru extends AnimatorCard
         {
             for (int i = 0; i < this.secondaryValue; i++)
             {
-                GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomSubtype()));
+                GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomCard()));
             }
         }
     }

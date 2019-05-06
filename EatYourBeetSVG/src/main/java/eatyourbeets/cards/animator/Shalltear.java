@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.RegrowPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.GameActionsHelper;
@@ -53,7 +54,7 @@ public class Shalltear extends AnimatorCard
     {
         DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE);
         GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
-        GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
+        GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, this, false));
 
         if (HasActiveSynergy())
         {
@@ -77,8 +78,7 @@ public class Shalltear extends AnimatorCard
 
     private void OnDamage(Object state, AbstractMonster monster)
     {
-        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
-        if (initialBlock != null && monster != null)
+        if (state == this && monster != null && !monster.hasPower(RegrowPower.POWER_ID))
         {
             if ((monster.isDying || monster.currentHealth <= 0) && !monster.halfDead)
             {

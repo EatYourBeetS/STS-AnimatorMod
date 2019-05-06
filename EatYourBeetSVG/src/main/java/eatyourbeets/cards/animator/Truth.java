@@ -37,11 +37,12 @@ public class Truth extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int bonus = upgraded ? 1 : 0;
-        GameActionsHelper.GainEnergy(1 + bonus);
-        GameActionsHelper.DrawCard(p, 2 + bonus);
-        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 3 + bonus), 3 + bonus);
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 4 + bonus), 4 + bonus);
+        int amount = upgraded ? 2 : 1;
+
+        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, amount), amount);
+        GameActionsHelper.GainEnergy(amount + 1);
+        GameActionsHelper.DrawCard(p, amount + 2);
+        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, amount + 3), amount + 3);
 
         PayThePrice(p);
     }

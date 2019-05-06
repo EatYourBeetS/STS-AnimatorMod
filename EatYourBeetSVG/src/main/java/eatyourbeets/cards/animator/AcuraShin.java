@@ -16,9 +16,9 @@ public class AcuraShin extends AnimatorCard
 
     public AcuraShin()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY);
 
-        Initialize(1,0, 1);
+        Initialize(1,0, 4);
 
         this.isMultiDamage = true;
 

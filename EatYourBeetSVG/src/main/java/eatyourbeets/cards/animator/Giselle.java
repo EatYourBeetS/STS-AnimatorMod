@@ -46,7 +46,7 @@ public class Giselle extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(1);
             upgradeMagicNumber(1);
             upgradeSecondaryValue(20);
         }

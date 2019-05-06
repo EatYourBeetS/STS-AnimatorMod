@@ -2,7 +2,7 @@
 {
 	"animator_AcuraAkari":
 	{
-		"DESCRIPTION": "丟棄 1 張牌 。 NL 獲得 !B! 點 格擋 。 NL 獲得 !M! 點 臨時 塗毒 。",
+		"DESCRIPTION": "丟棄 1 張牌 。 NL 增加 !SV! 張 投擲刀 到手牌 。 NL 獲得 !M! 點 臨時 塗毒 。",
 		"NAME": "阿卡莉"
 	},
 	"animator_AcuraShin":
@@ -769,8 +769,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 !M! 張牌 。 NL 虚无 。 [#EFC851]伊芙利特[]",
-		"EXTENDED_DESCRIPTION": ["伊芙利特", "#y消耗 最多 3 張手牌 。 對於你消耗的每張卡 ， 生成1個火焰充能球 。 向你的棄牌堆中加入 2 張 #y灼燒 。"],
+		"DESCRIPTION": "造成 !D! 點 傷害 。 獲得 火紅的武器 。 NL 如果這會殺死敵人 ， 則為每層 燃燒 治療 1 點 。",
 		"NAME": "靜"
 	},
 	"animator_Shuna":
@@ -1014,7 +1013,7 @@
 	},
 	"animator_Chomusuke":
 	{
-		"DESCRIPTION": "獲得 [E] ， 本回合每消耗一張牌 ， 抽 !M! 牌 ( 本回合已消耗 !SV! ) 。 每回合可使用一次 。",
+		"DESCRIPTION": "保留 。 獲得 [E] ， 本回合每消耗一張牌 ， 抽 !M! 牌 ( 本回合已消耗 !SV! ) 。 每回合可使用一次 。",
 		"NAME": "Chomusuke"
 	},
 	"animator_JeanneDArc":
@@ -1029,9 +1028,9 @@
 	},
 	"animator_Truth":
 	{
-		"DESCRIPTION": "獲得 1 點 能量 。 NL 抽 2 張牌 。 NL 獲得 3 點 集中 。 NL 獲得 4 點 力量 。 NL 永久的將牌組中的一張牌用 [#EFC851]傷口 代替 。",
+		"DESCRIPTION": "獲得 1 點 集中 。 NL 獲得 2 點 能量 。 NL 抽 3 張牌 。 NL 獲得 4 點 力量 。 NL 永久的將牌組中的一張牌用 [#EFC851]傷口 代替 。",
 		"NAME": "Truth",
-		"UPGRADE_DESCRIPTION": "獲得 2 點 能量 。 NL 抽 3 張牌 。 NL 獲得 4 點 集中 。 NL 獲得 5 點 力量 。 NL 永久的將牌組中的一張牌用 [#EFC851]傷口 代替 。"
+		"UPGRADE_DESCRIPTION": "獲得 2 點 集中 。 NL 獲得 3 點 能量 。 NL 抽 4 張牌 。 NL 獲得 5 點 力量 。 NL 永久的將牌組中的一張牌用 [#EFC851]傷口 代替 。"
 	},
 	"animator_Rose":
 	{

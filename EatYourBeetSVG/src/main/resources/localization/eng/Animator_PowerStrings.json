@@ -80,6 +80,11 @@
 		"DESCRIPTIONS": ["When a card is Exhausted gain #b", " Strength and Heal #b", " Hp."],
 		"NAME": "Ferid Bathory"
 	},
+	"animator_FlamingWeaponPower":
+	{
+		"DESCRIPTIONS": ["Whenever you deal unblocked damage to an enemy, apply #b", " #yBurning."],
+		"NAME": "Flaming Weapon"
+	},
 	"animator_GazelDwargonPower":
 	{
 		"DESCRIPTIONS": ["Maintain half your Block at the start of each turn, whenever you play an #yAttack, gain #b", " Block."],

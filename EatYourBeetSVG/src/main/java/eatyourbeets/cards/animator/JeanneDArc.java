@@ -46,7 +46,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(2);
             upgradeMagicNumber(2);
         }
     }

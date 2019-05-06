@@ -111,7 +111,7 @@
 	},
 	{
 		"NAMES": ["envenom"],
-		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 Poison per stack.",
+		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison per stack.",
 		"PROPERNAME": "Envenom"
 	},
 	{
@@ -183,6 +183,11 @@
 		"PROPER_NAME": "Flight",
 		"NAMES": ["flight"],
 		"DESCRIPTION": "Take 50% less #yAttack damage. Lose 1 stack until end of turn when taking damage, the power is cancelled at 0 stacks."
+	},
+	{
+		"PROPER_NAME": "Flaming Weapon",
+		"NAMES": ["flaming weapon", "flaming_weapon"],
+		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yBurning."
 	},
 	{
 		"PROPER_NAME": "Juggernaut",

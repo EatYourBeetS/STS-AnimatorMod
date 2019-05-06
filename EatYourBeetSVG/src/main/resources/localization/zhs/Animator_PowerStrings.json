@@ -79,6 +79,11 @@
 	{
 		"DESCRIPTIONS": ["每回合两次，当一张牌被消耗时增加", " 点力量并治疗", " 点生命。"],
 		"NAME": "费里德·巴特利"
+	},	
+	"animator_FlamingWeaponPower":
+	{
+		"DESCRIPTIONS": ["每有一次攻击造成未被格挡的伤害，就给予 #b", " 层 燃烧 。"],
+		"NAME": "火红的武器"
 	},
 	"animator_GazelDwargonPower":
 	{

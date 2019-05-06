@@ -19,7 +19,25 @@ public class Chomusuke extends AnimatorCard_UltraRare
 
         Initialize(0, 0, 1);
 
+        this.retain = true;
+
         SetSynergy(Synergies.Konosuba);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        this.retain = true;
+    }
+
+    @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        this.retain = true;
     }
 
     @Override
@@ -36,7 +54,7 @@ public class Chomusuke extends AnimatorCard_UltraRare
     {
         for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisTurn)
         {
-            if (c.cardID.equals(cardID))
+            if (c == this)
             {
                 return false;
             }
@@ -48,11 +66,11 @@ public class Chomusuke extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        int exhausted = PlayerStatistics.getCardsExhaustedThisTurn();
-        for (int i = 0; i < exhausted; i++)
+        int exhaustedThisTurn = PlayerStatistics.getCardsExhaustedThisTurn();
+        if (exhaustedThisTurn > 0)
         {
-            GameActionsHelper.GainEnergy(1);
-            GameActionsHelper.DrawCard(p, this.magicNumber);
+            GameActionsHelper.GainEnergy(exhaustedThisTurn);
+            GameActionsHelper.DrawCard(p, exhaustedThisTurn * this.magicNumber);
         }
     }
 

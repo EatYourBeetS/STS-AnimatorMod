@@ -27,26 +27,9 @@ public class CursedGlyph extends AnimatorRelic
         {
             AbstractDungeon.actionManager.addToTop(new RelicAboveCreatureAction(m, this));
 
-            if (m.maxHealth < 30)
-            {
-                m.increaseMaxHp(10, true);
-            }
-            else if (m.maxHealth < 60)
-            {
-                m.increaseMaxHp(20, true);
-            }
-            else if (m.maxHealth < 120)
-            {
-                m.increaseMaxHp(30, true);
-            }
-            else if (m.maxHealth < 300)
-            {
-                m.increaseMaxHp(80, true);
-            }
-            else
-            {
-                m.increaseMaxHp(140, true);
-            }
+            int bonusHealth = 6 + (int)Math.ceil(m.maxHealth * 0.18);
+
+            m.increaseMaxHp(bonusHealth, true);
         }
 
         AbstractDungeon.onModifyPower();

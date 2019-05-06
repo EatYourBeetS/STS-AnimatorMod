@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
@@ -15,7 +16,9 @@ public class AcuraAkari extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 4, 2);
+        Initialize(0, 0, 1);
+
+        this.baseSecondaryValue = this.secondaryValue = 2;
 
         SetSynergy(Synergies.Chaika);
     }
@@ -24,7 +27,12 @@ public class AcuraAkari extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.ChooseAndDiscard(1, false);
-        GameActionsHelper.GainBlock(p, this.block);
+
+        for (int i = 0; i < secondaryValue; i++)
+        {
+            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomCard()));
+        }
+
         GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, this.magicNumber), this.magicNumber);
     }
 
@@ -33,7 +41,6 @@ public class AcuraAkari extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(4);
             upgradeMagicNumber(1);
         }
     }

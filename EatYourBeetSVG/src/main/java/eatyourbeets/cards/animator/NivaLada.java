@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.LaserBeam2Effect;
@@ -29,7 +28,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
 
     public NivaLada()
     {
-        super(ID, 1, CardType.SKILL, CardTarget.ENEMY);
+        super(ID, 0, CardType.SKILL, CardTarget.ENEMY);
 
         Initialize(0, 0, 300);
 
@@ -107,7 +106,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
 
     protected int GetBaseCooldown()
     {
-        return upgraded ? 14 : 16;
+        return upgraded ? 16 : 18;
     }
 
     protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
@@ -146,7 +145,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
 
         for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
         {
-            AnimatorCard_Cooldown card = (AnimatorCard_Cooldown)c;
+            NivaLada card = (NivaLada)c;
             card.baseSecondaryValue = card.secondaryValue = newValue;
             //card.applyPowers();
         }

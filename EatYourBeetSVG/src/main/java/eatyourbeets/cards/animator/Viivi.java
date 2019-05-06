@@ -29,7 +29,7 @@ public class Viivi extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomSubtype()));
+        GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomCard()));
     }
 
     @Override

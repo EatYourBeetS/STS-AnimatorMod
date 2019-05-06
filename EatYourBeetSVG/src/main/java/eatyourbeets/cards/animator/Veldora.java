@@ -23,7 +23,7 @@ public class Veldora extends AnimatorCard_UltraRare
 
         Initialize(0, 0, 3);
 
-        baseSecondaryValue = secondaryValue = 2;
+        baseSecondaryValue = secondaryValue = 1;
 
         SetSynergy(Synergies.TenSura, true);
     }

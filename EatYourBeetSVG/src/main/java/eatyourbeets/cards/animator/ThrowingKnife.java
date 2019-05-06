@@ -28,7 +28,7 @@ public abstract class ThrowingKnife extends AnimatorCard implements AnimatorReso
         this.exhaust = true;
     }
 
-    public static AbstractCard GetRandomSubtype()
+    public static AbstractCard GetRandomCard()
     {
         if (subTypes == null)
         {

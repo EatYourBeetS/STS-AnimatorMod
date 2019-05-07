@@ -16,9 +16,9 @@ public class Giselle extends AnimatorCard_UltraRare
     {
         super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(14,0, 3);
+        Initialize(12,0, 5);
 
-        baseSecondaryValue = secondaryValue = 80;
+        baseSecondaryValue = secondaryValue = 60;
 
         SetSynergy(Synergies.Gate);
     }
@@ -46,8 +46,7 @@ public class Giselle extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
-            upgradeMagicNumber(1);
+            upgradeDamage(2);
             upgradeSecondaryValue(20);
         }
     }

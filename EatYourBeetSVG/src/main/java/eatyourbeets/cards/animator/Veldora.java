@@ -19,9 +19,9 @@ public class Veldora extends AnimatorCard_UltraRare
 
     public Veldora()
     {
-        super(ID, 3, CardType.SKILL, CardTarget.SELF);
+        super(ID, 4, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 4);
 
         baseSecondaryValue = secondaryValue = 1;
 
@@ -63,6 +63,7 @@ public class Veldora extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
+            upgradeSecondaryValue(1);
             upgradeMagicNumber(1);
         }
     }

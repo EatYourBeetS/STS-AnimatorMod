@@ -1,0 +1,40 @@
+{
+  "Animator_TheMaskedTraveler1": {
+    "NAME": "Le Voyageur Masqué",
+    "DESCRIPTIONS": [
+      "While passing by this #ytotally not #yreused game asset, a masked figure with a large backpack approaches you. NL NL \"Greetings friend, are you perchance carrying some @'special'@ weaponry?\" NL ... NL \"Are you willing to sell it?\" NL NL \"Or perhaps you would prefer to buy some from my ... #ycollection ?\"",
+      "\"Did he actually accept?\" NL ... NL NL \"Ahem... I am @grateful@ for the #ytrade , be safe on your journey.\" NL NL That said, he disappeared from your sight."
+    ],
+    "OPTIONS": [
+      "[Vendre] #gEnlevé ", ". #gGagner #g", " #gOr.",
+      "[Commercer] #gAméliore #gtous les Frappes #get Défendre. #rPerdre #r", " #rOr.",
+      "[Partir]",
+	  "[Bloquer] Pas de carte à Vendre.",
+	  "[Bloquer] Pas assez d'or."
+    ]
+  },
+  "Animator_TheDomVedeloper1": {
+    "NAME": "Le Dom Vedeloper",
+    "DESCRIPTIONS": [
+      "You hear someone shouting in the distance: NL NL \" Rinne should behave more @erratically@ \" NL \" #yGilgamesh probably deserves a buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL You are slightly intrigued by those strange words... NL Do you decide to approach him?",
+	  "\"Oh hello, hello! Those are some #pinteresting cards, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your cards, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
+	  "\"Wonderful! Wonderful! Here, tell me, what do you think of this card?\"",
+	  "\"Nice, how about this one?\"",
+	  "\"Interesting, and this one?\"",
+	  "\"I see... Lastly, what's your opinion on this one?\"",
+	  "\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you accept, your answers will be sent to the developer)",
+	  "\"Excellent, have a nice day!\" NL NL \"... So... the next series could be...\""
+    ],
+    "OPTIONS": [
+	  "[Partir]",
+      "[Accepter] Répondre 4 questions. #gGagnez #g100 #gOr.",
+	  "[1] C'est trop fort...",
+      "[2] C'est une carte trop forte!",
+	  "[3] C'est souvent une bonne carte.",
+	  "[4] Ca a son utilité.",
+	  "[5] Quoi? Ne me montrer plus ca.",
+	  "[Signer le papier]",
+	  "[Continuer]"
+    ]
+  }
+}

@@ -936,7 +936,7 @@
 	},
 	"animator_Witch":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 給予 !M! 層 燃燒 。 NL 遺產 : 獲得1瓶隨機藥水 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 給予所有敵人 !M! 層 燃燒 。 NL 遺產 : 獲得1瓶隨機藥水 。",
 		"NAME": "魔女"
 	},
 	"animator_Wiz":

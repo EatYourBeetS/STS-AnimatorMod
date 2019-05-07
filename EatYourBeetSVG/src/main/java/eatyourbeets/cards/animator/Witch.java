@@ -2,8 +2,10 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -15,9 +17,9 @@ public class Witch extends AnimatorCard
 
     public Witch()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0, 13,3);
+        Initialize(0, 9,3);
 
         this.tags.add(CardTags.HEALING);
 
@@ -31,22 +33,7 @@ public class Witch extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        AbstractDungeon.actionManager.addToBottom(new ObtainPotionAction(AbstractDungeon.returnRandomPotion(true)));
-    }
-
-    @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        if (HasActiveSynergy())
-        {
-            target = CardTarget.SELF_AND_ENEMY;
-        }
-        else
-        {
-            target = CardTarget.SELF;
-        }
+        GameActionsHelper.AddToBottom(new ObtainPotionAction(AbstractDungeon.returnRandomPotion(true)));
     }
 
     @Override
@@ -54,10 +41,12 @@ public class Witch extends AnimatorCard
     {
         GameActionsHelper.GainBlock(p, this.block);
 
-        if (HasActiveSynergy() && m != null)
-        {
-            GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, this.magicNumber), this.magicNumber);
-        }
+        GameActionsHelper.ApplyPowerToAllEnemies(p, this::GetBurning, this.magicNumber);
+    }
+
+    public AbstractPower GetBurning(AbstractCreature m)
+    {
+        return new BurningPower(m, AbstractDungeon.player, this.magicNumber);
     }
 
     @Override
@@ -65,8 +54,7 @@ public class Witch extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
-            upgradeMagicNumber(1);
+            upgradeBlock(3);
         }
     }
 }

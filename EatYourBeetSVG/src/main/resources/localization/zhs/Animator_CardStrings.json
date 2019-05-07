@@ -938,7 +938,7 @@
 	},
 	"animator_Witch":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 同调 : 赋予 !M! 层 燃烧 。 遗赠 : 获得一瓶随机药水 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 给予所有敌人 !M! 层 燃烧 。 遗赠 : 获得一瓶随机药水 。",
 		"NAME": "魔女"
 	},
 	"animator_Wiz":

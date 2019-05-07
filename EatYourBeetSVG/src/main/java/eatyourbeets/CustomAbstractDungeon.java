@@ -219,7 +219,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
             return;
         }
 
-        float chances = 3.7f;
+        float chances = 3.8f;
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
         {
             if (c instanceof AnimatorCard_UltraRare)
@@ -287,8 +287,6 @@ public class CustomAbstractDungeon extends AbstractDungeon
 
         if (card != null)
         {
-            card.isSeen = true;
-            card.isLocked = false;
             cards.remove(0);
             cards.add(card);
         }

@@ -12,11 +12,11 @@ import java.util.HashMap;
 
 public abstract class AnimatorCard_UltraRare extends AnimatorCard implements AnimatorResources.Hidden
 {
-    private static final float IM_LAZY = 0.4f;
-    public static final Color RENDER_COLOR = new Color(IM_LAZY, IM_LAZY, IM_LAZY, 1);
+    private static final float A = 0.4f;
+    public static final Color RENDER_COLOR = new Color(A, A, A, 1);
 
-    private static final float IM_LAZY2 = 0.4f;
-    public static final Color RENDER_COLOR2 = new Color(IM_LAZY2, IM_LAZY2, IM_LAZY2, 1);
+    private static final float B = 0.4f;
+    public static final Color RENDER_COLOR2 = new Color(B, B, B, 1);
 
     protected AnimatorCard_UltraRare(String id, int cost, CardType type, CardTarget target)
     {

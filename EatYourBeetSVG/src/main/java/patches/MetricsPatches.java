@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.metrics.Metrics;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.characters.AnimatorCharacterSelect;
 import eatyourbeets.relics.PurgingStone;
@@ -78,6 +79,8 @@ public class MetricsPatches
                     String data = gson.toJson(params);
                     String url = "https://us-central1-sts-theanimator-api.cloudfunctions.net/addMetrics";
 
+                    //Utilities.Logger.info(data);
+
                     HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
                     Net.HttpRequest httpRequest = requestBuilder.newRequest().method("POST").url(url).header("Content-Type", "text/plain").header("Accept", "text/plain").header("User-Agent", "curl/7.43.0").build();
                     httpRequest.setContent(data);
@@ -104,7 +107,7 @@ public class MetricsPatches
                     cardID = cardID.substring(0, cardID.indexOf("+"));
                 }
 
-                AbstractCard temp = CardLibrary.getCard(cardID);
+                AbstractCard temp = GetCard(cardID);
                 AnimatorCard card = Utilities.SafeCast(temp, AnimatorCard.class);
                 if (card != null)
                 {
@@ -134,6 +137,18 @@ public class MetricsPatches
                     cardsData.add(toAdd);
                 }
             }
+        }
+
+
+        private static AbstractCard GetCard(String cardID)
+        {
+            AbstractCard card = AnimatorCard_UltraRare.GetCards().get(cardID);
+            if (card == null)
+            {
+                card = CardLibrary.getCard(cardID);
+            }
+
+            return card;
         }
     }
 }

@@ -360,6 +360,10 @@ public class AnimatorResources
         {
             languagePath = "localization/zhs/";
         }
+        else if (Settings.language == Settings.GameLanguage.FRA)
+        {
+            languagePath = "localization/fra/";
+        }
         else
         {
             languagePath = "localization/eng/";

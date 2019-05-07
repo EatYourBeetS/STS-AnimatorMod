@@ -2,15 +2,21 @@ package patches;
 
 import basemod.patches.com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar.ColorTabBarFix;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.ui.CustomCardLibSortHeader;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 @SpirePatch(clz=CardLibraryScreen.class, method="didChangeTab", paramtypez = {ColorTabBar.class, ColorTabBar.CurrentTab.class})
 public class CardLibraryScreenPatches

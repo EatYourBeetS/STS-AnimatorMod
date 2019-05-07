@@ -1,0 +1,123 @@
+
+{
+	"Animator_AlchemistGlove":
+	{
+		"DESCRIPTIONS": ["Tous #b", " tour, inflige #b", " #yBrûlure à TOUS les ennemis."],
+		"FLAVOR": "Cela vous permet de contrôler le feu d'un claquement de doigt.",
+		"NAME": "Gant d'Alchimiste"
+	},
+	"Animator_BattleDrones":
+	{
+		"DESCRIPTIONS": ["Quand une carte #ySynergizes, inflige #b", " dégat(s) à un ennemi aléatoire et gagnez #b", " #yd'Armure."],
+		"FLAVOR": "Pièce maîtresse de l'ingénieur.",
+		"NAME": "Drones de combat"
+	},
+	"Animator_Buoy":
+	{
+		"DESCRIPTIONS": ["Une fois par tour, quand vous piochez 3 cartes ou plus, gagnez #b", " #yd'Armure et #b", " #yDexterity jusqu'à la fin du tour."],
+		"FLAVOR": "Pour ce qu'il en est de la vitesse, je suis le meilleur, rapide comme le vent de l'île",
+		"NAME": "Buoy"
+	},
+	"Animator_CerealBox":
+	{
+		"DESCRIPTIONS": ["#pRight #pClick pour #ySoigner #b", " PV. NL Commence à #b", " utilisations, gagnez #b", " utilisations en entrant chez un marchant. NL Vous pouvez avoir jusqu'à #b", " utilisations."],
+		"FLAVOR": "100% Céréales complètes! Approuvé par Konayuki.",
+		"NAME": "Boîte à céréales"
+	},
+	"Animator_CursedBlade":
+	{
+		"DESCRIPTIONS": ["Quand vous infligé des dégat(s) non bloqué, #ySoigne #b2 PV. NL #rPerdez de manière permanente la #rMoitié de vos PV Max. Les Effets qui augmente PV Max sont réduit de moitié.", "Quand vous infligé des dégat(s) non bloqué, #ySoignez #b2 PV. NL Si vos PV sont au Max, gagnez #b3 PV Temporaire à la fin de votre tour. NL #rPerdez de manière permanente la #rMoitié de vos PV Max. Les Effets qui augmente PV Max sont réduit de moitié."],
+		"FLAVOR": "Elle tire sa force du sang de son manieur, convient parfaitement à un vampire.",
+		"NAME": "Epée maudite"
+	},
+	"Animator_CursedGlyph":
+	{
+		"DESCRIPTIONS": ["Au ramassage, #rperdez #r", " #rPV Max, Tous les ennemis recoivent des PV Max suppémentaire."],
+		"FLAVOR": "C'était une erreur...",
+		"NAME": "Glyphe Maudit"
+	},
+	"Animator_EngravedStaff":
+	{
+		"DESCRIPTIONS": ["A la fin de votre tour, #yConcervez votre carte au plus haut coût, elle #b1 coûte 1 de moins au prochain tour."],
+		"FLAVOR": "Un des possessions les plus chéries de la Guilde.",
+		"NAME": "Baton Gravé"
+	},
+	"Animator_ExquisiteBloodVial":
+	{
+		"DESCRIPTIONS": ["Au début de chaque combat, soignez #b", " PV. NL NL #y[Special #yRelic] NL #pClic #pDroit à un site de repos pour démarrer un combat spécial, gagner le combat activera le véritable effet de la relique. NL NL Cliquable à un site de repos, Act 3 conseillé.", "Au début de chaque combat, gagnez #b", " #yRegeneration et #b", " PV Max. NL NL Perdez toutes #yFlacon #ySanglant, Si vous obtenez un #yFlacon #ySanglant, améliorer cette relique à la place."],
+		"FLAVOR": "Un flacon contenant le sang pur d'un ancien vampire.",
+		"NAME": "Flacon de sang Exquis"
+	},
+	"Animator_HallowedScabbard":
+	{
+		"DESCRIPTIONS": ["Si vous perdez #b15 PV ou plus dans un combat, gagnez #b5 #yRegeneration et #b2 #yForce. S'active une seule fois par combat."],
+		"FLAVOR": "Le détenteur du fourreau bénéficie d'un puissant don de régénération, permettant aux blessures mortelles d'être rapidement soignées.",
+		"NAME": "Fourreau Sanctifié"
+	},
+	"Animator_HeavyHalberd":
+	{
+		"DESCRIPTIONS": ["Vos #yAttaques inflige #b", "% dégats supplémentaires."],
+		"FLAVOR": "Regner sur la mort, c'est regner sur la vie. La mort est l'apothéose de la vie. Pour une belle mort, tu dois honorer la vie.",
+		"NAME": "Hallebarde Lourde"
+	},
+	"Animator_LivingPicture":
+	{
+		"DESCRIPTIONS": ["Une fois par tour, quand une carte #ySynergizes, piochez #b1 carte."],
+		"FLAVOR": "Il ne vous lache pas du regard.",
+		"NAME": "Portrait Vivant"
+	},
+	"Animator_OldCoffin":
+	{
+		"DESCRIPTIONS": ["Au début du #b4ème tour, applique un #yDebuff aléatoire à un ennemi aléatoire au début de chaque tour."],
+		"FLAVOR": "Une réalité déroutante!",
+		"NAME": "Vieux Cercueil"
+	},
+	"Animator_PurgingStone":
+	{
+		"DESCRIPTIONS": ["Vous pouvez bannir des #ySéries de toutes les prochaines récompense et magasin. Gagne plus d'utilisation sur les boss.", "Séries bannis:"],
+		"FLAVOR": "Les humain sont sans défenses contre les malédictions, et peuvent seulement redirigé leur effets.",
+		"NAME": "Pierre de purification"
+	},
+	"Animator_RacePiece":
+	{
+		"DESCRIPTIONS": ["a l'obtention, choisissez #b1 carte, puis choisissez et #yTransformer #b3 cartes dans votre deck en #b3 cartes de la #ySeries de la carte sélectionné."],
+		"FLAVOR": "Vous l'avez vu venir Mr Le Telepath? Dans les dents.",
+		"NAME": "Race Piece"
+	},
+	"Animator_Rinne":
+	{
+		"DESCRIPTIONS": ["YmVoYXZlcw== ZXJyYXRpY2FsbHk=, ZG9uJ3Q= dGFsaw== dG8= bWU= b3I= bXk= c29u ZXZlcg== YWdhaW4=, NzQ="],
+		"FLAVOR": "???",
+		"NAME": "???"
+	},
+	"Animator_ShionDessert":
+	{
+		"DESCRIPTIONS": ["Chaque fois que vous jouez #b", " #yAttaques en un tour, inflige #b", " #yPoison à un ennemi aléatoire."],
+		"FLAVOR": "Venez par ici, venez goûter, que voulez-vous que ca vous fasse?",
+		"NAME": "Le Dessert de Shion"
+	},
+	"Animator_TheMissingPiece":
+	{
+		"DESCRIPTIONS": ["Tous les #b", " combats, recevez carte récompenses améliorer. Vous aurez plus de chance de trouvez une série si vous avez plusieurs cartes d'une série."],
+		"FLAVOR": "Quelle est cette chose?",
+		"NAME": "La pièce manquante"
+	},
+	"Animator_VividPicture":
+	{
+		"DESCRIPTIONS": ["Une fois par tour, quand une carte #ySynergizes, piochez #b1 card et gagnez [E]"],
+		"FLAVOR": "Il ne vous lache pas du regard.",
+		"NAME": "Portrait Vivant"
+	},
+	"Animator_WizardHat":
+	{
+		"DESCRIPTIONS": ["Chaque fois que vous activé #b", " #ySynergies en un combat, inflige #b", " dégat(s) à TOUS les ennemis."],
+		"FLAVOR": "La magie d'explosion est la plus puissantes. Mais elle demande un temps de préparation.",
+		"NAME": "Chapeau de Sorcier"
+	},
+	"Animator_WornHelmet":
+	{
+		"DESCRIPTIONS": ["Quand vous piochez une #yMalédiction ou un #yStatus, inflige #b", " dégat(s) à un ennemi aléatoire."],
+		"FLAVOR": "Un bon Goblin est un Goblin mort.",
+		"NAME": "Heaume de bronze"
+	}
+}

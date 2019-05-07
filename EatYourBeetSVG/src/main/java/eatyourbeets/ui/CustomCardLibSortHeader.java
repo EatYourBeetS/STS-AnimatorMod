@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergy;
 
 import java.util.Collections;
@@ -62,6 +64,23 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
         }
 
         buttons = override;
+    }
+
+    @Override
+    public void setGroup(CardGroup group)
+    {
+        super.setGroup(group);
+
+//        for (AbstractCard card : AnimatorCard_UltraRare.GetCards().values())
+//        {
+//            if (UnlockTracker.isCardSeen(card.cardID))
+//            {
+//                if (!group.contains(card))
+//                {
+//                    group.group.add(card);
+//                }
+//            }
+//        }
     }
 
     @Override

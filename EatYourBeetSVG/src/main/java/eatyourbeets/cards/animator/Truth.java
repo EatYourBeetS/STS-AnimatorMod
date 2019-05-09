@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
+import com.megacrit.cardcrawl.actions.defect.RemoveAllOrbsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.curses.AscendersBane;
@@ -9,6 +10,8 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.AnimatorResources;
@@ -31,6 +34,8 @@ public class Truth extends AnimatorCard_UltraRare
 
         Initialize(0, 0);
 
+        AddExtendedDescription();
+
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 
@@ -44,7 +49,25 @@ public class Truth extends AnimatorCard_UltraRare
         GameActionsHelper.DrawCard(p, amount + 2);
         GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, amount + 3), amount + 3);
 
-        PayThePrice(p);
+        int count = 0;
+        ArrayList<String> orbs = new ArrayList<>();
+        for (AbstractOrb orb : AbstractDungeon.player.orbs)
+        {
+            if (!(orb instanceof EmptyOrbSlot) && !orbs.contains(orb.ID))
+            {
+                orbs.add(orb.ID);
+                count += 1;
+            }
+        }
+
+        if (count >= 3)
+        {
+            GameActionsHelper.AddToBottom(new RemoveAllOrbsAction());
+        }
+        else
+        {
+            AddWound(p);
+        }
     }
 
     @Override
@@ -53,7 +76,7 @@ public class Truth extends AnimatorCard_UltraRare
         TryUpgrade();
     }
 
-    private void PayThePrice(AbstractPlayer p)
+    private void AddWound(AbstractPlayer p)
     {
         CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)

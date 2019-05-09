@@ -518,7 +518,7 @@
 	},
 	"animator_KrulTepes":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If this kills an Elite or Boss obtain a NL [#EFC851]Blood [#EFC851]Vial ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL If this card kills an Elite or Boss, obtain a NL [#EFC851]Blood [#EFC851]Vial ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "The relic will drop at the end of combat. You will only receive 1 relic in multi-elite combats. You can equip multiple Blood Vials."],
 		"NAME": "Krul Tepes"
 	},
@@ -744,8 +744,14 @@
 	},
 	"animator_Shichika":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Gain 1 Strength. NL Synergy: Gain !M! Thorns.",
-		"NAME": "Shichika"
+		"DESCRIPTION": "Gain !B! Block. NL Gain 1 Strength. NL Synergy: Add NL [#EFC851]Kyotouryuu[] NL to your hand.",
+		"NAME": "Shichika",
+		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Gain 1 Strength. NL Synergy: Add NL [#EFC851]Kyotouryuu+[] NL to your hand."
+	},
+	"animator_ShichikaKyotouryuu":
+	{
+		"DESCRIPTION": "Deal !D! damage 4 times. If you have 3 or more Dexterity, draw 1 card and gain [E]. Ethereal. Exhaust.",
+		"NAME": "Kyotouryuu"
 	},
 	"animator_Shigure":
 	{
@@ -1030,9 +1036,10 @@
 	},
 	"animator_Truth":
 	{
-		"DESCRIPTION": "Gain 1 Focus. NL Gain 2 Energy. NL Draw 3 cards. NL Gain 4 Strength. NL Permanently replace a card in your deck with a [#EFC851]Wound.",
+		"DESCRIPTION": "Gain 1 Focus. NL Gain 2 Energy. NL Draw 3 cards. NL Gain 4 Strength. NL [#EFC851]Truth.",
 		"NAME": "Truth",
-		"UPGRADE_DESCRIPTION": "Gain 2 Focus. NL Gain 3 Energy. NL Draw 4 cards. NL Gain 5 Strength. NL Permanently replace a card in your deck with a [#EFC851]Wound."
+		"EXTENDED_DESCRIPTION": ["Truth", "On use, permanently replace a card in your deck with a #yWound. If you have at least 3 unique orbs, remove all your orbs instead."],
+		"UPGRADE_DESCRIPTION": "Gain 2 Focus. NL Gain 3 Energy. NL Draw 4 cards. NL Gain 5 Strength. NL [#EFC851]Truth."
 	},
 	"animator_Rose":
 	{

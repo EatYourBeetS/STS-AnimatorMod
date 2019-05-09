@@ -1,7 +1,7 @@
 [
 	{
 		"DESCRIPTION": "S'active si la dernière carte joué et de la même série.",
-		"NAMES": ["synergie", "synergy", "synergies", "synergize", "synergizes"],
+		"NAMES": ["synergie", "synergy", "synergies", "synergize", "synergizes", "synergiser"],
 		"PROPERNAME": "Synergie"
 	},
 	{
@@ -50,7 +50,7 @@
 		"PROPERNAME": "Slow"
 	},
 	{
-		"DESCRIPTION": "Synergizes avec toutes les cartes.",
+		"DESCRIPTION": "Synergiser avec toutes les cartes.",
 		"NAMES": ["changeforme"],
 		"PROPERNAME": "Changeforme"
 	},
@@ -67,12 +67,12 @@
 	{
 		"DESCRIPTION": "En recevant des dégats, gagner de #yl'Armure. #L'Armure gagner augmente à chaque gain. Reset au début du tour.",
 		"NAMES": ["malleable"],
-		"PROPERNAME": "Malleable"
+		"PROPERNAME": "Malléable"
 	},
 	{
 		"DESCRIPTION": "Subit des dommages à chaque fin de tour.",
 		"NAMES": ["constricted"],
-		"PROPERNAME": "Constricted"
+		"PROPERNAME": "Constriction"
 	},
 	{
 		"DESCRIPTION": "S'active quand une carte est Défaussé ou Recyclé.",
@@ -110,7 +110,7 @@
 		"PROPERNAME": "Brûlure"
 	},
 	{
-		"NAMES": ["envenom", "envenimer"],
+		"NAMES": ["envenom", "envenimer", "d'envenimer"],
 		"DESCRIPTION": "Tout dégats non bloqué, inflige #b1 Poison par coup.",
 		"PROPERNAME": "Envenimer"
 	},
@@ -126,12 +126,12 @@
 	},
 	{
 		"NAMES": ["noyau d'orbe", "noyau_d'orbe", "noyau_de_feu", "noyau_de_terre", "noyau_de_foudre", "noyau_de_plasma", "noyau_de_feu", "noyau_de_gel"],
-		"DESCRIPTION": "#yPouvoir: #yCanalise 1 orbe à l'utilisation, octroyant un bonus à la seconde #ySynergy de chaque tour.",
+		"DESCRIPTION": "#yPouvoir: #yCanalise 1 orbe à l'utilisation, octroyant un bonus à la seconde #ySynergie de chaque tour.",
 		"PROPER_NAME": "Noyau d'orbe"
 	},
 	{
-		"PROPER_NAME": "Armure Renforcée",
-		"NAMES": ["armure renforcée", "armure_renforcée"],
+		"PROPER_NAME": "Armure Plaquée",
+		"NAMES": ["armure renforcée", "armure_renforcée", "d'armure plaquée", "d'armure_plaquée"],
 		"DESCRIPTION": "Gagnez autant #yd'Armure à la fin de votre tour. Réduit de #b1 par dégat non bloqué."
 	},
 	{
@@ -166,11 +166,11 @@
 	},
 	{
 		"PROPER_NAME": "Couteau de jet",
-		"NAMES": ["couteau de jet", "couteau_de_jet"],
-		"DESCRIPTION": "Carte d'#yAttaque qui coûte 0 qui applique un debuff et d'#yépuise."
+		"NAMES": ["couteau de jet", "couteau_de_jet", "couteaux de jet", "couteaux_de_jet"],
+		"DESCRIPTION": "Les couteaux de jets sont des cartes d'Attaque qui coûtent 0 appliquant un debuff et s'épuisent."
 	},
 	{
-		"PROPER_NAME": "Discover",
+		"PROPER_NAME": "Découvrir",
 		"NAMES": ["discover"],
 		"DESCRIPTION": "Choisir 1 carte parmis 3 cartes aléatoires à ajouter à votre main. Elle coute 0 ce tour."
 	},
@@ -185,8 +185,8 @@
 		"DESCRIPTION": "Subit 50% moins de dégats d'#yAttaque. Perd 1 charge quand vous subissez des dégats, se reset en début de tour, disparait à 0 charge."
 	},
 	{
-		"PROPER_NAME": "Arme Enflammé",
-		"NAMES": ["arme enflammé", "arme_enflammé"],
+		"PROPER_NAME": "Arme Enflammée",
+		"NAMES": ["arme enflammée", "arme_enflammée"],
 		"DESCRIPTION": "Tout dégats non bloqué, inflige #b1 Brûlure par coup."
 	},
 	{

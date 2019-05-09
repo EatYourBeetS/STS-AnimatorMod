@@ -3,8 +3,8 @@ package eatyourbeets.cards;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.cards.animator.*;
 
@@ -26,9 +26,9 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Ani
         setOrbTexture(AnimatorResources.ORB_A_PNG, AnimatorResources.ORB_B_PNG);
     }
 
-    private static HashMap<String, AbstractCard> Cards = null;
+    private static HashMap<String, AnimatorCard_UltraRare> Cards = null;
 
-    public static HashMap<String, AbstractCard> GetCards()
+    public static HashMap<String, AnimatorCard_UltraRare> GetCards()
     {
         if (Cards == null)
         {
@@ -48,6 +48,20 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Ani
         }
 
         return Cards;
+    }
+
+    public static void MarkAsSeen(AnimatorCard_UltraRare card)
+    {
+        if (card != null && !IsSeen(card.cardID))
+        {
+            UnlockTracker.seenPref.putInteger(card.cardID, 2);
+            UnlockTracker.seenPref.flush();
+        }
+    }
+
+    public static boolean IsSeen(String cardID)
+    {
+        return UnlockTracker.seenPref.getInteger(cardID, 0) == 2;
     }
 
 //    @SpireOverride

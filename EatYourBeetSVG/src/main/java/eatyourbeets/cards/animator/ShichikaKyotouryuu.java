@@ -1,22 +1,29 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
-public class Shichika extends AnimatorCard
+public class ShichikaKyotouryuu extends AnimatorCard implements AnimatorResources.Hidden
 {
-    public static final String ID = CreateFullID(Shichika.class.getSimpleName());
+    public static final String ID = CreateFullID(ShichikaKyotouryuu.class.getSimpleName());
 
-    public Shichika()
+    public ShichikaKyotouryuu()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        Initialize(0, 3);
+        Initialize(1, 0, 4);
+
+        this.exhaust = true;
+        this.isEthereal = true;
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -24,17 +31,19 @@ public class Shichika extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
-        GameActionsHelper.GainBlock(p, block);
+        GameActionsHelper.AddToBottom(new VFXAction(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F));
 
-        if (HasActiveSynergy())
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+
+        GameActionsHelper.AddToBottom(new VFXAction(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F));
+
+        if (PlayerStatistics.GetDexterity(p) >= 3)
         {
-            ShichikaKyotouryuu card = new ShichikaKyotouryuu();
-            if (upgraded)
-            {
-                card.upgrade();
-            }
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(card));
+            GameActionsHelper.GainEnergy(1);
+            GameActionsHelper.DrawCard(p, 1);
         }
     }
 
@@ -43,7 +52,7 @@ public class Shichika extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
+            upgradeDamage(1);
         }
     }
 }

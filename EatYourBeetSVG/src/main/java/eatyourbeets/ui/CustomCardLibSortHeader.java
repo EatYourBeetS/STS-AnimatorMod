@@ -71,16 +71,16 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     {
         super.setGroup(group);
 
-//        for (AbstractCard card : AnimatorCard_UltraRare.GetCards().values())
-//        {
-//            if (UnlockTracker.isCardSeen(card.cardID))
-//            {
-//                if (!group.contains(card))
-//                {
-//                    group.group.add(card);
-//                }
-//            }
-//        }
+        for (AnimatorCard_UltraRare card : AnimatorCard_UltraRare.GetCards().values())
+        {
+            if (AnimatorCard_UltraRare.IsSeen(card.cardID))
+            {
+                if (!group.contains(card))
+                {
+                    group.group.add(card);
+                }
+            }
+        }
     }
 
     @Override

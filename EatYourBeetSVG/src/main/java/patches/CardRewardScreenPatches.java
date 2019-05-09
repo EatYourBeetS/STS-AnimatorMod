@@ -7,6 +7,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.ui.CardRewardScreenPatch;
 
 import java.util.ArrayList;
@@ -40,6 +43,14 @@ public class CardRewardScreenPatches
         public static void Postfix(CardRewardScreen __instance, ArrayList<AbstractCard> cards, RewardItem rItem, String header)
         {
             CardRewardScreenPatch.Open(__instance, cards, rItem, header);
+
+            for (AbstractCard c : cards)
+            {
+                if (c instanceof AnimatorCard_UltraRare)
+                {
+                    AnimatorCard_UltraRare.MarkAsSeen((AnimatorCard_UltraRare)c);
+                }
+            }
         }
     }
 

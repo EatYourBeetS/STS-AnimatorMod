@@ -162,7 +162,7 @@
 	},
 	"animator_PoisonAffinityPower":
 	{
-		"DESCRIPTIONS": ["Quand vous infligé #yPoison, ajoute un #b", " #yPoison supplémentaires."],
+		"DESCRIPTIONS": ["Quand vous infligez #yPoison, appliquez #b", " de #yPoison supplémentaire."],
 		"NAME": "Affinité au Poison"
 	},
 	"animator_PridePower":

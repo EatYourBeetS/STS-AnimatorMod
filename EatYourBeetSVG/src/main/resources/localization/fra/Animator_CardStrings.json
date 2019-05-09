@@ -2,84 +2,84 @@
 {
 	"animator_AcuraAkari":
 	{
-		"DESCRIPTION": "Défaussez 1 carte. NL Ajouter !SV! Couteau_de_Jet à votre main. NL Gagnez !M! Envenimer jusqu'a la fin du tour.",
+		"DESCRIPTION": "Défaussez 1 carte. NL Ajoutez !SV! Couteaux_de_Jet à votre main. NL Gagnez !M! d'Envenimer jusqu'à la fin du tour.",
 		"NAME": "Akari"
 	},
 	"animator_AcuraShin":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à TOUS les ennemis, puis NL Appliquez !M! Poison. NL Gagnez 1 [#EFC851]Poison [#EFC851]Affinité.",
-		"EXTENDED_DESCRIPTION": ["Poison Affinité", "Chaque fois que vous appliquez Poison, appliquez 1 Poison additionnel par stack."],
+		"DESCRIPTION": "Infligez !D! dégât(s) à TOUS les ennemis, puis NL Appliquez !M! de Poison. NL Gagnez 1 [#EFC851]Affinité [#EFC851]au [#EFC851]Poison.",
+		"EXTENDED_DESCRIPTION": ["Affinité au Poison", "Chaque fois que vous appliquez Poison, appliquez 1 de Poison supplémentaire par stack."],
 		"NAME": "Shin"
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) !M! fois. Au prochain tour, piochez une carte. Synergie: Ajouter !SV! Couteau_de_Jet à votre main.",
+		"DESCRIPTION": "Infligez !D! dégât(s) !M! fois. Au prochain tour, piochez une carte. Synergie: Ajoutez !SV! Couteau_de_Jet à votre main.",
 		"NAME": "Tooru",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s) !M! fois. Au prochain tour, piochez une carte. Synergie: Ajouter !SV! Couteau_de_Jet à votre main."
+		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s) !M! fois. Au prochain tour, piochez une carte. Synergie: Ajoutez !SV! Couteaux_de_Jet à votre main."
 	},
 	"animator_Add":
 	{
-		"DESCRIPTION": "Gagnez 1 emplacement d'Orbe. NL Épuise 1 carte dans votre pioche. Remplacez-le par un Noyau_d'orbe. NL Éthérée. Épuisement.",
-		"NAME": "Ajouter",
+		"DESCRIPTION": "Gagnez 1 emplacement d'Orbe. NL Épuisez 1 carte dans votre pioche. Remplacez-la par un Noyau_d'orbe. NL Éthérée. Épuisement.",
+		"NAME": "Add",
 		"UPGRADE_DESCRIPTION": "Gagnez 1 emplacement d'Orbe. NL Épuise 1 carte dans votre pioche. Remplacez-le par un Noyau_d'orbe. NL Éthérée."
 	},
 	"animator_Ain":
 	{
-		"DESCRIPTION": "[#EFC851]Jeteur [#EFC851]de [#EFC851]sorts. NL Infligez !D! dégât(s) à TOUS les ennemis !M! fois. Gagnez 1 Concentration.",
-		"EXTENDED_DESCRIPTION": ["Jeteur de sorts", "Les dégât(s) de cette carte augmente avec la Concentration."],
+		"DESCRIPTION": "[#EFC851]Jeteur [#EFC851]de [#EFC851]sorts. NL Infligez !D! dégât(s) à TOUS les ennemis !M! fois. Gagnez 1 de Concentration.",
+		"EXTENDED_DESCRIPTION": ["Jeteur de sorts", "Le(s) dégât(s) de cette carte augmente(nt) avec la Concentration."],
 		"NAME": "Ain"
 	},
 	"animator_Ainz":
 	{
-		"DESCRIPTION": "Coûte 1 de moins chaque tour. Au début de chaque tour, active 1 à 4  [#EFC851]Effet(s) aléatoire.",
+		"DESCRIPTION": "Coûte 1 en moins chaque tour. Au début de chaque tour, choisissez 1 des 4  [#EFC851]Effets aléatoires.",
 		"NAME": "Ainz Ooal Gown",
-		"UPGRADE_DESCRIPTION": "Coûte 1 de moins chaque tour. Au début de chaque tour, active 1 à 4  [#EFC851]Effet(s) Amélioré(s) aléatoire."
+		"UPGRADE_DESCRIPTION": "Coûte 1 en moins chaque tour. Au début de chaque tour, choisissez 1 des 4  [#EFC851]Effets [#EFC851]Améliorés aléatoires."
 	},
 	"animator_Aisha":
 	{
-		"DESCRIPTION": "Défaussez 1 carte. NL Chercher une [#EFC851]Compétence(s) de votre pioche, elle coûte !M! de moins ce tour.",
+		"DESCRIPTION": "Défaussez 1 carte. NL Cherchez une [#EFC851]Compétence de votre pioche, elle coûte !M! de moins ce tour.",
 		"NAME": "Aisha"
 	},
 	"animator_Albedo":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez autant Armure_Enchantée. NL Synergie: Retourne dans votre pioche.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez autant d'Armure_Enchantée. NL Synergie: Retourne dans votre pioche.",
 		"NAME": "Albedo"
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi et !SV! dégât(s) aux autres ennemis. Héritage: Gagnez !M! Armure Renforcée.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi et !SV! dégât(s) aux autres ennemis. Héritage: Gagnez !M! d'Armure_Plaquée.",
 		"NAME": "Alexander"
 	},
 	"animator_Aqua":
 	{
-		"DESCRIPTION": "Soignez !M! PV. Réduisez les soins de cette carte de !SV! ce combat.",
+		"DESCRIPTION": "Soignez !M! PV. NL Réduisez les soins de cette carte de !SV! ce combat.",
 		"NAME": "Aqua",
-		"UPGRADE_DESCRIPTION": "Soignez !M! PV. Réduisez les soins de cette carte de !SV! ce combat."
+		"UPGRADE_DESCRIPTION": "Soignez !M! PV. NL Réduisez les soins de cette carte de !SV! ce combat."
 	},
 	"animator_Ara":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) deux fois. NL Si l'ennemi a un Debuff, piochez deux cartes, puis Défaussez 1 carte.",
+		"DESCRIPTION": "Infligez !D! dégât(s) deux fois. NL Si l'ennemi a un Debuff, piochez deux cartes, puis défaussez 1 carte.",
 		"NAME": "Ara"
 	},
 	"animator_Archer":
 	{
-		"DESCRIPTION": "A la fin de votre tour, Infligez !D! dégât(s) à TOUS les ennemis pour chaque Debuff qu'ils ont. Augmente avec la Force.",
+		"DESCRIPTION": "À la fin de votre tour, infligez !D! dégât(s) à TOUS les ennemis pour chaque Debuff qu'ils ont. Augmente avec la Force.",
 		"NAME": "Archer"
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "Canalisez 1 Terre. NL Gagnez 1 Concentration. NL Épuisement.",
+		"DESCRIPTION": "Canalisez 1 Terre. NL Gagnez 1 de Concentration. NL Épuisement.",
 		"NAME": "Arpeggio",
-		"UPGRADE_DESCRIPTION": "Canalisez 1 Terre. NL Gagnez 1 emplacement d'Orbe. NL Gagnez 1 Concentration. NL Épuisement."
+		"UPGRADE_DESCRIPTION": "Canalisez 1 Terre. NL Gagnez 1 emplacement d'Orbe. NL Gagnez 1 de Concentration. NL Épuisement."
 	},
 	"animator_Asuramaru":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Infligez !D! dégât(s). NL Gagnez !M! Force, Dextérité et Concentration. Épuisement.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Infligez !D! dégât(s). NL Gagnez !M! de Force, de Dextérité et de Concentration. NL Épuisement.",
 		"NAME": "Asuramaru"
 	},
 	"animator_Azekura":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure deux fois. NL Synergie: Gagnez !M! Armure Renforcée.",
+		"DESCRIPTION": "Gagnez !B! d'Armure deux fois. NL Synergie: Gagnez !M! d'Armure_Plaquée.",
 		"NAME": "Azekura"
 	},
 	"animator_Benimaru":
@@ -104,7 +104,7 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à l'ennemi avec le moins de PV. A votre prochaine !M! Synergie ce tour, Gagnez 1 Armure Renforcée.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à l'ennemi avec le moins de PV. A votre prochaine !M! Synergie ce tour, Gagnez 1 d'Armure_Plaquée.",
 		"NAME": "Bozes"
 	},
 	"animator_Caster":
@@ -158,10 +158,10 @@
 	},
 	"animator_Darkness":
 	{
-		"DESCRIPTION": "Gagnez !M! Armure Renforcée. Chaque fois que prenez des dégât(s), Amélioré !M! carte(s) aléatoire(s) ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "Gagnez !M! d'Armure_Plaquée. Chaque fois que prenez des dégât(s), Amélioré !M! carte(s) aléatoire(s) ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "Priorise les cartes de votre main."],
 		"NAME": "Darkness",
-		"UPGRADE_DESCRIPTION": "Gagnez !M! Armure Renforcée. Chaque fois que prenez des dégât(s), Amélioré !M! carte(s) aléatoire(s) ([#EFC851]*[#FFFFFF])."
+		"UPGRADE_DESCRIPTION": "Gagnez !M! d'Armure_Plaquée. Chaque fois que prenez des dégât(s), Amélioré !M! carte(s) aléatoire(s) ([#EFC851]*[#FFFFFF])."
 	},
 	"animator_Defend":
 	{
@@ -283,7 +283,7 @@
 	},
 	"animator_ElricAlphonseAlt":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez !M! Armure Renforcée. NL Synergie: [#EFC851]Canalisez[] 1 Foudre.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez !M! d'Armure_Plaquée. NL Synergie: [#EFC851]Canalisez[] 1 Foudre.",
 		"NAME": "Armored Alphonse"
 	},
 	"animator_ElricEdward":
@@ -416,7 +416,7 @@
 	},
 	"animator_Greed":
 	{
-		"DESCRIPTION": "Gagnez !SV! Armure Renforcée. NL Gagnez !M! Métalisation. NL Gagnez 3 Malleable. NL [#EFC851]Greed[].",
+		"DESCRIPTION": "Gagnez !SV! d'Armure_Plaquée. NL Gagnez !M! Métalisation. NL Gagnez 3 Malleable. NL [#EFC851]Greed[].",
 		"EXTENDED_DESCRIPTION": ["Greed", "Si cette carte est dans votre deck au début du combat, Gagnez #b8 #yOr quand joué. Cette carte coute 1 d'énergie en moins pour chaque #b100 #yOr que vous avez."],
 		"NAME": "Greed"
 	},
@@ -518,7 +518,7 @@
 	},
 	"animator_KrulTepes":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Si ca tue un Elite ou un Boss obtenez une NL [#EFC851]Blood [#EFC851]Vial ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez 1 Faiblesse. NL Si ca tue un Elite ou un Boss obtenez une NL [#EFC851]Blood [#EFC851]Vial ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "La relique sera recu en fin de combat. Une relique max par combat. Vous pouvez avoir plusieur Blood Vial."],
 		"NAME": "Krul Tepes"
 	},
@@ -744,8 +744,14 @@
 	},
 	"animator_Shichika":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez 1 Force. NL Synergie: Gagnez !M! Épines.",
-		"NAME": "Shichika"
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez 1 Force. NL Synergie: Ajoutez [#EFC851]Kyotouryuu[] à votre main.",
+		"NAME": "Shichika",
+		"UPGRADE_DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez 1 Force. NL Synergie: Ajoutez [#EFC851]Kyotouryuu+[] à votre main."
+	},
+	"animator_ShichikaKyotouryuu":
+	{
+		"DESCRIPTION": "Infligez !D! dégât(s) !M! fois. Si vous avez au moins 3 Dextérité, piochez 1 carte et Gagnez [E]. Éthérée. Épuisement.",
+		"NAME": "Kyotouryuu"
 	},
 	"animator_Shigure":
 	{
@@ -769,7 +775,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez Arme_Enflammé. NL Si cela tue l'ennemi, soigne 1 point pour chaque Brûlure.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez Arme_Enflammée. NL Si cela tue l'ennemi, soigne 1 point pour chaque Brûlure.",
 		"NAME": "Shizu"
 	},
 	"animator_Shuna":
@@ -1030,9 +1036,10 @@
 	},
 	"animator_Truth":
 	{
-		"DESCRIPTION": "Gagnez 1 Concentration. NL Gagnez 2 Energie. NL Piochez 3 cartes. NL Gain 4 Force. NL Renplace de manière permanent une carte de votre deck par une [#EFC851]Plaie.",
+		"DESCRIPTION": "Gagnez 1 Concentration. NL Gagnez 2 Energie. NL Piochez 3 cartes. NL Gain 4 Force. NL [#EFC851]Vérité[].",
 		"NAME": "Vérité",
-		"UPGRADE_DESCRIPTION": "Gagnez 2 Concentration. NL Gagnez 3 Energie. NL Piochez 4 cartes. NL Gain 5 Force. NL Renplace de manière permanent une carte de votre deck par une [#EFC851]Plaie."
+		"EXTENDED_DESCRIPTION": ["Vérité","Renplace de manière permanent une carte de votre deck par une #yPlaie. Si vous avez au moins 3 sphères uniques, supprimer toutes les sphères plutot."],
+		"UPGRADE_DESCRIPTION": "Gagnez 2 Concentration. NL Gagnez 3 Energie. NL Piochez 4 cartes. NL Gain 5 Force. NL [#EFC851]Vérité[]."
 	},
 	"animator_Rose":
 	{

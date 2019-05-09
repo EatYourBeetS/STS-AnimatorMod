@@ -518,7 +518,7 @@
 	},
 	"animator_KrulTepes":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 若这张牌消灭了一个精英或 boss ， 获得 [#EFC851]小血瓶[] [#EFC851]*[] 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 给予 !M! 层 虚弱 。 若这张牌消灭了一个精英或 boss ， 获得 [#EFC851]小血瓶[] [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "若本场战斗中有多个精英存在 ， 只能获得一次遗物 。"],
 		"NAME": "克鲁鲁·采佩西"
 	},
@@ -744,8 +744,14 @@
 	},
 	"animator_Shichika":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 1 点 力量 。 NL 同调 : 获得 !M! 层 荆棘 。",
-		"NAME": "鑢七花"
+		"DESCRIPTION": "获得 !B! 点 格挡 1 点 力量 。 NL 同调 : 增加 [#EFC851]kyotouryuu[] 到你的手牌 。",
+		"NAME": "鑢七花",
+		"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 1 点 力量 。 NL 同调 : 增加 [#EFC851]kyotouryuu+[] 到你的手牌 。"
+	},
+	"animator_ShichikaKyotouryuu":
+	{
+		"DESCRIPTION": "造成 !D! 点伤害 4 次 。 如果你有至少3点灵巧 ， 抽 1 张牌 并 获得 [E] 。 虚无 。 消耗 。",
+		"NAME": "Kyotouryuu"
 	},
 	"animator_Shigure":
 	{
@@ -1029,9 +1035,10 @@
 	},
 	"animator_Truth":
 	{
-		"DESCRIPTION": "获得 1 点 集中 。 NL 获得 2 点 能量 。 NL 抽 3 张牌 。 NL 获得 4 点 力量 。 NL 永久的将牌组中的一张牌用 [#EFC851]伤口 代替 。",
-		"NAME": "Truth",
-		"UPGRADE_DESCRIPTION": "获得 2 点 集中 。 NL 获得 3 点 能量 。 NL 抽 4 张牌 。 NL 获得 5 点 力量 。 NL 永久的将牌组中的一张牌用 [#EFC851]伤口 代替 。"
+		"DESCRIPTION": "获得 1 点 集中 。 NL 获得 2 点 能量 。 NL 抽 3 张牌 。 NL 获得 4 点 力量 。 NL [#EFC851]真相[] 。",
+		"NAME": "真相",
+		"EXTENDED_DESCRIPTION": ["真相", "永久的将牌组中的一张牌用 #y伤口 代替 。 如果您拥有至少 3 个独特的球体 ， 请移除所有球体 而不是激活其他效果 。"],
+		"UPGRADE_DESCRIPTION": "获得 2 点 集中 。 NL 获得 3 点 能量 。 NL 抽 4 张牌 。 NL 获得 5 点 力量 。 NL [#EFC851]真相[] 。"
 	},
 	"animator_Rose":
 	{

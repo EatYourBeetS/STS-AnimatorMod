@@ -19,7 +19,7 @@ public class Chung extends AnimatorCard_Cooldown
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(13, 8);
+        Initialize(14, 8);
 
         this.baseSecondaryValue = this.secondaryValue = COOLDOWN;
         //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;

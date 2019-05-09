@@ -9,12 +9,11 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Saitama extends AnimatorCard implements AnimatorResources.Hidden
+public class Saitama extends AnimatorCard
 {
     public static final String ID = CreateFullID(Saitama.class.getSimpleName());
 
@@ -46,9 +45,9 @@ public class Saitama extends AnimatorCard implements AnimatorResources.Hidden
 
             float bonusDamage = DAMAGE_STEP * multiplier;
 
-            if (upgraded)
+            if (upgraded && energy > 1)
             {
-                bonusDamage += (Math.floorDiv(energy, 3) + 1) * 10;
+                bonusDamage += 5 + (Math.floorDiv(energy, 3) * 10);
             }
 
             tmp += bonusDamage;
@@ -75,6 +74,9 @@ public class Saitama extends AnimatorCard implements AnimatorResources.Hidden
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeDamage(5);
+        }
     }
 }

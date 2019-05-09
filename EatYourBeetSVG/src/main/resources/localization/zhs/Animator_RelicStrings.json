@@ -14,7 +14,7 @@
 	},
 	"Animator_Buoy":
 	{
-		"DESCRIPTIONS": ["Once per turn, when you draw a total of 3 or more cards, gain #b", " #yBlock and #b", " #yDexterity until end of turn."],
+		"DESCRIPTIONS": ["每回合仅一次，当你额外抽取总数不低于三张牌时, 获得 #b", " #y格挡 和 #b", " #y敏捷 到回合结束."],
 		"FLAVOR": "我的速度天下第一, 迅疾如风!",
 		"NAME": "泳圈"
 	},
@@ -26,15 +26,15 @@
 	},
 	"Animator_CursedBlade":
 	{
-		"DESCRIPTIONS": ["每当一次攻击 并造成伤害时, 恢复 #b2 点 生命 . 失去 #b50％ 的生命上限.", "每当一次攻击 并造成伤害时, 恢复 #b2 点 生命 . 在你生命值为满时，每回合结束时获得 #b3 点 临时生命 . 失去 #b50％ 的生命上限."],
+		"DESCRIPTIONS": ["每当一次攻击 并造成伤害时, 恢复 #b2 点 生命 . 失去 #b50％ 的生命上限. 所有增加生命上限的效果减少50%", "每当一次攻击 并造成伤害时, 恢复 #b2 点 生命 . 在你生命值为满时，每回合结束时获得 #b3 点 临时生命 . 失去 #b50％ 的生命上限. 所有增加生命上限的效果减少50%."],
 		"FLAVOR": "它从持有者的血液中汲取力量,对一个吸血鬼来说再适合不过了.",
 		"NAME": "诅咒之刃"
 	},
 	"Animator_CursedGlyph":
 	{
-		"DESCRIPTIONS": ["Upon pickup, #rlose #r", " #rMax HP, all enemies start with additional Max HP."],
-		"FLAVOR": "Maybe it was a mistake...",
-		"NAME": "Cursed Glyph"
+		"DESCRIPTIONS": ["获取时, #r失去 #r", " #r生命上限, 提升所有敌人的生命上限."],
+		"FLAVOR": "这可能是个失误......",
+		"NAME": "天罚符文"
 	},
 	"Animator_EngravedStaff":
 	{
@@ -116,7 +116,7 @@
 	},
 	"Animator_WornHelmet":
 	{
-		"DESCRIPTIONS": ["每当你抽到诅咒牌或状态牌时, 对一个随机敌人造成 #b", " 点伤害."],
+		"DESCRIPTIONS": ["每场战斗开始时获得 #b", " 点 #y格挡 。 每当你抽到诅咒牌或状态牌时, 对一个随机敌人造成 #b", " 点伤害。"],
 		"FLAVOR": "哥布林.",
 		"NAME": "破碎的头盔"
 	}

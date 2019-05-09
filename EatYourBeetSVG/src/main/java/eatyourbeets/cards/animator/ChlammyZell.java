@@ -15,7 +15,7 @@ public class ChlammyZell extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 4);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -31,7 +31,7 @@ public class ChlammyZell extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            this.isInnate = true;
         }
     }
 }

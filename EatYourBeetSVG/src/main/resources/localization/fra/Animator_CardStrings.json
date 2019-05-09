@@ -126,7 +126,8 @@
 	"animator_ChlammyZell":
 	{
 		"DESCRIPTION": "Quand vous jouez des cartes de type différent, Recyclez 1 carte et Infligez !M! dégât(s) à TOUS les ennemis.",
-		"NAME": "Kurami"
+		"NAME": "Kurami",
+		"UPGRADE_DESCRIPTION": "Inné. Quand vous jouez des cartes de type différent, Recyclez 1 carte et Infligez !M! dégât(s) à TOUS les ennemis."
 	},
 	"animator_Chris":
 	{
@@ -318,7 +319,7 @@
 	},
 	"animator_EntouJyuu":
 	{
-		"DESCRIPTION": "Une fois par tour, après que vous ayez joué une [#EFC851]Attaque, augmentez ces dégât(s) de !M! pour ce combat et piochez une carte.",
+		"DESCRIPTION": "Deux fois par tour, après que vous ayez joué une [#EFC851]Attaque, augmentez ces dégât(s) de !M! pour ce combat et piochez une carte.",
 		"NAME": "Entou Jyuu"
 	},
 	"animator_Envy":
@@ -438,7 +439,7 @@
 	},
 	"animator_Hakurou":
 	{
-		"DESCRIPTION": "Maître_des_arts_martiaux NL Infligez !D! dégât(s) !M! fois. NL [#EFC851]Pioché: Gagnez !SV! Dextérité Temporaire.",
+		"DESCRIPTION": "Artiste_martial NL Infligez !D! dégât(s) !M! fois. NL [#EFC851]Pioché: Gagnez !SV! Dextérité Temporaire.",
 		"NAME": "Hakurou"
 	},
 	"animator_HigakiRinne":
@@ -721,10 +722,8 @@
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "Inné. Conservez. NL Infligez !D! dégât(s). NL [#EFC851]One[] [#EFC851]Punch[].",
-		"EXTENDED_DESCRIPTION": ["One Punch", "Utilise TOUTE votre energie, cette carte inflige #yincreasingly dégats supplémentaire pour chaque point utilisé."],
-		"NAME": "Saitama",
-		"UPGRADE_DESCRIPTION": "Inné. Conservez. NL Infligez !D! dégât(s). NL [#EFC851]One[] [#EFC851]Punch+[]."
+		"DESCRIPTION": "Infligez !D! dégât(s). Utilise TOUTE votre energie, cette carte inflige de plus en plus dégats supplémentaire pour chaque point utilisé.",
+		"NAME": "Saitama"
 	},
 	"animator_Scar":
 	{
@@ -979,7 +978,7 @@
 	},
 	"animator_ZankiKiguchi":
 	{
-		"DESCRIPTION": "Maître_des_arts_martiaux NL Infligez !D! dégât(s). NL Synergie: Converti !M! d'Armure en 1 Dextérité.",
+		"DESCRIPTION": "Artiste_martiale NL Infligez !D! dégât(s). NL Synergie: Converti !M! d'Armure en 1 Dextérité.",
 		"NAME": "Zanki Kiguchi"
 	},
 	"animator_Zero":

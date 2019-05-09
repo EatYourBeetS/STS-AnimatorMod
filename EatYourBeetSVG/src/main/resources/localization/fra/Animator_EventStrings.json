@@ -2,12 +2,12 @@
   "Animator_TheMaskedTraveler1": {
     "NAME": "Le Voyageur Masqué",
     "DESCRIPTIONS": [
-      "While passing by this #ytotally not #yreused game asset, a masked figure with a large backpack approaches you. NL NL \"Greetings friend, are you perchance carrying some @'special'@ weaponry?\" NL ... NL \"Are you willing to sell it?\" NL NL \"Or perhaps you would prefer to buy some from my ... #ycollection ?\"",
-      "\"Did he actually accept?\" NL ... NL NL \"Ahem... I am @grateful@ for the #ytrade , be safe on your journey.\" NL NL That said, he disappeared from your sight."
+      "En longeant ces paysages d'un jeu vidéo #yclairement pas #yréutilisés, un individu masqué équipé d'un sac à dos géant vous approche. NL \"Mes salutations, mon ami, êtes-vous, par chance, en possession de quelques armements @'spéciaux'@ ?\" NL ... NL \"Avez-vous l'intention de faire quelques profits?\" NL \"Ou peut-être préférez-vous d'acheter quelques bijoux de ma ... #ycollection ?\"",
+      "\"A-t-il vraiment accepté?\" NL ... NL NL \"Ahem... Je suis @reconnaissant@ pour le #ytroc , prenez soin de vous dans votre quête.\" NL NL Ceci étant dit, il est disparu de votre vue."
     ],
     "OPTIONS": [
-      "[Vendre] #gEnlevé ", ". #gGagner #g", " #gOr.",
-      "[Commercer] #gAméliore #gtous les Frappes #get Défendre. #rPerdre #r", " #rOr.",
+      "[Vendre] #gEnlever ", ". #gGagner #g", " #gOr.",
+      "[Commercer] #gAméliorer #gtoutes #gles Frappes #get Défenses. #rPerdre #r", " #rOr.",
       "[Partir]",
 	  "[Bloquer] Pas de carte à Vendre.",
 	  "[Bloquer] Pas assez d'or."

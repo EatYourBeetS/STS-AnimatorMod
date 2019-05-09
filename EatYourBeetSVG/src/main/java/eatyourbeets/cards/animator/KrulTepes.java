@@ -46,7 +46,6 @@ public class KrulTepes extends AnimatorCard
             DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn));
             AbstractDungeon.actionManager.addToBottom(new OnTargetDeadAction(m, damageAction, new KrulTepesAction(m, this)));
         }
-            //AbstractDungeon.actionManager.addToBottom(new KrulTepesAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), this));
     }
 
     @Override

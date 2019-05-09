@@ -137,12 +137,12 @@
 	{
 		"PROPER_NAME": "Armure Enchantée",
 		"NAMES": ["armure enchantée", "armure_enchantée"],
-		"DESCRIPTION": "Subit moins de dégats de TOUTES les #yAttaques. De moins en moins efficaces."
+		"DESCRIPTION": "Subissez moins de dégats de TOUTES les #yAttaques. De moins en moins efficaces."
 	},
 	{
-		"PROPER_NAME": "Maître des art martiaux",
-		"NAMES": ["maître des arts martiaux", "maître_des_arts_martiaux"],
-		"DESCRIPTION": "Les dégats de cette carte augmentes avec la #yDexterité."
+		"PROPER_NAME": "Artiste Martial",
+		"NAMES": ["artiste martial", "artiste_martial", "artiste martiale", "artiste_martiale", "maître des arts martiaux", "maître_des_arts_martiaux"],
+		"DESCRIPTION": "Les dégats de cette carte augmentent avec la #yDexterité."
 	},
 	{
 		"PROPER_NAME": "Rechargement",

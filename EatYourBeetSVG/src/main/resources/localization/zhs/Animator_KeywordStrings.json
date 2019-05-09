@@ -150,9 +150,9 @@
 		"DESCRIPTION": "丢弃任意数量的牌 ， 触发同等次数 。"
 	},
 	{
-		"PROPER_NAME": "投掷刀",
-		"NAMES": ["投掷刀"],
-		"DESCRIPTION": "0-Cost #yAttack which applies a randomized debuff and #yExhausts."
+		"PROPER_NAME": "飞刃",
+		"NAMES": ["投掷刀","飞刃"],
+		"DESCRIPTION": "0能耗 #y攻击 。 对敌人给予1层随机负面效果 #y消耗 。"
 	},
 	{
 		"PROPER_NAME": "发现",

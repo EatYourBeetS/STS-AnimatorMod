@@ -1,9 +1,8 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.EntouJyuuPower;
@@ -16,7 +15,7 @@ public class EntouJyuu extends AnimatorCard
     {
         super(ID, 1, CardType.POWER, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0, 0, 4);
+        Initialize(0, 0, 2);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -24,7 +23,7 @@ public class EntouJyuu extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EntouJyuuPower(p, this.magicNumber), 1));
+        GameActionsHelper.ApplyPower(p, p, new EntouJyuuPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override
@@ -32,7 +31,7 @@ public class EntouJyuu extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(0);
+            upgradeMagicNumber(1);
         }
     }
 }

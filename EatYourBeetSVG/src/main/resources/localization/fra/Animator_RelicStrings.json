@@ -116,7 +116,7 @@
 	},
 	"Animator_WornHelmet":
 	{
-		"DESCRIPTIONS": ["Quand vous piochez une #yMalédiction ou un #yStatus, inflige #b", " dégat(s) à un ennemi aléatoire."],
+		"DESCRIPTIONS": ["Commencez chaque combat avec #b", " #yd'Armure. Quand vous piochez une #yMalédiction ou un #yStatus, inflige #b", " dégat(s) à un ennemi aléatoire."],
 		"FLAVOR": "Un bon Goblin est un Goblin mort.",
 		"NAME": "Heaume de bronze"
 	}

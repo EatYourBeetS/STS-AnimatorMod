@@ -187,7 +187,7 @@
 	},
 	"animator_StrategicInformationPower":
 	{
-		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and deal #b", " damage to the lowest health enemy."],
+		"DESCRIPTIONS": ["剩余 #b", " 次。 你丢弃卡牌时 , 获得 #b", " #y格挡 然后对最低血量的敌人造成 #b", " 伤害。 "],
 		"NAME": "战略信息"
 	},
 	"animator_SupportDamagePower":

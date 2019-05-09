@@ -1,9 +1,12 @@
 package eatyourbeets.powers;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 
@@ -11,15 +14,15 @@ public class EntouJyuuPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(EntouJyuuPower.class.getSimpleName());
 
-    private int baseAmount;
-    private final int damageBonus;
+    private static final int baseAmount = 2;
+
+    private int damageBonus;
 
     public EntouJyuuPower(AbstractCreature owner, int damageBonus)
     {
         super(owner, POWER_ID);
 
-        this.baseAmount = 1;
-        this.amount = 1;
+        this.amount = baseAmount;
         this.damageBonus = damageBonus;
 
         updateDescription();
@@ -34,19 +37,33 @@ public class EntouJyuuPower extends AnimatorPower
     }
 
     @Override
+    public void renderAmount(SpriteBatch sb, float x, float y, Color c)
+    {
+        if (amount >= 0)
+        {
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, c);
+        }
+        else
+        {
+            super.renderAmount(sb, x, y, c);
+        }
+    }
+
+    @Override
     public void atStartOfTurn()
     {
         super.atStartOfTurn();
 
-        this.amount = this.baseAmount;
+        this.amount = baseAmount;
+
         updateDescription();
     }
 
     @Override
     public void stackPower(int stackAmount)
     {
-        this.baseAmount += stackAmount;
-        this.amount += stackAmount;
+        this.damageBonus += stackAmount;
+        this.fontScale = 8.0F;
     }
 
     @Override

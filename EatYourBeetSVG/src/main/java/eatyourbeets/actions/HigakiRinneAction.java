@@ -165,14 +165,14 @@ public class HigakiRinneAction extends AnimatorAction
         {
             for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
             {
-                GameActionsHelper.GainBlock(m, 4);
+                GameActionsHelper.DamageTarget(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.BLUNT_HEAVY);
             }
         }
         else if (tryActivate(6)) // 138
         {
             for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
             {
-                GameActionsHelper.AddToBottom(new HealAction(m, m, 3));
+                GameActionsHelper.DamageTarget(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HEAVY);
             }
         }
         else if (tryActivate(6)) // 144
@@ -184,6 +184,8 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (tryActivate(6)) // 150
         {
+            GameActionsHelper.GainBlock(p, 1);
+            GameActionsHelper.GainBlock(p, 1);
             GameActionsHelper.GainBlock(p, 1);
         }
         else if (tryActivate(6)) // 156

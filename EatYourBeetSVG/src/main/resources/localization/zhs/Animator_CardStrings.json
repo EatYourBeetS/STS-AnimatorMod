@@ -2,7 +2,7 @@
 {
 	"animator_AcuraAkari":
 	{
-		"DESCRIPTION": "丢弃 1 张牌 。 NL 增加 !SV! 张 投掷刀 到你的手牌 。 NL 获得 !M! 点 临时 涂毒 。",
+		"DESCRIPTION": "丢弃 1 张牌 。 NL 增加 !SV! 张 飞刃 到你的手牌 。 NL 获得 !M! 点 临时 涂毒 。",
 		"NAME": "阿卡莉"
 	},
 	"animator_AcuraShin":
@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 !M! 次 。 下一轮 ， 抽 1 张牌 。 同调 : 增加 !SV! 张 投掷刀 到你的手牌 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 !M! 次 。 下一轮 ， 抽 1 张牌 。 同调 : 增加 !SV! 张 飞刃 到你的手牌 。",
 		"NAME": "托鲁"
 	},
 	"animator_Add":
@@ -125,7 +125,8 @@
 	"animator_ChlammyZell":
 	{
 		"DESCRIPTION": "当你交替打出不同类型的牌时 ， 循环 1 张牌 并 对所有敌人造成 !M! 点 伤害 。",
-		"NAME": "克拉米·杰尔"
+		"NAME": "克拉米·杰尔",
+		"UPGRADE_DESCRIPTION": "固有 。 当你交替打出不同类型的牌时 ， 循环 1 张牌 并 对所有敌人造成 !M! 点 伤害 。"
 	},
 	"animator_Chris":
 	{
@@ -315,7 +316,7 @@
 	},
 	"animator_EntouJyuu":
 	{
-		"DESCRIPTION": "每回合一次，打出 [#EFC851]攻击牌[] 时使其增加 !M! 点 伤害 ， 抽一张牌 。",
+		"DESCRIPTION": "每回合两次， 打出 [#EFC851]攻击牌[] 时使其增加 !M! 点 伤害 ， 抽一张牌 。",
 		"NAME": "炎刀·铳"
 	},
 	"animator_Envy":
@@ -721,10 +722,8 @@
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 点伤害 。 NL [#EFC851]one[] [#EFC851]punch[] 。",
-		"EXTENDED_DESCRIPTION": ["One Punch", "Spend ALL your energy, this card 造成s #yincreasingly more 点伤害 for each point spent."],
-		"NAME": "秃头披风侠",
-		"UPGRADE_DESCRIPTION": "固有 。 保留 。 NL 造成 !D! 点伤害 。 NL [#EFC851]one[] [#EFC851]punch+[] 。"
+		"DESCRIPTION": "造成 !D! 点伤害 。 NL 花費所有能量，每點能量增加此牌更多傷害 。",
+		"NAME": "秃头披风侠"
 	},
 	"animator_Scar":
 	{
@@ -887,17 +886,17 @@
 	"animator_ThrowingKnife_0":
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 虚弱 。 NL 消耗 。 撤回 : 玩这张卡。",
-		"NAME": "投掷刀"
+		"NAME": "飞刃"
 	},
 	"animator_ThrowingKnife_1":
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 消耗 。 撤回 : 玩这张卡。",
-		"NAME": "投掷刀"
+		"NAME": "飞刃"
 	},
 	"animator_ThrowingKnife_2":
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 中毒 。 NL 消耗 。 撤回 : 玩这张卡。",
-		"NAME": "投掷刀"
+		"NAME": "飞刃"
 	},
 	"animator_Togame":
 	{
@@ -933,7 +932,7 @@
 	},
 	"animator_Viivi":
 	{
-		"DESCRIPTION": "对随机敌人造成 !D! 点 伤害 !M! 次 。 撤回 : 增加 2 张 投掷刀 到你的手牌 。",
+		"DESCRIPTION": "对随机敌人造成 !D! 点 伤害 !M! 次 。 撤回 : 增加 2 张 飞刃 到你的手牌 。",
 		"NAME": "薇薇·荷罗派涅"
 	},
 	"animator_Witch":

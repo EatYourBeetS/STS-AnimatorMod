@@ -126,7 +126,8 @@
 	"animator_ChlammyZell":
 	{
 		"DESCRIPTION": "When you play alternating card types this turn, Cycle 1 card and deal !M! damage to ALL enemies.",
-		"NAME": "Kurami"
+		"NAME": "Kurami",
+		"UPGRADE_DESCRIPTION": "Innate. When you play alternating card types this turn, Cycle 1 card and deal !M! damage to ALL enemies."
 	},
 	"animator_Chris":
 	{
@@ -318,7 +319,7 @@
 	},
 	"animator_EntouJyuu":
 	{
-		"DESCRIPTION": "Once per turn, after you play an [#EFC851]Attack, increase its damage by !M! this combat and draw 1 card.",
+		"DESCRIPTION": "Twice per turn, after you play an [#EFC851]Attack, increase its damage by !M! this combat and draw 1 card.",
 		"NAME": "Entou Jyuu"
 	},
 	"animator_Envy":
@@ -721,10 +722,8 @@
 	},
 	"animator_Saitama":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL [#EFC851]One[] [#EFC851]Punch[].",
-		"EXTENDED_DESCRIPTION": ["One Punch", "Spend ALL your energy, this card deals #yincreasingly more damage for each point spent."],
-		"NAME": "Saitama",
-		"UPGRADE_DESCRIPTION": "Deal !D! Damage. NL [#EFC851]One[] [#EFC851]Punch+[]."
+		"DESCRIPTION": "Deal !D! Damage. NL Spend ALL energy, deal [#EFC851]increasingly more damage based on the amount spent.",
+		"NAME": "Saitama"
 	},
 	"animator_Scar":
 	{

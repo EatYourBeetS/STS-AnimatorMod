@@ -116,7 +116,7 @@
 	},
 	"Animator_WornHelmet":
 	{
-		"DESCRIPTIONS": ["Whenever you draw a #yCurse or #yStatus, deal #b", " damage to a random enemy."],
+		"DESCRIPTIONS": ["Start each combat with #b", " #yBlock. Whenever you draw a #yCurse or #yStatus, deal #b", " damage to a random enemy."],
 		"FLAVOR": "Goblins.",
 		"NAME": "Worn Helmet"
 	}

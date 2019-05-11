@@ -34,11 +34,9 @@ public class ChooseFromPileAction extends AbstractGameAction
         this.duration = Settings.ACTION_DUR_MED;
     }
 
-    public ChooseFromPileAction UseSource(boolean value)
+    public void UseSource(boolean value)
     {
         useSource = value;
-
-        return this;
     }
 
     public void update()

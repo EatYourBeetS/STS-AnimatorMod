@@ -166,7 +166,7 @@ public class SingleCardViewPopupPatches
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderCost")
     public static class SingleCardViewPopup_RenderCost
     {
-        private static Texture ORB_TEXTURE = new Texture(AnimatorResources.ORB_B_PNG);
+        private static final Texture ORB_TEXTURE = new Texture(AnimatorResources.ORB_B_PNG);
 
         @SpirePrefixPatch
         public static SpireReturn Method(SingleCardViewPopup __instance, SpriteBatch sb) throws IllegalAccessException

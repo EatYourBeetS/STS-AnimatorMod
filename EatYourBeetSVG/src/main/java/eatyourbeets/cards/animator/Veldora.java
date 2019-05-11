@@ -70,7 +70,7 @@ public class Veldora extends AnimatorCard_UltraRare
 
     private class VeldoraAction extends AnimatorAction
     {
-        private AbstractOrb orb;
+        private final AbstractOrb orb;
 
         public VeldoraAction(AbstractOrb orb)
         {

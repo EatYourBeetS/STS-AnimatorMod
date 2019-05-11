@@ -1,10 +1,7 @@
 package eatyourbeets.actions;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.RegrowPower;
-import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.animator.KrulTepes;
 
 public class KrulTepesAction extends AnimatorAction

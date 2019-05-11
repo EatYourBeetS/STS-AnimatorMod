@@ -54,6 +54,7 @@ public class Layla extends AnimatorCard
             AbstractMonster randomMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             if (randomMonster != null)
             {
+                //noinspection SuspiciousNameCombination,SuspiciousNameCombination
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new PotionBounceEffect(p.hb.cY, p.hb.cX, randomMonster.hb.cX, this.hb.cY), 0.3F));
             }
 

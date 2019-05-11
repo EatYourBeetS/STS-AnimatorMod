@@ -66,7 +66,7 @@ public class EarthOrbEvokeAction extends AnimatorAction
 
     private class EarthDamageAction extends AnimatorAction
     {
-        private int baseDamage;
+        private final int baseDamage;
 
         private EarthDamageAction(int baseDamage)
         {

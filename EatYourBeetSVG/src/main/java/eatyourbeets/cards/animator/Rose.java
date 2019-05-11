@@ -65,11 +65,11 @@ public class Rose extends AnimatorCard_UltraRare
 
     private class RoseDamageAction extends AnimatorAction
     {
-        private int damage;
-        private int times;
-        private AbstractPlayer p;
-        private Rose rose;
-        private AbstractMonster enemy;
+        private final int damage;
+        private final int times;
+        private final AbstractPlayer p;
+        private final Rose rose;
+        private final AbstractMonster enemy;
 
         private AbstractGameAction action;
 

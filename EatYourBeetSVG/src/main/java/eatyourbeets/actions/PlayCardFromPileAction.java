@@ -16,10 +16,10 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class PlayCardFromPileAction extends AbstractGameAction
 {
-    private CardGroup group;
-    private AbstractCard card;
-    private boolean exhaustCards;
-    private boolean purgeCards;
+    private final CardGroup group;
+    private final AbstractCard card;
+    private final boolean exhaustCards;
+    private final boolean purgeCards;
 
     public PlayCardFromPileAction(AbstractCard card, CardGroup group, boolean exhausts, boolean purge)
     {

@@ -181,6 +181,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public CharStat getCharStat()
     {
+        // yes
         return super.getCharStat();
     }
 }

@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 public class Discovery2Action extends AbstractGameAction
 {
-    private int costReduction;
+    private final int costReduction;
     private boolean retrieveCard = false;
     private CardType cardType = null;
 

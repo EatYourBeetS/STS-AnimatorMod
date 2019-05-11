@@ -14,8 +14,8 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 
 public class LaserBeam2Effect extends AbstractGameEffect
 {
-    private float x;
-    private float y;
+    private final float x;
+    private final float y;
     private static final float DUR = 2.0F;
     private static AtlasRegion img;
     private boolean playedSfx = false;

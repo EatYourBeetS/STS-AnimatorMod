@@ -9,7 +9,7 @@ public class TheDomVedeloper1 extends AnimatorEvent
 {
     public static final String ID = CreateFullID(TheDomVedeloper1.class.getSimpleName());
 
-    private RandomizedList<AnimatorCard> cards = new RandomizedList<>();
+    private final RandomizedList<AnimatorCard> cards = new RandomizedList<>();
     private AnimatorCard currentCard = null;
 
     private int phase;

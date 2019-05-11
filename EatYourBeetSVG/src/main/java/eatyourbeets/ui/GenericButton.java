@@ -19,9 +19,9 @@ public class GenericButton
     private boolean isHidden;
 
     public String text;
-    public Color textColor;
-    public Color btnColor;
-    public Hitbox hb;
+    public final Color textColor;
+    public final Color btnColor;
+    public final Hitbox hb;
     public boolean clicked;
 
     public GenericButton(Hitbox hitbox)

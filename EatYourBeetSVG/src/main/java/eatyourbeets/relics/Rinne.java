@@ -71,7 +71,7 @@ public class Rinne extends AnimatorRelic
         return super.onPlayerGainBlock(blockAmount);
     }
 
-    private static HigakiRinne RINNE_ITSELF = new HigakiRinne();
+    private static final HigakiRinne RINNE_ITSELF = new HigakiRinne();
 
     private void DoSomething(int value)
     {

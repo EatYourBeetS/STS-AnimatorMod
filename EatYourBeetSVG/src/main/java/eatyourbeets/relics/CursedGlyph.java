@@ -3,6 +3,7 @@ package eatyourbeets.relics;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.GameActionsHelper;
 
 public class CursedGlyph extends AnimatorRelic
 {
@@ -25,9 +26,21 @@ public class CursedGlyph extends AnimatorRelic
     {
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
         {
-            AbstractDungeon.actionManager.addToTop(new RelicAboveCreatureAction(m, this));
+            GameActionsHelper.AddToTop(new RelicAboveCreatureAction(m, this));
 
-            int bonusHealth = 6 + (int)Math.ceil(m.maxHealth * 0.18);
+            int bonusHealth = 6;
+            if (AbstractDungeon.ascensionLevel >= 9)
+            {
+                bonusHealth += (int)Math.ceil(m.maxHealth * 0.13);
+            }
+            else if (AbstractDungeon.ascensionLevel >= 5)
+            {
+                bonusHealth += (int)Math.ceil(m.maxHealth * 0.15);
+            }
+            else
+            {
+                bonusHealth += (int)Math.ceil(m.maxHealth * 0.18);
+            }
 
             m.increaseMaxHp(bonusHealth, true);
         }

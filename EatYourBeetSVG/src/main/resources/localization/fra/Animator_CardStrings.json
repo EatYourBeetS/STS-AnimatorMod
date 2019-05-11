@@ -13,9 +13,8 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) !M! fois. Au prochain tour, piochez une carte. Synergie: Ajoutez !SV! Couteau_de_Jet à votre main.",
-		"NAME": "Tooru",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s) !M! fois. Au prochain tour, piochez une carte. Synergie: Ajoutez !SV! Couteaux_de_Jet à votre main."
+		"DESCRIPTION": "Infligez !D! dégât(s) 2 fois. Ajoutez !SV! Couteaux_de_Jet à votre main. Synergie: Recyclez !M! carte(s).",
+		"NAME": "Tooru"
 	},
 	"animator_Add":
 	{
@@ -25,8 +24,7 @@
 	},
 	"animator_Ain":
 	{
-		"DESCRIPTION": "[#EFC851]Jeteur [#EFC851]de [#EFC851]sorts. NL Infligez !D! dégât(s) à TOUS les ennemis !M! fois. Gagnez 1 de Concentration.",
-		"EXTENDED_DESCRIPTION": ["Jeteur de sorts", "Le(s) dégât(s) de cette carte augmente(nt) avec la Concentration."],
+		"DESCRIPTION": "Jeteur_de_Sorts. NL Infligez !D! dégât(s) à TOUS les ennemis !M! fois. Gagnez 1 de Concentration.",
 		"NAME": "Ain"
 	},
 	"animator_Ainz":
@@ -89,7 +87,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Overrun: Gagnez [E]. NL Si ca tue un ennemi, Gagnez [E] et !B! d'Armure.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Si l'ennemi a Max HP et que cela a causé des dégâts non bloqués, gagnez !B! d'Armure.",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -432,10 +430,9 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "Piochez !M! carte(s). NL Défausser !M! carte(s). NL Synergie : Gagnez [#EFC851]Strategic[] [#EFC851]Information[].",
-		"EXTENDED_DESCRIPTION": ["Strategic Information", "Une fois par tour, quand une carte est défaussé, Gagnez #b2 d'Armure et Infligez #b2 dégât(s) à l'ennemi avec le moins de PV. Multipliable"],
+		"DESCRIPTION": "Piochez !M! carte. NL Défaussez !M! carte. NL Synergie : Au prochain tour, gagnez !SV! d'Armure.",
 		"NAME": "Guy",
-		"UPGRADE_DESCRIPTION": "Piochez !M! carte(s). NL Défausser !M! carte(s). NL Synergie : Gagnez [#EFC851]Strategic[] [#EFC851]Information[]."
+		"UPGRADE_DESCRIPTION": "Piochez !M! cartes. NL Défaussez !M! cartes. NL Synergie : Au prochain tour, gagnez !SV! d'Armure."
 	},
 	"animator_Hakurou":
 	{
@@ -445,15 +442,14 @@
 	"animator_HigakiRinne":
 	{
 		"DESCRIPTION": "Changeforme. NL Agis de manière imprévisible...",
-		"EXTENDED_DESCRIPTION": ["What Happened?"],
+		"EXTENDED_DESCRIPTION": ["Que s'est-il passé?"],
 		"NAME": "Higaki Rinne",
-		"UPGRADE_DESCRIPTION": "Changeforme. NL Agis de manière imprévisible..."
+		"UPGRADE_DESCRIPTION": "Changeforme. NL Agis de manière drôlement imprévisible..."
 	},
 	"animator_HighElfArcher":
 	{
 		"DESCRIPTION": "Infligez !D! dégât(s) Perçant. Boost !SV! : Piochez !M! carte(s).",
-		"NAME": "'Archère Haut Elfe'",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s) Perçant. Boost !SV! : Piochez !M! carte(s)."
+		"NAME": "'Archère Haut Elfe'"
 	},
 	"animator_HiiragiShinya":
 	{
@@ -468,10 +464,10 @@
 	},
 	"animator_HououinKyouma":
 	{
-		"DESCRIPTION": "Choisissez !M! carte(s) que vous avez joué pour ce combat et ajouté une copie à votre main ([#EFC851]*[#FFFFFF]). Purge.",
+		"DESCRIPTION": "Choisissez 1 carte(s) que vous avez joué pour ce combat et ajouté une copie à votre main ([#EFC851]*[#FFFFFF]). Purge.",
 		"EXTENDED_DESCRIPTION": ["* Note", "Vous ne pouvez choisir une copie de cette carte. Cela créerai un Paradox"],
 		"NAME": "Hououin Kyouma",
-		"UPGRADE_DESCRIPTION": "Choisissez !M! carte(s) que vous avez joué pour ce combat et ajouté une copie à votre main([#EFC851]*[#FFFFFF]). Purge."
+		"UPGRADE_DESCRIPTION": "Choisissez 1 carte(s) que vous avez joué pour ce combat et ajouté une copie à votre main([#EFC851]*[#FFFFFF]), elle coûte 1 en moins ce tour. Purge."
 	},
 	"animator_Illya":
 	{
@@ -491,7 +487,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Augmentez ces dégâts de !M! % pour chaque [#EFC851]Debuff de l'ennemi.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Piochez une carte pour chaque Orbe unique que vous avez. NL Synergie: Gagnez !M! de Concentration temporaire",
 		"NAME": "Jibril"
 	},
 	"animator_Kaijin":
@@ -518,8 +514,8 @@
 	},
 	"animator_KrulTepes":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez 1 Faiblesse. NL Si ca tue un Elite ou un Boss obtenez une NL [#EFC851]Blood [#EFC851]Vial ([#EFC851]*[#FFFFFF]).",
-		"EXTENDED_DESCRIPTION": ["* Note", "La relique sera recu en fin de combat. Une relique max par combat. Vous pouvez avoir plusieur Blood Vial."],
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! de Faiblesse. NL Si ça tue un Elite ou un Boss obtenez une NL [#EFC851]Blood [#EFC851]Vial ([#EFC851]*[#FFFFFF]).",
+		"EXTENDED_DESCRIPTION": ["* Note", "La relique sera reçu en fin de combat. Une relique max par combat. Vous pouvez avoir plusieurs Blood Vial."],
 		"NAME": "Krul Tepes"
 	},
 	"animator_Kuribayashi":
@@ -579,12 +575,12 @@
 	},
 	"animator_Mikaela":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! Poison. NL Epuisé une carte choisi de votre Défausse.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! Poison. NL Epuisé une carte de votre Défausse.",
 		"NAME": "Mikaela"
 	},
 	"animator_Millim":
 	{
-		"DESCRIPTION": "Augmentable. [#EFC851]Unique. NL Infligez !D! dégât(s). NL Synergie: Gagnez [E].",
+		"DESCRIPTION": "Augmentable. [#EFC851]Unique. NL Infligez !D! dégât(s). NL Piochez !M! Cartes. NL Synergie: Gagnez [E].",
 		"EXTENDED_DESCRIPTION": ["Unique", "Vous ne pouvez avoir qu'une copie de cettte carte, les autre copie #yUpgraded cet carte à la place."],
 		"NAME": "Millim"
 	},
@@ -745,8 +741,8 @@
 	"animator_Shichika":
 	{
 		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez 1 Force. NL Synergie: Ajoutez [#EFC851]Kyotouryuu[] à votre main.",
-		"NAME": "Shichika",
-		"UPGRADE_DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez 1 Force. NL Synergie: Ajoutez [#EFC851]Kyotouryuu+[] à votre main."
+		"EXTENDED_DESCRIPTION": ["Kyotouryuu", "A special 1-cost attack that hits multiple times and Exhaust."],
+		"NAME": "Shichika"
 	},
 	"animator_ShichikaKyotouryuu":
 	{
@@ -1016,7 +1012,7 @@
 	},
 	"animator_ShikizakiKiki":
 	{
-		"DESCRIPTION": "Piochez !M! carte(s). NL Toutes les [#EFC851]Attaques de votre main ont des dégats doublé pour ce combat.",
+		"DESCRIPTION": "Piochez !M! carte(s). NL Améliorez toutes les cartes de votre main et doublez leurs dégâts pour le restant du combat.",
 		"NAME": "Shikizaki Kiki"
 	},
 	"animator_Chomusuke":
@@ -1038,7 +1034,7 @@
 	{
 		"DESCRIPTION": "Gagnez 1 Concentration. NL Gagnez 2 Energie. NL Piochez 3 cartes. NL Gain 4 Force. NL [#EFC851]Vérité[].",
 		"NAME": "Vérité",
-		"EXTENDED_DESCRIPTION": ["Vérité","Renplace de manière permanent une carte de votre deck par une #yPlaie. Si vous avez au moins 3 sphères uniques, supprimer toutes les sphères plutot."],
+		"EXTENDED_DESCRIPTION": ["Vérité"," Si vous avez au moins 3 Orbes uniques, supprimez toutes vos Orbes. Sinon, remplacez de manière permanente une carte au choix de votre deck par une #yPlaie."],
 		"UPGRADE_DESCRIPTION": "Gagnez 2 Concentration. NL Gagnez 3 Energie. NL Piochez 4 cartes. NL Gain 5 Force. NL [#EFC851]Vérité[]."
 	},
 	"animator_Rose":

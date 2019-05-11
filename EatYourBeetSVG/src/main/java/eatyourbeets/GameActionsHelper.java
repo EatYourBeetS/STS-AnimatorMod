@@ -25,7 +25,7 @@ public class GameActionsHelper
 {
     private static Order defaultOrder = Order.Bottom;
 
-    public static void SetOrder()
+    public static void ResetOrder()
     {
         SetOrder(Order.Bottom);
     }

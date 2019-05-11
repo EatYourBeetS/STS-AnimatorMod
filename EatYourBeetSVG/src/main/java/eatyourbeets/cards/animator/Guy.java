@@ -1,14 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.StrategicInformationPower;
 
 public class Guy extends AnimatorCard
 {
@@ -18,9 +15,9 @@ public class Guy extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 1);
+        Initialize(0,4, 1);
 
-        AddExtendedDescription();
+        this.baseSecondaryValue = this.secondaryValue = 4;
 
         SetSynergy(Synergies.Chaika);
     }
@@ -29,14 +26,11 @@ public class Guy extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DrawCard(p, this.magicNumber);
+        GameActionsHelper.ChooseAndDiscard(this.magicNumber, false);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.Callback(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, this.magicNumber, false), this::OnDiscard, this);
-        }
-        else
-        {
-            GameActionsHelper.ChooseAndDiscard(this.magicNumber, false);
+            GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, this.secondaryValue), this.secondaryValue);
         }
     }
 
@@ -46,15 +40,6 @@ public class Guy extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
-        }
-    }
-
-    private void OnDiscard(Object state, AbstractGameAction action)
-    {
-        if (state == this)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.ApplyPower(p, p, new StrategicInformationPower(p, 1), 1);
         }
     }
 }

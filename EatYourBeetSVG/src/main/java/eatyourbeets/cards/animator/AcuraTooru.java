@@ -17,9 +17,9 @@ public class AcuraTooru extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5, 0, 3);
+        Initialize(6, 0, 1);
 
-        baseSecondaryValue = secondaryValue = 1;
+        baseSecondaryValue = secondaryValue = 2;
 
         SetSynergy(Synergies.Chaika);
     }
@@ -27,19 +27,18 @@ public class AcuraTooru extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < this.magicNumber; i++)
-        {
-            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        }
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
-        GameActionsHelper.ApplyPower(p, p, new DrawCardNextTurnPower(p, 1), 1);
+        for (int i = 0; i < this.secondaryValue; i++)
+        {
+            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomCard()));
+        }
 
         if (HasActiveSynergy())
         {
-            for (int i = 0; i < this.secondaryValue; i++)
-            {
-                GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomCard()));
-            }
+            GameActionsHelper.CycleCardAction(this.magicNumber);
+            //GameActionsHelper.ApplyPower(p, p, new DrawCardNextTurnPower(p, 1), 1);
         }
     }
 
@@ -48,8 +47,8 @@ public class AcuraTooru extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
-            upgradeSecondaryValue(1);
+            upgradeMagicNumber(1);
+            upgradeDamage(2);
         }
     }
 }

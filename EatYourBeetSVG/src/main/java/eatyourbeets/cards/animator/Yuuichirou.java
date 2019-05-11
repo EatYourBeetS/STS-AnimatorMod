@@ -31,15 +31,6 @@ public class Yuuichirou extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
-//        LoseDexterityPower power = (LoseDexterityPower) p.getPower(LoseDexterityPower.POWER_ID);
-//        if (power != null)
-//        {
-//            power.amount += this.magicNumber;
-//        }
-//        else
-//        {
-//            p.powers.add(new LoseDexterityPower(p, this.magicNumber));
-//        }
         GameActionsHelper.ApplyPowerSilently(p, p, new LoseDexterityPower(p, this.magicNumber), this.magicNumber);
         GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber);
     }

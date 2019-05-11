@@ -27,7 +27,7 @@ public class OrbCore_FirePower extends OrbCore_AbstractPower
 
         GameActionsHelper.ApplyPowerToAllEnemies(p, this::CreateBurning, value);
 
-        GameActionsHelper.SetOrder();
+        GameActionsHelper.ResetOrder();
     }
 
     protected BurningPower CreateBurning(AbstractCreature m)

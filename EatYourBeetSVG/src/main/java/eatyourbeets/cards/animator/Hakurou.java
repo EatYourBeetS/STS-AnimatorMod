@@ -2,7 +2,8 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,9 +11,12 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.actions.DrawAndUpgradeCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+
+import java.util.ArrayList;
 
 public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
 {
@@ -22,7 +26,7 @@ public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(1,0, 3);
+        Initialize(2,0, 3);
 
         baseSecondaryValue = secondaryValue = 1;
 
@@ -42,36 +46,32 @@ public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
 
         AbstractPlayer p = AbstractDungeon.player;
 
-        LoseDexterityPower power = (LoseDexterityPower) p.getPower(LoseDexterityPower.POWER_ID);
-        if (power != null)
-        {
-            power.amount += this.secondaryValue;
-        }
-        else
-        {
-            p.powers.add(new LoseDexterityPower(p, this.secondaryValue));
-        }
+        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
 
-        ApplyPowerAction dexAction = new ApplyPowerAction(p, p, new DexterityPower(p, this.secondaryValue), 1, true);
-        GameActionsHelper.AddToTop(dexAction);
+        GameActionsHelper.ApplyPowerSilently(p, p, new LoseDexterityPower(p, this.secondaryValue), this.secondaryValue);
+        GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, this.secondaryValue), this.secondaryValue);
+
+        GameActionsHelper.ResetOrder();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new VFXAction(new DieDieDieEffect()));
+        GameActionsHelper.AddToBottom(new VFXAction(new DieDieDieEffect()));
         for (int i = 0; i < this.magicNumber; i++)
         {
             GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+        }
+
+        if (upgraded)
+        {
+            GameActionsHelper.AddToBottom(new DrawAndUpgradeCardAction(p, 1));
         }
     }
 
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeDamage(1);
-        }
+        TryUpgrade();
     }
 }

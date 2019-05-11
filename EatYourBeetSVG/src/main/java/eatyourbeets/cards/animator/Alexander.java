@@ -20,7 +20,7 @@ public class Alexander extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(10,0,3);
+        Initialize(10,0,4);
 
         secondaryValue = baseSecondaryValue = 5;
 

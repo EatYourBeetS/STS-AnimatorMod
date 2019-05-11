@@ -18,7 +18,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     {
         super(ID, 3, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 2);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -41,19 +41,20 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
 
     private class ShikizakiKikiAction extends AnimatorAction
     {
-
         @Override
         public void update()
         {
             for (AbstractCard card : AbstractDungeon.player.hand.group)
             {
-                if (card.type == CardType.ATTACK)
+                if (card.canUpgrade())
                 {
-                    int newDamage = Math.min(9999, card.baseDamage * 2) - card.baseDamage;
-                    if (newDamage > 0)
-                    {
-                        GameActionsHelper.AddToBottom(new ModifyDamageAction(card.uuid, newDamage));
-                    }
+                    card.upgrade();
+                }
+
+                int newDamage = Math.min(9999, card.baseDamage * 2) - card.baseDamage;
+                if (newDamage > 0)
+                {
+                    GameActionsHelper.AddToBottom(new ModifyDamageAction(card.uuid, newDamage));
 
                     card.flash();
                 }

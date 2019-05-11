@@ -1,15 +1,15 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.defect.CompileDriverAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.FocusPower;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.TemporaryBiasPower;
 
 public class Jibril extends AnimatorCard
 {
@@ -19,41 +19,22 @@ public class Jibril extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(10,0, 20);
+        Initialize(8,0, 2);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        float multiplier = 1;
-
-        if (mo != null && mo.powers != null)
-        {
-            for (AbstractPower p : mo.powers)
-            {
-                if (p.type == AbstractPower.PowerType.DEBUFF)
-                {
-                    if (p.ID.equals(VulnerablePower.POWER_ID))
-                    {
-                        multiplier += this.magicNumber * 0.005f;
-                    }
-                    else
-                    {
-                        multiplier += this.magicNumber * 0.01f;
-                    }
-                }
-            }
-        }
-
-        return super.calculateModifiedCardDamage(player, mo, tmp * multiplier);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.FIRE);
+        GameActionsHelper.AddToBottom(new CompileDriverAction(p, 1));
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.ApplyPower(p, p, new FocusPower(p, this.magicNumber), this.magicNumber);
+            ApplyTemporaryBias(p);
+        }
     }
 
     @Override
@@ -62,7 +43,21 @@ public class Jibril extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(2);
-            upgradeMagicNumber(5);
+            upgradeMagicNumber(1);
         }
+    }
+
+    private void ApplyTemporaryBias(AbstractPlayer p)
+    {
+        for (AbstractPower power : p.powers)
+        {
+            if (power instanceof TemporaryBiasPower)
+            {
+                power.amount += this.magicNumber;
+                return;
+            }
+        }
+
+        p.powers.add(new TemporaryBiasPower(p, this.magicNumber));
     }
 }

@@ -53,6 +53,12 @@ public class ShuffleEnemiesEffect extends AbstractGameEffect
 
                 drawX2 = enemy2.drawX;
                 drawY2 = enemy2.drawY;
+
+                if (Math.abs(drawY1 - drawY2) > 30)
+                {
+                    this.isDone = true;
+                    return;
+                }
             }
             else
             {

@@ -13,7 +13,7 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 !M! 次 。 下一輪 ， 抽 1 張牌 。 同調 : 增加 !SV! 張 飛刃 到手牌 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 2 次 。增加 !SV! 張 飛刃 到手牌 。同調 : 循環 !M! 張手牌。",
 		"NAME": "托魯"
 	},
 	"animator_Add":
@@ -24,8 +24,7 @@
 	},
 	"animator_Ain":
 	{
-		"DESCRIPTION": "[#EFC851]施法者[] 。 對所有敵人造成 !D! 傷害 !M! 次 。 獲得 1 點 集中 。",
-		"EXTENDED_DESCRIPTION": ["施法者", "此牌的傷害會受到集中影響 。"],
+		"DESCRIPTION": "施法者 。 對所有敵人造成 !D! 傷害 !M! 次 。 獲得 1 點 集中 。",
 		"NAME": "艾因"
 	},
 	"animator_Ainz":
@@ -88,7 +87,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 壓倒 : 獲得 [E] NL 以這張牌擊殺敵人時， 獲得 [E] 併 獲得 !B! 點 格擋 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 如果敵人擁有 max hp 並 且這可以造成未受阻擋的傷害， 獲得 !B! 點 格擋 。",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -429,14 +428,14 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "抽 !M! 張牌 。 丟棄 !M! 張牌 。 同調 : 獲得 1 點 [#EFC851]戰略信息[] 。",
-		"EXTENDED_DESCRIPTION": ["戰略信息", "當一張卡被丟棄時，獲得 #b2 點 格擋 ， 對生命值最低的敵人造成 #b2 點 傷害 ， 並損失1層效果 。 該效果每回合開始充能一次"],
+		"DESCRIPTION": "抽 !M! 張牌 。 NL 丟棄 !M! 張牌 。 NL 同調 : 下一輪，獲得 !SV! 點 護甲。",
 		"NAME": "奇伊"
 	},
 	"animator_Hakurou":
 	{
 		"DESCRIPTION": "武術家 。 造成 !D! 點傷害 !M! 次 。 NL [#EFC851]被抽到時[] : 獲得 !SV! 點 臨時 敏捷 。",
-		"NAME": "白老"
+		"NAME": "白老",
+		"UPGRADE_DESCRIPTION": "武術家 。 造成 !D! 點傷害 !M! 次 。 抽 1 張牌 並 升級 。 NL [#EFC851]被抽到時[] : 獲得 !SV! 點 臨時 敏捷 。"
 	},
 	"animator_HigakiRinne":
 	{
@@ -462,10 +461,10 @@
 	},
 	"animator_HououinKyouma":
 	{
-		"DESCRIPTION": "選擇 !M! 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 抹除 。",
+		"DESCRIPTION": "選擇 1 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 抹除 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "你不能複制這張牌 ， 因為這是石頭門的選擇 。"],
 		"NAME": "鳳凰院兇真",
-		"UPGRADE_DESCRIPTION": "選擇 !M! 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 抹除 。"
+		"UPGRADE_DESCRIPTION": "選擇 1 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 在這一輪中， 費用減少 1 張 。 抹除 。"
 	},
 	"animator_Illya":
 	{
@@ -516,7 +515,7 @@
 	},
 	"animator_KrulTepes":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 給予 1 層 虛弱 。 若這張牌消滅了一個精英或王 ， 獲得 [#EFC851]小血瓶[] [#EFC851]*[] 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 給予 !M! 層 虛弱 。 若這張牌消滅了一個精英或王 ， 獲得 [#EFC851]小血瓶[] [#EFC851]*[] 。",
 		"EXTENDED_DESCRIPTION": ["*備註", "若本場戰鬥中有多個精英存在 ， 只能獲得一次遺物 。"],
 		"NAME": "克魯魯·采佩西"
 	},
@@ -577,12 +576,12 @@
 	},
 	"animator_Mikaela":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 中毒 。 你可以 從你的棄牌堆中選擇並 消耗 一張牌 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 給予 !M! 層 中毒 。 從你的棄牌堆中選擇並 消耗 一張牌 。",
 		"NAME": "米迦爾"
 	},
 	"animator_Millim":
 	{
-		"DESCRIPTION": "多重升級 。 [#EFC851]唯一[] NL 造成 !D! 點 傷害 。 NL 同調 : 獲得 [E] 。",
+		"DESCRIPTION": "多重升級 。 [#EFC851]唯一[] NL 造成 !D! 點 傷害 。 抽 !M! 張牌  NL 同調 : 獲得 [E] 。",
 		"EXTENDED_DESCRIPTION": ["唯一", "卡組中只能存在一張該牌 ， 額外獲得的同名牌會 #y升級 這張牌 。"],
 		"NAME": "米莉姆"
 	},
@@ -743,14 +742,14 @@
 	},
 	"animator_Shichika":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 和 1 點 力量 。 NL 同調 : 增加 [#EFC851]kyotouryuu[] 到你的手牌 。",
-		"NAME": "鑢七花",
-		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 和 1 點 力量 。 NL 同調 : 增加 [#EFC851]kyotouryuu+[] 到你的手牌 。"
+		"DESCRIPTION": "獲得 !B! 點 格擋 和 1 點 力量 。 NL 同調 : 增加 [#EFC851]虛刀流[] 到你的手牌 。",
+		"EXTENDED_DESCRIPTION": ["虚刀流", "A special 1-cost attack that hits multiple times and Exhaust."],
+		"NAME": "鑢七花"
 	},
 	"animator_ShichikaKyotouryuu":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 4 次 。 如果你有至少3點靈巧 ， 抽 1 張牌 並 獲得 [E] 。 虛無 。 消耗 。",
-		"NAME": "Kyotouryuu"
+		"DESCRIPTION": "造成 !D! 點傷害 4 次 。 如果你有至少3點 敏捷 ， 抽 1 張牌 並 獲得 [E] 。 虛無 。 消耗 。",
+		"NAME": "虛刀流"
 	},
 	"animator_Shigure":
 	{
@@ -1013,7 +1012,7 @@
 	},
 	"animator_ShikizakiKiki":
 	{
-		"DESCRIPTION": "抽 !M! 張牌 。 NL 在本次戰鬥中，使你手牌中的所有 [#EFC851]攻擊牌[] 造成的傷害翻倍 。",
+		"DESCRIPTION": "抽 !M! 張牌 。 NL 升級你手中的所有牌 ， 然後將它們的傷害翻倍 。",
 		"NAME": "Shikizaki Kiki"
 	},
 	"animator_Chomusuke":
@@ -1035,7 +1034,7 @@
 	{
 		"DESCRIPTION": "獲得 1 點 集中 。 NL 獲得 2 點 能量 。 NL 抽 3 張牌 。 NL 獲得 4 點 力量 。 NL [#EFC851]真相[] 。",
 		"NAME": "真相",
-		"EXTENDED_DESCRIPTION": ["真相", "永久的將牌組中的一張牌用 #y傷口 代替 。 如果您擁有至少 3 個獨特的球體 ， 請移除所有球體而不是激活其他效果 。"],
+		"EXTENDED_DESCRIPTION": ["真相", "如果您擁有至少 3 種不同充能球 ， 失去所有充能球 。否則選擇牌組中的一張牌而且永久的將那張牌用 #y傷口 代替 。"],
 		"UPGRADE_DESCRIPTION": "獲得 2 點 集中 。 NL 獲得 3 點 能量 。 NL 抽 4 張牌 。 NL 獲得 5 點 力量 。 NL [#EFC851]真相[] 。"
 	},
 	"animator_Rose":

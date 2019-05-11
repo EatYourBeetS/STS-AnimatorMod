@@ -17,7 +17,7 @@ public class Mikaela extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(7,0, 2);
+        Initialize(7,0, 3);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -30,7 +30,7 @@ public class Mikaela extends AnimatorCard
 
         if (p.discardPile.size() > 0)
         {
-            GameActionsHelper.AddToBottom(new ExhaustFromPileAction(1, false, p.discardPile, true));
+            GameActionsHelper.AddToBottom(new ExhaustFromPileAction(1, false, p.discardPile, false));
         }
     }
 
@@ -40,7 +40,6 @@ public class Mikaela extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(4);
-            upgradeMagicNumber(1);
         }
     }
 }

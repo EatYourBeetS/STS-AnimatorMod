@@ -46,13 +46,13 @@ public class HighElfArcher extends AnimatorCard_Boost
         if (TryUpgrade())
         {
             upgradeDamage(1);
-            upgradeMagicNumber(1);
+            upgradeSecondaryValue(1);
         }
     }
 
     @Override
     protected int GetBaseBoost()
     {
-        return 2;
+        return upgraded ? 3 : 2;
     }
 }

@@ -52,7 +52,7 @@ public class FireOrbPassiveAction extends AnimatorAction
 
             GameActionsHelper.DamageTarget(p, enemy, actualDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
 
-            GameActionsHelper.SetOrder();
+            GameActionsHelper.ResetOrder();
         }
 
         fire.ReduceAmount();

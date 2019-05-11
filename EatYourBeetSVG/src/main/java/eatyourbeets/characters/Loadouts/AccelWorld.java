@@ -16,7 +16,7 @@ public class AccelWorld extends AnimatorCustomLoadout
     {
         Synergy s = Synergies.AccelWorld;
 
-        this.MaxHP = 71;
+        //this.MaxHP = 71;
         this.ID = s.ID;
         this.Name = s.NAME;
     }

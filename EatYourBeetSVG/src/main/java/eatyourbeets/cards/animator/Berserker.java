@@ -24,7 +24,7 @@ public class Berserker extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(24,8, 0);
+        Initialize(26,16, 0);
 
         SetSynergy(Synergies.Fate);
     }
@@ -37,7 +37,7 @@ public class Berserker extends AnimatorCard
             DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
             GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
-            GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
+            GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentHealth, true));
             GameActionsHelper.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         }
     }
@@ -54,19 +54,17 @@ public class Berserker extends AnimatorCard
 
     private void OnDamage(Object state, AbstractMonster monster)
     {
-        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
-        if (initialBlock != null && monster != null)
+        Integer initialHealth = Utilities.SafeCast(state, Integer.class);
+        if (initialHealth == null || monster == null)
         {
-            if ((monster.isDying || monster.currentHealth <= 0) && !monster.halfDead)
-            {
-                GameActionsHelper.GainEnergy(1);
-                GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
-            }
+            return;
+        }
 
-            if (initialBlock > 0 && monster.currentBlock <= 0)
-            {
-                GameActionsHelper.GainEnergy(1);
-            }
+        if (initialHealth == monster.maxHealth && initialHealth > monster.currentHealth)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.GainBlock(p, this.block);
+            //GameActionsHelper.ApplyPower(p, monster, new StunMonsterPower(monster, 1), 1);
         }
     }
 }

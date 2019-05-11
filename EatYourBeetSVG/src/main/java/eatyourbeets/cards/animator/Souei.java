@@ -77,7 +77,7 @@ public class Souei extends AnimatorCard
             IntangiblePlayerPower intangiblePlayerPower = (IntangiblePlayerPower) p.getPower(IntangiblePlayerPower.POWER_ID);
             if (intangiblePlayerPower == null || intangiblePlayerPower.amount == startingIntangible)
             {
-                GameActionsHelper.ApplyPower(p, p, new IntangiblePlayerPower(p, 1), 1);
+                GameActionsHelper.AddToTop(new ApplyPowerAction(p, p, new IntangiblePlayerPower(p, 1), 1));
             }
         }
     }

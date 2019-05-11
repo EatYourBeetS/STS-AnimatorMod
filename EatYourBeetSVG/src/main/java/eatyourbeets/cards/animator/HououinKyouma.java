@@ -18,7 +18,7 @@ public class HououinKyouma extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0);
 
         this.purgeOnUse = true;
 
@@ -47,23 +47,26 @@ public class HououinKyouma extends AnimatorCard
 
                 if (canAdd)
                 {
-                    group.addToTop(c.makeStatEquivalentCopy());
+                    AbstractCard copy = c.makeStatEquivalentCopy();
+                    if (upgraded)
+                    {
+                        copy.setCostForTurn(copy.costForTurn - 1);
+                    }
+
+                    group.addToTop(copy.makeStatEquivalentCopy());
                 }
             }
         }
 
         if (group.size() > 0)
         {
-            GameActionsHelper.AddToBottom(new FetchAction(group, this.magicNumber));
+            GameActionsHelper.AddToBottom(new FetchAction(group, 1));
         }
     }
 
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
+        TryUpgrade();
     }
 }

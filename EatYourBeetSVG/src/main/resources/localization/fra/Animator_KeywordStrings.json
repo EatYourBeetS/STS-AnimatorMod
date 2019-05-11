@@ -85,7 +85,7 @@
 		"PROPERNAME": "Overrun"
 	},
 	{
-		"DESCRIPTION": "Tant que le compter est supérieur à 0,NL active l'effet puis diminue de 1. Resets à chaque fin de combat.",
+		"DESCRIPTION": "Tant que le compter est supérieur à 0, NL active l'effet puis diminue de 1. Resets à chaque fin de combat.",
 		"NAMES": ["boost"],
 		"PROPERNAME": "Boost"
 	},
@@ -131,7 +131,7 @@
 	},
 	{
 		"PROPER_NAME": "Armure Plaquée",
-		"NAMES": ["armure renforcée", "armure_renforcée", "d'armure plaquée", "d'armure_plaquée"],
+		"NAMES": ["d'armure plaquée", "d'armure_plaquée"],
 		"DESCRIPTION": "Gagnez autant #yd'Armure à la fin de votre tour. Réduit de #b1 par dégat non bloqué."
 	},
 	{
@@ -143,6 +143,11 @@
 		"PROPER_NAME": "Artiste Martial",
 		"NAMES": ["artiste martial", "artiste_martial", "artiste martiale", "artiste_martiale", "maître des arts martiaux", "maître_des_arts_martiaux"],
 		"DESCRIPTION": "Les dégats de cette carte augmentent avec la #yDexterité."
+	},
+	{
+		"PROPER_NAME": "Jeteur de Sorts",
+		"NAMES": ["Jeteur de Sorts", "Jeteur_de_Sorts", "Jeteuse de Sorts", "Jeteuse_de_Sorts"],
+		"DESCRIPTION": "Les dégâts de cette carte augmentent avec la #yConcentration."
 	},
 	{
 		"PROPER_NAME": "Rechargement",

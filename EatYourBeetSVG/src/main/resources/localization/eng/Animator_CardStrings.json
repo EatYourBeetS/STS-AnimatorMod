@@ -13,9 +13,9 @@
 	},
 	"animator_AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage !M! times. Next turn, draw 1 card. Synergy: Add !SV! Throwing-Knife to your hand.",
+		"DESCRIPTION": "Deal !D! damage NL twice. Add !SV! Throwing-Knives to your hand. Synergy: Cycle !M! card.",
 		"NAME": "Tooru",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. Next turn, draw 1 card. Synergy: Add !SV! Throwing-Knives to your hand."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage NL twice. Add !SV! Throwing-Knives to your hand. Synergy: Cycle !M! cards."
 	},
 	"animator_Add":
 	{
@@ -25,8 +25,7 @@
 	},
 	"animator_Ain":
 	{
-		"DESCRIPTION": "[#EFC851]Spellcaster. NL Deal !D! damage to ALL enemies !M! times. NL Gain 1 Focus.",
-		"EXTENDED_DESCRIPTION": ["Spellcaster", "This card's damage also scales with Focus."],
+		"DESCRIPTION": "Spellcaster. NL Deal !D! damage to ALL enemies !M! times. NL Gain 1 Focus.",
 		"NAME": "Ain"
 	},
 	"animator_Ainz":
@@ -89,7 +88,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Overrun: Gain [E]. NL If this kills an enemy, gain [E] and !B! Block.",
+		"DESCRIPTION": "Deal !D! damage. NL If the enemy had Max HP and this deals unblocked damage, gain !B! Block.",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -307,7 +306,7 @@
 	"animator_Emonzaemon":
 	{
 		"DESCRIPTION": "Deal !D! Piercing damage twice. NL Legacy: Obtain NL [#EFC851]Entou [#EFC851]Jyuu.",
-		"EXTENDED_DESCRIPTION": ["Entou Jyuu", "A special 1-Cost #yPower, which costs 0 when upgraded."],
+		"EXTENDED_DESCRIPTION": ["Entou Jyuu", "A special 1-Cost #yPower"],
 		"NAME": "Emonzaemon",
 		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage twice. NL Legacy: Obtain NL [#EFC851]Entou [#EFC851]Jyuu+."
 	},
@@ -432,15 +431,15 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "Draw !M! card. NL Discard !M! card. NL Synergy : Gain [#EFC851]Strategic[] [#EFC851]Information[].",
-		"EXTENDED_DESCRIPTION": ["Strategic Information", "Once per turn, when a card is discarded, gain #b2 Block and deal #b2 damage to the lowest health enemy. Can be used multiple times per turn when stacked."],
+		"DESCRIPTION": "Draw !M! card. NL Discard !M! card. NL Synergy: Next turn, gain !SV! Block.",
 		"NAME": "Guy",
-		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard !M! cards. NL Synergy : Gain [#EFC851]Strategic[] [#EFC851]Information[]."
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard !M! cards. NL Synergy: Next turn, gain !SV! Block."
 	},
 	"animator_Hakurou":
 	{
 		"DESCRIPTION": "Martial_Artist. Deal !D! damage !M! times. NL [#EFC851]Drawn: Gain !SV! Temporary Dexterity.",
-		"NAME": "Hakurou"
+		"NAME": "Hakurou",
+		"UPGRADE_DESCRIPTION": "Martial_Artist. Deal !D! damage !M! times. Draw and Upgrade a card. NL [#EFC851]Drawn: Gain !SV! Temporary Dexterity."
 	},
 	"animator_HigakiRinne":
 	{
@@ -452,8 +451,7 @@
 	"animator_HighElfArcher":
 	{
 		"DESCRIPTION": "Deal !D! Piercing damage. Boost !SV! : Draw !M! card.",
-		"NAME": "'High Elf Archer'",
-		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage. Boost !SV! : Draw !M! cards."
+		"NAME": "'High Elf Archer'"
 	},
 	"animator_HiiragiShinya":
 	{
@@ -468,10 +466,10 @@
 	},
 	"animator_HououinKyouma":
 	{
-		"DESCRIPTION": "Choose !M! card you played this combat and add a copy of it to your hand ([#EFC851]*[#FFFFFF]). Purge.",
+		"DESCRIPTION": "Choose 1 card you played this combat and add a copy of it to your hand ([#EFC851]*[#FFFFFF]). Purge.",
 		"EXTENDED_DESCRIPTION": ["* Note", "You cannot select another copy of this card. Because that would cause a paradox."],
 		"NAME": "Hououin Kyouma",
-		"UPGRADE_DESCRIPTION": "Choose !M! cards you played this combat and add a copy of them to your hand ([#EFC851]*[#FFFFFF]). Purge."
+		"UPGRADE_DESCRIPTION": "Choose 1 card you played this combat and add a copy of it to your hand ([#EFC851]*[#FFFFFF]), it costs 1 less this turn. Purge."
 	},
 	"animator_Illya":
 	{
@@ -480,7 +478,7 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL Deal !D! damage for each card drawn. Synergy: Draw 1 more card.",
+		"DESCRIPTION": "Draw !M! cards. NL Deal !D! damage for each card drawn. Synergy: Draw 1 NL additional card.",
 		"NAME": "Itami Youji"
 	},
 	"animator_IzunaHatsuse":
@@ -491,7 +489,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Increase this damage by !M! % for each [#EFC851]Debuff on the enemy.",
+		"DESCRIPTION": "Deal !D! damage. NL Draw 1 card for each unique Orb you have. NL Synergy: Gain !M! temporary Focus.",
 		"NAME": "Jibril"
 	},
 	"animator_Kaijin":
@@ -518,12 +516,12 @@
 	},
 	"animator_KrulTepes":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL If this card kills an Elite or Boss, obtain a NL [#EFC851]Blood [#EFC851]Vial ([#EFC851]*[#FFFFFF]).",
+	"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL If this card kills an Elite or Boss, obtain a NL [#EFC851]Blood [#EFC851]Vial ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "The relic will drop at the end of combat. You will only receive 1 relic in multi-elite combats. You can equip multiple Blood Vials."],
 		"NAME": "Krul Tepes"
 	},
 	"animator_Kuribayashi":
-	{
+{
 		"DESCRIPTION": "Deal !D! damage. NL Apply !SV! Choked. NL Synergy: The enemy loses !M! Strength this turn.",
 		"NAME": "Kuribayashi"
 	},
@@ -579,12 +577,12 @@
 	},
 	"animator_Mikaela":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL You may choose and Exhaust a card in your discard pile.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Exhaust a card in your discard pile.",
 		"NAME": "Mikaela"
 	},
 	"animator_Millim":
 	{
-		"DESCRIPTION": "Augmentable. [#EFC851]Unique. NL Deal !D! damage. NL Synergy: Gain [E].",
+		"DESCRIPTION": "Augmentable. [#EFC851]Unique. NL Deal !D! damage. NL Draw !M! cards. NL Synergy: Gain [E].",
 		"EXTENDED_DESCRIPTION": ["Unique", "You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead."],
 		"NAME": "Millim"
 	},
@@ -673,7 +671,7 @@
 	},
 	"animator_Priestess":
 	{
-		"DESCRIPTION": "Gain !B! Temp._HP ([#EFC851]*[]). Synergy: Gain !M! [#EFC851]Regeneration[], can activate !SV! times.",
+		"DESCRIPTION": "Gain !B! Temp._HP ([#EFC851]*[]). Synergy: Gain !M! [#EFC851]Regeneration[], can activate !SV! time(s).",
 		"EXTENDED_DESCRIPTION": ["* Note", "Affected by Block modifiers."],
 		"NAME": "'Priestess'"
 	},
@@ -745,8 +743,8 @@
 	"animator_Shichika":
 	{
 		"DESCRIPTION": "Gain !B! Block. NL Gain 1 Strength. NL Synergy: Add NL [#EFC851]Kyotouryuu[] NL to your hand.",
-		"NAME": "Shichika",
-		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Gain 1 Strength. NL Synergy: Add NL [#EFC851]Kyotouryuu+[] NL to your hand."
+		"EXTENDED_DESCRIPTION": ["Kyotouryuu", "A special 1-cost #yAttack that hits multiple times and #yExhausts."],
+		"NAME": "Shichika"
 	},
 	"animator_ShichikaKyotouryuu":
 	{
@@ -1015,7 +1013,7 @@
 	},
 	"animator_ShikizakiKiki":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL Double the damage of all [#EFC851]Attacks in your hand for the rest of this combat.",
+		"DESCRIPTION": "Draw !M! cards. NL Upgrade all cards in your hand and double their damage for the rest of this combat.",
 		"NAME": "Shikizaki Kiki"
 	},
 	"animator_Chomusuke":
@@ -1038,7 +1036,7 @@
 	{
 		"DESCRIPTION": "Gain 1 Focus. NL Gain 2 Energy. NL Draw 3 cards. NL Gain 4 Strength. NL [#EFC851]Truth.",
 		"NAME": "Truth",
-		"EXTENDED_DESCRIPTION": ["Truth", "On use, permanently replace a card in your deck with a #yWound. If you have at least 3 unique orbs, remove all your orbs instead."],
+		"EXTENDED_DESCRIPTION": ["Truth", "If you have at least 3 unique orbs, remove all your orbs, otherwise choose and permanently replace a card in your deck with a #yWound."],
 		"UPGRADE_DESCRIPTION": "Gain 2 Focus. NL Gain 3 Energy. NL Draw 4 cards. NL Gain 5 Strength. NL [#EFC851]Truth."
 	},
 	"animator_Rose":

@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.EntomaAction;
 import eatyourbeets.actions.OnTargetDeadAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -35,16 +36,6 @@ public class Entoma extends AnimatorCard//_SavableInteger implements CustomSavab
         SetSynergy(Synergies.Overlord);
     }
 
-//    @Override
-//    public AbstractCard makeStatEquivalentCopy()
-//    {
-//        AbstractCard c = super.makeStatEquivalentCopy();
-//        c.baseDamage = ORIGINAL_DAMAGE + this.secondaryValue;
-//        c.initializeDescription();
-//
-//        return c;
-//    }
-//
     @Override
     public void applyPowers()
     {
@@ -60,10 +51,10 @@ public class Entoma extends AnimatorCard//_SavableInteger implements CustomSavab
             return;
         }
 
-        AbstractDungeon.actionManager.addToBottom(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
+        GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
         DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        AbstractDungeon.actionManager.addToBottom(new OnTargetDeadAction(m, damageAction, new EntomaAction(this)));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new PoisonPower(m, p, this.magicNumber), this.magicNumber));
+        GameActionsHelper.AddToBottom(new OnTargetDeadAction(m, damageAction, new EntomaAction(this)));
+        GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new PoisonPower(m, p, this.magicNumber), this.magicNumber));
     }
 
     @Override
@@ -73,25 +64,9 @@ public class Entoma extends AnimatorCard//_SavableInteger implements CustomSavab
 
         if (this.baseDamage > 0)
         {
-            AbstractDungeon.actionManager.addToBottom(new ModifyDamageAction(this.uuid, -1));
+            GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, -1));
         }
     }
-
-//    @Override
-//    public void upgrade()
-//    {
-//        if (TryUpgrade())
-//        {
-//            upgradeMagicNumber(4);
-//        }
-//    }
-//
-//    @Override
-//    protected void SetValue(Integer integer)
-//    {
-//        super.SetValue(integer);
-//        this.baseDamage = ORIGINAL_DAMAGE + this.secondaryValue;
-//    }
 
     @Override
     public boolean canUpgrade()
@@ -104,11 +79,12 @@ public class Entoma extends AnimatorCard//_SavableInteger implements CustomSavab
     {
         this.timesUpgraded += 1;
 
-        this.baseDamage = ORIGINAL_DAMAGE + timesUpgraded;
-        this.upgradedDamage = true;
+        this.upgradeDamage(1);
 
-        this.baseMagicNumber = ORIGINAL_MAGIC_NUMBER + (timesUpgraded / 3);
-        this.magicNumber = this.baseMagicNumber;
+        if (timesUpgraded % 3 == 0)
+        {
+            upgradeMagicNumber(1);
+        }
         this.upgradedMagicNumber = true;
 
         this.upgraded = true;

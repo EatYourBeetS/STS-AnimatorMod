@@ -24,7 +24,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(16,0,1);
+        Initialize(16,0,2);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -46,7 +46,6 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
             upgradeSecondaryValue(-1);
         }
     }

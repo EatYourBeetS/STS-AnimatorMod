@@ -40,13 +40,14 @@ public class Priestess extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
+            upgradeBlock(2);
+            upgradeSecondaryValue(1);
         }
     }
 
     @Override
     protected int GetBaseBoost()
     {
-        return 2;
+        return upgraded ? 2 : 1;
     }
 }

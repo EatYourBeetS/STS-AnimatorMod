@@ -29,7 +29,7 @@ public class NoGameNoLife extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Defend.ID);
-        res.add(Jibril.ID);
+        res.add(DolaSchwi.ID);
         res.add(DolaCouronne.ID);
 
         return res;

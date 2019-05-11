@@ -23,11 +23,11 @@ public class KrulTepesAction extends AnimatorAction
     {
         AbstractMonster monster = ((AbstractMonster)this.target);
 
-        if (!monster.hasPower(RegrowPower.POWER_ID))
-        {
-            GameActionsHelper.GainEnergy(1);
-            AbstractDungeon.player.heal(5, true);
-        }
+//        if (!monster.hasPower(RegrowPower.POWER_ID))
+//        {
+//            GameActionsHelper.GainEnergy(1);
+//            AbstractDungeon.player.heal(5, true);
+//        }
 
         if (krul.CanGetReward())
         {

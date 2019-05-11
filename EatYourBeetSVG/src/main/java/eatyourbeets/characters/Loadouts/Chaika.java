@@ -30,7 +30,7 @@ public class Chaika extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(AcuraAkari.ID);
-        res.add(AcuraTooru.ID);
+        res.add(Gillette.ID);
 
         return res;
     }

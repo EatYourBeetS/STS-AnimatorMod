@@ -20,7 +20,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements AnimatorResource
     {
         super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        Initialize(1, 0, 4);
+        Initialize(1, 0);
 
         this.exhaust = true;
         this.isEthereal = true;

@@ -6,8 +6,8 @@
       "\"A-t-il vraiment accepté?\" NL ... NL NL \"Ahem... Je suis @reconnaissant@ pour le #ytroc , prenez soin de vous dans votre quête.\" NL NL Ceci étant dit, il est disparu de votre vue."
     ],
     "OPTIONS": [
-      "[Vendre] #gEnlever ", ". #gGagner #g", " #gOr.",
-      "[Commercer] #gAméliorer #gtoutes #gles Frappes #get Défenses. #rPerdre #r", " #rOr.",
+      "[Vendre] #gEnlevez ", ". #gGagnez #g", " #gOr.",
+      "[Commercer] #gAméliorez #gtoutes #gles Frappes #get Défenses. #rPerdez #r", " #rOr.",
       "[Partir]",
 	  "[Bloquer] Pas de carte à Vendre.",
 	  "[Bloquer] Pas assez d'or."

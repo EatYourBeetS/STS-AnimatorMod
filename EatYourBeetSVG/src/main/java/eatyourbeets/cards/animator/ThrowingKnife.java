@@ -78,7 +78,7 @@ public abstract class ThrowingKnife extends AnimatorCard implements AnimatorReso
             }
 
         }
-        GameActionsHelper.SetOrder();
+        GameActionsHelper.ResetOrder();
     }
 
     @Override

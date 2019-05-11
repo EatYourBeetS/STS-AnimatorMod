@@ -16,7 +16,9 @@ public class Shichika extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 3);
+        Initialize(0, 2);
+
+        AddExtendedDescription();
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -29,12 +31,7 @@ public class Shichika extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            ShichikaKyotouryuu card = new ShichikaKyotouryuu();
-            if (upgraded)
-            {
-                card.upgrade();
-            }
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(card));
+            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new ShichikaKyotouryuu()));
         }
     }
 
@@ -43,7 +40,7 @@ public class Shichika extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
+            upgradeBlock(3);
         }
     }
 }

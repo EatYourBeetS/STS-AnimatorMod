@@ -145,6 +145,11 @@
 		"DESCRIPTION": "此牌造成的伤害受敏捷影响"
 	},
 	{
+		"PROPER_NAME": "施法者",
+		"NAMES": ["施法者"],
+		"DESCRIPTION": "此牌造成的伤害受集中影响"
+	},
+	{
 		"PROPER_NAME": "重装填",
 		"NAMES": ["重装填"],
 		"DESCRIPTION": "丢弃任意数量的牌 ， 触发同等次数 。"

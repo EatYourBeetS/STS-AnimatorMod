@@ -145,6 +145,11 @@
 		"DESCRIPTION": "This card's damage also scales with #yDexterity."
 	},
 	{
+		"PROPER_NAME": "Spellcaster",
+		"NAMES": ["spellcaster"],
+		"DESCRIPTION": "This card's damage also scales with #yFocus."
+	},
+	{
 		"PROPER_NAME": "Reload",
 		"NAMES": ["reload"],
 		"DESCRIPTION": "Discard any number of cards, activate this effect that many times."

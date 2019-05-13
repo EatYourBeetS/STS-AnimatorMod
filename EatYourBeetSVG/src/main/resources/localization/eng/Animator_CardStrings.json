@@ -19,9 +19,9 @@
 	},
 	"animator_Add":
 	{
-		"DESCRIPTION": "Gain 1 Orb Slot. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal. Exhaust.",
+		"DESCRIPTION": "Gain !M! Ench._Armor. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal. Exhaust.",
 		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Gain 1 Orb Slot. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal."
+		"UPGRADE_DESCRIPTION": "Gain !M! Ench._Armor. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal."
 	},
 	"animator_Ain":
 	{
@@ -36,7 +36,7 @@
 	},
 	"animator_Aisha":
 	{
-		"DESCRIPTION": "Discard 1 card. NL Fetch a [#EFC851]Skill from your draw pile, it costs !M! less this turn.",
+		"DESCRIPTION": "Spellcaster. Deal !D! damage for each Orb you have. Boost !SV!: Gain 1 Orb Slot.",
 		"NAME": "Aisha"
 	},
 	"animator_Albedo":
@@ -88,7 +88,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If the enemy had Max HP and this deals unblocked damage, gain !B! Block.",
+		"DESCRIPTION": "Deal !D! damage. NL If the enemy dies or loses its Block, NL gain !B! Block.",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -136,7 +136,7 @@
 	},
 	"animator_Chung":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Cooldown !SV! : NL Deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Gain !B! Block. NL Cooldown !SV! : NL Channel 1 Plasma.",
 		"NAME": "Chung"
 	},
 	"animator_Cocytus":
@@ -357,9 +357,9 @@
 	"animator_Fredrika":
 	{
 		"DESCRIPTION": "Shapeshifter. Gain !B! Block for each enemy. Recall: Return to your hand and choose a new form this turn.",
-		"EXTENDED_DESCRIPTION": 
+		"EXTENDED_DESCRIPTION":
 		[
-			"Shapeshifter. NL Draw 1 card.",
+			"Shapeshifter. NL Gain !B! Block.",
 			"Shapeshifter. NL Deal !D! damage twice. Gain 2 Metallicize.",
 			"Shapeshifter. NL Deal !D! damage. NL Apply 1 Vulnerable. NL Apply 1 Weak."
 		],
@@ -516,12 +516,12 @@
 	},
 	"animator_KrulTepes":
 	{
-	"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL If this card kills an Elite or Boss, obtain a NL [#EFC851]Blood [#EFC851]Vial ([#EFC851]*[#FFFFFF]).",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL If this card kills an Elite or Boss, obtain a NL [#EFC851]Blood [#EFC851]Vial ([#EFC851]*[#FFFFFF]).",
 		"EXTENDED_DESCRIPTION": ["* Note", "The relic will drop at the end of combat. You will only receive 1 relic in multi-elite combats. You can equip multiple Blood Vials."],
 		"NAME": "Krul Tepes"
 	},
 	"animator_Kuribayashi":
-{
+	{
 		"DESCRIPTION": "Deal !D! damage. NL Apply !SV! Choked. NL Synergy: The enemy loses !M! Strength this turn.",
 		"NAME": "Kuribayashi"
 	},
@@ -554,6 +554,12 @@
 		"NAME": "Lelei La Lalena",
 		"UPGRADE_DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Cycle 1 card. NL Synergy: Apply !SV! Weak to ALL enemies."
 	},
+	"animator_Lelouch":
+	{
+		"DESCRIPTION": "Exhaust ALL [#EFC851]Attacks in your hand. ALL enemies will attack themselves this turn. NL Purge. ([#EFC851]*[])",
+		"EXTENDED_DESCRIPTION": ["* Note", "Enemies that do not plan to attack will be #yStunned instead."],
+		"NAME": "Lelouch"
+	},
 	"animator_LimeBell":
 	{
 		"DESCRIPTION": "Gain !B! Block. NL Reload: Next turn, Heal !M! HP. NL Exhaust.",
@@ -562,7 +568,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Set the Block of the enemy to !M!. NL Synergy: Retain your hand this turn.",
+		"DESCRIPTION": "Gain !B! Block. NL Set the Block of the enemy to !M!. Synergy: Retain your hand this turn.",
 		"NAME": "'Lizard Priest'"
 	},
 	"animator_MaesHughes":
@@ -605,9 +611,9 @@
 	},
 	"animator_MumenRider":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Draw 1 card. NL Purge. Next turn, add this card to the top of your draw pile.",
+		"DESCRIPTION": "Deal !D! damage. NL Draw 1 card. NL Purge. Returns to your hand after 2 turns.",
 		"NAME": "Mumen Rider",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage with Style. Draw 1 card. NL Purge. Next turn, add this card to the top of your draw pile."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage with Style. Draw 1 card. NL Purge. Returns to your hand after 2 turns."
 	},
 	"animator_Nanami":
 	{
@@ -773,7 +779,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "Deal !D! Damage. Gain Flaming_Weapon. NL If this kills an enemy, NL heal for its Burning amount.",
+		"DESCRIPTION": "Deal !D! Damage. Gain Flaming_Weapon. NL If this kills an enemy, NL heal for twice its Burning amount.",
 		"NAME": "Shizu"
 	},
 	"animator_Shuna":
@@ -783,7 +789,8 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "Deal !D! damage. At the start of each turn, increase this card damage by !M! for each unique Orb you have.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Apply !M! Lock-On. NL Gain !B! Block. NL [#EFC851]Sloth.",
+		"EXTENDED_DESCRIPTION": ["Sloth", "At the start of each turn, increase this card's #yBlock and damage by 1 for each Orb you have. On use, halve this card's damage and #yBlock value."],
 		"NAME": "Sloth"
 	},
 	"animator_Sora":
@@ -824,7 +831,7 @@
 	},
 	"animator_Strike_FullmetalAlchemist":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Cooldown !SV!: NL [#EFC851]Channel 1 Lightning.",
+		"DESCRIPTION": "Deal !D! damage. NL Cooldown !SV!: NL Channel 1 Lightning.",
 		"NAME": "Improved Strike"
 	},
 	"animator_Strike_GATE":
@@ -882,6 +889,16 @@
 		"DESCRIPTION": "Gain !M! Temp._HP. NL Remove ALL of your Debuffs. Exhaust.",
 		"NAME": "'Sword Maiden'"
 	},
+	"animator_TanyaDegurechaff":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Discard ALL [#EFC851]Skills and gain !M! Block for each of them. Legacy: Obtain [#EFC851]Type [#EFC851]95.",
+		"NAME": "Tanya Degurechaff"
+	},
+	"animator_TanyaDegurechaff_Type95":
+	{
+		"DESCRIPTION": "Cycle 2 cards. Retain ALL [#EFC851]Attacks. Next turn, your [#EFC851]Attacks will deal double damage. Exhaust.",
+		"NAME": "Type 95"
+	},
 	"animator_Tet":
 	{
 		"DESCRIPTION": "Discard up to !M! cards from your draw pile. NL Draw 2 cards. NL Boost !SV! : gain [E].",
@@ -919,7 +936,7 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "Lazy. NL [#EFC851]Channel[] 1 Dark and deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Lazy. NL Channel 1 Dark and deal !D! damage to ALL enemies.",
 		"NAME": "Urushihara"
 	},
 	"animator_Vanir":
@@ -976,7 +993,7 @@
 	"animator_Yuuichirou":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. Legacy: Obtain [#EFC851]Asuramaru.",
-		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 1-Cost #yAttack."],
+		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 2-Cost #yAttack."],
 		"NAME": "Yuuichirou",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. Legacy: Obtain [#EFC851]Asuramaru+."
 	},
@@ -1024,7 +1041,7 @@
 	},
 	"animator_JeanneDArc":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Gain !M! Temp._HP. NL Exhaust a random Status or Curse.",
+		"DESCRIPTION": "Deal !D! Damage. NL Gain !M! Temp._HP. NL Gain !M! Ench._Armor. NL Exhaust a random Status or Curse.",
 		"NAME": "Jeanne D'Arc"
 	},
 	"animator_Hero":
@@ -1043,7 +1060,7 @@
 	{
 		"DESCRIPTION": "Draw !M! cards. Reload: Deal !D! Piercing damage. If the enemy dies, deal !SV! damage to ALL enemies.",
 		"NAME": "Rose"
-	},	
+	},
 	"animator_Veldora":
 	{
 		"DESCRIPTION": "Gain !SV! Focus. NL Evoke ALL orbs !M! times. [#EFC851]Drawn: Channel 2 random orbs.",

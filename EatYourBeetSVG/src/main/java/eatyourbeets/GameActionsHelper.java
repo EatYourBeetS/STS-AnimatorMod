@@ -2,6 +2,7 @@ package eatyourbeets;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.*;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -74,6 +76,14 @@ public class GameActionsHelper
     public static void AddToBottom(AbstractGameAction action)
     {
         AbstractDungeon.actionManager.addToBottom(action);
+    }
+
+
+    public static VFXAction VFX(AbstractGameEffect effect, float duration)
+    {
+        VFXAction action = new VFXAction(effect, duration);
+        AddToDefault(action);
+        return action;
     }
 
     public static ExhaustAnywhereAction ExhaustCard(AbstractCard card)

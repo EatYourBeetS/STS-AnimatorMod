@@ -21,11 +21,11 @@ public class Veldora extends AnimatorCard_UltraRare
     {
         super(ID, 4, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 4);
+        Initialize(0, 0, 3);
 
         baseSecondaryValue = secondaryValue = 1;
 
-        SetSynergy(Synergies.TenSura, true);
+        SetSynergy(Synergies.TenSura);
     }
 
     @Override
@@ -63,7 +63,6 @@ public class Veldora extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(1);
             upgradeMagicNumber(1);
         }
     }

@@ -18,9 +18,9 @@
 	},
 	"animator_Add":
 	{
-		"DESCRIPTION": "Gagnez 1 emplacement d'Orbe. NL Épuisez 1 carte dans votre pioche. Remplacez-la par un Noyau_d'orbe. NL Éthérée. Épuisement.",
+		"DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte dans votre pioche. Remplacez-la par un Noyau_d'orbe. NL Éthérée. Épuisement.",
 		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Gagnez 1 emplacement d'Orbe. NL Épuise 1 carte dans votre pioche. Remplacez-le par un Noyau_d'orbe. NL Éthérée."
+		"UPGRADE_DESCRIPTION": "Gagnez !M! d'Armure_Ench. NL Épuise 1 carte dans votre pioche. Remplacez-le par un Noyau_d'orbe. NL Éthérée."
 	},
 	"animator_Ain":
 	{
@@ -35,7 +35,7 @@
 	},
 	"animator_Aisha":
 	{
-		"DESCRIPTION": "Défaussez 1 carte. NL Cherchez une [#EFC851]Compétence de votre pioche, elle coûte !M! de moins ce tour.",
+		"DESCRIPTION": "Jeteuse de Sorts. NL Infligez !D! dégât(s) pour chaque Orbe que vous avez. Boost !SV! : Gagnez 1 emplacement d'Orbe.",
 		"NAME": "Aisha"
 	},
 	"animator_Albedo":
@@ -87,7 +87,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Si l'ennemi a Max HP et que cela a causé des dégâts non bloqués, gagnez !B! d'Armure.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Si l'ennemi est tué ou perd son armure, gagnez !B! d'Armure.",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -135,7 +135,7 @@
 	},
 	"animator_Chung":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Cooldown !SV! : NL Infligez !D! dégât(s) à TOUS les ennemis.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Cooldown !SV! : NL Canalisez 1 Plasma.",
 		"NAME": "Chung"
 	},
 	"animator_Cocytus":
@@ -356,9 +356,9 @@
 	"animator_Fredrika":
 	{
 		"DESCRIPTION": "Changeforme. Gagnez !B! d'Armure pour chaque ennemi. Rappel: Retourne dans votre main et choisissez une nouvelle forme ce tour.",
-		"EXTENDED_DESCRIPTION": 
+		"EXTENDED_DESCRIPTION":
 		[
-			"Changeforme. NL Piochez 1 card.",
+			"Changeforme. NL Gagnez !B! d'Armure.",
 			"Changeforme. NL Infligez !D! dégât(s) deux fois. Gagnez 2 Métalisation.",
 			"Changeforme. NL Infligez !D! dégât(s). NL Appliquez 1 Vulnérabilité. NL Appliquez 1 Faiblesse."
 		],
@@ -436,8 +436,9 @@
 	},
 	"animator_Hakurou":
 	{
-		"DESCRIPTION": "Artiste_martial NL Infligez !D! dégât(s) !M! fois. NL [#EFC851]Pioché: Gagnez !SV! Dextérité Temporaire.",
-		"NAME": "Hakurou"
+		"DESCRIPTION": "Artiste_martial. Infligez !D! dégât(s) !M! fois. NL [#EFC851]Pioché: Gagnez !SV! Dextérité Temporaire.",
+		"NAME": "Hakurou",
+		"UPGRADE_DESCRIPTION": "Artiste_martial. Infligez !D! dégât(s) !M! fois. Piochez et améliorez une carte. [#EFC851]Pioché: Gagnez !SV! Dextérité Temporaire."
 	},
 	"animator_HigakiRinne":
 	{
@@ -464,10 +465,10 @@
 	},
 	"animator_HououinKyouma":
 	{
-		"DESCRIPTION": "Choisissez 1 carte(s) que vous avez joué pour ce combat et ajouté une copie à votre main ([#EFC851]*[#FFFFFF]). Purge.",
+		"DESCRIPTION": "Choisissez 1 carte que vous avez jouée pour ce combat et ajoutez une copie à votre main ([#EFC851]*[#FFFFFF]). Purge.",
 		"EXTENDED_DESCRIPTION": ["* Note", "Vous ne pouvez choisir une copie de cette carte. Cela créerai un Paradox"],
 		"NAME": "Hououin Kyouma",
-		"UPGRADE_DESCRIPTION": "Choisissez 1 carte(s) que vous avez joué pour ce combat et ajouté une copie à votre main([#EFC851]*[#FFFFFF]), elle coûte 1 en moins ce tour. Purge."
+		"UPGRADE_DESCRIPTION": "Choisissez 1 carte que vous avez jouée pour ce combat et ajoutez une copie à votre main([#EFC851]*[#FFFFFF]), elle coûte 1 en moins ce tour. Purge."
 	},
 	"animator_Illya":
 	{
@@ -548,9 +549,15 @@
 	},
 	"animator_LeleiLaLalena":
 	{
-		"DESCRIPTION": "[#EFC851]Canalisez !M! Givre. NL Synergie: Appliquez !SV! Faiblesse à TOUS les ennemis.",
+		"DESCRIPTION": "Canalisez !M! Givre. NL Synergie: Appliquez !SV! Faiblesse à TOUS les ennemis.",
 		"NAME": "Lelei La Lalena",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Canalisez !M! Givre. NL Recyclez 1 carte. NL Synergie: Appliquez !SV! Faiblesse à TOUS les ennemis."
+		"UPGRADE_DESCRIPTION": "Canalisez !M! Givre. NL Recyclez 1 carte. NL Synergie: Appliquez !SV! Faiblesse à TOUS les ennemis."
+	},
+	"animator_Lelouch":
+	{
+		"DESCRIPTION": "Épuisez toutes les [#EFC851]Attaques dans votre main. Ce tour, tous les ennemis s'attaqueront eux-mêmes. NL Purge. ([#EFC851]*[])",
+		"EXTENDED_DESCRIPTION": ["* Note", "Les enemis qui ne planifient pas d'attaquer seront étourdis à la place."],
+		"NAME": "Lelouch"
 	},
 	"animator_LimeBell":
 	{
@@ -603,9 +610,9 @@
 	},
 	"animator_MumenRider":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Piochez 1 carte. NL Purge. Au prochain tour, ajouté cette carte sur le haut de votre pioche.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Piochez 1 carte. NL Purge. Cette carte retourne dans votre main dans 2 tours.",
 		"NAME": "Mumen Rider",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s) avec style. Piochez 1 carte. NL Purge. Au prochain tour, ajouté cette carte sur le haut de votre pioche."
+		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s) avec style. Piochez 1 carte. NL Purge. Cette carte retourne dans votre main dans 2 tours."
 	},
 	"animator_Nanami":
 	{
@@ -771,7 +778,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez Arme_Enflammée. NL Si cela tue l'ennemi, soigne 1 point pour chaque Brûlure.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez Arme_Enflammée. NL Si cela tue l'ennemi, soigne le double du montant de Brûlure.",
 		"NAME": "Shizu"
 	},
 	"animator_Shuna":
@@ -781,7 +788,8 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). Au début de chaque tour, augmentez les dégât(s) de cet carte de !M! pour chaque orbe unique.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! de Vulnérable. NL Appliquez !M! de Ciblage. NL Gagnez !B! d'Armure. NL [#EFC851]Paresse.",
+		"EXTENDED_DESCRIPTION": ["Paresse", "Au début de chaque tour, augmentez le montant #yd'Armure and de dégâts par 1 pour chaque Orbe que vous avez. Après l'utilisation, diminuez les dégâts et le montant #y d'Armure de cette carte de moitié."],
 		"NAME": "Paresse"
 	},
 	"animator_Sora":
@@ -822,7 +830,7 @@
 	},
 	"animator_Strike_FullmetalAlchemist":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Cooldown !SV!: NL [#EFC851]Canalisez 1 Foudre.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Cooldown !SV!: NL Canalisez 1 Foudre.",
 		"NAME": "Frappe Amélioré"
 	},
 	"animator_Strike_GATE":
@@ -880,6 +888,16 @@
 		"DESCRIPTION": "Gagnez !M! Temp._PV. NL Enlève TOUS vos Debuff. Épuisement.",
 		"NAME": "'Sword Maiden'"
 	},
+	"animator_TanyaDegurechaff":
+	{
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Défaussez TOUTES les [#EFC851]Compétences and gagnez !M! d'Armure pour chacune d'elles. Héritage: Obtenez [#EFC851]Type [#EFC851]95.",
+		"NAME": "Tanya Degurechaff"
+	},
+	"animator_TanyaDegurechaff_Type95":
+	{
+		"DESCRIPTION": "Recyclez 2 cartes. Conservez TOUTES les [#EFC851]Attaques. Au prochain tour, vos [#EFC851]Attaques will causeront le double des dégâts. Épuisement.",
+		"NAME": "Type 95"
+	},
 	"animator_Tet":
 	{
 		"DESCRIPTION": "Défausser jusqu'a !M! carte(s) de votre pioche. NL Piochez 2 carte(s). NL Boost !SV! : Gagnez [E].",
@@ -917,7 +935,7 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "Paresse. NL [#EFC851]Canalisez[] 1 Tenèbre et Infligez !D! dégât(s) à TOUS les ennemis.",
+		"DESCRIPTION": "Paresse. NL Canalisez 1 Tenèbre et Infligez !D! dégât(s) à TOUS les ennemis.",
 		"NAME": "Urushihara"
 	},
 	"animator_Vanir":
@@ -1002,7 +1020,7 @@
 	"animator_HiiragiTenri":
 	{
 		"DESCRIPTION": "Gagnez !M! Temp._HP. NL Jouez et Épuisez NL TOUTES les cartes de votre Défausse.",
-		
+
 		"NAME": "Tenri Hiiragi"
 	},
 	"animator_SirTouchMe":
@@ -1022,7 +1040,7 @@
 	},
 	"animator_JeanneDArc":
 	{
-		"DESCRIPTION": "Infligez !D! dégat(s). NL Gagnez !M! Temp._HP. NL Épuisez une Malédiction ou Status aléatoire.",
+		"DESCRIPTION": "Infligez !D! dégat(s). NL Gagnez !M! Temp._HP. NL Gagnez !SV! d'Armure_Ench. NL Épuisez une Malédiction ou Status aléatoire.",
 		"NAME": "Jeanne D'Arc"
 	},
 	"animator_Hero":
@@ -1032,10 +1050,10 @@
 	},
 	"animator_Truth":
 	{
-		"DESCRIPTION": "Gagnez 1 Concentration. NL Gagnez 2 Energie. NL Piochez 3 cartes. NL Gain 4 Force. NL [#EFC851]Vérité[].",
+		"DESCRIPTION": "Gagnez 1 Concentration. NL Gagnez 2 Energie. NL Piochez 3 cartes. NL Gagnez 4 Force. NL [#EFC851]Vérité[].",
 		"NAME": "Vérité",
-		"EXTENDED_DESCRIPTION": ["Vérité"," Si vous avez au moins 3 Orbes uniques, supprimez toutes vos Orbes. Sinon, remplacez de manière permanente une carte au choix de votre deck par une #yPlaie."],
-		"UPGRADE_DESCRIPTION": "Gagnez 2 Concentration. NL Gagnez 3 Energie. NL Piochez 4 cartes. NL Gain 5 Force. NL [#EFC851]Vérité[]."
+		"EXTENDED_DESCRIPTION": ["Vérité", " Si vous avez au moins 3 Orbes uniques, supprimez toutes vos Orbes. Sinon, remplacez de manière permanente une carte au choix de votre deck par une #yPlaie."],
+		"UPGRADE_DESCRIPTION": "Gagnez 2 Concentration. NL Gagnez 3 Energie. NL Piochez 4 cartes. NL Gagnez 5 Force. NL [#EFC851]Vérité[]."
 	},
 	"animator_Rose":
 	{
@@ -1044,7 +1062,7 @@
 	},
 	"animator_Veldora":
 	{
-		"DESCRIPTION": "Gagnez !SV! Concentration. NL Active TOUTES les orbes, !M! fois. [#EFC851]Pioché: Canalise 2 orbes aléatoires.",
+		"DESCRIPTION": "Gagnez !SV! Concentration. NL Active TOUTES les orbes, !M! fois. [#EFC851]Pioché: Canalisez 2 orbes aléatoires.",
 		"NAME": "Veldora"
 	},
 	"animator_NivaLada":

@@ -36,6 +36,7 @@ public class DrawSpecificCardAction extends AnimatorAction
                 this.player.drawPile.removeCard(card);
                 this.player.onCardDrawOrDiscard();
                 this.player.hand.refreshHandLayout();
+                this.player.hand.glowCheck();
             }
         }
 

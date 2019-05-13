@@ -90,6 +90,11 @@
 		"DESCRIPTIONS": ["在每轮开始时 ， 保持一半的 格挡 。 打出2点耗能以上的牌时 ， 获得 #b", " 点 格挡 。"],
 		"NAME": "矮人王"
 	},
+	"animator_GeassPower":
+	{
+		"DESCRIPTIONS": ["这一轮，敌人会攻击自己。"],
+		"NAME": "Geass"
+	},
 	"animator_GuildGirlPower":
 	{
 		"DESCRIPTIONS": ["在你的回合开始时循环", " 张牌。"],

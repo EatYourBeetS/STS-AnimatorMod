@@ -18,14 +18,14 @@
 	},
 	"animator_Add":
 	{
-		"DESCRIPTION": "获得一个充能球栏位 。 在你的抽牌堆中 消耗 1 张牌 。 加入一张 充能球核心 到抽牌堆。 虚无 。 消耗 。",
+		"DESCRIPTION": "获得 !M! 魔法护甲 。 在你的抽牌堆中 消耗 1 张牌 。 加入一张 充能球核心 到抽牌堆。 虚无 。 消耗 。",
 		"NAME": "艾迪",
-		"UPGRADE_DESCRIPTION": "获得一个充能球栏位 。 在你的抽牌堆中 消耗 1 张牌 。 加入一张 充能球核心 到抽牌堆。 虚无 。"
+		"UPGRADE_DESCRIPTION": "获得 !M! 魔法护甲 。 在你的抽牌堆中 消耗 1 张牌 。 加入一张 充能球核心 到抽牌堆。 虚无 。"
 	},
 	"animator_Ain":
 	{
 		"DESCRIPTION": "施法者 。 对所有敌人造成 !D! 点 伤害 !M! 次 。 获得 1 点 集中 。",
-		"NAME":"艾因"
+		"NAME": "艾因"
 	},
 	"animator_Ainz":
 	{
@@ -35,7 +35,7 @@
 	},
 	"animator_Aisha":
 	{
-		"DESCRIPTION": "丢弃 1 张牌 。 从你的抽牌堆中取一 [#EFC851]技能[] 的牌， 本次战斗中减少 !M! 点耗能 。",
+		"DESCRIPTION": "施法者。 为每一个你拥有的充能球造成 !D! 伤害。 鼓舞 !M! : 获得一个充能球槽位",
 		"NAME": "爱莎‧蓝塔"
 	},
 	"animator_Albedo":
@@ -87,7 +87,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 如果敌人拥有 max hp 并且这可以造成未受阻挡的伤害 ， 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 如果这张牌杀死了敌人或者打破目标 格挡 ， 获得 !B! 点 格挡 。",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -135,7 +135,7 @@
 	},
 	"animator_Chung":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 预热 !SV! : 对所有敌人造成 !D! 点 伤害 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 预热 !SV! : 获得一个等离子球。",
 		"NAME": "澄"
 	},
 	"animator_Cocytus":
@@ -356,7 +356,7 @@
 		"DESCRIPTION": "穿越者 。 每个敌人使你获得获得 !B! 点 格挡 。 撤回 : 将此卡退还给您并选择其他表格 。",
 		"EXTENDED_DESCRIPTION":
 		[
-			"穿越者 。 抽 1 张牌 。",
+			"穿越者 。 获得 !B! 点 格挡 。",
 			"穿越者 。 造成 !D! 点伤害 2 次 。 获得 2 点 金属化 。 撤回 : 获得 !M! 点 金属化 。",
 			"穿越者 。 造成 !D! 点 伤害 。 给予 1 层 虚弱 。 给予 !M! 层 易伤 。"
 		],
@@ -435,7 +435,7 @@
 	{
 		"DESCRIPTION": "剑圣 。 造成 !D! 点伤害 !M! 次 。 NL [#EFC851]被抽到时[] : 获得 !SV! 点 临时 敏捷 。",
 		"NAME": "白老",
-		"UPGRADE_DESCRIPTION": "剑圣 。 造成 !D! 点伤害 !M! 次 。 抽 1 张牌 并 升级 。 NL [#EFC851]被抽到时[] : 获得 !SV! 点 临时 敏捷 。"
+		"UPGRADE_DESCRIPTION": "剑圣 。 造成 !D! 点伤害 !M! 次 。 抽 1 张牌 并 升级 它。 NL [#EFC851]被抽到时[] : 获得 !SV! 点 临时 敏捷 。"
 	},
 	"animator_HigakiRinne":
 	{
@@ -463,10 +463,10 @@
 	},
 	"animator_HououinKyouma":
 	{
-		"DESCRIPTION": "选择 1 张本场战斗中使用过的牌 ， 并将它们的复制加入到手牌中 [#EFC851]*[] 。 抹除 。",
+		"DESCRIPTION": "选择 1 张本场战斗中使用过的牌 ， 并将它的复制加入到手牌中 [#EFC851]*[] 。 抹除 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "你不能复制这张牌 ， 因为这是石头门的选择 。"],
 		"NAME": "凤凰院凶真",
-		"UPGRADE_DESCRIPTION": "选择 1 张本场战斗中使用过的牌 ， 并将它们的复制加入到手牌中 [#EFC851]*[] 。 在这一轮中， 费用减少 1 张 。 抹除 。"
+		"UPGRADE_DESCRIPTION": "选择 1 张本场战斗中使用过的牌 ， 并将它的复制加入到手牌中 [#EFC851]*[] 。在此轮， 将这张牌的能耗减1。 抹除 。"
 	},
 	"animator_Illya":
 	{
@@ -555,6 +555,12 @@
 		"NAME": "蕾莱·拉·列娜",
 		"UPGRADE_DESCRIPTION": "获得 !M! 个冰霜充能球 。 NL 循环 1 张牌 。 NL 同调 : 给予所有敌人 !SV! 层 虚弱 。"
 	},
+	"animator_Lelouch":
+	{
+		"DESCRIPTION": "消耗 你手中的所有攻击卡。 这一轮 ， 所有敌人都会攻击自己 。 NL 抹除 。 [#EFC851]*[]",
+		"EXTENDED_DESCRIPTION": ["* 注", "若有敌人未有打算攻击，击晕它们"],
+		"NAME": "Lelouch"
+	},
 	"animator_LimeBell":
 	{
 		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 重装填 : 下一轮 ， 恢复 !M! 点 生命 。 NL 消耗 。",
@@ -606,9 +612,9 @@
 	},
 	"animator_MumenRider":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 1 张牌 。 NL 抹除 。 下回合，回到抽牌堆顶部 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 1 张牌 。 NL 抹除 。 这张牌会在2回合后回到你的手里 。",
 		"NAME": "无证骑士",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 !M! 张牌 。 NL 抹除 。 下回合，回到抽牌堆顶部  。"
+		"UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 !M! 张牌 。 NL 抹除 。 这张牌会在2回合后回到你的手里 。"
 	},
 	"animator_Nanami":
 	{
@@ -640,12 +646,12 @@
 	},
 	"animator_OrbCore_Frost":
 	{
-		"DESCRIPTION": "生成 1 个 冰霜充能球 。 NL 每回合第二次同调时 ， 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "生成 1 个 冰霜 充能球 。 NL 每回合第二次同调时 ， 获得 !B! 点 格挡 。",
 		"NAME": "冰霜 核心"
 	},
 	"animator_OrbCore_Lightning":
 	{
-		"DESCRIPTION": "生成 1 个 闪电充能 球 。 NL 每回合第二次同调时 ， 对所有敌人造成 !M! 点 伤害 。",
+		"DESCRIPTION": "生成 1 个 闪电 充能球 。 NL 每回合第二次同调时 ， 对所有敌人造成 !M! 点 伤害 。",
 		"NAME": "闪电 核心"
 	},
 	"animator_OrbCore_Plasma":
@@ -774,7 +780,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 获得 火红的武器 。 如果这会杀死敌人 ， 则为每层 燃烧 治疗 1 点 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 获得 火红的武器 。 如果这会杀死敌人 ， 则为每层 燃烧 治疗 2 点 。",
 		"NAME": "静"
 	},
 	"animator_Shuna":
@@ -784,7 +790,8 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 在每轮开始时 ， 对于你拥有的每个独特的充电球 ， 这个卡的伤害提高 !M! 点 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 给予 !M! 层 跟踪锁定 。 获得 !B! 格挡 。 [#EFC851]懒惰[]",
+		"EXTENDED_DESCRIPTION": ["懒惰", "每轮开始时，将这张牌的 #y格挡 与 伤害为每一个您拥有的充能球增加1 。 每次使用后， 将这张牌的 #y格挡 与伤害减半"],
 		"NAME": "懒惰"
 	},
 	"animator_Sora":
@@ -825,7 +832,7 @@
 	},
 	"animator_Strike_FullmetalAlchemist":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 NL 预热 !SV! : NL [#EFC851]生成[] 1 个 闪电 充能球 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 NL 预热 !SV! : NL 生成 1 个 闪电 充能球 。",
 		"NAME": "优越打击"
 	},
 	"animator_Strike_GATE":
@@ -882,6 +889,16 @@
 	{
 		"DESCRIPTION": "获得 !M! 层 [#EFC851]临时生命[] 。 NL 移除你身上的所有负面效果 。 NL 消耗 。",
 		"NAME": "剑之圣女"
+	},
+	"animator_TanyaDegurechaff":
+	{
+		"DESCRIPTION": "造成 !D! 伤害。 NL 丢弃所有 [#EFC851]技能[] 并且为每一个技能获得 !M! 格挡。 遗赠: 获得 [#EFC851]95号兵器[] 。",
+		"NAME": "Tanya Degurechaff"
+	},
+	"animator_TanyaDegurechaff_Type95":
+	{
+		"DESCRIPTION": "循環2張牌。 保留 所有 [#EFC851]攻擊[] 。 下一輪，你的所有 [#EFC851]攻擊[] 將會造成雙倍傷害。 消耗。 ",
+		"NAME": "95號兵器"
 	},
 	"animator_Tet":
 	{
@@ -1024,7 +1041,7 @@
 	},
 	"animator_JeanneDArc":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 NL 获得 !M! 点 临时生命 。 NL 随机消耗一个状态牌或诅咒牌 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 NL 获得 !M! 点 临时生命 。 NL 获得 !SV! 魔法护甲 。 随机消耗一个状态牌或诅咒牌 。",
 		"NAME": "Jeanne D'Arc"
 	},
 	"animator_Hero":

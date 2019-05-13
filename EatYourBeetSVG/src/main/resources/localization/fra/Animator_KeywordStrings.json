@@ -136,7 +136,7 @@
 	},
 	{
 		"PROPER_NAME": "Armure Enchantée",
-		"NAMES": ["armure enchantée", "armure_enchantée"],
+		"NAMES": ["armure enchantée", "armure_enchantée", "d'armure enchantée", "d'armure_enchantée","d'armure ench", "d'armure_ench"],
 		"DESCRIPTION": "Subissez moins de dégats de TOUTES les #yAttaques. De moins en moins efficaces."
 	},
 	{

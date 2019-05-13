@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
@@ -19,11 +20,9 @@ public class Chung extends AnimatorCard_Cooldown
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(14, 8);
+        Initialize(0, 9);
 
         this.baseSecondaryValue = this.secondaryValue = COOLDOWN;
-        //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
-        this.isMultiDamage = true;
 
         SetSynergy(Synergies.Elsword);
     }
@@ -42,8 +41,7 @@ public class Chung extends AnimatorCard_Cooldown
     @Override
     protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
-        PlayerStatistics.UsePenNib();
+        GameActionsHelper.ChannelOrb(new Plasma(), true);
     }
 
     @Override
@@ -51,14 +49,13 @@ public class Chung extends AnimatorCard_Cooldown
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeBlock(2);
+            upgradeSecondaryValue(-1);
         }
     }
 
     @Override
     protected int GetBaseCooldown()
     {
-        return COOLDOWN;
+        return upgraded ? 2 : 1;
     }
 }

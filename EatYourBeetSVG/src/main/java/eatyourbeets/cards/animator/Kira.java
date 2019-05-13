@@ -18,8 +18,8 @@ public class Kira extends AnimatorCard
     public static final String[] DESCRIPTIONS = AnimatorResources.GetCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private int countdown;
-    private AbstractMonster lastTarget = null;
-    private AbstractMonster target = null;
+    private AbstractMonster lastTargetEnemy = null;
+    private AbstractMonster targetEnemy = null;
 
     public Kira()
     {
@@ -41,7 +41,7 @@ public class Kira extends AnimatorCard
     {
         super.calculateCardDamage(mo);
 
-        target = mo;
+        targetEnemy = mo;
     }
 
     @Override
@@ -49,14 +49,14 @@ public class Kira extends AnimatorCard
     {
         super.update();
 
-        if (lastTarget != target)
+        if (lastTargetEnemy != targetEnemy)
         {
-            updateCurrentEffect(target);
+            updateCurrentEffect(targetEnemy);
 
-            lastTarget = target;
+            lastTargetEnemy = targetEnemy;
         }
 
-        target = null;
+        targetEnemy = null;
     }
 
     @Override

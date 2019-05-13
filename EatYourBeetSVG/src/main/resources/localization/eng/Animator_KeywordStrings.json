@@ -126,7 +126,7 @@
 	},
 	{
 		"NAMES": ["orb core", "orb_core", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
-		"DESCRIPTION": "#yPower: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy each turn. Stacking this power increases the uses per turn.",
+		"DESCRIPTION": "#yPower: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy each turn.",
 		"PROPER_NAME": "Orb Core"
 	},
 	{
@@ -136,7 +136,7 @@
 	},
 	{
 		"PROPER_NAME": "Enchanted Armor",
-		"NAMES": ["enchanted armor", "enchanted_armor"],
+		"NAMES": ["enchanted armor", "enchanted_armor", "ench. armor", "ench._armor"],
 		"DESCRIPTION": "Take less damage from ALL #yAttacks. Further stacks are less effective."
 	},
 	{

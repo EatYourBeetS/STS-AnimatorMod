@@ -90,6 +90,11 @@
 		"DESCRIPTIONS": ["在每輪開始時 ， 保持一半的點 格擋 。 無論何時你玩一張能耗2或者以上的卡 ， 獲得 #b", " 點 格擋 。"],
 		"NAME": "矮人王"
 	},
+	"animator_GeassPower":
+	{
+		"DESCRIPTIONS": ["這一輪，敵人會攻擊自己。"],
+		"NAME": "Geass"
+	},
 	"animator_GuildGirlPower":
 	{
 		"DESCRIPTIONS": ["在你的回合開始時循環 ", " 張牌。"],

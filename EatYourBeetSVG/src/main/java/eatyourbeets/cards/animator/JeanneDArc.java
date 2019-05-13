@@ -9,6 +9,7 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.EnchantedArmorPower;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActionsHelper.GainTemporaryHP(p, p, this.magicNumber);
+        GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, this.magicNumber), this.magicNumber);
 
         ArrayList<AbstractCard> cards = new ArrayList<>();
         if (!TryExhaust(p.hand))

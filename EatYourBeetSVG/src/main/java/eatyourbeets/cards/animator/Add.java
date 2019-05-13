@@ -11,6 +11,7 @@ import eatyourbeets.actions.ChooseFromPileAction;
 import eatyourbeets.actions.ExhaustFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.EnchantedArmorPower;
 import eatyourbeets.powers.OrbCore_AbstractPower;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class Add extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0,0, 8);
 
         this.exhaust = true;
         this.isEthereal = true;
@@ -34,7 +35,7 @@ public class Add extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+        GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, this.magicNumber), this.magicNumber);
 
         if (p.drawPile.size() > 0)
         {

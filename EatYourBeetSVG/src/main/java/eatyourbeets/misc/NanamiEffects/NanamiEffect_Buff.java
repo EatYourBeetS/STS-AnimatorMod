@@ -20,6 +20,19 @@ public class NanamiEffect_Buff extends NanamiEffect
 
     private static int GetStrength(Nanami nanami)
     {
-        return 1 + (nanami.energyOnUse * (nanami.upgraded ? 2 : 1));
+        int energy = nanami.energyOnUse;
+
+        if (energy == 0)
+        {
+            return 1;
+        }
+        else if (nanami.upgraded)
+        {
+            return 2 + (energy / 2) + energy;
+        }
+        else
+        {
+            return 1 + energy;
+        }
     }
 }

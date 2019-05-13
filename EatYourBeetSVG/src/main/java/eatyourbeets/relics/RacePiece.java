@@ -112,7 +112,7 @@ public class RacePiece extends AnimatorRelic
         for (AbstractCard c : p.masterDeck.group)
         {
             AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
-            if (card != null && card.GetSynergy() != null)
+            if (card != null && card.GetSynergy() != null && card.color != AbstractCard.CardColor.COLORLESS)
             {
                 group.addToTop(card);
             }

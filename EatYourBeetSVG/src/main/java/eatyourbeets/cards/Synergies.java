@@ -42,6 +42,8 @@ public class Synergies
     public final static Synergy GabrielDropOut = CreateSynergy(25);
     public final static Synergy DeathNote = CreateSynergy(26);
     public final static Synergy KamisamaNoMemochu = CreateSynergy(27);
+    public final static Synergy CodeGeass = CreateSynergy(28);
+    public final static Synergy YoujoSenki = CreateSynergy(29);
 
     private static Synergy CreateSynergy(int id)
     {

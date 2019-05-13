@@ -24,7 +24,7 @@ public class Berserker extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(26,16, 0);
+        Initialize(28,14, 0);
 
         SetSynergy(Synergies.Fate);
     }
@@ -37,7 +37,7 @@ public class Berserker extends AnimatorCard
             DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
             GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
-            GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentHealth, true));
+            GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
             GameActionsHelper.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         }
     }
@@ -47,24 +47,22 @@ public class Berserker extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(6);
+            upgradeDamage(4);
             upgradeBlock(4);
         }
     }
 
     private void OnDamage(Object state, AbstractMonster monster)
     {
-        Integer initialHealth = Utilities.SafeCast(state, Integer.class);
-        if (initialHealth == null || monster == null)
+        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
+        if (initialBlock == null || monster == null)
         {
             return;
         }
 
-        if (initialHealth == monster.maxHealth && initialHealth > monster.currentHealth)
+        if (monster.isDeadOrEscaped() || (initialBlock > 0 && monster.currentBlock <= 0))
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.GainBlock(p, this.block);
-            //GameActionsHelper.ApplyPower(p, monster, new StunMonsterPower(monster, 1), 1);
+            GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
         }
     }
 }

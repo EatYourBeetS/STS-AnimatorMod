@@ -56,7 +56,7 @@ public class Shizu extends AnimatorCard
                 AbstractPower burning = monster.getPower(BurningPower.POWER_ID);
                 if (burning != null)
                 {
-                    AbstractDungeon.player.heal(burning.amount, true);
+                    AbstractDungeon.player.heal(burning.amount * 2, true);
                 }
             }
         }

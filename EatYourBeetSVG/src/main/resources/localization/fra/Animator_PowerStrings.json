@@ -90,6 +90,11 @@
 		"DESCRIPTIONS": ["Gardez la moitié de votre armure au début de votre tour, Quand vous joué une #yAttaque, gagnez #b", " d'Armure."],
 		"NAME": "Gazel Dwargon"
 	},
+	"animator_GeassPower":
+	{
+		"DESCRIPTIONS": ["Ce tour l'ennemi va s'attaquer lui-même."],
+		"NAME": "Geass"
+	},
 	"animator_GuildGirlPower":
 	{
 		"DESCRIPTIONS": ["Au début de votre tour Recycler #b", " cartes."],

@@ -90,6 +90,11 @@
 		"DESCRIPTIONS": ["Maintain half your Block at the start of each turn, whenever you play an #yAttack, gain #b", " Block."],
 		"NAME": "Gazel Dwargon"
 	},
+	"animator_GeassPower":
+	{
+		"DESCRIPTIONS": ["Will attack itself this turn."],
+		"NAME": "Geass"
+	},
 	"animator_GuildGirlPower":
 	{
 		"DESCRIPTIONS": ["At the start of your turn Cycle #b", " cards."],

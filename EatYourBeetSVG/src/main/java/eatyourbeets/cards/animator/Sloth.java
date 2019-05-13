@@ -1,17 +1,16 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.powers.LockOnPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-
-import java.util.ArrayList;
 
 public class Sloth extends AnimatorCard
 {
@@ -19,9 +18,11 @@ public class Sloth extends AnimatorCard
 
     public Sloth()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(2,0, 2);
+        Initialize(2,2, 2);
+
+        AddExtendedDescription();
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -31,27 +32,30 @@ public class Sloth extends AnimatorCard
     {
         super.atTurnStart();
 
-        int count = 0;
-        ArrayList<String> orbs = new ArrayList<>();
-        for (AbstractOrb orb : AbstractDungeon.player.orbs)
+        int bonusAmount = AbstractDungeon.player.filledOrbCount();
+        if (bonusAmount > 0)
         {
-            if (!(orb instanceof EmptyOrbSlot) && !orbs.contains(orb.ID))
-            {
-                orbs.add(orb.ID);
-                count += 1;
-            }
-        }
-
-        if (count > 0)
-        {
-            GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, count * this.magicNumber));
+            GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, bonusAmount));
+            GameActionsHelper.AddToBottom(new ModifyBlockAction(this.uuid, bonusAmount));
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        if (this.damage > 0)
+        {
+            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        }
+        if (this.block > 0)
+        {
+            GameActionsHelper.GainBlock(p, this.block);
+        }
+        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, this.magicNumber, false), this.magicNumber);
+        GameActionsHelper.ApplyPower(p, m, new LockOnPower(m, this.magicNumber), this.magicNumber);
+
+        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, - this.baseDamage/2));
+        GameActionsHelper.AddToBottom(new ModifyBlockAction(this.uuid, - this.baseBlock/2));
     }
 
     @Override
@@ -59,8 +63,9 @@ public class Sloth extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
             upgradeMagicNumber(1);
+            upgradeDamage(1);
+            upgradeBlock(1);
         }
     }
 }

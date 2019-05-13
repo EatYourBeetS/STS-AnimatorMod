@@ -18,9 +18,9 @@
 	},
 	"animator_Add":
 	{
-		"DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 用 閃電充能球 代替它 。 虛無 。 消耗 。",
+		"DESCRIPTION": "獲得 !M! 魔法護甲 。 在你的抽牌堆中 消耗 1 張牌 。 加入一張 充能球核心 到抽牌堆。 虛無 。 消耗 。",
 		"NAME": "艾迪",
-		"UPGRADE_DESCRIPTION": "在你的抽牌堆中消耗1張牌 。 用 閃電充能球 代替它 。 虛無 。"
+		"UPGRADE_DESCRIPTION": "獲得 !M! 魔法護甲 。 在你的抽牌堆中 消耗 1 張牌 。 加入一張 充能球核心 到抽牌堆。 虛無 。"
 	},
 	"animator_Ain":
 	{
@@ -35,8 +35,8 @@
 	},
 	"animator_Aisha":
 	{
-		"DESCRIPTION": "丟棄 1 張牌 。 從你的抽牌堆中取一 [#EFC851]技能[] 的牌， 本次戰鬥中減少 !M! 點耗能 。",
-		"NAME": "愛莎"
+	"DESCRIPTION": "施法者。 為每一個你擁有的充能球造成 !D! 傷害。 鼓舞 !M! : 獲得一個充能球槽位",
+	"NAME": "愛莎‧藍塔"
 	},
 	"animator_Albedo":
 	{
@@ -87,7 +87,7 @@
 	},
 	"animator_Berserker":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 如果敵人擁有 max hp 並 且這可以造成未受阻擋的傷害， 獲得 !B! 點 格擋 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 如果這張牌殺死了敵人或者打破目標 格擋 ， 獲得 !B! 點 格擋 。",
 		"NAME": "Berserker"
 	},
 	"animator_Biyorigo":
@@ -135,8 +135,8 @@
 	},
 	"animator_Chung":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 冷卻 !SV! : 對所有敵人造成 !D! 點 傷害 。",
-		"NAME": "澄"
+	"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 預熱 !SV! : 獲得一個等離子球。",
+	"NAME": "澄"
 	},
 	"animator_Cocytus":
 	{
@@ -356,7 +356,7 @@
 		"DESCRIPTION": "變形者 。 每個敵人使你獲得 !B! 點 格擋 。 撤回 : 此卡回到手牌並選擇其他型態 。",
 		"EXTENDED_DESCRIPTION":
 		[
-			"變形者 。 抽 1 張牌 。",
+			"變形者 。 獲得 !B! 點 格擋 。",
 			"變形者 。 造成 !D! 點傷害 2 次 。 獲得 2 層 金屬化 。 撤回 : 獲得 !M! 點 金属化 。",
 			"變形者 。 造成 !D! 點 傷害 。 給予 1 層 虛弱 。 給予 1 層 易傷 。"
 		],
@@ -435,7 +435,7 @@
 	{
 		"DESCRIPTION": "武術家 。 造成 !D! 點傷害 !M! 次 。 NL [#EFC851]被抽到時[] : 獲得 !SV! 點 臨時 敏捷 。",
 		"NAME": "白老",
-		"UPGRADE_DESCRIPTION": "武術家 。 造成 !D! 點傷害 !M! 次 。 抽 1 張牌 並 升級 。 NL [#EFC851]被抽到時[] : 獲得 !SV! 點 臨時 敏捷 。"
+		"UPGRADE_DESCRIPTION": "武術家 。 造成 !D! 點傷害 !M! 次 。 抽 1 張牌 並 升級 它。 NL [#EFC851]被抽到時[] : 獲得 !SV! 點 臨時 敏捷 。"
 	},
 	"animator_HigakiRinne":
 	{
@@ -461,10 +461,10 @@
 	},
 	"animator_HououinKyouma":
 	{
-		"DESCRIPTION": "選擇 1 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 抹除 。",
+		"DESCRIPTION": "選擇 1 張本場戰鬥中使用過的牌 ， 並將它的複制加入到手牌中 [#EFC851]*[] 。 抹除 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "你不能複制這張牌 ， 因為這是石頭門的選擇 。"],
 		"NAME": "鳳凰院兇真",
-		"UPGRADE_DESCRIPTION": "選擇 1 張本場戰鬥中使用過的牌 ， 並將它們的複制加入到手牌中 [#EFC851]*[] 。 在這一輪中， 費用減少 1 張 。 抹除 。"
+		"UPGRADE_DESCRIPTION": "選擇 1 張本場戰鬥中使用過的牌 ， 並將它的複制加入到手牌中 [#EFC851]*[] 。在此輪， 將這張牌的能耗減1。 抹除 。"
 	},
 	"animator_Illya":
 	{
@@ -501,7 +501,7 @@
 	"animator_Kira":
 	{
 		"DESCRIPTION": "虛無 。 敵人很快就會死去 [#EFC851]*[] 。 NL 獲得 !SV! 層 易傷 。 NL 消耗 。",
-		"EXTENDED_DESCRIPTION": 
+		"EXTENDED_DESCRIPTION":
 		[
 			"* 注", "這張卡片的文字會在針對敵人時發生變化 ， 生命值較多的敵人將會存活更長時間 。 忽略 #y人工製品 。",
 			"虛無 。 敵人將在 # 回合後死亡 。 NL 獲得 !M! 層 易傷 。 NL 消耗 。"
@@ -553,6 +553,12 @@
 		"NAME": "蕾萊·拉·列娜",
 		"UPGRADE_DESCRIPTION": "獲得 !M! 個冰霜充能球 。 NL 循環 1 張牌 。 NL 同調 : 給予所有敵人 !SV! 層 虛弱 。"
 	},
+	"animator_Lelouch":
+	{
+		"DESCRIPTION": "消耗 你手中的所有攻擊卡。 這一輪 ， 所有敵人都會攻擊自己 。 NL 抹除 。 [#EFC851]*[]",
+		"EXTENDED_DESCRIPTION": ["* 注", "若有敵人未有打算攻擊，擊暈它們"],
+		"NAME": "Lelouch"
+		},
 	"animator_LimeBell":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 重新裝填 : 下一輪 ， 回復 !M! 點 生命 。 NL 消耗 。",
@@ -604,9 +610,9 @@
 	},
 	"animator_MumenRider":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 1 張牌 。 NL 抹除 。 下一輪 ， 返回繪製堆的頂部 。",
-		"NAME": "Mumen Rider",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 with Style 。 NL 抽 1 張牌 。 NL 抹除 。 下一輪 ， 返回繪製堆的頂部 。"
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 1 張牌 。 NL 抹除 。 這張牌會在2回合後回到你的手裡 。",
+		"NAME": "無證騎士",
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 NL 抽 !M! 張牌 。 NL 抹除 。 這張牌會在2回合後回到你的手裡 。"
 	},
 	"animator_Nanami":
 	{
@@ -773,7 +779,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 獲得 火紅的武器 。 NL 如果這會殺死敵人 ， 則為每層 燃燒 治療 1 點 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 獲得 火紅的武器 。 NL 如果這會殺死敵人 ， 則為每層 燃燒 治療 2 點 。",
 		"NAME": "靜"
 	},
 	"animator_Shuna":
@@ -783,8 +789,9 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 在每輪開始時 ， 對於你擁有的每個獨特的充電球 ， 這個卡的傷害提高 !M! 點 。",
-		"NAME": "斯洛斯"
+	"DESCRIPTION": "造成 !D! 點 傷害 。 NL 給予 !M! 層 易傷 。 NL 給予 !M! 層 跟踪鎖定 。 獲得 !B! 格擋 。 [#EFC851]懶惰[]",
+	"EXTENDED_DESCRIPTION": ["懶惰", "每輪開始時，將這張牌的 #y格擋 與傷害為每一個您擁有的充能球增加1 。 每次使用後， 將這張牌的 #y格擋 與傷害減半。 "],
+	"NAME": "斯洛斯"
 	},
 	"animator_Sora":
 	{
@@ -880,6 +887,16 @@
 	{
 		"DESCRIPTION": "獲得 !M! 層 [#EFC851]再生[] 。 移除你身上的所有負面效果 。 NL 消耗 。",
 		"NAME": "劍之聖女"
+	},
+	"animator_TanyaDegurechaff":
+	{
+	"DESCRIPTION": "造成 !D! 傷害。 NL 丟棄所有 [#EFC851]技能[] 並且為每一個技能獲得 !M! 格擋。 遺贈: 獲得 [#EFC851]95號兵器[] 。",
+	"NAME": "Tanya Degurechaff"
+	},
+	"animator_TanyaDegurechaff_Type95":
+	{
+		"DESCRIPTION": "Cycle 2 cards. Retain ALL [#EFC851]Attacks. Next turn, your [#EFC851]Attacks will deal double damage. Exhaust.",
+		"NAME": "Type 95"
 	},
 	"animator_Tet":
 	{

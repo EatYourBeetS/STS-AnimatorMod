@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.PummelDamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,17 +12,20 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.subscribers.OnEndOfTurnSubscriber;
+import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
 import patches.AbstractEnums;
 
-public class MumenRider extends AnimatorCard implements OnEndOfTurnSubscriber
+public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ID = CreateFullID(MumenRider.class.getSimpleName());
+
+    private boolean firstTurn = true;
 
     public MumenRider()
     {
         super(ID, 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(1, 0);
+        Initialize(2, 0);
 
         this.purgeOnUse = true;
 
@@ -49,7 +53,8 @@ public class MumenRider extends AnimatorCard implements OnEndOfTurnSubscriber
 
         if (!tags.contains(AbstractEnums.CardTags.TEMPORARY))
         {
-            PlayerStatistics.onEndOfTurn.Subscribe(this);
+            firstTurn = true;
+            PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
         }
     }
 
@@ -63,9 +68,16 @@ public class MumenRider extends AnimatorCard implements OnEndOfTurnSubscriber
     }
 
     @Override
-    public void OnEndOfTurn(boolean isPlayer)
+    public void OnStartOfTurnPostDraw()
     {
-        AbstractDungeon.player.drawPile.addToTop(this.makeStatEquivalentCopy());
-        PlayerStatistics.onEndOfTurn.Unsubscribe(this);
+        if (firstTurn)
+        {
+            firstTurn = false;
+        }
+        else
+        {
+            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(this));
+            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+        }
     }
 }

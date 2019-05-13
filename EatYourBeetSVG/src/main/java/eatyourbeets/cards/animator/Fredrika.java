@@ -99,7 +99,8 @@ public class Fredrika extends AnimatorCard
 
             case FORM_CAT:
             {
-                GameActionsHelper.DrawCard(p, 1);
+                GameActionsHelper.GainBlock(p, this.block);
+                //GameActionsHelper.DrawCard(p, 1);
 
                 break;
             }

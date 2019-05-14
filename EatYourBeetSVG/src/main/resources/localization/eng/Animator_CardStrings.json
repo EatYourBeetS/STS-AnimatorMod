@@ -46,7 +46,7 @@
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "Deal !D! damage to an enemy and !SV! damage to every other enemy. Legacy: Gain !M! Plated_Armor.",
+		"DESCRIPTION": "Deal !D! damage. NL Deal !D! damage to ALL enemies. Legacy: Gain !M! Plated_Armor.",
 		"NAME": "Alexander"
 	},
 	"animator_Aqua":
@@ -694,7 +694,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "Apply !M! Vulnerable. NL Gain !B! Block. NL Synergy and Recall: Gain 1 Blur.",
+		"DESCRIPTION": "Gain !B! Block. NL Apply !M! Vulnerable. NL Synergy and Recall: Gain 1 Blur.",
 		"NAME": "Rena"
 	},
 	"animator_Rimuru":
@@ -931,7 +931,7 @@
 	},
 	"animator_Tyuule":
 	{
-		"DESCRIPTION": "Apply !M! Poison and 1 Vulnerable to ALL enemies. NL Boost !SV! : Gain [E]",
+		"DESCRIPTION": "Apply !M! Poison NL and 1 Vulnerable to ALL enemies. NL Boost !SV! : Gain [E]",
 		"NAME": "Tyuule"
 	},
 	"animator_Urushihara":
@@ -947,7 +947,7 @@
 	},
 	"animator_Vesta":
 	{
-		"DESCRIPTION": "Choose a card in your Discard pile, after !M! turns, add an Upgraded copy of it to your hand. Purge.",
+		"DESCRIPTION": "Choose a card in your Discard pile. After !M! turns, add an Upgraded copy of it to your hand. Purge.",
 		"EXTENDED_DESCRIPTION": ["Select a card, after # turns, add an Upgraded copy of it to your hand."],
 		"NAME": "Vesta"
 	},
@@ -986,7 +986,7 @@
 	},
 	"animator_Yusarin":
 	{
-		"DESCRIPTION": "Next turn, Gain [E] and draw !M! card. NL After !SV! uses, change into [#EFC851]Misa [#EFC851]Kurobane.",
+		"DESCRIPTION": "Next turn, Gain [E] and draw !M! cards. NL After !SV! uses, change into [#EFC851]Misa [#EFC851]Kurobane.",
 		"NAME": "Yusarin",
 		"UPGRADE_DESCRIPTION": "Next turn, Gain [E] and draw !M! cards. NL After !SV! uses, change into [#EFC851]Misa [#EFC851]Kurobane+."
 	},
@@ -1010,8 +1010,9 @@
 	},
 	"animator_Azriel":
 	{
-		"DESCRIPTION": "Gain 2 Flight. NL Whenever you apply a debuff to an enemy, gain !M! Strength.",
-		"NAME": "Azriel"
+		"DESCRIPTION": "Gain 2 Flight. NL Whenever you apply a debuff to an enemy, gain !M! Strength. NL Ethereal.",
+		"NAME": "Azriel",
+		"UPGRADE_DESCRIPTION": "Gain 2 Flight. NL Whenever you apply a debuff to an enemy, gain !M! Strength."
 	},
 	"animator_Giselle":
 	{
@@ -1025,7 +1026,7 @@
 	},
 	"animator_SirTouchMe":
 	{
-		"DESCRIPTION": "Gain !M! Juggernaut. NL Deal !D! damage. NL Gain !B! Block.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Juggernaut. NL Gain !SV! Plated_Armor. NL Gain !B! Block.",
 		"NAME": "Sir Touch Me"
 	},
 	"animator_ShikizakiKiki":

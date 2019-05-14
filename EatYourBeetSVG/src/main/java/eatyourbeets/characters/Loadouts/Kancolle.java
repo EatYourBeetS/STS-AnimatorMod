@@ -9,7 +9,7 @@ import eatyourbeets.cards.Synergy;
 import eatyourbeets.cards.animator.*;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.characters.AnimatorMetrics;
-import eatyourbeets.relics.PurgingStone;
+import eatyourbeets.relics.PurgingStone_Cards;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
@@ -99,7 +99,7 @@ public class Kancolle extends AnimatorCustomLoadout
             trophies.trophy2 = Math.max(trophies.trophy2, ascensionLevel);
         }
 
-        PurgingStone p = PurgingStone.GetInstance();
+        PurgingStone_Cards p = PurgingStone_Cards.GetInstance();
         if (uniqueSynergies >= 10 && p != null && p.GetBannedCount() == 0)
         {
             trophies.trophy3 = Math.max(trophies.trophy3, ascensionLevel);

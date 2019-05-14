@@ -15,9 +15,7 @@ import com.megacrit.cardcrawl.metrics.Metrics;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
-import eatyourbeets.cards.Synergy;
 import eatyourbeets.characters.AnimatorCharacterSelect;
-import eatyourbeets.relics.PurgingStone;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,18 +57,18 @@ public class MetricsPatches
                         return;
                     }
 
-                    bannedSeries.clear();
-                    PurgingStone purgingStone = PurgingStone.GetInstance();
-                    if (purgingStone != null)
-                    {
-                        ArrayList<Synergy> series = purgingStone.GetBannedSeries();
-                        for (Synergy s : series)
-                        {
-                            bannedSeries.add(s.ID);
-                        }
-                    }
+//                    bannedSeries.clear();
+//                    PurgingStone_Series purgingStone = PurgingStone_Series.GetInstance();
+//                    if (purgingStone != null)
+//                    {
+//                        ArrayList<Synergy> series = purgingStone.GetBannedSeries();
+//                        for (Synergy s : series)
+//                        {
+//                            bannedSeries.add(s.ID);
+//                        }
+//                    }
+//                    params.put("bannedSeries", bannedSeries);
 
-                    params.put("bannedSeries", bannedSeries);
                     params.put("ascension", AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0);
                     params.put("cards", cardsData);
                     params.put("startingSeries", AnimatorCharacterSelect.GetSelectedLoadout(false).ID);

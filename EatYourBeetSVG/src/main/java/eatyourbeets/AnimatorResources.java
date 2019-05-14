@@ -189,7 +189,7 @@ public class AnimatorResources
         BaseMod.addRelicToCustomPool(new Rinne(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new ExquisiteBloodVial(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new TheMissingPiece(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new PurgingStone(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new PurgingStone_Cards(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new WizardHat(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new Buoy(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new RacePiece(), AbstractEnums.Cards.THE_ANIMATOR);

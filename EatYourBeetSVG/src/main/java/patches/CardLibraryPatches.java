@@ -10,7 +10,7 @@ import eatyourbeets.cards.AnimatorCard_UltraRare;
 public class CardLibraryPatches
 {
     @SpirePatch(clz = CardLibrary.class, method = "getCopy", paramtypez = {String.class, int.class, int.class})
-    public static class CardLibraryPatches_getCard1
+    public static class CardLibraryPatches_getCopy
     {
         @SpirePrefixPatch
         public static SpireReturn<AbstractCard> Prefix(String key, int upgradeTime, int misc)
@@ -35,23 +35,26 @@ public class CardLibraryPatches
         }
     }
 
-//    @SpirePatch(clz = CardLibrary.class, method = "getCard", paramtypez = {String.class})
-//    public static class CardLibraryPatches_getCard1
-//    {
-//        @SpirePrefixPatch
-//        public static SpireReturn<AbstractCard> Prefix(String key)
-//        {
-//            AbstractCard card = AnimatorCard_UltraRare.GetCards().get(key);
-//            if (card != null)
-//            {
-//                return SpireReturn.Return(card);
-//            }
-//            else
-//            {
-//                return SpireReturn.Continue();
-//            }
-//        }
-//    }
+    @SpirePatch(clz = CardLibrary.class, method = "getCard", paramtypez = {String.class})
+    public static class CardLibraryPatches_getCard
+    {
+        public static boolean allowed = false;
+
+        @SpirePrefixPatch
+        public static SpireReturn<AbstractCard> Prefix(String key)
+        {
+            if (allowed)
+            {
+                AbstractCard card = AnimatorCard_UltraRare.GetCards().get(key);
+                if (card != null)
+                {
+                    return SpireReturn.Return(card);
+                }
+            }
+
+            return SpireReturn.Continue();
+        }
+    }
 //
 //    @SpirePatch(clz = CardLibrary.class, method = "getCard", paramtypez = {AbstractPlayer.PlayerClass.class, String.class})
 //    public static class CardLibraryPatches_getCard2

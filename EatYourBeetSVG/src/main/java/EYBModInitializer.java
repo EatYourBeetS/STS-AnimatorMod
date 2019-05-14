@@ -16,7 +16,7 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.CursedBlade;
-import eatyourbeets.relics.PurgingStone;
+import eatyourbeets.relics.PurgingStone_Cards;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
@@ -154,7 +154,7 @@ public class EYBModInitializer
             }
         }
 
-        PurgingStone purgingStone = PurgingStone.GetInstance();
+        PurgingStone_Cards purgingStone = PurgingStone_Cards.GetInstance();
         if (purgingStone != null)
         {
             purgingStone.UpdateBannedCards();
@@ -170,7 +170,7 @@ public class EYBModInitializer
             RemoveColorless(AbstractDungeon.colorlessCardPool);
         }
 
-        PurgingStone purgingStone = PurgingStone.GetInstance();
+        PurgingStone_Cards purgingStone = PurgingStone_Cards.GetInstance();
         if (purgingStone != null)
         {
             purgingStone.UpdateBannedCards();

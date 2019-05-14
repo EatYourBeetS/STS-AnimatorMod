@@ -22,7 +22,7 @@ public class TheMissingPiece extends AnimatorRelic
     public static final String ID = CreateFullID(TheMissingPiece.class.getSimpleName());
 
     private static final ArrayList<Synergy> possibleRewards = new ArrayList<>();
-    private static final int TIMER = 5;
+    private static final int TIMER = 4;
 
     private boolean skipReward;
 
@@ -48,6 +48,12 @@ public class TheMissingPiece extends AnimatorRelic
     public void atBattleStart()
     {
         super.atBattleStart();
+
+        if (AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y == 0)
+        {
+            skipReward = true;
+            return;
+        }
 
         AbstractRoom room = AbstractDungeon.getCurrRoom();
         if (room.rewardAllowed)
@@ -125,12 +131,12 @@ public class TheMissingPiece extends AnimatorRelic
         WeightedList<Synergy> list = new WeightedList<>();
         Map<Synergy, List<AbstractCard>> synergyListMap = AbstractDungeon.player.masterDeck.group.stream().collect(Collectors.groupingBy(this::Group));
 
-        PurgingStone purgingStone = PurgingStone.GetInstance();
+        PurgingStone_Cards purgingStone = PurgingStone_Cards.GetInstance();
 
         for (Synergy s : possibleRewards)
         {
-            if (purgingStone == null || !purgingStone.IsBanned(s))
-            {
+//            if (purgingStone == null || !purgingStone.IsBanned(s))
+//            {
                 int weight = 2;
                 if (synergyListMap.containsKey(s))
                 {
@@ -144,7 +150,7 @@ public class TheMissingPiece extends AnimatorRelic
 
                 logger.info(s.NAME + " : " + weight);
                 list.Add(s, weight);
-            }
+//            }
         }
 
         return list;

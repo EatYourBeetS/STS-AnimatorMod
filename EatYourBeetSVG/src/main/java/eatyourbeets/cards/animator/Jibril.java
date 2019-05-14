@@ -19,7 +19,7 @@ public class Jibril extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,0, 2);
+        Initialize(7,0, 2);
 
         SetSynergy(Synergies.NoGameNoLife);
     }

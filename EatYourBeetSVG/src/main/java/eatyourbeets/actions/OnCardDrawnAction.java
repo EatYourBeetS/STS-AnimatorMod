@@ -95,7 +95,7 @@ public class OnCardDrawnAction extends AnimatorAction
                         if (this.amount > deckSize)
                         {
                             tmp = this.amount - deckSize;
-                            AbstractDungeon.actionManager.addToTop(new OnCardDrawnAction(AbstractDungeon.player, tmp, onDraw, context));// DrawCardAction(AbstractDungeon.player, tmp));
+                            AbstractDungeon.actionManager.addToTop(new OnCardDrawnAction(AbstractDungeon.player, tmp, onDraw, context));// DrawCardAction(AbstractDungeon.player, allowed));
                             AbstractDungeon.actionManager.addToTop(new EmptyDeckShuffleAction());
                             if (deckSize != 0)
                             {

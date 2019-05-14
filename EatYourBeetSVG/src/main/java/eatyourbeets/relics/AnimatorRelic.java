@@ -18,9 +18,14 @@ public abstract class AnimatorRelic extends CustomRelic
         return "Animator_" + id;
     }
 
+    public AnimatorRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
+    {
+        super(id, new Texture(AnimatorResources.GetRelicImage(imageID)), tier, sfx);
+    }
+
     public AnimatorRelic(String id, RelicTier tier, LandingSound sfx)
     {
-        super(id, new Texture(AnimatorResources.GetRelicImage(id)), tier, sfx);
+        this(id, id, tier, sfx);
     }
 
     @Override

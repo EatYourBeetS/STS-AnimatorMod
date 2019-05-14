@@ -1,28 +1,23 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class Chung extends AnimatorCard_Cooldown
 {
     public static final String ID = CreateFullID(Chung.class.getSimpleName());
 
-    private static final int COOLDOWN = 2;
-
     public Chung()
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(0, 9);
+        Initialize(0, 8);
 
-        this.baseSecondaryValue = this.secondaryValue = COOLDOWN;
+        this.baseSecondaryValue = this.secondaryValue = 2;
 
         SetSynergy(Synergies.Elsword);
     }
@@ -56,6 +51,6 @@ public class Chung extends AnimatorCard_Cooldown
     @Override
     protected int GetBaseCooldown()
     {
-        return upgraded ? 2 : 1;
+        return upgraded ? 1 : 2;
     }
 }

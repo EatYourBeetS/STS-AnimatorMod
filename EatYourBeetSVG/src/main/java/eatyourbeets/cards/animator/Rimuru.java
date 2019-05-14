@@ -107,6 +107,15 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
                     if (!transform(p.exhaustPile, card))
                     {
                         PlayerStatistics.onAfterCardPlayed.Unsubscribe(this);
+                        copy.name = copy.originalName;
+                        if (timesUpgraded > 0)
+                        {
+                            copy.name += "+" + timesUpgraded;
+                        }
+                        else if (upgraded)
+                        {
+                            copy.name += "+";
+                        }
                     }
                 }
             }

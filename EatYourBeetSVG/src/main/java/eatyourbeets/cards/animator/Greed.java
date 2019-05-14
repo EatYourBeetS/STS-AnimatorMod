@@ -58,7 +58,6 @@ public class Greed extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeSecondaryValue(2);
-            upgradeMagicNumber(1);
         }
     }
 }

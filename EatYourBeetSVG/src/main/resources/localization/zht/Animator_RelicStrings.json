@@ -72,7 +72,13 @@
 		"FLAVOR": "震驚的真相！",
 		"NAME": "舊棺材"
 	},
-	"Animator_PurgingStone":
+	"Animator_PurgingStone_Cards":
+	{
+		"DESCRIPTIONS": ["你可以 放逐 某些牌， 使它們從 #y正常 卡牌獎勵和商店裡消失。 每次戰鬥獲得 #b1 次使用, 可以存儲到 #b", " 使用次數。 NL NL #p鼠標右擊 用來瀏覽 放逐 的卡牌。"],
+		"FLAVOR": "詛咒使人們感到無助，只能轉移詛咒的影響。",
+		"NAME": "淨化石"
+	},
+	"Animator_PurgingStone_Series":
 	{
 		"DESCRIPTIONS": ["你可以 放逐 掉某些系列的牌使它們不再出現， 擊敗王之後使用次數會增加。", "去除系列"],
 		"FLAVOR": "詛咒使人們感到無助，只能轉移詛咒的影響。",

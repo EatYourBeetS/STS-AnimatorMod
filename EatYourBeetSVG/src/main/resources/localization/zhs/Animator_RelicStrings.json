@@ -72,7 +72,13 @@
 		"FLAVOR": "震惊的真相！",
 		"NAME": "旧棺材"
 	},
-	"Animator_PurgingStone":
+	"Animator_PurgingStone_Cards":
+	{
+		"DESCRIPTIONS": ["你可以 放逐 某些牌， 使它们从 #y正常 卡牌奖励和商店里消失。 每次战斗获得 #b1 次使用, 可以存储到 #b", " 使用次数。 NL NL #p鼠标右击 用来浏览 放逐 的卡牌"],
+		"FLAVOR": "人类无法对抗诅咒，但可以利用它.",
+		"NAME": "解咒石"
+	},
+	"Animator_PurgingStone_Series":
 	{
 		"DESCRIPTIONS": ["你可以 放逐 掉某些牌系列使它们不再出现. 击败boss后获得额外使用次数.", "去除:"],
 		"FLAVOR": "人类无法对抗诅咒，但可以利用它.",

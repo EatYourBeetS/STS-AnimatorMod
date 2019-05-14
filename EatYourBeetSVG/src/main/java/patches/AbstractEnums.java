@@ -3,6 +3,7 @@ package patches;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer.PlayerClass;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 
@@ -24,6 +25,12 @@ public class AbstractEnums
     {
         @SpireEnum
         public static CardLibrary.LibraryType THE_ANIMATOR;
+    }
+
+    public static class Screens
+    {
+        @SpireEnum
+        public static AbstractDungeon.CurrentScreen PURGING_STONE_SCREEN;
     }
 
     public static class Rewards

@@ -16,9 +16,9 @@ public class Yusarin extends AnimatorCard
 
     public Yusarin()
     {
-        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0, 0,1);
+        Initialize(0, 0,2);
 
         baseSecondaryValue = secondaryValue = 2;
 

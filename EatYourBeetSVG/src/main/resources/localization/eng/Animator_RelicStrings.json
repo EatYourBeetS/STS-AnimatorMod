@@ -72,11 +72,17 @@
 		"FLAVOR": "Shocking Truth!",
 		"NAME": "Old Coffin"
 	},
-	"Animator_PurgingStone":
+	"Animator_PurgingStone_Cards":
 	{
-		"DESCRIPTIONS": ["You may banish card #ySeries from appearing in all future rewards and shops. Gain more uses after defeating a boss.", "Removed Series:"],
+		"DESCRIPTIONS": ["You may banish cards from appearing in future #ynormal rewards and shops. Gain #b1 more use at the end of each combat, can store up to #b", " uses. NL NL #pRight #pClick to see all banished cards."],
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
 		"NAME": "Purging Stone"
+	},
+	"Animator_PurgingStone_Series":
+	{
+		"DESCRIPTIONS": ["You may banish card #yseries from appearing in all future rewards and shops. Gain more uses after defeating a boss.", "Removed Series:"],
+		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
+		"NAME": "Purging Stone (Alt)"
 	},
 	"Animator_RacePiece":
 	{

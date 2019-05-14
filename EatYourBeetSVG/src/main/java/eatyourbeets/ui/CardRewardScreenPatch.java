@@ -16,7 +16,7 @@ import eatyourbeets.effects.HideCardEffect;
 import eatyourbeets.misc.BundledRelicContainer;
 import eatyourbeets.misc.BundledRelicProvider;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.relics.PurgingStone;
+import eatyourbeets.relics.PurgingStone_Cards;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +28,7 @@ public class CardRewardScreenPatch
 
     private static final ArrayList<BanCardButton> buttons = new ArrayList<>();
     private static BundledRelicContainer rewardBundle;
-    private static PurgingStone purgingStone;
+    private static PurgingStone_Cards purgingStone;
     private static RewardItem rewardItem;
     private static boolean canBan;
 
@@ -50,7 +50,7 @@ public class CardRewardScreenPatch
             rewardBundle.Open(cards);
         }
 
-        purgingStone = PurgingStone.GetInstance();
+        purgingStone = PurgingStone_Cards.GetInstance();
         if (purgingStone != null && purgingStone.CanActivate(rItem))
         {
             for (AbstractCard card : cards)
@@ -150,7 +150,15 @@ public class CardRewardScreenPatch
                 {
                     searchingCard = false;
 
-                    AbstractCard temp = AbstractDungeon.returnRandomCard();
+                    int tries = 4;
+                    AbstractCard temp;
+                    do
+                    {
+                        temp = AbstractDungeon.returnRandomCard();
+                        tries -= 1;
+                    }
+                    while (tries > 0 && temp.rarity == AbstractCard.CardRarity.RARE);
+
                     for (AbstractCard c : rewardItem.cards)
                     {
                         if (temp.cardID.equals(c.cardID))

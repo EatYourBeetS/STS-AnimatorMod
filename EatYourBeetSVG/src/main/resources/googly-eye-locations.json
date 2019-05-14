@@ -1907,7 +1907,14 @@
 				"y": 8.000025
 			}
 		],
-		"Animator_PurgingStone": [
+		"Animator_PurgingStone_Cards": [
+			{
+				"size": 15.783536,
+				"x": 0.0,
+				"y": -2.7999756
+			}
+		],
+		"Animator_PurgingStone_Series": [
 			{
 				"size": 15.783536,
 				"x": 0.0,

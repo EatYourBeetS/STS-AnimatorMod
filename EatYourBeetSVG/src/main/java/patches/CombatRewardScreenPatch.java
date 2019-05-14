@@ -17,7 +17,7 @@ public class CombatRewardScreenPatch
         {
             relic.receiveRewards(__instance.rewards);
         }
-//        PurgingStone relic2 = (PurgingStone) AbstractDungeon.player.getRelic(PurgingStone.ID);
+//        PurgingStone_Cards relic2 = (PurgingStone_Cards) AbstractDungeon.player.getRelic(PurgingStone_Cards.ID);
 //        if (relic2 != null)
 //        {
 //            relic2.receiveRewards(__instance.rewards);

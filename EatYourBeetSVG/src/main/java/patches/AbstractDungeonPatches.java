@@ -7,7 +7,7 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.events.TheDomVedeloper1;
 import eatyourbeets.events.TheMaskedTraveler1;
 
-@SpirePatch(clz= AbstractDungeon.class,method="initializeCardPools")
+@SpirePatch(clz = AbstractDungeon.class, method = "initializeCardPools")
 public class AbstractDungeonPatches
 {
     @SpirePrefixPatch

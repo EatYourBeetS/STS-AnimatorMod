@@ -43,14 +43,15 @@ public class Sloth extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (this.damage > 0)
-        {
-            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        }
         if (this.block > 0)
         {
             GameActionsHelper.GainBlock(p, this.block);
         }
+        if (this.damage > 0)
+        {
+            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        }
+
         GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, this.magicNumber, false), this.magicNumber);
         GameActionsHelper.ApplyPower(p, m, new LockOnPower(m, this.magicNumber), this.magicNumber);
 

@@ -122,9 +122,9 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
         this.justSorted = true;
     }
 
-    private class CardSeriesComparator implements Comparator<AbstractCard>
+    public static class CardSeriesComparator implements Comparator<AbstractCard>
     {
-        private CardSeriesComparator()
+        public CardSeriesComparator()
         {
         }
 

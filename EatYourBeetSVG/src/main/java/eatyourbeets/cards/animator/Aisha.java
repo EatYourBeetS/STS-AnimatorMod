@@ -2,27 +2,15 @@ package eatyourbeets.cards.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.SmallLaser2Effect;
 import eatyourbeets.powers.PlayerStatistics;
-
-import java.util.List;
 
 public class Aisha extends AnimatorCard_Boost
 {
@@ -54,7 +42,7 @@ public class Aisha extends AnimatorCard_Boost
                     m.hb.cY + MathUtils.random(-0.05F, 0.05F),
                     Color.VIOLET), 0.1F);
 
-             GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.FIRE);
+             GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.FIRE, true);
         }
 
         if (ProgressBoost())

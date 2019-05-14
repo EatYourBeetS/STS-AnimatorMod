@@ -18,7 +18,7 @@ import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.relics.LivingPicture;
-import eatyourbeets.relics.PurgingStone;
+import eatyourbeets.relics.PurgingStone_Cards;
 import eatyourbeets.relics.TheMissingPiece;
 
 import java.lang.reflect.Field;
@@ -103,9 +103,9 @@ public abstract class AnimatorCustomLoadout
         {
             UnlockTracker.markRelicAsSeen(LivingPicture.ID);
         }
-        if (!UnlockTracker.isRelicSeen(PurgingStone.ID))
+        if (!UnlockTracker.isRelicSeen(PurgingStone_Cards.ID))
         {
-            UnlockTracker.markRelicAsSeen(PurgingStone.ID);
+            UnlockTracker.markRelicAsSeen(PurgingStone_Cards.ID);
         }
         if (!UnlockTracker.isRelicSeen(TheMissingPiece.ID))
         {
@@ -114,7 +114,7 @@ public abstract class AnimatorCustomLoadout
 
         ArrayList<String> res = new ArrayList<>();
         res.add(LivingPicture.ID);
-        res.add(PurgingStone.ID);
+        res.add(PurgingStone_Cards.ID);
         res.add(TheMissingPiece.ID);
 
         return res;

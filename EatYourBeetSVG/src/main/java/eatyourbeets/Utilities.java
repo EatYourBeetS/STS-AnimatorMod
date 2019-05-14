@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.misc.WeightedList;
 import eatyourbeets.orbs.Earth;
+import eatyourbeets.orbs.Fire;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -47,7 +48,7 @@ public class Utilities
             orbs.Add(new Earth()    , 6);
             orbs.Add(new Plasma()   , 5);
             orbs.Add(new Dark()     , 4);
-            //orbs.Add(new Fire()     , 3);
+            orbs.Add(new Fire()     , 3);
         }
 
         return orbs.Retrieve(AbstractDungeon.miscRng, false).makeCopy();

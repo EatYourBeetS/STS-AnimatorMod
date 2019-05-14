@@ -19,16 +19,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringJoiner;
 
-public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
+public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<String>
 {
-    public static final String ID = CreateFullID(PurgingStone.class.getSimpleName());
+    public static final String ID = CreateFullID(PurgingStone_Series.class.getSimpleName());
 
     private static Field isBoss = null;
     private final ArrayList<Synergy> bannedSynergies;
 
-    public PurgingStone()
+    public PurgingStone_Series()
     {
-        super(ID, RelicTier.STARTER, LandingSound.SOLID);
+        super(ID, CreateFullID("PurgingStone"), RelicTier.STARTER, LandingSound.SOLID);
 
         bannedSynergies = new ArrayList<>();
 
@@ -126,7 +126,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
         }
     }
 
-    public static PurgingStone GetInstance()
+    public static PurgingStone_Series GetInstance()
     {
         if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null)
         {
@@ -135,9 +135,9 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 
         for (AbstractRelic r : AbstractDungeon.player.relics)
         {
-            if (r instanceof PurgingStone)
+            if (r instanceof PurgingStone_Series)
             {
-                return (PurgingStone)r;
+                return (PurgingStone_Series)r;
             }
         }
 

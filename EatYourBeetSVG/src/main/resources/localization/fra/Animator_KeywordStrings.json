@@ -146,7 +146,7 @@
 	},
 	{
 		"PROPER_NAME": "Jeteur de Sorts",
-		"NAMES": ["Jeteur de Sorts", "Jeteur_de_Sorts", "Jeteuse de Sorts", "Jeteuse_de_Sorts"],
+		"NAMES": ["jeteur de sorts", "jeteur_de_sorts", "jeteuse de sorts", "jeteuse_de_sorts"],
 		"DESCRIPTION": "Les dégâts de cette carte augmentent avec la #yConcentration."
 	},
 	{

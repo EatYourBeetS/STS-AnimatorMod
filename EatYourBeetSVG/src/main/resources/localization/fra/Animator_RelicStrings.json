@@ -72,11 +72,17 @@
 		"FLAVOR": "Une réalité déroutante!",
 		"NAME": "Vieux Cercueil"
 	},
-	"Animator_PurgingStone":
+	"Animator_PurgingStone_Cards":
+	{
+		"DESCRIPTIONS": ["Vous pouvez bannir des cartes, prévenant leur apparition dans les futurs récompenses #ynormales et magasins. Gagne #b1 usage de plus après chaque combat, peut contenir jusqu'à #b", " usages. NL NL #pClique #pDroite pour voir toutes les cartes bannies."],
+		"FLAVOR": "Les humain sont sans défenses contre les malédictions, et peuvent seulement redirigé leur effets.",
+		"NAME": "Pierre de purge"
+	},
+	"Animator_PurgingStone_Series":
 	{
 		"DESCRIPTIONS": ["Vous pouvez bannir des #ySéries de toutes les prochaines récompense et magasin. Gagne plus d'utilisation sur les boss.", "Séries bannis:"],
 		"FLAVOR": "Les humain sont sans défenses contre les malédictions, et peuvent seulement redirigé leur effets.",
-		"NAME": "Pierre de purification"
+		"NAME": "Pierre de purge"
 	},
 	"Animator_RacePiece":
 	{

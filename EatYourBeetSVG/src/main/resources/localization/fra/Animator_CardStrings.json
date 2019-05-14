@@ -35,7 +35,7 @@
 	},
 	"animator_Aisha":
 	{
-		"DESCRIPTION": "Jeteuse de Sorts. NL Infligez !D! dégât(s) pour chaque Orbe que vous avez. Boost !SV! : Gagnez 1 emplacement d'Orbe.",
+		"DESCRIPTION": "Jeteuse_de_Sorts. NL Infligez !D! dégât(s) pour chaque Orbe que vous avez. Boost !SV! : Gagnez 1 emplacement d'Orbe.",
 		"NAME": "Aisha"
 	},
 	"animator_Albedo":
@@ -45,7 +45,7 @@
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi et !SV! dégât(s) aux autres ennemis. Héritage: Gagnez !M! d'Armure_Plaquée.",
+		"DESCRIPTION": "Infligez !D! dégât(s). Infligez !D! dégât(s) à TOUS les ennemis. Héritage: Gagnez !M! d'Armure_Plaquée.",
 		"NAME": "Alexander"
 	},
 	"animator_Aqua":
@@ -567,7 +567,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure.NL Met l'Armure d'un ennemi à !M!. NL Synergie: Conservez votre main ce tour.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Met l'Armure d'un ennemi à !M!. NL Synergie: Conservez votre main ce tour.",
 		"NAME": "'Prêtre Lézard'"
 	},
 	"animator_MaesHughes":
@@ -1009,12 +1009,13 @@
 	},
 	"animator_Azriel":
 	{
-		"DESCRIPTION": "Gagne 2 Vol. NL Quand vous infligez un debuff à un ennemi, gagnez !M! Force.",
-		"NAME": "Azriel"
+		"DESCRIPTION": "Gagne 2 Vol. NL Quand vous infligez un debuff à un ennemi, gagnez !M! Force. Éthérée.",
+		"NAME": "Azriel",
+		"UPGRADE_DESCRIPTION": "Gagne 2 Vol. NL Quand vous infligez un debuff à un ennemi, gagnez !M! Force."
 	},
 	"animator_Giselle":
 	{
-		"DESCRIPTION": "Ingligez !D! dégat(s). NL Infligez !M! Brûlure. NL Dégats triplé sur les ennemis normaux.",
+		"DESCRIPTION": "Ingligez !D! dégat(s). NL Infligez !M! Brûlure. NL Dégats triplé sur les ennemis qui ont moins de !SV! HP.",
 		"NAME": "Giselle"
 	},
 	"animator_HiiragiTenri":
@@ -1025,7 +1026,7 @@
 	},
 	"animator_SirTouchMe":
 	{
-		"DESCRIPTION": "Gagnez !M! Juggernaut. NL Ingligez !D! dégat(s). NL Gagnez !B! d'Armure.",
+		"DESCRIPTION": "Ingligez !D! dégat(s). NL Gagnez !M! Juggernaut. NL Gagnez !B! d'Armure. NL Gagnez !SV! d'Armure_Plaquée.",
 		"NAME": "Sir Touch Me"
 	},
 	"animator_ShikizakiKiki":
@@ -1040,7 +1041,7 @@
 	},
 	"animator_JeanneDArc":
 	{
-		"DESCRIPTION": "Infligez !D! dégat(s). NL Gagnez !M! Temp._HP. NL Gagnez !SV! d'Armure_Ench. NL Épuisez une Malédiction ou Status aléatoire.",
+		"DESCRIPTION": "Infligez !D! dégat(s). NL Gagnez !M! Temp._HP. NL Gagnez !M! d'Armure_Enchantée. NL Épuisez une Malédiction ou Status aléatoire.",
 		"NAME": "Jeanne D'Arc"
 	},
 	"animator_Hero":

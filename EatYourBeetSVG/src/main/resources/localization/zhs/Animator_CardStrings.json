@@ -45,7 +45,7 @@
 	},
 	"animator_Alexander":
 	{
-		"DESCRIPTION": "对目标造成 !D! 点伤害 ， 并对其余敌人造成 !SV! 点伤害 。 遗赠 : 获得 !M! 点 多层护甲 。",
+		"DESCRIPTION": "对目标造成 !D! 点伤害 。 对所有敌人造成 !D! 点 伤害 。 遗赠 : 获得 !M! 点 多层护甲 。",
 		"NAME": "亚历山大大帝"
 	},
 	"animator_Aqua":
@@ -559,7 +559,7 @@
 	{
 		"DESCRIPTION": "消耗 你手中的所有攻击卡。 这一轮 ， 所有敌人都会攻击自己 。 NL 抹除 。 [#EFC851]*[]",
 		"EXTENDED_DESCRIPTION": ["* 注", "若有敌人未有打算攻击，击晕它们"],
-		"NAME": "Lelouch"
+		"NAME": "鲁路修"
 	},
 	"animator_LimeBell":
 	{
@@ -893,12 +893,12 @@
 	"animator_TanyaDegurechaff":
 	{
 		"DESCRIPTION": "造成 !D! 伤害。 NL 丢弃所有 [#EFC851]技能[] 并且为每一个技能获得 !M! 格挡。 遗赠: 获得 [#EFC851]95号兵器[] 。",
-		"NAME": "Tanya Degurechaff"
+		"NAME": "谭雅·提古雷查夫"
 	},
 	"animator_TanyaDegurechaff_Type95":
 	{
-		"DESCRIPTION": "循環2張牌。 保留 所有 [#EFC851]攻擊[] 。 下一輪，你的所有 [#EFC851]攻擊[] 將會造成雙倍傷害。 消耗。 ",
-		"NAME": "95號兵器"
+		"DESCRIPTION": "循环2张牌。保留 所有 [#EFC851]攻击[] 。下一轮，你的所有 [#EFC851]攻击[] 将会造成双倍伤害。消耗。 ",
+		"NAME": "95号兵器"
 	},
 	"animator_Tet":
 	{
@@ -1011,8 +1011,9 @@
 	},
 	"animator_Azriel":
 	{
-		"DESCRIPTION": "获得两 2 层 飞行 。 NL 每当给予敌人负面效果时, 获得 !M! 点 力量 。",
-		"NAME": "Azriel"
+		"DESCRIPTION": "获得两 2 层 飞行 。 NL 每当给予敌人负面效果时, 获得 !M! 点 力量 。 虚无 。",
+		"NAME": "Azriel",
+		"UPGRADE_DESCRIPTION": "获得两 2 层 飞行 。 NL 每当给予敌人负面效果时, 获得 !M! 点 力量 。"
 	},
 	"animator_Giselle":
 	{
@@ -1026,7 +1027,7 @@
 	},
 	"animator_SirTouchMe":
 	{
-		"DESCRIPTION": "获得 !M! 势不可当 。 NL 造成 !D! 点伤害 。 NL 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "获得 !M! 势不可当 。 NL 造成 !D! 点伤害 。 NL 获得 !SV! 多层护甲 。 NL 获得 !B! 点 格挡 。",
 		"NAME": "Sir Touch Me"
 	},
 	"animator_ShikizakiKiki":
@@ -1041,7 +1042,7 @@
 	},
 	"animator_JeanneDArc":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 NL 获得 !M! 点 临时生命 。 NL 获得 !SV! 魔法护甲 。 随机消耗一个状态牌或诅咒牌 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 NL 获得 !M! 点 临时生命 。 NL 获得 !M! 魔法护甲 。 随机消耗一个状态牌或诅咒牌 。",
 		"NAME": "Jeanne D'Arc"
 	},
 	"animator_Hero":

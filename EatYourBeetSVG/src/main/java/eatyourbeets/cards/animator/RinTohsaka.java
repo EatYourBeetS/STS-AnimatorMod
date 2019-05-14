@@ -39,7 +39,7 @@ public class RinTohsaka extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBlock(3);
-            upgradeMagicNumber(3);
+            upgradeMagicNumber(2);
         }
     }
 }

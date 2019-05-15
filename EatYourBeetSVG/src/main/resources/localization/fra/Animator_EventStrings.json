@@ -16,23 +16,23 @@
   "Animator_TheDomVedeloper1": {
     "NAME": "Le Dom Vedeloper",
     "DESCRIPTIONS": [
-      "You hear someone shouting in the distance: NL NL \" Rinne should behave more @erratically@ \" NL \" #yGilgamesh probably deserves a buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL You are slightly intrigued by those strange words... NL Do you decide to approach him?",
-	  "\"Oh hello, hello! Those are some #pinteresting cards, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your cards, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
-	  "\"Wonderful! Wonderful! Here, tell me, what do you think of this card?\"",
-	  "\"Nice, how about this one?\"",
-	  "\"Interesting, and this one?\"",
-	  "\"I see... Lastly, what's your opinion on this one?\"",
-	  "\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you accept, your answers will be sent to the developer)",
-	  "\"Excellent, have a nice day!\" NL NL \"... So... the next series could be...\""
+      "Vous entendez des cris à distance: NL NL \" Rinne devrait agir plus @imprévisiblement@! \" NL \" #yGilgamesh mérite probablement un buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL Vous êtes légèrement intrigué par ces propos... NL Décidez-vous de vous approchez?",
+	  "\"Oh salut bonjour! Ce sont des cartes #pintéressantes, puis-je les examiner un peu?\" NL NL  Sans attendre votre réponse, il a pris toutes vos cartes et les ont classées rapidement. NL NL \"Passionnant... Écoutez, mon ami, que diriez-vous de prendre une place dans notre #ySondage? Bien sûr, vous serez #yrécompensé.\"",
+	  "\"Merveilleux! Merveilleux! Voilà, dites-moi, que pensez-vous de cette carte?\"",
+	  "\"Bien, quant à celle-là?\"",
+	  "\"Fascinant, et cette carte?\"",
+	  "\"Je vois... Finalement, quelle est votre opinion sur celle copie là?\"",
+	  "\"Merci ami, votre récompense telle que promis\" NL NL Vous avez reçu #b100 #yOr. NL NL \"Une dernière chose, acceptez-vous de #gsigner cette feuille?\" NL NL (Si vous acceptez, vos réponses seront envoyées au développeur)",
+	  "\"Merci beaucoup, bonne journée à vous!\" NL NL \"... Alors... la prochaine série pourrait être...\""
     ],
     "OPTIONS": [
 	  "[Partir]",
       "[Accepter] Répondre 4 questions. #gGagnez #g100 #gOr.",
-	  "[1] C'est trop fort...",
-      "[2] C'est une carte trop forte!",
-	  "[3] C'est souvent une bonne carte.",
-	  "[4] Ca a son utilité.",
-	  "[5] Quoi? Ne me montrer plus ca.",
+	  "[1] C'est absolument trop fort...",
+      "[2] C'est une carte très forte!",
+	  "[3] C'est une bonne carte dans beaucoup d'occasions.",
+	  "[4] Ça peut être utile parfois.",
+	  "[5] Quoi? Ne me montrez plus jamais cette chose.",
 	  "[Signer le papier]",
 	  "[Continuer]"
     ]

@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -15,9 +16,17 @@ public class Mitsuba extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,8);
+        Initialize(8,8, 2);
 
         SetSynergy(Synergies.OwariNoSeraph);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        GameActionsHelper.DrawCard(AbstractDungeon.player, this.magicNumber);
     }
 
     @Override

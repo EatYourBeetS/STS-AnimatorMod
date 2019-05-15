@@ -20,6 +20,8 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
 
         Initialize(0,0, 40);
 
+        this.exhaust = true;
+
         SetSynergy(Synergies.OwariNoSeraph);
     }
 
@@ -40,7 +42,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(10);
+            this.exhaust = false;
         }
     }
 }

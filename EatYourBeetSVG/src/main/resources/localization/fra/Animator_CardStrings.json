@@ -425,7 +425,7 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Épuisé un [#EFC851]Attaque aléatoire de votre pioche. Transformé ces dégât(s) en Support_Damage.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Épuisez une [#EFC851]Attaque aléatoire de votre main. Transformé ces dégât(s) en Support_Damage.",
 		"NAME": "Guren"
 	},
 	"animator_Guy":
@@ -526,10 +526,9 @@
 	},
 	"animator_Kuroyukihime":
 	{
-		"DESCRIPTION": "Défausser !M! carte(s). Ajouter [#EFC851]Black [#EFC851]Lotus à votre pioche. Épuisement.",
+		"DESCRIPTION": "Défausser !M! carte(s). Ajouter [#EFC851]Black [#EFC851]Lotus à votre main. Épuisement.",
 		"EXTENDED_DESCRIPTION": ["Black Lotus", "Une carte #yAttaque spéciale qui coute 1."],
-		"NAME": "Kuroyukihime",
-		"UPGRADE_DESCRIPTION": "Défausser !M! carte(s). Ajouter [#EFC851]Black [#EFC851]Lotus+ à votre main. Épuisement."
+		"NAME": "Kuroyukihime"
 	},
 	"animator_Kyubey":
 	{
@@ -599,7 +598,7 @@
 	},
 	"animator_Mitsuba":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Si l'ennemi a de PV que vous, Gagnez !B! d'Armure.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Si l'ennemi a de PV que vous, Gagnez !B! d'Armure. Héritage: Piochez !M! Cartes.",
 		"NAME": "Mitsuba"
 	},
 	"animator_Mitsurugi":
@@ -1020,9 +1019,9 @@
 	},
 	"animator_HiiragiTenri":
 	{
-		"DESCRIPTION": "Gagnez !M! Temp._HP. NL Jouez et Épuisez NL TOUTES les cartes de votre Défausse.",
-
-		"NAME": "Tenri Hiiragi"
+		"DESCRIPTION": "Gagnez !M! Temp._HP. NL Jouez et Épuisez NL TOUTES les cartes de votre Défausse. Épuisement.",
+		"NAME": "Tenri Hiiragi",
+		"UPGRADE_DESCRIPTION": "Gagnez !M! Temp._HP. NL Jouez et Épuisez NL TOUTES les cartes de votre Défausse."
 	},
 	"animator_SirTouchMe":
 	{

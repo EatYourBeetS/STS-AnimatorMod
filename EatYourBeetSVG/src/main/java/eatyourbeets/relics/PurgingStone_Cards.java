@@ -66,7 +66,7 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
 
         counter = 0;
 
-        AddUses(MAX_STORED_USES);
+        AddUses(0);
     }
 
     @Override

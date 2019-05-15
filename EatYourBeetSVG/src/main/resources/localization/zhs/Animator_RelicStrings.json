@@ -4,7 +4,7 @@
 	{
 		"DESCRIPTIONS": ["每 #b", " 回合, 给予所有敌人 #b", " 层 #y燃烧."],
 		"FLAVOR": "使你可以通过一根手指控制火焰.",
-		"NAME": "alchemist glove"
+		"NAME": "炼金手套"
 	},
 	"Animator_BattleDrones":
 	{

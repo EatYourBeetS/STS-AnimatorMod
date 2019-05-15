@@ -426,7 +426,7 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Exhaust a random [#EFC851]Attack in your draw pile. Turn its damage to Support_Damage.",
+		"DESCRIPTION": "Gain !B! Block. NL Exhaust a random [#EFC851]Attack in your hand. Turn its damage to Support_Damage.",
 		"NAME": "Guren"
 	},
 	"animator_Guy":
@@ -527,10 +527,9 @@
 	},
 	"animator_Kuroyukihime":
 	{
-		"DESCRIPTION": "Discard !M! cards. Add [#EFC851]Black [#EFC851]Lotus to your draw pile. Exhaust.",
+		"DESCRIPTION": "Discard !M! cards. Add [#EFC851]Black [#EFC851]Lotus to your hand. Exhaust.",
 		"EXTENDED_DESCRIPTION": ["Black Lotus", "A special 1-cost #yAttack."],
-		"NAME": "Kuroyukihime",
-		"UPGRADE_DESCRIPTION": "Discard !M! cards. Add [#EFC851]Black [#EFC851]Lotus+ to your hand. Exhaust."
+		"NAME": "Kuroyukihime"
 	},
 	"animator_Kyubey":
 	{
@@ -600,7 +599,7 @@
 	},
 	"animator_Mitsuba":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If the enemy had more health than you, gain !B! Block.",
+		"DESCRIPTION": "Deal !D! damage. If the enemy had more health than you, NL gain !B! Block. Legacy: Draw !M! Cards.",
 		"NAME": "Mitsuba"
 	},
 	"animator_Mitsurugi":
@@ -1021,8 +1020,9 @@
 	},
 	"animator_HiiragiTenri":
 	{
-		"DESCRIPTION": "Gain !M! Temp._HP. NL Play and Exhaust NL ALL cards in your discard pile.",
-		"NAME": "Tenri Hiiragi"
+		"DESCRIPTION": "Gain !M! Temp._HP. NL Play and Exhaust NL ALL cards in your discard pile. Exhaust.",
+		"NAME": "Tenri Hiiragi",
+		"UPGRADE_DESCRIPTION": "Gain !M! Temp._HP. NL Play and Exhaust NL ALL cards in your discard pile."
 	},
 	"animator_SirTouchMe":
 	{

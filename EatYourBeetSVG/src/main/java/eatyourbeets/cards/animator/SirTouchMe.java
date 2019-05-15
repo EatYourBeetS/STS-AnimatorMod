@@ -17,7 +17,7 @@ public class SirTouchMe extends AnimatorCard_UltraRare
     {
         super(ID, 2, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(6,4,6);
+        Initialize(6,4,4);
 
         this.baseSecondaryValue = this.secondaryValue = 2;
 
@@ -25,7 +25,7 @@ public class SirTouchMe extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActionsHelper.ApplyPower(p, p, new JuggernautPower(p, this.magicNumber), this.magicNumber);
@@ -34,12 +34,13 @@ public class SirTouchMe extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
-            upgradeBlock(2);
+            upgradeMagicNumber(1);
+            upgradeDamage(2);
+            upgradeBlock(1);
         }
     }
 }

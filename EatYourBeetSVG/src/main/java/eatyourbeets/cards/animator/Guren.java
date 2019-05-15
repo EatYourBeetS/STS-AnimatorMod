@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.misc.RandomizedList;
@@ -34,23 +35,16 @@ public class Guren extends AnimatorCard
     {
         GameActionsHelper.GainBlock(p, this.block);
 
-        AbstractCard attack = GetRandomAttack(p);
+        AbstractCard attack = Utilities.GetRandomElement(p.hand.getAttacks().group);
         if (attack != null)
         {
-            int damage;
-            attack.applyPowers();
-            //attack.calculateCardDamage(null);
-            damage = attack.damage;
-
+            int damage = attack.baseDamage;
             if (damage > 0)
             {
-                ShowCardBrieflyEffect effect = new ShowCardBrieflyEffect(attack, Settings.WIDTH / 3f, Settings.HEIGHT / 2f);
-
-                AbstractDungeon.effectsQueue.add(effect);
                 GameActionsHelper.AddToTop(new ApplyPowerAction(p, p, new SupportDamagePower(p, damage), damage));
-                //GameActionsHelper.AddToTop(new WaitAction(effect.duration));
-                GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(attack, p.drawPile, true));
             }
+
+            GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(attack, p.hand, false));
         }
     }
 
@@ -61,36 +55,5 @@ public class Guren extends AnimatorCard
         {
             upgradeBlock(4);
         }
-    }
-
-    private AbstractCard GetRandomAttack(AbstractPlayer p)
-    {
-        RandomizedList<AbstractCard> attacks = new RandomizedList<>(p.drawPile.getAttacks().group);
-
-        while (attacks.Count() > 0)
-        {
-            AbstractCard card = attacks.Retrieve(AbstractDungeon.miscRng);
-            if (card != null)
-            {
-                if (card instanceof SupportDamageConvertible)
-                {
-                    if (((SupportDamageConvertible)card).CanConvertToSupportDamage())
-                    {
-                        return card;
-                    }
-                }
-                else
-                {
-                    return card;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public interface SupportDamageConvertible
-    {
-        boolean CanConvertToSupportDamage();
     }
 }

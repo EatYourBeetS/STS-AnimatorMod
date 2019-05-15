@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -45,21 +44,15 @@ public class Kuroyukihime extends AnimatorCard
     {
         GameActionsHelper.ChooseAndDiscard(this.magicNumber, false);
 
-        BlackLotus blackLotus = new BlackLotus();
-        if (upgraded)
-        {
-            blackLotus.upgrade();
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(blackLotus, 1));
-        }
-        else
-        {
-            GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(blackLotus, 1, true, true));
-        }
+        GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new BlackLotus(), 1));
     }
 
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeBaseCost(0);
+        }
     }
 }

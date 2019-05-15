@@ -16,25 +16,25 @@
   "Animator_TheDomVedeloper1": {
     "NAME": "The Dom Vedeloper",
     "DESCRIPTIONS": [
-      "You hear someone shouting in the distance: NL NL \" Rinne should behave more @erratically@ \" NL \" #yGilgamesh probably deserves a buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL You are slightly intrigued by those strange words... NL Do you decide to approach him?",
-	  "\"Oh hello, hello! Those are some #pinteresting cards, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your cards, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
-	  "\"Wonderful! Wonderful! Here, tell me, what do you think of this card?\"",
-	  "\"Nice, how about this one?\"",
-	  "\"Interesting, and this one?\"",
-	  "\"I see... Lastly, what's your opinion on this one?\"",
-	  "\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you accept, your answers will be sent to the developer)",
-	  "\"Perfect, have a nice day!\" NL NL \"... So... the next series could be...\""
+      "你听到有人在远处喊叫: NL NL \" 彼我木 应该表现得更加 @不正常@ \" NL \" #y吉尔伽美什 或许需要些加强! \" NL \"  那个满脑子 #bexplosion 的女孩儿可能有些太强了... \" NL NL 你对这些奇怪的话语略感兴趣... NL 你想靠近Ta吗?",
+	  "\"啊，你好, 你好啊! 你似乎有不少 #p有趣的 牌呢, 介意给我看看吗?\" NL NL  不等你给出回答, 他便一把夺走了你所有的牌并快速翻看着. NL NL \"因垂丝汀... 听着，兄弟, 可以回答我几个 #y问题 吗? 当然，不会让你白给的, 你会得到 相称的 #y奖励.\"",
+	  "\"哈哈！太棒了! 那么你觉得这张牌怎么样?\"",
+	  "\"不错哦，这张呢?\"",
+	  "\"有点意思啊，那这个呢?\"",
+	  "\"我大概懂你的意思了......最后再问一个，这张牌你觉得怎么说?\"",
+	  "\"谢谢你啊小老弟, 这是答应你的奖励！\" NL NL 你收到了 #b100 #y金币 . NL NL \"等等，我还有最后一个问题, 你介意 #g填 一下这个表吗?\" NL NL (如果你同意，您的意见将会发送给制作者)",
+	  "\"好，完成了，那么祝你今天牌运昌盛!\" NL NL \"... Emmmm... 那么下一个系列牌该用哪个动漫呢...\""
     ],
     "OPTIONS": [
-	  "[Leave]",
-      "[Accept] Answer 4 questions. #gGain #g100 #gGold.",
-	  "[1] It is definitely too strong...",
-      "[2] It is a very strong card!",
-	  "[3] It is a good card in most situations.",
-	  "[4] It has its uses sometimes.",
-	  "[5] What? Never show me that thing again.",
-	  "[Sign the paper]",
-	  "[Continue]"
+	  "[离开]",
+      "[接受] 回答四个问题. #g获得 #g100 #g金币.",
+	  "[1] 这张太强了！...",
+      "[2] 这是个比较强势的牌。",
+	  "[3] 这牌适用性很强，可以适应绝大部分情况。",
+	  "[4] 它有时候会派上点用场.",
+	  "[5] 啥？我还有这种弱鸡牌？等会我就找个地方销毁掉.....",
+	  "[填表]",
+	  "[继续]"
     ]
   }
 }

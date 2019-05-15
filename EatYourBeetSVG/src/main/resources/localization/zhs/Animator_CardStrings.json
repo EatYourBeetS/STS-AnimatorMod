@@ -207,7 +207,7 @@
 	},
 	"animator_Defend_Katanagatari":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 层  [＃EFC851]临时荆棘[] 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 层 [#EFC851]临时荆棘[] 。",
 		"NAME": "优越防御"
 	},
 	"animator_Defend_Konosuba":
@@ -364,7 +364,7 @@
 	},
 	"animator_GazelDwargon":
 	{
-		"DESCRIPTION": "在每回合开始时 ， 保持一半的 格挡 。 每当你玩攻击卡时 ， 获得 !M! 点 格挡 。",
+		"DESCRIPTION": "在每回合开始时 ， 保持一半的 格挡 。 每当你打出攻击牌时 ， 获得 !M! 点 格挡 。",
 		"NAME": "矮人王"
 	},
 	"animator_Gilgamesh":
@@ -423,7 +423,7 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 从抽牌堆随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 支援 中 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 从手牌随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 支援 中 。",
 		"NAME": "红莲"
 	},
 	"animator_Guy":
@@ -528,10 +528,9 @@
 	},
 	"animator_Kuroyukihime":
 	{
-		"DESCRIPTION": "丢弃 !M! 张牌 。 将 [#EFC851]黑莲花[] 加入到你的抽牌堆中 。 消耗 。",
+		"DESCRIPTION": "丢弃 !M! 张牌 。 将 [#EFC851]黑莲花[] 加入到你的手牌中 。 消耗 。",
 		"EXTENDED_DESCRIPTION": ["黑莲花", "特殊的1耗 #y攻击牌 。"],
-		"NAME": "黑雪公主",
-		"UPGRADE_DESCRIPTION": "丢弃 !M! 张牌 。 将 [#EFC851]黑莲花+[] 加入到你的手牌中 。 消耗 。"
+		"NAME": "黑雪公主"
 	},
 	"animator_Kyubey":
 	{
@@ -601,7 +600,7 @@
 	},
 	"animator_Mitsuba":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 若目标生命值比你高 ， 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 若目标生命值比你高 ， 获得 !B! 点 格挡 。 遗赠 : 抽 !M! 张牌 。",
 		"NAME": "三宫三叶"
 	},
 	"animator_Mitsurugi":
@@ -892,13 +891,13 @@
 	},
 	"animator_TanyaDegurechaff":
 	{
-		"DESCRIPTION": "造成 !D! 伤害。 NL 丢弃所有 [#EFC851]技能[] 并且为每一个技能获得 !M! 格挡。 遗赠: 获得 [#EFC851]95号兵器[] 。",
+		"DESCRIPTION": "造成 !D! 伤害。 NL 丢弃所有 [#EFC851]技能[] 并且为每一个技能获得 !M! 格挡。 遗赠: 获得 [#EFC851]九五式演算宝珠[] 。",
 		"NAME": "谭雅·提古雷查夫"
 	},
 	"animator_TanyaDegurechaff_Type95":
 	{
 		"DESCRIPTION": "循环2张牌。保留 所有 [#EFC851]攻击[] 。下一轮，你的所有 [#EFC851]攻击[] 将会造成双倍伤害。消耗。 ",
-		"NAME": "95号兵器"
+		"NAME": "九五式演算宝珠"
 	},
 	"animator_Tet":
 	{
@@ -1012,7 +1011,7 @@
 	"animator_Azriel":
 	{
 		"DESCRIPTION": "获得两 2 层 飞行 。 NL 每当给予敌人负面效果时, 获得 !M! 点 力量 。 虚无 。",
-		"NAME": "Azriel",
+		"NAME": "阿兹列尔",
 		"UPGRADE_DESCRIPTION": "获得两 2 层 飞行 。 NL 每当给予敌人负面效果时, 获得 !M! 点 力量 。"
 	},
 	"animator_Giselle":
@@ -1022,13 +1021,14 @@
 	},
 	"animator_HiiragiTenri":
 	{
-		"DESCRIPTION": "获得 !M! 点 临时生命 。 NL 打出并 消耗 弃牌堆中所有牌 。",
-		"NAME": "Tenri Hiiragi"
+		"DESCRIPTION": "获得 !M! 点 临时生命 。 NL 打出并 消耗 弃牌堆中所有牌 。 消耗 。",
+		"NAME": "柊天利",
+		"UPGRADE_DESCRIPTION": "获得 !M! 点 临时生命 。 NL 打出并 消耗 弃牌堆中所有牌 。"
 	},
 	"animator_SirTouchMe":
 	{
 		"DESCRIPTION": "获得 !M! 势不可当 。 NL 造成 !D! 点伤害 。 NL 获得 !SV! 多层护甲 。 NL 获得 !B! 点 格挡 。",
-		"NAME": "Sir Touch Me"
+		"NAME": "塔其米"
 	},
 	"animator_ShikizakiKiki":
 	{
@@ -1038,12 +1038,12 @@
 	"animator_Chomusuke":
 	{
 		"DESCRIPTION": "保留 。 获得 [E] ， 本回合每消耗一张牌 ， 抽 !M! 牌 ( 本回合已消耗 !SV! ) 。 每回合可使用一次 。",
-		"NAME": "Chomusuke"
+		"NAME": "豆之助"
 	},
 	"animator_JeanneDArc":
 	{
 		"DESCRIPTION": "造成 !D! 点伤害 。 NL 获得 !M! 点 临时生命 。 NL 获得 !M! 魔法护甲 。 随机消耗一个状态牌或诅咒牌 。",
-		"NAME": "Jeanne D'Arc"
+		"NAME": "圣女贞德"
 	},
 	"animator_Hero":
 	{
@@ -1065,11 +1065,11 @@
 	"animator_Veldora":
 	{
 		"DESCRIPTION": "获得 !SV! 点 集中 。 NL 激发 所有 充能球 !M! 次 。 [#EFC851]被抽到时[] : 生成 2 个 随机 充能球 。",
-		"NAME": "Veldora"
+		"NAME": "暴风龙"
 	},
 	"animator_NivaLada":
 	{
 		"DESCRIPTION": "预热 !SV! : NL 造成 300 点伤害 。 NL 每当你丢弃或消耗牌时 ， 减少 1 层 预热 层数 。",
-		"NAME": "Niva Lada"
+		"NAME": "妮娃·莱妲"
 	}
 }

@@ -150,7 +150,7 @@ public class CardRewardScreenPatch
                 {
                     searchingCard = false;
 
-                    int tries = 4;
+                    int tries = 5;
                     AbstractCard temp;
                     do
                     {

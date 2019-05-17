@@ -18,7 +18,7 @@ public class Benimaru extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(4, 0, 1);
+        Initialize(4, 0, 2);
 
         //AddExtendedDescription();
 
@@ -47,8 +47,7 @@ public class Benimaru extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
+            upgradeDamage(3);
         }
     }
 

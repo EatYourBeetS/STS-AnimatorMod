@@ -1,10 +1,11 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.BlurPower;
+import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.RandomCostReductionAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -16,7 +17,7 @@ public class Rena extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(0, 5, 2);
+        Initialize(0, 4, 1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -26,14 +27,20 @@ public class Rena extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.AddToBottom(new RandomCostReductionAction(1, false));
+        AbstractPlayer p =  AbstractDungeon.player;
+        GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, this.block));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, this.magicNumber, false), this.magicNumber);
+        GameActionsHelper.ApplyPower(p, m, new BlurPower(p, this.magicNumber), this.magicNumber);
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, this.block));
+        }
     }
 
     @Override
@@ -41,7 +48,7 @@ public class Rena extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
+            upgradeBlock(2);
         }
     }
 }

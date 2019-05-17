@@ -1,11 +1,15 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.actions.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+
+import java.util.ArrayList;
 
 public class Guy extends AnimatorCard
 {
@@ -17,8 +21,6 @@ public class Guy extends AnimatorCard
 
         Initialize(0,4, 1);
 
-        this.baseSecondaryValue = this.secondaryValue = 4;
-
         SetSynergy(Synergies.Chaika);
     }
 
@@ -26,12 +28,7 @@ public class Guy extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DrawCard(p, this.magicNumber);
-        GameActionsHelper.ChooseAndDiscard(this.magicNumber, false);
-
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, this.secondaryValue), this.secondaryValue);
-        }
+        GameActionsHelper.AddToBottom(new VariableDiscardAction(p, this.magicNumber, this, this::OnDiscard, false));
     }
 
     @Override
@@ -40,6 +37,21 @@ public class Guy extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
+        }
+    }
+
+    private void OnDiscard(Object state, ArrayList<AbstractCard> cards)
+    {
+        if (state == this && cards != null && cards.size() > 0)
+        {
+            for (AbstractCard card : cards)
+            {
+                if (card.type == CardType.ATTACK)
+                {
+                    GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
+                    return;
+                }
+            }
         }
     }
 }

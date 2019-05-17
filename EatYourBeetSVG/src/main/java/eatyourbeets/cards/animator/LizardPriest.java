@@ -1,9 +1,9 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EquilibriumPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -16,7 +16,9 @@ public class LizardPriest extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0, 8, 1);
+        Initialize(0, 7, 1);
+
+        this.baseSecondaryValue = this.secondaryValue = 2;
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -34,8 +36,7 @@ public class LizardPriest extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.ApplyPower(p, p, new EquilibriumPower(p, 1), 1);
-            //GameActionsHelper.DrawCard(p,1);
+            GameActionsHelper.AddToBottom(new RetainCardsAction(p, this.secondaryValue));
         }
     }
 

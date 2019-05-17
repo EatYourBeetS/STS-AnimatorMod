@@ -22,7 +22,7 @@
 	},
 	"animator_BozesPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yPlated #yArmor."],
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, draw 1 card."],
 		"NAME": "Bozes Co Palesti"
 	},
 	"animator_BurningPower":

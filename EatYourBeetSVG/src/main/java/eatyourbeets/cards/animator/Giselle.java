@@ -23,7 +23,7 @@ public class Giselle extends AnimatorCard_UltraRare
     {
         super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(12,0, 6);
+        Initialize(12,0, 8);
 
         baseSecondaryValue = secondaryValue = 60;
 

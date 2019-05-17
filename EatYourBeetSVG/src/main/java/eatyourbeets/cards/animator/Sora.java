@@ -1,25 +1,15 @@
 package eatyourbeets.cards.animator;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.MasterOfStrategy;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.SoraAction;
-import eatyourbeets.actions.WaitRealtimeAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.misc.SoraEffects.SoraEffect;
 import patches.AbstractEnums;
-
-import java.util.ArrayList;
 
 public class Sora extends AnimatorCard
 {
@@ -49,13 +39,13 @@ public class Sora extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        ArrayList<AbstractCard> cards = AbstractDungeon.actionManager.cardsPlayedThisTurn;
-        if (cards.size() > 1 && cards.get(cards.size() - 2).cardID.equals(Shiro.ID))
-        {
-            GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.GOLD)));
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new MasterOfStrategy()));
-            GameActionsHelper.AddToBottom(new WaitRealtimeAction(0.6f));
-        }
+//        ArrayList<AbstractCard> cards = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+//        if (cards.size() > 1 && cards.get(cards.size() - 2).cardID.equals(Shiro.ID))
+//        {
+//            GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.GOLD)));
+//            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new MasterOfStrategy()));
+//            GameActionsHelper.AddToBottom(new WaitRealtimeAction(0.6f));
+//        }
 
         GameActionsHelper.AddToBottom(new WaitAction(1));
 

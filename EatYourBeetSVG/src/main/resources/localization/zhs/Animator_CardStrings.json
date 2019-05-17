@@ -102,7 +102,7 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "对生命值最低的敌人造成 !D! 点 伤害 。 本回合中 ， 接下来 !M! 次触发 同调 效果时 ，每次获得一层 多层护甲 。",
+		"DESCRIPTION": "对生命值最低的敌人造成 !D! 点 伤害 。 本回合中 ， 接下来 !M! 次触发 同调 效果时 ， 抽 1 张牌。",
 		"NAME": "波赛斯"
 	},
 	"animator_Caster":
@@ -428,7 +428,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 NL 丢弃 !M! 张牌 。 NL 同调 : 下一轮，获得 !SV! 点 护甲。",
+		"DESCRIPTION": "抽 !M! 张牌 。 NL 丢弃 !M! 张牌 。 NL 如果你丢弃了 攻击 牌，获得 !SV! 点 护甲。",
 		"NAME": "奇伊"
 	},
 	"animator_Hakurou":
@@ -569,7 +569,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "使一个敌人的 格挡 值变为 !M! ， 获得 !B! 点 格挡 。 同调 : 保留 本回合的手牌 。",
+		"DESCRIPTION": "使一个敌人的 格挡 值变为 !M! ， 获得 !B! 点 格挡 。 同调 : 保留 !SV! 张牌 。",
 		"NAME": "蜥蜴僧侣"
 	},
 	"animator_MaesHughes":
@@ -595,9 +595,8 @@
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "赋予 !M! 层 燃烧 。 NL 抽 1 张牌 。 NL 使用 !SV! 次后 抹除 ， 获得 [#EFC851]西森柚咲[] 。",
-		"NAME": "黑羽美砂",
-		"UPGRADE_DESCRIPTION": "赋予 !M! 层 燃烧 。 NL 抽 1 张牌 。 NL 使用 !SV! 次后 抹除 ， 获得 [#EFC851]西森柚咲+[] 。"
+		"DESCRIPTION": "获得 1 个 火素 充能球 。 NL 抽 1 张牌 。 NL  将 [#EFC851]西森柚咲[] 加到你的弃牌堆。 NL 消耗 。",
+		"NAME": "黑羽美砂"
 	},
 	"animator_Mitsuba":
 	{
@@ -695,7 +694,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "给予一层 易伤 效果， 获得 !B! 点 格挡 。 撤回 ： 在此轮， 将随机1张手牌的能耗减1。",
+		"DESCRIPTION": "获得 1 层 残影 ，获得 !B! 点 格挡 。 撤回 与 同调 ： 下一轮，获得 !B! 点 格挡 。",
 		"NAME": "蕾娜‧艾兰黛"
 	},
 	"animator_Rimuru":
@@ -780,7 +779,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 获得 火红的武器 。 如果这会杀死敌人 ， 则为每层 燃烧 治疗 2 点 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 获得 火红的武器 。 如果这会杀死敌人 ， 则为每层 燃烧 治疗 1 点 。",
 		"NAME": "静"
 	},
 	"animator_Shuna":
@@ -987,9 +986,8 @@
 	},
 	"animator_Yusarin":
 	{
-		"DESCRIPTION": "下一轮 ， 抽 !M! 张牌并 获得 [E] 。 NL !SV! 次使用后 ， 将其更改为 [#EFC851]黑羽美砂[] 。",
-		"NAME": "西森柚咲",
-		"UPGRADE_DESCRIPTION": "下一轮 ， 抽 !M! 张牌并 获得 [E] 。 NL !SV! 次使用后 ， 将其更改为 [#EFC851]黑羽美砂+[] 。"
+		"DESCRIPTION": "获得 [E] 。 NL 抽 !M! 张牌。 NL 消耗 。",
+		"NAME": "西森柚咲"
 	},
 	"animator_Yuuichirou":
 	{

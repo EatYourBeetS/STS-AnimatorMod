@@ -23,7 +23,7 @@ public class Shizu extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(10, 0, 1);
+        Initialize(9, 0, 1);
 
         AddExtendedDescription();
 
@@ -33,9 +33,9 @@ public class Shizu extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        GameActionsHelper.ApplyPower(p, p, new FlamingWeaponPower(p, 1), 1);
         DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, this, true));
-        GameActionsHelper.ApplyPower(p, p, new FlamingWeaponPower(p, 1), 1);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Shizu extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeBaseCost(2);
         }
     }
 
@@ -56,7 +56,7 @@ public class Shizu extends AnimatorCard
                 AbstractPower burning = monster.getPower(BurningPower.POWER_ID);
                 if (burning != null)
                 {
-                    AbstractDungeon.player.heal(burning.amount * 2, true);
+                    AbstractDungeon.player.heal(burning.amount, true);
                 }
             }
         }

@@ -19,7 +19,7 @@ public class Witch extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0, 10,4);
+        Initialize(0, 10,5);
 
         this.tags.add(CardTags.HEALING);
 

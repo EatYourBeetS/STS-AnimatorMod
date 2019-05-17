@@ -97,12 +97,12 @@
 	},
 	"animator_BlackLotus":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à TOUS les ennemis. NL Gagnez !B! d'Armure. NL Gagnez !M! Flou.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à TOUS les ennemis. NL Gagnez !B! d'Armure. NL Gagnez !M! de Flou.",
 		"NAME": "Black Lotus"
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à l'ennemi avec le moins de PV. A votre prochaine !M! Synergie ce tour, Gagnez 1 d'Armure_Plaquée.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à l'ennemi avec le moins de PV. A votre prochaine !M! Synergie ce tour, piochez une carte.",
 		"NAME": "Bozes"
 	},
 	"animator_Caster":
@@ -151,7 +151,7 @@
 	},
 	"animator_CrowleyEusford":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi aléatoire. NL Cette carte coûte 0 si vous avez Épuisé une carte ce tour.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi aléatoire. NL Cette carte coûte 0 NL si vous avez Épuisé une carte ce tour.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator_Darkness":
@@ -430,9 +430,9 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "Piochez !M! carte. NL Défaussez !M! carte. NL Synergie : Au prochain tour, gagnez !SV! d'Armure.",
+		"DESCRIPTION": "Piochez !M! carte. NL Défaussez !M! carte. NL Si vous avez défaussé une [#EFC851]Attaque, gagnez !B! d'Armure.",
 		"NAME": "Guy",
-		"UPGRADE_DESCRIPTION": "Piochez !M! cartes. NL Défaussez !M! cartes. NL Synergie : Au prochain tour, gagnez !SV! d'Armure."
+		"UPGRADE_DESCRIPTION": "Piochez !M! cartes. NL Défaussez !M! cartes. NL Si vous avez défaussé une [#EFC851]Attaque, gagnez !B! d'Armure."
 	},
 	"animator_Hakurou":
 	{
@@ -567,7 +567,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. Met l'Armure d'un ennemi à !M!. NL Synergie: Conservez votre main ce tour.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. Met l'Armure d'un ennemi à !M!. NL Synergie: Conservez !SV! cartes.",
 		"NAME": "'Prêtre Lézard'"
 	},
 	"animator_MaesHughes":
@@ -593,9 +593,9 @@
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "Appliquez !M! Brûlure. NL Piochez 1 Carte. NL Après !SV! utilisation, se change en [#EFC851]Yusarin.",
+		"DESCRIPTION": "Canalisez 1 Feu. NL Piochez !M! carte. NL Placez une copie de [#EFC851]Yusarin dans la défausse. NL Épuisement.",
 		"NAME": "Misa Kurobane",
-		"UPGRADE_DESCRIPTION": "Appliquez !M! Brûlure. NL Piochez 1 Carte. NL Après !SV! utilisation, se change en [#EFC851]Yusarin+."
+		"UPGRADE_DESCRIPTION": "Canalisez 1 Feu. NL Piochez !M! cartes. NL Placez une copie de [#EFC851]Yusarin dans la défausse. NL Épuisement."
 	},
 	"animator_Mitsuba":
 	{
@@ -693,7 +693,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "Appliquez !M! Vulnérabilité. NL Gagnez !B! d'Armure. NL Rappel: Réduisez le coût d'une carte aléatoire de votre main par 1 ce tour",
+		"DESCRIPTION": "Gagnez !M! de Flou. NL Gagnez !B! d'Armure. NL Rappel et Synergie: Gagnez !B! d'Armure",
 		"NAME": "Rena"
 	},
 	"animator_Rimuru":
@@ -778,7 +778,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez Arme_Enflammée. NL Si cela tue l'ennemi, soigne le double du montant de Brûlure.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez Arme_Enflammée. NL Si cela tue l'ennemi, soigne le montant de Brûlure sur l'ennemi.",
 		"NAME": "Shizu"
 	},
 	"animator_Shuna":
@@ -985,9 +985,8 @@
 	},
 	"animator_Yusarin":
 	{
-		"DESCRIPTION": "Au prochain tour, Gagnez [E] et piochez !M! carte(s). NL Après !SV! utilisations, se transforme en [#EFC851]Misa [#EFC851]Kurobane.",
-		"NAME": "Yusarin",
-		"UPGRADE_DESCRIPTION": "Au prochain tour, Gagnez [E] et piochez !M! carte(s). NL Après !SV! utilisations, se transforme en  [#EFC851]Misa [#EFC851]Kurobane+."
+		"DESCRIPTION": "Gagnez [E]. NL Piochez !M! carte(s). NL Épuisement.",
+		"NAME": "Yusarin"
 	},
 	"animator_Yuuichirou":
 	{

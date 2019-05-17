@@ -3,6 +3,7 @@ package eatyourbeets.actions;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.AnimatorResources;
@@ -12,10 +13,16 @@ import java.util.function.BiConsumer;
 
 public class VariableDiscardAction extends AnimatorAction
 {
+    private final boolean anyNumber;
     private final Object state;
     private final BiConsumer<Object, ArrayList<AbstractCard>> onDiscard;
 
     public VariableDiscardAction(AbstractPlayer player, int discard, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onDiscard)
+    {
+        this(player, discard, state, onDiscard, true);
+    }
+
+    public VariableDiscardAction(AbstractPlayer player, int discard, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onDiscard, boolean anyNumber)
     {
         this.state = state;
         this.onDiscard = onDiscard;
@@ -23,6 +30,7 @@ public class VariableDiscardAction extends AnimatorAction
         this.amount = discard;
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.DISCARD;
+        this.anyNumber = anyNumber;
     }
 
     public void update()
@@ -36,8 +44,18 @@ public class VariableDiscardAction extends AnimatorAction
             }
             else
             {
-                String discardMessage = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Actions).TEXT[2];
-                AbstractDungeon.handCardSelectScreen.open(discardMessage, this.amount, true,true);
+
+                String discardMessage;
+                if (anyNumber)
+                {
+                    discardMessage = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Actions).TEXT[2];
+                }
+                else
+                {
+                    discardMessage = CardCrawlGame.languagePack.getUIString("DiscardAction").TEXT[0];
+                }
+
+                AbstractDungeon.handCardSelectScreen.open(discardMessage, this.amount, anyNumber, anyNumber);
                 this.tickDuration();
             }
 

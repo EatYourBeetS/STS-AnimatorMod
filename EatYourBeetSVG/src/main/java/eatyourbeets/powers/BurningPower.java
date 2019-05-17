@@ -87,7 +87,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
         }
         else if (amount > 1)
         {
-            return amount / 2;
+            return (amount / 2) + amount % 2;
         }
         else
         {

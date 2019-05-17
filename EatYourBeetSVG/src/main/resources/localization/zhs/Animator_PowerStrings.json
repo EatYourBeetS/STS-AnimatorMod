@@ -22,7 +22,7 @@
 	},
 	"animator_BozesPower":
 	{
-		"DESCRIPTIONS": ["接下来 #b", " 次触发 #y同调 效果时 ，每次获得 #b", " 层 [#EFC851]多层护甲[] 。"],
+		"DESCRIPTIONS": ["接下来 #b", " 次触发 #y同调 效果时 ，抽一张牌 。"],
 		"NAME": "波赛斯·戈·芭蕾丝蒂"
 	},
 	"animator_BurningPower":

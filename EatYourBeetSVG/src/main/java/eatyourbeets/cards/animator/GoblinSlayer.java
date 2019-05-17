@@ -20,7 +20,7 @@ public class GoblinSlayer extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(5,9);
+        Initialize(7,7);
 
         this.retain = true;
 
@@ -71,7 +71,8 @@ public class GoblinSlayer extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(2);
+            upgradeBlock(2);
         }
     }
 

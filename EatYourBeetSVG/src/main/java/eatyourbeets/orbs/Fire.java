@@ -35,7 +35,7 @@ public class Fire extends AnimatorOrb
 
         this.hFlip1 = MathUtils.randomBoolean();
 
-        this.baseEvokeAmount = this.evokeAmount = BURNING_AMOUNT * 2;
+        this.baseEvokeAmount = this.evokeAmount = BURNING_AMOUNT * 3;
         this.basePassiveAmount = this.passiveAmount = 2;
 
         this.updateDescription();

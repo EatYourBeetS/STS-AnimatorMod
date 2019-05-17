@@ -103,7 +103,7 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "Deal !D! damage to the lowest health enemy. On your next !M! Synergies this turn, gain 1 Plated_Armor.",
+		"DESCRIPTION": "Deal !D! damage to the lowest health enemy. On your next !M! Synergies this turn, draw 1 card.",
 		"NAME": "Bozes"
 	},
 	"animator_Caster":
@@ -152,7 +152,7 @@
 	},
 	"animator_CrowleyEusford":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random enemy. NL This card costs 0 if you Exhausted a card this turn.",
+		"DESCRIPTION": "Deal !D! damage to a random enemy. NL This card costs 0 NL if you Exhausted a card this turn.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator_Darkness":
@@ -431,9 +431,9 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "Draw !M! card. NL Discard !M! card. NL Synergy: Next turn, gain !SV! Block.",
+		"DESCRIPTION": "Draw !M! card. NL Discard !M! card. NL If you discarded an [#EFC851]Attack, gain !B! Block.",
 		"NAME": "Guy",
-		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard !M! cards. NL Synergy: Next turn, gain !SV! Block."
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard !M! cards. NL If you discarded an [#EFC851]Attack, gain !B! Block."
 	},
 	"animator_Hakurou":
 	{
@@ -568,7 +568,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Set the Block of the enemy to !M!. NL Synergy: Retain your hand this turn.",
+		"DESCRIPTION": "Gain !B! Block. NL Set the Block of the enemy to !M!. Synergy: Retain !SV! Cards.",
 		"NAME": "'Lizard Priest'"
 	},
 	"animator_MaesHughes":
@@ -594,9 +594,9 @@
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "Apply !M! Burning. NL Draw 1 Card. NL After !SV! uses, change into [#EFC851]Yusarin.",
+		"DESCRIPTION": "Channel 1 Fire. NL Draw !M! card. NL Add [#EFC851]Yusarin to your discard pile. Exhaust.",
 		"NAME": "Misa Kurobane",
-		"UPGRADE_DESCRIPTION": "Apply !M! Burning. NL Draw 1 Card. NL After !SV! uses, change into [#EFC851]Yusarin+."
+		"UPGRADE_DESCRIPTION": "Channel 1 Fire. NL Draw !M! cards. NL Add [#EFC851]Yusarin to your discard pile. Exhaust."
 	},
 	"animator_Mitsuba":
 	{
@@ -694,7 +694,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Apply !M! Vulnerable. NL Recall: Reduce the cost of a random card by 1 this turn.",
+		"DESCRIPTION": "Gain !M! Blur. NL Gain !B! Block. NL Synergy and Recall: NL Next turn, gain !B! Block.",
 		"NAME": "Rena"
 	},
 	"animator_Rimuru":
@@ -779,7 +779,7 @@
 	},
 	"animator_Shizu":
 	{
-		"DESCRIPTION": "Deal !D! Damage. Gain Flaming_Weapon. NL If this kills an enemy, NL heal for twice its Burning amount.",
+		"DESCRIPTION": "Deal !D! Damage. Gain Flaming_Weapon. NL If this kills an enemy, NL heal for its Burning amount.",
 		"NAME": "Shizu"
 	},
 	"animator_Shuna":
@@ -936,7 +936,7 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "Lazy. NL Channel 1 Dark. NL Deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Lazy. NL Channel 1 Dark. NL Deal !D! damage NL to ALL enemies.",
 		"NAME": "Urushihara"
 	},
 	"animator_Vanir":
@@ -986,9 +986,9 @@
 	},
 	"animator_Yusarin":
 	{
-		"DESCRIPTION": "Next turn, Gain [E] and draw !M! cards. NL After !SV! uses, change into [#EFC851]Misa [#EFC851]Kurobane.",
+		"DESCRIPTION": "Gain [E]. NL Draw !M! card. NL Exhaust.",
 		"NAME": "Yusarin",
-		"UPGRADE_DESCRIPTION": "Next turn, Gain [E] and draw !M! cards. NL After !SV! uses, change into [#EFC851]Misa [#EFC851]Kurobane+."
+		"UPGRADE_DESCRIPTION": "Gain [E]. NL Draw !M! cards. NL Exhaust."
 	},
 	"animator_Yuuichirou":
 	{

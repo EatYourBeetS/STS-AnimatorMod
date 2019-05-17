@@ -22,7 +22,7 @@
 	},
 	"animator_BozesPower":
 	{
-		"DESCRIPTIONS": ["A la prochaine #b", " #ySynergies ce tour, gagnez #b", " #yArmure_Renforcée."],
+		"DESCRIPTIONS": ["A la prochaine #b", " #ySynergies ce tour, piochez 1 card."],
 		"NAME": "Bozes Co Palesti"
 	},
 	"animator_BurningPower":

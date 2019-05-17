@@ -18,7 +18,7 @@
 		[
 			"#yPassive: At the end of turn, deal #b", " damage to the highest health enemy and apply #b",
 			" #yBurning. NL #yEvoke: Apply #b",
-			" #yBurning to ALL enemies. NL NL Lasts #b", " turn/s."
+			" #yBurning to ALL enemies."
 		]
 	}
 }

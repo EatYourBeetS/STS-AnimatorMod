@@ -22,6 +22,12 @@ public class ChooseFromPileAction extends AbstractGameAction
 
     public ChooseFromPileAction(int amount, boolean random, CardGroup sourceGroup, BiConsumer<Object, ArrayList<AbstractCard>> onCompletion, Object state, String message)
     {
+        this(amount, random, sourceGroup, onCompletion, state, message, false);
+    }
+
+    public ChooseFromPileAction(int amount, boolean random, CardGroup sourceGroup, BiConsumer<Object, ArrayList<AbstractCard>> onCompletion, Object state, String message, boolean useSource)
+    {
+        this.useSource = useSource;
         this.message = message;
         this.selectedCards = new ArrayList<>();
         this.onCompletion = onCompletion;
@@ -32,11 +38,6 @@ public class ChooseFromPileAction extends AbstractGameAction
         this.setValues(AbstractDungeon.player, AbstractDungeon.player, amount);
         this.actionType = ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_MED;
-    }
-
-    public void UseSource(boolean value)
-    {
-        useSource = value;
     }
 
     public void update()

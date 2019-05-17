@@ -26,7 +26,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(13,5, 2);
+        Initialize(13,7, 2);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -48,21 +48,20 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
-            upgradeDamage(1);
+            upgradeDamage(2);
             upgradeMagicNumber(1);
         }
     }
 
-    private static WeightedList<AbstractPower> GetRandomDebuffs(AbstractPlayer p, AbstractMonster m, boolean upgraded)
+    private static WeightedList<AbstractPower> GetRandomDebuffs(AbstractPlayer p, AbstractMonster m)
     {
         WeightedList<AbstractPower> result = new WeightedList<>();
-        result.Add(new WeakPower(m, upgraded ? 2 : 1, false), 4);
-        result.Add(new VulnerablePower(m, upgraded ? 2 : 1, false), 4);
-        result.Add(new PoisonPower(m, p, upgraded ? 4 : 3), 3);
-        result.Add(new ConstrictedPower(m, p, upgraded ? 3 : 2), 3);
-        result.Add(new BurningPower(m, p, upgraded ? 4 : 3), 2);
-        result.Add(new StrengthPower(m, upgraded ? -2 : -1), 2);
+        result.Add(new WeakPower(m, 1, false), 4);
+        result.Add(new VulnerablePower(m, 1, false), 4);
+        result.Add(new PoisonPower(m, p, 3), 3);
+        result.Add(new ConstrictedPower(m, p, 2), 3);
+        result.Add(new BurningPower(m, p, 3), 2);
+        result.Add(new StrengthPower(m, -1), 2);
         result.Add(new StunMonsterPower(m, 1), 1);
 
         return result;
@@ -84,7 +83,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 
         GameActionsHelper.DamageTargetPiercing(p, target, this, AbstractGameAction.AttackEffect.FIRE).bypassBlock = false;
 
-        WeightedList<AbstractPower> debuffs = GetRandomDebuffs(p, target, false);
+        WeightedList<AbstractPower> debuffs = GetRandomDebuffs(p, target);
         for (int i = 0; i < magicNumber; i++)
         {
             AbstractPower debuff = debuffs.Retrieve(AbstractDungeon.miscRng);

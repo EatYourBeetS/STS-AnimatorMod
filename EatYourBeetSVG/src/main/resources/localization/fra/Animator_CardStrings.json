@@ -238,7 +238,7 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "Gagnez [E] [E]. NL Prendre !M! dégâts à la fin de votre tour. NL Héritage et Rappel: Gagnez [E].",
+		"DESCRIPTION": "Gagnez [E] [E]. NL Prendre !M! dégâts à la fin de votre tour. NL Héritage: Gagnez [E] [E].",
 		"NAME": "Demiurge"
 	},
 	"animator_DolaCouronne":
@@ -477,14 +477,15 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "Piochez !M! carte(s). NL Infligez !D! dégât(s) pour chaque carte pioché. Synergie: Piochez 1 carte en plus.",
+		"DESCRIPTION": "Piochez !M! carte(s). NL Synergie: Piochez 1 carte en plus. NL Infligez !D! dégât(s) pour chaque carte pioché. ",
 		"NAME": "Itami Youji"
 	},
 	"animator_IzunaHatsuse":
 	{
-		"DESCRIPTION": "Appliquez 1 Faiblesse. NL Gagnez !B! d'Armure. NL [#EFC851]Blood [#EFC851]Destruction.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Appliquez 1 Faiblesse. NL [#EFC851]Blood [#EFC851]Destruction.",
 		"EXTENDED_DESCRIPTION": ["Blood Destruction", "Tant que vous êtes en dessous de 25% max PV, cette carte deviendra une carte #yAttaque qui coûte 0.", "Infligez !D! dégât(s) deux fois. NL Soignez !M! PV."],
-		"NAME": "Izuna Hatsuse"
+		"NAME": "Izuna Hatsuse",
+		"UPGRADE_DESCRIPTION": "Gagnez !B! d'Armure. NL Appliquez 1 Faiblesse. NL [#EFC851]Blood [#EFC851]Destruction+."
 	},
 	"animator_Jibril":
 	{
@@ -521,13 +522,13 @@
 	},
 	"animator_Kuribayashi":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !SV! Choked. NL Synergie: L'ennemi perd !M! Force ce tour.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !SV! Choked. NL Synergie: L'ennemi perd !M! de Force NL ce tour.",
 		"NAME": "Kuribayashi"
 	},
 	"animator_Kuroyukihime":
 	{
 		"DESCRIPTION": "Défausser !M! carte(s). Ajouter [#EFC851]Black [#EFC851]Lotus à votre main. Épuisement.",
-		"EXTENDED_DESCRIPTION": ["Black Lotus", "Une carte #yAttaque spéciale qui coute 1."],
+		"EXTENDED_DESCRIPTION": ["Black Lotus", "Une carte #yAttaque spéciale qui coûte 1."],
 		"NAME": "Kuroyukihime"
 	},
 	"animator_Kyubey":
@@ -566,7 +567,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Met l'Armure d'un ennemi à !M!. NL Synergie: Conservez votre main ce tour.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. Met l'Armure d'un ennemi à !M!. NL Synergie: Conservez votre main ce tour.",
 		"NAME": "'Prêtre Lézard'"
 	},
 	"animator_MaesHughes":
@@ -658,7 +659,7 @@
 	},
 	"animator_PandorasActor":
 	{
-		"DESCRIPTION": "Changeforme. NL Gagnez !B! d'Armure. NL Synergie: NLGagnez !M! d'Armure supplémentaire.",
+		"DESCRIPTION": "Changeforme. NL Gagnez !B! d'Armure. NL Synergie: NLGagnez !M! d'Armure additionnelle.",
 		"NAME": "Acteur de Pandora"
 	},
 	"animator_PinaCoLada":
@@ -692,7 +693,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "Appliquez !M! Vulnérabilité. NL Gagnez !B! d'Armure. NL Synergie et Rappel: Gagnez 1 Flou.",
+		"DESCRIPTION": "Appliquez !M! Vulnérabilité. NL Gagnez !B! d'Armure. NL Rappel: Réduisez le coût d'une carte aléatoire de votre main par 1 ce tour",
 		"NAME": "Rena"
 	},
 	"animator_Rimuru":
@@ -708,7 +709,7 @@
 	},
 	"animator_RoryMercury":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL [#EFC851]Drawn[] et Synergie: Infligez !M! dégât(s) to un ennemi aléatoire.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi aléatoire 2 fois. NL [#EFC851]Drawn[]: Gagnez !M! de Force temporaire.",
 		"NAME": "Rory Mercury"
 	},
 	"animator_RoyMustang":
@@ -787,7 +788,7 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! de Vulnérable. NL Appliquez !M! de Ciblage. NL Gagnez !B! d'Armure. NL [#EFC851]Paresse.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! de Vulnérable. NL Appliquez !M! de Faiblesse. NL Gagnez !B! d'Armure. NL [#EFC851]Paresse.",
 		"EXTENDED_DESCRIPTION": ["Paresse", "Au début de chaque tour, augmentez le montant #yd'Armure and de dégâts par 1 pour chaque Orbe que vous avez. Après l'utilisation, diminuez les dégâts et le montant #y d'Armure de cette carte de moitié."],
 		"NAME": "Paresse"
 	},
@@ -934,13 +935,13 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "Paresse. NL Canalisez 1 Tenèbre et Infligez !D! dégât(s) à TOUS les ennemis.",
+		"DESCRIPTION": "Paresse. NL Canalisez 1 Tenèbre NL Infligez !D! dégât(s) à TOUS les ennemis.",
 		"NAME": "Urushihara"
 	},
 	"animator_Vanir":
 	{
-		"DESCRIPTION": "Changeforme. [#EFC851]Vanir. NL Infligez !D! dégât(s). NL Boost !SV! : Infligez !M! more dégât(s).",
-		"EXTENDED_DESCRIPTION": ["Vanir", "Si cette carte est épuisé, choisissez une carte de votre pioche et transformé là en une nouvelle copie de cette carte."],
+		"DESCRIPTION": "Changeforme. [#EFC851]Vanir. NL Infligez !D! dégât(s). NL Boost !SV! : Infligez !M! dégât(s) additionnel(s).",
+		"EXTENDED_DESCRIPTION": ["Vanir", "Si cette carte est épuisée, choisissez une carte de votre pioche et transformez-la en une nouvelle copie de cette carte."],
 		"NAME": "Vanir"
 	},
 	"animator_Vesta":

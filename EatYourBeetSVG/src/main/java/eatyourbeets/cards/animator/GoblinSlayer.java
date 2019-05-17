@@ -20,14 +20,13 @@ public class GoblinSlayer extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(4,8);
+        Initialize(5,9);
 
         this.retain = true;
 
         AddExtendedDescription();
         SetSynergy(Synergies.GoblinSlayer);
     }
-
 
     @Override
     public void atTurnStart()
@@ -72,8 +71,7 @@ public class GoblinSlayer extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
-            upgradeBlock(1);
+            upgradeDamage(4);
         }
     }
 

@@ -4,15 +4,11 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.powers.SupportDamagePower;
 
 public class Guren extends AnimatorCard
@@ -23,9 +19,7 @@ public class Guren extends AnimatorCard
     {
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0, 10);
-
-        //AddExtendedDescription();
+        Initialize(0, 12);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -53,7 +47,7 @@ public class Guren extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(4);
+            upgradeBlock(3);
         }
     }
 }

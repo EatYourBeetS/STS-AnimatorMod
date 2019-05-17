@@ -32,15 +32,7 @@ public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.GainEnergy(1);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        GameActionsHelper.GainEnergy(1);
+        GameActionsHelper.GainEnergy(2);
     }
 
     @Override

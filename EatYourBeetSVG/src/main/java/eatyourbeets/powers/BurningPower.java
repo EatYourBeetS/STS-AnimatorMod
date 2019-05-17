@@ -17,7 +17,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     public static final String POWER_ID = CreateFullID(BurningPower.class.getSimpleName());
     private final AbstractCreature source;
 
-    private static final float ATTACK_MULTIPLIER = 5;
+    private static final float ATTACK_MULTIPLIER = 4;
 
     public BurningPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
@@ -81,7 +81,18 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     @Override
     public int getHealthBarAmount()
     {
-        return amount;
+        if (amount == 1)
+        {
+            return 1;
+        }
+        else if (amount > 1)
+        {
+            return amount / 2;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     @Override

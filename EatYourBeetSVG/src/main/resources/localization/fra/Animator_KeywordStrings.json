@@ -106,7 +106,7 @@
 	},
 	{
 		"NAMES": ["burning", "brûlure"],
-		"DESCRIPTION": "Subit des dommages en début de tour. Subit #b5% de dégats en plus des #yAttaques par brûlure. Se réduit de 1 par tour.",
+		"DESCRIPTION": "Subit des dommages en début de tour. Subit #b4% de dégats en plus des #yAttaques par brûlure. Se réduit de 1 par tour.",
 		"PROPERNAME": "Brûlure"
 	},
 	{

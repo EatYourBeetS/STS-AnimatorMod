@@ -106,7 +106,7 @@
 	},
 	{
 		"NAMES": ["burning"],
-		"DESCRIPTION": "Take damage at the start of your turn. Also take #b5% more #yAttack damage per stack. Reduced by 1 each turn.",
+		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by 1 each turn.",
 		"PROPERNAME": "Burning"
 	},
 	{
@@ -157,7 +157,7 @@
 	{
 		"PROPER_NAME": "Lazy",
 		"NAMES": ["lazy"],
-		"DESCRIPTION": "This card's damage might be delayed by a random number of turns."
+		"DESCRIPTION": "This card's damage will be delayed by a random number of turns."
 	},
 	{
 		"PROPER_NAME": "Flame Barrier",

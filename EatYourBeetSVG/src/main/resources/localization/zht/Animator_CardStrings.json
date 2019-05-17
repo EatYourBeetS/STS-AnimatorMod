@@ -237,7 +237,7 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "獲得 [E] [E] 。 在本回合結束時 ， 受到 !M! 點 傷害 。 遺產 ， 撤回 : 獲得 [E]",
+		"DESCRIPTION": "獲得 [E] [E] 。 在本回合結束時 ， 受到 !M! 點 傷害 。 遺產 : 獲得 [E] [E]",
 		"NAME": "迪米烏哥斯"
 	},
 	"animator_DolaCouronne":
@@ -473,14 +473,15 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "抽 !M! 張牌 。 每抽一張牌造成 !D! 點 傷害 。 同調 : 再抽一張卡片 。",
+		"DESCRIPTION": "抽 !M! 張牌 。 同調 : 再抽一張卡片 。 每抽一張牌造成 !D! 點 傷害。",
 		"NAME": "伊丹耀司"
 	},
 	"animator_IzunaHatsuse":
 	{
-		"DESCRIPTION": "給予 1 層 虛弱 。 NL 獲得 !B! 點 格擋 。 NL [#EFC851]血液破壞[] 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 給予 1 層 虛弱 。 NL [#EFC851]血液破壞[] 。",
 		"EXTENDED_DESCRIPTION": ["血液破壞", "當你的HP低於25％時， 這張卡將成為一個特殊的0耗能 #攻擊牌 。", "造成 !D! 點 傷害 兩次 。 NL 回復 !M! 點 生命 。"],
-		"NAME": "初賴伊剛"
+		"NAME": "初賴伊剛",
+		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 NL 給予 1 層 虛弱 。 NL [#EFC851]血液破壞+[] 。"
 	},
 	"animator_Jibril":
 	{
@@ -692,8 +693,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "給予一層 易傷 效果， 獲得 !B! 點 格擋 。 同調 ， 撤回 : 獲得 1 [#EFC851]殘影[] 。",
-		"EXTENDED_DESCRIPTION": ["殘影", "下回合開始時格擋不會消失 。"],
+		"DESCRIPTION": "給予一層 易傷 效果， 獲得 !B! 點 格擋 。 撤回 ： 在此輪， 將隨機1張手牌的能耗減1。",
 		"NAME": "蕾娜‧艾蘭黛"
 	},
 	"animator_Rimuru":
@@ -709,7 +709,7 @@
 	},
 	"animator_RoryMercury":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 [#EFC851]被抽到時[] ， 同調 : 對一個隨機的敵人造成 !M! 點 傷害 。",
+		"DESCRIPTION": "隨機對敵人造成 !D! 點傷害2次 。 [#EFC851]被抽到時[] ； 獲得 !M! 點 臨時 力量 。",
 		"NAME": "蘿莉·麥丘利"
 	},
 	"animator_RoyMustang":
@@ -748,7 +748,7 @@
 	"animator_Shichika":
 	{
 		"DESCRIPTION": "獲得 !B! 點 格擋 和 1 點 力量 。 NL 同調 : 增加 [#EFC851]虛刀流[] 到你的手牌 。",
-		"EXTENDED_DESCRIPTION": ["虚刀流", "A special 1-cost attack that hits multiple times and Exhaust."],
+		"EXTENDED_DESCRIPTION": ["虛刀流", "特殊的1能耗多次 攻擊，消耗."],
 		"NAME": "鑢七花"
 	},
 	"animator_ShichikaKyotouryuu":
@@ -788,8 +788,8 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 給予 !M! 層 易傷 。 NL 給予 !M! 層 跟踪鎖定 。 獲得 !B! 格擋 。 [#EFC851]懶惰[]",
-		"EXTENDED_DESCRIPTION": ["懶惰", "每輪開始時，將這張牌的 #y格擋 與傷害為每一個您擁有的充能球增加1 。 每次使用後， 將這張牌的 #y格擋 與傷害減半。 "],
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 給予 !M! 層 易傷 。 NL 給予 !M! 層 虛弱 。 獲得 !B! 格擋 。 [#EFC851]懶惰[]",
+		"EXTENDED_DESCRIPTION": ["懶惰", "每輪開始時，將這張牌的 #y格擋 與傷害為每一個您擁有的充能球增加1 。 每次使用後， 將這張牌的 #y格擋 與傷害減半。"],
 		"NAME": "斯洛斯"
 	},
 	"animator_Sora":

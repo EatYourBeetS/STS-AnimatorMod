@@ -18,7 +18,7 @@
 		[
 			"#yPassif: A la fin du tour, inflige #b", " dégats à l'ennemi le plus haut en PV et infligé #b",
 			" #yBrûlure. NL #yActivation: Inflige #b",
-			" #yBrûlure à TOUS les ennemis. NL NL Dure #b", " tours/s."
+			" #yBrûlure à TOUS les ennemis."
 		]
 	}
 }

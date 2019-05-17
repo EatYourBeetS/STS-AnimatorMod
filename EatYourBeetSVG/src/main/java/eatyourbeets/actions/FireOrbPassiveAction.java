@@ -24,12 +24,6 @@ public class FireOrbPassiveAction extends AnimatorAction
 
     public void update()
     {
-        if (fire.evoked)
-        {
-            this.isDone = true;
-            return;
-        }
-
         int maxHealth = Integer.MIN_VALUE;
         AbstractMonster enemy = null;
         AbstractPlayer p = AbstractDungeon.player;
@@ -49,13 +43,13 @@ public class FireOrbPassiveAction extends AnimatorAction
             GameActionsHelper.ApplyPower(p, enemy, new BurningPower(enemy, p, Fire.BURNING_AMOUNT), Fire.BURNING_AMOUNT);
 
             int actualDamage = AbstractOrb.applyLockOn(enemy, fire.passiveAmount);
-
-            GameActionsHelper.DamageTarget(p, enemy, actualDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+            if (actualDamage > 0)
+            {
+                GameActionsHelper.DamageTarget(p, enemy, actualDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+            }
 
             GameActionsHelper.ResetOrder();
         }
-
-        fire.ReduceAmount();
 
         this.isDone = true;
     }

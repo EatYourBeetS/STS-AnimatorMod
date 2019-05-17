@@ -16,7 +16,7 @@ public class LizardPriest extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0, 7, 1);
+        Initialize(0, 8, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
     }

@@ -15,7 +15,7 @@ public class ExhaustFromPileAction extends AbstractGameAction
     public static final String[] TEXT;
     private AbstractPlayer p;
     private boolean random;
-    private boolean anyNumber;
+    private boolean canCancel;
     private final CardGroup sourceGroup;
 
     public ExhaustFromPileAction(int amount, boolean random, CardGroup sourceGroup)
@@ -23,9 +23,9 @@ public class ExhaustFromPileAction extends AbstractGameAction
         this(amount, random, sourceGroup, false);
     }
 
-    public ExhaustFromPileAction(int amount, boolean random, CardGroup sourceGroup, boolean anyNumber)
+    public ExhaustFromPileAction(int amount, boolean random, CardGroup sourceGroup, boolean canCancel)
     {
-        this.anyNumber = anyNumber;
+        this.canCancel = canCancel;
         this.sourceGroup = sourceGroup;
         this.random = random;
         this.p = AbstractDungeon.player;
@@ -47,7 +47,7 @@ public class ExhaustFromPileAction extends AbstractGameAction
             {
                 this.isDone = true;
             }
-            else if (cards.size() <= this.amount && !anyNumber)
+            else if (cards.size() <= this.amount && !canCancel)
             {
                 for (int i = 0; i < cards.size(); ++i)
                 {
@@ -73,11 +73,11 @@ public class ExhaustFromPileAction extends AbstractGameAction
                 }
                 else if (this.amount == 1)
                 {
-                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, anyNumber, TEXT[0]);
+                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, TEXT[0], false, false, canCancel, false);
                 }
                 else
                 {
-                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, anyNumber, TEXT[1]);
+                    AbstractDungeon.gridSelectScreen.open(cards, this.amount, TEXT[1], false, false, canCancel, false);
                 }
 
                 this.tickDuration();

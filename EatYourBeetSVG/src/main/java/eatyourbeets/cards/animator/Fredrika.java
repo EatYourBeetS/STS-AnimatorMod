@@ -72,8 +72,7 @@ public class Fredrika extends AnimatorCard
                 cardGroup.addToTop(other);
             }
 
-            ChooseFromPileAction action = new ChooseFromPileAction(1, false, cardGroup, this::OnCardSelected, this, CardRewardScreen.TEXT[1]);
-            action.UseSource(true);
+            ChooseFromPileAction action = new ChooseFromPileAction(1, false, cardGroup, this::OnCardSelected, this, CardRewardScreen.TEXT[1], true);
 
             GameActionsHelper.AddToBottom(action);
         }

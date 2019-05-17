@@ -6,11 +6,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
+import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Yusarin extends AnimatorCard
+public class Yusarin extends AnimatorCard implements AnimatorResources.Hidden
 {
     public static final String ID = CreateFullID(Yusarin.class.getSimpleName());
 

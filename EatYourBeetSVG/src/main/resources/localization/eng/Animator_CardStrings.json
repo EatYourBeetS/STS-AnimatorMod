@@ -239,7 +239,7 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "Gain [E] [E]. NL Take !M! damage at the end of this turn. NL Legacy and Recall: Gain [E].",
+		"DESCRIPTION": "Gain [E] [E]. NL Take !M! damage at the end of this turn. NL Legacy: Gain [E] [E].",
 		"NAME": "Demiurge"
 	},
 	"animator_DolaCouronne":
@@ -249,7 +249,7 @@
 	},
 	"animator_DolaRiku":
 	{
-		"DESCRIPTION": "Exhaust a card in your hand, choose and obtain 1 of !M! cards of the same rarity, it costs 1 less.",
+		"DESCRIPTION": "Exhaust a card in your hand, choose and obtain 1 of !M! cards of the same rarity, NL it costs 1 less.",
 		"NAME": "Riku"
 	},
 	"animator_DolaSchwi":
@@ -349,10 +349,10 @@
 	},
 	"animator_FeridBathory":
 	{
-		"DESCRIPTION": "Once per turn, NL when a card is Exhausted, gain 1 Strength and Heal 2 HP ([#EFC851]*[]).",
+		"DESCRIPTION": "Once per turn, NL when a card is Exhausted, gain 1 Strength and NL Heal 2 HP ([#EFC851]*[]).",
 		"EXTENDED_DESCRIPTION": ["*Note", "If you are at Max HP, the healing is converted to #yTemp. #yHP."],
 		"NAME": "Ferid Bathory",
-		"UPGRADE_DESCRIPTION": "Twice per turn, NL when a card is Exhausted, gain 1 Strength and Heal 2 HP ([#EFC851]*[])."
+		"UPGRADE_DESCRIPTION": "Twice per turn, NL when a card is Exhausted, gain 1 Strength and NL Heal 2 HP ([#EFC851]*[])."
 	},
 	"animator_Fredrika":
 	{
@@ -404,7 +404,7 @@
 	},
 	"animator_GoblinSlayer":
 	{
-		"DESCRIPTION": "[#EFC851]Goblin [#EFC851]Slayer. NL Deal !D! damage. NL Gain !B! Block. NL Retain.",
+		"DESCRIPTION": "[#EFC851]Goblin [#EFC851]Slayer. NL Gain !B! Block. NL Deal !D! damage. NL Retain.",
 		"EXTENDED_DESCRIPTION": ["Goblin Slayer", "Exhaust every Status and Curse in your hand and discard pile. Deal 3 extra damage for every card in your exhaust pile. NL #yWARNING: Goblins will start invading your deck."],
 		"NAME": "Goblin Slayer"
 	},
@@ -478,14 +478,15 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL Deal !D! damage for each card drawn. Synergy: Draw 1 NL additional card.",
+		"DESCRIPTION": "Draw !M! cards. NL Synergy: Draw 1 NL additional card. NL Deal !D! damage for each card drawn.",
 		"NAME": "Itami Youji"
 	},
 	"animator_IzunaHatsuse":
 	{
-		"DESCRIPTION": "Apply 1 Weak. NL Gain !B! Block. NL [#EFC851]Blood [#EFC851]Destruction.",
+		"DESCRIPTION": "Gain !B! Block. NL Apply 1 Weak. NL [#EFC851]Blood [#EFC851]Destruction.",
 		"EXTENDED_DESCRIPTION": ["Blood Destruction", "While you are below 25% max HP, this card will turn into a special 0-cost #yAttack.", "Deal !D! damage twice. NL Heal !M! HP."],
-		"NAME": "Izuna Hatsuse"
+		"NAME": "Izuna Hatsuse",
+		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Apply 1 Weak. NL [#EFC851]Blood [#EFC851]Destruction+."
 	},
 	"animator_Jibril":
 	{
@@ -522,7 +523,7 @@
 	},
 	"animator_Kuribayashi":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !SV! Choked. NL Synergy: The enemy loses !M! Strength this turn.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !SV! Choked. NL Synergy: The enemy loses !M! Strength NL this turn.",
 		"NAME": "Kuribayashi"
 	},
 	"animator_Kuroyukihime":
@@ -567,7 +568,7 @@
 	},
 	"animator_LizardPriest":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Set the Block of the enemy to !M!. Synergy: Retain your hand this turn.",
+		"DESCRIPTION": "Gain !B! Block. NL Set the Block of the enemy to !M!. NL Synergy: Retain your hand this turn.",
 		"NAME": "'Lizard Priest'"
 	},
 	"animator_MaesHughes":
@@ -582,7 +583,7 @@
 	},
 	"animator_Mikaela":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Exhaust a card in your discard pile.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Choose and Exhaust NL a card in your NL discard pile.",
 		"NAME": "Mikaela"
 	},
 	"animator_Millim":
@@ -659,7 +660,7 @@
 	},
 	"animator_PandorasActor":
 	{
-		"DESCRIPTION": "Shapeshifter. NL Gain !B! Block. NL Synergy: Gain !M! extra Block.",
+		"DESCRIPTION": "Shapeshifter. NL Gain !B! Block. NL Synergy: Gain !M! additional Block.",
 		"NAME": "Pandora's Actor"
 	},
 	"animator_PinaCoLada":
@@ -693,7 +694,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Apply !M! Vulnerable. NL Synergy and Recall: Gain 1 Blur.",
+		"DESCRIPTION": "Gain !B! Block. NL Apply !M! Vulnerable. NL Recall: Reduce the cost of a random card by 1 this turn.",
 		"NAME": "Rena"
 	},
 	"animator_Rimuru":
@@ -709,7 +710,7 @@
 	},
 	"animator_RoryMercury":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL [#EFC851]Drawn[] and Synergy: Deal !M! damage to a random enemy.",
+		"DESCRIPTION": "Deal !D! damage to a random enemy twice. [#EFC851]Drawn[]: Gain !M! Temporary Strength.",
 		"NAME": "Rory Mercury"
 	},
 	"animator_RoyMustang":
@@ -788,7 +789,7 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Apply !M! Lock-On. NL Gain !B! Block. NL [#EFC851]Sloth.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Apply !M! Weak. NL Gain !B! Block. NL [#EFC851]Sloth.",
 		"EXTENDED_DESCRIPTION": ["Sloth", "At the start of each turn, increase this card's #yBlock and damage by 1 for each Orb you have. On use, halve this card's damage and #yBlock value."],
 		"NAME": "Sloth"
 	},
@@ -935,12 +936,12 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "Lazy. NL Channel 1 Dark and deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Lazy. NL Channel 1 Dark. NL Deal !D! damage to ALL enemies.",
 		"NAME": "Urushihara"
 	},
 	"animator_Vanir":
 	{
-		"DESCRIPTION": "Shapeshifter. [#EFC851]Vanir. NL Deal !D! Damage. NL Boost !SV! : Deal !M! more damage.",
+		"DESCRIPTION": "Shapeshifter. [#EFC851]Vanir. NL Deal !D! Damage. NL Boost !SV! : Deal !M! additional damage.",
 		"EXTENDED_DESCRIPTION": ["Vanir", "If this card is exhausted, choose a card in your draw pile and transform it into a new copy of this card."],
 		"NAME": "Vanir"
 	},

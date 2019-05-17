@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.*;
-import eatyourbeets.relics.CursedGlyph;
-import eatyourbeets.relics.EngravedStaff;
-import eatyourbeets.relics.Rinne;
-import eatyourbeets.relics.WornHelmet;
+import eatyourbeets.relics.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -158,13 +155,13 @@ public class BundledRelicProvider
     {
         AddBundle(Kuribayashi.ID, Ginger.ID, AbstractRelic.RelicTier.RARE, R3);
         AddBundle(TukaLunaMarceau.ID, Strawberry.ID, AbstractRelic.RelicTier.COMMON, R5);
-        AddBundle(Arpeggio.ID, OddlySmoothStone.ID, AbstractRelic.RelicTier.COMMON, R1);
         AddBundle(Bozes.ID, Waffle.ID, AbstractRelic.RelicTier.SHOP, R2);
+        AddBundle(YaoHaDucy.ID, DreamCatcher.ID, AbstractRelic.RelicTier.COMMON, R2);
 
+        AddBundle(Arpeggio.ID, OddlySmoothStone.ID, AbstractRelic.RelicTier.COMMON, R1);
         AddBundle(LeleiLaLalena.ID, Abacus.ID, AbstractRelic.RelicTier.SHOP, R4);
         AddBundle(Tyuule.ID, SneckoSkull.ID, AbstractRelic.RelicTier.SPECIAL, R1);
-        AddBundle(RoryMercury.ID, PenNib.ID, AbstractRelic.RelicTier.COMMON, R2);
-        AddBundle(YaoHaDucy.ID, DreamCatcher.ID, AbstractRelic.RelicTier.COMMON, R2);
+        AddBundle(RoryMercury.ID, HeavyHalberd.ID, AbstractRelic.RelicTier.COMMON, R2);
 
         AddBundle(PinaCoLada.ID, Mango.ID, AbstractRelic.RelicTier.RARE, R2);
         AddBundle(ItamiYouji.ID, Boot.ID, AbstractRelic.RelicTier.COMMON, R2);

@@ -22,7 +22,7 @@ public class Kuribayashi extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,0,4);
+        Initialize(7,0,4);
 
         this.baseSecondaryValue = this.secondaryValue = 2;
 
@@ -51,8 +51,7 @@ public class Kuribayashi extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
-            upgradeSecondaryValue(1);
+            upgradeDamage(3);
             upgradeMagicNumber(2);
         }
     }

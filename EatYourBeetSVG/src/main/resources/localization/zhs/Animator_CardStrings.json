@@ -237,7 +237,7 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "获得 [E] [E] ， 在本轮结束时 ， 受到 !M! 点 伤害 。 遗赠 ， 撤回 : 获得 [E]",
+		"DESCRIPTION": "获得 [E] [E] ， 在本轮结束时 ， 受到 !M! 点 伤害 。 遗赠 : 获得 [E] [E]",
 		"NAME": "迪米乌哥斯"
 	},
 	"animator_DolaCouronne":
@@ -475,18 +475,19 @@
 	},
 	"animator_ItamiYouji":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 每抽一张牌造成 !D! 点 伤害 。 同调 : 再抽一张卡片 。",
+		"DESCRIPTION": "抽 !M! 张牌 。 同调 : 再抽一张牌 。 每抽一张牌造成 !D! 点 伤害 。",
 		"NAME": "伊丹耀司"
 	},
 	"animator_IzunaHatsuse":
 	{
-		"DESCRIPTION": "给予 1 层 虚弱 。 NL 获得 !B! 点 格挡 。 NL [#EFC851]血坏[] 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 给予 1 层 虚弱 。 NL [#EFC851]血坏[] 。",
 		"EXTENDED_DESCRIPTION": ["血坏", "自身HP低于25％时，这张卡将变为一个特殊的0耗 #y攻击 。", "造成 !D! 点 伤害 两次 。 NL 恢复 !M! 点 生命 。"],
-		"NAME": "初濑伊纲"
+		"NAME": "初濑伊纲",
+		"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 给予 1 层 虚弱 。 NL [#EFC851]血坏+[] 。"
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 為每1種不同充能球抽1張牌。NL 同調 ：獲得 !SV! 點臨時 集中",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 为每一种不同的充能球抽1张牌。NL 同调 ：获得 !SV! 点临时 集中",
 		"NAME": "吉普莉尔"
 	},
 	"animator_Kaijin":
@@ -694,7 +695,7 @@
 	},
 	"animator_Rena":
 	{
-		"DESCRIPTION": "给予一层 易伤 效果， 获得 !B! 点 格挡 。 同调 ， 撤回 : 获得 1 残影 。",
+		"DESCRIPTION": "给予一层 易伤 效果， 获得 !B! 点 格挡 。 撤回 ： 在此轮， 将随机1张手牌的能耗减1。",
 		"NAME": "蕾娜‧艾兰黛"
 	},
 	"animator_Rimuru":
@@ -710,7 +711,7 @@
 	},
 	"animator_RoryMercury":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 [#EFC851]被抽到时[] ， 同调 : 对一个随机的敌人造成 !M! 点 伤害  。",
+		"DESCRIPTION": "随机对敌人造成 !D! 点伤害2次 。 [#EFC851]被抽到时[] ； 获得 !M! 点 临时 力量 。",
 		"NAME": "萝莉·麦丘利"
 	},
 	"animator_RoyMustang":
@@ -749,7 +750,7 @@
 	"animator_Shichika":
 	{
 		"DESCRIPTION": "获得 !B! 点 格挡 1 点 力量 。 NL 同调 : 增加 [#EFC851]虚刀流[] 到你的手牌 。",
-		"EXTENDED_DESCRIPTION": ["虚刀流", "A special 1-cost attack that hits multiple times and Exhaust."],
+		"EXTENDED_DESCRIPTION": ["虚刀流", "特殊的 1 耗 攻击牌，消耗."],
 		"NAME": "鑢七花"
 	},
 	"animator_ShichikaKyotouryuu":
@@ -789,8 +790,8 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 给予 !M! 层 跟踪锁定 。 获得 !B! 格挡 。 [#EFC851]懒惰[]",
-		"EXTENDED_DESCRIPTION": ["懒惰", "每轮开始时，将这张牌的 #y格挡 与 伤害为每一个您拥有的充能球增加1 。 每次使用后， 将这张牌的 #y格挡 与伤害减半"],
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 给予 !M! 层 虚弱 。 获得 !B! 格挡 。 [#EFC851]懒惰[]。",
+		"EXTENDED_DESCRIPTION": ["懒惰", "每轮开始时，将这张牌的 #y格挡 与 伤害为每一个您拥有的充能球增加1 。 每次使用后， 将这张牌的 #y格挡 与伤害减半。"],
 		"NAME": "懒惰"
 	},
 	"animator_Sora":
@@ -1033,7 +1034,7 @@
 	"animator_ShikizakiKiki":
 	{
 		"DESCRIPTION": "抽 !M! 张牌 。 NL 升级你手中的所有牌 ， 然后将它们的伤害翻倍 。",
-		"NAME": "四季崎 記紀"
+		"NAME": "四季崎 记纪"
 	},
 	"animator_Chomusuke":
 	{
@@ -1048,7 +1049,7 @@
 	"animator_Hero":
 	{
 		"DESCRIPTION": "造成 !D! 点伤害. NL 抽 !M! 张牌 。 NL 位于牌组中时, 增加获得 [#EFC851]遗物奖励[] 的机会 。",
-		"NAME": "'Hero'"
+		"NAME": "'勇者'"
 	},
 	"animator_Truth":
 	{

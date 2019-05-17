@@ -32,7 +32,7 @@ public class Eve extends AnimatorCard
     {
         GameActionsHelper.ApplyPower(p, p, new EvePower(p, this.magicNumber, 1), 1);
 
-        CardGroup cores = OrbCore_AbstractPower.CreateCoresGroup(3);
+        CardGroup cores = OrbCore_AbstractPower.CreateCoresGroup(true);
         GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, cores, this::OrbChosen, this, ""));
     }
 
@@ -43,9 +43,6 @@ public class Eve extends AnimatorCard
             AbstractCard card = chosen.get(0);
             card.applyPowers();
             card.use(AbstractDungeon.player, null);
-//            AbstractDungeon.player.drawPile.addToTop(card);
-//            card.applyPowers();
-//            GameActionsHelper.AddToBottom(new PlayTopCardAction(null, false));
         }
     }
 

@@ -23,7 +23,7 @@ public class Shizu extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(9, 0, 1);
+        Initialize(10, 0, 1);
 
         AddExtendedDescription();
 

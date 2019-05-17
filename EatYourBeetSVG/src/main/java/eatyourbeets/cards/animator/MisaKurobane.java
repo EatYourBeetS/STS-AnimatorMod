@@ -4,12 +4,13 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.BurningPower;
 
-public class MisaKurobane extends AnimatorCard
+public class MisaKurobane extends AnimatorCard implements AnimatorResources.Hidden
 {
     public static final String ID = CreateFullID(MisaKurobane.class.getSimpleName());
 

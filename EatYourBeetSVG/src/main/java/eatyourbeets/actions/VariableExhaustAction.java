@@ -2,15 +2,19 @@ package eatyourbeets.actions;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.AnimatorResources;
+import com.megacrit.cardcrawl.localization.UIStrings;
 
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
 
 public class VariableExhaustAction extends AnimatorAction
 {
+    private static final UIStrings uiStrings;
+    private static final String[]  TEXT;
+
     public final boolean canPickZero;
     public final boolean anyNumber;
 
@@ -18,7 +22,7 @@ public class VariableExhaustAction extends AnimatorAction
     private final ArrayList<AbstractCard> exhausted;
     private final BiConsumer<Object, ArrayList<AbstractCard>> onExhaust;
 
-    public VariableExhaustAction(AbstractPlayer player, int exhaust, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onExhaust)
+    public VariableExhaustAction(AbstractPlayer player, int amount, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onExhaust)
     {
         this.canPickZero = true;
         this.anyNumber = true;
@@ -26,7 +30,7 @@ public class VariableExhaustAction extends AnimatorAction
         this.state = state;
         this.onExhaust = onExhaust;
         this.target = player;
-        this.amount = exhaust;
+        this.amount = amount;
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.DISCARD;
     }
@@ -43,8 +47,7 @@ public class VariableExhaustAction extends AnimatorAction
             }
             else
             {
-                String discardMessage = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Actions).TEXT[2];
-                AbstractDungeon.handCardSelectScreen.open(discardMessage, this.amount, this.anyNumber, this.canPickZero);
+                AbstractDungeon.handCardSelectScreen.open(TEXT[0], this.amount, this.anyNumber, this.canPickZero);
             }
         }
         else if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved)
@@ -66,5 +69,11 @@ public class VariableExhaustAction extends AnimatorAction
         {
             onExhaust.accept(state, exhausted);
         }
+    }
+
+    static
+    {
+        uiStrings = CardCrawlGame.languagePack.getUIString("ExhaustAction");
+        TEXT = uiStrings.TEXT;
     }
 }

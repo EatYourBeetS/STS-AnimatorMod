@@ -4,10 +4,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.LoseStrengthPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class RoryMercury extends AnimatorCard
 {
@@ -15,9 +16,9 @@ public class RoryMercury extends AnimatorCard
 
     public RoryMercury()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(8,0, 4);
+        Initialize(5,0, 1);
 
         SetSynergy(Synergies.Gate);
     }
@@ -27,18 +28,16 @@ public class RoryMercury extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        DamageRandomEnemy(AbstractDungeon.player);
+        AbstractPlayer p = AbstractDungeon.player;
+        GameActionsHelper.ApplyPowerSilently(p, p, new LoseStrengthPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-
-        if (HasActiveSynergy())
-        {
-            DamageRandomEnemy(p);
-        }
+        GameActionsHelper.DamageRandomEnemy(p, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper.DamageRandomEnemy(p, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override
@@ -46,14 +45,7 @@ public class RoryMercury extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
             upgradeMagicNumber(1);
         }
-    }
-
-    private void DamageRandomEnemy(AbstractPlayer p)
-    {
-        AbstractMonster m = PlayerStatistics.GetRandomEnemy(true);
-        GameActionsHelper.DamageTargetPiercing(p, m, this.magicNumber, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL).bypassBlock = false;
     }
 }

@@ -13,7 +13,7 @@ public class ThrowingKnife_0 extends ThrowingKnife
     {
         super(ID);
 
-        Initialize(3,0, 1);
+        Initialize(2,0, 1);
     }
 
     @Override

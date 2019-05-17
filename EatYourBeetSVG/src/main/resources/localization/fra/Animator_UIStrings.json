@@ -3,7 +3,7 @@
 	{
 		"TEXT": 
 		[
-			"[Shapeshifter]",
+			"[Changeforme]",
 			"Elsword",
 			"Kantai Collection",
 			"Hitsugi no Chaika",
@@ -62,31 +62,31 @@
 	{
 		"TEXT": 
 		[
-			"Attaque",
+			"Attaquer",
 			"Defendre",
 			"Preparer",
-			"Améliorer All les cartes de votre main.",
-			"Fait !D! dégat(s) à un ennemi aléatoire !M! fois.",
-			"Fait !D! dégat(s) à TOUS les ennemis.",
+			"Améliorez TOUTES les cartes de votre main.",
+			"Infligez !D! dégât(s) à un ennemi aléatoire !M! fois.",
+			"Infligez !D! dégât(s) à TOUS les ennemis.",
 			"Gagnez !B! d'Armures.",
-			"Gagnez !M! Force.",
-			"Gagnez !M! Dextérité.",
-			"Gagnez !M! Epines.",
-			"Réduit le coût de 2 cartes aléatoire dans votre main de !M! ce tour.",
+			"Gagnez !M! de Force.",
+			"Gagnez !M! de Dextérité.",
+			"Gagnez !M! d'Épines.",
+			"Réduit le coût de 2 cartes aléatoires dans votre main de !M! ce tour.",
 			"Inflige !M! Faiblesse à TOUS les ennemis.",
 			"Inflige !M! Vulnerabilité à TOUS les ennemis.",
-			"Cycle !M! carte(s)",
-			"Pioche !M! carte(s).",
-			"Gagnez !M! Temp._HP.",
-			"Gagnez !M! Concentration.",
-			"Gagnez !M! Energie.",
-			"Inflige !M! Poison à TOUS les ennemis.",
-			"Inflige !M! [#EFC851]Brûlure à TOUS les ennemis.",
-			"Gagnez !M! Intangible",
-			"Gagnez !M! Artéfact. NL Enlève TOUT vos debuffs.",
-			"Joue la carte sur le haut de votre pioche.",
-			"Canalise !M! des Orbes aléatoire.",
-			"Joue la carte sur le haut de votre pioche, deux fois."
+			"Recyclez !M! carte(s)",
+			"Piochez !M! carte(s).",
+			"Gagnez !M! de Temp._PV.",
+			"Gagnez !M! de Concentration.",
+			"Gagnez !M! d'Énergie.",
+			"Inflige !M! de Poison à TOUS les ennemis.",
+			"Inflige !M! de [#EFC851]Brûlure à TOUS les ennemis.",
+			"Gagnez !M! d'Intangible",
+			"Gagnez !M! d'Artéfact. NL Enlevez TOUS vos debuffs.",
+			"Jouez la carte sur le haut de votre pioche.",
+			"Canalisez !M! des Orbes aléatoire.",
+			"Jouez la carte sur le haut de votre pioche deux fois."
 		]
 	},
 	
@@ -95,15 +95,15 @@
 		"TEXT": 
 		[
 			"Bronze",
-			"Silver",
-			"Gold",
-			"Choose this starting deck and complete act 4.",
-			"Complete act 4 with at least #yhalf of the cards in your deck being from this series.",
-			"Complete act 4 with at least #b8 #ydifferent cards from this series in your deck.",
-			"Complete act 4 with at least #b7 #ydifferent card series in your deck. (Colorless cards will not count)",
-			"Complete act 4 with at least #b10 #ydifferent card series in your deck, and without banishing any series. (Colorless cards will not count)",
-			"Complete act 4 with at least #b20 cards in your deck, and without any duplicate.",
-			"Complete act 4 with at least #b30 cards in your deck, and without any duplicate."
+			"Argent",
+			"Or",
+			"Choisissez ce deck de départ et complétez l'Acte 4.",
+			"Complétez l'Acte 4 avec la #ymoitié des cartes provenant de cette série dans votre deck.",
+			"Complétez l'Acte 4 avec #b8 cartes #ydifférentes provenant de cette série dans votre deck.",
+			"Complétez l'Acte 4 avec des cartes provenant de #b7 séries #ydifférentes. (Cartes sans couleur ne comptent pas)",
+			"Complétez l'Acte 4 avec des cartes provenant de #b10 séries #ydifférentes, sans bannir aucune carte. (Cartes sans couleur ne comptent pas)",
+			"Complétez l'Acte 4 avec #b20 cartes dans votre deck, sans aucune réplique.",
+			"Complétez l'Acte 4 avec #b30 cartes dans votre deck, sans aucune réplique."
 		]
 	},
 	
@@ -111,9 +111,9 @@
 	{
 		"TEXT": 
 		[
-			"Contient des carte uniquement avec cette Synergie. WARNING: une fois que vous cliquez dessus, les deux autres récompenses disparaitrons.",
-			"Bonus Relic",
-			"Cursed Relic"
+			"Contient des carte uniquement avec cette Synergie. AVERTISSEMENT: une fois que vous cliquez dessus, les deux autres récompenses disparaîtront.",
+			"Relique en prime",
+			"Relique maudite"
 		]
 	},
 		
@@ -131,10 +131,10 @@
 		[
 			"Carte de départ: ",
 			"###############",
-			"Se débloque au Level ",
-			" (Vous êtes Level ",
+			"Se débloque au Niveau ",
+			" (Vous êtes au Niveau ",
 			")",
-			"Recommendé.",
+			"Recommandé.",
 			"Départ équilibré.",
 			"Départ fort.",
 			"Départ trés fort.",

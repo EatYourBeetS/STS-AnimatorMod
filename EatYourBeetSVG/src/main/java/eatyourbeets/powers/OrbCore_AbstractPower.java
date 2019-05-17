@@ -103,29 +103,41 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     protected abstract void OnSynergy(AbstractPlayer p, AbstractCard usedCard);
 
     private static final ArrayList<AbstractCard> cores = new ArrayList<>();
+    private static final RandomizedList<AbstractCard> cores0 = new RandomizedList<>();
+    private static final RandomizedList<AbstractCard> cores1 = new RandomizedList<>();
+    private static final RandomizedList<AbstractCard> cores2 = new RandomizedList<>();
 
-    public static CardGroup CreateCoresGroup(int choices)
+    public static CardGroup CreateCoresGroup(boolean anyCost)
     {
         if (cores.size() == 0)
         {
-            cores.add(new OrbCore_Lightning());
-            cores.add(new OrbCore_Frost());
-            cores.add(new OrbCore_Plasma());
-            cores.add(new OrbCore_Dark());
-            cores.add(new OrbCore_Chaos());
+            cores0.Add(new OrbCore_Dark());
+            cores0.Add(new OrbCore_Fire());
+            cores1.Add(new OrbCore_Lightning());
+            cores1.Add(new OrbCore_Frost());
+            cores2.Add(new OrbCore_Plasma());
+            cores2.Add(new OrbCore_Chaos());
+
+            cores.addAll(cores0.GetInnerList());
+            cores.addAll(cores1.GetInnerList());
+            cores.addAll(cores2.GetInnerList());
         }
 
-        if (choices > cores.size())
-        {
-            choices = cores.size();
-        }
-
-        RandomizedList<AbstractCard> temp = new RandomizedList<>(cores);
         Random rng = AbstractDungeon.miscRng;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        for (int i = 0; i < choices; i++)
+
+        if (anyCost)
         {
+            RandomizedList<AbstractCard> temp = new RandomizedList<>(cores);
             group.group.add(temp.Retrieve(rng, true));
+            group.group.add(temp.Retrieve(rng, true));
+            group.group.add(temp.Retrieve(rng, true));
+        }
+        else
+        {
+            group.group.add(cores0.Retrieve(rng, false));
+            group.group.add(cores1.Retrieve(rng, false));
+            group.group.add(cores2.Retrieve(rng, false));
         }
 
         return group;

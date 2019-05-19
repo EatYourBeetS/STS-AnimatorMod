@@ -115,9 +115,9 @@
 		"PROPERNAME": "Envenimer"
 	},
 	{
-		"NAMES": ["métalisation"],
-		"DESCRIPTION": "Gagne autant #yd'Armure au début du combat.",
-		"PROPERNAME": "Métalisation"
+		"NAMES": ["métallisation"],
+		"DESCRIPTION": "Gagnez autant #yd'Armure au début du combat.",
+		"PROPERNAME": "Métallisation"
 	},
 	{
 		"NAMES": ["choked"],

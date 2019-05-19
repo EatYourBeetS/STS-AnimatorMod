@@ -116,7 +116,7 @@
 	},
 	"Animator_WizardHat":
 	{
-		"DESCRIPTIONS": ["Every time you activate #b", " #ySynergies in a combat, deal #b", " damage to ALL enemies."],
+		"DESCRIPTIONS": ["At the end of your turn, consume your remaining Energy and decrease this counter by that amount. If this counter reaches #g0, deal #b", " damage to ALL enemies."],
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"NAME": "Wizard Hat"
 	},

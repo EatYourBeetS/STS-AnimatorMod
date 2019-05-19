@@ -250,6 +250,13 @@ public abstract class AnimatorCard extends CustomCard
         this.magicNumber = baseMagicNumber;
     }
 
+    public void Initialize(int baseDamage, int baseBlock, int baseMagicNumber, int baseSecondaryValue)
+    {
+        Initialize(baseDamage, baseBlock, baseMagicNumber);
+
+        this.baseSecondaryValue = this.secondaryValue = baseSecondaryValue;
+    }
+
     public Boolean TryUpgrade()
     {
         if (!this.upgraded)

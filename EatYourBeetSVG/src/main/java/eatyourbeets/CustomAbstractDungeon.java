@@ -214,12 +214,12 @@ public class CustomAbstractDungeon extends AbstractDungeon
     private static void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
     {
         int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
-        if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 32)
+        if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 33)
         {
             return;
         }
 
-        float chances = 4.25f;
+        float chances = 4.5f;
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
         {
             if (c instanceof AnimatorCard_UltraRare)

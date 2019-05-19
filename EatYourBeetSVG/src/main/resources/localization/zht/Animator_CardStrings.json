@@ -237,8 +237,9 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "獲得 [E] [E] 。 在本回合結束時 ， 受到 !M! 點 傷害 。 遺產 : 獲得 [E] [E]",
-		"NAME": "迪米烏哥斯"
+		"DESCRIPTION": "獲得 [E] 。 在本回合結束時 ， 受到 !M! 點 傷害 。 遺產 : 獲得 [E]",
+		"NAME": "迪米烏哥斯",
+		"UPGRADE_DESCRIPTION": "獲得 [E] [E] 。 在本回合結束時 ， 受到 !M! 點 傷害 。 遺產 : 獲得 [E] [E]"
 	},
 	"animator_DolaCouronne":
 	{
@@ -485,7 +486,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 造成 !M! ％ 的額外傷害 ， 乘以敵人的減益效果數 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 為每一種不同的充能球抽 1 張牌 。 NL 同調 ： 獲得 !SV! 點 臨時 集中 。",
 		"NAME": "吉普莉爾"
 	},
 	"animator_Kaijin":
@@ -787,8 +788,8 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 給予 !M! 層 易傷 。 NL 給予 !M! 層 虛弱 。 獲得 !B! 格擋 。 [#EFC851]懶惰[]",
-		"EXTENDED_DESCRIPTION": ["懶惰", "每輪開始時，將這張牌的 #y格擋 與傷害為每一個您擁有的充能球增加1 。 每次使用後， 將這張牌的 #y格擋 與傷害減半。"],
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 給予 !M! 層 易傷 。 NL 獲得 !B! 格擋 。 [#EFC851]懶惰[]",
+		"EXTENDED_DESCRIPTION": ["懶惰", "每輪開始時， 將此卡的格擋和傷害提高 #b2 點 ， 並為​​每個不同的充能球增加 #b1 點 。 每次使用後， 將這張牌的 #y格擋 與傷害減半。"],
 		"NAME": "斯洛斯"
 	},
 	"animator_Sora":
@@ -944,9 +945,29 @@
 	},
 	"animator_Vesta":
 	{
-		"DESCRIPTION": "在你的棄牌堆中選擇一張牌 ， 於 !M! 回合後 ， 將這張牌的 升級 後的複制加入到手牌中 。 抹除 。",
-		"EXTENDED_DESCRIPTION": ["選一張牌 ， 於 # 回合後 ， 將一張昇級過的複制加入手牌中 。"],
+		"DESCRIPTION": "抽 1 張牌 。 研究1瓶 [#EFC851]靈藥[] ， NL !M! 輪後獲得此研究成果 。 消耗 。",
+		"EXTENDED_DESCRIPTION": ["靈藥", "0 能耗 #y技能 ， 擁有不同的特殊功效。 "],
 		"NAME": "該部"
+	},
+	"animator_Vesta_Elixir_0":
+	{
+		"DESCRIPTION": "獲得 !M! 點 集中 。 NL 獲得 2 個充能球欄位 。 NL 獲得 !SV! 殘影 。 NL 消耗 。",
+		"NAME": "靈藥"
+	},
+	"animator_Vesta_Elixir_1":
+	{
+		"DESCRIPTION": "獲得 !M! 點 力量 。 NL 獲得 !SV! 點 敏捷 。 NL 獲得 8 點 臨時生命 。 NL 消耗 。",
+		"NAME": "靈藥"
+	},
+	"animator_Vesta_Elixir_2":
+	{
+		"DESCRIPTION": "消耗 !M! 張牌。 NL 獲得 [E] [E] [E] NL 抽 !SV! 張牌。 NL 消耗 。",
+		"NAME": "靈藥"
+	},
+	"animator_Vesta_Elixir_3":
+	{
+		"DESCRIPTION": "抽 !M! 張牌。 NL 丟棄 2 張牌 。 NL 獲得 !SV! 層 金屬化 。 NL 消耗 。",
+		"NAME": "靈藥"
 	},
 	"animator_Viivi":
 	{
@@ -972,9 +993,9 @@
 	},
 	"animator_YukoShionji":
 	{
-		"DESCRIPTION": "顯示您的繪圖堆的頂部卡片 。每回合一次 ， 您可以繪製和/或丟棄它 [#EFC851]*[] 。",
-		"EXTENDED_DESCRIPTION": ["* 注意", "您可以左鍵單擊卡片進行繪製 ， 也可以右鍵單擊它以丟棄它 。"],
-		"NAME": "Yuuko Shionji"
+		"DESCRIPTION": "顯示您的抽牌堆的頂部卡片 。每回合一次 ， 您可以抽出或丟棄它 [#EFC851]*[] 。",
+		"EXTENDED_DESCRIPTION": ["* 注意", "您可以左鍵單擊卡片進行抽出 ， 也可以右鍵單擊它以丟棄它 。"],
+		"NAME": "紫苑寺有子"
 	},
 	"animator_YunYun":
 	{
@@ -1007,7 +1028,7 @@
 	"animator_Azriel":
 	{
 		"DESCRIPTION": "獲得兩 2 層 飛行 。 NL 每當給予敵人負面效果時, 獲得 !M! 點 力量 。 虛無 。",
-		"NAME": "Azriel",
+		"NAME": "阿茲列爾",
 		"UPGRADE_DESCRIPTION": "獲得兩 2 層 飛行 。 NL 每當給予敵人負面效果時, 獲得 !M! 點 力量 。"
 	},
 	"animator_Giselle":
@@ -1018,40 +1039,39 @@
 	"animator_HiiragiTenri":
 	{
 		"DESCRIPTION": "獲得 !M! 點 臨時生命 。 NL 打出並 消耗 棄牌堆中所有牌 。 消耗 。",
-		"NAME": "Tenri Hiiragi",
+		"NAME": "柊天利",
 		"UPGRADE_DESCRIPTION": "獲得 !M! 點 臨時生命 。 NL 打出並 消耗 棄牌堆中所有牌 。"
 	},
 	"animator_SirTouchMe":
 	{
 		"DESCRIPTION": "獲得 !M! 勢不可當 。 NL 造成 !D! 點傷害 。 NL 獲得 !SV! 層 多層護甲 。 NL 獲得 !B! 點 格擋 。",
-		"NAME": "Sir Touch Me"
+		"NAME": "塔其米"
 	},
 	"animator_ShikizakiKiki":
 	{
 		"DESCRIPTION": "抽 !M! 張牌 。 NL 升級你手中的所有牌 ， 然後將它們的傷害翻倍 。",
-		"NAME": "Shikizaki Kiki"
+		"NAME": "四季崎·記纪"
 	},
 	"animator_Chomusuke":
 	{
 		"DESCRIPTION": "保留 。 獲得 [E] ， 本回合每消耗一張牌 ， 抽 !M! 牌 ( 本回合已消耗 !SV! ) 。 每回合可使用一次 。",
-		"NAME": "Chomusuke"
+		"NAME": "豆之助"
 	},
 	"animator_JeanneDArc":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害 。 NL 獲得 !M! 點 臨時生命 。 NL 獲得 !M! 點 魔法護甲 。 NL 隨機消耗一個狀態牌或詛咒牌 。",
-		"NAME": "Jeanne D'Arc"
+		"NAME": "聖女貞德"
 	},
 	"animator_Hero":
 	{
 		"DESCRIPTION": "造成 !D! 點傷害. NL 抽 !M! 張牌 。 NL 位於牌組中時, 增加獲得 [#EFC851]遺物獎勵[] 的機會 。",
-		"NAME": "'Hero'"
+		"NAME": "勇者'"
 	},
 	"animator_Truth":
 	{
 		"DESCRIPTION": "獲得 1 點 集中 。 NL 獲得 2 點 能量 。 NL 抽 3 張牌 。 NL 獲得 4 點 力量 。 NL [#EFC851]真相[] 。",
 		"NAME": "真相",
-		"EXTENDED_DESCRIPTION": ["真相", "如果您擁有至少 3 種不同充能球 ， 失去所有充能球 。否則選擇牌組中的一張牌而且永久的將那張牌用 #y傷口 代替 。"],
-		"UPGRADE_DESCRIPTION": "獲得 2 點 集中 。 NL 獲得 3 點 能量 。 NL 抽 4 張牌 。 NL 獲得 5 點 力量 。 NL [#EFC851]真相[] 。"
+		"EXTENDED_DESCRIPTION": ["真相", "如果您擁有至少 3 種不同充能球 ， 失去所有充能球 。否則選擇牌組中的一張牌而且永久的將那張牌用 #y傷口 代替 。"]
 	},
 	"animator_Rose":
 	{
@@ -1061,11 +1081,11 @@
 	"animator_Veldora":
 	{
 		"DESCRIPTION": "獲得 !SV! 點 集中 。 NL 激發 所有 充能球 !M! 次 。 [#EFC851]被抽到時[] : 生成 2 個 隨機 充能球 。",
-		"NAME": "Veldora"
+		"NAME": "暴風龍·维鲁德拉"
 	},
 	"animator_NivaLada":
 	{
 		"DESCRIPTION": "冷卻 !SV! : NL 造成 300 點傷害 。 NL 每當你丟棄或消耗牌時 ， 減少 1 層 預熱 層數 。",
-		"NAME": "Niva Lada"
+		"NAME": "妮娃·莱妲"
 	}
 }

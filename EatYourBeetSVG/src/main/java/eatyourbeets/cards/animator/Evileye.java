@@ -44,7 +44,7 @@ public class Evileye extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(3);
         }
     }
 

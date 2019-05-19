@@ -29,17 +29,13 @@ public class CursedGlyph extends AnimatorRelic
             GameActionsHelper.AddToTop(new RelicAboveCreatureAction(m, this));
 
             int bonusHealth = 6;
-            if (AbstractDungeon.ascensionLevel >= 9)
+            if (AbstractDungeon.ascensionLevel >= 7)
             {
-                bonusHealth += (int)Math.ceil(m.maxHealth * 0.12);
-            }
-            else if (AbstractDungeon.ascensionLevel >= 5)
-            {
-                bonusHealth += (int)Math.ceil(m.maxHealth * 0.14);
+                bonusHealth += (int)Math.ceil(m.maxHealth * 0.11);
             }
             else
             {
-                bonusHealth += (int)Math.ceil(m.maxHealth * 0.16);
+                bonusHealth += (int)Math.ceil(m.maxHealth * 0.13);
             }
 
             m.increaseMaxHp(bonusHealth, true);

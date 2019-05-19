@@ -238,8 +238,9 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "Gagnez [E] [E]. NL Prendre !M! dégâts à la fin de votre tour. NL Héritage: Gagnez [E] [E].",
-		"NAME": "Demiurge"
+		"DESCRIPTION": "Gagnez [E]. NL Prendre !M! dégâts à la fin de votre tour. NL Héritage: Gagnez [E].",
+		"NAME": "Demiurge",
+		"UPGRADE_DESCRIPTION": "Gagnez [E] [E]. NL Prendre !M! dégâts à la fin de votre tour. NL Héritage: Gagnez [E] [E]."
 	},
 	"animator_DolaCouronne":
 	{
@@ -359,7 +360,7 @@
 		"EXTENDED_DESCRIPTION":
 		[
 			"Changeforme. NL Gagnez !B! d'Armure.",
-			"Changeforme. NL Infligez !D! dégât(s) deux fois. Gagnez 2 Métalisation.",
+			"Changeforme. NL Infligez !D! dégât(s) deux fois. Gagnez 2 de Métallisation.",
 			"Changeforme. NL Infligez !D! dégât(s). NL Appliquez 1 Vulnérabilité. NL Appliquez 1 Faiblesse."
 		],
 		"NAME": "Fredrika"
@@ -414,7 +415,7 @@
 	},
 	"animator_Greed":
 	{
-		"DESCRIPTION": "Gagnez !SV! d'Armure_Plaquée. NL Gagnez !M! Métalisation. NL Gagnez 3 Malleable. NL [#EFC851]Greed[].",
+		"DESCRIPTION": "Gagnez !SV! d'Armure_Plaquée. NL Gagnez !M! de Métallisation. NL Gagnez 3 Malleable. NL [#EFC851]Greed[].",
 		"EXTENDED_DESCRIPTION": ["Greed", "Si cette carte est dans votre deck au début du combat, Gagnez #b8 #yOr quand joué. Cette carte coute 1 d'énergie en moins pour chaque #b100 #yOr que vous avez."],
 		"NAME": "Greed"
 	},
@@ -610,9 +611,9 @@
 	},
 	"animator_MumenRider":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Piochez 1 carte. NL Purge. Cette carte retourne dans votre main dans 2 tours.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Piochez 1 carte. Purge. Cette carte retourne dans votre main dans 2 tours.",
 		"NAME": "Mumen Rider",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s) avec style. Piochez 1 carte. NL Purge. Cette carte retourne dans votre main dans 2 tours."
+		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s) avec style. Piochez 1 carte. Purge. Cette carte retourne dans votre main dans 2 tours."
 	},
 	"animator_Nanami":
 	{
@@ -788,8 +789,8 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! de Vulnérable. NL Appliquez !M! de Faiblesse. NL Gagnez !B! d'Armure. NL [#EFC851]Paresse.",
-		"EXTENDED_DESCRIPTION": ["Paresse", "Au début de chaque tour, augmentez le montant #yd'Armure and de dégâts par 1 pour chaque Orbe que vous avez. Après l'utilisation, diminuez les dégâts et le montant #y d'Armure de cette carte de moitié."],
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Infligez !D! dégât(s). NL Appliquez !M! de Vulnérable. NL [#EFC851]Paresse.",
+		"EXTENDED_DESCRIPTION": ["Paresse", "Au début de chaque tour, augmentez le montant #yd'Armure and de dégâts par 2, et par 1 pour chaque unique Orbe que vous avez. Après l'utilisation, diminuez les dégâts et le montant #y d'Armure de cette carte de moitié."],
 		"NAME": "Paresse"
 	},
 	"animator_Sora":
@@ -946,9 +947,29 @@
 	},
 	"animator_Vesta":
 	{
-		"DESCRIPTION": "Choisissez une carte de votre Défausse, après !M! tours, ajouté une copie Amélioré de cette carte à votre main. Purge.",
-		"EXTENDED_DESCRIPTION": ["Choisissez une carte, après # tours, ajouté une copie Amélioré de cette carte à votre main."],
+		"DESCRIPTION": "Piochez 1 carte. NL Recherchez un [#EFC851]Élixir, il sera complété dans !M! tours. Épuisement.",
+		"EXTENDED_DESCRIPTION": ["Élixir", "#yCompétence qui coûte 0 ayant des effets variés."],
 		"NAME": "Vesta"
+	},
+	"animator_Vesta_Elixir_0":
+	{
+		"DESCRIPTION": "Gagnez !M! de Concentration. NL Gagnez 2 emplacements d'Orbe. NL Gagnez !SV! de Flou. NL Épuisement.",
+		"NAME": "Élixir"
+	},
+	"animator_Vesta_Elixir_1":
+	{
+		"DESCRIPTION": "Gagnez !M! de Force. NL Gagnez !SV! de Dextérité. NL Gagnez 8 de Temp._PV. NL Épuisement.",
+		"NAME": "Élixir"
+	},
+	"animator_Vesta_Elixir_2":
+	{
+		"DESCRIPTION": "Epuisez !M! cartes. NL Gagnez [E] [E] [E]. NL Piochez !SV! cartes. NL Épuisement.",
+		"NAME": "Élixir"
+	},
+	"animator_Vesta_Elixir_3":
+	{
+		"DESCRIPTION": "Piochez !M! cartes. NL Défaussez 2 cartes. NL Gagnez !SV! de Métallisation. NL Épuisement.",
+		"NAME": "Élixir"
 	},
 	"animator_Viivi":
 	{
@@ -1052,8 +1073,7 @@
 	{
 		"DESCRIPTION": "Gagnez 1 Concentration. NL Gagnez 2 Energie. NL Piochez 3 cartes. NL Gagnez 4 Force. NL [#EFC851]Vérité[].",
 		"NAME": "Vérité",
-		"EXTENDED_DESCRIPTION": ["Vérité", " Si vous avez au moins 3 Orbes uniques, supprimez toutes vos Orbes. Sinon, remplacez de manière permanente une carte au choix de votre deck par une #yPlaie."],
-		"UPGRADE_DESCRIPTION": "Gagnez 2 Concentration. NL Gagnez 3 Energie. NL Piochez 4 cartes. NL Gagnez 5 Force. NL [#EFC851]Vérité[]."
+		"EXTENDED_DESCRIPTION": ["Vérité", " Si vous avez au moins 3 Orbes uniques, supprimez toutes vos Orbes. Sinon, remplacez de manière permanente une carte au choix de votre deck par une #yPlaie."]
 	},
 	"animator_Rose":
 	{

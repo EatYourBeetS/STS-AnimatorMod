@@ -230,7 +230,7 @@ public class BundledRelicProvider
         AddBundle(Kazuma.ID, OldCoin.ID, AbstractRelic.RelicTier.RARE, R1);
         AddBundle(Mitsurugi.ID, Lantern.ID, AbstractRelic.RelicTier.COMMON, R4);
 
-        AddBundle(Megumin.ID, StoneCalendar.ID, AbstractRelic.RelicTier.RARE, R2);
+        AddBundle(Megumin.ID, WizardHat.ID, AbstractRelic.RelicTier.RARE, R1);
         AddBundle(YunYun.ID, WarPaint.ID, AbstractRelic.RelicTier.COMMON, R3);
         AddBundle(Chris.ID, OldCoin.ID, AbstractRelic.RelicTier.COMMON, R1);
         AddBundle(Vanir.ID, SmilingMask.ID, AbstractRelic.RelicTier.COMMON, R2);

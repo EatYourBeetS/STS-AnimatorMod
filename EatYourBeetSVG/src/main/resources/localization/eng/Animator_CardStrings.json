@@ -239,8 +239,9 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "Gain [E] [E]. NL Take !M! damage at the end of this turn. NL Legacy: Gain [E] [E].",
-		"NAME": "Demiurge"
+		"DESCRIPTION": "Gain [E]. NL Take !M! damage at the end of this turn. NL Legacy: Gain [E].",
+		"NAME": "Demiurge",
+		"UPGRADE_DESCRIPTION": "Gain [E] [E]. NL Take !M! damage at the end of this turn. NL Legacy: Gain [E] [E]."
 	},
 	"animator_DolaCouronne":
 	{
@@ -789,8 +790,8 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Apply !M! Weak. NL Gain !B! Block. NL [#EFC851]Sloth.",
-		"EXTENDED_DESCRIPTION": ["Sloth", "At the start of each turn, increase this card's #yBlock and damage by 1 for each Orb you have. On use, halve this card's damage and #yBlock value."],
+		"DESCRIPTION": "[#EFC851]Sloth. NL Deal !D! damage. NL Gain !B! Block. NL Apply !M! Vulnerable.",
+		"EXTENDED_DESCRIPTION": ["Sloth", "At the start of each turn, increase this card's #yBlock and damage by 2, gain an additional 1 for each unique Orb you have. On use, halve this card's damage and #yBlock."],
 		"NAME": "Sloth"
 	},
 	"animator_Sora":
@@ -947,9 +948,29 @@
 	},
 	"animator_Vesta":
 	{
-		"DESCRIPTION": "Choose a card in your Discard pile. After !M! turns, add an Upgraded copy of it to your hand. Purge.",
-		"EXTENDED_DESCRIPTION": ["Select a card, after # turns, add an Upgraded copy of it to your hand."],
+		"DESCRIPTION": "Draw 1 card. NL Research an [#EFC851]Elixir, NL it will be completed after !M! turns. NL Exhaust.",
+		"EXTENDED_DESCRIPTION": ["Elixir", "0-cost #ySkill with a variety of different effects."],
 		"NAME": "Vesta"
+	},
+	"animator_Vesta_Elixir_0":
+	{
+		"DESCRIPTION": "Gain !M! Focus. NL Gain 2 Orb slots. NL Gain !SV! Blur. NL Exhaust.",
+		"NAME": "Elixir"
+	},
+	"animator_Vesta_Elixir_1":
+	{
+		"DESCRIPTION": "Gain !M! Strength. NL Gain !SV! Dexterity. NL Gain 8 Temp._HP. NL Exhaust.",
+		"NAME": "Elixir"
+	},
+	"animator_Vesta_Elixir_2":
+	{
+		"DESCRIPTION": "Gain [E] [E] [E]. NL Exhaust !M! cards. NL Draw !SV! cards. NL Exhaust.",
+		"NAME": "Elixir"
+	},
+	"animator_Vesta_Elixir_3":
+	{
+		"DESCRIPTION": "Draw !M! cards. NL Discard 2 cards. NL Gain !SV! Metallicize. NL Exhaust.",
+		"NAME": "Elixir"
 	},
 	"animator_Viivi":
 	{
@@ -1055,8 +1076,7 @@
 	{
 		"DESCRIPTION": "Gain 1 Focus. NL Gain 2 Energy. NL Draw 3 cards. NL Gain 4 Strength. NL [#EFC851]Truth.",
 		"NAME": "Truth",
-		"EXTENDED_DESCRIPTION": ["Truth", "If you have at least 3 unique orbs, remove all your orbs, otherwise choose and permanently replace a card in your deck with a #yWound."],
-		"UPGRADE_DESCRIPTION": "Gain 2 Focus. NL Gain 3 Energy. NL Draw 4 cards. NL Gain 5 Strength. NL [#EFC851]Truth."
+		"EXTENDED_DESCRIPTION": ["Truth", "If you have at least 3 unique orbs, remove all your orbs, otherwise choose and permanently replace a card in your deck with a #yWound."]
 	},
 	"animator_Rose":
 	{

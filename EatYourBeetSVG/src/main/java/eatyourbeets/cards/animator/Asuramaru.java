@@ -16,7 +16,7 @@ public class Asuramaru extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        Initialize(16,16,2);
+        Initialize(18,18,1);
 
         this.exhaust = true;
 
@@ -39,9 +39,9 @@ public class Asuramaru extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(5);
-            upgradeBlock(5);
-            //upgradeMagicNumber(1);
+            upgradeDamage(3);
+            upgradeBlock(3);
+            upgradeMagicNumber(1);
         }
     }
 }

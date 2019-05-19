@@ -1,13 +1,19 @@
 package eatyourbeets.relics;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
+import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class WizardHat extends AnimatorRelic
 {
@@ -15,16 +21,18 @@ public class WizardHat extends AnimatorRelic
 
     public WizardHat()
     {
-        super(ID, RelicTier.UNCOMMON, LandingSound.FLAT);
+        super(ID, RelicTier.RARE, LandingSound.FLAT);
     }
 
-    private static final int TURNS = 7;
-    private static final int DAMAGE_AMOUNT = 14;
+    private static final int ENERGY_COST = 5;
+    private static final int DAMAGE_AMOUNT = 40;
+
+    private int activations;
 
     @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0] + TURNS + DESCRIPTIONS[1] + DAMAGE_AMOUNT + DESCRIPTIONS[2];
+        return DESCRIPTIONS[0] + DAMAGE_AMOUNT + DESCRIPTIONS[1];
     }
 
     @Override
@@ -32,7 +40,8 @@ public class WizardHat extends AnimatorRelic
     {
         super.atBattleStart();
 
-        counter = 0;
+        activations = 0;
+        counter = ENERGY_COST;
     }
 
     @Override
@@ -44,19 +53,50 @@ public class WizardHat extends AnimatorRelic
     }
 
     @Override
-    public void onPlayCard(AbstractCard c, AbstractMonster m)
+    public void onPlayerEndTurn()
     {
-        super.onPlayCard(c, m);
+        super.onPlayerEndTurn();
 
-        AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
-        if (card != null && card.HasActiveSynergy())
+        if (counter > 0)
         {
-            counter += 1;
-            if (counter >= TURNS)
+            int energy = EnergyPanel.getCurrentEnergy();
+            energy = Math.min(energy, counter);
+
+            if (energy <= 0)
             {
-                this.flash();
-                GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
-                counter = 0;
+                return;
+            }
+
+            EnergyPanel.useEnergy(energy);
+            counter -= energy;
+
+            this.flash();
+            if (counter > 0)
+            {
+                GameActionsHelper.AddToBottom(new SFXAction("ANIMATOR_MEGUMIN_CHARGE", 0.1F));
+            }
+            else
+            {
+                activations += 1;
+                counter = ENERGY_COST + activations;
+
+                GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.1F));
+                GameActionsHelper.AddToBottom(new WaitAction(0.35f));
+                GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.2F));
+                GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
+                GameActionsHelper.AddToBottom(new WaitAction(0.35f));
+                GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.3F));
+                GameActionsHelper.AddToBottom(new WaitAction(0.35f));
+                GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.RED)));
+                GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5f));
+                for (AbstractCreature m1 : PlayerStatistics.GetCurrentEnemies(true))
+                {
+                    GameActionsHelper.AddToBottom(new VFXAction(new FlameBarrierEffect(m1.hb_x, m1.hb_y)));
+                    GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(m1.hb_x, m1.hb_y)));
+                }
+
+                int[] multiDamage = DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true);
+                GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
             }
         }
     }

@@ -39,7 +39,7 @@ public class Viivi extends AnimatorCard
         for (int i = 0; i < magicNumber; i++)
         {
             AbstractDungeon.actionManager.addToBottom(new VFXAction(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F));
-            GameActionsHelper.DamageRandomEnemy(p, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+            GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
         }
     }
 

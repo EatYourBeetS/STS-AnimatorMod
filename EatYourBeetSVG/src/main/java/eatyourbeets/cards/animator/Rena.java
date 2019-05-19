@@ -15,7 +15,7 @@ public class Rena extends AnimatorCard
 
     public Rena()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 4, 1);
 
@@ -35,7 +35,7 @@ public class Rena extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.ApplyPower(p, m, new BlurPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.ApplyPower(p, p, new BlurPower(p, this.magicNumber), this.magicNumber);
 
         if (HasActiveSynergy())
         {

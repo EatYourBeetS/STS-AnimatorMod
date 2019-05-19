@@ -4,13 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Sloth extends AnimatorCard
 {
@@ -32,9 +31,10 @@ public class Sloth extends AnimatorCard
     {
         super.atTurnStart();
 
-        int bonusAmount = AbstractDungeon.player.filledOrbCount();
-        if (bonusAmount > 0)
+        if (PlayerStatistics.getTurnCount() > 0)
         {
+            int bonusAmount = PlayerStatistics.GetUniqueOrbsCount() + 2;
+
             GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, bonusAmount));
             GameActionsHelper.AddToBottom(new ModifyBlockAction(this.uuid, bonusAmount));
         }
@@ -53,7 +53,7 @@ public class Sloth extends AnimatorCard
         }
 
         GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, this.magicNumber, false), this.magicNumber);
-        GameActionsHelper.ApplyPower(p, m, new WeakPower(m, this.magicNumber, false), this.magicNumber);
+        //GameActionsHelper.ApplyPower(p, m, new WeakPower(m, this.magicNumber, false), this.magicNumber);
 
         GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, - this.baseDamage/2));
         GameActionsHelper.AddToBottom(new ModifyBlockAction(this.uuid, - this.baseBlock/2));
@@ -64,7 +64,7 @@ public class Sloth extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(2);
             upgradeBlock(2);
         }
     }

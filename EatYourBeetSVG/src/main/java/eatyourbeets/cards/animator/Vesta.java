@@ -24,11 +24,13 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
 
     public Vesta()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0,0, 3);
 
-        this.purgeOnUse = true;
+        this.exhaust = true;
+
+        AddExtendedDescription();
 
         SetSynergy(Synergies.TenSura);
     }
@@ -36,9 +38,8 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        String message = cardStrings.EXTENDED_DESCRIPTION[0].replace("#", String.valueOf(this.magicNumber));
-
-        GameActionsHelper.AddToTop(new ChooseFromPileAction(1, false, p.discardPile, this::OnSelected,this, message));
+        GameActionsHelper.DrawCard(p, 1);
+        GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, Vesta_Elixir.GetCardGroup(), this::OnSelected,this, "", true));
     }
 
     @Override

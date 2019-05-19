@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.GameActionsHelper;
@@ -376,6 +378,21 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         }
 
         return monsters;
+    }
+
+    public static int GetUniqueOrbsCount()
+    {
+        ArrayList<String> orbList = new ArrayList<>();
+
+        for (AbstractOrb o : AbstractDungeon.player.orbs)
+        {
+            if (o.ID != null && !o.ID.equals(EmptyOrbSlot.ORB_ID) && !orbList.contains(o.ID))
+            {
+                orbList.add(o.ID);
+            }
+        }
+
+        return orbList.size();
     }
 
     public static int GetDexterity(AbstractCreature creature)

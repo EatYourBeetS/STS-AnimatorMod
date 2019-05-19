@@ -42,7 +42,7 @@ public class Truth extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int amount = upgraded ? 2 : 1;
+        int amount = 1;
 
         GameActionsHelper.ApplyPower(p, p, new FocusPower(p, amount), amount);
         GameActionsHelper.GainEnergy(amount + 1);
@@ -73,7 +73,10 @@ public class Truth extends AnimatorCard_UltraRare
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeBaseCost(0);
+        }
     }
 
     private void AddWound(AbstractPlayer p)

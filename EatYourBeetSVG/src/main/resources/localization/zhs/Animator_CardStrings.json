@@ -237,8 +237,9 @@
 	},
 	"animator_Demiurge":
 	{
-		"DESCRIPTION": "获得 [E] [E] ， 在本轮结束时 ， 受到 !M! 点 伤害 。 遗赠 : 获得 [E] [E]",
-		"NAME": "迪米乌哥斯"
+		"DESCRIPTION": "获得 [E] ， 在本轮结束时 ， 受到 !M! 点 伤害 。 遗赠 : 获得 [E]",
+		"NAME": "迪米乌哥斯",
+		"UPGRADE_DESCRIPTION": "获得 [E] [E] ， 在本轮结束时 ， 受到 !M! 点 伤害 。 遗赠 : 获得 [E] [E]"
 	},
 	"animator_DolaCouronne":
 	{
@@ -487,7 +488,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 为每一种不同的充能球抽1张牌。NL 同调 ：获得 !SV! 点临时 集中",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 为每一种不同的充能球抽 1 张牌 。 NL 同调 ： 获得 !SV! 点临时 集中 。",
 		"NAME": "吉普莉尔"
 	},
 	"animator_Kaijin":
@@ -789,8 +790,8 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 给予 !M! 层 虚弱 。 获得 !B! 格挡 。 [#EFC851]懒惰[]。",
-		"EXTENDED_DESCRIPTION": ["懒惰", "每轮开始时，将这张牌的 #y格挡 与 伤害为每一个您拥有的充能球增加1 。 每次使用后， 将这张牌的 #y格挡 与伤害减半。"],
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 获得 !B! 格挡 。 [#EFC851]懒惰[]。",
+		"EXTENDED_DESCRIPTION": ["懒惰", "每轮开始时， 将此卡的格挡和伤害提高 #b2 点 ， 并为​​每个不同的充能球增加 #b1 点 。 每次使用后， 将这张牌的 #y格挡 与伤害减半。"],
 		"NAME": "懒惰"
 	},
 	"animator_Sora":
@@ -947,9 +948,29 @@
 	},
 	"animator_Vesta":
 	{
-		"DESCRIPTION": "在你的弃牌堆中选择一张牌 ， 于 !M! 回合后 ， 将这张牌的 升级 后的复制加入到手牌中 。 抹除 。",
-		"EXTENDED_DESCRIPTION": ["选一张牌 ， 于 # 回合后 ， 将一张升级过的复制加入手牌中 。"],
+		"DESCRIPTION": "抽 1 张牌 。 研究1瓶 [#EFC851]灵药[] ， NL !M! 轮后获得此研究成果 。 消耗 。",
+		"EXTENDED_DESCRIPTION": ["灵药", "0 能耗 #y技能 ， 拥有不同的特殊功效 。"],
 		"NAME": "大臣"
+	},
+	"animator_Vesta_Elixir_0":
+	{
+		"DESCRIPTION": "获得 !M! 点 集中 。 NL 获得 2 个充能球栏位 。 NL 获得 !SV! 残影 。 NL 消耗 。",
+		"NAME": "灵药"
+	},
+	"animator_Vesta_Elixir_1":
+	{
+		"DESCRIPTION": "获得 !M! 点 力量 。 NL 获得 !SV! 点 敏捷 。 NL 获得 8 点 临时生命 。 NL 消耗 。",
+		"NAME": "灵药"
+	},
+	"animator_Vesta_Elixir_2":
+	{
+		"DESCRIPTION": "消耗 !M! 张牌 。 NL 获得 [E] [E] [E] NL 抽 !SV! 张牌 。 NL 消耗 。",
+		"NAME": "灵药"
+	},
+	"animator_Vesta_Elixir_3":
+	{
+		"DESCRIPTION": "抽 !M! 张牌 。 NL 丢弃 2 张牌 。 NL 获得 !SV! 点 金属化 。 NL 消耗 。",
+		"NAME": "灵药"
 	},
 	"animator_Viivi":
 	{
@@ -1053,8 +1074,7 @@
 	{
 		"DESCRIPTION": "获得 1 点 集中 。 NL 获得 2 点 能量 。 NL 抽 3 张牌 。 NL 获得 4 点 力量 。 NL [#EFC851]真相[] 。",
 		"NAME": "真相",
-		"EXTENDED_DESCRIPTION": ["真相", "如果您拥有至少 3 种不同充能球 ， 失去所有充能球 。否则选择牌组中的一张牌而且永久的将那张牌用 #y伤口 代替 。"],
-		"UPGRADE_DESCRIPTION": "获得 2 点 集中 。 NL 获得 3 点 能量 。 NL 抽 4 张牌 。 NL 获得 5 点 力量 。 NL [#EFC851]真相[] 。"
+		"EXTENDED_DESCRIPTION": ["真相", "如果您拥有至少 3 种不同充能球 ， 失去所有充能球 。否则选择牌组中的一张牌而且永久的将那张牌用 #y伤口 代替 。"]
 	},
 	"animator_Rose":
 	{

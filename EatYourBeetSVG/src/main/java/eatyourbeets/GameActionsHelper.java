@@ -175,6 +175,13 @@ public class GameActionsHelper
         return action;
     }
 
+    public static DamageRandomEnemy2Action DamageRandomEnemyWhichActuallyWorks(AbstractCreature source, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
+    {
+        DamageRandomEnemy2Action action = new DamageRandomEnemy2Action(new DamageInfo(source, amount, damageType), effect);
+        AddToDefault(action);
+        return action;
+    }
+
     public static DamageRandomEnemyAction DamageRandomEnemy(AbstractCreature source, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
         DamageRandomEnemyAction action = new DamageRandomEnemyAction(new DamageInfo(source, amount, damageType), effect);

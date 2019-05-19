@@ -17,7 +17,7 @@ public class Bozes extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(7,0,2);
+        Initialize(9,0,2);
 
         SetSynergy(Synergies.Gate);
     }
@@ -49,7 +49,7 @@ public class Bozes extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(3);
         }
     }
 }

@@ -12,11 +12,11 @@ public class AlchemistGlove extends AnimatorRelic
     public static final String ID = CreateFullID(AlchemistGlove.class.getSimpleName());
 
     private static final int TURN_COUNT = 3;
-    private static final int BURNING_AMOUNT = 3;
+    private static final int BURNING_AMOUNT = 4;
 
     public AlchemistGlove()
     {
-        super(ID, RelicTier.RARE, LandingSound.FLAT);
+        super(ID, RelicTier.UNCOMMON, LandingSound.FLAT);
     }
 
     @Override

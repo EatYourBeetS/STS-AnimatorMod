@@ -20,9 +20,7 @@ public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0,6);
-
-        //this.baseSecondaryValue = this.secondaryValue = 3;
+        Initialize(0,0,3, 1);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -32,13 +30,13 @@ public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.GainEnergy(2);
+        GameActionsHelper.GainEnergy(this.secondaryValue);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainEnergy(2);
+        GameActionsHelper.GainEnergy(this.secondaryValue);
         PlayerStatistics.onEndOfTurn.Subscribe(this);
     }
 
@@ -47,7 +45,8 @@ public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(-3);
+            upgradeMagicNumber(3);
+            upgradeSecondaryValue(1);
         }
     }
 
@@ -57,8 +56,7 @@ public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
         AbstractPlayer p = AbstractDungeon.player;
 
         AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this.makeStatEquivalentCopy()));
-        GameActionsHelper.DamageTarget(p, p, this.magicNumber, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper.ModifyMagicNumber(this, this.secondaryValue, true);
+        GameActionsHelper.DamageTarget(p, p, this.magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         PlayerStatistics.onEndOfTurn.Unsubscribe(this);
     }
 }

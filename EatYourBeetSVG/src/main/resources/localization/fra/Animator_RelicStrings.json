@@ -116,7 +116,7 @@
 	},
 	"Animator_WizardHat":
 	{
-		"DESCRIPTIONS": ["Chaque fois que vous activé #b", " #ySynergies en un combat, inflige #b", " dégat(s) à TOUS les ennemis."],
+		"DESCRIPTIONS": ["À la fin de votre tour, dépensez votre énergie restante et réduisez ce compteur du même montant. Si ce compteur atteint #g0, infligez #b", " dégâts à TOUS les enemis."],
 		"FLAVOR": "La magie d'explosion est la plus puissantes. Mais elle demande un temps de préparation.",
 		"NAME": "Chapeau de Sorcier"
 	},

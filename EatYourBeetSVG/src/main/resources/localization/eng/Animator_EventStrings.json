@@ -1,40 +1,60 @@
+
 {
-  "Animator_TheMaskedTraveler1": {
-    "NAME": "The Masked Traveler",
-    "DESCRIPTIONS": [
-      "While passing by this #ytotally not #yreused game asset, a masked figure with a large backpack approaches you. NL NL \"Greetings friend, are you perchance carrying some @'special'@ weaponry?\" NL ... NL \"Are you willing to sell it?\" NL NL \"Or perhaps you would prefer to buy some from my ... #ycollection ?\"",
-      "\"Did he actually accept?\" NL ... NL NL \"Ahem... I am @grateful@ for the #ytrade , be safe on your journey.\" NL NL That said, he disappeared from your sight."
-    ],
-    "OPTIONS": [
-      "[Sell] #gRemove ", ". #gGain #g", " #gGold.",
-      "[Trade] #gImprove #gall Strikes #gand Defends. #rLose #r", " #rGold.",
-      "[Leave]",
-	  "[Locked] No card to sell.",
-	  "[Locked] Not enough Gold."
-    ]
-  },
-  "Animator_TheDomVedeloper1": {
-    "NAME": "The Dom Vedeloper",
-    "DESCRIPTIONS": [
-      "You hear someone shouting in the distance: NL NL \" Rinne should behave more @erratically@ \" NL \" #yGilgamesh probably deserves a buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL You are slightly intrigued by those strange words... NL Do you decide to approach him?",
-	  "\"Oh hello, hello! Those are some #pinteresting cards, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your cards, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
-	  "\"Wonderful! Wonderful! Here, tell me, what do you think of this card?\"",
-	  "\"Nice, how about this one?\"",
-	  "\"Interesting, and this one?\"",
-	  "\"I see... Lastly, what's your opinion on this one?\"",
-	  "\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you accept, your answers will be sent to the developer)",
-	  "\"Excellent, have a nice day!\" NL NL \"... So... the next series could be...\""
-    ],
-    "OPTIONS": [
-	  "[Leave]",
-      "[Accept] Answer 4 questions. #gGain #g100 #gGold.",
-	  "[1] It is definitely too strong...",
-      "[2] It is a very strong card!",
-	  "[3] It is a good card in most situations.",
-	  "[4] It has its uses sometimes.",
-	  "[5] What? Never show me that thing again.",
-	  "[Sign the paper]",
-	  "[Continue]"
-    ]
-  }
+	"Animator_TheMaskedTraveler1":
+	{
+		"NAME": "The Masked Traveler",
+		"DESCRIPTIONS": [
+			"While passing by this #ytotally not #yreused game asset, a masked figure with a large backpack approaches you. NL NL \"Greetings friend, are you perchance carrying some @'special'@ weaponry?\" NL ... NL \"Are you willing to sell it?\" NL NL \"Or perhaps you would prefer to buy some from my ... #ycollection ?\"",
+			"\"Did he actually accept?\" NL ... NL NL \"Ahem... I am @grateful@ for the #ytrade , be safe on your journey.\" NL NL That said, he disappeared from your sight."
+		],
+		"OPTIONS": [
+			"[Sell] #gRemove ", ". #gGain #g", " #gGold.",
+			"[Trade] #gImprove #gall Strikes #gand Defends. #rLose #r", " #rGold.",
+			"[Leave]",
+			"[Locked] No card to sell.",
+			"[Locked] Not enough Gold."
+		]
+	},
+	"Animator_TheDomVedeloper1":
+	{
+		"NAME": "The Dom Vedeloper",
+		"DESCRIPTIONS": [
+			"You hear someone shouting in the distance: NL NL \" Rinne should behave more @erratically@ \" NL \" #yGilgamesh probably deserves a buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL You are slightly intrigued by those strange words... NL Do you decide to approach him?",
+			"\"Oh hello, hello! Those are some #pinteresting cards, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your cards, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
+			"\"Wonderful! Wonderful! Here, tell me, what do you think of this card?\"",
+			"\"Nice, how about this one?\"",
+			"\"Interesting, and this one?\"",
+			"\"I see... Lastly, what's your opinion on this one?\"",
+			"\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you accept, your answers will be sent to the developer)",
+			"\"Excellent, have a nice day!\" NL NL \"... So... the next series could be...\""
+		],
+		"OPTIONS": [
+			"[Leave]",
+			"[Accept] Answer 4 questions. #gGain #g100 #gGold.",
+			"[1] It is definitely too strong...",
+			"[2] It is a very strong card!",
+			"[3] It is a good card in most situations.",
+			"[4] It has its uses sometimes.",
+			"[5] What? Never show me that thing again.",
+			"[Sign the paper]",
+			"[Continue]"
+		]
+	},
+	"Animator_TheUnnamed":
+	{
+		"NAME": "The Masked Traveler",
+		"DESCRIPTIONS": [
+			"\"It's you! Are you on your way to defeat the @Heart@ of the Spire?\" NL NL \"Why don't you help me with another menace instead? You see, The Unnamed has returned, but don't you worry! It's nothing you can't defeat!\"",
+			"(To fight the Unnamed you will have to renounce to ALL your relics and Potions, and your HP and Max HP will be set to #b100. You will be able to choose 1 of 3 special relics for this fight)",
+			"\"Perfect! just go ahead and you shall find him, I'm counting on you!\" NL NL \"... he will not come back alive...\""
+		],
+		"OPTIONS": 
+		[
+			"[Leave]",
+			"[Inquire]",
+			"[Accept] Obtain RelicName1",
+			"[Accept] Obtain RelicName2",
+			"[Accept] Obtain RelicName3"
+		]
+	}
 }

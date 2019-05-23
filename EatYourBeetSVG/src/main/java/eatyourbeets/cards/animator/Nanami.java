@@ -56,6 +56,7 @@ public class Nanami extends AnimatorCard
         this.energyOnUse = EnergyPanel.totalCount;
         if (p.hasRelic(ChemicalX.ID))
         {
+            // This should be illegal
             this.energyOnUse += ChemicalX.BOOST;
         }
 

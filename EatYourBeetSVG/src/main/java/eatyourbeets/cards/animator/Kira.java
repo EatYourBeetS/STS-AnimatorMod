@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FadingPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
@@ -62,7 +62,7 @@ public class Kira extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new VulnerablePower(p, this.secondaryValue, false), this.secondaryValue);
+        GameActionsHelper.ApplyPower(p, m, new StrengthPower(m, this.secondaryValue), this.secondaryValue);
         updateCountdown(m);
 
         GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
@@ -97,7 +97,7 @@ public class Kira extends AnimatorCard
         else
         {
             updateCountdown(monster);
-            rawDescription = cardStrings.EXTENDED_DESCRIPTION[2].replace("#", String.valueOf(countdown));
+            rawDescription = cardStrings.EXTENDED_DESCRIPTION[2].replace("@", String.valueOf(countdown));
         }
 
         initializeDescription();

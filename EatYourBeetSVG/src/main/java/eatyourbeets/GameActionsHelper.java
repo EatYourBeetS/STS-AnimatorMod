@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -78,6 +79,27 @@ public class GameActionsHelper
         AbstractDungeon.actionManager.addToBottom(action);
     }
 
+
+    public static SFXAction SFX(String key)
+    {
+        SFXAction action = new SFXAction(key);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static SFXAction SFX(String key, float pitchVar)
+    {
+        SFXAction action = new SFXAction(key, pitchVar);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static VFXAction VFX(AbstractGameEffect effect)
+    {
+        VFXAction action = new VFXAction(effect);
+        AddToDefault(action);
+        return action;
+    }
 
     public static VFXAction VFX(AbstractGameEffect effect, float duration)
     {
@@ -157,6 +179,13 @@ public class GameActionsHelper
     public static DamageAction DamageTarget(AbstractCreature source, AbstractCreature target, AbstractCard card, AbstractGameAction.AttackEffect effect)
     {
         DamageAction action = new DamageAction(target, new DamageInfo(source, card.damage, card.damageTypeForTurn), effect);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static DamageAction DamageTarget(AbstractCreature source, AbstractCreature target, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect, boolean superFast)
+    {
+        DamageAction action = new DamageAction(target, new DamageInfo(source, amount, damageType), effect, superFast);
         AddToDefault(action);
         return action;
     }

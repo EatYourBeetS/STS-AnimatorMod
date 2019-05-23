@@ -46,7 +46,7 @@ public class BundledRelic
         {
             if (c instanceof Hero)
             {
-                chance += 13;
+                chance += 16;
             }
         }
 

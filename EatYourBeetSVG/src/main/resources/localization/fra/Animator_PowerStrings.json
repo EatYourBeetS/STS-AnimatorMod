@@ -22,7 +22,7 @@
 	},
 	"animator_BozesPower":
 	{
-		"DESCRIPTIONS": ["A la prochaine #b", " #ySynergies ce tour, piochez 1 card."],
+		"DESCRIPTIONS": ["Quand une carte #ySynergizes, gagnez #b", " d'Armure."],
 		"NAME": "Bozes Co Palesti"
 	},
 	"animator_BurningPower":
@@ -109,6 +109,22 @@
 	{
 		"DESCRIPTIONS": ["Au début de votre tour gagnez un #yBuff aléatoire, puis Choisissez et Epuisé #b", " cartes de votre deck."],
 		"NAME": "Princess Hitei"
+	},
+	"animator_InfinitePower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"- Avant de prendre des dégâts non-bloqués: Gagnez autant #yd'Armure #yEnchantée. NL - En recevant les Debuffs: Gagnez autant de #yRegénération. NL - Lorsque l'ennemi reçoit un Buff: Gagnez autant de #yForce. NL NL Ces Buffs seront diminués de moitié à chaque fin de tour."
+		],
+		"NAME": "Pouvoir Infini"
+	},
+	"animator_UnnamedDollPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"À la mort, TOUS les autres personnages gagnent #b", " de #yForce."
+		],
+		"NAME": "Poupée Sans Nom"
 	},
 	"animator_KaijinPower":
 	{

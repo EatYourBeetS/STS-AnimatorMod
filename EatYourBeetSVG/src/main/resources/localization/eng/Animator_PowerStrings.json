@@ -22,7 +22,7 @@
 	},
 	"animator_BozesPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, draw 1 card."],
+		"DESCRIPTIONS": ["When a card #ySynergizes, gain #b", " Block."],
 		"NAME": "Bozes Co Palesti"
 	},
 	"animator_BurningPower":
@@ -57,7 +57,7 @@
 	},
 	"animator_EnchantedArmorPower":
 	{
-		"DESCRIPTIONS": ["ALL enemies deal #b", "% less damage."],
+		"DESCRIPTIONS": ["Take #b", "% less damage."],
 		"NAME": "Enchanted Armor"
 	},
 	"animator_EntouJyuuPower":
@@ -109,6 +109,22 @@
 	{
 		"DESCRIPTIONS": ["At the start of your turn gain a random #yBuff, then choose and Exhaust #b", " card/s in your deck."],
 		"NAME": "Princess Hitei"
+	},
+	"animator_InfinitePower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"- Before taking unblocked damage: Gain that much #yEnchanted #yArmor. NL - When receiving a debuff: Gain that much #yRegeneration. NL - When the enemy receives a buff: Gain that much #yStrength. NL NL These stats will be halved at the end of each turn."
+		],
+		"NAME": "Infinite Power"
+	},
+	"animator_UnnamedDollPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"On death, ALL characters gain #b", " #yStrength."
+		],
+		"NAME": "Unnamed Doll"
 	},
 	"animator_KaijinPower":
 	{

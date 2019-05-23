@@ -11,8 +11,6 @@ public class BozesPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(BozesPower.class.getSimpleName());
 
-    private final static int PLATED_ARMOR = 1;
-
     public BozesPower(AbstractCreature owner, int value)
     {
         super(owner, POWER_ID);
@@ -27,7 +25,7 @@ public class BozesPower extends AnimatorPower
     {
         String[] desc = powerStrings.DESCRIPTIONS;
 
-        description = desc[0] + amount + desc[1];// + PLATED_ARMOR + desc[2];
+        description = desc[0] + amount + desc[1];
     }
 
     @Override
@@ -48,10 +46,8 @@ public class BozesPower extends AnimatorPower
         {
             if (amount > 0)
             {
-                GameActionsHelper.DrawCard(owner, 1);
-                //GameActionsHelper.ApplyPower(owner, owner, new PlatedArmorPower(owner, PLATED_ARMOR), PLATED_ARMOR);
-                amount -= 1;
-                updateDescription();
+                GameActionsHelper.GainBlock(owner, amount);
+
                 this.flash();
             }
         }

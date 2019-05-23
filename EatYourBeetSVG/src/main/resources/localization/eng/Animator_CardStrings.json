@@ -20,8 +20,7 @@
 	"animator_Add":
 	{
 		"DESCRIPTION": "Gain !M! Ench._Armor. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal. Exhaust.",
-		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Gain !M! Ench._Armor. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal."
+		"NAME": "Add"
 	},
 	"animator_Ain":
 	{
@@ -36,7 +35,7 @@
 	},
 	"animator_Aisha":
 	{
-		"DESCRIPTION": "Spellcaster. Deal !D! damage for each Orb you have. Boost !SV!: Gain 1 Orb Slot.",
+		"DESCRIPTION": "Spellcaster. Deal !D! damage for each Orb you have. Boost !SV!: NL Gain 1 Orb Slot.",
 		"NAME": "Aisha"
 	},
 	"animator_Albedo":
@@ -103,7 +102,7 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "Deal !D! damage to the lowest health enemy. On your next !M! Synergies this turn, draw 1 card.",
+		"DESCRIPTION": "Deal !D! damage to the lowest health enemy. Draw !M! card. When you Synergize this turn, gain !SV! Block.",
 		"NAME": "Bozes"
 	},
 	"animator_Caster":
@@ -152,7 +151,7 @@
 	},
 	"animator_CrowleyEusford":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random enemy. NL This card costs 0 NL if you Exhausted a card this turn.",
+		"DESCRIPTION": "Deal !D! damage to a random enemy. NL This card costs 0 NL if you Exhausted NL a card this turn.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator_Darkness":
@@ -417,7 +416,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "Gain !SV! Plated_Armor. NL Gain !M! Metallicize. NL Gain 3 Malleable. NL [#EFC851]Greed[].",
-		"EXTENDED_DESCRIPTION": ["Greed", "If this card was in your initial deck, gain #b8 #yGold when played. This card costs 1 less energy for every #b100 #yGold you have."],
+		"EXTENDED_DESCRIPTION": ["Greed", "If this card was not generated during combat, gain #b8 #yGold when played. This card costs 1 less energy for every #b100 #yGold you have."],
 		"NAME": "Greed"
 	},
 	"animator_GuildGirl":
@@ -507,8 +506,8 @@
 	},
 	"animator_Kira":
 	{
-		"DESCRIPTION": "Ethereal. Kill the enemy after a certain number of turns ([#EFC851]*[]). NL Gain !SV! Vulnerable. NL Exhaust.",
-		"EXTENDED_DESCRIPTION": ["* Note", "This card's text will change while targeting an enemy, enemies with more health will survive longer. Ignores Artifact.", "Ethereal. The enemy will die in # turns. NL Gain !SV! Vulnerable. NL Exhaust."],
+		"DESCRIPTION": "Ethereal. Give the enemy !SV! Strength and kill it after a certain number of turns ([#EFC851]*[]). NL Exhaust.",
+		"EXTENDED_DESCRIPTION": ["* Note", "This card's text will change while targeting an enemy, enemies with more health will survive longer. Ignores Artifact.", "Ethereal. The enemy will die in @ turn(s). NL Exhaust."],
 		"NAME": "Light Yagami"
 	},
 	"animator_Konayuki":
@@ -563,9 +562,9 @@
 	},
 	"animator_LimeBell":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Reload: Next turn, Heal !M! HP. NL Exhaust.",
+		"DESCRIPTION": "Gain !B! Block. NL Reload: Next turn, NL Heal !M! HP. NL Exhaust.",
 		"NAME": "Lime Bell",
-		"UPGRADE_DESCRIPTION": "Draw 1 card. NL Gain !B! Block. NL Reload: Next turn, Heal !M! HP. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Draw 1 card. NL Gain !B! Block. NL Reload: Next turn, NL Heal !M! HP. NL Exhaust."
 	},
 	"animator_LizardPriest":
 	{
@@ -790,7 +789,7 @@
 	},
 	"animator_Sloth":
 	{
-		"DESCRIPTION": "[#EFC851]Sloth. NL Deal !D! damage. NL Gain !B! Block. NL Apply !M! Vulnerable.",
+		"DESCRIPTION": "[#EFC851]Sloth. NL Gain !B! Block. NL Deal !D! damage. NL Apply !M! Vulnerable.",
 		"EXTENDED_DESCRIPTION": ["Sloth", "At the start of each turn, increase this card's #yBlock and damage by 2, gain an additional 1 for each unique Orb you have. On use, halve this card's damage and #yBlock."],
 		"NAME": "Sloth"
 	},
@@ -938,7 +937,8 @@
 	"animator_Urushihara":
 	{
 		"DESCRIPTION": "Lazy. NL Channel 1 Dark. NL Deal !D! damage NL to ALL enemies.",
-		"NAME": "Urushihara"
+		"NAME": "Urushihara",
+		"UPGRADE_DESCRIPTION": "Slightly less Lazy. NL Channel 1 Dark. NL Deal !D! damage NL to ALL enemies."
 	},
 	"animator_Vanir":
 	{
@@ -959,7 +959,7 @@
 	},
 	"animator_Vesta_Elixir_1":
 	{
-		"DESCRIPTION": "Gain !M! Strength. NL Gain !SV! Dexterity. NL Gain 8 Temp._HP. NL Exhaust.",
+		"DESCRIPTION": "Gain !M! Strength. NL Gain !SV! Dexterity. NL Gain 6 Temp._HP. NL Exhaust.",
 		"NAME": "Elixir"
 	},
 	"animator_Vesta_Elixir_2":

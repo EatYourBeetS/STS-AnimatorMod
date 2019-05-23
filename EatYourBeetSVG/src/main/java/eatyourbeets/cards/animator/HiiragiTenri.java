@@ -18,7 +18,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     {
         super(ID, 4, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0,0, 30);
+        Initialize(0,0, 34);
 
         this.exhaust = true;
 

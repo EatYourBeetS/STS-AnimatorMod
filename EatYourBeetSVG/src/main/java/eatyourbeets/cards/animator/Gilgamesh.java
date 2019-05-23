@@ -1,15 +1,20 @@
 package eatyourbeets.cards.animator;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
+import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
+import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -54,10 +59,6 @@ public class Gilgamesh extends AnimatorCard
 
         Initialize(3,0, 3);
 
-        //AddTooltip(new TooltipInfo("Gate of Babylon", "Whenever you obtain a relic upgrade this card and gain #b"+GOLD_REWARD+" gold. Does not work when buying relics."));
-
-//        String[] info = this.cardStrings.EXTENDED_DESCRIPTION;
-//        AddTooltip(new TooltipInfo(info[0], info[1] + GOLD_REWARD + info[2]));
         AddExtendedDescription(GOLD_REWARD);
 
         SetSynergy(Synergies.Fate);
@@ -72,9 +73,29 @@ public class Gilgamesh extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        for (int i = 0; i < this.magicNumber; i++)
+        if (timesUpgraded >= 8)
         {
-            AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            //GameActionsHelper.SFX("ORB_LIGHTNING_EVOKE", 0.1f);
+            GameActionsHelper.VFX(new BorderLongFlashEffect(Color.GOLD));
+            GameActionsHelper.SFX("ORB_DARK_EVOKE", 0.1f);
+
+            GameActionsHelper.SFX("ATTACK_WHIRLWIND");
+            GameActionsHelper.VFX(new WhirlwindEffect(), 0.0F);
+
+            for (int i = 0; i < this.magicNumber; i++)
+            {
+                GameActionsHelper.SFX("ATTACK_HEAVY");
+                GameActionsHelper.AddToBottom(new VFXAction(p, new CleaveEffect(), 0.0F));
+                GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
+                GameActionsHelper.VFX(new IronWaveEffect(p.hb.cX, p.hb.cY, m.hb.cX), 0.1F);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < this.magicNumber; i++)
+            {
+                GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+            }
         }
     }
 

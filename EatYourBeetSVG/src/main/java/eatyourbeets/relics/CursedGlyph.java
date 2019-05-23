@@ -35,7 +35,7 @@ public class CursedGlyph extends AnimatorRelic
             }
             else
             {
-                bonusHealth += (int)Math.ceil(m.maxHealth * 0.13);
+                bonusHealth += (int)Math.ceil(m.maxHealth * 0.14);
             }
 
             m.increaseMaxHp(bonusHealth, true);

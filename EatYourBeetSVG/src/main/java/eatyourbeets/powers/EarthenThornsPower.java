@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class EarthenThornsPower extends AnimatorPower
@@ -13,7 +13,7 @@ public class EarthenThornsPower extends AnimatorPower
 
     private DamageInfo thornsInfo;
 
-    public EarthenThornsPower(AbstractPlayer owner, int amount)
+    public EarthenThornsPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
         this.amount = amount;
@@ -43,6 +43,6 @@ public class EarthenThornsPower extends AnimatorPower
 
     public void atStartOfTurn()
     {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, this));
+        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(owner, owner, this));
     }
 }

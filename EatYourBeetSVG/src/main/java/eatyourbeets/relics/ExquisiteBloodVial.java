@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.rooms.RestRoom;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.effects.ExquisiteBloodVialIncreaseCounterEffect;
-import eatyourbeets.monsters.KrulTepes;
+import eatyourbeets.monsters.Bosses.KrulTepes;
 
 public class ExquisiteBloodVial extends AnimatorRelic
 {

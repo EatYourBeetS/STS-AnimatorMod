@@ -23,7 +23,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(20,0);
+        Initialize(21, 0);
 
         this.isMultiDamage = true;
         this.lazyCounter = 0;
@@ -34,9 +34,13 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        Urushihara other = (Urushihara)makeStatEquivalentCopy();
+        Urushihara other = (Urushihara) makeStatEquivalentCopy();
 
-        other.lazyCounter = AbstractDungeon.miscRng.random(3) + 1;
+        other.lazyCounter = AbstractDungeon.miscRng.random(3);
+        if (!upgraded)
+        {
+            other.lazyCounter += 1;
+        }
 
         GameActionsHelper.ChannelOrb(new Dark(), true);
 
@@ -46,10 +50,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeDamage(6);
-        }
+        TryUpgrade();
     }
 
     @Override

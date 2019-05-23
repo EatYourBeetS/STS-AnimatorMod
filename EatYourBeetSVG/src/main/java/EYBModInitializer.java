@@ -25,9 +25,10 @@ import java.util.ArrayList;
 
 @SpireInitializer
 public class EYBModInitializer
-        implements EditCharactersSubscriber, EditStringsSubscriber, EditCardsSubscriber, EditKeywordsSubscriber, EditRelicsSubscriber,
-                   OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber, PostInitializeSubscriber, PostEnergyRechargeSubscriber,
-                   PostDrawSubscriber, StartGameSubscriber, StartActSubscriber, MaxHPChangeSubscriber, AddAudioSubscriber
+        implements EditCharactersSubscriber, EditStringsSubscriber, EditCardsSubscriber, EditKeywordsSubscriber,
+                   EditRelicsSubscriber, OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
+                   PostInitializeSubscriber, PostEnergyRechargeSubscriber, PostDrawSubscriber, StartGameSubscriber,
+                   StartActSubscriber, MaxHPChangeSubscriber, AddAudioSubscriber, PostDeathSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
 
@@ -210,5 +211,11 @@ public class EYBModInitializer
         {
             group.removeCard(c);
         }
+    }
+
+    @Override
+    public void receivePostDeath()
+    {
+        PlayerStatistics.OnAfterDeath();
     }
 }

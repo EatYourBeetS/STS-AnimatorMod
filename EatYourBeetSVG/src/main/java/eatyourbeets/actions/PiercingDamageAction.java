@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+import eatyourbeets.powers.EarthenThornsPower;
 
 import java.util.ArrayList;
 
@@ -116,6 +117,7 @@ public class PiercingDamageAction extends AbstractGameAction
                 int block = this.target.currentBlock;
 
                 addIgnoredPower(ThornsPower.POWER_ID);
+                addIgnoredPower(EarthenThornsPower.POWER_ID);
                 addIgnoredPower(MalleablePower.POWER_ID);
                 addIgnoredPower(FlameBarrierPower.POWER_ID);
                 addIgnoredPower(CurlUpPower.POWER_ID);

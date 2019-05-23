@@ -17,7 +17,7 @@ public class Bozes extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(9,0,2);
+        Initialize(7,0,1, 3);
 
         SetSynergy(Synergies.Gate);
     }
@@ -41,7 +41,8 @@ public class Bozes extends AnimatorCard
             GameActionsHelper.DamageTarget(p, enemy, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         }
 
-        GameActionsHelper.ApplyPower(p, p, new BozesPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.DrawCard(p, this.magicNumber);
+        GameActionsHelper.ApplyPower(p, p, new BozesPower(p, this.secondaryValue), this.secondaryValue);
     }
 
     @Override

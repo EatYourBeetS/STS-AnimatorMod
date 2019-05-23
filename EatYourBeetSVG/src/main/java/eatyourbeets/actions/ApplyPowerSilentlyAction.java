@@ -151,7 +151,9 @@ public class ApplyPowerSilentlyAction extends AnimatorAction
                     }
                 }
 
-                if (AbstractDungeon.player.hasRelic("Champion Belt") && this.source != null && this.source.isPlayer && this.target != this.source && this.powerToApply.ID.equals("Vulnerable") && !this.target.hasPower("Artifact"))
+                if (AbstractDungeon.player.hasRelic("Champion Belt") && this.source != null &&
+                        this.source.isPlayer && this.target != this.source && this.powerToApply.ID.equals("Vulnerable")
+                        && !this.target.hasPower("Artifact"))
                 {
                     AbstractDungeon.player.getRelic("Champion Belt").onTrigger(this.target);
                 }

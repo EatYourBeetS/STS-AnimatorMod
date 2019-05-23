@@ -108,6 +108,24 @@
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Missing Piece"
 	},
+	"Animator_TheEgnaroPiece":
+	{
+		"DESCRIPTIONS": ["Gain [E] and draw 1 card at the start of each turn. Heal #b", " HP at the start of each combat, overheal is turned to #yTemporary #yHP."],
+		"FLAVOR": "What is this thing?",
+		"NAME": "The Egnaro Piece"
+	},
+	"Animator_TheWolleyCore":
+	{
+		"DESCRIPTIONS": ["Draw #b"," cards at the start of each turn. Whenever you play a card, gain #b", " #yBlock."],
+		"FLAVOR": "What is this thing?",
+		"NAME": "The Wolley Core"
+	},
+	"Animator_TheEruzaStone":
+	{
+		"DESCRIPTIONS": ["Gain [E] [E] at the start of each turn. Whenever you play a #yPower, draw 1 card."],
+		"FLAVOR": "What is this thing?",
+		"NAME": "The Eruza Stone"
+	},
 	"Animator_VividPicture":
 	{
 		"DESCRIPTIONS": ["Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]"],

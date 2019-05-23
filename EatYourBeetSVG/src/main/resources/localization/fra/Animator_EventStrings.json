@@ -36,5 +36,22 @@
 	  "[Signer le papier]",
 	  "[Continuer]"
     ]
-  }
+  },
+  "Animator_TheUnnamed":
+	{
+		"NAME": "Le Voyageur Masqué",
+		"DESCRIPTIONS": [
+			"\"C'est vous! Sur le chemin de battre le @Cœur@ de cette tour?\" NL NL \"Pourquoi ne pas m'aider à débarasser d'une autre menace à la place? Vous voyez, le Sans-Nom est de retour, mais ne vous en faites pas! Il n'est point invincible pour vous!\"",
+			"(Pour combattre le Sans-Nom, vous devrez renoncer à TOUTES vos reliques et potions. De plus, votre PV et votre PV max seront mis à #b100. Vous pourrez choisir 1 des 3 reliques spéciales pour cette bataille finale.)",
+			"\"Formidable! Allez tout droit et vous devriez le voir, je compte sur vous!\" NL NL \"... il ne s'en sortira jamais vivant...\""
+		],
+		"OPTIONS": 
+		[
+			"[Partir]",
+			"[Se renseigner]",
+			"[Accepter] Obtenez RelicName1",
+			"[Accepter] Obtenez RelicName2",
+			"[Accepter] Obtenez RelicName3"
+		]
+	}
 }

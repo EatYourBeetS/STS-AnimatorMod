@@ -137,7 +137,7 @@
 	{
 		"PROPER_NAME": "Enchanted Armor",
 		"NAMES": ["enchanted armor", "enchanted_armor", "ench. armor", "ench._armor"],
-		"DESCRIPTION": "Take less damage from ALL #yAttacks. Further stacks are less effective."
+		"DESCRIPTION": "Take less damage from ALL Sources. Further stacks are less effective."
 	},
 	{
 		"PROPER_NAME": "Martial Artist",

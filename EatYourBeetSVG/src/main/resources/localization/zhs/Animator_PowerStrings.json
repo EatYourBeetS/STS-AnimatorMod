@@ -22,7 +22,7 @@
 	},
 	"animator_BozesPower":
 	{
-		"DESCRIPTIONS": ["接下来 #b", " 次触发 #y同调 效果时 ，抽一张牌 。"],
+		"DESCRIPTIONS": ["每当一张牌在本回合中同调， 获得 #b", " 点 格挡 。"],
 		"NAME": "波赛斯·戈·芭蕾丝蒂"
 	},
 	"animator_BurningPower":
@@ -79,7 +79,7 @@
 	{
 		"DESCRIPTIONS": ["每回合两次，当一张牌被消耗时增加", " 点力量并治疗", " 点生命。"],
 		"NAME": "费里德·巴特利"
-	},	
+	},
 	"animator_FlamingWeaponPower":
 	{
 		"DESCRIPTIONS": ["每有一次攻击造成未被格挡的伤害，就给予 #b", " 层 燃烧 。"],
@@ -109,6 +109,22 @@
 	{
 		"DESCRIPTIONS": ["在你的回合开始时获得随机 #y积极影响, 从你的牌库中选择并 消耗", " 张牌。"],
 		"NAME": "否定姫"
+	},
+	"animator_InfinitePower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"- 受到未被格挡的伤害前: 获得此数量的 #y魔法护甲 . NL - 受到 负面效果 时: 获得此数量的 #y再生 . NL - 当敌人获得 积极影响 时: 获得此数量的 #y力量 . NL NL 这些加成会在每回合结束时减半."
+		],
+		"NAME": "无尽之力"
+	},
+	"animator_UnnamedDollPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"死亡时，所有角色获得 #b", " #y力量 "
+		],
+		"NAME": "无名傀儡"
 	},
 	"animator_KaijinPower":
 	{

@@ -15,7 +15,8 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.events.TheMaskedTraveler1;
-import eatyourbeets.monsters.KrulTepes;
+import eatyourbeets.monsters.Bosses.KrulTepes;
+import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.relics.*;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.rewards.SynergyCardsReward;
@@ -169,6 +170,11 @@ public class AnimatorResources
         return "images/monsters/" + monsterID + ".png";
     }
 
+    public static String GetMonsterImage(String monsterID, String secondaryID)
+    {
+        return "images/monsters/" + monsterID + "/" + secondaryID + ".png";
+    }
+
     public static void LoadCustomKeywords()
     {
         final String json = Gdx.files.internal(languagePath + "Animator_KeywordStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
@@ -197,6 +203,9 @@ public class AnimatorResources
         BaseMod.addRelicToCustomPool(new CursedBlade(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new CursedGlyph(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new VividPicture(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new TheEgnaroPiece(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new TheEruzaStone(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new TheWolleyCore(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelic(new AlchemistGlove(), RelicType.SHARED);
         BaseMod.addRelic(new OldCoffin(), RelicType.SHARED);
         BaseMod.addRelic(new WornHelmet(), RelicType.SHARED);
@@ -213,13 +222,14 @@ public class AnimatorResources
         BaseMod.addAudio("ANIMATOR_ORB_EARTH_CHANNEL", "audio/sound/ANIMATOR_ORB_EARTH_CHANNEL.ogg");
         BaseMod.addAudio("ANIMATOR_KIRA_POWER", "audio/sound/ANIMATOR_KIRA_POWER.ogg");
         BaseMod.addAudio("ANIMATOR_MEGUMIN_CHARGE", "audio/sound/ANIMATOR_MEGUMIN_CHARGE.ogg");
+        BaseMod.addAudio("ANIMATOR_THE_UNNAMED.ogg", "audio/music/ANIMATOR_THE_UNNAMED.ogg");
         //BaseMod.addAudio("ANIMATOR_EMONZAEMON_ATTACK", "audio/sound/ANIMATOR_EMONZAEMON_ATTACK.ogg");
     }
 
     public static void LoadMonsters()
     {
         BaseMod.addMonster(KrulTepes.ID, KrulTepes::new);
-        //BaseMod.addMonster(Momon.ID, Momon::new);
+        BaseMod.addMonster(TheUnnamed.ID, TheUnnamed::new);
     }
 
     public static void LoadCustomEvents()

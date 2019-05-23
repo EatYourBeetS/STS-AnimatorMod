@@ -10,7 +10,7 @@ public class Vesta_Elixir_1 extends Vesta_Elixir
 {
     public static final String ID = CreateFullID(Vesta_Elixir_1.class.getSimpleName());
 
-    private static final int TEMPORARY_HP = 8;
+    private static final int TEMPORARY_HP = 6;
 
     public Vesta_Elixir_1()
     {

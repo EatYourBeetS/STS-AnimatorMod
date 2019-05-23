@@ -107,6 +107,26 @@
 		]
 	},
 	
+	"Animator_TheUnnamed":
+	{
+		"TEXT": 
+		[
+			"What is this? I am the one with infinite power here!",
+			"The Death Note will not work on me! I have no name, remember?",
+			"You are annoying me, I think your turn will end soon...",
+			"How dare you challenge me!",
+			"I don't even need to attack you...",
+			"You'd better run away while you can.",
+			"You call that a deck?",
+			"It will all end soon...",
+			"How did you even get this far?",
+			"You know... You should deal some damage to progress...",
+			"Gilgamesh will not save you.",
+			"Megumin is overrated.",
+			"You are cheating, I see that Ainz is in your deck..."
+		]
+	},
+	
 	"Animator_Rewards":
 	{
 		"TEXT": 

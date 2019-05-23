@@ -22,6 +22,8 @@ public class WizardHat extends AnimatorRelic
     public WizardHat()
     {
         super(ID, RelicTier.RARE, LandingSound.FLAT);
+
+        this.counter = ENERGY_COST;
     }
 
     private static final int ENERGY_COST = 5;
@@ -41,7 +43,15 @@ public class WizardHat extends AnimatorRelic
         super.atBattleStart();
 
         activations = 0;
-        counter = ENERGY_COST;
+        this.counter = ENERGY_COST;
+    }
+
+    @Override
+    public void onEquip()
+    {
+        super.onEquip();
+
+        this.counter = ENERGY_COST;
     }
 
     @Override
@@ -49,7 +59,7 @@ public class WizardHat extends AnimatorRelic
     {
         super.onVictory();
 
-        this.counter = -1;
+        this.counter = ENERGY_COST;
     }
 
     @Override

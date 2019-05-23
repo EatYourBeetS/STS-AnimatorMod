@@ -19,8 +19,7 @@
 	"animator_Add":
 	{
 		"DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte dans votre pioche. Remplacez-la par un Noyau_d'orbe. NL Éthérée. Épuisement.",
-		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Gagnez !M! d'Armure_Ench. NL Épuise 1 carte dans votre pioche. Remplacez-le par un Noyau_d'orbe. NL Éthérée."
+		"NAME": "Add"
 	},
 	"animator_Ain":
 	{
@@ -102,7 +101,7 @@
 	},
 	"animator_Bozes":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à l'ennemi avec le moins de PV. A votre prochaine !M! Synergie ce tour, piochez une carte.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à l'ennemi avec le moins de PV. Piochez !M! carte(s). Quand vous effectuez une Synergie ce tour, gagnez !SV! d'Armure.",
 		"NAME": "Bozes"
 	},
 	"animator_Caster":
@@ -416,7 +415,7 @@
 	"animator_Greed":
 	{
 		"DESCRIPTION": "Gagnez !SV! d'Armure_Plaquée. NL Gagnez !M! de Métallisation. NL Gagnez 3 Malleable. NL [#EFC851]Greed[].",
-		"EXTENDED_DESCRIPTION": ["Greed", "Si cette carte est dans votre deck au début du combat, Gagnez #b8 #yOr quand joué. Cette carte coute 1 d'énergie en moins pour chaque #b100 #yOr que vous avez."],
+		"EXTENDED_DESCRIPTION": ["Greed", "Si cette carte est dans votre deck au début du combat, gagnez #b8 #yOr quand joué. Cette carte coute 1 d'énergie en moins pour chaque #b100 #yOr que vous avez."],
 		"NAME": "Greed"
 	},
 	"animator_GuildGirl":
@@ -506,8 +505,8 @@
 	},
 	"animator_Kira":
 	{
-		"DESCRIPTION": "Éthérée. Tue l'ennemi après un certain nombre de tour ([#EFC851]*[]). NL Gagnez !SV! Vulnérabilité. NL Épuisement.",
-		"EXTENDED_DESCRIPTION": ["* Note", "Cet carte change en fonction de l'ennemi, les ennemis avec plus de vie survive plus longtemps. Ignore Artéfact.", "Éthérée. L'ennemi va mourir dans # tours. NL Gagnez !SV! Vulnérabilité. NL Épuisement."],
+		"DESCRIPTION": "Éthérée. Tue l'ennemi après un certain nombre de tour ([#EFC851]*[]) et donnez-lui !SV! de Force. NL Épuisement.",
+		"EXTENDED_DESCRIPTION": ["* Note", "Cet carte change en fonction de l'ennemi, les ennemis avec plus de vie survive plus longtemps. Ignore Artéfact.", "Éthérée. L'ennemi va mourir dans @ tour(s). NL Épuisement."],
 		"NAME": "Light Yagami"
 	},
 	"animator_Konayuki":
@@ -958,7 +957,7 @@
 	},
 	"animator_Vesta_Elixir_1":
 	{
-		"DESCRIPTION": "Gagnez !M! de Force. NL Gagnez !SV! de Dextérité. NL Gagnez 8 de Temp._PV. NL Épuisement.",
+		"DESCRIPTION": "Gagnez !M! de Force. NL Gagnez !SV! de Dextérité. NL Gagnez 6 de Temp._PV. NL Épuisement.",
 		"NAME": "Élixir"
 	},
 	"animator_Vesta_Elixir_2":

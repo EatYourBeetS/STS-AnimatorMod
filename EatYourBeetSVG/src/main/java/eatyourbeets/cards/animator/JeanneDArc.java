@@ -21,7 +21,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     {
         super(ID, 1, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(12,0, 8);
+        Initialize(10,0, 8);
 
         SetSynergy(Synergies.Fate);
     }
@@ -48,8 +48,8 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(2);
+            upgradeDamage(3);
+            upgradeMagicNumber(1);
         }
     }
 

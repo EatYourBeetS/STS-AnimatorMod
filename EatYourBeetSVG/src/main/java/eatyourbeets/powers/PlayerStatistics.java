@@ -41,6 +41,9 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = new GameEvent<>();
     public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
     public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
+    public static final GameEvent<OnAbandonRunSubscriber> onAbandonRun = new GameEvent<>();
+    public static final GameEvent<OnExitRunSubscriber> onExitRun = new GameEvent<>();
+    public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
 
     private static int turnDamageMultiplier = 0;
@@ -77,6 +80,9 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         onLoseHp.Clear();
         onEndOfTurn.Clear();
         onApplyPower.Clear();
+        onAbandonRun.Clear();
+        onExitRun.Clear();
+        onAfterDeath.Clear();
         onStartOfTurnPostDraw.Clear();
     }
 
@@ -90,11 +96,36 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         }
     }
 
+    public static void OnExitRun()
+    {
+        for (OnExitRunSubscriber s : onExitRun.GetSubscribers())
+        {
+            s.OnExitRun();
+        }
+        ClearStats();
+    }
+
+    public static void OnAbandonRun()
+    {
+        for (OnAbandonRunSubscriber s : onAbandonRun.GetSubscribers())
+        {
+            s.OnAbandonRun();
+        }
+        ClearStats();
+    }
+
+    public static void OnAfterDeath()
+    {
+        for (OnAfterDeathSubscriber s : onAfterDeath.GetSubscribers())
+        {
+            s.OnAfterDeath();
+        }
+        ClearStats();
+    }
+
     public void OnBattleStart()
     {
         ClearStats();
-        onBattleEnd.Clear();
-        onBattleStart.Clear();
 
         AbstractPlayer p = AbstractDungeon.player;
         ArrayList<AbstractCard> cards = new ArrayList<>(p.drawPile.group);
@@ -107,10 +138,17 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
             OnBattleStartSubscriber s = Utilities.SafeCast(c, OnBattleStartSubscriber.class);
             if (s != null)
             {
-                onBattleStart.Subscribe(s);
                 s.OnBattleStart();
             }
         }
+
+        for (OnBattleStartSubscriber s : onBattleStart.GetSubscribers())
+        {
+            s.OnBattleStart();
+        }
+
+        onBattleStart.Clear();
+        onBattleEnd.Clear();
     }
 
     public void OnBattleEnd()
@@ -119,6 +157,8 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         {
             s.OnBattleEnd();
         }
+
+        onBattleStart.Clear();
         onBattleEnd.Clear();
         ClearStats();
     }
@@ -241,6 +281,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     @Override
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
+        logger.info("ON APPLY POWER: " + onApplyPower.Count());
         super.onApplyPower(power, target, source);
 
         for (OnApplyPowerSubscriber p : onApplyPower.GetSubscribers())

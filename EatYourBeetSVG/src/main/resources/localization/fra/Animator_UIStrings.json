@@ -106,6 +106,25 @@
 			"Complétez l'Acte 4 avec #b30 cartes dans votre deck, sans aucune réplique."
 		]
 	},
+		
+	"Animator_TheUnnamed":
+	{
+		"TEXT": 
+		[
+			"Le Death Note ne fonctionnera pas sur moi! Je n'ai pas de nom, tu t'en souviens?",
+			"Tu m'agaces un peu, je pense que ton tour va bientôt finir...",
+			"Comment oses-tu me défier!",
+			"Je n'ai même pas besoin de t'attaquer...",
+			"Fuis pendant que c'est encore possible.",
+			"Tu appelles ça un deck?",
+			"Tout va finir si vite...",
+			"Comment tu as pu te rendre si loin?",
+			"Tu sais... Pour progresser, tu dois faire plus de dégâts...",
+			"Gilgamesh ne te sauvera pas.",
+			"Tu as surestimé Megumin.",
+			"Tu triches, je vois cet Ainz dans ton deck..."
+		]
+	},
 	
 	"Animator_Rewards":
 	{

@@ -58,7 +58,7 @@ public class Add extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            this.exhaust = false;
+            upgradeMagicNumber(5);
         }
     }
 }

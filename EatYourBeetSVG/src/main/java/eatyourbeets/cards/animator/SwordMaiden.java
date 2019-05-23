@@ -34,7 +34,7 @@ public class SwordMaiden extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(6);
+            upgradeMagicNumber(5);
         }
     }
 }

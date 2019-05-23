@@ -15,7 +15,7 @@ public class Vesta_Elixir_0 extends Vesta_Elixir
     {
         super(ID);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 1, 3);
 
         this.exhaust = true;
     }

@@ -25,24 +25,12 @@ public class Chris extends AnimatorCard_Cooldown
         SetSynergy(Synergies.Konosuba);
     }
 
-//    @Override
-//    public void triggerOnExhaust()
-//    {
-//        super.triggerOnExhaust();
-//
-//        if (AbstractDungeon.player.gold >= 300)
-//        {
-//            AbstractDungeon.player.loseGold(50);
-//            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new Eris()));
-//        }
-//    }
-
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         if (m != null)
         {
-            GameActionsHelper.ApplyPower(p, m, new StolenGoldPower(m, this.magicNumber), this.magicNumber);
+            GameActionsHelper.ApplyPowerSilently(p, m, new StolenGoldPower(m, this.magicNumber), this.magicNumber);
         }
 
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);

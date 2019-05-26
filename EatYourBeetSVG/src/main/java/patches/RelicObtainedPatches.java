@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.metrics.MetricData;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.animator.Gilgamesh;
 import eatyourbeets.relics.ExquisiteBloodVial;
+import eatyourbeets.relics.TheAncientMedallion;
+import eatyourbeets.relics.UnnamedReignRelic;
 
 public class RelicObtainedPatches
 {
@@ -16,8 +18,10 @@ public class RelicObtainedPatches
         @SpirePostfixPatch
         public static void Postfix(AbstractRelic relic)
         {
-            Gilgamesh.OnRelicReceived();
+            Gilgamesh.OnRelicReceived(relic);
             ExquisiteBloodVial.OnRelicReceived(relic);
+            TheAncientMedallion.OnRelicReceived(relic);
+            UnnamedReignRelic.OnRelicReceived(relic);
         }
     }
 
@@ -27,8 +31,10 @@ public class RelicObtainedPatches
         @SpirePrefixPatch
         public static void Prefix(MetricData __instance, AbstractRelic relic)
         {
-            Gilgamesh.OnRelicReceived();
+            Gilgamesh.OnRelicReceived(relic);
             ExquisiteBloodVial.OnRelicReceived(relic);
+            TheAncientMedallion.OnRelicReceived(relic);
+            UnnamedReignRelic.OnRelicReceived(relic);
         }
     }
 }

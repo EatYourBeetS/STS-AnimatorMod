@@ -239,7 +239,7 @@
 	{
 		"DESCRIPTION": "Gagnez [E]. NL Prendre !M! dégâts à la fin de votre tour. NL Héritage: Gagnez [E].",
 		"NAME": "Demiurge",
-		"UPGRADE_DESCRIPTION": "Gagnez [E] [E]. NL Prendre !M! dégâts à la fin de votre tour. NL Héritage: Gagnez [E] [E]."
+		"UPGRADE_DESCRIPTION": "Gagnez [E] [E]. NL Prendre !SV! dégâts à la fin de votre tour. NL Héritage: Gagnez [E] [E]."
 	},
 	"animator_DolaCouronne":
 	{
@@ -264,9 +264,8 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Canalisez 1 Terre.",
-		"NAME": "'Dwarf Shaman'",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL [#EFC851]Canalisez 1 Terre. NL Synergie: Activez cette sa capacité passive."
+		"DESCRIPTION": "Infligez !D! dégât(s). NL [#EFC851]Canalisez 1 Terre. NL Synergie: Active la capacité passive de votre prochaine orbe.",
+		"NAME": "'Dwarf Shaman'"
 	},
 	"animator_Elesis":
 	{
@@ -292,9 +291,9 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez !M! card. NL Synergie et Rappel: Canalisez 1 Feu.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez !M! card. Rappel: Canalisez 1 Feu.",
 		"NAME": "Elsword",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez !M! carte(s). NL Synergie et Rappel: Canalisez 1 Feu."
+		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez !M! carte(s). Rappel: Canalisez 1 Feu."
 	},
 	"animator_EmiyaShirou":
 	{
@@ -322,9 +321,8 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "Changeforme. La première carte que vous jouez chaque tour Synergize. Dure 4 tours.",
-		"NAME": "Envy",
-		"UPGRADE_DESCRIPTION": "Changeforme. La première carte vous jouez chaque tour Synergize."
+		"DESCRIPTION": "Changeforme. Soignez 1 PV par tranche de !M! PV manquants. La première carte que vous jouez chaque tour Synergize.",
+		"NAME": "Envy"
 	},
 	"animator_Eris":
 	{
@@ -670,7 +668,7 @@
 	},
 	"animator_Pride":
 	{
-		"DESCRIPTION": "Changeforme. [#EFC851]Fierté. NL [#EFC851]Canalisez !M! [#EFC851]Tenèbre NL Synergie: Appliquez !SV! Constricted.",
+		"DESCRIPTION": "Changeforme. [#EFC851]Fierté. NL [#EFC851]Canalisez !M! [#EFC851]Tenèbre NL Synergie: Appliquez !SV! de Constriction.",
 		"EXTENDED_DESCRIPTION": ["Fierté", "Jusqu'a votre prochain tour, quand vous subissez dégât(s) non bloqué, votre Orbe de #yTenèbre la plus à droite perd autant en dommage à la place."],
 		"NAME": "Fierté"
 	},
@@ -731,7 +729,7 @@
 	"animator_Scar":
 	{
 		"DESCRIPTION": "Infligez !D! dégât(s) Perçant. NL [#EFC851]Dragon's[] [#EFC851]Pulse[].",
-		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "Si cette carte tue un ennemi (non-minion), #yPurge cette carte et Améliore #yUpgraded de manière permanente une carte aléatoire de votre deck"],
+		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "Si cette carte tue un ennemi (non-minion), #ypurgez cette carte et #yaméliorez de manière permanente une carte aléatoire de votre deck"],
 		"NAME": "Scar"
 	},
 	"animator_Sebas":
@@ -935,8 +933,9 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "Paresse. NL Canalisez 1 Tenèbre NL Infligez !D! dégât(s) à TOUS les ennemis.",
-		"NAME": "Urushihara"
+		"DESCRIPTION": "Paresseux. NL Canalisez 1 Tenèbre. NL Infligez !D! dégât(s) à TOUS les ennemis.",
+		"NAME": "Urushihara",
+		"UPGRADE_DESCRIPTION": "Moins Paresseux. NL Canalisez 1 Tenèbre. NL Infligez !D! dégât(s) à TOUS les ennemis."
 	},
 	"animator_Vanir":
 	{
@@ -946,7 +945,7 @@
 	},
 	"animator_Vesta":
 	{
-		"DESCRIPTION": "Piochez 1 carte. NL Recherchez un [#EFC851]Élixir, il sera complété dans !M! tours. Épuisement.",
+		"DESCRIPTION": "Recherchez un [#EFC851]Élixir, il sera complété dans !M! tours. Épuisement.",
 		"EXTENDED_DESCRIPTION": ["Élixir", "#yCompétence qui coûte 0 ayant des effets variés."],
 		"NAME": "Vesta"
 	},

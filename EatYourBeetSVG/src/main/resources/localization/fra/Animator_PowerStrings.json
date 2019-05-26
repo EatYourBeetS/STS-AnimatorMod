@@ -57,8 +57,8 @@
 	},
 	"animator_EnchantedArmorPower":
 	{
-		"DESCRIPTIONS": ["TOUS les ennemies inflige #b", "% moins de dégat(s)."],
-		"NAME": "Armure Enchanté"
+		"DESCRIPTIONS": ["Reçoit #b", "% moins de dégât(s) de TOUTES les sources."],
+		"NAME": "Armure Enchantée"
 	},
 	"animator_EntouJyuuPower":
 	{
@@ -122,9 +122,168 @@
 	{
 		"DESCRIPTIONS": 
 		[
-			"À la mort, TOUS les autres personnages gagnent #b", " de #yForce."
+			"À la mort, TOUS les autres personnages reçoivent #b", " de #yForce."
 		],
 		"NAME": "Poupée Sans Nom"
+	},
+	"animator_CursedStabs":
+	{
+		
+		"DESCRIPTIONS":
+		[
+			"À chaque fois que cet ennemi inflige des dégâts non bloqués, ajoutez une #yDouleur et une #yPlaie dans votre pioche."
+		],
+		"NAME": "Poignards Maudits"
+	},
+
+	"animator_UltimateCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la mort, invoque #b", " cubes aléatoires."
+		],
+		"NAME": "Cube Ultime"
+	},
+	"animator_UltimateCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la mort, invoque #b", " crystaux aléatoires."
+		],
+		"NAME": "Crystal Ultime"
+	},
+	"animator_UltimateWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la mort, invoque #b", " Fragments aléatoires."
+		],
+		"NAME": "Fragment Ultime"
+	},
+	
+	"animator_DarkCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la fin de chaque tour, applique #b", " de #yConstriction à l'ennemi."
+		],
+		"NAME": "Cube Tenébreux"
+	},
+	"animator_DarkCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"En perdant la totalité de son #yArmure, applique #b", " de #yConstriction à TOUS les autres personnages."
+		],
+		"NAME": "Crystal Tenébreux"
+	},
+	"animator_DarkWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la mort, applique #b", " de #yConstriction à TOUS les personnages."
+		],
+		"NAME": "Fragment Tenébreux"
+	},
+	
+	"animator_LightningCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la fin de chaque tour, inflige #b", " dégâts #yPerçants à l'ennemi."
+		],
+		"NAME": "Cube Foudroyant"
+	},
+	"animator_LightningCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"En perdant la totalité de son Armure, TOUS les autres personnages reçoivent #b", " dégâts #yPerçants."
+		],
+		"NAME": "Crystal Foudroyant"
+	},
+	"animator_LightningWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la mort, TOUS les personnages reçoivent #b", " dégâts #yPerçants."
+		],
+		"NAME": "Fragment Foudroyant"
+	},
+	
+	"animator_HealingCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la fin de chaque tour, TOUS les alliés reçoivent #b", " PV."
+		],
+		"NAME": "Cube Curatif"
+	},
+	"animator_HealingCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"En perdant la totalité de son Armure, TOUS les autres personnages gagne #b", " PV."
+		],
+		"NAME": "Crystal Curatif"
+	},
+	"animator_HealingWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la mort, TOUS les personnages reçoivent #b", " PV."
+		],
+		"NAME": "Fragment Curatif"
+	},
+	
+	"animator_FrostCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la fin de chaque tour, TOUS les alliés reçoivent #b", " #yd'Armure #yPlaquée."
+		],
+		"NAME": "Cube Glacial"
+	},
+	"animator_FrostCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"En perdant la totalité de son Armure, TOUS les autres personnages gagne #b", " #yd'Armure #yPlaquée."
+		],
+		"NAME": "Crystal Glacial"
+	},
+	"animator_FrostWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la mort, TOUS les personnages reçoivent #b", " #yd'Armure #yPlaquée."
+		],
+		"NAME": "Fragment Glacial"
+	},
+	
+	"animator_FireCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la fin de chaque tour, TOUS les alliés reçoivent #b", " de #yForce et de #yBrûlure."
+		],
+		"NAME": "Cube Ardent"
+	},
+	"animator_FireCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"En perdant la totalité de son Armure, TOUS les autres personnages #b", " de #yForce et de #yBrûlure."
+		],
+		"NAME": "Crystal Ardent"
+	},
+	"animator_FireWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"À la mort, TOUS les personnages reçoivent #b", " de #yForce et de #yBrûlure."
+		],
+		"NAME": "Fragment Ardent"
 	},
 	"animator_KaijinPower":
 	{
@@ -139,7 +298,7 @@
 	"animator_OrbCore_ChaosPower":
 	{
 		"DESCRIPTIONS": ["Vos prochaines #b", " #ySynergies ce tour, #yDécouvre #b", " cartes."],
-		"NAME": "Noyau Chaotique"
+		"NAME": "Noyau de Chaos"
 	},
 	"animator_OrbCore_DarkPower":
 	{

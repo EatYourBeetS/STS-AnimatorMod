@@ -197,6 +197,13 @@ public class GameActionsHelper
         return action;
     }
 
+    public static DamageAllEnemiesAction DamageAllEnemies(AbstractCreature source, int[] amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect, boolean isFast)
+    {
+        DamageAllEnemiesAction action = new DamageAllEnemiesAction(source, amount, damageType, effect, isFast);
+        AddToDefault(action);
+        return action;
+    }
+
     public static DamageAllEnemiesAction DamageAllEnemies(AbstractCreature source, int[] amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
         DamageAllEnemiesAction action = new DamageAllEnemiesAction(source, amount, damageType, effect);
@@ -230,6 +237,13 @@ public class GameActionsHelper
         CallbackAction callbackAction = new CallbackAction(action, onCompletion, state);
         AddToDefault(callbackAction);
         return callbackAction;
+    }
+
+    public static SequentialAction Sequential(AbstractGameAction action, AbstractGameAction action2)
+    {
+        SequentialAction sequentialAction = new SequentialAction(action, action2);
+        AddToDefault(sequentialAction);
+        return sequentialAction;
     }
 
     public static OnCardDrawnAction DrawCard(AbstractCreature source, int amount, BiConsumer<Object, ArrayList<AbstractCard>> onDraw, Object context)

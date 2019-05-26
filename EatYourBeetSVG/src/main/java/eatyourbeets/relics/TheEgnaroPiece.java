@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.GameActionsHelper;
 
-public class TheEgnaroPiece extends AnimatorRelic
+public class TheEgnaroPiece extends UnnamedReignRelic
 {
     public static final String ID = CreateFullID(TheEgnaroPiece.class.getSimpleName());
 
-    private static final int TEMPORARY_HP = 7;
+    private static final int INITIAL_TEMPORARY_HP = 1;
 
     public TheEgnaroPiece()
     {
@@ -18,7 +18,7 @@ public class TheEgnaroPiece extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0] + TEMPORARY_HP + DESCRIPTIONS[1];
+        return DESCRIPTIONS[0] + INITIAL_TEMPORARY_HP + DESCRIPTIONS[1];
     }
 
     @Override
@@ -26,20 +26,15 @@ public class TheEgnaroPiece extends AnimatorRelic
     {
         super.atBattleStart();
 
-        AbstractPlayer p =  AbstractDungeon.player;
-        int healthDiff = p.maxHealth - p.currentHealth;
-        if (healthDiff > 0)
-        {
-            healthDiff = Math.min(TEMPORARY_HP, healthDiff);
-            p.heal(healthDiff);
-        }
+        this.counter = INITIAL_TEMPORARY_HP;
+    }
 
-        if (healthDiff < TEMPORARY_HP)
-        {
-            GameActionsHelper.GainTemporaryHP(p, p, TEMPORARY_HP - healthDiff);
-        }
+    @Override
+    public void onVictory()
+    {
+        super.onVictory();
 
-        this.flash();
+        this.counter = -1;
     }
 
     @Override
@@ -50,13 +45,28 @@ public class TheEgnaroPiece extends AnimatorRelic
         GameActionsHelper.DrawCard(AbstractDungeon.player, 1);
     }
 
-    public void onEquip()
+    @Override
+    public void onPlayerEndTurn()
+    {
+        super.onPlayerEndTurn();
+
+        AbstractPlayer p = AbstractDungeon.player;
+        GameActionsHelper.GainTemporaryHP(p, p, this.counter);
+        this.counter += 1;
+        this.flash();
+    }
+
+    @Override
+    public void OnManualEquip()
     {
         AbstractDungeon.player.energy.energyMaster += 1;
     }
 
+    @Override
     public void onUnequip()
     {
-        AbstractDungeon.player.energy.energyMaster += 1;
+        super.onUnequip();
+
+        AbstractDungeon.player.energy.energyMaster -= 1;
     }
 }

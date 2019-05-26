@@ -30,7 +30,7 @@ public class PinaCoLada extends AnimatorCard
             GameActionsHelper.GainBlock(p, this.block);
         }
 
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new PinaCoLadaPower(p, this.magicNumber), this.magicNumber));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new PinaCoLadaPower(p, 1), 1));
     }
 
     @Override

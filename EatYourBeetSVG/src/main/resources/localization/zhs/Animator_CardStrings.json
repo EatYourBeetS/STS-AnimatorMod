@@ -238,7 +238,7 @@
 	{
 		"DESCRIPTION": "获得 [E] ， 在本轮结束时 ， 受到 !M! 点 伤害 。 遗赠 : 获得 [E]",
 		"NAME": "迪米乌哥斯",
-		"UPGRADE_DESCRIPTION": "获得 [E] [E] ， 在本轮结束时 ， 受到 !M! 点 伤害 。 遗赠 : 获得 [E] [E]"
+		"UPGRADE_DESCRIPTION": "获得 [E] [E] ， 在本轮结束时 ， 受到 !SV! 点 伤害 。 遗赠 : 获得 [E] [E]"
 	},
 	"animator_DolaCouronne":
 	{
@@ -263,9 +263,8 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 获得 1 个 土素 充能球 。",
-		"NAME": "矮人萨满",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害 。 获得 1 个 土素 充能球 。 同调 : 触发其被动能力 。"
+		"DESCRIPTION": "造成 !D! 点伤害 。 获得 1 个 土素 充能球 。 同调 : 使用你最右侧的1个充能球的被动能力 。",
+		"NAME": "矮人萨满"
 	},
 	"animator_Elesis":
 	{
@@ -291,7 +290,7 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。 同调 ， 撤回 : [#EFC851]生成[] 1 个 火素 充能球 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。 撤回 : [#EFC851]生成[] 1 个 火素 充能球 。",
 		"NAME": "艾索德"
 	},
 	"animator_EmiyaShirou":
@@ -320,9 +319,8 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "穿越者 。 NL 每回合打出的第一张牌都会触发自身的 同调 效果 。 持续 4 轮 。",
-		"NAME": "嫉妒",
-		"UPGRADE_DESCRIPTION": "穿越者 。 NL 每回合打出的第一张牌都会触发自身的 同调 效果 。"
+		"DESCRIPTION": "穿越者 。 为每 !M! 点失去的生命值，回复 1 点生命值 。 NL 每回合打出的第一张牌都会触发自身的 同调 效果 。",
+		"NAME": "嫉妒"
 	},
 	"animator_Eris":
 	{
@@ -936,8 +934,9 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "[#EFC851]生成[] 1 个 黑暗 充能球 。 对所有敌人造成 !D! 点 伤害 。 懒惰 。",
-		"NAME": "漆原半藏"
+		"DESCRIPTION": "生成 1 个 黑暗 充能球 。 对所有敌人造成 !D! 点 伤害 。 懒惰 。",
+		"NAME": "漆原半藏",
+		"UPGRADE_DESCRIPTION": "生成 1 个 黑暗 充能球 。 对所有敌人造成 !D! 点 伤害 。 略微更勤劳了 。"
 	},
 	"animator_Vanir":
 	{
@@ -947,7 +946,7 @@
 	},
 	"animator_Vesta":
 	{
-		"DESCRIPTION": "抽 1 张牌 。 研究1瓶 [#EFC851]灵药[] ， NL !M! 轮后获得此研究成果 。 消耗 。",
+		"DESCRIPTION": "研究1瓶 [#EFC851]灵药[] ， NL !M! 轮后获得此研究成果 。 消耗 。",
 		"EXTENDED_DESCRIPTION": ["灵药", "0 能耗 #y技能 ， 拥有不同的特殊功效 。"],
 		"NAME": "大臣"
 	},

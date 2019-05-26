@@ -48,6 +48,7 @@ public class CerealBox extends AnimatorRelic
 
         if (HitboxRightClick.rightClicked.get(this.hb))
         {
+            stopPulse();
             Use();
         }
     }

@@ -87,8 +87,8 @@
 	"Animator_RacePiece":
 	{
 		"DESCRIPTIONS": ["選擇一張牌, 將你的牌庫中的三張牌轉換為與選中牌同系列的三張隨機牌."],
-		"FLAVOR": "你看到 Mr. Mind Reader 從那邊來了沒? 將死！",
-		"NAME": "race piece"
+		"FLAVOR": "讀心者先生，你算到這一步了嗎? 將死！",
+		"NAME": "種族棋子"
 	},
 	"Animator_Rinne":
 	{
@@ -107,6 +107,30 @@
 		"DESCRIPTIONS": ["每場", " 戰鬥, 獲得同系列卡牌的獎勵。 如果您擁有該系列中的多張牌，您將有更多機會找到一個系列。"],
 		"FLAVOR": "這是什麼?",
 		"NAME": "缺少的部分"
+	},
+	"Animator_TheAncientMedallion":
+	{
+		"DESCRIPTIONS": ["獲得時, 升級2張隨機的牌並且升級1張你選擇的牌。 每輪開始時, 回复 #b", " 生命值。"],
+		"FLAVOR": "...",
+		"NAME": "上古挂墜"
+	},
+	"Animator_TheEgnaroPiece":
+	{
+		"DESCRIPTIONS": ["每回合開始時， 獲得 [E] 並抽1張牌。 NL 每回合結束時，獲得 #b", " 點 #y臨時生命, 並且將此數量增加 #b1."],
+		"FLAVOR": "這是什麼?",
+		"NAME": "片碎色橘"
+	},
+	"Animator_TheWolleyCore":
+	{
+		"DESCRIPTIONS": ["每輪開始時， 抽 #b"," 張牌。 NL 每當你打出1張牌, 對所有敵人造成 #b"," 點傷害並且獲得 #b", " 點 #y格擋 。"],
+		"FLAVOR": "這是什麼?",
+		"NAME": "心核色綠"
+	},
+	"Animator_TheEruzaStone":
+	{
+		"DESCRIPTIONS": ["獲得 [E] [E] 每輪開始時。 NL 每當你打出1張 #y能力 , 抽1張牌。"],
+		"FLAVOR": "這是什麼?",
+		"NAME": "頭石色藍"
 	},
 	"Animator_VividPicture":
 	{

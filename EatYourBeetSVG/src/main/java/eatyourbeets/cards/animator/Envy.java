@@ -13,9 +13,11 @@ public class Envy extends AnimatorCard
 
     public Envy()
     {
-        super(ID, 1, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0,0, 7);
+
+        tags.add(CardTags.HEALING);
 
         SetSynergy(Synergies.FullmetalAlchemist, true);
     }
@@ -23,12 +25,21 @@ public class Envy extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new EnvyPower(p, 1, upgraded), 1);
+        int heal = (p.maxHealth - p.currentHealth) / magicNumber;
+        if (heal > 0)
+        {
+            p.heal(heal, true);
+        }
+
+        GameActionsHelper.ApplyPower(p, p, new EnvyPower(p, 1), 1);
     }
 
     @Override
     public void upgrade() 
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeMagicNumber(-2);
+        }
     }
 }

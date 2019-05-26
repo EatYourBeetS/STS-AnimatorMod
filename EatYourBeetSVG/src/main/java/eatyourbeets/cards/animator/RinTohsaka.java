@@ -16,7 +16,7 @@ public class RinTohsaka extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,4, 4);
+        Initialize(0,3, 5);
 
         SetSynergy(Synergies.Fate);
     }
@@ -39,7 +39,6 @@ public class RinTohsaka extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBlock(3);
-            upgradeMagicNumber(2);
         }
     }
 }

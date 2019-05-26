@@ -1,9 +1,7 @@
 package eatyourbeets.powers;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 
@@ -20,16 +18,20 @@ public class UnnamedDollPower extends AnimatorPower
         updateDescription();
     }
 
+    @Override
+    public void updateDescription()
+    {
+        String[] text = powerStrings.DESCRIPTIONS;
+        this.description = text[0] + amount + text[1];
+    }
+
     public void onDeath()
     {
         if (!AbstractDungeon.getCurrRoom().isBattleEnding())
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.ApplyPower(null, p, new StrengthPower(p, amount), amount);
-
-            for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+            for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
             {
-                GameActionsHelper.ApplyPower(null, m, new StrengthPower(m, amount), amount);
+                GameActionsHelper.ApplyPower(null, c, new StrengthPower(c, amount), amount);
             }
         }
     }

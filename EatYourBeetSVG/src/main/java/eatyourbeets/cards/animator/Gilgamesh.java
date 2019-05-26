@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.relics.UnnamedReignRelic;
 
 import java.util.ArrayList;
 
@@ -25,10 +27,10 @@ public class Gilgamesh extends AnimatorCard
     public static final String ID = CreateFullID(Gilgamesh.class.getSimpleName());
     public static final int GOLD_REWARD = 25;
 
-    public static void OnRelicReceived()
+    public static void OnRelicReceived(AbstractRelic relic)
     {
         AbstractPlayer player = AbstractDungeon.player;
-        if (player != null && player.masterDeck != null)
+        if (player != null && player.masterDeck != null && !(relic instanceof UnnamedReignRelic))
         {
             ArrayList<AbstractCard> deck = player.masterDeck.group;
             if (deck != null && deck.size() > 0)

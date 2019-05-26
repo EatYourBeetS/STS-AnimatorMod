@@ -89,12 +89,13 @@ public class Megumin extends AnimatorCard//_SavableInteger implements CustomSava
     {
         this.timesUpgraded += 1;
 
-        int damageBonus = 2;
-        if (timesUpgraded % 2 == 0)
-        {
-            damageBonus += 1;
-        }
-        upgradeDamage(damageBonus);
+//        int damageBonus = 2;
+//        if (timesUpgraded % 2 == 0)
+//        {
+//            damageBonus += 1;
+//        }
+//        upgradeDamage(damageBonus);
+        upgradeDamage(2);
 
         this.upgraded = true;
         this.name = cardStrings.NAME + "+" + this.timesUpgraded;

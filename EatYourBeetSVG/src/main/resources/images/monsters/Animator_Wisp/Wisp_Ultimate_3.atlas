@@ -1,0 +1,41 @@
+
+Wisp_Ultimate_3.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+atlas_shadow_04
+  rotate: false
+  xy: 430, 317
+  size: 355, 103
+  orig: 355, 103
+  offset: 0, 0
+  index: -1
+04_aura3
+  rotate: false
+  xy: 430, 1
+  size: 314, 314
+  orig: 314, 314
+  offset: 0, 0
+  index: -1
+03_aura2
+  rotate: false
+  xy: 746, 1
+  size: 277, 299
+  orig: 277, 299
+  offset: 0, 0
+  index: -1
+02_aura1
+  rotate: false
+  xy: 1, 1
+  size: 427, 401
+  orig: 427, 401
+  offset: 0, 0
+  index: -1
+01_core
+  rotate: false
+  xy: 787, 317
+  size: 97, 96
+  orig: 97, 96
+  offset: 0, 0
+  index: -1

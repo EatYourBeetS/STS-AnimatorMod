@@ -1,0 +1,34 @@
+
+Crystal_Lightning_2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+atlas_shadow_04
+  rotate: false
+  xy: 290, 755
+  size: 355, 103
+  orig: 355, 103
+  offset: 0, 0
+  index: -1
+0129/0129_Core3
+  rotate: false
+  xy: 5, 532
+  size: 275, 243
+  orig: 279, 243
+  offset: 3, 0
+  index: -1
+0129/0129_Core2
+  rotate: false
+  xy: 5, 5
+  size: 637, 517
+  orig: 637, 517
+  offset: 0, 0
+  index: -1
+0129/0129_Core1
+  rotate: false
+  xy: 290, 532
+  size: 241, 213
+  orig: 241, 223
+  offset: 0, 5
+  index: -1

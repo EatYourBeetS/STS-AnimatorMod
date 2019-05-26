@@ -11,9 +11,6 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class ShuffleEnemiesEffect extends AbstractGameEffect
 {
-    private static boolean locked;
-    private boolean lockOwner;
-
     private AbstractMonster enemy1 = null;
     private AbstractMonster enemy2 = null;
 
@@ -30,16 +27,6 @@ public class ShuffleEnemiesEffect extends AbstractGameEffect
 
     public void update()
     {
-        if (locked && !lockOwner)
-        {
-            return;
-        }
-        else
-        {
-            lockOwner = true;
-            locked = true;
-        }
-
         if (enemy1 == null)
         {
             RandomizedList<AbstractMonster> enemies = new RandomizedList<>(PlayerStatistics.GetCurrentEnemies(true));
@@ -100,8 +87,6 @@ public class ShuffleEnemiesEffect extends AbstractGameEffect
         if (targetReached)
         {
             this.isDone = true;
-            this.lockOwner = false;
-            locked = false;
         }
     }
 
@@ -109,10 +94,7 @@ public class ShuffleEnemiesEffect extends AbstractGameEffect
 
     public void dispose()
     {
-        if (lockOwner)
-        {
-            locked = false;
-        }
+
     }
 
     private float translate(float point1, float point2, float alpha)

@@ -1,7 +1,10 @@
 package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class FrostWispPower extends AnimatorPower
 {
@@ -22,5 +25,16 @@ public class FrostWispPower extends AnimatorPower
         String[] desc = powerStrings.DESCRIPTIONS;
 
         description = desc[0] + amount + desc[1];
+    }
+
+    @Override
+    public void onDeath()
+    {
+        super.onDeath();
+
+        for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
+        {
+            GameActionsHelper.ApplyPower(null, c, new PlatedArmorPower(c, amount), amount);
+        }
     }
 }

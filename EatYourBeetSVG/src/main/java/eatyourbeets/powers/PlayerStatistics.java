@@ -1,5 +1,6 @@
 package eatyourbeets.powers;
 
+import basemod.DevConsole;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.subscribers.*;
 
 import java.util.ArrayList;
@@ -41,10 +43,10 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = new GameEvent<>();
     public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
     public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
-    public static final GameEvent<OnAbandonRunSubscriber> onAbandonRun = new GameEvent<>();
-    public static final GameEvent<OnExitRunSubscriber> onExitRun = new GameEvent<>();
     public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
+
+    public static boolean LoadingPlayerSave;
 
     private static int turnDamageMultiplier = 0;
     private static int turnCount = 0;
@@ -80,8 +82,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         onLoseHp.Clear();
         onEndOfTurn.Clear();
         onApplyPower.Clear();
-        onAbandonRun.Clear();
-        onExitRun.Clear();
         onAfterDeath.Clear();
         onStartOfTurnPostDraw.Clear();
     }
@@ -96,22 +96,10 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         }
     }
 
-    public static void OnExitRun()
+    public static void OnStartOver()
     {
-        for (OnExitRunSubscriber s : onExitRun.GetSubscribers())
-        {
-            s.OnExitRun();
-        }
         ClearStats();
-    }
-
-    public static void OnAbandonRun()
-    {
-        for (OnAbandonRunSubscriber s : onAbandonRun.GetSubscribers())
-        {
-            s.OnAbandonRun();
-        }
-        ClearStats();
+        DevConsole.enabled = true;
     }
 
     public static void OnAfterDeath()
@@ -400,6 +388,42 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
     {
         return Utilities.GetRandomElement(GetCurrentEnemies(aliveOnly));
+    }
+
+    public static AbstractCreature GetRandomCharacter(boolean aliveOnly)
+    {
+        RandomizedList<AbstractMonster> enemies = new RandomizedList<>(GetCurrentEnemies(aliveOnly));
+
+        AbstractCreature result = enemies.Retrieve(AbstractDungeon.miscRng, false);
+        if (result == null)
+        {
+            return AbstractDungeon.player;
+        }
+        else
+        {
+            return result;
+        }
+    }
+
+    public static ArrayList<AbstractCreature> GetAllCharacters(boolean aliveOnly)
+    {
+        ArrayList<AbstractCreature> characters = new ArrayList<>();
+        AbstractRoom room = GetCurrentRoom();
+        if (room != null && room.monsters != null)
+        {
+            for (AbstractMonster m : room.monsters.monsters)
+            {
+                //logger.info("ENEMY: " + m.name + ", DeadOrEscaped: " + m.isDeadOrEscaped() + ", Dying: " + m.isDying);
+                if (!aliveOnly || (!m.isDeadOrEscaped() && !m.isDying))
+                {
+                    characters.add(m);
+                }
+            }
+        }
+
+        characters.add(AbstractDungeon.player);
+
+        return characters;
     }
 
     public static ArrayList<AbstractMonster> GetCurrentEnemies(boolean aliveOnly)

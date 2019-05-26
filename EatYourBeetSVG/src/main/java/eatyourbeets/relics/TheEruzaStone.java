@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 
-public class TheEruzaStone extends AnimatorRelic
+public class TheEruzaStone extends UnnamedReignRelic
 {
     public static final String ID = CreateFullID(TheEruzaStone.class.getSimpleName());
 
@@ -32,13 +32,17 @@ public class TheEruzaStone extends AnimatorRelic
         }
     }
 
-    public void onEquip()
+    @Override
+    public void OnManualEquip()
     {
         AbstractDungeon.player.energy.energyMaster += 2;
     }
 
+    @Override
     public void onUnequip()
     {
-        AbstractDungeon.player.energy.energyMaster += 2;
+        super.onUnequip();
+
+        AbstractDungeon.player.energy.energyMaster -= 2;
     }
 }

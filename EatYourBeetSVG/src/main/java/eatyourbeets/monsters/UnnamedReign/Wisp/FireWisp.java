@@ -1,29 +1,54 @@
 package eatyourbeets.monsters.UnnamedReign.Wisp;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.monsters.Bosses.TheUnnamedMinionMoveset.Move;
-
-import java.util.ArrayList;
+import eatyourbeets.GameActionsHelper;
+import eatyourbeets.monsters.UnnamedReign.Cube.Moveset.Move_GuardedAttack;
+import eatyourbeets.monsters.UnnamedReign.MonsterElement;
+import eatyourbeets.monsters.UnnamedReign.MonsterTier;
+import eatyourbeets.powers.UnnamedReign.FireWispPower;
 
 public class FireWisp extends Wisp
 {
-    public static final String ID = "Animator_Cube_Dark_0";
-    public static final String NAME = "";
-
-    private final ArrayList<Move> moveset = new ArrayList<>();
-
-    public FireWisp(float x, float y)
+    public FireWisp(MonsterTier tier, float x, float y)
     {
-        super(x, y);
-
-        this.type = EnemyType.NORMAL;
+        super(MonsterElement.Fire, tier, x, y);
 
         int level = AbstractDungeon.ascensionLevel;
 
-//        moveset.add(new Move_Shield(0, level, this, theUnnamed));
-//        moveset.add(new Move_BuffArtifact(1, level, this, theUnnamed));
-//        moveset.add(new Move_BuffThorns(2, level, this, theUnnamed));
-//        moveset.add(new Move_DebuffVulnerable(3, level, this, theUnnamed));
-//        moveset.add(new Move_DebuffWeak(4, level, this, theUnnamed));
+        moveset.add(new Move_GuardedAttack(0, 18, 16, this));
+    }
+
+    @Override
+    protected void getMove(int i)
+    {
+        moveset.get(0).SetMove();
+    }
+
+    @Override
+    public void usePreBattleAction()
+    {
+        super.usePreBattleAction();
+
+        int amount = 0;
+        switch (data.tier)
+        {
+            case Small:
+                amount = 4;
+                break;
+
+            case Normal:
+                amount = 6;
+                break;
+
+            case Advanced:
+                amount = 8;
+                break;
+
+            case Ultimate:
+                amount = 10;
+                break;
+        }
+
+        GameActionsHelper.ApplyPower(this, this, new FireWispPower(this, amount), amount);
     }
 }

@@ -2,6 +2,7 @@ package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class HealingWispPower extends AnimatorPower
 {
@@ -22,5 +23,16 @@ public class HealingWispPower extends AnimatorPower
         String[] desc = powerStrings.DESCRIPTIONS;
 
         description = desc[0] + amount + desc[1];
+    }
+
+    @Override
+    public void onDeath()
+    {
+        super.onDeath();
+
+        for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
+        {
+            c.heal(amount, true);
+        }
     }
 }

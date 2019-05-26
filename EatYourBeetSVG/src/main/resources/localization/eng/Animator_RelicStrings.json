@@ -108,21 +108,27 @@
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Missing Piece"
 	},
+	"Animator_TheAncientMedallion":
+	{
+		"DESCRIPTIONS": ["Upon pickup, Upgrade 2 random cards and a card of your choice. At the start of each combat, Heal #b", " HP."],
+		"FLAVOR": "...",
+		"NAME": "Ancient Medallion"
+	},
 	"Animator_TheEgnaroPiece":
 	{
-		"DESCRIPTIONS": ["Gain [E] and draw 1 card at the start of each turn. Heal #b", " HP at the start of each combat, overheal is turned to #yTemporary #yHP."],
+		"DESCRIPTIONS": ["Gain [E] and draw 1 card at the start of each turn. NL Gain #b", " #yTemporary #yHP at the end of each turn, then increase this number by #b1."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Egnaro Piece"
 	},
 	"Animator_TheWolleyCore":
 	{
-		"DESCRIPTIONS": ["Draw #b"," cards at the start of each turn. Whenever you play a card, gain #b", " #yBlock."],
+		"DESCRIPTIONS": ["Draw #b", " cards at the start of each turn. NL Whenever you play a card, deal #b", " damage to ALL enemies and gain #b", " #yBlock."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Wolley Core"
 	},
 	"Animator_TheEruzaStone":
 	{
-		"DESCRIPTIONS": ["Gain [E] [E] at the start of each turn. Whenever you play a #yPower, draw 1 card."],
+		"DESCRIPTIONS": ["Gain [E] [E] at the start of each turn. NL Whenever you play a #yPower, draw 1 card."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Eruza Stone"
 	},

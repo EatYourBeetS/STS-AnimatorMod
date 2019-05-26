@@ -112,7 +112,7 @@
 	},
 	"animator_InfinitePower":
 	{
-		"DESCRIPTIONS": 
+		"DESCRIPTIONS":
 		[
 			"- Before taking unblocked damage: Gain that much #yEnchanted #yArmor. NL - When receiving a debuff: Gain that much #yRegeneration. NL - When the enemy receives a buff: Gain that much #yStrength. NL NL These stats will be halved at the end of each turn."
 		],
@@ -120,12 +120,179 @@
 	},
 	"animator_UnnamedDollPower":
 	{
-		"DESCRIPTIONS": 
+		"DESCRIPTIONS":
 		[
 			"On death, ALL characters gain #b", " #yStrength."
 		],
 		"NAME": "Unnamed Doll"
 	},
+	"animator_CursedStabsPower":
+	{
+		"NAME": "Cursed Stabs",
+		"DESCRIPTIONS":
+		[
+			"Whenever it deals unblocked damage, add 1 #yPain and 1 #yWound to your draw pile."
+		]
+	},
+	"animator_TheUnnamedCultistPower":
+	{
+		"NAME": "Cursed Stabs",
+		"DESCRIPTIONS":
+		[
+			"While there are other allies alive, gain #b", " Enchanted Armor for each."
+		]
+	},
+
+	"animator_UltimateCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"On death, summon #b", " random cubes."
+		],
+		"NAME": "Ultimate Cube"
+	},
+	"animator_UltimateCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"On death, summon #b", " random crystals."
+		],
+		"NAME": "Ultimate Crystal"
+	},
+	"animator_UltimateWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"On death, summon #b", " random wisps."
+		],
+		"NAME": "Ultimate Wisp"
+	},
+
+	"animator_DarkCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"At the end of each turn, apply #b", " #yConstricted to the enemy."
+		],
+		"NAME": "Dark Cube"
+	},
+	"animator_DarkCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"Upon losing its #yBlock, apply #b", " #yConstricted to ALL other characters."
+		],
+		"NAME": "Dark Crystal"
+	},
+	"animator_DarkWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"On death, apply #b", " #yConstricted to ALL characters."
+		],
+		"NAME": "Dark Wisp"
+	},
+
+	"animator_LightningCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"At the end of each turn, deal #b", " #yPiercing damage to the enemy."
+		],
+		"NAME": "Lightning Cube"
+	},
+	"animator_LightningCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"Upon losing its #yBlock, ALL other characters take #b", " #yPiercing damage."
+		],
+		"NAME": "Lightning Crystal"
+	},
+	"animator_LightningWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"On death, ALL characters take #b", " #yPiercing damage."
+		],
+		"NAME": "Lightning Wisp"
+	},
+
+	"animator_HealingCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"At the end of each turn, ALL allies heal #b", " HP."
+		],
+		"NAME": "Healing Cube"
+	},
+	"animator_HealingCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"Upon losing its #yBlock, ALL other characters heal #b", " HP."
+		],
+		"NAME": "Healing Crystal"
+	},
+	"animator_HealingWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"On death, ALL characters heal #b", " HP."
+		],
+		"NAME": "Healing Wisp"
+	},
+
+	"animator_FrostCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"At the end of each turn, All allies gain #b", " #yPlated #yArmor."
+		],
+		"NAME": "Frost Cube"
+	},
+	"animator_FrostCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"Upon losing its #yBlock, All other characters gain #b", " #yPlated #yArmor."
+		],
+		"NAME": "Frost Crystal"
+	},
+	"animator_FrostWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"On death, All characters gain #b", " #yPlated #yArmor."
+		],
+		"NAME": "Frost Wisp"
+	},
+
+	"animator_FireCubePower":
+	{
+		"DESCRIPTIONS":
+		[
+			"At the end of each turn, ALL allies gain #b", " #yStrength and #yBurning."
+		],
+		"NAME": "Fire Cube"
+	},
+	"animator_FireCrystalPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"Upon losing its #yBlock, ALL other characters gain #b", " #yStrength and #yBurning."
+		],
+		"NAME": "Fire Crystal"
+	},
+	"animator_FireWispPower":
+	{
+		"DESCRIPTIONS":
+		[
+			"On death, ALL characters gain #b", " #yStrength and #yBurning."
+		],
+		"NAME": "Fire Wisp"
+	},
+
 	"animator_KaijinPower":
 	{
 		"DESCRIPTIONS": ["At the end of your turn, increase the #yBlock and damage of a random card in your draw pile by #b", "."],

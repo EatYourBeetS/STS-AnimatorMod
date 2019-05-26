@@ -14,6 +14,8 @@ import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.Hero;
 import eatyourbeets.relics.CursedGlyph;
+import eatyourbeets.relics.TheAncientMedallion;
+import eatyourbeets.relics.UnnamedReignRelic;
 
 import java.util.ArrayList;
 
@@ -63,6 +65,13 @@ public class BundledRelic
 
         if (roll < chance)
         {
+            if (UnnamedReignRelic.IsEquipped())
+            {
+                relic = new TheAncientMedallion();
+                relic.flash();
+                return;
+            }
+
             ArrayList<String> relicPool = GetRelicPool();
             if (relicPool == null || relicPool.contains(relicID))
             {

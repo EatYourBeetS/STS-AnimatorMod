@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.TriggerPassiveAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
@@ -17,11 +18,19 @@ public class DwarfShaman extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(6, 0);
+        Initialize(5, 0, 0);
 
         AddExtendedDescription();
 
         SetSynergy(Synergies.GoblinSlayer);
+    }
+
+    private void OnChannel(Object state, AbstractGameAction action)
+    {
+        if (state == this && action != null)
+        {
+            GameActionsHelper.AddToTop(new TriggerPassiveAction(1));
+        }
     }
 
     @Override
@@ -29,12 +38,13 @@ public class DwarfShaman extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        Earth earth = new Earth();
-        GameActionsHelper.ChannelOrb(earth, true);
-
-        if (upgraded && HasActiveSynergy())
+        if (HasActiveSynergy())
         {
-            GameActionsHelper.AddToBottom(new TriggerPassiveAction(earth, 1));
+            GameActionsHelper.Callback(new ChannelAction(new Earth(), true), this::OnChannel, this);
+        }
+        else
+        {
+            GameActionsHelper.ChannelOrb(new Earth(), true);
         }
     }
 
@@ -43,7 +53,7 @@ public class DwarfShaman extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(3);
         }
     }
 }

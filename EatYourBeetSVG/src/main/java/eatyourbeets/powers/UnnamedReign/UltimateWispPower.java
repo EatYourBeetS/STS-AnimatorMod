@@ -7,11 +7,11 @@ public class UltimateWispPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(UltimateWispPower.class.getSimpleName());
 
-    public UltimateWispPower(AbstractCreature owner, int value)
+    private static final int SUMMON_COUNT = 2;
+
+    public UltimateWispPower(AbstractCreature owner)
     {
         super(owner, POWER_ID);
-
-        this.amount = value;
 
         updateDescription();
     }
@@ -21,6 +21,6 @@ public class UltimateWispPower extends AnimatorPower
     {
         String[] desc = powerStrings.DESCRIPTIONS;
 
-        description = desc[0] + amount + desc[1];
+        description = desc[0] + SUMMON_COUNT + desc[1];
     }
 }

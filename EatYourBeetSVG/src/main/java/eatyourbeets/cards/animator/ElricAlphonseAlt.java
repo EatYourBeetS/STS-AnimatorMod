@@ -16,7 +16,7 @@ public class ElricAlphonseAlt extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,3, 2);
+        Initialize(0,2, 2);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -38,8 +38,7 @@ public class ElricAlphonseAlt extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
-            //upgradeMagicNumber(1);
+            upgradeBlock(2);
         }
     }
 }

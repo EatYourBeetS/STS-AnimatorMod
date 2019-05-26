@@ -1,14 +1,11 @@
 package eatyourbeets.powers;
 
-import basemod.DevConsole;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
@@ -17,15 +14,12 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.subscribers.*;
+import eatyourbeets.subscribers.OnApplyPowerSubscriber;
+import eatyourbeets.subscribers.OnBattleStartSubscriber;
 
-public class InfinitePower extends AnimatorPower implements OnBattleStartSubscriber, OnApplyPowerSubscriber,
-                                                            OnBattleEndSubscriber, OnAbandonRunSubscriber,
-                                                            OnExitRunSubscriber, OnAfterDeathSubscriber
+public class InfinitePower extends AnimatorPower implements OnBattleStartSubscriber, OnApplyPowerSubscriber
 {
     public static final String POWER_ID = CreateFullID(InfinitePower.class.getSimpleName());
-
-    private boolean removed = false;
 
     private final EnchantedArmorPower enchantedArmorPower;
 
@@ -105,31 +99,10 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     }
 
     @Override
-    public void update(int slot)
-    {
-        super.update(slot);
-
-        if (!removed)
-        {
-            DevConsole.visible = false;
-            DevConsole.enabled = false;
-            DevConsole.commandPos = -1;
-            DevConsole.currentText = "";
-            Settings.isDebug = false;
-        }
-    }
-
-    @Override
     public void OnBattleStart()
     {
-        Gdx.input.setInputProcessor(Gdx.input.getInputProcessor());
-
-        PlayerStatistics.onBattleEnd.Subscribe(this);
         PlayerStatistics.onBattleStart.Subscribe(this);
         PlayerStatistics.onApplyPower.Subscribe(this);
-        PlayerStatistics.onExitRun.Subscribe(this);
-        PlayerStatistics.onAbandonRun.Subscribe(this);
-        PlayerStatistics.onAfterDeath.Subscribe(this);
     }
 
     @Override
@@ -159,57 +132,5 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
             AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.GOLD, true));
             AbstractDungeon.topLevelEffectsQueue.add(new TimeWarpTurnEndEffect());
         }
-    }
-
-    // This is a thing
-    @Override
-    public void onDeath()
-    {
-        super.onDeath();
-
-        Remove();
-    }
-
-    // This is a thing
-    @Override
-    public void OnBattleEnd()
-    {
-        Remove();
-    }
-
-    // This is a thing
-    @Override
-    public void OnAbandonRun()
-    {
-        Remove();
-    }
-
-    // This is a thing
-    @Override
-    public void OnExitRun()
-    {
-        Remove();
-    }
-
-    // This is a thing
-    @Override
-    public void onRemove()
-    {
-        super.onRemove();
-
-        Remove();
-    }
-
-    // This is a thing
-    @Override
-    public void OnAfterDeath()
-    {
-        Remove();
-    }
-
-    private void Remove()
-    {
-        DevConsole.enabled = true;
-        removed = true;
     }
 }

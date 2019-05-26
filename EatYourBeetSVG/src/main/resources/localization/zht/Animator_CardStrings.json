@@ -238,7 +238,7 @@
 	{
 		"DESCRIPTION": "獲得 [E] 。 在本回合結束時 ， 受到 !M! 點 傷害 。 遺產 : 獲得 [E]",
 		"NAME": "迪米烏哥斯",
-		"UPGRADE_DESCRIPTION": "獲得 [E] [E] 。 在本回合結束時 ， 受到 !M! 點 傷害 。 遺產 : 獲得 [E] [E]"
+		"UPGRADE_DESCRIPTION": "獲得 [E] [E] 。 在本回合結束時 ， 受到 !SV! 點 傷害 。 遺產 : 獲得 [E] [E]"
 	},
 	"animator_DolaCouronne":
 	{
@@ -263,9 +263,8 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 獲得 1 個 大地 充能球 。",
-		"NAME": "矮人薩滿",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 1 個 大地 充能球 。 同調 : 觸發其被動能力 。"
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 1 個 大地 充能球 。 同調 : 使用你最右側的1個充能球的被動能力 。",
+		"NAME": "矮人薩滿"
 	},
 	"animator_Elesis":
 	{
@@ -291,7 +290,7 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 同調 ， 撤回 : [#EFC851]生成[] 1 個 火焰 充能球 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : [#EFC851]生成[] 1 個 火焰 充能球 。",
 		"NAME": "艾索德"
 	},
 	"animator_EmiyaShirou":
@@ -320,9 +319,8 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "變形者 。 NL 每回合打出的第一張牌出觸發自己的 同調 效果 。 持續 4 輪 。",
-		"NAME": "恩維",
-		"UPGRADE_DESCRIPTION": "變形者 。 NL 每回合打出的第一張牌出觸發自己的 同調 效果 。"
+		"DESCRIPTION": "變形者 。 為每 !M! 點失去的生命值，回复 1 點生命值 。 NL 每回合打出的第一張牌出觸發自己的 同調 效果 。 持續 4 輪 。",
+		"NAME": "恩維"
 	},
 	"animator_Eris":
 	{
@@ -933,8 +931,9 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "[#EFC851]產生[] 1 個黑暗充能球 ， NL 對所有敵人造成 !D! 傷害 。 懶惰 。",
-		"NAME": "漆原半藏"
+		"DESCRIPTION": "產生 1 個黑暗充能球 ， NL 對所有敵人造成 !D! 傷害 。 懶惰 。",
+		"NAME": "漆原半藏",
+		"UPGRADE_DESCRIPTION": "產生 1 個黑暗充能球 ， NL 對所有敵人造成 !D! 傷害 。 略微更勤勞了 。"
 	},
 	"animator_Vanir":
 	{

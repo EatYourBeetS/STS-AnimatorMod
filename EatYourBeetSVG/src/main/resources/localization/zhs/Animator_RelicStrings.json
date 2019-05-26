@@ -40,7 +40,7 @@
 	{
 		"DESCRIPTIONS": ["在你的回合结束时， 保留手牌中消耗最高的牌， 直到被打出之前消耗减 #b1 ."],
 		"FLAVOR": "公会最宝贵的财产之一.",
-		"NAME": "雕塑"
+		"NAME": "刻塑的权杖"
 	},
 	"Animator_ExquisiteBloodVial":
 	{
@@ -57,7 +57,7 @@
 	"Animator_HeavyHalberd":
 	{
 		"DESCRIPTIONS": ["你的 #y攻击牌 造成 #b", "% 点额外伤害."],
-		"FLAVOR": "统治死亡即统治生命，死即生之巅峰,崇敬生命吧.",
+		"FLAVOR": "统治死亡即统治生命，死即生之巅峰, 崇敬生命吧.",
 		"NAME": "重戟"
 	},
 	"Animator_LivingPicture":
@@ -72,7 +72,7 @@
 		"FLAVOR": "震惊的真相！",
 		"NAME": "旧棺材"
 	},
-	"Animator_PurgingStone_Cards":
+	"Animator_PurgingStone_张牌s":
 	{
 		"DESCRIPTIONS": ["你可以 放逐 某些牌， 使它们从 #y正常 卡牌奖励和商店里消失。 每次战斗获得 #b1 次使用, 可以存储到 #b", " 使用次数。 NL NL #p鼠标右击 用来浏览 放逐 的卡牌"],
 		"FLAVOR": "人类无法对抗诅咒，但可以利用它.",
@@ -87,8 +87,8 @@
 	"Animator_RacePiece":
 	{
 		"DESCRIPTIONS": ["选择一张牌, 将你的牌库中的三张牌转换为与选中牌同系列的三张随机牌."],
-		"FLAVOR": "你看到 Mr. Mind Reader 从那边来了没? 将死！",
-		"NAME": "race piece"
+		"FLAVOR": "读心者先生，你算到这一步了吗? 将死！",
+		"NAME": "种族棋子"
 	},
 	"Animator_Rinne":
 	{
@@ -105,14 +105,38 @@
 	"Animator_TheMissingPiece":
 	{
 		"DESCRIPTIONS": ["每", "场战斗,获得一次同系列卡牌的奖励机会。 你当前牌组中数量最多的系列出现几率会提高。"],
-		"FLAVOR": "这啥玩意?",
-		"NAME": "缺失部分"
+		"FLAVOR": "这是什么?",
+		"NAME": "遗失残片"
+	},
+	"Animator_TheAncientMedallion":
+	{
+		"DESCRIPTIONS": ["获得时, 升级2张随机的牌并且升级1张你选择的牌。 每轮开始时, 回复 #b", " 生命值。"],
+		"FLAVOR": "...",
+		"NAME": "上古挂坠"
+	},
+	"Animator_TheEgnaroPiece":
+	{
+		"DESCRIPTIONS": ["每回合开始时， 获得 [E] 并抽1张牌。 NL 每回合结束时，获得 #b", " 点 #y临时生命, 并且将此数量增加 #b1."],
+		"FLAVOR": "这是什么?",
+		"NAME": "片碎色橘"
+	},
+	"Animator_TheWolleyCore":
+	{
+		"DESCRIPTIONS": ["每轮开始时， 抽 #b"," 张牌。 NL 每当你打出1张牌, 对所有敌人造成 #b"," 点伤害并且获得 #b", " 点 #y格挡 。"],
+		"FLAVOR": "这是什么?",
+		"NAME": "心核色绿"
+	},
+	"Animator_TheEruzaStone":
+	{
+		"DESCRIPTIONS": ["获得 [E] [E] 每轮开始时。 NL 每当你打出1张 #y能力 , 抽1张牌。"],
+		"FLAVOR": "这是什么?",
+		"NAME": "头石色蓝"
 	},
 	"Animator_VividPicture":
 	{
 		"DESCRIPTIONS": ["每回合一次每当协 #y同生 效时抽1张牌 获得 [E]"],
 		"FLAVOR": "他...他在看着.",
-		"NAME": "生動著的畫作"
+		"NAME": "生动的画作"
 	},
 	"Animator_WizardHat":
 	{

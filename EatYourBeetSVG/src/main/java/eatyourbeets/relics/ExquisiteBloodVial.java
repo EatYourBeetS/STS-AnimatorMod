@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
-import eatyourbeets.effects.ExquisiteBloodVialIncreaseCounterEffect;
+import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.monsters.Bosses.KrulTepes;
 
 public class ExquisiteBloodVial extends AnimatorRelic
@@ -42,7 +42,7 @@ public class ExquisiteBloodVial extends AnimatorRelic
             ExquisiteBloodVial exquisiteBloodVial = (ExquisiteBloodVial) p.getRelic(ExquisiteBloodVial.ID);
             if (exquisiteBloodVial != null && exquisiteBloodVial.truePotential)
             {
-                AbstractDungeon.effectsQueue.add(new ExquisiteBloodVialIncreaseCounterEffect(exquisiteBloodVial, (BloodVial) relic));
+                AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(exquisiteBloodVial, relic));
 
 //                AbstractDungeon.player.relics.remove(relic);
 //                exquisiteBloodVial.IncreaseCounter();
@@ -120,9 +120,11 @@ public class ExquisiteBloodVial extends AnimatorRelic
         }
     }
 
-    public void IncreaseCounter()
+    @Override
+    public void setCounter(int counter)
     {
-        this.counter += 1;
+        super.setCounter(counter);
+
         Refresh();
     }
 
@@ -152,7 +154,7 @@ public class ExquisiteBloodVial extends AnimatorRelic
             {
                 if (relic instanceof BloodVial)
                 {
-                    AbstractDungeon.effectsQueue.add(new ExquisiteBloodVialIncreaseCounterEffect(this, (BloodVial) relic));
+                    AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, relic));
                 }
             }
         }

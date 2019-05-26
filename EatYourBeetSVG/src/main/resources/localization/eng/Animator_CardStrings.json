@@ -240,7 +240,7 @@
 	{
 		"DESCRIPTION": "Gain [E]. NL Take !M! damage at the end of this turn. NL Legacy: Gain [E].",
 		"NAME": "Demiurge",
-		"UPGRADE_DESCRIPTION": "Gain [E] [E]. NL Take !M! damage at the end of this turn. NL Legacy: Gain [E] [E]."
+		"UPGRADE_DESCRIPTION": "Gain [E] [E]. NL Take !SV! damage at the end of this turn. NL Legacy: Gain [E] [E]."
 	},
 	"animator_DolaCouronne":
 	{
@@ -265,9 +265,8 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Channel 1 Earth.",
-		"NAME": "'Dwarf Shaman'",
-		"UPGRADE_DESCRIPTION": "Deal !D! Damage. NL [#EFC851]Channel 1 Earth. NL Synergy: Trigger its passive ability."
+		"DESCRIPTION": "Deal !D! damage. NL Channel 1 Earth. NL Synergy: Trigger the passive ability of your next Orb.",
+		"NAME": "'Dwarf Shaman'"
 	},
 	"animator_Elesis":
 	{
@@ -293,9 +292,9 @@
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card. NL Synergy and Recall: Channel 1 Fire.",
+		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card. Recall: NL Channel 1 Fire.",
 		"NAME": "Elsword",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards. NL Synergy and Recall: Channel 1 Fire."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards. Recall: NL Channel 1 Fire."
 	},
 	"animator_EmiyaShirou":
 	{
@@ -323,9 +322,8 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "Shapeshifter. The first card you play each turn will Synergize. Lasts 4 turns.",
-		"NAME": "Envy",
-		"UPGRADE_DESCRIPTION": "Shapeshifter. The first card you play each turn will Synergize."
+		"DESCRIPTION": "Shapeshifter. Heal 1 HP for every !M! missing HP. The first card you play each turn will Synergize.",
+		"NAME": "Envy"
 	},
 	"animator_Eris":
 	{
@@ -748,7 +746,7 @@
 	},
 	"animator_Shichika":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Gain 1 Strength. NL Synergy: Add NL [#EFC851]Kyotouryuu[] NL to your hand.",
+		"DESCRIPTION": "Gain !B! Block and 1 Strength. Synergy: Add [#EFC851]Kyotouryuu[] to your hand.",
 		"EXTENDED_DESCRIPTION": ["Kyotouryuu", "A special 1-cost #yAttack that hits multiple times and #yExhausts."],
 		"NAME": "Shichika"
 	},
@@ -784,7 +782,7 @@
 	},
 	"animator_Shuna":
 	{
-		"DESCRIPTION": "Draw 2 cards. Synergy: NL Gain !M! Temp._HP. NL [#EFC851]Drawn: Gain !B! Block.",
+		"DESCRIPTION": "Draw 2 cards. NL Synergy: NL Gain !M! Temp._HP. NL [#EFC851]Drawn: Gain !B! Block.",
 		"NAME": "Shuna"
 	},
 	"animator_Sloth":
@@ -948,7 +946,7 @@
 	},
 	"animator_Vesta":
 	{
-		"DESCRIPTION": "Draw 1 card. NL Research an [#EFC851]Elixir, NL it will be completed after !M! turns. NL Exhaust.",
+		"DESCRIPTION": "Research an [#EFC851]Elixir, NL it will be completed after !M! turns. NL Exhaust.",
 		"EXTENDED_DESCRIPTION": ["Elixir", "0-cost #ySkill with a variety of different effects."],
 		"NAME": "Vesta"
 	},

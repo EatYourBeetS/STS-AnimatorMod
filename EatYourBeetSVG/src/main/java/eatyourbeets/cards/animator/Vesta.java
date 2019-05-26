@@ -38,7 +38,6 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DrawCard(p, 1);
         GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, Vesta_Elixir.GetCardGroup(), this::OnSelected,this, "", true));
     }
 

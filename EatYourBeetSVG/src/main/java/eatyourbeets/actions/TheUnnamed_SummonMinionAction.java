@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.powers.SlowPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.monsters.Bosses.TheUnnamed_Minion;
+import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
 
 public class TheUnnamed_SummonMinionAction extends AnimatorAction
 {
@@ -87,7 +87,7 @@ public class TheUnnamed_SummonMinionAction extends AnimatorAction
                 y = 176.0F;
         }
 
-        return new TheUnnamed_Minion(x, y, theUnnamed);
+        return new TheUnnamed_Doll(x, y, theUnnamed);
     }
 
     public void update()

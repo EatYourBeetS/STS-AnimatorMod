@@ -112,19 +112,170 @@
 	},
 	"animator_InfinitePower":
 	{
-		"DESCRIPTIONS": 
-		[
-			"- 受到未被格挡的伤害前: 获得此数量的 #y魔法护甲 . NL - 受到 负面效果 时: 获得此数量的 #y再生 . NL - 当敌人获得 积极影响 时: 获得此数量的 #y力量 . NL NL 这些加成会在每回合结束时减半."
-		],
+		"DESCRIPTIONS": ["- 受到未被格挡的伤害前: 获得此数量的 #y缠绕 . NL - 受到 负面效果 时: 获得此数量的 #y再生 . NL - 当敌人获得 积极影响 时: 获得此数量的 #y力量 . NL NL 这些加成会在每回合结束时减半."],
 		"NAME": "无尽之力"
 	},
 	"animator_UnnamedDollPower":
 	{
+		"DESCRIPTIONS": ["死亡时，所有角色获得 #b", " #y力量 "],
+		"NAME": "无名傀儡"
+	},
+	"animator_CursedStabsPower":
+	{
+		"NAME": "诅咒戳刺",
+		"DESCRIPTIONS":
+		[
+			"当这个敌人对你造成伤害时, 在你的抽牌堆里添加1张 #y疼痛 和1张 #y伤口 。"
+		]
+	},
+	"animator_UltimateCubePower":
+	{
 		"DESCRIPTIONS": 
 		[
-			"死亡时，所有角色获得 #b", " #y力量 "
+			"死亡时, 召唤 #b", " 个随机的方."
 		],
-		"NAME": "无名傀儡"
+		"NAME": "终极之方"
+	},
+	"animator_UltimateCrystalPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"死亡时, 召唤 #b", " 个随机的晶."
+		],
+		"NAME": "终极之晶"
+	},
+	"animator_UltimateWispPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"死亡时, 召唤 #b", " 个随机的缕."
+		],
+		"NAME": "终极之缕"
+	},
+	
+	"animator_DarkCubePower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"每轮结束时, 敌人承受 #b", " 层 #y缠绕 ."
+		],
+		"NAME": "暗黑之方"
+	},
+	"animator_DarkCrystalPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"失去所有格挡时, 所有其他角色承受 #b", " 层 #y缠绕 ."
+		],
+		"NAME": "暗黑之晶"
+	},
+	"animator_DarkWispPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"死亡时, 所有角色承受 #b", " 层 #y缠绕 ."
+		],
+		"NAME": "暗黑之缕"
+	},
+	
+	"animator_LightningCubePower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"每轮结束时, 对敌人造成 #b", " 点 #y穿刺 伤害."
+		],
+		"NAME": "雷电之方"
+	},
+	"animator_LightningCrystalPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"失去所有格挡时, 所有其他角色承受 #b", " 点 #y穿刺 伤害."
+		],
+		"NAME": "雷电之晶"
+	},
+	"animator_LightningWispPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"死亡时, 所有角色承受 #b", " 点 #y穿刺 伤害."
+		],
+		"NAME": "雷电之缕"
+	},
+	
+	"animator_HealingCubePower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"每轮结束时, 所有盟友回复 #b", " 点生命值."
+		],
+		"NAME": "治愈之方"
+	},
+	"animator_HealingCrystalPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"失去所有格挡时, 所有其他角色回复 #b", " 点生命值."
+		],
+		"NAME": "治愈之晶"
+	},
+	"animator_HealingWispPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"死亡时, 所有角色回复 #b", " 点生命值."
+		],
+		"NAME": "治愈之缕"
+	},
+	
+	"animator_FrostCubePower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"每轮结束时, 所有盟友获得 #b", " 层 #y多层护甲 ."
+		],
+		"NAME": "冰霜之方"
+	},
+	"animator_FrostCrystalPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"失去所有格挡时, 所有其他角色获得 #b", " 层 #y多层护甲 ."
+		],
+		"NAME": "冰霜之晶"
+	},
+	"animator_FrostWispPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"死亡时, 所有角色获得 #b", " 层 #y多层护甲 ."
+		],
+		"NAME": "冰霜之缕"
+	},
+	
+	"animator_FireCubePower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"每轮结束时, 所有盟友获得 #b", " 层 #y力量 和 #y燃烧 ."
+		],
+		"NAME": "火焰之方"
+	},
+	"animator_FireCrystalPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"失去所有格挡时, 所有其他角色获得s #b", " 层 #y力量 和 #y燃烧 ."
+		],
+		"NAME": "火焰之晶"
+	},
+	"animator_FireWispPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"死亡时, 所有角色获得 #b", " 层 #y力量 和 #y燃烧 ."
+		],
+		"NAME": "火焰之缕"
 	},
 	"animator_KaijinPower":
 	{

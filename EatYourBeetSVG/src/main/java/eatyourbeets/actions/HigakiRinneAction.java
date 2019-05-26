@@ -18,11 +18,13 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.HigakiRinne;
 import eatyourbeets.effects.ShuffleEnemiesEffect;
 import eatyourbeets.powers.BurningPower;
+import eatyourbeets.powers.EnchantedArmorPower;
 import eatyourbeets.powers.MarkOfPoisonPower;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -249,7 +251,17 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (tryActivate(5)) // 185
         {
-            AbstractDungeon.effectsQueue.add(new ShuffleEnemiesEffect());
+            for (AbstractGameEffect effect : AbstractDungeon.effectList)
+            {
+                if (effect instanceof ShuffleEnemiesEffect)
+                {
+                    GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, 1), 1);
+                    this.isDone = true;
+                    return;
+                }
+            }
+
+            AbstractDungeon.effectList.add(new ShuffleEnemiesEffect());
         }
 
         this.isDone = true;

@@ -1,7 +1,8 @@
+
 {
 	"Animator_Synergies":
 	{
-		"TEXT": 
+		"TEXT":
 		[
 			"[Shapeshifter]",
 			"Elsword",
@@ -35,10 +36,10 @@
 			"Youjo Senki"
 		]
 	},
-	
+
 	"Animator_Actions":
 	{
-		"TEXT": 
+		"TEXT":
 		[
 			"fetch Cards with the same synergy.",
 			"discard and draw that many cards.",
@@ -48,19 +49,27 @@
 			"Transform into "
 		]
 	},
-	
-	"Animator_TetAction": 
+
+	"Animator_TetAction":
+	{
+		"TEXT":
+		[
+			"Move up to # card/s to your Discard Pile.",
+			"Shuffle # card/s into your Draw Pile."
+		]
+	},
+
+	"TheUnnamedReign":
 	{
 		"TEXT": 
 		[
-		  "Move up to # card/s to your Discard Pile.",
-		  "Shuffle # card/s into your Draw Pile."
+			"The Unnamed Reign"
 		]
 	},
-	
+
 	"Animator_SpecialEffects":
 	{
-		"TEXT": 
+		"TEXT":
 		[
 			"Attack",
 			"Defend",
@@ -89,10 +98,10 @@
 			"Play the top card of your draw pile twice."
 		]
 	},
-	
+
 	"Animator_Trophies":
 	{
-		"TEXT": 
+		"TEXT":
 		[
 			"Bronze",
 			"Silver",
@@ -106,10 +115,10 @@
 			"Complete act 4 with at least #b30 cards in your deck, and without any duplicate."
 		]
 	},
-	
+
 	"Animator_TheUnnamed":
 	{
-		"TEXT": 
+		"TEXT":
 		[
 			"What is this? I am the one with infinite power here!",
 			"The Death Note will not work on me! I have no name, remember?",
@@ -126,28 +135,28 @@
 			"You are cheating, I see that Ainz is in your deck..."
 		]
 	},
-	
+
 	"Animator_Rewards":
 	{
-		"TEXT": 
+		"TEXT":
 		[
 			"Only contains Cards with this synergy. WARNING: once you click on this, the other 2 Card rewards will disappear.",
 			"Bonus Relic",
 			"Cursed Relic"
 		]
 	},
-		
+
 	"Animator_CardSelect":
 	{
-		"TEXT": 
+		"TEXT":
 		[
 			"Banish"
 		]
 	},
-	
+
 	"Animator_CharacterSelect":
 	{
-		"TEXT": 
+		"TEXT":
 		[
 			"Starting Cards: ",
 			"###############",

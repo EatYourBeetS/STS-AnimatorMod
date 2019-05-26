@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public abstract class AbstractMove
 {
+    public boolean disabled;
     public final AbstractMonster owner;
     public final int ascensionLevel;
     public final byte id;
@@ -21,6 +22,6 @@ public abstract class AbstractMove
 
     public boolean CanUse(Byte previousMove)
     {
-        return previousMove != id;
+        return !disabled && previousMove != id;
     }
 }

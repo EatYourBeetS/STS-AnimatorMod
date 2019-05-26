@@ -18,7 +18,7 @@ public class RoyMustang extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(7,0, 3);
+        Initialize(7,0, 4);
 
         this.isMultiDamage = true;
         //AddExtendedDescription();
@@ -56,7 +56,6 @@ public class RoyMustang extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(4);
-            upgradeMagicNumber(2);
         }
     }
 }

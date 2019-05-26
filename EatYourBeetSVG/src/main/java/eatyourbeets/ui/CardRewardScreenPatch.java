@@ -140,7 +140,10 @@ public class CardRewardScreenPatch
             {
                 AbstractDungeon.effectsQueue.add(new ExhaustCardEffect(toBan.card));
                 AbstractDungeon.effectsQueue.add(new HideCardEffect(toBan.card));
-                rewardItem.cards.remove(toBan.card);
+
+                int index = rewardItem.cards.indexOf(toBan.card);
+                rewardItem.cards.remove(index);
+
                 rewardBundle.Remove(toBan.card);
                 toBan.hideInstantly();
 
@@ -184,7 +187,7 @@ public class CardRewardScreenPatch
                 replacement.isSeen = true;
                 replacement.target_x = replacement.current_x = toBan.card.target_x;
                 replacement.target_y = replacement.current_y = toBan.card.target_y;
-                rewardItem.cards.add(replacement);
+                rewardItem.cards.add(index, replacement);
 
                 if (purgingStone.CanBan(replacement))
                 {

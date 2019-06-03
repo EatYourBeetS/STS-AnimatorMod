@@ -26,7 +26,7 @@
 	},
 	{
 		"DESCRIPTION": "Ignore l'Armure et les Epines.",
-		"NAMES": ["perçant", "percant"],
+		"NAMES": ["perçant", "perçant(s)"],
 		"PROPERNAME": "Perçant"
 	},
 	{
@@ -41,7 +41,7 @@
 	},
 	{
 		"DESCRIPTION": "Ne peut agir pour #b1 tour.",
-		"NAMES": ["stun", "stunned", "stslib:stunned", "assome", "assomé", "assomer"],
+		"NAMES": ["stun", "stunned", "stslib:stunned", "assome", "assomé", "assomer","assomez","assomés"],
 		"PROPERNAME": "Stun"
 	},
 	{
@@ -88,6 +88,11 @@
 		"DESCRIPTION": "Tant que le compter est supérieur à 0, NL active l'effet puis diminue de 1. Resets à chaque fin de combat.",
 		"NAMES": ["boost"],
 		"PROPERNAME": "Boost"
+	},
+	{
+		"NAMES": ["air", "air+"],
+		"DESCRIPTION": "Orbe: Inflige dégâts #yPerçants à TOUS les ennemies.",
+		"PROPERNAME": "Air"
 	},
 	{
 		"NAMES": ["terre", "terre+"],
@@ -201,7 +206,7 @@
 	},
 	{
 		"PROPER_NAME": "Support Damage",
-		"NAMES": ["support damage", "support_damage"],
+		"NAMES": ["support damage", "support_damage", "dégât de soutien", "dégât_de_soutien"],
 		"DESCRIPTION": "Inflige des dégats à l'ennemi avec le moins de PV."
 	}
 ]

@@ -94,7 +94,7 @@
 		"NAME": "Healing Cube (L)",
 		"DIALOG": [""]
 	},
-	
+
 	"Animator_Dark_Crystal_0":
 	{
 		"MOVES": [],
@@ -189,7 +189,7 @@
 		"NAME": "Healing Crystal (L)",
 		"DIALOG": [""]
 	},
-	
+
 	"Animator_Dark_Wisp_0":
 	{
 		"MOVES": [],
@@ -284,7 +284,7 @@
 		"NAME": "Healing Wisp (L)",
 		"DIALOG": [""]
 	},
-	
+
 	"Animator_Ultimate_Cube_3":
 	{
 		"MOVES": [],
@@ -303,7 +303,20 @@
 		"NAME": "Ultimate Crystal",
 		"DIALOG": [""]
 	},
-	
+
+	"Animator_KrulTepes":
+	{
+		"MOVES": [],
+		"NAME": "Krul Tepes",
+		"DIALOG": [""]
+	},
+	"Animator_TheUnnamed_Doll":
+	{
+		"MOVES": [],
+		"NAME": "",
+		"DIALOG": [""]
+	},
+
 	"Animator_TheUnnamedCultist":
 	{
 		"MOVES": [],
@@ -320,15 +333,16 @@
 			"Wait a little longer!",
 			"Almost ready!",
 			"Here it is!",
-			"I am a cultist."			
+			"I am a cultist."
 		]
 	},
 	"Animator_TheUnnamed":
 	{
 		"MOVES": [],
 		"NAME": "The Unnamed",
-		"DIALOG": 
+		"DIALOG":
 		[
+			"That's enough! Your fate is sealed...",
 			"What is this? I am the one with infinite power here!",
 			"The Death Note will not work on me! I have no name, remember?",
 			"You are annoying me, I think your turn will end soon...",

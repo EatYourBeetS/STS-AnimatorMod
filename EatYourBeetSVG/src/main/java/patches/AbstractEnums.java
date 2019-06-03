@@ -48,6 +48,12 @@ public class AbstractEnums
         //public static AbstractCard.CardTags SHAPESHIFTER;
 
         @SpireEnum
+        public static AbstractCard.CardTags OBTAINABLE_ONCE;
+
+        @SpireEnum
+        public static AbstractCard.CardTags UNIQUE;
+
+        @SpireEnum
         public static AbstractCard.CardTags TEMPORARY;
 
         @SpireEnum

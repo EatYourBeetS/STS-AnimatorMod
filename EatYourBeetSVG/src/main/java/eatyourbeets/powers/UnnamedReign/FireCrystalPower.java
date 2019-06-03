@@ -1,10 +1,12 @@
 package eatyourbeets.powers.UnnamedReign;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class FireCrystalPower extends AnimatorPower
@@ -29,15 +31,22 @@ public class FireCrystalPower extends AnimatorPower
     }
 
     @Override
-    public int onAttacked(DamageInfo info, int damageAmount)
+    public void onUseCard(AbstractCard card, UseCardAction action)
     {
-        if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner)
-        {
-            this.flash();
-            AbstractCreature target = PlayerStatistics.GetRandomCharacter(true);
-            GameActionsHelper.ApplyPower(null, target, new StrengthPower(target, amount), amount);
-        }
+        super.onUseCard(card, action);
 
-        return damageAmount;
+        if (action.target == owner)
+        {
+            for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
+            {
+                if (c != owner)
+                {
+                    GameActionsHelper.ApplyPowerSilently(null, c, new BurningPower(c, null, amount), amount);
+                    GameActionsHelper.ApplyPower(null, c, new StrengthPower(c, amount), amount);
+                }
+            }
+
+            this.flash();
+        }
     }
 }

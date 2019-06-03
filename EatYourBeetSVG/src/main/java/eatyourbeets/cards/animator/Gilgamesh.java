@@ -19,6 +19,8 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.relics.UnnamedReignRelic;
+import patches.AbstractEnums;
+import patches.StoreRelicPatch;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,14 @@ public class Gilgamesh extends AnimatorCard
         AbstractPlayer player = AbstractDungeon.player;
         if (player != null && player.masterDeck != null && !(relic instanceof UnnamedReignRelic))
         {
+            for (AbstractRelic r : StoreRelicPatch.last20Relics)
+            {
+                if (r == relic)
+                {
+                    return;
+                }
+            }
+
             ArrayList<AbstractCard> deck = player.masterDeck.group;
             if (deck != null && deck.size() > 0)
             {
@@ -61,7 +71,10 @@ public class Gilgamesh extends AnimatorCard
 
         Initialize(3,0, 3);
 
+        AddExtendedDescription(3,4);
         AddExtendedDescription(GOLD_REWARD);
+
+        tags.add(AbstractEnums.CardTags.UNIQUE);
 
         SetSynergy(Synergies.Fate);
     }

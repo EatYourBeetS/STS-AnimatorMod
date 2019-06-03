@@ -20,6 +20,8 @@ public class PridePower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
+        this.priority = -99;
+
         updateDescription();
     }
 

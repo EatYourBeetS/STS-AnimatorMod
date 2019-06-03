@@ -1,7 +1,9 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -24,9 +26,23 @@ public class AcuraAkari extends AnimatorCard
     }
 
     @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        CardGroup hand = AbstractDungeon.player.hand;
+        int toDiscard = 0;
+        if (hand.contains(this))
+        {
+            toDiscard = -1;
+        }
+        toDiscard += hand.size();
+
+        return toDiscard >= 1 && super.cardPlayable(m);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ChooseAndDiscard(1, false);
+        GameActionsHelper.Discard(1, false);
 
         for (int i = 0; i < secondaryValue; i++)
         {
@@ -41,7 +57,7 @@ public class AcuraAkari extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBaseCost(0);
         }
     }
 }

@@ -60,6 +60,12 @@
 		"FLAVOR": "统治死亡即统治生命，死即生之巅峰, 崇敬生命吧.",
 		"NAME": "重戟"
 	},
+		"Animator_Hoodie":
+	{
+		"DESCRIPTIONS": ["如果你在一场战斗没有受到伤害, 获得 #b", " #y生命上限 。"],
+		"FLAVOR": "有了这个, 你说不定可以被英雄协会承认.",
+		"NAME": "帽衫"
+	},
 	"Animator_LivingPicture":
 	{
 		"DESCRIPTIONS": ["每回合一次每当协 #y同生 效时抽1张牌."],
@@ -72,7 +78,7 @@
 		"FLAVOR": "震惊的真相！",
 		"NAME": "旧棺材"
 	},
-	"Animator_PurgingStone_张牌s":
+	"Animator_PurgingStone_Cards":
 	{
 		"DESCRIPTIONS": ["你可以 放逐 某些牌， 使它们从 #y正常 卡牌奖励和商店里消失。 每次战斗获得 #b1 次使用, 可以存储到 #b", " 使用次数。 NL NL #p鼠标右击 用来浏览 放逐 的卡牌"],
 		"FLAVOR": "人类无法对抗诅咒，但可以利用它.",
@@ -108,9 +114,9 @@
 		"FLAVOR": "这是什么?",
 		"NAME": "遗失残片"
 	},
-	"Animator_TheAncientMedallion":
+	"Animator_AncientMedallion":
 	{
-		"DESCRIPTIONS": ["获得时, 升级2张随机的牌并且升级1张你选择的牌。 每轮开始时, 回复 #b", " 生命值。"],
+		"DESCRIPTIONS": ["获得时, #y升级 2张随机的牌并且升级1张你选择的牌。 每轮开始时, 回复 #b", " 生命值。"],
 		"FLAVOR": "...",
 		"NAME": "上古挂坠"
 	},
@@ -122,7 +128,7 @@
 	},
 	"Animator_TheWolleyCore":
 	{
-		"DESCRIPTIONS": ["每轮开始时， 抽 #b"," 张牌。 NL 每当你打出1张牌, 对所有敌人造成 #b"," 点伤害并且获得 #b", " 点 #y格挡 。"],
+		"DESCRIPTIONS": ["每轮开始时， 抽 #b", " 张牌。 NL 每当你打出1张牌, 对所有敌人造成 #b", " 点伤害并且获得 #b", " 点 #y格挡 。"],
 		"FLAVOR": "这是什么?",
 		"NAME": "心核色绿"
 	},
@@ -140,7 +146,7 @@
 	},
 	"Animator_WizardHat":
 	{
-		"DESCRIPTIONS": ["你的回合结束时，消耗你所有剩余的能量。 为每一个消耗的能量， 从这倒数器上减1。 当倒数器的数字变成 #g0 时， 对所有敌人造成 #b", " 点伤害。"],
+		"DESCRIPTIONS": ["你的回合结束时，从你剩余的能量吸收 #b1 能量。每次此遗物总共吸收 #b" , " 能量时，对所有敌人造成 #b", " 点伤害。"],
 		"FLAVOR": "爆裂魔法天下第一！ .......当然，需要时间准备.",
 		"NAME": "巫师帽"
 	},

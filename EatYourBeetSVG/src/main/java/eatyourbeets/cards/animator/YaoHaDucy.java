@@ -30,11 +30,6 @@ public class YaoHaDucy extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-//        if (HasActiveSynergy())
-//        {
-//            GameActionsHelper.GainBlock(p, this.block);
-//        }
-
         GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
 
         for (AbstractCard c : getAllCopies())

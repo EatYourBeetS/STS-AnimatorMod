@@ -11,6 +11,7 @@ import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.monsters.Bosses.TheUnnamed;
 
 public class Kira extends AnimatorCard
 {
@@ -34,6 +35,12 @@ public class Kira extends AnimatorCard
         AddExtendedDescription();
 
         SetSynergy(Synergies.DeathNote);
+    }
+
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+        return !(m instanceof TheUnnamed) && super.canUse(p, m);
     }
 
     @Override
@@ -93,6 +100,11 @@ public class Kira extends AnimatorCard
         if (monster == null)
         {
             rawDescription = cardStrings.DESCRIPTION;
+        }
+        else if (monster instanceof TheUnnamed)
+        {
+            rawDescription = cardStrings.DESCRIPTION;
+            ((TheUnnamed)monster).TriedUsingDeathNote();
         }
         else
         {

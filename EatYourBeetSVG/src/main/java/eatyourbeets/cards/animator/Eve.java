@@ -51,7 +51,7 @@ public class Eve extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(1);
         }
     }
 }

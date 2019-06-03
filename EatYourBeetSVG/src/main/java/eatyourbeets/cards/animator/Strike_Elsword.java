@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Strike_Elsword extends Strike
 {
@@ -24,18 +25,7 @@ public class Strike_Elsword extends Strike
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
-
-        LoseStrengthPower power = (LoseStrengthPower) p.getPower(LoseStrengthPower.POWER_ID);
-        if (power != null)
-        {
-            power.amount += magicNumber;
-        }
-        else
-        {
-            p.powers.add(new LoseStrengthPower(p, this.magicNumber));
-        }
-
+        PlayerStatistics.ApplyTemporaryStrength(p, p, 1);
     }
 
     @Override

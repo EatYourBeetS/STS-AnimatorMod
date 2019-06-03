@@ -20,7 +20,7 @@ public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0,3, 6);
+        Initialize(0,0,4, 7);
 
         SetSynergy(Synergies.Overlord);
     }

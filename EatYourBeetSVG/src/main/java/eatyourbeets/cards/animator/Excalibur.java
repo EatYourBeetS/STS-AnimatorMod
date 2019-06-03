@@ -25,7 +25,7 @@ public class Excalibur extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
 
-        Initialize(8,0);
+        Initialize(6,0);
 
         this.retain = true;
         this.isMultiDamage = true;
@@ -96,8 +96,7 @@ public class Excalibur extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(8);
-            //upgradeBaseCost(1);
+            upgradeDamage(6);
         }
     }
 }

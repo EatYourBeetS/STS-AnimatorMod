@@ -18,7 +18,9 @@ import eatyourbeets.actions.KrulTepesAction;
 import eatyourbeets.actions.OnTargetDeadAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.relics.AncientMedallion;
 import eatyourbeets.relics.ExquisiteBloodVial;
+import eatyourbeets.relics.UnnamedReignRelic;
 
 import java.util.ArrayList;
 
@@ -94,6 +96,10 @@ public class KrulTepes extends AnimatorCard
         if (ownedRelics > 3 && (ownedRelics >= 5 || AbstractDungeon.miscRng.randomBoolean()))
         {
             AbstractDungeon.getCurrRoom().addRelicToRewards(new ExquisiteBloodVial());
+        }
+        else if (UnnamedReignRelic.IsEquipped())
+        {
+            AbstractDungeon.getCurrRoom().addRelicToRewards(new AncientMedallion());
         }
         else
         {

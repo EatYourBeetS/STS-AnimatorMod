@@ -1,62 +1,39 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedDoll;
 
-import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.spine.AnimationState;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.*;
-import eatyourbeets.powers.CursedStabsPower;
-import eatyourbeets.powers.UnnamedDollPower;
+import eatyourbeets.monsters.SharedMoveset.*;
+import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
+import eatyourbeets.powers.UnnamedReign.CursedStabsPower;
+import eatyourbeets.powers.UnnamedReign.UnnamedDollPower;
 
-import java.util.ArrayList;
-
-public class TheUnnamed_Doll extends CustomMonster
+public class TheUnnamed_Doll extends AnimatorMonster
 {
-    private static final String MODEL_ATLAS = "images/monsters/Animator_TheUnnamed/TheUnnamedMinion.atlas";
-    private static final String MODEL_JSON = "images/monsters/Animator_TheUnnamed/TheUnnamedMinion.json";
+    public static final String ID = "Animator_TheUnnamed_Doll";
 
-    public static final String ID = "Animator_TheUnnamedMinion";
-    public static final String NAME = "";
-
-    private final ArrayList<Move> moveset = new ArrayList<>();
     private final BobEffect bobEffect = new BobEffect(1);
-
-    private static int GetMaxHealth()
-    {
-        return 180;
-    }
 
     private final TheUnnamed theUnnamed;
 
-    public TheUnnamed_Doll(TheUnnamed theUnnamed)
+    public TheUnnamed_Doll(TheUnnamed theUnnamed, float x, float y)
     {
-        this(0, 0, theUnnamed);
-    }
-
-    public TheUnnamed_Doll(float x, float y, TheUnnamed theUnnamed)
-    {
-        super(NAME, ID, GetMaxHealth(), 0.0F, -20.0F, 120.0F, 140.0f, null, x, y + 60.0F);
+        super(new Data(ID), EnemyType.NORMAL, x, y);
 
         this.theUnnamed = theUnnamed;
 
-        loadAnimation(MODEL_ATLAS, MODEL_JSON, 2);
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
-        e.setTime(e.getEndTime() * MathUtils.random());
-
-        this.type = EnemyType.NORMAL;
+        this.data.SetIdleAnimation(this, 1);
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.add(new Move_Shield(0, level, this, theUnnamed));
-        moveset.add(new Move_BuffArtifact(1, level, this, theUnnamed));
-        moveset.add(new Move_BuffThorns(2, level, this, theUnnamed));
-        moveset.add(new Move_DebuffVulnerable(3, level, this, theUnnamed));
-        moveset.add(new Move_DebuffWeak(4, level, this, theUnnamed));
+        moveset.AddNormal(new Move_ShieldAll(16));
+        moveset.AddNormal(new Move_GainStrengthAndArtifactAll(1));
+        moveset.AddNormal(new Move_GainTempThornsAll(3));
+        moveset.AddNormal(new Move_AttackVulnerable(1, 1));
+        moveset.AddNormal(new Move_AttackWeak(1, 1));
     }
 
     @Override
@@ -83,44 +60,28 @@ public class TheUnnamed_Doll extends CustomMonster
     }
 
     @Override
-    public void takeTurn()
-    {
-        moveset.get(nextMove).Execute(AbstractDungeon.player);
-
-        GameActionsHelper.AddToBottom(new RollMoveAction(this));
-    }
-
-    @Override
     public void die()
     {
         super.die();
 
         if (theUnnamed != null)
         {
-            theUnnamed.minionsCount -= 1;
+            theUnnamed.OnDollDeath();
         }
     }
 
-    @Override
-    protected void getMove(int i)
+    protected static class Data extends AbstractMonsterData
     {
-        Byte previousMove = -1;
-
-        int size = moveHistory.size();
-        if (size > 0)
+        public Data(String id)
         {
-            previousMove = moveHistory.get(size - 1);
-        }
+            super(id);
 
-        ArrayList<Move> moves = new ArrayList<>();
-        for (Move move : moveset)
-        {
-            if (move.CanUse(previousMove))
-            {
-                moves.add(move);
-            }
-        }
+            maxHealth = 180;
+            atlasUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedMinion.atlas";
+            jsonUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedMinion.json";
+            scale = 2;
 
-        moves.get(i % moves.size()).SetMove();
+            SetHB(0,-20,120,140, 0, 60);
+        }
     }
 }

@@ -68,6 +68,7 @@ public class DamageRandomEnemy2Action extends AbstractGameAction
                     this.target.tint.changeColor(Color.WHITE.cpy());
                 }
 
+
                 this.info.applyPowers(this.info.owner, target);
 
                 this.target.damage(this.info);

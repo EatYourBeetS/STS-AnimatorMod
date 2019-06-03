@@ -14,15 +14,12 @@ import eatyourbeets.monsters.AbstractMove;
 
 public class Move_MultiSlash extends AbstractMove
 {
-    private final DamageInfo damageInfo;
     private final int TIMES;
 
     private int timesCounter;
 
-    public Move_MultiSlash(int id, int ascensionLevel, AbstractMonster owner)
+    public Move_MultiSlash()
     {
-        super((byte) id, ascensionLevel, owner);
-
         if (ascensionLevel >= 6)
         {
             damageInfo = new DamageInfo(owner, 2);

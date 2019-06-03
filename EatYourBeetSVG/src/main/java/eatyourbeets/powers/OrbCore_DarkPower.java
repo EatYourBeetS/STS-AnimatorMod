@@ -28,7 +28,7 @@ public class OrbCore_DarkPower extends OrbCore_AbstractPower
             GameActionsHelper.DrawCard(p, value);
             if ((p.drawPile.size() + p.discardPile.size()) > 0)
             {
-                GameActionsHelper.ChooseAndDiscard(1, false);
+                GameActionsHelper.Discard(1, false);
             }
         }
     }

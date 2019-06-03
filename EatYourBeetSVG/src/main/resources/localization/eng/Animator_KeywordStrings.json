@@ -95,6 +95,11 @@
 		"PROPERNAME": "Earth"
 	},
 	{
+		"NAMES": ["air", "air+"],
+		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
+		"PROPERNAME": "Air"
+	},
+	{
 		"NAMES": ["fire", "fire+"],
 		"DESCRIPTION": "Orb: Apply #yBurning and damage the highest health enemy.",
 		"PROPERNAME": "Fire"

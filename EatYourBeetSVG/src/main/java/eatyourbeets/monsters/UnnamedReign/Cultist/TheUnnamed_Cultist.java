@@ -1,35 +1,33 @@
 package eatyourbeets.monsters.UnnamedReign.Cultist;
 
-import basemod.abstracts.CustomMonster;
-import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.spine.AnimationState;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.monsters.AnimatorMonster;
+import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
 
-public abstract class TheUnnamed_Cultist extends CustomMonster
+public abstract class TheUnnamed_Cultist extends AnimatorMonster
 {
-    private static final String MODEL_ATLAS = "images/monsters/Animator_TheUnnamed/TheUnnamedCultist.atlas";
-    private static final String MODEL_JSON = "images/monsters/Animator_TheUnnamed/TheUnnamedCultist.json";
-
     public static final String ID = "Animator_TheUnnamedCultist";
     public static final String NAME = "Cultist";
 
-    private static int GetBaseMaxHealth()
-    {
-        return 180;
-    }
-
     public TheUnnamed_Cultist(float x, float y)
     {
-        super(NAME, ID, GetBaseMaxHealth(), 0.0F, -30.0F, 140.0F, 210.0f, null, x, y + 80.0F);
+        super(new Data(ID), EnemyType.NORMAL, x, y);
 
-        loadAnimation(MODEL_ATLAS, MODEL_JSON, 2);
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
-        e.setTime(e.getEndTime() * MathUtils.random());
-
-        this.strings = AnimatorResources.GetMonsterStrings(ID);
-        this.type = EnemyType.NORMAL;
+        data.SetIdleAnimation(this, 1);
     }
 
-    public MonsterStrings strings;
+    protected static class Data extends AbstractMonsterData
+    {
+        public Data(String id)
+        {
+            super(id);
+
+            scale = 2;
+            jsonUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedCultist.json";
+            atlasUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedCultist.atlas";
+            imgUrl = null;
+
+            maxHealth = 192;
+            SetHB(0, -30, 140, 210, 0, 80);
+        }
+    }
 }

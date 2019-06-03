@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.GameActionsHelper;
 
@@ -44,9 +45,14 @@ public class SupportDamagePower extends AnimatorPower
 
         if (target != null)
         {
-            //AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.5F));
-            //AbstractDungeon.actionManager.addToBottom(new WaitAction(0.1F));
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new DieDieDieEffect()));// new IronWaveEffect(owner.hb.cX, owner.hb.cY, target.hb.cX), 0.3F));
+            if (amount < 10)
+            {
+                GameActionsHelper.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F);
+            }
+            else
+            {
+                GameActionsHelper.VFX(new DieDieDieEffect());
+            }
 
             GameActionsHelper.DamageTarget(owner, target, this.amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         }

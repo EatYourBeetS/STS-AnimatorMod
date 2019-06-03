@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.Millim;
+import eatyourbeets.relics.PurgingStone_Cards;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class SoulPatches
     {
         public static void Postfix(Soul soul, AbstractCard card)
         {
-            if (card.cardID.equals(Millim.ID))
+            if (card.tags.contains(AbstractEnums.CardTags.UNIQUE))
             {
                 AbstractCard first = null;
 
@@ -39,7 +40,7 @@ public class SoulPatches
                 ArrayList<AbstractCard> cards = AbstractDungeon.player.masterDeck.group;
                 for (AbstractCard c : cards)
                 {
-                    if (c.cardID.equals(Millim.ID))
+                    if (c.cardID.equals(card.cardID))
                     {
                         if (first == null)
                         {

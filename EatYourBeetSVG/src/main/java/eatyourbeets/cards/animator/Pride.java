@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.MovePowerLeftAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PridePower;
@@ -16,30 +15,15 @@ public class Pride extends AnimatorCard
 
     public Pride()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0,0, 1);
+        Initialize(0,0, 1, 3);
 
-        baseSecondaryValue = secondaryValue = 2;
+        this.exhaust = true;
 
         AddExtendedDescription();
 
         SetSynergy(Synergies.FullmetalAlchemist, true);
-    }
-
-    @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        if (HasActiveSynergy())
-        {
-            target = CardTarget.SELF_AND_ENEMY;
-        }
-        else
-        {
-            target = CardTarget.SELF;
-        }
     }
 
     @Override
@@ -50,15 +34,12 @@ public class Pride extends AnimatorCard
             GameActionsHelper.ChannelOrb(new Dark(), true);
         }
 
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.ApplyPower(p, m, new ConstrictedPower(m, p, this.secondaryValue), this.secondaryValue);
-        }
+        GameActionsHelper.ApplyPower(p, m, new ConstrictedPower(m, p, this.secondaryValue), this.secondaryValue);
 
         if (!p.hasPower(PridePower.POWER_ID))
         {
             GameActionsHelper.ApplyPower(p, p, new PridePower(p));
-            GameActionsHelper.AddToBottom(new MovePowerLeftAction(p, PridePower.POWER_ID));
+            //GameActionsHelper.AddToBottom(new MovePowerLeftAction(p, PridePower.POWER_ID));
         }
     }
 
@@ -67,8 +48,7 @@ public class Pride extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            //upgradeMagicNumber(1);
-            upgradeSecondaryValue(2);
+            upgradeBaseCost(1);
         }
     }
 }

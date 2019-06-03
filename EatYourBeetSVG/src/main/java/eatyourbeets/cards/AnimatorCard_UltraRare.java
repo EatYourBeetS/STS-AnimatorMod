@@ -3,10 +3,14 @@ package eatyourbeets.cards;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.Madness;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.cards.animator.*;
+import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.HashMap;
 
@@ -45,6 +49,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Ani
             Cards.put(HiiragiTenri.ID, new HiiragiTenri());
             Cards.put(JeanneDArc.ID, new JeanneDArc());
             Cards.put(NivaLada.ID, new NivaLada());
+            Cards.put(SeriousSaitama.ID, new SeriousSaitama());
         }
 
         return Cards;
@@ -64,7 +69,20 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Ani
         return UnlockTracker.seenPref.getInteger(cardID, 0) == 2;
     }
 
-//    @SpireOverride
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        if (PlayerStatistics.InBattle() || CardCrawlGame.isPopupOpen)
+        {
+            return super.makeStatEquivalentCopy();
+        }
+        else
+        {
+            return new Madness();
+        }
+    }
+
+    //    @SpireOverride
 //    protected void renderAttackPortrait(SpriteBatch sb, float x, float y)
 //    {
 //        switch (this.rarity)

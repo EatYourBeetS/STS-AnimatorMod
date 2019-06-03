@@ -20,6 +20,11 @@
 		"DESCRIPTIONS": ["Every 4 #yAttacks played, gain #b", " Strength and #b", " Dexterity."],
 		"NAME": "Bito Kanzashi"
 	},
+	"animator_BorosPower":
+	{
+		"DESCRIPTIONS": ["All #yPowers are played twice."],
+		"NAME": "Boros"
+	},
 	"animator_BozesPower":
 	{
 		"DESCRIPTIONS": ["When a card #ySynergizes, gain #b", " Block."],
@@ -114,7 +119,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"- Before taking unblocked damage: Gain that much #yEnchanted #yArmor. NL - When receiving a debuff: Gain that much #yRegeneration. NL - When the enemy receives a buff: Gain that much #yStrength. NL NL These stats will be halved at the end of each turn."
+			"- Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL - When receiving a debuff: Gains that much #yRegeneration. NL - When the enemy receives a buff: Gains that much #yStrength. NL NL These stats will be halved at the end of each turn."
 		],
 		"NAME": "Infinite Power"
 	},
@@ -136,10 +141,10 @@
 	},
 	"animator_TheUnnamedCultistPower":
 	{
-		"NAME": "Cursed Stabs",
+		"NAME": "Unnamed Cultist",
 		"DESCRIPTIONS":
 		[
-			"While there are other allies alive, gain #b", " Enchanted Armor for each."
+			"While there are other allies alive, gains #b", " Enchanted Armor for each."
 		]
 	},
 
@@ -147,7 +152,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"On death, summon #b", " random cubes."
+			"At the end of each turn, gains #b", " random Buff. NL NL Explodes after #b", " turns, dealing #b", " damage."
 		],
 		"NAME": "Ultimate Cube"
 	},
@@ -155,7 +160,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"On death, summon #b", " random crystals."
+			"Whenever a card is played, gains #b", " #yStrength. NL NL When losing #b", " or more HP in a turn, the opponent gains #b", " #yPlated #yArmor."
 		],
 		"NAME": "Ultimate Crystal"
 	},
@@ -163,7 +168,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"On death, summon #b", " random wisps."
+			"Whenever it deals unblocked damage, add #b1 #yBurn to your discard pile. NL NL The first card played each turn is #yExhausted."
 		],
 		"NAME": "Ultimate Wisp"
 	},
@@ -180,7 +185,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"Upon losing its #yBlock, apply #b", " #yConstricted to ALL other characters."
+			"When targeted by a card, apply #b", " #yConstricted to ALL other characters."
 		],
 		"NAME": "Dark Crystal"
 	},
@@ -205,7 +210,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"Upon losing its #yBlock, ALL other characters take #b", " #yPiercing damage."
+			"When targeted by a card, ALL other characters take #b", " #yPiercing damage."
 		],
 		"NAME": "Lightning Crystal"
 	},
@@ -230,7 +235,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"Upon losing its #yBlock, ALL other characters heal #b", " HP."
+			"When targeted by a card, ALL other characters heal #b", " HP."
 		],
 		"NAME": "Healing Crystal"
 	},
@@ -255,7 +260,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"Upon losing its #yBlock, All other characters gain #b", " #yPlated #yArmor."
+			"When targeted by a card, All other characters gain #b", " #yPlated #yArmor."
 		],
 		"NAME": "Frost Crystal"
 	},
@@ -280,7 +285,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"Upon losing its #yBlock, ALL other characters gain #b", " #yStrength and #yBurning."
+			"When targeted by a card, ALL other characters gain #b", " #yStrength and #yBurning."
 		],
 		"NAME": "Fire Crystal"
 	},

@@ -23,6 +23,7 @@ public class Ainz extends AnimatorCard
         super(AnimatorResources.GetCardStrings(ID), ID + "Alt", AnimatorResources.GetCardImage(ID + "Alt"),
                 0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
         this.effect = effect;
+
         //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
     }
 
@@ -33,6 +34,8 @@ public class Ainz extends AnimatorCard
         Initialize(0,0,0);
 
         SetSynergy(Synergies.Overlord);
+
+        this.tags.add(CardTags.HEALING);
 
         AddExtendedDescription();
     }

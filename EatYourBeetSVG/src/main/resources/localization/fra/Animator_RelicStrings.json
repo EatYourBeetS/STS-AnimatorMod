@@ -60,6 +60,12 @@
 		"FLAVOR": "Regner sur la mort, c'est regner sur la vie. La mort est l'apothéose de la vie. Pour une belle mort, tu dois honorer la vie.",
 		"NAME": "Hallebarde Lourde"
 	},
+		"Animator_Hoodie":
+	{
+		"DESCRIPTIONS": ["Si vous finissez un combat sans prendre de dégât, gagnez #b", " #yPV #ymax."],
+		"FLAVOR": "Avec cela, vous seriez peut-être admis à l'Association des Héros.",
+		"NAME": "Coton Ouaté"
+	},
 	"Animator_LivingPicture":
 	{
 		"DESCRIPTIONS": ["Une fois par tour, quand une carte #ySynergizes, piochez #b1 carte."],
@@ -108,9 +114,9 @@
 		"FLAVOR": "Quelle est cette chose?",
 		"NAME": "La pièce manquante"
 	},
-	"Animator_TheAncientMedallion":
+	"Animator_AncientMedallion":
 	{
-		"DESCRIPTIONS": ["À l'obtention, améliorez 2 cartes aléatoires et une autre carte au choix. Au début de chaque combat, soignez #b", " PV."],
+		"DESCRIPTIONS": ["À l'obtention, #yAméliorez 2 cartes aléatoires et une autre carte au choix. Au début de chaque combat, soignez #b", " PV."],
 		"FLAVOR": "...",
 		"NAME": "Médaillon Ancien"
 	},
@@ -122,7 +128,7 @@
 	},
 	"Animator_TheWolleyCore":
 	{
-		"DESCRIPTIONS": ["Piochez #b"," cartes au début de chaque tour. NL Lorsque vous jouez une carte,  infligez #b", " dégât à TOUS les ennemis and gagnez #b", " #yd'Armure."],
+		"DESCRIPTIONS": ["Piochez #b", " cartes au début de chaque tour. NL Lorsque vous jouez une carte,  infligez #b", " dégât à TOUS les ennemis and gagnez #b", " #yd'Armure."],
 		"FLAVOR": "Qu'est-ce que c'est?",
 		"NAME": "Le Noyau Trev"
 	},
@@ -140,7 +146,7 @@
 	},
 	"Animator_WizardHat":
 	{
-		"DESCRIPTIONS": ["À la fin de votre tour, dépensez votre énergie restante et réduisez ce compteur du même montant. Si ce compteur atteint #g0, infligez #b", " dégâts à TOUS les ennemis."],
+		"DESCRIPTIONS": ["À la fin de votre tour, consomme #1 de votre énergie restante. Chaque fois que cette relique consomme un total de #b", " Énergies, infligez #b", " dégâts à TOUS les ennemis."],
 		"FLAVOR": "La magie d'explosion est la plus puissantes. Mais elle demande un temps de préparation.",
 		"NAME": "Chapeau de Sorcier"
 	},

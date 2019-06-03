@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.EarthOrbEvokeAction;
+import eatyourbeets.actions.Orbs.EarthOrbEvokeAction;
 import eatyourbeets.powers.EarthenThornsPower;
 import eatyourbeets.powers.PlayerStatistics;
 

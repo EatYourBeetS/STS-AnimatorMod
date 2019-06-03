@@ -15,10 +15,8 @@ public class Move_Cripple extends AbstractMove
     private final int BLOCK_AMOUNT;
     private final int VULNERABLE_AMOUNT;
 
-    public Move_Cripple(int id, int ascensionLevel, AbstractMonster owner)
+    public Move_Cripple()
     {
-        super((byte) id, ascensionLevel, owner);
-
         if (ascensionLevel >= 8)
         {
             FRAIL_AMOUNT = 2;

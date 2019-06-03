@@ -1,117 +1,210 @@
 package eatyourbeets.monsters.Bosses;
 
-import basemod.abstracts.CustomMonster;
-import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.spine.AnimationState;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.RegenPower;
+import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
+import com.megacrit.cardcrawl.screens.DeathScreen;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.AnimatorResources_Audio;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.Utilities;
+import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
-import eatyourbeets.powers.InfinitePower;
+import eatyourbeets.monsters.SharedMoveset.Move_Poison;
+import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
+import eatyourbeets.powers.UnnamedReign.InfinitePower;
+import eatyourbeets.powers.PlayerStatistics;
 
-import java.util.ArrayList;
-
-public class TheUnnamed extends CustomMonster
+public class TheUnnamed extends AnimatorMonster
 {
-    private static final String MODEL_ATLAS = "images/monsters/Animator_TheUnnamed/TheUnnamed.atlas";
-    private static final String MODEL_JSON = "images/monsters/Animator_TheUnnamed/TheUnnamed.json";
-
     public static final String ID = "Animator_TheUnnamed";
     public static final String NAME = "The Unnamed";
 
-    private final ArrayList<Move> moveset = new ArrayList<>();
-
-    private static int GetMaxHealth()
-    {
-        return 666;
-    }
+    private Move_Fading moveFading;
 
     public boolean appliedFading = false;
-    public int minionsCount = 3;
+    protected int minionsCount = 3;
     public final AbstractMonster[] minions = new AbstractMonster[3];
 
     public TheUnnamed()
     {
-        super(NAME, ID, GetMaxHealth(), 0.0F, -20.0F, 200.0F, 260.0f, null, 0, 80.0F);
+        super(new Data(ID), EnemyType.BOSS);
 
-        loadAnimation(MODEL_ATLAS, MODEL_JSON, 1);
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
-        e.setTime(e.getEndTime() * MathUtils.random());
+        data.SetIdleAnimation(this, 1);
 
-        this.type = EnemyType.BOSS;
+        moveFading = (Move_Fading)
+                moveset.AddSpecial(new Move_Fading(5));
 
-        int level = AbstractDungeon.ascensionLevel;
+        moveset.AddSpecial(new Move_SummonDoll());
+        moveset.AddSpecial(new Move_Poison(4));
 
-        moveset.add(new Move_Summon(0, level, this));
-        moveset.add(new Move_Fading(1, level, this));
-        moveset.add(new Move_SingleAttack(2, level, this));
-        moveset.add(new Move_Talk(3, level, this));
-        moveset.add(new Move_MultiAttack(4, level, this));
-        moveset.add(new Move_Poison(5, level, this));
+        moveset.AddNormal(new Move_SingleAttack());
+        moveset.AddNormal(new Move_Taunt());
+        moveset.AddNormal(new Move_MultiAttack());
     }
 
     @Override
     public void die()
     {
-        super.die();
+        if (!AbstractDungeon.getCurrRoom().cannotLose)
+        {
+            super.die();
+            this.onBossVictoryLogic();
+            this.onFinalBossVictoryLogic();
 
-        CardCrawlGame.music.silenceTempBgmInstantly();
-        CardCrawlGame.music.silenceBGMInstantly();
-        playBossStinger();
+            CardCrawlGame.stopClock = true;
+
+            for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+            {
+                if (m.hasPower(MinionPower.POWER_ID))
+                {
+                    GameActionsHelper.AddToBottom(new EscapeAction(m));
+                }
+            }
+
+            AbstractDungeon.effectsQueue.add(new VictoryEffect());
+        }
     }
 
     @Override
     public void usePreBattleAction()
     {
+        if (!PlayerStatistics.SaveData.EnteredUnnamedReign)
+        {
+            AbstractDungeon.player.isDead = true;
+            AbstractDungeon.player.currentHealth = 0;
+            AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
+            return;
+        }
+
         super.usePreBattleAction();
 
-        GameActionsHelper.ApplyPower(this, this, new InfinitePower(this), 1);
+        AbstractDungeon.getCurrRoom().rewardAllowed = false;
+        AbstractDungeon.getCurrRoom().rewards.clear();
 
-        AbstractDungeon.getCurrMapNode().room.playBGM("ANIMATOR_THE_UNNAMED.ogg");
+        CardCrawlGame.music.unsilenceBGM();
+        AbstractDungeon.scene.fadeOutAmbiance();
+        AbstractDungeon.getCurrRoom().playBgmInstantly("BOSS_ENDING");
+
+        GameActionsHelper.ApplyPower(this, this, new InfinitePower(this));
+
+        if (AbstractDungeon.player.maxHealth > 500)
+        {
+            GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[1], 3, 3));
+            moveFading.fadingTurns = 1;
+            moveFading.Execute(AbstractDungeon.player);
+        }
     }
 
     @Override
-    public void takeTurn()
+    protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        moveset.get(nextMove).Execute(AbstractDungeon.player);
-
-        GameActionsHelper.AddToBottom(new RollMoveAction(this));
-    }
-
-    @Override
-    protected void getMove(int i)
-    {
-        int size = moveHistory.size();
-        if (size < 3)
+        Move_SummonDoll summonDoll = moveset.GetMove(Move_SummonDoll.class);
+        if (summonDoll.CanUse(previousMove))
         {
-            moveset.get(0).SetMove();
-            return;
-        }
-        else if (!appliedFading && minionsCount <= 0 && currentHealth < maxHealth / 2)
-        {
-            moveset.get(1).SetMove();
+            summonDoll.SetMove();
             return;
         }
 
-        Byte previousMove = moveHistory.get(size - 1);
-
-        if (previousMove == 3)
+        if (minionsCount <= 0 && moveFading.CanUse(previousMove))
         {
-            moveset.get(5).SetMove();
-            return;
-        }
-
-        ArrayList<Move> moves = new ArrayList<>();
-        for (Move move : moveset)
-        {
-            if (move.CanUse(previousMove))
+            if (moveFading.fadingTurns > 2)
             {
-                moves.add(move);
+                moveFading.fadingTurns -= 1;
+            }
+
+            moveFading.SetMove();
+            return;
+        }
+
+        if (moveset.GetMove(previousMove) instanceof Move_Taunt)
+        {
+            moveset.GetMove(Move_Poison.class).SetMove();
+            return;
+        }
+
+        super.SetNextMove(roll, historySize, previousMove);
+    }
+
+    public void OnDollDeath()
+    {
+        minionsCount -= 1;
+        if (minionsCount <= 0)
+        {
+            GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[0], 3, 3));
+            GameActionsHelper.ApplyPower(this, this, new RegenPower(this, 80), 80);
+            GameActionsHelper.ApplyPower(this, this, new PlatedArmorPower(this, 16), 16);
+//            moveFading.SetMove();
+//            this.createIntent();
+        }
+    }
+
+    private boolean deathNoteMessage = false;
+    public void TriedUsingDeathNote()
+    {
+        if (!deathNoteMessage)
+        {
+            deathNoteMessage = true;
+            GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[2], 3, 3));
+        }
+    }
+
+    protected static class Data extends AbstractMonsterData
+    {
+        public Data(String id)
+        {
+            super(id);
+
+            maxHealth = 1000;
+            atlasUrl = "images/monsters/Animator_TheUnnamed/TheUnnamed.atlas";
+            jsonUrl = "images/monsters/Animator_TheUnnamed/TheUnnamed.json";
+
+            SetHB(0, -20, 200, 260, 0, 80);
+        }
+    }
+
+    protected static class VictoryEffect extends AbstractGameEffect
+    {
+        public VictoryEffect()
+        {
+            this.startingDuration = this.duration = 3f;
+        }
+
+        @Override
+        public void update()
+        {
+            this.duration -= Gdx.graphics.getDeltaTime();
+            if (this.duration <= 0)
+            {
+                MapRoomNode cur = AbstractDungeon.currMapNode;
+
+                AbstractDungeon.nextRoom = new MapRoomNode(cur.x, cur.y + 1);
+                AbstractDungeon.nextRoom.room = new TrueVictoryRoom();
+                AbstractDungeon.nextRoomTransitionStart();
+
+                this.isDone = true;
             }
         }
 
-        moves.get(i % moves.size()).SetMove();
+        @Override
+        public void render(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        @Override
+        public void dispose()
+        {
+
+        }
     }
 }

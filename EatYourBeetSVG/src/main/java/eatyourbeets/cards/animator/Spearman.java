@@ -37,7 +37,7 @@ public class Spearman extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(1);
             upgradeSecondaryValue(1);
         }
     }

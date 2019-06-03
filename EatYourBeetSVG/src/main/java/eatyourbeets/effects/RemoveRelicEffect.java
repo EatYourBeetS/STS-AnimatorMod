@@ -7,21 +7,21 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class RemoveRelicEffect extends AbstractGameEffect
 {
-    private final boolean increaseSourceCounter;
+    private final int counterIncrease;
     private final AbstractRelic source;
     private final AbstractRelic relic;
 
     public RemoveRelicEffect(AbstractRelic source, AbstractRelic relic)
     {
-        this(source, relic, true);
+        this(source, relic, 0);
     }
 
-    public RemoveRelicEffect(AbstractRelic source, AbstractRelic relic, boolean increaseSourceCounter)
+    public RemoveRelicEffect(AbstractRelic source, AbstractRelic relic, int counterIncrease)
     {
         this.duration = 1.0F;
         this.source = source;
         this.relic = relic;
-        this.increaseSourceCounter = increaseSourceCounter;
+        this.counterIncrease = counterIncrease;
     }
 
     public void update()
@@ -31,9 +31,9 @@ public class RemoveRelicEffect extends AbstractGameEffect
         AbstractDungeon.player.relics.remove(relic);
         AbstractDungeon.player.reorganizeRelics();
 
-        if (increaseSourceCounter)
+        if (counterIncrease > 0)
         {
-            source.setCounter(source.counter + 1);
+            source.setCounter(source.counter + counterIncrease);
         }
 
         this.isDone = true;

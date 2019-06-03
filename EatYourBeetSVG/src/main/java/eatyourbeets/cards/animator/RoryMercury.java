@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class RoryMercury extends AnimatorCard
 {
@@ -18,7 +19,7 @@ public class RoryMercury extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(5,0, 1);
+        Initialize(3,0, 2);
 
         SetSynergy(Synergies.Gate);
     }
@@ -29,15 +30,14 @@ public class RoryMercury extends AnimatorCard
         super.triggerWhenDrawn();
 
         AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.ApplyPowerSilently(p, p, new LoseStrengthPower(p, this.magicNumber), this.magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber);
+        PlayerStatistics.ApplyTemporaryStrength(p, p, this.magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this.baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this.baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class RoryMercury extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeDamage(2);
         }
     }
 }

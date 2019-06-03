@@ -59,7 +59,7 @@
 		]
 	},
 
-	"TheUnnamedReign":
+	"Animator_TheUnnamedReign":
 	{
 		"TEXT": 
 		[
@@ -112,7 +112,10 @@
 			"Complete act 4 with at least #b7 #ydifferent card series in your deck. (Colorless cards will not count)",
 			"Complete act 4 with at least #b10 #ydifferent card series in your deck, and without banishing any card. (Colorless cards will not count)",
 			"Complete act 4 with at least #b20 cards in your deck, and without any duplicate.",
-			"Complete act 4 with at least #b30 cards in your deck, and without any duplicate."
+			"Complete act 4 with at least #b30 cards in your deck, and without any duplicate.",
+			"This Trophy will be revealed once it is obtained. #yHint: Collect all 3 keys.",
+			"Defeat The Unnamed. NL Whenever you obtain this trophy, permanently increase the chance to find #pUltra #pRare cards, higher ascension further increases this bonus. NL NL #yThe #yUnnamed #yReign is now available to all characters.",
+			"Platinum"
 		]
 	},
 

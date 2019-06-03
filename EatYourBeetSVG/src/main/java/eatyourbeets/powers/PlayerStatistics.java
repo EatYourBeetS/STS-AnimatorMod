@@ -1,13 +1,19 @@
 package eatyourbeets.powers;
 
 import basemod.DevConsole;
+import basemod.abstracts.CustomSavable;
+import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.curses.Pain;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -18,12 +24,14 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.animator.RoryMercury;
+import eatyourbeets.cards.animator.TheHaunt;
 import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.subscribers.*;
 
 import java.util.ArrayList;
 
-public class PlayerStatistics extends AnimatorPower implements InvisiblePower
+public class PlayerStatistics extends AnimatorPower implements InvisiblePower, CustomSavable<PlayerStatistics.SaveData>
 {
     public static final String POWER_ID = CreateFullID(PlayerStatistics.class.getSimpleName());
 
@@ -47,6 +55,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
 
     public static boolean LoadingPlayerSave;
+    public static SaveData SaveData = new SaveData();
 
     private static int turnDamageMultiplier = 0;
     private static int turnCount = 0;
@@ -99,6 +108,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static void OnStartOver()
     {
         ClearStats();
+        SaveData = new SaveData();
         DevConsole.enabled = true;
     }
 
@@ -373,6 +383,20 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     }
 
     @Override
+    public void atStartOfTurn()
+    {
+        super.atStartOfTurn();
+
+        for (int i = 0; i < SaveData.TheHaunt; i++)
+        {
+            if (AbstractDungeon.miscRng.random(100) < 6)
+            {
+                AbstractDungeon.player.drawPile.addToRandomSpot(new TheHaunt());
+            }
+        }
+    }
+
+    @Override
     public void atStartOfTurnPostDraw()
     {
         super.atStartOfTurnPostDraw();
@@ -493,12 +517,112 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         return 0;
     }
 
+    public static void ApplyTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+
+        if (!UseArtifact(target))
+        {
+            GameActionsHelper.ApplyPowerSilently(source, target, new LoseStrengthPower(target, amount), amount);
+        }
+
+        GameActionsHelper.ApplyPower(source, target, new StrengthPower(target, amount), amount);
+
+        GameActionsHelper.ResetOrder();
+    }
+
+    public static void ApplyTemporaryFocus(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+
+        if (!UseArtifact(target))
+        {
+            GameActionsHelper.ApplyPowerSilently(source, target, new TemporaryBiasPower((AbstractPlayer) target, amount), amount);
+        }
+
+        GameActionsHelper.ApplyPower(source, target, new FocusPower(target, amount), amount);
+
+        GameActionsHelper.ResetOrder();
+    }
+
+    public static void ApplyTemporaryDexterity(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+
+        if (!UseArtifact(target))
+        {
+            GameActionsHelper.ApplyPowerSilently(source, target, new LoseDexterityPower(target, amount), amount);
+        }
+
+        GameActionsHelper.ApplyPower(source, target, new DexterityPower(target, amount), amount);
+
+        GameActionsHelper.ResetOrder();
+    }
+
+    public static boolean UseArtifact(AbstractCreature target)
+    {
+        ArtifactPower artifact = Utilities.SafeCast(target.getPower(ArtifactPower.POWER_ID), ArtifactPower.class);
+        if (artifact != null)
+        {
+            AbstractDungeon.actionManager.addToTop(new TextAboveCreatureAction(target, ApplyPowerAction.TEXT[0]));
+            CardCrawlGame.sound.play("NULLIFY_SFX");
+            artifact.flashWithoutSound();
+            artifact.onSpecificTrigger();
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public static void UsePenNib()
     {
         AbstractPlayer p = AbstractDungeon.player;
         if (p.hasPower(PenNibPower.POWER_ID))
         {
             GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
+        }
+    }
+
+    @Override
+    public SaveData onSave()
+    {
+        return SaveData;
+    }
+
+    @Override
+    public void onLoad(SaveData saveData)
+    {
+        if (saveData != null)
+        {
+            SaveData = saveData;
+        }
+        else
+        {
+            SaveData = new SaveData();
+        }
+
+        SaveData.ValidateFields();
+    }
+
+    public static class SaveData
+    {
+        public Integer TheHaunt = 0;
+        public Boolean EnteredUnnamedReign = false;
+
+        protected void ValidateFields()
+        {
+            if (TheHaunt == null)
+            {
+                TheHaunt = 0;
+            }
+
+            if (EnteredUnnamedReign == null)
+            {
+                EnteredUnnamedReign = false;
+            }
         }
     }
 }

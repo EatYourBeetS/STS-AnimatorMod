@@ -1,8 +1,6 @@
 package eatyourbeets.monsters.Bosses;
 
-import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,39 +9,30 @@ import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.KrulTepesMoveset.*;
+import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
 import eatyourbeets.relics.ExquisiteBloodVial;
 
-import java.util.ArrayList;
-
-public class KrulTepes extends CustomMonster
+public class KrulTepes extends AnimatorMonster
 {
     public static final String ID = "Animator_KrulTepes";
-    public static final String NAME = "Krul Tepes";
 
     private final BobEffect bobEffect = new BobEffect(1);
-    private final ArrayList<AbstractMove> moveset = new ArrayList<>();
-
-    private static int GetMaxHealth()
-    {
-        return AbstractDungeon.ascensionLevel >= 6 ? 366 : 344;
-    }
 
     public KrulTepes()
     {
-        super(NAME, ID, GetMaxHealth(), 0.0F, 0.0F, 200.0F, 280.0F, AnimatorResources.GetMonsterImage(ID));
-
-        this.type = EnemyType.BOSS;
+        super(new Data(ID), EnemyType.BOSS);
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.add(new Move_Regenerate(0, level, this));
-        moveset.add(new Move_Bite(1, level, this));
-        moveset.add(new Move_GuardedAttack(2, level, this));
-        moveset.add(new Move_MultiSlash(3, level, this));
-        moveset.add(new Move_PowerUp(4, level, this));
-        moveset.add(new Move_Cripple(5, level, this));
+        moveset.AddSpecial(new Move_Regenerate());
+
+        moveset.AddNormal(new Move_Bite());
+        moveset.AddNormal(new Move_GuardedAttack());
+        moveset.AddNormal(new Move_MultiSlash( ));
+        moveset.AddNormal(new Move_PowerUp());
+        moveset.AddNormal(new Move_Cripple());
     }
 
     @Override
@@ -93,34 +82,31 @@ public class KrulTepes extends CustomMonster
     }
 
     @Override
-    public void takeTurn()
+    protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        moveset.get(nextMove).Execute(AbstractDungeon.player);
-
-        GameActionsHelper.AddToBottom(new RollMoveAction(this));
-    }
-
-    @Override
-    protected void getMove(int i)
-    {
-        int size = moveHistory.size();
-        if (size <= 12 && size % 3 == 0)
+        if (historySize % 3 == 0)
         {
-            moveset.get(0).SetMove();
-            return;
-        }
-
-        Byte previousMove = moveHistory.get(size - 1);
-
-        ArrayList<AbstractMove> moves = new ArrayList<>();
-        for (AbstractMove move : moveset)
-        {
+            Move_Regenerate move = moveset.GetMove(Move_Regenerate.class);
             if (move.CanUse(previousMove))
             {
-                moves.add(move);
+                move.SetMove();
+                return;
             }
         }
 
-        moves.get(i % moves.size()).SetMove();
+        super.SetNextMove(roll, historySize, previousMove);
+    }
+
+    protected static class Data extends AbstractMonsterData
+    {
+        public Data(String id)
+        {
+            super(id);
+
+            maxHealth = AbstractDungeon.ascensionLevel >= 6 ? 377 : 344;
+            imgUrl = AnimatorResources.GetMonsterImage(ID);
+
+            SetHB(0,0,200,280);
+        }
     }
 }

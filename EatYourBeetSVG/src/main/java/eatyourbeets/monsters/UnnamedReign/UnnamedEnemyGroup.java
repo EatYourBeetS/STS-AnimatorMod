@@ -1,23 +1,29 @@
 package eatyourbeets.monsters.UnnamedReign;
 
 import basemod.BaseMod;
+import com.evacipated.cardcrawl.modthespire.lib.SpireField;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.AnimatorResources;
+import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.monsters.UnnamedReign.Crystal.Crystal;
-import eatyourbeets.monsters.UnnamedReign.Crystal.UltimateCrystal;
-import eatyourbeets.monsters.UnnamedReign.Cube.*;
-import eatyourbeets.monsters.UnnamedReign.Cultist.TheUnnamed_Cultist;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Crystal;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.*;
 import eatyourbeets.monsters.UnnamedReign.Cultist.TheUnnamed_Cultist_BEHOLD;
 import eatyourbeets.monsters.UnnamedReign.Cultist.TheUnnamed_Cultist_DollSummoner;
 import eatyourbeets.monsters.UnnamedReign.Cultist.TheUnnamed_Cultist_Single;
-import eatyourbeets.monsters.UnnamedReign.Wisp.UltimateWisp;
-import eatyourbeets.monsters.UnnamedReign.Wisp.Wisp;
+import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
+import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
+import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.UltimateWisp;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.Wisp;
 
 public class UnnamedEnemyGroup
 {
@@ -57,21 +63,21 @@ public class UnnamedEnemyGroup
 
     public static MonsterGroup ThreeNormalShapes()
     {
-        RandomizedList<MonsterShape> shapes = GetShapes();
-        RandomizedList<MonsterElement> elements = GetElements();
+        RandomizedList<MonsterShape> shapes = MonsterShape.GetRandomizedList();
+        RandomizedList<MonsterElement> elements = MonsterElement.GetRandomizedList();
 
         AbstractMonster[] enemies = new AbstractMonster[3];
-        enemies[0] = Create(0, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
+        enemies[2] = Create(0, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
         enemies[1] = Create(1, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
-        enemies[2] = Create(2, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
+        enemies[0] = Create(2, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
 
         return new MonsterGroup(enemies);
     }
 
     public static MonsterGroup TwoShapes()
     {
-        RandomizedList<MonsterShape> shapes = GetShapes();
-        RandomizedList<MonsterElement> elements = GetElements();
+        RandomizedList<MonsterShape> shapes = MonsterShape.GetRandomizedList();
+        RandomizedList<MonsterElement> elements = MonsterElement.GetRandomizedList();
 
         AbstractMonster[] enemies = new AbstractMonster[2];
         enemies[0] = Create(0, Retrieve(shapes), MonsterTier.Advanced, Retrieve(elements));
@@ -82,13 +88,13 @@ public class UnnamedEnemyGroup
 
     public static MonsterGroup CultistAndTwoShapes()
     {
-        RandomizedList<MonsterShape> shapes = GetShapes();
-        RandomizedList<MonsterElement> elements = GetElements();
+        RandomizedList<MonsterShape> shapes = MonsterShape.GetRandomizedList();
+        RandomizedList<MonsterElement> elements = MonsterElement.GetRandomizedList();
 
         AbstractMonster[] enemies = new AbstractMonster[3];
-        enemies[0] = new TheUnnamed_Cultist_DollSummoner(CULTIST_X, CULTIST_Y);
+        enemies[2] = new TheUnnamed_Cultist_DollSummoner(CULTIST_X, CULTIST_Y);
         enemies[1] = Create(1, Retrieve(shapes), MonsterTier.Advanced, Retrieve(elements));
-        enemies[2] = Create(2, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
+        enemies[0] = Create(2, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
 
         return new MonsterGroup(enemies);
     }
@@ -100,7 +106,7 @@ public class UnnamedEnemyGroup
         for (int i = 0; i < 3; i++)
         {
             Lagavulin lagavulin = new Lagavulin(true);
-            lagavulin.currentHealth = lagavulin.maxHealth += 90;
+            lagavulin.currentHealth = lagavulin.maxHealth += 40;
             lagavulin.type = AbstractMonster.EnemyType.NORMAL;
 
             if (i == 0)
@@ -122,44 +128,44 @@ public class UnnamedEnemyGroup
             enemies[i] = lagavulin;
         }
 
-        return new MonsterGroup(enemies);
+        return new LagavulinMonsterGroup(enemies);
     }
 
     public static MonsterGroup LargeCrystal()
     {
-        RandomizedList<MonsterShape> shapes = GetShapes(MonsterShape.Crystal);
-        RandomizedList<MonsterElement> elements = GetElements();
+        RandomizedList<MonsterShape> shapes = MonsterShape.GetRandomizedList(MonsterShape.Crystal);
+        RandomizedList<MonsterElement> elements = MonsterElement.GetRandomizedList();
 
         AbstractMonster[] enemies = new AbstractMonster[3];
-        enemies[0] = Create(0, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
+        enemies[2] = Create(0, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
         enemies[1] = Create(1, MonsterShape.Crystal, MonsterTier.Advanced, elements.Retrieve(rng));
-        enemies[2] = Create(2, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
+        enemies[0] = Create(2, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
 
         return new MonsterGroup(enemies);
     }
 
     public static MonsterGroup LargeWisp()
     {
-        RandomizedList<MonsterShape> shapes = GetShapes(MonsterShape.Wisp);
-        RandomizedList<MonsterElement> elements = GetElements();
+        RandomizedList<MonsterShape> shapes = MonsterShape.GetRandomizedList(MonsterShape.Wisp);
+        RandomizedList<MonsterElement> elements = MonsterElement.GetRandomizedList();
 
         AbstractMonster[] enemies = new AbstractMonster[3];
-        enemies[0] = Create(0, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
+        enemies[2] = Create(0, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
         enemies[1] = Create(1, MonsterShape.Wisp, MonsterTier.Advanced, elements.Retrieve(rng));
-        enemies[2] = Create(2, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
+        enemies[0] = Create(2, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
 
         return new MonsterGroup(enemies);
     }
 
     public static MonsterGroup LargeCube()
     {
-        RandomizedList<MonsterShape> shapes = GetShapes(MonsterShape.Cube);
-        RandomizedList<MonsterElement> elements = GetElements();
+        RandomizedList<MonsterShape> shapes = MonsterShape.GetRandomizedList(MonsterShape.Cube);
+        RandomizedList<MonsterElement> elements = MonsterElement.GetRandomizedList();
 
         AbstractMonster[] enemies = new AbstractMonster[3];
-        enemies[0] = Create(0, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
+        enemies[2] = Create(0, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
         enemies[1] = Create(1, MonsterShape.Cube, MonsterTier.Advanced, elements.Retrieve(rng));
-        enemies[2] = Create(2, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
+        enemies[0] = Create(2, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
 
         return new MonsterGroup(enemies);
     }
@@ -199,41 +205,8 @@ public class UnnamedEnemyGroup
         }
     }
 
-    protected static RandomizedList<MonsterShape> GetShapes(MonsterShape exception)
-    {
-        RandomizedList<MonsterShape> result = GetShapes();
-        result.GetInnerList().remove(exception);
-        return result;
-    }
 
-    protected static RandomizedList<MonsterElement> GetElements(MonsterElement exception)
-    {
-        RandomizedList<MonsterElement> result = GetElements();
-        result.GetInnerList().remove(exception);
-        return result;
-    }
-
-    protected static RandomizedList<MonsterShape> GetShapes()
-    {
-        RandomizedList<MonsterShape> result = new RandomizedList<>();
-        result.Add(MonsterShape.Crystal);
-        result.Add(MonsterShape.Cube);
-        result.Add(MonsterShape.Wisp);
-        return result;
-    }
-
-    protected static RandomizedList<MonsterElement> GetElements()
-    {
-        RandomizedList<MonsterElement> result = new RandomizedList<>();
-        result.Add(MonsterElement.Dark);
-        result.Add(MonsterElement.Fire);
-        result.Add(MonsterElement.Frost);
-        result.Add(MonsterElement.Healing);
-        result.Add(MonsterElement.Lightning);
-        return result;
-    }
-
-    private static UnnamedMonster Create(int index, MonsterShape shape, MonsterTier tier, MonsterElement element)
+    private static UnnamedShape Create(int index, MonsterShape shape, MonsterTier tier, MonsterElement element)
     {
         switch (shape)
         {
@@ -262,13 +235,35 @@ public class UnnamedEnemyGroup
     static
     {
         yPos[0] = 12;
-        yPos[1] = -6;
-        yPos[2] = 6;
+        yPos[1] = -8;
+        yPos[2] = 8;
         yPos[3] = -12;
 
         xPos[0] = 0;
         xPos[1] = -240;
         xPos[2] = -480;
         xPos[3] = 240;
+    }
+
+    private static class LagavulinMonsterGroup extends MonsterGroup
+    {
+
+        public LagavulinMonsterGroup(AbstractMonster[] input)
+        {
+            super(input);
+        }
+
+        public LagavulinMonsterGroup(AbstractMonster m)
+        {
+            super(m);
+        }
+
+        @Override
+        public void usePreBattleAction()
+        {
+            super.usePreBattleAction();
+
+            CardCrawlGame.music.fadeAll();
+        }
     }
 }

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.TemporaryBiasPower;
 
 public class ElricAlphonse extends AnimatorCard
@@ -18,7 +19,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0, 2);
+        Initialize(0,2, 2);
 
         this.isEthereal = true;
 
@@ -42,9 +43,8 @@ public class ElricAlphonse extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, this.magicNumber), this.magicNumber);
-
-        ApplyTemporaryBias(p);
+        GameActionsHelper.GainBlock(p, this.block);
+        PlayerStatistics.ApplyTemporaryFocus(p, p, magicNumber);
     }
 
     @Override
@@ -52,21 +52,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBlock(2);
         }
-    }
-
-    private void ApplyTemporaryBias(AbstractPlayer p)
-    {
-        for (AbstractPower power : p.powers)
-        {
-            if (power instanceof TemporaryBiasPower)
-            {
-                power.amount += this.magicNumber;
-                return;
-            }
-        }
-
-        p.powers.add(new TemporaryBiasPower(p, this.magicNumber));
     }
 }

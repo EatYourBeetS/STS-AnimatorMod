@@ -25,6 +25,12 @@ public class Viivi extends AnimatorCard
     }
 
     @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+    }
+
+    @Override
     public void triggerOnManualDiscard()
     {
         super.triggerOnManualDiscard();
@@ -35,11 +41,10 @@ public class Viivi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        //OhMyGodJAVA enemiesHit = new OhMyGodJAVA();
         for (int i = 0; i < magicNumber; i++)
         {
             AbstractDungeon.actionManager.addToBottom(new VFXAction(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F));
-            GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+            GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this.baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
         }
     }
 
@@ -51,29 +56,4 @@ public class Viivi extends AnimatorCard
             upgradeMagicNumber(1);
         }
     }
-
-//    private void OnDamage(Object state, AbstractCreature enemy)
-//    {
-//        OhMyGodJAVA enemiesHit = Utilities.SafeCast(state, OhMyGodJAVA.class);
-//        if (enemiesHit != null && !enemiesHit.Contains(enemy))
-//        {
-//            enemiesHit.Add(enemy);
-//            GameActionsHelper.ApplyPower(AbstractDungeon.player, enemy, new WeakPower(enemy, 1, false), 1);
-//        }
-//    }
-//
-//    private class OhMyGodJAVA
-//    {
-//        private final ArrayList<AbstractCreature> list = new ArrayList<>();
-//
-//        private boolean Contains(AbstractCreature creature)
-//        {
-//            return list.contains(creature);
-//        }
-//
-//        private void Add(AbstractCreature creature)
-//        {
-//            list.add(creature);
-//        }
-//    }
 }

@@ -32,6 +32,7 @@ public class CharacterSelectScreenPatch
     public static Hitbox trophy1Hb;
     public static Hitbox trophy2Hb;
     public static Hitbox trophy3Hb;
+    public static Hitbox trophySpecialHb;
 
     public static CharacterOption selectedOption;
 
@@ -54,6 +55,7 @@ public class CharacterSelectScreenPatch
         trophy1Hb = new Hitbox(48 * Settings.scale, 48 * Settings.scale);
         trophy2Hb = new Hitbox(48 * Settings.scale, 48 * Settings.scale);
         trophy3Hb = new Hitbox(48 * Settings.scale, 48 * Settings.scale);
+        trophySpecialHb = new Hitbox(64 * Settings.scale, 64 * Settings.scale);
 
         startingCardsLabelHb.move(POS_X + (leftTextWidth / 2f), POS_Y);
         startingCardsLeftHb.move(startingCardsLabelHb.x + startingCardsLabelHb.width + (20 * Settings.scale), POS_Y - (10 * Settings.scale));
@@ -66,6 +68,8 @@ public class CharacterSelectScreenPatch
         trophy1Hb.move(baseX + 380.0F * Settings.scale, baseY + 94.0F * Settings.scale);
         trophy2Hb.move(baseX + 440.0F * Settings.scale, baseY + 94.0F * Settings.scale);
         trophy3Hb.move(baseX + 500.0F * Settings.scale, baseY + 94.0F * Settings.scale);
+        trophySpecialHb.move(baseX + 492.0F * Settings.scale, baseY + 154.0F * Settings.scale);
+        AnimatorCustomLoadout.LoadSpecialTrophies();
 
         selectedOption = null;
     }
@@ -115,6 +119,7 @@ public class CharacterSelectScreenPatch
         }
 
         AnimatorCharacterSelect.GetSelectedLoadout(false).UpdateTrophies(trophy1Hb, trophy2Hb, trophy3Hb);
+        AnimatorCustomLoadout.UpdateSpecialTrophies(trophySpecialHb);
     }
 
     public static void Render(CharacterSelectScreen selectScreen, SpriteBatch sb)
@@ -164,6 +169,7 @@ public class CharacterSelectScreenPatch
         startingCardsRightHb.render(sb);
 
         AnimatorCharacterSelect.GetSelectedLoadout(false).RenderTrophies(trophy1Hb, trophy2Hb, trophy3Hb, sb);
+        AnimatorCustomLoadout.RenderSpecialTrophies(trophySpecialHb, sb);
     }
 
     private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)

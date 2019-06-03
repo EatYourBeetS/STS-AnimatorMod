@@ -20,7 +20,7 @@ public class Saber extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(11,0,3);
+        Initialize(10,0,3);
 
         tags.add(AbstractEnums.CardTags.LOYAL);
 
@@ -65,7 +65,6 @@ public class Saber extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(2);
-            //upgradeMagicNumber(-1);
         }
     }
 }

@@ -11,10 +11,8 @@ public class Move_PowerUp extends AbstractMove
     private final int ARTIFACT_AMOUNT;
     private final int STRENGTH_AMOUNT;
 
-    public Move_PowerUp(int id, int ascensionLevel, AbstractMonster owner)
+    public Move_PowerUp()
     {
-        super((byte) id, ascensionLevel, owner);
-
         if (ascensionLevel >= 8)
         {
             STRENGTH_AMOUNT = 4;

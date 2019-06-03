@@ -32,7 +32,7 @@ public class Ara extends AnimatorCard
             if (power.type == AbstractPower.PowerType.DEBUFF)
             {
                 GameActionsHelper.DrawCard(p, 2);
-                GameActionsHelper.ChooseAndDiscard(1, false);
+                GameActionsHelper.Discard(1, false);
                 return;
             }
         }

@@ -36,11 +36,6 @@ public class LimeBell extends AnimatorCard
     {
         GameActionsHelper.GainBlock(p, this.block);
 
-        if (upgraded)
-        {
-            GameActionsHelper.DrawCard(p, 1);
-        }
-
         GameActionsHelper.AddToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, this, this::OnDiscard));
     }
 
@@ -49,7 +44,7 @@ public class LimeBell extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(1);
+            upgradeBlock(4);
         }
     }
 

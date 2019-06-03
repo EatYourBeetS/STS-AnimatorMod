@@ -15,7 +15,7 @@ public class Sebas extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,15,10);
+        Initialize(0,14,10);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -37,7 +37,7 @@ public class Sebas extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBlock(2);
-            upgradeMagicNumber(3);
+            upgradeMagicNumber(2);
         }
     }
 }

@@ -10,13 +10,10 @@ import eatyourbeets.monsters.AbstractMove;
 
 public class Move_GuardedAttack extends AbstractMove
 {
-    private final DamageInfo damageInfo;
     private final int BLOCK_AMOUNT;
 
-    public Move_GuardedAttack(int id, int ascensionLevel, AbstractMonster owner)
+    public Move_GuardedAttack()
     {
-        super((byte) id, ascensionLevel, owner);
-
         if (ascensionLevel >= 6)
         {
             damageInfo = new DamageInfo(owner, 18);

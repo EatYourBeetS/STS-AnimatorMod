@@ -1,12 +1,16 @@
 package eatyourbeets.characters;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.Defend;
 import eatyourbeets.cards.animator.Strike;
 import eatyourbeets.characters.Loadouts.*;
+import eatyourbeets.powers.PlayerStatistics;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
@@ -73,6 +77,23 @@ public class AnimatorCharacterSelect
 
     public static void OnTrueVictory(int ascensionLevel)
     {
+        if (PlayerStatistics.SaveData.EnteredUnnamedReign)
+        {
+            if (AnimatorCustomLoadout.specialTrophies.trophy1 < 0)
+            {
+                AnimatorCustomLoadout.specialTrophies.trophy1 = 0;
+            }
+
+            if (AbstractDungeon.isAscensionMode)
+            {
+                AnimatorCustomLoadout.specialTrophies.trophy1 += 1 + AbstractDungeon.ascensionLevel / 5;
+            }
+            else
+            {
+                AnimatorCustomLoadout.specialTrophies.trophy1 += 1;
+            }
+        }
+
         for (AnimatorCustomLoadout loadout : customLoadouts)
         {
             if (!(loadout instanceof Random))
@@ -120,6 +141,7 @@ public class AnimatorCharacterSelect
         AddLoadout(new Overlord()           , 3, "");
         AddLoadout(new Chaika()             , 3, "");
         AddLoadout(new TenSura()            , 3, "");
+        AddLoadout(new OnePunchMan()        , 4, "");
         AddLoadout(new Kancolle()           , 4, "");
         AddLoadout(new AccelWorld()         , 4, "");
         AddLoadout(new Random()             , 0, "");

@@ -23,7 +23,7 @@ public class Evileye extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(6,0);
+        Initialize(4,0);
 
         SetSynergy(Synergies.Overlord);
     }

@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.PummelDamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.actions.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -17,15 +19,15 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
 {
     public static final String ID = CreateFullID(MumenRider.class.getSimpleName());
 
-    private boolean firstTurn = true;
+    private int turns;
 
     public MumenRider()
     {
-        super(ID, 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(2, 0);
 
-        this.purgeOnUse = true;
+        this.exhaust = true;
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -33,48 +35,38 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SMASH);
+
         if (upgraded)
         {
-            GameActionsHelper.AddToBottom(new PummelDamageAction(m, new DamageInfo(p, 0, DamageInfo.DamageType.THORNS)));
-            GameActionsHelper.AddToBottom(new PummelDamageAction(m, new DamageInfo(p, 0, DamageInfo.DamageType.THORNS)));
-            GameActionsHelper.AddToBottom(new PummelDamageAction(m, new DamageInfo(p, 0, DamageInfo.DamageType.THORNS)));
-            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        }
-        else
-        {
-            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SMASH);
+            GameActionsHelper.DrawCard(p, 1);
         }
 
-        GameActionsHelper.DrawCard(p, 1);
-
-        this.purgeOnUse = true;
-
-        if (!tags.contains(AbstractEnums.CardTags.TEMPORARY))
-        {
-            firstTurn = true;
-            PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
-        }
+        turns = AbstractDungeon.miscRng.random(1, 4);
+        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeDamage(1);
-        }
+        TryUpgrade();
     }
 
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        if (firstTurn)
+        AbstractPlayer p = AbstractDungeon.player;
+        if (p.exhaustPile.contains(this))
         {
-            firstTurn = false;
+            turns -= 1;
+            if (turns <= 0)
+            {
+                GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.exhaustPile, true));
+                PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+            }
         }
         else
         {
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(this));
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
         }
     }

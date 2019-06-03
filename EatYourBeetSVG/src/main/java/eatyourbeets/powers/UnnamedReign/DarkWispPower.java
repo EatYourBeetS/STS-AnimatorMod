@@ -1,9 +1,9 @@
 package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.EnchantedArmorPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class DarkWispPower extends AnimatorPower
@@ -34,7 +34,7 @@ public class DarkWispPower extends AnimatorPower
 
         for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
         {
-            GameActionsHelper.ApplyPower(null, c, new EnchantedArmorPower(c, amount), amount);
+            GameActionsHelper.ApplyPower(null, c, new ConstrictedPower(c, null, amount), amount);
         }
     }
 }

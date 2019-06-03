@@ -1,24 +1,29 @@
-
 {
-	"Animator_Earth":
-	{
-		"NAME": "Terre",
-		"DESCRIPTION":
-		[
-			"#yPassif: A la fin du tour, gagnez #b",
-			" #yEpines temporaire. NL #yActivation: Inflige #b",
-			" dégats réparti aléatoire parmis TOUS les ennemis. NL Après #b",
-			" tour, #yActive automatique cette Orbe."
-		]
-	},
-	"Animator_Fire":
-	{
-		"NAME": "Feu",
-		"DESCRIPTION":
-		[
-			"#yPassif: A la fin du tour, inflige #b", " dégats à l'ennemi le plus haut en PV et infligé #b",
-			" #yBrûlure. NL #yActivation: Inflige #b",
-			" #yBrûlure à TOUS les ennemis."
-		]
-	}
+    "Animator_Earth": {
+        "NAME": "Terre",
+        "DESCRIPTION":
+        [
+            "#yPassif: À la fin du tour, gagnez #b",
+            " #yd'Épines temporaires. NL #yActivation: Inflige #b",
+            " dégât(s) réparti(s) aléatoirement parmi TOUS les ennemis. NL Après #b",
+            " tours, #yactivez automatiquement cette Orbe."
+        ]
+    },
+    "Animator_Air": {
+        "NAME": "Air",
+        "DESCRIPTION":
+        [
+            "#yPassif: À la fin du tour, inflige #b", " dégâts #yPerçants à TOUS les ennemies. NL #yActivation: Piochez #b",
+            " cartes."
+        ]
+    },
+    "Animator_Fire": {
+        "NAME": "Feu",
+        "DESCRIPTION":
+        [
+            "#yPassif: À la fin du tour, inflige #b", " dégâts et applique #b",
+			" #yBrûlure à l'ennemi ayant le plus haut PV . NL #yActivation: Inflige #b",
+            " #yBrûlure à TOUS les ennemis."
+        ]
+    }
 }

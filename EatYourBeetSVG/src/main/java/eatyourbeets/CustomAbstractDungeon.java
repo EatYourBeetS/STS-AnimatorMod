@@ -15,6 +15,7 @@ import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.cards.animator.*;
+import eatyourbeets.characters.AnimatorCustomLoadout;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
@@ -219,12 +220,19 @@ public class CustomAbstractDungeon extends AbstractDungeon
             return;
         }
 
-        float chances = 4.5f;
+        float bonus = 1;
+        int level = AnimatorCustomLoadout.specialTrophies.trophy1;
+        if (level > 0)
+        {
+            bonus += level / 100f;
+        }
+
+        float chances = Math.min(4f * bonus, 9f);
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
         {
             if (c instanceof AnimatorCard_UltraRare)
             {
-                chances -= 2f;
+                chances *= 0.5f;
             }
         }
 

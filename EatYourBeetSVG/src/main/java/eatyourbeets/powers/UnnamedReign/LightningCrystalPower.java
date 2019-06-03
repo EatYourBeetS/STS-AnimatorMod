@@ -7,42 +7,21 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
 
-public class LightningCrystalPower extends AnimatorPower
+public class LightningCrystalPower extends AbstractCrystalPower
 {
     public static final String POWER_ID = CreateFullID(LightningCrystalPower.class.getSimpleName());
 
     public LightningCrystalPower(AbstractCreature owner, int value)
     {
-        super(owner, POWER_ID);
-
-        this.amount = value;
-
-        updateDescription();
+        super(POWER_ID, owner, value);
     }
 
     @Override
-    public void updateDescription()
+    protected void Activate(AbstractCreature target)
     {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0] + amount + desc[1];
-    }
-
-    @Override
-    public int onAttacked(DamageInfo info, int damageAmount)
-    {
-        if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner)
-        {
-            this.flash();
-            AbstractCreature target = PlayerStatistics.GetRandomCharacter(true);
-            GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE"));
-            GameActionsHelper.AddToBottom(new VFXAction(new LightningEffect(target.drawX, target.drawY)));
-            GameActionsHelper.DamageTargetPiercing(owner, target, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
-        }
-
-        return damageAmount;
+        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE"));
+        GameActionsHelper.AddToBottom(new VFXAction(new LightningEffect(target.drawX, target.drawY)));
+        GameActionsHelper.DamageTargetPiercing(owner, target, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
     }
 }

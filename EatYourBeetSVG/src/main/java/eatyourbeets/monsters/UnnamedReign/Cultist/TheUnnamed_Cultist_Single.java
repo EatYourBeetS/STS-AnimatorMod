@@ -1,35 +1,23 @@
 package eatyourbeets.monsters.UnnamedReign.Cultist;
 
-import basemod.DevConsole;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.beyond.OrbWalker;
 import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
-import com.megacrit.cardcrawl.monsters.exordium.GremlinWizard;
 import com.megacrit.cardcrawl.monsters.exordium.Sentry;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.SummonMonsterAction;
-import eatyourbeets.actions.WaitRealtimeAction;
 import eatyourbeets.misc.RandomizedList;
-import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.monsters.UnnamedReign.Cultist.Moveset.Move_GuardedAttack;
+import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
+import eatyourbeets.monsters.SharedMoveset.Move_GainPlatedArmorAll;
+import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAll;
 import eatyourbeets.monsters.UnnamedReign.Cultist.Moveset.Move_SummonEnemy;
-import eatyourbeets.monsters.UnnamedReign.Cultist.Moveset.Move_Talk;
-import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
 import eatyourbeets.powers.UnnamedReign.TheUnnamedCultistPower;
-
-import java.util.ArrayList;
 
 public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 {
-    private final ArrayList<AbstractMove> moveset = new ArrayList<>();
-
-    private Move_SummonEnemy moveSummonEnemy;
-
     public RandomizedList<AbstractMonster> pool1 = new RandomizedList<>();
     public RandomizedList<AbstractMonster> pool2 = new RandomizedList<>();
     public AbstractMonster firstSummon;
@@ -43,9 +31,11 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 
         PreparePool(level);
 
-        moveSummonEnemy = new Move_SummonEnemy(0, level, this);
-        moveset.add(moveSummonEnemy);
-        moveset.add(new Move_GuardedAttack(1, 8, 10, this));
+        moveset.AddSpecial(new Move_SummonEnemy());
+
+        moveset.AddNormal(new Move_GainPlatedArmorAll(3));
+        moveset.AddNormal(new Move_GainStrengthAll(1));
+        moveset.AddNormal(new Move_AttackDefend(12, 12));
     }
 
     @Override
@@ -53,72 +43,71 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
     {
         super.usePreBattleAction();
 
-        GameActionsHelper.ApplyPower(this, this, new TheUnnamedCultistPower(this, 20), 20);
-        GameActionsHelper.AddToBottom(new TalkAction(this, "I am a cultist.", 1f, 3f));
+        GameActionsHelper.ApplyPower(this, this, new TheUnnamedCultistPower(this, 10), 10);
+        GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[10], 1f, 3f));
     }
 
     @Override
-    public void takeTurn()
+    protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        moveset.get(nextMove).Execute(AbstractDungeon.player);
-
-        GameActionsHelper.AddToBottom(new RollMoveAction(this));
-    }
-
-    @Override
-    protected void getMove(int i)
-    {
-        int history = moveHistory.size();
-
-        if (history % 3 == 0)
+        if (historySize % 3 == 0 && TrySummon())
         {
-            if (firstSummon == null || firstSummon.isDeadOrEscaped())
-            {
-                firstSummon = pool1.Retrieve(AbstractDungeon.aiRng);
-                if (firstSummon != null)
-                {
-                    moveSummonEnemy.SetSummon(firstSummon);
-                    moveSummonEnemy.SetMove();
-                    return;
-                }
-            }
+            return;
+        }
 
-            if (secondSummon == null || secondSummon.isDeadOrEscaped())
+        super.SetNextMove(roll, historySize, previousMove);
+    }
+
+    private boolean TrySummon()
+    {
+        if (firstSummon == null || firstSummon.isDeadOrEscaped())
+        {
+            firstSummon = pool1.Retrieve(AbstractDungeon.aiRng);
+            if (firstSummon != null)
             {
-                secondSummon = pool2.Retrieve(AbstractDungeon.aiRng);
-                if (secondSummon != null)
-                {
-                    moveSummonEnemy.SetSummon(secondSummon);
-                    moveSummonEnemy.SetMove();
-                    return;
-                }
+                Move_SummonEnemy moveSummonEnemy = moveset.GetMove(Move_SummonEnemy.class);
+                moveSummonEnemy.SetSummon(firstSummon);
+                moveSummonEnemy.SetMove();
+                return true;
             }
         }
 
-        moveset.get(1).SetMove();
+        if (secondSummon == null || secondSummon.isDeadOrEscaped())
+        {
+            secondSummon = pool2.Retrieve(AbstractDungeon.aiRng);
+            if (secondSummon != null)
+            {
+                Move_SummonEnemy moveSummonEnemy = moveset.GetMove(Move_SummonEnemy.class);
+                moveSummonEnemy.SetSummon(secondSummon);
+                moveSummonEnemy.SetMove();
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void PreparePool(int level)
     {
         AbstractMonster m;
-        m = new Byrd(-100, 10);
-        m.currentHealth = m.maxHealth += 24 + level/2;
+        m = new Byrd(-80, 24);
+        m.currentHealth = m.maxHealth += 24 + level / 2;
         pool1.Add(m);
 
-        m = new Sentry(-100,10);
-        m.currentHealth = m.maxHealth += 28 + level/2;
+        m = new Sentry(-80, 24);
+        m.currentHealth = m.maxHealth += 28 + level / 2;
         pool1.Add(m);
 
-        m = new GremlinWarrior(-100,10);
-        m.currentHealth = m.maxHealth += 24 + level/2;
+        m = new GremlinWarrior(-80, 24);
+        m.currentHealth = m.maxHealth += 24 + level / 2;
         pool1.Add(m);
 
-        m = new OrbWalker(-320,-20);
-        m.currentHealth = m.maxHealth += 20 + level/2;
+        m = new OrbWalker(-330, -26);
+        m.currentHealth = m.maxHealth += 20 + level / 2;
         pool2.Add(m);
 
-        m = new ShelledParasite(-320,-15);
-        m.currentHealth = m.maxHealth += 20 + level/2;
+        m = new ShelledParasite(-345, -26);
+        m.currentHealth = m.maxHealth += 20 + level / 2;
         pool2.Add(m);
     }
 }

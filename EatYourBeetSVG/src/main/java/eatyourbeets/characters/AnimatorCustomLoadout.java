@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.AnimatorResources;
+import eatyourbeets.CustomAbstractDungeon;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
@@ -30,9 +31,13 @@ public abstract class AnimatorCustomLoadout
     protected static final Texture bronze = new Texture(AnimatorResources.GetRewardImage("Animator_Bronze"));
     protected static final Texture silver = new Texture(AnimatorResources.GetRewardImage("Animator_Silver"));
     protected static final Texture gold = new Texture(AnimatorResources.GetRewardImage("Animator_Gold"));
+    protected static final Texture platinum = new Texture(AnimatorResources.GetRewardImage("Animator_Platinum"));
     protected static final Texture locked = new Texture(AnimatorResources.GetRewardImage("Animator_Locked"));
     protected static final Texture slot = new Texture(AnimatorResources.GetRewardImage("Animator_Slot"));
     protected static final Texture slot2 = new Texture(AnimatorResources.GetRewardImage("Animator_Slot2"));
+    protected static final Texture slot3 = new Texture(AnimatorResources.GetRewardImage("Animator_Slot3"));
+
+    public static AnimatorTrophies specialTrophies;
 
     private static Field goldField;
     private static Field hpField;
@@ -49,6 +54,11 @@ public abstract class AnimatorCustomLoadout
     protected String lockedDescription;
     protected String description;
     protected int unlockLevel;
+
+    public static void LoadSpecialTrophies()
+    {
+        specialTrophies = GetTrophies(false, 0);
+    }
 
     public void Refresh(int currentLevel, CharacterSelectScreen selectScreen, CharacterOption option)
     {
@@ -73,7 +83,7 @@ public abstract class AnimatorCustomLoadout
             ex.printStackTrace();
         }
 
-        trophies = GetTrophies(true);
+        trophies = GetTrophies(true, ID);
         selectScreen.bgCharImg = AnimatorResources.GetCharacterPortrait(ID);
         Locked = unlockLevel > currentLevel;
         if (Locked)
@@ -130,7 +140,7 @@ public abstract class AnimatorCustomLoadout
 
     protected AnimatorCustomLoadout()
     {
-        this.MaxHP = 75;
+        this.MaxHP = 72;
         this.StartingGold = 99;
         this.OrbSlots = 3;
         this.CardDraw = 5;
@@ -156,10 +166,15 @@ public abstract class AnimatorCustomLoadout
 
     public AnimatorTrophies GetTrophies(boolean flush)
     {
+        return GetTrophies(flush, ID);
+    }
+
+    public static AnimatorTrophies GetTrophies(boolean flush, int id)
+    {
         AnimatorTrophies selected = null;
         for (AnimatorTrophies trophyLevel : AnimatorMetrics.trophiesData)
         {
-            if (trophyLevel.id == this.ID)
+            if (trophyLevel.id == id)
             {
                 selected = trophyLevel;
                 break;
@@ -169,12 +184,46 @@ public abstract class AnimatorCustomLoadout
         if (selected == null)
         {
             Utilities.Logger.info("Trophy not found");
-            selected = new AnimatorTrophies(this.ID);
+            selected = new AnimatorTrophies(id);
             AnimatorMetrics.trophiesData.add(selected);
             AnimatorMetrics.SaveTrophies(flush);
         }
 
         return selected;
+    }
+
+    public static void UpdateSpecialTrophies(Hitbox trophySpecialHb)
+    {
+        trophySpecialHb.update();
+
+        float offsetX = 60 * Settings.scale;
+        float offsetY = 0 * Settings.scale;
+        if (trophySpecialHb.hovered)
+        {
+            if (specialTrophies.trophy1 > 0)
+            {
+                TipHelper.renderGenericTip(trophySpecialHb.cX + offsetX, trophySpecialHb.cY + offsetY, trophyStrings[12], trophyStrings[11]);
+            }
+            else
+            {
+                TipHelper.renderGenericTip(trophySpecialHb.cX + offsetX, trophySpecialHb.cY + offsetY, trophyStrings[12], trophyStrings[10]);
+            }
+        }
+    }
+
+    public static void RenderSpecialTrophies(Hitbox trophySpecialHb, SpriteBatch sb)
+    {
+        //FontHelper.tipHeaderFont.getData().setScale(0.6f);
+
+        String text = "";
+        if (specialTrophies.trophy1 > 0)
+        {
+            text += "+ " + specialTrophies.trophy1 + "%";
+        }
+
+        RenderSpecialTrophy(trophySpecialHb, specialTrophies.trophy1, sb, text);
+
+        //FontHelper.tipHeaderFont.getData().setScale(1);
     }
 
     public void RenderTrophies(Hitbox trophy1Hb, Hitbox trophy2Hb, Hitbox trophy3Hb, SpriteBatch sb)
@@ -210,9 +259,12 @@ public abstract class AnimatorCustomLoadout
         }
     }
 
-    private void RenderTrophy(Hitbox trophyHb, int trophyLevel, Texture texture, SpriteBatch sb)
+    private static void RenderSpecialTrophy(Hitbox trophyHb, int trophyLevel, SpriteBatch sb, String trophyString)
     {
-        Texture slotTexture = trophyLevel > 0 ? slot2 : slot;
+        float w = 64;
+        float h = 64;
+        float halfW = 32;
+        float halfH = 32;
 
         if (!trophyHb.hovered)
         {
@@ -222,14 +274,52 @@ public abstract class AnimatorCustomLoadout
         {
             sb.setColor(Color.WHITE);
         }
-        sb.draw(slotTexture, trophyHb.x, trophyHb.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
+        sb.draw(slot3, trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
+
+        Texture texture;
+        if (trophyLevel <= 0)
+        {
+            texture = locked;
+        }
+        else
+        {
+            texture = platinum;
+        }
+
+        sb.setColor(Color.WHITE);
+        sb.draw(texture, trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
+
+        if (trophyLevel > 0)
+        {
+            FontHelper.renderFontCentered(sb, FontHelper.tipHeaderFont, trophyString, trophyHb.cX + (trophyHb.width * 1.3f * Settings.scale), trophyHb.cY, Settings.GOLD_COLOR);
+        }
+    }
+
+    private static void RenderTrophy(Hitbox trophyHb, int trophyLevel, Texture texture, SpriteBatch sb)
+    {
+        Texture slotTexture = trophyLevel > 0 ? slot2 : slot;
+
+        float w = 48;
+        float h = 48;
+        float halfW = 24;
+        float halfH = 24;
+
+        if (!trophyHb.hovered)
+        {
+            sb.setColor(Color.LIGHT_GRAY);
+        }
+        else
+        {
+            sb.setColor(Color.WHITE);
+        }
+        sb.draw(slotTexture, trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
 
         if (trophyLevel < 0)
         {
             texture = locked;
         }
         sb.setColor(Color.WHITE);
-        sb.draw(texture, trophyHb.x, trophyHb.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
+        sb.draw(texture, trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
 
         if (trophyLevel > 0)
         {
@@ -241,7 +331,7 @@ public abstract class AnimatorCustomLoadout
     {
         if (trophies == null)
         {
-            trophies = GetTrophies(false);
+            trophies = GetTrophies(false, ID);
         }
 
         if (AnimatorMetrics.lastLoadout == ID)

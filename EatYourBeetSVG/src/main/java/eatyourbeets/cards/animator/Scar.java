@@ -31,11 +31,6 @@ public class Scar extends AnimatorCard
     {
         PiercingDamageAction damageAction = new PiercingDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActionsHelper.AddToBottom(new OnTargetDeadAction(m, damageAction, new ScarAction(p, this), false));
-
-//        if (HasActiveSynergy())
-//        {
-//            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
-//        }
     }
 
     @Override
@@ -43,7 +38,7 @@ public class Scar extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(3);
+            upgradeDamage(3);
         }
     }
 }

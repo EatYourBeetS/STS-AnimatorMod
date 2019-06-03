@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,6 +11,7 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.BurningPower;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Witch extends AnimatorCard
 {
@@ -22,8 +24,6 @@ public class Witch extends AnimatorCard
         Initialize(0, 9,5);
 
         this.tags.add(CardTags.HEALING);
-
-        //AddExtendedDescription();
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -41,12 +41,10 @@ public class Witch extends AnimatorCard
     {
         GameActionsHelper.GainBlock(p, this.block);
 
-        GameActionsHelper.ApplyPowerToAllEnemies(p, this::GetBurning, this.magicNumber);
-    }
-
-    public AbstractPower GetBurning(AbstractCreature m)
-    {
-        return new BurningPower(m, AbstractDungeon.player, this.magicNumber);
+        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        {
+            GameActionsHelper.ApplyPower(p, m1, new BurningPower(m1, p, this.magicNumber), this.magicNumber);
+        }
     }
 
     @Override
@@ -54,8 +52,7 @@ public class Witch extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
-            upgradeMagicNumber(1);
+            upgradeBlock(3);
         }
     }
 }

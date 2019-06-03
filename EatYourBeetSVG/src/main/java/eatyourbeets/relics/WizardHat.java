@@ -19,6 +19,9 @@ public class WizardHat extends AnimatorRelic
 {
     public static final String ID = CreateFullID(WizardHat.class.getSimpleName());
 
+    private static final int ENERGY_COST = 4;
+    private static final int DAMAGE_AMOUNT = 42;
+
     public WizardHat()
     {
         super(ID, RelicTier.RARE, LandingSound.FLAT);
@@ -26,15 +29,10 @@ public class WizardHat extends AnimatorRelic
         this.counter = ENERGY_COST;
     }
 
-    private static final int ENERGY_COST = 5;
-    private static final int DAMAGE_AMOUNT = 40;
-
-    private int activations;
-
     @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0] + DAMAGE_AMOUNT + DESCRIPTIONS[1];
+        return DESCRIPTIONS[0] + ENERGY_COST + DESCRIPTIONS[1] + DAMAGE_AMOUNT + DESCRIPTIONS[2];
     }
 
     @Override
@@ -42,7 +40,6 @@ public class WizardHat extends AnimatorRelic
     {
         super.atBattleStart();
 
-        activations = 0;
         this.counter = ENERGY_COST;
     }
 
@@ -70,15 +67,13 @@ public class WizardHat extends AnimatorRelic
         if (counter > 0)
         {
             int energy = EnergyPanel.getCurrentEnergy();
-            energy = Math.min(energy, counter);
-
             if (energy <= 0)
             {
                 return;
             }
 
-            EnergyPanel.useEnergy(energy);
-            counter -= energy;
+            EnergyPanel.useEnergy(1);
+            counter -= 1;
 
             this.flash();
             if (counter > 0)
@@ -87,8 +82,7 @@ public class WizardHat extends AnimatorRelic
             }
             else
             {
-                activations += 1;
-                counter = ENERGY_COST + activations;
+                counter = ENERGY_COST;
 
                 GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.1F));
                 GameActionsHelper.AddToBottom(new WaitAction(0.35f));

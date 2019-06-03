@@ -58,6 +58,14 @@
 		]
 	},
 	
+	"Animator_TheUnnamedReign":
+	{
+		"TEXT": 
+		[
+			"Le Règne du Sans-Nom"
+		]
+	},
+
 	"Animator_SpecialEffects":
 	{
 		"TEXT": 
@@ -68,13 +76,13 @@
 			"Améliorez TOUTES les cartes de votre main.",
 			"Infligez !D! dégât(s) à un ennemi aléatoire !M! fois.",
 			"Infligez !D! dégât(s) à TOUS les ennemis.",
-			"Gagnez !B! d'Armures.",
+			"Gagnez !B! d'Armure.",
 			"Gagnez !M! de Force.",
 			"Gagnez !M! de Dextérité.",
 			"Gagnez !M! d'Épines.",
 			"Réduit le coût de 2 cartes aléatoires dans votre main de !M! ce tour.",
 			"Inflige !M! Faiblesse à TOUS les ennemis.",
-			"Inflige !M! Vulnerabilité à TOUS les ennemis.",
+			"Inflige !M! Vulnérabilité à TOUS les ennemis.",
 			"Recyclez !M! carte(s)",
 			"Piochez !M! carte(s).",
 			"Gagnez !M! de Temp._PV.",
@@ -103,27 +111,10 @@
 			"Complétez l'Acte 4 avec des cartes provenant de #b7 séries #ydifférentes. (Cartes sans couleur ne comptent pas)",
 			"Complétez l'Acte 4 avec des cartes provenant de #b10 séries #ydifférentes, sans bannir aucune carte. (Cartes sans couleur ne comptent pas)",
 			"Complétez l'Acte 4 avec #b20 cartes dans votre deck, sans aucune réplique.",
-			"Complétez l'Acte 4 avec #b30 cartes dans votre deck, sans aucune réplique."
-		]
-	},
-		
-	"Animator_TheUnnamed":
-	{
-		"TEXT": 
-		[
-			"Mais qu'est-ce que c'est? Je suis le seul à posséder un pouvoir infini ici!",
-			"Le Death Note ne fonctionnera pas sur moi! Je n'ai pas de nom, tu t'en souviens?",
-			"Tu m'agaces un peu, je pense que ton tour va bientôt finir...",
-			"Comment oses-tu me défier!",
-			"Je n'ai même pas besoin de t'attaquer...",
-			"Fuis pendant que c'est encore possible.",
-			"Tu appelles ça un deck?",
-			"Tout va finir si vite...",
-			"Comment tu as pu te rendre si loin?",
-			"Tu sais... Pour progresser, tu dois faire plus de dégâts...",
-			"Gilgamesh ne te sauvera pas.",
-			"Tu as surestimé Megumin.",
-			"Tu triches, je vois cet Ainz dans ton deck..."
+			"Complétez l'Acte 4 avec #b30 cartes dans votre deck, sans aucune réplique.",
+			"Ce trophée sera révélé une fois obtenu. #yIndice: Collectez les 3 Clés.",
+			"Vainquez le Sans-Nom. NL Augmentez de façon permanente la chance de trouver les cartes #pUltrarares lorsque vous obtenez ce trophée, NL les hauts niveaux d'ascension donnent davantage de bonus. NL NL Le Règne du Sans-Nom est maintenant disponible pour toutes les classes.",
+			"Platine"
 		]
 	},
 	

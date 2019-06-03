@@ -26,6 +26,19 @@ public class Vanir extends AnimatorCard_Boost
     }
 
     @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        if (secondaryValue > 0)
+        {
+            return super.calculateModifiedCardDamage(player, mo, tmp + magicNumber);
+        }
+        else
+        {
+            return super.calculateModifiedCardDamage(player, mo, tmp);
+        }
+    }
+
+    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
@@ -40,13 +53,8 @@ public class Vanir extends AnimatorCard_Boost
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        int damage = this.damage;
-        if (ProgressBoost())
-        {
-            damage += this.magicNumber;
-        }
-
-        GameActionsHelper.DamageTarget(p, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH);
+        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH);
+        ProgressBoost();
     }
 
     @Override

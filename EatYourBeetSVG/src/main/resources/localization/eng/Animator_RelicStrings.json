@@ -6,6 +6,12 @@
 		"FLAVOR": "It allows you to control fire with the snap of a finger.",
 		"NAME": "Alchemist Glove"
 	},
+	"Animator_AncientMedallion":
+	{
+		"DESCRIPTIONS": ["Upon pickup, #yUpgrade 2 random cards and a card of your choice. At the start of each combat, Heal #b", " HP."],
+		"FLAVOR": "...",
+		"NAME": "Ancient Medallion"
+	},
 	"Animator_BattleDrones":
 	{
 		"DESCRIPTIONS": ["Whenever a card #ySynergizes, deal #b", " damage to a random enemy and gain #b", " #yBlock."],
@@ -60,6 +66,12 @@
 		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
 		"NAME": "Heavy Halberd"
 	},
+	"Animator_Hoodie":
+	{
+		"DESCRIPTIONS": ["If you end a combat without taking damage, gain #b", " #yMax #yHP."],
+		"FLAVOR": "With this, you might be admitted to the Hero association.",
+		"NAME": "Hoodie"
+	},
 	"Animator_LivingPicture":
 	{
 		"DESCRIPTIONS": ["Once per turn, when a card #ySynergizes, draw #b1 card."],
@@ -102,35 +114,29 @@
 		"FLAVOR": "Here, have a taste, how bad can it be?",
 		"NAME": "Shion's Dessert"
 	},
-	"Animator_TheMissingPiece":
-	{
-		"DESCRIPTIONS": ["Every #b", " combats, receive improved card rewards. You will have more chances of finding a series if you have multiple cards from that series."],
-		"FLAVOR": "What is this thing?",
-		"NAME": "The Missing Piece"
-	},
-	"Animator_TheAncientMedallion":
-	{
-		"DESCRIPTIONS": ["Upon pickup, Upgrade 2 random cards and a card of your choice. At the start of each combat, Heal #b", " HP."],
-		"FLAVOR": "...",
-		"NAME": "Ancient Medallion"
-	},
 	"Animator_TheEgnaroPiece":
 	{
 		"DESCRIPTIONS": ["Gain [E] and draw 1 card at the start of each turn. NL Gain #b", " #yTemporary #yHP at the end of each turn, then increase this number by #b1."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Egnaro Piece"
 	},
-	"Animator_TheWolleyCore":
-	{
-		"DESCRIPTIONS": ["Draw #b", " cards at the start of each turn. NL Whenever you play a card, deal #b", " damage to ALL enemies and gain #b", " #yBlock."],
-		"FLAVOR": "What is this thing?",
-		"NAME": "The Wolley Core"
-	},
 	"Animator_TheEruzaStone":
 	{
 		"DESCRIPTIONS": ["Gain [E] [E] at the start of each turn. NL Whenever you play a #yPower, draw 1 card."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Eruza Stone"
+	},
+	"Animator_TheMissingPiece":
+	{
+		"DESCRIPTIONS": ["Every #b", " combats, receive improved card rewards. You will have more chances of finding a series if you have multiple cards from that series."],
+		"FLAVOR": "What is this thing?",
+		"NAME": "The Missing Piece"
+	},
+	"Animator_TheWolleyCore":
+	{
+		"DESCRIPTIONS": ["Draw #b", " cards at the start of each turn. NL Whenever you play a card, deal #b", " damage to ALL enemies and gain #b", " #yBlock."],
+		"FLAVOR": "What is this thing?",
+		"NAME": "The Wolley Core"
 	},
 	"Animator_VividPicture":
 	{
@@ -140,7 +146,7 @@
 	},
 	"Animator_WizardHat":
 	{
-		"DESCRIPTIONS": ["At the end of your turn, consume your remaining Energy and decrease this counter by that amount. If this counter reaches #g0, deal #b", " damage to ALL enemies."],
+		"DESCRIPTIONS": ["At the end of each turn, consume #b1 of your unspent Energy. Every time this consumes a total of #b", " Energy, deal #b", " damage to ALL enemies."],
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"NAME": "Wizard Hat"
 	},

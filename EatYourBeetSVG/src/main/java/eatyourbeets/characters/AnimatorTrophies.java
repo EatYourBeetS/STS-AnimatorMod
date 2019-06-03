@@ -35,7 +35,7 @@ public class AnimatorTrophies
         String[] values = deserialize.split(",");
 
         int id = ParseInt(values[0]);
-        if (id > 0)
+        if (id >= 0)
         {
             this.id = id;
             this.trophy1 = ParseInt(values[1]);

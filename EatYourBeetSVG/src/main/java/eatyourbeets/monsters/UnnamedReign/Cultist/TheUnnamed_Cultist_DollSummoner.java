@@ -1,25 +1,22 @@
 package eatyourbeets.monsters.UnnamedReign.Cultist;
 
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.SummonMonsterAction;
 import eatyourbeets.actions.WaitRealtimeAction;
-import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.monsters.UnnamedReign.Cultist.Moveset.Move_GuardedAttack;
-import eatyourbeets.monsters.UnnamedReign.Cultist.Moveset.Move_Talk;
+import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
+import eatyourbeets.monsters.SharedMoveset.Move_Talk;
+import eatyourbeets.monsters.UnnamedReign.Cultist.Moveset.Move_SummonEnemy;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
-
-import java.util.ArrayList;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.UnnamedReign.TheUnnamedCultistPower;
 
 public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
 {
-    private final ArrayList<AbstractMove> moveset = new ArrayList<>();
-
-    private Move_Talk moveTalk = new Move_Talk(0, 0, this);
-
-    private boolean summoningDoll = false;
+    private Move_SummonEnemy moveSummonEnemy;
 
     public TheUnnamed_Cultist_DollSummoner(float x, float y)
     {
@@ -27,8 +24,13 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.add(moveTalk);
-        moveset.add(new Move_GuardedAttack(1, 18, 6, this));
+        moveset.AddSpecial(new Move_Talk());
+
+        moveSummonEnemy = (Move_SummonEnemy)
+        moveset.AddSpecial(new Move_SummonEnemy());
+
+        moveset.AddNormal(new Move_AttackDefend( 12, 12));
+        moveset.AddNormal(new Move_AttackDefend(12, 12));
     }
 
     @Override
@@ -36,51 +38,50 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
     {
         super.usePreBattleAction();
 
+        GameActionsHelper.ApplyPower(this, this, new TheUnnamedCultistPower(this, 10), 10);
         GameActionsHelper.AddToBottom(new WaitRealtimeAction(0.2f));
-        GameActionsHelper.AddToBottom(new TalkAction(this, "I have a surprise for you, give me some time to... prepare.", 1f, 2.5f));
+        GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[5], 1f, 2.5f));
     }
 
     @Override
-    public void takeTurn()
+    public void die()
     {
-        moveset.get(nextMove).Execute(AbstractDungeon.player);
+        super.die();
 
-        if (summoningDoll)
+        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {
-            GameActionsHelper.AddToBottom(new TalkAction(this, "BEHOLD! The Ultimate Weapon!", 0.5f, 2f));
-            GameActionsHelper.AddToBottom(new WaitRealtimeAction(2f));
-            GameActionsHelper.AddToBottom(new SummonMonsterAction(new TheUnnamed_Doll(-40, 135, null)));
-            summoningDoll = false;
+            if (m.hasPower(MinionPower.POWER_ID))
+            {
+                GameActionsHelper.AddToBottom(new EscapeAction(m));
+            }
         }
-
-        GameActionsHelper.AddToBottom(new RollMoveAction(this));
     }
 
     @Override
-    protected void getMove(int i)
+    protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        int history = moveHistory.size();
-
-        if (!summoningDoll)
+        if (moveSummonEnemy.CanUse(previousMove))
         {
-            if (history == 0)
+            Move_Talk moveTalk = moveset.GetMove(Move_Talk.class);
+            if (historySize == 0)
             {
-                moveTalk.SetLine("Not ready yet!");
+                moveTalk.SetLine(data.strings.DIALOG[6]);
                 moveTalk.SetMove();
             }
-            else if (history == 1)
+            else if (historySize == 1)
             {
-                moveTalk.SetLine("Almost Ready!");
+                moveTalk.SetLine(data.strings.DIALOG[8]);
                 moveTalk.SetMove();
             }
-            else if (history == 2)
+            else
             {
-                moveTalk.SetLine("Here it is!");
-                moveTalk.SetMove();
+                moveSummonEnemy.SetSummon(new TheUnnamed_Doll(null, -40, 135));
+                moveSummonEnemy.SetMove();
+            }
 
-                moveTalk.disabled = true;
-                summoningDoll = true;
-            }
+            return;
         }
+
+        super.SetNextMove(roll, historySize, previousMove);
     }
 }

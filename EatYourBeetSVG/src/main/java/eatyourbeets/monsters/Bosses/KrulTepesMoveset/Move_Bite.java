@@ -17,14 +17,11 @@ import eatyourbeets.monsters.AbstractMove;
 
 public class Move_Bite extends AbstractMove
 {
-    private final DamageInfo damageInfo;
     private final int STRENGTH_AMOUNT;
     private final int WEAK_AMOUNT;
 
-    public Move_Bite(int id, int ascensionLevel, AbstractMonster owner)
+    public Move_Bite()
     {
-        super((byte) id, ascensionLevel, owner);
-
         if (ascensionLevel >= 6)
         {
             damageInfo = new DamageInfo(owner, 26);

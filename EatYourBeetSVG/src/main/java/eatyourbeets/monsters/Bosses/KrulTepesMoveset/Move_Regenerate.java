@@ -11,12 +11,9 @@ public class Move_Regenerate extends AbstractMove
     private final int REGEN_AMOUNT;
     private final int BLOCK_AMOUNT;
     private final int THORNS_AMOUNT;
-    //private int uses;
 
-    public Move_Regenerate(int id, int ascensionLevel, AbstractMonster owner)
+    public Move_Regenerate()
     {
-        super((byte) id, ascensionLevel, owner);
-
         if (ascensionLevel >= 8)
         {
             REGEN_AMOUNT = 6;
@@ -29,14 +26,14 @@ public class Move_Regenerate extends AbstractMove
             BLOCK_AMOUNT = 18;
             THORNS_AMOUNT = 1;
         }
-
-        //uses = 4;
     }
 
     @Override
     public boolean CanUse(Byte previousMove)
     {
-        return false; // must be used manually
+        AbstractPower power = owner.getPower(RegenPower.POWER_ID);
+
+        return power == null || power.amount < 20;
     }
 
     public void SetMove()
@@ -46,7 +43,6 @@ public class Move_Regenerate extends AbstractMove
 
     public void Execute(AbstractPlayer target)
     {
-        //uses -= 1;
         GameActionsHelper.GainBlock(owner, BLOCK_AMOUNT);
         GameActionsHelper.ApplyPower(owner, owner, new RegenPower(owner, REGEN_AMOUNT), REGEN_AMOUNT);
         GameActionsHelper.ApplyPower(owner, owner, new ThornsPower(owner, THORNS_AMOUNT), THORNS_AMOUNT);

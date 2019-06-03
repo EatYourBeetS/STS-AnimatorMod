@@ -23,9 +23,16 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     {
         super(owner, POWER_ID);
 
-        this.source = source;
-        this.amount = amount;
+        if (source == null)
+        {
+            this.source = owner;
+        }
+        else
+        {
+            this.source = source;
+        }
 
+        this.amount = amount;
         if (this.amount >= 9999)
         {
             this.amount = 9999;

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class FireWispPower extends AnimatorPower
@@ -34,6 +35,7 @@ public class FireWispPower extends AnimatorPower
 
         for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
         {
+            GameActionsHelper.ApplyPowerSilently(null, c, new BurningPower(c, null, amount), amount);
             GameActionsHelper.ApplyPower(null, c, new StrengthPower(c, amount), amount);
         }
     }

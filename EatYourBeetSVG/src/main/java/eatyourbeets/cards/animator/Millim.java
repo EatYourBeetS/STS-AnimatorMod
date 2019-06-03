@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import patches.AbstractEnums;
 
 public class Millim extends AnimatorCard
 {
@@ -18,6 +19,8 @@ public class Millim extends AnimatorCard
         Initialize(11,0, 2);
 
         AddExtendedDescription();
+
+        tags.add(AbstractEnums.CardTags.UNIQUE);
 
         SetSynergy(Synergies.TenSura);
     }

@@ -4,10 +4,12 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.events.TheDomVedeloper1;
 import eatyourbeets.events.TheMaskedTraveler1;
+import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.*;
 
 public class AbstractDungeonPatches
@@ -37,8 +39,23 @@ public class AbstractDungeonPatches
             {
                 if (relic instanceof UnnamedReignRelic)
                 {
-                    return SpireReturn.Return(TheAncientMedallion.ID);
+                    return SpireReturn.Return(AncientMedallion.ID);
                 }
+            }
+
+            return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch(clz = AbstractDungeon.class, method = "returnRandomPotion", paramtypez = {AbstractPotion.PotionRarity.class, boolean.class})
+    public static class AbstractDungeonPatches_ReturnRandomPotion
+    {
+        @SpirePrefixPatch
+        public static SpireReturn<AbstractPotion> Prefix(AbstractPotion.PotionRarity rarity, boolean limited)
+        {
+            if (UnnamedReignRelic.IsEquipped())
+            {
+                return SpireReturn.Return(new FalseLifePotion());
             }
 
             return SpireReturn.Continue();

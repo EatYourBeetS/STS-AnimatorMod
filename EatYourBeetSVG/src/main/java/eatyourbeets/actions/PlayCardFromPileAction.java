@@ -74,7 +74,7 @@ public class PlayCardFromPileAction extends AbstractGameAction
                     {
                         AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
                         AbstractDungeon.actionManager.addToTop(new DiscardSpecificCardAction(card, AbstractDungeon.player.limbo));
-                        AbstractDungeon.actionManager.addToTop(new WaitAction(0.4F));
+                        AbstractDungeon.actionManager.addToTop(new WaitRealtimeAction(0.4F));
                     }
                 }
                 else
@@ -84,11 +84,11 @@ public class PlayCardFromPileAction extends AbstractGameAction
                     AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
                     if (!Settings.FAST_MODE)
                     {
-                        AbstractDungeon.actionManager.addToTop(new WaitAction(Settings.ACTION_DUR_MED));
+                        AbstractDungeon.actionManager.addToTop(new WaitRealtimeAction(Settings.ACTION_DUR_MED));
                     }
                     else
                     {
-                        AbstractDungeon.actionManager.addToTop(new WaitAction(Settings.ACTION_DUR_FASTER));
+                        AbstractDungeon.actionManager.addToTop(new WaitRealtimeAction(Settings.ACTION_DUR_FAST));
                     }
                 }
             }

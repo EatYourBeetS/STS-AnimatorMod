@@ -42,7 +42,7 @@ public class Kuroyukihime extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ChooseAndDiscard(this.magicNumber, false);
+        GameActionsHelper.Discard(this.magicNumber, false);
 
         GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new BlackLotus(), 1));
     }

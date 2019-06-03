@@ -41,13 +41,7 @@ public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
         super.triggerWhenDrawn();
 
         AbstractPlayer p = AbstractDungeon.player;
-
-        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
-
-        GameActionsHelper.ApplyPowerSilently(p, p, new LoseDexterityPower(p, this.secondaryValue), this.secondaryValue);
-        GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, this.secondaryValue), this.secondaryValue);
-
-        GameActionsHelper.ResetOrder();
+        PlayerStatistics.ApplyTemporaryDexterity(p, p, secondaryValue);
     }
 
     @Override

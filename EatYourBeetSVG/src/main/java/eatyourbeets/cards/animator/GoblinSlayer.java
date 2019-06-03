@@ -20,7 +20,7 @@ public class GoblinSlayer extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(7,7);
+        Initialize(6,6);
 
         this.retain = true;
 
@@ -38,7 +38,15 @@ public class GoblinSlayer extends AnimatorCard
         int turnCount = PlayerStatistics.getTurnCount();
         if (turnCount % 2 == 1)
         {
-            int goblins = turnCount < 6 ? 1 : turnCount < 10 ? 2 : 3;
+            int goblins = 1;
+            if (turnCount > 3)
+            {
+                goblins += 1;
+            }
+            if (turnCount > 7)
+            {
+                goblins += 1;
+            }
 
             GameActionsHelper.AddToBottom(new ShuffleRandomGoblinAction(goblins));
         }
@@ -71,8 +79,8 @@ public class GoblinSlayer extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeBlock(2);
+            upgradeBlock(3);
+            upgradeDamage(3);
         }
     }
 

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class Yuuichirou extends AnimatorCard
 {
@@ -31,8 +32,7 @@ public class Yuuichirou extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
-        GameActionsHelper.ApplyPowerSilently(p, p, new LoseDexterityPower(p, this.magicNumber), this.magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber);
+        PlayerStatistics.ApplyTemporaryDexterity(p, p, magicNumber);
     }
 
     @Override

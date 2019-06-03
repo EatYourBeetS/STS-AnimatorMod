@@ -1,0 +1,442 @@
+
+{
+	"Animator_Dark_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "暗黑之方 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Dark_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "暗黑之方 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Dark_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "暗黑之方 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Lightning_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "雷電之方 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Lightning_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "雷電之方 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Lightning_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "雷電之方 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Frost_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "冰霜之方 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Frost_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "冰霜之方 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Frost_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "冰霜之方 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Fire_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "火焰之方 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Fire_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "火焰之方 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Fire_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "火焰之方 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Healing_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "治愈之方 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Healing_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "治愈之方 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Healing_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "治愈之方 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Dark_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "暗黑之晶 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Dark_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "暗黑之晶 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Dark_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "暗黑之晶 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Lightning_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "雷電之晶 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Lightning_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "雷電之晶 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Lightning_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "雷電之晶 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Frost_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "冰霜之晶 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Frost_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "冰霜之晶 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Frost_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "冰霜之晶 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Fire_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "火焰之晶 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Fire_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "火焰之晶 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Fire_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "火焰之晶 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Healing_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "治愈之晶 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Healing_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "治愈之晶 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Healing_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "治愈之晶 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Dark_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "暗黑之縷 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Dark_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "暗黑之縷 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Dark_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "暗黑之縷 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Lightning_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "雷電之縷 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Lightning_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "雷電之縷 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Lightning_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "雷電之縷 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Frost_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "冰霜之縷 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Frost_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "冰霜之縷 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Frost_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "冰霜之縷 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Fire_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "火焰之縷 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Fire_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "火焰之縷 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Fire_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "火焰之縷 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Healing_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "治愈之縷 (S)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Healing_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "治愈之縷 (M)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Healing_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "治愈之縷 (L)",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Ultimate_Cube_3":
+	{
+		"MOVES": [],
+		"NAME": "終極之方",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Ultimate_Wisp_3":
+	{
+		"MOVES": [],
+		"NAME": "終極之縷",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_Ultimate_Crystal_3":
+	{
+		"MOVES": [],
+		"NAME": "終極之晶",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_KrulTepes":
+	{
+		"MOVES": [],
+		"NAME": "克魯魯·採佩西",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_TheUnnamed_Doll":
+	{
+		"MOVES": [],
+		"NAME": "",
+		"DIALOG": [
+			""
+		]
+	},
+	"Animator_TheUnnamedCultist":
+	{
+		"MOVES": [],
+		"NAME": "教徒",
+		"DIALOG": [
+			"凝視它並在恐懼中顫抖吧! 終極之晶!",
+			"凝視它並在恐懼中顫抖吧! 終極武器!",
+			"凝視它並在恐懼中顫抖吧! 終極之 @!",
+			"凝視它並在恐懼中顫抖吧! 終極之地精!",
+			"凝視它並在恐懼中顫抖吧! 終極之... 東西!",
+			"我有個驚喜給你, 留給我一些時間準備...",
+			"還沒好呢!",
+			"再等等!",
+			"就快了!",
+			"來了!",
+			"我是名教徒."
+		]
+	},
+	"Animator_TheUnnamed":
+	{
+		"MOVES": [],
+		"NAME": "無名",
+		"DIALOG": [
+			"夠了! 你的命運已被我封殺了...",
+			"這是什麼? 我是這裡唯一可以擁有無盡之力的人!",
+			"死亡筆記對我沒用! 你難道忘了我沒有名字了嗎?",
+			"你有點打擾到我了, 我認為你的回合馬上就該結束了吧...",
+			"你竟然敢挑戰我!",
+			"我根本不用攻擊你...",
+			"在你還可以逃跑時放棄吧.",
+			"你管這東西叫牌組?",
+			"馬上就結束了...",
+			"你怎麼走到這麼遠的?",
+			"你要知道... 你得多造成點傷害，如果你想贏的話...",
+			"吉爾伽美甚 不會拯救你的.",
+			"惠惠 被你高估了",
+			"你作弊, 我能看見 安茲·烏爾·恭 在你的牌組裡..."
+		]
+	}
+}

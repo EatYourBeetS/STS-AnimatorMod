@@ -4,30 +4,25 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.SummonMonsterAction;
 import eatyourbeets.actions.WaitRealtimeAction;
-import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.monsters.UnnamedReign.Crystal.UltimateCrystal;
-import eatyourbeets.monsters.UnnamedReign.Cultist.Moveset.Move_Talk;
-
-import java.util.ArrayList;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
+import eatyourbeets.monsters.SharedMoveset.Move_Talk;
 
 public class TheUnnamed_Cultist_BEHOLD extends TheUnnamed_Cultist
 {
-    private final ArrayList<AbstractMove> moveset = new ArrayList<>();
-
     public TheUnnamed_Cultist_BEHOLD(float x, float y)
     {
         super(x, y);
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.add(new Move_Talk(0, level, this));
+        moveset.AddNormal(new Move_Talk());
+        moveset.AddNormal(new Move_Talk());
     }
 
     @Override
@@ -43,19 +38,5 @@ public class TheUnnamed_Cultist_BEHOLD extends TheUnnamed_Cultist
         GameActionsHelper.AddToBottom(new VFXAction(new BorderLongFlashEffect(Color.valueOf("3d0066"))));
         GameActionsHelper.AddToBottom(new SFXAction("ORB_DARK_EVOKE", 0.1f));
         GameActionsHelper.AddToBottom(new SummonMonsterAction(new UltimateCrystal(), false));
-    }
-
-    @Override
-    public void takeTurn()
-    {
-        moveset.get(nextMove).Execute(AbstractDungeon.player);
-
-        GameActionsHelper.AddToBottom(new RollMoveAction(this));
-    }
-
-    @Override
-    protected void getMove(int i)
-    {
-        moveset.get(0).SetMove();
     }
 }

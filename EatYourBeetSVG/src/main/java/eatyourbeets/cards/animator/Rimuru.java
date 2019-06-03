@@ -47,12 +47,18 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
     }
 
     @Override
+    public boolean canUpgrade()
+    {
+        return false;
+    }
+
+    @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            this.retain = true;
-        }
+//        if (TryUpgrade())
+//        {
+//            this.retain = true;
+//        }
     }
 
     private boolean transform(CardGroup group, AbstractCard card)

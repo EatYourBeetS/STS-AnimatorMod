@@ -20,6 +20,11 @@
 		"DESCRIPTIONS": ["Toutes 4 #yAttaques joué, gagnez #b", " Force et #b", " Dextérité."],
 		"NAME": "Bito Kanzashi"
 	},
+		"animator_BorosPower":
+	{
+		"DESCRIPTIONS": ["TOUS les #yPouvoirs seront joués deux fois."],
+		"NAME": "Boros"
+	},
 	"animator_BozesPower":
 	{
 		"DESCRIPTIONS": ["Quand une carte #ySynergizes, gagnez #b", " d'Armure."],
@@ -135,12 +140,20 @@
 		],
 		"NAME": "Poignards Maudits"
 	},
-
+	"animator_TheUnnamedCultistPower":
+	{
+		"NAME": "Unnamed Cultist",
+		"DESCRIPTIONS":
+		[
+			"While there are other allies alive, gains #b", " Enchanted Armor for each."
+		]
+	},
+	
 	"animator_UltimateCubePower":
 	{
 		"DESCRIPTIONS":
 		[
-			"À la mort, invoque #b", " cubes aléatoires."
+			"À la fin de chaque tour, gagne #b", " Buffs aléatoire. NL NL Explose après #b", " tours, causant #b"," dégâts."
 		],
 		"NAME": "Cube Ultime"
 	},
@@ -148,7 +161,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"À la mort, invoque #b", " crystaux aléatoires."
+			"Lorsqu'une carte est jouée, gagnez #b", " de #yForce. NL NL En perdant 100 PV ou plus en un tour, l'adversaire gagne #b", " #yd'Armure #yPlaquée."
 		],
 		"NAME": "Crystal Ultime"
 	},
@@ -156,7 +169,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"À la mort, invoque #b", " Fragments aléatoires."
+			"Lorsque cet ennemi vous inflige des dégâts, ajoutez #b1 #yBrûlure à votre défausse. NL NL La première carte jouée à chaque tour est #yÉpuisée."
 		],
 		"NAME": "Fragment Ultime"
 	},
@@ -173,7 +186,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"En perdant la totalité de son #yArmure, applique #b", " de #yConstriction à TOUS les autres personnages."
+			"Lorsqu'une carte cible cet ennemi, applique #b", " de #yConstriction à TOUS les autres personnages."
 		],
 		"NAME": "Crystal Tenébreux"
 	},
@@ -198,7 +211,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"En perdant la totalité de son Armure, TOUS les autres personnages reçoivent #b", " dégâts #yPerçants."
+			"Lorsqu'une carte cible cet ennemi, TOUS les autres personnages reçoivent #b", " dégâts #yPerçants."
 		],
 		"NAME": "Crystal Foudroyant"
 	},
@@ -223,7 +236,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"En perdant la totalité de son Armure, TOUS les autres personnages gagne #b", " PV."
+			"Lorsqu'une carte cible cet ennemi, TOUS les autres personnages gagne #b", " PV."
 		],
 		"NAME": "Crystal Curatif"
 	},
@@ -248,7 +261,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"En perdant la totalité de son Armure, TOUS les autres personnages gagne #b", " #yd'Armure #yPlaquée."
+			"Lorsqu'une carte cible cet ennemi, TOUS les autres personnages gagne #b", " #yd'Armure #yPlaquée."
 		],
 		"NAME": "Crystal Glacial"
 	},
@@ -273,7 +286,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"En perdant la totalité de son Armure, TOUS les autres personnages #b", " de #yForce et de #yBrûlure."
+			"Lorsqu'une carte cible cet ennemi, TOUS les autres personnages #b", " de #yForce et de #yBrûlure."
 		],
 		"NAME": "Crystal Ardent"
 	},

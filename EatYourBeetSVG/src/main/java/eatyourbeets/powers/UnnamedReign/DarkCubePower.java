@@ -1,9 +1,11 @@
 package eatyourbeets.powers.UnnamedReign;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.EnchantedArmorPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class DarkCubePower extends AnimatorPower
@@ -34,11 +36,16 @@ public class DarkCubePower extends AnimatorPower
 
         if (owner.isPlayer)
         {
-            GameActionsHelper.ApplyPower(owner, owner, new EnchantedArmorPower(owner, amount), amount);
+            for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
+            {
+                GameActionsHelper.ApplyPower(owner, m, new ConstrictedPower(m, owner, amount), amount);
+            }
         }
-        else for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
+        else
         {
-            GameActionsHelper.ApplyPower(null, m, new EnchantedArmorPower(m, amount), amount);
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.ApplyPower(owner, p, new ConstrictedPower(p, owner, amount), amount);
         }
+        this.flash();
     }
 }

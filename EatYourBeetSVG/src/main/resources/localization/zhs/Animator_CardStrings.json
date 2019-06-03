@@ -65,9 +65,9 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "获得 1 个 土素 充能球 。 获得 1 点 集中 。 消耗 。",
+		"DESCRIPTION": "获得 1 个 土地 充能球 。 获得 1 点 集中 。 消耗 。",
 		"NAME": "阿尔蓓吉欧",
-		"UPGRADE_DESCRIPTION": "获得 1 个 土素 充能球 。 获得一个充能球栏位 。 获得 1 点 集中 。 消耗 。"
+		"UPGRADE_DESCRIPTION": "获得 1 个 土地 充能球 。 获得一个充能球栏位 。 获得 1 点 集中 。 消耗 。"
 	},
 	"animator_Asuramaru":
 	{
@@ -81,7 +81,7 @@
 	},
 	"animator_Benimaru":
 	{
-		"DESCRIPTION": "[#EFC851]生成[] 1 个 火素 充能球 。 对所有敌人造成 !D! 点 伤害 。 NL 同调 : 给予 !M! 层 燃烧 。",
+		"DESCRIPTION": "[#EFC851]生成[] 1 个 火焰 充能球 。 对所有敌人造成 !D! 点 伤害 。 NL 同调 : 给予 !M! 层 燃烧 。",
 		"NAME": "红丸"
 	},
 	"animator_Berserker":
@@ -122,9 +122,9 @@
 	},
 	"animator_ChlammyZell":
 	{
-		"DESCRIPTION": "当你交替打出不同类型的牌时 ， 循环 1 张牌 并 对所有敌人造成 !M! 点 伤害 。",
+		"DESCRIPTION": "当你交替打出不同类型的牌时 ， 循环 1 张牌 并 对所有敌人造成 !M! 点 伤害 。 消耗 。",
 		"NAME": "克拉米·杰尔",
-		"UPGRADE_DESCRIPTION": "固有 。 当你交替打出不同类型的牌时 ， 循环 1 张牌 并 对所有敌人造成 !M! 点 伤害 。"
+		"UPGRADE_DESCRIPTION": "固有 。 当你交替打出不同类型的牌时 ， 循环 1 张牌 并 对所有敌人造成 !M! 点 伤害 。 消耗 。"
 	},
 	"animator_Chris":
 	{
@@ -134,7 +134,7 @@
 	},
 	"animator_Chung":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 预热 !SV! : 获得一个等离子球。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 预热 !SV! : 获得一个等离子 充能球。",
 		"NAME": "澄"
 	},
 	"animator_Cocytus":
@@ -209,6 +209,11 @@
 		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 层 [#EFC851]临时荆棘[] 。",
 		"NAME": "优越防御"
 	},
+	"animator_Defend_OnePunchMan":
+	{
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 鼓舞 !SV! : 下一轮，获得 [E]。",
+		"NAME": "优越防御"
+	},
 	"animator_Defend_Konosuba":
 	{
 		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 鼓舞 !SV! : 恢复 !M! 点 生命 。",
@@ -263,7 +268,7 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 获得 1 个 土素 充能球 。 同调 : 使用你最右侧的1个充能球的被动能力 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 获得 1 个 土地 充能球 。 同调 : 使用你最右侧的1个充能球的被动能力 。",
 		"NAME": "矮人萨满"
 	},
 	"animator_Elesis":
@@ -273,9 +278,9 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "虚无 。 获得 !M! 点 临时 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲[] 。",
+		"DESCRIPTION": "虚无 。 获得 !M! 点 临时 集中 。 获得 !B! 点 格挡 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲[] 。",
 		"NAME": "阿尔冯斯",
-		"UPGRADE_DESCRIPTION": "虚无 。 获得 !M! 点 临时 集中 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲+[] 。"
+		"UPGRADE_DESCRIPTION": "虚无 。 获得 !M! 点 临时 集中 。 获得 !B! 点 格挡 。 NL 遗赠 : 获得 [#EFC851]阿尔冯斯护甲+[] 。"
 	},
 	"animator_ElricAlphonseAlt":
 	{
@@ -284,13 +289,13 @@
 	},
 	"animator_ElricEdward":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 循环 !M! 张牌 。 NL 使循环获得的牌获得一个 [#EFC851]额外充能[] ， 效果由该牌种类决定 。",
-		"EXTENDED_DESCRIPTION": ["额外充能", "#y攻击牌 : 获得 1 个闪电充能球 NL #y技能 : 获得 1 个冰霜充能球 NL #y能力 : 获得 1 个 土素 充能球"],
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 循环 !M! 张牌 。 NL 使循环获得的牌获得一个 [#EFC851]额外充能球[] ， 效果由该牌种类决定 。",
+		"EXTENDED_DESCRIPTION": ["额外充能球", "#y攻击牌 : 获得 1 个闪电充能球 NL #y技能 : 获得 1 个冰霜充能球 NL #y能力 : 获得 1 个 土地 充能球"],
 		"NAME": "爱德华·艾尔利克"
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。 撤回 : [#EFC851]生成[] 1 个 火素 充能球 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 循环 !M! 张牌 。 撤回 : [#EFC851]生成[] 1 个 火焰 充能球 。",
 		"NAME": "艾索德"
 	},
 	"animator_EmiyaShirou":
@@ -367,8 +372,12 @@
 	},
 	"animator_Gilgamesh":
 	{
-		"DESCRIPTION": "多重进化 。 对一个敌人造成 !D! 点 伤害 3 次 。 NL [#EFC851]巴比伦的宝藏[] 。",
-		"EXTENDED_DESCRIPTION": ["巴比伦的宝藏", "每当你获得遗物时升级这张牌并获得 ", " 个金币 。 买的遗物不会触发该效果 。"],
+		"DESCRIPTION": "[#EFC851]唯一[] 。 对一个敌人造成 !D! 点 伤害 3 次 。 NL [#EFC851]巴比伦的宝藏[] 。",
+		"EXTENDED_DESCRIPTION":
+		[
+			"巴比伦的宝藏", "每当你获得遗物时升级这张牌并获得 ", " 个金币 。 买的遗物不会触发该效果 。",
+			"唯一", "卡组中只能存在一张该牌 ， 额外获得的同名牌会 #y升级 这张牌 。可被多次升级。"
+		],
 		"NAME": "英雄王·吉尔伽美什"
 	},
 	"animator_Gillette":
@@ -451,8 +460,7 @@
 	"animator_HiiragiShinya":
 	{
 		"DESCRIPTION": "造成 !D! 点伤害 。 如果这是你本轮第一次进攻 ， 给予目标一个随机的 [#EFC851]负面效果[] 。",
-		"NAME": "柊深夜",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害 。 如果这是你本轮第一次进攻 ， 给予目标一个随机的强力 [#EFC851]负面效果[] 。"
+		"NAME": "柊深夜"
 	},
 	"animator_Hitei":
 	{
@@ -485,7 +493,7 @@
 	},
 	"animator_Jibril":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 为每一种不同的充能球抽 1 张牌 。 NL 同调 ： 获得 !SV! 点临时 集中 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 为每一种不同的充能球抽 1 张牌 。 NL 同调 ： 造成 !M! 点 额外伤害。",
 		"NAME": "吉普莉尔"
 	},
 	"animator_Kaijin":
@@ -556,14 +564,13 @@
 	"animator_Lelouch":
 	{
 		"DESCRIPTION": "消耗 你手中的所有攻击卡。 这一轮 ， 所有敌人都会攻击自己 。 NL 抹除 。 [#EFC851]*[]",
-		"EXTENDED_DESCRIPTION": ["* 注", "若有敌人未有打算攻击，击晕它们"],
+		"EXTENDED_DESCRIPTION": ["* 注", "若有敌人未有打算攻击，眩晕它们"],
 		"NAME": "鲁路修"
 	},
 	"animator_LimeBell":
 	{
 		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 重装填 : 下一轮 ， 恢复 !M! 点 生命 。 NL 消耗 。",
-		"NAME": "Lime Bell",
-		"UPGRADE_DESCRIPTION": "抽 1 张牌 。 NL 获得 !B! 点 格挡 。 NL 重装填 : 下一轮 ， 恢复 !M! 点 生命 。 NL 消耗 。"
+		"NAME": "Lime Bell"
 	},
 	"animator_LizardPriest":
 	{
@@ -587,13 +594,13 @@
 	},
 	"animator_Millim":
 	{
-		"DESCRIPTION": "多重进化 。 [#EFC851]唯一[] 。 抽 !M! 张牌 。 造成 !D! 点 伤害 。 NL 同调 : 获得 [E] 。",
-		"EXTENDED_DESCRIPTION": ["唯一", "卡组中只能存在一张该牌 ， 额外获得的同名牌会 #y升级 这张牌 。"],
+		"DESCRIPTION": "[#EFC851]唯一[] 。 抽 !M! 张牌 。 造成 !D! 点 伤害 。 NL 同调 : 获得 [E] 。",
+		"EXTENDED_DESCRIPTION": ["唯一", "卡组中只能存在一张该牌 ， 额外获得的同名牌会 #y升级 这张牌 。可被多次升级。"],
 		"NAME": "米莉姆"
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "获得 1 个 火素 充能球 。 NL 抽 1 张牌 。 NL  将 [#EFC851]西森柚咲[] 加到你的弃牌堆。 NL 消耗 。",
+		"DESCRIPTION": "获得 1 个 火焰 充能球 。 NL 抽 1 张牌 。 NL  将 [#EFC851]西森柚咲[] 加到你的弃牌堆。 NL 消耗 。",
 		"NAME": "黑羽美砂"
 	},
 	"animator_Mitsuba":
@@ -606,12 +613,6 @@
 		"DESCRIPTION": "造成 !D! 点 伤害 , 仅当敌人意图为攻击时可被打出 。 遗赠 : 获得 !M! 点 力量 。",
 		"EXTENDED_DESCRIPTION": ["敌人不打算攻击"],
 		"NAME": "御剑响夜"
-	},
-	"animator_MumenRider":
-	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 1 张牌 。 NL 抹除 。 这张牌会在2回合后回到你的手里 。",
-		"NAME": "无证骑士",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 !M! 张牌 。 NL 抹除 。 这张牌会在2回合后回到你的手里 。"
 	},
 	"animator_Nanami":
 	{
@@ -629,32 +630,32 @@
 	"animator_OrbCore_Chaos":
 	{
 		"DESCRIPTION": "生成 1 个随机充能球 。 NL 每回合第二次同调时 ， 发现 1 张牌 。",
-		"NAME": "Chaos 核心"
+		"NAME": "混沌核心"
 	},
 	"animator_OrbCore_Dark":
 	{
 		"DESCRIPTION": "生成 1 个 黑暗 充能球 。 NL 每回合第二次同调时 ， 抽 !M! 张牌 ， 然后丢弃 1 张牌 。",
-		"NAME": "黑暗 核心"
+		"NAME": "黑暗核心"
 	},
 	"animator_OrbCore_Fire":
 	{
-		"DESCRIPTION": "生成 1 个 火素 充能球 。  NL 每回合第二次同调时 ， 对所有敌人造成 !M! 层 燃烧 。",
-		"NAME": "火素 核心"
+		"DESCRIPTION": "生成 1 个 火焰 充能球 。  NL 每回合第二次同调时 ， 对所有敌人造成 !M! 层 燃烧 。",
+		"NAME": "火焰核心"
 	},
 	"animator_OrbCore_Frost":
 	{
 		"DESCRIPTION": "生成 1 个 冰霜 充能球 。 NL 每回合第二次同调时 ， 获得 !B! 点 格挡 。",
-		"NAME": "冰霜 核心"
+		"NAME": "冰霜核心"
 	},
 	"animator_OrbCore_Lightning":
 	{
 		"DESCRIPTION": "生成 1 个 闪电 充能球 。 NL 每回合第二次同调时 ， 对所有敌人造成 !M! 点 伤害 。",
-		"NAME": "闪电 核心"
+		"NAME": "闪电核心"
 	},
 	"animator_OrbCore_Plasma":
 	{
-		"DESCRIPTION": "生成 1 个 等离子球 。 NL 每回合第二次同调时 ， 获得 [E] 。",
-		"NAME": "等离子 核心"
+		"DESCRIPTION": "生成 1 个 等离子 充能球 。 NL 每回合第二次同调时 ， 获得 [E] 。",
+		"NAME": "等离子核心"
 	},
 	"animator_PandorasActor":
 	{
@@ -669,7 +670,7 @@
 	},
 	"animator_Pride":
 	{
-		"DESCRIPTION": "穿越者 。 [#EFC851]傲慢[] 。 [#EFC851]获得[] !M! 个 黑暗充能球 。NL 同调 : 赋予 !SV! 层 缠绕 。",
+		"DESCRIPTION": "穿越者 。 [#EFC851]傲慢[] 。 [#EFC851]获得[] !M! 个 黑暗充能球 。NL 同调 : 赋予 !SV! 层 缠绕 。消耗 。",
 		"EXTENDED_DESCRIPTION": ["傲慢", "直到你的下个回合 ， 当你受到格挡外的伤害时 ， 你的伤害最高的黑暗充能球抵消这个伤害并损失同等的伤害充能 。"],
 		"NAME": "傲慢"
 	},
@@ -713,7 +714,7 @@
 	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 每个敌人使你 [#EFC851]生成[] 1 个 火素 充能球 。 同调 : 获得 !M! 层 火焰屏障 。",
+		"DESCRIPTION": "对所有敌人造成 !D! 点 伤害 。 每个敌人使你 [#EFC851]生成[] 1 个 火焰 充能球 。 同调 : 获得 !M! 层 火焰屏障 。",
 		"NAME": "罗伊·马斯坦"
 	},
 	"animator_Saber":
@@ -721,11 +722,6 @@
 		"DESCRIPTION": "忠诚 。 造成 !D! 点伤害 ， 当这张牌触发 !M! 次同调效果后 ， 抹除 并获得 [#EFC851]誓约胜利之剑[] 。",
 		"NAME": "Saber",
 		"UPGRADE_DESCRIPTION": "忠诚 。 造成 !D! 点伤害 ， 当这张牌触发 !M! 次同调效果后 ， 抹除 并获得 [#EFC851]誓约胜利之剑+[] 。"
-	},
-	"animator_Saitama":
-	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 NL 花費所有能量，每點能量增加此牌更多傷害 。",
-		"NAME": "秃头披风侠"
 	},
 	"animator_Scar":
 	{
@@ -817,6 +813,11 @@
 		"DESCRIPTION": "造成 !D! 点伤害 。 NL 撤回 :对一个随机的敌人造成 !M! 点 伤害  。",
 		"NAME": "优越打击"
 	},
+	"animator_Strike_OnePunchMan":
+	{
+		"DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点临时 敏捷 。",
+		"NAME": "优越打击"
+	},
 	"animator_Strike_Elsword":
 	{
 		"DESCRIPTION": "造成 !D! 点伤害 。 获得 !M! 点 临时 力量 。",
@@ -899,22 +900,22 @@
 	},
 	"animator_Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中选择 !M! 张牌 。 抽 2 张牌 。 鼓舞 !SV! : 获得 [E]",
+		"DESCRIPTION": "在你的抽牌堆中选择 !M! 张牌，丢弃它们。 抽 2 张牌 。 鼓舞 !SV! : 获得 [E]",
 		"NAME": "特图"
 	},
 	"animator_ThrowingKnife_0":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 虚弱 。 NL 消耗 。 撤回 : 玩这张卡。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 虚弱 。 NL 抹除 。 撤回 : 玩这张卡。",
 		"NAME": "飞刃"
 	},
 	"animator_ThrowingKnife_1":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 消耗 。 撤回 : 玩这张卡。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 抹除 。 撤回 : 玩这张卡。",
 		"NAME": "飞刃"
 	},
 	"animator_ThrowingKnife_2":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 中毒 。 NL 消耗 。 撤回 : 玩这张卡。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 中毒 。 NL 抹除 。 撤回 : 玩这张卡。",
 		"NAME": "飞刃"
 	},
 	"animator_Togame":
@@ -1026,11 +1027,98 @@
 		"NAME": "零",
 		"UPGRADE_DESCRIPTION": "从你的抽牌堆中打出一张随机的 [#EFC851]技能牌[] 。"
 	},
+
+	"animator_TheHaunt":
+	{
+		"DESCRIPTION": "获得 !M! [#EFC851]金币。 NL 鬼更加作祟。 NL 虚无 。 消耗 。",
+		"NAME": "鬼出没"
+	},
+
+	"animator_Hibiki":
+	{
+		"DESCRIPTION": "造成 !D! 点伤害 !M! 次 。 每次使用后 ， 这张牌的攻击次数加1。",
+		"NAME": "响"
+	},
+	"animator_MumenRider":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害。 NL 消耗 。 这张牌会在随机回合后回到你的手里 。",
+		"NAME": "无证骑士",
+		"UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽1张牌 。 NL 消耗 。 这张牌会在随机回合后回到你的手里 。"
+	},
+	"animator_Genos":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害。 NL 给予 !M! 层 烧伤 。 NL 同调 : 此轮，保存你的剩余能量。",
+		"NAME": "杰诺斯"
+	},
+	"animator_Sonic":
+	{
+		"DESCRIPTION": "忍者 . 造成 !D! 点 穿刺 伤害。 同调 : 获得1张 飞刃 。",
+		"NAME": "音速索尼克"
+	},
+	"animator_SilverFang":
+	{
+		"DESCRIPTION": "拳师 。 NL 造成 !D! 点 伤害 。 NL 获得 !B! 层 格挡 。 NL 下一轮 ， 获得 !M! 层 临时 敏捷 。",
+		"NAME": "银色獠牙"
+	},
+	"animator_Geryuganshoop":
+	{
+		"DESCRIPTION": "循环 !SV! 张牌 。 NL 抹除最多 !M! 张已 消耗 的牌 ， 获得同样数量的 [E].",
+		"NAME": "戈留干修普",
+		"EXTENDED_DESCRIPTION": ["选择 @ 张牌抹除, 获得同等的能量."]
+	},
+	"animator_Melzalgald":
+	{
+		"DESCRIPTION": "穿越者 。 NL 造成 !D! 点 伤害 。 NL 分裂成3张不同的 [#EFC851]攻击 。 消耗 。",
+		"NAME": "梅鲁扎嘎鲁多",
+		"UPGRADE_DESCRIPTION": "穿越者 。 NL 造成 !D! 点 伤害 。 NL 分裂成3张不同的升级 [#EFC851]攻击 。 消耗 。"
+	},
+	"animator_MelzalgaldAlt_1":
+	{
+		"DESCRIPTION": "穿越者 。 NL 造成 !D! 点 伤害。 NL 获得 !M! 层 力量 。 NL 消耗 。",
+		"NAME": "梅鲁扎嘎鲁多"
+	},
+	"animator_MelzalgaldAlt_2":
+	{
+		"DESCRIPTION": "穿越者 。 NL 造成 !D! 点 伤害。 NL 获得 !M! 层 敏捷 。 NL 消耗 。",
+		"NAME": "梅鲁扎嘎鲁多"
+	},
+	"animator_MelzalgaldAlt_3":
+	{
+		"DESCRIPTION": "穿越者 。 NL 造成 !D! 点 伤害。 NL 获得 !M! 层 再生 。 NL 消耗 。",
+		"NAME": "梅鲁扎嘎鲁多"
+	},
+	"animator_Tatsumaki":
+	{
+		"DESCRIPTION": "生成 1 个 空氣 充能球 。 NL 获得 !M! 点临时 集中 。 NL 同调 ： 此轮，所有敌人失去 !SV! 点 力量 。",
+		"NAME": "龙卷"
+	},
+	"animator_MetalKnight":
+	{
+		"DESCRIPTION": "造成 !D! 点 伤害。 NL 生成 1 等离子 充能球 。 NL 鼓舞 !SV! : 获得 !M! 层 金属化 。",
+		"NAME": "金属骑士"
+	},
+	"animator_Boros":
+	{
+		"DESCRIPTION": "获得 !M! 点 力量 ， 敏捷 和 集中 。 NL 所有 [#EFC851]能力[] 将会被 NL 打出两次 。",
+		"NAME": "波罗斯"
+	},
+	"animator_Saitama":
+	{
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 NL 每次你打出这张牌 ， 此牌伤害在本战斗增加 !M! 点 ， 此效果受 力量 影响 。",
+		"NAME": "埼玉"
+	},
+	"animator_SeriousSaitama":
+	{
+		"DESCRIPTION": "眩晕 所有敌人 。 一名随机敌人将逃离战斗（复数敌人战斗）。 消耗 。",
+		"NAME": "认真的埼玉",
+		"UPGRADE_DESCRIPTION": "固有 。 眩晕 所有敌人 。 一名随机敌人将逃离战斗（复数敌人战斗） 。 消耗 。"
+	},
+
 	"animator_Azriel":
 	{
-		"DESCRIPTION": "获得两 2 层 飞行 。 NL 每当给予敌人负面效果时, 获得 !M! 点 力量 。 虚无 。",
+		"DESCRIPTION": "获得两 2 层 飞行 。 NL 每当给予敌人负面效果时 ， 获得 !M! 点 力量 。 虚无 。",
 		"NAME": "阿兹列尔",
-		"UPGRADE_DESCRIPTION": "获得两 2 层 飞行 。 NL 每当给予敌人负面效果时, 获得 !M! 点 力量 。"
+		"UPGRADE_DESCRIPTION": "获得两 2 层 飞行 。 NL 每当给予敌人负面效果时 ， 获得 !M! 点 力量 。"
 	},
 	"animator_Giselle":
 	{

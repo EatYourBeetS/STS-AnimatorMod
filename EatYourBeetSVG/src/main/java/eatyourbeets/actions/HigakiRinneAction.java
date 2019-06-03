@@ -261,7 +261,17 @@ public class HigakiRinneAction extends AnimatorAction
                 }
             }
 
-            AbstractDungeon.effectList.add(new ShuffleEnemiesEffect());
+            for (AbstractGameEffect effect : AbstractDungeon.effectsQueue)
+            {
+                if (effect instanceof ShuffleEnemiesEffect)
+                {
+                    GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, 1), 1);
+                    this.isDone = true;
+                    return;
+                }
+            }
+
+            AbstractDungeon.effectsQueue.add(new ShuffleEnemiesEffect());
         }
 
         this.isDone = true;

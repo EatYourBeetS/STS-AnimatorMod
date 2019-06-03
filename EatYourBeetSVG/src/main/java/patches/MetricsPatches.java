@@ -16,6 +16,7 @@ import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.characters.AnimatorCharacterSelect;
+import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,6 +72,8 @@ public class MetricsPatches
 
                     params.put("ascension", AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0);
                     params.put("cards", cardsData);
+                    params.put("enteredAct5", PlayerStatistics.SaveData.EnteredUnnamedReign);
+                    params.put("isVictory", AbstractDungeon.is_victory);
                     params.put("startingSeries", AnimatorCharacterSelect.GetSelectedLoadout(false).ID);
                     params.put("language", Settings.language.name());
 

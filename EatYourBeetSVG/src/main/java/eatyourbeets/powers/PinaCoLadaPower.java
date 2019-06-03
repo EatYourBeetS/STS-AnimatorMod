@@ -41,7 +41,7 @@ public class PinaCoLadaPower extends AnimatorPower
 
     public void onUseCard(AbstractCard card, UseCardAction action)
     {
-        if ((card.costForTurn == 0 || card.freeToPlayOnce) && this.amount > 0 && !card.tags.contains(AbstractEnums.CardTags.TEMPORARY))
+        if ((card.costForTurn == 0 || card.freeToPlayOnce) && this.amount > 0 && !card.purgeOnUse)
         {
             this.amount -= 1;
             this.flash();

@@ -6,18 +6,14 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.monsters.Bosses.TheUnnamed;
+import eatyourbeets.monsters.AbstractMove;
 
-public class Move_MultiAttack extends Move
+public class Move_MultiAttack extends AbstractMove
 {
-    private final DamageInfo damageInfo;
-
     private final int TIMES;
 
-    public Move_MultiAttack(int id, int ascensionLevel, TheUnnamed owner)
+    public Move_MultiAttack()
     {
-        super((byte) id, ascensionLevel, owner);
-
         damageInfo = new DamageInfo(owner, 7);
         TIMES = 3;
     }

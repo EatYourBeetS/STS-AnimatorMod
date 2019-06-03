@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
@@ -13,8 +12,9 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.animator.Hero;
+import eatyourbeets.effects.ObtainRelicEffect;
 import eatyourbeets.relics.CursedGlyph;
-import eatyourbeets.relics.TheAncientMedallion;
+import eatyourbeets.relics.AncientMedallion;
 import eatyourbeets.relics.UnnamedReignRelic;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class BundledRelic
         {
             if (UnnamedReignRelic.IsEquipped())
             {
-                relic = new TheAncientMedallion();
+                relic = new AncientMedallion();
                 relic.flash();
                 return;
             }
@@ -143,8 +143,7 @@ public class BundledRelic
             }
 
             relic.hb.resize(AbstractRelic.PAD_X, AbstractRelic.PAD_X);
-            relic.instantObtain();
-            CardCrawlGame.metricData.addRelicObtainData(relic);
+            AbstractDungeon.effectsQueue.add(new ObtainRelicEffect(relic));
         }
     }
 

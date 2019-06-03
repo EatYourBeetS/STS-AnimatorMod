@@ -56,7 +56,7 @@ public class BundledRelicProvider
         BundledRelic relic = bundledRelicsPool.get(cardID);
         if (relic != null)
         {
-            relic = relic.Clone(AbstractDungeon.miscRng.random(99));
+            relic = relic.Clone(AbstractDungeon.relicRng.random(99));
             //bundledRelics.add(relic);
             bundledRelics.add(relic);
         }

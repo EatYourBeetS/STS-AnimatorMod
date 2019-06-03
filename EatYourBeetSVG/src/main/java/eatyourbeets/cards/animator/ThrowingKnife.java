@@ -25,7 +25,7 @@ public abstract class ThrowingKnife extends AnimatorCard implements AnimatorReso
     {
         super(AnimatorResources.GetCardStrings(id), id, AnimatorResources.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        this.exhaust = true;
+        this.purgeOnUse = true;
     }
 
     public static AbstractCard GetRandomCard()

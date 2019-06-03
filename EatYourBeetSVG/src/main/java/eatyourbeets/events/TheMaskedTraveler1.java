@@ -20,24 +20,25 @@ public class TheMaskedTraveler1 extends AnimatorEvent
 
     public static final String ID = CreateFullID(TheMaskedTraveler1.class.getSimpleName());
 
-    private boolean completed;
-    private final AbstractCard toReplace;
+    private AbstractCard toReplace;
+
     private final int SELLING_PRICE;
     private final int BUYING_PRICE;
-
-    private final int CHOICE_SELL = 0;
-    private final int CHOICE_IMPROVE = 1;
-    private final int CHOICE_LEAVE = 2;
 
     public TheMaskedTraveler1()
     {
         super(ID);
 
-        this.completed = false;
-
         SELLING_PRICE = AbstractDungeon.miscRng.random(30, 50);
         BUYING_PRICE = AbstractDungeon.miscRng.random(85, 100);
 
+        RegisterPhase(1, this::CreatePhase1, this::HandlePhase1);
+        RegisterPhase(2, this::CreatePhase2, this::HandlePhase2);
+        ProgressPhase();
+    }
+
+    private void CreatePhase1()
+    {
         ArrayList<AbstractCard> cards = new ArrayList<>();
         AbstractPlayer p = AbstractDungeon.player;
         for (AbstractCard card : p.masterDeck.group)
@@ -51,88 +52,74 @@ public class TheMaskedTraveler1 extends AnimatorEvent
         toReplace = Utilities.GetRandomElement(cards);
         if (toReplace != null)
         {
-            this.imageEventText.updateDialogOption(CHOICE_SELL, OPTIONS[0] + toReplace.name + OPTIONS[1] + SELLING_PRICE + OPTIONS[2], toReplace);
+            this.imageEventText.updateDialogOption(0, OPTIONS[0] + toReplace.name + OPTIONS[1] + SELLING_PRICE + OPTIONS[2], toReplace);
         }
         else
         {
-            this.imageEventText.updateDialogOption(CHOICE_SELL, OPTIONS[6], true);
+            this.imageEventText.updateDialogOption(0, OPTIONS[6], true);
         }
 
         if (p.gold >= BUYING_PRICE)
         {
-            this.imageEventText.updateDialogOption(CHOICE_IMPROVE, OPTIONS[3] + BUYING_PRICE + OPTIONS[4]);
+            this.imageEventText.updateDialogOption(1, OPTIONS[3] + BUYING_PRICE + OPTIONS[4]);
         }
         else
         {
-            this.imageEventText.updateDialogOption(CHOICE_IMPROVE, OPTIONS[7], true);
+            this.imageEventText.updateDialogOption(1, OPTIONS[7], true);
         }
 
-        this.imageEventText.updateDialogOption(CHOICE_LEAVE, OPTIONS[5]);
+        this.imageEventText.updateDialogOption(2, OPTIONS[5]);
     }
 
-    public void onEnterRoom()
+    private void HandlePhase1(int button)
     {
-//        if (Settings.AMBIANCE_ON)
-//        {
-//            CardCrawlGame.sound.play("");
-//        }
-    }
-
-    @Override
-    protected void buttonEffect(int buttonPressed)
-    {
-        if (!completed)
+        if (button == 0) // SELL
         {
-            switch (buttonPressed)
+            AbstractDungeon.player.masterDeck.removeCard(toReplace);
+            AbstractDungeon.effectList.add(new RainingGoldEffect(SELLING_PRICE));
+            AbstractDungeon.player.gainGold(SELLING_PRICE);
+
+            ProgressPhase();
+        }
+        else if (button == 1) // IMPROVE
+        {
+            AbstractDungeon.player.loseGold(BUYING_PRICE);
+
+            SetupCards();
+
+            ArrayList<AbstractCard> deck = AbstractDungeon.player.masterDeck.group;
+            for (int i = deck.size() - 1; i >= 0; i--)
             {
-                case CHOICE_SELL:
+                AbstractCard card = deck.get(i);
+                if (card.tags.contains(BaseModCardTags.BASIC_DEFEND) && !card.tags.contains(AbstractEnums.CardTags.IMPROVED_DEFEND))
                 {
-                    this.imageEventText.updateBodyText(eventStrings.DESCRIPTIONS[1]);
-                    this.imageEventText.clearAllDialogs();
-                    this.imageEventText.setDialogOption(OPTIONS[5]);
-
-                    AbstractDungeon.player.masterDeck.removeCard(toReplace);
-                    AbstractDungeon.effectList.add(new RainingGoldEffect(SELLING_PRICE));
-                    AbstractDungeon.player.gainGold(SELLING_PRICE);
-
-                    completed = true;
-
-                    return;
+                    deck.remove(i);
+                    ObtainCard(replacementDefend, card.upgraded);
                 }
-
-                case CHOICE_IMPROVE:
+                else if (card.tags.contains(BaseModCardTags.BASIC_STRIKE) && !card.tags.contains(AbstractEnums.CardTags.IMPROVED_STRIKE))
                 {
-                    this.imageEventText.updateBodyText(eventStrings.DESCRIPTIONS[1]);
-                    this.imageEventText.clearAllDialogs();
-                    this.imageEventText.setDialogOption(OPTIONS[5]);
-
-                    AbstractDungeon.player.loseGold(BUYING_PRICE);
-
-                    SetupCards();
-
-                    ArrayList<AbstractCard> deck = AbstractDungeon.player.masterDeck.group;
-                    for (int i = deck.size() - 1; i >= 0; i--)
-                    {
-                        AbstractCard card = deck.get(i);
-                        if (card.tags.contains(BaseModCardTags.BASIC_DEFEND) && !card.tags.contains(AbstractEnums.CardTags.IMPROVED_DEFEND))
-                        {
-                            deck.remove(i);
-                            ObtainCard(replacementDefend, card.upgraded);
-                        }
-                        else if (card.tags.contains(BaseModCardTags.BASIC_STRIKE) && !card.tags.contains(AbstractEnums.CardTags.IMPROVED_STRIKE))
-                        {
-                            deck.remove(i);
-                            ObtainCard(replacementStrike, card.upgraded);
-                        }
-                    }
-
-                    completed = true;
-
-                    return;
+                    deck.remove(i);
+                    ObtainCard(replacementStrike, card.upgraded);
                 }
             }
-        }
 
+            ProgressPhase();
+        }
+        else
+        {
+            this.openMap();
+        }
+    }
+
+    private void CreatePhase2()
+    {
+        this.imageEventText.updateBodyText(eventStrings.DESCRIPTIONS[1]);
+        this.imageEventText.clearAllDialogs();
+        this.imageEventText.setDialogOption(OPTIONS[5]);
+    }
+
+    private void HandlePhase2(int button)
+    {
         this.openMap();
     }
 
@@ -143,7 +130,7 @@ public class TheMaskedTraveler1 extends AnimatorEvent
         {
             replacement.upgrade();
         }
-        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(replacement, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
     }
 
     private static void SetupCards()

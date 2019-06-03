@@ -4,12 +4,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.defect.CompileDriverAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.TemporaryBiasPower;
 
 public class Jibril extends AnimatorCard
 {
@@ -19,9 +16,22 @@ public class Jibril extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(7,0, 2);
+        Initialize(6,0, 4);
 
         SetSynergy(Synergies.NoGameNoLife);
+    }
+
+    @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        if (HasActiveSynergy())
+        {
+            return super.calculateModifiedCardDamage(player, mo, tmp + magicNumber);
+        }
+        else
+        {
+            return super.calculateModifiedCardDamage(player, mo, tmp);
+        }
     }
 
     @Override
@@ -29,12 +39,6 @@ public class Jibril extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.FIRE);
         GameActionsHelper.AddToBottom(new CompileDriverAction(p, 1));
-
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.ApplyPower(p, p, new FocusPower(p, this.magicNumber), this.magicNumber);
-            ApplyTemporaryBias(p);
-        }
     }
 
     @Override
@@ -42,22 +46,7 @@ public class Jibril extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
+            upgradeDamage(3);
         }
-    }
-
-    private void ApplyTemporaryBias(AbstractPlayer p)
-    {
-        for (AbstractPower power : p.powers)
-        {
-            if (power instanceof TemporaryBiasPower)
-            {
-                power.amount += this.magicNumber;
-                return;
-            }
-        }
-
-        p.powers.add(new TemporaryBiasPower(p, this.magicNumber));
     }
 }

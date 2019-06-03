@@ -1,8 +1,11 @@
 import basemod.BaseMod;
+import basemod.abstracts.CustomSavable;
+import basemod.abstracts.CustomSavableRaw;
 import basemod.interfaces.*;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.google.gson.JsonElement;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
@@ -137,6 +140,7 @@ public class EYBModInitializer
         AnimatorResources.LoadCustomRewards();
         AnimatorResources.LoadMonsters();
         AnimatorResources.LoadCustomEvents();
+        BaseMod.addSaveField("animator_SaveData", PlayerStatistics.Instance);
     }
 
     @Override

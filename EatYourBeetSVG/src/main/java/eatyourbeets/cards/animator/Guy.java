@@ -19,7 +19,7 @@ public class Guy extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,4, 1);
+        Initialize(0,3, 1);
 
         SetSynergy(Synergies.Chaika);
     }

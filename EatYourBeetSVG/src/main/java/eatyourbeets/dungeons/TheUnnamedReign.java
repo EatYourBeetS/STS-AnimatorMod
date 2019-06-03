@@ -1,23 +1,30 @@
 package eatyourbeets.dungeons;
 
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
+import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.map.DungeonMap;
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
-import com.megacrit.cardcrawl.scenes.TheBeyondScene;
-
-import java.util.ArrayList;
-
+import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.scenes.TheUnnamedReignScene;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
 
 public class TheUnnamedReign extends AbstractDungeon
 {
@@ -25,11 +32,24 @@ public class TheUnnamedReign extends AbstractDungeon
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
     public static final String NAME;
-    public static final String ID = "TheUnnamedReign";
+    public static final String ID = "Animator_TheUnnamedReign";
+
+    public static void EnterDungeon()
+    {
+        AbstractDungeon.rs = AbstractDungeon.RenderScene.NORMAL;
+
+        CardCrawlGame.nextDungeon = TheUnnamedReign.ID;
+        AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+
+        GenericEventDialog.hide();
+        CardCrawlGame.music.fadeAll();
+        AbstractDungeon.fadeOut();
+        AbstractDungeon.isDungeonBeaten = true;
+    }
 
     public TheUnnamedReign(AbstractPlayer p, ArrayList<String> specialOneTimeEventList)
     {
-        super(NAME, ID, p, specialOneTimeEventList);
+        super(NAME, ID, p, new ArrayList<>());
 
         if (scene != null)
         {
@@ -53,24 +73,46 @@ public class TheUnnamedReign extends AbstractDungeon
             scene.dispose();
         }
 
-        scene = new TheBeyondScene();
+        scene = new TheUnnamedReignScene();
         fadeColor = Color.valueOf("140a1eff");
         this.initializeLevelSpecificChances();
         miscRng = new Random(Settings.seed + (long) saveFile.floor_num);
         CardCrawlGame.music.changeBGM(id);
         mapRng = new Random(Settings.seed + (long) (saveFile.act_num * 200));
         generateMap();
+
+        MapRoomNode victoryNode = new MapRoomNode(3, map.size());
+        victoryNode.room = new TrueVictoryRoom();
+
         firstRoomChosen = true;
         this.populatePathTaken(saveFile);
     }
 
+    @SpireOverride
+    protected void setBoss(String key)
+    {
+        bossKey = key;
+
+        if (key.equals(TheUnnamed.ID))
+        {
+            DungeonMap.boss = ImageMaster.loadImage("images/ui/map/boss/Animator_TheUnnamed.png");
+            DungeonMap.bossOutline = ImageMaster.loadImage("images/ui/map/bossOutline/Animator_TheUnnamed.png");
+        }
+        else
+        {
+            SpireSuper.call(key);
+        }
+    }
+
     protected void initializeLevelSpecificChances()
     {
-        shopRoomChance = 0.05F;
-        restRoomChance = 0.12F;
+        PlayerStatistics.SaveData.EnteredUnnamedReign = true;
+
+        shopRoomChance = 0.12F;
+        restRoomChance = 0.10F;
         treasureRoomChance = 0.0F;
-        eventRoomChance = 0.22F;
-        eliteRoomChance = 0.08F;
+        eventRoomChance = 0.15F;
+        eliteRoomChance = 0.12F;
         smallChestChance = 0;
         mediumChestChance = 0;
         largeChestChance = 100;
@@ -80,11 +122,11 @@ public class TheUnnamedReign extends AbstractDungeon
         colorlessRareChance = 0.3F;
         if (AbstractDungeon.ascensionLevel >= 12)
         {
-            cardUpgradedChance = 0.25F;
+            cardUpgradedChance = 0.15F;
         }
         else
         {
-            cardUpgradedChance = 0.5F;
+            cardUpgradedChance = 0.3F;
         }
     }
 
@@ -98,9 +140,9 @@ public class TheUnnamedReign extends AbstractDungeon
     protected void generateWeakEnemies(int count)
     {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.TWO_SHAPES, 2.0F));
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.THREE_NORMAL_SHAPES, 2.0F));
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.CULTIST, 2.0F));
+        monsters.add(new MonsterInfo(UnnamedEnemyGroup.TWO_SHAPES, 1.5F));
+        monsters.add(new MonsterInfo(UnnamedEnemyGroup.THREE_NORMAL_SHAPES, 1.5F));
+        monsters.add(new MonsterInfo(UnnamedEnemyGroup.CULTIST, 2.5F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateMonsterList(monsters, count, false);
     }
@@ -143,12 +185,11 @@ public class TheUnnamedReign extends AbstractDungeon
 
     protected void initializeEventList()
     {
-        eventList.add("Falling");
-        eventList.add("MindBloom");
-        eventList.add("The Moai Head");
-        eventList.add("Mysterious Sphere");
+//        eventList.add("MindBloom");
+//        eventList.add("The Moai Head");
+//        eventList.add("Mysterious Sphere");
+//        eventList.add("Tomb of Lord Red Mask");
         eventList.add("SensoryStone");
-        eventList.add("Tomb of Lord Red Mask");
         eventList.add("Winding Halls");
     }
 

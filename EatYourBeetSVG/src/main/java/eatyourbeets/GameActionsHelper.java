@@ -253,6 +253,18 @@ public class GameActionsHelper
         return action;
     }
 
+    public static MakeTempCardInHandAction MakeCardInHand(AbstractCard card, int amount, boolean upgraded)
+    {
+        if (upgraded)
+        {
+            card.upgrade();
+        }
+
+        MakeTempCardInHandAction action = new MakeTempCardInHandAction(card, amount);
+        AddToDefault(action);
+        return action;
+    }
+
     public static DrawCardAction DrawCard(AbstractCreature source, int amount)
     {
         DrawCardAction action = new DrawCardAction(source, amount);
@@ -303,7 +315,7 @@ public class GameActionsHelper
         return action;
     }
 
-    public static DiscardAction ChooseAndDiscard(int amount, boolean random)
+    public static DiscardAction Discard(int amount, boolean random)
     {
         DiscardAction action = new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, amount, random);
         AddToDefault(action);

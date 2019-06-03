@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.FireOrbEvokeAction;
-import eatyourbeets.actions.FireOrbPassiveAction;
+import eatyourbeets.actions.Orbs.FireOrbEvokeAction;
+import eatyourbeets.actions.Orbs.FireOrbPassiveAction;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class Fire extends AnimatorOrb

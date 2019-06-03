@@ -2,6 +2,7 @@ package eatyourbeets;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -15,8 +16,10 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.events.TheMaskedTraveler1;
+import eatyourbeets.events.TheMaskedTraveler2;
 import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
+import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.*;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.rewards.SynergyCardsReward;
@@ -121,6 +124,7 @@ public class AnimatorResources
         BaseMod.loadCustomStringsFile(PowerStrings.class, languagePath + "Animator_PowerStrings.json");
         BaseMod.loadCustomStringsFile(UIStrings.class, languagePath + "Animator_UIStrings.json");
         BaseMod.loadCustomStringsFile(EventStrings.class, languagePath + "Animator_EventStrings.json");
+        BaseMod.loadCustomStringsFile(PotionStrings.class, languagePath + "Animator_PotionStrings.json");
         BaseMod.loadCustomStringsFile(MonsterStrings.class, languagePath + "Animator_MonsterStrings.json");
     }
 
@@ -197,41 +201,14 @@ public class AnimatorResources
 
     public static void LoadCustomRelics()
     {
-        BaseMod.addRelicToCustomPool(new LivingPicture(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new Rinne(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new ExquisiteBloodVial(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new TheMissingPiece(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new PurgingStone_Cards(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new WizardHat(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new Buoy(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new RacePiece(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new BattleDrones(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new CursedBlade(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new CursedGlyph(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new VividPicture(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new AlchemistGlove(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new OldCoffin(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new WornHelmet(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new HeavyHalberd(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new HallowedScabbard(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new EngravedStaff(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new CerealBox(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new ShionDessert(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new TheEgnaroPiece(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new TheEruzaStone(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new TheWolleyCore(), AbstractEnums.Cards.THE_ANIMATOR);
-        BaseMod.addRelicToCustomPool(new TheAncientMedallion(), AbstractEnums.Cards.THE_ANIMATOR);
+        AnimatorResources_Relics.AddRelics();
+
+        BaseMod.addPotion(FalseLifePotion.class, Color.GOLDENROD.cpy(), Color.WHITE.cpy(), Color.GOLDENROD.cpy(), FalseLifePotion.POTION_ID, AbstractEnums.Characters.THE_ANIMATOR);
     }
 
     public static void LoadAudio()
     {
-        BaseMod.addAudio("ANIMATOR_ORB_EARTH_EVOKE", "audio/sound/ANIMATOR_ORB_EARTH_EVOKE.ogg");
-        BaseMod.addAudio("ANIMATOR_ORB_EARTH_CHANNEL", "audio/sound/ANIMATOR_ORB_EARTH_CHANNEL.ogg");
-        BaseMod.addAudio("ANIMATOR_KIRA_POWER", "audio/sound/ANIMATOR_KIRA_POWER.ogg");
-        BaseMod.addAudio("ANIMATOR_MEGUMIN_CHARGE", "audio/sound/ANIMATOR_MEGUMIN_CHARGE.ogg");
-        BaseMod.addAudio("ANIMATOR_THE_UNNAMED.ogg", "audio/music/ANIMATOR_THE_UNNAMED.ogg");
-        BaseMod.addAudio("ANIMATOR_THE_ULTIMATE_CRYSTAL.ogg", "audio/music/ANIMATOR_THE_ULTIMATE_CRYSTAL.ogg");
-        //BaseMod.addAudio("ANIMATOR_EMONZAEMON_ATTACK", "audio/sound/ANIMATOR_EMONZAEMON_ATTACK.ogg");
+        AnimatorResources_Audio.LoadAudio();
     }
 
     public static void LoadMonsters()
@@ -242,9 +219,7 @@ public class AnimatorResources
 
     public static void LoadCustomEvents()
     {
-        BaseMod.addEvent(TheMaskedTraveler1.ID, TheMaskedTraveler1.class, Exordium.ID);
-        BaseMod.addEvent(eatyourbeets.events.TheUnnamed.ID, eatyourbeets.events.TheUnnamed.class, TheEnding.ID);
-        //BaseMod.addEvent(TheDomVedeloper1.ID, TheDomVedeloper1.class, Exordium.ID);
+        AnimatorResources_Events.AddEvents();
     }
 
     public static void LoadCustomCards() throws Exception

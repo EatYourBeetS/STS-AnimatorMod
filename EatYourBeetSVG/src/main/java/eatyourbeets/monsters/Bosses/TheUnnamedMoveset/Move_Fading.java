@@ -3,27 +3,27 @@ package eatyourbeets.monsters.Bosses.TheUnnamedMoveset;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.powers.FadingPlayerPower;
 
-public class Move_Fading extends Move
+public class Move_Fading extends AbstractMove
 {
-    private int FADING_TURNS;
+    public int fadingTurns;
 
-    public Move_Fading(int id, int ascensionLevel, TheUnnamed owner)
+    public Move_Fading(int turns)
     {
-        super((byte) id, ascensionLevel, owner);
-
-        FADING_TURNS = 4;
+        fadingTurns = turns;
     }
 
     @Override
     public boolean CanUse(Byte previousMove)
     {
-        return false;
+        return !AbstractDungeon.player.hasPower(FadingPlayerPower.POWER_ID);
     }
 
     public void SetMove()
@@ -40,15 +40,18 @@ public class Move_Fading extends Move
 
         if (fading != null)
         {
-            fading.amount = FADING_TURNS;
+            fading.amount = fadingTurns;
         }
         else
         {
-            fading = new FadingPlayerPower(target, FADING_TURNS);
+            fading = new FadingPlayerPower(target, fadingTurns);
             target.powers.add(fading);
         }
 
         fading.flash();
-        theUnnamed.appliedFading = true;
+        if (owner instanceof TheUnnamed)
+        {
+            ((TheUnnamed) owner).appliedFading = true;
+        }
     }
 }

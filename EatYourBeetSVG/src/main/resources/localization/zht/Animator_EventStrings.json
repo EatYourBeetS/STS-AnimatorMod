@@ -1,55 +1,133 @@
+
 {
-  "Animator_TheMaskedTraveler1": {
-    "NAME": "覆面旅者",
-    "DESCRIPTIONS": [
-      "經過這個陌生的全新場景時，一個揹著巨大包裹的覆面旅者突然向你靠近。NL NL \"你好啊，兄弟, 你有没有正好帶著一些... @'特别的'@ 武器?\" NL ... NL \"你願意把它們賣給我嗎?\" NL NL \"又或者你更願意從我的... #y收藏裡買些東西?\"",
-      "\"他真的接受了?\" NL .. NL \"咳咳咳, @感谢@ 您的 @交易@ , 祝你一路順風.\" NL NL 說著，他逐漸從你的視野中消失了。"
-    ],
-    "OPTIONS": [
-      "[出售] #g移除 ", ". #g獲得 #g", " #g個 金幣。",
-      "[交易] #g升级 #g所有 打擊牌 #g和 防禦牌 . #r失去 #r", " #r個金幣。",
-      "[離開]",
-	  "[鎖定] 没有牌可以出售。",
-	  "[鎖定] 没有足夠的金幣。"
-    ]
-  },
-  "Animator_TheDomVedeloper1": {
-    "NAME": "The Dom Vedeloper",
-    "DESCRIPTIONS": [
-      "You hear someone shouting in the distance: NL NL \" Rinne should behave more @erratically@ \" NL \" #yGilgamesh probably deserves a buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL You are slightly intrigued by those strange words... NL Do you decide to approach him?",
-	  "\"Oh hello, hello! Those are some #pinteresting cards, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your cards, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
-	  "\"Wonderful! Wonderful! Here, tell me, what do you think of this card?\"",
-	  "\"Nice, how about this one?\"",
-	  "\"Interesting, and this one?\"",
-	  "\"I see... Lastly, what's your opinion on this one?\"",
-	  "\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you accept, your answers will be sent to the developer)",
-	  "\"Perfect, have a nice day!\" NL NL \"... So... the next series could be...\""
-    ],
-    "OPTIONS": [
-	  "[離開]",
-      "[接受] 回答四個問題。 #g獲得 #g100 #g金幣.",
-	  "[1] 這個絕對太強了...",
-      "[2] 這是張強力的牌!",
-	  "[3] 這是張大部分情況下不錯的牌。",
-	  "[4] 有時候會發揮作用。",
-	  "[5] 甚麼? 不要再給我看到這東西。",
-	  "[簽名]",
-	  "[繼續]"
-    ]
-  },
-  "Animator_TheUnnamed": {
-    "NAME": "覆面旅者",
-    "DESCRIPTIONS": [
-    "\"是你! 你在擊敗這尖塔之@心@ 的路上嗎?\" NL NL \"你覺得幫我解決一個另外的威脅怎麼樣? 你看, 無名 已經捲土重來了, 但是不用擔心! 這對於你來說，也只是小菜一碟!\"",
-    "(與 無名 戰鬥代表著你將放棄所有的遺物和藥水, 並且你的生命值與最大生命值將會被鎖定到 #b100 點。 你可以從3個特殊遺物中選擇1個，並將它帶入最終的戰鬥......)",
-    "\"太好了! 順著這條路走你就能看見他了, 我對你抱有信心!\" NL NL \"... 他這次肯定是有去無回...\" "
-    ],
-    "OPTIONS": [
-    "[離開]",
-    "[諮詢]",
-    "[接受] 獲得 RelicName1",
-    "[接受] 獲得 RelicName2",
-    "[接受] 獲得 RelicName3"
-    ]
-  }
+	"Animator_TheMaskedTraveler1":
+	{
+		"NAME": "覆面旅者",
+		"DESCRIPTIONS": [
+			"經過這個陌生的全新場景時，一個揹著巨大包裹的覆面旅者突然向你靠近。NL NL \"你好啊，兄弟, 你有没有正好帶著一些... @'特别的'@ 武器?\" NL ... NL \"你願意把它們賣給我嗎?\" NL NL \"又或者你更願意從我的... #y收藏裡買些東西?\"",
+			"\"他真的接受了?\" NL .. NL \"咳咳咳, @感谢@ 您的 @交易@ , 祝你一路順風.\" NL NL 說著，他逐漸從你的視野中消失了。"
+		],
+		"OPTIONS": [
+			"[出售] #g移除 ",
+			". #g獲得 #g",
+			" #g個 金幣。",
+			"[交易] #g升级 #g所有 打擊牌 #g和 防禦牌 . #r失去 #r",
+			" #r個金幣。",
+			"[離開]",
+			"[鎖定] 没有牌可以出售。",
+			"[鎖定] 没有足夠的金幣。"
+		]
+	},
+	"Animator_TheMaskedTraveler2":
+	{
+		"NAME": "覆面旅者 -第二章-",
+		"DESCRIPTIONS": [
+			"\"是你! 你在擊敗這尖塔之@心@ 的路上嗎?\" NL NL \"你覺得幫我解決一個另外的威脅怎麼樣? 你看, 無名 已經捲土重來了, 但是不用擔心! 這對於你來說，也只是小菜一碟!\"",
+			"對了，有件小事我得通知你，與 無名 戰鬥代表著你將放棄所有的遺物，藥水和卡牌升級。但是，最重要的是你可以從3個特殊遺物中選擇1個!",
+			"\"太好了! 順著這條路走你就能看見他了, 我對你抱有信心!\" NL NL \"等等，我差一點忘記了，你在路上會看到很多這些小玩意，你先帶一個走吧!\"NL NL [ #y請注意 : 本章將會自帶原聲，音樂會漸漸在將來的版本完善。 ]"
+		],
+		"OPTIONS": [
+			"[離開]",
+			"[諮詢]",
+			"[接受] #g獲得 #g特殊遺物 。"
+		]
+	},
+	"Animator_TheMaskedTraveler3":
+	{
+		"NAME": "The Masked Traveler (Part 3)",
+		"DESCRIPTIONS": [
+			"\"晚上好我的兄弟!\" NL NL \"我怎樣到這裡的? 不用管這些小事啦。我們只是為了這嶄新的一章需要額外的一個事件! 用你的一隻挂墜或者 #b150 #y金幣換一張稀有卡牌, 你自己定。或者... 你也可以直接離開趕路\"",
+			"\"謝啦! 你現在可以點擊'離開' 了。 \""
+		],
+		"OPTIONS": [
+			"[交易] #r失去上古挂墜 。 #g獲得一張已升級的稀有卡片 。",
+			"[交易] #r失去 #r150 #r金幣. #g獲得一張已升級的稀有卡片 。",
+			"[離開]",
+			"[鎖定] 沒有 #y上古挂墜 可以交易。",
+			"[鎖定] 沒有足夠的金幣。"
+		]
+	},
+	"Animator_TheDomVedeloper1":
+	{
+		"NAME": "The Dom Vedeloper",
+		"DESCRIPTIONS": [
+			"You hear someone shouting in the distance: NL NL \" Rinne should behave more @erratically@ \" NL \" #yGilgamesh probably deserves a buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL You are slightly intrigued by those strange words... NL Do you decide to approach him?",
+			"\"Oh hello, hello! Those are some #pinteresting cards, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your cards, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
+			"\"Wonderful! Wonderful! Here, tell me, what do you think of this card?\"",
+			"\"Nice, how about this one?\"",
+			"\"Interesting, and this one?\"",
+			"\"I see... Lastly, what's your opinion on this one?\"",
+			"\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you accept, your answers will be sent to the developer)",
+			"\"Perfect, have a nice day!\" NL NL \"... So... the next series could be...\""
+		],
+		"OPTIONS": [
+			"[離開]",
+			"[接受] 回答四個問題。 #g獲得 #g100 #g金幣.",
+			"[1] 這個絕對太強了...",
+			"[2] 這是張強力的牌!",
+			"[3] 這是張大部分情況下不錯的牌。",
+			"[4] 有時候會發揮作用。",
+			"[5] 甚麼? 不要再給我看到這東西。",
+			"[簽名]",
+			"[繼續]"
+		]
+	},
+	"Animator_TheHaunt":
+	{
+		"NAME": "出沒地",
+		"DESCRIPTIONS": [
+			"#y這地點的所有東西都是金做的。#y看起來，這裡的環境整體都受到改變了...",
+			"#y閃亮的金色山川， #y在山脈中流淌的液態金河流... #y為什麼你剛才沒有發現這個地方? NL NL ",
+			"#y沒關係，你感覺你的大腦在強迫你帶走一些財寶。 NL ",
+			"#y你 #r@必須@ #y拿走一些寶藏。 #y就拿一把金做的小石子吧。 NL NL ",
+			"#y... #y最壞的結果能是什麼?",
+			"NL NL NL NL NL NL NL #y在遠處，有什麼東西在偷笑。 "
+		],
+		"OPTIONS": [
+			"#y[帶走金子] #y獲得 #y{0} #y金幣.",
+			"#r[離開] #r回复 #r{0} #r點生命值",
+			"#r[離開]"
+		]
+	},
+	"Animator_TheUnnamedMerchant":
+	{
+		"NAME": "無名商人",
+		"DESCRIPTIONS": [
+			"\"我是商人\" NL NL 你聽見某人說話。回頭一看，有一個奇怪的人在盯著你，一動也不動，好像在期待著什麼。",
+			"\"我買賣很多物品...\" NL NL \"但是這裡唯一值錢的東西也只有這 #y上古挂墜 。你是要買，還是要賣?\"",
+			"\"好吧，但不要在用你的命運來挑戰我的耐心了。 \"",
+			"\"這就是我的價格，你喜不喜歡，關我何事\"",
+			"\"好買賣...好買賣\""
+		],
+		"OPTIONS": [
+			"[出售] #r失去 #r上古挂墜. #g獲得 #g{0} #g金幣.",
+			"[購買] #g獲得 #g上古挂墜. #r失去 #r{0} #r金幣.",
+			"[講價] #g50%: #g更好價錢. #r50%: #r更差價錢.",
+			"[離開]",
+			"[鎖定] 沒有 #y上古挂墜 可出售.",
+			"[鎖定] 金幣不夠",
+			"[繼續]"
+		]
+	},
+	"Animator_TheAbandonedCabin":
+	{
+		"NAME": "遺棄的小屋",
+		"DESCRIPTIONS": [
+			"你碰見了一個看起來被遺棄的小屋。 NL NL 在飢餓與睡魔的折磨下，你決定放棄你直覺的警告並進入到這個小屋裡。 NL NL 檢查過可能存在的居住者之後，你的意識漸漸模糊...",
+			"一個 @響亮的@ 擊打聲將你驚醒。 NL NL 你身處的房間基本是 #p伸手不見五指 , NL 但是你發覺了一隻 @怪物@ ，它就站在你身前。",
+			"\"飢餓... 需要#r血... 交易?\" NL NL @怪物@ 將它的手臂伸到你面前，你在它手裡發現了一隻#y上古挂墜, 你細想這買賣的利害...",
+			"你衝出了小屋的門， NL 逃向了你能看見的最遠的地方。",
+			"你試著抓住遺物，但 @怪物@ 用它的怪力 #r咬 了你的手臂。 儘管如此，它還是鬆開了攥有遺物的手。",
+			"\"還要... 交易... 再...\" NL NL @怪物@ 拿出了另一個#y上古挂墜。 NL NL 你因為上一次的交易已#r嚴重負傷... ",
+			"你逃出了小屋， NL 但怪物還是傷害了你。",
+			"這一次的傷害還要比上次嚴重。 NL NL 但 @怪物@ 看起來非常滿意，它漸漸的離開了小屋..."
+		],
+		"OPTIONS": [
+			"[繼續]",
+			"[接受] #r失去 #r{0} #r生命值. #g獲得 #y上古挂墜",
+			"[逃跑]",
+			"[試圖逃跑] #r50% #r可能 #r失去 #r{0} #r生命值",
+			"[離開]"
+		]
+	}
 }

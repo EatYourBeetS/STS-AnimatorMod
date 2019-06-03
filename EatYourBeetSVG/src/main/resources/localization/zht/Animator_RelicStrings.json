@@ -60,6 +60,13 @@
 		"FLAVOR": "統治死亡即統治生命， 死即生之巔峰, 崇敬生命吧.",
 		"NAME": "重戟"
 	},
+	
+	"Animator_Hoodie":
+	{
+		"DESCRIPTIONS": ["如果你在一場戰鬥沒有受到傷害, 獲得 #b", " #y生命上限 。"],
+		"FLAVOR": "有了這個, 你說不定可以被英雄協會承認.",
+		"NAME": "帽衫"
+	},
 	"Animator_LivingPicture":
 	{
 		"DESCRIPTIONS": ["當 #y同調 發生時抽一張張牌，每回合一次"],
@@ -108,9 +115,9 @@
 		"FLAVOR": "這是什麼?",
 		"NAME": "缺少的部分"
 	},
-	"Animator_TheAncientMedallion":
+	"Animator_AncientMedallion":
 	{
-		"DESCRIPTIONS": ["獲得時, 升級2張隨機的牌並且升級1張你選擇的牌。 每輪開始時, 回复 #b", " 生命值。"],
+		"DESCRIPTIONS": ["獲得時, #y升級 2張隨機的牌並且升級1張你選擇的牌。 每輪開始時, 回复 #b", " 生命值。"],
 		"FLAVOR": "...",
 		"NAME": "上古挂墜"
 	},
@@ -140,7 +147,7 @@
 	},
 	"Animator_WizardHat":
 	{
-		"DESCRIPTIONS": ["你的回合結束時，消耗你所有剩餘的能量。 為每一個消耗的能量， 從這倒數器上減1。 當倒數器的數字變成 #g0 時， 對所有敵人造成 #b ", " 點傷害。"],
+		"DESCRIPTIONS": ["你的回合結束時，從你剩餘的能量吸收 #b1 能量。每次此遺物總共吸收 #b", " 能量時，對所有敵人造成 #b", " 點傷害。"],
 		"FLAVOR": "爆裂魔法天下第一！ .......當然，需要時間準備.",
 		"NAME": "巫師帽"
 	},

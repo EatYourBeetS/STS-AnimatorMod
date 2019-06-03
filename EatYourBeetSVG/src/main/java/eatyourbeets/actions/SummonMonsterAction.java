@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.SlowPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
+
+import java.util.ArrayList;
 
 public class SummonMonsterAction extends AnimatorAction
 {
@@ -52,7 +52,19 @@ public class SummonMonsterAction extends AnimatorAction
             this.monster.animX = 1200.0F * Settings.scale;
             this.monster.init();
             this.monster.applyPowers();
-            AbstractDungeon.getCurrRoom().monsters.addMonster(this.monster);
+
+            int index;
+            ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
+            for (index = 0; index < monsters.size(); index++)
+            {
+                if (this.monster.drawX > monsters.get(index).drawX)
+                {
+                    break;
+                }
+            }
+
+            monsters.add(index, this.monster);
+
             if (ModHelper.isModEnabled("Lethality"))
             {
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.monster, this.monster, new StrengthPower(this.monster, 3), 3));

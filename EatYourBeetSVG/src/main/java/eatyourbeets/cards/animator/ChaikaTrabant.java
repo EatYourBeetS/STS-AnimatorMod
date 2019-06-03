@@ -26,7 +26,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(14,8, 2);
+        Initialize(13,9, 2);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -48,7 +48,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         if (TryUpgrade())
         {
-            upgradeDamage(6);
+            upgradeDamage(5);
         }
     }
 

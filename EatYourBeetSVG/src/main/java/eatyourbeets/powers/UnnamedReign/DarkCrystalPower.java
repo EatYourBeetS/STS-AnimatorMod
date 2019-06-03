@@ -1,42 +1,21 @@
 package eatyourbeets.powers.UnnamedReign;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.EnchantedArmorPower;
-import eatyourbeets.powers.PlayerStatistics;
 
-public class DarkCrystalPower extends AnimatorPower
+public class DarkCrystalPower extends AbstractCrystalPower
 {
     public static final String POWER_ID = CreateFullID(DarkCrystalPower.class.getSimpleName());
 
     public DarkCrystalPower(AbstractCreature owner, int value)
     {
-        super(owner, POWER_ID);
-
-        this.amount = value;
-
-        updateDescription();
+        super(POWER_ID, owner, value);
     }
 
     @Override
-    public void updateDescription()
+    protected void Activate(AbstractCreature target)
     {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0] + amount + desc[1];
-    }
-
-    public int onAttacked(DamageInfo info, int damageAmount)
-    {
-        if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner)
-        {
-            this.flash();
-            AbstractCreature target = PlayerStatistics.GetRandomCharacter(true);
-            GameActionsHelper.ApplyPower(null, target, new EnchantedArmorPower(target, amount), amount);
-        }
-
-        return damageAmount;
+        GameActionsHelper.ApplyPower(null, target, new ConstrictedPower(target, null, amount), amount);
     }
 }

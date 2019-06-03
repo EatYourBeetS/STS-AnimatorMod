@@ -4,8 +4,9 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
 
-public class CursedGlyph extends AnimatorRelic
+public class CursedGlyph extends AnimatorRelic implements AllowedUnnamedReignRelic
 {
     private static final int LOSE_MAX_HP = 4;
 

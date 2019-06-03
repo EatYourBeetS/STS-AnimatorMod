@@ -20,9 +20,9 @@ public class HiiragiShinya extends AnimatorCard
 
     public HiiragiShinya()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(10,0, 3);
+        Initialize(4,0, 3);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -44,7 +44,7 @@ public class HiiragiShinya extends AnimatorCard
 
         if (attacks <= 1)
         {
-            AbstractPower debuff = GetRandomDebuffs(p, m, upgraded).Retrieve(AbstractDungeon.miscRng);
+            AbstractPower debuff = GetRandomDebuffs(p, m, false).Retrieve(AbstractDungeon.miscRng);
             if (debuff != null)
             {
                 GameActionsHelper.ApplyPower(p, m, debuff, debuff.amount);
@@ -57,7 +57,7 @@ public class HiiragiShinya extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(3);
         }
     }
 

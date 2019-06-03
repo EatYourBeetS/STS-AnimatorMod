@@ -1,0 +1,183 @@
+package eatyourbeets.monsters.UnnamedReign.Shapes;
+
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
+import eatyourbeets.monsters.UnnamedReign.UnnamedShape;
+
+public class MonsterData_Shape extends AbstractMonsterData
+{
+    public final MonsterShape shape;
+    public final MonsterElement element;
+    public final MonsterTier tier;
+
+    public MonsterData_Shape(MonsterShape shape, MonsterElement element, MonsterTier tier)
+    {
+        super(UnnamedShape.CreateFullID(shape, element, tier));
+
+        this.element = element;
+        this.shape = shape;
+        this.tier = tier;
+
+        String filePath = "images/monsters/Animator_" + shape + "/" + shape + "_" + element + "_" + tier.GetId();
+        atlasUrl = filePath + ".atlas";
+        jsonUrl = filePath + ".json";
+
+        imgUrl = UnnamedShape.GetResourcePath(shape, element, tier) + ".png";
+        offsetY = 70;
+
+        switch (shape)
+        {
+            case Cube:
+                SetupCube(tier);
+                break;
+
+            case Crystal:
+                SetupCrystal(tier);
+                break;
+
+            case Wisp:
+                SetupWisp(tier);
+                break;
+        }
+
+        if (tier != MonsterTier.Ultimate)
+        {
+            maxHealth += AbstractDungeon.monsterHpRng.random(-4, 4);
+        }
+    }
+
+    private void SetupCube(MonsterTier tier)
+    {
+        switch (tier)
+        {
+            case Small:
+            {
+                hb_w = 120;
+                hb_h = 120;
+                maxHealth = 120;
+                break;
+            }
+
+            case Normal:
+            {
+                offsetY = 40;
+                scale = 0.9f;
+                hb_y = -30f;
+                hb_w = 140;
+                hb_h = 140;
+                maxHealth = 155;
+                break;
+            }
+
+            case Advanced:
+            {
+                scale = 0.5f;
+                hb_y = -60f;
+                hb_w = 220;
+                hb_h = 220;
+                maxHealth = 205;
+                break;
+            }
+
+            case Ultimate:
+            {
+                scale = 0.4f;
+                hb_y = -60f;
+                hb_w = 230;
+                hb_h = 230;
+                maxHealth = 600;
+                break;
+            }
+        }
+    }
+
+    private void SetupCrystal(MonsterTier tier)
+    {
+        switch (tier)
+        {
+            case Small:
+            {
+                hb_w = 110;
+                hb_h = 110;
+                maxHealth = 120;
+                break;
+            }
+
+            case Normal:
+            {
+                scale = 1.4f;
+                offsetY = 55;
+                hb_y = -60;
+                hb_w = 140;
+                hb_h = 140;
+                maxHealth = 145;
+                break;
+            }
+
+            case Advanced:
+            {
+                scale = 0.5f;
+                hb_y = -50;
+                hb_w = 220;
+                hb_h = 220;
+                maxHealth = 200;
+                break;
+            }
+
+            case Ultimate:
+            {
+                scale = 1.3f;
+                hb_y = -50;
+                hb_w = 220;
+                hb_h = 130;
+                maxHealth = 666;
+                break;
+            }
+        }
+    }
+
+    private void SetupWisp(MonsterTier tier)
+    {
+        switch (tier)
+        {
+            case Small:
+            {
+                hb_w = 240;
+                hb_h = 240;
+                maxHealth = 90;
+                break;
+            }
+
+            case Normal:
+            {
+                scale = 0.8f;
+                offsetY = 40;
+                hb_y = -30;
+                hb_w = 140;
+                hb_h = 140;
+                maxHealth = 120;
+                break;
+            }
+
+            case Advanced:
+            {
+                scale = 0.4f;
+                hb_y = -60;
+                hb_w = 220;
+                hb_h = 220;
+                maxHealth = 160;
+                break;
+            }
+
+            case Ultimate:
+            {
+                scale = 0.4f;
+                hb_y = -60f;
+                hb_w = 240;
+                hb_h = 240;
+                maxHealth = 588;
+                break;
+            }
+        }
+    }
+}

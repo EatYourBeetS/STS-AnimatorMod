@@ -52,7 +52,7 @@ public class FadingPlayerPower extends AbstractPower
             this.flash();
             AbstractDungeon.actionManager.addToBottom(new VFXAction(new ExplosionSmallEffect(this.owner.hb.cX, this.owner.hb.cY), 0.1F));
 
-            for (int i = 0; i < owner.currentHealth; i ++)
+            for (int i = 0; i < owner.maxHealth; i ++)
             {
                 GameActionsHelper.DamageTarget(owner, owner, i, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
             }

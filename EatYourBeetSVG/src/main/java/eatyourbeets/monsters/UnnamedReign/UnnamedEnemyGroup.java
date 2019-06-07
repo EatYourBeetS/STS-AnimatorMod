@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign;
 
 import basemod.BaseMod;
-import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -9,8 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.AnimatorResources;
-import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Crystal;

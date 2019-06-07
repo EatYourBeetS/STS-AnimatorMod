@@ -1,7 +1,6 @@
 package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -66,7 +65,7 @@ public class UltimateWispPower extends AnimatorPower
     {
         if (target != owner && damageAmount > 0 && info.type != DamageInfo.DamageType.THORNS)
         {
-            GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(new Burn(), 1));
+            GameActionsHelper.MakeCardInDiscardPile(new Burn(), 1, true);
         }
     }
 }

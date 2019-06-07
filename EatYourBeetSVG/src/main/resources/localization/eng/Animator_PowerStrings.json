@@ -160,7 +160,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"Whenever a card is played, gains #b", " #yStrength. NL NL When losing #b", " or more HP in a turn, the opponent gains #b", " #yPlated #yArmor."
+			"Whenever a card is played, gains #b", " #yStrength. NL NL After #b", " turn(s), summons a copy of itself."
 		],
 		"NAME": "Ultimate Crystal"
 	},

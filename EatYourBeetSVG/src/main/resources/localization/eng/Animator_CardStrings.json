@@ -29,9 +29,8 @@
 	},
 	"animator_Ainz":
 	{
-		"DESCRIPTION": "Costs 1 less each turn. At the start of your turn, activate 1 of 4 random [#EFC851]Effects.",
-		"NAME": "Ainz Ooal Gown",
-		"UPGRADE_DESCRIPTION": "Costs 1 less each turn. At the start of your turn, activate 1 of 4 random Upgraded [#EFC851]Effects."
+		"DESCRIPTION": "Costs 1 less each turn. At the start of your turn, activate 1 of !M! random [#EFC851]Effects.",
+		"NAME": "Ainz Ooal Gown"
 	},
 	"animator_Aisha":
 	{
@@ -118,7 +117,7 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Next turn, deal !D! damage and apply !M! random [#EFC851]Debuffs.",
+		"DESCRIPTION": "Next turn, deal !D! damage and apply !M! random [#EFC851]Debuffs. Recall: Deal !SV! damage to ALL enemies.",
 		"NAME": "Chaika Trabant"
 	},
 	"animator_ChlammyZell":
@@ -280,7 +279,7 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "[#EFC851]Ethereal. Gain !M! Temporary Focus. Gain !B! Block. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse.",
+		"DESCRIPTION": "[#EFC851]Ethereal. Gain !M! Temporary Focus. NL Gain !B! Block. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse.",
 		"NAME": "Alphonse Elric",
 		"UPGRADE_DESCRIPTION": "[#EFC851]Ethereal. Gain !M! Temporary Focus. Gain !B! Block. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse+."
 	},
@@ -1028,7 +1027,12 @@
 		"NAME": "Zero",
 		"UPGRADE_DESCRIPTION": "Play a random [#EFC851]Skill from your draw pile."
 	},
-	
+		
+	"animator_Crystallize":
+	{
+		"DESCRIPTION": "Lose !SV! HP. NL Gain !M! Metallicize. NL Exhaust.",
+		"NAME": "Crystallize"
+	},
 	"animator_TheHaunt":
 	{
 		"DESCRIPTION": "Gain !M! [#EFC851]Gold. NL Become more haunted. NL Ethereal. Exhaust.",
@@ -1110,9 +1114,8 @@
 	},
 	"animator_SeriousSaitama":
 	{
-		"DESCRIPTION": "Stun ALL enemies. A random enemy will flee from combat. Exhaust.",
-		"NAME": "Serious Saitama",
-		"UPGRADE_DESCRIPTION": "Innate. Stun ALL enemies. A random enemy will flee from combat. Exhaust."
+		"DESCRIPTION": "Stun ALL enemies. NL Gain !M! Strength. NL Exhaust.",
+		"NAME": "Serious Saitama"
 	},
 	
 	"animator_Azriel":

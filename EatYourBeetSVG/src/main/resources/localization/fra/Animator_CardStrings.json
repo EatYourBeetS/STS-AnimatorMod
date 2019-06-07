@@ -28,9 +28,8 @@
 	},
 	"animator_Ainz":
 	{
-		"DESCRIPTION": "Coûte 1 en moins chaque tour. Au début de chaque tour, choisissez 1 des 4  [#EFC851]Effets aléatoires.",
-		"NAME": "Ainz Ooal Gown",
-		"UPGRADE_DESCRIPTION": "Coûte 1 en moins chaque tour. Au début de chaque tour, choisissez 1 des 4  [#EFC851]Effets [#EFC851]Améliorés aléatoires."
+		"DESCRIPTION": "Coûte 1 en moins chaque tour. Au début de chaque tour, choisissez 1 des !M! [#EFC851]Effets aléatoires.",
+		"NAME": "Ainz Ooal Gown"
 	},
 	"animator_Aisha":
 	{
@@ -65,9 +64,9 @@
 	},
 	"animator_Arpeggio":
 	{
-		"DESCRIPTION": "Canalisez 1 Terre. NL Gagnez 1 de Concentration. NL Épuisement.",
+		"DESCRIPTION": "Canalisez 1 Orbe Terrestre. NL Gagnez 1 de Concentration. NL Épuisement.",
 		"NAME": "Arpeggio",
-		"UPGRADE_DESCRIPTION": "Canalisez 1 Terre. NL Gagnez 1 emplacement d'Orbe. NL Gagnez 1 de Concentration. NL Épuisement."
+		"UPGRADE_DESCRIPTION": "Canalisez 1 Orbe Terrestre. NL Gagnez 1 emplacement d'Orbe. NL Gagnez 1 de Concentration. NL Épuisement."
 	},
 	"animator_Asuramaru":
 	{
@@ -81,7 +80,7 @@
 	},
 	"animator_Benimaru":
 	{
-		"DESCRIPTION": "Canalisez 1 Feu. NL Infligez !D! dégât(s) à TOUS les ennemis. Synergie: Appliquez !M! Brûlure.",
+		"DESCRIPTION": "Canalisez 1 Orbe Incendiaire. NL Infligez !D! dégât(s) à TOUS les ennemis. Synergie: Appliquez !M! Brûlure.",
 		"NAME": "Benimaru"
 	},
 	"animator_Berserker":
@@ -91,7 +90,7 @@
 	},
 	"animator_Biyorigo":
 	{
-		"DESCRIPTION": "Gagnez 1 d'Artéfact. NL Toutes les 4 Attaques jouées, Gagnez !M! Force et 1 Dextérité.",
+		"DESCRIPTION": "Gagnez 1 d'Artéfact. NL Toutes les 4 Attaques jouées, Gagnez !M! de Force et 1 de Dextérité.",
 		"NAME": "Biyorigo"
 	},
 	"animator_BlackLotus":
@@ -106,7 +105,7 @@
 	},
 	"animator_Caster":
 	{
-		"DESCRIPTION": "[#EFC851]Activez votre première Orbe. NL [#EFC851]Canalisez 1 Tenèbre. NL Boost !SV! : L'ennemi perd !M! Force.",
+		"DESCRIPTION": "[#EFC851]Activez votre première Orbe. NL Canalisez 1 Orbe Obscure. NL Boost !SV! : L'ennemi perd !M! de Force.",
 		"NAME": "Caster"
 	},
 	"animator_ChaikaBohdan":
@@ -117,7 +116,7 @@
 	},
 	"animator_ChaikaTrabant":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Au prochain tour, Infligez !D! dégât(s) et !M! [#EFC851]Debuffs aléatoires.",
+		"DESCRIPTION": "Au prochain tour, Infligez !D! dégât(s) et !M! [#EFC851]Debuffs aléatoires. Rappel: Infligez !SV! dégât(s) à TOUS les ennemis.",
 		"NAME": "Chaika Trabant"
 	},
 	"animator_ChlammyZell":
@@ -134,7 +133,7 @@
 	},
 	"animator_Chung":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Cooldown !SV! : NL Canalisez 1 Plasma.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Cooldown !SV! : NL Canalisez 1 Orbe Plasmique.",
 		"NAME": "Chung"
 	},
 	"animator_Cocytus":
@@ -182,7 +181,7 @@
 	},
 	"animator_Defend_FullmetalAlchemist":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Cooldown !SV!: NL [#EFC851]Canalisez 1 Givre.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Cooldown !SV!: NL Canalisez 1 Orbe Glaciale.",
 		"NAME": "Défense Amélioré"
 	},
 	"animator_Defend_GATE":
@@ -258,7 +257,7 @@
 	},
 	"animator_DolaSchwi":
 	{
-		"DESCRIPTION": "Appliquez !M! Ciblage. NL Canalisez 1 Foudre. NL Cooldown !SV! : NL Infligez !D! dégât(s).",
+		"DESCRIPTION": "Appliquez !M! de Ciblage. NL Canalisez 1 Orbe Kéraunique. NL Cooldown !SV! : NL Infligez !D! dégât(s).",
 		"NAME": "Schwi"
 	},
 	"animator_DolaStephanie":
@@ -269,7 +268,7 @@
 	},
 	"animator_DwarfShaman":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL [#EFC851]Canalisez 1 Terre. NL Synergie: Active la capacité passive de votre prochaine orbe.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Canalisez 1 Orbe Terrestre. NL Synergie: Active la capacité passive de votre prochaine orbe.",
 		"NAME": "'Dwarf Shaman'"
 	},
 	"animator_Elesis":
@@ -279,26 +278,26 @@
 	},
 	"animator_ElricAlphonse":
 	{
-		"DESCRIPTION": "[#EFC851]Éthérée. Gagnez !M! Concentration temporaire. Gagnez !B! d'Armure. NL Héritage: Obtain [#EFC851]Armored [#EFC851]Alphonse.",
+		"DESCRIPTION": "[#EFC851]Éthérée. Gagnez !M! Concentration temporaire. NL Héritage: Obtain [#EFC851]Armored [#EFC851]Alphonse.",
 		"NAME": "Alphonse Elric",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Éthérée. Gagnez !M! Concentration temporaire. Gagnez !B! d'Armure. NL Héritage: Obtain [#EFC851]Armored [#EFC851]Alphonse+."
+		"UPGRADE_DESCRIPTION": "[#EFC851]Éthérée. Gagnez !M! Concentration temporaire. NL Héritage: Obtain [#EFC851]Armored [#EFC851]Alphonse+."
 	},
 	"animator_ElricAlphonseAlt":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez !M! d'Armure_Plaquée. NL Synergie: [#EFC851]Canalisez[] 1 Foudre.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez !M! d'Armure_Plaquée. NL Synergie: Canalisez 1 Orbe Kéraunique.",
 		"NAME": "Armored Alphonse"
 	},
 	"animator_ElricEdward":
 	{
 		"DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez 1 carte. NL Active un [#EFC851]Effet [#EFC851]Bonus en fonction de la carte que vous avez recycler.",
-		"EXTENDED_DESCRIPTION": ["Effet Bonus", "#yAttack: Canalisez 1 #yFoudre NL #yCompétence(s): Canalisez 1 #yGivre NL #yPower: Canalisez 1 #yTerre"],
+		"EXTENDED_DESCRIPTION": ["Effet Bonus", "#yAttaque: Canalisez 1 Orbe #yKéraunique. NL #yCompétence: Canalisez 1 Orbe #yGlaciale. NL #yPouvoir: Canalisez 1 Orbe #yTerrestre."],
 		"NAME": "Edward Elric"
 	},
 	"animator_Elsword":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez !M! card. Rappel: Canalisez 1 Feu.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez !M! card. Rappel: Canalisez 1 Orbe Incendiare.",
 		"NAME": "Elsword",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez !M! carte(s). Rappel: Canalisez 1 Feu."
+		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez !M! carte(s). Rappel: Canalisez 1 Orbe Incendiare."
 	},
 	"animator_EmiyaShirou":
 	{
@@ -555,9 +554,9 @@
 	},
 	"animator_LeleiLaLalena":
 	{
-		"DESCRIPTION": "Canalisez !M! Givre. NL Synergie: Appliquez !SV! Faiblesse à TOUS les ennemis.",
+		"DESCRIPTION": "Canalisez !M! Orbe Glaciale. NL Synergie: Appliquez !SV! Faiblesse à TOUS les ennemis.",
 		"NAME": "Lelei La Lalena",
-		"UPGRADE_DESCRIPTION": "Canalisez !M! Givre. NL Recyclez 1 carte. NL Synergie: Appliquez !SV! Faiblesse à TOUS les ennemis."
+		"UPGRADE_DESCRIPTION": "Canalisez !M! Orbe Glaciale. NL Recyclez 1 carte. NL Synergie: Appliquez !SV! Faiblesse à TOUS les ennemis."
 	},
 	"animator_Lelouch":
 	{
@@ -598,9 +597,9 @@
 	},
 	"animator_MisaKurobane":
 	{
-		"DESCRIPTION": "Canalisez 1 Feu. NL Piochez !M! carte. NL Placez une copie de [#EFC851]Yusarin dans la défausse. NL Épuisement.",
+		"DESCRIPTION": "Canalisez 1 Orbe Incendiaire. NL Piochez !M! carte. NL Placez une copie de [#EFC851]Yusarin dans la défausse. NL Épuisement.",
 		"NAME": "Misa Kurobane",
-		"UPGRADE_DESCRIPTION": "Canalisez 1 Feu. NL Piochez !M! cartes. NL Placez une copie de [#EFC851]Yusarin dans la défausse. NL Épuisement."
+		"UPGRADE_DESCRIPTION": "Canalisez 1 Orbe Incendiaire. NL Piochez !M! cartes. NL Placez une copie de [#EFC851]Yusarin dans la défausse. NL Épuisement."
 	},
 	"animator_Mitsuba":
 	{
@@ -615,46 +614,46 @@
 	},
 	"animator_Nanami":
 	{
-		"DESCRIPTION": "[#EFC851]Contre l'intension de l'ennemi. NL [#c6be6f]Ce [#c6be6f]text [#c6be6f]changera [#c6be6f]en [#c6be6f]ciblant [#c6be6f]un [#c6be6f]ennemi.",
-		"EXTENDED_DESCRIPTION": ["Infligez # dégât(s).", "Gagnez # d'Armure.", "Gagnez # Force.", "Appliquez # Faiblesse.", "Appliquez # Vulnérabilité.", "Assome l'ennemi.", "Canalisez # Orb(s) Aléatoire.", "UNUSED", "UNUSED", "Appliquez # Poison.", "Gagnez [E].", "Gagnez # Temp._PV.", "Piochez # carte(s)."],
+		"DESCRIPTION": "[#EFC851]Contre l'intention de l'ennemi. NL [#c6be6f]Ce [#c6be6f]text [#c6be6f]changera [#c6be6f]en [#c6be6f]ciblant [#c6be6f]un [#c6be6f]ennemi.",
+		"EXTENDED_DESCRIPTION": ["Infligez # dégât(s).", "Gagnez # d'Armure.", "Gagnez # de Force.", "Appliquez # de Faiblesse.", "Appliquez # de Vulnérabilité.", "Assomez l'ennemi.", "Canalisez # Orbe(s) aléatoire(s).", "UNUSED", "UNUSED", "Appliquez # de Poison.", "Gagnez [E].", "Gagnez # de PV_Temp..", "Piochez # carte(s)."],
 		"NAME": "Nanami",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Contre FORTEMENT l'intension de l'ennemi. NL [#c6be6f]Ce [#c6be6f]text [#c6be6f]changera [#c6be6f]en [#c6be6f]ciblant [#c6be6f]un [#c6be6f]ennemi."
+		"UPGRADE_DESCRIPTION": "[#EFC851]Contre FORTEMENT l'intention de l'ennemi. NL [#c6be6f]Ce [#c6be6f]text [#c6be6f]changera [#c6be6f]en [#c6be6f]ciblant [#c6be6f]un [#c6be6f]ennemi."
 	},
 	"animator_NarberalGamma":
 	{
-		"DESCRIPTION": "Changeforme. NL Canalisez !M! Foudre.",
+		"DESCRIPTION": "Changeforme. NL Canalisez !M! Orbe Kéraunique.",
 		"NAME": "Gamma Narberal",
-		"UPGRADE_DESCRIPTION": "Changeforme. NL Canalisez !M! Foudre. NL Foudre touche TOUS les ennemi ce tour."
+		"UPGRADE_DESCRIPTION": "Changeforme. NL Canalisez !M! Orbe Kéraunique. NL Vos Orbes Kéraunique touchent TOUS les ennemiss ce tour."
 	},
 	"animator_OrbCore_Chaos":
 	{
-		"DESCRIPTION": "Canalisez 1 Orbe aléatoire. Après la seconde Synergie de chaque tour,NL Découvrez 1 carte.",
+		"DESCRIPTION": "Canalisez 1 Orbe aléatoire. À la seconde Synergie de chaque tour,NL Découvrez 1 carte.",
 		"NAME": "Noyau Chaotique"
 	},
 	"animator_OrbCore_Dark":
 	{
-		"DESCRIPTION": "Canalisez 1 Tenèbre. NL Après la seconde Synergie de chaque tour,NL piochez !M! carte(s), puis Défaussez 1 carte.",
-		"NAME": "Noyau de Tenèbre"
+		"DESCRIPTION": "Canalisez 1 Orbe Obscure. NL À la seconde Synergie de chaque tour,NL piochez !M! carte(s), puis Défaussez 1 carte.",
+		"NAME": "Noyau Obscur"
 	},
 	"animator_OrbCore_Fire":
 	{
-		"DESCRIPTION": "Canalisez 1 Feu. NL Après la seconde Synergie de chaque tour,NL infligez !M! Brûlure à TOUS les ennemis.",
-		"NAME": "Noyau de Feu"
+		"DESCRIPTION": "Canalisez 1 Orbe Incendiare. NL À la seconde Synergie de chaque tour,NL infligez !M! Brûlure à TOUS les ennemis.",
+		"NAME": "Noyau Incendiaire"
 	},
 	"animator_OrbCore_Frost":
 	{
-		"DESCRIPTION": "Canalisez 1 Givre. NL Après la seconde Synergie de chaque tour,NL Gagnez !M! d'Armure.",
-		"NAME": "Noyau de Gel"
+		"DESCRIPTION": "Canalisez 1 Orbe Glaciale. NL À la seconde Synergie de chaque tour,NL Gagnez !M! d'Armure.",
+		"NAME": "Noyau Glacial"
 	},
 	"animator_OrbCore_Lightning":
 	{
-		"DESCRIPTION": "Canalisez 1 Foudre. NL Après la seconde Synergie de chaque tour,NL Infligez !M! dégât(s) à TOUS les ennemis.",
-		"NAME": "Noyau de Foudre"
+		"DESCRIPTION": "Canalisez 1 Orbe Kéraunique. NL À la seconde Synergie de chaque tour,NL Infligez !M! dégât(s) à TOUS les ennemis.",
+		"NAME": "Noyau Kéraunique"
 	},
 	"animator_OrbCore_Plasma":
 	{
-		"DESCRIPTION": "Canalisez 1 Plasma. NL Après la seconde Synergie de chaque tour,NL Gagnez [E].",
-		"NAME": "Noyau de Plasma"
+		"DESCRIPTION": "Canalisez 1 Orbe Plasmique. NL À la seconde Synergie de chaque tour,NL Gagnez [E].",
+		"NAME": "Noyau Plasmique"
 	},
 	"animator_PandorasActor":
 	{
@@ -669,8 +668,8 @@
 	},
 	"animator_Pride":
 	{
-		"DESCRIPTION": "Changeforme. [#EFC851]Orgueil. NL [#EFC851]Canalisez !M! [#EFC851]Tenèbre NL Synergie: Appliquez !SV! de Constriction. Épuisement.",
-		"EXTENDED_DESCRIPTION": ["Orgueil", "Jusqu'à votre prochain tour, quand vous subissez des dégâts non bloqués, votre Orbe de #yTenèbre la plus à droite perd autant de charges à la place."],
+		"DESCRIPTION": "Changeforme. [#EFC851]Orgueil. NL Canalisez !M! Orbe Obscure. NL Synergie: Appliquez !SV! de Restreinte. Épuisement.",
+		"EXTENDED_DESCRIPTION": ["Orgueil", "Jusqu'à votre prochain tour, quand vous subissez des dégâts non bloqués, votre Orbe #Obscure la plus à droite perd autant de charges à la place."],
 		"NAME": "Orgueil"
 	},
 	"animator_Priestess":
@@ -713,7 +712,7 @@
 	},
 	"animator_RoyMustang":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à TOUS les ennemis et Canalisez 1 Feu pour chaque ennemis. NL Synergie: Gagnez !M! Barrière_de_Flamme.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à TOUS les ennemis. NL Canalisez 1 Orbe Incendiaire pour chaque ennemis. NL Synergie: Gagnez !M! Barrière_de_Flamme.",
 		"NAME": "Roy Mustang"
 	},
 	"animator_Saber":
@@ -829,7 +828,7 @@
 	},
 	"animator_Strike_FullmetalAlchemist":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Cooldown !SV!: NL Canalisez 1 Foudre.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Cooldown !SV!: NL Canalisez 1 Orbe Kéraunique.",
 		"NAME": "Frappe Améliorée"
 	},
 	"animator_Strike_GATE":
@@ -934,9 +933,9 @@
 	},
 	"animator_Urushihara":
 	{
-		"DESCRIPTION": "Paresseux. NL Canalisez 1 Tenèbre. NL Infligez !D! dégât(s) à TOUS les ennemis.",
+		"DESCRIPTION": "Paresseux. NL Canalisez 1 Orbe Obscure. NL Infligez !D! dégât(s) à TOUS les ennemis.",
 		"NAME": "Urushihara",
-		"UPGRADE_DESCRIPTION": "Moins Paresseux. NL Canalisez 1 Tenèbre. NL Infligez !D! dégât(s) à TOUS les ennemis."
+		"UPGRADE_DESCRIPTION": "Moins Paresseux. NL Canalisez 1 Orbe Obscure. NL Infligez !D! dégât(s) à TOUS les ennemis."
 	},
 	"animator_Vanir":
 	{
@@ -1026,26 +1025,32 @@
 		"NAME": "Zero",
 		"UPGRADE_DESCRIPTION": "Joue une [#EFC851]Compétence aléatoire de votre pioche."
 	},
+
+	"animator_Crystallize":
+	{
+		"DESCRIPTION": "Perdez !SV! PV. NL Gagnez !M! de Métallisation. NL Épuisement.",
+		"NAME": "Crystallisation"
+	},
 	"animator_TheHaunt":
 	{
-		"DESCRIPTION": "Gagnez !M! [#EFC851]Or. NL Devient encore plus hantée. NL Éthérée. Épuisement.",
+		"DESCRIPTION": "Gagnez !M! [#EFC851]Or. NL Devenez encore plus hanté. NL Éthérée. Épuisement.",
 		"NAME": "La Hantise"
 	},
-
 	"animator_Hibiki":
 	{
 		"DESCRIPTION": "Infligez !D! dégâts !M! fois. Augmentez le nombre d'attaques de cette carte par 1 ce combat.",
 		"NAME": "Hibiki"
 	},
+
 	"animator_MumenRider":
 	{
 		"DESCRIPTION": "Infligez !D! dégât(s). NL Épuisement. Cette carte retourne dans votre main dans un nombre aléatoire de tours.",
 		"NAME": "Mumen Rider",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Piochez 1 carte. Épuisement. Cette carte retourne dans votre main dans un nombre aléatoire de tours."
+		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Piochez 1 carte. Purge. Cette carte retourne dans votre main dans un nombre aléatoire de tours."
 	},
 	"animator_Genos":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! de Brûlure. NL Synergie: L'énergie est conservée ce tour.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! de Brulûre. NL Synergie: L'énergie est conservée ce tour.",
 		"NAME": "Genos"
 	},
 	"animator_Sonic":
@@ -1068,7 +1073,7 @@
 	{
 		"DESCRIPTION": "Changeforme. NL Infligez !D! dégât(s). NL Se divise en 3 [#EFC851]Attaques. Épuisement.",
 		"NAME": "Melzalgald",
-		"UPGRADE_DESCRIPTION": "Changeforme. NL Infligez !D! dégât(s). NL Se divise en 3 [#EFC851]Attaques Améliorées. Épuisement."
+		"UPGRADE_DESCRIPTION": "Changeforme. NL Infligez !D! dégât(s) perçant(s). NL Se divise en 3 [#EFC851]Attaques Améliorées. Épuisement."
 	},
 	"animator_MelzalgaldAlt_1":
 	{
@@ -1087,12 +1092,12 @@
 	},
 	"animator_Tatsumaki":
 	{
-		"DESCRIPTION": "Canalisez 1 Air. NL Gagnez !M! de Concentration temporaire. Synergie: NL TOUS les ennemies perdent !SV! de Force pendant ce tour.",
+		"DESCRIPTION": "Canalisez 1 Orbe Aérienne. NL Gagnez !M! de Concentration temporaire. Synergie: NL TOUS les ennemies perdent !SV! de Force pendant ce tour.",
 		"NAME": "Tatsumaki"
 	},
 	"animator_MetalKnight":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Canalisez 1 Plasma. NL Boost !SV! : gagnez !M! de Métallisation.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Canalisez 1 Orbe Plasmique. NL Boost !SV! : gagnez !M! de Métallisation.",
 		"NAME": "Metal Knight"
 	},
 	"animator_Boros":
@@ -1107,9 +1112,8 @@
 	},
 	"animator_SeriousSaitama":
 	{
-		"DESCRIPTION": "Assomez TOUS les ennemies. NL Un ennemie aléatoire fuira (dans un combat à ennemis multiples). Épuisement.",
-		"NAME": "Saitama Sérieux",
-		"UPGRADE_DESCRIPTION": "Innée. Assomez TOUS les ennemies. NL Un ennemie aléatoire fuira (dans un combat à ennemis multiples). Épuisement."
+		"DESCRIPTION": "Assomez TOUS les ennemis. Gagnez !M! de Force. Épuisement.",
+		"NAME": "Saitama Sérieux"
 	},
 	"animator_Azriel":
 	{

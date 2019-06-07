@@ -1,9 +1,11 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FlameBarrierPower;
+import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -46,6 +48,7 @@ public class RoyMustang extends AnimatorCard
 
         if (HasActiveSynergy())
         {
+            GameActionsHelper.AddToBottom(new VFXAction(p, new FlameBarrierEffect(p.hb.cX, p.hb.cY), 0.5F));
             GameActionsHelper.ApplyPower(p, p, new FlameBarrierPower(p, this.magicNumber), this.magicNumber);
         }
     }

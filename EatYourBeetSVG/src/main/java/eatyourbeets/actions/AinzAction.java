@@ -19,10 +19,12 @@ public class AinzAction extends AnimatorAction
     private final RandomizedList<AinzEffect> effectList = new RandomizedList<>();
     private final ArrayList<AinzEffect> currentEffects = new ArrayList<>();
     private final boolean upgraded;
+    private final int choices;
 
-    public AinzAction(AbstractCreature target, boolean upgraded)
+    public AinzAction(AbstractCreature target, int choices, boolean upgraded)
     {
         this.upgraded = upgraded;
+        this.choices = choices;
         this.target = target;
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.CARD_MANIPULATION;
@@ -38,12 +40,12 @@ public class AinzAction extends AnimatorAction
             currentEffects.clear();
 
             Random rng = AbstractDungeon.miscRng;
-            for (int i = 0; i < 4 ; i++)
+            for (int i = 0; i < choices ; i++)
             {
                 AinzEffect effect = effectList.Retrieve(rng);
 
                 // Reduce the chances of Intangible
-                if (effect instanceof AinzEffect_GainIntangible && rng.randomBoolean(0.25f))
+                if (effect instanceof AinzEffect_GainIntangible && rng.randomBoolean(0.60f))
                 {
                     effect = effectList.Retrieve(rng);
                 }

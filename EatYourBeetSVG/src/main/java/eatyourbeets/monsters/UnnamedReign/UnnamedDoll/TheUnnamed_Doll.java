@@ -8,6 +8,10 @@ import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
+import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackVulnerableAndDexLoss;
+import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackWeakAndStrLoss;
+import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainTempThornsAndRegenAll;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.CursedStabsPower;
 import eatyourbeets.powers.UnnamedReign.UnnamedDollPower;
 
@@ -29,11 +33,11 @@ public class TheUnnamed_Doll extends AnimatorMonster
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.AddNormal(new Move_ShieldAll(16));
-        moveset.AddNormal(new Move_GainStrengthAndArtifactAll(1));
-        moveset.AddNormal(new Move_GainTempThornsAll(3));
-        moveset.AddNormal(new Move_AttackVulnerable(1, 1));
-        moveset.AddNormal(new Move_AttackWeak(1, 1));
+        moveset.AddNormal(new Move_ShieldAll(16 + (level / 10)));
+        moveset.AddNormal(new Move_GainStrengthAndArtifactAll(3 + (level / 10), 1));
+        moveset.AddNormal(new Move_GainTempThornsAndRegenAll(3, 4));
+        moveset.AddNormal(new Move_AttackVulnerableAndDexLoss(1, 1));
+        moveset.AddNormal(new Move_AttackWeakAndStrLoss(1, 1));
     }
 
     @Override
@@ -60,6 +64,17 @@ public class TheUnnamed_Doll extends AnimatorMonster
     }
 
     @Override
+    public void escape()
+    {
+        super.escape();
+
+        if (theUnnamed != null)
+        {
+            theUnnamed.OnDollDeath();
+        }
+    }
+
+    @Override
     public void die()
     {
         super.die();
@@ -76,7 +91,15 @@ public class TheUnnamed_Doll extends AnimatorMonster
         {
             super(id);
 
-            maxHealth = 180;
+            if (PlayerStatistics.GetAscensionLevel() > 7)
+            {
+                maxHealth = 230;
+            }
+            else
+            {
+                maxHealth = 190;
+            }
+
             atlasUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedMinion.atlas";
             jsonUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedMinion.json";
             scale = 2;

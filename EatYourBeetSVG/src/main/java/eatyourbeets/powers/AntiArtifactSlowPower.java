@@ -1,5 +1,6 @@
 package eatyourbeets.powers;
 
+import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,7 +11,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.GameActionsHelper;
 
-public class AntiArtifactSlowPower extends AbstractPower
+public class AntiArtifactSlowPower extends AbstractPower implements CloneablePowerInterface
 {
     public static final String POWER_ID = "AntiArtifactSlow";
     private static final PowerStrings powerStrings;
@@ -58,5 +59,11 @@ public class AntiArtifactSlowPower extends AbstractPower
         powerStrings = CardCrawlGame.languagePack.getPowerStrings("Slow");
         NAME = powerStrings.NAME;
         DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    }
+
+    @Override
+    public AbstractPower makeCopy()
+    {
+        return new AntiArtifactSlowPower(owner, amount);
     }
 }

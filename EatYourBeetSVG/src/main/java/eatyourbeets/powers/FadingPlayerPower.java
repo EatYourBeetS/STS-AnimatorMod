@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
+import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import eatyourbeets.GameActionsHelper;
 
 public class FadingPlayerPower extends AbstractPower
@@ -25,6 +26,7 @@ public class FadingPlayerPower extends AbstractPower
         this.ID = POWER_ID;
         this.owner = owner;
         this.amount = turns;
+        this.type = PowerType.DEBUFF;
         this.updateDescription();
         this.loadRegion("fading");
     }
@@ -40,6 +42,14 @@ public class FadingPlayerPower extends AbstractPower
             this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
         }
 
+    }
+
+    @Override
+    public void atStartOfTurnPostDraw()
+    {
+        super.atStartOfTurnPostDraw();
+
+        AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
     }
 
     @Override

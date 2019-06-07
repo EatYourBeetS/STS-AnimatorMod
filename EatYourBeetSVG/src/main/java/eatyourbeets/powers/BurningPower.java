@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.GameActionsHelper;
@@ -106,5 +107,11 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     public Color getColor()
     {
         return Color.ORANGE;
+    }
+
+    @Override
+    public AbstractPower makeCopy()
+    {
+        return new BurningPower(owner, source, amount);
     }
 }

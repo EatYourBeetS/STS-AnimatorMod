@@ -2,12 +2,15 @@ package eatyourbeets.monsters.UnnamedReign.Cultist;
 
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
+import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.WaitRealtimeAction;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
+import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
+import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
 import eatyourbeets.monsters.SharedMoveset.Move_Talk;
 import eatyourbeets.monsters.UnnamedReign.Cultist.Moveset.Move_SummonEnemy;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
@@ -30,7 +33,8 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
         moveset.AddSpecial(new Move_SummonEnemy());
 
         moveset.AddNormal(new Move_AttackDefend( 12, 12));
-        moveset.AddNormal(new Move_AttackDefend(12, 12));
+        moveset.AddNormal(new Move_AttackMultiple(9, 2));
+        moveset.AddNormal(new Move_ShuffleCard(new VoidCard(), 2));
     }
 
     @Override

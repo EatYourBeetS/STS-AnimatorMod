@@ -2,8 +2,9 @@ package patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
-import eatyourbeets.relics.TheMissingPiece;
+import eatyourbeets.subscribers.OnReceiveRewardsSubscriber;
 import javassist.CtBehavior;
 
 @SpirePatch(clz= CombatRewardScreen.class, method="setupItemReward")
@@ -12,15 +13,18 @@ public class CombatRewardScreenPatch
     @SpireInsertPatch(locator=Locator.class)
     public static void Insert(CombatRewardScreen __instance)
     {
-        TheMissingPiece relic = (TheMissingPiece) AbstractDungeon.player.getRelic(TheMissingPiece.ID);
-        if (relic != null)
+        for (AbstractRelic r : AbstractDungeon.player.relics)
         {
-            relic.receiveRewards(__instance.rewards);
+            if (r instanceof OnReceiveRewardsSubscriber)
+            {
+                ((OnReceiveRewardsSubscriber)r).OnReceiveRewards(__instance.rewards);
+            }
         }
-//        PurgingStone_Cards relic2 = (PurgingStone_Cards) AbstractDungeon.player.getRelic(PurgingStone_Cards.ID);
-//        if (relic2 != null)
+
+//        TheMissingPiece relic = (TheMissingPiece) AbstractDungeon.player.getRelic(TheMissingPiece.ID);
+//        if (relic != null)
 //        {
-//            relic2.receiveRewards(__instance.rewards);
+//            relic.receiveRewards(__instance.rewards);
 //        }
     }
 

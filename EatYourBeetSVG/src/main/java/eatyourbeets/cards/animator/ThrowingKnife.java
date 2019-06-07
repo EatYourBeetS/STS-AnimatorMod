@@ -1,7 +1,9 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -53,10 +55,19 @@ public abstract class ThrowingKnife extends AnimatorCard implements AnimatorReso
     {
         super.triggerOnManualDiscard();
 
-        this.applyPowers();
-        this.use(AbstractDungeon.player, null);
+        GameActionsHelper.Callback(new WaitAction(0.1f), this::Callback, this);
+    }
 
-        GameActionsHelper.ExhaustCard(this);
+    private void Callback(Object state, AbstractGameAction action)
+    {
+        if (state == this)
+        {
+            AbstractDungeon.player.discardPile.removeCard(this);
+            this.freeToPlayOnce = true;
+            this.purgeOnUse = true;
+            this.applyPowers();
+            this.use(AbstractDungeon.player, null);
+        }
     }
 
     @Override

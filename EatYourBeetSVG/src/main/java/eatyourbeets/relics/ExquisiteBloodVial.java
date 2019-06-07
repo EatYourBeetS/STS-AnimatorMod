@@ -17,6 +17,7 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.monsters.Bosses.KrulTepes;
+import patches.RelicObtainedPatches;
 
 public class ExquisiteBloodVial extends AnimatorRelic
 {
@@ -34,15 +35,15 @@ public class ExquisiteBloodVial extends AnimatorRelic
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
     }
 
-    public static void OnRelicReceived(AbstractRelic relic)
+    public static void OnRelicReceived(AbstractRelic relic, RelicObtainedPatches.Trigger trigger)
     {
-        if (relic instanceof BloodVial)
+        if (trigger == RelicObtainedPatches.Trigger.Equip && relic instanceof BloodVial)
         {
             AbstractPlayer p = AbstractDungeon.player;
             ExquisiteBloodVial exquisiteBloodVial = (ExquisiteBloodVial) p.getRelic(ExquisiteBloodVial.ID);
             if (exquisiteBloodVial != null && exquisiteBloodVial.truePotential)
             {
-                AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(exquisiteBloodVial, relic));
+                AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(exquisiteBloodVial, relic, 1));
 
 //                AbstractDungeon.player.relics.remove(relic);
 //                exquisiteBloodVial.IncreaseCounter();
@@ -154,7 +155,7 @@ public class ExquisiteBloodVial extends AnimatorRelic
             {
                 if (relic instanceof BloodVial)
                 {
-                    AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, relic));
+                    AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, relic, 1));
                 }
             }
         }

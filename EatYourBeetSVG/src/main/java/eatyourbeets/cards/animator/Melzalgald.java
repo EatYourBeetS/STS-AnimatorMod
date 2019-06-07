@@ -15,7 +15,7 @@ public class Melzalgald extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(18, 0);
+        Initialize(21, 0);
 
         this.exhaust = true;
         this.tags.add(CardTags.HEALING);

@@ -2,10 +2,8 @@ package eatyourbeets;
 
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.dungeons.Exordium;
-import com.megacrit.cardcrawl.dungeons.TheEnding;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.TheMaskedTraveler1;
-import eatyourbeets.events.TheMaskedTraveler2;
 import eatyourbeets.events.UnnamedReign.TheAbandonedCabin;
 import eatyourbeets.events.UnnamedReign.TheHaunt;
 import eatyourbeets.events.UnnamedReign.TheMaskedTraveler3;

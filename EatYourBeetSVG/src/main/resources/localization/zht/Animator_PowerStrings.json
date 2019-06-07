@@ -219,10 +219,7 @@
 	"animator_UltimateCrystalPower":
 	{
 		"DESCRIPTIONS": [
-			"擊出卡牌時, 獲得#b",
-			" 層#y力量。 NL NL 在一輪失去#b",
-			" 點或更多的生命值時，對手獲得#b",
-			" 層#y多層護甲。"
+			"擊出卡牌時, 獲得#b", " 層#y力量。 NL NL #b", " 回合後, 召喚一個自己的鏡像。"
 		],
 		"NAME": "終極之晶"
 	},

@@ -15,9 +15,9 @@ public class LightningCrystal extends Crystal
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.AddNormal(new Move_AttackMultiple(tier.Add(3,1),3));
-        moveset.AddNormal(new Move_AttackWeak(tier.Add(3,1),1));
-        moveset.AddNormal(new Move_AttackVulnerable(tier.Add(3,1),1));
+        moveset.AddNormal(new Move_AttackMultiple(tier.Add(2,1),3));
+        moveset.AddNormal(new Move_AttackWeak(tier.Add(3,2),1));
+        moveset.AddNormal(new Move_AttackVulnerable(tier.Add(3,2),1));
     }
 
     @Override

@@ -10,6 +10,7 @@ import eatyourbeets.AnimatorResources;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.StringJoiner;
 
 public abstract class AnimatorPower extends AbstractPower implements CloneablePowerInterface
@@ -76,11 +77,18 @@ public abstract class AnimatorPower extends AbstractPower implements CloneablePo
     {
         try
         {
-            return this.getClass().newInstance();
+            return this.getClass().getDeclaredConstructor(AbstractCreature.class, int.class).newInstance(owner, amount);
         }
-        catch (InstantiationException | IllegalAccessException e)
+        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e1)
         {
-            return null;
+            try
+            {
+                return this.getClass().getDeclaredConstructor(AbstractCreature.class).newInstance(owner);
+            }
+            catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e2)
+            {
+                return null;
+            }
         }
     }
 }

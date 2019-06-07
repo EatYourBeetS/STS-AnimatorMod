@@ -20,7 +20,7 @@
 		"DESCRIPTIONS": ["Toutes 4 #yAttaques joué, gagnez #b", " Force et #b", " Dextérité."],
 		"NAME": "Bito Kanzashi"
 	},
-		"animator_BorosPower":
+	"animator_BorosPower":
 	{
 		"DESCRIPTIONS": ["TOUS les #yPouvoirs seront joués deux fois."],
 		"NAME": "Boros"
@@ -117,7 +117,7 @@
 	},
 	"animator_InfinitePower":
 	{
-		"DESCRIPTIONS": 
+		"DESCRIPTIONS":
 		[
 			"- Avant de prendre des dégâts non-bloqués: Gagnez autant #yd'Armure #yEnchantée. NL - En recevant les Debuffs: Gagnez autant de #yRegénération. NL - Lorsque l'ennemi reçoit un Buff: Gagnez autant de #yForce. NL NL Ces Buffs seront diminués de moitié à chaque fin de tour."
 		],
@@ -125,7 +125,7 @@
 	},
 	"animator_UnnamedDollPower":
 	{
-		"DESCRIPTIONS": 
+		"DESCRIPTIONS":
 		[
 			"À la mort, TOUS les autres personnages reçoivent #b", " de #yForce."
 		],
@@ -133,7 +133,7 @@
 	},
 	"animator_CursedStabs":
 	{
-		
+
 		"DESCRIPTIONS":
 		[
 			"À chaque fois que cet ennemi inflige des dégâts non bloqués, ajoutez une #yDouleur et une #yPlaie dans votre pioche."
@@ -148,12 +148,12 @@
 			"While there are other allies alive, gains #b", " Enchanted Armor for each."
 		]
 	},
-	
+
 	"animator_UltimateCubePower":
 	{
 		"DESCRIPTIONS":
 		[
-			"À la fin de chaque tour, gagne #b", " Buffs aléatoire. NL NL Explose après #b", " tours, causant #b"," dégâts."
+			"À la fin de chaque tour, gagne #b", " Buffs aléatoire. NL NL Explose après #b", " tours, causant #b", " dégâts."
 		],
 		"NAME": "Cube Ultime"
 	},
@@ -161,7 +161,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"Lorsqu'une carte est jouée, gagnez #b", " de #yForce. NL NL En perdant 100 PV ou plus en un tour, l'adversaire gagne #b", " #yd'Armure #yPlaquée."
+			"Lorsqu'une carte est jouée, gagnez #b", " de #yForce. NL NL Après #b", " tour(s), invoque une copie de soi-même."
 		],
 		"NAME": "Crystal Ultime"
 	},
@@ -173,7 +173,7 @@
 		],
 		"NAME": "Fragment Ultime"
 	},
-	
+
 	"animator_DarkCubePower":
 	{
 		"DESCRIPTIONS":
@@ -198,7 +198,7 @@
 		],
 		"NAME": "Fragment Tenébreux"
 	},
-	
+
 	"animator_LightningCubePower":
 	{
 		"DESCRIPTIONS":
@@ -223,7 +223,7 @@
 		],
 		"NAME": "Fragment Foudroyant"
 	},
-	
+
 	"animator_HealingCubePower":
 	{
 		"DESCRIPTIONS":
@@ -248,7 +248,7 @@
 		],
 		"NAME": "Fragment Curatif"
 	},
-	
+
 	"animator_FrostCubePower":
 	{
 		"DESCRIPTIONS":
@@ -273,7 +273,7 @@
 		],
 		"NAME": "Fragment Glacial"
 	},
-	
+
 	"animator_FireCubePower":
 	{
 		"DESCRIPTIONS":

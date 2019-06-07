@@ -8,6 +8,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.CustomCardLibSortHeader;
 
@@ -76,7 +79,15 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
 
         this.flash();
 
-        AddUses(1);
+        AbstractRoom room = AbstractDungeon.getCurrRoom();
+        if (room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
+        {
+            AddUses(2);
+        }
+        else
+        {
+            AddUses(1);
+        }
     }
 
     @Override

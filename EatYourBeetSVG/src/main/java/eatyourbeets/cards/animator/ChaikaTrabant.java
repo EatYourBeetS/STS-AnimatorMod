@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -26,15 +27,26 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(13,9, 2);
+        Initialize(18,0, 2, 6);
 
         SetSynergy(Synergies.Chaika);
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        AbstractPlayer p = AbstractDungeon.player;
+
+        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.secondaryValue, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, this.block);
+        //GameActionsHelper.GainBlock(p, this.block);
+        m.useFastShakeAnimation(0.5F);
 
         ChaikaTrabant other = (ChaikaTrabant)makeStatEquivalentCopy();
 
@@ -48,7 +60,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         if (TryUpgrade())
         {
-            upgradeDamage(5);
+            upgradeDamage(6);
         }
     }
 

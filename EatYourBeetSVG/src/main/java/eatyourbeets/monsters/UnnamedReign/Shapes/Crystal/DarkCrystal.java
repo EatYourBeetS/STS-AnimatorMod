@@ -18,7 +18,7 @@ public class DarkCrystal extends Crystal
         int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_AttackMultiple(tier.Add(4, 1), 2));
-        moveset.AddNormal(new Move_AttackWeak(tier.Add(5, 1), 1));
+        moveset.AddNormal(new Move_AttackWeak(tier.Add(5, 2), 1));
         moveset.AddNormal(new Move_Defend(tier.Add(7, 1)));
     }
 

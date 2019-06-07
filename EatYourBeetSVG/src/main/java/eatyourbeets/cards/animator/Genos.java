@@ -3,12 +3,9 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.powers.ConservePower;
-import com.megacrit.cardcrawl.powers.MetallicizePower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.BurningPower;
 

@@ -86,7 +86,7 @@
 	},
 	"Animator_PurgingStone_Cards":
 	{
-		"DESCRIPTIONS": ["You may banish cards from appearing in future #ynormal rewards and shops. Gain #b1 more use at the end of each combat, can store up to #b", " uses. NL NL #pRight #pClick to see all banished cards."],
+		"DESCRIPTIONS": ["You may banish cards from appearing in future #ynormal rewards and shops. Gain #b1 more use at the end of each combat, and #b2 uses against Elites or Bosses, can store up to #b", " uses. NL #pRight #pClick to see all banished cards."],
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
 		"NAME": "Purging Stone"
 	},

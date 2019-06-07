@@ -80,7 +80,7 @@
 	},
 	"Animator_PurgingStone_Cards":
 	{
-		"DESCRIPTIONS": ["Vous pouvez bannir des cartes, prévenant leur apparition dans les futurs récompenses #ynormales et magasins. Gagne #b1 usage de plus après chaque combat, peut contenir jusqu'à #b", " usages. NL NL #pClique #pDroite pour voir toutes les cartes bannies."],
+		"DESCRIPTIONS": ["Vous pouvez bannir des cartes, prévenant leur apparition dans les futurs récompenses #ynormales et magasins. Gagne #b1 usage de plus après chaque combat normal et #b2 usages après un Élite ou un Boss. Peut contenir jusqu'à #b", " usages. NL NL #pClique #pDroite pour voir toutes les cartes bannies."],
 		"FLAVOR": "Les humain sont sans défenses contre les malédictions, et peuvent seulement redirigé leur effets.",
 		"NAME": "Pierre de purge"
 	},

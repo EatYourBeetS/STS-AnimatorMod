@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
+import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
@@ -136,8 +137,10 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         {
             if (timeShiftMessage != null)
             {
-                GameActionsHelper.AddToBottom(new TalkAction(owner, timeShiftMessage, 1.5f, 1.5f));
+                GameActionsHelper.AddToBottom(new TalkAction(owner, timeShiftMessage, 4f, 4f));
             }
+
+            AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
         }
         else if (cardsPlayed == 16)
         {

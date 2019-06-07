@@ -16,7 +16,7 @@ public class Move_AttackWeak extends AbstractMove
     public Move_AttackWeak(int damageAmount, int debuffAmount)
     {
         this.debuffAmount = debuffAmount;
-        this.damageInfo = new DamageInfo(owner, damageAmount, DamageInfo.DamageType.NORMAL);
+        this.damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.2f));
     }
 
     public void SetMove()

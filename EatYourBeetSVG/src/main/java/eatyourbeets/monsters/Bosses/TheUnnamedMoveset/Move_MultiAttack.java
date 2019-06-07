@@ -12,10 +12,10 @@ public class Move_MultiAttack extends AbstractMove
 {
     private final int TIMES;
 
-    public Move_MultiAttack()
+    public Move_MultiAttack(int damage, int times)
     {
-        damageInfo = new DamageInfo(owner, 7);
-        TIMES = 3;
+        damageInfo = new DamageInfo(owner, damage);
+        TIMES = times;
     }
 
     public void SetMove()

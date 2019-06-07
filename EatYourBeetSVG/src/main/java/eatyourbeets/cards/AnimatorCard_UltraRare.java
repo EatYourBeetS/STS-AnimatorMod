@@ -3,14 +3,10 @@ package eatyourbeets.cards;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.cards.animator.*;
-import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.HashMap;
 
@@ -67,19 +63,6 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Ani
     public static boolean IsSeen(String cardID)
     {
         return UnlockTracker.seenPref.getInteger(cardID, 0) == 2;
-    }
-
-    @Override
-    public AbstractCard makeStatEquivalentCopy()
-    {
-        if (PlayerStatistics.InBattle() || CardCrawlGame.isPopupOpen)
-        {
-            return super.makeStatEquivalentCopy();
-        }
-        else
-        {
-            return new Madness();
-        }
     }
 
     //    @SpireOverride

@@ -8,7 +8,7 @@ import eatyourbeets.powers.PoisonPlayerPower;
 
 public class Move_Poison extends AbstractMove
 {
-    private final int poisonAmount;
+    public int poisonAmount;
 
     public Move_Poison(int amount)
     {

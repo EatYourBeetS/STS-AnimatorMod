@@ -10,10 +10,15 @@ import com.megacrit.cardcrawl.rooms.EventRoom;
 
 public class AnimatorCustomEventRoom extends AbstractRoom
 {
-    private final AbstractEvent replacementEvent;
-    private final EventRoom eventRoom = new EventRoom();
+    public interface GetEvent
+    {
+        AbstractEvent get();
+    }
 
-    public AnimatorCustomEventRoom(AbstractEvent replacementEvent)
+    private final GetEvent replacementEvent;
+    private EventRoom eventRoom;
+
+    public AnimatorCustomEventRoom(GetEvent replacementEvent)
     {
         this.phase = RoomPhase.EVENT;
         this.mapSymbol = "??";
@@ -26,32 +31,58 @@ public class AnimatorCustomEventRoom extends AbstractRoom
     public void onPlayerEntry()
     {
         AbstractDungeon.overlayMenu.proceedButton.hide();
-        event = eventRoom.event = replacementEvent;
+
+        try
+        {
+            this.eventRoom = new EventRoom();
+            this.event = eventRoom.event = replacementEvent.get();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         eventRoom.event.onEnterRoom();
     }
 
     @Override
     public AbstractCard.CardRarity getCardRarity(int roll)
     {
-        return eventRoom.getCardRarity(roll);
+        if (eventRoom != null)
+        {
+            return eventRoom.getCardRarity(roll);
+        }
+        else
+        {
+            return AbstractCard.CardRarity.COMMON;
+        }
     }
 
     @Override
     public void update()
     {
-        eventRoom.update();
+        if (eventRoom != null)
+        {
+            eventRoom.update();
+        }
     }
 
     @Override
     public void render(SpriteBatch sb)
     {
-        eventRoom.render(sb);
-        eventRoom.renderEventTexts(sb);
+        if (eventRoom != null)
+        {
+            eventRoom.render(sb);
+            eventRoom.renderEventTexts(sb);
+        }
     }
 
     @Override
     public void renderAboveTopPanel(SpriteBatch sb)
     {
-        eventRoom.renderAboveTopPanel(sb);
+        if (eventRoom != null)
+        {
+            eventRoom.renderAboveTopPanel(sb);
+        }
     }
 }

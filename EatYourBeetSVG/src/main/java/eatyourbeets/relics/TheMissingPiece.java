@@ -11,13 +11,14 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.misc.WeightedList;
 import eatyourbeets.rewards.SynergyCardsReward;
+import eatyourbeets.subscribers.OnReceiveRewardsSubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class TheMissingPiece extends AnimatorRelic
+public class TheMissingPiece extends AnimatorRelic implements OnReceiveRewardsSubscriber
 {
     public static final String ID = CreateFullID(TheMissingPiece.class.getSimpleName());
 
@@ -63,7 +64,7 @@ public class TheMissingPiece extends AnimatorRelic
         }
     }
 
-    public void receiveRewards(ArrayList<RewardItem> rewards)
+    public void OnReceiveRewards(ArrayList<RewardItem> rewards)
     {
         if (counter == 0)
         {
@@ -183,5 +184,6 @@ public class TheMissingPiece extends AnimatorRelic
         possibleRewards.add(Synergies.GoblinSlayer);
         possibleRewards.add(Synergies.FullmetalAlchemist);
         possibleRewards.add(Synergies.TenSura);
+        possibleRewards.add(Synergies.OnePunchMan);
     }
 }

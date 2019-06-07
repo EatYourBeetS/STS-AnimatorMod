@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,8 +9,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-
-import java.util.Iterator;
 
 public class PandorasActor extends AnimatorCard
 {

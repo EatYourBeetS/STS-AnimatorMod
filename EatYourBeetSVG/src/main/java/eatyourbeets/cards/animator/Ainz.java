@@ -31,7 +31,7 @@ public class Ainz extends AnimatorCard
     {
         super(ID, BASE_COST, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0,0);
+        Initialize(0,0,3);
 
         SetSynergy(Synergies.Overlord);
 
@@ -54,13 +54,16 @@ public class Ainz extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new AinzPower(p, this.upgraded), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new AinzPower(p, this.magicNumber), 1));
     }
 
     @Override
     public void upgrade() 
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeMagicNumber(1);
+        }
     }
 
     public void setUpgraded(boolean upgrade)

@@ -4,13 +4,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.WaitRealtimeAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.orbs.Air;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
 
@@ -22,7 +18,7 @@ public class SilverFang extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(10, 7, 3);
+        Initialize(8, 7, 2);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -47,8 +43,9 @@ public class SilverFang extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeBlock(2);
+            upgradeDamage(3);
+            //upgradeBlock(1);
+            upgradeMagicNumber(1);
         }
     }
 

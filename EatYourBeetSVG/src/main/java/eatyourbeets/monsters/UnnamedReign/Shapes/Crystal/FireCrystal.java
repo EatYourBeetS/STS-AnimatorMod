@@ -16,8 +16,8 @@ public class FireCrystal extends Crystal
         int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_Attack( tier.Add(10,4)));
-        moveset.AddNormal(new Move_AttackVulnerable( tier.Add(6,1),1));
-        moveset.AddNormal(new Move_Defend( tier.Add(7,2)));
+        moveset.AddNormal(new Move_AttackWeak( tier.Add(6,3),1));
+        moveset.AddNormal(new Move_Defend( tier.Add(7,3)));
     }
 
     @Override

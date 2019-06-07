@@ -10,8 +10,15 @@ import java.util.ArrayList;
 
 public abstract class AnimatorMonster extends CustomMonster
 {
+    public enum Mode
+    {
+        Random,
+        Sequential
+    }
+
     public final Moveset moveset = new Moveset(this);
     public final AbstractMonsterData data;
+    public Mode movesetMode = Mode.Random;
 
     public AnimatorMonster(AbstractMonsterData data, EnemyType type)
     {
@@ -42,16 +49,24 @@ public abstract class AnimatorMonster extends CustomMonster
 
     protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        ArrayList<AbstractMove> moves = new ArrayList<>();
-        for (AbstractMove move : moveset.rotation)
+        if (movesetMode == Mode.Sequential)
         {
-            if (move.CanUse(previousMove))
-            {
-                moves.add(move);
-            }
+            int count = moveset.rotation.size();
+            moveset.rotation.get(historySize % count).SetMove();
         }
+        else
+        {
+            ArrayList<AbstractMove> moves = new ArrayList<>();
+            for (AbstractMove move : moveset.rotation)
+            {
+                if (move.CanUse(previousMove))
+                {
+                    moves.add(move);
+                }
+            }
 
-        moves.get(roll % moves.size()).SetMove();
+            moves.get(roll % moves.size()).SetMove();
+        }
     }
 
     @Override

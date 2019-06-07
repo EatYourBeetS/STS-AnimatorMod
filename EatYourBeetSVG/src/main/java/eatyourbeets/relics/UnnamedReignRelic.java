@@ -1,20 +1,23 @@
 package eatyourbeets.relics;
 
 import basemod.DevConsole;
-import basemod.ReflectionHacks;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.effects.SequentialEffect;
 import eatyourbeets.effects.UnnamedRelicEquipEffect;
 import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.potions.FalseLifePotion;
+import eatyourbeets.subscribers.OnReceiveRewardsSubscriber;
+import patches.RelicObtainedPatches;
 
-public abstract class UnnamedReignRelic extends AnimatorRelic
+import java.util.ArrayList;
+
+public abstract class UnnamedReignRelic extends AnimatorRelic implements OnReceiveRewardsSubscriber
 {
     public UnnamedReignRelic(String id, RelicTier tier, LandingSound sfx)
     {
@@ -40,19 +43,26 @@ public abstract class UnnamedReignRelic extends AnimatorRelic
     public void update()
     {
         super.update();
+
         if (isObtained)
         {
             DevConsole.visible = false;
-            DevConsole.enabled = false;
             DevConsole.commandPos = -1;
             DevConsole.currentText = "";
+            //DevConsole.enabled = false;
+            //Settings.isDebug = false;
         }
     }
 
     private void DisableConsole()
     {
-        Gdx.input.setInputProcessor((InputProcessor) ReflectionHacks.getPrivate(null, DevConsole.class, "otherInputProcessor"));
-        DevConsole.visible = false;
+        //Gdx.input.setInputProcessor((InputProcessor) ReflectionHacks.getPrivate(null, DevConsole.class, "otherInputProcessor"));
+        if (DevConsole.visible)
+        {
+            InputHelper.regainInputFocus();
+            DevConsole.visible = false;
+        }
+
         DevConsole.enabled = false;
         DevConsole.commandPos = -1;
         DevConsole.currentText = "";
@@ -60,20 +70,38 @@ public abstract class UnnamedReignRelic extends AnimatorRelic
     }
 
     @Override
+    public void instantObtain()
+    {
+        super.instantObtain();
+
+        DisableConsole();
+    }
+
+    @Override
+    public void obtain()
+    {
+        super.obtain();
+
+        DisableConsole();
+    }
+
+    @Override
     public void instantObtain(AbstractPlayer p, int slot, boolean callOnEquip)
     {
         super.instantObtain(p, slot, callOnEquip);
 
-        if (PlayerStatistics.LoadingPlayerSave)
-        {
-            DisableConsole();
-        }
+        DisableConsole();
     }
 
     protected abstract void OnManualEquip();
 
-    public static void OnRelicReceived(AbstractRelic relic)
+    public static void OnRelicReceived(AbstractRelic relic, RelicObtainedPatches.Trigger trigger)
     {
+        if (trigger != RelicObtainedPatches.Trigger.Equip)
+        {
+            return;
+        }
+
         if (relic instanceof UnnamedReignRelic)
         {
             AbstractPlayer p = AbstractDungeon.player;
@@ -105,6 +133,26 @@ public abstract class UnnamedReignRelic extends AnimatorRelic
                     r.flash();
                 }
             }
+        }
+    }
+
+    @Override
+    public void OnReceiveRewards(ArrayList<RewardItem> rewards)
+    {
+        for (RewardItem rewardItem : rewards)
+        {
+            if (rewardItem.type == RewardItem.RewardType.POTION)
+            {
+                return;
+            }
+        }
+
+        int ascensionLevel = AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0;
+        float chances = 0.3f + (0.6f * (ascensionLevel / 20f));
+
+        if (AbstractDungeon.miscRng.randomBoolean(chances))
+        {
+            rewards.add(new RewardItem(new FalseLifePotion()));
         }
     }
 }

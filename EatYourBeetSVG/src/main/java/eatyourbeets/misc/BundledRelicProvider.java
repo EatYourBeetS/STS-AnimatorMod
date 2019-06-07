@@ -94,6 +94,7 @@ public class BundledRelicProvider
         AddOverlord();
         AddOwariNoSeraph();
         AddTenSura();
+        AddOnePunchMan();
         AddSpecial();
     }
 
@@ -293,6 +294,24 @@ public class BundledRelicProvider
         AddBundle(Guren.ID, IncenseBurner.ID, AbstractRelic.RelicTier.RARE, R2);
 
         AddBundle(HiiragiTenri.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+    }
+
+    private static void AddOnePunchMan()
+    {
+        AddBundle(Genos.ID, CrackedCore.ID, AbstractRelic.RelicTier.SPECIAL, R3);
+        AddBundle(SilverFang.ID, Torii.ID, AbstractRelic.RelicTier.RARE, R2);
+        AddBundle(Sonic.ID, Shuriken.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
+        AddBundle(MumenRider.ID, ToughBandages.ID, AbstractRelic.RelicTier.SPECIAL, R2);
+
+        AddBundle(Melzalgald.ID, SelfFormingClay.ID, AbstractRelic.RelicTier.SPECIAL, R2);
+        AddBundle(Geryuganshoop.ID, SymbioticVirus.ID, AbstractRelic.RelicTier.SPECIAL, R2);
+        AddBundle(MetalKnight.ID, OddlySmoothStone.ID, AbstractRelic.RelicTier.COMMON, R1);
+        AddBundle(Tatsumaki.ID, WingBoots.ID, AbstractRelic.RelicTier.RARE, R1);
+
+        AddBundle(Saitama.ID, Hoodie.ID, AbstractRelic.RelicTier.RARE, R3);
+        AddBundle(Boros.ID, RedSkull.ID, AbstractRelic.RelicTier.SPECIAL, R1);
+
+        AddBundle(SeriousSaitama.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddTenSura()

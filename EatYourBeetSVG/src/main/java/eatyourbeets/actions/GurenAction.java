@@ -1,19 +1,17 @@
 package eatyourbeets.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.utility.QueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.cards.animator.Guren;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.SupportDamagePower;
 
@@ -50,10 +48,17 @@ public class GurenAction extends AbstractGameAction
 
             if (!AbstractDungeon.player.drawPile.isEmpty())
             {
+
                 AbstractCard card = AbstractDungeon.player.drawPile.getTopCard();
                 AbstractDungeon.player.drawPile.group.remove(card);
                 AbstractDungeon.getCurrRoom().souls.remove(card);
-                card.freeToPlayOnce = true;
+
+                boolean skip = (card instanceof Guren && AbstractDungeon.actionManager.cardsPlayedThisTurn.contains(card));
+                if (!skip)
+                {
+                    card.freeToPlayOnce = true;
+                }
+
                 AbstractDungeon.player.limbo.group.add(card);
                 card.current_y = -200.0F * Settings.scale;
                 card.target_x = (float) Settings.WIDTH / 2.0F + 200 * Settings.scale;
@@ -75,7 +80,7 @@ public class GurenAction extends AbstractGameAction
                     this.target = null;
                 }
 
-                if (!card.canUse(AbstractDungeon.player, (AbstractMonster) this.target))
+                if (skip || !card.canUse(AbstractDungeon.player, (AbstractMonster) this.target))
                 {
                     AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
                     AbstractDungeon.actionManager.addToTop(new DiscardSpecificCardAction(card, AbstractDungeon.player.limbo));

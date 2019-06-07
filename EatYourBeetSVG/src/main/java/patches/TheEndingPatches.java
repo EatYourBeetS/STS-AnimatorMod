@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.events.TheMaskedTraveler2;
 import eatyourbeets.room.AnimatorCustomEventRoom;
@@ -19,15 +20,19 @@ public class TheEndingPatches
         {
             if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR || AnimatorCustomLoadout.specialTrophies.trophy1 > 0)
             {
-                MapRoomNode rest = __instance.getMap().get(0).get(3);
-                MapRoomNode shop = __instance.getMap().get(1).get(3);
-                MapRoomNode fight = __instance.getMap().get(1).get(4);
-                MapRoomNode node = __instance.getMap().get(1).get(5);
+                int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
+                if (currentLevel > 1)
+                {
+                    MapRoomNode rest = __instance.getMap().get(0).get(3);
+                    MapRoomNode shop = __instance.getMap().get(1).get(3);
+                    MapRoomNode fight = __instance.getMap().get(1).get(4);
+                    MapRoomNode node = __instance.getMap().get(1).get(5);
 
-                node.room = new AnimatorCustomEventRoom(new TheMaskedTraveler2());
+                    node.room = new AnimatorCustomEventRoom(TheMaskedTraveler2::new);
 
-                connectNode(rest, node);
-                connectNode(node, shop);
+                    connectNode(rest, node);
+                    connectNode(node, shop);
+                }
             }
         }
 

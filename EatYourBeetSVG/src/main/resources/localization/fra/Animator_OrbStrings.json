@@ -1,6 +1,6 @@
 {
     "Animator_Earth": {
-        "NAME": "Terre",
+        "NAME": "Orbe Terrestre",
         "DESCRIPTION":
         [
             "#yPassif: À la fin du tour, gagnez #b",
@@ -10,7 +10,7 @@
         ]
     },
     "Animator_Air": {
-        "NAME": "Air",
+        "NAME": "Orbe Aérienne",
         "DESCRIPTION":
         [
             "#yPassif: À la fin du tour, inflige #b", " dégâts #yPerçants à TOUS les ennemies. NL #yActivation: Piochez #b",
@@ -18,7 +18,7 @@
         ]
     },
     "Animator_Fire": {
-        "NAME": "Feu",
+        "NAME": "Orbe Incendiaire",
         "DESCRIPTION":
         [
             "#yPassif: À la fin du tour, inflige #b", " dégâts et applique #b",

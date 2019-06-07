@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.misc.RandomizedList;
@@ -27,13 +26,17 @@ public class UltimateCubePower extends AnimatorPower
     private static final int BUFFS_AMOUNT = 1;
     private static final int EXPLOSION_DAMAGE = 140;
 
-    private final RandomizedList<Consumer<AbstractCreature>> buffs = new RandomizedList<>();
+    private final RandomizedList<Consumer<AbstractCreature>> buffs1 = new RandomizedList<>();
+    private final RandomizedList<Consumer<AbstractCreature>> buffs2 = new RandomizedList<>();
+    private boolean buffSwitch = false;
 
     public UltimateCubePower(AbstractCreature owner, int countDown)
     {
         super(owner, POWER_ID);
 
         amount = countDown;
+
+        priority = -100;
 
         updateDescription();
     }
@@ -105,21 +108,32 @@ public class UltimateCubePower extends AnimatorPower
 
     private void GainRandomBuff(AbstractCreature c)
     {
-        if (buffs.Count() < 5)
+        if (buffs1.Count() == 0)
         {
-            buffs.Add(this::BuffHealing);
-            buffs.Add(this::BuffDark);
-            buffs.Add(this::BuffFire);
-            buffs.Add(this::BuffFrost);
-            buffs.Add(this::BuffLightning);
+            buffs1.Add(this::BuffLightning);
+            buffs1.Add(this::BuffFire);
+            buffs1.Add(this::BuffDark);
         }
 
-        buffs.Retrieve(AbstractDungeon.miscRng).accept(c);
+        if (buffs2.Count() == 0)
+        {
+            buffs2.Add(this::BuffHealing);
+            buffs2.Add(this::BuffFrost);
+        }
+
+        if (buffSwitch = !buffSwitch)
+        {
+            buffs1.Retrieve(AbstractDungeon.miscRng).accept(c);
+        }
+        else
+        {
+            buffs2.Retrieve(AbstractDungeon.miscRng).accept(c);
+        }
     }
 
     private void BuffHealing(AbstractCreature c)
     {
-        GameActionsHelper.ApplyPower(c, c, new HealingCubePower(c, 4), 4);
+        GameActionsHelper.ApplyPower(c, c, new HealingCubePower(c, 5), 5);
     }
 
     private void BuffFire(AbstractCreature c)
@@ -139,6 +153,6 @@ public class UltimateCubePower extends AnimatorPower
 
     private void BuffLightning(AbstractCreature c)
     {
-        GameActionsHelper.ApplyPower(c, c, new LightningCubePower(c, 3), 3);
+        GameActionsHelper.ApplyPower(c, c, new LightningCubePower(c, 4), 4);
     }
 }

@@ -29,9 +29,10 @@ public class Kaijin extends AnimatorCard
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
+        if (!this.upgraded)
         {
-            this.isInnate = true;
+            upgradeName();
+            upgradeBaseCost(0);
         }
     }
 }

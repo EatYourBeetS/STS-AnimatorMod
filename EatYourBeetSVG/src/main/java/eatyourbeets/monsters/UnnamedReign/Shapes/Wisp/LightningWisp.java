@@ -17,7 +17,7 @@ public class LightningWisp extends Wisp
 
         moveset.AddNormal(new Move_AttackVulnerable(tier.Add(6,3), 1));
         moveset.AddNormal(new Move_AttackFrail(tier.Add(6,3), 1));
-        moveset.AddNormal(new Move_Defend(tier.Add(3,3)));
+        moveset.AddNormal(new Move_GainStrength(tier.Add(2,3)));
     }
 
     @Override

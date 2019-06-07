@@ -11,24 +11,23 @@ import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.actions.AinzAction;
 
+import java.util.ArrayList;
+
 public class AinzPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(AinzPower.class.getSimpleName());
 
-    private final boolean upgraded;
     private final AbstractPlayer player;
 
-    private int upgradedPowerStack;
+    private ArrayList<Integer> choices;
 
-    public AinzPower(AbstractPlayer owner, boolean upgraded)
+    public AinzPower(AbstractPlayer owner, int choices)
     {
         super(owner, POWER_ID);
         this.amount = 1;
-        this.upgraded = upgraded;
-        if (this.upgraded)
-        {
-            this.upgradedPowerStack = 1;
-        }
+
+        this.choices = new ArrayList<>();
+        this.choices.add(choices);
 
         this.player = Utilities.SafeCast(this.owner, AbstractPlayer.class);
         updateDescription();
@@ -48,9 +47,9 @@ public class AinzPower extends AnimatorPower
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
         AinzPower other = Utilities.SafeCast(power, AinzPower.class);
-        if (other != null && power.owner == target && other.upgraded)
+        if (other != null && power.owner == target)
         {
-            this.upgradedPowerStack += 1;
+            this.choices.add(other.choices.get(0));
         }
 
         super.onApplyPower(power, target, source);
@@ -63,7 +62,7 @@ public class AinzPower extends AnimatorPower
 
         for(int i = 0; i < this.amount; i++)
         {
-            GameActionsHelper.AddToBottom(new AinzAction(player, i < upgradedPowerStack));
+            GameActionsHelper.AddToBottom(new AinzAction(player, choices.get(i),false));
         }
 
         this.flash();

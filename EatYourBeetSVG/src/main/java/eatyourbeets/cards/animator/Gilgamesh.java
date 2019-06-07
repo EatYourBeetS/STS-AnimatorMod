@@ -20,6 +20,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.relics.UnnamedReignRelic;
 import patches.AbstractEnums;
+import patches.RelicObtainedPatches;
 import patches.StoreRelicPatch;
 
 import java.util.ArrayList;
@@ -29,8 +30,19 @@ public class Gilgamesh extends AnimatorCard
     public static final String ID = CreateFullID(Gilgamesh.class.getSimpleName());
     public static final int GOLD_REWARD = 25;
 
-    public static void OnRelicReceived(AbstractRelic relic)
+    private static AbstractRelic lastRelicObtained = null;
+
+    public static void OnRelicReceived(AbstractRelic relic, RelicObtainedPatches.Trigger trigger)
     {
+        if (lastRelicObtained != relic)
+        {
+            lastRelicObtained = relic;
+        }
+        else
+        {
+            return;
+        }
+
         AbstractPlayer player = AbstractDungeon.player;
         if (player != null && player.masterDeck != null && !(relic instanceof UnnamedReignRelic))
         {

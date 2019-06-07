@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;

@@ -16,7 +16,7 @@ public class Spearman extends AnimatorCard_Boost
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(7, 0,1);
+        Initialize(8, 0,1);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -37,7 +37,6 @@ public class Spearman extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
             upgradeSecondaryValue(1);
         }
     }

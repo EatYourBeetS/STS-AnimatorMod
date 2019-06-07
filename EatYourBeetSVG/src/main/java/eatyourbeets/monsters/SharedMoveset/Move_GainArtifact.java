@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class Move_GainArtifact extends AbstractMove
 {

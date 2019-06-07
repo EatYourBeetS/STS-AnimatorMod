@@ -10,9 +10,9 @@ import eatyourbeets.monsters.AbstractMove;
 
 public class Move_SingleAttack extends AbstractMove
 {
-    public Move_SingleAttack()
+    public Move_SingleAttack(int damage)
     {
-        damageInfo = new DamageInfo(owner, 20);
+        damageInfo = new DamageInfo(owner, damage);
     }
 
     public void SetMove()

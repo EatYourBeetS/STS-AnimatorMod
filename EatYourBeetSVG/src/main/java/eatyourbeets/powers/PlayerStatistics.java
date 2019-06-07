@@ -2,7 +2,6 @@ package eatyourbeets.powers;
 
 import basemod.DevConsole;
 import basemod.abstracts.CustomSavable;
-import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
@@ -10,10 +9,10 @@ import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.curses.Pain;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,10 +20,10 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.animator.RoryMercury;
 import eatyourbeets.cards.animator.TheHaunt;
 import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.subscribers.*;
@@ -119,6 +118,42 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
             s.OnAfterDeath();
         }
         ClearStats();
+    }
+
+    public static void UnlockAllKeys()
+    {
+        if (!Settings.isFinalActAvailable)
+        {
+            Settings.isFinalActAvailable = true;
+            CardCrawlGame.playerPref.putBoolean(AbstractPlayer.PlayerClass.IRONCLAD.name() + "_WIN", true);
+            CardCrawlGame.playerPref.putBoolean(AbstractPlayer.PlayerClass.THE_SILENT.name() + "_WIN", true);
+            CardCrawlGame.playerPref.putBoolean(AbstractPlayer.PlayerClass.DEFECT.name() + "_WIN", true);
+
+            if (UnlockTracker.isAchievementUnlocked("RUBY_PLUS"))
+            {
+                UnlockTracker.unlockAchievement("RUBY_PLUS");
+            }
+
+            if (UnlockTracker.isAchievementUnlocked("EMERALD_PLUS"))
+            {
+                UnlockTracker.unlockAchievement("EMERALD_PLUS");
+            }
+
+            if (UnlockTracker.isAchievementUnlocked("SAPPHIRE_PLUS"))
+            {
+                UnlockTracker.unlockAchievement("SAPPHIRE_PLUS");
+            }
+        }
+    }
+
+    public static int GetAscensionLevel()
+    {
+        if (AbstractDungeon.isAscensionMode)
+        {
+            return Math.max(0, Math.min(20, AbstractDungeon.ascensionLevel));
+        }
+
+        return 0;
     }
 
     public void OnBattleStart()

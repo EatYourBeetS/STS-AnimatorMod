@@ -5,8 +5,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.cards.animator.Millim;
-import eatyourbeets.relics.PurgingStone_Cards;
 
 import java.util.ArrayList;
 

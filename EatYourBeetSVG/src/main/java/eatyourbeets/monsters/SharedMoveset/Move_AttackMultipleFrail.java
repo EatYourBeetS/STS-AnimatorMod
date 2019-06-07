@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
 
@@ -17,7 +16,7 @@ public class Move_AttackMultipleFrail extends AbstractMove
 
     public Move_AttackMultipleFrail(int damageAmount, int times, int debuffAmount)
     {
-        this.damageInfo = new DamageInfo(owner, damageAmount + (ascensionLevel / 7));
+        this.damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.2f));
         this.times = times;
         this.debuffAmount = debuffAmount;
     }

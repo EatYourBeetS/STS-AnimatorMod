@@ -70,9 +70,9 @@
 		"PROPERNAME": "Malléable"
 	},
 	{
-		"DESCRIPTION": "Subit des dommages à chaque fin de tour.",
-		"NAMES": ["constricted", "constriction"],
-		"PROPERNAME": "Constriction"
+		"DESCRIPTION": "Subit des dégâts à chaque fin de tour.",
+		"NAMES": ["restreinte", "constriction"],
+		"PROPERNAME": "Restreinte"
 	},
 	{
 		"DESCRIPTION": "S'active quand une carte est Défaussé ou Recyclé.",
@@ -90,19 +90,19 @@
 		"PROPERNAME": "Boost"
 	},
 	{
-		"NAMES": ["air", "air+"],
-		"DESCRIPTION": "Orbe: Inflige dégâts #yPerçants à TOUS les ennemies.",
-		"PROPERNAME": "Air"
+		"NAMES": ["terrestre", "terrestres", "terrestre(s)"],
+		"DESCRIPTION": "Orbe: Gagne des #yÉpines quand #yCanalisé. Automatiquement #yEvoqué après 3 tours et inflige des dégâts répartis entre les ennemis.",
+		"PROPERNAME": "Terrestre"
 	},
 	{
-		"NAMES": ["terre", "terre+"],
-		"DESCRIPTION": "Orbe: Gagne #yEpine quand #yCanalisé. Automatiquement #yEvoqué après 3 tour et inflige des dégats réparti entre les ennemis.",
-		"PROPERNAME": "Terre"
+		"NAMES": ["incendiaire", "incendiaires", "incendiare(s)"],
+		"DESCRIPTION": "Orbe: Inflige de la #yBrûlure et blesse l'ennemi qui a le plus haut PV.",
+		"PROPERNAME": "Incendiare"
 	},
 	{
-		"NAMES": ["feu", "feu+"],
-		"DESCRIPTION": "Orbe: Inflige #yBrûlure et blesse l'ennemi le plus haut en PV.",
-		"PROPERNAME": "Feu"
+		"NAMES": ["aérienne", "aériennes"],
+		"DESCRIPTION": "Orbe: Inflige des dégâts #yPerçants à tous les ennemis.",
+		"PROPERNAME": "Aérienne"
 	},
 	{
 		"NAMES": ["flou"],
@@ -130,8 +130,8 @@
 		"PROPERNAME": "Choked"
 	},
 	{
-		"NAMES": ["noyau d'orbe", "noyau_d'orbe", "noyau_de_feu", "noyau_de_terre", "noyau_de_foudre", "noyau_de_plasma", "noyau_de_feu", "noyau_de_gel"],
-		"DESCRIPTION": "#yPouvoir: #yCanalise 1 orbe à l'utilisation, octroyant un bonus à la seconde #ySynergie de chaque tour.",
+		"NAMES": ["noyau d'orbe", "noyau_d'orbe", "noyau_incendiaire", "noyau_terrestre", "noyau_kéraunique", "noyau_plasmique", "noyau_chaotique", "noyau_glacial"],
+		"DESCRIPTION": "#yPouvoir: #yCanalisez 1 orbe à l'utilisation, octroyant un bonus à la seconde #ySynergie de chaque tour.",
 		"PROPER_NAME": "Noyau d'orbe"
 	},
 	{
@@ -186,8 +186,8 @@
 	},
 	{
 		"PROPER_NAME": "PV Temporaire",
-		"NAMES": ["temp. hp", "temp._hp", "temp._pv", "temp. pv" ],
-		"DESCRIPTION": "Les PV Temporaire disparaisse à la fin du combat."
+		"NAMES": ["temp. hp", "temp._hp", "temp._pv", "temp. pv","pv temp.","pv_temp." ],
+		"DESCRIPTION": "Les PV Temporaires disparaissent à la fin du combat."
 	},
 	{
 		"PROPER_NAME": "Vol",
@@ -205,7 +205,7 @@
 		"DESCRIPTION": "Quand vous gagnez de #yl'Armure, infligé des dégats à un ennemi aléatoire."
 	},
 	{
-		"PROPER_NAME": "Support Damage",
+		"PROPER_NAME": "Dégât de Soutien",
 		"NAMES": ["support damage", "support_damage", "dégât de soutien", "dégât_de_soutien"],
 		"DESCRIPTION": "Inflige des dégats à l'ennemi avec le moins de PV."
 	}

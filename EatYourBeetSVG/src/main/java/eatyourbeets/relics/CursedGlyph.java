@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class CursedGlyph extends AnimatorRelic implements AllowedUnnamedReignRelic
 {
@@ -30,7 +31,7 @@ public class CursedGlyph extends AnimatorRelic implements AllowedUnnamedReignRel
             GameActionsHelper.AddToTop(new RelicAboveCreatureAction(m, this));
 
             int bonusHealth = 6;
-            if (AbstractDungeon.ascensionLevel >= 7)
+            if (AbstractDungeon.ascensionLevel >= 7 || PlayerStatistics.SaveData.EnteredUnnamedReign)
             {
                 bonusHealth += (int)Math.ceil(m.maxHealth * 0.11);
             }

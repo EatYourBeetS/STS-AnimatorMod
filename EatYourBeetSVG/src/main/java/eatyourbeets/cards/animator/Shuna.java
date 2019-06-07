@@ -27,7 +27,7 @@ public class Shuna extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActionsHelper.Callback(new WaitAction(0), this::OnCompletion, this);
+        GameActionsHelper.Callback(new WaitAction(0.1f), this::OnCompletion, this);
     }
 
     public void OnCompletion(Object state, AbstractGameAction action)

@@ -9,14 +9,16 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.DungeonMap;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.monsters.MonsterInfo;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
+import com.megacrit.cardcrawl.rooms.EmptyRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.powers.PlayerStatistics;
@@ -47,6 +49,10 @@ public class TheUnnamedReign extends AbstractDungeon
         AbstractDungeon.isDungeonBeaten = true;
     }
 
+    protected ArrayList<String> MONSTER_LIST_WHICH_ACTUALLY_WORKS;
+
+
+
     public TheUnnamedReign(AbstractPlayer p, ArrayList<String> specialOneTimeEventList)
     {
         super(NAME, ID, p, new ArrayList<>());
@@ -60,7 +66,12 @@ public class TheUnnamedReign extends AbstractDungeon
         fadeColor = Color.valueOf("140a1eff");
         this.initializeLevelSpecificChances();
         mapRng = new Random(Settings.seed + (long) (AbstractDungeon.actNum * 200));
-        generateMap();
+
+        GenerateMap();
+
+        AbstractDungeon.currMapNode = new MapRoomNode(0, -1);
+        AbstractDungeon.currMapNode.room = new EmptyRoom();
+
         CardCrawlGame.music.changeBGM(id);
     }
 
@@ -79,13 +90,28 @@ public class TheUnnamedReign extends AbstractDungeon
         miscRng = new Random(Settings.seed + (long) saveFile.floor_num);
         CardCrawlGame.music.changeBGM(id);
         mapRng = new Random(Settings.seed + (long) (saveFile.act_num * 200));
-        generateMap();
 
-        MapRoomNode victoryNode = new MapRoomNode(3, map.size());
-        victoryNode.room = new TrueVictoryRoom();
+        GenerateMap();
+
+
+//        MapRoomNode victoryNode = new MapRoomNode(3, map.size());
+//        victoryNode.room = new TrueVictoryRoom();
 
         firstRoomChosen = true;
         this.populatePathTaken(saveFile);
+    }
+
+    protected void GenerateMap()
+    {
+        AbstractDungeon.map = new ArrayList<>();
+        TheUnnamedReign_Map.GenerateMap(AbstractDungeon.map);
+
+        GenerateMonstersInADecentWay();
+
+        generateMonsters();
+
+        firstRoomChosen = false;
+        fadeIn();
     }
 
     @SpireOverride
@@ -130,44 +156,18 @@ public class TheUnnamedReign extends AbstractDungeon
         }
     }
 
-    protected void generateMonsters()
+    @Override
+    public MonsterGroup getEliteMonsterForRoomCreation()
     {
-        this.generateWeakEnemies(2);
-        this.generateStrongEnemies(12);
-        this.generateElites(10);
+        lastCombatMetricKey = MONSTER_LIST_WHICH_ACTUALLY_WORKS.get(getCurrMapNode().y);
+        return MonsterHelper.getEncounter(lastCombatMetricKey);
     }
 
-    protected void generateWeakEnemies(int count)
+    @Override
+    public MonsterGroup getMonsterForRoomCreation()
     {
-        ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.TWO_SHAPES, 1.5F));
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.THREE_NORMAL_SHAPES, 1.5F));
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.CULTIST, 2.5F));
-        MonsterInfo.normalizeWeights(monsters);
-        this.populateMonsterList(monsters, count, false);
-    }
-
-    protected void generateStrongEnemies(int count)
-    {
-        ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.CULTIST_AND_TWO_SHAPES, 1.0F));
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.THREE_LAGAVULIN, 1.0F));
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.LARGE_CRYSTAL, 1.0F));
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.LARGE_CUBE, 1.0F));
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.LARGE_WISP, 1.0F));
-        MonsterInfo.normalizeWeights(monsters);
-        this.populateFirstStrongEnemy(monsters, this.generateExclusions());
-        this.populateMonsterList(monsters, count, false);
-    }
-
-    protected void generateElites(int count)
-    {
-        ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.ULTIMATE_CRYSTAL, 1.0F));
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.ULTIMATE_CUBE, 1.0F));
-        monsters.add(new MonsterInfo(UnnamedEnemyGroup.ULTIMATE_WISP, 1.0F));
-        MonsterInfo.normalizeWeights(monsters);
-        this.populateMonsterList(monsters, count, true);
+        lastCombatMetricKey = MONSTER_LIST_WHICH_ACTUALLY_WORKS.get(getCurrMapNode().y);
+        return MonsterHelper.getEncounter(lastCombatMetricKey);
     }
 
     protected ArrayList<String> generateExclusions()
@@ -190,7 +190,7 @@ public class TheUnnamedReign extends AbstractDungeon
 //        eventList.add("Mysterious Sphere");
 //        eventList.add("Tomb of Lord Red Mask");
         eventList.add("SensoryStone");
-        eventList.add("Winding Halls");
+//        eventList.add("Winding Halls");
     }
 
     protected void initializeEventImg()
@@ -207,12 +207,103 @@ public class TheUnnamedReign extends AbstractDungeon
     protected void initializeShrineList()
     {
         shrineList.add("Match and Keep!");
-        shrineList.add("Wheel of Change");
+        //shrineList.add("Wheel of Change");
         shrineList.add("Golden Shrine");
         shrineList.add("Transmorgrifier");
         shrineList.add("Purifier");
         shrineList.add("Upgrade Shrine");
     }
+
+    protected void GenerateMonstersInADecentWay()
+    {
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS = new ArrayList<>();
+
+        RandomizedList<String> weakEnemies = new RandomizedList<>();
+        weakEnemies.Add(UnnamedEnemyGroup.CULTIST);
+        weakEnemies.Add(UnnamedEnemyGroup.TWO_SHAPES);
+        weakEnemies.Add(UnnamedEnemyGroup.THREE_NORMAL_SHAPES);
+
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(0, weakEnemies.Retrieve(mapRng)); // mo1
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(1, weakEnemies.Retrieve(mapRng)); // mo2
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(2, weakEnemies.Retrieve(mapRng)); // th
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(3, null);                 // ev1
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(4, null);                 // r1/sh1
+
+        RandomizedList<String> normalEnemies = new RandomizedList<>();
+        normalEnemies.Add(UnnamedEnemyGroup.CULTIST_AND_TWO_SHAPES);
+        normalEnemies.Add(UnnamedEnemyGroup.THREE_LAGAVULIN);
+        int n = (mapRng.random(2));
+        if (n == 0)
+        {
+            normalEnemies.Add(UnnamedEnemyGroup.LARGE_CUBE);
+        }
+        else if (n == 1)
+        {
+            normalEnemies.Add(UnnamedEnemyGroup.LARGE_CRYSTAL);
+        }
+        else
+        {
+            normalEnemies.Add(UnnamedEnemyGroup.LARGE_WISP);
+        }
+
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(5, normalEnemies.Retrieve(mapRng)); // mo1
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(6, normalEnemies.Retrieve(mapRng)); // mo2
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(7, normalEnemies.Retrieve(mapRng)); // ev1
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(8, null);                   // r1/sh1
+
+        RandomizedList<String> eliteEnemies = new RandomizedList<>();
+        eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_CRYSTAL);
+        eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_CUBE);
+        eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_WISP);
+
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(9, eliteEnemies.Retrieve(mapRng));  // mo1
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(10, null);  // tr1
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(11, null); // ev1
+
+        eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_CRYSTAL);
+        eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_CUBE);
+        eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_WISP);
+
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(12, eliteEnemies.Retrieve(mapRng)); // sh1
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(13, eliteEnemies.Retrieve(mapRng)); // mo2
+    }
+
+
+    protected void generateMonsters()
+    {
+        generateWeakEnemies(0);
+        generateStrongEnemies(0);
+        generateElites(0);
+    }
+
+    @Override
+    protected void generateWeakEnemies(int count)
+    {
+        // These aren't even used but whatever
+        monsterList.add(UnnamedEnemyGroup.CULTIST);
+        monsterList.add(UnnamedEnemyGroup.THREE_NORMAL_SHAPES);
+        monsterList.add(UnnamedEnemyGroup.TWO_SHAPES);
+    }
+
+    @Override
+    protected void generateStrongEnemies(int count)
+    {
+        monsterList.add(UnnamedEnemyGroup.CULTIST_AND_TWO_SHAPES);
+        monsterList.add(UnnamedEnemyGroup.THREE_LAGAVULIN);
+        monsterList.add(UnnamedEnemyGroup.LARGE_CUBE);
+        monsterList.add(UnnamedEnemyGroup.LARGE_CRYSTAL);
+        monsterList.add(UnnamedEnemyGroup.LARGE_WISP);
+    }
+
+    @Override
+    protected void generateElites(int count)
+    {
+        // These aren't even used but whatever
+        eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_WISP);
+        eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CUBE);
+        eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CRYSTAL);
+    }
+
 
     static
     {

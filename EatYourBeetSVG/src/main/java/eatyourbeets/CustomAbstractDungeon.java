@@ -212,6 +212,18 @@ public class CustomAbstractDungeon extends AbstractDungeon
         return retVal;
     }
 
+    public static float GetUltraRareChance()
+    {
+        float bonus = 1;
+        int level = AnimatorCustomLoadout.specialTrophies.trophy1;
+        if (level > 0)
+        {
+            bonus += level / 100f;
+        }
+
+        return Math.min(4f * bonus, 8f);
+    }
+
     private static void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
     {
         int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
@@ -220,14 +232,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
             return;
         }
 
-        float bonus = 1;
-        int level = AnimatorCustomLoadout.specialTrophies.trophy1;
-        if (level > 0)
-        {
-            bonus += level / 100f;
-        }
-
-        float chances = Math.min(4f * bonus, 9f);
+        float chances = GetUltraRareChance();
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
         {
             if (c instanceof AnimatorCard_UltraRare)
@@ -293,7 +298,13 @@ public class CustomAbstractDungeon extends AbstractDungeon
             card = new JeanneDArc();
         }
 
-        if (card != null)
+        // temporarily removed
+//        else if (synergy == Synergies.OnePunchMan)
+//        {
+//            card = new SeriousSaitama();
+//        }
+
+        if (card != null || cards.size() > 0)
         {
             cards.remove(0);
             cards.add(card);

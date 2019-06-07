@@ -22,7 +22,7 @@ public class Saitama extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(22, 0, 22);
+        Initialize(21, 0, 21);
 
         SetSynergy(Synergies.OnePunchMan);
     }

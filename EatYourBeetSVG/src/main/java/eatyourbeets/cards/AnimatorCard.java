@@ -23,6 +23,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -212,9 +213,9 @@ public abstract class AnimatorCard extends CustomCard
     {
         try
         {
-            return getClass().newInstance();
+            return getClass().getConstructor().newInstance();
         }
-        catch (InstantiationException | IllegalAccessException e)
+        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
         {
             e.printStackTrace();
         }

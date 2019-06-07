@@ -10,9 +10,9 @@ import eatyourbeets.monsters.AbstractMove;
 
 public class Move_Attack extends AbstractMove
 {
-    public Move_Attack(int damageAmount)
+    public Move_Attack(int amount)
     {
-        this.damageInfo = new DamageInfo(owner, damageAmount + (ascensionLevel / 4));
+        this.damageInfo = new DamageInfo(owner, amount + GetBonus(amount, 0.25f));
     }
 
     public void SetMove()

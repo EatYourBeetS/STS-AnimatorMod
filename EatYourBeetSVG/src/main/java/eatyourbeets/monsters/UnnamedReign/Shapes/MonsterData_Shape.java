@@ -3,6 +3,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
 import eatyourbeets.monsters.UnnamedReign.UnnamedShape;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class MonsterData_Shape extends AbstractMonsterData
 {
@@ -43,6 +44,11 @@ public class MonsterData_Shape extends AbstractMonsterData
         if (tier != MonsterTier.Ultimate)
         {
             maxHealth += AbstractDungeon.monsterHpRng.random(-4, 4);
+
+            if (PlayerStatistics.GetAscensionLevel() >= 7)
+            {
+                maxHealth = Math.round(maxHealth * 1.1f);
+            }
         }
     }
 
@@ -144,7 +150,7 @@ public class MonsterData_Shape extends AbstractMonsterData
             {
                 hb_w = 240;
                 hb_h = 240;
-                maxHealth = 90;
+                maxHealth = 80;
                 break;
             }
 
@@ -155,7 +161,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -30;
                 hb_w = 140;
                 hb_h = 140;
-                maxHealth = 120;
+                maxHealth = 100;
                 break;
             }
 
@@ -165,7 +171,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -60;
                 hb_w = 220;
                 hb_h = 220;
-                maxHealth = 160;
+                maxHealth = 135;
                 break;
             }
 

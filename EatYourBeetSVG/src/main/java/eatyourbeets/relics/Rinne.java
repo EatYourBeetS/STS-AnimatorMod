@@ -6,8 +6,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.actions.HigakiRinneAction;
 import eatyourbeets.cards.animator.HigakiRinne;
+import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
 
-public class Rinne extends AnimatorRelic
+public class Rinne extends AnimatorRelic implements AllowedUnnamedReignRelic
 {
     public static final int RINNE_DOES = 3 + 1 + 1;
     public static final int RINNE_SAYS = 33 + 27 + 9 + RINNE_DOES;

@@ -23,7 +23,7 @@ public class Move_Fading extends AbstractMove
     @Override
     public boolean CanUse(Byte previousMove)
     {
-        return !AbstractDungeon.player.hasPower(FadingPlayerPower.POWER_ID);
+        return super.CanUse(previousMove) && !AbstractDungeon.player.hasPower(FadingPlayerPower.POWER_ID);
     }
 
     public void SetMove()

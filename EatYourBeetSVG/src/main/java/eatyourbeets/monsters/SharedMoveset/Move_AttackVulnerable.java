@@ -16,7 +16,7 @@ public class Move_AttackVulnerable extends AbstractMove
     public Move_AttackVulnerable(int damageAmount, int debuffAmount)
     {
         this.debuffAmount = debuffAmount;
-        damageInfo = new DamageInfo(owner, damageAmount, DamageInfo.DamageType.NORMAL);
+        damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.2f));
     }
 
     public void SetMove()

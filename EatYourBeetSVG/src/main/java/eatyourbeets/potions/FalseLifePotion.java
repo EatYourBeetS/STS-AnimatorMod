@@ -36,7 +36,18 @@ public class FalseLifePotion extends AbstractPotion
 
     public int getPotency(int ascensionLevel)
     {
-        return 8;
+        if (ascensionLevel < 7)
+        {
+            return 8;
+        }
+        else if (ascensionLevel < 14)
+        {
+            return 10;
+        }
+        else
+        {
+            return 12;
+        }
     }
 
     static

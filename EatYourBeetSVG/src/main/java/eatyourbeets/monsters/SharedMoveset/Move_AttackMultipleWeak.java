@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.GameActionsHelper;
@@ -17,7 +16,7 @@ public class Move_AttackMultipleWeak extends AbstractMove
 
     public Move_AttackMultipleWeak(int damageAmount, int times, int debuffAmount)
     {
-        this.damageInfo = new DamageInfo(owner, damageAmount + (ascensionLevel / 7));
+        this.damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.2f));
         this.times = times;
         this.debuffAmount = debuffAmount;
     }

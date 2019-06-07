@@ -14,7 +14,7 @@ public class Move_AttackMultiple extends AbstractMove
 
     public Move_AttackMultiple(int damageAmount, int times)
     {
-        this.damageInfo = new DamageInfo(owner, damageAmount + (ascensionLevel / 7));
+        this.damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.2f));
         this.times = times;
     }
 

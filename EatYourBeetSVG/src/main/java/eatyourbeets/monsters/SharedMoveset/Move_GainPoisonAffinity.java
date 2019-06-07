@@ -2,7 +2,6 @@ package eatyourbeets.monsters.SharedMoveset;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.powers.PoisonAffinityPower;

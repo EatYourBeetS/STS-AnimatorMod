@@ -3,7 +3,6 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleFrail;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleVulnerable;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleWeak;
@@ -23,9 +22,9 @@ public class UltimateCube extends Cube
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.AddNormal(new Move_AttackMultipleFrail(6, 2, 2));
-        moveset.AddNormal(new Move_AttackMultipleWeak(6, 2, 2));
-        moveset.AddNormal(new Move_AttackMultipleVulnerable(6, 2, 2));
+        moveset.AddNormal(new Move_AttackMultipleFrail(4, 2, 2));
+        moveset.AddNormal(new Move_AttackMultipleWeak(4, 2, 2));
+        moveset.AddNormal(new Move_AttackMultipleVulnerable(4, 2, 2));
     }
 
     @Override

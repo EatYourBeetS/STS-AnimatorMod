@@ -10,12 +10,11 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import eatyourbeets.Utilities;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
 import eatyourbeets.misc.RandomizedList;
+import patches.RelicObtainedPatches;
 
 public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedReignRelic
 {
@@ -29,9 +28,14 @@ public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedRei
 
     public AncientMedallion()
     {
-        super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
+        this(1);
+    }
 
-        this.equipCounter = 1;
+    public AncientMedallion(boolean event)
+    {
+        this(1);
+
+        this.event = event;
     }
 
     public AncientMedallion(int counter)
@@ -39,13 +43,6 @@ public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedRei
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
 
         this.equipCounter = counter;
-    }
-
-    public AncientMedallion(boolean event)
-    {
-        super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
-
-        this.event = event;
     }
 
     @Override
@@ -134,9 +131,9 @@ public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedRei
         this.flash();
     }
 
-    public static void OnRelicReceived(AbstractRelic relic)
+    public static void OnRelicReceived(AbstractRelic relic, RelicObtainedPatches.Trigger trigger)
     {
-        if (relic instanceof AncientMedallion)
+        if (trigger == RelicObtainedPatches.Trigger.Equip && relic instanceof AncientMedallion)
         {
             AbstractPlayer p = AbstractDungeon.player;
             AncientMedallion ancientMedallion = (AncientMedallion) p.getRelic(AncientMedallion.ID);
@@ -146,7 +143,7 @@ public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedRei
                 {
                     int equipCounter = ((AncientMedallion) relic).equipCounter;
                     AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(ancientMedallion, relic, equipCounter));
-                    ancientMedallion.equipCounter += equipCounter;
+                    ancientMedallion.equipCounter = equipCounter;
                     ancientMedallion.flash();
                 }
 

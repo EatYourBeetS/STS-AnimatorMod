@@ -2,8 +2,10 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.GameActionsHelper;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
+import eatyourbeets.cards.animator.Crystallize;
+import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrength;
+import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.UnnamedReign.FrostCrystalPower;
@@ -16,8 +18,9 @@ public class FrostCrystal extends Crystal
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.AddNormal(new Move_GainStrength( tier.Add(1,1)));
-        moveset.AddNormal(new Move_AttackDefend( 12,12));
+        moveset.AddNormal(new Move_GainStrength(tier.Add(1,1)));
+        moveset.AddNormal(new Move_AttackMultiple(tier.Add(7, 3),2));
+        moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 3));
     }
 
     @Override

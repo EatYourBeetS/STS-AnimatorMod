@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_Attack;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset.Move_ShuffleDazed;
+import eatyourbeets.monsters.SharedMoveset.Move_GainStrength;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.UnnamedReign.FireWispPower;
@@ -17,9 +17,9 @@ public class FireWisp extends Wisp
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.AddNormal(new Move_Attack(tier.Add(9,4)));
-        moveset.AddNormal(new Move_ShuffleDazed(3));
-        moveset.AddNormal(new Move_AttackMultiple(tier.Add(3,1), 3));
+        moveset.AddNormal(new Move_Attack(tier.Add(8,4)));
+        moveset.AddNormal(new Move_GainStrength(tier.Add(2,3)));
+        moveset.AddNormal(new Move_AttackMultiple(tier.Add(3,1), 2));
     }
 
     @Override

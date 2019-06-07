@@ -32,7 +32,7 @@ public class Archer extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(2);
+            upgradeDamage(1);
         }
     }
 }

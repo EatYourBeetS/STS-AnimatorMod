@@ -20,6 +20,7 @@ public class LightningCubePower extends AnimatorPower
         super(owner, POWER_ID);
 
         this.amount = value;
+        this.priority = -99;
 
         updateDescription();
     }

@@ -8,7 +8,6 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Air;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.TemporaryBiasPower;
 
 public class Tatsumaki extends AnimatorCard
 {
@@ -49,6 +48,7 @@ public class Tatsumaki extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
+            upgradeSecondaryValue(1);
         }
     }
 }

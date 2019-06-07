@@ -34,7 +34,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
         moveset.AddSpecial(new Move_SummonEnemy());
 
         moveset.AddNormal(new Move_GainPlatedArmorAll(3));
-        moveset.AddNormal(new Move_GainStrengthAll(1));
+        moveset.AddNormal(new Move_GainStrengthAll(2));
         moveset.AddNormal(new Move_AttackDefend(12, 12));
     }
 

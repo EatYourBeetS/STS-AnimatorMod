@@ -27,12 +27,13 @@ public class Hoodie extends AnimatorRelic
         if (GameActionManager.damageReceivedThisCombat == 0)
         {
             AbstractDungeon.player.increaseMaxHp(MAX_HP_BONUS, true);
+            this.flash();
         }
     }
 
     @Override
     public boolean canSpawn()
     {
-        return AbstractDungeon.actNum == 1 && super.canSpawn();
+        return AbstractDungeon.floorNum < 24 && super.canSpawn();
     }
 }

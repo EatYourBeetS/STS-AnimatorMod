@@ -218,7 +218,7 @@ public abstract class AnimatorCustomLoadout
         String text = "";
         if (specialTrophies.trophy1 > 0)
         {
-            text += "+ " + specialTrophies.trophy1 + "%";
+            text += " " + String.format("%.2f", CustomAbstractDungeon.GetUltraRareChance()) + "%";
         }
 
         RenderSpecialTrophy(trophySpecialHb, specialTrophies.trophy1, sb, text);

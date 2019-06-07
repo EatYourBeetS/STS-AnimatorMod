@@ -18,7 +18,7 @@ public class Konayuki extends AnimatorCard// implements OnBattleStartSubscriber,
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(20,0, 3);
+        Initialize(25,0, 3);
 
 //        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
 //        {

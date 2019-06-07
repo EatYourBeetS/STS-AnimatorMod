@@ -10,11 +10,13 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Move_GainStrengthAndArtifactAll extends AbstractMove
 {
-    private final int buffAmount;
+    private final int strength;
+    private final int artifact;
 
-    public Move_GainStrengthAndArtifactAll(int buffAmount)
+    public Move_GainStrengthAndArtifactAll(int strength, int artifact)
     {
-        this.buffAmount = buffAmount;
+        this.strength = strength;
+        this.artifact = artifact;
     }
 
     public void SetMove()
@@ -26,8 +28,8 @@ public class Move_GainStrengthAndArtifactAll extends AbstractMove
     {
         for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {
-            GameActionsHelper.ApplyPower(owner, m, new StrengthPower(m, buffAmount), buffAmount);
-            GameActionsHelper.ApplyPower(owner, m, new ArtifactPower(m, buffAmount), buffAmount);
+            GameActionsHelper.ApplyPower(owner, m, new StrengthPower(m, strength), strength);
+            GameActionsHelper.ApplyPower(owner, m, new ArtifactPower(m, artifact), artifact);
         }
     }
 }

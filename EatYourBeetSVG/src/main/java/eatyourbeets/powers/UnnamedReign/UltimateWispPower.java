@@ -1,5 +1,6 @@
 package eatyourbeets.powers.UnnamedReign;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,8 +9,12 @@ import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.subscribers.OnBattleStartSubscriber;
+import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
+import patches.CardGlowBorderPatch;
 
-public class UltimateWispPower extends AnimatorPower
+public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPostDrawSubscriber, OnBattleStartSubscriber
 {
     private boolean shouldExhaust = false;
 
@@ -21,6 +26,8 @@ public class UltimateWispPower extends AnimatorPower
 
         this.amount = -1;
 
+        OnBattleStart();
+
         updateDescription();
     }
 
@@ -28,6 +35,8 @@ public class UltimateWispPower extends AnimatorPower
     public void onInitialApplication()
     {
         super.onInitialApplication();
+
+        OnBattleStart();
 
         shouldExhaust = true;
     }
@@ -58,6 +67,7 @@ public class UltimateWispPower extends AnimatorPower
             action.actionType = AbstractGameAction.ActionType.EXHAUST;
             action.exhaustCard = true;
             shouldExhaust = false;
+            CardGlowBorderPatch.overrideColor = null;
         }
     }
 
@@ -65,7 +75,21 @@ public class UltimateWispPower extends AnimatorPower
     {
         if (target != owner && damageAmount > 0 && info.type != DamageInfo.DamageType.THORNS)
         {
-            GameActionsHelper.MakeCardInDiscardPile(new Burn(), 1, true);
+            GameActionsHelper.MakeCardInDiscardPile(new Burn(), 1, false);
         }
+    }
+
+    @Override
+    public void OnBattleStart()
+    {
+        PlayerStatistics.onBattleStart.Subscribe(this);
+        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+        CardGlowBorderPatch.overrideColor = Color.ORANGE.cpy();
+    }
+
+    @Override
+    public void OnStartOfTurnPostDraw()
+    {
+        CardGlowBorderPatch.overrideColor = Color.ORANGE.cpy();
     }
 }

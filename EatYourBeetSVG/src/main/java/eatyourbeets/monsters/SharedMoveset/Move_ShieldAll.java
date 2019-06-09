@@ -20,7 +20,7 @@ public class Move_ShieldAll extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.DEFEND);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {

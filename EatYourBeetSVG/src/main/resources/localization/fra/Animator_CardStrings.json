@@ -70,7 +70,7 @@
 	},
 	"animator_Asuramaru":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Infligez !D! dégât(s). NL Gagnez !M! de Force, de Dextérité et de Concentration. NL Épuisement.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Infligez !D! dégât(s). NL Gagnez !M! de Force. NL Gagnez !M! de Dextérité. NL Épuisement.",
 		"NAME": "Asuramaru"
 	},
 	"animator_Azekura":
@@ -325,7 +325,7 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "Changeforme. Soignez 1 PV par tranche de !M! PV manquants. La première carte que vous jouez chaque tour Synergize.",
+		"DESCRIPTION": "Changeforme. Soignez !M! % de PV manquants. La première carte que vous jouez chaque tour Synergize.",
 		"NAME": "Envy"
 	},
 	"animator_Eris":

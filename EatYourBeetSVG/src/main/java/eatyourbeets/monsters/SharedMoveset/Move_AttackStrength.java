@@ -5,18 +5,19 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
 
-public class Move_AttackVulnerable extends AbstractMove
+public class Move_AttackStrength extends AbstractMove
 {
-    private final int debuffAmount;
+    private final int buffAmount;
 
-    public Move_AttackVulnerable(int damageAmount, int debuffAmount)
+    public Move_AttackStrength(int damageAmount, int buffAmount)
     {
-        this.debuffAmount = debuffAmount;
-        damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.2f));
+        this.buffAmount = buffAmount;
+        damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.25f));
     }
 
     public void SetMove()
@@ -29,6 +30,6 @@ public class Move_AttackVulnerable extends AbstractMove
         owner.useFastAttackAnimation();
         damageInfo.applyPowers(owner, target);
         GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.FIRE));
-        GameActionsHelper.ApplyPower(owner, target, new VulnerablePower(target, debuffAmount, true), debuffAmount);
+        GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, buffAmount));
     }
 }

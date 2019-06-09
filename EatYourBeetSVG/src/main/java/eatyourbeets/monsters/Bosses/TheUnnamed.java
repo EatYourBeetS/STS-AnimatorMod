@@ -39,7 +39,7 @@ public class TheUnnamed extends AnimatorMonster
         data.SetIdleAnimation(this, 1);
 
         moveFading = (Move_Fading)
-                moveset.AddSpecial(new Move_Fading(5));
+                moveset.AddSpecial(new Move_Fading(PlayerStatistics.GetAscensionLevel() > 7 ? 4 : 5));
 
         movePoison = (Move_Poison)
                 moveset.AddSpecial(new Move_Poison(4));
@@ -94,6 +94,8 @@ public class TheUnnamed extends AnimatorMonster
             return;
         }
 
+        //AbstractDungeon.aiRng.setCounter(AbstractDungeon.aiRng.counter + MathUtils.random(100));
+
         super.usePreBattleAction();
 
         AbstractDungeon.getCurrRoom().rewardAllowed = false;
@@ -107,9 +109,9 @@ public class TheUnnamed extends AnimatorMonster
 
         if (AbstractDungeon.player.maxHealth > 500)
         {
-            GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[1], 3, 3));
-            moveFading.fadingTurns = 1;
-            moveFading.Execute(AbstractDungeon.player);
+            GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[1], 4, 4));
+            moveFading.fadingTurns = 3;
+            moveFading.ExecuteInternal(AbstractDungeon.player);
         }
     }
 
@@ -151,10 +153,9 @@ public class TheUnnamed extends AnimatorMonster
         if (minionsCount <= 0)
         {
             GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[0], 3, 3));
-            GameActionsHelper.ApplyPower(this, this, new AngryPower(this, 4), 4);
-            GameActionsHelper.ApplyPower(this, this, new DemonFormPower(this, 4), 4);
+            GameActionsHelper.ApplyPower(this, this, new AngryPower(this, 5), 5);
             GameActionsHelper.ApplyPower(this, this, new PlatedArmorPower(this, 16), 16);
-            GameActionsHelper.ApplyPower(this, this, new RegenPower(this, 60), 60);
+            GameActionsHelper.ApplyPower(this, this, new RegenPower(this, 100), 100);
 //            moveFading.SetMove();
 //            this.createIntent();
 

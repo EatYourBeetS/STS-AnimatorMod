@@ -3,6 +3,7 @@ package eatyourbeets.powers;
 import basemod.DevConsole;
 import basemod.abstracts.CustomSavable;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
+import com.google.gson.annotations.Expose;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
@@ -19,6 +20,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.GameActionsHelper;
@@ -27,6 +29,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.animator.TheHaunt;
 import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.subscribers.*;
+import patches.CardGlowBorderPatch;
 
 import java.util.ArrayList;
 
@@ -71,6 +74,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     {
         logger.info("Clearing Player Stats");
 
+        CardGlowBorderPatch.overrideColor = null;
         AnimatorCard.SetLastCardPlayed(null);
         synergiesThisTurn = 0;
         cardsExhaustedThisTurn = 0;
@@ -624,6 +628,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     @Override
     public SaveData onSave()
     {
+        if (SaveData != null)
+        {
+            SaveData.OnBeforeSaving();
+        }
+
         return SaveData;
     }
 
@@ -646,6 +655,22 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     {
         public Integer TheHaunt = 0;
         public Boolean EnteredUnnamedReign = false;
+        public Integer RNGCounter = 0;
+
+        @Expose(serialize = false, deserialize = false)
+        private Random rng;
+
+        protected void OnBeforeSaving()
+        {
+            if (rng != null)
+            {
+                RNGCounter = rng.counter;
+            }
+            else
+            {
+                RNGCounter = 0;
+            }
+        }
 
         protected void ValidateFields()
         {
@@ -658,6 +683,22 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
             {
                 EnteredUnnamedReign = false;
             }
+
+            if (RNGCounter == null)
+            {
+                RNGCounter = 0;
+            }
+        }
+
+        public Random GetRNG()
+        {
+            if (rng == null)
+            {
+                rng = new Random(Settings.seed);
+                rng.setCounter(RNGCounter);
+            }
+
+            return rng;
         }
     }
 }

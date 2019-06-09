@@ -72,11 +72,11 @@ public class TheUnnamed_SummonDollAction extends AnimatorAction
         {
             case 0:
                 x = -180.0F;
-                y = 242.0F;
+                y = 262.0F;
                 break;
             case 1:
                 x = -366.0F;
-                y = 134.0F;
+                y = 154.0F;
                 break;
             case 2:
                 x = -232.0F;

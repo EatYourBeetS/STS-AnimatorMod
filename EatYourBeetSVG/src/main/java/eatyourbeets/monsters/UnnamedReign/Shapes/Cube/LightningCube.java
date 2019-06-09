@@ -39,11 +39,11 @@ public class LightningCube extends Cube
                 break;
 
             case Advanced:
-                amount = 5;
+                amount = 6;
                 break;
 
             case Ultimate:
-                amount = 6;
+                amount = 8;
                 break;
         }
 

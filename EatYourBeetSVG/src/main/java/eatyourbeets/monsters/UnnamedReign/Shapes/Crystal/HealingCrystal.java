@@ -18,7 +18,7 @@ public class HealingCrystal extends Crystal
         int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_AttackDefend(tier.Add(4, 2), tier.Add(4, 2)));
-        moveset.AddNormal(new Move_GainThorns(tier.Add(1, 1)));
+        moveset.AddNormal(new Move_GainThorns(tier.Add(2, 1)));
         moveset.AddNormal(new Move_GainStrength(tier.Add(1, 2)));
     }
 

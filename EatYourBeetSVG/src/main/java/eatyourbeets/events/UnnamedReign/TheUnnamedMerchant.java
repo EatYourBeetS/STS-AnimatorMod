@@ -25,8 +25,8 @@ public class TheUnnamedMerchant extends AnimatorEvent
         super(ID, "Merchant.png");
 
         haggleEnabled = true;
-        sellingPrice = 80;
-        buyingPrice = 190;
+        sellingPrice = 90;
+        buyingPrice = 180;
         merchantLine = 1;
 
         RegisterPhase(1, this::CreatePhase1, this::HandlePhase1);

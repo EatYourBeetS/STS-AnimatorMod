@@ -19,7 +19,7 @@ public class Move_Defend extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.DEFEND);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.GainBlock(owner, blockAmount);
     }

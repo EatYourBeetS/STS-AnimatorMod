@@ -31,19 +31,19 @@ public class HealingCube extends Cube
         switch (data.tier)
         {
             case Small:
-                amount = 3;
+                amount = 5;
                 break;
 
             case Normal:
-                amount = 4;
-                break;
-
-            case Advanced:
                 amount = 6;
                 break;
 
+            case Advanced:
+                amount = 10;
+                break;
+
             case Ultimate:
-                amount = 7;
+                amount = 12;
                 break;
         }
 

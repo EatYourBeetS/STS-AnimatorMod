@@ -24,7 +24,7 @@ public class Move_GainStrengthAndArtifactAll extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.BUFF);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {

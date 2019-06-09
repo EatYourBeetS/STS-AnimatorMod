@@ -15,7 +15,7 @@ public class Envy extends AnimatorCard
     {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0, 7);
+        Initialize(0,0, 20);
 
         tags.add(CardTags.HEALING);
 
@@ -25,7 +25,17 @@ public class Envy extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        int heal = (p.maxHealth - p.currentHealth) / magicNumber;
+        int missingHP = p.maxHealth - p.currentHealth;
+        int heal;
+        if (upgraded)
+        {
+            heal = (int)Math.ceil(missingHP * magicNumber / 100f);
+        }
+        else
+        {
+            heal = (int)Math.round(missingHP * magicNumber / 100f);
+        }
+
         if (heal > 0)
         {
             p.heal(heal, true);
@@ -39,7 +49,7 @@ public class Envy extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(-2);
+            upgradeMagicNumber(5);
         }
     }
 }

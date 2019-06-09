@@ -38,7 +38,7 @@ public class Move_Cripple extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.DEFEND_DEBUFF);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.GainBlock(owner, BLOCK_AMOUNT);
         GameActionsHelper.ApplyPower(owner, target, new WeakPower(target, WEAK_AMOUNT, true), WEAK_AMOUNT);

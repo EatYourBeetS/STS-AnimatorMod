@@ -33,7 +33,7 @@ public class Move_SummonEnemy extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.UNKNOWN);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         summonCount += 1;
 

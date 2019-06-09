@@ -36,6 +36,8 @@ public class TheUnnamedReign extends AbstractDungeon
     public static final String NAME;
     public static final String ID = "Animator_TheUnnamedReign";
 
+    protected ArrayList<String> MONSTER_LIST_WHICH_ACTUALLY_WORKS;
+
     public static void EnterDungeon()
     {
         AbstractDungeon.rs = AbstractDungeon.RenderScene.NORMAL;
@@ -48,10 +50,6 @@ public class TheUnnamedReign extends AbstractDungeon
         AbstractDungeon.fadeOut();
         AbstractDungeon.isDungeonBeaten = true;
     }
-
-    protected ArrayList<String> MONSTER_LIST_WHICH_ACTUALLY_WORKS;
-
-
 
     public TheUnnamedReign(AbstractPlayer p, ArrayList<String> specialOneTimeEventList)
     {
@@ -206,12 +204,12 @@ public class TheUnnamedReign extends AbstractDungeon
 
     protected void initializeShrineList()
     {
-        shrineList.add("Match and Keep!");
-        //shrineList.add("Wheel of Change");
-        shrineList.add("Golden Shrine");
-        shrineList.add("Transmorgrifier");
-        shrineList.add("Purifier");
-        shrineList.add("Upgrade Shrine");
+//        shrineList.add("Match and Keep!");
+//        //shrineList.add("Wheel of Change");
+//        shrineList.add("Golden Shrine");
+//        shrineList.add("Transmorgrifier");
+//        shrineList.add("Purifier");
+//        shrineList.add("Upgrade Shrine");
     }
 
     protected void GenerateMonstersInADecentWay()
@@ -259,10 +257,6 @@ public class TheUnnamedReign extends AbstractDungeon
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(9, eliteEnemies.Retrieve(mapRng));  // mo1
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(10, null);  // tr1
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(11, null); // ev1
-
-        eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_CRYSTAL);
-        eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_CUBE);
-        eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_WISP);
 
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(12, eliteEnemies.Retrieve(mapRng)); // sh1
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(13, eliteEnemies.Retrieve(mapRng)); // mo2

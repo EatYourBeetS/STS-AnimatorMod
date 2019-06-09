@@ -31,7 +31,7 @@ public class Move_Fading extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.STRONG_DEBUFF);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
         GameActionsHelper.AddToBottom(new VFXAction(new CollectorCurseEffect(target.hb.cX, target.hb.cY), 2.0F));

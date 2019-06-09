@@ -127,11 +127,11 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"À la mort, TOUS les autres personnages reçoivent #b", " de #yForce."
+			"Lorsqu'une carte est jouée, gagnez #b", " de #yMax #yPV. NL NL À la mort, TOUS les autres personnages reçoivent #b", " de #yForce."
 		],
 		"NAME": "Poupée Sans Nom"
 	},
-	"animator_CursedStabs":
+	"animator_CursedStabsPower":
 	{
 
 		"DESCRIPTIONS":

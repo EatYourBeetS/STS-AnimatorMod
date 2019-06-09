@@ -218,10 +218,10 @@ public class CustomAbstractDungeon extends AbstractDungeon
         int level = AnimatorCustomLoadout.specialTrophies.trophy1;
         if (level > 0)
         {
-            bonus += level / 100f;
+            bonus += level / (level + 100f);
         }
 
-        return Math.min(4f * bonus, 8f);
+        return 4f * bonus;
     }
 
     private static void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
@@ -297,12 +297,10 @@ public class CustomAbstractDungeon extends AbstractDungeon
         {
             card = new JeanneDArc();
         }
-
-        // temporarily removed
-//        else if (synergy == Synergies.OnePunchMan)
-//        {
-//            card = new SeriousSaitama();
-//        }
+        else if (synergy == Synergies.OnePunchMan)
+        {
+            card = new SeriousSaitama();
+        }
 
         if (card != null || cards.size() > 0)
         {

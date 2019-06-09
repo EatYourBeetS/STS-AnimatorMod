@@ -17,7 +17,7 @@ public class LightningCrystal extends Crystal
 
         moveset.AddNormal(new Move_AttackMultiple(tier.Add(2,1),3));
         moveset.AddNormal(new Move_AttackWeak(tier.Add(3,2),1));
-        moveset.AddNormal(new Move_AttackVulnerable(tier.Add(3,2),1));
+        moveset.AddNormal(new Move_AttackStrength(tier.Add(3,2),1));
     }
 
     @Override
@@ -29,19 +29,19 @@ public class LightningCrystal extends Crystal
         switch (data.tier)
         {
             case Small:
-                amount = 3;
+                amount = 2;
                 break;
 
             case Normal:
-                amount = 4;
+                amount = 3;
                 break;
 
             case Advanced:
-                amount = 5;
+                amount = 4;
                 break;
 
             case Ultimate:
-                amount = 6;
+                amount = 5;
                 break;
         }
 

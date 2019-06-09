@@ -20,7 +20,7 @@ public class BlackLotus extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ALL);
 
-        Initialize(9, 7, 1);
+        Initialize(7, 5, 1);
 
         this.isMultiDamage = true;
 

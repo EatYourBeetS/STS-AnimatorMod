@@ -16,7 +16,7 @@ public class HealingWisp extends Wisp
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.AddNormal(new Move_GainStrength(tier.Add(1, 1)));
+        moveset.AddNormal(new Move_GainStrength(tier.Add(0, 2)));
         moveset.AddNormal(new Move_AttackMultiple(3, tier.Add(1, 2)));
     }
 

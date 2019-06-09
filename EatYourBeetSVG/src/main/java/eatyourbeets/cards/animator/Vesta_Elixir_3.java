@@ -25,6 +25,6 @@ public class Vesta_Elixir_3 extends Vesta_Elixir
     {
         GameActionsHelper.DrawCard(p, this.magicNumber);
         GameActionsHelper.Discard(DISCARD_AMOUNT, false);
-        GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, this.secondaryValue));
+        GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, this.secondaryValue), secondaryValue);
     }
 }

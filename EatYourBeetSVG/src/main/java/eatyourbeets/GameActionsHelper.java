@@ -148,6 +148,13 @@ public class GameActionsHelper
         return action;
     }
 
+    public static GainBlockAction GainBlock(AbstractCreature source, int amount, boolean superfast)
+    {
+        GainBlockAction action = new GainBlockAction(source, source, amount, superfast);
+        AddToDefault(action);
+        return action;
+    }
+
     public static GainBlockAction GainBlock(AbstractCreature source, int amount)
     {
         GainBlockAction action = new GainBlockAction(source, source, amount);

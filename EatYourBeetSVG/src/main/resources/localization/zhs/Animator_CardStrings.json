@@ -70,7 +70,7 @@
 	},
 	"animator_Asuramaru":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 获得 !B! 点 格挡 。 获得 !M! 层 力量 ， 敏捷 ， 集中 。 消耗 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 获得 !B! 点 格挡 。 获得 !M! 层 力量 ， 敏捷 。 消耗 。",
 		"NAME": "阿朱罗丸"
 	},
 	"animator_Azekura":
@@ -210,7 +210,7 @@
 	},
 	"animator_Defend_OnePunchMan":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 鼓舞 !SV! : 下一回合，获得 [E]。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 鼓舞 !SV! : 下一回合，获得 [E] 。",
 		"NAME": "优越防御"
 	},
 	"animator_Defend_Konosuba":
@@ -323,7 +323,7 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "穿越者 。 为每 !M! 点失去的生命值，回复 1 点生命值 。 NL 每回合打出的第一张牌都会触发自身的 同调 效果 。",
+		"DESCRIPTION": "穿越者 。 治愈失去生命值的 !M! ％  。 NL 每回合打出的第一张牌都会触发自身的 同调 效果 。",
 		"NAME": "嫉妒"
 	},
 	"animator_Eris":
@@ -429,12 +429,12 @@
 	},
 	"animator_Guren":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 从手牌随机 消耗 一张 [#EFC851]攻击[] 牌 。 将其伤害预存到 支援 中 。",
+		"DESCRIPTION": "打出抽牌堆顶部的三张牌，消耗其中的所有 [#EFC851]攻击[] 牌，每消耗一张牌，获得 !M! 点 支援伤害",
 		"NAME": "红莲"
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 NL 丢弃 !M! 张牌 。 NL 若丢弃的牌中有攻击牌，获得 !SV! 点 护甲。",
+		"DESCRIPTION": "抽 !M! 张牌 。 NL 丢弃 !M! 张牌 。 NL 若丢弃的牌中有攻击牌，获得 !B! 点 护甲。",
 		"NAME": "奇伊"
 	},
 	"animator_Hakurou":
@@ -1066,9 +1066,9 @@
 	},
 	"animator_Geryuganshoop":
 	{
-		"DESCRIPTION": "循环 !SV! 张牌 。 NL 抹除最多 !M! 张已 消耗 的牌 ， 获得同样数量的 [E].",
+		"DESCRIPTION": "循环 !SV! 张牌 。 NL 抹除最多 !M! 张已 消耗 的牌 ， 获得同样数量的 [E] 。",
 		"NAME": "戈留干修普",
-		"EXTENDED_DESCRIPTION": ["选择 @ 张牌抹除, 获得同等的能量."]
+		"EXTENDED_DESCRIPTION": ["选择 @ 张牌抹除 , 获得同等的能量 。"]
 	},
 	"animator_Melzalgald":
 	{

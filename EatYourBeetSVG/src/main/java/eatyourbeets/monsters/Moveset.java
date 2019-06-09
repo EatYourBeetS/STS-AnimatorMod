@@ -22,6 +22,17 @@ public class Moveset
 
     public AbstractMove AddSpecial(AbstractMove move)
     {
+        return AddSpecial(move, 999);
+    }
+
+    public AbstractMove AddNormal(AbstractMove move)
+    {
+        return AddNormal(move, 999);
+    }
+
+    public AbstractMove AddSpecial(AbstractMove move, int uses)
+    {
+        move.uses = uses;
         move.Init(counter, owner);
         moves.put(counter, move);
 
@@ -31,8 +42,9 @@ public class Moveset
         return move;
     }
 
-    public AbstractMove AddNormal(AbstractMove move)
+    public AbstractMove AddNormal(AbstractMove move, int uses)
     {
+        move.uses = uses;
         move.Init(counter, owner);
         moves.put(counter, move);
 

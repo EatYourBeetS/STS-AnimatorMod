@@ -1,19 +1,22 @@
-package eatyourbeets.monsters.SharedMoveset;
+package eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.RitualPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Move_GainArtifactAll extends AbstractMove
+public class Move_GainRitualAndArtifactAll extends AbstractMove
 {
-    private final int buffAmount;
+    private final int ritual;
+    private final int artifact;
 
-    public Move_GainArtifactAll(int buffAmount)
+    public Move_GainRitualAndArtifactAll(int ritual, int artifact)
     {
-        this.buffAmount = buffAmount;
+        this.ritual = ritual;
+        this.artifact = artifact;
     }
 
     public void SetMove()
@@ -25,7 +28,8 @@ public class Move_GainArtifactAll extends AbstractMove
     {
         for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {
-            GameActionsHelper.ApplyPower(owner, m, new ArtifactPower(m, buffAmount), buffAmount);
+            GameActionsHelper.ApplyPower(owner, m, new RitualPower(m, ritual), ritual);
+            GameActionsHelper.ApplyPower(owner, m, new ArtifactPower(m, artifact), artifact);
         }
     }
 }

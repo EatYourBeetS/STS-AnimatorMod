@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.Utilities;
 import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Crystal;
@@ -21,6 +22,7 @@ import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.UltimateWisp;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.Wisp;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class UnnamedEnemyGroup
 {
@@ -37,7 +39,7 @@ public class UnnamedEnemyGroup
     public static String ULTIMATE_WISP = "Animator_ULTIMATE_WISP";
     public static String THE_UNNAMED = TheUnnamed.ID;
 
-    private static Random rng = new Random();
+    private static Random rng;
 
     private final static float CULTIST_X = 180;
     private final static float CULTIST_Y = 12;
@@ -134,9 +136,9 @@ public class UnnamedEnemyGroup
         RandomizedList<MonsterElement> elements = MonsterElement.GetRandomizedList();
 
         AbstractMonster[] enemies = new AbstractMonster[3];
-        enemies[2] = Create(0, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
-        enemies[1] = Create(1, MonsterShape.Crystal, MonsterTier.Advanced, elements.Retrieve(rng));
-        enemies[0] = Create(2, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
+        enemies[2] = Create(0, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
+        enemies[1] = Create(1, MonsterShape.Crystal, MonsterTier.Advanced, Retrieve(elements));
+        enemies[0] = Create(2, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
 
         return new MonsterGroup(enemies);
     }
@@ -147,9 +149,9 @@ public class UnnamedEnemyGroup
         RandomizedList<MonsterElement> elements = MonsterElement.GetRandomizedList();
 
         AbstractMonster[] enemies = new AbstractMonster[3];
-        enemies[2] = Create(0, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
-        enemies[1] = Create(1, MonsterShape.Wisp, MonsterTier.Advanced, elements.Retrieve(rng));
-        enemies[0] = Create(2, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
+        enemies[2] = Create(0, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
+        enemies[1] = Create(1, MonsterShape.Wisp, MonsterTier.Advanced, Retrieve(elements));
+        enemies[0] = Create(2, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
 
         return new MonsterGroup(enemies);
     }
@@ -160,9 +162,9 @@ public class UnnamedEnemyGroup
         RandomizedList<MonsterElement> elements = MonsterElement.GetRandomizedList();
 
         AbstractMonster[] enemies = new AbstractMonster[3];
-        enemies[2] = Create(0, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
-        enemies[1] = Create(1, MonsterShape.Cube, MonsterTier.Advanced, elements.Retrieve(rng));
-        enemies[0] = Create(2, shapes.Retrieve(rng), MonsterTier.Normal, elements.Retrieve(rng));
+        enemies[2] = Create(0, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
+        enemies[1] = Create(1, MonsterShape.Cube, MonsterTier.Advanced, Retrieve(elements));
+        enemies[0] = Create(2, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
 
         return new MonsterGroup(enemies);
     }
@@ -192,16 +194,8 @@ public class UnnamedEnemyGroup
 
     protected static <T> T Retrieve(RandomizedList<T> list)
     {
-        if (AbstractDungeon.mapRng != null)
-        {
-            return list.Retrieve(AbstractDungeon.mapRng);
-        }
-        else
-        {
-            return list.Retrieve(rng);
-        }
+        return list.Retrieve(PlayerStatistics.SaveData.GetRNG());
     }
-
 
     private static UnnamedShape Create(int index, MonsterShape shape, MonsterTier tier, MonsterElement element)
     {

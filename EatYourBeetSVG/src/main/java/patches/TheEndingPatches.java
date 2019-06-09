@@ -20,9 +20,9 @@ public class TheEndingPatches
         {
             if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR || AnimatorCustomLoadout.specialTrophies.trophy1 > 0)
             {
-                int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
-                if (currentLevel > 1)
-                {
+//                int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
+//                if (currentLevel > 1)
+//                {
                     MapRoomNode rest = __instance.getMap().get(0).get(3);
                     MapRoomNode shop = __instance.getMap().get(1).get(3);
                     MapRoomNode fight = __instance.getMap().get(1).get(4);
@@ -32,7 +32,7 @@ public class TheEndingPatches
 
                     connectNode(rest, node);
                     connectNode(node, shop);
-                }
+//                }
             }
         }
 

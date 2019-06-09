@@ -30,7 +30,7 @@ public class Move_PowerUp extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.BUFF);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.ApplyPower(owner, owner, new ArtifactPower(owner, ARTIFACT_AMOUNT), ARTIFACT_AMOUNT);
         GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, STRENGTH_AMOUNT), STRENGTH_AMOUNT);

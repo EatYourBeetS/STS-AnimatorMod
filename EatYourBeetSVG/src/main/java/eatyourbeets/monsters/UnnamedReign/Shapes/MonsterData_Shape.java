@@ -44,11 +44,11 @@ public class MonsterData_Shape extends AbstractMonsterData
         if (tier != MonsterTier.Ultimate)
         {
             maxHealth += AbstractDungeon.monsterHpRng.random(-4, 4);
+        }
 
-            if (PlayerStatistics.GetAscensionLevel() >= 7)
-            {
-                maxHealth = Math.round(maxHealth * 1.1f);
-            }
+        if (PlayerStatistics.GetAscensionLevel() >= 7)
+        {
+            maxHealth = Math.round(maxHealth * 1.1f);
         }
     }
 
@@ -116,7 +116,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -60;
                 hb_w = 140;
                 hb_h = 140;
-                maxHealth = 145;
+                maxHealth = 155;
                 break;
             }
 
@@ -126,7 +126,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -50;
                 hb_w = 220;
                 hb_h = 220;
-                maxHealth = 200;
+                maxHealth = 215;
                 break;
             }
 
@@ -161,7 +161,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -30;
                 hb_w = 140;
                 hb_h = 140;
-                maxHealth = 100;
+                maxHealth = 110;
                 break;
             }
 
@@ -171,7 +171,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -60;
                 hb_w = 220;
                 hb_h = 220;
-                maxHealth = 135;
+                maxHealth = 145;
                 break;
             }
 
@@ -181,7 +181,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -60f;
                 hb_w = 240;
                 hb_h = 240;
-                maxHealth = 588;
+                maxHealth = 600;
                 break;
             }
         }

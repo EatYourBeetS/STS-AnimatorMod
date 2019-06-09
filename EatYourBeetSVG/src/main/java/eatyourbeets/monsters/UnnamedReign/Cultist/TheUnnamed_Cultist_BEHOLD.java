@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.GameActionsHelper;
@@ -29,6 +30,9 @@ public class TheUnnamed_Cultist_BEHOLD extends TheUnnamed_Cultist
     public void usePreBattleAction()
     {
         super.usePreBattleAction();
+
+        AbstractDungeon.scene.fadeOutAmbiance();
+        CardCrawlGame.music.silenceBGM();
 
         GameActionsHelper.AddToBottom(new WaitRealtimeAction(1f));
         GameActionsHelper.AddToBottom(new TalkAction(this, "BEHOLD! The Ultimate Crystal!", 0.5f, 2f));

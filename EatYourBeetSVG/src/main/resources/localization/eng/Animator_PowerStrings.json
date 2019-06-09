@@ -127,7 +127,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"On death, ALL characters gain #b", " #yStrength."
+			"When a card is played, gain #b"," #yMax #yHP. NL NL On death, ALL characters gain #b", " #yStrength."
 		],
 		"NAME": "Unnamed Doll"
 	},

@@ -20,7 +20,7 @@ public class Move_Hexed extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.STRONG_DEBUFF);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.ApplyPower(owner, target, new HexPower(target, amount), amount);
     }

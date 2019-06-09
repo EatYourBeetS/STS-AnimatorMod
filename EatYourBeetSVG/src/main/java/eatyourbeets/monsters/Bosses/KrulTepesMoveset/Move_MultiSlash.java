@@ -50,7 +50,7 @@ public class Move_MultiSlash extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.ATTACK, damageInfo.base, TIMES, true);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         damageInfo.applyPowers(owner, target);
         timesCounter = TIMES;

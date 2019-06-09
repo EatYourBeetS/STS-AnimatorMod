@@ -31,7 +31,7 @@ public class Move_GuardedAttack extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.ATTACK_DEFEND, damageInfo.base);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         damageInfo.applyPowers(owner, target);
         GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));

@@ -71,7 +71,7 @@
 	},
 	"animator_Asuramaru":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Gain !M! Strength, Dexterity and Focus. Exhaust.",
+		"DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Gain !M! Strength. NL Gain !M! Dexterity. NL Exhaust.",
 		"NAME": "Asuramaru"
 	},
 	"animator_Azekura":
@@ -96,7 +96,7 @@
 	},
 	"animator_BlackLotus":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !B! Block. NL Gain !M! Blur.",
+		"DESCRIPTION": "Deal !D! damage to NL ALL enemies. NL Gain !B! Block. NL Gain !M! Blur.",
 		"NAME": "Black Lotus"
 	},
 	"animator_Bozes":
@@ -326,7 +326,7 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "Shapeshifter. Heal 1 HP for every !M! missing HP. The first card you play each turn will Synergize.",
+		"DESCRIPTION": "Shapeshifter. NL Heal !M! % of your missing HP. The first card you play each turn will Synergize.",
 		"NAME": "Envy"
 	},
 	"animator_Eris":

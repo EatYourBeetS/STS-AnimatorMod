@@ -20,7 +20,7 @@ public class Move_SingleAttack extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.ATTACK, damageInfo.base);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         damageInfo.applyPowers(owner, target);
         GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));

@@ -24,7 +24,7 @@ public class Move_AttackFrail extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.ATTACK_DEBUFF, damageInfo.base);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         owner.useFastAttackAnimation();
         damageInfo.applyPowers(owner, target);

@@ -1,6 +1,7 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,7 +11,9 @@ import eatyourbeets.AnimatorResources_Audio;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.actions.SummonMonsterAction;
+import eatyourbeets.actions.WaitRealtimeAction;
 import eatyourbeets.cards.animator.Crystallize;
+import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifactAll;
 import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
@@ -46,13 +49,13 @@ public class UltimateCrystal extends Crystal
         {
             moveset.AddNormal(new Move_GainStrengthAndArtifactAll(3, 2));
             moveset.AddNormal(new Move_AttackDefend(1, 8));
-            moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 3));
+            moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 2));
         }
         else
         {
-            moveset.AddNormal(new Move_AttackDefend(1, 8));
             moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 2));
             moveset.AddNormal(new Move_GainStrengthAndArtifactAll(3, 2));
+            moveset.AddNormal(new Move_AttackDefend(1, 8));
         }
     }
 
@@ -66,9 +69,11 @@ public class UltimateCrystal extends Crystal
             GameActionsHelper.ApplyPower(this, this, new UltimateCrystalPower(this, 6), 6);
             GameActionsHelper.ApplyPower(this, this, new AntiArtifactSlowPower(this, 1), 1);
 
-            CardCrawlGame.music.unsilenceBGM();
-            AbstractDungeon.scene.fadeOutAmbiance();
-            CardCrawlGame.music.playTempBgmInstantly(AnimatorResources_Audio.TheUltimateCrystal, false);
+            AbstractDungeon.effectList.add(new CallbackEffect(new WaitRealtimeAction(15),
+                    (state, action)-> CardCrawlGame.music.unsilenceBGM(), this));
+
+            CardCrawlGame.sound.play(AnimatorResources_Audio.TheUltimateCrystal);
+            //CardCrawlGame.music.playTempBgmInstantly(AnimatorResources_Audio.TheUltimateCrystal, false);
         }
         else
         {

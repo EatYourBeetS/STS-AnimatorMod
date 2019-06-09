@@ -20,7 +20,7 @@ public class Move_GainArtifact extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.BUFF);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.ApplyPower(owner, owner, new ArtifactPower(owner, buffAmount), buffAmount);
     }

@@ -15,7 +15,7 @@ public class TheHaunt extends AnimatorCard_Status
     {
         super(ID, 1, CardRarity.RARE, CardTarget.NONE);
 
-        Initialize(0,0, 8 + (PlayerStatistics.SaveData.TheHaunt * 4));
+        Initialize(0,0, 10 + (PlayerStatistics.SaveData.TheHaunt * 5));
 
         this.isEthereal = true;
         this.exhaust = true;

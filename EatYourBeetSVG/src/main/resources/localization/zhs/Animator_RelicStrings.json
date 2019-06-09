@@ -98,7 +98,7 @@
 	},
 	"Animator_Rinne":
 	{
-		"DESCRIPTIONS": ["YmVoYXZlcw== ZXJyYXRpY2FsbHk=, ZG9uJ3Q= dGFsaw== dG8= bWU= b3I= bXk= c29u ZXZlcg== YWdhaW4=, NzQ="],
+		"DESCRIPTIONS": ["YmVoYXZlcw== ZXJyYXRpY2FsbHk=, 57GFD0c= NzQ="],
 		"FLAVOR": "???",
 		"NAME": "???"
 	},
@@ -116,7 +116,7 @@
 	},
 	"Animator_AncientMedallion":
 	{
-		"DESCRIPTIONS": ["获得改遗物时, #y升级 2张随机的牌并且升级1张你选择的牌。 每回合开始时, 回复 #b", " 生命值。"],
+		"DESCRIPTIONS": ["获得改遗物时, #y升级 2张随机的牌并且升级1张你选择的牌。 在每场战斗开始时, 回复 #b", " 生命值。"],
 		"FLAVOR": "...",
 		"NAME": "上古挂坠"
 	},

@@ -277,6 +277,11 @@ public class HigakiRinneAction extends AnimatorAction
         this.isDone = true;
     }
 
+    public static void PlayRandomSound()
+    {
+        GameActionsHelper.AddToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
+    }
+
     private static final ArrayList<String> sounds = new ArrayList<>();
 
     static

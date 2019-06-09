@@ -53,10 +53,8 @@ public class TheHaunt extends AnimatorEvent
         {
             if (buttonPressed == CHOICE_TAKE_GOLD)
             {
-                SequentialEffect effect = new SequentialEffect();
-                effect.Enqueue(new RainingGoldEffect(1000));
-                effect.Enqueue(new CallbackEffect(new WaitAction(0.5f), this::OnCompletion, this));
-                AbstractDungeon.effectList.add(effect);
+                AbstractDungeon.effectList.add(new RainingGoldEffect(600));
+                AbstractDungeon.effectList.add(new CallbackEffect(new WaitAction(3f), this::OnCompletion, this));
 
                 this.imageEventText.clearAllDialogs();
                 this.imageEventText.updateBodyText("");

@@ -99,14 +99,14 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
         pool1.Add(m);
 
         m = new GremlinWarrior(-80, 24);
-        m.currentHealth = m.maxHealth += 24 + level / 2;
+        m.currentHealth = m.maxHealth += 34 + level / 2;
         pool1.Add(m);
 
         m = new OrbWalker(-330, -26);
         m.currentHealth = m.maxHealth += 20 + level / 2;
         pool2.Add(m);
 
-        m = new ShelledParasite(-345, -26);
+        m = new ShelledParasite(-352, -26);
         m.currentHealth = m.maxHealth += 20 + level / 2;
         pool2.Add(m);
     }

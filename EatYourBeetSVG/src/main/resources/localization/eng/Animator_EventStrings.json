@@ -20,14 +20,15 @@
 		"NAME": "The Masked Traveler (Part 2)",
 		"DESCRIPTIONS": [
 			"\"It's you! Are you on your way to defeat the @Heart@ of the Spire?\" NL NL \"Why don't you help me with another menace instead? You see, The Unnamed has returned, but don't you worry! It's nothing you can't defeat!\"",
-			"\"Well, there is a small detail... To fight the Unnamed you will have to renounce to ALL your relics and Potions, as well as card upgrades...\" NL NL \"But most importantly, you will be able to choose one of these special relics!\"",
-			"\"Perfect! just go ahead and you shall find him, I'm counting on you!\" NL NL \"Oh wait! I almost forgot, you will find a lot of these in there. Here, have one.\" NL NL [ #yPLEASE #yNOTICE: This act has been released earlier than intended since it's already fully playable. It will include custom music and will be more polished in a future update. ]"
+			"\"Well, there is a small detail... To fight the Unnamed you will have to trade ALL your Relics, Gold, Potions and cards Upgrades for one of these #ySpecial #yRelics:\" NL NL \"However you might be able to gain some Gold back based on your Relics, I would say about #b{0} #yGold.\"",
+			"\"Perfect! just go ahead and you shall find him, I'm counting on you!\" NL NL \"Oh wait! I almost forgot, you will find a lot of these in there. Here, have one... Or if you prefer I could change some of your cards.\" NL NL [ #yPLEASE #yNOTICE: This act has been released earlier than intended since it's already fully playable. It is still being developed and will be updated often. ]"
 		],
 		"OPTIONS":
 		[
 			"[Leave]",
 			"[Inquire]",
-			"[Accept] #gObtain #gRelic"
+			"[Accept] #gObtain #gRelic",
+			"[Accept] #gRemove #b{0} #gcards, #gobtain #b{1} #grandom #gUpgraded #gcards."
 		]
 	},
 	"Animator_TheMaskedTraveler3":

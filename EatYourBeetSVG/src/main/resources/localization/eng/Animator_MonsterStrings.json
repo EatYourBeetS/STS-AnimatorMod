@@ -342,20 +342,28 @@
 		"NAME": "The Unnamed",
 		"DIALOG":
 		[
-			"That's enough! Your fate is sealed...",
+			"That's enough! It all ends here...",
 			"What is this? I am the one with infinite power here!",
 			"The Death Note will not work on me! I have no name, remember?",
-			"You are annoying me, I think your turn will end soon...",
-			"How dare you challenge me!",
-			"I don't even need to attack you...",
-			"You'd better run away while you can.",
-			"You call that a deck?",
+			"You are annoying me. You have 2 more cards to play.",
+			"I am the master of this universe, or something.",
+			"Aren't you glad I am not attacking this turn?",
+			"...",
+			"You are not prepared.",
 			"It will all end soon...",
-			"How did you even get this far?",
-			"You know... You should deal some damage to progress...",
+			"My power is unmatched!",
+			"I am invincible!",
 			"Gilgamesh will not save you.",
 			"Megumin is overrated.",
-			"You are cheating, I see that Ainz is in your deck..."
+			"You are cheating, Ainz is not allowed in here.",
+			"Boros, you are on the wrong side.",
+			"Oh look, one punch man cannot one punch me, how unfortunate.",
+			"Eve, please stop.",
+			"Guren? Are you being redesigned again?",
+			"I am almost scared of Nanami, almost.",
+			"Goblins... Would you like me to shuffle some goblins in your deck?",
+			"Kurami? Beware, you can only play 16 cards.",
+			"Want to see something TRULY erratical?"
 		]
 	}
 }

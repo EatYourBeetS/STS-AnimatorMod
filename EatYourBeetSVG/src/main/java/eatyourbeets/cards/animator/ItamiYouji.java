@@ -21,7 +21,7 @@ public class ItamiYouji extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(2,0,3);
+        Initialize(3,0,2);
 
         SetSynergy(Synergies.Gate);
     }
@@ -43,7 +43,7 @@ public class ItamiYouji extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
+            upgradeMagicNumber(1);
         }
     }
 

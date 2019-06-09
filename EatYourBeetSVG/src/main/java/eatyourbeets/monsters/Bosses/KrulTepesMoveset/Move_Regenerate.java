@@ -41,7 +41,7 @@ public class Move_Regenerate extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.DEFEND_BUFF);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.GainBlock(owner, BLOCK_AMOUNT);
         GameActionsHelper.ApplyPower(owner, owner, new RegenPower(owner, REGEN_AMOUNT), REGEN_AMOUNT);

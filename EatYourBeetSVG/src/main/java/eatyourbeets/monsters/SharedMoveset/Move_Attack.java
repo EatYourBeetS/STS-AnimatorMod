@@ -20,7 +20,7 @@ public class Move_Attack extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.ATTACK, damageInfo.base);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         owner.useFastAttackAnimation();
         damageInfo.applyPowers(owner, target);

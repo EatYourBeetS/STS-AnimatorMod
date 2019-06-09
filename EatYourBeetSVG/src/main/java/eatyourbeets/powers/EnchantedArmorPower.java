@@ -88,7 +88,7 @@ public class EnchantedArmorPower extends AnimatorPower
             info.output = damageAmount;
         }
 
-        if (reactive)
+        if (reactive && info.type != DamageInfo.DamageType.HP_LOSS)
         {
             stackPower(damageAmount);
         }

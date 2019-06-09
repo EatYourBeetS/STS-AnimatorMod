@@ -123,17 +123,17 @@ public class UltimateCubePower extends AnimatorPower
 
         if (buffSwitch = !buffSwitch)
         {
-            buffs1.Retrieve(AbstractDungeon.miscRng).accept(c);
+            buffs2.Retrieve(AbstractDungeon.miscRng).accept(c);
         }
         else
         {
-            buffs2.Retrieve(AbstractDungeon.miscRng).accept(c);
+            buffs1.Retrieve(AbstractDungeon.miscRng).accept(c);
         }
     }
 
     private void BuffHealing(AbstractCreature c)
     {
-        GameActionsHelper.ApplyPower(c, c, new HealingCubePower(c, 5), 5);
+        GameActionsHelper.ApplyPower(c, c, new HealingCubePower(c, 6), 6);
     }
 
     private void BuffFire(AbstractCreature c)

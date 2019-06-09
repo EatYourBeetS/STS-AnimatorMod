@@ -22,8 +22,8 @@ public class UltimateWisp extends Wisp
         movesetMode = Mode.Sequential;
         moveset.AddNormal(new Move_AttackMultiple( 8,3));
         moveset.AddNormal(new Move_GainStrengthAndArtifactAll( 3, 2));
-        moveset.AddNormal(new Move_AttackMultipleFrail(2,6, 2));
-        moveset.AddNormal(new Move_AttackMultipleHex( 5,4, 1));
+        moveset.AddNormal(new Move_AttackMultipleFrail(2,8, 2));
+        moveset.AddNormal(new Move_AttackMultipleHex( 6,4, 1));
     }
 
     @Override

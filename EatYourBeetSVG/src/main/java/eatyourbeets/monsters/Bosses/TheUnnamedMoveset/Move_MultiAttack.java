@@ -23,7 +23,7 @@ public class Move_MultiAttack extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.ATTACK, damageInfo.base, TIMES, true);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         damageInfo.applyPowers(owner, target);
         for (int i = 0; i < TIMES; i++)

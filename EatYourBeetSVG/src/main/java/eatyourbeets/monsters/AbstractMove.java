@@ -7,6 +7,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public abstract class AbstractMove
 {
+    public int uses = -1;
     public DamageInfo damageInfo;
     public boolean disabled;
     public AbstractMonster owner;
@@ -35,11 +36,17 @@ public abstract class AbstractMove
        return Math.round(base * percentage * (ascensionLevel / 20f));
     }
 
-    public abstract void Execute(AbstractPlayer target);
-    public abstract void SetMove();
+    protected abstract void ExecuteInternal(AbstractPlayer player);
+    protected abstract void SetMove();
+
+    public void Execute(AbstractPlayer target)
+    {
+        uses -= 1;
+        ExecuteInternal(target);
+    }
 
     public boolean CanUse(Byte previousMove)
     {
-        return !disabled && previousMove != id;
+        return !disabled && previousMove != id && uses > 0;
     }
 }

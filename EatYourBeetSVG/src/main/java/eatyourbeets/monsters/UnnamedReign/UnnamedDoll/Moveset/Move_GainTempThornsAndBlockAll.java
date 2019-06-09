@@ -8,28 +8,28 @@ import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.powers.EarthenThornsPower;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Move_GainTempThornsAndRegenAll extends AbstractMove
+public class Move_GainTempThornsAndBlockAll extends AbstractMove
 {
     private final int thorns;
-    private final int regen;
+    private final int block;
 
-    public Move_GainTempThornsAndRegenAll(int thorns, int regen)
+    public Move_GainTempThornsAndBlockAll(int thorns, int block)
     {
         this.thorns = thorns;
-        this.regen = regen;
+        this.block = block;
     }
 
     public void SetMove()
     {
-        owner.setMove(id, AbstractMonster.Intent.BUFF);
+        owner.setMove(id, AbstractMonster.Intent.DEFEND_BUFF);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(owner, m, new EarthenThornsPower(m, thorns), thorns);
-            GameActionsHelper.ApplyPower(owner, m, new RegenPower(m, regen), regen);
+            GameActionsHelper.GainBlock(m, block);
         }
     }
 }

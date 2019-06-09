@@ -41,7 +41,7 @@ public class Move_Bite extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.ATTACK_DEBUFF, damageInfo.base);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         damageInfo.applyPowers(owner, target);
         AbstractDungeon.actionManager.addToBottom(new VFXAction(new BiteEffect(target.hb.cX, target.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));

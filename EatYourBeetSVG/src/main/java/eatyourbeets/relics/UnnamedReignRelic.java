@@ -5,14 +5,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.effects.SequentialEffect;
 import eatyourbeets.effects.UnnamedRelicEquipEffect;
 import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.subscribers.OnReceiveRewardsSubscriber;
+import patches.AbstractEnums;
 import patches.RelicObtainedPatches;
 
 import java.util.ArrayList;
@@ -26,11 +29,14 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
     public static boolean IsEquipped()
     {
-        for (AbstractRelic r : AbstractDungeon.player.relics)
+        if (AbstractDungeon.player != null)
         {
-            if (r instanceof UnnamedReignRelic)
+            for (AbstractRelic r : AbstractDungeon.player.relics)
             {
-                return true;
+                if (r instanceof UnnamedReignRelic)
+                {
+                    return true;
+                }
             }
         }
 
@@ -108,17 +114,23 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
             SequentialEffect effect = new SequentialEffect();
 
+            int relicBonus = UnnamedRelicEquipEffect.CalculateRelicGoldBonus();
+
             for (AbstractRelic r : p.relics)
             {
-                if (r != relic && !(r instanceof AllowedUnnamedReignRelic))
+                if (r != relic && !(r instanceof AllowedUnnamedReignRelic) &&
+                        (p.chosenClass == AbstractEnums.Characters.THE_ANIMATOR || r.tier != RelicTier.STARTER))
                 {
                     effect.Enqueue(new RemoveRelicEffect(relic, r));
                 }
             }
 
-            ((UnnamedReignRelic)relic).OnManualEquip();
+            AbstractRelic.relicPage = 0;
+            AbstractDungeon.player.reorganizeRelics();
 
-            effect.Enqueue(new UnnamedRelicEquipEffect());
+            ((UnnamedReignRelic) relic).OnManualEquip();
+
+            effect.Enqueue(new UnnamedRelicEquipEffect(relicBonus));
 
             AbstractDungeon.effectList.add(effect);
         }
@@ -139,6 +151,29 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
     @Override
     public void OnReceiveRewards(ArrayList<RewardItem> rewards)
     {
+        MapRoomNode node = AbstractDungeon.getCurrMapNode();
+        if (node != null && node.room instanceof MonsterRoom)
+        {
+            AddGoldToRewards(rewards, node.y);
+            AddPotionToRewards(rewards);
+        }
+    }
+
+    private void AddGoldToRewards(ArrayList<RewardItem> rewards, int step)
+    {
+        for (RewardItem rewardItem : rewards)
+        {
+            if (rewardItem.type == RewardItem.RewardType.GOLD)
+            {
+                rewardItem.goldAmt = 0;
+                rewardItem.incrementGold(50 + step * 5);
+                return;
+            }
+        }
+    }
+
+    private void AddPotionToRewards(ArrayList<RewardItem> rewards)
+    {
         for (RewardItem rewardItem : rewards)
         {
             if (rewardItem.type == RewardItem.RewardType.POTION)
@@ -147,12 +182,6 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
             }
         }
 
-        int ascensionLevel = AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0;
-        float chances = 0.3f + (0.6f * (ascensionLevel / 20f));
-
-        if (AbstractDungeon.miscRng.randomBoolean(chances))
-        {
-            rewards.add(new RewardItem(new FalseLifePotion()));
-        }
+        rewards.add(new RewardItem(new FalseLifePotion()));
     }
 }

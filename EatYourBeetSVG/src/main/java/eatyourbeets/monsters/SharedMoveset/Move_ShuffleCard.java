@@ -30,7 +30,7 @@ public class Move_ShuffleCard extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.DEBUFF);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.AddToBottom(new SFXAction("THUNDERCLAP"));
 

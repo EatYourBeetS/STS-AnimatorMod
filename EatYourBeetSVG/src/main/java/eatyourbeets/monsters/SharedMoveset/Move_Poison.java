@@ -20,7 +20,7 @@ public class Move_Poison extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.STRONG_DEBUFF);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.ApplyPower(owner, target, new PoisonPlayerPower(target, owner, poisonAmount), poisonAmount);
     }

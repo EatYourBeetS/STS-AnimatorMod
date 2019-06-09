@@ -38,7 +38,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
             GameActionsHelper.DrawCard(p, 1);
         }
 
-        turns = AbstractDungeon.miscRng.random(1, 4);
+        turns = AbstractDungeon.miscRng.random(0, 5);
         PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
 
@@ -54,11 +54,14 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         AbstractPlayer p = AbstractDungeon.player;
         if (p.exhaustPile.contains(this))
         {
-            turns -= 1;
             if (turns <= 0)
             {
                 GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.exhaustPile, true));
                 PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+            }
+            else
+            {
+                turns -= 1;
             }
         }
         else

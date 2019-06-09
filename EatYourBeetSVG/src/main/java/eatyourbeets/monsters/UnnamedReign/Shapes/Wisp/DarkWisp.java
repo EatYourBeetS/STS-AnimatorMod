@@ -18,7 +18,7 @@ public class DarkWisp extends Wisp
         int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_Attack(tier.Add(8,4)));
-        moveset.AddNormal(new Move_GainStrength(tier.Add(2,3)));
+        moveset.AddNormal(new Move_GainStrength(tier.Add(1,3)));
         moveset.AddNormal(new Move_AttackMultiple(tier.Add(3,1), 2));
     }
 

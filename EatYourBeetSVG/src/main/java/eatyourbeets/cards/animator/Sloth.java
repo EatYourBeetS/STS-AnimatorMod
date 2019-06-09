@@ -64,8 +64,8 @@ public class Sloth extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeBlock(2);
+            upgradeDamage(3);
+            upgradeBlock(3);
         }
     }
 }

@@ -73,7 +73,7 @@
 	},
 	"animator_Asuramaru":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 獲得 !B! 點 格擋 。 獲得 !M! 層 力量 、 敏捷 、 集中 。 消耗 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 獲得 !B! 點 格擋 。 獲得 !M! 層 力量 、 敏捷 。 消耗 。",
 		"NAME": "阿修羅丸"
 	},
 	"animator_Azekura":
@@ -350,7 +350,7 @@
 	},
 	"animator_Envy":
 	{
-		"DESCRIPTION": "變形者 。 為每 !M! 點失去的生命值，回复 1 點生命值 。 NL 每回合打出的第一張牌出觸發自己的 同調 效果 。 持續 4 輪 。",
+		"DESCRIPTION": "變形者 。 治愈失去生命值的 !M! ％ 。 NL 每回合打出的第一張牌出觸發自己的 同調 效果 。",
 		"NAME": "恩維"
 	},
 	"animator_Eris":
@@ -474,7 +474,7 @@
 	},
 	"animator_Guy":
 	{
-		"DESCRIPTION": "抽 !M! 張牌 。 NL 丟棄 !M! 張牌 。 NL 如果你丟棄了 攻擊 牌，獲得 !SV! 點 護甲。",
+		"DESCRIPTION": "抽 !M! 張牌 。 NL 丟棄 !M! 張牌 。 NL 如果你丟棄了 攻擊 牌，獲得 !B! 點 護甲。",
 		"NAME": "奇伊"
 	},
 	"animator_Hakurou":

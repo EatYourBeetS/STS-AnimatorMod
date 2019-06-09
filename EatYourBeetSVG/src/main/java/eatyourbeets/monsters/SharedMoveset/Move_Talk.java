@@ -15,7 +15,7 @@ public class Move_Talk extends AbstractMove
         this.owner.setMove(id, AbstractMonster.Intent.UNKNOWN);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.AddToBottom(new TalkAction(owner, line));
     }

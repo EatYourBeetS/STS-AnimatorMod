@@ -2,6 +2,7 @@ package eatyourbeets.monsters.UnnamedReign.Cultist;
 
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
+import eatyourbeets.powers.PlayerStatistics;
 
 public abstract class TheUnnamed_Cultist extends AnimatorMonster
 {
@@ -26,7 +27,15 @@ public abstract class TheUnnamed_Cultist extends AnimatorMonster
             atlasUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedCultist.atlas";
             imgUrl = null;
 
-            maxHealth = 192;
+            if (PlayerStatistics.GetAscensionLevel() > 7)
+            {
+                maxHealth = 222;
+            }
+            else
+            {
+                maxHealth = 198;
+            }
+
             SetHB(0, -30, 140, 210, 0, 80);
         }
     }

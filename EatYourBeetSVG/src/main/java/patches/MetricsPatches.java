@@ -29,14 +29,15 @@ public class MetricsPatches
         private static final ArrayList<Integer> bannedSeries = new ArrayList<>();
         private static final ArrayList<HashMap> cardsData = new ArrayList<>();
         private static final HashMap<Object, Object> params = new HashMap<>();
+        private static final HashMap<Object, Object> params2 = new HashMap<>();
         private static final Gson gson = new Gson();
 
         @SpirePrefixPatch
         public static void Postfix(Metrics __instance)
         {
-            if (Settings.UPLOAD_DATA && __instance.type == Metrics.MetricRequestType.UPLOAD_METRICS && AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+            if (Settings.UPLOAD_DATA && __instance.type == Metrics.MetricRequestType.UPLOAD_METRICS)
             {
-                if (!Settings.isDebug && Settings.isStandardRun())
+                if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR && !Settings.isDebug && Settings.isStandardRun())
                 {
                     cardsData.clear();
 
@@ -70,6 +71,7 @@ public class MetricsPatches
 //                    }
 //                    params.put("bannedSeries", bannedSeries);
 
+                    params.clear();
                     params.put("ascension", AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0);
                     params.put("cards", cardsData);
                     params.put("enteredAct5", PlayerStatistics.SaveData.EnteredUnnamedReign);
@@ -79,6 +81,29 @@ public class MetricsPatches
 
                     String data = gson.toJson(params);
                     String url = "https://us-central1-sts-theanimator-api.cloudfunctions.net/addMetrics";
+
+                    //Utilities.Logger.info(data);
+
+                    HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
+                    Net.HttpRequest httpRequest = requestBuilder.newRequest().method("POST").url(url).header("Content-Type", "text/plain").header("Accept", "text/plain").header("User-Agent", "curl/7.43.0").build();
+                    httpRequest.setContent(data);
+                    Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener()
+                    {
+                        public void handleHttpResponse(Net.HttpResponse httpResponse) { }
+
+                        public void failed(Throwable t) {  }
+
+                        public void cancelled() {  }
+                    });
+                }
+                else if (PlayerStatistics.SaveData.EnteredUnnamedReign)
+                {
+                    params.clear();
+                    params.put("playerClass", AbstractDungeon.player.chosenClass.name());
+                    params.put("playerClassVictory", AbstractDungeon.is_victory);
+
+                    String data = gson.toJson(params);
+                    String url = "https://us-central1-sts-theanimator-api.cloudfunctions.net/addAlternativeMetrics";
 
                     //Utilities.Logger.info(data);
 

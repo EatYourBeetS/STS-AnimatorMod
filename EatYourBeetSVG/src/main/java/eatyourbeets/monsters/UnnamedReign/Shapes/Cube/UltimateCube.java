@@ -22,8 +22,9 @@ public class UltimateCube extends Cube
 
         int level = AbstractDungeon.ascensionLevel;
 
+        movesetMode = Mode.Sequential;
+        moveset.AddNormal(new Move_AttackMultipleWeak(4, 2, (level > 7) ? 3 : 2));
         moveset.AddNormal(new Move_AttackMultipleFrail(4, 2, 2));
-        moveset.AddNormal(new Move_AttackMultipleWeak(4, 2, 2));
         moveset.AddNormal(new Move_AttackMultipleVulnerable(4, 2, 2));
     }
 

@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.dungeons.TheUnnamedReign;
+import eatyourbeets.effects.MaskedTravelerTransformCardsEffect;
+import eatyourbeets.effects.UnnamedRelicEquipEffect;
 import eatyourbeets.relics.AncientMedallion;
 import eatyourbeets.relics.TheEgnaroPiece;
 import eatyourbeets.relics.TheEruzaStone;
@@ -18,6 +20,9 @@ public class TheMaskedTraveler2 extends AnimatorEvent
     private final AbstractRelic relic2 = new TheWolleyCore();
     private final AbstractRelic relic3 = new TheEgnaroPiece();
     private final AbstractRelic medallion = new AncientMedallion(true);
+
+    private static final int REMOVE_CARDS = 2;
+    private static final int OBTAIN_CARDS = 2;
 
     public TheMaskedTraveler2()
     {
@@ -57,7 +62,9 @@ public class TheMaskedTraveler2 extends AnimatorEvent
 
     private void CreatePhase2()
     {
-        UpdateBodyText(eventStrings.DESCRIPTIONS[1], true);
+        String goldBonus = String.valueOf(UnnamedRelicEquipEffect.CalculateRelicGoldBonus() + 21);
+
+        UpdateBodyText(eventStrings.DESCRIPTIONS[1].replace("{0}", goldBonus), true);
         UpdateDialogOption(0, OPTIONS[2], relic1);
         UpdateDialogOption(1, OPTIONS[2], relic2);
         UpdateDialogOption(2, OPTIONS[2], relic3);
@@ -88,14 +95,25 @@ public class TheMaskedTraveler2 extends AnimatorEvent
 
     private void CreatePhase3()
     {
+        String message = OPTIONS[3].replace("{0}", String.valueOf(REMOVE_CARDS));
+        message = message.replace("{1}", String.valueOf(OBTAIN_CARDS));
+
         UpdateBodyText(eventStrings.DESCRIPTIONS[2], true);
         UpdateDialogOption(0, OPTIONS[2], medallion);
+        UpdateDialogOption(1, message);
     }
 
     private void HandlePhase3(int button)
     {
         UpdateBodyText(eventStrings.DESCRIPTIONS[2], true);
-        ObtainRelic(medallion);
+        if (button == 0)
+        {
+            ObtainRelic(medallion);
+        }
+        else if (button == 1)
+        {
+            AbstractDungeon.effectsQueue.add(new MaskedTravelerTransformCardsEffect(REMOVE_CARDS));
+        }
 
         ProgressPhase(-1);
     }

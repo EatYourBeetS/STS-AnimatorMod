@@ -19,7 +19,7 @@ public class AnimatorResources_Audio
 
         BaseMod.addAudio(TheHaunt, "audio/music/ANIMATOR_THE_HAUNT.ogg");
         BaseMod.addAudio(TheUnnamed, "audio/music/ANIMATOR_THE_UNNAMED.ogg");
-        BaseMod.addAudio(TheUltimateCrystal, "audio/music/ANIMATOR_THE_ULTIMATE_CRYSTAL.ogg");
+        BaseMod.addAudio(TheUltimateCrystal, "audio/sound/ANIMATOR_THE_ULTIMATE_CRYSTAL.ogg");
         BaseMod.addAudio(TheCreature, "audio/music/ANIMATOR_THE_CREATURE.ogg");
     }
 }

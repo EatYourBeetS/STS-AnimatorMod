@@ -33,15 +33,15 @@ public class FrostCube extends Cube
                 break;
 
             case Normal:
-                amount = 2;
-                break;
-
-            case Advanced:
                 amount = 3;
                 break;
 
-            case Ultimate:
+            case Advanced:
                 amount = 4;
+                break;
+
+            case Ultimate:
+                amount = 5;
                 break;
         }
 

@@ -29,7 +29,7 @@ public class Move_Taunt extends AbstractMove
         owner.setMove(id, AbstractMonster.Intent.UNKNOWN);
     }
 
-    public void Execute(AbstractPlayer target)
+    public void ExecuteInternal(AbstractPlayer target)
     {
         GameActionsHelper.AddToBottom(new TalkAction(owner, GetLine()));
     }
@@ -44,21 +44,6 @@ public class Move_Taunt extends AbstractMove
         lines.Add(dialog[8]);
         lines.Add(dialog[9]);
         lines.Add(dialog[10]);
-
-        if (AbstractDungeon.player.masterDeck.findCardById(Gilgamesh.ID) != null)
-        {
-            lines.Add(dialog[11]);
-        }
-
-        if (AbstractDungeon.player.masterDeck.findCardById(Megumin.ID) != null)
-        {
-            lines.Add(dialog[12]);
-        }
-
-        if (AbstractDungeon.player.masterDeck.findCardById(Ainz.ID) != null)
-        {
-            lines.Add(dialog[13]);
-        }
 
         return lines.Retrieve(AbstractDungeon.aiRng);
     }

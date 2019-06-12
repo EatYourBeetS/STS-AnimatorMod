@@ -17,9 +17,9 @@ public class FireCube extends Cube
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.AddNormal(new Move_AttackMultiple(tier.Add(2, 2), 3));
-        moveset.AddNormal(new Move_Defend(tier.Add(3, 3)));
-        moveset.AddNormal(new Move_GainRegeneration(tier.Add(2, 2)));
+        moveset.AddNormal(new Move_AttackMultiple(tier.Add(2, 1), 3));
+        moveset.AddNormal(new Move_Defend(tier.Add(4, 3)));
+        moveset.AddNormal(new Move_GainRegeneration(tier.Add(3, 2)));
     }
 
     @Override

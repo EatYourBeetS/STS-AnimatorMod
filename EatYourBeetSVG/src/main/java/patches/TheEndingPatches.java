@@ -1,11 +1,11 @@
 package patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.events.TheMaskedTraveler2;
 import eatyourbeets.room.AnimatorCustomEventRoom;
@@ -18,8 +18,11 @@ public class TheEndingPatches
         @SpirePostfixPatch
         public static void Postfix(TheEnding __instance)
         {
-            if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR || AnimatorCustomLoadout.specialTrophies.trophy1 > 0)
+            if (Settings.isStandardRun())
             {
+                if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR ||
+                        AnimatorCustomLoadout.specialTrophies.trophy1 > 0)
+                {
 //                int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
 //                if (currentLevel > 1)
 //                {
@@ -33,6 +36,7 @@ public class TheEndingPatches
                     connectNode(rest, node);
                     connectNode(node, shop);
 //                }
+                }
             }
         }
 

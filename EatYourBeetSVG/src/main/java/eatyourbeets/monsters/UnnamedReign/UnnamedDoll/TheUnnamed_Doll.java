@@ -4,17 +4,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.monsters.SharedMoveset.*;
+import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
+import eatyourbeets.monsters.SharedMoveset.Move_ShieldAll;
 import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
-import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackVulnerableAndDexLoss;
+import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackFrailAndDexLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackWeakAndStrLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainRitualAndArtifactAll;
-import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainTempThornsAndBlockAll;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.CursedStabsPower;
 import eatyourbeets.powers.UnnamedReign.UnnamedDollPower;
@@ -26,6 +26,8 @@ public class TheUnnamed_Doll extends AnimatorMonster
     private final BobEffect bobEffect = new BobEffect(1);
 
     private final TheUnnamed theUnnamed;
+    private Move_GainRitualAndArtifactAll ritualAndArtifactAll;
+
 
     public TheUnnamed_Doll(TheUnnamed theUnnamed, float x, float y)
     {
@@ -37,23 +39,13 @@ public class TheUnnamed_Doll extends AnimatorMonster
 
         int level = AbstractDungeon.ascensionLevel;
 
+        moveset.AddSpecial(new Move_AttackMultiple(4, 12));
 
-        moveset.AddNormal(new Move_ShieldAll(16 + (level / 10)));
-        if (level >= 7)
-        {
-            moveset.AddSpecial(new Move_AttackMultiple(4, 10));
+        ritualAndArtifactAll = (Move_GainRitualAndArtifactAll)
+                moveset.AddSpecial(new Move_GainRitualAndArtifactAll(2, 2), 1);
 
-            moveset.AddNormal(new Move_GainRitualAndArtifactAll(3, 2), 1);
-            moveset.AddNormal(new Move_GainTempThornsAndBlockAll(4, 9));
-        }
-        else
-        {
-            moveset.AddSpecial(new Move_AttackMultiple(4, 8));
-
-            moveset.AddNormal(new Move_GainRitualAndArtifactAll(2, 1), 1);
-            moveset.AddNormal(new Move_GainTempThornsAndBlockAll(3, 8));
-        }
-        moveset.AddNormal(new Move_AttackVulnerableAndDexLoss(1, 1));
+        moveset.AddNormal(new Move_ShieldAll(16));
+        moveset.AddNormal(new Move_AttackFrailAndDexLoss(1, 1));
         moveset.AddNormal(new Move_AttackWeakAndStrLoss(1, 1));
     }
 
@@ -63,13 +55,13 @@ public class TheUnnamed_Doll extends AnimatorMonster
         super.init();
 
         GameActionsHelper.ApplyPower(this, this, new CursedStabsPower(this));
-        if (PlayerStatistics.GetAscensionLevel() > 7)
+        if (PlayerStatistics.GetAscensionLevel() >= 7)
         {
             GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 4), 4);
         }
         else
         {
-            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 3), 3);
+            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 4), 3);
         }
     }
 
@@ -110,16 +102,39 @@ public class TheUnnamed_Doll extends AnimatorMonster
     }
 
     @Override
+    protected void ExecuteNextMove()
+    {
+        AbstractMove move = moveset.GetMove(nextMove);
+        if (move instanceof Move_AttackMultiple)
+        {
+            AbstractPower cs = getPower(CursedStabsPower.POWER_ID);
+            if (cs != null)
+            {
+                ((CursedStabsPower)cs).usesThisTurn = 1;
+            }
+        }
+
+        move.Execute(AbstractDungeon.player);
+    }
+
+    @Override
     protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        AbstractPower power = AbstractDungeon.player.getPower(IntangiblePlayerPower.POWER_ID);
-        if (power != null && power.amount > 1)
+        if (historySize >= 2 && ritualAndArtifactAll.CanUse(previousMove))
         {
-            moveset.GetMove(Move_AttackMultiple.class).SetMove();
+            ritualAndArtifactAll.SetMove();
         }
         else
         {
-            super.SetNextMove(roll, historySize, previousMove);
+            AbstractPower power = AbstractDungeon.player.getPower(IntangiblePlayerPower.POWER_ID);
+            if (power != null && power.amount > 1)
+            {
+                moveset.GetMove(Move_AttackMultiple.class).SetMove();
+            }
+            else
+            {
+                super.SetNextMove(roll, historySize, previousMove);
+            }
         }
     }
 
@@ -131,11 +146,11 @@ public class TheUnnamed_Doll extends AnimatorMonster
 
             if (PlayerStatistics.GetAscensionLevel() > 7)
             {
-                maxHealth = 199;
+                maxHealth = 211;
             }
             else
             {
-                maxHealth = 179;
+                maxHealth = 189;
             }
 
             atlasUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedMinion.atlas";

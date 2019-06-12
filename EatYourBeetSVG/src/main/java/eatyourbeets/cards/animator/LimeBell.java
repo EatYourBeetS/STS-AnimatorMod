@@ -53,7 +53,8 @@ public class LimeBell extends AnimatorCard
         if (state == this && discarded != null && discarded.size() > 0)
         {
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.ApplyPower(p, p, new DelayedHealPower(p, discarded.size() * this.magicNumber));
+            int amount = discarded.size() * this.magicNumber;
+            GameActionsHelper.ApplyPower(p, p, new DelayedHealPower(p, amount), amount);
         }
     }
 }

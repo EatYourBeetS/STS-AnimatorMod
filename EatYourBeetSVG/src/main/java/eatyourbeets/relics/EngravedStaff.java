@@ -59,7 +59,10 @@ public class EngravedStaff extends AnimatorRelic
         ArrayList<AbstractCard> cards = AbstractDungeon.player.hand.group;
         for (AbstractCard card : cards)
         {
-            if (card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS && card.costForTurn > maxCost)
+            if (!card.isEthereal &&
+                    card.type != AbstractCard.CardType.CURSE &&
+                    card.type != AbstractCard.CardType.STATUS &&
+                    card.costForTurn > maxCost)
             {
                 maxCost = card.costForTurn;
                 best = card;

@@ -320,6 +320,13 @@ public class GameActionsHelper
         return action;
     }
 
+    public static ApplyPowerAction ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks, boolean isFast)
+    {
+        ApplyPowerAction action = new ApplyPowerAction(target, source, power, stacks, isFast);
+        AddToDefault(action);
+        return action;
+    }
+
     public static ApplyPowerSilentlyAction ApplyPowerSilently(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
     {
         ApplyPowerSilentlyAction action = new ApplyPowerSilentlyAction(target, source, power, stacks);

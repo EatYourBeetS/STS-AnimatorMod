@@ -28,7 +28,7 @@ public class Rena extends AnimatorCard
         super.triggerOnManualDiscard();
 
         AbstractPlayer p =  AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, this.block));
+        GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, this.block), this.block);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Rena extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, this.block));
+            GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, this.block), this.block);
         }
     }
 

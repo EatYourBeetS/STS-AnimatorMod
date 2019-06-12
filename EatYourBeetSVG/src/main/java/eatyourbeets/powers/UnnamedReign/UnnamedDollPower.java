@@ -36,7 +36,10 @@ public class UnnamedDollPower extends AnimatorPower
     {
         super.onAfterUseCard(card, action);
 
-        owner.increaseMaxHp(amount, true);
+        if (action.target != owner)
+        {
+            owner.increaseMaxHp(amount, true);
+        }
     }
 
     @Override

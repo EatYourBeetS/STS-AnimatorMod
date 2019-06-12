@@ -345,7 +345,7 @@
 	},
 	"animator_Excalibur":
 	{
-		"DESCRIPTION": "Conservez. Épuise TOUTES les [#EFC851]Attaques de votre main et Gagnez leurs dégât(s). Infligez !D! dégât(s) à TOUS les ennemis.",
+		"DESCRIPTION": "Conservez. Épuise TOUTES les autres [#EFC851]Attaques de votre main et Gagnez leurs dégât(s). Infligez !D! dégât(s) à TOUS les ennemis.",
 		"NAME": "Excalibur"
 	},
 	"animator_FeridBathory":
@@ -1011,8 +1011,7 @@
 	{
 		"DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez !M! Dextérité temporaire.NL Héritage: Obtenez [#EFC851]Asuramaru.",
 		"EXTENDED_DESCRIPTION": ["Asuramaru", "Une carte #yAttaque spéciale qui coûte 1."],
-		"NAME": "Yuuichirou",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez !M! Dextérité temporaire. NL Héritage: Obtenez [#EFC851]Asuramaru+."
+		"NAME": "Yuuichirou"
 	},
 	"animator_ZankiKiguchi":
 	{
@@ -1102,7 +1101,7 @@
 	},
 	"animator_Boros":
 	{
-		"DESCRIPTION": "Gagnez !M! de Force, de Dextérité et de Concentration. NL TOUS les [#EFC851]Pouvoirs[] seront NL joués deux fois.",
+		"DESCRIPTION": "Gagnez !M! de Force. NL Gagnez !SV! de Temp._PV. NL TOUS les [#EFC851]Pouvoirs[] seront NL joués deux fois.",
 		"NAME": "Boros"
 	},
 	"animator_Saitama":
@@ -1112,8 +1111,9 @@
 	},
 	"animator_SeriousSaitama":
 	{
-		"DESCRIPTION": "Assomez TOUS les ennemis. Gagnez !M! de Force. Épuisement.",
-		"NAME": "Saitama Sérieux"
+		"DESCRIPTION": "Assomez TOUS les ennemis. Gagnez X de Force. Purge.",
+		"NAME": "Saitama Sérieux",
+		"UPGRADE_DESCRIPTION": "Assomez TOUS les ennemis. Gagnez X+1 de Force. Purge."
 	},
 	"animator_Azriel":
 	{
@@ -1129,8 +1129,7 @@
 	"animator_HiiragiTenri":
 	{
 		"DESCRIPTION": "Gagnez !M! Temp._HP. NL Jouez et Épuisez NL TOUTES les cartes de votre Défausse. Épuisement.",
-		"NAME": "Tenri Hiiragi",
-		"UPGRADE_DESCRIPTION": "Gagnez !M! Temp._HP. NL Jouez et Épuisez NL TOUTES les cartes de votre Défausse."
+		"NAME": "Tenri Hiiragi"
 	},
 	"animator_SirTouchMe":
 	{
@@ -1170,7 +1169,7 @@
 	},
 	"animator_Veldora":
 	{
-		"DESCRIPTION": "Gagnez !SV! Concentration. NL Active TOUTES les orbes, !M! fois. [#EFC851]Pioché: Canalisez 2 orbes aléatoires.",
+		"DESCRIPTION": "Gagnez !SV! Concentration. NL Active TOUTES les orbes, !M! fois. [#EFC851]Pioché:[] Canalisez 2 orbes aléatoires.",
 		"NAME": "Veldora"
 	},
 	"animator_NivaLada":

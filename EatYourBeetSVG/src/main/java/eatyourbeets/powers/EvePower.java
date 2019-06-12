@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
+import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
+import eatyourbeets.actions.AnimatorAction;
 import eatyourbeets.cards.AnimatorCard;
 
 public class EvePower extends AnimatorPower
@@ -46,6 +48,23 @@ public class EvePower extends AnimatorPower
         AnimatorCard card = Utilities.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasActiveSynergy())
         {
+            GameActionsHelper.AddToBottom(new EveAction(this));
+        }
+    }
+
+    private class EveAction extends AnimatorAction
+    {
+        private final EvePower power;
+
+        public EveAction(EvePower power)
+        {
+            this.power = power;
+            this.amount = power.amount;
+        }
+
+        @Override
+        public void update()
+        {
             AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             if (target != null)
             {
@@ -61,12 +80,14 @@ public class EvePower extends AnimatorPower
                     AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffect(target.hb.cX, target.hb.cY, owner.hb.cX, owner.hb.cY), 0.3F));
                 }
 
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(target, new DamageInfo(owner, this.amount, DamageInfo.DamageType.THORNS)));
+                AbstractDungeon.actionManager.addToBottom(new DamageAction(target, new DamageInfo(owner, amount, DamageInfo.DamageType.THORNS)));
 
-                this.flash();
-                this.amount += growth;
-                updateDescription();
+                power.flash();
+                power.amount += power.growth;
+                power.updateDescription();
             }
+
+            this.isDone = true;
         }
     }
 }

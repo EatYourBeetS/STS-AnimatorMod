@@ -65,6 +65,7 @@ public class FadingPlayerPower extends AbstractPower
             for (int i = 0; i < owner.maxHealth; i ++)
             {
                 GameActionsHelper.DamageTarget(owner, owner, i, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+                GameActionsHelper.DamageTarget(owner, owner, i, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
             }
         }
         else

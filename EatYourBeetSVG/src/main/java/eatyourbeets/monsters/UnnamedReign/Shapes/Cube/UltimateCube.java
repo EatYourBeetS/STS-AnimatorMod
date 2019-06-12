@@ -1,8 +1,13 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.WraithFormPower;
 import eatyourbeets.GameActionsHelper;
+import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleFrail;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleVulnerable;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleWeak;
@@ -22,10 +27,27 @@ public class UltimateCube extends Cube
 
         int level = AbstractDungeon.ascensionLevel;
 
+        moveset.AddSpecial(new Move_AttackMultiple(6, 32));
+
         movesetMode = Mode.Sequential;
         moveset.AddNormal(new Move_AttackMultipleWeak(4, 2, (level > 7) ? 3 : 2));
         moveset.AddNormal(new Move_AttackMultipleFrail(4, 2, 2));
         moveset.AddNormal(new Move_AttackMultipleVulnerable(4, 2, 2));
+    }
+
+    @Override
+    protected void SetNextMove(int roll, int historySize, Byte previousMove)
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+        AbstractPower power = p.getPower(IntangiblePlayerPower.POWER_ID);
+        if (power != null && power.amount > 1 && !p.hasPower(WraithFormPower.POWER_ID))
+        {
+            moveset.GetMove(Move_AttackMultiple.class).SetMove();
+        }
+        else
+        {
+            super.SetNextMove(roll, historySize, previousMove);
+        }
     }
 
     @Override

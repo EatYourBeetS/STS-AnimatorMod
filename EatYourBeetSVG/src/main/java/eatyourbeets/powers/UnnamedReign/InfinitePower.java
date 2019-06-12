@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -213,10 +212,10 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         }
         else if (card instanceof HigakiRinne)
         {
-            if (!linesUsed.contains(21) && owner.currentHealth > 500)
+            if (!linesUsed.contains(21) && owner.currentHealth > 500 && ((TheUnnamed)owner).minionsCount > 0)
             {
-                GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[21], 3f, 3f));
-                GameActionsHelper.Callback(new WaitAction(2.5f), this::Rinne, card);
+                GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[21], 2.5f, 2.5f));
+                GameActionsHelper.Callback(new WaitRealtimeAction(2.5f), this::Rinne, card);
                 linesUsed.add(21);
             }
         }
@@ -244,7 +243,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
             for (int i = 0; i < 6 ; i++)
             {
-                GameActionsHelper.GainBlock(characters.Retrieve(rng, false), 1, true);
+                GameActionsHelper.GainBlock(characters.Retrieve(rng, false), 1);
             }
 
             HigakiRinneAction.PlayRandomSound();
@@ -261,7 +260,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
     private void Talk(int line, float duration)
     {
-        if (!linesUsed.contains(line) && owner.currentHealth > 500)
+        if (!linesUsed.contains(line) && owner.currentHealth > 500 && ((TheUnnamed)owner).minionsCount > 0)
         {
             GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[line], duration, duration));
 

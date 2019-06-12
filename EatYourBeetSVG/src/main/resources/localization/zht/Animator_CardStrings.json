@@ -225,7 +225,7 @@
 	},
 	"animator_Defend_OnePunchMan":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 鼓舞 !SV! : 下一輪，獲得 [E]。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 鼓舞 !SV! : 下一輪，獲得 [E] 。",
 		"NAME": "優越防禦"
 	},
 	"animator_Defend_Konosuba":
@@ -1128,8 +1128,7 @@
 			"阿修羅丸",
 			"特殊的1耗#y攻擊牌 。"
 		],
-		"NAME": "百夜優一郎",
-		"UPGRADE_DESCRIPTION": "造成!D!點傷害 。 NL 獲得 !M! 點 臨時 敏捷 。 NL 遺產 : 將一張 [#EFC851]阿修羅丸+[] 放到你的棄牌堆 。"
+		"NAME": "百夜優一郎"
 	},
 	"animator_ZankiKiguchi":
 	{
@@ -1166,7 +1165,7 @@
 	},
 	"animator_Sonic":
 	{
-		"DESCRIPTION": "忍者 。 造成 !D! 點 穿刺 傷害 。 同調: 獲得1張 飛刃 。",
+		"DESCRIPTION": "忍者 。 造成 !D! 點 穿刺 傷害 。 同調: 獲得 1 張 飛刃 。",
 		"NAME": "音速索尼克"
 	},
 	"animator_SilverFang":
@@ -1176,7 +1175,7 @@
 	},
 	"animator_Geryuganshoop":
 	{
-		"DESCRIPTION": "循環 !SV! 張牌 。 NL 抹除最多 !M! 張已 消耗 的牌 ， 獲得同樣數量的 [E].",
+		"DESCRIPTION": "循環 !SV! 張牌 。 NL 抹除最多 !M! 張已 消耗 的牌 ， 獲得同樣數量的 [E] 。",
 		"NAME": "戈留幹修普",
 		"EXTENDED_DESCRIPTION": [
 			"選擇 @ 張牌抹除 ， 獲得同等的能量."
@@ -1215,13 +1214,14 @@
 	},
 	"animator_Boros":
 	{
-		"DESCRIPTION": "獲得 !M! 點 力量 ， 敏捷 和 集中 。 NL 所有 [#EFC851]能力[] 將會被 NL 打出兩次。",
+		"DESCRIPTION": "獲得 !M! 點 力量 。 獲得 !SV! 點 臨時生命 。 所有 [#EFC851]能力[] 將會被 NL 打出兩次 。",
 		"NAME": "波羅斯"
 	},
 	"animator_SeriousSaitama":
 	{
-		"DESCRIPTION": "眩暈 所有敵人 。 獲得 !B! 點 力量 。 消耗 。",
-		"NAME": "認真的埼玉"
+		"DESCRIPTION": "眩暈 所有敵人 。 獲得 X 點 力量 。 抹除 。",
+		"NAME": "認真的埼玉",
+		"UPGRADE_DESCRIPTION": "眩暈 所有敵人 。 獲得 X+1 點 力量 。 抹除 。"
 	},
 	"animator_Azriel":
 	{
@@ -1237,8 +1237,7 @@
 	"animator_HiiragiTenri":
 	{
 		"DESCRIPTION": "獲得 !M! 點 臨時生命 。 NL 打出並 消耗 棄牌堆中所有牌 。 消耗 。",
-		"NAME": "柊天利",
-		"UPGRADE_DESCRIPTION": "獲得 !M! 點 臨時生命 。 NL 打出並 消耗 棄牌堆中所有牌 。"
+		"NAME": "柊天利"
 	},
 	"animator_SirTouchMe":
 	{

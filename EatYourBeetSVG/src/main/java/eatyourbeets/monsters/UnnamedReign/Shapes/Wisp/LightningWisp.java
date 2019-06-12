@@ -15,9 +15,9 @@ public class LightningWisp extends Wisp
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.AddNormal(new Move_AttackVulnerable(tier.Add(6,3), 1));
+        moveset.AddNormal(new Move_AttackWeak(tier.Add(6,3), 1));
         moveset.AddNormal(new Move_AttackFrail(tier.Add(6,3), 1));
-        moveset.AddNormal(new Move_GainStrength(tier.Add(2,3)));
+        moveset.AddNormal(new Move_GainStrengthAndArtifact(tier.Add(2,3), 1));
     }
 
     @Override

@@ -6,21 +6,23 @@ import com.megacrit.cardcrawl.cards.red.SearingBlow;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.relics.ExquisiteBloodVial;
 
 import java.util.ArrayList;
 
 public class UnnamedRelicEquipEffect extends AbstractGameEffect
 {
-    private final int relicGoldBonus;
+    private final int goldBonus;
 
-    public UnnamedRelicEquipEffect(int relicGoldBonus)
+    public UnnamedRelicEquipEffect(int goldBonus)
     {
-        this.relicGoldBonus = relicGoldBonus;
+        this.goldBonus = goldBonus;
         this.duration = 1.0F;
     }
 
@@ -66,8 +68,8 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
             hp = 150;
         }
 
+        p.gold = goldBonus;
         p.maxHealth = p.currentHealth = hp;
-        p.gold = relicGoldBonus;
         p.healthBarUpdatedEvent();
 
         p.potionSlots = AbstractDungeon.ascensionLevel < 11 ? 3 : 2;
@@ -95,45 +97,74 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
     }
 
-    public static int CalculateRelicGoldBonus()
+    public static int CalculateGoldBonus()
     {
         AbstractPlayer p = AbstractDungeon.player;
 
-        int relicBonus = 300;
+        int bonus = 100;
         for (AbstractRelic r : p.relics)
         {
-            switch (r.tier)
+            if (r instanceof ExquisiteBloodVial)
+            {
+                bonus += 30 + ((r.counter > 0) ? (r.counter * 10) : 0);
+            }
+            else switch (r.tier)
             {
                 case STARTER:
-                    relicBonus += 3;
+                    bonus += 0;
                     break;
 
                 case COMMON:
-                    relicBonus += 3;
+                    bonus += 6;
                     break;
 
                 case UNCOMMON:
-                    relicBonus += 5;
+                    bonus += 10;
                     break;
 
                 case RARE:
-                    relicBonus += 9;
+                    bonus += 18;
                     break;
 
                 case SPECIAL:
-                    relicBonus += 21;
+                    bonus += 25;
                     break;
 
                 case BOSS:
-                    relicBonus += 14;
+                    bonus += 30;
                     break;
 
                 case SHOP:
-                    relicBonus += 6;
+                    bonus += 10;
                     break;
             }
         }
 
-        return relicBonus;
+        for (AbstractPotion potion : p.potions)
+        {
+            switch (potion.rarity)
+            {
+                case PLACEHOLDER:
+                    bonus += 0;
+                    break;
+
+                case COMMON:
+                    bonus += 6;
+                    break;
+
+                case UNCOMMON:
+                    bonus += 10;
+                    break;
+
+                case RARE:
+                    bonus += 14;
+                    break;
+            }
+        }
+
+        bonus += p.maxHealth / 4;
+        bonus += p.gold / 8;
+
+        return Math.min(999, bonus);
     }
 }

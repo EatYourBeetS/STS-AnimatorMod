@@ -34,7 +34,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
         {
             GameActionsHelper.AddToTop(new PlayCardFromPileAction(c, p.discardPile, true, false));
         }
-        GameActionsHelper.AddToTop(new VFXAction(new OfferingEffect(), 0.5F));
+        GameActionsHelper.AddToTop(new VFXAction(new OfferingEffect(), 0.1F));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            this.exhaust = false;
+            upgradeMagicNumber(10);
         }
     }
 }

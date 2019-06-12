@@ -20,7 +20,7 @@
 		"NAME": "Le Voyageur Masqué (Partie 2)",
 		"DESCRIPTIONS": [
 			"\"C'est vous! Sur le chemin de vaincre le @Cœur@ de cette tour?\" NL NL \"Pourquoi ne pas m'aider à débarasser d'une autre menace à la place? Vous voyez, le Sans-Nom est de retour, mais ne vous en faites pas! Il n'est point invincible pour vous!\"",
-			"Oh, voici un détail mineur... Pour combattre le Sans-Nom, vous devrez échanger TOUTES vos reliques, vos potions, et vos améliorations sur les cartes contre une de ces #yReliques #ySpéciales:\" NL NL \"Cependant, vous pourriez probablement recevoir un peu d'Or basant sur vos Reliques, je dirais à peu près #b{0} #yOr\"",
+			"Oh, voici un détail mineur... Pour combattre le Sans-Nom, vous devrez échanger TOUTES vos reliques, vos potions, et vos améliorations sur les cartes contre une de ces #yReliques #ySpéciales:\" NL NL \"Cependant, vous pourriez probablement recevoir un peu d'Or basant sur vos Équipement, je dirais à peu près #b{0} #yOr\"",
 			"\"Formidable! Allez tout droit et vous devriez le voir, je compte sur vous!\" NL NL \"Attendez! J'avais presque oublié, vous allez rencontré souvent ces petits bijoux, voilà un pour vous... Ou, si vous préférez, je peux aussi échanger certaines de vos cartes. \" NL NL [ #yREMARQUE #yIMPORTANTE: Cet acte est publié plus tôt que prévu étant donné qu'il est déjà complètement fonctionnel. Il est toutefois encore sous développement et sera mis à jour régulièrement.]"
 		],
 		"OPTIONS":
@@ -28,7 +28,7 @@
 			"[Partir]",
 			"[Se renseigner]",
 			"[Accepter] #gObtenez #gune #gRelique",
-			"[Accepter] #gRetirez #b{0} #gcartes, #gObtenez #b{1} #gcartes #gAméliorées #galéatoires."
+			"[Accepter] #gRetirez #g{0} #gcartes, #gObtenez #g{1} #gcartes #gAméliorées #galéatoires."
 		]
 	},
 	"Animator_TheMaskedTraveler3":
@@ -86,7 +86,7 @@
 		],
 		"OPTIONS": [
 			"#y[Prendre #yde #yl'Or] #yGagnez #y{0} #yOr.",
-			"#r[Partir] #rGagnez #r{0} #rPV",
+			"#r[Partir] #gGagnez #g{0} #gPV",
 			"#r[Partir]"
 		]
 	},

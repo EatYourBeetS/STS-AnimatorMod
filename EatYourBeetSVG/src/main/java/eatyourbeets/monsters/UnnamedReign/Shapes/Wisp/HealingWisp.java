@@ -3,7 +3,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset.Move_GainStrength;
+import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifact;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.UnnamedReign.HealingWispPower;
@@ -16,8 +16,8 @@ public class HealingWisp extends Wisp
 
         int level = AbstractDungeon.ascensionLevel;
 
-        moveset.AddNormal(new Move_GainStrength(tier.Add(0, 2)));
-        moveset.AddNormal(new Move_AttackMultiple(3, tier.Add(1, 2)));
+        moveset.AddNormal(new Move_GainStrengthAndArtifact(tier.Add(0, 2), 1));
+        moveset.AddNormal(new Move_AttackMultiple(3, tier.Add(2, 1)));
     }
 
     @Override

@@ -10,9 +10,14 @@
 		"PROPERNAME": "Legacy"
 	},
 	{
-		"DESCRIPTION": "Whenever this is discarded or played, shuffle it into your draw pile.",
+		"DESCRIPTION": "Whenever this card would enter your discard pile, shuffle it into your draw pile.",
 		"NAMES": ["loyal"],
 		"PROPERNAME": "Loyal"
+	},
+	{
+		"DESCRIPTION": "Whenever this card would enter your discard pile, shuffle it into your draw pile.",
+		"NAMES": ["persistent"],
+		"PROPERNAME": "Persistent"
 	},
 	{
 		"DESCRIPTION": "The owner is inflicted with the specified #yDebuff or Effect when receiving damage. Lasts 1 turn.",

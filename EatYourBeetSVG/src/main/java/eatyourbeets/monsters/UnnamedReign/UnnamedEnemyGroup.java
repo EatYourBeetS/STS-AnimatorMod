@@ -3,12 +3,10 @@ package eatyourbeets.monsters.UnnamedReign;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.Utilities;
 import eatyourbeets.misc.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Crystal;
@@ -22,11 +20,13 @@ import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.UltimateWisp;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.Wisp;
+import eatyourbeets.monsters.UnnamedReign.UnnamedHat.TheUnnamed_Hat;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class UnnamedEnemyGroup
 {
     public static String TWO_SHAPES = "Animator_DOUBLE_SHAPES_WEAK";
+    public static String UNNAMED_HAT = "Animator_UNNAMED_HAT";
     public static String THREE_NORMAL_SHAPES = "Animator_TRIPLE_SHAPES_WEAK";
     public static String CULTIST = "Animator_UNNAMED_CULTIST_1";
     public static String LARGE_CRYSTAL = "Animator_LARGE_CRYSTAL";
@@ -43,12 +43,15 @@ public class UnnamedEnemyGroup
 
     private final static float CULTIST_X = 180;
     private final static float CULTIST_Y = 12;
+    private final static float H4T_X = 270;
+    private final static float H4T_Y = -32;
 
     public static void RegisterMonsterGroups()
     {
         BaseMod.addMonster(TWO_SHAPES, UnnamedEnemyGroup::TwoShapes);
         BaseMod.addMonster(THREE_NORMAL_SHAPES, UnnamedEnemyGroup::ThreeNormalShapes);
         BaseMod.addMonster(CULTIST, UnnamedEnemyGroup::Cultist);
+        BaseMod.addMonster(UNNAMED_HAT, UnnamedEnemyGroup::UnnamedHat);
         BaseMod.addMonster(LARGE_CRYSTAL, UnnamedEnemyGroup::LargeCrystal);
         BaseMod.addMonster(LARGE_CUBE, UnnamedEnemyGroup::LargeCube);
         BaseMod.addMonster(LARGE_WISP, UnnamedEnemyGroup::LargeWisp);
@@ -167,6 +170,11 @@ public class UnnamedEnemyGroup
         enemies[0] = Create(2, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
 
         return new MonsterGroup(enemies);
+    }
+
+    public static MonsterGroup UnnamedHat()
+    {
+        return new MonsterGroup(new TheUnnamed_Hat(H4T_X, H4T_Y));
     }
 
     public static MonsterGroup Cultist()

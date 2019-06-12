@@ -230,6 +230,9 @@ public abstract class AnimatorCard extends CustomCard
         AnimatorCard copy = Utilities.SafeCast(result, AnimatorCard.class);
         if (copy != null)
         {
+            copy.magicNumber = this.magicNumber;
+            copy.isMagicNumberModified = this.isMagicNumberModified;
+
             copy.secondaryValue = this.secondaryValue;
             copy.baseSecondaryValue = this.baseSecondaryValue;
             copy.isSecondaryValueModified = this.isSecondaryValueModified;

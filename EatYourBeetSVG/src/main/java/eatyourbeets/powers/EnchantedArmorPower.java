@@ -67,7 +67,7 @@ public class EnchantedArmorPower extends AnimatorPower
     }
 
     @Override
-    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type)
+    public float atDamageReceive(float damage, DamageInfo.DamageType type)
     {
         if (reactive)
         {
@@ -82,15 +82,27 @@ public class EnchantedArmorPower extends AnimatorPower
     @Override
     public int onAttacked(DamageInfo info, int damageAmount)
     {
-        if (info.type == DamageInfo.DamageType.THORNS || info.type == DamageInfo.DamageType.HP_LOSS)
+        if (reactive)
         {
-            damageAmount = Math.round(percentage * (float) damageAmount);
-            info.output = damageAmount;
-        }
+            if (info.type == DamageInfo.DamageType.HP_LOSS || info.type == DamageInfo.DamageType.THORNS)
+            {
+                float percentage = CalculatePercentage(this.amount + damageAmount);
 
-        if (reactive && info.type != DamageInfo.DamageType.HP_LOSS)
+                damageAmount = Math.round( (float) damageAmount * percentage);
+                info.output = damageAmount;
+            }
+            else
+            {
+                stackPower(damageAmount);
+            }
+        }
+        else
         {
-            stackPower(damageAmount);
+            if (info.type == DamageInfo.DamageType.THORNS || info.type == DamageInfo.DamageType.HP_LOSS)
+            {
+                damageAmount = Math.round(percentage * (float) damageAmount);
+                info.output = damageAmount;
+            }
         }
 
         return super.onAttacked(info, damageAmount);

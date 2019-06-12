@@ -122,7 +122,7 @@
 	},
 	"animator_UnnamedDollPower":
 	{
-		"DESCRIPTIONS": ["击出卡牌时, 获得 #b", " 点 #y生命上限 。 NL NL 死亡时，所有角色获得 #b", " #y力量 "],
+		"DESCRIPTIONS": ["在播放不仅仅针对此角色的卡片时， 获得 #b", " 点 #y生命上限 。 NL NL 死亡时， 所有角色获得 #b", " #y力量 "],
 		"NAME": "无名傀儡"
 	},
 	"animator_CursedStabsPower":
@@ -131,6 +131,14 @@
 		"DESCRIPTIONS":
 		[
 			"当这个敌人对你造成伤害时, 在你的抽牌堆里添加1张 #y疼痛 和1张 #y伤口 。"
+		]
+	},
+	"animator_TheUnnamedHatPower":
+	{
+		"NAME": "H4T",
+		"DESCRIPTIONS":
+		[
+			"每轮開始时, 所有盟友回复 #b", " 点生命值。 NL NL 死亡时， 將 #y缠身 應用於對手。"
 		]
 	},
 	"animator_TheUnnamedCultistPower":
@@ -384,5 +392,10 @@
 	{
 		"DESCRIPTIONS": ["查看抽牌堆顶部的牌, NL 鼠标 #p左击 将其拿进手牌 ( #b", " 次 ), 或 #p右击 将其丢弃 ( #b", " 次)."],
 		"NAME": "紫苑寺有子"
+	},
+	"animator_NextTurnDexterityPower":
+	{
+		"DESCRIPTIONS": ["下一回合 ， 获得 #b", " 层 临时 #y敏捷 。"],
+		"NAME": "下一回合 敏捷"
 	}
 }

@@ -7,7 +7,7 @@
 	},
 	"animator_ArcherPower":
 	{
-		"DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to all enemies with a Debuff."],
+		"DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to all enemies for each Debuff they have."],
 		"NAME": "Archer"
 	},
 	"animator_AzrielPower":
@@ -127,7 +127,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"When a card is played, gain #b"," #yMax #yHP. NL NL On death, ALL characters gain #b", " #yStrength."
+			"When playing a card which does not target only this character, gain #b"," #yMax #yHP. NL NL On death, ALL characters gain #b", " #yStrength."
 		],
 		"NAME": "Unnamed Doll"
 	},
@@ -137,6 +137,14 @@
 		"DESCRIPTIONS":
 		[
 			"Whenever it deals unblocked damage, add 1 #yPain and 1 #yWound to your draw pile."
+		]
+	},
+	"animator_TheUnnamedHatPower":
+	{
+		"NAME": "H4T",
+		"DESCRIPTIONS":
+		[
+			"At the start of each turn, all allies heal #b", " HP. NL NL On death, apply #yEntangle to the opponent."
 		]
 	},
 	"animator_TheUnnamedCultistPower":
@@ -392,5 +400,10 @@
 	{
 		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use/s ), or #pRight-Click to discard it ( #b", " use/s)."],
 		"NAME": "Yuko Shionji"
+	},
+	"animator_NextTurnDexterityPower":
+	{
+		"DESCRIPTIONS": ["Next turn, gain #b", " Temporary #yDexterity."],
+		"NAME": "Next Turn Dexterity"
 	}
 }

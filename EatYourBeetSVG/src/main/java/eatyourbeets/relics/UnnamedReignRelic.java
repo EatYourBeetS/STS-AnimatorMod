@@ -15,7 +15,6 @@ import eatyourbeets.effects.UnnamedRelicEquipEffect;
 import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.subscribers.OnReceiveRewardsSubscriber;
-import patches.AbstractEnums;
 import patches.RelicObtainedPatches;
 
 import java.util.ArrayList;
@@ -114,12 +113,11 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
             SequentialEffect effect = new SequentialEffect();
 
-            int relicBonus = UnnamedRelicEquipEffect.CalculateRelicGoldBonus();
+            int goldBonus = UnnamedRelicEquipEffect.CalculateGoldBonus();
 
             for (AbstractRelic r : p.relics)
             {
-                if (r != relic && !(r instanceof AllowedUnnamedReignRelic) &&
-                        (p.chosenClass == AbstractEnums.Characters.THE_ANIMATOR || r.tier != RelicTier.STARTER))
+                if (r != relic && !(r instanceof AllowedUnnamedReignRelic))
                 {
                     effect.Enqueue(new RemoveRelicEffect(relic, r));
                 }
@@ -130,7 +128,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
             ((UnnamedReignRelic) relic).OnManualEquip();
 
-            effect.Enqueue(new UnnamedRelicEquipEffect(relicBonus));
+            effect.Enqueue(new UnnamedRelicEquipEffect(goldBonus));
 
             AbstractDungeon.effectList.add(effect);
         }

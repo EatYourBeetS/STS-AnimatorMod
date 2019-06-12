@@ -317,6 +317,16 @@
 		"DIALOG": [""]
 	},
 
+	"Animator_TheUnnamed_Hat":
+	{
+		"MOVES": [],
+		"NAME": "H4T",
+		"DIALOG": 
+		[
+			"Intruder!"
+		]
+	},
+
 	"Animator_TheUnnamedCultist":
 	{
 		"MOVES": [],

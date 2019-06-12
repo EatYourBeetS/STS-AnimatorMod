@@ -4,12 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardGlowBorder;
 import eatyourbeets.Utilities;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.powers.PlayerStatistics;
 
 import java.lang.reflect.Field;
 

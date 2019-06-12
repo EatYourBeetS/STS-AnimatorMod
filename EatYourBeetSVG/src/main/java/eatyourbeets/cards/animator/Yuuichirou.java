@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -20,7 +19,7 @@ public class Yuuichirou extends AnimatorCard
 
         Initialize(8,0, 2);
 
-        //AddExtendedDescription();
+        AddExtendedDescription();
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -38,13 +37,7 @@ public class Yuuichirou extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        Asuramaru card = new Asuramaru();
-        if (upgraded)
-        {
-            card.upgrade();
-        }
-
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(card, 1));
+        GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(new Asuramaru(), 1));
     }
 
     @Override
@@ -52,7 +45,7 @@ public class Yuuichirou extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(3);
+            upgradeDamage(4);
         }
     }
 }

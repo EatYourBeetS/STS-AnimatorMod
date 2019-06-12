@@ -400,6 +400,17 @@
 			""
 		]
 	},
+	
+	"Animator_TheUnnamed_Hat":
+	{
+		"MOVES": [],
+		"NAME": "H4T",
+		"DIALOG": 
+		[
+			"入侵者！"
+		]
+	},
+	
 	"Animator_TheUnnamedCultist":
 	{
 		"MOVES": [],

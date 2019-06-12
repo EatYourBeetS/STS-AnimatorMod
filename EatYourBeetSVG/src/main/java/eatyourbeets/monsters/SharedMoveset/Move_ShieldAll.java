@@ -12,7 +12,7 @@ public class Move_ShieldAll extends AbstractMove
 
     public Move_ShieldAll(int blockAmount)
     {
-        this.blockAmount = blockAmount + ascensionLevel/6;
+        this.blockAmount = blockAmount + GetBonus(blockAmount, 0.12f);
     }
 
     public void SetMove()

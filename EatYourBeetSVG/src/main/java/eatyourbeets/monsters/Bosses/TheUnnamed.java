@@ -8,7 +8,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AngryPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -17,8 +20,8 @@ import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
 import eatyourbeets.monsters.SharedMoveset.Move_Poison;
 import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
-import eatyourbeets.powers.UnnamedReign.InfinitePower;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.UnnamedReign.InfinitePower;
 
 public class TheUnnamed extends AnimatorMonster
 {
@@ -29,7 +32,7 @@ public class TheUnnamed extends AnimatorMonster
     private Move_Poison movePoison;
 
     public boolean appliedFading = false;
-    protected int minionsCount = 3;
+    public int minionsCount = 3;
     public final AbstractMonster[] minions = new AbstractMonster[3];
 
     public TheUnnamed()
@@ -38,24 +41,26 @@ public class TheUnnamed extends AnimatorMonster
 
         data.SetIdleAnimation(this, 1);
 
+        int level = PlayerStatistics.GetAscensionLevel();
+
         moveFading = (Move_Fading)
-                moveset.AddSpecial(new Move_Fading(PlayerStatistics.GetAscensionLevel() > 7 ? 4 : 5));
+                moveset.AddSpecial(new Move_Fading(5));
 
         movePoison = (Move_Poison)
-                moveset.AddSpecial(new Move_Poison(4));
+                moveset.AddSpecial(new Move_Poison(3));
 
         moveset.AddSpecial(new Move_SummonDoll());
 
-        if (PlayerStatistics.GetAscensionLevel() >= 4)
+        if (level >= 4)
         {
-            moveset.AddNormal(new Move_SingleAttack(26));
             moveset.AddNormal(new Move_Taunt());
+            moveset.AddNormal(new Move_SingleAttack(25));
             moveset.AddNormal(new Move_MultiAttack(8, 3));
         }
         else
         {
-            moveset.AddNormal(new Move_SingleAttack(20));
             moveset.AddNormal(new Move_Taunt());
+            moveset.AddNormal(new Move_SingleAttack(20));
             moveset.AddNormal(new Move_MultiAttack(7, 3));
         }
     }
@@ -127,19 +132,27 @@ public class TheUnnamed extends AnimatorMonster
 
         if (minionsCount <= 0 && moveFading.CanUse(previousMove))
         {
-            moveFading.SetMove();
             if (moveFading.fadingTurns > 2)
             {
                 moveFading.fadingTurns -= 1;
             }
+            moveFading.SetMove();
 
             return;
         }
 
         if (moveset.GetMove(previousMove) instanceof Move_Taunt)
         {
+            if (movePoison.poisonAmount > 6)
+            {
+                movePoison.poisonAmount += 2;
+            }
+            else
+            {
+                movePoison.poisonAmount += 1;
+            }
+
             movePoison.SetMove();
-            movePoison.poisonAmount += 1;
 
             return;
         }
@@ -161,6 +174,8 @@ public class TheUnnamed extends AnimatorMonster
 
             moveset.GetMove(Move_Taunt.class).disabled = true;
             moveset.AddNormal(movePoison);
+            rollMove();
+            createIntent();
         }
     }
 

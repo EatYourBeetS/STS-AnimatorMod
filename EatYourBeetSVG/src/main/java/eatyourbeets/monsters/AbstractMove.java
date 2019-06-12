@@ -36,8 +36,9 @@ public abstract class AbstractMove
        return Math.round(base * percentage * (ascensionLevel / 20f));
     }
 
+    public abstract void SetMove();
+
     protected abstract void ExecuteInternal(AbstractPlayer player);
-    protected abstract void SetMove();
 
     public void Execute(AbstractPlayer target)
     {

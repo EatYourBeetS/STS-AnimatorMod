@@ -25,10 +25,12 @@ public class Move_MultiAttack extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
+        boolean superFast = TIMES > 6;
+
         damageInfo.applyPowers(owner, target);
         for (int i = 0; i < TIMES; i++)
         {
-            GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.SLASH_HEAVY));
+            GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.SLASH_HEAVY, superFast));
         }
     }
 }

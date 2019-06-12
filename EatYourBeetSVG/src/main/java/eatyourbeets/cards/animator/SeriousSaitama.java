@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
@@ -17,11 +18,11 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
 
     public SeriousSaitama()
     {
-        super(ID, 2, CardType.SKILL, CardTarget.ALL);
+        super(ID, -1, CardType.SKILL, CardTarget.ALL);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0);
 
-        this.exhaust = true;
+        this.purgeOnUse = true;
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -38,15 +39,34 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
             }
         }
 
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
+        if (this.energyOnUse < EnergyPanel.totalCount)
+        {
+            this.energyOnUse = EnergyPanel.totalCount;
+        }
+
+        this.purgeOnUse = true;
+
+        int amount = energyOnUse;
+        if (upgraded)
+        {
+            amount += 1;
+        }
+
+        if (!this.freeToPlayOnce)
+        {
+            p.energy.use(EnergyPanel.totalCount);
+
+        }
+
+        if (amount > 0)
+        {
+            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, amount), amount);
+        }
     }
 
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
+        TryUpgrade();
     }
 }

@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
@@ -30,6 +29,6 @@ public class Move_AttackStrength extends AbstractMove
         owner.useFastAttackAnimation();
         damageInfo.applyPowers(owner, target);
         GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.FIRE));
-        GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, buffAmount));
+        GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, buffAmount), buffAmount);
     }
 }

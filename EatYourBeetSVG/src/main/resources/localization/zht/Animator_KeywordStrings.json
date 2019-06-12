@@ -15,9 +15,14 @@
 		"PROPERNAME": "遺產"
 	},
 	{
-		"DESCRIPTION": "被丟棄或打出時，返回抽牌堆。",
+		"DESCRIPTION": "當這張卡進入丟棄堆時 ， 返回抽牌堆。",
 		"NAMES": ["忠誠"],
 		"PROPERNAME": "忠誠"
+	},
+	{
+		"DESCRIPTION": "當這張卡進入丟棄堆時 ， 返回抽牌堆。",
+		"NAMES": ["一貫"],
+		"PROPERNAME": "一貫"
 	},
 	{
 		"DESCRIPTION": "擁有者受到 攻擊 時造成特定的 負面效果。 持續一回合。",

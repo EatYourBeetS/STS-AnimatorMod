@@ -62,7 +62,7 @@ public class TheMaskedTraveler2 extends AnimatorEvent
 
     private void CreatePhase2()
     {
-        String goldBonus = String.valueOf(UnnamedRelicEquipEffect.CalculateRelicGoldBonus() + 21);
+        String goldBonus = String.valueOf(UnnamedRelicEquipEffect.CalculateGoldBonus() + 21);
 
         UpdateBodyText(eventStrings.DESCRIPTIONS[1].replace("{0}", goldBonus), true);
         UpdateDialogOption(0, OPTIONS[2], relic1);

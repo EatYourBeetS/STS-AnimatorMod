@@ -218,7 +218,7 @@ public class TheUnnamedReign extends AbstractDungeon
 
         RandomizedList<String> weakEnemies = new RandomizedList<>();
         weakEnemies.Add(UnnamedEnemyGroup.CULTIST);
-        weakEnemies.Add(UnnamedEnemyGroup.TWO_SHAPES);
+        weakEnemies.Add(UnnamedEnemyGroup.UNNAMED_HAT);
         weakEnemies.Add(UnnamedEnemyGroup.THREE_NORMAL_SHAPES);
 
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(0, weakEnemies.Retrieve(mapRng)); // mo1

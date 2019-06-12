@@ -2,8 +2,6 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -18,7 +16,7 @@ public class Boros extends AnimatorCard
     {
         super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 1, 3);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -27,8 +25,7 @@ public class Boros extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, magicNumber), magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, magicNumber), magicNumber);
+        GameActionsHelper.GainTemporaryHP(p, p, secondaryValue);
 
         if (!p.hasPower(BorosPower.POWER_ID))
         {
@@ -42,6 +39,7 @@ public class Boros extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
+            upgradeSecondaryValue(2);
         }
     }
 }

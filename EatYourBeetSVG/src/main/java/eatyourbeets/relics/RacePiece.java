@@ -74,9 +74,9 @@ public class RacePiece extends AnimatorRelic
     {
         AbstractPlayer p = AbstractDungeon.player;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        for (AbstractCard c : p.masterDeck.group)
+        for (AbstractCard c : p.masterDeck.getPurgeableCards().group)
         {
-            if (!SoulboundField.soulbound.get(c) && !c.cardID.equals(Necronomicurse.ID) && !c.cardID.equals(AscendersBane.ID))
+            if (!SoulboundField.soulbound.get(c))
             {
                 group.addToTop(c);
             }

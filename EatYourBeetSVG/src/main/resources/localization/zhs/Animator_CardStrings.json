@@ -1012,8 +1012,7 @@
 	{
 		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 获得 !M! 点 临时 敏捷 。 NL 遗赠 : 将一张 [#EFC851]阿修罗丸[] 放到你的弃牌堆 。",
 		"EXTENDED_DESCRIPTION": ["阿修罗丸", "特殊的1耗#y攻击牌 。"],
-		"NAME": "百夜优一郎",
-		"UPGRADE_DESCRIPTION": "造成!D!点伤害 。 NL 获得 !M! 点 临时 敏捷 。 NL 遗赠 : 将一张 [#EFC851]阿修罗丸+[] 放到你的弃牌堆 。"
+		"NAME": "百夜优一郎"
 	},
 	"animator_ZankiKiguchi":
 	{
@@ -1093,7 +1092,7 @@
 	},
 	"animator_Tatsumaki":
 	{
-		"DESCRIPTION": "生成 1 个 空气 充能球 。 NL 获得 !M! 点临时 集中 。 NL 同调 ： 此回合，所有敌人失去 !SV! 点 力量 。",
+		"DESCRIPTION": "生成 1 个 空气 充能球 。 NL 获得 !M! 点临时 集中 。 NL 同调 ： 此回合 ， 所有敌人失去 !SV! 点 力量 。",
 		"NAME": "龙卷"
 	},
 	"animator_MetalKnight":
@@ -1103,7 +1102,7 @@
 	},
 	"animator_Boros":
 	{
-		"DESCRIPTION": "获得 !M! 点 力量 ， 敏捷 和 集中 。 NL 所有 [#EFC851]能力[] 将会被 NL 打出两次 。",
+		"DESCRIPTION": "获得 !M! 点 力量 。 获得 !SV! 点 临时生命 。  所有 [#EFC851]能力[] 将会被 NL 打出两次 。",
 		"NAME": "波罗斯"
 	},
 	"animator_Saitama":
@@ -1113,8 +1112,9 @@
 	},
 	"animator_SeriousSaitama":
 	{
-		"DESCRIPTION": "眩晕 所有敌人 。 获得 !M! 点 力量 。 消耗 。",
-		"NAME": "认真的埼玉"
+		"DESCRIPTION": "眩晕 所有敌人 。 获得 X 点 力量 。 抹除 。",
+		"NAME": "认真的埼玉",
+		"UPGRADE_DESCRIPTION": "眩晕 所有敌人 。 获得 X+1 点 力量 。 抹除 。"
 	},
 
 	"animator_Azriel":
@@ -1131,8 +1131,7 @@
 	"animator_HiiragiTenri":
 	{
 		"DESCRIPTION": "获得 !M! 点 临时生命 。 NL 打出并 消耗 弃牌堆中所有牌 。 消耗 。",
-		"NAME": "柊天利",
-		"UPGRADE_DESCRIPTION": "获得 !M! 点 临时生命 。 NL 打出并 消耗 弃牌堆中所有牌 。"
+		"NAME": "柊天利"
 	},
 	"animator_SirTouchMe":
 	{

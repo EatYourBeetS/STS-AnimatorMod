@@ -7,7 +7,7 @@
 	},
 	"animator_ArcherPower":
 	{
-		"DESCRIPTIONS": ["A la fin de votre tour, inflige #b", " dégat(s) à tous les ennemis avec un Debuff."],
+		"DESCRIPTIONS": ["A la fin de votre tour, inflige #b", " dégat(s) à tous les ennemis pour chaque Debuff qu'ils ont."],
 		"NAME": "Archer"
 	},
 	"animator_AzrielPower":
@@ -127,7 +127,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"Lorsqu'une carte est jouée, gagnez #b", " de #yMax #yPV. NL NL À la mort, TOUS les autres personnages reçoivent #b", " de #yForce."
+			"Lorsqu'une carte qui ne cible pas seulement ce personnage est jouée, gagnez #b", " de #yMax #yPV. NL NL À la mort, TOUS les autres personnages reçoivent #b", " de #yForce."
 		],
 		"NAME": "Poupée Sans Nom"
 	},
@@ -139,6 +139,14 @@
 			"À chaque fois que cet ennemi inflige des dégâts non bloqués, ajoutez une #yDouleur et une #yPlaie dans votre pioche."
 		],
 		"NAME": "Poignards Maudits"
+	},
+	"animator_TheUnnamedHatPower":
+	{
+		"NAME": "H4T",
+		"DESCRIPTIONS":
+		[
+			"À le début de chaque tour, TOUS les alliés reçoivent #b", " PV. NL NL À la mort, appliquez #yEnchevêtré a l'ennemi."
+		]
 	},
 	"animator_TheUnnamedCultistPower":
 	{
@@ -392,5 +400,10 @@
 	{
 		"DESCRIPTIONS": ["Révèle la carte au dessus de votre deck, NL #pClic-Gauche pour la piocher ( #b", " utilisations ), ou #pClic-Droit pour la défaussé ( #b", " utilisations)."],
 		"NAME": "Yuko Shionji"
+	},
+	"animator_NextTurnDexterityPower":
+	{
+		"DESCRIPTIONS": ["Au prochain tour, gagnez #b", " #yDextérité temporaire."],
+		"NAME": "Dextérité au prochain tour"
 	}
 }

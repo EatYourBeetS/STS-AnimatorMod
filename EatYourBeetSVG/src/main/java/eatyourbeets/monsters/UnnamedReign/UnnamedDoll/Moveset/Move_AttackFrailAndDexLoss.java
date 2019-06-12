@@ -6,19 +6,19 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.LoseDexterityPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.GameActionsHelper;
 import eatyourbeets.Utilities;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Move_AttackVulnerableAndDexLoss extends AbstractMove
+public class Move_AttackFrailAndDexLoss extends AbstractMove
 {
     private int debuffDelay = 0;
     private final int debuffAmount;
 
-    public Move_AttackVulnerableAndDexLoss(int damageAmount, int debuffAmount)
+    public Move_AttackFrailAndDexLoss(int damageAmount, int debuffAmount)
     {
         this.debuffAmount = debuffAmount;
         damageInfo = new DamageInfo(owner, damageAmount, DamageInfo.DamageType.NORMAL);
@@ -57,6 +57,6 @@ public class Move_AttackVulnerableAndDexLoss extends AbstractMove
             debuffDelay -= 1;
         }
 
-        GameActionsHelper.ApplyPower(owner, target, new VulnerablePower(target, debuffAmount, true), debuffAmount);
+        GameActionsHelper.ApplyPower(owner, target, new FrailPower(target, debuffAmount, true), debuffAmount);
     }
 }

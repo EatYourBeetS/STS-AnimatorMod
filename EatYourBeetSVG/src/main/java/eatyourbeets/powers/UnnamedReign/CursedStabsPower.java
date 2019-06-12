@@ -11,6 +11,7 @@ import eatyourbeets.powers.AnimatorPower;
 public class CursedStabsPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(CursedStabsPower.class.getSimpleName());
+    public int usesThisTurn = 99;
 
     public CursedStabsPower(AbstractCreature owner)
     {
@@ -21,12 +22,25 @@ public class CursedStabsPower extends AnimatorPower
         updateDescription();
     }
 
+    @Override
+    public void atEndOfTurn(boolean isPlayer)
+    {
+        super.atEndOfTurn(isPlayer);
+
+        usesThisTurn = 99;
+    }
+
     public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target)
     {
         if (damageAmount > 0 && info.type != DamageInfo.DamageType.THORNS)
         {
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Wound(), 1, true, true));
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Pain(), 1, true, true));
+            if (usesThisTurn > 0)
+            {
+                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Wound(), 1, true, true));
+                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Pain(), 1, true, true));
+
+                usesThisTurn -= 1;
+            }
         }
     }
 }

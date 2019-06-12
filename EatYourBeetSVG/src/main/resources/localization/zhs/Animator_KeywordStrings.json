@@ -15,9 +15,14 @@
 		"PROPERNAME": "遗赠"
 	},
 	{
-		"DESCRIPTION": "被丢弃或打出时，返回抽牌堆。",
+		"DESCRIPTION": "当这张卡进入丢弃堆时 ， 返回抽牌堆。",
 		"NAMES": ["忠诚"],
 		"PROPERNAME": "忠诚"
+	},
+	{
+		"DESCRIPTION": "当这张卡进入丢弃堆时 ， 返回抽牌堆。",
+		"NAMES": ["一贯"],
+		"PROPERNAME": "一贯"
 	},
 	{
 		"DESCRIPTION": "拥有者受到 #y攻击 时造成特定的 #y负面效果。 持续一回合。",

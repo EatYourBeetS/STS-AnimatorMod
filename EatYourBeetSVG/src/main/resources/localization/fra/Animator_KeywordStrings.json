@@ -10,9 +10,14 @@
 		"PROPERNAME": "Héritage"
 	},
 	{
-		"DESCRIPTION": "Quand cette carte est joué et défaussé, elle est remise dans votre pioche.",
+		"DESCRIPTION": "Quand cette carte entrerait dans la défausse, elle est remise dans votre pioche.",
 		"NAMES": ["loyale"],
 		"PROPERNAME": "Loyale"
+	},
+	{
+		"DESCRIPTION": "Quand cette carte entrerait dans la défausse, elle est remise dans votre pioche.",
+		"NAMES": ["persistant", "persistante"],
+		"PROPERNAME": "Persistant"
 	},
 	{
 		"DESCRIPTION": "Subit un #yDebuff ou Effect quand recoit des dommages. dure 1 turn.",

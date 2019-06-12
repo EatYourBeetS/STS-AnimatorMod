@@ -346,7 +346,7 @@
 	},
 	"animator_Excalibur":
 	{
-		"DESCRIPTION": "Retain. Exhaust ALL [#EFC851]Attacks in your hand and gain their damage. Deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Retain. Exhaust ALL other [#EFC851]Attacks in your hand and gain their damage. Deal !D! damage to ALL enemies.",
 		"NAME": "Excalibur"
 	},
 	"animator_FeridBathory":
@@ -609,7 +609,7 @@
 	},
 	"animator_Mitsurugi":
 	{
-		"DESCRIPTION": "Deal !D! damage, can only be used if the enemy intends to attack. Legacy: Gain !M! Strength.",
+		"DESCRIPTION": "Deal !D! damage. Can only be used if the enemy intends to attack. Legacy: NL Gain !M! Strength.",
 		"EXTENDED_DESCRIPTION": ["The enemy does not intend to attack."],
 		"NAME": "Mitsurugi"
 	},
@@ -1012,9 +1012,8 @@
 	"animator_Yuuichirou":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. Legacy: Obtain [#EFC851]Asuramaru.",
-		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 2-Cost #yAttack."],
-		"NAME": "Yuuichirou",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. Legacy: Obtain [#EFC851]Asuramaru+."
+		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 1-Cost #yAttack."],
+		"NAME": "Yuuichirou"
 	},
 	"animator_ZankiKiguchi":
 	{
@@ -1104,7 +1103,7 @@
 	},
 	"animator_Boros":
 	{
-		"DESCRIPTION": "Gain !M! Strength, Dexterity and Focus. NL All [#EFC851]Powers[] are NL played twice.",
+		"DESCRIPTION": "Gain !M! Strength. NL Gain !SV! Temp._HP. NL All [#EFC851]Powers[] are NL played twice.",
 		"NAME": "Boros"
 	},
 	"animator_Saitama":
@@ -1114,8 +1113,9 @@
 	},
 	"animator_SeriousSaitama":
 	{
-		"DESCRIPTION": "Stun ALL enemies. NL Gain !M! Strength. NL Exhaust.",
-		"NAME": "Serious Saitama"
+		"DESCRIPTION": "Stun ALL enemies. NL Gain X Strength. NL Purge.",
+		"NAME": "Serious Saitama",
+		"UPGRADE_DESCRIPTION": "Stun ALL enemies. NL Gain X+1 Strength. NL Purge."
 	},
 	
 	"animator_Azriel":
@@ -1132,8 +1132,7 @@
 	"animator_HiiragiTenri":
 	{
 		"DESCRIPTION": "Gain !M! Temp._HP. NL Play and Exhaust NL ALL cards in your discard pile. Exhaust.",
-		"NAME": "Tenri Hiiragi",
-		"UPGRADE_DESCRIPTION": "Gain !M! Temp._HP. NL Play and Exhaust NL ALL cards in your discard pile."
+		"NAME": "Tenri Hiiragi"
 	},
 	"animator_SirTouchMe":
 	{

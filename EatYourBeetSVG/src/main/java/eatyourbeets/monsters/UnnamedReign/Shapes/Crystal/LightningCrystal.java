@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
@@ -12,8 +11,6 @@ public class LightningCrystal extends Crystal
     public LightningCrystal(MonsterTier tier, float x, float y)
     {
         super(MonsterElement.Lightning, tier, x, y);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_AttackMultiple(tier.Add(2,1),3));
         moveset.AddNormal(new Move_AttackWeak(tier.Add(3,2),1));

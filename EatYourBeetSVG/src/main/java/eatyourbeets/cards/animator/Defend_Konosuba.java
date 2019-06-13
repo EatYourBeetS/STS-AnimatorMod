@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 
 public class Defend_Konosuba extends Defend

@@ -6,11 +6,18 @@ import eatyourbeets.AnimatorResources;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.InvocationTargetException;
+
 public abstract class AnimatorOrb extends AbstractOrb
 {
     protected static final Logger logger = LogManager.getLogger(AnimatorOrb.class.getName());
 
     protected final OrbStrings orbStrings;
+
+    public static String CreateFullID(String id)
+    {
+        return "animator:" + id;
+    }
 
     public AnimatorOrb(String id)
     {
@@ -19,19 +26,14 @@ public abstract class AnimatorOrb extends AbstractOrb
         this.name = orbStrings.NAME;
     }
 
-    public static String CreateFullID(String id)
-    {
-        return "Animator_" + id;
-    }
-
     @Override
     public AbstractOrb makeCopy()
     {
         try
         {
-            return getClass().newInstance();
+            return getClass().getConstructor().newInstance();
         }
-        catch (InstantiationException | IllegalAccessException e)
+        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
         {
             e.printStackTrace();
         }

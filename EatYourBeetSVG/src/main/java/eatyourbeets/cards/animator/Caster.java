@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 

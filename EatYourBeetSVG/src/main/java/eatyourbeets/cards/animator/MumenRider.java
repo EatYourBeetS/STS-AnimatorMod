@@ -4,12 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.MoveSpecificCardAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {

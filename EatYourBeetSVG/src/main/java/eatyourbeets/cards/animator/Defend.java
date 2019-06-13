@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.utilities.GameActionsHelper;
 import patches.AbstractEnums;
 
 public class Defend extends AnimatorCard
@@ -36,7 +37,7 @@ public class Defend extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
+        GameActionsHelper.GainBlock(p, this.block);
     }
 
     @Override

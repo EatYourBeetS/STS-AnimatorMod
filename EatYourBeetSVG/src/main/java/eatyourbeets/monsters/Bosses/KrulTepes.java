@@ -8,23 +8,21 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.KrulTepesMoveset.*;
-import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
-import eatyourbeets.relics.ExquisiteBloodVial;
+import eatyourbeets.monsters.AbstractMonsterData;
+import eatyourbeets.relics.animator.ExquisiteBloodVial;
 
 public class KrulTepes extends AnimatorMonster
 {
-    public static final String ID = "Animator_KrulTepes";
+    public static final String ID = CreateFullID(KrulTepes.class.getSimpleName());
 
     private final BobEffect bobEffect = new BobEffect(1);
 
     public KrulTepes()
     {
         super(new Data(ID), EnemyType.BOSS);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddSpecial(new Move_Regenerate());
 

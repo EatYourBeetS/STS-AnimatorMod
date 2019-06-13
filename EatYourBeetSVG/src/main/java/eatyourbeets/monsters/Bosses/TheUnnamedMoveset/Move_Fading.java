@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.powers.FadingPlayerPower;
+import eatyourbeets.powers.animator.FadingPlayerPower;
 
 public class Move_Fading extends AbstractMove
 {

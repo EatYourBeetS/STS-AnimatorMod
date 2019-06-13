@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnAfterCardPlayedSubscriber;
-import eatyourbeets.subscribers.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.OnAfterCardPlayedSubscriber;
+import eatyourbeets.interfaces.OnBattleStartSubscriber;
 
 public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardPlayedSubscriber
 {

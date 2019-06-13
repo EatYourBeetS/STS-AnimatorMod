@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.RefreshHandLayoutAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.GeassPower;
+import eatyourbeets.powers.animator.GeassPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class Lelouch extends AnimatorCard

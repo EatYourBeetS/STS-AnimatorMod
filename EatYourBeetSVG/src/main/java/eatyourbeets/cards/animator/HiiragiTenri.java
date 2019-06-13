@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.PlayCardFromPileAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.PlayCardFromPileAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 

@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.monsters.AbstractMove;
 
 public class Move_MultiSlash extends AbstractMove

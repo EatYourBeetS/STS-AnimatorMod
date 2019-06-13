@@ -2,10 +2,10 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
-import eatyourbeets.monsters.UnnamedReign.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.monsters.UnnamedReign.Shapes.UnnamedShape;
 
 public abstract class Crystal extends UnnamedShape
 {

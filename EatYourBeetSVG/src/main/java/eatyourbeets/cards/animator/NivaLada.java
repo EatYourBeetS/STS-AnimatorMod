@@ -13,14 +13,14 @@ import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.LaserBeam2Effect;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnAfterCardDiscardedSubscriber;
-import eatyourbeets.subscribers.OnAfterCardExhaustedSubscriber;
-import eatyourbeets.subscribers.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.OnAfterCardDiscardedSubscriber;
+import eatyourbeets.interfaces.OnAfterCardExhaustedSubscriber;
+import eatyourbeets.interfaces.OnBattleStartSubscriber;
 
 public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSubscriber, OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
 {

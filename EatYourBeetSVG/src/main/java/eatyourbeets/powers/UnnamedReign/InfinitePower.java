@@ -19,17 +19,17 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.HigakiRinneAction;
-import eatyourbeets.actions.WaitRealtimeAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.animator.HigakiRinneAction;
+import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.cards.animator.*;
-import eatyourbeets.misc.RandomizedList;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.EnchantedArmorPower;
+import eatyourbeets.powers.animator.AnimatorPower;
+import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnApplyPowerSubscriber;
-import eatyourbeets.subscribers.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.OnApplyPowerSubscriber;
+import eatyourbeets.interfaces.OnBattleStartSubscriber;
 
 import java.util.ArrayList;
 
@@ -37,8 +37,8 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 {
     public static final String POWER_ID = CreateFullID(InfinitePower.class.getSimpleName());
 
-    private ArrayList<Integer> linesUsed = new ArrayList<>();
-    private String[] dialog = null;
+    private final ArrayList<Integer> linesUsed = new ArrayList<>();
+    private final String[] dialog;
     private final EnchantedArmorPower enchantedArmorPower;
 
     public InfinitePower(TheUnnamed owner)

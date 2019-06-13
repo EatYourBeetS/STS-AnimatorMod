@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.AnimatorResources;
+import eatyourbeets.AnimatorResources_Images;
 import eatyourbeets.cards.animator.Strike;
 import patches.AbstractEnums;
 
@@ -33,9 +34,9 @@ public class AnimatorCharacter extends CustomPlayer
 
     public AnimatorCharacter(String name, PlayerClass playerClass)
     {
-        super(name, playerClass, AnimatorResources.ORB_TEXTURES, AnimatorResources.ORB_VFX_PNG, (String) null, null);
+        super(name, playerClass, AnimatorResources_Images.ORB_TEXTURES, AnimatorResources_Images.ORB_VFX_PNG, (String) null, null);
 
-        initializeClass(null, AnimatorResources.SHOULDER2_PNG, AnimatorResources.SHOULDER1_PNG, AnimatorResources.CORPSE_PNG,
+        initializeClass(null, AnimatorResources_Images.SHOULDER2_PNG, AnimatorResources_Images.SHOULDER1_PNG, AnimatorResources_Images.CORPSE_PNG,
                 getLoadout(), 0.0F, -5.0F, 240.0F, 244.0F, new EnergyManager(3));
 
         reloadAnimation();
@@ -43,7 +44,7 @@ public class AnimatorCharacter extends CustomPlayer
 
     public void reloadAnimation()
     {
-        this.loadAnimation(AnimatorResources.SKELETON_ATLAS, AnimatorResources.SKELETON_JSON, 1.0f);
+        this.loadAnimation(AnimatorResources_Images.SKELETON_ATLAS, AnimatorResources_Images.SKELETON_JSON, 1.0f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         this.stateData.setMix("Hit", "Idle", 0.1F);
         e.setTimeScale(0.9F);

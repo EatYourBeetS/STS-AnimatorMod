@@ -1,13 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Azekura extends AnimatorCard
 {
@@ -25,12 +23,12 @@ public class Azekura extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
+        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper.GainBlock(p, this.block);
 
         if (HasActiveSynergy())
         {
-            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber));
+            GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber);
         }
     }
 
@@ -40,7 +38,6 @@ public class Azekura extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBlock(2);
-            //upgradeMagicNumber(1);
         }
     }
 }

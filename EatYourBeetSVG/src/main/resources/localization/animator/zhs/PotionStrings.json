@@ -1,0 +1,10 @@
+{
+  "animator:FalseLifePotion": 
+  {
+    "NAME": "伪命药剂",
+    "DESCRIPTIONS": 
+	[ 
+      "获得 #b"," 点 #y临时生命 。"
+    ]
+  }
+}

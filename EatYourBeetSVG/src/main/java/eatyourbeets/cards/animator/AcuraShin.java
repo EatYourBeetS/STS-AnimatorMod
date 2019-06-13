@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.PoisonAffinityPower;
+import eatyourbeets.powers.animator.PoisonAffinityPower;
 
 public class AcuraShin extends AnimatorCard
 {

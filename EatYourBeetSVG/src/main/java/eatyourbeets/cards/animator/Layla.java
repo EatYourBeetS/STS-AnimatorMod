@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.VariableDiscardAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 

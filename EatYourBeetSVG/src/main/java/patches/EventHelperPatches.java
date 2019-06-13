@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.helpers.EventHelper;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.relics.UnnamedReignRelic;
+import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 
 public class EventHelperPatches
 {

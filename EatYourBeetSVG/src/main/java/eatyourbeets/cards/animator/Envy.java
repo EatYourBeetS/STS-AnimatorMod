@@ -2,10 +2,10 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.EnvyPower;
+import eatyourbeets.powers.animator.EnvyPower;
 
 public class Envy extends AnimatorCard
 {
@@ -33,7 +33,7 @@ public class Envy extends AnimatorCard
         }
         else
         {
-            heal = (int)Math.round(missingHP * magicNumber / 100f);
+            heal = Math.round(missingHP * magicNumber / 100f);
         }
 
         if (heal > 0)

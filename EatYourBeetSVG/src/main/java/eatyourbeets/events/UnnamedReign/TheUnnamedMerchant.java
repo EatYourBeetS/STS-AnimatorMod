@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.events.AnimatorEvent;
-import eatyourbeets.relics.AncientMedallion;
+import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 
 public class TheUnnamedMerchant extends AnimatorEvent
 {

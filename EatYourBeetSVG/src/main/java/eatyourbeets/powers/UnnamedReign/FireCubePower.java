@@ -2,9 +2,9 @@ package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.BurningPower;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.powers.animator.AnimatorPower;
+import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class FireCubePower extends AnimatorPower

@@ -2,14 +2,14 @@ package eatyourbeets.characters.Loadouts;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.cards.animator.*;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.characters.AnimatorMetrics;
-import eatyourbeets.relics.PurgingStone_Cards;
+import eatyourbeets.relics.animator.PurgingStone_Cards;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;

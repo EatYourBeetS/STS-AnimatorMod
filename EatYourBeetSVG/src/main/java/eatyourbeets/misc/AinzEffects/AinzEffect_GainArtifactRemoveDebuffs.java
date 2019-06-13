@@ -3,7 +3,7 @@ package eatyourbeets.misc.AinzEffects;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 
 
 public class AinzEffect_GainArtifactRemoveDebuffs extends AinzEffect

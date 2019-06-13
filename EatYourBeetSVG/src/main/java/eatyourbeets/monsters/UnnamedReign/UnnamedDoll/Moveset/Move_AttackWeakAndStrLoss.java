@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.powers.PlayerStatistics;
 

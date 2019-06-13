@@ -3,13 +3,13 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.ShiroPower;
-import eatyourbeets.subscribers.OnBattleStartSubscriber;
-import eatyourbeets.subscribers.OnSynergySubscriber;
+import eatyourbeets.powers.animator.ShiroPower;
+import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.OnSynergySubscriber;
 
 public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSynergySubscriber
 {

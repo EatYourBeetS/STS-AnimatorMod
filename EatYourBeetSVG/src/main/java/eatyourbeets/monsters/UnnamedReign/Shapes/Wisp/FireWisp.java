@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_Attack;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifact;
@@ -14,8 +13,6 @@ public class FireWisp extends Wisp
     public FireWisp(MonsterTier tier, float x, float y)
     {
         super(MonsterElement.Fire, tier, x, y);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_Attack(tier.Add(8,4)));
         moveset.AddNormal(new Move_GainStrengthAndArtifact(tier.Add(1,3), 1));

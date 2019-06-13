@@ -2,11 +2,11 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.AzrielPower;
-import eatyourbeets.powers.PlayerFlightPower;
+import eatyourbeets.powers.animator.AzrielPower;
+import eatyourbeets.powers.animator.PlayerFlightPower;
 
 public class Azriel extends AnimatorCard_UltraRare
 {

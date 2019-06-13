@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_Attack;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleFrail;
 import eatyourbeets.monsters.SharedMoveset.Move_Defend;
@@ -14,8 +13,6 @@ public class HealingCube extends Cube
     public HealingCube(MonsterTier tier, float x, float y)
     {
         super(MonsterElement.Healing, tier, x, y);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_AttackMultipleFrail(tier.Add(1,1), 6, 1));
         moveset.AddNormal(new Move_Attack(tier.Add(6,2)));

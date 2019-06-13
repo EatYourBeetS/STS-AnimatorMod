@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Kazuma extends AnimatorCard
 {
@@ -27,12 +28,12 @@ public class Kazuma extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
         if (HasActiveSynergy())
         {
-            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, 1));
+            GameActionsHelper.DrawCard(p, 1);
         }
     }
 

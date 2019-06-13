@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.Field;
-import eatyourbeets.Utilities;
-import eatyourbeets.actions.AnimatorAction;
+import eatyourbeets.utilities.Field;
+import eatyourbeets.utilities.Utilities;
+import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.ui.buttons.DialogRelicButton;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +23,7 @@ public abstract class AnimatorEvent extends AbstractImageEvent
 
     public static String CreateFullID(String id)
     {
-        return "Animator_" + id;
+        return "animator:" + id;
     }
 
     private static Field<ArrayList<LargeDialogOptionButton>> optionListField = Utilities.GetPrivateField("optionList", GenericEventDialog.class);

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.animator.Defend;
 import eatyourbeets.cards.animator.Strike;
 import eatyourbeets.characters.Loadouts.*;

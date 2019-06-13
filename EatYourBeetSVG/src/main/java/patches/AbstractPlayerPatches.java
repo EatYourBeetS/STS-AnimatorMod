@@ -6,7 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import eatyourbeets.potions.FalseLifePotion;
-import eatyourbeets.relics.UnnamedReignRelic;
+import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 
 public class AbstractPlayerPatches
 {

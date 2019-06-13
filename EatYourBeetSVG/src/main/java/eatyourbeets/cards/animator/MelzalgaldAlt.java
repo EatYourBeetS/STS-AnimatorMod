@@ -2,8 +2,9 @@ package eatyourbeets.cards.animator;
 
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.interfaces.Hidden;
 
-public abstract class MelzalgaldAlt extends AnimatorCard implements AnimatorResources.Hidden
+public abstract class MelzalgaldAlt extends AnimatorCard implements Hidden
 {
     public static final String ID = CreateFullID(MelzalgaldAlt.class.getSimpleName());
 

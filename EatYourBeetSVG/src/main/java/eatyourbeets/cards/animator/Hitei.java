@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.HiteiPower;
+import eatyourbeets.powers.animator.HiteiPower;
 
 public class Hitei extends AnimatorCard
 {

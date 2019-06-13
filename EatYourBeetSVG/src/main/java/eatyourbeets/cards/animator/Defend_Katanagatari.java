@@ -2,8 +2,8 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.powers.EarthenThornsPower;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.powers.animator.EarthenThornsPower;
 
 public class Defend_Katanagatari extends Defend
 {

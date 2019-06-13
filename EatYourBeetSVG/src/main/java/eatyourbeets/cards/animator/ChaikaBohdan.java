@@ -9,12 +9,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnBattleStartSubscriber;
-import eatyourbeets.subscribers.OnAttackSubscriber;
+import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.OnAttackSubscriber;
 
 public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscriber, OnAttackSubscriber
 {

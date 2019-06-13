@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackFrail;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackWeak;
@@ -14,8 +13,6 @@ public class LightningCube extends Cube
     public LightningCube(MonsterTier tier, float x, float y)
     {
         super(MonsterElement.Lightning, tier, x, y);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_AttackWeak(tier.Add(2,4),1));
         moveset.AddNormal(new Move_AttackDefend(tier.Add(2,4),tier.Add(2, 4)));

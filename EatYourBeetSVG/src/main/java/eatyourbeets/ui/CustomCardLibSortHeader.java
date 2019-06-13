@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergy;

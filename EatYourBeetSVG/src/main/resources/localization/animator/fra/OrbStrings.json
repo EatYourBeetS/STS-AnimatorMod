@@ -1,0 +1,29 @@
+{
+    "animator:Earth": {
+        "NAME": "Orbe Terrestre",
+        "DESCRIPTION":
+        [
+            "#yPassif: À la fin du tour, gagnez #b",
+            " #yd'Épines temporaires. NL #yActivation: Inflige #b",
+            " dégât(s) réparti(s) aléatoirement parmi TOUS les ennemis. NL Après #b",
+            " tours, #yactivez automatiquement cette Orbe."
+        ]
+    },
+    "animator:Air": {
+        "NAME": "Orbe Aérienne",
+        "DESCRIPTION":
+        [
+            "#yPassif: À la fin du tour, inflige #b", " dégâts #yPerçants à TOUS les ennemies. NL #yActivation: Piochez #b",
+            " cartes."
+        ]
+    },
+    "animator:Fire": {
+        "NAME": "Orbe Incendiaire",
+        "DESCRIPTION":
+        [
+            "#yPassif: À la fin du tour, inflige #b", " dégâts et applique #b",
+			" #yBrûlure à l'ennemi ayant le plus haut PV . NL #yActivation: Inflige #b",
+            " #yBrûlure à TOUS les ennemis."
+        ]
+    }
+}

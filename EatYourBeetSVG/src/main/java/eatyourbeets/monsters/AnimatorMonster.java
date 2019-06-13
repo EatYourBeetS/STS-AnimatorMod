@@ -3,8 +3,7 @@ package eatyourbeets.monsters;
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
+import eatyourbeets.utilities.GameActionsHelper;
 
 import java.util.ArrayList;
 
@@ -14,6 +13,11 @@ public abstract class AnimatorMonster extends CustomMonster
     {
         Random,
         Sequential
+    }
+
+    public static String CreateFullID(String id)
+    {
+        return "animator:" + id;
     }
 
     public final Moveset moveset = new Moveset(this);

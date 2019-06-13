@@ -2,7 +2,7 @@ package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class HealingCrystalPower extends AbstractCrystalPower
 {

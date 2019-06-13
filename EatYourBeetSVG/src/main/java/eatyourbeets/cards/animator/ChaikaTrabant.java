@@ -8,14 +8,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.misc.WeightedList;
-import eatyourbeets.powers.BurningPower;
+import eatyourbeets.utilities.WeightedList;
+import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 
 public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {

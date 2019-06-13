@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.metrics.MetricData;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.select.BossRelicSelectScreen;
 import eatyourbeets.cards.animator.Gilgamesh;
-import eatyourbeets.relics.ExquisiteBloodVial;
-import eatyourbeets.relics.AncientMedallion;
-import eatyourbeets.relics.UnnamedReignRelic;
+import eatyourbeets.relics.animator.ExquisiteBloodVial;
+import eatyourbeets.relics.UnnamedReign.AncientMedallion;
+import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 
 public class RelicObtainedPatches
 {

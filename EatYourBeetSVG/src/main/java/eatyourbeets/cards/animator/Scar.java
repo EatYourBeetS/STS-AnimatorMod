@@ -4,10 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.OnTargetDeadAction;
-import eatyourbeets.actions.PiercingDamageAction;
-import eatyourbeets.actions.ScarAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.OnTargetDeadAction;
+import eatyourbeets.actions.common.PiercingDamageAction;
+import eatyourbeets.actions.animator.ScarAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 

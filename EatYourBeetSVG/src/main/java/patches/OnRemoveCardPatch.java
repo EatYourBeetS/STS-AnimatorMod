@@ -4,8 +4,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
-import eatyourbeets.Utilities;
-import eatyourbeets.subscribers.OnRemoveFromDeckSubscriber;
+import eatyourbeets.utilities.Utilities;
+import eatyourbeets.interfaces.OnRemoveFromDeckSubscriber;
 
 @SpirePatch(clz = CardGroup.class, method = "removeCard", paramtypez = {AbstractCard.class})
 public class OnRemoveCardPatch

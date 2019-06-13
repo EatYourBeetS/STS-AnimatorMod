@@ -2,7 +2,7 @@ package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class DarkCrystalPower extends AbstractCrystalPower
 {

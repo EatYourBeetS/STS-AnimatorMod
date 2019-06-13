@@ -13,14 +13,14 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.BloodVial;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.KrulTepesAction;
-import eatyourbeets.actions.OnTargetDeadAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.animator.KrulTepesAction;
+import eatyourbeets.actions.common.OnTargetDeadAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.relics.AncientMedallion;
-import eatyourbeets.relics.ExquisiteBloodVial;
-import eatyourbeets.relics.UnnamedReignRelic;
+import eatyourbeets.relics.UnnamedReign.AncientMedallion;
+import eatyourbeets.relics.animator.ExquisiteBloodVial;
+import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 
 import java.util.ArrayList;
 

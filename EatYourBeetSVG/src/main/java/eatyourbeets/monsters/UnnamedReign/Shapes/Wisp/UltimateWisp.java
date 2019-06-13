@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
@@ -16,8 +15,6 @@ public class UltimateWisp extends Wisp
     public UltimateWisp()
     {
         super(MonsterElement.Ultimate, MonsterTier.Ultimate, 0, 0);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         movesetMode = Mode.Sequential;
         moveset.AddNormal(new Move_AttackMultiple( 8,3));

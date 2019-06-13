@@ -12,12 +12,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.interfaces.Hidden;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.misc.RandomizedList;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.powers.PlayerStatistics;
 
-public abstract class ThrowingKnife extends AnimatorCard implements AnimatorResources.Hidden
+public abstract class ThrowingKnife extends AnimatorCard implements Hidden
 {
     public static final String ID = CreateFullID(ThrowingKnife.class.getSimpleName());
 

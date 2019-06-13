@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Elesis extends AnimatorCard
 {
@@ -33,7 +34,7 @@ public class Elesis extends AnimatorCard
         this.retain = true;
         if (AbstractDungeon.player.hand.contains(this))
         {
-            AbstractDungeon.actionManager.addToBottom(new ModifyDamageAction(this.uuid, this.magicNumber));
+            GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, this.magicNumber));
         }
     }
 
@@ -48,7 +49,7 @@ public class Elesis extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override

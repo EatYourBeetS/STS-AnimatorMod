@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes;
 
-import eatyourbeets.misc.RandomizedList;
+import eatyourbeets.utilities.RandomizedList;
 
 public enum MonsterShape
 {

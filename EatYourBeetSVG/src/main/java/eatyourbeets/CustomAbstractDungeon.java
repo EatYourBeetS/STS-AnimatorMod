@@ -16,6 +16,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.cards.animator.*;
 import eatyourbeets.characters.AnimatorCustomLoadout;
+import eatyourbeets.utilities.Utilities;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;

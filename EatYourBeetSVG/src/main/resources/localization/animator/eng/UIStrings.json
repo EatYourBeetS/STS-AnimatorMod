@@ -1,0 +1,157 @@
+
+{
+	"animator:Synergies":
+	{
+		"TEXT":
+		[
+			"[Shapeshifter]",
+			"Elsword",
+			"Kantai Collection",
+			"Hitsugi no Chaika",
+			"Konosuba",
+			"Katanagatari",
+			"Owari no Seraph",
+			"Overlord",
+			"No Game No Life",
+			"GATE",
+			"Fate",
+			"Goblin Slayer",
+			"Fullmetal Alchemist",
+			"Hataraku Maou-sama",
+			"Grimoire of Zero",
+			"Steins;Gate",
+			"Tensei shitara Slime",
+			"Re:Zero",
+			"Madoka Magica",
+			"Charlotte",
+			"Accel World",
+			"Noragami",
+			"One Punch Man",
+			"Pandora Hearts",
+			"Zero no Tsukaima",
+			"Gabriel DropOut",
+			"Death Note",
+			"Kamisama no Memochou",
+			"Code Geass",
+			"Youjo Senki"
+		]
+	},
+
+	"animator:Actions":
+	{
+		"TEXT":
+		[
+			"fetch Cards with the same synergy.",
+			"discard and draw that many cards.",
+			"activate this card's effect that many times.",
+			"reduce its cost for this combat.",
+			"Draw # card/s.",
+			"Transform into "
+		]
+	},
+
+	"animator:TetAction":
+	{
+		"TEXT":
+		[
+			"Move up to # card/s to your Discard Pile.",
+			"Shuffle # card/s into your Draw Pile."
+		]
+	},
+
+	"animator:TheUnnamedReign":
+	{
+		"TEXT": 
+		[
+			"The Unnamed Reign"
+		]
+	},
+
+	"animator:SpecialEffects":
+	{
+		"TEXT":
+		[
+			"Attack",
+			"Defend",
+			"Prepare",
+			"Upgrade All the cards in your hand.",
+			"Deal !D! damage to a random enemy !M! times.",
+			"Deal !D! damage to ALL enemies.",
+			"Gain !B! Block.",
+			"Gain !M! Strength.",
+			"Gain !M! Dexterity.",
+			"Gain !M! Thorns.",
+			"Reduce the cost of 2 random cards in your hand by !M! this turn.",
+			"Apply !M! Weak to ALL enemies.",
+			"Apply !M! Vulnerable to ALL enemies.",
+			"Cycle !M! cards",
+			"Draw !M! cards.",
+			"Gain !M! Temp._HP.",
+			"Gain !M! Focus.",
+			"Gain !M! Energy.",
+			"Apply !M! Poison to ALL enemies.",
+			"Apply !M! [#EFC851]Burning to ALL enemies.",
+			"Gain !M! Intangible",
+			"Gain !M! Artifact. NL Remove all of your debuffs.",
+			"Play the top card of your draw pile.",
+			"Channel !M! random Orbs.",
+			"Play the top card of your draw pile twice."
+		]
+	},
+
+	"animator:Trophies":
+	{
+		"TEXT":
+		[
+			"Bronze",
+			"Silver",
+			"Gold",
+			"Choose this starting deck and complete act 4.",
+			"Complete act 4 with at least #yhalf of the cards in your deck being from this series.",
+			"Complete act 4 with at least #b8 #ydifferent cards from this series in your deck.",
+			"Complete act 4 with at least #b7 #ydifferent card series in your deck. (Colorless cards will not count)",
+			"Complete act 4 with at least #b10 #ydifferent card series in your deck, and without banishing any card. (Colorless cards will not count)",
+			"Complete act 4 with at least #b20 cards in your deck, and without any duplicate.",
+			"Complete act 4 with at least #b30 cards in your deck, and without any duplicate.",
+			"This Trophy will be revealed once it is obtained. #yHint: Collect all 3 keys.",
+			"Defeat The Unnamed. NL Whenever you obtain this trophy, permanently increase the chance to find #pUltra #pRare cards, higher ascension increases this bonus by a larger amount. NL NL #yThe #yUnnamed #yReign is now available to all characters.",
+			"Platinum"
+		]
+	},
+
+	"animator:Rewards":
+	{
+		"TEXT":
+		[
+			"Only contains Cards with this synergy. WARNING: once you click on this, the other 2 Card rewards will disappear.",
+			"Bonus Relic",
+			"Cursed Relic"
+		]
+	},
+
+	"animator:CardSelect":
+	{
+		"TEXT":
+		[
+			"Banish"
+		]
+	},
+
+	"animator:CharacterSelect":
+	{
+		"TEXT":
+		[
+			"Starting Cards: ",
+			"###############",
+			"Unlocks at Level ",
+			" (You are Level ",
+			")",
+			"Recommended.",
+			"Balanced start.",
+			"Strong start.",
+			"Very strong start.",
+			"Special: More Gold"
+		]
+	}
+
+}

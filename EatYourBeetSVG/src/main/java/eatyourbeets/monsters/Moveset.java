@@ -1,7 +1,7 @@
 package eatyourbeets.monsters;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;

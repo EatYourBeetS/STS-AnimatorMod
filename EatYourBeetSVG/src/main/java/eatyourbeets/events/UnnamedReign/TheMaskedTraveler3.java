@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.events.AnimatorEvent;
-import eatyourbeets.misc.RandomizedList;
-import eatyourbeets.relics.AncientMedallion;
+import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 import patches.AbstractEnums;
 
 public class TheMaskedTraveler3 extends AnimatorEvent

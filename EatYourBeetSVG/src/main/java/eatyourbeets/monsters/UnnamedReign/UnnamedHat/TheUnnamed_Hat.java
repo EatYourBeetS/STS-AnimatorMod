@@ -3,20 +3,20 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedHat;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackFrail;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndBlock;
 import eatyourbeets.monsters.SharedMoveset.Move_ShuffleDazed;
-import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
+import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_SummonEnemy;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.TheUnnamedHatPower;
 
 public class TheUnnamed_Hat extends AnimatorMonster
 {
-    public static final String ID = "Animator_TheUnnamed_Hat";
+    public static final String ID = CreateFullID(TheUnnamed_Hat.class.getSimpleName());
 
     private boolean first = false;
     private final CommonMoveset commonMoveset;
@@ -32,8 +32,6 @@ public class TheUnnamed_Hat extends AnimatorMonster
 
         this.data.SetIdleAnimation(this, 1);
 
-        int level = PlayerStatistics.GetAscensionLevel();
-
         if (commonMoveset == null)
         {
             this.commonMoveset = new CommonMoveset();
@@ -46,7 +44,15 @@ public class TheUnnamed_Hat extends AnimatorMonster
 
         moveset.AddSpecial(new Move_SummonEnemy());
 
-        moveset.AddNormal(new Move_GainStrengthAndBlock(3, level > 7 ? 11 : 9));
+        if (PlayerStatistics.GetAscensionLevel() >= 7)
+        {
+            moveset.AddNormal(new Move_GainStrengthAndBlock(3, 11));
+        }
+        else
+        {
+            moveset.AddNormal(new Move_GainStrengthAndBlock(3, 9));
+        }
+
         moveset.AddNormal(new Move_ShuffleDazed(1));
         moveset.AddNormal(new Move_AttackFrail(3, 1));
     }

@@ -12,9 +12,9 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.ChooseFromPileAction;
-import eatyourbeets.actions.MoveSpecificCardAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.ChooseFromPileAction;
+import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 

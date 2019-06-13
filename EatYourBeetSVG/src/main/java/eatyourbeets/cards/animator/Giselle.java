@@ -10,10 +10,10 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.BurningPower;
+import eatyourbeets.powers.animator.BurningPower;
 
 public class Giselle extends AnimatorCard_UltraRare
 {

@@ -2,7 +2,7 @@ package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class SoraEffect_GainDexterity extends SoraEffect
 {

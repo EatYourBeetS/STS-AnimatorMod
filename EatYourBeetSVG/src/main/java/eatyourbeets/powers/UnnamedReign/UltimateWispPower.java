@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.powers.animator.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnBattleStartSubscriber;
-import eatyourbeets.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import patches.CardGlowBorderPatch;
 
 public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPostDrawSubscriber, OnBattleStartSubscriber

@@ -5,13 +5,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.ChooseFromPileAction;
-import eatyourbeets.actions.ExhaustFromPileAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.ChooseFromPileAction;
+import eatyourbeets.actions.common.ExhaustFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.EnchantedArmorPower;
-import eatyourbeets.powers.OrbCore_AbstractPower;
+import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.animator.OrbCore_AbstractPower;
 
 import java.util.ArrayList;
 

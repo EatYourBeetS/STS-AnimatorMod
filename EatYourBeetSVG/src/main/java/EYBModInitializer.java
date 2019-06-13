@@ -1,7 +1,6 @@
 import basemod.BaseMod;
 import basemod.interfaces.*;
 import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -11,12 +10,13 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.AnimatorResources;
+import eatyourbeets.AnimatorResources_Images;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.relics.CursedBlade;
-import eatyourbeets.relics.PurgingStone_Cards;
+import eatyourbeets.relics.animator.CursedBlade;
+import eatyourbeets.relics.animator.PurgingStone_Cards;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
@@ -45,9 +45,9 @@ public class EYBModInitializer
         BaseMod.subscribe(this);
         Color color = CardHelper.getColor(210, 147, 106);
         BaseMod.addColor(AbstractEnums.Cards.THE_ANIMATOR, color, color, color, color, color, color, color,
-                AnimatorResources.ATTACK_PNG, AnimatorResources.SKILL_PNG , AnimatorResources.POWER_PNG ,
-                AnimatorResources.ORB_A_PNG , AnimatorResources.ATTACK_P_PNG , AnimatorResources.SKILL_P_PNG ,
-                AnimatorResources.POWER_P_PNG, AnimatorResources.ORB_B_PNG , AnimatorResources.ORB_C_PNG);
+                AnimatorResources_Images.ATTACK_PNG,  AnimatorResources_Images.SKILL_PNG ,    AnimatorResources_Images.POWER_PNG ,
+                AnimatorResources_Images.ORB_A_PNG ,  AnimatorResources_Images.ATTACK_P_PNG , AnimatorResources_Images.SKILL_P_PNG ,
+                AnimatorResources_Images.POWER_P_PNG, AnimatorResources_Images.ORB_B_PNG ,    AnimatorResources_Images.ORB_C_PNG);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class EYBModInitializer
     public void receiveEditCharacters()
     {
         AnimatorCharacter animatorCharacter = new AnimatorCharacter(AnimatorCharacter.NAME, AbstractEnums.Characters.THE_ANIMATOR);
-        BaseMod.addCharacter(animatorCharacter, AnimatorResources.CHAR_BUTTON_PNG, AnimatorResources.CHAR_PORTRAIT_JPG, AbstractEnums.Characters.THE_ANIMATOR);
+        BaseMod.addCharacter(animatorCharacter, AnimatorResources_Images.CHAR_BUTTON_PNG, AnimatorResources_Images.CHAR_PORTRAIT_JPG, AbstractEnums.Characters.THE_ANIMATOR);
     }
 
     @Override
@@ -120,14 +120,6 @@ public class EYBModInitializer
         catch (Exception e)
         {
             logger.error(e);
-        }
-
-        if (Loader.DEBUG)
-        {
-            if (AnimatorResources.CreateDebugFile())
-            {
-                logger.info("Created Debug File at c:\\temp");
-            }
         }
     }
 

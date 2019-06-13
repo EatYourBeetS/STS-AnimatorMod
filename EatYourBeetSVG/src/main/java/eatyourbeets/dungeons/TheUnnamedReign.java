@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EmptyRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
-import eatyourbeets.misc.RandomizedList;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.powers.PlayerStatistics;
@@ -34,7 +34,7 @@ public class TheUnnamedReign extends AbstractDungeon
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
     public static final String NAME;
-    public static final String ID = "Animator_TheUnnamedReign";
+    public static final String ID = "animator:TheUnnamedReign";
 
     protected ArrayList<String> MONSTER_LIST_WHICH_ACTUALLY_WORKS;
 

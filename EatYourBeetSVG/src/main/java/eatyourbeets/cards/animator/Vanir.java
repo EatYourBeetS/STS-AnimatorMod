@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.TransformIntoSpecificCardAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.TransformIntoSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 

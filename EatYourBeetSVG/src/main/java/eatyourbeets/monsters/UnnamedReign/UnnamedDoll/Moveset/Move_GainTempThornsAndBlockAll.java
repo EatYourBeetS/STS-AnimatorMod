@@ -2,9 +2,9 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.EarthenThornsPower;
+import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class Move_GainTempThornsAndBlockAll extends AbstractMove

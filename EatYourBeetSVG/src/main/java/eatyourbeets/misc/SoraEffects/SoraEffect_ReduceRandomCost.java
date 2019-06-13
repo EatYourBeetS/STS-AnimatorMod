@@ -1,8 +1,8 @@
 package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.RandomCostReductionAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.RandomCostReductionAction;
 
 public class SoraEffect_ReduceRandomCost extends SoraEffect
 {

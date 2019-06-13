@@ -46,7 +46,7 @@ public class CardRewardScreenPatches
             {
                 if (c instanceof AnimatorCard_UltraRare)
                 {
-                    AnimatorCard_UltraRare.MarkAsSeen((AnimatorCard_UltraRare)c);
+                    AnimatorCard_UltraRare.MarkAsSeen(c.cardID);
                 }
             }
         }

@@ -1,0 +1,33 @@
+
+{
+	"animator:Earth":
+	{
+		"NAME": "Earth",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, gain #b",
+			" temporary #yThorns. NL #yEvoke: Deal #b",
+			" damage randomly split amongst ALL enemies. NL After #b",
+			" turns have passed, automatically #yEvoke this Orb."
+		]
+	},
+	"animator:Air":
+	{
+		"NAME": "Air",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, deal #b", " #yPiercing damage to ALL enemies. NL #yEvoke: Draw #b",
+			" cards."
+		]
+	},
+	"animator:Fire":
+	{
+		"NAME": "Fire",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, deal #b", " damage to the highest health enemy and apply #b",
+			" #yBurning. NL #yEvoke: Apply #b",
+			" #yBurning to ALL enemies."
+		]
+	}
+}

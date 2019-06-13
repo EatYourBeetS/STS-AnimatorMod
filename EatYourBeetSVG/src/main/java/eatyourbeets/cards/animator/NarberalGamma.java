@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.TemporaryElectroPower;
+import eatyourbeets.powers.animator.TemporaryElectroPower;
 
 public class NarberalGamma extends AnimatorCard// implements OnStartOfTurnPostDrawSubscriber
 {

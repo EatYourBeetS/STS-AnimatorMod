@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.FeridBathoryPower;
+import eatyourbeets.powers.animator.FeridBathoryPower;
 
 public class FeridBathory extends AnimatorCard
 {

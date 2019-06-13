@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackWeak;
 import eatyourbeets.monsters.SharedMoveset.Move_Defend;
@@ -14,8 +13,6 @@ public class DarkCrystal extends Crystal
     public DarkCrystal(MonsterTier tier, float x, float y)
     {
         super(MonsterElement.Dark, tier, x, y);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_AttackMultiple(tier.Add(4, 1), 2));
         moveset.AddNormal(new Move_AttackWeak(tier.Add(5, 2), 1));

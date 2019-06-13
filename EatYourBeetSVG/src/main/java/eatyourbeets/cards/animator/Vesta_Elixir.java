@@ -5,10 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.interfaces.Hidden;
 
 import java.util.ArrayList;
 
-public abstract class Vesta_Elixir extends AnimatorCard implements AnimatorResources.Hidden
+public abstract class Vesta_Elixir extends AnimatorCard implements Hidden
 {
     public static final String ID = CreateFullID(Vesta_Elixir.class.getSimpleName());
 

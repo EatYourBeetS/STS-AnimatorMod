@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.curses.Pain;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.animator.AnimatorPower;
 
 public class CursedStabsPower extends AnimatorPower
 {

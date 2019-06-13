@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.Orbs.FireOrbEvokeAction;
-import eatyourbeets.actions.Orbs.FireOrbPassiveAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.orbs.FireOrbEvokeAction;
+import eatyourbeets.actions.orbs.FireOrbPassiveAction;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class Fire extends AnimatorOrb
@@ -29,8 +29,8 @@ public class Fire extends AnimatorOrb
 
         if (imgExt == null)
         {
-            imgExt = ImageMaster.loadImage("images/orbs/" + ORB_ID + "External.png");
-            imtInt = ImageMaster.loadImage("images/orbs/" + ORB_ID + "Internal.png");
+            imgExt = ImageMaster.loadImage("images/orbs/animator/FireExternal.png");
+            imtInt = ImageMaster.loadImage("images/orbs/animator/FireInternal.png");
         }
 
         this.hFlip1 = MathUtils.randomBoolean();

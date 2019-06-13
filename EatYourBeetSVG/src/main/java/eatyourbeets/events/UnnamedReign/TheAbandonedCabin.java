@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.AnimatorResources_Audio;
 import eatyourbeets.events.AnimatorEvent;
-import eatyourbeets.relics.AncientMedallion;
+import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 
 public class TheAbandonedCabin extends AnimatorEvent
 {

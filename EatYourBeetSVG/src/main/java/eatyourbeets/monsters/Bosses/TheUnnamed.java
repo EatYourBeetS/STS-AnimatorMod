@@ -15,17 +15,17 @@ import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
 import eatyourbeets.monsters.SharedMoveset.Move_Poison;
-import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
+import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.InfinitePower;
 
 public class TheUnnamed extends AnimatorMonster
 {
-    public static final String ID = "Animator_TheUnnamed";
+    public static final String ID = CreateFullID(TheUnnamed.class.getSimpleName());
     public static final String NAME = "The Unnamed";
 
     private Move_Fading moveFading;
@@ -41,8 +41,6 @@ public class TheUnnamed extends AnimatorMonster
 
         data.SetIdleAnimation(this, 1);
 
-        int level = PlayerStatistics.GetAscensionLevel();
-
         moveFading = (Move_Fading)
                 moveset.AddSpecial(new Move_Fading(5));
 
@@ -51,7 +49,7 @@ public class TheUnnamed extends AnimatorMonster
 
         moveset.AddSpecial(new Move_SummonDoll());
 
-        if (level >= 4)
+        if (PlayerStatistics.GetAscensionLevel() >= 4)
         {
             moveset.AddNormal(new Move_Taunt());
             moveset.AddNormal(new Move_SingleAttack(25));

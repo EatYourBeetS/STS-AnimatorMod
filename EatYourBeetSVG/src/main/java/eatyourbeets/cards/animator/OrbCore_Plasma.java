@@ -3,9 +3,9 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.powers.OrbCore_PlasmaPower;
+import eatyourbeets.powers.animator.OrbCore_PlasmaPower;
 
 public class OrbCore_Plasma extends AnimatorCard
 {

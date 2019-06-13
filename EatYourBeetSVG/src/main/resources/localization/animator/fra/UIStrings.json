@@ -1,0 +1,156 @@
+{
+	"animator:Synergies":
+	{
+		"TEXT": 
+		[
+			"[Changeforme]",
+			"Elsword",
+			"Kantai Collection",
+			"Hitsugi no Chaika",
+			"Konosuba",
+			"Katanagatari",
+			"Owari no Seraph",
+			"Overlord",
+			"No Game No Life",
+			"GATE",
+			"Fate",
+			"Goblin Slayer",
+			"Fullmetal Alchemist",
+			"Hataraku Maou-sama",
+			"Grimoire of Zero",
+			"Steins;Gate",
+			"Tensei shitara Slime",
+			"Re:Zero",
+			"Madoka Magica",
+			"Charlotte",
+			"Accel World",
+			"Noragami",
+			"One Punch Man",
+			"Pandora Hearts",
+			"Zero no Tsukaima",
+			"Gabriel DropOut",
+			"Death Note",
+			"Kamisama no Memochou",
+			"Code Geass",
+			"Youjo Senki"
+		]
+	},
+	
+	"animator:Actions":
+	{
+		"TEXT": 
+		[
+			"Cherche des cartes avec la même Synergie.",
+			"Défausse et pioche X cartes.",
+			"activé X fois cet effet.",
+			"réduit son coût pour le combat.",
+			"pioche # carte(s).",
+			"Transform en "
+		]
+	},
+	
+	"animator:TetAction": 
+	{
+		"TEXT": 
+		[
+		  "Bouge jusqu'à # carte(s) à votre Défausse.",
+		  "Mélange # carte(s) dans votre Pioche."
+		]
+	},
+	
+	"animator:TheUnnamedReign":
+	{
+		"TEXT": 
+		[
+			"Le Règne du Sans-Nom"
+		]
+	},
+
+	"animator:SpecialEffects":
+	{
+		"TEXT": 
+		[
+			"Attaquer",
+			"Defendre",
+			"Preparer",
+			"Améliorez TOUTES les cartes de votre main.",
+			"Infligez !D! dégât(s) à un ennemi aléatoire !M! fois.",
+			"Infligez !D! dégât(s) à TOUS les ennemis.",
+			"Gagnez !B! d'Armure.",
+			"Gagnez !M! de Force.",
+			"Gagnez !M! de Dextérité.",
+			"Gagnez !M! d'Épines.",
+			"Réduit le coût de 2 cartes aléatoires dans votre main de !M! ce tour.",
+			"Inflige !M! Faiblesse à TOUS les ennemis.",
+			"Inflige !M! Vulnérabilité à TOUS les ennemis.",
+			"Recyclez !M! carte(s)",
+			"Piochez !M! carte(s).",
+			"Gagnez !M! de Temp._PV.",
+			"Gagnez !M! de Concentration.",
+			"Gagnez !M! d'Énergie.",
+			"Inflige !M! de Poison à TOUS les ennemis.",
+			"Inflige !M! de [#EFC851]Brûlure à TOUS les ennemis.",
+			"Gagnez !M! d'Intangible",
+			"Gagnez !M! d'Artéfact. NL Enlevez TOUS vos debuffs.",
+			"Jouez la carte sur le haut de votre pioche.",
+			"Canalisez !M! des Orbes aléatoire.",
+			"Jouez la carte sur le haut de votre pioche deux fois."
+		]
+	},
+	
+	"animator:Trophies":
+	{
+		"TEXT": 
+		[
+			"Bronze",
+			"Argent",
+			"Or",
+			"Choisissez ce deck de départ et complétez l'Acte 4.",
+			"Complétez l'Acte 4 avec la #ymoitié des cartes provenant de cette série dans votre deck.",
+			"Complétez l'Acte 4 avec #b8 cartes #ydifférentes provenant de cette série dans votre deck.",
+			"Complétez l'Acte 4 avec des cartes provenant de #b7 séries #ydifférentes. (Cartes sans couleur ne comptent pas)",
+			"Complétez l'Acte 4 avec des cartes provenant de #b10 séries #ydifférentes, sans bannir aucune carte. (Cartes sans couleur ne comptent pas)",
+			"Complétez l'Acte 4 avec #b20 cartes dans votre deck, sans aucune réplique.",
+			"Complétez l'Acte 4 avec #b30 cartes dans votre deck, sans aucune réplique.",
+			"Ce trophée sera révélé une fois obtenu. #yIndice: Collectez les 3 Clés.",
+			"Vainquez le Sans-Nom. NL Augmentez de façon permanente la chance de trouver les cartes #pUltrarares lorsque vous obtenez ce trophée, NL les hauts niveaux d'ascension augmentent le bonus par un plus grand montant. NL NL Le Règne du Sans-Nom est maintenant disponible pour toutes les classes.",
+			"Platine"
+		]
+	},
+	
+	"animator:Rewards":
+	{
+		"TEXT": 
+		[
+			"Contient des carte uniquement avec cette Synergie. AVERTISSEMENT: une fois que vous cliquez dessus, les deux autres récompenses disparaîtront.",
+			"Relique en prime",
+			"Relique maudite"
+		]
+	},
+		
+	"animator:CardSelect":
+	{
+		"TEXT": 
+		[
+			"Bannir"
+		]
+	},
+	
+	"animator:CharacterSelect":
+	{
+		"TEXT": 
+		[
+			"Carte de départ: ",
+			"###############",
+			"Se débloque au Niveau ",
+			" (Vous êtes au Niveau ",
+			")",
+			"Recommandé.",
+			"Départ équilibré.",
+			"Départ fort.",
+			"Départ trés fort.",
+			"Spécial: Plus d'or"
+		]
+	}
+
+}

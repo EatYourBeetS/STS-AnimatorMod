@@ -16,7 +16,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.Utilities;
+import eatyourbeets.AnimatorResources_Images;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.powers.PlayerStatistics;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -56,7 +57,7 @@ public abstract class AnimatorCard extends CustomCard
 
     public static String CreateFullID(String cardID)
     {
-        return "animator_" + cardID;
+        return "animator:" + cardID;
     }
 
     public static void SetLastCardPlayed(AbstractCard card)
@@ -183,7 +184,7 @@ public abstract class AnimatorCard extends CustomCard
         AbstractRoom room = PlayerStatistics.GetCurrentRoom();
         if (this.synergy != null)
         {
-            if (!this.isFlipped)//room == null || !(room.event instanceof GremlinMatchGame))
+            if (!this.isFlipped)
             {
                 float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
 
@@ -250,8 +251,7 @@ public abstract class AnimatorCard extends CustomCard
     {
         this.baseDamage = baseDamage;
         this.baseBlock = baseBlock;
-        this.baseMagicNumber = baseMagicNumber;
-        this.magicNumber = baseMagicNumber;
+        this.baseMagicNumber = this.magicNumber = baseMagicNumber;
     }
 
     public void Initialize(int baseDamage, int baseBlock, int baseMagicNumber, int baseSecondaryValue)
@@ -338,11 +338,11 @@ public abstract class AnimatorCard extends CustomCard
 
         if (this instanceof AnimatorCard_UltraRare)
         {
-            setBannerTexture("images\\cardui\\512\\banner_special2.png", "images\\cardui\\1024\\banner_special2.png");
+            setBannerTexture(AnimatorResources_Images.BANNER_SPECIAL2_PNG, AnimatorResources_Images.BANNER_SPECIAL2_P_PNG);
         }
         else if (rarity == CardRarity.SPECIAL)
         {
-            setBannerTexture("images\\cardui\\512\\banner_special.png", "images\\cardui\\1024\\banner_special.png");
+            setBannerTexture(AnimatorResources_Images.BANNER_SPECIAL_PNG, AnimatorResources_Images.BANNER_SPECIAL_P_PNG);
         }
 
         cardStrings = strings;
@@ -358,13 +358,14 @@ public abstract class AnimatorCard extends CustomCard
 
         try
         {
-            sb.draw(img, drawX, drawY, 256.0F, 256.0F, 512.0F, 512.0F, this.drawScale * Settings.scale, this.drawScale * Settings.scale, this.angle, 0, 0, 512, 512, false, false);
+            sb.draw(img, drawX, drawY, 256.0F, 256.0F, 512.0F, 512.0F,
+                    this.drawScale * Settings.scale, this.drawScale * Settings.scale,
+                    this.angle, 0, 0, 512, 512, false, false);
         }
-        catch (Exception var7)
+        catch (Exception exception)
         {
-            ExceptionHandler.handleException(var7, logger);
+            ExceptionHandler.handleException(exception, logger);
         }
-
     }
 
     @SpireOverride
@@ -379,7 +380,7 @@ public abstract class AnimatorCard extends CustomCard
                 return;
 
             case SPECIAL:
-                this.renderHelper(sb, RENDER_COLOR, AnimatorResources.CARD_FRAME_ATTACK_SPECIAL, x, y);
+                this.renderHelper(sb, RENDER_COLOR, AnimatorResources_Images.CARD_FRAME_ATTACK_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
@@ -403,7 +404,7 @@ public abstract class AnimatorCard extends CustomCard
                 return;
 
             case SPECIAL:
-                this.renderHelper(sb, RENDER_COLOR, AnimatorResources.CARD_FRAME_SKILL_SPECIAL, x, y);
+                this.renderHelper(sb, RENDER_COLOR, AnimatorResources_Images.CARD_FRAME_SKILL_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
@@ -427,7 +428,7 @@ public abstract class AnimatorCard extends CustomCard
                 break;
 
             case SPECIAL:
-                this.renderHelper(sb, RENDER_COLOR, AnimatorResources.CARD_FRAME_POWER_SPECIAL, x, y);
+                this.renderHelper(sb, RENDER_COLOR, AnimatorResources_Images.CARD_FRAME_POWER_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:

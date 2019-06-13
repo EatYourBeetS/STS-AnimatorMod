@@ -8,7 +8,7 @@ import eatyourbeets.AnimatorResources;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.misc.AinzEffects.AinzEffect;
-import eatyourbeets.powers.AinzPower;
+import eatyourbeets.powers.animator.AinzPower;
 import patches.AbstractEnums;
 
 public class Ainz extends AnimatorCard

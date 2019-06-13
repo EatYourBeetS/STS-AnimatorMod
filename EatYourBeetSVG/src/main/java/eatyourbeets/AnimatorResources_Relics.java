@@ -1,7 +1,11 @@
 package eatyourbeets;
 
 import basemod.BaseMod;
-import eatyourbeets.relics.*;
+import eatyourbeets.relics.UnnamedReign.AncientMedallion;
+import eatyourbeets.relics.UnnamedReign.TheEgnaroPiece;
+import eatyourbeets.relics.UnnamedReign.TheEruzaStone;
+import eatyourbeets.relics.UnnamedReign.TheWolleyCore;
+import eatyourbeets.relics.animator.*;
 import patches.AbstractEnums;
 
 public class AnimatorResources_Relics

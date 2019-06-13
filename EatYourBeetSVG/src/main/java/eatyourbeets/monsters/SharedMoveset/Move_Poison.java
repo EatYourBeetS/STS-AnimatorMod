@@ -2,9 +2,9 @@ package eatyourbeets.monsters.SharedMoveset;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.PoisonPlayerPower;
+import eatyourbeets.powers.animator.PoisonPlayerPower;
 
 public class Move_Poison extends AbstractMove
 {

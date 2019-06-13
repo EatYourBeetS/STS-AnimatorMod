@@ -2,10 +2,10 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.orbs.Earth;
-import eatyourbeets.powers.OrbCore_EarthPower;
+import eatyourbeets.powers.animator.OrbCore_EarthPower;
 
 public class OrbCore_Earth extends AnimatorCard
 {

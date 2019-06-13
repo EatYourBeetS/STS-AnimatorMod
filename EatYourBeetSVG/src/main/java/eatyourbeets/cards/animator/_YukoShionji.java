@@ -2,13 +2,13 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.AnimatorResources;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.interfaces.Hidden;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.YukoShionjiPower;
+import eatyourbeets.powers.animator.YukoShionjiPower;
 
-public class _YukoShionji extends AnimatorCard implements AnimatorResources.Hidden
+public class _YukoShionji extends AnimatorCard implements Hidden
 {
     public static final String ID = CreateFullID(_YukoShionji.class.getSimpleName());
 

@@ -3,7 +3,7 @@ package eatyourbeets.events;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.misc.RandomizedList;
+import eatyourbeets.utilities.RandomizedList;
 
 public class TheDomVedeloper1 extends AnimatorEvent
 {

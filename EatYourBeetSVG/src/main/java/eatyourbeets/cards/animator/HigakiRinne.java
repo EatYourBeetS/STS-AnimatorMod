@@ -23,13 +23,13 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.actions.HigakiRinneAction;
-import eatyourbeets.actions.WaitRealtimeAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
+import eatyourbeets.actions.animator.HigakiRinneAction;
+import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.HigakiRinnePower;
+import eatyourbeets.powers.animator.HigakiRinnePower;
 
 import java.util.ArrayList;
 

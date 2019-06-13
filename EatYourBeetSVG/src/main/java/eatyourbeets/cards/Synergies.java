@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;

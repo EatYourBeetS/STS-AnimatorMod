@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import eatyourbeets.AnimatorResources;
 import eatyourbeets.CustomAbstractDungeon;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import patches.AbstractEnums;

@@ -9,13 +9,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
 
+import java.lang.reflect.InvocationTargetException;
+
 public abstract class AnimatorRelic extends CustomRelic
 {
     protected static final Logger logger = LogManager.getLogger(AnimatorRelic.class.getName());
 
     public static String CreateFullID(String id)
     {
-        return "Animator_" + id;
+        return "animator:" + id;
     }
 
     public AnimatorRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
@@ -39,9 +41,9 @@ public abstract class AnimatorRelic extends CustomRelic
     {
         try
         {
-            return getClass().newInstance();
+            return getClass().getConstructor().newInstance();
         }
-        catch (InstantiationException | IllegalAccessException e)
+        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
         {
             logger.error(e.getMessage());
             return null;

@@ -2,8 +2,8 @@ package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.powers.animator.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class FrostWispPower extends AnimatorPower

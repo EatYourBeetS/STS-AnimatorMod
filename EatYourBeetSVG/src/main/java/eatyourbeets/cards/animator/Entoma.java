@@ -12,9 +12,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.EntomaAction;
-import eatyourbeets.actions.OnTargetDeadAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.animator.EntomaAction;
+import eatyourbeets.actions.common.OnTargetDeadAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 

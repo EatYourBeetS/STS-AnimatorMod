@@ -10,10 +10,10 @@ import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
 import eatyourbeets.AnimatorResources_Audio;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
-import eatyourbeets.actions.SummonMonsterAction;
-import eatyourbeets.actions.WaitRealtimeAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
+import eatyourbeets.actions.common.SummonMonsterAction;
+import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.cards.animator.Crystallize;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
@@ -23,7 +23,7 @@ import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.AntiArtifactSlowPower;
+import eatyourbeets.powers.animator.AntiArtifactSlowPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.UltimateCrystalPower;
 
@@ -32,7 +32,7 @@ public class UltimateCrystal extends Crystal
     public static final String ID = CreateFullID(MonsterShape.Crystal, MonsterElement.Ultimate, MonsterTier.Ultimate);
     public static final String NAME = "Ultimate Crystal";
 
-    public UltimateCrystal original = null;
+    public UltimateCrystal original;
 
     public UltimateCrystal()
     {
@@ -42,8 +42,6 @@ public class UltimateCrystal extends Crystal
     public UltimateCrystal(float x, float y, UltimateCrystal original)
     {
         super(MonsterElement.Ultimate, MonsterTier.Ultimate, x, y);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         movesetMode = Mode.Sequential;
 

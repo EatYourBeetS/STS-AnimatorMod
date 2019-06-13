@@ -172,7 +172,7 @@ public class TheUnnamedReign_Map
             Mo1 = CreateMonsterRoomBoss(center, y);
             row = CreateRow(y);
             row.set(center, Mo1);
-            y += 1;
+            //y += 1;
 
             ConnectRooms(Sh1, Ev1);
             ConnectRooms(Re1, Ev1);

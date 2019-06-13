@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.misc.RandomizedList;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 

@@ -2,7 +2,7 @@ package eatyourbeets.misc.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.animator.Nanami;
 
 public class NanamiEffect_Unknown extends NanamiEffect

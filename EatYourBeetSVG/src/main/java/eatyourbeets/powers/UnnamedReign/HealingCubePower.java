@@ -1,7 +1,7 @@
 package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.animator.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class HealingCubePower extends AnimatorPower

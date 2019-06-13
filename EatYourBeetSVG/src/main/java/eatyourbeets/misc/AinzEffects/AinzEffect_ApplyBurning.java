@@ -2,8 +2,8 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.powers.BurningPower;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 

@@ -1,0 +1,10 @@
+{
+  "animator:FalseLifePotion": 
+  {
+    "NAME": "Potion de Fausse Vie",
+    "DESCRIPTIONS": 
+	[ 
+      "Gagnez #b"," #yPV #yTemporaires 。"
+    ]
+  }
+}

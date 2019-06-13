@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.Base64Coder;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.Synergies;
 import patches.AbstractEnums;
 

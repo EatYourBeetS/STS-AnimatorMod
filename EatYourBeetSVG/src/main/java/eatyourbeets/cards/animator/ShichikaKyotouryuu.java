@@ -6,13 +6,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import eatyourbeets.AnimatorResources;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.interfaces.Hidden;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class ShichikaKyotouryuu extends AnimatorCard implements AnimatorResources.Hidden
+public class ShichikaKyotouryuu extends AnimatorCard implements Hidden
 {
     public static final String ID = CreateFullID(ShichikaKyotouryuu.class.getSimpleName());
 
@@ -70,7 +70,7 @@ import com.megacrit.cardcrawl.MONSTER_LIST_WHICH_ACTUALLY_WORKS.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;

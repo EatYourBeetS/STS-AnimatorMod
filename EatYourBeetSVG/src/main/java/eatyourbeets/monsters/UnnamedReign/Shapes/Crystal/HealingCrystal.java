@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrength;
 import eatyourbeets.monsters.SharedMoveset.Move_GainThorns;
@@ -14,8 +13,6 @@ public class HealingCrystal extends Crystal
     public HealingCrystal(MonsterTier tier, float x, float y)
     {
         super(MonsterElement.Healing, tier, x, y);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_AttackDefend(tier.Add(4, 2), tier.Add(4, 2)));
         moveset.AddNormal(new Move_GainThorns(tier.Add(2, 1)));

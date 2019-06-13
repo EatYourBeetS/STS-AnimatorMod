@@ -13,9 +13,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.Orbs.EarthOrbEvokeAction;
-import eatyourbeets.powers.EarthenThornsPower;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
+import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class Earth extends AnimatorOrb
@@ -37,9 +37,9 @@ public class Earth extends AnimatorOrb
 
         if (imgRight == null)
         {
-            imgRight = ImageMaster.loadImage("images/orbs/" + ORB_ID + "Right.png");
-            imgLeft = ImageMaster.loadImage("images/orbs/" + ORB_ID + "Left.png");
-            imgMid = ImageMaster.loadImage("images/orbs/" + ORB_ID + "Mid.png");
+            imgRight = ImageMaster.loadImage("images/orbs/animator/EarthRight.png");
+            imgLeft = ImageMaster.loadImage( "images/orbs/animator/EarthLeft.png");
+            imgMid = ImageMaster.loadImage(  "images/orbs/animator/EarthMid.png");
         }
 
         this.hFlip1 = MathUtils.randomBoolean();

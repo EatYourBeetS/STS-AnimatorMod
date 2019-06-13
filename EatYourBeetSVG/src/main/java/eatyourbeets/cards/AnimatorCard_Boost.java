@@ -2,7 +2,7 @@ package eatyourbeets.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 
 public abstract class AnimatorCard_Boost extends AnimatorCard
 {

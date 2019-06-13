@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class FalseLifePotion extends AbstractPotion
 {
-    public static final String POTION_ID = "Animator_FalseLifePotion";
+    public static final String POTION_ID = "animator:FalseLifePotion";
     private static final PotionStrings potionStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;

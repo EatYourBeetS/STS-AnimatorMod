@@ -7,14 +7,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.misc.RandomizedList;
+import eatyourbeets.monsters.UnnamedReign.Shapes.UnnamedShape;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Crystal;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.*;
-import eatyourbeets.monsters.UnnamedReign.Cultist.TheUnnamed_Cultist_BEHOLD;
-import eatyourbeets.monsters.UnnamedReign.Cultist.TheUnnamed_Cultist_DollSummoner;
-import eatyourbeets.monsters.UnnamedReign.Cultist.TheUnnamed_Cultist_Single;
+import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_BEHOLD;
+import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_DollSummoner;
+import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_Single;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
@@ -25,21 +26,19 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class UnnamedEnemyGroup
 {
-    public static String TWO_SHAPES = "Animator_DOUBLE_SHAPES_WEAK";
-    public static String UNNAMED_HAT = "Animator_UNNAMED_HAT";
-    public static String THREE_NORMAL_SHAPES = "Animator_TRIPLE_SHAPES_WEAK";
-    public static String CULTIST = "Animator_UNNAMED_CULTIST_1";
-    public static String LARGE_CRYSTAL = "Animator_LARGE_CRYSTAL";
-    public static String LARGE_CUBE = "Animator_LARGE_CUBE";
-    public static String LARGE_WISP = "Animator_LARGE_WISP";
-    public static String CULTIST_AND_TWO_SHAPES = "Animator_UNNAMED_CULTIST_2";
-    public static String THREE_LAGAVULIN = "Animator_TRIPLE_LAGAVULIN";
-    public static String ULTIMATE_CRYSTAL = "Animator_ULTIMATE_CRYSTAL";
-    public static String ULTIMATE_CUBE = "Animator_ULTIMATE_CUBE";
-    public static String ULTIMATE_WISP = "Animator_ULTIMATE_WISP";
+    public static String TWO_SHAPES = "animator:DOUBLE_SHAPES_WEAK";
+    public static String UNNAMED_HAT = "animator:UNNAMED_HAT";
+    public static String THREE_NORMAL_SHAPES = "animator:TRIPLE_SHAPES_WEAK";
+    public static String CULTIST = "animator:UNNAMED_CULTIST_1";
+    public static String LARGE_CRYSTAL = "animator:LARGE_CRYSTAL";
+    public static String LARGE_CUBE = "animator:LARGE_CUBE";
+    public static String LARGE_WISP = "animator:LARGE_WISP";
+    public static String CULTIST_AND_TWO_SHAPES = "animator:UNNAMED_CULTIST_2";
+    public static String THREE_LAGAVULIN = "animator:TRIPLE_LAGAVULIN";
+    public static String ULTIMATE_CRYSTAL = "animator:ULTIMATE_CRYSTAL";
+    public static String ULTIMATE_CUBE = "animator:ULTIMATE_CUBE";
+    public static String ULTIMATE_WISP = "animator:ULTIMATE_WISP";
     public static String THE_UNNAMED = TheUnnamed.ID;
-
-    private static Random rng;
 
     private final static float CULTIST_X = 180;
     private final static float CULTIST_Y = 12;
@@ -244,9 +243,8 @@ public class UnnamedEnemyGroup
         xPos[3] = 240;
     }
 
-    private static class LagavulinMonsterGroup extends MonsterGroup
+    public static class LagavulinMonsterGroup extends MonsterGroup
     {
-
         public LagavulinMonsterGroup(AbstractMonster[] input)
         {
             super(input);

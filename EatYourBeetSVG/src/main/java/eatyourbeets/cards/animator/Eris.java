@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.subscribers.OnBattleStartSubscriber;
-import eatyourbeets.subscribers.OnLoseHpSubscriber;
+import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.OnLoseHpSubscriber;
 
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleStartSubscriber
 {

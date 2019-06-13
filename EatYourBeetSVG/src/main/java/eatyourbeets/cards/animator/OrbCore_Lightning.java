@@ -3,9 +3,9 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.powers.OrbCore_LightningPower;
+import eatyourbeets.powers.animator.OrbCore_LightningPower;
 
 public class OrbCore_Lightning extends AnimatorCard
 {

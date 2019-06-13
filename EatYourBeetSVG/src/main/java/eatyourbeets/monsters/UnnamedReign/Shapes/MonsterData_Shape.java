@@ -1,8 +1,7 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
-import eatyourbeets.monsters.UnnamedReign.UnnamedShape;
+import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class MonsterData_Shape extends AbstractMonsterData
@@ -91,7 +90,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -60f;
                 hb_w = 230;
                 hb_h = 230;
-                maxHealth = 630;
+                maxHealth = 620;
                 break;
             }
         }

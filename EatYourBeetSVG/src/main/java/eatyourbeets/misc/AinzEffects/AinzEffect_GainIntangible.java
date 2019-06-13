@@ -2,7 +2,7 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 
 
 public class AinzEffect_GainIntangible extends AinzEffect

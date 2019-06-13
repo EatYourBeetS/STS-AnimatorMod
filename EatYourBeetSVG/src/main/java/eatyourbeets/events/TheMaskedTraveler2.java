@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.effects.MaskedTravelerTransformCardsEffect;
 import eatyourbeets.effects.UnnamedRelicEquipEffect;
-import eatyourbeets.relics.AncientMedallion;
-import eatyourbeets.relics.TheEgnaroPiece;
-import eatyourbeets.relics.TheEruzaStone;
-import eatyourbeets.relics.TheWolleyCore;
+import eatyourbeets.relics.UnnamedReign.AncientMedallion;
+import eatyourbeets.relics.UnnamedReign.TheEgnaroPiece;
+import eatyourbeets.relics.UnnamedReign.TheEruzaStone;
+import eatyourbeets.relics.UnnamedReign.TheWolleyCore;
 
 public class TheMaskedTraveler2 extends AnimatorEvent
 {

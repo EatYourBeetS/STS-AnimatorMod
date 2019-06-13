@@ -7,9 +7,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.Orbs.AirOrbEvokeAction;
-import eatyourbeets.actions.Orbs.AirOrbPassiveAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.orbs.AirOrbEvokeAction;
+import eatyourbeets.actions.orbs.AirOrbPassiveAction;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class Air extends AnimatorOrb
@@ -26,8 +26,8 @@ public class Air extends AnimatorOrb
 
         if (imgExt1 == null)
         {
-            imgExt1 = ImageMaster.loadImage("images/orbs/" + ORB_ID + "Left.png");
-            imgExt2 = ImageMaster.loadImage("images/orbs/" + ORB_ID + "Right.png");
+            imgExt1 = ImageMaster.loadImage("images/orbs/animator/AirLeft.png");
+            imgExt2 = ImageMaster.loadImage("images/orbs/animator/AirRight.png");
         }
 
         this.hFlip1 = MathUtils.randomBoolean();

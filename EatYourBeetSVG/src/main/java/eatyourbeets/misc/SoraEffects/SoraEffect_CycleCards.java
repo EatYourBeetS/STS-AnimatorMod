@@ -1,7 +1,7 @@
 package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class SoraEffect_CycleCards extends SoraEffect
 {

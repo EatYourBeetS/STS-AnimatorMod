@@ -1,8 +1,8 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
 
 
 public class AinzEffect_ChannelRandomOrbs extends AinzEffect

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rewards.RewardSave;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 import patches.AbstractEnums;
 
 public class SpecialGoldReward extends AnimatorReward

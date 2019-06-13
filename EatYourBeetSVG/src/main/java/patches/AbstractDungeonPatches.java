@@ -10,7 +10,8 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.events.TheDomVedeloper1;
 import eatyourbeets.events.TheMaskedTraveler1;
 import eatyourbeets.potions.FalseLifePotion;
-import eatyourbeets.relics.*;
+import eatyourbeets.relics.UnnamedReign.AncientMedallion;
+import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 
 public class AbstractDungeonPatches
 {

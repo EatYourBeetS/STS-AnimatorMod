@@ -14,13 +14,14 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.AnimatorResources;
+import eatyourbeets.AnimatorResources_Images;
 import eatyourbeets.CustomAbstractDungeon;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.relics.LivingPicture;
-import eatyourbeets.relics.PurgingStone_Cards;
-import eatyourbeets.relics.TheMissingPiece;
+import eatyourbeets.relics.animator.LivingPicture;
+import eatyourbeets.relics.animator.PurgingStone_Cards;
+import eatyourbeets.relics.animator.TheMissingPiece;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public abstract class AnimatorCustomLoadout
         }
 
         trophies = GetTrophies(true, ID);
-        selectScreen.bgCharImg = AnimatorResources.GetCharacterPortrait(ID);
+        selectScreen.bgCharImg = AnimatorResources_Images.GetCharacterPortrait(ID);
         Locked = unlockLevel > currentLevel;
         if (Locked)
         {

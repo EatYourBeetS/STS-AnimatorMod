@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.AnimatorResources;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.ChooseFromPileAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 

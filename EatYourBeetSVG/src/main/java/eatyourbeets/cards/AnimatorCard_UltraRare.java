@@ -5,12 +5,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.AnimatorResources_Images;
 import eatyourbeets.cards.animator.*;
+import eatyourbeets.interfaces.Hidden;
 
 import java.util.HashMap;
 
-public abstract class AnimatorCard_UltraRare extends AnimatorCard implements AnimatorResources.Hidden
+public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hidden
 {
     private static final float A = 0.4f;
     public static final Color RENDER_COLOR = new Color(A, A, A, 1);
@@ -23,7 +24,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Ani
         //super(id, cost, type, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.SPECIAL, target);
         super(id, cost, type, CardColor.COLORLESS, CardRarity.SPECIAL, target);
 
-        setOrbTexture(AnimatorResources.ORB_A_PNG, AnimatorResources.ORB_B_PNG);
+        setOrbTexture(AnimatorResources_Images.ORB_A_PNG, AnimatorResources_Images.ORB_B_PNG);
     }
 
     private static HashMap<String, AnimatorCard_UltraRare> Cards = null;
@@ -51,18 +52,38 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Ani
         return Cards;
     }
 
-    public static void MarkAsSeen(AnimatorCard_UltraRare card)
+    public static void MarkAsSeen(String cardID)
     {
-        if (card != null && !IsSeen(card.cardID))
+        if (!IsSeen(cardID))
         {
-            UnlockTracker.seenPref.putInteger(card.cardID, 2);
+            UnlockTracker.seenPref.putInteger(cardID, 2);
             UnlockTracker.seenPref.flush();
         }
     }
 
     public static boolean IsSeen(String cardID)
     {
-        return UnlockTracker.seenPref.getInteger(cardID, 0) == 2;
+        return IsOldVersionSeen(cardID) || UnlockTracker.seenPref.getInteger(cardID, 0) == 2;
+    }
+
+    protected static boolean IsOldVersionSeen(String cardID)
+    {
+        String oldID = cardID.replace(":", "_");
+
+        if (UnlockTracker.seenPref.data.containsKey(oldID))
+        {
+            int res = UnlockTracker.seenPref.getInteger(oldID);
+
+            UnlockTracker.seenPref.data.remove(oldID);
+            if (res == 2)
+            {
+                MarkAsSeen(cardID);
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     //    @SpireOverride

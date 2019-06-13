@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_Defend;
 import eatyourbeets.monsters.SharedMoveset.Move_GainRegeneration;
@@ -14,8 +13,6 @@ public class FireCube extends Cube
     public FireCube(MonsterTier tier, float x, float y)
     {
         super(MonsterElement.Fire, tier, x, y);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_AttackMultiple(tier.Add(2, 1), 3));
         moveset.AddNormal(new Move_Defend(tier.Add(4, 3)));

@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.RegrowPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.actions.OnDamageAction;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.OnDamageAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 

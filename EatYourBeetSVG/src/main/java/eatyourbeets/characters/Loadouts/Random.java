@@ -2,7 +2,7 @@ package eatyourbeets.characters.Loadouts;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.Utilities;
+import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;

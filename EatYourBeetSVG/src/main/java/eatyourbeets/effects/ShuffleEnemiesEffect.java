@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.Utilities;
-import eatyourbeets.misc.RandomizedList;
+import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class ShuffleEnemiesEffect extends AbstractGameEffect

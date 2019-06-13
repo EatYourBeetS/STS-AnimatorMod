@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_Attack;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_Defend;
@@ -14,8 +13,6 @@ public class DarkCube extends Cube
     public DarkCube(MonsterTier tier, float x, float y)
     {
         super(MonsterElement.Dark, tier, x, y);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddNormal(new Move_Attack(tier.Add(4,3)));
         moveset.AddNormal(new Move_Defend(tier.Add(4,3)));

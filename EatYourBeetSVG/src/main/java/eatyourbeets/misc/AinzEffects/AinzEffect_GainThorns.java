@@ -2,7 +2,7 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.ThornsPower;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 
 
 public class AinzEffect_GainThorns extends AinzEffect

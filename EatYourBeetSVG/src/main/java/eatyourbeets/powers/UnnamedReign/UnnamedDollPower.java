@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.GameActionsHelper;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.powers.animator.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class UnnamedDollPower extends AnimatorPower

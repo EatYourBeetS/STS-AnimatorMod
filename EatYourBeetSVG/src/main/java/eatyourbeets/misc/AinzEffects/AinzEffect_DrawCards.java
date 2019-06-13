@@ -1,7 +1,7 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class AinzEffect_DrawCards extends AinzEffect
 {

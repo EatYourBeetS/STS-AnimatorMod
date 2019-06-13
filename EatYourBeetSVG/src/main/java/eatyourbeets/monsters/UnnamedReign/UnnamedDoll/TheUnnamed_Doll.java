@@ -5,13 +5,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_ShieldAll;
-import eatyourbeets.monsters.UnnamedReign.AbstractMonsterData;
+import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackFrailAndDexLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackWeakAndStrLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainRitualAndArtifactAll;
@@ -21,7 +21,7 @@ import eatyourbeets.powers.UnnamedReign.UnnamedDollPower;
 
 public class TheUnnamed_Doll extends AnimatorMonster
 {
-    public static final String ID = "Animator_TheUnnamed_Doll";
+    public static final String ID = CreateFullID(TheUnnamed_Doll.class.getSimpleName());
 
     private final BobEffect bobEffect = new BobEffect(1);
 
@@ -36,8 +36,6 @@ public class TheUnnamed_Doll extends AnimatorMonster
         this.theUnnamed = theUnnamed;
 
         this.data.SetIdleAnimation(this, 1);
-
-        int level = AbstractDungeon.ascensionLevel;
 
         moveset.AddSpecial(new Move_AttackMultiple(4, 12));
 
@@ -55,14 +53,7 @@ public class TheUnnamed_Doll extends AnimatorMonster
         super.init();
 
         GameActionsHelper.ApplyPower(this, this, new CursedStabsPower(this));
-        if (PlayerStatistics.GetAscensionLevel() >= 7)
-        {
-            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 4), 4);
-        }
-        else
-        {
-            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 4), 3);
-        }
+        GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 3), 3);
     }
 
     @Override

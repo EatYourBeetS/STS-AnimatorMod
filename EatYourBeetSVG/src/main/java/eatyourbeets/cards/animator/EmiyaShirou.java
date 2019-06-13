@@ -5,11 +5,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import eatyourbeets.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.misc.RandomizedList;
-import eatyourbeets.powers.EmiyaShirouPower;
+import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.powers.animator.EmiyaShirouPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class EmiyaShirou extends AnimatorCard

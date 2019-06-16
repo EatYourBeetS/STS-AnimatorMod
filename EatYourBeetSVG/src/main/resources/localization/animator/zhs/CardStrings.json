@@ -49,8 +49,7 @@
 	"animator:Aqua":
 	{
 		"DESCRIPTION": "恢复 !M! 点 生命 。 在本次战斗中减少 !SV! 点 恢复量 。",
-		"NAME": "阿库娅",
-		"UPGRADE_DESCRIPTION": "恢复 !M! 点 生命 。 在本次战斗中减少 !SV! 点 恢复量 。"
+		"NAME": "阿库娅"
 	},
 	"animator:Ara":
 	{
@@ -320,7 +319,7 @@
 	},
 	"animator:EmiyaShirou":
 	{
-		"DESCRIPTION": "给予随机目标 !M! 点 格挡 与 1 层 易伤 。 [#EFC851]无限剑制[] 。",
+		"DESCRIPTION": "给予随机目标 !M! 点 格挡 与 1 层 易伤 。 本回合， 每当打破任意目标的 格挡 时, 获得 1点能量并抽一张 #y攻击 牌 。",
 		"EXTENDED_DESCRIPTION": ["无限剑制", "本回合， 每当打破任意目标的 格挡 时, 获得 1点能量并抽一张 #y攻击 牌 。"],
 		"NAME": "卫宫士郎"
 	},
@@ -354,17 +353,17 @@
 	},
 	"animator:Eve":
 	{
-		"DESCRIPTION": "发挥 充能球核心 。 每触发一次同调 ， 对随机敌人造成 !M! 点伤害并提高该能力 1 点额外伤害 。",
+		"DESCRIPTION": "激发 一个充能球核心 。 每触发一次同调 ， 对随机敌人造成 !M! 点伤害并提高该能力 1 点 额外伤害 。",
 		"NAME": "伊芙"
 	},
 	"animator:Evileye":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 NL 抽一张牌 。 NL 重装填 : 使用你最右侧的1个充能球的被动能力 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽一张牌 。 NL 重装填 : 使用你最右侧的1个充能球的被动能力 。",
 		"NAME": "邪眼"
 	},
 	"animator:Excalibur":
 	{
-		"DESCRIPTION": "保留 。 对所有敌人造成 !D! 点 伤害， 消耗 你手牌中所有的 [#EFC851]攻击[] 并获得它们的伤害数值。",
+		"DESCRIPTION": "保留 。 获得 1 层 无实体 。 对所有敌人造成 !D! 点 伤害 。 消耗 。",
 		"NAME": "誓约胜利之剑"
 	},
 	"animator:FeridBathory":
@@ -518,8 +517,9 @@
 	},
 	"animator:Illya":
 	{
-		"DESCRIPTION": "将抽牌堆中伤害最高的 [#EFC851]攻击[] 牌 加入手牌并在本次战斗中使其伤害提高 !M! 点 。 同调 : 并使其获得 保留 效果",
-		"NAME": "伊莉雅"
+		"DESCRIPTION": "获得 1 层 易伤 。 将抽牌堆中伤害最高的 [#EFC851]攻击[] 牌 打出 。 消耗 。",
+		"NAME": "伊莉雅",
+		"UPGRADE_DESCRIPTION": "获得 1 层 易伤 。 将抽牌堆中伤害最高的 [#EFC851]攻击[] 牌 打出 。"
 	},
 	"animator:ItamiYouji":
 	{
@@ -805,8 +805,7 @@
 	"animator:Saber":
 	{
 		"DESCRIPTION": "忠诚 。 造成 !D! 点伤害 ， 当这张牌触发 !M! 次同调效果后 ， 抹除 并获得 [#EFC851]誓约胜利之剑[] 。",
-		"NAME": "Saber",
-		"UPGRADE_DESCRIPTION": "忠诚 。 造成 !D! 点伤害 ， 当这张牌触发 !M! 次同调效果后 ， 抹除 并获得 [#EFC851]誓约胜利之剑+[] 。"
+		"NAME": "Saber"
 	},
 	"animator:Saitama":
 	{
@@ -879,7 +878,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "[#EFC851]被抽到时[] : 获得 !B! 点 格挡 。 NL 抽 2 张牌 。 NL 同调 : 获得 !M! 点 临时生命 。",
+		"DESCRIPTION": "抽 1 张牌 。 本次战斗中，这张牌的 格挡 提高 !M! 点 。 [#EFC851]被抽到时[] : 获得 !B! 点 格挡 。",
 		"NAME": "朱菜"
 	},
 	"animator:SilverFang":
@@ -936,7 +935,7 @@
 	},
 	"animator:Strike_Fate":
 	{
-		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 NL 如果你的手牌少于 3 张 ， 获得 [E] 。",
 		"NAME": "优越打击"
 	},
 	"animator:Strike_FullmetalAlchemist":
@@ -966,7 +965,7 @@
 	},
 	"animator:Strike_Katanagatari":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 NL 如果你的手牌少于 3 张 ， 获得 [E] 。",
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。",
 		"NAME": "优越打击"
 	},
 	"animator:Strike_Konosuba":
@@ -1021,8 +1020,9 @@
 	},
 	"animator:Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中选择 !M! 张牌，丢弃它们。 抽 2 张牌 。 鼓舞 !SV! : 获得 [E]",
-		"NAME": "特图"
+		"DESCRIPTION": "在你的抽牌堆中选择 2 张牌，丢弃它们。 抽 !M! 张牌 。",
+		"NAME": "特图",
+		"UPGRADE_DESCRIPTION": "在你的抽牌堆中选择 2 张牌，丢弃它们。 抽 !M! 张牌 。 鼓舞 !SV! : 获得 [E]"
 	},
 	"animator:TheHaunt":
 	{
@@ -1046,7 +1046,7 @@
 	},
 	"animator:Togame":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 选择并消耗一张牌 ， 否则获得 [E] 并 消耗 这张牌 。 ",
+		"DESCRIPTION": "抽 !M! 张牌 。 您可以选择并消耗一张牌来再抽 1 张卡 ",
 		"NAME": "咎儿"
 	},
 	"animator:Truth":

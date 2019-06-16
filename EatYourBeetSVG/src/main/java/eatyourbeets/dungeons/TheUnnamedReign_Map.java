@@ -229,8 +229,7 @@ public class TheUnnamedReign_Map
     private static MapRoomNode CreateMonsterRoom(int x, int y)
     {
         MapRoomNode node = new MapRoomNode(x, y);
-        MonsterRoom room = new MonsterRoom();
-        node.room = room;
+        node.room = new MonsterRoom();
         return node;
     }
 

@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.actions.animator.HigakiRinneAction;
@@ -196,19 +196,19 @@ public class HigakiRinne extends AnimatorCard
     {
         if (type == CardType.ATTACK)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID + "Attack"));
+            this.loadCardImage(Resources_Animator.GetCardImage(ID + "Attack"));
             this.type = CardType.ATTACK;
             this.target = CardTarget.ENEMY;
         }
         else if (type == CardType.POWER)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID + "Power"));
+            this.loadCardImage(Resources_Animator.GetCardImage(ID + "Power"));
             this.type = CardType.POWER;
             this.target = CardTarget.ALL;
         }
         else
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID));
+            this.loadCardImage(Resources_Animator.GetCardImage(ID));
             this.type = CardType.SKILL;
             this.target = CardTarget.ALL;
         }

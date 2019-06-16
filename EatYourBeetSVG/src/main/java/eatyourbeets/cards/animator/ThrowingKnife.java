@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.interfaces.Hidden;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -26,7 +26,7 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
 
     public ThrowingKnife(String id)
     {
-        super(AnimatorResources.GetCardStrings(id), id, AnimatorResources.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
 
         this.purgeOnUse = true;
     }

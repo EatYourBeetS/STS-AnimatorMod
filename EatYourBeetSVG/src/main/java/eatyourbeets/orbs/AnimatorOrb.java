@@ -2,7 +2,7 @@ package eatyourbeets.orbs;
 
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +21,7 @@ public abstract class AnimatorOrb extends AbstractOrb
 
     public AnimatorOrb(String id)
     {
-        orbStrings = AnimatorResources.GetOrbStrings(id);
+        orbStrings = Resources_Animator.GetOrbStrings(id);
         this.ID = id;
         this.name = orbStrings.NAME;
     }

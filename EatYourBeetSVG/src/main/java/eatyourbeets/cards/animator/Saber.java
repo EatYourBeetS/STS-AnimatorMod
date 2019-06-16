@@ -20,20 +20,12 @@ public class Saber extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(10,0,3);
+        Initialize(11,0,3);
 
         tags.add(AbstractEnums.CardTags.LOYAL);
 
         SetSynergy(Synergies.Fate);
     }
-
-//    @Override
-//    public void onMoveToDiscard()
-//    {
-//        super.onMoveToDiscard();
-//        AbstractPlayer player = AbstractDungeon.player;
-//        AbstractDungeon.actionManager.addToBottom(new MoveSpecificCardAction(this, player.drawPile, player.discardPile, true));
-//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
@@ -49,12 +41,7 @@ public class Saber extends AnimatorCard
             else
             {
                 this.purgeOnUse = true;
-                Excalibur excalibur = new Excalibur();
-                if (upgraded)
-                {
-                    excalibur.upgrade();
-                }
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(excalibur));
+                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Excalibur()));
             }
         }
     }
@@ -64,7 +51,7 @@ public class Saber extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(3);
         }
     }
 }

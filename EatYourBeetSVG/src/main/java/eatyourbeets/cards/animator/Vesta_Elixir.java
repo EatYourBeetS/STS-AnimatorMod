@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.interfaces.Hidden;
 
@@ -17,7 +17,7 @@ public abstract class Vesta_Elixir extends AnimatorCard implements Hidden
 
     public Vesta_Elixir(String id)
     {
-        super(AnimatorResources.GetCardStrings(id), id, AnimatorResources.GetCardImage(ID), 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(ID), 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
         this.exhaust = true;
     }

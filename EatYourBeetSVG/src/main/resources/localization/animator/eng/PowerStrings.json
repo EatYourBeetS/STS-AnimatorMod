@@ -127,7 +127,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"When playing a card which does not target only this character, gain #b"," #yMax #yHP. NL NL On death, ALL characters gain #b", " #yStrength."
+			"When playing a card which does not target this character, gains #b"," #yMax #yHP. NL NL On death, ALL characters gain #b", " #yStrength."
 		],
 		"NAME": "Unnamed Doll"
 	},

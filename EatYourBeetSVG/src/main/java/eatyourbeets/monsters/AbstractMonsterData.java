@@ -3,8 +3,7 @@ package eatyourbeets.monsters;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import eatyourbeets.AnimatorResources;
-import eatyourbeets.monsters.AnimatorMonster;
+import eatyourbeets.resources.Resources_Animator;
 
 public abstract class AbstractMonsterData
 {
@@ -25,7 +24,7 @@ public abstract class AbstractMonsterData
     public AbstractMonsterData(String id)
     {
         this.id = id;
-        this.strings = AnimatorResources.GetMonsterStrings(id);
+        this.strings = Resources_Animator.GetMonsterStrings(id);
     }
 
     protected void SetHB(float hb_x, float hb_y, float hb_w, float hb_h, float x, float y)

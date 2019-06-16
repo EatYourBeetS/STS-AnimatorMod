@@ -49,8 +49,7 @@
 	"animator:Aqua":
 	{
 		"DESCRIPTION": "Soignez !M! PV. NL Réduisez les soins de cette carte de !SV! ce combat.",
-		"NAME": "Aqua",
-		"UPGRADE_DESCRIPTION": "Soignez !M! PV. NL Réduisez les soins de cette carte de !SV! ce combat."
+		"NAME": "Aqua"
 	},
 	"animator:Ara":
 	{
@@ -322,8 +321,8 @@
 	},
 	"animator:EmiyaShirou":
 	{
-		"DESCRIPTION": "Donnez à un ennemi aléatoire NL !M! d'Armure et 1 Vulnérabilité. [#EFC851]Unlimited [#EFC851]Blade [#EFC851]Works.",
-		"EXTENDED_DESCRIPTION": ["Unlimited Blade Works", "Chaque fois qu'un ennemi perd son Armure, Gagnez 1 #yEnergy et piochez une #yAttack aléatoire de votre pioche."],
+		"DESCRIPTION": "Donnez à un ennemi aléatoire !M! d'Armure et 1 Vulnérabilité. Chaque fois qu'un ennemi perd son Armure ce tour, Gagnez 1 #yEnergy et piochez une #yAttack.",
+		"EXTENDED_DESCRIPTION": ["Unlimited Blade Works", "Chaque fois qu'un ennemi perd son Armure ce tour, Gagnez 1 #yEnergy et piochez une #yAttack aléatoire de votre pioche."],
 		"NAME": "Emiya Shirou"
 	},
 	"animator:Emonzaemon":
@@ -366,7 +365,7 @@
 	},
 	"animator:Excalibur":
 	{
-		"DESCRIPTION": "Conservez. Épuise TOUTES les autres [#EFC851]Attaques de votre main et Gagnez leurs dégât(s). Infligez !D! dégât(s) à TOUS les ennemis.",
+		"DESCRIPTION": "Conservez. NL Gagnez 1 Intangible. NL Infligez !D! dégât(s) à TOUS les ennemis. NL Épuisement.",
 		"NAME": "Excalibur"
 	},
 	"animator:FeridBathory":
@@ -520,8 +519,9 @@
 	},
 	"animator:Illya":
 	{
-		"DESCRIPTION": "Piochez votre carte [#EFC851]Attaque avec les plus haut dégats et augmentez ces dégât(s) de !M! pour ce combat. Synergie: Conservez là.",
-		"NAME": "Illya"
+		"DESCRIPTION": "Gagnez 1 Vulnérabilité. NL Jouez votre carte [#EFC851]Attaque avec les plus haut dégats de votre Pioché. Épuisement.",
+		"NAME": "Illya",
+		"UPGRADE_DESCRIPTION": "Gagnez 1 Vulnérabilité. NL Jouez votre carte [#EFC851]Attaque avec les plus haut dégats de votre Pioché."
 	},
 	"animator:ItamiYouji":
 	{
@@ -808,8 +808,7 @@
 	"animator:Saber":
 	{
 		"DESCRIPTION": "Loyale. Infligez !D! dégât(s). Si ca Synergize !M! fois, Purge et obtenez [#EFC851]Excalibur.",
-		"NAME": "Saber",
-		"UPGRADE_DESCRIPTION": "Loyale. Infligez !D! dégât(s). Si ca Synergizes !M! fois, Purge et obtenez [#EFC851]Excalibur+."
+		"NAME": "Saber"
 	},
 	"animator:Saitama":
 	{
@@ -882,7 +881,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "Piochez 2 carte(s). Synergie: NL Gagnez !M! Temp._PV. NL [#EFC851]Pioché: Gagnez !B! d'Armure.",
+		"DESCRIPTION": "Piochez 1 carte. Augmentez l'Armure de cette carte de !M! pour ce combat. [#EFC851]Pioché: Gagnez !B! d'Armure.",
 		"NAME": "Shuna"
 	},
 	"animator:SilverFang":
@@ -939,7 +938,7 @@
 	},
 	"animator:Strike_Fate":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) Perçant.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Si vous avez moins de 3 cartes dans votre main, NL Gagnez [E].",
 		"NAME": "Frappe Améliorée"
 	},
 	"animator:Strike_FullmetalAlchemist":
@@ -969,7 +968,7 @@
 	},
 	"animator:Strike_Katanagatari":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Si vous avez moins de 3 cartes dans votre main, NL Gagnez [E].",
+		"DESCRIPTION": "Infligez !D! dégât(s) Perçant.",
 		"NAME": "Frappe Améliorée"
 	},
 	"animator:Strike_Konosuba":
@@ -1024,8 +1023,9 @@
 	},
 	"animator:Tet":
 	{
-		"DESCRIPTION": "Défausser jusqu'a !M! carte(s) de votre pioche. NL Piochez 2 carte(s). NL Boost !SV! : Gagnez [E].",
-		"NAME": "Tet"
+		"DESCRIPTION": "Défausser jusqu'a 2 carte(s) de votre pioche. NL Piochez !M! carte(s).",
+		"NAME": "Tet",
+		"UPGRADE_DESCRIPTION": "Défausser jusqu'a 2 carte(s) de votre pioche. NL Piochez !M! carte(s). NL Boost !SV! : Gagnez [E]."
 	},
 	"animator:TheHaunt":
 	{
@@ -1049,7 +1049,7 @@
 	},
 	"animator:Togame":
 	{
-		"DESCRIPTION": "Piochez !M! carte(s). NL Vous pouvez Épuiser une carte, sinon Gagnez [E] et Épuisement.",
+		"DESCRIPTION": "Piochez !M! carte(s). NL Vous pouvez choisir et consommer une carte pour en piocher une autre.",
 		"NAME": "Togame"
 	},
 	"animator:Truth":

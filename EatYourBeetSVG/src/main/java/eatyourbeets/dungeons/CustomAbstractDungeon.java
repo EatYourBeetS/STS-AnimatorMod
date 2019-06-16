@@ -1,4 +1,4 @@
-package eatyourbeets;
+package eatyourbeets.dungeons;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -303,8 +303,9 @@ public class CustomAbstractDungeon extends AbstractDungeon
             card = new SeriousSaitama();
         }
 
-        if (card != null || cards.size() > 0)
+        if (card != null && cards.size() > 0)
         {
+            card.tags.remove(AbstractEnums.CardTags.UNOBTAINABLE);
             cards.remove(0);
             cards.add(card);
         }

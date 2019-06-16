@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
-import eatyourbeets.AnimatorResources_Audio;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
+import eatyourbeets.resources.Resources_Common;
 
 public class TheAbandonedCabin extends AnimatorEvent
 {
@@ -52,7 +52,7 @@ public class TheAbandonedCabin extends AnimatorEvent
     private void CreatePhase2() // Encounter Creature
     {
         this.imageEventText.loadImage("images/events/Cabin2.png");
-        CardCrawlGame.music.playTempBGM(AnimatorResources_Audio.TheCreature);
+        CardCrawlGame.music.playTempBGM(Resources_Common.Audio_TheCreature);
         UpdateBodyText(eventStrings.DESCRIPTIONS[1], true);
         UpdateDialogOption(0, OPTIONS[0]); // Continue
     }

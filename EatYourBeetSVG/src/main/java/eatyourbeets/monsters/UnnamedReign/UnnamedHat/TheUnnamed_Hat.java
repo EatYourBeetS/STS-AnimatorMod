@@ -135,8 +135,8 @@ public class TheUnnamed_Hat extends AnimatorMonster
                 maxHealth = 66;
             }
 
-            atlasUrl = "images/monsters/Animator_TheUnnamed/Hat.atlas";
-            jsonUrl = "images/monsters/Animator_TheUnnamed/Hat.json";
+            atlasUrl = "images/monsters/animator/TheUnnamed/Hat.atlas";
+            jsonUrl = "images/monsters/animator/TheUnnamed/Hat.json";
             scale = 1.6f;
 
             SetHB(0,0,100,140, 0, 50);

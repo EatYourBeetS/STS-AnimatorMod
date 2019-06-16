@@ -15,7 +15,7 @@ public class SwordMaiden extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0, 0, 14);
+        Initialize(0, 0, 12);
 
         this.exhaust = true;
 

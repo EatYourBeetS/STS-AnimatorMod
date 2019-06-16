@@ -194,8 +194,8 @@ public class TheUnnamed extends AnimatorMonster
             super(id);
 
             maxHealth = 1000;
-            atlasUrl = "images/monsters/Animator_TheUnnamed/TheUnnamed.atlas";
-            jsonUrl = "images/monsters/Animator_TheUnnamed/TheUnnamed.json";
+            atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.atlas";
+            jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.json";
 
             SetHB(0, -20, 200, 260, 0, 80);
         }

@@ -1,0 +1,9 @@
+
+{
+	"unnamed:InfinitePower":
+	{
+		"DESCRIPTIONS": ["At the end of each turn, gain #b", " #yStrength, heal #b", " HP, and lose #b", " Max HP. NL NL #yCannot #ybe #yremoved."],
+		"FLAVOR": "Infinite Power! At a cost...",
+		"NAME": "Infinite Power"
+	}
+}

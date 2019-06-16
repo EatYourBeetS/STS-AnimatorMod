@@ -22,7 +22,7 @@ public class EmiyaShirou extends AnimatorCard
 
         Initialize(0,0, 9);
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.Fate);
     }

@@ -66,7 +66,7 @@ public class Mitsurugi extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(5);
         }
     }
 }

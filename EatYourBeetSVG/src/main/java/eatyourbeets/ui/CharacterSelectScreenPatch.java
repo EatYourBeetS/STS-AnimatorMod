@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.characters.AnimatorCharacterSelect;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.powers.PlayerStatistics;
@@ -23,7 +23,7 @@ public class CharacterSelectScreenPatch
 {
     protected static final Logger logger = LogManager.getLogger(CharacterSelectScreenPatch.class.getName());
 
-    public static final UIStrings UIStrings = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.CharacterSelect);
+    public static final UIStrings UIStrings = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.CharacterSelect);
 
     public static Hitbox startingCardsLabelHb;
     public static Hitbox startingCardsSelectedHb;

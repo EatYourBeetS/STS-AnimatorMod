@@ -3,11 +3,13 @@ package eatyourbeets.cards;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.AnimatorResources_Images;
+import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.cards.animator.*;
 import eatyourbeets.interfaces.Hidden;
+import patches.AbstractEnums;
 
 import java.util.HashMap;
 
@@ -24,7 +26,9 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
         //super(id, cost, type, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.SPECIAL, target);
         super(id, cost, type, CardColor.COLORLESS, CardRarity.SPECIAL, target);
 
-        setOrbTexture(AnimatorResources_Images.ORB_A_PNG, AnimatorResources_Images.ORB_B_PNG);
+        tags.add(AbstractEnums.CardTags.UNOBTAINABLE);
+
+        setOrbTexture(Resources_Animator_Images.ORB_A_PNG, Resources_Animator_Images.ORB_B_PNG);
     }
 
     private static HashMap<String, AnimatorCard_UltraRare> Cards = null;
@@ -98,7 +102,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
 //                return;
 //
 //            case SPECIAL:
-//                this.renderHelper(sb, RENDER_COLOR, AnimatorResources.CARD_FRAME_ATTACK_SPECIAL, x, y);
+//                this.renderHelper(sb, RENDER_COLOR, Resources_Animator.CARD_FRAME_ATTACK_SPECIAL, x, y);
 //                return;
 //
 //            case UNCOMMON:
@@ -113,21 +117,21 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     @SpireOverride
     protected void renderAttackBg(SpriteBatch sb, float x, float y)
     {
-        //this.renderHelper(sb, RENDER_COLOR, AnimatorResources.CARD_BG_ATTACK, x, y);
+        //this.renderHelper(sb, RENDER_COLOR, Resources_Animator.CARD_BG_ATTACK, x, y);
         this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_ATTACK_BG_GRAY, x, y);
     }
 
     @SpireOverride
     protected void renderSkillBg(SpriteBatch sb, float x, float y)
     {
-        //this.renderHelper(sb, RENDER_COLOR, AnimatorResources.CARD_BG_SKILL, x, y);
+        //this.renderHelper(sb, RENDER_COLOR, Resources_Animator.CARD_BG_SKILL, x, y);
         this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_SKILL_BG_GRAY, x, y);
     }
 
     @SpireOverride
     protected void renderPowerBg(SpriteBatch sb, float x, float y)
     {
-        //this.renderHelper(sb, RENDER_COLOR, AnimatorResources.CARD_BG_POWER, x, y);
+        //this.renderHelper(sb, RENDER_COLOR, Resources_Animator.CARD_BG_POWER, x, y);
         this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_POWER_BG_GRAY, x, y);
     }
 }

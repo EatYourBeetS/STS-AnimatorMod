@@ -39,7 +39,7 @@ public class Boros extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
-            upgradeSecondaryValue(2);
+            upgradeSecondaryValue(3);
         }
     }
 }

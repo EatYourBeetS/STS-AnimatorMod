@@ -22,8 +22,8 @@ public abstract class TheUnnamed_Cultist extends AnimatorMonster
             super(id);
 
             scale = 2;
-            jsonUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedCultist.json";
-            atlasUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedCultist.atlas";
+            jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamedCultist.json";
+            atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamedCultist.atlas";
             imgUrl = null;
 
             if (PlayerStatistics.GetAscensionLevel() > 7)

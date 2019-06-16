@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
@@ -172,7 +172,7 @@ public class Fredrika extends AnimatorCard
         {
             case FORM_DEFAULT:
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID));
+                this.loadCardImage(Resources_Animator.GetCardImage(ID));
                 this.rawDescription = cardStrings.DESCRIPTION;
                 this.type = CardType.SKILL;
                 this.target = CardTarget.SELF;
@@ -183,7 +183,7 @@ public class Fredrika extends AnimatorCard
 
             case FORM_CAT:
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Cat"));
+                this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Cat"));
                 this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
                 this.type = CardType.SKILL;
                 this.target = CardTarget.NONE;
@@ -194,7 +194,7 @@ public class Fredrika extends AnimatorCard
 
             case FORM_DRAGOON:
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Dragoon"));
+                this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Dragoon"));
                 this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
@@ -205,7 +205,7 @@ public class Fredrika extends AnimatorCard
 
             case FORM_DOMINICA:
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Dominica"));
+                this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Dominica"));
                 this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;

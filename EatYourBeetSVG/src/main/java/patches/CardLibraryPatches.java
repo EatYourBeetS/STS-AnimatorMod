@@ -23,6 +23,10 @@ public class CardLibraryPatches
             else
             {
                 card = AnimatorCard_UltraRare.GetCards().get(key);
+                if (card != null)
+                {
+                    card.tags.remove(AbstractEnums.CardTags.UNOBTAINABLE);
+                }
             }
 
             if (card != null)
@@ -55,6 +59,8 @@ public class CardLibraryPatches
                 AbstractCard card = AnimatorCard_UltraRare.GetCards().get(key);
                 if (card != null)
                 {
+                    card.tags.remove(AbstractEnums.CardTags.UNOBTAINABLE);
+
                     return SpireReturn.Return(card);
                 }
             }

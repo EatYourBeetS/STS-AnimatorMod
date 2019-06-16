@@ -3,7 +3,7 @@ package eatyourbeets.characters;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.animator.Defend;
 import eatyourbeets.cards.animator.Strike;
@@ -19,7 +19,7 @@ public class AnimatorCharacterSelect
     private static int index = 0;
     private static final ArrayList<AnimatorCustomLoadout> customLoadouts = new ArrayList<>();
 
-    protected static final String[] uiText = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.CharacterSelect).TEXT;
+    protected static final String[] uiText = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.CharacterSelect).TEXT;
 
     public static AnimatorCustomLoadout GetSelectedLoadout(boolean startingGame)
     {

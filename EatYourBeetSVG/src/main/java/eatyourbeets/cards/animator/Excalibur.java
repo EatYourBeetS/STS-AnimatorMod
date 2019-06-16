@@ -3,13 +3,11 @@ package eatyourbeets.cards.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
-import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -25,10 +23,12 @@ public class Excalibur extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
 
-        Initialize(6,0);
+        Initialize(60,0);
 
         this.retain = true;
+        this.exhaust = true;
         this.isMultiDamage = true;
+
         SetSynergy(Synergies.Fate);
     }
 
@@ -48,40 +48,9 @@ public class Excalibur extends AnimatorCard
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        for (AbstractCard card : player.hand.group)
-        {
-            if (card != this && card.type == CardType.ATTACK && card.damage > 0)
-            {
-                if (card.cardID.equals(this.cardID))
-                {
-                    tmp += card.baseDamage;
-                }
-                else
-                {
-                    tmp += card.damage;
-                }
-            }
-        }
-
-        return super.calculateModifiedCardDamage(player, mo, tmp);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int damageUpgrade = 0;
-        for (AbstractCard c : p.hand.group)
-        {
-            if (c.type == CardType.ATTACK && c != this)
-            {
-                damageUpgrade += c.damage;
-                AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(c, p.hand, true));
-            }
-        }
-
-        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, damageUpgrade));
+        GameActionsHelper.ApplyPower(p, p, new IntangiblePlayerPower(p, 1), 1);
 
         GameActionsHelper.AddToBottom(new VFXAction(new BorderLongFlashEffect(Color.GOLD)));
         for (AbstractCreature m1 : PlayerStatistics.GetCurrentEnemies(true))
@@ -96,7 +65,7 @@ public class Excalibur extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(6);
+            upgradeDamage(20);
         }
     }
 }

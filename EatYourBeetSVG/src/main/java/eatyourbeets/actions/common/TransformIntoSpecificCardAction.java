@@ -6,14 +6,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.actions.animator.AnimatorAction;
 
 import java.util.ArrayList;
 
 public class TransformIntoSpecificCardAction extends AnimatorAction
 {
-    private static final String[] TEXT = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Actions).TEXT;
+    private static final String[] TEXT = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Actions).TEXT;
 
     private final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
     private final CardGroup destination;

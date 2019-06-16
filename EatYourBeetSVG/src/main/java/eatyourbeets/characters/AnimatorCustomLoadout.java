@@ -13,9 +13,9 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.AnimatorResources;
-import eatyourbeets.AnimatorResources_Images;
-import eatyourbeets.CustomAbstractDungeon;
+import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.Resources_Animator_Images;
+import eatyourbeets.dungeons.CustomAbstractDungeon;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
@@ -28,15 +28,15 @@ import java.util.ArrayList;
 
 public abstract class AnimatorCustomLoadout
 {
-    protected static final String[] trophyStrings = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Trophies).TEXT;
-    protected static final Texture bronze = new Texture(AnimatorResources.GetRewardImage("Animator_Bronze"));
-    protected static final Texture silver = new Texture(AnimatorResources.GetRewardImage("Animator_Silver"));
-    protected static final Texture gold = new Texture(AnimatorResources.GetRewardImage("Animator_Gold"));
-    protected static final Texture platinum = new Texture(AnimatorResources.GetRewardImage("Animator_Platinum"));
-    protected static final Texture locked = new Texture(AnimatorResources.GetRewardImage("Animator_Locked"));
-    protected static final Texture slot = new Texture(AnimatorResources.GetRewardImage("Animator_Slot"));
-    protected static final Texture slot2 = new Texture(AnimatorResources.GetRewardImage("Animator_Slot2"));
-    protected static final Texture slot3 = new Texture(AnimatorResources.GetRewardImage("Animator_Slot3"));
+    protected static final String[] trophyStrings = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Trophies).TEXT;
+    protected static final Texture bronze = new Texture(Resources_Animator.GetRewardImage("Animator_Bronze"));
+    protected static final Texture silver = new Texture(Resources_Animator.GetRewardImage("Animator_Silver"));
+    protected static final Texture gold = new Texture(Resources_Animator.GetRewardImage("Animator_Gold"));
+    protected static final Texture platinum = new Texture(Resources_Animator.GetRewardImage("Animator_Platinum"));
+    protected static final Texture locked = new Texture(Resources_Animator.GetRewardImage("Animator_Locked"));
+    protected static final Texture slot = new Texture(Resources_Animator.GetRewardImage("Animator_Slot"));
+    protected static final Texture slot2 = new Texture(Resources_Animator.GetRewardImage("Animator_Slot2"));
+    protected static final Texture slot3 = new Texture(Resources_Animator.GetRewardImage("Animator_Slot3"));
 
     public static AnimatorTrophies specialTrophies;
 
@@ -85,7 +85,7 @@ public abstract class AnimatorCustomLoadout
         }
 
         trophies = GetTrophies(true, ID);
-        selectScreen.bgCharImg = AnimatorResources_Images.GetCharacterPortrait(ID);
+        selectScreen.bgCharImg = Resources_Animator_Images.GetCharacterPortrait(ID);
         Locked = unlockLevel > currentLevel;
         if (Locked)
         {

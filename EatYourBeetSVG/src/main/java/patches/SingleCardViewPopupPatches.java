@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import eatyourbeets.AnimatorResources_Images;
+import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 
@@ -47,7 +47,7 @@ public class SingleCardViewPopupPatches
                     switch (card.rarity)
                     {
                         case SPECIAL:
-                            tmpImg = AnimatorResources_Images.CARD_FRAME_ATTACK_SPECIAL_L;
+                            tmpImg = Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL_L;
                             break label36;
                         case COMMON:
                             tmpImg = ImageMaster.CARD_FRAME_ATTACK_COMMON_L;
@@ -69,7 +69,7 @@ public class SingleCardViewPopupPatches
                     switch (card.rarity)
                     {
                         case SPECIAL:
-                            tmpImg = AnimatorResources_Images.CARD_FRAME_POWER_SPECIAL_L;
+                            tmpImg = Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL_L;
                             break label36;
                         case COMMON:
                             tmpImg = ImageMaster.CARD_FRAME_POWER_COMMON_L;
@@ -92,7 +92,7 @@ public class SingleCardViewPopupPatches
                     switch (card.rarity)
                     {
                         case SPECIAL:
-                            tmpImg = AnimatorResources_Images.CARD_FRAME_SKILL_SPECIAL_L;
+                            tmpImg = Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL_L;
                             break label36;
                         case COMMON:
                             tmpImg = ImageMaster.CARD_FRAME_SKILL_COMMON_L;
@@ -137,17 +137,17 @@ public class SingleCardViewPopupPatches
             {
                 case ATTACK:
                     tmpImg = ImageMaster.CARD_ATTACK_BG_GRAY_L;
-                    //tmpImg = AnimatorResources.CARD_BG_ATTACK_L;
+                    //tmpImg = Resources_Animator.CARD_BG_ATTACK_L;
                     break;
 
                 case POWER:
                     tmpImg = ImageMaster.CARD_POWER_BG_GRAY_L;
-                    //tmpImg = AnimatorResources.CARD_BG_POWER_L;
+                    //tmpImg = Resources_Animator.CARD_BG_POWER_L;
                     break;
 
                 default:
                     tmpImg = ImageMaster.CARD_SKILL_BG_GRAY_L;
-                    //tmpImg = AnimatorResources.CARD_BG_SKILL_L;
+                    //tmpImg = Resources_Animator.CARD_BG_SKILL_L;
                     break;
             }
 
@@ -166,7 +166,7 @@ public class SingleCardViewPopupPatches
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderCost")
     public static class SingleCardViewPopup_RenderCost
     {
-        private static final Texture ORB_TEXTURE = new Texture(AnimatorResources_Images.ORB_B_PNG);
+        private static final Texture ORB_TEXTURE = new Texture(Resources_Animator_Images.ORB_B_PNG);
 
         @SpirePrefixPatch
         public static SpireReturn Method(SingleCardViewPopup __instance, SpriteBatch sb) throws IllegalAccessException

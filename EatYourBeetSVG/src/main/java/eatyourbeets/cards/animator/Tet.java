@@ -23,8 +23,8 @@ public class Tet extends AnimatorCard_Boost
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new DiscardFromPileAction(p.drawPile, this.magicNumber, true));
-        GameActionsHelper.DrawCard(p, 2);
+        GameActionsHelper.AddToBottom(new DiscardFromPileAction(p.drawPile, 2, true));
+        GameActionsHelper.DrawCard(p, magicNumber);
 
         if (ProgressBoost())
         {
@@ -37,13 +37,13 @@ public class Tet extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeSecondaryValue(1);
         }
     }
 
     @Override
     protected int GetBaseBoost()
     {
-        return 1;
+        return upgraded ? 1 : 0;
     }
 }

@@ -1,12 +1,12 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.cards.animator.Ainz;
 
 public abstract class AinzEffect
 {
-    protected final static String[] text = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.SpecialEffects).TEXT;
+    protected final static String[] text = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.SpecialEffects).TEXT;
     protected final int descriptionIndex;
 
     public final Ainz ainz;

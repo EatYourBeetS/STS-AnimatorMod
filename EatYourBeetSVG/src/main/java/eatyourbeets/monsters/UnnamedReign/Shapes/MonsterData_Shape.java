@@ -18,11 +18,11 @@ public class MonsterData_Shape extends AbstractMonsterData
         this.shape = shape;
         this.tier = tier;
 
-        String filePath = "images/monsters/Animator_" + shape + "/" + shape + "_" + element + "_" + tier.GetId();
+        String filePath = "images/monsters/animator/" + shape + "/" + shape + "_" + element + "_" + tier.GetId();
         atlasUrl = filePath + ".atlas";
         jsonUrl = filePath + ".json";
+        imgUrl = filePath + ".png";
 
-        imgUrl = UnnamedShape.GetResourcePath(shape, element, tier) + ".png";
         offsetY = 70;
 
         switch (shape)

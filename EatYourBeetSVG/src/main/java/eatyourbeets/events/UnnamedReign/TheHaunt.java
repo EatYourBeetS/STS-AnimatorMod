@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-import eatyourbeets.AnimatorResources_Audio;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.resources.Resources_Common;
 
 public class TheHaunt extends AnimatorEvent
 {
@@ -61,7 +61,7 @@ public class TheHaunt extends AnimatorEvent
                 AbstractDungeon.player.gainGold(goldAmount);
                 AbstractDungeon.scene.fadeOutAmbiance();
                 CardCrawlGame.music.silenceTempBgmInstantly();
-                CardCrawlGame.music.playTempBgmInstantly(AnimatorResources_Audio.TheHaunt, false);
+                CardCrawlGame.music.playTempBgmInstantly(Resources_Common.Audio_TheHaunt, false);
 
                 completed = true;
                 return;

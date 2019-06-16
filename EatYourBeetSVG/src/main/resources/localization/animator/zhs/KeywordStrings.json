@@ -21,8 +21,8 @@
 	},
 	{
 		"DESCRIPTION": "当这张卡进入丢弃堆时 ， 返回抽牌堆。",
-		"NAMES": ["一贯"],
-		"PROPERNAME": "一贯"
+		"NAMES": ["固执"],
+		"PROPERNAME": "固执"
 	},
 	{
 		"DESCRIPTION": "拥有者受到 #y攻击 时造成特定的 #y负面效果。 持续一回合。",

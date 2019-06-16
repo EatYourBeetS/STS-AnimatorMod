@@ -1,13 +1,17 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+
+import java.util.ArrayList;
 
 public class Shuna extends AnimatorCard
 {
@@ -17,7 +21,7 @@ public class Shuna extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,4, 3);
+        Initialize(0,2, 1);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -30,21 +34,22 @@ public class Shuna extends AnimatorCard
         GameActionsHelper.Callback(new WaitAction(0.1f), this::OnCompletion, this);
     }
 
-    public void OnCompletion(Object state, AbstractGameAction action)
+    private void OnCompletion(Object state, AbstractGameAction action)
     {
-        this.applyPowers();
-        GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
+        if (state == this && action != null)
+        {
+            this.applyPowers();
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.GainBlock(p, this.block);
+            GameActionsHelper.GainBlock(p, this.block);
+        }
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DrawCard(p, 2);
-
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.GainTemporaryHP(p, p, this.magicNumber);
-        }
+        GameActionsHelper.DrawCard(p, 1);
+        GameActionsHelper.AddToBottom(new ModifyBlockAction(this.uuid, magicNumber));
     }
 
     @Override
@@ -52,7 +57,7 @@ public class Shuna extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
+            upgradeBlock(1);
         }
     }
 }

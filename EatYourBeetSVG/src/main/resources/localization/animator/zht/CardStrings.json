@@ -49,8 +49,7 @@
 	"animator:Aqua":
 	{
 		"DESCRIPTION": "回復 !M! 點 生命 。 在本回合減少 !SV! 點 回復量 。",
-		"NAME": "阿克婭",
-		"UPGRADE_DESCRIPTION": "回復 !M! 點 生命 。 在本回合減少 !SV! 點 回復量 。"
+		"NAME": "阿克婭"
 	},
 	"animator:Ara":
 	{
@@ -320,7 +319,7 @@
 	},
 	"animator:EmiyaShirou":
 	{
-		"DESCRIPTION": "給予一個隨機敵人 !M! 點 格擋 和 1 層 易傷 。 [#EFC851]無限劍制[] 。",
+		"DESCRIPTION": "給予一個隨機敵人 !M! 點 格擋 和 1 層 易傷 。 本回合， 本回合，打破格擋時獲得 1 點 #y能量 和抽一張 隨機 #y攻擊牌 。",
 		"EXTENDED_DESCRIPTION": ["無限劍制", "本回合， 本回合，打破格擋時獲得 1 點 #y能量 和抽一張 隨機 #y攻擊牌 。"],
 		"NAME": "衛宮四郎"
 	},
@@ -364,7 +363,7 @@
 	},
 	"animator:Excalibur":
 	{
-		"DESCRIPTION": "保留 。 對所有敵人造成 !D! 點傷害， 消耗 你手牌中所有的 [#EFC851]攻擊[] 並獲得它們的傷害數值。",
+		"DESCRIPTION": "保留 。 獲得 1 層 無實體 。 對所有敵人造成 !D! 點 傷害 。 消耗 。",
 		"NAME": "誓約勝利之劍"
 	},
 	"animator:FeridBathory":
@@ -516,8 +515,9 @@
 	},
 	"animator:Illya":
 	{
-		"DESCRIPTION": "將抽牌堆中傷害最高的 [#EFC851]攻擊[] 牌 加入手牌並在本次戰鬥中使其傷害提高 !M! 點 。 同調 : 保留它 。",
-		"NAME": "伊莉雅"
+		"DESCRIPTION": "獲得 1 層 易傷 。 NL 將抽牌堆中傷害最高的 [#EFC851]攻擊[] 牌 打出 。 消耗 。",
+		"NAME": "伊莉雅",
+		"UPGRADE_DESCRIPTION": "獲得 1 層 易傷 。 NL 將抽牌堆中傷害最高的 [#EFC851]攻擊[] 牌 打出 。"
 	},
 	"animator:ItamiYouji":
 	{
@@ -803,8 +803,7 @@
 	"animator:Saber":
 	{
 		"DESCRIPTION": "忠誠 。 造成 !D! 點傷害 ， 當這張牌觸發 !M! 次 同調 效果後 ， 抹除並獲得 [#EFC851]誓約勝利之劍[] 。",
-		"NAME": "Saber",
-		"UPGRADE_DESCRIPTION": "忠誠 。 造成 !D! 點傷害 ， 當這張牌觸發 !M! 次 同調 效果後 ， 抹除並獲得 [#EFC851]誓約勝利之劍+[] 。"
+		"NAME": "Saber"
 	},
 	"animator:Saitama":
 	{
@@ -877,7 +876,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "[#EFC851]被抽到時[] : 獲得 !B! 點 格擋 。 NL 抽 2 張牌 。 NL 同調 : 獲得 !M! 點 臨時生命 。",
+		"DESCRIPTION": "抽 1 張牌 。 本次戰鬥中，這張牌的 格擋 提高 !M! 點 。 [#EFC851]被抽到時[] : 獲得 !B! 點 格擋 。",
 		"NAME": "朱菜"
 	},
 	"animator:SilverFang":
@@ -933,7 +932,7 @@
 	},
 	"animator:Strike_Fate":
 	{
-		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 NL 如果你手中的卡少於 3 張 ， 獲得 [E] 。",
 		"NAME": "優越打擊"
 	},
 	"animator:Strike_FullmetalAlchemist":
@@ -963,7 +962,7 @@
 	},
 	"animator:Strike_Katanagatari":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 NL 如果你手中的卡少於 3 張 ， 獲得 [E] 。",
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。",
 		"NAME": "優越打擊"
 	},
 	"animator:Strike_Konosuba":
@@ -1018,8 +1017,9 @@
 	},
 	"animator:Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中選擇 !M! 張牌 。 抽 2 張牌 。 增強 !SV! : 獲得 [E]",
-		"NAME": "特圖"
+		"DESCRIPTION": "在你的抽牌堆中選擇 2 張牌 。 抽 !M! 張牌 。",
+		"NAME": "特圖",
+		"UPGRADE_DESCRIPTION": "在你的抽牌堆中選擇 2 張牌 。 抽 !M! 張牌 。 增強 !SV! : 獲得 [E]"
 	},
 	"animator:TheHaunt":
 	{
@@ -1043,7 +1043,7 @@
 	},
 	"animator:Togame":
 	{
-		"DESCRIPTION": "抽 !M! 張牌 。 NL 可以 消耗 1 張牌 ， 否則獲得 [E] 並 消耗 。",
+		"DESCRIPTION": "抽 !M! 張牌 。 NL 您可以選擇並消耗一張牌來再抽 1 張卡 。",
 		"NAME": "咎兒"
 	},
 	"animator:Truth":

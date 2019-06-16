@@ -1,30 +1,30 @@
-package eatyourbeets;
+package eatyourbeets.resources;
 
 import com.badlogic.gdx.graphics.Texture;
 
 import java.util.HashMap;
 
-public class AnimatorResources_Images
+public class Resources_Animator_Images
 {
     private static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
 
-    public static final String ATTACK_PNG = "images/cardui/512/bg_attack_canvas.png";
-    public static final String SKILL_PNG = "images/cardui/512/bg_skill_canvas.png";
-    public static final String POWER_PNG = "images/cardui/512/bg_power_canvas.png";
-    public static final String ORB_A_PNG = "images/cardui/512/card_a_orb_canvas.png";
-    public static final String ORB_C_PNG = "images/cardui/512/card_c_orb_canvas.png";
-    public static final String ORB_B_PNG = "images/cardui/512/card_b_orb_canvas.png";
-    public static final String ATTACK_P_PNG = "images/cardui/1024/bg_attack_canvas.png";
-    public static final String SKILL_P_PNG = "images/cardui/1024/bg_skill_canvas.png";
-    public static final String POWER_P_PNG = "images/cardui/1024/bg_power_canvas.png";
+    public static final String ATTACK_PNG = "images/cardui/animator/512/bg_attack_canvas.png";
+    public static final String SKILL_PNG = "images/cardui/animator/512/bg_skill_canvas.png";
+    public static final String POWER_PNG = "images/cardui/animator/512/bg_power_canvas.png";
+    public static final String ORB_A_PNG = "images/cardui/animator/512/card_a_orb_canvas.png";
+    public static final String ORB_C_PNG = "images/cardui/animator/512/card_c_orb_canvas.png";
+    public static final String ORB_B_PNG = "images/cardui/animator/512/card_b_orb_canvas.png";
+    public static final String ATTACK_P_PNG = "images/cardui/animator/1024/bg_attack_canvas.png";
+    public static final String SKILL_P_PNG = "images/cardui/animator/1024/bg_skill_canvas.png";
+    public static final String POWER_P_PNG = "images/cardui/animator/1024/bg_power_canvas.png";
     public static final String CHAR_BUTTON_PNG = "images/ui/charselect/animator_button.png";
     public static final String CHAR_PORTRAIT_JPG = "images/ui/charselect/animator_portrait.jpg";
 
-    public static final String BANNER_SPECIAL_P_PNG = "images/cardui/1024/banner_special.png";
-    public static final String BANNER_SPECIAL2_P_PNG = "images/cardui/1024/banner_special2.png";
+    public static final String BANNER_SPECIAL_P_PNG = "images/cardui/animator/1024/banner_special.png";
+    public static final String BANNER_SPECIAL2_P_PNG = "images/cardui/animator/1024/banner_special2.png";
 
-    public static final String BANNER_SPECIAL_PNG = "images/cardui/512/banner_special.png";
-    public static final String BANNER_SPECIAL2_PNG = "images/cardui/512/banner_special2.png";
+    public static final String BANNER_SPECIAL_PNG = "images/cardui/animator/512/banner_special.png";
+    public static final String BANNER_SPECIAL2_PNG = "images/cardui/animator/512/banner_special2.png";
 
     public static final String ORB_VFX_PNG = "images/ui/topPanel/animator_canvas/orbVfx.png";
     public static final String[] ORB_TEXTURES =
@@ -49,12 +49,12 @@ public class AnimatorResources_Images
     public static final Texture CARD_BG_SKILL_L = new Texture(SKILL_P_PNG);
     public static final Texture CARD_BG_POWER_L = new Texture(POWER_P_PNG);
 
-    public static final Texture CARD_FRAME_ATTACK_SPECIAL = new Texture("images/cardui/512/frame_attack_special.png");
-    public static final Texture CARD_FRAME_SKILL_SPECIAL  = new Texture("images/cardui/512/frame_skill_special.png");
-    public static final Texture CARD_FRAME_POWER_SPECIAL  = new Texture("images/cardui/512/frame_power_special.png");
-    public static final Texture CARD_FRAME_ATTACK_SPECIAL_L = new Texture("images/cardui/1024/frame_attack_special.png");
-    public static final Texture CARD_FRAME_SKILL_SPECIAL_L  = new Texture("images/cardui/1024/frame_skill_special.png");
-    public static final Texture CARD_FRAME_POWER_SPECIAL_L  = new Texture("images/cardui/1024/frame_power_special.png");
+    public static final Texture CARD_FRAME_ATTACK_SPECIAL = new Texture("images/cardui/animator/512/frame_attack_special.png");
+    public static final Texture CARD_FRAME_SKILL_SPECIAL  = new Texture("images/cardui/animator/512/frame_skill_special.png");
+    public static final Texture CARD_FRAME_POWER_SPECIAL  = new Texture("images/cardui/animator/512/frame_power_special.png");
+    public static final Texture CARD_FRAME_ATTACK_SPECIAL_L = new Texture("images/cardui/animator/1024/frame_attack_special.png");
+    public static final Texture CARD_FRAME_SKILL_SPECIAL_L  = new Texture("images/cardui/animator/1024/frame_skill_special.png");
+    public static final Texture CARD_FRAME_POWER_SPECIAL_L  = new Texture("images/cardui/animator/1024/frame_power_special.png");
 
     public static Texture GetCharacterPortrait(int id)
     {

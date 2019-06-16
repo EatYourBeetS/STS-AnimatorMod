@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.animator.Hero;
 import eatyourbeets.effects.ObtainRelicEffect;
@@ -24,7 +24,7 @@ public class BundledRelic
     public final String cardID;
     public AbstractCard card;
 
-    private static final String[] text = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Rewards).TEXT;
+    private static final String[] text = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Rewards).TEXT;
 
     private final AbstractRelic.RelicTier relicTier;
     private final String relicID;

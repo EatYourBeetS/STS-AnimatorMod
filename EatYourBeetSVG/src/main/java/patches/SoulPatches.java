@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.Soul;
+import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.util.ArrayList;
@@ -29,7 +30,12 @@ public class SoulPatches
     {
         public static void Postfix(Soul soul, AbstractCard card)
         {
-            if (card.tags.contains(AbstractEnums.CardTags.UNIQUE))
+            if (card.tags.contains(AbstractEnums.CardTags.UNOBTAINABLE))
+            {
+                AbstractDungeon.player.masterDeck.group.remove(card);
+                AbstractDungeon.player.masterDeck.group.add(new Madness());
+            }
+            else if (card.tags.contains(AbstractEnums.CardTags.UNIQUE))
             {
                 AbstractCard first = null;
 

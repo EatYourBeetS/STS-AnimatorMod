@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 
 public class BanCardButton
 {
@@ -174,7 +174,7 @@ public class BanCardButton
 
     static
     {
-        uiStrings = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.CardSelect);
+        uiStrings = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.CardSelect);
         TEXT = uiStrings.TEXT;
 //        SHOW_Y = 220.0F * Settings.scale;
 //        SHOW_X = (float) Settings.WIDTH / 2.0F;

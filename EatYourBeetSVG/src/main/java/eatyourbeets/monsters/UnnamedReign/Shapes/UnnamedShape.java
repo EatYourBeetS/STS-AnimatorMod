@@ -15,11 +15,6 @@ public abstract class UnnamedShape extends AnimatorMonster
         return "animator:" + element + "_" + shape + "_" +  tier.GetId();
     }
 
-    public static String GetResourcePath(MonsterShape shape, MonsterElement element, MonsterTier tier)
-    {
-        return "images/monsters/Animator_" + shape + "/" + element + "_" + tier.GetId();
-    }
-
     public UnnamedShape(MonsterShape shape, MonsterElement element, MonsterTier tier, float x, float y)
     {
         super(new MonsterData_Shape(shape, element, tier), tier == MonsterTier.Ultimate ? EnemyType.ELITE : EnemyType.NORMAL, x, y);

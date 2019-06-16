@@ -9,13 +9,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 
 import java.util.ArrayList;
 
 public class TetAction extends AnimatorAction
 {
-    private static final String[] TEXT = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.SpecialEffects).TEXT;
+    private static final String[] TEXT = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.SpecialEffects).TEXT;
 
     private final ArrayList<AbstractCard> drawPileSelectedCards = new ArrayList<>();
     private final ArrayList<AbstractCard> discardPileSelectedCards = new ArrayList<>();

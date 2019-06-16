@@ -3,7 +3,7 @@ package eatyourbeets.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.Utilities;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class Synergies
 {
-    private final static UIStrings uiStrings = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Synergies);
+    private final static UIStrings uiStrings = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Synergies);
     private final static HashMap<Integer, Synergy> All = new HashMap<>();
 
     public final static Synergy ANY = CreateSynergy(0);

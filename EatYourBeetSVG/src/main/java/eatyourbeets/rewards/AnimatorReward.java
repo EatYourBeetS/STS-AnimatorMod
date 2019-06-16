@@ -2,7 +2,7 @@ package eatyourbeets.rewards;
 
 import basemod.abstracts.CustomReward;
 import com.badlogic.gdx.graphics.Texture;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 
 public abstract class AnimatorReward extends CustomReward
 {
@@ -13,7 +13,7 @@ public abstract class AnimatorReward extends CustomReward
 
     public AnimatorReward(String id, String text, RewardType type)
     {
-        super(new Texture(AnimatorResources.GetRewardImage(id)), text, type);
+        super(new Texture(Resources_Animator.GetRewardImage(id)), text, type);
     }
 
     public AnimatorReward(Texture rewardImage, String text, RewardType type)

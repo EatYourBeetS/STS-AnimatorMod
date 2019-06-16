@@ -69,7 +69,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.MONSTER_LIST_WHICH_ACTUALLY_WORKS.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -104,7 +104,7 @@ public class Shichika extends AnimatorCard
         {
             if (!transformed)
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "Alt"));
+                this.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
                 rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
@@ -116,7 +116,7 @@ public class Shichika extends AnimatorCard
         {
             if (transformed)
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID));
+                this.loadCardImage(Resources_Animator.GetCardImage(ID));
                 this.type = CardType.SKILL;
                 this.target = CardTarget.ENEMY;
                 rawDescription = cardStrings.DESCRIPTION;

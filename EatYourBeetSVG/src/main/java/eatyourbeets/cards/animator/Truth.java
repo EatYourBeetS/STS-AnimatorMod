@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class Truth extends AnimatorCard_UltraRare
 {
-    private static final String[] TEXT = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.Actions).TEXT;
+    private static final String[] TEXT = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Actions).TEXT;
 
     public static final String ID = CreateFullID(Truth.class.getSimpleName());
 

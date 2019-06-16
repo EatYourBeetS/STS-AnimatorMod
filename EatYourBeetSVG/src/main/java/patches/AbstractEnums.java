@@ -13,18 +13,27 @@ public class AbstractEnums
     {
         @SpireEnum
         public static PlayerClass THE_ANIMATOR;
+
+        @SpireEnum
+        public static PlayerClass THE_UNNAMED;
     }
 
     public static class Cards
     {
         @SpireEnum
         public static AbstractCard.CardColor THE_ANIMATOR;
+
+        @SpireEnum
+        public static AbstractCard.CardColor THE_UNNAMED;
     }
 
     public static class Library
     {
         @SpireEnum
         public static CardLibrary.LibraryType THE_ANIMATOR;
+
+        @SpireEnum
+        public static CardLibrary.LibraryType THE_UNNAMED;
     }
 
     public static class Screens
@@ -48,7 +57,7 @@ public class AbstractEnums
         //public static AbstractCard.CardTags SHAPESHIFTER;
 
         @SpireEnum
-        public static AbstractCard.CardTags OBTAINABLE_ONCE;
+        public static AbstractCard.CardTags UNOBTAINABLE;
 
         @SpireEnum
         public static AbstractCard.CardTags UNIQUE;

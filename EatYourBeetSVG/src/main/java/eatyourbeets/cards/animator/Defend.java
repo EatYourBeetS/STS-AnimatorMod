@@ -1,11 +1,9 @@
 package eatyourbeets.cards.animator;
 
 import basemod.helpers.BaseModCardTags;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.utilities.GameActionsHelper;
 import patches.AbstractEnums;
@@ -16,7 +14,7 @@ public class Defend extends AnimatorCard
 
     public Defend(String id, int cost, CardTarget target)
     {
-        super(AnimatorResources.GetCardStrings(id), id, AnimatorResources.GetCardImage(ID + "Alt"), cost, CardType.SKILL, CardColor.COLORLESS,
+        super(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(ID + "Alt"), cost, CardType.SKILL, CardColor.COLORLESS,
                 CardRarity.BASIC, target);
 
         //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");

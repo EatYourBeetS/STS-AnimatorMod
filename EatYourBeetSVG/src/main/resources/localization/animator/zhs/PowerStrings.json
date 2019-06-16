@@ -122,7 +122,7 @@
 	},
 	"animator:UnnamedDollPower":
 	{
-		"DESCRIPTIONS": ["在播放不仅仅针对此角色的卡片时， 获得 #b", " 点 #y生命上限 。 NL NL 死亡时， 所有角色获得 #b", " #y力量 "],
+		"DESCRIPTIONS": ["每当打出一张不以该敌人为唯一目标的牌时， 获得 #b", " 点 #y生命上限 。 NL NL 死亡时， 所有角色获得 #b", " #y力量 "],
 		"NAME": "无名傀儡"
 	},
 	"animator:CursedStabsPower":
@@ -138,7 +138,7 @@
 		"NAME": "H4T",
 		"DESCRIPTIONS":
 		[
-			"每轮開始时, 所有盟友回复 #b", " 点生命值。 NL NL 死亡时， 將 #y缠身 應用於對手。"
+			"每回合开始时, 为所有友军回复 #b", " 点生命值。 NL NL 死亡时， 给与敌人 #y层 缠身。"
 		]
 	},
 	"animator:TheUnnamedCultistPower":
@@ -146,7 +146,7 @@
 		"NAME": "Unnamed Cultist",
 		"DESCRIPTIONS":
 		[
-			"场上还存在盟友时, 为每一名获得 #b", " 层 魔法护甲 。"
+			"场上还存在友军时, 为每一名获得 #b", " 层 魔法护甲 。"
 		]
 	},
 	"animator:UltimateCubePower":
@@ -228,7 +228,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"每轮结束时, 所有盟友回复 #b", " 点生命值."
+			"每轮结束时, 所有友军回复 #b", " 点生命值."
 		],
 		"NAME": "治愈之方"
 	},
@@ -253,7 +253,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"每轮结束时, 所有盟友获得 #b", " 层 #y多层护甲 ."
+			"每轮结束时, 所有友军获得 #b", " 层 #y多层护甲 ."
 		],
 		"NAME": "冰霜之方"
 	},
@@ -278,7 +278,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"每轮结束时, 所有盟友获得 #b", " 层 #y力量 和 #y燃烧 ."
+			"每轮结束时, 所有友军获得 #b", " 层 #y力量 和 #y燃烧 ."
 		],
 		"NAME": "火焰之方"
 	},

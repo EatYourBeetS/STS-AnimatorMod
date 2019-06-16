@@ -1,7 +1,7 @@
 package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.cards.animator.Sora;
 
 public abstract class SoraEffect
@@ -11,7 +11,7 @@ public abstract class SoraEffect
 
     protected SoraEffect(int descriptionIndex, int nameIndex)
     {
-        String[] text = AnimatorResources.GetUIStrings(AnimatorResources.UIStringType.SpecialEffects).TEXT;
+        String[] text = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.SpecialEffects).TEXT;
         this.typeIndex = nameIndex;
         sora = new Sora(this);
         sora.rawDescription = text[descriptionIndex];

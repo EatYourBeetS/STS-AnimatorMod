@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
-import eatyourbeets.AnimatorResources_Audio;
+import eatyourbeets.resources.Resources_Common;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.actions.common.SummonMonsterAction;
@@ -90,7 +90,7 @@ public class UltimateCrystal extends Crystal
             AbstractDungeon.effectList.add(new CallbackEffect(new WaitRealtimeAction(15),
                     (state, action)-> CardCrawlGame.music.unsilenceBGM(), this));
 
-            CardCrawlGame.sound.play(AnimatorResources_Audio.TheUltimateCrystal);
+            CardCrawlGame.sound.play(Resources_Common.Audio_TheUltimateCrystal);
             //CardCrawlGame.music.playTempBgmInstantly(AnimatorResources_Audio.TheUltimateCrystal, false);
         }
         else

@@ -13,28 +13,17 @@ public class Strike_Katanagatari extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(5,0);
+        Initialize(7, 0);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-
-        int cards = p.hand.size();
-        if (p.hand.contains(this))
-        {
-            cards -= 1;
-        }
-
-        if (cards < 3)
-        {
-            GameActionsHelper.GainEnergy(1);
-        }
+        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {

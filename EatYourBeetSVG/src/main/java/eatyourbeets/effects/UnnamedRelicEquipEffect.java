@@ -140,6 +140,11 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
             }
         }
 
+        for (AbstractCard c : p.masterDeck.group)
+        {
+            bonus += Math.min(c.timesUpgraded, 20) * 3;
+        }
+
         for (AbstractPotion potion : p.potions)
         {
             switch (potion.rarity)

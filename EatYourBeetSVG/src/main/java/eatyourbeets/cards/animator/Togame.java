@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.VariableExhaustAction;
@@ -41,10 +42,11 @@ public class Togame extends AnimatorCard
 
     private void OnExhaust(Object state, ArrayList<AbstractCard> cards)
     {
-        if (state == this && cards.size() == 0)
+        if (state == this && cards.size() > 0)
         {
-            GameActionsHelper.ExhaustCard(this);
-            GameActionsHelper.GainEnergy(1);
+            GameActionsHelper.DrawCard(AbstractDungeon.player, 1);
+            //GameActionsHelper.ExhaustCard(this);
+            //GameActionsHelper.GainEnergy(1);
         }
     }
 }

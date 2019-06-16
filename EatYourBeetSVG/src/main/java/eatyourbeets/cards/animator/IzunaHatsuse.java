@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -41,7 +41,7 @@ public class IzunaHatsuse extends AnimatorCard
         {
             if (!transformed)
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "Alt"));
+                this.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
                 this.type = CardType.ATTACK;
                 rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
                 initializeDescription();
@@ -52,7 +52,7 @@ public class IzunaHatsuse extends AnimatorCard
         {
             if (transformed)
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID));
+                this.loadCardImage(Resources_Animator.GetCardImage(ID));
                 this.type = CardType.SKILL;
                 rawDescription = cardStrings.DESCRIPTION;
                 initializeDescription();
@@ -67,7 +67,7 @@ public class IzunaHatsuse extends AnimatorCard
         IzunaHatsuse other = (IzunaHatsuse) super.makeSameInstanceOf();
         if (transformed)
         {
-            other.loadCardImage(AnimatorResources.GetCardImage(ID + "Alt"));
+            other.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
             other.type = CardType.ATTACK;
             other.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
             other.initializeDescription();

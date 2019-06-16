@@ -19,6 +19,20 @@ public class PlayCardFromPileAction extends AbstractGameAction
     private final boolean exhaustCards;
     private final boolean purgeCards;
 
+    private AbstractMonster target;
+
+    public PlayCardFromPileAction(AbstractCard card, CardGroup group, boolean exhausts, boolean purge, AbstractMonster target)
+    {
+        this.card = card;
+        this.group = group;
+        this.duration = Settings.ACTION_DUR_FAST;
+        this.actionType = ActionType.WAIT;
+        this.source = AbstractDungeon.player;
+        this.exhaustCards = exhausts;
+        this.purgeCards = purge;
+        this.target = target;
+    }
+
     public PlayCardFromPileAction(AbstractCard card, CardGroup group, boolean exhausts, boolean purge)
     {
         this.card = card;
@@ -28,6 +42,7 @@ public class PlayCardFromPileAction extends AbstractGameAction
         this.source = AbstractDungeon.player;
         this.exhaustCards = exhausts;
         this.purgeCards = purge;
+        this.target = null;
     }
 
     public void update()
@@ -56,9 +71,12 @@ public class PlayCardFromPileAction extends AbstractGameAction
                 card.drawScale = 0.12F;
                 card.targetDrawScale = 0.75F;
 
-                AbstractMonster enemy = PlayerStatistics.GetRandomEnemy(true);
+                if (target == null)
+                {
+                    target = PlayerStatistics.GetRandomEnemy(true);
+                }
 
-                if (!card.canUse(AbstractDungeon.player, enemy))
+                if (!card.canUse(AbstractDungeon.player, target))
                 {
                     if (this.purgeCards)
                     {
@@ -78,7 +96,7 @@ public class PlayCardFromPileAction extends AbstractGameAction
                 else
                 {
                     card.applyPowers();
-                    AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, enemy));
+                    AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, target));
                     AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
                     if (!Settings.FAST_MODE)
                     {

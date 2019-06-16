@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
-import eatyourbeets.AnimatorResources;
+import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.Field;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.actions.animator.AnimatorAction;
@@ -38,7 +38,7 @@ public abstract class AnimatorEvent extends AbstractImageEvent
     {
         super("NAME", "BODY", "images/events/" + imageUrl);
 
-        this.eventStrings = AnimatorResources.GetEventStrings(id);
+        this.eventStrings = Resources_Animator.GetEventStrings(id);
         NAME = eventStrings.NAME;
         OPTIONS = eventStrings.OPTIONS;
         DESCRIPTIONS = eventStrings.DESCRIPTIONS;

@@ -13,17 +13,28 @@ public class Strike_Fate extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(7,0);
+        Initialize(6, 0);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+
+        int cards = p.hand.size();
+        if (p.hand.contains(this))
+        {
+            cards -= 1;
+        }
+
+        if (cards < 3)
+        {
+            GameActionsHelper.GainEnergy(1);
+        }
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {

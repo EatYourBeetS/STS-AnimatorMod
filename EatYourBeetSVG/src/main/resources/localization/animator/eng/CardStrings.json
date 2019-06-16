@@ -49,9 +49,8 @@
 	},
 	"animator:Aqua":
 	{
-		"DESCRIPTION": "Heal !M! HP. Reduce this card's healing by !SV! this combat.",
-		"NAME": "Aqua",
-		"UPGRADE_DESCRIPTION": "Heal !M! HP. Reduce this card's healing by !SV! this combat."
+		"DESCRIPTION": "Heal !M! HP. NL Reduce this card's healing by !SV! this combat.",
+		"NAME": "Aqua"
 	},
 	"animator:Ara":
 	{
@@ -303,7 +302,7 @@
 	{
 		"DESCRIPTION": "[#EFC851]Ethereal. Gain !M! Temporary Focus. NL Gain !B! Block. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse.",
 		"NAME": "Alphonse Elric",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Ethereal. Gain !M! Temporary Focus. Gain !B! Block. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse+."
+		"UPGRADE_DESCRIPTION": "[#EFC851]Ethereal. Gain !M! Temporary Focus. NL Gain !B! Block. NL Legacy: Obtain [#EFC851]Armored [#EFC851]Alphonse+."
 	},
 	"animator:ElricAlphonseAlt":
 	{
@@ -324,7 +323,7 @@
 	},
 	"animator:EmiyaShirou":
 	{
-		"DESCRIPTION": "Give a random NL enemy !M! Block and 1 Vulnerable. [#EFC851]Unlimited [#EFC851]Blade [#EFC851]Works.",
+		"DESCRIPTION": "Give a random NL enemy !M! Block and 1 Vulnerable. When an enemy loses its Block this turn, gain [E] and draw a random [#EFC851]Attack[].",
 		"EXTENDED_DESCRIPTION": ["Unlimited Blade Works", "Whenever an enemy loses its block this turn, gain 1 #yEnergy and draw a random #yAttack from your draw pile."],
 		"NAME": "Emiya Shirou"
 	},
@@ -353,7 +352,7 @@
 	},
 	"animator:Eris":
 	{
-		"DESCRIPTION": "Resurrect. NL Heal !M! HP. NL Exhaust.",
+		"DESCRIPTION": "Heal !M! HP. NL Exhaust. NL Resurrect.",
 		"NAME": "Eris"
 	},
 	"animator:Eve":
@@ -368,7 +367,7 @@
 	},
 	"animator:Excalibur":
 	{
-		"DESCRIPTION": "Retain. Exhaust ALL other [#EFC851]Attacks in your hand and gain their damage. Deal !D! damage to ALL enemies.",
+		"DESCRIPTION": "Retain. NL Gain 1 Intangible. NL Deal !D! damage to ALL enemies. NL Exhaust.",
 		"NAME": "Excalibur"
 	},
 	"animator:FeridBathory":
@@ -402,7 +401,7 @@
 	},
 	"animator:Gilgamesh":
 	{
-		"DESCRIPTION": "[#EFC851]Unique. NL Deal !D! damage to an enemy 3 times. NL [#EFC851]Gate [#EFC851]of [#EFC851]Babylon.",
+		"DESCRIPTION": "[#EFC851]Unique. NL Deal !D! damage NL 3 times. NL [#EFC851]Gate [#EFC851]of [#EFC851]Babylon.",
 		"EXTENDED_DESCRIPTION": ["Gate of Babylon", "Whenever you obtain a relic, #yUpgrade this card and gain #b", " #yGold. Does not activate when purchasing relics or with some event relics.", "Unique", "Can be upgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead."],
 		"NAME": "Gilgamesh"
 	},
@@ -522,8 +521,9 @@
 	},
 	"animator:Illya":
 	{
-		"DESCRIPTION": "Draw your highest damage [#EFC851]Attack and increase its damage by !M! this combat. Synergy: Retain it.",
-		"NAME": "Illya"
+		"DESCRIPTION": "Gain 1 Vulnerable. NL Play the highest damage [#EFC851]Attack from your draw pile. Exhaust.",
+		"NAME": "Illya",
+		"UPGRADE_DESCRIPTION": "Gain 1 Vulnerable. NL Play the highest damage [#EFC851]Attack from your draw pile."
 	},
 	"animator:ItamiYouji":
 	{
@@ -555,7 +555,7 @@
 	},
 	"animator:Kazuma":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Synergy: Draw 1 card.",
+		"DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Synergy: NL Draw 1 card.",
 		"NAME": "Kazuma"
 	},
 	"animator:Kira":
@@ -810,8 +810,7 @@
 	"animator:Saber":
 	{
 		"DESCRIPTION": "Loyal. Deal !D! damage. If this Synergizes !M! times, Purge and obtain [#EFC851]Excalibur.",
-		"NAME": "Saber",
-		"UPGRADE_DESCRIPTION": "Loyal. Deal !D! damage. If this Synergizes !M! times, Purge and obtain [#EFC851]Excalibur+."
+		"NAME": "Saber"
 	},
 	"animator:Saitama":
 	{
@@ -884,7 +883,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "Draw 2 cards. NL Synergy: NL Gain !M! Temp._HP. NL [#EFC851]Drawn: Gain !B! Block.",
+		"DESCRIPTION": "Draw 1 card. Increase this card's Block by !M! this combat. [#EFC851]Drawn: Gain !B! Block twice.",
 		"NAME": "Shuna"
 	},
 	"animator:SilverFang":
@@ -941,7 +940,7 @@
 	},
 	"animator:Strike_Fate":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage.",
+		"DESCRIPTION": "Deal !D! damage. NL If you have less than 3 cards in hand, NL gain [E].",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_FullmetalAlchemist":
@@ -971,7 +970,7 @@
 	},
 	"animator:Strike_Katanagatari":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If you have less than 3 cards in hand, NL gain [E].",
+		"DESCRIPTION": "Deal !D! Piercing damage.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Konosuba":
@@ -1026,8 +1025,9 @@
 	},
 	"animator:Tet":
 	{
-		"DESCRIPTION": "Discard up to !M! cards from your draw pile. NL Draw 2 cards. NL Boost !SV! : gain [E].",
-		"NAME": "Tet"
+		"DESCRIPTION": "Discard up to 2 cards from your draw pile. NL Draw !M! cards.",
+		"NAME": "Tet",
+		"UPGRADE_DESCRIPTION": "Discard up to 2 cards from your draw pile. NL Draw !M! cards. NL Boost !SV! : gain [E]."
 	},
 	"animator:TheHaunt":
 	{
@@ -1051,7 +1051,7 @@
 	},
 	"animator:Togame":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL You may Exhaust a card, otherwise gain [E] and Exhaust.",
+		"DESCRIPTION": "Draw !M! cards. NL You may Exhaust a card to draw 1 additional card.",
 		"NAME": "Togame"
 	},
 	"animator:Truth":

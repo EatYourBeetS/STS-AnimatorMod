@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.AnimatorResources;
-import eatyourbeets.AnimatorResources_Images;
+import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.powers.PlayerStatistics;
 import org.apache.commons.lang3.StringUtils;
@@ -30,7 +30,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class AnimatorCard extends CustomCard
+public abstract class AnimatorCard extends EYBCard
 {
     protected static final Logger logger = LogManager.getLogger(AnimatorCard.class.getName());
     //private static final Color SYNERGY_COLOR = new Color(0.565f, 0.933f, 0.565f, 1);
@@ -41,19 +41,13 @@ public abstract class AnimatorCard extends CustomCard
     private static AnimatorCard previousCard = null;
     private static AnimatorCard lastCardPlayed = null;
 
-    private String upgradedDescription = null;
     private final List<TooltipInfo> customTooltips = new ArrayList<>();
     private Synergy synergy;
     private boolean lastHovered = false;
 
-    protected final CardStrings cardStrings;
     protected final Color RENDER_COLOR = Color.WHITE.cpy();
 
     public boolean anySynergy;
-    public boolean isSecondaryValueModified = false;
-    public boolean upgradedSecondaryValue = false;
-    public int baseSecondaryValue = 0;
-    public int secondaryValue = 0;
 
     public static String CreateFullID(String cardID)
     {
@@ -114,17 +108,6 @@ public abstract class AnimatorCard extends CustomCard
     public Synergy GetSynergy()
     {
         return synergy;
-    }
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips()
-    {
-        if (isLocked || !isSeen || isFlipped)
-        {
-            return super.getCustomTooltips();
-        }
-
-        return customTooltips;
     }
 
     @Override
@@ -209,83 +192,6 @@ public abstract class AnimatorCard extends CustomCard
         }
     }
 
-    @Override
-    public AbstractCard makeCopy()
-    {
-        try
-        {
-            return getClass().getConstructor().newInstance();
-        }
-        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
-        {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    @Override
-    public AbstractCard makeStatEquivalentCopy()
-    {
-        AbstractCard result = super.makeStatEquivalentCopy();
-        AnimatorCard copy = Utilities.SafeCast(result, AnimatorCard.class);
-        if (copy != null)
-        {
-            copy.magicNumber = this.magicNumber;
-            copy.isMagicNumberModified = this.isMagicNumberModified;
-
-            copy.secondaryValue = this.secondaryValue;
-            copy.baseSecondaryValue = this.baseSecondaryValue;
-            copy.isSecondaryValueModified = this.isSecondaryValueModified;
-        }
-
-        return result;
-    }
-
-    public void Initialize(int baseDamage, int baseBlock)
-    {
-        Initialize(baseDamage, baseBlock, -1);
-    }
-
-    public void Initialize(int baseDamage, int baseBlock, int baseMagicNumber)
-    {
-        this.baseDamage = baseDamage;
-        this.baseBlock = baseBlock;
-        this.baseMagicNumber = this.magicNumber = baseMagicNumber;
-    }
-
-    public void Initialize(int baseDamage, int baseBlock, int baseMagicNumber, int baseSecondaryValue)
-    {
-        Initialize(baseDamage, baseBlock, baseMagicNumber);
-
-        this.baseSecondaryValue = this.secondaryValue = baseSecondaryValue;
-    }
-
-    public Boolean TryUpgrade()
-    {
-        if (!this.upgraded)
-        {
-            upgradeName();
-
-            if (StringUtils.isNotEmpty(upgradedDescription))
-            {
-                this.rawDescription = upgradedDescription;
-                this.initializeDescription();
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    protected void upgradeSecondaryValue(int amount)
-    {
-        this.baseSecondaryValue += amount;
-        this.secondaryValue = this.baseSecondaryValue;
-        this.upgradedSecondaryValue = true;
-    }
-
     public void SetSynergy(Synergy synergy)
     {
         SetSynergy(synergy, false);
@@ -297,58 +203,27 @@ public abstract class AnimatorCard extends CustomCard
         this.anySynergy = shapeshifter;
     }
 
-    protected void AddExtendedDescription(Object param)
-    {
-        String[] info = this.cardStrings.EXTENDED_DESCRIPTION;
-        AddTooltip(new TooltipInfo(info[0], info[1] + param + info[2]));
-    }
-
-    protected void AddExtendedDescription(int headerIndex, int contentIndex)
-    {
-        String[] info = this.cardStrings.EXTENDED_DESCRIPTION;
-        if (info != null && info.length >= 2 && info[headerIndex].length() > 0)
-        {
-            AddTooltip(new TooltipInfo(info[headerIndex], info[contentIndex]));
-        }
-    }
-
-    protected void AddExtendedDescription()
-    {
-        AddExtendedDescription(0, 1);
-    }
-
-    protected void AddTooltip(TooltipInfo tooltip)
-    {
-        customTooltips.add(tooltip);
-    }
-
     protected AnimatorCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
-        this(AnimatorResources.GetCardStrings(id), id, AnimatorResources.GetCardImage(id), cost, type, AbstractEnums.Cards.THE_ANIMATOR, rarity, target);
+        this(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(id), cost, type, AbstractEnums.Cards.THE_ANIMATOR, rarity, target);
     }
 
     protected AnimatorCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        this(AnimatorResources.GetCardStrings(id), id, AnimatorResources.GetCardImage(id), cost, type, color, rarity, target);
+        this(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(id), cost, type, color, rarity, target);
     }
 
     protected AnimatorCard(CardStrings strings, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        super(id, strings.NAME, imagePath, cost, strings.DESCRIPTION, type, color, rarity, target);
+        super(strings, id, imagePath, cost, type, color, rarity, target);
 
         if (this instanceof AnimatorCard_UltraRare)
         {
-            setBannerTexture(AnimatorResources_Images.BANNER_SPECIAL2_PNG, AnimatorResources_Images.BANNER_SPECIAL2_P_PNG);
+            setBannerTexture(Resources_Animator_Images.BANNER_SPECIAL2_PNG, Resources_Animator_Images.BANNER_SPECIAL2_P_PNG);
         }
         else if (rarity == CardRarity.SPECIAL)
         {
-            setBannerTexture(AnimatorResources_Images.BANNER_SPECIAL_PNG, AnimatorResources_Images.BANNER_SPECIAL_P_PNG);
-        }
-
-        cardStrings = strings;
-        if (StringUtils.isNotEmpty(strings.UPGRADE_DESCRIPTION))
-        {
-            this.upgradedDescription = strings.UPGRADE_DESCRIPTION;
+            setBannerTexture(Resources_Animator_Images.BANNER_SPECIAL_PNG, Resources_Animator_Images.BANNER_SPECIAL_P_PNG);
         }
     }
 
@@ -380,7 +255,7 @@ public abstract class AnimatorCard extends CustomCard
                 return;
 
             case SPECIAL:
-                this.renderHelper(sb, RENDER_COLOR, AnimatorResources_Images.CARD_FRAME_ATTACK_SPECIAL, x, y);
+                this.renderHelper(sb, RENDER_COLOR, Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
@@ -404,7 +279,7 @@ public abstract class AnimatorCard extends CustomCard
                 return;
 
             case SPECIAL:
-                this.renderHelper(sb, RENDER_COLOR, AnimatorResources_Images.CARD_FRAME_SKILL_SPECIAL, x, y);
+                this.renderHelper(sb, RENDER_COLOR, Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
@@ -428,7 +303,7 @@ public abstract class AnimatorCard extends CustomCard
                 break;
 
             case SPECIAL:
-                this.renderHelper(sb, RENDER_COLOR, AnimatorResources_Images.CARD_FRAME_POWER_SPECIAL, x, y);
+                this.renderHelper(sb, RENDER_COLOR, Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:

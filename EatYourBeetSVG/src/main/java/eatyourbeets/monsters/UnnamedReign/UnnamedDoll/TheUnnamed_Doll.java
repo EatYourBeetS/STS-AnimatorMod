@@ -144,8 +144,8 @@ public class TheUnnamed_Doll extends AnimatorMonster
                 maxHealth = 189;
             }
 
-            atlasUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedMinion.atlas";
-            jsonUrl = "images/monsters/Animator_TheUnnamed/TheUnnamedMinion.json";
+            atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamedMinion.atlas";
+            jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamedMinion.json";
             scale = 2;
 
             SetHB(0,-20,120,140, 0, 60);

@@ -2,6 +2,7 @@ package eatyourbeets.variables;
 
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.cards.EYBCard;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 
@@ -15,7 +16,7 @@ public class SecondaryValueVariable extends DynamicVariable
 
     public boolean isModified(AbstractCard card)
     {
-        AnimatorCard c = Utilities.SafeCast(card, AnimatorCard.class);
+        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             return c.isSecondaryValueModified;
@@ -26,7 +27,7 @@ public class SecondaryValueVariable extends DynamicVariable
 
     public void setIsModified(AbstractCard card, boolean v)
     {
-        AnimatorCard c = Utilities.SafeCast(card, AnimatorCard.class);
+        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             c.isSecondaryValueModified = v;
@@ -35,7 +36,7 @@ public class SecondaryValueVariable extends DynamicVariable
 
     public int value(AbstractCard card)
     {
-        AnimatorCard c = Utilities.SafeCast(card, AnimatorCard.class);
+        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             return c.secondaryValue;
@@ -46,7 +47,7 @@ public class SecondaryValueVariable extends DynamicVariable
 
     public int baseValue(AbstractCard card)
     {
-        AnimatorCard c = Utilities.SafeCast(card, AnimatorCard.class);
+        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             return c.baseSecondaryValue;
@@ -57,7 +58,7 @@ public class SecondaryValueVariable extends DynamicVariable
 
     public boolean upgraded(AbstractCard card)
     {
-        AnimatorCard c = Utilities.SafeCast(card, AnimatorCard.class);
+        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             return c.upgradedSecondaryValue;

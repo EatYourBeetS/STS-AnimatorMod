@@ -1,13 +1,13 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.DrawSpecificCardAction;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import eatyourbeets.actions.common.PlayCardFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Illya extends AnimatorCard
 {
@@ -15,9 +15,11 @@ public class Illya extends AnimatorCard
 
     public Illya()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(0,0,5);
+        Initialize(0,0);
+
+        this.exhaust = true;
 
         SetSynergy(Synergies.Fate);
     }
@@ -25,27 +27,26 @@ public class Illya extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        GameActionsHelper.ApplyPower(p, p, new VulnerablePower(p, 1, false), 1);
+
         AbstractCard bestCard = null;
-        int bestDamage = Integer.MIN_VALUE;
+        int maxDamage = Integer.MIN_VALUE;
         for (AbstractCard c : p.drawPile.group)
         {
-            if (c.type == CardType.ATTACK && c.baseDamage > bestDamage)
+            if (c.type == CardType.ATTACK && c.cardPlayable(m))
             {
-                //logger.info(c.name + ", Damage: " + c.baseDamage+ ", Best Damage: " + bestDamage);
-                bestDamage = c.baseDamage;
-                bestCard = c;
+                c.calculateCardDamage(m);
+                if (c.damage > maxDamage)
+                {
+                    maxDamage = c.damage;
+                    bestCard = c;
+                }
             }
         }
 
         if (bestCard != null)
         {
-            GameActionsHelper.AddToTop(new ModifyDamageAction(bestCard.uuid, this.magicNumber));
-            GameActionsHelper.AddToTop(new DrawSpecificCardAction(bestCard));
-
-            if (HasActiveSynergy())
-            {
-                bestCard.retain = true;
-            }
+            GameActionsHelper.AddToTop(new PlayCardFromPileAction(bestCard, p.drawPile, false, false, m));
         }
     }
 
@@ -54,7 +55,7 @@ public class Illya extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(3);
+            this.exhaust = false;
         }
     }
 }

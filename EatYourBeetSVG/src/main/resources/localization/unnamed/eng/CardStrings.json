@@ -1,0 +1,81 @@
+
+{
+	"unnamed:Strike_Unnamed":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Lose !M! HP",
+		"NAME": "Strike"
+	},
+	"unnamed:Defend_Unnamed":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Lose !M! HP",
+		"NAME": "Defend"
+	},
+	"unnamed:SoulTap":
+	{
+		"DESCRIPTION": "Lose 2 Max HP. NL Draw !SV! cards. NL Gain !M! Strength.",
+		"NAME": "Soul Tap"
+	},
+	"unnamed:Overpower":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Exhaust the top 3 cards of your draw pile.",
+		"NAME": "Overpower"
+	},
+	"unnamed:DarknessEnshroud":
+	{
+		"DESCRIPTION": "Gain !M! Ench._Armor for each Dark orb. NL Exhaust.",
+		"NAME": "Darkness Enshroud",
+		"UPGRADE_DESCRIPTION": "Retain. NL Gain !M! Ench._Armor for each Dark orb. NL Exhaust."
+	},
+	"unnamed:Attunement":
+	{
+		"DESCRIPTION": "Gain !M! Orb Slots. NL Channel 1 Dark.",
+		"NAME": "Attunement"
+	},
+	"unnamed:Refinement":
+	{
+		"DESCRIPTION": "Draw 1 card. NL Lose ALL Strength. NL Gain that much Focus.",
+		"NAME": "Refinement"
+	},
+	"unnamed:Hellfire":
+	{
+		"DESCRIPTION": "All characters gain !M! Strength and !SV! Burning.",
+		"NAME": "Hellfire"
+	},
+	"unnamed:Miasma":
+	{
+		"DESCRIPTION": "Lose !M! HP. NL Apply !SV! Poison and Weak to ALL enemies.",
+		"NAME": "Miasma"
+	},
+	"unnamed:Visions":
+	{
+		"DESCRIPTION": "Draw !M! cards. NL All cards are Ethereal this turn. Exhaust.",
+		"NAME": "Visions"
+	},
+	"unnamed:UnnamedDoll":
+	{
+		"DESCRIPTION": "Gain X+2 Max HP. NL Fleeting.",
+		"NAME": "Unnamed Doll"
+	},
+	"unnamed:Respite":
+	{
+		"DESCRIPTION": "Draw 1 card. NL Gain !M! Temp._HP. NL Exhaust. Startup: NL Gain !SV! Max HP.",
+		"NAME": "Respite"
+	},
+	"unnamed:Cataclysm":
+	{
+		"DESCRIPTION": "Lose !SV! Max HP. NL Deal !D! damage to ALL enemies !M! times.",
+		"NAME": "Cataclysm"
+	},
+	"unnamed:DarkBomb":
+	{
+		"DESCRIPTION": "Channel !M! Dark. NL Deal !D! damage to ALL characters.",
+		"NAME": "Dark Bomb",
+		"UPGRADE_DESCRIPTION": "Innate. NL Channel !M! Dark. NL Deal !D! damage to ALL characters."
+	},
+	"unnamed:Reaper":
+	{
+		"DESCRIPTION": "Kill ALL enemies with less than !SV! HP ([#EFC851]*[]). Gain !M! Max HP for each enemy killed. Exhaust.",
+		"EXTENDED_DESCRIPTION": ["* Note", "This number is affected by Strength 4 times."],
+		"NAME": "Reaper"
+	}
+}

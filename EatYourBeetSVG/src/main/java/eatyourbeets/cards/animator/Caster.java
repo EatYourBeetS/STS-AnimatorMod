@@ -17,7 +17,7 @@ public class Caster extends AnimatorCard_Boost
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0,0, 1);
+        Initialize(0,0, 2);
 
         SetSynergy(Synergies.Fate);
     }
@@ -27,7 +27,7 @@ public class Caster extends AnimatorCard_Boost
     {
         super.applyPowers();
 
-        if (this.secondaryValue > 0)
+        if (GetCurrentBoost() > 0)
         {
             this.target = CardTarget.SELF_AND_ENEMY;
         }
@@ -54,13 +54,13 @@ public class Caster extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeSecondaryValue(1);
         }
     }
 
     @Override
     protected int GetBaseBoost()
     {
-        return 2;
+        return upgraded ? 2 : 1;
     }
 }

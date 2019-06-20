@@ -13,7 +13,7 @@ public class Guren extends AnimatorCard
 
     public Guren()
     {
-        super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
+        super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY);
 
         Initialize(0, 0,3);
 
@@ -23,9 +23,9 @@ public class Guren extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToBottom(new GurenAction(null, this.magicNumber));
-        GameActionsHelper.AddToBottom(new GurenAction(null, this.magicNumber));
-        GameActionsHelper.AddToBottom(new GurenAction(null, this.magicNumber));
+        GameActionsHelper.AddToTop(new GurenAction(m, this.magicNumber));
+        GameActionsHelper.AddToTop(new GurenAction(m, this.magicNumber));
+        GameActionsHelper.AddToTop(new GurenAction(m, this.magicNumber));
     }
 
     @Override

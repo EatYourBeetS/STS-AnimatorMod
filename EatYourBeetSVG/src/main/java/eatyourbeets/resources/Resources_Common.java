@@ -23,7 +23,7 @@ public class Resources_Common extends AbstractResources
     public static final String Audio_TheHaunt = "ANIMATOR_THE_HAUNT.ogg";
     public static final String Audio_TheUnnamed = "ANIMATOR_THE_UNNAMED.ogg";
     public static final String Audio_TheCreature = "ANIMATOR_THE_CREATURE.ogg";
-    public static final String Audio_TheUltimateCrystal = "ANIMATOR_THE_ULTIMATE_CRYSTAL.ogg";
+    public static final String Audio_TheUltimateCrystal = "ANIMATOR_THE_ULTIMATE_CRYSTAL";
 
     @Override
     protected void InitializeEvents()
@@ -45,11 +45,11 @@ public class Resources_Common extends AbstractResources
         BaseMod.addAudio("ANIMATOR_KIRA_POWER", "audio/sound/ANIMATOR_KIRA_POWER.ogg");
         BaseMod.addAudio("ANIMATOR_MEGUMIN_CHARGE", "audio/sound/ANIMATOR_MEGUMIN_CHARGE.ogg");
         //BaseMod.addAudio("ANIMATOR_EMONZAEMON_ATTACK", "audio/sound/ANIMATOR_EMONZAEMON_ATTACK.ogg");
+        BaseMod.addAudio(Audio_TheUltimateCrystal, "audio/sound/ANIMATOR_THE_ULTIMATE_CRYSTAL.ogg");
 
         BaseMod.addAudio(Audio_TheHaunt, "audio/music/ANIMATOR_THE_HAUNT.ogg");
         BaseMod.addAudio(Audio_TheUnnamed, "audio/music/ANIMATOR_THE_UNNAMED.ogg");
         BaseMod.addAudio(Audio_TheCreature, "audio/music/ANIMATOR_THE_CREATURE.ogg");
-        BaseMod.addAudio(Audio_TheUltimateCrystal, "audio/sound/ANIMATOR_THE_ULTIMATE_CRYSTAL.ogg");
     }
 
     @Override

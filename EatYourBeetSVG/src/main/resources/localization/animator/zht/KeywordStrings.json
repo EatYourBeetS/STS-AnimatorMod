@@ -203,5 +203,10 @@
 		"DESCRIPTION": "下回合開始時格擋不會消失 。",
 		"NAMES": ["殘影"],
 		"PROPERNAME": "殘影"
+	},
+	{
+		"PROPER_NAME": "激勵 <N>",
+		"NAMES": ["激勵"],
+		"DESCRIPTION": "隨機從手牌裡一張牌的能量消耗減1。 重複 <N> 次。"
 	}
 ]

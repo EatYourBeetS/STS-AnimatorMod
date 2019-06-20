@@ -1,13 +1,15 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Plasma;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Cooldown;
+import com.megacrit.cardcrawl.orbs.Frost;
+import eatyourbeets.actions.common.ModifyBlockActionWhichActuallyWorks;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
-public class Chung extends AnimatorCard_Cooldown
+public class Chung extends AnimatorCard
 {
     public static final String ID = CreateFullID(Chung.class.getSimpleName());
 
@@ -15,28 +17,29 @@ public class Chung extends AnimatorCard_Cooldown
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(0, 8);
-
-        this.baseSecondaryValue = this.secondaryValue = 2;
+        Initialize(0, 12, 3);
 
         SetSynergy(Synergies.Elsword);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void triggerOnExhaust()
     {
-        GameActionsHelper.GainBlock(p, this.block);
+        super.triggerOnExhaust();
 
-        if (ProgressCooldown())
-        {
-            OnCooldownCompleted(p, m);
-        }
+        GameActionsHelper.ChannelOrb(new Frost(), true);
+        GameActionsHelper.ChannelOrb(new Frost(), true);
     }
 
     @Override
-    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ChannelOrb(new Plasma(), true);
+        if (this.block > 0)
+        {
+            GameActionsHelper.GainBlock(p, this.block);
+        }
+
+        GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, -magicNumber));
     }
 
     @Override
@@ -44,13 +47,8 @@ public class Chung extends AnimatorCard_Cooldown
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(-1);
+            upgradeBlock(1);
+            upgradeMagicNumber(-1);
         }
-    }
-
-    @Override
-    protected int GetBaseCooldown()
-    {
-        return upgraded ? 1 : 2;
     }
 }

@@ -212,7 +212,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         }
         else if (card instanceof HigakiRinne)
         {
-            if (!linesUsed.contains(21) && owner.currentHealth > 500 && ((TheUnnamed)owner).minionsCount > 0)
+            if (!linesUsed.contains(21) && owner.currentHealth > 500 && !((TheUnnamed)owner).phase2)
             {
                 GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[21], 2.5f, 2.5f));
                 GameActionsHelper.Callback(new WaitRealtimeAction(2.5f), this::Rinne, card);
@@ -260,7 +260,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
     private void Talk(int line, float duration)
     {
-        if (!linesUsed.contains(line) && owner.currentHealth > 500 && ((TheUnnamed)owner).minionsCount > 0)
+        if (!linesUsed.contains(line) && !((TheUnnamed)owner).phase2)
         {
             GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[line], duration, duration));
 

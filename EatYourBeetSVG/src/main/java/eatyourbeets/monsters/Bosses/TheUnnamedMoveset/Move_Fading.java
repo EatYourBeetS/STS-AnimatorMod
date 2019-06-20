@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
+import eatyourbeets.actions.animator.PlayTempBgmAction;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
@@ -13,11 +14,14 @@ import eatyourbeets.powers.animator.FadingPlayerPower;
 
 public class Move_Fading extends AbstractMove
 {
+    private boolean firstTime;
+
     public int fadingTurns;
 
     public Move_Fading(int turns)
     {
         fadingTurns = turns;
+        firstTime = true;
     }
 
     @Override
@@ -52,6 +56,12 @@ public class Move_Fading extends AbstractMove
         if (owner instanceof TheUnnamed)
         {
             ((TheUnnamed) owner).appliedFading = true;
+        }
+
+        if (firstTime)
+        {
+            GameActionsHelper.AddToBottom(new PlayTempBgmAction("MINDBLOOM", 1));
+            firstTime = false;
         }
     }
 }

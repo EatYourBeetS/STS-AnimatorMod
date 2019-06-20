@@ -11,7 +11,7 @@ public class OrbCore_Lightning extends AnimatorCard
 {
     public static final String ID = CreateFullID(OrbCore_Lightning.class.getSimpleName());
 
-    public static final int VALUE = 9;
+    public static final int VALUE = 11;
 
     public OrbCore_Lightning()
     {

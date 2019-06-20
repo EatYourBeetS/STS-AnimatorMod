@@ -21,7 +21,7 @@ public class Excalibur extends AnimatorCard
 
     public Excalibur()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super(ID, 3, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
 
         Initialize(60,0);
 

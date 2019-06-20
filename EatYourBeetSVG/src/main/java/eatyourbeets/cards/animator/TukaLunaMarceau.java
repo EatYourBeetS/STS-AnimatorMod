@@ -1,14 +1,14 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
+import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class TukaLunaMarceau extends AnimatorCard
 {
@@ -18,7 +18,7 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0, 3, 2);
+        Initialize(0, 2, 1);
 
         SetSynergy(Synergies.Gate);
     }
@@ -27,21 +27,14 @@ public class TukaLunaMarceau extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, block), block);
 
-        RandomizedList<AbstractCard> cards = new RandomizedList<>();
-        for (AbstractCard c : p.hand.group)
+        if (HasActiveSynergy())
         {
-            if (c != this && c.baseBlock > 0)
+            if (PlayerStatistics.getSynergiesThisTurn() == 0)
             {
-                cards.Add(c);
+                GameActionsHelper.RandomCostReduction(magicNumber, 1, false);
             }
-        }
-
-        if (cards.Count() > 0)
-        {
-            AbstractCard toBuff = cards.Retrieve(AbstractDungeon.miscRng);
-            GameActionsHelper.AddToTop(new ModifyBlockAction(toBuff.uuid, this.magicNumber));
-            toBuff.superFlash();
         }
     }
 
@@ -50,7 +43,7 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
+            upgradeBlock(1);
         }
     }
 }

@@ -13,9 +13,9 @@ public class Kaijin extends AnimatorCard
 
     public Kaijin()
     {
-        super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 2, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0, 2);
+        Initialize(0,0, 1);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -29,10 +29,9 @@ public class Kaijin extends AnimatorCard
     @Override
     public void upgrade()
     {
-        if (!this.upgraded)
+        if (TryUpgrade())
         {
-            upgradeName();
-            upgradeBaseCost(0);
+            upgradeBaseCost(1);
         }
     }
 }

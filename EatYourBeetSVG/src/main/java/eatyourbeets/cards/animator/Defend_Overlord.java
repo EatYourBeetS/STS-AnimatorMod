@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.ModifyBlockActionWhichActuallyWorks;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend_Overlord extends Defend
@@ -20,7 +21,7 @@ public class Defend_Overlord extends Defend
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.AddToBottom(new ModifyBlockAction(this.uuid, this.magicNumber));
+        GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, this.magicNumber));
     }
 
     @Override

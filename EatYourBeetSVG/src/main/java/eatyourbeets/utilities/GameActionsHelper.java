@@ -155,6 +155,21 @@ public class GameActionsHelper
         return action;
     }
 
+    public static void RandomCostReduction(int times, int amount, boolean permanent)
+    {
+        for (int i = 0; i < times; i++)
+        {
+            AddToDefault(new RandomCostReductionAction(amount, permanent));
+        }
+    }
+
+    public static RandomCostReductionAction RandomCostReduction(int amount, boolean permanent)
+    {
+        RandomCostReductionAction action = new RandomCostReductionAction(amount, permanent);
+        AddToDefault(action);
+        return action;
+    }
+
     public static GainBlockAction GainBlock(AbstractCreature source, int amount)
     {
         GainBlockAction action = new GainBlockAction(source, source, amount);
@@ -214,6 +229,13 @@ public class GameActionsHelper
     public static DamageAllEnemiesAction DamageAllEnemies(AbstractCreature source, int[] amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
         DamageAllEnemiesAction action = new DamageAllEnemiesAction(source, amount, damageType, effect);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static DamageRandomEnemy2Action DamageRandomEnemyWhichActuallyWorks(AbstractCreature source, AbstractCard card, AbstractGameAction.AttackEffect effect)
+    {
+        DamageRandomEnemy2Action action = new DamageRandomEnemy2Action(new DamageInfo(source, card.baseDamage, card.damageTypeForTurn), effect);
         AddToDefault(action);
         return action;
     }

@@ -19,7 +19,8 @@
 	"animator:Add":
 	{
 		"DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte dans votre pioche. Remplacez-la par un Noyau_d'orbe. NL Éthérée. Épuisement.",
-		"NAME": "Add"
+		"NAME": "Add",
+		"UPGRADE_DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte dans votre pioche. Remplacez-la par un Noyau_d'orbe. NL Épuisement."
 	},
 	"animator:Ain":
 	{
@@ -85,7 +86,7 @@
 	},
 	"animator:Benimaru":
 	{
-		"DESCRIPTION": "Canalisez 1 Orbe Incendiaire. NL Infligez !D! dégât(s) à TOUS les ennemis. Synergie: Appliquez !M! Brûlure.",
+		"DESCRIPTION": "Canalisez 1 Orbe Incendiaire. NL Infligez !D! dégât(s) à TOUS les ennemis. Gagnez !M! Temp._PV. pour chaque enemie avec Brûlure",
 		"NAME": "Benimaru"
 	},
 	"animator:Berserker":
@@ -110,7 +111,7 @@
 	},
 	"animator:Bozes":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à l'ennemi avec le moins de PV. Piochez !M! carte(s). Quand vous effectuez une Synergie ce tour, gagnez !SV! d'Armure.",
+		"DESCRIPTION": "Infligez !D! dégât(s). Chaque fois que vous synergisez ce tour, gagnez !SV! d'Armure_Plaquée. Motiver de !M!. Épuisement.",
 		"NAME": "Bozes"
 	},
 	"animator:Caster":
@@ -137,7 +138,7 @@
 	},
 	"animator:Chomusuke":
 	{
-		"DESCRIPTION": "Conservez. Gagnez [E] et piochez !M! carte(s) pour chaque carte Épuisé ce tour( !SV! ). Ne peut être utilisé qu'une fois par tour.",
+		"DESCRIPTION": "Conservez. Gagnez [E] et piochez !M! carte(s) pour chaque carte Épuisé ce tour ( !SV! ). Ne peut être utilisé qu'une fois par tour.",
 		"NAME": "Chomusuke"
 	},
 	"animator:Chris":
@@ -148,7 +149,7 @@
 	},
 	"animator:Chung":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Cooldown !SV! : NL Canalisez 1 Orbe Plasmique.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL L'Armure de cette carte est diminuée de !M! pour le combat. Héritage: Canalisez 2 Orbes Glaciaires.",
 		"NAME": "Chung"
 	},
 	"animator:Cocytus":
@@ -458,7 +459,7 @@
 	},
 	"animator:Guren":
 	{
-		"DESCRIPTION": "Jouez les 3 premières cartes de votre pioche. Épuisez TOUTES les [#EFC851]Attaques jouées et gagnez !M! de Dégât_de_Soutien pour chacune.",
+		"DESCRIPTION": "Jouez les 3 premières cartes de votre pioche. Épuisez TOUTES les [#EFC851]Attaques, [#EFC851]Malédictions et [#EFC851]Status jouées et gagnez !M! de Dégât_de_Soutien pour chacune.",
 		"NAME": "Guren"
 	},
 	"animator:Guy":
@@ -480,7 +481,7 @@
 	},
 	"animator:Hibiki":
 	{
-		"DESCRIPTION": "Infligez !D! dégâts !M! fois. Augmentez le nombre d'attaques de cette carte par 1 ce combat.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi aléatoire !M! fois. Augmentez le nombre d'attaques de cette carte par !SV! ce combat.",
 		"NAME": "Hibiki"
 	},
 	"animator:HigakiRinne":
@@ -547,9 +548,8 @@
 	},
 	"animator:Kaijin":
 	{
-		"DESCRIPTION": "A la fin de chaque tour, donne à une carte aléatoire de votre pioche !M! dégâts et d'Armure supplémentaires pour ce combat.",
-		"NAME": "Kaijin",
-		"UPGRADE_DESCRIPTION": "Inné. A la fin de chaque tour, donne à une carte aléatoire de votre pioche !M! dégâts et d'Armure supplémentaires pour ce combat."
+		"DESCRIPTION": "Lorsque vous pigez une carte, augmentez sa quantité de dégâts et d'Armure par !M! pour ce combat.",
+		"NAME": "Kaijin"
 	},
 	"animator:Kazuma":
 	{
@@ -690,7 +690,7 @@
 	{
 		"DESCRIPTION": "Infligez !D! dégât(s). NL Épuisement. Cette carte retourne dans votre main dans un nombre aléatoire de tours.",
 		"NAME": "Mumen Rider",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Piochez 1 carte. Purge. Cette carte retourne dans votre main dans un nombre aléatoire de tours."
+		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Piochez 1 carte. Épuisement. Cette carte retourne dans votre main dans un nombre aléatoire de tours."
 	},
 	"animator:Nanami":
 	{
@@ -776,7 +776,7 @@
 	},
 	"animator:Rena":
 	{
-		"DESCRIPTION": "Gagnez !M! de Flou. NL Gagnez !B! d'Armure. NL Rappel et Synergie: Gagnez !B! d'Armure",
+		"DESCRIPTION": "Gagnez !M! de Flou. NL Gagnez !B! d'Armure. NL Rappel et Synergie: Au prochain tour, gagnez !B! d'Armure",
 		"NAME": "Rena"
 	},
 	"animator:Rimuru":
@@ -1060,13 +1060,14 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. Augmentez l'Armure d'une carte aléatoire dans votre main de !M! pour ce combat.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. Au prochain tour, gagnez !B! d'Armure. Si c'est la première synergie ce tour, Motiver de 1.",
 		"NAME": "Tuka"
 	},
 	"animator:Tyuule":
 	{
-		"DESCRIPTION": "Appliquez !M! Poison et 1 Vulnérabilité à TOUS les ennemis. NL Boost !SV! : Gagnez [E]",
-		"NAME": "Tyuule"
+		"DESCRIPTION": "Appliquez !M! Poison et 1 Vulnérabilité à TOUS les ennemis.",
+		"NAME": "Tyuule",
+		"UPGRADE_DESCRIPTION": "Appliquez !M! Poison et 1 Vulnérabilité à TOUS les ennemis. NL Boost !SV! : Gagnez [E]"
 	},
 	"animator:Urushihara":
 	{
@@ -1087,7 +1088,7 @@
 	},
 	"animator:Vesta":
 	{
-		"DESCRIPTION": "Recherchez un [#EFC851]Élixir, il sera complété dans !M! tours. Épuisement.",
+		"DESCRIPTION": "Piochez 1 carte. NL Recherchez un [#EFC851]Élixir, il sera complété dans !M! tours. Épuisement.",
 		"EXTENDED_DESCRIPTION": ["Élixir", "#yCompétence qui coûte 0 ayant des effets variés."],
 		"NAME": "Vesta"
 	},
@@ -1146,7 +1147,7 @@
 	},
 	"animator:Yusarin":
 	{
-		"DESCRIPTION": "Gagnez [E]. NL Piochez !M! carte(s). NL Épuisement.",
+		"DESCRIPTION": "Motiver de !SV!. NL Piochez !M! carte(s). NL Épuisement.",
 		"NAME": "Yusarin"
 	},
 	"animator:Yuuichirou":

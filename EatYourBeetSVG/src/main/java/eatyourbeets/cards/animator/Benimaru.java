@@ -2,7 +2,9 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -30,14 +32,14 @@ public class Benimaru extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
         GameActionsHelper.ChannelOrb(new Fire(), true);
+        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
 
-        if (HasActiveSynergy())
+        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
         {
-            for (AbstractMonster m1: PlayerStatistics.GetCurrentEnemies(true))
+            if (m1.hasPower(BurningPower.POWER_ID))
             {
-                GameActionsHelper.ApplyPower(p, m1, new BurningPower(m1, p, this.magicNumber), this.magicNumber);
+                GameActionsHelper.GainTemporaryHP(p, p, magicNumber);
             }
         }
     }
@@ -47,19 +49,8 @@ public class Benimaru extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(2);
+            upgradeMagicNumber(1);
         }
     }
-
-//    private void OnDamage(Object state, AbstractMonster monster)
-//    {
-//        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
-//        if (initialBlock != null && monster != null)
-//        {
-//            if (initialBlock > 0 && monster.currentBlock <= 0)
-//            {
-//                GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
-//            }
-//        }
-//    }
 }

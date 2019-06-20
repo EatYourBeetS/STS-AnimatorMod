@@ -28,6 +28,8 @@ public class Reaper extends UnnamedCard
 
         AddExtendedDescription();
 
+        this.tags.add(CardTags.HEALING);
+
         this.exhaust = true;
     }
 
@@ -36,7 +38,7 @@ public class Reaper extends UnnamedCard
     {
         super.applyPowers();
 
-        this.secondaryValue = this.baseSecondaryValue + PlayerStatistics.GetStrength(AbstractDungeon.player) * 4;
+        this.secondaryValue = this.baseSecondaryValue + PlayerStatistics.GetStrength(AbstractDungeon.player) * 3;
         this.isSecondaryValueModified = (this.secondaryValue != this.baseSecondaryValue);
     }
 

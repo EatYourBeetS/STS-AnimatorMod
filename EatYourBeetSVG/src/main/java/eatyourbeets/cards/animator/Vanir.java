@@ -18,7 +18,7 @@ public class Vanir extends AnimatorCard_Boost
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(7,0,4);
+        Initialize(7,0,6);
 
         AddExtendedDescription();
 

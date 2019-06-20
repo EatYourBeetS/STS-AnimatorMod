@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.RandomCostReductionAction;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -14,7 +15,7 @@ public class Yusarin extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 1, 1);
 
         this.exhaust = true;
 
@@ -24,7 +25,7 @@ public class Yusarin extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.GainEnergy(1);
+        GameActionsHelper.RandomCostReduction(1, false);
         GameActionsHelper.DrawCard(p, this.magicNumber);
     }
 

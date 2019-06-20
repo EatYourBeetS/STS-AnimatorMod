@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.monsters.Bosses.TheUnnamed;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -12,6 +14,9 @@ import eatyourbeets.cards.Synergies;
 public class Mitsurugi extends AnimatorCard
 {
     public static final String ID = CreateFullID(Mitsurugi.class.getSimpleName());
+
+    private AbstractMonster lastTargetEnemy = null;
+    private AbstractMonster targetEnemy = null;
 
     public Mitsurugi()
     {
@@ -23,42 +28,44 @@ public class Mitsurugi extends AnimatorCard
     }
 
     @Override
-    public void triggerOnExhaust()
+    public void calculateCardDamage(AbstractMonster mo)
     {
-        super.triggerOnExhaust();
-        AbstractPlayer player = AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(player, player, new StrengthPower(player, this.magicNumber), this.magicNumber);
+        super.calculateCardDamage(mo);
+
+        targetEnemy = mo;
     }
 
     @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    public void update()
     {
-        if (super.canUse(p, m))
-        {
-            if (m == null)
-            {
-                return true;
-            }
-            else if ((m.intent == AbstractMonster.Intent.ATTACK || m.intent == AbstractMonster.Intent.ATTACK_BUFF
-                    || m.intent == AbstractMonster.Intent.ATTACK_DEFEND || m.intent == AbstractMonster.Intent.ATTACK_DEBUFF))
-            {
-                return true;
-            }
-            else
-            {
-                this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
+        super.update();
 
-                return false;
-            }
+        if (lastTargetEnemy != targetEnemy)
+        {
+            updateCurrentEffect(targetEnemy);
+
+            lastTargetEnemy = targetEnemy;
         }
 
-        return false;
+        targetEnemy = null;
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        AbstractPlayer p = AbstractDungeon.player;
+        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        if (CanDealDamage(m))
+        {
+            GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        }
     }
 
     @Override
@@ -68,5 +75,25 @@ public class Mitsurugi extends AnimatorCard
         {
             upgradeDamage(5);
         }
+    }
+
+    private void updateCurrentEffect(AbstractMonster monster)
+    {
+        if (monster == null || CanDealDamage(monster))
+        {
+            rawDescription = cardStrings.DESCRIPTION;
+        }
+        else
+        {
+            rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+        }
+
+        initializeDescription();
+    }
+
+    private boolean CanDealDamage(AbstractMonster m)
+    {
+        return (m.intent == AbstractMonster.Intent.ATTACK_DEBUFF || m.intent == AbstractMonster.Intent.ATTACK_BUFF ||
+                m.intent == AbstractMonster.Intent.ATTACK_DEFEND || m.intent == AbstractMonster.Intent.ATTACK);
     }
 }

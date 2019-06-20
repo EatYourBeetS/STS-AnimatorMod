@@ -15,7 +15,7 @@ public class UnnamedDoll extends UnnamedCard
 
     public UnnamedDoll()
     {
-        super(ID, -2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, -1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0, 0, 0, 2);
 
@@ -31,8 +31,6 @@ public class UnnamedDoll extends UnnamedCard
         {
             this.energyOnUse = EnergyPanel.totalCount;
         }
-
-        this.purgeOnUse = true;
 
         int amount = energyOnUse + 2;
         if (!this.freeToPlayOnce)

@@ -3,6 +3,7 @@ package eatyourbeets.actions.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.utility.QueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -81,7 +82,15 @@ public class GurenAction extends AbstractGameAction
                     this.target = null;
                 }
 
-                if (skip || !card.canUse(AbstractDungeon.player, (AbstractMonster) this.target))
+                if (card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS)
+                {
+                    AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
+                    AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(card, AbstractDungeon.player.limbo));
+                    AbstractDungeon.actionManager.addToTop(new WaitRealtimeAction(0.4F));
+
+                    GameActionsHelper.ApplyPower(source, source, new SupportDamagePower(source, supportDamage), supportDamage);
+                }
+                else if (skip || !card.canUse(AbstractDungeon.player, (AbstractMonster) this.target))
                 {
                     AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
                     AbstractDungeon.actionManager.addToTop(new DiscardSpecificCardAction(card, AbstractDungeon.player.limbo));

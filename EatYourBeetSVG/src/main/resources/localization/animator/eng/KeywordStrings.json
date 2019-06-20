@@ -213,5 +213,10 @@
 		"PROPER_NAME": "Support Damage",
 		"NAMES": ["support damage", "support_damage"],
 		"DESCRIPTION": "Deal damage to the enemy with lowest HP at the end of each turn."
+	},
+	{
+		"PROPER_NAME": "Motivate <N>",
+		"NAMES": ["motivate"],
+		"DESCRIPTION": "Reduce the cost of a random card in your hand by 1 this turn. Repeated <N> times."
 	}
 ]

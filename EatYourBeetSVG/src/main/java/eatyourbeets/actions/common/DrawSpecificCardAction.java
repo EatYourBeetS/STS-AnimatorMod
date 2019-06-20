@@ -30,14 +30,18 @@ public class DrawSpecificCardAction extends AnimatorAction
         {
             if (this.player.drawPile.contains(card))
             {
-                this.player.hand.addToHand(card);
-                card.lighten(false);
-                card.triggerWhenDrawn();
-
                 this.player.drawPile.removeCard(card);
-                this.player.onCardDrawOrDiscard();
-                this.player.hand.refreshHandLayout();
-                this.player.hand.glowCheck();
+                this.player.drawPile.addToTop(card);
+                this.player.draw(1);
+
+//                card.triggerWhenDrawn();
+//                card.lighten(false);
+//                this.player.hand.addToHand(card);
+//
+//                this.player.drawPile.removeCard(card);
+//                this.player.onCardDrawOrDiscard();
+//                this.player.hand.refreshHandLayout();
+//                this.player.hand.glowCheck();
             }
         }
 

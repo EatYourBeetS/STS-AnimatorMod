@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.ModifyBlockActionWhichActuallyWorks;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -49,7 +50,7 @@ public class Shuna extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DrawCard(p, 1);
-        GameActionsHelper.AddToBottom(new ModifyBlockAction(this.uuid, magicNumber));
+        GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, magicNumber));
     }
 
     @Override

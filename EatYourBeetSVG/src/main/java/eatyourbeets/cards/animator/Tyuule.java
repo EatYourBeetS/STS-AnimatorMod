@@ -15,9 +15,9 @@ public class Tyuule extends AnimatorCard_Boost
 
     public Tyuule()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 4);
 
         SetSynergy(Synergies.Gate);
     }
@@ -42,13 +42,13 @@ public class Tyuule extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeSecondaryValue(1);
         }
     }
 
     @Override
     protected int GetBaseBoost()
     {
-        return 1;
+        return upgraded ? 1 : 0;
     }
 }

@@ -8,9 +8,11 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import eatyourbeets.cards.animator.Nanami;
+import eatyourbeets.interfaces.OnAfterCardDrawnSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.RandomizedList;
 
-public class KaijinPower extends AnimatorPower
+public class KaijinPower extends AnimatorPower implements OnAfterCardDrawnSubscriber
 {
     public static final String POWER_ID = CreateFullID(KaijinPower.class.getSimpleName());
 
@@ -24,38 +26,67 @@ public class KaijinPower extends AnimatorPower
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer)
+    public void onInitialApplication()
     {
-        super.atEndOfTurn(isPlayer);
+        super.onInitialApplication();
 
-        AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
+        PlayerStatistics.onAfterCardDrawn.Subscribe(this);
+    }
 
-        boolean used = false;
-        AbstractPlayer p = AbstractDungeon.player;
-        RandomizedList<AbstractCard> cards = new RandomizedList<>(p.drawPile.group);
-        while (cards.Count() > 0)
+    @Override
+    public void onRemove()
+    {
+        super.onRemove();
+
+        PlayerStatistics.onAfterCardDrawn.Unsubscribe(this);
+    }
+
+//    @Override
+//    public void atEndOfTurn(boolean isPlayer)
+//    {
+//        super.atEndOfTurn(isPlayer);
+//
+//        AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
+//
+//        boolean used = false;
+//        AbstractPlayer p = AbstractDungeon.player;
+//        RandomizedList<AbstractCard> cards = new RandomizedList<>(p.drawPile.group);
+//        while (cards.Count() > 0)
+//        {
+//            AbstractCard card = cards.Retrieve(AbstractDungeon.miscRng);
+//            if (!card.cardID.equals(Nanami.ID))
+//            {
+//                if (card.baseDamage > 0)
+//                {
+//                    card.baseDamage += amount;
+//                    used = true;
+//                }
+//                if (card.baseBlock > 0)
+//                {
+//                    card.baseBlock += amount;
+//                    used = true;
+//                }
+//            }
+//
+//            if (used)
+//            {
+//                AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
+//                AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(card.makeStatEquivalentCopy(), (float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
+//                return;
+//            }
+//        }
+//    }
+
+    @Override
+    public void OnAfterCardDrawn(AbstractCard card)
+    {
+        if (card.baseDamage > 0)
         {
-            AbstractCard card = cards.Retrieve(AbstractDungeon.miscRng);
-            if (!card.cardID.equals(Nanami.ID))
-            {
-                if (card.baseDamage > 0)
-                {
-                    card.baseDamage += amount;
-                    used = true;
-                }
-                if (card.baseBlock > 0)
-                {
-                    card.baseBlock += amount;
-                    used = true;
-                }
-            }
-
-            if (used)
-            {
-                AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
-                AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(card.makeStatEquivalentCopy(), (float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
-                return;
-            }
+            card.baseDamage += amount;
+        }
+        if (card.baseBlock > 0)
+        {
+            card.baseBlock += amount;
         }
     }
 }

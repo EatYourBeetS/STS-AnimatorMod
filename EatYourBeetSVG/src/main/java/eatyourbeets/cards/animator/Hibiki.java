@@ -1,8 +1,10 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.DamageRandomEnemy2Action;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ModifyMagicNumberAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -14,30 +16,30 @@ public class Hibiki extends AnimatorCard
 
     public Hibiki()
     {
-        super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.ALL_ENEMY);
 
-        Initialize(3,0, 2);
+        Initialize(2, 0, 3, 1);
 
         SetSynergy(Synergies.Kancolle);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         for (int i = 0; i < this.magicNumber; i++)
         {
-            GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         }
 
-        GameActionsHelper.AddToBottom(new ModifyMagicNumberAction(this.uuid, 1));
+        GameActionsHelper.AddToBottom(new ModifyMagicNumberAction(this.uuid, secondaryValue));
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
+            upgradeSecondaryValue(1);
         }
     }
 }

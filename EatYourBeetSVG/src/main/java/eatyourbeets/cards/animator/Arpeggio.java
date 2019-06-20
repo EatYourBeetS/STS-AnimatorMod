@@ -27,12 +27,12 @@ public class Arpeggio extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ChannelOrb(new Earth(), true);
-
         if (upgraded)
         {
             GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
         }
+
+        GameActionsHelper.ChannelOrb(new Earth(), true);
 
         GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
     }

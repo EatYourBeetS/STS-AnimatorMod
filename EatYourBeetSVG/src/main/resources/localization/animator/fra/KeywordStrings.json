@@ -141,7 +141,7 @@
 	},
 	{
 		"PROPER_NAME": "Armure Plaquée",
-		"NAMES": ["d'armure plaquée", "d'armure_plaquée"],
+		"NAMES": ["armure plaquée", "armure_plaquée", "d'armure plaquée", "d'armure_plaquée"],
 		"DESCRIPTION": "Gagnez autant #yd'Armure à la fin de votre tour. Réduit de #b1 par dégat non bloqué."
 	},
 	{
@@ -213,5 +213,10 @@
 		"PROPER_NAME": "Dégât de Soutien",
 		"NAMES": ["support damage", "support_damage", "dégât de soutien", "dégât_de_soutien"],
 		"DESCRIPTION": "Inflige des dégats à l'ennemi avec le moins de PV."
+	},
+	{
+		"PROPER_NAME": "Motiver <N>",
+		"NAMES": ["motiver", "motivation"],
+		"DESCRIPTION": "Reduit le coût d'une carte aléatoire de votre main par 1 pendant ce tour. Répète <N> fois."
 	}
 ]

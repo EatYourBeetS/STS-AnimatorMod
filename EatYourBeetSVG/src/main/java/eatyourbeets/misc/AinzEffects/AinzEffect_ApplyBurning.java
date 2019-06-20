@@ -17,7 +17,7 @@ public class AinzEffect_ApplyBurning extends AinzEffect
     @Override
     protected void Setup(boolean upgraded)
     {
-        ainz.baseMagicNumber = ainz.magicNumber = upgraded ? 7 : 5;
+        ainz.baseMagicNumber = ainz.magicNumber = upgraded ? 8 : 6;
     }
 
     @Override

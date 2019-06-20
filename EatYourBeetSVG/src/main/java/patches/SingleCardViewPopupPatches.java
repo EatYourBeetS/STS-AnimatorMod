@@ -218,6 +218,14 @@ public class SingleCardViewPopupPatches
         }
     }
 
+//    @SpireInsertPatch(rloc = 0, localvars={"card"})
+//    public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard card)
+//    {
+//        if (card instanceof AnimatorCard){
+//            // render header
+//        }
+//    }
+
     static
     {
         try

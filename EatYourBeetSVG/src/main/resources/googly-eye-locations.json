@@ -2,7 +2,7 @@
 {
 	"cards":
 	{
-		"animator_AcuraAkari": [
+		"animator:AcuraAkari": [
 			{
 				"size": 22.061737,
 				"x": 272.8,
@@ -14,7 +14,7 @@
 				"y": 244.8
 			}
 		],
-		"animator_AcuraShin": [
+		"animator:AcuraShin": [
 			{
 				"size": 10.252812,
 				"x": 217.59998,
@@ -26,7 +26,7 @@
 				"y": 273.6
 			}
 		],
-		"animator_AcuraTooru": [
+		"animator:AcuraTooru": [
 			{
 				"size": 10.733126,
 				"x": 240.39998,
@@ -38,7 +38,7 @@
 				"y": 300.0
 			}
 		],
-		"animator_Add": [
+		"animator:Add": [
 			{
 				"size": 8.736129,
 				"x": 264.4,
@@ -50,7 +50,7 @@
 				"y": 238.8
 			}
 		],
-		"animator_Ain": [
+		"animator:Ain": [
 			{
 				"size": 11.063456,
 				"x": 240.39998,
@@ -62,7 +62,7 @@
 				"y": 205.20001
 			}
 		],
-		"animator_Ainz": [
+		"animator:Ainz": [
 			{
 				"size": 11.879396,
 				"x": 219.99998,
@@ -74,7 +74,7 @@
 				"y": 298.80002
 			}
 		],
-		"animator_Aisha": [
+		"animator:Aisha": [
 			{
 				"size": 10.866465,
 				"x": 245.19998,
@@ -86,7 +86,7 @@
 				"y": 236.40001
 			}
 		],
-		"animator_Albedo": [
+		"animator:Albedo": [
 			{
 				"size": 12.3547535,
 				"x": 277.59998,
@@ -98,7 +98,7 @@
 				"y": 282.0
 			}
 		],
-		"animator_Alexander": [
+		"animator:Alexander": [
 			{
 				"size": 8.485272,
 				"x": 264.4,
@@ -110,7 +110,7 @@
 				"y": 300.0
 			}
 		],
-		"animator_Aqua": [
+		"animator:Aqua": [
 			{
 				"size": 25.455845,
 				"x": 273.99997,
@@ -122,7 +122,7 @@
 				"y": 241.20001
 			}
 		],
-		"animator_Ara": [
+		"animator:Ara": [
 			{
 				"size": 9.895465,
 				"x": 311.19998,
@@ -134,14 +134,14 @@
 				"y": 285.6
 			}
 		],
-		"animator_Archer": [
+		"animator:Archer": [
 			{
 				"size": 10.733133,
 				"x": 133.59998,
 				"y": 189.6
 			}
 		],
-		"animator_Arpeggio": [
+		"animator:Arpeggio": [
 			{
 				"size": 19.386599,
 				"x": 209.19998,
@@ -153,14 +153,14 @@
 				"y": 247.20001
 			}
 		],
-		"animator_Asuramaru": [
+		"animator:Asuramaru": [
 			{
 				"size": 11.384213,
 				"x": 225.99998,
 				"y": 261.6
 			}
 		],
-		"animator_Azekura": [
+		"animator:Azekura": [
 			{
 				"size": 10.322785,
 				"x": 289.59998,
@@ -172,7 +172,7 @@
 				"y": 298.80002
 			}
 		],
-		"animator_Benimaru": [
+		"animator:Benimaru": [
 			{
 				"size": 20.115664,
 				"x": 186.39998,
@@ -184,7 +184,7 @@
 				"y": 262.80002
 			}
 		],
-		"animator_Berserker": [
+		"animator:Berserker": [
 			{
 				"size": 11.063458,
 				"x": 187.59998,
@@ -196,7 +196,7 @@
 				"y": 258.0
 			}
 		],
-		"animator_Biyorigo": [
+		"animator:Biyorigo": [
 			{
 				"size": 31.130693,
 				"x": 462.4,
@@ -208,21 +208,21 @@
 				"y": 321.6
 			}
 		],
-		"animator_BlackLotus": [
+		"animator:BlackLotus": [
 			{
 				"size": 8.65331,
 				"x": 251.19998,
 				"y": 300.0
 			}
 		],
-		"animator_Boros": [
+		"animator:Boros": [
 			{
 				"size": 24.73865,
 				"x": 300.4,
 				"y": 274.80002
 			}
 		],
-		"animator_Bozes": [
+		"animator:Bozes": [
 			{
 				"size": 15.78351,
 				"x": 373.59998,
@@ -234,14 +234,14 @@
 				"y": 295.2
 			}
 		],
-		"animator_Caster": [
+		"animator:Caster": [
 			{
 				"size": 25.0,
 				"x": 368.8,
 				"y": 145.2
 			}
 		],
-		"animator_ChaikaBohdan": [
+		"animator:ChaikaBohdan": [
 			{
 				"size": 15.367493,
 				"x": 266.8,
@@ -253,14 +253,14 @@
 				"y": 229.20001
 			}
 		],
-		"animator_ChaikaTrabant": [
+		"animator:ChaikaTrabant": [
 			{
 				"size": 22.321297,
 				"x": 326.8,
 				"y": 223.20001
 			}
 		],
-		"animator_ChlammyZell": [
+		"animator:ChlammyZell": [
 			{
 				"size": 15.035966,
 				"x": 211.59998,
@@ -272,7 +272,7 @@
 				"y": 249.6
 			}
 		],
-		"animator_Chris": [
+		"animator:Chris": [
 			{
 				"size": 25.0,
 				"x": 261.99997,
@@ -284,19 +284,19 @@
 				"y": 218.40001
 			}
 		],
-		"animator_Chung": [
-			{
-				"size": 9.138938,
-				"x": 277.59998,
-				"y": 232.8
-			},
-			{
-				"size": 9.674725,
-				"x": 297.99997,
-				"y": 240.0
-			}
+		"animator:Chung": [
+		  {
+			"x": 300.4,
+			"y": 260.4,
+			"size": 9.138938
+		  },
+		  {
+			"x": 321.99997,
+			"y": 272.4,
+			"size": 9.674725
+		  }
 		],
-		"animator_Cocytus": [
+		"animator:Cocytus": [
 			{
 				"size": 9.138912,
 				"x": 342.4,
@@ -328,7 +328,7 @@
 				"y": 264.0
 			}
 		],
-		"animator_CowGirl": [
+		"animator:CowGirl": [
 			{
 				"size": 17.181372,
 				"x": 213.99998,
@@ -340,7 +340,7 @@
 				"y": 284.4
 			}
 		],
-		"animator_CrowleyEusford": [
+		"animator:CrowleyEusford": [
 			{
 				"size": 13.416408,
 				"x": 258.4,
@@ -352,7 +352,7 @@
 				"y": 241.20001
 			}
 		],
-		"animator_Darkness": [
+		"animator:Darkness": [
 			{
 				"size": 16.670958,
 				"x": 127.599976,
@@ -364,7 +364,7 @@
 				"y": 312.0
 			}
 		],
-		"animator_Defend": [
+		"animator:Defend": [
 			{
 				"size": 25.0,
 				"x": 218.79999,
@@ -376,7 +376,7 @@
 				"y": 218.40001
 			}
 		],
-		"animator_Demiurge": [
+		"animator:Demiurge": [
 			{
 				"size": 15.035953,
 				"x": 199.59998,
@@ -388,7 +388,7 @@
 				"y": 255.6
 			}
 		],
-		"animator_DolaCouronne": [
+		"animator:DolaCouronne": [
 			{
 				"size": 13.25443,
 				"x": 221.19998,
@@ -400,7 +400,7 @@
 				"y": 261.6
 			}
 		],
-		"animator_DolaRiku": [
+		"animator:DolaRiku": [
 			{
 				"size": 26.427246,
 				"x": 287.19998,
@@ -412,7 +412,7 @@
 				"y": 205.20001
 			}
 		],
-		"animator_DolaSchwi": [
+		"animator:DolaSchwi": [
 			{
 				"size": 25.0,
 				"x": 258.4,
@@ -424,7 +424,7 @@
 				"y": 231.6
 			}
 		],
-		"animator_DolaStephanie": [
+		"animator:DolaStephanie": [
 			{
 				"size": 25.0,
 				"x": 217.59998,
@@ -436,14 +436,14 @@
 				"y": 217.20001
 			}
 		],
-		"animator_DwarfShaman": [
+		"animator:DwarfShaman": [
 			{
 				"size": 11.999993,
 				"x": 259.59998,
 				"y": 276.0
 			}
 		],
-		"animator_Elesis": [
+		"animator:Elesis": [
 			{
 				"size": 9.6747055,
 				"x": 224.79999,
@@ -455,14 +455,14 @@
 				"y": 294.0
 			}
 		],
-		"animator_ElricAlphonse": [
+		"animator:ElricAlphonse": [
 			{
 				"size": 20.435266,
 				"x": 233.19998,
 				"y": 216.0
 			}
 		],
-		"animator_ElricAlphonseAlt": [
+		"animator:ElricAlphonseAlt": [
 			{
 				"size": 15.600008,
 				"x": 215.19998,
@@ -474,7 +474,7 @@
 				"y": 244.8
 			}
 		],
-		"animator_ElricEdward": [
+		"animator:ElricEdward": [
 			{
 				"size": 14.598638,
 				"x": 210.39998,
@@ -486,7 +486,7 @@
 				"y": 248.40001
 			}
 		],
-		"animator_Elsword": [
+		"animator:Elsword": [
 			{
 				"size": 10.182355,
 				"x": 267.99997,
@@ -498,7 +498,7 @@
 				"y": 291.6
 			}
 		],
-		"animator_EmiyaShirou": [
+		"animator:EmiyaShirou": [
 			{
 				"size": 14.449909,
 				"x": 211.59998,
@@ -510,7 +510,7 @@
 				"y": 262.80002
 			}
 		],
-		"animator_Emonzaemon": [
+		"animator:Emonzaemon": [
 			{
 				"size": 39.889843,
 				"x": 85.599976,
@@ -522,7 +522,7 @@
 				"y": 162.0
 			}
 		],
-		"animator_Entoma": [
+		"animator:Entoma": [
 			{
 				"size": 17.839285,
 				"x": 223.59998,
@@ -534,7 +534,7 @@
 				"y": 241.20001
 			}
 		],
-		"animator_EntouJyuu": [
+		"animator:EntouJyuu": [
 			{
 				"size": 25.0,
 				"x": 443.19998,
@@ -546,7 +546,7 @@
 				"y": 172.8
 			}
 		],
-		"animator_Envy": [
+		"animator:Envy": [
 			{
 				"size": 20.400017,
 				"x": 215.19998,
@@ -558,7 +558,7 @@
 				"y": 274.80002
 			}
 		],
-		"animator_Eris": [
+		"animator:Eris": [
 			{
 				"size": 14.843186,
 				"x": 248.79999,
@@ -570,7 +570,7 @@
 				"y": 264.0
 			}
 		],
-		"animator_Eve": [
+		"animator:Eve": [
 			{
 				"size": 9.599976,
 				"x": 243.99998,
@@ -582,21 +582,21 @@
 				"y": 272.4
 			}
 		],
-		"animator_Evileye": [
+		"animator:Evileye": [
 			{
 				"size": 66.68374,
 				"x": 249.99998,
 				"y": 274.80002
 			}
 		],
-		"animator_Excalibur": [
+		"animator:Excalibur": [
 			{
 				"size": 57.61252,
 				"x": 247.59998,
 				"y": 334.80002
 			}
 		],
-		"animator_FeridBathory": [
+		"animator:FeridBathory": [
 			{
 				"size": 21.897934,
 				"x": 248.79999,
@@ -608,7 +608,7 @@
 				"y": 210.0
 			}
 		],
-		"animator_Fredrika": [
+		"animator:Fredrika": [
 			{
 				"size": 17.71779,
 				"x": 267.99997,
@@ -620,7 +620,7 @@
 				"y": 271.2
 			}
 		],
-		"animator_GazelDwargon": [
+		"animator:GazelDwargon": [
 			{
 				"size": 14.449906,
 				"x": 225.99998,
@@ -632,7 +632,7 @@
 				"y": 296.4
 			}
 		],
-		"animator_Genos": [
+		"animator:Genos": [
 			{
 				"size": 15.599994,
 				"x": 360.4,
@@ -644,7 +644,7 @@
 				"y": 223.20001
 			}
 		],
-		"animator_Geryuganshoop": [
+		"animator:Geryuganshoop": [
 			{
 				"size": 19.534597,
 				"x": 228.39998,
@@ -661,7 +661,7 @@
 				"y": 308.4
 			}
 		],
-		"animator_Gilgamesh": [
+		"animator:Gilgamesh": [
 			{
 				"size": 13.682104,
 				"x": 177.99998,
@@ -673,7 +673,7 @@
 				"y": 273.6
 			}
 		],
-		"animator_Gillette": [
+		"animator:Gillette": [
 			{
 				"size": 10.800003,
 				"x": 228.39998,
@@ -685,7 +685,7 @@
 				"y": 253.20001
 			}
 		],
-		"animator_Gluttony": [
+		"animator:Gluttony": [
 			{
 				"size": 69.15374,
 				"x": 243.99998,
@@ -702,7 +702,7 @@
 				"y": 310.80002
 			}
 		],
-		"animator_GoblinChampion": [
+		"animator:GoblinChampion": [
 			{
 				"size": 9.674715,
 				"x": 240.39998,
@@ -714,7 +714,7 @@
 				"y": 318.0
 			}
 		],
-		"animator_GoblinSlayer": [
+		"animator:GoblinSlayer": [
 			{
 				"size": 20.9571,
 				"x": 224.79999,
@@ -726,7 +726,7 @@
 				"y": 193.20001
 			}
 		],
-		"animator_GoblinSoldier": [
+		"animator:GoblinSoldier": [
 			{
 				"size": 17.999989,
 				"x": 281.19998,
@@ -758,7 +758,7 @@
 				"y": 198.0
 			}
 		],
-		"animator_Greed": [
+		"animator:Greed": [
 			{
 				"size": 12.000003,
 				"x": 222.39998,
@@ -770,7 +770,7 @@
 				"y": 276.0
 			}
 		],
-		"animator_GuildGirl": [
+		"animator:GuildGirl": [
 			{
 				"size": 17.717777,
 				"x": 237.99998,
@@ -782,7 +782,7 @@
 				"y": 240.0
 			}
 		],
-		"animator_Guren": [
+		"animator:Guren": [
 			{
 				"size": 14.045652,
 				"x": 223.59998,
@@ -794,7 +794,7 @@
 				"y": 296.4
 			}
 		],
-		"animator_Guy": [
+		"animator:Guy": [
 			{
 				"size": 17.717777,
 				"x": 222.39998,
@@ -806,7 +806,7 @@
 				"y": 266.4
 			}
 		],
-		"animator_Hakurou": [
+		"animator:Hakurou": [
 			{
 				"size": 9.674686,
 				"x": 288.4,
@@ -818,7 +818,7 @@
 				"y": 266.4
 			}
 		],
-		"animator_Hibiki": [
+		"animator:Hibiki": [
 			{
 				"size": 18.973665,
 				"x": 449.19998,
@@ -830,7 +830,7 @@
 				"y": 230.40001
 			}
 		],
-		"animator_HigakiRinne": [
+		"animator:HigakiRinne": [
 			{
 				"size": 25.0,
 				"x": 47.199978,
@@ -902,7 +902,7 @@
 				"y": 116.4
 			}
 		],
-		"animator_HighElfArcher": [
+		"animator:HighElfArcher": [
 			{
 				"size": 12.528369,
 				"x": 239.19998,
@@ -914,7 +914,7 @@
 				"y": 258.0
 			}
 		],
-		"animator_HiiragiShinya": [
+		"animator:HiiragiShinya": [
 			{
 				"size": 16.09969,
 				"x": 264.4,
@@ -926,7 +926,7 @@
 				"y": 273.6
 			}
 		],
-		"animator_Hitei": [
+		"animator:Hitei": [
 			{
 				"size": 10.252808,
 				"x": 224.79999,
@@ -938,7 +938,7 @@
 				"y": 313.2
 			}
 		],
-		"animator_HououinKyouma": [
+		"animator:HououinKyouma": [
 			{
 				"size": 8.399994,
 				"x": 182.79997,
@@ -950,7 +950,7 @@
 				"y": 290.4
 			}
 		],
-		"animator_Illya": [
+		"animator:Illya": [
 			{
 				"size": 14.399994,
 				"x": 239.19998,
@@ -962,7 +962,7 @@
 				"y": 246.0
 			}
 		],
-		"animator_ItamiYouji": [
+		"animator:ItamiYouji": [
 			{
 				"size": 13.254446,
 				"x": 99.99998,
@@ -974,7 +974,7 @@
 				"y": 265.2
 			}
 		],
-		"animator_IzunaHatsuse": [
+		"animator:IzunaHatsuse": [
 			{
 				"size": 10.322785,
 				"x": 229.59998,
@@ -986,7 +986,7 @@
 				"y": 280.80002
 			}
 		],
-		"animator_Jibril": [
+		"animator:Jibril": [
 			{
 				"size": 14.399994,
 				"x": 251.19998,
@@ -998,7 +998,7 @@
 				"y": 219.6
 			}
 		],
-		"animator_Kaijin": [
+		"animator:Kaijin": [
 			{
 				"size": 25.0,
 				"x": 195.99998,
@@ -1010,7 +1010,7 @@
 				"y": 240.0
 			}
 		],
-		"animator_Kazuma": [
+		"animator:Kazuma": [
 			{
 				"size": 16.670923,
 				"x": 257.19998,
@@ -1022,7 +1022,7 @@
 				"y": 243.6
 			}
 		],
-		"animator_Kira": [
+		"animator:Kira": [
 			{
 				"size": 25.0,
 				"x": 133.59998,
@@ -1034,7 +1034,7 @@
 				"y": 260.4
 			}
 		],
-		"animator_Konayuki": [
+		"animator:Konayuki": [
 			{
 				"size": 14.647868,
 				"x": 87.99998,
@@ -1046,7 +1046,7 @@
 				"y": 277.2
 			}
 		],
-		"animator_KrulTepes": [
+		"animator:KrulTepes": [
 			{
 				"size": 25.0,
 				"x": 216.39998,
@@ -1058,7 +1058,7 @@
 				"y": 213.6
 			}
 		],
-		"animator_Kuribayashi": [
+		"animator:Kuribayashi": [
 			{
 				"size": 25.0,
 				"x": 254.79999,
@@ -1070,7 +1070,7 @@
 				"y": 218.40001
 			}
 		],
-		"animator_Kuroyukihime": [
+		"animator:Kuroyukihime": [
 			{
 				"size": 13.682104,
 				"x": 219.99998,
@@ -1082,7 +1082,7 @@
 				"y": 244.8
 			}
 		],
-		"animator_Kyubey": [
+		"animator:Kyubey": [
 			{
 				"size": 25.0,
 				"x": 198.39998,
@@ -1094,7 +1094,7 @@
 				"y": 192.0
 			}
 		],
-		"animator_Lancer": [
+		"animator:Lancer": [
 			{
 				"size": 12.237645,
 				"x": 207.99998,
@@ -1106,7 +1106,7 @@
 				"y": 261.6
 			}
 		],
-		"animator_Layla": [
+		"animator:Layla": [
 			{
 				"size": 17.472254,
 				"x": 240.39998,
@@ -1118,7 +1118,7 @@
 				"y": 252.0
 			}
 		],
-		"animator_LeleiLaLalena": [
+		"animator:LeleiLaLalena": [
 			{
 				"size": 15.646079,
 				"x": 235.59998,
@@ -1130,7 +1130,7 @@
 				"y": 236.40001
 			}
 		],
-		"animator_Lelouch": [
+		"animator:Lelouch": [
 			{
 				"size": 12.237645,
 				"x": 233.19998,
@@ -1142,7 +1142,7 @@
 				"y": 258.0
 			}
 		],
-		"animator_LizardPriest": [
+		"animator:LizardPriest": [
 			{
 				"size": 9.372309,
 				"x": 221.19998,
@@ -1154,7 +1154,7 @@
 				"y": 273.6
 			}
 		],
-		"animator_MaesHughes": [
+		"animator:MaesHughes": [
 			{
 				"size": 25.0,
 				"x": 235.59998,
@@ -1166,14 +1166,14 @@
 				"y": 291.6
 			}
 		],
-		"animator_Megumin": [
+		"animator:Megumin": [
 			{
 				"size": 16.321766,
 				"x": 212.79999,
 				"y": 242.40001
 			}
 		],
-		"animator_Melzalgald": [
+		"animator:Melzalgald": [
 			{
 				"size": 9.674719,
 				"x": 150.39998,
@@ -1220,7 +1220,7 @@
 				"y": 332.4
 			}
 		],
-		"animator_MetalKnight": [
+		"animator:MetalKnight": [
 			{
 				"size": 15.783541,
 				"x": 257.19998,
@@ -1232,7 +1232,7 @@
 				"y": 273.6
 			}
 		],
-		"animator_Mikaela": [
+		"animator:Mikaela": [
 			{
 				"size": 22.126915,
 				"x": 279.99997,
@@ -1244,7 +1244,7 @@
 				"y": 220.8
 			}
 		],
-		"animator_Millim": [
+		"animator:Millim": [
 			{
 				"size": 14.045638,
 				"x": 231.99998,
@@ -1256,14 +1256,14 @@
 				"y": 242.40001
 			}
 		],
-		"animator_MisaKurobane": [
+		"animator:MisaKurobane": [
 			{
 				"size": 70.58611,
 				"x": 104.79998,
 				"y": 160.8
 			}
 		],
-		"animator_Mitsuba": [
+		"animator:Mitsuba": [
 			{
 				"size": 12.528369,
 				"x": 177.99998,
@@ -1275,7 +1275,7 @@
 				"y": 176.40001
 			}
 		],
-		"animator_Mitsurugi": [
+		"animator:Mitsurugi": [
 			{
 				"size": 18.317213,
 				"x": 219.99998,
@@ -1287,7 +1287,7 @@
 				"y": 232.8
 			}
 		],
-		"animator_MumenRider": [
+		"animator:MumenRider": [
 			{
 				"size": 16.321772,
 				"x": 235.59998,
@@ -1299,7 +1299,7 @@
 				"y": 265.2
 			}
 		],
-		"animator_Nanami": [
+		"animator:Nanami": [
 			{
 				"size": 25.0,
 				"x": 213.99998,
@@ -1311,14 +1311,14 @@
 				"y": 248.40001
 			}
 		],
-		"animator_NarberalGamma": [
+		"animator:NarberalGamma": [
 			{
 				"size": 18.782986,
 				"x": 267.99997,
 				"y": 230.40001
 			}
 		],
-		"animator_OrbCore_Chaos": [
+		"animator:OrbCore_Chaos": [
 			{
 				"size": 25.0,
 				"x": 103.599976,
@@ -1385,14 +1385,14 @@
 				"y": 204.0
 			}
 		],
-		"animator_OrbCore_Dark": [
+		"animator:OrbCore_Dark": [
 			{
 				"size": 98.56085,
 				"x": 257.19998,
 				"y": 213.6
 			}
 		],
-		"animator_OrbCore_Earth": [
+		"animator:OrbCore_Earth": [
 			{
 				"size": 44.97999,
 				"x": 143.19998,
@@ -1404,7 +1404,7 @@
 				"y": 218.40001
 			}
 		],
-		"animator_OrbCore_Fire": [
+		"animator:OrbCore_Fire": [
 			{
 				"size": 25.0,
 				"x": 182.79997,
@@ -1416,21 +1416,21 @@
 				"y": 246.0
 			}
 		],
-		"animator_OrbCore_Frost": [
+		"animator:OrbCore_Frost": [
 			{
 				"size": 57.92409,
 				"x": 257.19998,
 				"y": 232.8
 			}
 		],
-		"animator_OrbCore_Lightning": [
+		"animator:OrbCore_Lightning": [
 			{
 				"size": 60.57326,
 				"x": 254.79999,
 				"y": 194.40001
 			}
 		],
-		"animator_OrbCore_Plasma": [
+		"animator:OrbCore_Plasma": [
 			{
 				"size": 55.977146,
 				"x": 367.59998,
@@ -1442,14 +1442,14 @@
 				"y": 232.8
 			}
 		],
-		"animator_PandorasActor": [
+		"animator:PandorasActor": [
 			{
 				"size": 11.063456,
 				"x": 206.79999,
 				"y": 248.40001
 			}
 		],
-		"animator_PinaCoLada": [
+		"animator:PinaCoLada": [
 			{
 				"size": 18.277857,
 				"x": 221.19998,
@@ -1461,7 +1461,7 @@
 				"y": 265.2
 			}
 		],
-		"animator_Pride": [
+		"animator:Pride": [
 			{
 				"size": 12.756176,
 				"x": 224.79999,
@@ -1473,7 +1473,7 @@
 				"y": 190.8
 			}
 		],
-		"animator_Priestess": [
+		"animator:Priestess": [
 			{
 				"size": 16.099682,
 				"x": 221.19998,
@@ -1485,21 +1485,21 @@
 				"y": 229.20001
 			}
 		],
-		"animator_Raven": [
+		"animator:Raven": [
 			{
 				"size": 10.182344,
 				"x": 216.39998,
 				"y": 250.8
 			}
 		],
-		"animator_Rena": [
+		"animator:Rena": [
 			{
 				"size": 12.924391,
 				"x": 373.59998,
 				"y": 278.4
 			}
 		],
-		"animator_Rimuru": [
+		"animator:Rimuru": [
 			{
 				"size": 12.05985,
 				"x": 225.99998,
@@ -1511,7 +1511,7 @@
 				"y": 290.4
 			}
 		],
-		"animator_RinTohsaka": [
+		"animator:RinTohsaka": [
 			{
 				"size": 19.386612,
 				"x": 222.39998,
@@ -1523,7 +1523,7 @@
 				"y": 262.80002
 			}
 		],
-		"animator_RoryMercury": [
+		"animator:RoryMercury": [
 			{
 				"size": 8.736139,
 				"x": 231.99998,
@@ -1535,7 +1535,7 @@
 				"y": 244.8
 			}
 		],
-		"animator_RoyMustang": [
+		"animator:RoyMustang": [
 			{
 				"size": 15.646088,
 				"x": 245.19998,
@@ -1547,7 +1547,7 @@
 				"y": 262.80002
 			}
 		],
-		"animator_Saber": [
+		"animator:Saber": [
 			{
 				"size": 8.400024,
 				"x": 195.99998,
@@ -1559,7 +1559,7 @@
 				"y": 286.80002
 			}
 		],
-		"animator_Saitama": [
+		"animator:Saitama": [
 			{
 				"size": 12.000003,
 				"x": 211.59998,
@@ -1571,7 +1571,7 @@
 				"y": 204.0
 			}
 		],
-		"animator_Scar": [
+		"animator:Scar": [
 			{
 				"size": 21.466253,
 				"x": 281.19998,
@@ -1583,7 +1583,7 @@
 				"y": 234.0
 			}
 		],
-		"animator_Sebas": [
+		"animator:Sebas": [
 			{
 				"size": 7.5894613,
 				"x": 233.19998,
@@ -1595,7 +1595,7 @@
 				"y": 306.0
 			}
 		],
-		"animator_Shalltear": [
+		"animator:Shalltear": [
 			{
 				"size": 17.181376,
 				"x": 248.79999,
@@ -1607,7 +1607,7 @@
 				"y": 222.0
 			}
 		],
-		"animator_Shichika": [
+		"animator:Shichika": [
 			{
 				"size": 9.674705,
 				"x": 90.39998,
@@ -1619,7 +1619,7 @@
 				"y": 286.80002
 			}
 		],
-		"animator_Shigure": [
+		"animator:Shigure": [
 			{
 				"size": 15.600008,
 				"x": 193.59998,
@@ -1631,7 +1631,7 @@
 				"y": 266.4
 			}
 		],
-		"animator_Shimakaze": [
+		"animator:Shimakaze": [
 			{
 				"size": 16.670933,
 				"x": 222.39998,
@@ -1653,7 +1653,7 @@
 				"y": 280.80002
 			}
 		],
-		"animator_Shinoa": [
+		"animator:Shinoa": [
 			{
 				"size": 12.9243965,
 				"x": 236.79999,
@@ -1665,7 +1665,7 @@
 				"y": 280.80002
 			}
 		],
-		"animator_Shiro": [
+		"animator:Shiro": [
 			{
 				"size": 12.528365,
 				"x": 233.19998,
@@ -1677,7 +1677,7 @@
 				"y": 240.0
 			}
 		],
-		"animator_Shizu": [
+		"animator:Shizu": [
 			{
 				"size": 14.045658,
 				"x": 278.8,
@@ -1689,7 +1689,7 @@
 				"y": 256.80002
 			}
 		],
-		"animator_Shuna": [
+		"animator:Shuna": [
 			{
 				"size": 14.647872,
 				"x": 241.59998,
@@ -1701,7 +1701,7 @@
 				"y": 279.6
 			}
 		],
-		"animator_SilverFang": [
+		"animator:SilverFang": [
 			{
 				"size": 14.449906,
 				"x": 246.39998,
@@ -1713,14 +1713,14 @@
 				"y": 261.6
 			}
 		],
-		"animator_Sloth": [
+		"animator:Sloth": [
 			{
 				"size": 19.386585,
 				"x": 288.4,
 				"y": 241.20001
 			}
 		],
-		"animator_Sonic": [
+		"animator:Sonic": [
 			{
 				"size": 22.126898,
 				"x": 232.39998,
@@ -1732,7 +1732,7 @@
 				"y": 224.40001
 			}
 		],
-		"animator_Sora": [
+		"animator:Sora": [
 			{
 				"size": 18.159294,
 				"x": 271.59998,
@@ -1744,7 +1744,7 @@
 				"y": 280.80002
 			}
 		],
-		"animator_Souei": [
+		"animator:Souei": [
 			{
 				"size": 13.682115,
 				"x": 248.79999,
@@ -1756,7 +1756,7 @@
 				"y": 268.80002
 			}
 		],
-		"animator_Spearman": [
+		"animator:Spearman": [
 			{
 				"size": 8.485305,
 				"x": 223.59998,
@@ -1768,21 +1768,21 @@
 				"y": 295.2
 			}
 		],
-		"animator_Strike": [
+		"animator:Strike": [
 			{
 				"size": 25.0,
 				"x": 404.8,
 				"y": 117.600006
 			}
 		],
-		"animator_SwordMaiden": [
+		"animator:SwordMaiden": [
 			{
 				"size": 25.0,
 				"x": 428.8,
 				"y": 132.0
 			}
 		],
-		"animator_TanyaDegurechaff": [
+		"animator:TanyaDegurechaff": [
 			{
 				"size": 25.0,
 				"x": 197.19998,
@@ -1794,7 +1794,7 @@
 				"y": 229.20001
 			}
 		],
-		"animator_TanyaDegurechaff_Type95": [
+		"animator:TanyaDegurechaff_Type95": [
 			{
 				"size": 25.0,
 				"x": 319.59998,
@@ -1811,7 +1811,7 @@
 				"y": 254.40001
 			}
 		],
-		"animator_Tatsumaki": [
+		"animator:Tatsumaki": [
 			{
 				"size": 17.999996,
 				"x": 75.99998,
@@ -1823,7 +1823,7 @@
 				"y": 216.0
 			}
 		],
-		"animator_Tet": [
+		"animator:Tet": [
 			{
 				"size": 13.576459,
 				"x": 247.59998,
@@ -1835,7 +1835,7 @@
 				"y": 254.40001
 			}
 		],
-		"animator_Togame": [
+		"animator:Togame": [
 			{
 				"size": 13.416419,
 				"x": 271.59998,
@@ -1847,7 +1847,7 @@
 				"y": 295.2
 			}
 		],
-		"animator_TukaLunaMarceau": [
+		"animator:TukaLunaMarceau": [
 			{
 				"size": 20.64557,
 				"x": 197.19998,
@@ -1859,7 +1859,7 @@
 				"y": 237.6
 			}
 		],
-		"animator_Tyuule": [
+		"animator:Tyuule": [
 			{
 				"size": 25.0,
 				"x": 336.4,
@@ -1871,14 +1871,14 @@
 				"y": 230.40001
 			}
 		],
-		"animator_Urushihara": [
+		"animator:Urushihara": [
 			{
 				"size": 17.71779,
 				"x": 278.8,
 				"y": 248.40001
 			}
 		],
-		"animator_Vanir": [
+		"animator:Vanir": [
 			{
 				"size": 12.237648,
 				"x": 247.59998,
@@ -1890,7 +1890,7 @@
 				"y": 327.6
 			}
 		],
-		"animator_Vesta": [
+		"animator:Vesta": [
 			{
 				"size": 11.06344,
 				"x": 235.59998,
@@ -1902,7 +1902,7 @@
 				"y": 282.0
 			}
 		],
-		"animator_Vesta_Elixir_0": [
+		"animator:Vesta_Elixir_0": [
 			{
 				"size": 25.0,
 				"x": 221.19998,
@@ -1914,7 +1914,7 @@
 				"y": 175.2
 			}
 		],
-		"animator_Vesta_Elixir_1": [
+		"animator:Vesta_Elixir_1": [
 			{
 				"size": 25.0,
 				"x": 217.59998,
@@ -1926,7 +1926,7 @@
 				"y": 172.8
 			}
 		],
-		"animator_Vesta_Elixir_2": [
+		"animator:Vesta_Elixir_2": [
 			{
 				"size": 25.0,
 				"x": 214.39998,
@@ -1938,7 +1938,7 @@
 				"y": 170.40001
 			}
 		],
-		"animator_Vesta_Elixir_3": [
+		"animator:Vesta_Elixir_3": [
 			{
 				"size": 19.349424,
 				"x": 215.19998,
@@ -1950,7 +1950,7 @@
 				"y": 178.8
 			}
 		],
-		"animator_Viivi": [
+		"animator:Viivi": [
 			{
 				"size": 16.670938,
 				"x": 216.39998,
@@ -1962,7 +1962,7 @@
 				"y": 253.20001
 			}
 		],
-		"animator_Witch": [
+		"animator:Witch": [
 			{
 				"size": 12.05985,
 				"x": 243.99998,
@@ -1974,14 +1974,14 @@
 				"y": 244.8
 			}
 		],
-		"animator_Wiz": [
+		"animator:Wiz": [
 			{
 				"size": 25.0,
 				"x": 245.19998,
 				"y": 222.0
 			}
 		],
-		"animator_YaoHaDucy": [
+		"animator:YaoHaDucy": [
 			{
 				"size": 16.800003,
 				"x": 270.4,
@@ -1993,7 +1993,7 @@
 				"y": 271.2
 			}
 		],
-		"animator_YukoShionji": [
+		"animator:YukoShionji": [
 			{
 				"size": 24.0,
 				"x": 123.99998,
@@ -2015,7 +2015,7 @@
 				"y": 229.20001
 			}
 		],
-		"animator_YunYun": [
+		"animator:YunYun": [
 			{
 				"size": 15.035939,
 				"x": 216.39998,
@@ -2027,7 +2027,7 @@
 				"y": 266.4
 			}
 		],
-		"animator_Yusarin": [
+		"animator:Yusarin": [
 			{
 				"size": 25.0,
 				"x": 203.19998,
@@ -2039,7 +2039,7 @@
 				"y": 237.6
 			}
 		],
-		"animator_Yuuichirou": [
+		"animator:Yuuichirou": [
 			{
 				"size": 16.800003,
 				"x": 163.59998,
@@ -2051,7 +2051,7 @@
 				"y": 282.0
 			}
 		],
-		"animator_ZankiKiguchi": [
+		"animator:ZankiKiguchi": [
 			{
 				"size": 15.367502,
 				"x": 315.99997,
@@ -2063,7 +2063,7 @@
 				"y": 294.0
 			}
 		],
-		"animator_Zero": [
+		"animator:Zero": [
 			{
 				"size": 12.756186,
 				"x": 240.39998,
@@ -2103,7 +2103,7 @@
 	"potions": {},
 	"relics":
 	{
-		"Animator_LivingPicture": [
+		"animator:LivingPicture": [
 			{
 				"size": 6.9971423,
 				"x": -8.400001,
@@ -2115,21 +2115,21 @@
 				"y": 8.000025
 			}
 		],
-		"Animator_PurgingStone_Cards": [
+		"animator:PurgingStone_Cards": [
 			{
 				"size": 15.783536,
 				"x": 0.0,
 				"y": -2.7999756
 			}
 		],
-		"Animator_PurgingStone_Series": [
+		"animator:PurgingStone_Series": [
 			{
 				"size": 15.783536,
 				"x": 0.0,
 				"y": -2.7999756
 			}
 		],
-		"Animator_TheMissingPiece": [
+		"animator:TheMissingPiece": [
 			{
 				"size": 34.32084,
 				"x": 3.6000001,

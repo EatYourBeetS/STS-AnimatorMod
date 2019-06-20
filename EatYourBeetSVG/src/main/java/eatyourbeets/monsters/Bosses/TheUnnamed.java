@@ -1,9 +1,11 @@
 package eatyourbeets.monsters.Bosses;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
@@ -15,6 +17,7 @@ import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
@@ -31,8 +34,10 @@ public class TheUnnamed extends AnimatorMonster
     private Move_Fading moveFading;
     private Move_Poison movePoison;
 
+
     public boolean appliedFading = false;
     public int minionsCount = 3;
+    public boolean phase2;
     public final AbstractMonster[] minions = new AbstractMonster[3];
 
     public TheUnnamed()
@@ -106,7 +111,7 @@ public class TheUnnamed extends AnimatorMonster
 
         CardCrawlGame.music.unsilenceBGM();
         AbstractDungeon.scene.fadeOutAmbiance();
-        AbstractDungeon.getCurrRoom().playBgmInstantly("BOSS_ENDING");
+        CardCrawlGame.music.playTempBgmInstantly("BOSS_ENDING", true);
 
         GameActionsHelper.ApplyPower(this, this, new InfinitePower(this));
 
@@ -121,14 +126,7 @@ public class TheUnnamed extends AnimatorMonster
     @Override
     protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        Move_SummonDoll summonDoll = moveset.GetMove(Move_SummonDoll.class);
-        if (summonDoll.CanUse(previousMove))
-        {
-            summonDoll.SetMove();
-            return;
-        }
-
-        if (minionsCount <= 0 && moveFading.CanUse(previousMove))
+        if (phase2 && moveFading.CanUse(previousMove))
         {
             if (moveFading.fadingTurns > 2)
             {
@@ -136,6 +134,13 @@ public class TheUnnamed extends AnimatorMonster
             }
             moveFading.SetMove();
 
+            return;
+        }
+
+        Move_SummonDoll summonDoll = moveset.GetMove(Move_SummonDoll.class);
+        if (summonDoll.CanUse(previousMove))
+        {
+            summonDoll.SetMove();
             return;
         }
 
@@ -158,10 +163,41 @@ public class TheUnnamed extends AnimatorMonster
         super.SetNextMove(roll, historySize, previousMove);
     }
 
+    @Override
+    public void damage(DamageInfo info)
+    {
+        super.damage(info);
+
+        if (this.currentHealth <= 400)
+        {
+            StartPhase2();
+        }
+    }
+
     public void OnDollDeath()
     {
         minionsCount -= 1;
         if (minionsCount <= 0)
+        {
+            StartPhase2();
+        }
+    }
+
+    private void StartPhase2()
+    {
+        if (phase2)
+        {
+            return;
+        }
+
+        phase2 = true;
+
+        GameActionsHelper.VFX(new BorderLongFlashEffect(Color.BLACK, false));
+        CardCrawlGame.music.silenceTempBgmInstantly();
+        CardCrawlGame.music.silenceBGMInstantly();
+        AbstractDungeon.scene.fadeInAmbiance();
+
+        if (!this.isDeadOrEscaped())
         {
             GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[0], 3, 3));
             GameActionsHelper.ApplyPower(this, this, new AngryPower(this, 5), 5);

@@ -11,7 +11,7 @@ public class OrbCore_Fire extends AnimatorCard
 {
     public static final String ID = CreateFullID(OrbCore_Fire.class.getSimpleName());
 
-    public static final int VALUE = 3;
+    public static final int VALUE = 4;
 
     public OrbCore_Fire()
     {

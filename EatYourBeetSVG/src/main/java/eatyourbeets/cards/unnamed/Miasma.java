@@ -22,7 +22,7 @@ public class Miasma extends UnnamedCard
 
     public Miasma()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
         Initialize(0,0, 6, 6);
     }

@@ -20,7 +20,7 @@ public class EmiyaShirou extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0,0, 9);
+        Initialize(0,0, 12);
 
         //AddExtendedDescription();
 
@@ -68,7 +68,7 @@ public class EmiyaShirou extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(-3);
+            upgradeMagicNumber(-4);
         }
     }
 }

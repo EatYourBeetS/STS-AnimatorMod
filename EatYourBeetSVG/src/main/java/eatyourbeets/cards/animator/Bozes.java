@@ -15,9 +15,11 @@ public class Bozes extends AnimatorCard
 
     public Bozes()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL);
+        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(8,0,1, 3);
+        Initialize(7,0,2, 1);
+
+        this.exhaust = true;
 
         SetSynergy(Synergies.Gate);
     }
@@ -25,23 +27,24 @@ public class Bozes extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractMonster enemy = null;
-        int lowestHealth = Integer.MAX_VALUE;
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
-        {
-            if (m1.currentHealth < lowestHealth)
-            {
-                enemy = m1;
-                lowestHealth = m1.currentHealth;
-            }
-        }
+//        AbstractMonster enemy = null;
+//        int lowestHealth = Integer.MAX_VALUE;
+//        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+//        {
+//            if (m1.currentHealth < lowestHealth)
+//            {
+//                enemy = m1;
+//                lowestHealth = m1.currentHealth;
+//            }
+//        }
+//
+//        if (enemy != null)
+//        {
+//            GameActionsHelper.DamageTarget(p, enemy, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+//        }
 
-        if (enemy != null)
-        {
-            GameActionsHelper.DamageTarget(p, enemy, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        }
-
-        GameActionsHelper.DrawCard(p, this.magicNumber);
+        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActionsHelper.RandomCostReduction(magicNumber,1, false);
         GameActionsHelper.ApplyPower(p, p, new BozesPower(p, this.secondaryValue), this.secondaryValue);
     }
 
@@ -50,7 +53,7 @@ public class Bozes extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeMagicNumber(1);
         }
     }
 }

@@ -3,6 +3,7 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -46,7 +47,8 @@ public class BozesPower extends AnimatorPower
         {
             if (amount > 0)
             {
-                GameActionsHelper.GainBlock(owner, amount);
+                GameActionsHelper.ApplyPower(owner, owner, new PlatedArmorPower(owner, amount), amount);
+                //GameActionsHelper.GainBlock(owner, amount);
 
                 this.flash();
             }

@@ -60,7 +60,8 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         if (TryUpgrade())
         {
-            upgradeDamage(6);
+            upgradeDamage(4);
+            upgradeSecondaryValue(2);
         }
     }
 

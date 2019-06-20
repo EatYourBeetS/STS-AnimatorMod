@@ -56,7 +56,7 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard// extends Anima
             activate = false;
         }
 
-        for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
+        for (AbstractCard c : GetAllInBattleInstances())
         {
             AnimatorCard_Cooldown card = (AnimatorCard_Cooldown)c;
             card.baseSecondaryValue = card.secondaryValue = newValue;

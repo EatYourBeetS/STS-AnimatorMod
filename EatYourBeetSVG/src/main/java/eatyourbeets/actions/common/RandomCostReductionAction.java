@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.utilities.RandomizedList;
 
 public class RandomCostReductionAction extends AbstractGameAction
 {
@@ -26,71 +27,46 @@ public class RandomCostReductionAction extends AbstractGameAction
     {
         if (this.duration == Settings.ACTION_DUR_FAST)
         {
-            boolean betterPossible = false;
-            boolean possible = false;
+            RandomizedList<AbstractCard> betterPossible = new RandomizedList<>();
+            RandomizedList<AbstractCard> possible = new RandomizedList<>();
 
             for (AbstractCard c : this.p.hand.group)
             {
                 if (c.costForTurn > 0)
                 {
-                    betterPossible = true;
+                    betterPossible.Add(c);
                 }
                 else if (c.cost > 0)
                 {
-                    possible = true;
+                    possible.Add(c);
                 }
             }
 
-            if (betterPossible || possible)
+            if (betterPossible.Count() > 0)
             {
-                this.findAndModifyCard(betterPossible);
+                ModifyCost(betterPossible.Retrieve(AbstractDungeon.cardRng));
+            }
+            else if (possible.Count() > 0)
+            {
+                ModifyCost(possible.Retrieve(AbstractDungeon.cardRng));
             }
         }
 
         this.tickDuration();
     }
 
-    private void findAndModifyCard(boolean better)
+    private void ModifyCost(AbstractCard c)
     {
-        AbstractCard c = this.p.hand.getRandomCard(false);
-        if (better)
+        if (permanent)
         {
-            if (c.costForTurn > 0)
-            {
-                if (permanent)
-                {
-                    c.updateCost(Math.max(0, c.cost - costReduction));
-                }
-                else
-                {
-                    c.setCostForTurn(Math.max(0, c.costForTurn - costReduction));
-                }
-
-                c.superFlash(Color.GOLD.cpy());
-            }
-            else
-            {
-                this.findAndModifyCard(true);
-            }
-        }
-        else if (c.cost > 0)
-        {
-            if (permanent)
-            {
-                c.updateCost(Math.max(0, c.cost - costReduction));
-            }
-            else
-            {
-                c.setCostForTurn(Math.max(0, c.costForTurn - costReduction));
-            }
-
-            c.superFlash(Color.GOLD.cpy());
+            c.updateCost(Math.max(0, c.cost - costReduction));
         }
         else
         {
-            this.findAndModifyCard(false);
+            c.setCostForTurn(Math.max(0, c.costForTurn - costReduction));
         }
 
+        c.superFlash(Color.GOLD.cpy());
     }
 }
 

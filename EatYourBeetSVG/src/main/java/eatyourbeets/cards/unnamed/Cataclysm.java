@@ -52,7 +52,12 @@ public class Cataclysm extends UnnamedCard
             {
                 AbstractMonster c = enemies.Retrieve(AbstractDungeon.miscRng);
                 //ImpactEffect(c);
-                GameActionsHelper.VFX(new CataclysmEffect(c.hb.cX, c.hb.cY));
+                float width = c.hb.width / 2f;
+                float height = c.hb.height / 2f;
+                float x = c.hb.cX + AbstractDungeon.miscRng.random(-width, width);
+                float y = c.hb.cY + AbstractDungeon.miscRng.random(-height, height);
+
+                GameActionsHelper.VFX(new CataclysmEffect(x, y));
                 GameActionsHelper.DamageTarget(p, c, this, AbstractGameAction.AttackEffect.NONE, true);
             }
         }

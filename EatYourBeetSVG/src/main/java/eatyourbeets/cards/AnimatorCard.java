@@ -315,6 +315,18 @@ public abstract class AnimatorCard extends EYBCard
         }
     }
 
+    public HashSet<AbstractCard> GetAllInBattleInstances()
+    {
+        HashSet<AbstractCard> cards = GetAllInBattleInstances.get(uuid);
+
+        if (!cards.contains(this))
+        {
+            cards.add(this);
+        }
+
+        return cards;
+    }
+
     public HashSet<AbstractCard> GetAllInstances()
     {
         HashSet<AbstractCard> cards = GetAllInBattleInstances.get(uuid);

@@ -47,7 +47,7 @@ public class Elsword extends AnimatorCard
     public void upgrade() 
     {
         if (TryUpgrade())
-        {          
+        {
             upgradeDamage(2);
             upgradeMagicNumber(1);
         }

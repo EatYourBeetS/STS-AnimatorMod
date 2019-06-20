@@ -19,7 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class AbstractResources implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber,
-                                                   EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber
+                                                   EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
+                                                   AddAudioSubscriber
 {
     public enum UIStringType
     {
@@ -143,13 +144,18 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
     }
 
     @Override
+    public void receiveAddAudio()
+    {
+        InitializeAudio();
+    }
+
+    @Override
     public final void receivePostInitialize()
     {
         InitializeEvents();
         InitializeMonsters();
         InitializePotions();
         InitializeRewards();
-        InitializeAudio();
         PostInitialize();
     }
 

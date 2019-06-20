@@ -27,7 +27,7 @@
 	},
 	"animator:BozesPower":
 	{
-		"DESCRIPTIONS": ["Quand une carte #ySynergizes, gagnez #b", " d'Armure."],
+		"DESCRIPTIONS": ["Quand une carte #ySynergizes, gagnez #b", " d'Armure Plaquée."],
 		"NAME": "Bozes Co Palesti"
 	},
 	"animator:BurningPower":
@@ -39,6 +39,26 @@
 	{
 		"DESCRIPTIONS": ["Quand vous joué les types de carte de manière altenatives , infligez #b", " dégat(s) à TOUS les ennemis et #yRecycler #b1 carte. NL NL Dernier type joué: #y"],
 		"NAME": "Chlammy Zell"
+	},
+	"animator:CursedStabsPower":
+	{
+		"DESCRIPTIONS": ["À chaque fois que cet ennemi inflige des dégâts non bloqués, ajoutez une #yDouleur et une #yPlaie dans votre pioche."],
+		"NAME": "Poignards Maudits"
+	},
+	"animator:DarkCrystalPower":
+	{
+		"DESCRIPTIONS": ["Lorsqu'une carte cible cet ennemi, applique #b", " de #yConstriction à TOUS les autres personnages."],
+		"NAME": "Crystal Tenébreux"
+	},
+	"animator:DarkCubePower":
+	{
+		"DESCRIPTIONS": ["À la fin de chaque tour, applique #b", " de #yConstriction à l'ennemi."],
+		"NAME": "Cube Tenébreux"
+	},
+	"animator:DarkWispPower":
+	{
+		"DESCRIPTIONS": ["À la mort, applique #b", " de #yConstriction à TOUS les personnages."],
+		"NAME": "Fragment Tenébreux"
 	},
 	"animator:DarknessPower":
 	{
@@ -85,10 +105,40 @@
 		"DESCRIPTIONS": ["Quand une carte est épuisé gagnez #b", " Force et Soignez #b", " PV."],
 		"NAME": "Ferid Bathory"
 	},
+	"animator:FireCrystalPower":
+	{
+		"DESCRIPTIONS": ["Lorsqu'une carte cible cet ennemi, TOUS les autres personnages #b", " de #yForce et de #yBrûlure."],
+		"NAME": "Crystal Ardent"
+	},
+	"animator:FireCubePower":
+	{
+		"DESCRIPTIONS": ["À la fin de chaque tour, TOUS les alliés reçoivent #b", " de #yForce et de #yBrûlure."],
+		"NAME": "Cube Ardent"
+	},
+	"animator:FireWispPower":
+	{
+		"DESCRIPTIONS": ["À la mort, TOUS les personnages reçoivent #b", " de #yForce et de #yBrûlure."],
+		"NAME": "Fragment Ardent"
+	},
 	"animator:FlamingWeaponPower":
 	{
 		"DESCRIPTIONS": ["Tout dégats non bloqué, inflige #b", " Brûlure."],
 		"NAME": "Arme Enflammé"
+	},
+	"animator:FrostCrystalPower":
+	{
+		"DESCRIPTIONS": ["Lorsqu'une carte cible cet ennemi, TOUS les autres personnages gagne #b", " #yd'Armure #yPlaquée."],
+		"NAME": "Crystal Glacial"
+	},
+	"animator:FrostCubePower":
+	{
+		"DESCRIPTIONS": ["À la fin de chaque tour, TOUS les alliés reçoivent #b", " #yd'Armure #yPlaquée."],
+		"NAME": "Cube Glacial"
+	},
+	"animator:FrostWispPower":
+	{
+		"DESCRIPTIONS": ["À la mort, TOUS les personnages reçoivent #b", " #yd'Armure #yPlaquée."],
+		"NAME": "Fragment Glacial"
 	},
 	"animator:GazelDwargonPower":
 	{
@@ -105,6 +155,21 @@
 		"DESCRIPTIONS": ["Au début de votre tour Recycler #b", " cartes."],
 		"NAME": "Bookkeeping"
 	},
+	"animator:HealingCrystalPower":
+	{
+		"DESCRIPTIONS": ["Lorsqu'une carte cible cet ennemi, TOUS les autres personnages gagne #b", " PV."],
+		"NAME": "Crystal Curatif"
+	},
+	"animator:HealingCubePower":
+	{
+		"DESCRIPTIONS": ["À la fin de chaque tour, TOUS les alliés reçoivent #b", " PV."],
+		"NAME": "Cube Curatif"
+	},
+	"animator:HealingWispPower":
+	{
+		"DESCRIPTIONS": ["À la mort, TOUS les personnages reçoivent #b", " PV."],
+		"NAME": "Fragment Curatif"
+	},
 	"animator:HigakiRinnePower":
 	{
 		"DESCRIPTIONS": ["???"],
@@ -117,204 +182,38 @@
 	},
 	"animator:InfinitePower":
 	{
-		"DESCRIPTIONS":
-		[
-			"- Avant de prendre des dégâts non-bloqués: Gagnez autant #yd'Armure #yEnchantée. NL - En recevant les Debuffs: Gagnez autant de #yRegénération. NL - Lorsque l'ennemi reçoit un Buff: Gagnez autant de #yForce. NL NL Ces Buffs seront diminués de moitié à chaque fin de tour."
-		],
+		"DESCRIPTIONS": ["- Avant de prendre des dégâts non-bloqués: Gagnez autant #yd'Armure #yEnchantée. NL - En recevant les Debuffs: Gagnez autant de #yRegénération. NL - Lorsque l'ennemi reçoit un Buff: Gagnez autant de #yForce. NL NL Ces Buffs seront diminués de moitié à chaque fin de tour."],
 		"NAME": "Pouvoir Infini"
-	},
-	"animator:UnnamedDollPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"Lorsqu'une carte qui ne cible pas seulement ce personnage est jouée, gagnez #b", " de #yMax #yPV. NL NL À la mort, TOUS les autres personnages reçoivent #b", " de #yForce."
-		],
-		"NAME": "Poupée Sans Nom"
-	},
-	"animator:CursedStabsPower":
-	{
-
-		"DESCRIPTIONS":
-		[
-			"À chaque fois que cet ennemi inflige des dégâts non bloqués, ajoutez une #yDouleur et une #yPlaie dans votre pioche."
-		],
-		"NAME": "Poignards Maudits"
-	},
-	"animator:TheUnnamedHatPower":
-	{
-		"NAME": "H4T",
-		"DESCRIPTIONS":
-		[
-			"À le début de chaque tour, TOUS les alliés reçoivent #b", " PV. NL NL À la mort, appliquez #yEnchevêtré a l'ennemi."
-		]
-	},
-	"animator:TheUnnamedCultistPower":
-	{
-		"NAME": "Unnamed Cultist",
-		"DESCRIPTIONS":
-		[
-			"While there are other allies alive, gains #b", " Enchanted Armor for each."
-		]
-	},
-
-	"animator:UltimateCubePower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la fin de chaque tour, gagne #b", " Buffs aléatoire. NL NL Explose après #b", " tours, causant #b", " dégâts."
-		],
-		"NAME": "Cube Ultime"
-	},
-	"animator:UltimateCrystalPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"Lorsqu'une carte est jouée, gagnez #b", " de #yForce. NL NL Après #b", " tour(s), invoque une copie de soi-même."
-		],
-		"NAME": "Crystal Ultime"
-	},
-	"animator:UltimateWispPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"Lorsque cet ennemi vous inflige des dégâts, ajoutez #b1 #yBrûlure à votre défausse. NL NL La première carte jouée à chaque tour est #yÉpuisée."
-		],
-		"NAME": "Fragment Ultime"
-	},
-
-	"animator:DarkCubePower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la fin de chaque tour, applique #b", " de #yConstriction à l'ennemi."
-		],
-		"NAME": "Cube Tenébreux"
-	},
-	"animator:DarkCrystalPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"Lorsqu'une carte cible cet ennemi, applique #b", " de #yConstriction à TOUS les autres personnages."
-		],
-		"NAME": "Crystal Tenébreux"
-	},
-	"animator:DarkWispPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la mort, applique #b", " de #yConstriction à TOUS les personnages."
-		],
-		"NAME": "Fragment Tenébreux"
-	},
-
-	"animator:LightningCubePower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la fin de chaque tour, inflige #b", " dégâts #yPerçants à l'ennemi."
-		],
-		"NAME": "Cube Foudroyant"
-	},
-	"animator:LightningCrystalPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"Lorsqu'une carte cible cet ennemi, TOUS les autres personnages reçoivent #b", " dégâts #yPerçants."
-		],
-		"NAME": "Crystal Foudroyant"
-	},
-	"animator:LightningWispPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la mort, TOUS les personnages reçoivent #b", " dégâts #yPerçants."
-		],
-		"NAME": "Fragment Foudroyant"
-	},
-
-	"animator:HealingCubePower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la fin de chaque tour, TOUS les alliés reçoivent #b", " PV."
-		],
-		"NAME": "Cube Curatif"
-	},
-	"animator:HealingCrystalPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"Lorsqu'une carte cible cet ennemi, TOUS les autres personnages gagne #b", " PV."
-		],
-		"NAME": "Crystal Curatif"
-	},
-	"animator:HealingWispPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la mort, TOUS les personnages reçoivent #b", " PV."
-		],
-		"NAME": "Fragment Curatif"
-	},
-
-	"animator:FrostCubePower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la fin de chaque tour, TOUS les alliés reçoivent #b", " #yd'Armure #yPlaquée."
-		],
-		"NAME": "Cube Glacial"
-	},
-	"animator:FrostCrystalPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"Lorsqu'une carte cible cet ennemi, TOUS les autres personnages gagne #b", " #yd'Armure #yPlaquée."
-		],
-		"NAME": "Crystal Glacial"
-	},
-	"animator:FrostWispPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la mort, TOUS les personnages reçoivent #b", " #yd'Armure #yPlaquée."
-		],
-		"NAME": "Fragment Glacial"
-	},
-
-	"animator:FireCubePower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la fin de chaque tour, TOUS les alliés reçoivent #b", " de #yForce et de #yBrûlure."
-		],
-		"NAME": "Cube Ardent"
-	},
-	"animator:FireCrystalPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"Lorsqu'une carte cible cet ennemi, TOUS les autres personnages #b", " de #yForce et de #yBrûlure."
-		],
-		"NAME": "Crystal Ardent"
-	},
-	"animator:FireWispPower":
-	{
-		"DESCRIPTIONS":
-		[
-			"À la mort, TOUS les personnages reçoivent #b", " de #yForce et de #yBrûlure."
-		],
-		"NAME": "Fragment Ardent"
 	},
 	"animator:KaijinPower":
 	{
-		"DESCRIPTIONS": ["A la fin de votre tour, increase l'#yArmure et dégats d'une carte aléatoire de votre pioche #b", "."],
+		"DESCRIPTIONS": ["Lorsque vous pigez une carte, augmentez sa quantité de dégâts et d'Armure par #b", " pour ce combat."],
 		"NAME": "Kaijin"
+	},
+	"animator:LightningCrystalPower":
+	{
+		"DESCRIPTIONS": ["Lorsqu'une carte cible cet ennemi, TOUS les autres personnages reçoivent #b", " dégâts #yPerçants."],
+		"NAME": "Crystal Foudroyant"
+	},
+	"animator:LightningCubePower":
+	{
+		"DESCRIPTIONS": ["À la fin de chaque tour, inflige #b", " dégâts #yPerçants à l'ennemi."],
+		"NAME": "Cube Foudroyant"
+	},
+	"animator:LightningWispPower":
+	{
+		"DESCRIPTIONS": ["À la mort, TOUS les personnages reçoivent #b", " dégâts #yPerçants."],
+		"NAME": "Fragment Foudroyant"
 	},
 	"animator:MarkOfPoisonPower":
 	{
 		"DESCRIPTIONS": ["Quand vous subissez des sommages, subissez aussi #b", " #yPoison."],
 		"NAME": "Marque de Poison"
+	},
+	"animator:NextTurnDexterityPower":
+	{
+		"DESCRIPTIONS": ["Au prochain tour, gagnez #b", " #yDextérité temporaire."],
+		"NAME": "Dextérité au prochain tour"
 	},
 	"animator:OrbCore_ChaosPower":
 	{
@@ -396,14 +295,39 @@
 		"DESCRIPTIONS": ["Infligez #b", " dégats à l'ennemi le plus bas en PV à la fin de votre tour."],
 		"NAME": "Support Damage"
 	},
+	"animator:TheUnnamedCultistPower":
+	{
+		"DESCRIPTIONS": ["While there are other allies alive, gains #b", " Enchanted Armor for each."],
+		"NAME": "Unnamed Cultist"
+	},
+	"animator:TheUnnamedHatPower":
+	{
+		"DESCRIPTIONS": ["À le début de chaque tour, TOUS les alliés reçoivent #b", " PV. NL NL À la mort, appliquez #yEnchevêtré a l'ennemi."],
+		"NAME": "H4T"
+	},
+	"animator:UltimateCrystalPower":
+	{
+		"DESCRIPTIONS": ["Lorsqu'une carte est jouée, gagnez #b", " de #yForce. NL NL Après #b", " tour(s), invoque une copie de soi-même."],
+		"NAME": "Crystal Ultime"
+	},
+	"animator:UltimateCubePower":
+	{
+		"DESCRIPTIONS": ["À la fin de chaque tour, gagne #b", " Buffs aléatoire. NL NL Explose après #b", " tours, causant #b", " dégâts."],
+		"NAME": "Cube Ultime"
+	},
+	"animator:UltimateWispPower":
+	{
+		"DESCRIPTIONS": ["Lorsque cet ennemi vous inflige des dégâts, ajoutez #b1 #yBrûlure à votre défausse. NL NL La première carte jouée à chaque tour est #yÉpuisée."],
+		"NAME": "Fragment Ultime"
+	},
+	"animator:UnnamedDollPower":
+	{
+		"DESCRIPTIONS": ["Lorsqu'une carte qui ne cible pas seulement ce personnage est jouée, gagnez #b", " de #yMax #yPV. NL NL À la mort, TOUS les autres personnages reçoivent #b", " de #yForce."],
+		"NAME": "Poupée Sans Nom"
+	},
 	"animator:YukoShionjiPower":
 	{
 		"DESCRIPTIONS": ["Révèle la carte au dessus de votre deck, NL #pClic-Gauche pour la piocher ( #b", " utilisations ), ou #pClic-Droit pour la défaussé ( #b", " utilisations)."],
 		"NAME": "Yuko Shionji"
-	},
-	"animator:NextTurnDexterityPower":
-	{
-		"DESCRIPTIONS": ["Au prochain tour, gagnez #b", " #yDextérité temporaire."],
-		"NAME": "Dextérité au prochain tour"
 	}
 }

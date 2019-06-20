@@ -4,11 +4,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 public class YunYun extends AnimatorCard
 {
     public static final String ID = CreateFullID(YunYun.class.getSimpleName());
+
+    private int costModifier = 0;
 
     public YunYun()
     {
@@ -31,16 +35,35 @@ public class YunYun extends AnimatorCard
     }
 
     @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        costModifier = 0;
+    }
+
+    @Override
     public void applyPowers()
     {
         super.applyPowers();
-        int newCost = AbstractDungeon.player.hand.getAttacks().size();
-        if (AbstractDungeon.player.hand.contains(this))
+
+        int attacks = 0;
+        for (AbstractCard c : AbstractDungeon.player.hand.group)
         {
-            newCost = Math.max(0, newCost - 1);
+            if (c != this && c.type == CardType.ATTACK)
+            {
+                attacks += 1;
+            }
         }
 
-        this.setCostForTurn(newCost);
+        int currentCost = (costForTurn - costModifier);
+
+        costModifier = attacks;
+
+        if (!this.freeToPlayOnce)
+        {
+            this.setCostForTurn(currentCost + costModifier);
+        }
     }
 
     @Override
@@ -48,18 +71,14 @@ public class YunYun extends AnimatorCard
     {
         GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE"));
 
-        ArrayList<AbstractMonster> enemies = AbstractDungeon.getCurrRoom().monsters.monsters;
-        for(int i = 0; i < enemies.size(); ++i)
+        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
         {
-            AbstractMonster enemy = enemies.get(i);
-            if (!enemy.isDeadOrEscaped())
-            {
-                GameActionsHelper.AddToBottom(new VFXAction(new LightningEffect(enemy.drawX, enemy.drawY)));
-                GameActionsHelper.AddToBottom(new DamageAction(enemy, new DamageInfo(p, this.multiDamage[i], this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE, true));
-            }
+            GameActionsHelper.AddToBottom(new VFXAction(new LightningEffect(m1.drawX, m1.drawY)));
         }
 
-        //GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+
+        costModifier = 0;
     }
 
     @Override

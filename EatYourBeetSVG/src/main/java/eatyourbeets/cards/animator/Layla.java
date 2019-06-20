@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.unique.BouncingFlaskAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
@@ -45,6 +46,7 @@ public class Layla extends AnimatorCard
         }
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     private void OnDiscard(Object state, ArrayList<AbstractCard> discarded)
     {
         //AbstractMonster m = Utilities.SafeCast(state, AbstractMonster.class);
@@ -54,8 +56,7 @@ public class Layla extends AnimatorCard
             AbstractMonster randomMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             if (randomMonster != null)
             {
-                //noinspection SuspiciousNameCombination,SuspiciousNameCombination
-                AbstractDungeon.actionManager.addToBottom(new VFXAction(new PotionBounceEffect(p.hb.cY, p.hb.cX, randomMonster.hb.cX, this.hb.cY), 0.3F));
+                AbstractDungeon.actionManager.addToBottom(new VFXAction(new PotionBounceEffect(p.hb.cY, p.hb.cX, randomMonster.hb.cX, randomMonster.hb.cY), 0.3F));
             }
 
             GameActionsHelper.AddToBottom(new BouncingFlaskAction(randomMonster, this.magicNumber, discarded.size()));

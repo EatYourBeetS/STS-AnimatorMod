@@ -90,7 +90,7 @@ public class UltimateCrystal extends Crystal
             AbstractDungeon.effectList.add(new CallbackEffect(new WaitRealtimeAction(15),
                     (state, action)-> CardCrawlGame.music.unsilenceBGM(), this));
 
-            CardCrawlGame.sound.play(Resources_Common.Audio_TheUltimateCrystal);
+            CardCrawlGame.sound.play(Resources_Common.Audio_TheUltimateCrystal, true);
             //CardCrawlGame.music.playTempBgmInstantly(AnimatorResources_Audio.TheUltimateCrystal, false);
         }
         else

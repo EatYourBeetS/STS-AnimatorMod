@@ -20,10 +20,15 @@
 		"DESCRIPTION": "Deal !D! damage. NL Exhaust the top 3 cards of your draw pile.",
 		"NAME": "Overpower"
 	},
-	"unnamed:DarknessEnshroud":
+	"unnamed:Laziness":
+	{
+		"DESCRIPTION": "Gain !M! Weak. NL Summon [#EFC851]Urushihara[].",
+		"NAME": "Laziness"
+	},
+	"unnamed:DarkShroud":
 	{
 		"DESCRIPTION": "Gain !M! Ench._Armor for each Dark orb. NL Exhaust.",
-		"NAME": "Darkness Enshroud",
+		"NAME": "Dark Shroud",
 		"UPGRADE_DESCRIPTION": "Retain. NL Gain !M! Ench._Armor for each Dark orb. NL Exhaust."
 	},
 	"unnamed:Attunement":
@@ -38,7 +43,7 @@
 	},
 	"unnamed:Hellfire":
 	{
-		"DESCRIPTION": "All characters gain !M! Strength and !SV! Burning.",
+		"DESCRIPTION": "Channel !SV! Fire. NL Apply !M! Burning to ALL enemies.",
 		"NAME": "Hellfire"
 	},
 	"unnamed:Miasma":
@@ -75,7 +80,7 @@
 	"unnamed:Reaper":
 	{
 		"DESCRIPTION": "Kill ALL enemies with less than !SV! HP ([#EFC851]*[]). Gain !M! Max HP for each enemy killed. Exhaust.",
-		"EXTENDED_DESCRIPTION": ["* Note", "This number is affected by Strength 4 times."],
+		"EXTENDED_DESCRIPTION": ["* Note", "This number is affected by Strength 3 times."],
 		"NAME": "Reaper"
 	}
 }

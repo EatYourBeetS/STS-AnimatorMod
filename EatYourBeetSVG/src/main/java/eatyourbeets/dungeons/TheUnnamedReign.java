@@ -60,6 +60,8 @@ public class TheUnnamedReign extends AbstractDungeon
             scene.dispose();
         }
 
+        AbstractDungeon.actNum = 4;
+
         scene = new TheUnnamedReignScene();
         fadeColor = Color.valueOf("140a1eff");
         this.initializeLevelSpecificChances();
@@ -81,6 +83,8 @@ public class TheUnnamedReign extends AbstractDungeon
         {
             scene.dispose();
         }
+
+        AbstractDungeon.actNum = 4;
 
         scene = new TheUnnamedReignScene();
         fadeColor = Color.valueOf("140a1eff");

@@ -20,7 +20,8 @@
 	"animator:Add":
 	{
 		"DESCRIPTION": "Gain !M! Ench._Armor. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal. Exhaust.",
-		"NAME": "Add"
+		"NAME": "Add",
+		"UPGRADE_DESCRIPTION": "Gain !M! Ench._Armor. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Exhaust."
 	},
 	"animator:Ain":
 	{
@@ -86,7 +87,7 @@
 	},
 	"animator:Benimaru":
 	{
-		"DESCRIPTION": "Channel 1 Fire. NL Deal !D! damage to ALL enemies. Synergy: Apply !M! Burning.",
+		"DESCRIPTION": "Channel 1 Fire. Deal !D! damage to ALL enemies. Gain !M! Temp._HP for each enemy with Burning.",
 		"NAME": "Benimaru"
 	},
 	"animator:Berserker":
@@ -111,7 +112,7 @@
 	},
 	"animator:Bozes":
 	{
-		"DESCRIPTION": "Deal !D! damage to the lowest health enemy. Draw !M! card. When you Synergize this turn, gain !SV! Block.",
+		"DESCRIPTION": "Deal !D! damage. NL When you Synergize NL this turn, gain !SV! NL Plated_Armor. NL Motivate !M!. Exhaust.",
 		"NAME": "Bozes"
 	},
 	"animator:Caster":
@@ -150,7 +151,7 @@
 	},
 	"animator:Chung":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Cooldown !SV! : NL Channel 1 Plasma.",
+		"DESCRIPTION": "Gain !B! Block. NL Decrease this card's NL Block by !M! this NL combat. Legacy : NL Channel 2 Frost.",
 		"NAME": "Chung"
 	},
 	"animator:Cocytus":
@@ -323,7 +324,7 @@
 	},
 	"animator:EmiyaShirou":
 	{
-		"DESCRIPTION": "Give a random NL enemy !M! Block and 1 Vulnerable. When an enemy loses its Block this turn, gain [E] and draw a random [#EFC851]Attack[].",
+		"DESCRIPTION": "Give a random NL enemy !M! Block and 1 Vulnerable. When an enemy loses its Block this turn, gain [E] and draw an [#EFC851]Attack[].",
 		"EXTENDED_DESCRIPTION": ["Unlimited Blade Works", "Whenever an enemy loses its block this turn, gain 1 #yEnergy and draw a random #yAttack from your draw pile."],
 		"NAME": "Emiya Shirou"
 	},
@@ -367,7 +368,7 @@
 	},
 	"animator:Excalibur":
 	{
-		"DESCRIPTION": "Retain. NL Gain 1 Intangible. NL Deal !D! damage to ALL enemies. NL Exhaust.",
+		"DESCRIPTION": "Retain. NL Gain 1 Intangible. NL Deal !D! damage to NL ALL enemies. NL Exhaust.",
 		"NAME": "Excalibur"
 	},
 	"animator:FeridBathory":
@@ -460,7 +461,7 @@
 	},
 	"animator:Guren":
 	{
-		"DESCRIPTION": "Play the top 3 cards of your draw pile. Exhaust ALL [#EFC851]Attacks played and gain !M! Support_Damage NL for each of them.",
+		"DESCRIPTION": "Play the top 3 cards of your draw pile. Exhaust every [#EFC851]Attack, [#EFC851]Curse and [#EFC851]Status played, gain !M! Support_Damage for each of them.",
 		"NAME": "Guren"
 	},
 	"animator:Guy":
@@ -482,7 +483,7 @@
 	},
 	"animator:Hibiki":
 	{
-		"DESCRIPTION": "Deal !D! damage !M! times. Increase this card's hit count by 1 this combat.",
+		"DESCRIPTION": "Deal !D! damage to a random enemy !M! times. Increase this card's hit count by !SV! this combat.",
 		"NAME": "Hibiki"
 	},
 	"animator:HigakiRinne":
@@ -549,9 +550,8 @@
 	},
 	"animator:Kaijin":
 	{
-		"DESCRIPTION": "At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat.",
-		"NAME": "Kaijin",
-		"UPGRADE_DESCRIPTION": "Innate. At the end of each turn, give a random card in your draw pile !M! more damage and Block this combat."
+		"DESCRIPTION": "Whenever you draw a card, increase its damage and Block by !M! this combat.",
+		"NAME": "Kaijin"
 	},
 	"animator:Kazuma":
 	{
@@ -604,9 +604,9 @@
 	},
 	"animator:LeleiLaLalena":
 	{
-		"DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Synergy: Apply !SV! Weak to ALL enemies.",
+		"DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Synergy: Apply !SV! Weak to ALL NL enemies.",
 		"NAME": "Lelei La Lalena",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Cycle 1 card. NL Synergy: Apply !SV! Weak to ALL enemies."
+		"UPGRADE_DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Cycle 1 card. NL Synergy: Apply !SV! Weak to ALL NL enemies."
 	},
 	"animator:Lelouch":
 	{
@@ -684,7 +684,7 @@
 	},
 	"animator:Mitsurugi":
 	{
-		"DESCRIPTION": "Deal !D! damage. Can only be used if the enemy intends to attack. Legacy: NL Gain !M! Strength.",
+		"DESCRIPTION": "If the enemy intends to attack, deal !D! damage. Legacy: NL Gain !M! Strength.",
 		"EXTENDED_DESCRIPTION": ["The enemy does not intend to attack."],
 		"NAME": "Mitsurugi"
 	},
@@ -778,7 +778,7 @@
 	},
 	"animator:Rena":
 	{
-		"DESCRIPTION": "Gain !M! Blur. NL Gain !B! Block. NL Synergy and Recall: NL Next turn, gain !B! Block.",
+		"DESCRIPTION": "Gain !M! Blur. NL Gain !B! Block. NL Synergy and Recall: NL Next turn, gain NL !B! Block.",
 		"NAME": "Rena"
 	},
 	"animator:Rimuru":
@@ -909,7 +909,7 @@
 	},
 	"animator:Sora":
 	{
-		"DESCRIPTION": "Choose and execute !M! custom Effects. Synergy: Choose 1 more Effect.",
+		"DESCRIPTION": "Choose and execute NL !M! custom Effects. NL Synergy: Choose 1 NL additional Effect.",
 		"NAME": "Sora"
 	},
 	"animator:Souei":
@@ -1062,13 +1062,14 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "Gain !B! Block. Increase the Block of a random card in your hand by !M! this combat.",
+		"DESCRIPTION": "Gain !B! Block. Next NL turn, gain !B! Block. NL If this is your first Synergy this turn, Motivate !M!.",
 		"NAME": "Tuka"
 	},
 	"animator:Tyuule":
 	{
-		"DESCRIPTION": "Apply !M! Poison NL and 1 Vulnerable to ALL enemies. NL Boost !SV! : Gain [E]",
-		"NAME": "Tyuule"
+		"DESCRIPTION": "Apply !M! Poison NL and 1 Vulnerable to ALL enemies.",
+		"NAME": "Tyuule",
+		"UPGRADE_DESCRIPTION": "Apply !M! Poison NL and 1 Vulnerable to ALL enemies. NL Boost !SV! : Gain [E]"
 	},
 	"animator:Urushihara":
 	{
@@ -1089,7 +1090,7 @@
 	},
 	"animator:Vesta":
 	{
-		"DESCRIPTION": "Research an [#EFC851]Elixir, NL it will be completed after !M! turns. NL Exhaust.",
+		"DESCRIPTION": "Draw 1 card. NL Research an [#EFC851]Elixir, NL it will be completed after !M! turns. NL Exhaust.",
 		"EXTENDED_DESCRIPTION": ["Elixir", "0-cost #ySkill with a variety of different effects."],
 		"NAME": "Vesta"
 	},
@@ -1148,9 +1149,9 @@
 	},
 	"animator:Yusarin":
 	{
-		"DESCRIPTION": "Gain [E]. NL Draw !M! card. NL Exhaust.",
+		"DESCRIPTION": "Motivate !SV!. NL Draw !M! card. NL Exhaust.",
 		"NAME": "Yusarin",
-		"UPGRADE_DESCRIPTION": "Gain [E]. NL Draw !M! cards. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Motivate !SV!. NL Draw !M! cards. NL Exhaust."
 	},
 	"animator:Yuuichirou":
 	{

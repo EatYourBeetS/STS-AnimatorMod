@@ -26,13 +26,18 @@ public abstract class AnimatorCard_Boost extends AnimatorCard
         this.isSecondaryValueModified = false;
     }
 
+    protected int GetCurrentBoost()
+    {
+        return this.secondaryValue;
+    }
+
     protected boolean ProgressBoost()
     {
         if (this.secondaryValue > 0)
         {
             int newValue = this.secondaryValue - 1;
 
-            for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
+            for (AbstractCard c : GetAllInBattleInstances())
             {
                 AnimatorCard_Boost card = Utilities.SafeCast(c, AnimatorCard_Boost.class);
                 if (card != null)

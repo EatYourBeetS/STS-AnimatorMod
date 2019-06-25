@@ -86,7 +86,7 @@
 	},
 	"animator:Benimaru":
 	{
-		"DESCRIPTION": "[#EFC851]生成[] 1 个 火焰 充能球 。 对所有敌人造成 !D! 点 伤害 。 NL 为每一名带有 燃烧 的敌人，获得 !M! 点 临时生命 。",
+		"DESCRIPTION": "[#EFC851]生成[] 1 个 火焰 充能球 。 对所有敌人造成 !D! 点 伤害 。 NL 每有一个带有 燃烧 的敌人，获得 !M! 点 临时生命 。",
 		"NAME": "红丸"
 	},
 	"animator:Berserker":
@@ -111,7 +111,7 @@
 	},
 	"animator:Bozes":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害。 每当一张牌在本回合中同调， 获得 !SV! 点 多层护甲 。 NL 激励 !M! 。 消耗 。",
+		"DESCRIPTION": "造成 !D! 点 伤害。 本回合每触发一次同调， 获得 !SV! 点 多层护甲 。 NL 激励 !M! 。 消耗 。",
 		"NAME": "波赛斯"
 	},
 	"animator:Caster":
@@ -376,8 +376,8 @@
 	},
 	"animator:Fredrika":
 	{
-		"DESCRIPTION": "穿越者 。 每个敌人使你获得获得 !B! 点 格挡 。 撤回 : 将此卡退还给您并选择其他表格 。",
-		"EXTENDED_DESCRIPTION": ["穿越者 。 获得 !B! 点 格挡 。", "穿越者 。 造成 !D! 点伤害 2 次 。 获得 2 点 金属化 。 撤回 : 获得 !M! 点 金属化 。", "穿越者 。 造成 !D! 点 伤害 。 给予 1 层 虚弱 。 给予 !M! 层 易伤 。"],
+		"DESCRIPTION": "穿越者 。 每个敌人使你获得获得 !B! 点 格挡 。 撤回 : 从三个形体中选择一个并返回手牌 。",
+		"EXTENDED_DESCRIPTION": ["穿越者 。 获得 !B! 点 格挡 。", "穿越者 。 造成 !D! 点伤害 2 次 。 获得 2 点 金属化 。 ", "穿越者 。 造成 !D! 点 伤害 。 给予 1 层 虚弱 。 给予 1 层 易伤 。"],
 		"NAME": "芙蕾多妮卡"
 	},
 	"animator:GazelDwargon":
@@ -410,7 +410,7 @@
 	"animator:Giselle":
 	{
 		"DESCRIPTION": "造成 !D! 点伤害 。 NL 给予 !M! 层 燃烧 。 NL 对生命值低于 !SV! 点 的敌人造成三倍伤害 。",
-		"NAME": "Giselle"
+		"NAME": "吉赛尔"
 	},
 	"animator:Gluttony":
 	{
@@ -457,7 +457,7 @@
 	},
 	"animator:Guren":
 	{
-		"DESCRIPTION": "打出抽牌堆顶部的三张牌， 消耗其中的所有 [#EFC851]攻击[] 牌， [#EFC851]的状态牌[] 和 [#EFC851]诅咒牌[] ， 每消耗一张牌， 获得 !M! 点 支援伤害",
+		"DESCRIPTION": "打出抽牌堆顶部的三张牌， 消耗其中的所有 [#EFC851]攻击[] ， [#EFC851]状态[] 和 [#EFC851]诅咒[] ， 每消耗一张牌， 获得 !M! 点 支援伤害",
 		"NAME": "红莲"
 	},
 	"animator:Guy":
@@ -518,9 +518,9 @@
 	},
 	"animator:Illya":
 	{
-		"DESCRIPTION": "获得 1 层 易伤 。 将抽牌堆中伤害最高的 [#EFC851]攻击[] 牌 打出 。 消耗 。",
+		"DESCRIPTION": "获得 1 层 易伤 。 打出抽牌堆中伤害最高的 [#EFC851]攻击[] 牌  。 消耗 。",
 		"NAME": "伊莉雅",
-		"UPGRADE_DESCRIPTION": "获得 1 层 易伤 。 将抽牌堆中伤害最高的 [#EFC851]攻击[] 牌 打出 。"
+		"UPGRADE_DESCRIPTION": "获得 1 层 易伤 。 打出抽牌堆中伤害最高的 [#EFC851]攻击[] 牌  。"
 	},
 	"animator:ItamiYouji":
 	{
@@ -585,7 +585,7 @@
 	"animator:Kyubey":
 	{
 		"DESCRIPTION": "获得 [E] [E] NL 抽 !M! 张牌 。 NL 在你的弃牌堆中添加 2 个随机诅咒 。",
-		"NAME": "Kyubey",
+		"NAME": "QB",
 		"UPGRADE_DESCRIPTION": "获得 [E] [E] [E] NL 抽 !M! 张牌 。 NL 在你的弃牌堆中添加 2 个随机诅咒 。"
 	},
 	"animator:Lancer":
@@ -709,32 +709,32 @@
 	},
 	"animator:OrbCore_Chaos":
 	{
-		"DESCRIPTION": "生成 1 个随机充能球 。 NL 每回合第二次同调时 ， 发现 1 张牌 。",
+		"DESCRIPTION": "生成 !SV! 个随机充能球 。 NL 每回合第二次同调时 ， 发现 1 张牌 。",
 		"NAME": "混沌核心"
 	},
 	"animator:OrbCore_Dark":
 	{
-		"DESCRIPTION": "生成 1 个 黑暗 充能球 。 NL 每回合第二次同调时 ， 抽 !M! 张牌 ， 然后丢弃 1 张牌 。",
+		"DESCRIPTION": "生成 !SV! 个 黑暗 充能球 。 NL 每回合第二次同调时 ， 抽 !M! 张牌 ， 然后丢弃 1 张牌 。",
 		"NAME": "黑暗核心"
 	},
 	"animator:OrbCore_Fire":
 	{
-		"DESCRIPTION": "生成 1 个 火焰 充能球 。  NL 每回合第二次同调时 ， 对所有敌人造成 !M! 层 燃烧 。",
+		"DESCRIPTION": "生成 !SV! 个 火焰 充能球 。  NL 每回合第二次同调时 ， 对所有敌人造成 !M! 层 燃烧 。",
 		"NAME": "火焰核心"
 	},
 	"animator:OrbCore_Frost":
 	{
-		"DESCRIPTION": "生成 1 个 冰霜 充能球 。 NL 每回合第二次同调时 ， 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "生成 !SV! 个 冰霜 充能球 。 NL 每回合第二次同调时 ， 获得 !B! 点 格挡 。",
 		"NAME": "冰霜核心"
 	},
 	"animator:OrbCore_Lightning":
 	{
-		"DESCRIPTION": "生成 1 个 闪电 充能球 。 NL 每回合第二次同调时 ， 对所有敌人造成 !M! 点 伤害 。",
+		"DESCRIPTION": "生成 !SV! 个 闪电 充能球 。 NL 每回合第二次同调时 ， 对所有敌人造成 !M! 点 伤害 。",
 		"NAME": "闪电核心"
 	},
 	"animator:OrbCore_Plasma":
 	{
-		"DESCRIPTION": "生成 1 个 等离子 充能球 。 NL 每回合第二次同调时 ， 获得 [E] 。",
+		"DESCRIPTION": "生成 !SV! 个 等离子 充能球 。 NL 每回合第二次同调时 ， 获得 [E] 。",
 		"NAME": "等离子核心"
 	},
 	"animator:PandorasActor":
@@ -1031,22 +1031,22 @@
 	},
 	"animator:ThrowingKnife_0":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 虚弱 。 NL 抹除 。 撤回 : 玩这张卡。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 虚弱 。 NL 抹除 。 撤回 : 打出这张牌。",
 		"NAME": "飞刃"
 	},
 	"animator:ThrowingKnife_1":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 抹除 。 撤回 : 玩这张卡。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 易伤 。 NL 抹除 。 撤回 : 打出这张牌。",
 		"NAME": "飞刃"
 	},
 	"animator:ThrowingKnife_2":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 中毒 。 NL 抹除 。 撤回 : 玩这张卡。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 给予 !M! 层 中毒 。 NL 抹除 。 撤回 : 打出这张牌。",
 		"NAME": "飞刃"
 	},
 	"animator:Togame":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 您可以选择并 消耗 一张牌来再抽 1 张卡 ",
+		"DESCRIPTION": "抽 !M! 张牌 。 可以选择并消耗一张手牌，以再抽一张牌 ",
 		"NAME": "咎儿"
 	},
 	"animator:Truth":

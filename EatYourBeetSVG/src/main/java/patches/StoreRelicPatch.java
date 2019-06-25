@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.shop.StoreRelic;
 public class StoreRelicPatch
 {
     // Not ideal solution, but should work since the shop only has 3 relics at a time
-    public static AbstractRelic[] last20Relics = new AbstractRelic[20];
+    public static final AbstractRelic[] last20Relics = new AbstractRelic[20];
 
     private static int index = 0;
 

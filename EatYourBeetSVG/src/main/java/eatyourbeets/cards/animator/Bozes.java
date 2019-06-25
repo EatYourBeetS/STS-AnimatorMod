@@ -7,7 +7,6 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.BozesPower;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class Bozes extends AnimatorCard
 {

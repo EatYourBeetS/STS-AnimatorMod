@@ -19,8 +19,8 @@ import eatyourbeets.powers.UnnamedReign.TheUnnamedCultistPower;
 
 public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 {
-    public RandomizedList<AbstractMonster> pool1 = new RandomizedList<>();
-    public RandomizedList<AbstractMonster> pool2 = new RandomizedList<>();
+    public final RandomizedList<AbstractMonster> pool1 = new RandomizedList<>();
+    public final RandomizedList<AbstractMonster> pool2 = new RandomizedList<>();
     public AbstractMonster firstSummon;
     public AbstractMonster secondSummon;
 
@@ -32,8 +32,8 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 
         moveset.AddSpecial(new Move_SummonEnemy());
 
-        moveset.AddNormal(new Move_GainPlatedArmorAll(3));
-        moveset.AddNormal(new Move_GainStrengthAll(2));
+        moveset.AddNormal(new Move_GainPlatedArmorAll(4));
+        moveset.AddNormal(new Move_GainStrengthAll(3));
         moveset.AddNormal(new Move_AttackDefend(12, 12));
     }
 

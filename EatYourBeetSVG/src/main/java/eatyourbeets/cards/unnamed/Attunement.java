@@ -3,10 +3,8 @@ package eatyourbeets.cards.unnamed;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Attunement extends UnnamedCard

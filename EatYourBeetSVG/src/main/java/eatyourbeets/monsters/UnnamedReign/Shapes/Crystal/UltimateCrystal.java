@@ -23,7 +23,7 @@ import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.animator.AntiArtifactSlowPower;
+import eatyourbeets.powers.common.AntiArtifactSlowPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.UltimateCrystalPower;
 
@@ -32,7 +32,7 @@ public class UltimateCrystal extends Crystal
     public static final String ID = CreateFullID(MonsterShape.Crystal, MonsterElement.Ultimate, MonsterTier.Ultimate);
     public static final String NAME = "Ultimate Crystal";
 
-    public UltimateCrystal original;
+    public final UltimateCrystal original;
 
     public UltimateCrystal()
     {

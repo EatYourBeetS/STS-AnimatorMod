@@ -1,6 +1,7 @@
 package patches;
 
-import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
@@ -8,6 +9,8 @@ import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.events.TheMaskedTraveler2;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.resources.Resources_Common;
 import eatyourbeets.room.AnimatorCustomEventRoom;
 
 public class TheEndingPatches
@@ -18,24 +21,25 @@ public class TheEndingPatches
         @SpirePostfixPatch
         public static void Postfix(TheEnding __instance)
         {
-            if (Settings.isStandardRun())
+            if (Settings.isStandardRun() && PlayerStatistics.GetActualAscensionLevel() >= 0) // Ascension reborn mod adds negative ascension levels
             {
-                if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR ||
-                        AnimatorCustomLoadout.specialTrophies.trophy1 > 0)
+                if (AnimatorCustomLoadout.specialTrophies.trophy1 > 0 ||
+                        AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
                 {
 //                int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
-//                if (currentLevel > 1)
+//                if (currentLevel <= 1)
 //                {
+//                }
                     MapRoomNode rest = __instance.getMap().get(0).get(3);
                     MapRoomNode shop = __instance.getMap().get(1).get(3);
                     MapRoomNode fight = __instance.getMap().get(1).get(4);
                     MapRoomNode node = __instance.getMap().get(1).get(5);
 
                     node.room = new AnimatorCustomEventRoom(TheMaskedTraveler2::new);
+                    node.room.setMapImg(Resources_Common.Map_Act5Entrance, Resources_Common.Map_Act5EntranceOutline);
 
                     connectNode(rest, node);
                     connectNode(node, shop);
-//                }
                 }
             }
         }

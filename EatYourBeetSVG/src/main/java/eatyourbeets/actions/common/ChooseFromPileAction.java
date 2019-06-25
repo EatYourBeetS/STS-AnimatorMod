@@ -11,7 +11,7 @@ import java.util.function.BiConsumer;
 
 public class ChooseFromPileAction extends AbstractGameAction
 {
-    private boolean useSource;
+    private final boolean useSource;
 
     private final boolean random;
     private final String message;

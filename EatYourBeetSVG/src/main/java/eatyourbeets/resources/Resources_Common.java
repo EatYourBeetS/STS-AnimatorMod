@@ -2,6 +2,7 @@ package eatyourbeets.resources;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.TheMaskedTraveler1;
@@ -13,6 +14,7 @@ import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.rewards.SynergyCardsReward;
 import eatyourbeets.variables.SecondaryValueVariable;
@@ -20,6 +22,9 @@ import patches.AbstractEnums;
 
 public class Resources_Common extends AbstractResources
 {
+    public static Texture Map_Act5Entrance;
+    public static Texture Map_Act5EntranceOutline;
+
     public static final String Audio_TheHaunt = "ANIMATOR_THE_HAUNT.ogg";
     public static final String Audio_TheUnnamed = "ANIMATOR_THE_UNNAMED.ogg";
     public static final String Audio_TheCreature = "ANIMATOR_THE_CREATURE.ogg";
@@ -83,8 +88,17 @@ public class Resources_Common extends AbstractResources
     }
 
     @Override
+    protected void InitializePowers()
+    {
+        BaseMod.addPower(GenericFadingPower.class, GenericFadingPower.POWER_ID);
+    }
+
+    @Override
     protected void PostInitialize()
     {
         BaseMod.addSaveField("animator_SaveData", PlayerStatistics.Instance);
+
+        Map_Act5Entrance = new Texture("images/ui/map/act5Entrance.png");
+        Map_Act5EntranceOutline = new Texture("images/ui/map/act5EntranceOutline.png");
     }
 }

@@ -23,7 +23,7 @@ public class Add extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 16);
+        Initialize(0,0, 14);
 
         this.exhaust = true;
         this.isEthereal = true;
@@ -40,7 +40,7 @@ public class Add extends AnimatorCard
         {
             GameActionsHelper.AddToBottom(new ExhaustFromPileAction(1, false, p.drawPile));
 
-            CardGroup cores = OrbCore_AbstractPower.CreateCoresGroup(false);
+            CardGroup cores = OrbCore_AbstractPower.CreateCoresGroup(true);
             GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, cores, this::OrbChosen, this, "", true));
         }
     }

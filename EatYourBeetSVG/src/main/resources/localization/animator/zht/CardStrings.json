@@ -707,32 +707,32 @@
 	},
 	"animator:OrbCore_Chaos":
 	{
-		"DESCRIPTION": "生成 1 個 隨機 充能球 。 NL 每回合第二次同調時 ， 發現 1 張牌.",
+		"DESCRIPTION": "生成 !SV! 個 隨機 充能球 。 NL 每回合第二次同調時 ， 發現 1 張牌.",
 		"NAME": "Chaos 核心"
 	},
 	"animator:OrbCore_Dark":
 	{
-		"DESCRIPTION": "生成 1 黑暗 充能球 。 NL 每回合第二次同調時 ， 抽 !M! 張牌 ， 然後丟棄 1 張牌 。",
+		"DESCRIPTION": "生成 !SV! 黑暗 充能球 。 NL 每回合第二次同調時 ， 抽 !M! 張牌 ， 然後丟棄 1 張牌 。",
 		"NAME": "黑暗 核心"
 	},
 	"animator:OrbCore_Fire":
 	{
-		"DESCRIPTION": "產生 1 火素 充能球 。 NL 每回合第二次同調時 ， 對所有敵人造成 !M! 點 燃燒 。",
+		"DESCRIPTION": "產生 !SV! 火素 充能球 。 NL 每回合第二次同調時 ， 對所有敵人造成 !M! 點 燃燒 。",
 		"NAME": "火素 核心"
 	},
 	"animator:OrbCore_Frost":
 	{
-		"DESCRIPTION": "產生 1 冰霜 充能球 。 NL 每回合第二次同調時 ， 獲得 !M! 點 格擋 。",
+		"DESCRIPTION": "產生 !SV! 冰霜 充能球 。 NL 每回合第二次同調時 ， 獲得 !M! 點 格擋 。",
 		"NAME": "冰霜 核心"
 	},
 	"animator:OrbCore_Lightning":
 	{
-		"DESCRIPTION": "產生 1 閃電充 充能球 。 NL 每回合第二次同調時 ， 對所有敵人造成 !M! 點 傷害 。",
+		"DESCRIPTION": "產生 !SV! 閃電充 充能球 。 NL 每回合第二次同調時 ， 對所有敵人造成 !M! 點 傷害 。",
 		"NAME": "閃電充 核心"
 	},
 	"animator:OrbCore_Plasma":
 	{
-		"DESCRIPTION": "產生 1 個 等離子 充能球 。 NL 每回合第二次同調時 ， 獲得 [E] 。",
+		"DESCRIPTION": "產生 !SV! 個 等離子 充能球 。 NL 每回合第二次同調時 ， 獲得 [E] 。",
 		"NAME": "等離子 核心"
 	},
 	"animator:PandorasActor":

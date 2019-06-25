@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.TemporaryElectroPower;
+import eatyourbeets.powers.common.TemporaryElectroPower;
 
 public class NarberalGamma extends AnimatorCard// implements OnStartOfTurnPostDrawSubscriber
 {

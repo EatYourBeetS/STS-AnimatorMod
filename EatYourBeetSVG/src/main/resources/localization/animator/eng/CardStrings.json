@@ -714,32 +714,32 @@
 	},
 	"animator:OrbCore_Chaos":
 	{
-		"DESCRIPTION": "Channel 1 Random Orb. On your second Synergy each turn, Discover 1 card.",
+		"DESCRIPTION": "Channel !SV! Random Orb. On your second Synergy each turn, Discover 1 card.",
 		"NAME": "Chaos Core"
 	},
 	"animator:OrbCore_Dark":
 	{
-		"DESCRIPTION": "Channel 1 Dark. NL On your second Synergy each turn, draw !M! cards, then discard 1 card.",
+		"DESCRIPTION": "Channel !SV! Dark. NL On your second Synergy each turn, draw !M! cards, then discard 1 card.",
 		"NAME": "Dark Core"
 	},
 	"animator:OrbCore_Fire":
 	{
-		"DESCRIPTION": "Channel 1 Fire. NL On your second Synergy each turn, apply !M! Burning to ALL enemies.",
+		"DESCRIPTION": "Channel !SV! Fire. NL On your second Synergy each turn, apply !M! Burning to ALL enemies.",
 		"NAME": "Fire Core"
 	},
 	"animator:OrbCore_Frost":
 	{
-		"DESCRIPTION": "Channel 1 Frost. NL On your second Synergy each turn, gain !M! Block.",
+		"DESCRIPTION": "Channel !SV! Frost. NL On your second Synergy each turn, gain !M! Block.",
 		"NAME": "Frost Core"
 	},
 	"animator:OrbCore_Lightning":
 	{
-		"DESCRIPTION": "Channel 1 Lightning. NL On your second Synergy each turn, deal !M! damage to ALL enemies.",
+		"DESCRIPTION": "Channel !SV! Lightning. NL On your second Synergy each turn, deal !M! damage to ALL enemies.",
 		"NAME": "Lightning Core"
 	},
 	"animator:OrbCore_Plasma":
 	{
-		"DESCRIPTION": "Channel 1 Plasma. NL On your second Synergy each turn, gain [E].",
+		"DESCRIPTION": "Channel !SV! Plasma. NL On your second Synergy each turn, gain [E].",
 		"NAME": "Plasma Core"
 	},
 	"animator:PandorasActor":

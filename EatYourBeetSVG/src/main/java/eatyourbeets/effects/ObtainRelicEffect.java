@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class ObtainRelicEffect extends AbstractGameEffect
 {
-    private AbstractRelic relic;
+    private final AbstractRelic relic;
 
     public ObtainRelicEffect(AbstractRelic relic)
     {

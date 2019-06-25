@@ -9,7 +9,7 @@ public class EnchantedArmorPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(EnchantedArmorPower.class.getSimpleName());
 
-    public boolean reactive;
+    public final boolean reactive;
 
     private float percentage;
 

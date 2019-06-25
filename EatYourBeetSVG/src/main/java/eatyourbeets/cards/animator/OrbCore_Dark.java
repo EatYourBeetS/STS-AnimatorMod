@@ -17,13 +17,17 @@ public class OrbCore_Dark extends AnimatorCard
     {
         super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,0, VALUE);
+        Initialize(0,0, VALUE,2);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ChannelOrb(new Dark(), true);
+        for (int i = 0; i < secondaryValue; i++)
+        {
+            GameActionsHelper.ChannelOrb(new Dark(), true);
+        }
+
         GameActionsHelper.ApplyPower(p, p, new OrbCore_DarkPower(p, 1), 1);
     }
 

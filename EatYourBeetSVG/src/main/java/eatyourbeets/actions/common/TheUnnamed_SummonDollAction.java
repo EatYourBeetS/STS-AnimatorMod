@@ -16,7 +16,7 @@ import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
 
 public class TheUnnamed_SummonDollAction extends AnimatorAction
 {
-    private TheUnnamed theUnnamed;
+    private final TheUnnamed theUnnamed;
     private AbstractMonster m;
     private int slotToFill = 0;
 

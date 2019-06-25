@@ -22,7 +22,6 @@ import eatyourbeets.cards.unnamed.SoulTap;
 import eatyourbeets.relics.unnamed.InfinitePower;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Unnamed_Images;
-import eatyourbeets.cards.animator.Strike;
 import eatyourbeets.cards.unnamed.Defend_Unnamed;
 import eatyourbeets.cards.unnamed.Strike_Unnamed;
 import patches.AbstractEnums;

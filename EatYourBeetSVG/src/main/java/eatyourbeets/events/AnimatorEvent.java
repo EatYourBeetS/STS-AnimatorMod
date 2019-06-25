@@ -26,7 +26,7 @@ public abstract class AnimatorEvent extends AbstractImageEvent
         return "animator:" + id;
     }
 
-    private static Field<ArrayList<LargeDialogOptionButton>> optionListField = Utilities.GetPrivateField("optionList", GenericEventDialog.class);
+    private static final Field<ArrayList<LargeDialogOptionButton>> optionListField = Utilities.GetPrivateField("optionList", GenericEventDialog.class);
 
     protected final ArrayList<PhaseHandler> phaseHandlers = new ArrayList<>();
     protected final EventStrings eventStrings;

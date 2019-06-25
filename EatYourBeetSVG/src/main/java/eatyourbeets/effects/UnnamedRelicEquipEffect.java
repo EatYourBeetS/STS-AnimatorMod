@@ -63,7 +63,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
         {
             hp = 120;
         }
-        else
+        else if (hp < 999)
         {
             hp = 150;
         }
@@ -101,7 +101,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
     {
         AbstractPlayer p = AbstractDungeon.player;
 
-        int bonus = 100;
+        int bonus = 60;
         for (AbstractRelic r : p.relics)
         {
             if (r instanceof ExquisiteBloodVial)
@@ -167,8 +167,8 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
             }
         }
 
-        bonus += p.maxHealth / 4;
-        bonus += p.gold / 8;
+        bonus += p.maxHealth / 2;
+        bonus += p.gold / 7;
 
         return Math.min(999, bonus);
     }

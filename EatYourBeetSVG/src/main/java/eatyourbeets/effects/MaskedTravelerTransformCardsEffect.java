@@ -18,7 +18,7 @@ public class MaskedTravelerTransformCardsEffect extends AbstractGameEffect
 {
     private static final float DUR = 1.5F;
     private boolean openedPanel = false;
-    private Color screenColor;
+    private final Color screenColor;
     private final String purgeMessage;
     private int cardsToRemove;
 

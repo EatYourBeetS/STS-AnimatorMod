@@ -1,6 +1,5 @@
 package eatyourbeets.powers.UnnamedReign;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -8,17 +7,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
-import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
+import eatyourbeets.actions.animator.EndPlayerTurnAction;
+import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.actions.common.WaitRealtimeAction;
@@ -40,6 +37,8 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     private final ArrayList<Integer> linesUsed = new ArrayList<>();
     private final String[] dialog;
     private final EnchantedArmorPower enchantedArmorPower;
+
+    private int maxCardsPerTurn = 16;
 
     public InfinitePower(TheUnnamed owner)
     {
@@ -68,7 +67,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     @Override
     public void onRemove()
     {
-        GameActionsHelper.ApplyPowerSilently(owner, owner, this, 1);
+        GameActionsHelper.ApplyPowerSilently(owner, owner, this, 0);
     }
 
     @Override
@@ -81,10 +80,33 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
             return;
         }
 
+        if (((TheUnnamed)owner).phase2 && AbstractDungeon.player.hasPower(GenericFadingPower.POWER_ID))
+        {
+            maxCardsPerTurn = 21;
+        }
+        else
+        {
+            maxCardsPerTurn = 16;
+        }
+
         if (enchantedArmorPower.amount > 0)
         {
             enchantedArmorPower.amount = Math.max(1, enchantedArmorPower.amount / 2);
             enchantedArmorPower.updateDescription();
+        }
+
+        boolean found = false;
+        for (AbstractPower p : owner.powers)
+        {
+            if (p == enchantedArmorPower)
+            {
+                found = true;
+            }
+        }
+
+        if (!found)
+        {
+            GameActionsHelper.ApplyPowerSilently(owner, owner, enchantedArmorPower, enchantedArmorPower.amount);
         }
 
         AbstractPower strengthPower = owner.getPower(StrengthPower.POWER_ID);
@@ -140,31 +162,20 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         super.onAfterUseCard(card, action);
 
         int cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
-        if (cardsPlayed == 13)
+
+        if (cardsPlayed < (maxCardsPerTurn / 2))
+        {
+            CardMessage(card);
+        }
+
+        if (cardsPlayed == (maxCardsPerTurn - 2))
         {
             GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[3], 4, 4));
             AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
         }
-        else if (cardsPlayed == 16)
+        else if (cardsPlayed == maxCardsPerTurn)
         {
-            this.playApplyPowerSfx();
-            AbstractDungeon.actionManager.cardQueue.clear();
-
-            for (AbstractCard c : AbstractDungeon.player.limbo.group)
-            {
-                AbstractDungeon.effectList.add(new ExhaustCardEffect(c));
-            }
-
-            AbstractDungeon.player.limbo.group.clear();
-            AbstractDungeon.player.releaseCard();
-            AbstractDungeon.overlayMenu.endTurnButton.disable(true);
-            CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05F);
-            AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.GOLD, true));
-            AbstractDungeon.topLevelEffectsQueue.add(new TimeWarpTurnEndEffect());
-        }
-        else if (cardsPlayed < 10)
-        {
-            CardMessage(card);
+            GameActionsHelper.AddToTop(new EndPlayerTurnAction());
         }
     }
 

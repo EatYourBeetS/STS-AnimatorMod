@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.Hidden;
 import org.apache.logging.log4j.LogManager;
@@ -156,6 +157,7 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
         InitializeMonsters();
         InitializePotions();
         InitializeRewards();
+        InitializePowers();
         PostInitialize();
     }
 
@@ -169,7 +171,6 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
 
         for (String s : map.keySet())
         {
-            Class cardClass;
             try
             {
                 logger.info("Adding: " + s);
@@ -183,6 +184,74 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
     }
 
     protected static void LoadCard(Class<?> cardClass)
+    {
+        if (Hidden.class.isAssignableFrom(cardClass))
+        {
+            return;
+        }
+
+        AbstractCard card;
+        String id;
+
+        try
+        {
+            card = (AbstractCard) cardClass.getConstructor().newInstance();
+            id = card.cardID;
+        }
+        catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
+        {
+            e.printStackTrace();
+            return;
+        }
+
+        if (UnlockTracker.isCardLocked(id))
+        {
+            UnlockTracker.unlockCard(id);
+            card.isLocked = false;
+        }
+
+        // animator_ -> animator:
+        String oldID = id.replace(":", "_");
+        if (UnlockTracker.seenPref.data.containsKey(oldID))
+        {
+            int res = UnlockTracker.seenPref.getInteger(oldID);
+
+            UnlockTracker.seenPref.data.remove(oldID);
+
+            if (res > 0)
+            {
+                UnlockTracker.seenPref.putInteger(id, 1);
+                UnlockTracker.seenPref.flush();
+            }
+        }
+
+        BaseMod.addCard(card);
+    }
+
+    protected static void LoadCustomPowers(String character)
+    {
+        String jsonString = Gdx.files.internal("localization/" + character +"/eng/PowerStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        Map<String, CardStrings> map = new Gson().fromJson(jsonString, new TypeToken<HashMap<String, CardStrings>>()
+        {
+        }.getType());
+
+        for (String powerID : map.keySet())
+        {
+            try
+            {
+                logger.info("Adding: " + powerID);
+                Class<? extends AbstractPower> powerClass = (Class<? extends AbstractPower>) Class.forName("eatyourbeets.powers."+ character + "." + powerID.replace(character + ":", ""));
+
+                BaseMod.addPower(powerClass, powerID);
+            }
+            catch( ClassNotFoundException e )
+            {
+                logger.warn("Class not found : " + powerID);
+            }
+        }
+    }
+
+    protected static void LoadPower(Class<?> cardClass)
     {
         if (Hidden.class.isAssignableFrom(cardClass))
         {
@@ -252,6 +321,10 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
     }
 
     protected void InitializeCards()
+    {
+    }
+
+    protected void InitializePowers()
     {
     }
 

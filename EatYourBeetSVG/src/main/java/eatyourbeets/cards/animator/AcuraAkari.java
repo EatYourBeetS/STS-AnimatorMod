@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.TemporaryEnvenomPower;
+import eatyourbeets.powers.common.TemporaryEnvenomPower;
 
 public class AcuraAkari extends AnimatorCard
 {

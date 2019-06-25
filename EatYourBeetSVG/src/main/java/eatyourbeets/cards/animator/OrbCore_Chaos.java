@@ -15,15 +15,19 @@ public class OrbCore_Chaos extends AnimatorCard
 
     public OrbCore_Chaos()
     {
-        super(ID, 2, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,0, VALUE);
+        Initialize(0,0, VALUE,1);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
+        for (int i = 0; i < secondaryValue; i++)
+        {
+            GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
+        }
+
         GameActionsHelper.ApplyPower(p, p, new OrbCore_ChaosPower(p, 1), 1);
     }
 

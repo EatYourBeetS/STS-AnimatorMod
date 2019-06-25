@@ -4,6 +4,9 @@ import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
@@ -14,6 +17,8 @@ public abstract class AnimatorMonster extends CustomMonster
         Random,
         Sequential
     }
+
+    protected static final Logger logger = LogManager.getLogger(AnimatorMonster.class.getName());
 
     public static String CreateFullID(String id)
     {
@@ -40,7 +45,15 @@ public abstract class AnimatorMonster extends CustomMonster
 
     protected void ExecuteNextMove()
     {
-        moveset.GetMove(nextMove).Execute(AbstractDungeon.player);
+        AbstractMove move = moveset.GetMove(nextMove);
+        if (move != null)
+        {
+            moveset.GetMove(nextMove).Execute(AbstractDungeon.player);
+        }
+        else
+        {
+            Utilities.Logger.warn(this.getClass().getSimpleName() + ", The move was not present in the moveset: " + nextMove);
+        }
     }
 
     @Override

@@ -15,15 +15,19 @@ public class OrbCore_Plasma extends AnimatorCard
 
     public OrbCore_Plasma()
     {
-        super(ID, 2, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0,0, VALUE,1);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ChannelOrb(new Plasma(), true);
+        for (int i = 0; i < secondaryValue; i++)
+        {
+            GameActionsHelper.ChannelOrb(new Plasma(), true);
+        }
+
         GameActionsHelper.ApplyPower(p, p, new OrbCore_PlasmaPower(p, 1), 1);
     }
 

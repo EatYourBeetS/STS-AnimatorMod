@@ -25,19 +25,19 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class UnnamedEnemyGroup
 {
-    public static String TWO_SHAPES = "animator:DOUBLE_SHAPES_WEAK";
-    public static String UNNAMED_HAT = "animator:UNNAMED_HAT";
-    public static String THREE_NORMAL_SHAPES = "animator:TRIPLE_SHAPES_WEAK";
-    public static String CULTIST = "animator:UNNAMED_CULTIST_1";
-    public static String LARGE_CRYSTAL = "animator:LARGE_CRYSTAL";
-    public static String LARGE_CUBE = "animator:LARGE_CUBE";
-    public static String LARGE_WISP = "animator:LARGE_WISP";
-    public static String CULTIST_AND_TWO_SHAPES = "animator:UNNAMED_CULTIST_2";
-    public static String THREE_LAGAVULIN = "animator:TRIPLE_LAGAVULIN";
-    public static String ULTIMATE_CRYSTAL = "animator:ULTIMATE_CRYSTAL";
-    public static String ULTIMATE_CUBE = "animator:ULTIMATE_CUBE";
-    public static String ULTIMATE_WISP = "animator:ULTIMATE_WISP";
-    public static String THE_UNNAMED = TheUnnamed.ID;
+    public static final String TWO_SHAPES = "animator:DOUBLE_SHAPES_WEAK";
+    public static final String UNNAMED_HAT = "animator:UNNAMED_HAT";
+    public static final String THREE_NORMAL_SHAPES = "animator:TRIPLE_SHAPES_WEAK";
+    public static final String CULTIST = "animator:UNNAMED_CULTIST_1";
+    public static final String LARGE_CRYSTAL = "animator:LARGE_CRYSTAL";
+    public static final String LARGE_CUBE = "animator:LARGE_CUBE";
+    public static final String LARGE_WISP = "animator:LARGE_WISP";
+    public static final String CULTIST_AND_TWO_SHAPES = "animator:UNNAMED_CULTIST_2";
+    public static final String THREE_LAGAVULIN = "animator:TRIPLE_LAGAVULIN";
+    public static final String ULTIMATE_CRYSTAL = "animator:ULTIMATE_CRYSTAL";
+    public static final String ULTIMATE_CUBE = "animator:ULTIMATE_CUBE";
+    public static final String ULTIMATE_WISP = "animator:ULTIMATE_WISP";
+    public static final String THE_UNNAMED = TheUnnamed.ID;
 
     private final static float CULTIST_X = 180;
     private final static float CULTIST_Y = 12;

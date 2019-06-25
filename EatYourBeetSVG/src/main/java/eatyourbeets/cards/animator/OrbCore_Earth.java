@@ -11,19 +11,23 @@ public class OrbCore_Earth extends AnimatorCard
 {
     public static final String ID = CreateFullID(OrbCore_Earth.class.getSimpleName());
 
-    public static final int VALUE = 6;
+    public static final int VALUE = 3;
 
     public OrbCore_Earth()
     {
-        super(ID, 1, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,0, 3);
+        Initialize(0,0, VALUE,2);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ChannelOrb(new Earth(), true);
+        for (int i = 0; i < secondaryValue; i++)
+        {
+            GameActionsHelper.ChannelOrb(new Earth(), true);
+        }
+
         GameActionsHelper.ApplyPower(p, p, new OrbCore_EarthPower(p, 1), 1);
     }
 

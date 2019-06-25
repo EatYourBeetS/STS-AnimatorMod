@@ -18,10 +18,10 @@ import com.megacrit.cardcrawl.vfx.combat.SmokingEmberEffect;
 
 public class CataclysmEffect extends AbstractGameEffect
 {
-    private float x;
-    private float y;
+    private final float x;
+    private final float y;
     private static final float DUR = 0.5F;
-    private AtlasRegion img;
+    private final AtlasRegion img;
     private boolean playedSound = false;
 
     public CataclysmEffect(float x, float y)

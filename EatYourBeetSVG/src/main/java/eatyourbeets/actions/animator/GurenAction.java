@@ -19,7 +19,7 @@ import eatyourbeets.powers.animator.SupportDamagePower;
 
 public class GurenAction extends AbstractGameAction
 {
-    private int supportDamage;
+    private final int supportDamage;
 
     public GurenAction(AbstractCreature target, int supportDamage)
     {

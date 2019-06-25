@@ -1,6 +1,5 @@
 package eatyourbeets.monsters.Bosses;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -18,22 +17,28 @@ import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
-import eatyourbeets.utilities.GameActionsHelper;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import eatyourbeets.actions.animator.EndPlayerTurnAction;
+import eatyourbeets.actions.animator.KillCharacterAction;
+import eatyourbeets.actions.common.WaitRealtimeAction;
+import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
 import eatyourbeets.monsters.SharedMoveset.Move_Poison;
-import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.InfinitePower;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class TheUnnamed extends AnimatorMonster
 {
     public static final String ID = CreateFullID(TheUnnamed.class.getSimpleName());
     public static final String NAME = "The Unnamed";
 
-    private Move_Fading moveFading;
-    private Move_Poison movePoison;
+    private final Move_Fading moveFading;
+    private final Move_Poison movePoison;
+    private int stunCounter = 0;
 
+    private final InfinitePower infinitePower;
 
     public boolean appliedFading = false;
     public int minionsCount = 3;
@@ -66,6 +71,8 @@ public class TheUnnamed extends AnimatorMonster
             moveset.AddNormal(new Move_SingleAttack(20));
             moveset.AddNormal(new Move_MultiAttack(7, 3));
         }
+
+        infinitePower = new InfinitePower(this);
     }
 
     @Override
@@ -73,6 +80,9 @@ public class TheUnnamed extends AnimatorMonster
     {
         if (!AbstractDungeon.getCurrRoom().cannotLose)
         {
+            AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
+                    0.8f, "No... wait...", this.isPlayer));
+
             super.die();
             this.onBossVictoryLogic();
             this.onFinalBossVictoryLogic();
@@ -109,23 +119,70 @@ public class TheUnnamed extends AnimatorMonster
         AbstractDungeon.getCurrRoom().rewardAllowed = false;
         AbstractDungeon.getCurrRoom().rewards.clear();
 
-        CardCrawlGame.music.unsilenceBGM();
-        AbstractDungeon.scene.fadeOutAmbiance();
-        CardCrawlGame.music.playTempBgmInstantly("BOSS_ENDING", true);
-
-        GameActionsHelper.ApplyPower(this, this, new InfinitePower(this));
-
-        if (AbstractDungeon.player.maxHealth > 500)
+        if (AbstractDungeon.player.maxHealth > 400)
         {
             GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[1], 4, 4));
             moveFading.fadingTurns = 3;
             moveFading.ExecuteInternal(AbstractDungeon.player);
+        }
+        else
+        {
+            CardCrawlGame.music.silenceBGM();
+            AbstractDungeon.scene.fadeOutAmbiance();
+            CardCrawlGame.music.playTempBgmInstantly("BOSS_ENDING", true);
+            CardCrawlGame.music.updateVolume();
+        }
+
+        GameActionsHelper.ApplyPower(this, this, infinitePower);
+    }
+
+    @Override
+    public void createIntent()
+    {
+        super.createIntent();
+
+        if (intent == Intent.STUN || intent == Intent.SLEEP)
+        {
+            if (stunCounter <= 0)
+            {
+                GameActionsHelper.AddToTop(new TalkAction(this, "Nice try. Do not do that again.", 4, 4));
+                stunCounter = 1;
+            }
+            else if (stunCounter == 1)
+            {
+                GameActionsHelper.AddToTop(new TalkAction(this, "I am warning you...", 4, 4));
+                stunCounter = 2;
+            }
+            else if (stunCounter == 2)
+            {
+                GameActionsHelper.AddToTop(new EndPlayerTurnAction());
+                GameActionsHelper.AddToTop(new TalkAction(this, "Stop this nonsense.", 4, 4));
+
+                stunCounter = 3;
+            }
+            else if (stunCounter == 3)
+            {
+                GameActionsHelper.AddToTop(new EndPlayerTurnAction());
+                GameActionsHelper.AddToTop(new TalkAction(this, "LAST WARNING.", 3, 3));
+
+                stunCounter = 4;
+            }
+            else
+            {
+                GameActionsHelper.AddToTop(new KillCharacterAction(this, AbstractDungeon.player));
+                GameActionsHelper.AddToTop(new TalkAction(this, "I warned you... Goodnight.", 3, 3));
+            }
         }
     }
 
     @Override
     protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
+        if (!hasPower(InfinitePower.POWER_ID))
+        {
+            GameActionsHelper.ApplyPowerSilently(this, this, infinitePower, 0);
+        }
+
         if (phase2 && moveFading.CanUse(previousMove))
         {
             if (moveFading.fadingTurns > 2)
@@ -166,6 +223,14 @@ public class TheUnnamed extends AnimatorMonster
     @Override
     public void damage(DamageInfo info)
     {
+        // The enchanted armor already ensures no attack can go above 100 damage,
+        // this prevents taking extra damage from attacks that do not calculate
+        // their damage based on the enemy's powers.
+        if (info.output > 100)
+        {
+            info.output = 100;
+        }
+
         super.damage(info);
 
         if (this.currentHealth <= 400)
@@ -239,16 +304,19 @@ public class TheUnnamed extends AnimatorMonster
 
     protected static class VictoryEffect extends AbstractGameEffect
     {
+        WaitRealtimeAction wait;
+
         public VictoryEffect()
         {
-            this.startingDuration = this.duration = 3f;
+            this.startingDuration = this.duration = 1.3f;
+            wait = new WaitRealtimeAction(this.duration);
         }
 
         @Override
         public void update()
         {
-            this.duration -= Gdx.graphics.getDeltaTime();
-            if (this.duration <= 0)
+            wait.update();
+            if (wait.isDone)
             {
                 MapRoomNode cur = AbstractDungeon.currMapNode;
 

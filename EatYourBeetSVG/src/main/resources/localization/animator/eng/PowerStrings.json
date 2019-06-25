@@ -322,7 +322,11 @@
 	},
 	"animator:UnnamedDollPower":
 	{
-		"DESCRIPTIONS": ["When playing a card which does not target this character, gains #b", " #yMax #yHP. NL NL On death, ALL characters gain #b", " #yStrength."],
+		"DESCRIPTIONS": 
+		[
+			"For the next #b", " turns, when playing a card which does not target this character, gains #b", " #yMax #yHP. NL NL ", 
+			"On death, ALL characters gain #b", " #yStrength."
+		],
 		"NAME": "Unnamed Doll"
 	},
 	"animator:YukoShionjiPower":

@@ -26,7 +26,7 @@ public class TheUnnamed_Doll extends AnimatorMonster
     private final BobEffect bobEffect = new BobEffect(1);
 
     private final TheUnnamed theUnnamed;
-    private Move_GainRitualAndArtifactAll ritualAndArtifactAll;
+    private final Move_GainRitualAndArtifactAll ritualAndArtifactAll;
 
 
     public TheUnnamed_Doll(TheUnnamed theUnnamed, float x, float y)
@@ -53,7 +53,14 @@ public class TheUnnamed_Doll extends AnimatorMonster
         super.init();
 
         GameActionsHelper.ApplyPower(this, this, new CursedStabsPower(this));
-        GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 3), 3);
+        if (PlayerStatistics.GetAscensionLevel() >= 7)
+        {
+            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 4), 4);
+        }
+        else
+        {
+            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 3), 3);
+        }
     }
 
     @Override

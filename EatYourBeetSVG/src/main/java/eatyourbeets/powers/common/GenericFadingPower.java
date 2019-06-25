@@ -1,27 +1,28 @@
-package eatyourbeets.powers.animator;
+package eatyourbeets.powers.common;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
+import eatyourbeets.actions.animator.KillCharacterAction;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class FadingPlayerPower extends AbstractPower
+public class GenericFadingPower extends AbstractPower implements CloneablePowerInterface
 {
-    public static final String POWER_ID = "FadingPlayer";
+    public static final String POWER_ID = "GenericFadingPower";
     private static final PowerStrings powerStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
+    private final boolean isPlayer;
 
-    public FadingPlayerPower(AbstractCreature owner, int turns)
+    public GenericFadingPower(AbstractCreature owner, int turns)
     {
+        this.isPlayer = owner instanceof AbstractPlayer;
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
@@ -41,15 +42,6 @@ public class FadingPlayerPower extends AbstractPower
         {
             this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
         }
-
-    }
-
-    @Override
-    public void atStartOfTurnPostDraw()
-    {
-        super.atStartOfTurnPostDraw();
-
-        AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
     }
 
     @Override
@@ -57,16 +49,30 @@ public class FadingPlayerPower extends AbstractPower
     {
         super.atEndOfTurn(isPlayer);
 
+        if (isPlayer)
+        {
+            TriggerEffect();
+        }
+    }
+
+    @Override
+    public void duringTurn()
+    {
+        super.duringTurn();
+
+        if (!isPlayer)
+        {
+            TriggerEffect();
+        }
+    }
+
+    private void TriggerEffect()
+    {
+        AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
+
         if (this.amount == 1 && !this.owner.isDying)
         {
-            this.flash();
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new ExplosionSmallEffect(this.owner.hb.cX, this.owner.hb.cY), 0.1F));
-
-            for (int i = 0; i < owner.maxHealth; i ++)
-            {
-                GameActionsHelper.DamageTarget(owner, owner, i, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-                GameActionsHelper.DamageTarget(owner, owner, i, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-            }
+            GameActionsHelper.AddToBottom(new KillCharacterAction(owner, owner));
         }
         else
         {
@@ -80,5 +86,11 @@ public class FadingPlayerPower extends AbstractPower
         powerStrings = CardCrawlGame.languagePack.getPowerStrings("Fading");
         NAME = powerStrings.NAME;
         DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    }
+
+    @Override
+    public AbstractPower makeCopy()
+    {
+        return new GenericFadingPower(owner, amount);
     }
 }

@@ -11,19 +11,23 @@ public class OrbCore_Frost extends AnimatorCard
 {
     public static final String ID = CreateFullID(OrbCore_Frost.class.getSimpleName());
 
-    public static final int VALUE = 6;
+    public static final int VALUE = 5;
 
     public OrbCore_Frost()
     {
-        super(ID, 1, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,0, VALUE);
+        Initialize(0,0, VALUE,2);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ChannelOrb(new Frost(), true);
+        for (int i = 0; i < secondaryValue; i++)
+        {
+            GameActionsHelper.ChannelOrb(new Frost(), true);
+        }
+
         GameActionsHelper.ApplyPower(p, p, new OrbCore_FrostPower(p, 1), 1);
     }
 

@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.actions.common.IncreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.powers.unnamed.UnnamedDollPlayerPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class UnnamedDoll extends UnnamedCard

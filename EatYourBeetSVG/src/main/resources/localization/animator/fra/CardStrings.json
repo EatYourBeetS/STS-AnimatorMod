@@ -712,32 +712,32 @@
 	},
 	"animator:OrbCore_Chaos":
 	{
-		"DESCRIPTION": "Canalisez 1 Orbe aléatoire. À la seconde Synergie de chaque tour,NL Découvrez 1 carte.",
+		"DESCRIPTION": "Canalisez !SV! Orbe aléatoire. À la seconde Synergie de chaque tour, NL Découvrez 1 carte.",
 		"NAME": "Noyau Chaotique"
 	},
 	"animator:OrbCore_Dark":
 	{
-		"DESCRIPTION": "Canalisez 1 Orbe Obscure. NL À la seconde Synergie de chaque tour,NL piochez !M! carte(s), puis Défaussez 1 carte.",
+		"DESCRIPTION": "Canalisez !SV! Orbe Obscure. NL À la seconde Synergie de chaque tour, NL piochez !M! carte(s), puis Défaussez 1 carte.",
 		"NAME": "Noyau Obscur"
 	},
 	"animator:OrbCore_Fire":
 	{
-		"DESCRIPTION": "Canalisez 1 Orbe Incendiare. NL À la seconde Synergie de chaque tour,NL infligez !M! Brûlure à TOUS les ennemis.",
+		"DESCRIPTION": "Canalisez !SV! Orbe Incendiare. NL À la seconde Synergie de chaque tour, NL infligez !M! Brûlure à TOUS les ennemis.",
 		"NAME": "Noyau Incendiaire"
 	},
 	"animator:OrbCore_Frost":
 	{
-		"DESCRIPTION": "Canalisez 1 Orbe Glaciale. NL À la seconde Synergie de chaque tour,NL Gagnez !M! d'Armure.",
+		"DESCRIPTION": "Canalisez !SV! Orbe Glaciale. NL À la seconde Synergie de chaque tour, NL Gagnez !M! d'Armure.",
 		"NAME": "Noyau Glacial"
 	},
 	"animator:OrbCore_Lightning":
 	{
-		"DESCRIPTION": "Canalisez 1 Orbe Kéraunique. NL À la seconde Synergie de chaque tour,NL Infligez !M! dégât(s) à TOUS les ennemis.",
+		"DESCRIPTION": "Canalisez !SV! Orbe Kéraunique. NL À la seconde Synergie de chaque tour, NL Infligez !M! dégât(s) à TOUS les ennemis.",
 		"NAME": "Noyau Kéraunique"
 	},
 	"animator:OrbCore_Plasma":
 	{
-		"DESCRIPTION": "Canalisez 1 Orbe Plasmique. NL À la seconde Synergie de chaque tour,NL Gagnez [E].",
+		"DESCRIPTION": "Canalisez !SV! Orbe Plasmique. NL À la seconde Synergie de chaque tour, NL Gagnez [E].",
 		"NAME": "Noyau Plasmique"
 	},
 	"animator:PandorasActor":

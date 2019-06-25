@@ -19,7 +19,7 @@ public class AinzPower extends AnimatorPower
 
     private final AbstractPlayer player;
 
-    private ArrayList<Integer> choices;
+    private final ArrayList<Integer> choices;
 
     public AinzPower(AbstractPlayer owner, int choices)
     {

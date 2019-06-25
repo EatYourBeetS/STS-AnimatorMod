@@ -13,6 +13,7 @@ public class UnnamedDollPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(UnnamedDollPower.class.getSimpleName());
 
+    private static final int HP_GAIN = 3;
     private static final int STRENGTH = 30;
 
     public UnnamedDollPower(AbstractCreature owner, int amount)
@@ -28,7 +29,14 @@ public class UnnamedDollPower extends AnimatorPower
     public void updateDescription()
     {
         String[] text = powerStrings.DESCRIPTIONS;
-        this.description = text[0] + amount + text[1] + STRENGTH + text[2];
+        if (amount > 0)
+        {
+            this.description = text[0] + amount + text[1] + HP_GAIN + text[2] + text[3] + STRENGTH + text[4];
+        }
+        else
+        {
+            this.description = text[3] + STRENGTH + text[4];
+        }
     }
 
     @Override
@@ -36,10 +44,19 @@ public class UnnamedDollPower extends AnimatorPower
     {
         super.onAfterUseCard(card, action);
 
-        if (action.target != owner)
+        if (action.target != owner && amount > 0)
         {
-            owner.increaseMaxHp(amount, true);
+            owner.increaseMaxHp(HP_GAIN, true);
         }
+    }
+
+    @Override
+    public void atStartOfTurn()
+    {
+        super.atStartOfTurn();
+
+        amount -= 1;
+        updateDescription();
     }
 
     @Override

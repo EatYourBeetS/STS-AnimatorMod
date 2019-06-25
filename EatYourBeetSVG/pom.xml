@@ -13,28 +13,28 @@
         <dependency>
             <groupId>com.megacrit.cardcrawl</groupId>
             <artifactId>slaythespire</artifactId>
-            <version>051</version>
+            <version>01-23-2019</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/desktop-1.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>basemod</groupId>
             <artifactId>basemod</artifactId>
-            <version>5.12.0</version>
+            <version>5.13.0</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/BaseMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>ModTheSpire</artifactId>
-            <version>3.6.3</version>
+            <version>3.10.1</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/ModTheSpire.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>stslib</artifactId>
-            <version>1.14.0</version>
+            <version>1.17.0</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/STSLib.jar</systemPath>
         </dependency>

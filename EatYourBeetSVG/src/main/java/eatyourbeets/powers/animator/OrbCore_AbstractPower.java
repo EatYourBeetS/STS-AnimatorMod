@@ -112,9 +112,9 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     {
         if (cores.size() == 0)
         {
-            cores0.Add(new OrbCore_Dark());
             cores0.Add(new OrbCore_Fire());
-            cores1.Add(new OrbCore_Lightning());
+            cores0.Add(new OrbCore_Lightning());
+            cores1.Add(new OrbCore_Dark());
             cores1.Add(new OrbCore_Frost());
             cores2.Add(new OrbCore_Plasma());
             cores2.Add(new OrbCore_Chaos());

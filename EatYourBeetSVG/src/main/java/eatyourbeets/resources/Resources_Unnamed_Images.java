@@ -2,8 +2,6 @@ package eatyourbeets.resources;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import java.util.HashMap;
-
 public class Resources_Unnamed_Images
 {
     public static final String ATTACK_PNG = "images/cardui/unnamed/512/bg_attack_canvas.png";

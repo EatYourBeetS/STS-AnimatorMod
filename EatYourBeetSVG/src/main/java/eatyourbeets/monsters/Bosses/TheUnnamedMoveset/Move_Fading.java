@@ -10,7 +10,7 @@ import eatyourbeets.actions.animator.PlayTempBgmAction;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.powers.animator.FadingPlayerPower;
+import eatyourbeets.powers.common.GenericFadingPower;
 
 public class Move_Fading extends AbstractMove
 {
@@ -27,7 +27,7 @@ public class Move_Fading extends AbstractMove
     @Override
     public boolean CanUse(Byte previousMove)
     {
-        return super.CanUse(previousMove) && !AbstractDungeon.player.hasPower(FadingPlayerPower.POWER_ID);
+        return super.CanUse(previousMove) && !AbstractDungeon.player.hasPower(GenericFadingPower.POWER_ID);
     }
 
     public void SetMove()
@@ -40,7 +40,7 @@ public class Move_Fading extends AbstractMove
         GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
         GameActionsHelper.AddToBottom(new VFXAction(new CollectorCurseEffect(target.hb.cX, target.hb.cY), 2.0F));
 
-        FadingPlayerPower fading = (FadingPlayerPower) target.getPower(FadingPlayerPower.POWER_ID);
+        GenericFadingPower fading = (GenericFadingPower) target.getPower(GenericFadingPower.POWER_ID);
 
         if (fading != null)
         {
@@ -48,7 +48,7 @@ public class Move_Fading extends AbstractMove
         }
         else
         {
-            fading = new FadingPlayerPower(target, fadingTurns);
+            fading = new GenericFadingPower(target, fadingTurns);
             target.powers.add(fading);
         }
 

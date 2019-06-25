@@ -25,7 +25,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.*;
 import eatyourbeets.powers.animator.AnimatorPower;
-import eatyourbeets.powers.animator.TemporaryBiasPower;
+import eatyourbeets.powers.common.TemporaryBiasPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -110,6 +110,12 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         }
     }
 
+    public static void OnGameStart()
+    {
+        ClearStats();
+        SaveData = new SaveData();
+    }
+
     public static void OnStartOver()
     {
         ClearStats();
@@ -157,6 +163,16 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         if (AbstractDungeon.isAscensionMode)
         {
             return Math.max(0, Math.min(20, AbstractDungeon.ascensionLevel));
+        }
+
+        return 0;
+    }
+
+    public static int GetActualAscensionLevel()
+    {
+        if (AbstractDungeon.isAscensionMode)
+        {
+            return AbstractDungeon.ascensionLevel;
         }
 
         return 0;
@@ -578,7 +594,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
 
         if (!UseArtifact(target))
         {
-            GameActionsHelper.ApplyPowerSilently(source, target, new TemporaryBiasPower((AbstractPlayer) target, amount), amount);
+            GameActionsHelper.ApplyPowerSilently(source, target, new TemporaryBiasPower(target, amount), amount);
         }
 
         GameActionsHelper.ApplyPower(source, target, new FocusPower(target, amount), amount);
@@ -672,6 +688,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
             {
                 RNGCounter = 0;
             }
+        }
+
+        protected void Reset()
+        {
+
         }
 
         protected void ValidateFields()

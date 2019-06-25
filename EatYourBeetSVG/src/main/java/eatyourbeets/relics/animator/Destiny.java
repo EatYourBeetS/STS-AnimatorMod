@@ -2,12 +2,9 @@ package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.RemoveRelicEffect;
-import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.rewards.SynergyCardsReward;
 
 import java.util.ArrayList;
 

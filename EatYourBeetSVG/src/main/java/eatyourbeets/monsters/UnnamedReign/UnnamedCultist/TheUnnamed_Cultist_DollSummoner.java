@@ -18,7 +18,7 @@ import eatyourbeets.powers.UnnamedReign.TheUnnamedCultistPower;
 
 public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
 {
-    private Move_SummonEnemy moveSummonEnemy;
+    private final Move_SummonEnemy moveSummonEnemy;
 
     public TheUnnamed_Cultist_DollSummoner(float x, float y)
     {

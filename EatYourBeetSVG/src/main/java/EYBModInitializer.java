@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SpireInitializer
 public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
                                            PostEnergyRechargeSubscriber, PostDrawSubscriber, StartGameSubscriber,
-                                           StartActSubscriber, MaxHPChangeSubscriber, PostDeathSubscriber
+                                           StartActSubscriber, MaxHPChangeSubscriber, PostDeathSubscriber, PreStartGameSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
 
@@ -73,6 +73,12 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
         PlayerStatistics.EnsurePowerIsApplied();
 
         return true;
+    }
+
+    @Override
+    public void receivePreStartGame()
+    {
+        PlayerStatistics.OnGameStart();
     }
 
     @Override

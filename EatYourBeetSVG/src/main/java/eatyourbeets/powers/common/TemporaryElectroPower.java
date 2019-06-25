@@ -1,17 +1,17 @@
-package eatyourbeets.powers.animator;
+package eatyourbeets.powers.common;
 
+import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ElectroPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class TemporaryElectroPower extends ElectroPower
+public class TemporaryElectroPower extends ElectroPower implements CloneablePowerInterface
 {
     private boolean permanent;
 
-    public TemporaryElectroPower(AbstractPlayer owner)
+    public TemporaryElectroPower(AbstractCreature owner)
     {
         super(owner);
 
@@ -38,5 +38,11 @@ public class TemporaryElectroPower extends ElectroPower
         {
             GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
         }
+    }
+
+    @Override
+    public AbstractPower makeCopy()
+    {
+        return new TemporaryElectroPower(owner);
     }
 }

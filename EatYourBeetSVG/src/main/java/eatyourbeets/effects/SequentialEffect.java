@@ -8,7 +8,7 @@ import java.util.ArrayDeque;
 public class SequentialEffect extends AbstractGameEffect
 {
     private AbstractGameEffect current;
-    private ArrayDeque<AbstractGameEffect> effects;
+    private final ArrayDeque<AbstractGameEffect> effects;
 
     public SequentialEffect()
     {

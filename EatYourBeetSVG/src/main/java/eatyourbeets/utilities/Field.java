@@ -2,7 +2,7 @@ package eatyourbeets.utilities;
 
 public class Field<T>
 {
-    private java.lang.reflect.Field field;
+    private final java.lang.reflect.Field field;
 
     public void Set(Object instance, T value)
     {

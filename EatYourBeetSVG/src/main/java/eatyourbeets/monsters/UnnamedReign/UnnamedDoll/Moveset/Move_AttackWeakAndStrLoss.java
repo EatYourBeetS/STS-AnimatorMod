@@ -15,7 +15,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Move_AttackWeakAndStrLoss extends AbstractMove
 {
-    private int debuffDelay = 0;
+    private boolean usedOnce = false;
     private final int debuffAmount;
 
     public Move_AttackWeakAndStrLoss(int damageAmount, int debuffAmount)
@@ -35,7 +35,7 @@ public class Move_AttackWeakAndStrLoss extends AbstractMove
         damageInfo.applyPowers(owner, target);
         GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.FIRE));
 
-        if (debuffDelay <= 0)
+        if (!usedOnce)
         {
             int str = PlayerStatistics.GetStrength(target);
             LoseStrengthPower loseStr = Utilities.SafeCast(target.getPower(LoseStrengthPower.POWER_ID), LoseStrengthPower.class);
@@ -44,16 +44,11 @@ public class Move_AttackWeakAndStrLoss extends AbstractMove
                 str -= loseStr.amount;
             }
 
-            if (str >= 0)
+            if (str > 0)
             {
                 GameActionsHelper.ApplyPower(owner, target, new StrengthPower(target, -debuffAmount), -debuffAmount);
+                usedOnce = true;
             }
-
-            debuffDelay = 1;
-        }
-        else
-        {
-            debuffDelay -= 1;
         }
 
         GameActionsHelper.ApplyPower(owner, target, new WeakPower(target, debuffAmount, true), debuffAmount);

@@ -1,6 +1,5 @@
 package eatyourbeets.characters;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.Resources_Animator;
@@ -82,13 +81,10 @@ public class AnimatorCharacterSelect
                 AnimatorCustomLoadout.specialTrophies.trophy1 = 0;
             }
 
-            if (AbstractDungeon.isAscensionMode)
+            int ascension = PlayerStatistics.GetActualAscensionLevel();
+            if (ascension >= 0)
             {
-                AnimatorCustomLoadout.specialTrophies.trophy1 += 1 + AbstractDungeon.ascensionLevel / 5;
-            }
-            else
-            {
-                AnimatorCustomLoadout.specialTrophies.trophy1 += 1;
+                AnimatorCustomLoadout.specialTrophies.trophy1 += 1 + Math.floorDiv(ascension, 4);
             }
         }
 

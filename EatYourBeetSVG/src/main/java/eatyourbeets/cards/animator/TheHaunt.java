@@ -5,9 +5,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.cards.AnimatorCard_Status;
+import eatyourbeets.interfaces.Hidden;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class TheHaunt extends AnimatorCard_Status
+public class TheHaunt extends AnimatorCard_Status implements Hidden
 {
     public static final String ID = CreateFullID(TheHaunt.class.getSimpleName());
 
@@ -15,7 +16,7 @@ public class TheHaunt extends AnimatorCard_Status
     {
         super(ID, 1, CardRarity.RARE, CardTarget.NONE);
 
-        Initialize(0,0, 10 + (PlayerStatistics.SaveData.TheHaunt * 5));
+        Initialize(0,0, 10 + Math.min(999, PlayerStatistics.SaveData.TheHaunt * 5));
 
         this.isEthereal = true;
         this.exhaust = true;

@@ -8,7 +8,7 @@ import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 
 public abstract class UnnamedShape extends AnimatorMonster
 {
-    protected MonsterData_Shape data;
+    protected final MonsterData_Shape data;
 
     public static String CreateFullID(MonsterShape shape, MonsterElement element, MonsterTier tier)
     {

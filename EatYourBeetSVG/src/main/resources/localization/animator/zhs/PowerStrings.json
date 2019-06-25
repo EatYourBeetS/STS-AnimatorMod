@@ -322,7 +322,7 @@
 	},
 	"animator:UnnamedDollPower":
 	{
-		"DESCRIPTIONS": ["每当打出一张不以该敌人为唯一目标的牌时， 获得 #b", " 点 #y生命上限 。 NL NL 死亡时， 所有角色获得 #b", " #y力量 "],
+		"DESCRIPTIONS": ["接下来的 #b", " 轮比赛, 每当打出一张不以该敌人为唯一目标的牌时， 获得 #b", " 点 #y生命上限 。 NL NL ", "死亡时， 所有角色获得 #b", " #y力量 "],
 		"NAME": "无名傀儡"
 	},
 	"animator:YukoShionjiPower":

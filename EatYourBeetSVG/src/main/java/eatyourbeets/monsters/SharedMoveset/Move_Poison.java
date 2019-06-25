@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.animator.PoisonPlayerPower;
+import eatyourbeets.powers.common.PoisonPlayerPower;
 
 public class Move_Poison extends AbstractMove
 {

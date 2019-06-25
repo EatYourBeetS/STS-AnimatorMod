@@ -11,19 +11,23 @@ public class OrbCore_Lightning extends AnimatorCard
 {
     public static final String ID = CreateFullID(OrbCore_Lightning.class.getSimpleName());
 
-    public static final int VALUE = 11;
+    public static final int VALUE = 7;
 
     public OrbCore_Lightning()
     {
-        super(ID, 1, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,0, VALUE);
+        Initialize(0,0, VALUE,3);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ChannelOrb(new Lightning(), true);
+        for (int i = 0; i < secondaryValue; i++)
+        {
+            GameActionsHelper.ChannelOrb(new Lightning(), true);
+        }
+
         GameActionsHelper.ApplyPower(p, p, new OrbCore_LightningPower(p, 1), 1);
     }
 

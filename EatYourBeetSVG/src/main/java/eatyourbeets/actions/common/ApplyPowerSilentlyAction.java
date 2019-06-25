@@ -261,7 +261,11 @@ public class ApplyPowerSilentlyAction extends AnimatorAction
                     }
                     while (p.ID.equals("Night Terror"));
 
-                    p.stackPower(this.amount);
+                    if (amount > 0)
+                    {
+                        p.stackPower(this.amount);
+                    }
+
                     p.flash();
 
 //                    if ((p instanceof StrengthPower || p instanceof DexterityPower) && this.amount <= 0)

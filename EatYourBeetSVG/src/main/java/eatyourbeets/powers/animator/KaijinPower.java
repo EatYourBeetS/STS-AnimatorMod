@@ -2,15 +2,8 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
-import eatyourbeets.cards.animator.Nanami;
 import eatyourbeets.interfaces.OnAfterCardDrawnSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.RandomizedList;
 
 public class KaijinPower extends AnimatorPower implements OnAfterCardDrawnSubscriber
 {

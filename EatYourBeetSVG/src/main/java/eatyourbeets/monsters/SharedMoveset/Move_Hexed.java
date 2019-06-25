@@ -8,7 +8,7 @@ import eatyourbeets.monsters.AbstractMove;
 
 public class Move_Hexed extends AbstractMove
 {
-    public int amount;
+    public final int amount;
 
     public Move_Hexed(int amount)
     {

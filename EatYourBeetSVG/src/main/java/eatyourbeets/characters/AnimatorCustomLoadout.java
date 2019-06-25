@@ -141,7 +141,7 @@ public abstract class AnimatorCustomLoadout
 
     protected AnimatorCustomLoadout()
     {
-        this.MaxHP = 72;
+        this.MaxHP = 71;
         this.StartingGold = 99;
         this.OrbSlots = 3;
         this.CardDraw = 5;

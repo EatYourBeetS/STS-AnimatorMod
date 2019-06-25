@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class ModifyBlockActionWhichActuallyWorks extends AbstractGameAction
 {
-    private UUID uuid;
+    private final UUID uuid;
 
     public ModifyBlockActionWhichActuallyWorks(UUID targetUUID, int amount)
     {

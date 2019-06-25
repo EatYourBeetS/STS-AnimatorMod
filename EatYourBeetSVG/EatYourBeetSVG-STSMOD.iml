@@ -13,7 +13,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="Maven: com.megacrit.cardcrawl:slaythespire:051">
+      <library name="Maven: com.megacrit.cardcrawl:slaythespire:01-23-2019">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/desktop-1.0.jar!/" />
         </CLASSES>
@@ -22,7 +22,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Maven: basemod:basemod:5.12.0">
+      <library name="Maven: basemod:basemod:5.13.0">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/BaseMod.jar!/" />
         </CLASSES>
@@ -31,7 +31,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Maven: com.evacipated.cardcrawl:ModTheSpire:3.6.3">
+      <library name="Maven: com.evacipated.cardcrawl:ModTheSpire:3.10.1">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/ModTheSpire.jar!/" />
         </CLASSES>
@@ -40,7 +40,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Maven: com.evacipated.cardcrawl:stslib:1.14.0">
+      <library name="Maven: com.evacipated.cardcrawl:stslib:1.17.0">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/StSLib.jar!/" />
         </CLASSES>

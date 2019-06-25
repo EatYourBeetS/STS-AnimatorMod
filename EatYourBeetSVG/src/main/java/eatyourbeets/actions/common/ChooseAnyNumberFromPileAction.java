@@ -11,7 +11,7 @@ import java.util.function.BiConsumer;
 
 public class ChooseAnyNumberFromPileAction extends AbstractGameAction
 {
-    private boolean useSource;
+    private final boolean useSource;
 
     private final String message;
     private final CardGroup sourceGroup;

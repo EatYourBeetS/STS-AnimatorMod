@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -11,9 +12,11 @@ import eatyourbeets.powers.animator.ShiroPower;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnSynergySubscriber;
 
-public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSynergySubscriber
+public class Shiro extends AnimatorCard
 {
     public static final String ID = CreateFullID(Shiro.class.getSimpleName());
+
+    private int costModifier;
 
     public Shiro()
     {
@@ -21,12 +24,38 @@ public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSy
 
         Initialize(0,0);
 
-        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
-        {
-            OnBattleStart();
-        }
-
         SetSynergy(Synergies.NoGameNoLife);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        costModifier = 0;
+    }
+
+    @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        costModifier = 0;
+    }
+
+    @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+
+        int currentCost = (costForTurn - costModifier);
+
+        costModifier = -(PlayerStatistics.getSynergiesThisTurn());
+
+        if (!this.freeToPlayOnce)
+        {
+            this.setCostForTurn(currentCost + costModifier);
+        }
     }
 
     @Override
@@ -50,25 +79,5 @@ public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSy
         {
             upgradeBaseCost(3);
         }
-    }
-
-    @Override
-    public void OnBattleStart()
-    {
-        PlayerStatistics.onSynergy.Subscribe(this);
-    }
-
-    @Override
-    public void OnSynergy(AnimatorCard card)
-    {
-        setCostForTurn(this.costForTurn - 1);
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        setCostForTurn(this.cost - PlayerStatistics.getSynergiesThisTurn());
     }
 }

@@ -15,7 +15,7 @@ public class Refinement extends UnnamedCard
 
     public Refinement()
     {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF, true);
 
         Initialize(0,0,2);
     }

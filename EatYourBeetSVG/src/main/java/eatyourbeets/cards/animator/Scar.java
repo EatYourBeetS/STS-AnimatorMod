@@ -19,8 +19,9 @@ public class Scar extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(11,0);
+        Initialize(12,0);
 
+        this.isEthereal = true;
         AddExtendedDescription();
 
         SetSynergy(Synergies.FullmetalAlchemist);
@@ -30,7 +31,7 @@ public class Scar extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         PiercingDamageAction damageAction = new PiercingDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActionsHelper.AddToBottom(new OnTargetDeadAction(m, damageAction, new ScarAction(p, this), false));
+        GameActionsHelper.AddToBottom(new OnTargetDeadAction(m, damageAction, new ScarAction(p, this), true));
     }
 
     @Override
@@ -38,7 +39,7 @@ public class Scar extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(4);
         }
     }
 }

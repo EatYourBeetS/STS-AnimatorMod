@@ -1,18 +1,19 @@
 package eatyourbeets.cards.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.WeightedList;
-import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
+
+import java.util.List;
 
 public class HiiragiShinya extends AnimatorCard
 {
@@ -20,36 +21,31 @@ public class HiiragiShinya extends AnimatorCard
 
     public HiiragiShinya()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(4,0, 3);
+        Initialize(0,3, 2, 5);
 
         SetSynergy(Synergies.OwariNoSeraph);
+    }
+
+    private void OnFetch(List<AbstractCard> cards)
+    {
+        if (cards != null && cards.size() == 1)
+        {
+            AbstractCard c = cards.get(0);
+
+            c.applyPowers();
+            c.setCostForTurn(c.costForTurn + 1);
+            c.retain = true;
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-
-        int attacks = 0;
-        for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisTurn)
-        {
-           if (c.type == CardType.ATTACK)
-           {
-               attacks += 1;
-           }
-        }
-
-        if (attacks <= 1)
-        {
-            AbstractPower debuff = GetRandomDebuffs(p, m, false).Retrieve(AbstractDungeon.miscRng);
-            if (debuff != null)
-            {
-                GameActionsHelper.ApplyPower(p, m, debuff, debuff.amount);
-            }
-        }
+        GameActionsHelper.GainBlock(p, block);
+        GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, magicNumber), magicNumber);
+        GameActionsHelper.AddToBottom(new FetchAction(p.discardPile, 1, this::OnFetch));
     }
 
     @Override
@@ -57,21 +53,18 @@ public class HiiragiShinya extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeBlock(3);
         }
     }
 
-    private static WeightedList<AbstractPower> GetRandomDebuffs(AbstractPlayer p, AbstractMonster m, boolean upgraded)
+    private void ReturnToHand()
     {
-        WeightedList<AbstractPower> result = new WeightedList<>();
-        result.Add(new WeakPower(m, upgraded ? 2 : 1, false), 4);
-        result.Add(new VulnerablePower(m, upgraded ? 2 : 1, false), 4);
-        result.Add(new PoisonPower(m, p, upgraded ? 4 : 3), 3);
-        result.Add(new ConstrictedPower(m, p, upgraded ? 3 : 2), 3);
-        result.Add(new BurningPower(m, p, upgraded ? 4 : 3), 2);
-        result.Add(new StrengthPower(m, upgraded ? -2 : -1), 2);
-        result.Add(new StunMonsterPower(m, 1), 1);
-
-        return result;
+        AbstractPlayer p = AbstractDungeon.player;
+        SupportDamagePower d = Utilities.GetPower(p, SupportDamagePower.POWER_ID);
+        if (d != null && d.amount >= secondaryValue)
+        {
+            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand));
+            GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, d, secondaryValue));
+        }
     }
 }

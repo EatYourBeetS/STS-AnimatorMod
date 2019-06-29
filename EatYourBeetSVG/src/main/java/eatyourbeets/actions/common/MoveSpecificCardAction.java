@@ -15,9 +15,15 @@ public class MoveSpecificCardAction extends AnimatorAction
 {
     private final AbstractPlayer player;
     private final AbstractCard card;
-    private final CardGroup source;
     private final CardGroup destination;
     private final boolean showEffect;
+
+    private CardGroup source;
+
+    public MoveSpecificCardAction(AbstractCard card, CardGroup destination)
+    {
+        this(card, destination, null, false);
+    }
 
     public MoveSpecificCardAction(AbstractCard card, CardGroup destination, CardGroup source)
     {
@@ -41,7 +47,23 @@ public class MoveSpecificCardAction extends AnimatorAction
         ArrayList callbackList;
         if (this.duration == Settings.ACTION_DUR_MED)
         {
-            if (!source.contains(card))
+            if (source == null)
+            {
+                if (player.hand.contains(card))
+                {
+                    source = player.hand;
+                }
+                else if (player.discardPile.contains(card))
+                {
+                    source = player.discardPile;
+                }
+                else if (player.exhaustPile.contains(card))
+                {
+                    source = player.exhaustPile;
+                }
+            }
+
+            if ((source == destination) || !source.contains(card))
             {
                 this.isDone = true;
                 return;

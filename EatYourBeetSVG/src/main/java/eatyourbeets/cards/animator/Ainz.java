@@ -9,6 +9,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.misc.AinzEffects.AinzEffect;
 import eatyourbeets.powers.animator.AinzPower;
+import eatyourbeets.utilities.GameActionsHelper;
 import patches.AbstractEnums;
 
 public class Ainz extends AnimatorCard
@@ -31,7 +32,7 @@ public class Ainz extends AnimatorCard
     {
         super(ID, BASE_COST, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0,3);
+        Initialize(0,0,4);
 
         SetSynergy(Synergies.Overlord);
 
@@ -54,7 +55,7 @@ public class Ainz extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new AinzPower(p, this.magicNumber), 1));
+        GameActionsHelper.ApplyPower(p, p, new AinzPower(p, magicNumber), 1);
     }
 
     @Override

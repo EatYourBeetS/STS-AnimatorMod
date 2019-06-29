@@ -15,7 +15,7 @@ public class OrbCore_Chaos extends AnimatorCard
 
     public OrbCore_Chaos()
     {
-        super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0,0, VALUE,1);
     }

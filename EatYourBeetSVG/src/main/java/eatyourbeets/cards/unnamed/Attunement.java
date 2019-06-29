@@ -13,7 +13,7 @@ public class Attunement extends UnnamedCard
 
     public Attunement()
     {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF, true);
 
         Initialize(0,0,2);
     }

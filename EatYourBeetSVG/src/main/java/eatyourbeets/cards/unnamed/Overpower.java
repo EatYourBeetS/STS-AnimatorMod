@@ -19,7 +19,7 @@ public class Overpower extends UnnamedCard
 
     public Overpower()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, true);
 
         Initialize(21,0, 3);
     }

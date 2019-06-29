@@ -22,7 +22,7 @@ public class OrbCore_PlasmaPower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActionsHelper.GainEnergy(value);
+        GameActionsHelper.GainTemporaryHP(p, p, value);
     }
 }
 

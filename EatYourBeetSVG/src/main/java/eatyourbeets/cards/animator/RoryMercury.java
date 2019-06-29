@@ -28,7 +28,7 @@ public class RoryMercury extends AnimatorCard
         super.triggerWhenDrawn();
 
         AbstractPlayer p = AbstractDungeon.player;
-        PlayerStatistics.ApplyTemporaryStrength(p, p, this.magicNumber);
+        PlayerStatistics.GainTemporaryStrength(p, p, this.magicNumber);
     }
 
     @Override

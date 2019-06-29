@@ -11,11 +11,11 @@ public class OrbCore_Plasma extends AnimatorCard
 {
     public static final String ID = CreateFullID(OrbCore_Plasma.class.getSimpleName());
 
-    public static final int VALUE = 1;
+    public static final int VALUE = 3;
 
     public OrbCore_Plasma()
     {
-        super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0,0, VALUE,1);
     }

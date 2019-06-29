@@ -23,7 +23,7 @@ public class DarkBomb extends UnnamedCard
 
     public DarkBomb()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL, true);
 
         Initialize(20, 0, 2);
 

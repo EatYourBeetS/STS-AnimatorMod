@@ -42,7 +42,7 @@
 	},
 	"animator:CursedStabsPower":
 	{
-		"DESCRIPTIONS": ["当这个敌人对你造成伤害时, 在你的抽牌堆里添加1张 #y疼痛 和1张 #y伤口 。"],
+		"DESCRIPTIONS": ["当这个敌人对你造成伤害时, 在你的抽牌堆里添加1张 #y疼痛 。"],
 		"NAME": "诅咒戳刺"
 	},
 	"animator:DarkCrystalPower":
@@ -237,7 +237,7 @@
 	},
 	"animator:OrbCore_FrostPower":
 	{
-		"DESCRIPTIONS": ["本回合中，你接下来第 #b", " 次触发 #y同调 后 , 获得 #b", " #y层护甲."],
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", " 次触发 #y同调 后 , 获得 #b", " 点 #y多层护甲."],
 		"NAME": "冰霜核心"
 	},
 	"animator:OrbCore_LightningPower":
@@ -247,7 +247,7 @@
 	},
 	"animator:OrbCore_PlasmaPower":
 	{
-		"DESCRIPTIONS": ["本回合中，你接下来第 #b", " 次触发 #y同调 后 , 获得 #b点", " #y能量."],
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", " 次触发 #y同调 后 , 获得 #b", " 点 #y临时生命."],
 		"NAME": "等离子核心"
 	},
 	"animator:PinaCoLadaPower":

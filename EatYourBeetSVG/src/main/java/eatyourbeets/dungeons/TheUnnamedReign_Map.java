@@ -181,7 +181,6 @@ public class TheUnnamedReign_Map
         }
     }
 
-
     private static ArrayList<MapRoomNode> CreateRow(int y)
     {
         ArrayList<MapRoomNode> row = new ArrayList<>();
@@ -202,6 +201,13 @@ public class TheUnnamedReign_Map
     {
         MapRoomNode node = new MapRoomNode(x, y);
         node.room = new TreasureRoom();
+        return node;
+    }
+
+    private static MapRoomNode CreateTrueVictoryRoom(int x, int y)
+    {
+        MapRoomNode node = new MapRoomNode(x, y);
+        node.room = new TrueVictoryRoom();
         return node;
     }
 

@@ -62,7 +62,8 @@ public class TheUnnamedReignScene extends AbstractScene
     private boolean renderS4;
     private boolean renderS5;
     private TheUnnamedReignScene.ColumnConfig columnConfig;
-    private final Color overlayColor;
+
+    public Color overlayColor;
 
     public TheUnnamedReignScene()
     {

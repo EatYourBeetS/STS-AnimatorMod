@@ -4,8 +4,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.red.SearingBlow;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -29,6 +31,8 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
     public void update()
     {
         AbstractPlayer p = AbstractDungeon.player;
+
+        ModHelper.setModsFalse();
 
         ArrayList<AbstractCard> replacement = new ArrayList<>();
         for (AbstractCard card : p.masterDeck.group)

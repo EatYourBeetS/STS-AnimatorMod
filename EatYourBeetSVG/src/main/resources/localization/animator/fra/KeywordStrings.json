@@ -135,7 +135,7 @@
 		"PROPERNAME": "Choked"
 	},
 	{
-		"NAMES": ["noyau d'orbe", "noyau_d'orbe", "noyau_incendiaire", "noyau_terrestre", "noyau_kéraunique", "noyau_plasmique", "noyau_chaotique", "noyau_glacial"],
+		"NAMES": ["noyau d'orbe", "noyau_d'orbe", "noyaux d'orbe", "noyaux_d'orbe", "noyau_incendiaire", "noyau_terrestre", "noyau_kéraunique", "noyau_plasmique", "noyau_chaotique", "noyau_glacial"],
 		"DESCRIPTION": "#yPouvoir: #yCanalisez 1 orbe à l'utilisation, octroyant un bonus à la seconde #ySynergie de chaque tour.",
 		"PROPER_NAME": "Noyau d'orbe"
 	},
@@ -203,6 +203,11 @@
 		"PROPER_NAME": "Arme Enflammée",
 		"NAMES": ["arme enflammée", "arme_enflammée"],
 		"DESCRIPTION": "Tout dégats non bloqué, inflige #b1 Brûlure par coup."
+	},
+	{
+		"PROPER_NAME": "Demon Form",
+		"NAMES": ["demon form", "demon_form"],
+		"DESCRIPTION": "Au début de chaque tour, gagnez 1 de #yForce."
 	},
 	{
 		"PROPER_NAME": "Juggernaut",

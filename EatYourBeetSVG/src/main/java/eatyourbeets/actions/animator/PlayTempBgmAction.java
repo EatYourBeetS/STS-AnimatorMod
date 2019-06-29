@@ -1,7 +1,7 @@
 package eatyourbeets.actions.animator;
 
-import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.common.WaitRealtimeAction;
 
 public class PlayTempBgmAction extends AnimatorAction
@@ -31,7 +31,10 @@ public class PlayTempBgmAction extends AnimatorAction
         wait.update();
         if (wait.isDone)
         {
-            CardCrawlGame.music.playTempBgmInstantly(this.key);
+            CardCrawlGame.music.silenceBGM();
+            AbstractDungeon.scene.fadeOutAmbiance();
+            CardCrawlGame.music.playTempBgmInstantly(this.key, true);
+            CardCrawlGame.music.updateVolume();
 
             this.isDone = true;
         }

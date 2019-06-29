@@ -16,7 +16,7 @@ public class Visions extends UnnamedCard implements OnEndOfTurnSubscriber
 
     public Visions()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
+        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL, true);
 
         Initialize(0,0, 2);
 

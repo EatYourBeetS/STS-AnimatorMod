@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.animator.AnimatorPower;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class CursedStabsPower extends AnimatorPower
 {
@@ -36,8 +37,7 @@ public class CursedStabsPower extends AnimatorPower
         {
             if (usesThisTurn > 0)
             {
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Wound(), 1, true, true));
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Pain(), 1, true, true));
+                GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(new Pain(), 1, true, true));
 
                 usesThisTurn -= 1;
             }

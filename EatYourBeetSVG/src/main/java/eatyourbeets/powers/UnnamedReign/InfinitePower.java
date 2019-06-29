@@ -3,11 +3,15 @@ package eatyourbeets.powers.UnnamedReign;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.blights.AbstractBlight;
+import com.megacrit.cardcrawl.blights.TimeMaze;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.BlightHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
@@ -15,6 +19,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import eatyourbeets.actions.animator.EndPlayerTurnAction;
+import eatyourbeets.blights.CustomTimeMaze;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.HigakiRinneAction;
@@ -37,13 +42,15 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     private final ArrayList<Integer> linesUsed = new ArrayList<>();
     private final String[] dialog;
     private final EnchantedArmorPower enchantedArmorPower;
-
-    private int maxCardsPerTurn = 16;
+    private final CustomTimeMaze timeMaze;
+    private final int maxCardsPerTurn;
 
     public InfinitePower(TheUnnamed owner)
     {
         super(owner, POWER_ID);
 
+        this.maxCardsPerTurn = 16;
+        this.timeMaze = new CustomTimeMaze(maxCardsPerTurn);
         this.enchantedArmorPower = new EnchantedArmorPower(owner, 0, true);
 
         dialog = owner.data.strings.DIALOG;
@@ -78,15 +85,6 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         if (isPlayer != owner.isPlayer)
         {
             return;
-        }
-
-        if (((TheUnnamed)owner).phase2 && AbstractDungeon.player.hasPower(GenericFadingPower.POWER_ID))
-        {
-            maxCardsPerTurn = 21;
-        }
-        else
-        {
-            maxCardsPerTurn = 16;
         }
 
         if (enchantedArmorPower.amount > 0)
@@ -129,7 +127,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     {
         if (source != null && target != null)
         {
-            int stacks = Math.abs(power.amount);
+            int stacks = Math.max(1, Math.abs(power.amount));
             if (source != owner && target == owner)
             {
                 if (owner.isPlayer != source.isPlayer && power.type == PowerType.DEBUFF)
@@ -170,12 +168,18 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
         if (cardsPlayed == (maxCardsPerTurn - 2))
         {
-            GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[3], 4, 4));
-            AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
-        }
-        else if (cardsPlayed == maxCardsPerTurn)
-        {
-            GameActionsHelper.AddToTop(new EndPlayerTurnAction());
+            if (!timeMaze.isObtained)
+            {
+                GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[3], 4, 4));
+                AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
+
+                timeMaze.counter = cardsPlayed;
+                AbstractDungeon.getCurrRoom().spawnBlightAndObtain(owner.hb.cX, owner.hb.cY, timeMaze);
+            }
+            else
+            {
+                GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[22], 4, 4));
+            }
         }
     }
 
@@ -225,8 +229,8 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         {
             if (!linesUsed.contains(21) && owner.currentHealth > 500 && !((TheUnnamed)owner).phase2)
             {
-                GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[21], 2.5f, 2.5f));
-                GameActionsHelper.Callback(new WaitRealtimeAction(2.5f), this::Rinne, card);
+                GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[21], 1.2f, 1.2f));
+                GameActionsHelper.Callback(new WaitRealtimeAction(1.2f), this::Rinne, card);
                 linesUsed.add(21);
             }
         }

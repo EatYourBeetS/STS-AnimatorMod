@@ -86,7 +86,7 @@ public class ChooseFromPileAction extends AbstractGameAction
                         selectedCards.add(card);
                     }
                 }
-                else if (this.amount == 1)
+                else if (this.amount > 0)
                 {
                     AbstractDungeon.gridSelectScreen.open(tmp, this.amount, message, false);
                 }

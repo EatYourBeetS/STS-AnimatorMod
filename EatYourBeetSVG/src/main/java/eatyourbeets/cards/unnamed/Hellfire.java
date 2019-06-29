@@ -16,7 +16,7 @@ public class Hellfire extends UnnamedCard
 
     public Hellfire()
     {
-        super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
+        super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ALL, true);
 
         Initialize(0,0, 12, 2);
     }

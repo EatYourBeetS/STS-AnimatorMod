@@ -15,7 +15,7 @@ public class Strike_Unnamed extends UnnamedCard
 
     public Strike_Unnamed()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY, true);
 
         Initialize(9,0, 3);
 

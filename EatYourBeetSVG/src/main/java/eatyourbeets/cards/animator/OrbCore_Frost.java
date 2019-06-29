@@ -11,7 +11,7 @@ public class OrbCore_Frost extends AnimatorCard
 {
     public static final String ID = CreateFullID(OrbCore_Frost.class.getSimpleName());
 
-    public static final int VALUE = 5;
+    public static final int VALUE = 2;
 
     public OrbCore_Frost()
     {

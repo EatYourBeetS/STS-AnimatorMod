@@ -1,14 +1,15 @@
 package patches;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
 
 public class GridCardSelectScreenPatches
 {
-    @SpirePatch(clz = GridCardSelectScreen.class, method = "callOnOpen")
+    @SpirePatch(clz= GridCardSelectScreen.class, method="callOnOpen")
     public static class GridCardSelectScreenPatch_Open
     {
         @SpirePostfixPatch
@@ -18,23 +19,37 @@ public class GridCardSelectScreenPatches
         }
     }
 
-    @SpirePatch(clz= GridCardSelectScreen.class, method="update")
-    public static class GridCardSelectScreenPatch_Update
+    @SpirePatch(clz= GridCardSelectScreen.class, method="updateCardPositionsAndHoverLogic")
+    public static class GridCardSelectScreenPatch_UpdateCardPosition
     {
-        @SpirePostfixPatch
-        public static void Postfix(GridCardSelectScreen __instance)
+        @SpirePrefixPatch
+        public static SpireReturn Prefix(GridCardSelectScreen __instance)
         {
-            GridCardSelectScreenPatch.Update(__instance);
+            if (GridCardSelectScreenPatch.UpdateCardPositionAndHover(__instance))
+            {
+                return SpireReturn.Return(null);
+            }
+            else
+            {
+                return SpireReturn.Continue();
+            }
         }
     }
 
-    @SpirePatch(clz= GridCardSelectScreen.class, method="render")
-    public static class GridCardSelectScreenPatch_Render
+    @SpirePatch(clz= GridCardSelectScreen.class, method="calculateScrollBounds")
+    public static class GridCardSelectScreenPatch_CalculateScrollBounds
     {
-        @SpirePostfixPatch
-        public static void Postfix(GridCardSelectScreen __instance, SpriteBatch sb)
+        @SpirePrefixPatch
+        public static SpireReturn Prefix(GridCardSelectScreen __instance)
         {
-            GridCardSelectScreenPatch.Render(__instance, sb);
+            if (GridCardSelectScreenPatch.CalculateScrollBounds(__instance))
+            {
+                return SpireReturn.Return(null);
+            }
+            else
+            {
+                return SpireReturn.Continue();
+            }
         }
     }
 }

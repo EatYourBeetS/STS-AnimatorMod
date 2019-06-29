@@ -14,9 +14,9 @@ public class Asuramaru extends AnimatorCard
 
     public Asuramaru()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        Initialize(12,12,2);
+        Initialize(13,13,2);
 
         this.exhaust = true;
 
@@ -29,18 +29,20 @@ public class Asuramaru extends AnimatorCard
         GameActionsHelper.GainBlock(p, this.block);
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.FIRE);
 
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.ApplyPower(p, p, new DemonFormPower(p, this.magicNumber), this.magicNumber);
         GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber);
         //GameActionsHelper.ApplyPower(p, p, new FocusPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override
+    public boolean canUpgrade()
+    {
+        return false;
+    }
+
+    @Override
     public void upgrade() 
     {
-        if (TryUpgrade())
-        {
-            upgradeDamage(4);
-            upgradeBlock(4);
-        }
+
     }
 }

@@ -135,7 +135,7 @@
 		"PROPERNAME": "Choked"
 	},
 	{
-		"NAMES": ["orb core", "orb_core", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
+		"NAMES": ["orb core", "orb_core", "orb cores", "orb_cores", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
 		"DESCRIPTION": "#yPower: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy each turn.",
 		"PROPER_NAME": "Orb Core"
 	},
@@ -203,6 +203,11 @@
 		"PROPER_NAME": "Flaming Weapon",
 		"NAMES": ["flaming weapon", "flaming_weapon"],
 		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yBurning."
+	},
+	{
+		"PROPER_NAME": "Demon Form",
+		"NAMES": ["demon form", "demon_form"],
+		"DESCRIPTION": "Gain #yStrength at the start of each turn."
 	},
 	{
 		"PROPER_NAME": "Juggernaut",

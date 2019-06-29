@@ -35,11 +35,6 @@ public class CataclysmEffect extends AbstractGameEffect
         this.rotation = MathUtils.random(40.0F, 50.0F);
         this.color = Color.SCARLET.cpy();
         this.renderBehind = false;
-
-        for (int i = 0; i < 50; ++i)
-        {
-            AbstractDungeon.effectsQueue.add(new GenericSmokeEffect(x + MathUtils.random(-280.0F, 250.0F) * Settings.scale, y - 80.0F * Settings.scale));
-        }
     }
 
     private void playRandomSfX()
@@ -49,7 +44,14 @@ public class CataclysmEffect extends AbstractGameEffect
 
     public void update()
     {
-        this.duration -= Gdx.graphics.getDeltaTime();
+        if (duration == DUR)
+        {
+            for (int i = 0; i < 50; ++i)
+            {
+                AbstractDungeon.effectsQueue.add(new GenericSmokeEffect(x + MathUtils.random(-280.0F, 250.0F) * Settings.scale, y - 80.0F * Settings.scale));
+            }
+        }
+
         if (this.duration < 0.0F)
         {
             CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.HIGH, ScreenShake.ShakeDur.SHORT, false);
@@ -79,6 +81,8 @@ public class CataclysmEffect extends AbstractGameEffect
         }
 
         this.scale = Interpolation.fade.apply(Settings.scale * 1.1F, Settings.scale * 1.05F, this.duration / 0.6F);
+
+        this.duration -= Gdx.graphics.getDeltaTime();
     }
 
     public void render(SpriteBatch sb)

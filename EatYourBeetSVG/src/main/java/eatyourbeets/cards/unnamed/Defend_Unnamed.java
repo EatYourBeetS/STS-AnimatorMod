@@ -13,7 +13,7 @@ public class Defend_Unnamed extends UnnamedCard
 
     public Defend_Unnamed()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF, true);
 
         Initialize(0, 7,3);
 

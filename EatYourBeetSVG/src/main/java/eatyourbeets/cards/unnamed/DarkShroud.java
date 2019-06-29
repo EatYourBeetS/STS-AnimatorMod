@@ -14,7 +14,7 @@ public class DarkShroud extends UnnamedCard
 
     public DarkShroud()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, true);
 
         Initialize(0,0,5);
 

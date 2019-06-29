@@ -1,15 +1,17 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
-public class Caster extends AnimatorCard_Boost
+public class Caster extends AnimatorCard
 {
     public static final String ID = CreateFullID(Caster.class.getSimpleName());
 
@@ -23,29 +25,28 @@ public class Caster extends AnimatorCard_Boost
     }
 
     @Override
-    public void applyPowers()
+    public void triggerOnExhaust()
     {
-        super.applyPowers();
+        super.triggerOnExhaust();
 
-        if (GetCurrentBoost() > 0)
+        for (AbstractOrb orb : AbstractDungeon.player.orbs)
         {
-            this.target = CardTarget.SELF_AND_ENEMY;
-        }
-        else
-        {
-            this.target = CardTarget.SELF;
+            if (orb != null && Dark.ORB_ID.equals(orb.ID))
+            {
+                GameActionsHelper.AddToBottom(new EvokeSpecificOrbAction(orb));
+            }
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new EvokeOrbAction(1));
         GameActionsHelper.ChannelOrb(new Dark(), true);
 
-        if (ProgressBoost())
+        if (PlayerStatistics.UseArtifact(m))
         {
-            GameActionsHelper.ApplyPower(p, m, new StrengthPower(m, -this.magicNumber), -this.magicNumber);
+            PlayerStatistics.LoseTemporaryStrength(p, m, magicNumber);
+            PlayerStatistics.GainTemporaryStrength(p, p, magicNumber);
         }
     }
 
@@ -54,13 +55,7 @@ public class Caster extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(1);
+            upgradeMagicNumber(1);
         }
-    }
-
-    @Override
-    protected int GetBaseBoost()
-    {
-        return upgraded ? 2 : 1;
     }
 }

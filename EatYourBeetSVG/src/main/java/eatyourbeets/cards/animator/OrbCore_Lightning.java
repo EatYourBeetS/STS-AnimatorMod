@@ -17,7 +17,7 @@ public class OrbCore_Lightning extends AnimatorCard
     {
         super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,0, VALUE,3);
+        Initialize(0,0, VALUE,2);
     }
 
     @Override

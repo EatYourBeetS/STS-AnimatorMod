@@ -147,9 +147,9 @@ public class TheMissingPiece extends AnimatorRelic implements OnReceiveRewardsSu
                     if (size >= 2)
                     {
                         weight += 12 + (size * 3);
-                        if (weight > 30)
+                        if (weight > 26)
                         {
-                            weight = 30;
+                            weight = 26;
                         }
                     }
                 }

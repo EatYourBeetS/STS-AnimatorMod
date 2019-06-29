@@ -14,7 +14,7 @@ public class Respite extends UnnamedCard implements OnBattleStartSubscriber
 
     public Respite()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF, true);
 
         Initialize(0,0, 6, 1);
 

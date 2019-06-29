@@ -23,7 +23,7 @@ public class ArcherPower extends AnimatorPower
     {
         super(owner, POWER_ID);
         this.baseDamage = damage;
-        this.amount = damage + GetPlayerStrength();
+        this.amount = damage + PlayerStatistics.GetStrength(owner);
 
         updateDescription();
     }
@@ -33,7 +33,7 @@ public class ArcherPower extends AnimatorPower
     {
         super.stackPower(stackAmount);
         this.baseDamage += stackAmount;
-        this.amount = baseDamage + GetPlayerStrength();
+        this.amount = baseDamage + PlayerStatistics.GetStrength(owner);
 
         updateDescription();
     }
@@ -45,7 +45,7 @@ public class ArcherPower extends AnimatorPower
 
         if (target.isPlayer)
         {
-            this.amount = baseDamage + GetPlayerStrength();
+            this.amount = baseDamage + PlayerStatistics.GetStrength(owner);
 
             updateDescription();
         }
@@ -58,7 +58,7 @@ public class ArcherPower extends AnimatorPower
 
         if (isPlayer)
         {
-            this.amount = baseDamage + GetPlayerStrength();
+            this.amount = baseDamage + PlayerStatistics.GetStrength(owner);
 
             updateDescription();
 
@@ -80,15 +80,5 @@ public class ArcherPower extends AnimatorPower
 
             this.flash();
         }
-    }
-
-    private int GetPlayerStrength()
-    {
-        AbstractPlayer player = AbstractDungeon.player;
-        if (player.hasPower(StrengthPower.POWER_ID))
-        {
-            return player.getPower(StrengthPower.POWER_ID).amount;
-        }
-        return 0;
     }
 }

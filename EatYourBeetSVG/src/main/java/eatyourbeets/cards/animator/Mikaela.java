@@ -15,9 +15,9 @@ public class Mikaela extends AnimatorCard
 
     public Mikaela()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(7,0, 3);
+        Initialize(6,0, 3);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }

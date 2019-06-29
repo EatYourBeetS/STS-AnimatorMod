@@ -19,9 +19,9 @@
 	},
 	"animator:Add":
 	{
-		"DESCRIPTION": "Gain !M! Ench._Armor. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Ethereal. Exhaust.",
+		"DESCRIPTION": "Gain !M! Ench._Armor. NL Exhaust 1 card anywhere. Replace it with an Orb_Core. NL Ethereal. Exhaust.",
 		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Gain !M! Ench._Armor. NL Exhaust 1 card in your draw pile. Replace it with an Orb_Core. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Gain !M! Ench._Armor. NL Exhaust 1 card anywhere. Replace it with an Orb_Core. NL Exhaust."
 	},
 	"animator:Ain":
 	{
@@ -71,7 +71,7 @@
 	},
 	"animator:Asuramaru":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Gain !M! Strength. NL Gain !M! Dexterity. NL Exhaust.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Demon_Form. NL Gain !M! Dexterity. NL Gain !B! Block. NL Exhaust.",
 		"NAME": "Asuramaru"
 	},
 	"animator:Azekura":
@@ -117,7 +117,7 @@
 	},
 	"animator:Caster":
 	{
-		"DESCRIPTION": "[#EFC851]Evoke your first Orb. NL [#EFC851]Channel 1 Dark. NL Boost !SV! : The enemy loses !M! Strength.",
+		"DESCRIPTION": "[#EFC851]Channel 1 Dark. NL Steal !M! Strength until end of turn. Legacy: Evoke ALL Dark orbs.",
 		"NAME": "Caster"
 	},
 	"animator:ChaikaBohdan":
@@ -139,9 +139,9 @@
 	},
 	"animator:Chomusuke":
 	{
-		"DESCRIPTION": "Retain. Once per turn, gain [E] and draw !M! card for each card you Exhausted this turn ( !SV! cards ).",
+		"DESCRIPTION": "Retain. Once per turn, NL gain [E] and draw !M! NL card for each card NL you Exhausted this NL turn ( !SV! cards ).",
 		"NAME": "Chomusuke",
-		"UPGRADE_DESCRIPTION": "Retain. Once per turn, gain [E] and draw !M! cards for each card you Exhausted this turn ( !SV! cards )."
+		"UPGRADE_DESCRIPTION": "Retain. Once per turn, NL gain [E] and draw !M! NL cards for each card NL you Exhausted this NL turn ( !SV! cards )."
 	},
 	"animator:Chris":
 	{
@@ -167,7 +167,7 @@
 	},
 	"animator:CrowleyEusford":
 	{
-		"DESCRIPTION": "Deal !D! damage to a random enemy. NL This card costs 0 NL if you Exhausted NL a card this turn.",
+		"DESCRIPTION": "Deal !D! damage to a random enemy !M! times. Costs 1 less for each card Exhausted this turn.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator:Crystallize":
@@ -358,8 +358,9 @@
 	},
 	"animator:Eve":
 	{
-		"DESCRIPTION": "Play an Orb_Core. NL When you Synergize, deal !M! damage to an enemy and increase this damage by 1.",
-		"NAME": "Eve"
+		"DESCRIPTION": "Play !SV! Orb_Core. NL When you Synergize, deal !M! damage to an enemy and increase this damage by 1.",
+		"NAME": "Eve",
+		"UPGRADE_DESCRIPTION": "Play !SV! Orb_Cores. NL When you Synergize, deal !M! damage to an enemy and increase this damage by 1."
 	},
 	"animator:Evileye":
 	{
@@ -368,7 +369,7 @@
 	},
 	"animator:Excalibur":
 	{
-		"DESCRIPTION": "Retain. NL Gain 1 Intangible. NL Deal !D! damage to NL ALL enemies. NL Exhaust.",
+		"DESCRIPTION": "Retain. NL Gain 1 Intangible. NL Deal !D! damage NL to ALL enemies. NL Exhaust.",
 		"NAME": "Excalibur"
 	},
 	"animator:FeridBathory":
@@ -500,7 +501,7 @@
 	},
 	"animator:HiiragiShinya":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If this is your first [#EFC851]Attack this turn, apply a random [#EFC851]Debuff.",
+		"DESCRIPTION": "Gain !B! Block and NL !M! Support_Damage. NL Fetch a card from your discard pile and Retain it, it costs 1 more this turn.",
 		"NAME": "Shinya Hiiragi"
 	},
 	"animator:HiiragiTenri":
@@ -551,7 +552,8 @@
 	"animator:Kaijin":
 	{
 		"DESCRIPTION": "Whenever you draw a card, increase its damage and Block by !M! this combat.",
-		"NAME": "Kaijin"
+		"NAME": "Kaijin",
+		"UPGRADE_DESCRIPTION": "Whenever you draw a card, increase its damage and Block by !M! this combat. Next turn, draw !SV! cards."
 	},
 	"animator:Kazuma":
 	{
@@ -703,9 +705,9 @@
 	},
 	"animator:NarberalGamma":
 	{
-		"DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning.",
+		"DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning. NL Draw 1 card.",
 		"NAME": "Gamma Narberal",
-		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning. NL Lightning hits ALL enemies this turn."
+		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Channel !M! Lightning. NL Lightning hits ALL enemies this turn. NL Draw 1 card."
 	},
 	"animator:NivaLada":
 	{
@@ -729,7 +731,7 @@
 	},
 	"animator:OrbCore_Frost":
 	{
-		"DESCRIPTION": "Channel !SV! Frost. NL On your second Synergy each turn, gain !M! Block.",
+		"DESCRIPTION": "Channel !SV! Frost. NL On your second Synergy each turn, gain !M! Plated_Armor.",
 		"NAME": "Frost Core"
 	},
 	"animator:OrbCore_Lightning":
@@ -739,7 +741,7 @@
 	},
 	"animator:OrbCore_Plasma":
 	{
-		"DESCRIPTION": "Channel !SV! Plasma. NL On your second Synergy each turn, gain [E].",
+		"DESCRIPTION": "Channel !SV! Plasma. NL On your second Synergy each turn, gain !M! Temp._HP.",
 		"NAME": "Plasma Core"
 	},
 	"animator:PandorasActor":
@@ -819,8 +821,8 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. NL [#EFC851]Dragon's[] [#EFC851]Pulse[].",
-		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "If this kills a non-minion enemy, #yPurge this card and permanently #yUpgrade a random card in your deck"],
+		"DESCRIPTION": "Ethereal. Deal !D! Piercing damage. NL [#EFC851]Dragon's[] [#EFC851]Pulse[].",
+		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "If this kills an enemy, #yPurge this card and permanently #yUpgrade a random card in your deck"],
 		"NAME": "Scar"
 	},
 	"animator:Sebas":

@@ -21,8 +21,8 @@ public class TheEndingPatches
         @SpirePostfixPatch
         public static void Postfix(TheEnding __instance)
         {
-            if (Settings.isStandardRun() && PlayerStatistics.GetActualAscensionLevel() >= 0) // Ascension reborn mod adds negative ascension levels
-            {
+//            if (Settings.isStandardRun() && PlayerStatistics.GetActualAscensionLevel() >= 0)
+//            {
                 if (AnimatorCustomLoadout.specialTrophies.trophy1 > 0 ||
                         AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
                 {
@@ -41,7 +41,7 @@ public class TheEndingPatches
                     connectNode(rest, node);
                     connectNode(node, shop);
                 }
-            }
+ //           }
         }
 
         private static void connectNode(MapRoomNode src, MapRoomNode dst)

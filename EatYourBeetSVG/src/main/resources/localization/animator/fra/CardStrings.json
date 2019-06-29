@@ -18,9 +18,9 @@
 	},
 	"animator:Add":
 	{
-		"DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte dans votre pioche. Remplacez-la par un Noyau_d'orbe. NL Éthérée. Épuisement.",
+		"DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte dans tout lieu. Remplacez-la par un Noyau_d'orbe. NL Éthérée. Épuisement.",
 		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte dans votre pioche. Remplacez-la par un Noyau_d'orbe. NL Épuisement."
+		"UPGRADE_DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte dans tout lieu. Remplacez-la par un Noyau_d'orbe. NL Épuisement."
 	},
 	"animator:Ain":
 	{
@@ -70,7 +70,7 @@
 	},
 	"animator:Asuramaru":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Infligez !D! dégât(s). NL Gagnez !M! de Force. NL Gagnez !M! de Dextérité. NL Épuisement.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Infligez !D! dégât(s). NL Gagnez !M! Demon_Form. NL Gagnez !M! de Dextérité. NL Épuisement.",
 		"NAME": "Asuramaru"
 	},
 	"animator:Azekura":
@@ -116,7 +116,7 @@
 	},
 	"animator:Caster":
 	{
-		"DESCRIPTION": "[#EFC851]Activez votre première Orbe. NL Canalisez 1 Orbe Obscure. NL Boost !SV! : L'ennemi perd !M! de Force.",
+		"DESCRIPTION": "Canalisez 1 Orbe Obscure. NL Volez !M! Force ce tour. NL Héritage: Activez votre Orbes Obscurs.",
 		"NAME": "Caster"
 	},
 	"animator:ChaikaBohdan":
@@ -165,7 +165,7 @@
 	},
 	"animator:CrowleyEusford":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi aléatoire. NL Cette carte coûte 0 NL si vous avez Épuisé une carte ce tour.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi aléatoire !M! fois. Coûte 1 en moins NL par carte Épuisé ce tour.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator:Crystallize":
@@ -356,8 +356,9 @@
 	},
 	"animator:Eve":
 	{
-		"DESCRIPTION": "Jouer un Noyau_d'orbe. NL Quand vous effectuez une Synergie, Infligez !M! dégât(s) à un ennemi et augmentez ces dégât(s) par 1.",
-		"NAME": "Eve"
+		"DESCRIPTION": "Jouez !SV! Noyau_d'orbe. NL Quand vous effectuez une Synergie, Infligez !M! dégât(s) à un ennemi et augmentez ces dégât(s) par 1.",
+		"NAME": "Eve",
+		"UPGRADE_DESCRIPTION": "Jouez !SV! Noyaux_d'orbe. NL Quand vous effectuez une Synergie, Infligez !M! dégât(s) à un ennemi et augmentez ces dégât(s) par 1."
 	},
 	"animator:Evileye":
 	{
@@ -498,7 +499,7 @@
 	},
 	"animator:HiiragiShinya":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Si c'est votre première [#EFC851]Attaque ce tour, appliquez un [#EFC851]Debuff aléatoire.",
+		"DESCRIPTION": "Gagnez !B! d'Armure et !M! de Dégât_de_Soutien. Chercher 1 carte de votre Défausse et Conservez-la, elle coûte 1 de plus ce tour.",
 		"NAME": "Shinya Hiiragi"
 	},
 	"animator:HiiragiTenri":
@@ -549,7 +550,8 @@
 	"animator:Kaijin":
 	{
 		"DESCRIPTION": "Lorsque vous pigez une carte, augmentez sa quantité de dégâts et d'Armure par !M! pour ce combat.",
-		"NAME": "Kaijin"
+		"NAME": "Kaijin",
+		"UPGRADE_DESCRIPTION": "Lorsque vous pigez une carte, augmentez sa quantité de dégâts et d'Armure par !M! pour ce combat. Au prochain tour, piochez 2 cartes."
 	},
 	"animator:Kazuma":
 	{
@@ -701,9 +703,9 @@
 	},
 	"animator:NarberalGamma":
 	{
-		"DESCRIPTION": "Changeforme. NL Canalisez !M! Orbe Kéraunique.",
+		"DESCRIPTION": "Changeforme. NL Canalisez !M! Orbe Kéraunique. NL Piochez 1 carte.",
 		"NAME": "Gamma Narberal",
-		"UPGRADE_DESCRIPTION": "Changeforme. NL Canalisez !M! Orbe Kéraunique. NL Vos Orbes Kéraunique touchent TOUS les ennemiss ce tour."
+		"UPGRADE_DESCRIPTION": "Changeforme. NL Canalisez !M! Orbe Kéraunique. Vos Orbes Kéraunique touchent TOUS les ennemiss ce tour. Piochez 1 carte."
 	},
 	"animator:NivaLada":
 	{
@@ -727,7 +729,7 @@
 	},
 	"animator:OrbCore_Frost":
 	{
-		"DESCRIPTION": "Canalisez !SV! Orbe Glaciale. NL À la seconde Synergie de chaque tour, NL Gagnez !M! d'Armure.",
+		"DESCRIPTION": "Canalisez !SV! Orbe Glaciale. NL À la seconde Synergie de chaque tour, NL Gagnez !M! d'Armure_Plaquée.",
 		"NAME": "Noyau Glacial"
 	},
 	"animator:OrbCore_Lightning":
@@ -737,7 +739,7 @@
 	},
 	"animator:OrbCore_Plasma":
 	{
-		"DESCRIPTION": "Canalisez !SV! Orbe Plasmique. NL À la seconde Synergie de chaque tour, NL Gagnez [E].",
+		"DESCRIPTION": "Canalisez !SV! Orbe Plasmique. NL À la seconde Synergie de chaque tour, NL Gagnez !M! de Temp._PV.",
 		"NAME": "Noyau Plasmique"
 	},
 	"animator:PandorasActor":
@@ -817,7 +819,7 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) Perçant. NL [#EFC851]Dragon's[] [#EFC851]Pulse[].",
+		"DESCRIPTION": "Éthérée. Infligez !D! dégât(s) Perçant. NL [#EFC851]Dragon's[] [#EFC851]Pulse[].",
 		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "Si cette carte tue un ennemi (non-minion), #ypurgez cette carte et #yaméliorez de manière permanente une carte aléatoire de votre deck"],
 		"NAME": "Scar"
 	},

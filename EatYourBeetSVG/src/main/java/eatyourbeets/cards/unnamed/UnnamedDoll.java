@@ -14,7 +14,7 @@ public class UnnamedDoll extends UnnamedCard
 
     public UnnamedDoll()
     {
-        super(ID, -1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(ID, -1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF, true);
 
         Initialize(0, 0, 0, 2);
 

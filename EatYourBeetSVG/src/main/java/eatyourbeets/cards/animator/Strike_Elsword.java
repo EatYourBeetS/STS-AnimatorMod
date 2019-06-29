@@ -21,7 +21,7 @@ public class Strike_Elsword extends Strike
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        PlayerStatistics.ApplyTemporaryStrength(p, p, 1);
+        PlayerStatistics.GainTemporaryStrength(p, p, 1);
     }
 
     @Override

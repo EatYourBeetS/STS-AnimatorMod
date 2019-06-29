@@ -14,7 +14,7 @@ public class Laziness extends UnnamedCard
 
     public Laziness()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, true);
 
         Initialize(0,0,2);
     }

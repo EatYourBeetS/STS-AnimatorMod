@@ -42,7 +42,7 @@
 	},
 	"animator:CursedStabsPower":
 	{
-		"DESCRIPTIONS": ["Whenever it deals unblocked damage, add 1 #yPain and 1 #yWound to your draw pile."],
+		"DESCRIPTIONS": ["Whenever it deals unblocked damage, add 1 #yPain to your draw pile."],
 		"NAME": "Cursed Stabs"
 	},
 	"animator:DarkCrystalPower":
@@ -237,7 +237,7 @@
 	},
 	"animator:OrbCore_FrostPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yBlock."],
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yPlated #yArmor."],
 		"NAME": "Frost Core"
 	},
 	"animator:OrbCore_LightningPower":
@@ -247,7 +247,7 @@
 	},
 	"animator:OrbCore_PlasmaPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yEnergy."],
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, gain #b", " #yTemporary #yHP."],
 		"NAME": "Plasma Core"
 	},
 	"animator:PinaCoLadaPower":

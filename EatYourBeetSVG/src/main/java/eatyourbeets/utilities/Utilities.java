@@ -1,7 +1,9 @@
 package eatyourbeets.utilities;
 
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
@@ -34,6 +36,28 @@ public class Utilities
         if (size > 0)
         {
             return list.get(rng.random(list.size() - 1));
+        }
+
+        return null;
+    }
+
+    public static <T extends AbstractPower> T GetPower(AbstractCreature creature, String powerID)
+    {
+        for (AbstractPower p : creature.powers)
+        {
+            if (p != null && powerID.equals(p.ID))
+            {
+                try
+                {
+                    return (T)p;
+                }
+                catch (ClassCastException e)
+                {
+                    e.printStackTrace();
+
+                    return null;
+                }
+            }
         }
 
         return null;

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
+import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainTempThornsAndBlockAll;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.AnimatorMonster;
@@ -43,6 +44,7 @@ public class TheUnnamed_Doll extends AnimatorMonster
                 moveset.AddSpecial(new Move_GainRitualAndArtifactAll(2, 2), 1);
 
         moveset.AddNormal(new Move_ShieldAll(16));
+        moveset.AddNormal(new Move_GainTempThornsAndBlockAll(2, 9));
         moveset.AddNormal(new Move_AttackFrailAndDexLoss(1, 1));
         moveset.AddNormal(new Move_AttackWeakAndStrLoss(1, 1));
     }

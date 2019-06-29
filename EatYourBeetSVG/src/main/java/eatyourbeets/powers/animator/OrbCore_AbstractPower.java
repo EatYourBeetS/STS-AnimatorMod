@@ -143,4 +143,18 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
 
         return group;
     }
+
+    public static ArrayList<AbstractCard> GetAllCores()
+    {
+        ArrayList<AbstractCard> cores = new ArrayList<>();
+
+        cores.add(new OrbCore_Fire());
+        cores.add(new OrbCore_Lightning());
+        cores.add(new OrbCore_Dark());
+        cores.add(new OrbCore_Frost());
+        cores.add(new OrbCore_Plasma());
+        cores.add(new OrbCore_Chaos());
+
+        return cores;
+    }
 }

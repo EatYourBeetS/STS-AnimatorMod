@@ -45,7 +45,7 @@ public class AinzAction extends AnimatorAction
                 AinzEffect effect = effectList.Retrieve(rng);
 
                 // Reduce the chances of Intangible
-                if (effect instanceof AinzEffect_GainIntangible && rng.randomBoolean(0.60f))
+                if (effect instanceof AinzEffect_GainIntangible && rng.randomBoolean(0.66f))
                 {
                     effect = effectList.Retrieve(rng);
                 }

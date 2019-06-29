@@ -42,7 +42,7 @@
 	},
 	"animator:CursedStabsPower":
 	{
-		"DESCRIPTIONS": ["當這個敵人對你造成傷害時, 在你的抽牌堆裡添加1張 #y疼痛 和1張 #y傷口 。"],
+		"DESCRIPTIONS": ["當這個敵人對你造成傷害時, 在你的抽牌堆裡添加1張 #y疼痛 。"],
 		"NAME": "詛咒戳刺"
 	},
 	"animator:DarkCrystalPower":
@@ -237,7 +237,7 @@
 	},
 	"animator:OrbCore_FrostPower":
 	{
-		"DESCRIPTIONS": ["本回合中，你接下来第 #b", "次觸發 #y同調後, 獲得 #b", " #y層護甲。"],
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", "次觸發 #y同調後, 獲得 #b", " 層 #y多層護甲。"],
 		"NAME": "冰霜充能球"
 	},
 	"animator:OrbCore_LightningPower":
@@ -247,7 +247,7 @@
 	},
 	"animator:OrbCore_PlasmaPower":
 	{
-		"DESCRIPTIONS": ["本回合中，你接下来第 #b", "次觸發 #y同調後", " #yEnergy."],
+		"DESCRIPTIONS": ["本回合中，你接下来第 #b", "次觸發 #y同調後", " 點 #y臨時生命"],
 		"NAME": "等離子充能球"
 	},
 	"animator:PinaCoLadaPower":

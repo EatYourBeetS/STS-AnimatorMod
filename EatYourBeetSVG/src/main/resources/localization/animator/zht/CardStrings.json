@@ -18,9 +18,9 @@
 	},
 	"animator:Add":
 	{
-		"DESCRIPTION": "獲得 !M! 魔法護甲 。 在你的抽牌堆中 消耗 1 張牌 。 加入一張 充能球核心 到抽牌堆。 虛無 。 消耗 。",
+		"DESCRIPTION": "獲得 !M! 魔法護甲 。 任何地方中 消耗 1 張牌 。 加入一張 充能球核心 到抽牌堆。 虛無 。 消耗 。",
 		"NAME": "艾迪",
-		"UPGRADE_DESCRIPTION": "獲得 !M! 魔法護甲 。 在你的抽牌堆中 消耗 1 張牌 。 加入一張 充能球核心 到抽牌堆。 消耗 。"
+		"UPGRADE_DESCRIPTION": "獲得 !M! 魔法護甲 。 任何地方中 消耗 1 張牌 。 加入一張 充能球核心 到抽牌堆。 消耗 。"
 	},
 	"animator:Ain":
 	{
@@ -70,7 +70,7 @@
 	},
 	"animator:Asuramaru":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 獲得 !B! 點 格擋 。 獲得 !M! 層 力量 、 敏捷 。 消耗 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 獲得 !B! 點 格擋 。 獲得 !M! 層 惡魔形態 。 獲得 !M! 敏捷 。 消耗 。",
 		"NAME": "阿修羅丸"
 	},
 	"animator:Azekura":
@@ -116,7 +116,7 @@
 	},
 	"animator:Caster":
 	{
-		"DESCRIPTION": "[#EFC851]激發第[] 一個充能球 。 NL [#EFC851]獲得[] 1 顆 黑暗充能球 。 NL 增強 : 敵人失去 !M! 點 力量 。",
+		"DESCRIPTION": "獲得 1 顆 黑暗充能球 。 NL 本回合從敵人身上奪取 !M! 點 力量 。 NL 遺贈 : 激發所有暗充能球 。",
 		"NAME": "Caster"
 	},
 	"animator:ChaikaBohdan":
@@ -165,7 +165,7 @@
 	},
 	"animator:CrowleyEusford":
 	{
-		"DESCRIPTION": "對一個隨機的敵人造成 !D! 點 傷害 。 NL 如果該回合你 消耗 了一張牌, 將此卡的耗能降低到0 。",
+		"DESCRIPTION": "對一個隨機的敵人造成 !D! 點 傷害 !M! 次 。 NL 本回合每 消耗 1 張牌 ， 耗能就減少 1 。",
 		"NAME": "克羅里·尤斯福德"
 	},
 	"animator:Crystallize":
@@ -354,7 +354,7 @@
 	},
 	"animator:Eve":
 	{
-		"DESCRIPTION": "發揮 充電球核心 。 每當觸發一次同調 ， 對隨機敵人造成 !M! 點 傷害並增加這張牌 1 點 傷害 。",
+		"DESCRIPTION": "發揮 !SV! 充電球核心 。 每當觸發一次同調 ， 對隨機敵人造成 !M! 點 傷害並增加這張牌 1 點 傷害 。",
 		"NAME": "伊芙"
 	},
 	"animator:Evileye":
@@ -494,7 +494,7 @@
 	},
 	"animator:HiiragiShinya":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 如果這是你本回合第一次攻擊 ， 給予目標一個隨機的 [#EFC851]負面效果[] 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 獲得 !M! 點 支援傷害 。 從你的棄牌堆中取一張牌並保留它, 它本回合消耗1個額外的能量 。",
 		"NAME": "柊深夜"
 	},
 	"animator:HiiragiTenri":
@@ -545,7 +545,8 @@
 	"animator:Kaijin":
 	{
 		"DESCRIPTION": "每當你抽一張牌時， 使其造成的傷害與獲得的格擋量在本場戰鬥中提高 !M! 點 。",
-		"NAME": "凱·金"
+		"NAME": "凱·金",
+		"UPGRADE_DESCRIPTION": "每當你抽一張牌時， 使其造成的傷害與獲得的格擋量在本場戰鬥中提高 !M! 點 。 下一輪 ， 抽 2 張牌 。"
 	},
 	"animator:Kazuma":
 	{
@@ -696,9 +697,9 @@
 	},
 	"animator:NarberalGamma":
 	{
-		"DESCRIPTION": "生成 !M! 個 閃電 充能球 。 NL 變形者 。",
+		"DESCRIPTION": "生成 !M! 個 閃電 充能球 。 抽1張牌 。 NL 變形者 。",
 		"NAME": "娜貝拉爾·伽瑪",
-		"UPGRADE_DESCRIPTION": "生成 !M! 個 閃電 充能球 。 NL 變形者 。 閃電 本回合擊中所有敵人。"
+		"UPGRADE_DESCRIPTION": "生成 !M! 個 閃電 充能球 。 抽1張牌 。 NL 變形者 。 閃電 本回合擊中所有敵人。"
 	},
 	"animator:NivaLada":
 	{
@@ -722,7 +723,7 @@
 	},
 	"animator:OrbCore_Frost":
 	{
-		"DESCRIPTION": "產生 !SV! 冰霜 充能球 。 NL 每回合第二次同調時 ， 獲得 !M! 點 格擋 。",
+		"DESCRIPTION": "產生 !SV! 冰霜 充能球 。 NL 每回合第二次同調時 ， 獲得 !M! 層 多層護甲 。",
 		"NAME": "冰霜 核心"
 	},
 	"animator:OrbCore_Lightning":
@@ -732,7 +733,7 @@
 	},
 	"animator:OrbCore_Plasma":
 	{
-		"DESCRIPTION": "產生 !SV! 個 等離子 充能球 。 NL 每回合第二次同調時 ， 獲得 [E] 。",
+		"DESCRIPTION": "產生 !SV! 個 等離子 充能球 。 NL 每回合第二次同調時 ， 獲得 !M! 點 臨時生命",
 		"NAME": "等離子 核心"
 	},
 	"animator:PandorasActor":
@@ -812,7 +813,7 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 NL [#EFC851]龍之吐息[] 。",
+		"DESCRIPTION": "虛無 。 造成 !D! 點 穿刺 傷害 。 NL [#EFC851]龍之吐息[] 。",
 		"EXTENDED_DESCRIPTION": ["龍之吐息", "如果這張牌殺死非爪牙的敵人， 抹除這張牌並在牌庫永久升級1張隨機牌。"],
 		"NAME": "斯卡"
 	},

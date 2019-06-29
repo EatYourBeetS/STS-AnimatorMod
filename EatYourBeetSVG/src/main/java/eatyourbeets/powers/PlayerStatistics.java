@@ -371,6 +371,17 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     }
 
     @Override
+    public void atEndOfRound()
+    {
+        super.atEndOfRound();
+
+        turnDamageMultiplier = 0;
+        cardsExhaustedThisTurn = 0;
+        synergiesThisTurn = 0;
+        cardsDrawnThisTurn = 0;
+    }
+
+    @Override
     public void atEndOfTurn(boolean isPlayer)
     {
         super.atEndOfTurn(isPlayer);
@@ -380,10 +391,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
             s.OnEndOfTurn(isPlayer);
         }
 
-        turnDamageMultiplier = 0;
-        cardsExhaustedThisTurn = 0;
-        synergiesThisTurn = 0;
-        cardsDrawnThisTurn = 0;
         turnCount += 1;
         AnimatorCard.SetLastCardPlayed(null);
     }
@@ -574,11 +581,24 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         return 0;
     }
 
-    public static void ApplyTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
+    public static void LoseTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
     {
         GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
 
-        if (!UseArtifact(target))
+        if (UseArtifact(target))
+        {
+            GameActionsHelper.ApplyPower(source, target, new StrengthPower(target, -amount), -amount);
+            GameActionsHelper.ApplyPowerSilently(source, target, new GainStrengthPower(target, amount), amount);
+        }
+
+        GameActionsHelper.ResetOrder();
+    }
+
+    public static void GainTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+
+        if (UseArtifact(target))
         {
             GameActionsHelper.ApplyPowerSilently(source, target, new LoseStrengthPower(target, amount), amount);
         }
@@ -592,7 +612,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     {
         GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
 
-        if (!UseArtifact(target))
+        if (UseArtifact(target))
         {
             GameActionsHelper.ApplyPowerSilently(source, target, new TemporaryBiasPower(target, amount), amount);
         }
@@ -606,7 +626,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     {
         GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
 
-        if (!UseArtifact(target))
+        if (UseArtifact(target))
         {
             GameActionsHelper.ApplyPowerSilently(source, target, new LoseDexterityPower(target, amount), amount);
         }
@@ -626,11 +646,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
             artifact.flashWithoutSound();
             artifact.onSpecificTrigger();
 
-            return true;
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
     }
 

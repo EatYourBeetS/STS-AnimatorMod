@@ -5,12 +5,14 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.EvePower;
 import eatyourbeets.powers.animator.OrbCore_AbstractPower;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
@@ -22,7 +24,7 @@ public class Eve extends AnimatorCard
     {
         super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0, 1);
+        Initialize(0,0, 1, 1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -32,17 +34,26 @@ public class Eve extends AnimatorCard
     {
         GameActionsHelper.ApplyPower(p, p, new EvePower(p, this.magicNumber, 1), 1);
 
-        CardGroup cores = OrbCore_AbstractPower.CreateCoresGroup(true);
-        GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, cores, this::OrbChosen, this, ""));
+        Random rng = AbstractDungeon.miscRng;
+        RandomizedList<AbstractCard> cores = new RandomizedList<>(OrbCore_AbstractPower.GetAllCores());
+
+        CardGroup group1 = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        group1.group.add(cores.Retrieve(rng));
+        group1.group.add(cores.Retrieve(rng));
+        group1.group.add(cores.Retrieve(rng));
+
+        GameActionsHelper.AddToBottom(new ChooseFromPileAction(secondaryValue, false, group1, this::OrbChosen, this, ""));
     }
 
     private void OrbChosen(Object state, ArrayList<AbstractCard> chosen)
     {
-        if (state == this && chosen != null && chosen.size() == 1)
+        if (state == this && chosen != null && chosen.size() > 0)
         {
-            AbstractCard card = chosen.get(0);
-            card.applyPowers();
-            card.use(AbstractDungeon.player, null);
+            for (AbstractCard c : chosen)
+            {
+                c.applyPowers();
+                c.use(AbstractDungeon.player, null);
+            }
         }
     }
 
@@ -51,7 +62,7 @@ public class Eve extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeSecondaryValue(1);
         }
     }
 }

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -27,7 +28,10 @@ import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
 import eatyourbeets.monsters.SharedMoveset.Move_Poison;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.InfinitePower;
+import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.scenes.TheUnnamedReignScene;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
 
 public class TheUnnamed extends AnimatorMonster
 {
@@ -80,8 +84,12 @@ public class TheUnnamed extends AnimatorMonster
     {
         if (!AbstractDungeon.getCurrRoom().cannotLose)
         {
+            AbstractDungeon.getCurrRoom().cannotLose = true;
+
             AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
-                    0.8f, "No... wait...", this.isPlayer));
+                    0.8f, data.strings.DIALOG[28], this.isPlayer));
+
+            ChangeOverlayColor(new Color(1f, 1f, 1f, 0.3f));
 
             super.die();
             this.onBossVictoryLogic();
@@ -145,32 +153,32 @@ public class TheUnnamed extends AnimatorMonster
         {
             if (stunCounter <= 0)
             {
-                GameActionsHelper.AddToTop(new TalkAction(this, "Nice try. Do not do that again.", 4, 4));
+                GameActionsHelper.AddToTop(new TalkAction(this, data.strings.DIALOG[23], 4, 4));
                 stunCounter = 1;
             }
             else if (stunCounter == 1)
             {
-                GameActionsHelper.AddToTop(new TalkAction(this, "I am warning you...", 4, 4));
+                GameActionsHelper.AddToTop(new TalkAction(this, data.strings.DIALOG[24], 4, 4));
                 stunCounter = 2;
             }
             else if (stunCounter == 2)
             {
                 GameActionsHelper.AddToTop(new EndPlayerTurnAction());
-                GameActionsHelper.AddToTop(new TalkAction(this, "Stop this nonsense.", 4, 4));
+                GameActionsHelper.AddToTop(new TalkAction(this, data.strings.DIALOG[25], 4, 4));
 
                 stunCounter = 3;
             }
             else if (stunCounter == 3)
             {
                 GameActionsHelper.AddToTop(new EndPlayerTurnAction());
-                GameActionsHelper.AddToTop(new TalkAction(this, "LAST WARNING.", 3, 3));
+                GameActionsHelper.AddToTop(new TalkAction(this, data.strings.DIALOG[26], 3, 3));
 
                 stunCounter = 4;
             }
             else
             {
                 GameActionsHelper.AddToTop(new KillCharacterAction(this, AbstractDungeon.player));
-                GameActionsHelper.AddToTop(new TalkAction(this, "I warned you... Goodnight.", 3, 3));
+                GameActionsHelper.AddToTop(new TalkAction(this, data.strings.DIALOG[27], 3, 3));
             }
         }
     }
@@ -262,12 +270,15 @@ public class TheUnnamed extends AnimatorMonster
         CardCrawlGame.music.silenceBGMInstantly();
         AbstractDungeon.scene.fadeInAmbiance();
 
+        ChangeOverlayColor(new Color(0.3f, 0.3f, 0.3f, 0.2f));
+
         if (!this.isDeadOrEscaped())
         {
             GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[0], 3, 3));
+            GameActionsHelper.ApplyPower(this, this, new RegenPower(this, 80), 80);
             GameActionsHelper.ApplyPower(this, this, new AngryPower(this, 5), 5);
             GameActionsHelper.ApplyPower(this, this, new PlatedArmorPower(this, 16), 16);
-            GameActionsHelper.ApplyPower(this, this, new RegenPower(this, 100), 100);
+            GameActionsHelper.ApplyPower(this, this, new EarthenThornsPower(this, 3), 3);
 //            moveFading.SetMove();
 //            this.createIntent();
 
@@ -275,6 +286,15 @@ public class TheUnnamed extends AnimatorMonster
             moveset.AddNormal(movePoison);
             rollMove();
             createIntent();
+        }
+    }
+
+    private static void ChangeOverlayColor(Color color)
+    {
+        TheUnnamedReignScene scene = Utilities.SafeCast(AbstractDungeon.scene, TheUnnamedReignScene.class);
+        if (scene != null)
+        {
+            scene.overlayColor = color;
         }
     }
 
@@ -304,11 +324,12 @@ public class TheUnnamed extends AnimatorMonster
 
     protected static class VictoryEffect extends AbstractGameEffect
     {
+        boolean fastMode;
         WaitRealtimeAction wait;
 
         public VictoryEffect()
         {
-            this.startingDuration = this.duration = 1.3f;
+            this.startingDuration = this.duration = 2.5f;
             wait = new WaitRealtimeAction(this.duration);
         }
 
@@ -324,6 +345,7 @@ public class TheUnnamed extends AnimatorMonster
                 AbstractDungeon.nextRoom.room = new TrueVictoryRoom();
                 AbstractDungeon.nextRoomTransitionStart();
 
+                Settings.FAST_MODE = fastMode;
                 this.isDone = true;
             }
         }

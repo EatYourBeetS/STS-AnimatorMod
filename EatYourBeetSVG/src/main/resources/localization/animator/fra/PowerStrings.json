@@ -42,7 +42,7 @@
 	},
 	"animator:CursedStabsPower":
 	{
-		"DESCRIPTIONS": ["À chaque fois que cet ennemi inflige des dégâts non bloqués, ajoutez une #yDouleur et une #yPlaie dans votre pioche."],
+		"DESCRIPTIONS": ["À chaque fois que cet ennemi inflige des dégâts non bloqués, ajoutez une #yDouleur dans votre pioche."],
 		"NAME": "Poignards Maudits"
 	},
 	"animator:DarkCrystalPower":
@@ -237,7 +237,7 @@
 	},
 	"animator:OrbCore_FrostPower":
 	{
-		"DESCRIPTIONS": ["Vos prochaines #b", " #ySynergies ce tour, gagnez #b", " d'#yArmure."],
+		"DESCRIPTIONS": ["Vos prochaines #b", " #ySynergies ce tour, gagnez #b", " d'#yArmure #yPlaquée."],
 		"NAME": "Noyau de Gel"
 	},
 	"animator:OrbCore_LightningPower":
@@ -247,7 +247,7 @@
 	},
 	"animator:OrbCore_PlasmaPower":
 	{
-		"DESCRIPTIONS": ["Vos prochaines #b", " #ySynergies ce tour, gagnez #b", " #yEnergie."],
+		"DESCRIPTIONS": ["Vos prochaines #b", " #ySynergies ce tour, gagnez #b", " #yTemporaire #yPV."],
 		"NAME": "Noyau de Plasma"
 	},
 	"animator:PinaCoLadaPower":

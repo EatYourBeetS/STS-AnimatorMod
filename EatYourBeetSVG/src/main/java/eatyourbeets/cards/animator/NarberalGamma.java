@@ -1,14 +1,12 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.common.TemporaryElectroPower;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class NarberalGamma extends AnimatorCard// implements OnStartOfTurnPostDrawSubscriber
 {
@@ -26,7 +24,8 @@ public class NarberalGamma extends AnimatorCard// implements OnStartOfTurnPostDr
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractDungeon.actionManager.addToBottom(new ChannelAction(new Lightning(), true));
+        GameActionsHelper.DrawCard(p, 1);
+        GameActionsHelper.ChannelOrb(new Lightning(), true);
 
         if (upgraded)
         {

@@ -2,28 +2,24 @@ package eatyourbeets.cards;
 
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.ExceptionHandler;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.utilities.Utilities;
-import eatyourbeets.powers.PlayerStatistics;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -166,25 +162,25 @@ public abstract class AnimatorCard extends EYBCard
         {
             if (!this.isFlipped)
             {
-                float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
+                float originalScale = FontHelper.cardTitleFont_small.getData().scaleX;
 
                 Color textColor;
                 if (HasActiveSynergy())
                 {
-                    FontHelper.cardTitleFont_small_N.getData().setScale(this.drawScale * 0.85f);
+                    FontHelper.cardTitleFont_small.getData().setScale(this.drawScale * 0.85f);
                     textColor = Color.YELLOW.cpy();
                 }
                 else
                 {
-                    FontHelper.cardTitleFont_small_N.getData().setScale(this.drawScale * 0.8f);
+                    FontHelper.cardTitleFont_small.getData().setScale(this.drawScale * 0.8f);
                     textColor = Settings.CREAM_COLOR.cpy();
                 }
 
-                FontHelper.renderRotatedText(sb, FontHelper.cardTitleFont_small_N, this.synergy.NAME,
+                FontHelper.renderRotatedText(sb, FontHelper.cardTitleFont_small, this.synergy.NAME,
                         this.current_x, this.current_y, 0.0F, 400.0F * Settings.scale * this.drawScale / 2.0F,
                         this.angle, true, textColor);
 
-                FontHelper.cardTitleFont_small_N.getData().setScale(originalScale);
+                FontHelper.cardTitleFont_small.getData().setScale(originalScale);
             }
         }
     }
@@ -221,22 +217,6 @@ public abstract class AnimatorCard extends EYBCard
         else if (rarity == CardRarity.SPECIAL)
         {
             setBannerTexture(Resources_Animator_Images.BANNER_SPECIAL_PNG, Resources_Animator_Images.BANNER_SPECIAL_P_PNG);
-        }
-    }
-
-    protected void renderHelper(SpriteBatch sb, Color color, Texture img, float drawX, float drawY)
-    {
-        sb.setColor(color);
-
-        try
-        {
-            sb.draw(img, drawX, drawY, 256.0F, 256.0F, 512.0F, 512.0F,
-                    this.drawScale * Settings.scale, this.drawScale * Settings.scale,
-                    this.angle, 0, 0, 512, 512, false, false);
-        }
-        catch (Exception exception)
-        {
-            ExceptionHandler.handleException(exception, logger);
         }
     }
 
@@ -310,43 +290,5 @@ public abstract class AnimatorCard extends EYBCard
             case RARE:
                 this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_POWER_RARE, x, y);
         }
-    }
-
-    public HashSet<AbstractCard> GetAllInBattleInstances()
-    {
-        HashSet<AbstractCard> cards = GetAllInBattleInstances.get(uuid);
-
-        if (!cards.contains(this))
-        {
-            cards.add(this);
-        }
-
-        return cards;
-    }
-
-    public HashSet<AbstractCard> GetAllInstances()
-    {
-        HashSet<AbstractCard> cards = GetAllInBattleInstances.get(uuid);
-
-        AbstractCard masterDeckInstance = GetMasterDeckInstance();
-        if (masterDeckInstance != null)
-        {
-            cards.add(masterDeckInstance);
-        }
-
-        return cards;
-    }
-
-    public AbstractCard GetMasterDeckInstance()
-    {
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
-        {
-            if (c.uuid == uuid)
-            {
-                return c;
-            }
-        }
-
-        return null;
     }
 }

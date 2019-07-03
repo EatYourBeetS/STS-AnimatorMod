@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -87,7 +88,7 @@ public class TheUnnamed extends AnimatorMonster
             AbstractDungeon.getCurrRoom().cannotLose = true;
 
             AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
-                    0.8f, data.strings.DIALOG[28], this.isPlayer));
+                    1.2f, data.strings.DIALOG[28], this.isPlayer));
 
             ChangeOverlayColor(new Color(1f, 1f, 1f, 0.3f));
 
@@ -97,13 +98,7 @@ public class TheUnnamed extends AnimatorMonster
 
             CardCrawlGame.stopClock = true;
 
-            for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
-            {
-                if (m.hasPower(MinionPower.POWER_ID))
-                {
-                    GameActionsHelper.AddToBottom(new EscapeAction(m));
-                }
-            }
+            RemoveMinions();
 
             AbstractDungeon.effectsQueue.add(new VictoryEffect());
         }
@@ -274,11 +269,17 @@ public class TheUnnamed extends AnimatorMonster
 
         if (!this.isDeadOrEscaped())
         {
+            int minions = RemoveMinions();
+            int regen = (minions >= 1) ? 110 : 80;
+            int plated = (minions >= 2) ? 22 : 16;
+            int angry = (minions >= 3) ? 6 : 5;
+
             GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[0], 3, 3));
-            GameActionsHelper.ApplyPower(this, this, new RegenPower(this, 80), 80);
-            GameActionsHelper.ApplyPower(this, this, new AngryPower(this, 5), 5);
-            GameActionsHelper.ApplyPower(this, this, new PlatedArmorPower(this, 16), 16);
+            GameActionsHelper.ApplyPower(this, this, new RegenPower(this, regen), regen);
+            GameActionsHelper.ApplyPower(this, this, new AngryPower(this, angry), angry);
+            GameActionsHelper.ApplyPower(this, this, new PlatedArmorPower(this, plated), plated);
             GameActionsHelper.ApplyPower(this, this, new EarthenThornsPower(this, 3), 3);
+
 //            moveFading.SetMove();
 //            this.createIntent();
 
@@ -306,6 +307,21 @@ public class TheUnnamed extends AnimatorMonster
             deathNoteMessage = true;
             GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[2], 3, 3));
         }
+    }
+
+    private int RemoveMinions()
+    {
+        int removed = 0;
+        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        {
+            if (m.hasPower(MinionPower.POWER_ID))
+            {
+                GameActionsHelper.AddToBottom(new EscapeAction(m));
+                removed += 1;
+            }
+        }
+
+        return removed;
     }
 
     protected static class Data extends AbstractMonsterData

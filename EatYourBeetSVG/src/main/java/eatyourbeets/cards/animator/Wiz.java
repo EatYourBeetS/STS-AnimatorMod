@@ -8,6 +8,7 @@ import eatyourbeets.actions.common.ModifyMagicNumberAction;
 import eatyourbeets.actions.animator.WizAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Wiz extends AnimatorCard
 {
@@ -40,7 +41,7 @@ public class Wiz extends AnimatorCard
 
         if (this.magicNumber <= 1)
         {
-            this.purgeOnUse = true;
+            GameActionsHelper.PurgeCard(this);
         }
     }
 

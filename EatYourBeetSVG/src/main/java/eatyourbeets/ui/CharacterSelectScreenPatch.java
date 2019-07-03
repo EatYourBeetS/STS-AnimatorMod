@@ -42,8 +42,8 @@ public class CharacterSelectScreenPatch
 
     public static void Initialize(CharacterSelectScreen selectScreen)
     {
-        float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, UIStrings.TEXT[0], 9999.0F, 0.0F); // Ascension
-        float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, UIStrings.TEXT[1], 9999.0F, 0.0F); // Level 22
+        float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, UIStrings.TEXT[0], 9999.0F, 0.0F); // Ascension
+        float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, UIStrings.TEXT[1], 9999.0F, 0.0F); // Level 22
 
         POS_X = 180f * Settings.scale;
         POS_Y = ((float) Settings.HEIGHT / 2.0F) + (20 * Settings.scale);
@@ -136,15 +136,15 @@ public class CharacterSelectScreenPatch
         selectScreen.confirmButton.isDisabled = info.Locked;
         if (description != null)
         {
-            float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
-            FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * 0.8f);
+            float originalScale = FontHelper.cardTitleFont_small.getData().scaleX;
+            FontHelper.cardTitleFont_small.getData().setScale(Settings.scale * 0.8f);
             Color color = info.Locked ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
-            FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), color);
-            FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * originalScale);
+            FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), color);
+            FontHelper.cardTitleFont_small.getData().setScale(Settings.scale * originalScale);
         }
 
-        FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, UIStrings.TEXT[0], startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
-        FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, info.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);
+        FontHelper.renderFont(sb, FontHelper.cardTitleFont, UIStrings.TEXT[0], startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
+        FontHelper.renderFont(sb, FontHelper.cardTitleFont, info.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);
 
         if (!startingCardsLeftHb.hovered)
         {

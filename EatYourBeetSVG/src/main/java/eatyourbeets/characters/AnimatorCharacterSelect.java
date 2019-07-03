@@ -1,6 +1,5 @@
 package eatyourbeets.characters;
 
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.Resources_Animator;

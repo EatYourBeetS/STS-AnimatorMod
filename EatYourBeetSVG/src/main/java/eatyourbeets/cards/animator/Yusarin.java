@@ -24,7 +24,7 @@ public class Yusarin extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.RandomCostReduction(1, false);
+        GameActionsHelper.Motivate(1);
         GameActionsHelper.DrawCard(p, this.magicNumber);
     }
 

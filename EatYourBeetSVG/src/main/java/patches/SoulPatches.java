@@ -17,10 +17,19 @@ public class SoulPatches
         @SpirePostfixPatch
         public static void Postfix(Soul soul, AbstractCard card, boolean visualOnly)
         {
-            if (card != null && card.tags.contains(AbstractEnums.CardTags.LOYAL) && !visualOnly)
+            if (card != null && !visualOnly)
             {
-                soul.isReadyForReuse = true;
-                AbstractDungeon.player.discardPile.moveToDeck(card, true);
+                if (card.tags.contains(AbstractEnums.CardTags.LOYAL))
+                {
+                    soul.isReadyForReuse = true;
+                    AbstractDungeon.player.discardPile.moveToDeck(card, true);
+                }
+                else if (card.tags.contains(AbstractEnums.CardTags.PURGE))
+                {
+                    soul.isReadyForReuse = true;
+                    AbstractDungeon.player.discardPile.removeCard(card);
+                    card.tags.remove(AbstractEnums.CardTags.PURGE);
+                }
             }
         }
     }

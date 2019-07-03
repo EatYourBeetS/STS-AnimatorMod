@@ -1,7 +1,7 @@
 [
 	{
 		"DESCRIPTION": "S'active si la dernière carte joué et de la même série.",
-		"NAMES": ["synergie", "synergy", "synergies", "synergize", "synergizes", "synergiser"],
+		"NAMES": ["synergie", "synergy", "synergies", "synergize", "synergizes", "synergiser", "synergisez"],
 		"PROPERNAME": "Synergie"
 	},
 	{
@@ -97,17 +97,17 @@
 	{
 		"NAMES": ["terrestre", "terrestres", "terrestre(s)"],
 		"DESCRIPTION": "Orbe: Gagne des #yÉpines quand #yCanalisé. Automatiquement #yEvoqué après 3 tours et inflige des dégâts répartis entre les ennemis.",
-		"PROPERNAME": "Terrestre"
+		"PROPERNAME": "Orbe Terrestre"
 	},
 	{
 		"NAMES": ["incendiaire", "incendiaires", "incendiare(s)"],
 		"DESCRIPTION": "Orbe: Inflige de la #yBrûlure et blesse l'ennemi qui a le plus haut PV.",
-		"PROPERNAME": "Incendiare"
+		"PROPERNAME": "Orbe Incendiare"
 	},
 	{
-		"NAMES": ["aérienne", "aériennes"],
+		"NAMES": ["aérien", "aériens", "aérien(s)"],
 		"DESCRIPTION": "Orbe: Inflige des dégâts #yPerçants à tous les ennemis.",
-		"PROPERNAME": "Aérienne"
+		"PROPERNAME": "Orbe Aérien"
 	},
 	{
 		"NAMES": ["flou"],
@@ -206,7 +206,7 @@
 	},
 	{
 		"PROPER_NAME": "Demon Form",
-		"NAMES": ["demon form", "demon_form"],
+		"NAMES": ["demon form", "demon_form", "forme démoniaque", "forme_démoniaque"],
 		"DESCRIPTION": "Au début de chaque tour, gagnez 1 de #yForce."
 	},
 	{
@@ -222,6 +222,6 @@
 	{
 		"PROPER_NAME": "Motiver <N>",
 		"NAMES": ["motiver", "motivation"],
-		"DESCRIPTION": "Reduit le coût d'une carte aléatoire de votre main par 1 pendant ce tour. Répète <N> fois."
+		"DESCRIPTION": "Reduit le coût d'une carte aléatoire de votre main par 1 jusqu'à ce qu'elle soit jouée. Répète <N> fois."
 	}
 ]

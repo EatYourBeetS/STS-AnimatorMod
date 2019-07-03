@@ -45,21 +45,39 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             float SPACE_X = (226.0F * Settings.scale);
             float xPosition = START_X + (SPACE_X * buttons.length);
 
-            override = new SortHeaderButton[5];
+            override = new SortHeaderButton[buttons.length + 1];
 
-            rarityButton = buttons[0];
-            typeButton = buttons[1];
-            nameButton = buttons[2];
-            costButton = buttons[3];
+            int i = 0;
+
+            rarityButton = buttons[i++];
+            typeButton = buttons[i++];
+
+            if (override.length < 5)
+            {
+                nameButton = null;
+            }
+            else
+            {
+                nameButton = buttons[i++];
+            }
+
+            costButton = buttons[i];
             seriesButton = new SortHeaderButton("Series", xPosition, 0.0F, this);
 
             float offsetX = -(Settings.scale * 30f);
 
-            SetupButton(rarityButton, offsetX, 0);
-            SetupButton(typeButton, offsetX, 1);
-            SetupButton(nameButton, offsetX, 2);
-            SetupButton(costButton, offsetX, 3);
-            SetupButton(seriesButton, offsetX, 4);
+            i = 0;
+
+            SetupButton(rarityButton, offsetX, i++);
+            SetupButton(typeButton, offsetX, i++);
+
+            if (nameButton != null)
+            {
+                SetupButton(nameButton, offsetX, i++);
+            }
+
+            SetupButton(costButton, offsetX, i++);
+            SetupButton(seriesButton, offsetX, i);
         }
 
         buttons = override;

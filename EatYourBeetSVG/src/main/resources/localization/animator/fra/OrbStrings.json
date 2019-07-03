@@ -10,7 +10,7 @@
         ]
     },
     "animator:Air": {
-        "NAME": "Orbe Aérienne",
+        "NAME": "Orbe Aérien",
         "DESCRIPTION":
         [
             "#yPassif: À la fin du tour, inflige #b", " dégâts #yPerçants à TOUS les ennemies. NL #yActivation: Piochez #b",

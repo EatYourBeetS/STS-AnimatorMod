@@ -27,8 +27,6 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
     public ThrowingKnife(String id)
     {
         super(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
-
-        this.purgeOnUse = true;
     }
 
     public static AbstractCard GetRandomCard()
@@ -88,9 +86,10 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
             {
                 GameActionsHelper.AddToDefault(new VFXAction(new ThrowDaggerEffect(m.hb.cX, m.hb.cY)));
             }
-
         }
         GameActionsHelper.ResetOrder();
+
+        GameActionsHelper.PurgeCard(this);
     }
 
     @Override

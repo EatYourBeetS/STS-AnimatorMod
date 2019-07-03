@@ -1,20 +1,23 @@
 package patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
+import eatyourbeets.actions.animator.PlayTempBgmAction;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActionsHelper;
 
 import java.util.ArrayList;
 
 public class SpecificMonsterPatches
 {
     @SpirePatch(clz = Lagavulin.class, method = "die")
-    public static class CardCrawlGamePatches_loadPlayerSave
+    public static class Lagavulin_die
     {
         @SpirePrefixPatch
         public static SpireReturn Prefix(Lagavulin lagavulin)
@@ -51,6 +54,19 @@ public class SpecificMonsterPatches
             }
 
             return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch(clz = Lagavulin.class, method = "changeState")
+    public static class Lagavulin_changeState
+    {
+        @SpirePostfixPatch
+        public static void Prefix(Lagavulin lagavulin, String stateName)
+        {
+            if (stateName.equals("OPEN") && !lagavulin.isDying)
+            {
+                GameActionsHelper.AddToBottom(new PlayTempBgmAction("ELITE"));
+            }
         }
     }
 }

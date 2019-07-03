@@ -36,8 +36,8 @@ public class BanCardButton
     public boolean banned;
 
     private final float HIDE_X;
-    private final float SHOW_X;
-    private final float SHOW_Y;
+    private float SHOW_X;
+    private float SHOW_Y;
     public AbstractCard card;
 
     public BanCardButton(AbstractCard card)
@@ -68,6 +68,8 @@ public class BanCardButton
         }
         else if (!this.isHidden)
         {
+            updatePosition();
+
             this.hb.update();
             if (this.hb.justHovered)
             {
@@ -99,6 +101,13 @@ public class BanCardButton
             this.textColor.a = MathHelper.fadeLerpSnap(this.textColor.a, 1.0F);
             this.btnColor.a = this.textColor.a;
         }
+    }
+
+    protected void updatePosition()
+    {
+        this.target_x = this.SHOW_X = card.target_x;
+        this.SHOW_Y = card.target_y + (Settings.scale * 200);
+        this.hb.move(SHOW_X, SHOW_Y);
     }
 
     public void hideInstantly()

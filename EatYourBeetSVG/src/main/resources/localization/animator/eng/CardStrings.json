@@ -76,7 +76,7 @@
 	},
 	"animator:Azekura":
 	{
-		"DESCRIPTION": "Gain !B! Block twice. NL Synergy: Gain !M! Plated_Armor.",
+		"DESCRIPTION": "Gain !B! Block twice. Gain !SV! Temporary Thorns. Synergy: Gain !M! Plated_Armor.",
 		"NAME": "Azekura"
 	},
 	"animator:Azriel":
@@ -291,8 +291,9 @@
 	},
 	"animator:DwarfShaman":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Channel 1 Earth. NL Synergy: Trigger the passive ability of your next Orb.",
-		"NAME": "'Dwarf Shaman'"
+		"DESCRIPTION": "Deal !D! damage. NL Channel 1 Earth. NL Synergy: Choose and Upgrade a card in your hand.",
+		"NAME": "'Dwarf Shaman'",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Channel 1 Earth. NL Choose and Upgrade a card in your hand."
 	},
 	"animator:Elesis":
 	{
@@ -318,9 +319,14 @@
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Cycle !M! card. Recall: NL Channel 1 Fire.",
-		"NAME": "Elsword",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Cycle !M! cards. Recall: NL Channel 1 Fire."
+		"DESCRIPTION": "Deal !D! damage. NL If the enemy has NL Burning, Motivate 1. NL Cooldown !SV! : NL [#EFC851]Channel 1 Fire.",
+		"NAME": "Elsword"
+	},
+	"animator:Emilia":
+	{
+		"DESCRIPTION": "Channel 1 Frost. NL Channel 1 Lightning NL for each Frost Orb NL you have. Exhaust.",
+		"NAME": "Emilia",
+		"UPGRADE_DESCRIPTION": "Channel 1 Frost. NL Channel 1 Lightning NL for each Frost Orb NL you have."
 	},
 	"animator:EmiyaShirou":
 	{
@@ -1064,7 +1070,7 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "Gain !B! Block. Next NL turn, gain !B! Block. NL If this is your first Synergy this turn, Motivate !M!.",
+		"DESCRIPTION": "Gain !B! Block. Next NL turn, gain !B! Block. NL If this is your first Synergy this turn, draw 1 card.",
 		"NAME": "Tuka"
 	},
 	"animator:Tyuule":

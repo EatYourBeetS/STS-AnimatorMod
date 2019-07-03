@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.actions.animator.MotivateAction;
 import eatyourbeets.actions.common.*;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -108,6 +109,13 @@ public class GameActionsHelper
         return action;
     }
 
+    public static PurgeAnywhereAction PurgeCard(AbstractCard card)
+    {
+        PurgeAnywhereAction action = new PurgeAnywhereAction(card);
+        AddToDefault(action);
+        return action;
+    }
+
     public static ExhaustAnywhereAction ExhaustCard(AbstractCard card)
     {
         ExhaustAnywhereAction action = new ExhaustAnywhereAction(card);
@@ -163,9 +171,17 @@ public class GameActionsHelper
         }
     }
 
-    public static RandomCostReductionAction RandomCostReduction(int amount, boolean permanent)
+    public static void Motivate(int times, int costReduction)
     {
-        RandomCostReductionAction action = new RandomCostReductionAction(amount, permanent);
+        for (int i = 0; i < times; i++)
+        {
+            AddToDefault(new MotivateAction(costReduction));
+        }
+    }
+
+    public static MotivateAction Motivate(int costReduction)
+    {
+        MotivateAction action = new MotivateAction(costReduction);
         AddToDefault(action);
         return action;
     }

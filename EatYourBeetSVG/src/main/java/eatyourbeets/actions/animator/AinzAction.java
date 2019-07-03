@@ -8,15 +8,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.misc.AinzEffects.*;
 import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
 
 public class AinzAction extends AnimatorAction
 {
-    //private static final String[] TEXT = CardCrawlGame.languagePack.getUIString("ExhaustAction").TEXT;
-    private static final ArrayList<AinzEffect> effectPool = new ArrayList<>();
-
-    private final RandomizedList<AinzEffect> effectList = new RandomizedList<>();
+    private final WeightedList<AinzEffect> effectList = new WeightedList<>();
     private final ArrayList<AinzEffect> currentEffects = new ArrayList<>();
     private final boolean upgraded;
     private final int choices;
@@ -29,8 +27,7 @@ public class AinzAction extends AnimatorAction
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.CARD_MANIPULATION;
 
-        effectList.Clear();
-        effectList.AddAll(effectPool);
+        CreateEffectList();
     }
 
     public void update()
@@ -42,15 +39,7 @@ public class AinzAction extends AnimatorAction
             Random rng = AbstractDungeon.miscRng;
             for (int i = 0; i < choices ; i++)
             {
-                AinzEffect effect = effectList.Retrieve(rng);
-
-                // Reduce the chances of Intangible
-                if (effect instanceof AinzEffect_GainIntangible && rng.randomBoolean(0.66f))
-                {
-                    effect = effectList.Retrieve(rng);
-                }
-
-                currentEffects.add(effect);
+                currentEffects.add(effectList.Retrieve(rng));
             }
 
             CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
@@ -98,21 +87,40 @@ public class AinzAction extends AnimatorAction
         }
     }
 
-    static
+    private void CreateEffectList()
     {
-        effectPool.add(new AinzEffect_ApplyBurning(19));
-        effectPool.add(new AinzEffect_ApplyPoison(18));
-        effectPool.add(new AinzEffect_ChannelRandomOrbs(23));
-        effectPool.add(new AinzEffect_DamageAll(5));
-        effectPool.add(new AinzEffect_DrawCards(14));
-        effectPool.add(new AinzEffect_GainArtifactRemoveDebuffs(21));
-        effectPool.add(new AinzEffect_GainDexterity(8));
-        effectPool.add(new AinzEffect_GainEnergy(17));
-        effectPool.add(new AinzEffect_GainFocus(16));
-        effectPool.add(new AinzEffect_GainIntangible(20));
-        effectPool.add(new AinzEffect_GainStrength(7));
-        effectPool.add(new AinzEffect_GainTemporaryHP(15));
-        effectPool.add(new AinzEffect_GainThorns(9));
-        effectPool.add(new AinzEffect_PlayTopCard(22, 24));
+        effectList.Clear();
+        effectList.Add(new AinzEffect_PlayTopCard(22, 24), 10);
+        effectList.Add(new AinzEffect_ChannelRandomOrbs(23), 10);
+        effectList.Add(new AinzEffect_GainTemporaryHP(15), 10);
+        effectList.Add(new AinzEffect_ApplyBurning(19), 10);
+        effectList.Add(new AinzEffect_ApplyPoison(18), 10);
+        effectList.Add(new AinzEffect_DrawCards(14), 10);
+        effectList.Add(new AinzEffect_GainThorns(9), 10);
+        effectList.Add(new AinzEffect_DamageAll(5), 10);
+        effectList.Add(new AinzEffect_GainFocus(16), 8);
+        effectList.Add(new AinzEffect_GainEnergy(17), 8);
+        effectList.Add(new AinzEffect_GainDexterity(8),8);
+        effectList.Add(new AinzEffect_GainStrength(7), 8);
+        effectList.Add(new AinzEffect_GainIntangible(20),2);
+        effectList.Add(new AinzEffect_GainArtifactRemoveDebuffs(21), 2);
     }
+
+//    static
+//    {
+//        effectPool.add(new AinzEffect_ApplyBurning(19));
+//        effectPool.add(new AinzEffect_ApplyPoison(18));
+//        effectPool.add(new AinzEffect_ChannelRandomOrbs(23));
+//        effectPool.add(new AinzEffect_DamageAll(5));
+//        effectPool.add(new AinzEffect_DrawCards(14));
+//        effectPool.add(new AinzEffect_GainArtifactRemoveDebuffs(21));
+//        effectPool.add(new AinzEffect_GainDexterity(8));
+//        effectPool.add(new AinzEffect_GainEnergy(17));
+//        effectPool.add(new AinzEffect_GainFocus(16));
+//        effectPool.add(new AinzEffect_GainIntangible(20));
+//        effectPool.add(new AinzEffect_GainStrength(7));
+//        effectPool.add(new AinzEffect_GainTemporaryHP(15));
+//        effectPool.add(new AinzEffect_GainThorns(9));
+//        effectPool.add(new AinzEffect_PlayTopCard(22, 24));
+//    }
 }

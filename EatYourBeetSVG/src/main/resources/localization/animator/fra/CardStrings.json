@@ -18,9 +18,9 @@
 	},
 	"animator:Add":
 	{
-		"DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte dans tout lieu. Remplacez-la par un Noyau_d'orbe. NL Éthérée. Épuisement.",
+		"DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte peu n'importe où. Remplacez-la par un Noyau_d'orbe. NL Éthérée. Épuisement.",
 		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte dans tout lieu. Remplacez-la par un Noyau_d'orbe. NL Épuisement."
+		"UPGRADE_DESCRIPTION": "Gagnez !M! d'Armure_Enchantée. NL Épuisez 1 carte peu n'importe où. Remplacez-la par un Noyau_d'orbe. NL Épuisement."
 	},
 	"animator:Ain":
 	{
@@ -70,12 +70,12 @@
 	},
 	"animator:Asuramaru":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Infligez !D! dégât(s). NL Gagnez !M! Demon_Form. NL Gagnez !M! de Dextérité. NL Épuisement.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Infligez !D! dégât(s). NL Gagnez !M! de Forme_Démoniaque. NL Gagnez !M! de Dextérité. NL Épuisement.",
 		"NAME": "Asuramaru"
 	},
 	"animator:Azekura":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure deux fois. NL Synergie: Gagnez !M! d'Armure_Plaquée.",
+		"DESCRIPTION": "Gagnez !B! d'Armure deux fois. Gagnez !SV! [#EFC851]Épines temporaires. Synergie: Gagnez !M! d'Armure_Plaquée.",
 		"NAME": "Azekura"
 	},
 	"animator:Azriel":
@@ -116,7 +116,7 @@
 	},
 	"animator:Caster":
 	{
-		"DESCRIPTION": "Canalisez 1 Orbe Obscure. NL Volez !M! Force ce tour. NL Héritage: Activez votre Orbes Obscurs.",
+		"DESCRIPTION": "Canalisez 1 Orbe Obscur. NL Volez !M! de Force ce tour. NL Héritage: Activez vos Orbes Obscurs.",
 		"NAME": "Caster"
 	},
 	"animator:ChaikaBohdan":
@@ -165,7 +165,7 @@
 	},
 	"animator:CrowleyEusford":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi aléatoire !M! fois. Coûte 1 en moins NL par carte Épuisé ce tour.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à un ennemi aléatoire !M! fois. Coûte 1 en moins NL par carte Épuisée pendant ce tour.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator:Crystallize":
@@ -227,7 +227,7 @@
 	},
 	"animator:Defend_Katanagatari":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez !M! [#EFC851]Épines temporaire.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez !M! [#EFC851]Épines temporaires.",
 		"NAME": "Défense Améliorée"
 	},
 	"animator:Defend_Konosuba":
@@ -289,8 +289,9 @@
 	},
 	"animator:DwarfShaman":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Canalisez 1 Orbe Terrestre. NL Synergie: Active la capacité passive de votre prochaine orbe.",
-		"NAME": "'Dwarf Shaman'"
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Canalisez 1 Orbe Terrestre. NL Synergie: Améliorez une carte dans votre main.",
+		"NAME": "'Dwarf Shaman'",
+		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Canalisez 1 Orbe Terrestre. NL Améliorez une carte dans votre main."
 	},
 	"animator:Elesis":
 	{
@@ -316,9 +317,14 @@
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez !M! card. Rappel: Canalisez 1 Orbe Incendiare.",
-		"NAME": "Elsword",
-		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Recyclez !M! carte(s). Rappel: Canalisez 1 Orbe Incendiare."
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Si l'ennemi a Brûlure, Motiver de 1. Cooldown !SV!: [#EFC851]Canalisez[] 1 Orbe Incendiare.",
+		"NAME": "Elsword"
+	},
+	"animator:Emilia":
+	{
+		"DESCRIPTION": "Canalisez 1 Orbe Glaciale. Canalisez 1 Orbe Kéraunique pour chaque Orbe Glaciale. Épuisement.",
+		"NAME": "Emilia",
+		"UPGRADE_DESCRIPTION": "Canalisez 1 Orbe Glaciale. Canalisez 1 Orbe Kéraunique pour chaque Orbe Glaciale."
 	},
 	"animator:EmiyaShirou":
 	{
@@ -705,7 +711,7 @@
 	{
 		"DESCRIPTION": "Changeforme. NL Canalisez !M! Orbe Kéraunique. NL Piochez 1 carte.",
 		"NAME": "Gamma Narberal",
-		"UPGRADE_DESCRIPTION": "Changeforme. NL Canalisez !M! Orbe Kéraunique. Vos Orbes Kéraunique touchent TOUS les ennemiss ce tour. Piochez 1 carte."
+		"UPGRADE_DESCRIPTION": "Changeforme. NL Canalisez !M! Orbe Kéraunique. Vos Orbes Kérauniques touchent TOUS les ennemis ce tour. Piochez 1 carte."
 	},
 	"animator:NivaLada":
 	{
@@ -719,7 +725,7 @@
 	},
 	"animator:OrbCore_Dark":
 	{
-		"DESCRIPTION": "Canalisez !SV! Orbe Obscure. NL À la seconde Synergie de chaque tour, NL piochez !M! carte(s), puis Défaussez 1 carte.",
+		"DESCRIPTION": "Canalisez !SV! Orbe Obscur. NL À la seconde Synergie de chaque tour, NL piochez !M! carte(s), puis Défaussez 1 carte.",
 		"NAME": "Noyau Obscur"
 	},
 	"animator:OrbCore_Fire":
@@ -755,8 +761,8 @@
 	},
 	"animator:Pride":
 	{
-		"DESCRIPTION": "Changeforme. [#EFC851]Orgueil. NL Canalisez !M! Orbe Obscure. NL Synergie: Appliquez !SV! de Restreinte. Épuisement.",
-		"EXTENDED_DESCRIPTION": ["Orgueil", "Jusqu'à votre prochain tour, quand vous subissez des dégâts non bloqués, votre Orbe #Obscure la plus à droite perd autant de charges à la place."],
+		"DESCRIPTION": "Changeforme. [#EFC851]Orgueil. NL Canalisez !M! Orbe Obscur. NL Synergie: Appliquez !SV! de Restreinte. Épuisement.",
+		"EXTENDED_DESCRIPTION": ["Orgueil", "Jusqu'à votre prochain tour, quand vous subissez des dégâts non bloqués, votre Orbe #Obscur le plus à droite perd autant de charges à la place."],
 		"NAME": "Orgueil"
 	},
 	"animator:Priestess":
@@ -1020,7 +1026,7 @@
 	},
 	"animator:Tatsumaki":
 	{
-		"DESCRIPTION": "Canalisez 1 Orbe Aérienne. NL Gagnez !M! de Concentration temporaire. Synergie: NL TOUS les ennemies perdent !SV! de Force pendant ce tour.",
+		"DESCRIPTION": "Canalisez 1 Orbe Aérien. NL Gagnez !M! de Concentration temporaire. Synergie: NL TOUS les ennemies perdent !SV! de Force pendant ce tour.",
 		"NAME": "Tatsumaki"
 	},
 	"animator:Tet":
@@ -1062,7 +1068,7 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. Au prochain tour, gagnez !B! d'Armure. Si c'est la première synergie ce tour, Motiver de 1.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. Au prochain tour, gagnez !B! d'Armure. Si c'est la première synergie ce tour, Piochez 1 carte.",
 		"NAME": "Tuka"
 	},
 	"animator:Tyuule":
@@ -1073,9 +1079,9 @@
 	},
 	"animator:Urushihara":
 	{
-		"DESCRIPTION": "Paresseux. NL Canalisez 1 Orbe Obscure. NL Infligez !D! dégât(s) à TOUS les ennemis.",
+		"DESCRIPTION": "Paresseux. NL Canalisez 1 Orbe Obscur. NL Infligez !D! dégât(s) à TOUS les ennemis.",
 		"NAME": "Urushihara",
-		"UPGRADE_DESCRIPTION": "Moins Paresseux. NL Canalisez 1 Orbe Obscure. NL Infligez !D! dégât(s) à TOUS les ennemis."
+		"UPGRADE_DESCRIPTION": "Moins Paresseux. NL Canalisez 1 Orbe Obscur. NL Infligez !D! dégât(s) à TOUS les ennemis."
 	},
 	"animator:Vanir":
 	{

@@ -8,12 +8,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import eatyourbeets.interfaces.OnCostRefreshSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class YunYun extends AnimatorCard
+public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
 {
     public static final String ID = CreateFullID(YunYun.class.getSimpleName());
 
@@ -51,23 +52,7 @@ public class YunYun extends AnimatorCard
     {
         super.applyPowers();
 
-        int attacks = 0;
-        for (AbstractCard c : AbstractDungeon.player.hand.group)
-        {
-            if (c != this && c.type == CardType.ATTACK)
-            {
-                attacks += 1;
-            }
-        }
-
-        int currentCost = (costForTurn - costModifier);
-
-        costModifier = attacks;
-
-        if (!this.freeToPlayOnce)
-        {
-            this.setCostForTurn(currentCost + costModifier);
-        }
+        OnCostRefresh(this);
     }
 
     @Override
@@ -89,6 +74,31 @@ public class YunYun extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(4);
+        }
+    }
+
+    @Override
+    public void OnCostRefresh(AbstractCard card)
+    {
+        if (card == this)
+        {
+            int attacks = 0;
+            for (AbstractCard c : AbstractDungeon.player.hand.group)
+            {
+                if (c != this && c.type == CardType.ATTACK)
+                {
+                    attacks += 1;
+                }
+            }
+
+            int currentCost = (costForTurn - costModifier);
+
+            costModifier = attacks;
+
+            if (!this.freeToPlayOnce)
+            {
+                this.setCostForTurn(currentCost + costModifier);
+            }
         }
     }
 }

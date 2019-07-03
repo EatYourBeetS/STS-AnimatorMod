@@ -65,7 +65,6 @@ public class PinaCoLadaPower extends AnimatorPower
                 tmp.calculateCardDamage(m);
             }
 
-            tmp.tags.add(AbstractEnums.CardTags.TEMPORARY);
             tmp.purgeOnUse = true;
             AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(tmp, m, card.energyOnUse));
         }

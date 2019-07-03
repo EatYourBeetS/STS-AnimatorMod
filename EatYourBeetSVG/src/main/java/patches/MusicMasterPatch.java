@@ -5,21 +5,22 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.audio.MusicMaster;
 import com.megacrit.cardcrawl.audio.TempMusic;
+import eatyourbeets.utilities.Field;
+import eatyourbeets.utilities.Utilities;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class MusicMasterPatch
 {
     @SpirePatch(clz = MusicMaster.class, method = "playTempBgmInstantly", paramtypez = {String.class})
-    public static class CardCrawlGamePatches_loadPlayerSave
+    public static class PlayTempBgmInstantly
     {
-        private static Field tempTracksField;
+        private static Field<ArrayList<TempMusic>> tempTracksField;
 
         @SpirePrefixPatch
-        public static SpireReturn Prefix(MusicMaster instance, String key) throws IllegalAccessException
+        public static SpireReturn Prefix(MusicMaster instance, String key)
         {
-            ArrayList<TempMusic> tempTracks = (ArrayList<TempMusic>) tempTracksField.get(instance);
+            ArrayList<TempMusic> tempTracks = tempTracksField.Get(instance);
 
             for (TempMusic m : tempTracks)
             {
@@ -32,17 +33,24 @@ public class MusicMasterPatch
             return SpireReturn.Continue();
         }
 
+        public static boolean AlreadyPlaying(MusicMaster instance, String key)
+        {
+            ArrayList<TempMusic> tempTracks = tempTracksField.Get(instance);
+
+            for (TempMusic m : tempTracks)
+            {
+                if (m.key.equals(key))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         static
         {
-            try
-            {
-                tempTracksField = MusicMaster.class.getDeclaredField("tempTrack");
-                tempTracksField.setAccessible(true);
-            }
-            catch (NoSuchFieldException e)
-            {
-                e.printStackTrace();
-            }
+            tempTracksField = Utilities.GetPrivateField("tempTrack", MusicMaster.class);
         }
     }
 }

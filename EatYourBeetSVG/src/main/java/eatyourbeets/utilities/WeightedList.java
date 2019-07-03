@@ -33,6 +33,12 @@ public class WeightedList<T>
         return items.size();
     }
 
+    public void Clear()
+    {
+        items.clear();
+        totalWeight = 0;
+    }
+
     public void Add(T object, int weight)
     {
         totalWeight += weight;

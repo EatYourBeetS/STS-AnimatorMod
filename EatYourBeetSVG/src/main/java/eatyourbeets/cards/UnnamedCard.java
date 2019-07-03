@@ -6,8 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
 
-import java.nio.file.Files;
-
 public abstract class UnnamedCard extends EYBCard
 {
     protected static final Logger logger = LogManager.getLogger(UnnamedCard.class.getName());

@@ -4,12 +4,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.AnimatorCard_Cooldown;
+import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Fire;
 
-public class Elsword extends AnimatorCard
+public class Elsword extends AnimatorCard_Cooldown
 {
     public static final String ID = CreateFullID(Elsword.class.getSimpleName());
 
@@ -17,30 +19,25 @@ public class Elsword extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,0, 1);
+        Initialize(8,0);
 
         SetSynergy(Synergies.Elsword);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        GameActionsHelper.AddToBottom(new ChannelAction(new Fire()));
-        //GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper.CycleCardAction(this.magicNumber);
 
-//        if (HasActiveSynergy())
-//        {
-//            GameActionsHelper.AddToBottom(new ChannelAction(new Fire()));
-//        }
+        if (m.hasPower(BurningPower.POWER_ID))
+        {
+            GameActionsHelper.Motivate(1);
+        }
+
+        if (ProgressCooldown())
+        {
+            OnCooldownCompleted(p, m);
+        }
     }
 
     @Override
@@ -48,8 +45,19 @@ public class Elsword extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
+            upgradeDamage(3);
         }
+    }
+
+    @Override
+    protected int GetBaseCooldown()
+    {
+        return 1;
+    }
+
+    @Override
+    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActionsHelper.ChannelOrb(new Fire(), true);
     }
 }

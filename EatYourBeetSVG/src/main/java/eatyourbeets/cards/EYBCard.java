@@ -2,7 +2,13 @@ package eatyourbeets.cards;
 
 import basemod.abstracts.CustomCard;
 import basemod.helpers.TooltipInfo;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.ExceptionHandler;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -154,6 +160,18 @@ public abstract class EYBCard extends CustomCard
         }
     }
 
+    public HashSet<AbstractCard> GetAllInBattleInstances()
+    {
+        HashSet<AbstractCard> cards = GetAllInBattleInstances.get(uuid);
+
+        if (!cards.contains(this))
+        {
+            cards.add(this);
+        }
+
+        return cards;
+    }
+
     public HashSet<AbstractCard> GetAllInstances()
     {
         HashSet<AbstractCard> cards = GetAllInBattleInstances.get(uuid);
@@ -178,5 +196,19 @@ public abstract class EYBCard extends CustomCard
         }
 
         return null;
+    }
+
+    protected void renderHelper(SpriteBatch sb, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY)
+    {
+        sb.setColor(color);
+        sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2.0F, drawY + img.offsetY - (float) img.originalHeight / 2.0F, (float) img.originalWidth / 2.0F - img.offsetX, (float) img.originalHeight / 2.0F - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, this.drawScale * Settings.scale, this.drawScale * Settings.scale, this.angle);
+    }
+
+    protected void renderHelper(SpriteBatch sb, Color color, Texture img, float drawX, float drawY)
+    {
+        sb.setColor(color);
+        sb.draw(img, drawX - (img.getWidth() / 2f), drawY - (img.getHeight() / 2f), 256.0F, 256.0F, 512.0F, 512.0F,
+                this.drawScale * Settings.scale, this.drawScale * Settings.scale,
+                this.angle, 0, 0, 512, 512, false, false);
     }
 }

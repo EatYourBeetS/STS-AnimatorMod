@@ -57,6 +57,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
     public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
+    public static final GameEvent<OnCostRefreshSubscriber> onCostRefresh = new GameEvent<>();
 
     public static boolean LoadingPlayerSave;
     public static SaveData SaveData = new SaveData();
@@ -97,6 +98,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         onEndOfTurn.Clear();
         onApplyPower.Clear();
         onAfterDeath.Clear();
+        onCostRefresh.Clear();
         onStartOfTurnPostDraw.Clear();
     }
 
@@ -176,6 +178,20 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         }
 
         return 0;
+    }
+
+    public static void OnCostRefresh(AbstractCard card)
+    {
+        OnCostRefreshSubscriber c = Utilities.SafeCast(card, OnCostRefreshSubscriber.class);
+        if (c != null)
+        {
+            c.OnCostRefresh(card);
+        }
+
+        for (OnCostRefreshSubscriber s : onCostRefresh.GetSubscribers())
+        {
+            s.OnCostRefresh(card);
+        }
     }
 
     public void OnBattleStart()
@@ -336,7 +352,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     @Override
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
-        logger.info("ON APPLY POWER: " + onApplyPower.Count());
+        //logger.info("ON APPLY POWER: " + onApplyPower.Count());
         super.onApplyPower(power, target, source);
 
         for (OnApplyPowerSubscriber p : onApplyPower.GetSubscribers())
@@ -370,16 +386,16 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         this.description = "";
     }
 
-    @Override
-    public void atEndOfRound()
-    {
-        super.atEndOfRound();
-
-        turnDamageMultiplier = 0;
-        cardsExhaustedThisTurn = 0;
-        synergiesThisTurn = 0;
-        cardsDrawnThisTurn = 0;
-    }
+//    @Override
+//    public void atEndOfRound()
+//    {
+//        super.atEndOfRound();
+//
+//        turnDamageMultiplier = 0;
+//        cardsExhaustedThisTurn = 0;
+//        synergiesThisTurn = 0;
+//        cardsDrawnThisTurn = 0;
+//    }
 
     @Override
     public void atEndOfTurn(boolean isPlayer)
@@ -391,7 +407,12 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
             s.OnEndOfTurn(isPlayer);
         }
 
+        turnDamageMultiplier = 0;
+        cardsExhaustedThisTurn = 0;
+        synergiesThisTurn = 0;
+        cardsDrawnThisTurn = 0;
         turnCount += 1;
+
         AnimatorCard.SetLastCardPlayed(null);
     }
 

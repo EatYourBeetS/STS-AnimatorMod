@@ -40,7 +40,7 @@
 		"PROPERNAME": "Resurrect"
 	},
 	{
-		"DESCRIPTION": "Gets reduced by #b1 every time this card is #yplayed or #ydiscarded, if it is at #b0, activate the effect and reset the Cooldown. NL Resets at the end of each fight.",
+		"DESCRIPTION": "Reduced by #b1 when this card is #yplayed or #ydiscarded, if it was at #b0, activate the effect and reset.",
 		"NAMES": ["cooldown"],
 		"PROPERNAME": "Cooldown"
 	},
@@ -222,6 +222,6 @@
 	{
 		"PROPER_NAME": "Motivate <N>",
 		"NAMES": ["motivate"],
-		"DESCRIPTION": "Reduce the cost of a random card in your hand by 1 this turn. Repeated <N> times."
+		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated <N> times."
 	}
 ]

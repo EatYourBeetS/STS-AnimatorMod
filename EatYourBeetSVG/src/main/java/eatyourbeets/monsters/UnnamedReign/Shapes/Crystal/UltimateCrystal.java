@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
 import eatyourbeets.resources.Resources_Common;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
@@ -51,14 +52,14 @@ public class UltimateCrystal extends Crystal
         if (original == null)
         {
             moveset.AddNormal(new Move_GainStrengthAndArtifactAll(3, 2));
-            moveset.AddNormal(new Move_AttackDefend(1, 8));
+            moveset.AddNormal(new Move_UltimateCrystalAttack(1, 8));
             moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 2));
         }
         else
         {
             moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 2));
             moveset.AddNormal(new Move_GainStrengthAndArtifactAll(3, 2));
-            moveset.AddNormal(new Move_AttackDefend(1, 8));
+            moveset.AddNormal(new Move_UltimateCrystalAttack(1, 8));
         }
     }
 

@@ -21,13 +21,23 @@ public abstract class AnimatorCard_Boost extends AnimatorCard
 
     protected void ResetBoost()
     {
-        this.baseSecondaryValue = this.secondaryValue = GetBaseBoost();
+        this.secondaryValue = baseSecondaryValue;
         this.isSecondaryValueModified = false;
     }
 
     protected int GetCurrentBoost()
     {
         return this.secondaryValue;
+    }
+
+    public void upgradeBoost(int amount)
+    {
+        int currentBoost = GetCurrentBoost();
+
+        this.baseSecondaryValue += amount;
+        this.secondaryValue = currentBoost + amount;
+        this.upgradedSecondaryValue = true;
+        this.isSecondaryValueModified = (secondaryValue != baseSecondaryValue);
     }
 
     protected boolean ProgressBoost()
@@ -41,16 +51,8 @@ public abstract class AnimatorCard_Boost extends AnimatorCard
                 AnimatorCard_Boost card = Utilities.SafeCast(c, AnimatorCard_Boost.class);
                 if (card != null)
                 {
-                    if (newValue == 0)
-                    {
-                        card.baseSecondaryValue = 1;
-                        card.secondaryValue = 0;
-                        card.isSecondaryValueModified = true;
-                    }
-                    else
-                    {
-                        card.baseSecondaryValue = card.secondaryValue = newValue;
-                    }
+                    card.secondaryValue = newValue;
+                    card.isSecondaryValueModified = (secondaryValue != baseSecondaryValue);
                 }
             }
 
@@ -58,5 +60,11 @@ public abstract class AnimatorCard_Boost extends AnimatorCard
         }
 
         return false;
+    }
+
+    public void IncreaseBoost(int value)
+    {
+        this.secondaryValue = (GetCurrentBoost() + value);
+        this.isSecondaryValueModified = (this.secondaryValue != this.baseSecondaryValue);
     }
 }

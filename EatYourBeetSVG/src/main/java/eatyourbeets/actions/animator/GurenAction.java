@@ -50,7 +50,6 @@ public class GurenAction extends AbstractGameAction
 
             if (!AbstractDungeon.player.drawPile.isEmpty())
             {
-
                 AbstractCard card = AbstractDungeon.player.drawPile.getTopCard();
                 AbstractDungeon.player.drawPile.group.remove(card);
                 AbstractDungeon.getCurrRoom().souls.remove(card);

@@ -3,9 +3,7 @@ package eatyourbeets.powers.UnnamedReign;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.Pain;
-import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.animator.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 

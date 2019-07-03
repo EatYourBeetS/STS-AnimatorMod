@@ -3,6 +3,7 @@ package patches;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -33,7 +34,7 @@ public class SingleCardViewPopupPatches
             float tOffset;
             float tWidth;
 
-            if (!(card instanceof AnimatorCard))
+            if (!(card instanceof AnimatorCard) || card.rarity != AbstractCard.CardRarity.SPECIAL)
             {
                 return SpireReturn.Continue();
             }
@@ -44,74 +45,81 @@ public class SingleCardViewPopupPatches
                 case ATTACK:
                     tWidth = AbstractCard.typeWidthAttack;
                     tOffset = AbstractCard.typeOffsetAttack;
-                    switch (card.rarity)
-                    {
-                        case SPECIAL:
-                            tmpImg = Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL_L;
-                            break label36;
-                        case COMMON:
-                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_COMMON_L;
-                            break label36;
-                        case UNCOMMON:
-                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_UNCOMMON_L;
-                            break label36;
-                        case RARE:
-                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_RARE_L;
-                            break label36;
-                        default:
-                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_COMMON_L;
-                            break label36;
-                    }
+                    tmpImg = Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL_L;
+                    break;
+//                    switch (card.rarity)
+//                    {
+////                        case SPECIAL:
+////                            tmpImg = Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL_L;
+////                            break label36;
+//                        case COMMON:
+//                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_COMMON_L;
+//                            break label36;
+//                        case UNCOMMON:
+//                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_UNCOMMON_L;
+//                            break label36;
+//                        case RARE:
+//                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_RARE_L;
+//                            break label36;
+//                        default:
+//                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_COMMON_L;
+//                            break label36;
+//                    }
 
                 case POWER:
                     tWidth = AbstractCard.typeWidthPower;
                     tOffset = AbstractCard.typeOffsetPower;
-                    switch (card.rarity)
-                    {
-                        case SPECIAL:
-                            tmpImg = Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL_L;
-                            break label36;
-                        case COMMON:
-                            tmpImg = ImageMaster.CARD_FRAME_POWER_COMMON_L;
-                            break label36;
-                        case UNCOMMON:
-                            tmpImg = ImageMaster.CARD_FRAME_POWER_UNCOMMON_L;
-                            break label36;
-                        case RARE:
-                            tmpImg = ImageMaster.CARD_FRAME_POWER_RARE_L;
-                            break label36;
-                        default:
-                            tmpImg = ImageMaster.CARD_FRAME_POWER_COMMON_L;
-                            break label36;
-                    }
+                    tmpImg = Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL_L;
+                    break;
+//                    switch (card.rarity)
+//                    {
+//                        case SPECIAL:
+//                            tmpImg = Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL_L;
+//                            break label36;
+//                        case COMMON:
+//                            tmpImg = ImageMaster.CARD_FRAME_POWER_COMMON_L;
+//                            break label36;
+//                        case UNCOMMON:
+//                            tmpImg = ImageMaster.CARD_FRAME_POWER_UNCOMMON_L;
+//                            break label36;
+//                        case RARE:
+//                            tmpImg = ImageMaster.CARD_FRAME_POWER_RARE_L;
+//                            break label36;
+//                        default:
+//                            tmpImg = ImageMaster.CARD_FRAME_POWER_COMMON_L;
+//                            break label36;
+//                    }
 
                 case SKILL:
                 default:
                     tWidth = AbstractCard.typeWidthSkill;
                     tOffset = AbstractCard.typeOffsetSkill;
-                    switch (card.rarity)
-                    {
-                        case SPECIAL:
-                            tmpImg = Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL_L;
-                            break label36;
-                        case COMMON:
-                            tmpImg = ImageMaster.CARD_FRAME_SKILL_COMMON_L;
-                            break label36;
-                        case UNCOMMON:
-                            tmpImg = ImageMaster.CARD_FRAME_SKILL_UNCOMMON_L;
-                            break label36;
-                        case RARE:
-                            tmpImg = ImageMaster.CARD_FRAME_SKILL_RARE_L;
-                            break label36;
-                        default:
-                            tmpImg = ImageMaster.CARD_FRAME_SKILL_COMMON_L;
-                            break label36;
-                    }
+                    tmpImg = Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL_L;
+                    break;
+//                    switch (card.rarity)
+//                    {
+//                        case SPECIAL:
+//                            tmpImg = Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL_L;
+//                            break label36;
+//                        case COMMON:
+//                            tmpImg = ImageMaster.CARD_FRAME_SKILL_COMMON_L;
+//                            break label36;
+//                        case UNCOMMON:
+//                            tmpImg = ImageMaster.CARD_FRAME_SKILL_UNCOMMON_L;
+//                            break label36;
+//                        case RARE:
+//                            tmpImg = ImageMaster.CARD_FRAME_SKILL_RARE_L;
+//                            break label36;
+//                        default:
+//                            tmpImg = ImageMaster.CARD_FRAME_SKILL_COMMON_L;
+//                            break label36;
+//                    }
             }
 
+            //renderHelper(card, sb, sb.getColor(), tmpImg, (float) Settings.WIDTH / 2.0F - 512.0F, (float) Settings.HEIGHT / 2.0F - 512.0F, card.drawScale);
             sb.draw(tmpImg, (float) Settings.WIDTH / 2.0F - 512.0F, (float) Settings.HEIGHT / 2.0F - 512.0F, 512.0F, 512.0F, 1024.0F, 1024.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 1024, 1024, false, false);
 
-            renderDynamicFrameMethod.invoke(__instance, sb, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F, tOffset, tWidth);
+            //renderDynamicFrameMethod.invoke(__instance, sb, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F, tOffset, tWidth);
 
             return SpireReturn.Return(null);
         }
@@ -124,14 +132,15 @@ public class SingleCardViewPopupPatches
         public static SpireReturn Method(SingleCardViewPopup __instance, SpriteBatch sb) throws IllegalAccessException
         {
             AbstractCard card = (AbstractCard) cardField.get(__instance);
-            Texture tmpImg;
-            float tOffset;
-            float tWidth;
 
             if (!(card instanceof AnimatorCard_UltraRare))
             {
                 return SpireReturn.Continue();
             }
+
+            TextureAtlas.AtlasRegion tmpImg;
+            float tOffset;
+            float tWidth;
 
             switch (card.type)
             {
@@ -155,8 +164,11 @@ public class SingleCardViewPopupPatches
             {
                 Color tmp = sb.getColor();
                 sb.setColor(AnimatorCard_UltraRare.RENDER_COLOR2);
-                sb.draw(tmpImg, (float) Settings.WIDTH / 2.0F - 512.0F, (float) Settings.HEIGHT / 2.0F - 512.0F, 512.0F, 512.0F, 1024.0F, 1024.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 1024, 1024, false, false);
+                renderHelper(sb, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F, tmpImg);
                 sb.setColor(tmp);
+                //renderHelper(card, sb, AnimatorCard_UltraRare.RENDER_COLOR2, tmpImg, (float) Settings.WIDTH / 2.0F - 512.0F, (float) Settings.HEIGHT / 2.0F - 512.0F, card.drawScale);
+                //sb.draw(tmpImg, (float)Settings.WIDTH / 2.0F - 512.0F, (float)Settings.HEIGHT / 2.0F - 512.0F, 512.0F, 512.0F, 1024.0F, 1024.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 1024, 1024, false, false);
+                //sb.draw(tmpImg, (float) Settings.WIDTH / 2.0F - 512.0F, (float) Settings.HEIGHT / 2.0F - 512.0F, 512.0F, 512.0F, 1024.0F, 1024.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 1024, 1024, false, false);
             }
 
             return SpireReturn.Return(null);
@@ -218,13 +230,11 @@ public class SingleCardViewPopupPatches
         }
     }
 
-//    @SpireInsertPatch(rloc = 0, localvars={"card"})
-//    public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard card)
-//    {
-//        if (card instanceof AnimatorCard){
-//            // render header
-//        }
-//    }
+    private static void renderHelper(SpriteBatch sb, float x, float y, TextureAtlas.AtlasRegion img) {
+        if (img != null) {
+            sb.draw(img, x + img.offsetX - (float)img.originalWidth / 2.0F, y + img.offsetY - (float)img.originalHeight / 2.0F, (float)img.originalWidth / 2.0F - img.offsetX, (float)img.originalHeight / 2.0F - img.offsetY, (float)img.packedWidth, (float)img.packedHeight, Settings.scale, Settings.scale, 0.0F);
+        }
+    }
 
     static
     {

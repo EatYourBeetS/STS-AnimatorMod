@@ -42,7 +42,7 @@ public class EngravedStaff extends AnimatorRelic
         AbstractPlayer p = AbstractDungeon.player;
         if (retained != null && p.hand.contains(retained))
         {
-            retained.setCostForTurn(retained.costForTurn - 1);
+            retained.modifyCostForTurn(-1);
             this.flash();
         }
 

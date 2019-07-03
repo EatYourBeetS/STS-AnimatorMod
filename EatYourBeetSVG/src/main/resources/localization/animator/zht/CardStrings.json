@@ -75,7 +75,7 @@
 	},
 	"animator:Azekura":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 2 次 。 NL 同調 : 獲得 !M! 層 多層護甲 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 2 次 。 獲得 !SV! 層 [＃EFC851]臨時荊棘[] 。 同調 : 獲得 !M! 層 多層護甲 。",
 		"NAME": "校倉必"
 	},
 	"animator:Azriel":
@@ -288,8 +288,9 @@
 	},
 	"animator:DwarfShaman":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 1 個 大地 充能球 。 同調 : 使用你最右側的1個充能球的被動能力 。",
-		"NAME": "矮人薩滿"
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 1 個 大地 充能球 。 同調 : 手中升級1張卡 。",
+		"NAME": "矮人薩滿",
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 NL 獲得 1 個 大地 充能球 。 同調 : 手中升級1張卡 。"
 	},
 	"animator:Elesis":
 	{
@@ -315,8 +316,14 @@
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 循環 !M! 張牌 。 撤回 : [#EFC851]生成[] 1 個 火焰 充能球 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 如果敵人帶有 燃燒 ， 激勵 1 。 冷却 !SV! : [#EFC851]生成[] 1 個 火焰 充能球 。",
 		"NAME": "艾索德"
+	},
+	"animator:Emilia":
+	{
+		"DESCRIPTION": "獲得 1 個冰霜充能球 。為每一個 冰霜 充能球 生成 1 個 閃電 充能球 。 消耗 。",
+		"NAME": "Emilia",
+		"UPGRADE_DESCRIPTION": "獲得 1 個冰霜充能球 。為每一個 冰霜 充能球 生成 1 個 閃電 充能球 。"
 	},
 	"animator:EmiyaShirou":
 	{
@@ -494,7 +501,7 @@
 	},
 	"animator:HiiragiShinya":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 獲得 !M! 點 支援傷害 。 從你的棄牌堆中取一張牌並保留它, 它本回合消耗1個額外的能量 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 獲得 !M! 點 支援傷害 。 從你的棄牌堆中取一張牌並保留它, 此牌本輪能耗加1 。",
 		"NAME": "柊深夜"
 	},
 	"animator:HiiragiTenri":
@@ -1055,7 +1062,7 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。下一輪，獲得 !B! 點 格擋 。 如果這是本輪的第一次 同調 ， 激勵 1 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。下一輪，獲得 !B! 點 格擋 。 如果這是本輪的第一次 同調 ， 抽一張牌 。",
 		"NAME": "杜嘉"
 	},
 	"animator:Tyuule":

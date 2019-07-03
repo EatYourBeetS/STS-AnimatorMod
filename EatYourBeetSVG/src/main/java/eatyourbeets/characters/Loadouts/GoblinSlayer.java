@@ -30,7 +30,7 @@ public class GoblinSlayer extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Priestess.ID);
-        res.add(DwarfShaman.ID);
+        res.add(Spearman.ID);
 
         return res;
     }

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
@@ -35,6 +36,7 @@ public class HiiragiShinya extends AnimatorCard
             AbstractCard c = cards.get(0);
 
             c.applyPowers();
+            PlayerStatistics.OnCostRefresh(c);
             c.setCostForTurn(c.costForTurn + 1);
             c.retain = true;
         }

@@ -2,14 +2,12 @@ package patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.events.TheMaskedTraveler2;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Common;
 import eatyourbeets.room.AnimatorCustomEventRoom;
 

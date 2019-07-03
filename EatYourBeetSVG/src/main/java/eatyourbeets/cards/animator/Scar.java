@@ -39,7 +39,7 @@ public class Scar extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(2);
         }
     }
 }

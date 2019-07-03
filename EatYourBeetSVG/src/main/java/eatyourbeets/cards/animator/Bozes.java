@@ -26,24 +26,8 @@ public class Bozes extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-//        AbstractMonster enemy = null;
-//        int lowestHealth = Integer.MAX_VALUE;
-//        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
-//        {
-//            if (m1.currentHealth < lowestHealth)
-//            {
-//                enemy = m1;
-//                lowestHealth = m1.currentHealth;
-//            }
-//        }
-//
-//        if (enemy != null)
-//        {
-//            GameActionsHelper.DamageTarget(p, enemy, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-//        }
-
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActionsHelper.RandomCostReduction(magicNumber,1, false);
+        GameActionsHelper.Motivate(magicNumber, 1);
         GameActionsHelper.ApplyPower(p, p, new BozesPower(p, this.secondaryValue), this.secondaryValue);
     }
 

@@ -24,8 +24,6 @@ public class Lelouch extends AnimatorCard
 
         Initialize(0, 0);
 
-        this.purgeOnUse = true;
-
         AddExtendedDescription();
 
         SetSynergy(Synergies.CodeGeass);
@@ -50,6 +48,8 @@ public class Lelouch extends AnimatorCard
                 GameActionsHelper.ApplyPower(p, m1, new GeassPower(m1), 1);
             }
         }
+
+        GameActionsHelper.PurgeCard(this);
     }
 
     @Override

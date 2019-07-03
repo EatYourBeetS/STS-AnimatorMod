@@ -19,7 +19,7 @@ public class Yuuichirou extends AnimatorCard
 
         Initialize(8,0, 2);
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.OwariNoSeraph);
     }

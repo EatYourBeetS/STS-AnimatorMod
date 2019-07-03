@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Azekura extends AnimatorCard
@@ -15,7 +16,7 @@ public class Azekura extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,7,2);
+        Initialize(0,7,2, 2);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -25,6 +26,8 @@ public class Azekura extends AnimatorCard
     {
         GameActionsHelper.GainBlock(p, this.block);
         GameActionsHelper.GainBlock(p, this.block);
+
+        GameActionsHelper.ApplyPower(p, p, new EarthenThornsPower(p, secondaryValue), secondaryValue);
 
         if (HasActiveSynergy())
         {
@@ -37,7 +40,8 @@ public class Azekura extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
+            upgradeMagicNumber(1);
+            upgradeSecondaryValue(3);
         }
     }
 }

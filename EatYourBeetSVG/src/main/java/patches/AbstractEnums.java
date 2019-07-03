@@ -63,7 +63,7 @@ public class AbstractEnums
         public static AbstractCard.CardTags UNIQUE;
 
         @SpireEnum
-        public static AbstractCard.CardTags TEMPORARY;
+        public static AbstractCard.CardTags PURGE;
 
         @SpireEnum
         public static AbstractCard.CardTags LOYAL;

@@ -31,7 +31,8 @@ public class TukaLunaMarceau extends AnimatorCard
         {
             if (PlayerStatistics.getSynergiesThisTurn() == 0)
             {
-                GameActionsHelper.RandomCostReduction(magicNumber, 1, false);
+                GameActionsHelper.DrawCard(p, 1);
+                //GameActionsHelper.RandomCostReduction(magicNumber, 1, false);
             }
         }
     }

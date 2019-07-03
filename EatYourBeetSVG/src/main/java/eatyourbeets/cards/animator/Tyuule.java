@@ -42,7 +42,8 @@ public class Tyuule extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(1);
+            upgradeBoost(1);
+            //upgradeSecondaryValue(1);
         }
     }
 

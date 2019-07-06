@@ -634,7 +634,7 @@
 	},
 	"animator:MaesHughes":
 	{
-		"DESCRIPTION": "Draw 1 card and reduce its cost by !M! this turn. Legacy: Deal !D! Damage to ALL enemies.",
+		"DESCRIPTION": "Draw 1 card for every !M! cards in your draw pile. Motivate 1. Legacy: Apply !SV! Burning to ALL enemies.",
 		"NAME": "Maes Hughes"
 	},
 	"animator:Megumin":
@@ -822,8 +822,17 @@
 	},
 	"animator:Saitama":
 	{
-		"DESCRIPTION": "Deal !D! Piercing Damage. Increase this card's damage by !M! this combat, scaling with Strength.",
-		"NAME": "Saitama"
+		"DESCRIPTION": "Whenever this card is played, increase its cost and change its effect for this combat.",
+		"EXTENDED_DESCRIPTION": 
+		[
+			"Draw !M! cards. NL Gain !SV! Temporary Dexterity.",
+			"Prevent the next time you would lose HP.",
+			"Gain !M! Strength. NL Gain !B! Block.",
+			"Deal !D! damage NL !M! times.",
+			"Remove Intangible. NL Deal !D! NL Piercing damage."
+		],
+		"NAME": "Saitama",
+		"UPGRADE_DESCRIPTION": "Innate. NL Whenever this card is played, increase its cost and change its effect for this combat."
 	},
 	"animator:Scar":
 	{
@@ -833,7 +842,7 @@
 	},
 	"animator:Sebas":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Synergy: Next turn, gain !M! Block.",
+		"DESCRIPTION": "Gain !B! Block. Gain additional Block equal to the total cost of cards in your hand.",
 		"NAME": "Sebas"
 	},
 	"animator:SeriousSaitama":
@@ -844,8 +853,8 @@
 	},
 	"animator:Shalltear":
 	{
-		"DESCRIPTION": "[#EFC851]Bloodlust. NL Deal !D! damage. NL Synergy: Steal !M! Strength.",
-		"EXTENDED_DESCRIPTION": ["Bloodlust", "If this kills a non-minion enemy, heal 5 HP and gain [E]"],
+		"DESCRIPTION": "[#EFC851]Bloodlust. NL Deal !D! damage to ALL enemies. Synergy: Steal !M! Strength.",
+		"EXTENDED_DESCRIPTION": ["Bloodlust", "If this kills a non-minion enemy, heal 3 HP and gain [E]"],
 		"NAME": "Shalltear"
 	},
 	"animator:Shichika":
@@ -1033,9 +1042,9 @@
 	},
 	"animator:Tet":
 	{
-		"DESCRIPTION": "Discard up to 2 cards from your draw pile. NL Draw !M! cards.",
+		"DESCRIPTION": "Discard up to 2 cards from your draw pile. Move 2 cards from your discard pile to your draw pile.",
 		"NAME": "Tet",
-		"UPGRADE_DESCRIPTION": "Discard up to 2 cards from your draw pile. NL Draw !M! cards. NL Boost !SV! : gain [E]."
+		"UPGRADE_DESCRIPTION": "Retain. Discard up to 2 cards from your draw pile. Move 2 cards from your discard pile to your draw pile."
 	},
 	"animator:TheHaunt":
 	{

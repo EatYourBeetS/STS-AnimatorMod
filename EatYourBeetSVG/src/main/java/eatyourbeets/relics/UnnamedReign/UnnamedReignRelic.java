@@ -120,7 +120,17 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
             {
                 if (r != null && r != relic
                         && !(r instanceof AllowedUnnamedReignRelic)
-                        && !r.relicId.equals("Example_relic") // Master Trainer starting relic
+
+                        // Son of Sparda
+                        && !r.relicId.equals("SSS") && !r.relicId.equals("Combocheck")
+
+                        // Hakumod
+                        && !r.relicId.equals("Haku:Susanoo")
+
+                        // Master Trainer
+                        && !r.relicId.equals("Example_relic")
+
+                        // Clockwork
                         && !r.relicId.equals("Clockwork:MomentumEngine"))
                 {
                     effect.Enqueue(new RemoveRelicEffect(relic, r));

@@ -21,7 +21,7 @@ public class WizardHat extends AnimatorRelic
     public static final String ID = CreateFullID(WizardHat.class.getSimpleName());
 
     private static final int ENERGY_COST = 4;
-    private static final int DAMAGE_AMOUNT = 42;
+    private static final int DAMAGE_AMOUNT = 48;
 
     public WizardHat()
     {

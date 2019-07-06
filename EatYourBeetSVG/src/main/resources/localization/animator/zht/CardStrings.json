@@ -628,7 +628,7 @@
 	},
 	"animator:MaesHughes":
 	{
-		"DESCRIPTION": "抽 1 張牌然後這回合減少 !M! 點耗能 。 遺產 : 對所有敵人造成 !D! 點傷害 。",
+		"DESCRIPTION": "為您牌組中的每 !M! 張牌抽一張牌 。 激勵 1 。 遺產 : 給予所有敵人 !SV! 層 燃燒 。",
 		"NAME": "馬斯休斯"
 	},
 	"animator:Megumin":
@@ -815,8 +815,17 @@
 	},
 	"animator:Saitama":
 	{
-		"DESCRIPTION": "造成 !D! 點 穿刺 傷害。NL 每次你打出這張牌，此牌傷害在本戰鬥增加 !M! 點，此效果受 力量 影響。",
-		"NAME": "埼玉"
+		"DESCRIPTION": "每當玩這張牌時 ， 將其成本增加 1 並改變形式 。",
+		"EXTENDED_DESCRIPTION": 
+		[
+			"抽 !M! 張牌 。 NL 獲得 !SV! 層 臨時 敏捷 。",
+			"阻止下一次你受到的生命值損傷。",
+			"獲得 !B! 點 格擋 。獲得 !M! 點 力量 。",
+			"造成 !D! 點 傷害 !M! 次 。",
+			"從敵人那裡刪除 無實體 。 NL 造成 !D! 點 穿刺 傷害 。"
+		],
+		"NAME": "埼玉",
+		"UPGRADE_DESCRIPTION": "固有 。 每當玩這張牌時 ， 將其成本增加 1 並改變形式 。"
 	},
 	"animator:Scar":
 	{
@@ -826,7 +835,7 @@
 	},
 	"animator:Sebas":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 同調 : 在下回合獲得 !M! 點 格擋 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 獲得相當於手牌總能耗數量的額外 格擋 。",
 		"NAME": "Sebas"
 	},
 	"animator:SeriousSaitama":
@@ -837,8 +846,8 @@
 	},
 	"animator:Shalltear":
 	{
-		"DESCRIPTION": "[#EFC851]嗜血[] 。 造成 !D! 點 傷害 。 NL 同調 : 偷 1 點 力量 。",
-		"EXTENDED_DESCRIPTION": ["嗜血", "如果這張牌消滅了一個非爪牙的敵人 ， 恢復 5 點 生命 並 獲得 [E]"],
+		"DESCRIPTION": "[#EFC851]嗜血[] 。 對所有敵人造成 !D! 點傷害 。 NL 同調 : 所有攻擊目標失去1點 力量，獲得等量的 力量 。",
+		"EXTENDED_DESCRIPTION": ["嗜血", "如果這張牌消滅了一個非爪牙的敵人 ， 恢復 3 點 生命 並 獲得 [E]"],
 		"NAME": "夏提雅"
 	},
 	"animator:Shichika":
@@ -1025,9 +1034,9 @@
 	},
 	"animator:Tet":
 	{
-		"DESCRIPTION": "在你的抽牌堆中選擇 2 張牌 。 抽 !M! 張牌 。",
+		"DESCRIPTION": "在你的抽牌堆中選擇 2 張牌 。 將 2 張牌從丟棄堆中移到您的抽籤堆中 。",
 		"NAME": "特圖",
-		"UPGRADE_DESCRIPTION": "在你的抽牌堆中選擇 2 張牌 。 抽 !M! 張牌 。 增強 !SV! : 獲得 [E]"
+		"UPGRADE_DESCRIPTION": "保留 。 在你的抽牌堆中選擇 2 張牌 。 將 2 張牌從丟棄堆中移到您的抽籤堆中 。"
 	},
 	"animator:TheHaunt":
 	{

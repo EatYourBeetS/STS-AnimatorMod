@@ -632,7 +632,7 @@
 	},
 	"animator:MaesHughes":
 	{
-		"DESCRIPTION": "Piochez 1 card et réduisez son coût de !M! ce tour. Héritage: Infligez !D! dégât(s) à TOUS les ennemis.",
+		"DESCRIPTION": "Piochez 1 carte pour chaque !M! cartes de votre pioche. Motiver de 1. Héritage: Appliquez !SV! Brûlure à TOUS les ennemies.",
 		"NAME": "Maes Hughes"
 	},
 	"animator:Megumin":
@@ -820,8 +820,17 @@
 	},
 	"animator:Saitama":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) perçant(s). Augmentez les dégâts de cette carte par !M! ce combat, NL cet effect est affecté par la Force.",
-		"NAME": "Saitama"
+		"DESCRIPTION": "À chaque fois que cette carte est jouée, augmentez son coût et changez son effet sur ce combat.",
+		"EXTENDED_DESCRIPTION": 
+		[
+			"Piochez !M! cartes. NL Gagnez !SV! de Dextérité Temporaire.",
+			"Empêche votre prochaine perte de PV.",
+			"Gagnez !M! de Force. NL Gagnez !B! d'Armure.",
+			"Infligez !D! dégât(s) !M! fois.",
+			"Supprimez Intangible. NL Infligez !D! NL dégats Perçant."
+		],
+		"NAME": "Saitama",
+		"UPGRADE_DESCRIPTION": "Inné. À chaque fois que cette carte est jouée, augmentez son coût et changez son effet sur ce combat."
 	},
 	"animator:Scar":
 	{
@@ -831,7 +840,7 @@
 	},
 	"animator:Sebas":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Synergie: Au prochain tour, Gagnez !M! d'Armure.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez de l'Armure supplémentaire égale au coût total des cartes en main.",
 		"NAME": "Sebas"
 	},
 	"animator:SeriousSaitama":
@@ -843,7 +852,7 @@
 	"animator:Shalltear":
 	{
 		"DESCRIPTION": "[#EFC851]Bloodlust. NL Infligez !D! dégât(s). NL Synergie: Volez !M! Force.",
-		"EXTENDED_DESCRIPTION": ["Bloodlust", "Si cette carte tue un ennemi (non-minion), soignez 5 PV et Gagnez [E]"],
+		"EXTENDED_DESCRIPTION": ["Bloodlust", "Si cette carte tue un ennemi (non-minion), soignez 3 PV et Gagnez [E]"],
 		"NAME": "Shalltear"
 	},
 	"animator:Shichika":
@@ -1031,9 +1040,9 @@
 	},
 	"animator:Tet":
 	{
-		"DESCRIPTION": "Défausser jusqu'a 2 carte(s) de votre pioche. NL Piochez !M! carte(s).",
+		"DESCRIPTION": "Défausser jusqu'a 2 carte(s) de votre pioche. Déplacez 2 cartes de votre défausse vers votre pioche.",
 		"NAME": "Tet",
-		"UPGRADE_DESCRIPTION": "Défausser jusqu'a 2 carte(s) de votre pioche. NL Piochez !M! carte(s). NL Boost !SV! : Gagnez [E]."
+		"UPGRADE_DESCRIPTION": "Conservez. Défausser jusqu'a 2 carte(s) de votre pioche. Déplacez 2 cartes de votre défausse vers votre pioche."
 	},
 	"animator:TheHaunt":
 	{
@@ -1127,7 +1136,7 @@
 	},
 	"animator:Witch":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Synergie: Appliquez !M! Brûlure. NL Héritage: Obtenez une Potion aléatoire.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Appliquez !M! Brûlure à TOUS les ennemies. Héritage: Obtenez une Potion aléatoire.",
 		"NAME": "'Sorcière'"
 	},
 	"animator:Wiz":

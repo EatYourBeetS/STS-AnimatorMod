@@ -13,12 +13,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
+import eatyourbeets.interfaces.OnEndOfTurnSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Earth extends AnimatorOrb
+public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
 {
     public static final String ORB_ID = CreateFullID(Earth.class.getSimpleName());
 
@@ -27,6 +28,7 @@ public class Earth extends AnimatorOrb
     public static Texture imgMid;
     private final boolean hFlip1;
     private final boolean hFlip2;
+
 
     private boolean evoked;
     private int turns;
@@ -44,7 +46,6 @@ public class Earth extends AnimatorOrb
 
         this.hFlip1 = MathUtils.randomBoolean();
         this.hFlip2 = MathUtils.randomBoolean();
-        this.turns = 3;
         this.evoked = false;
         this.baseEvokeAmount = 16;
         this.evokeAmount = this.baseEvokeAmount;
@@ -52,6 +53,9 @@ public class Earth extends AnimatorOrb
         this.passiveAmount = this.basePassiveAmount;
         this.updateDescription();
         this.channelAnimTimer = 0.5F;
+        this.turns = 3;
+
+        PlayerStatistics.onEndOfTurn.Subscribe(this);
     }
 
     public void updateDescription()
@@ -68,7 +72,21 @@ public class Earth extends AnimatorOrb
         {
             GameActionsHelper.AddToTop(new EarthOrbEvokeAction(evokeAmount));
         }
+
+        turns = 0;
+        PlayerStatistics.onEndOfTurn.Unsubscribe(this);
         evoked = true;
+    }
+
+    @Override
+    public void OnEndOfTurn(boolean isPlayer)
+    {
+        this.turns -= 1;
+
+        if (turns <= 0)
+        {
+            GameActionsHelper.AddToTop(new EvokeSpecificOrbAction(this));
+        }
     }
 
     public void onEndOfTurn()
@@ -78,13 +96,13 @@ public class Earth extends AnimatorOrb
             return;
         }
 
-        this.turns -= 1;
-        if (turns <= 0)
-        {
-            GameActionsHelper.AddToTop(new EvokeSpecificOrbAction(this));
-            evoked = true;
-        }
-        else
+//        if (turnCount != PlayerStatistics.getTurnCount())
+//        {
+//            turnCount = PlayerStatistics.getTurnCount();
+//            this.turns -= 1;
+//        }
+
+        if (turns > 0)
         {
             AbstractPlayer p = AbstractDungeon.player;
             GameActionsHelper.ApplyPower(p, p, new EarthenThornsPower(p, this.passiveAmount), this.passiveAmount);
@@ -143,5 +161,6 @@ public class Earth extends AnimatorOrb
     public void playChannelSFX()
     {
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.2f);
+        evoked = false;
     }
 }

@@ -2,7 +2,13 @@ package eatyourbeets.effects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.red.SearingBlow;
+import com.megacrit.cardcrawl.cards.blue.*;
+import com.megacrit.cardcrawl.cards.colorless.Apparition;
+import com.megacrit.cardcrawl.cards.colorless.Discovery;
+import com.megacrit.cardcrawl.cards.colorless.MasterOfStrategy;
+import com.megacrit.cardcrawl.cards.colorless.MindBlast;
+import com.megacrit.cardcrawl.cards.green.*;
+import com.megacrit.cardcrawl.cards.red.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -13,6 +19,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.cards.animator.HigakiRinne;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
 
 import java.util.ArrayList;
@@ -27,6 +34,12 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
         this.duration = 1.0F;
     }
 
+    private void ReplaceCard(ArrayList<AbstractCard> replacement, String cardID)
+    {
+        UnlockTracker.markCardAsSeen(cardID);
+        replacement.add(CardLibrary.getCard(cardID).makeCopy());
+    }
+
     public void update()
     {
         AbstractPlayer p = AbstractDungeon.player;
@@ -36,14 +49,128 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
         ArrayList<AbstractCard> replacement = new ArrayList<>();
         for (AbstractCard card : p.masterDeck.group)
         {
-            if (card.cardID.equals("hubris:InfiniteBlow")) // to prevent resetting the upgrades permanently
+            switch (card.cardID)
             {
-                UnlockTracker.markCardAsSeen(SearingBlow.ID);
-                replacement.add(CardLibrary.getCard(SearingBlow.ID).makeCopy());
-            }
-            else
-            {
-                replacement.add(card.makeCopy());
+                case "infinitespire:Virus":
+                {
+                    ReplaceCard(replacement, Anger.ID);
+                    ReplaceCard(replacement, HigakiRinne.ID);
+                    break;
+                }
+
+                case "hubris:Fate":
+                {
+                    ReplaceCard(replacement, Discovery.ID);
+                    break;
+                }
+
+                case "hubris:Rewind":
+                {
+                    ReplaceCard(replacement, EchoForm.ID);
+                    break;
+                }
+
+                case "hubris:InfiniteBlow":
+                {
+                    ReplaceCard(replacement, SearingBlow.ID);
+                    break;
+                }
+
+                case "infinitespire:Gouge":
+                {
+                    ReplaceCard(replacement, BeamCell.ID);
+                    ReplaceCard(replacement, Neutralize.ID);
+                    break;
+                }
+
+                case "infinitespire:SevenWalls":
+                {
+                    ReplaceCard(replacement, Dash.ID);
+                    break;
+                }
+
+                case "infinitespire:Fortify":
+                {
+                    ReplaceCard(replacement, ReinforcedBody.ID);
+                    break;
+                }
+
+                case "infinitespire:Punishment":
+                {
+                    ReplaceCard(replacement, MindBlast.ID);
+                    break;
+                }
+
+                case "infinitespire:FutureSight":
+                {
+                    ReplaceCard(replacement, SeeingRed.ID);
+                    break;
+                }
+
+                case "infinitespire:Oblivion":
+                {
+                    ReplaceCard(replacement, Chaos.ID);
+                    break;
+                }
+
+                case "infinitespire:DeathsTouch":
+                {
+                    ReplaceCard(replacement, Bludgeon.ID);
+                    break;
+                }
+
+                case "infinitespire:NeuralNetwork":
+                {
+                    ReplaceCard(replacement, MachineLearning.ID);
+                    break;
+                }
+
+                case "infinitespire:Execution":
+                {
+                    ReplaceCard(replacement, Terror.ID);
+                    break;
+                }
+
+                case "infinitespire:Menacing":
+                case "infinitespire:TheBestDefense": // This card...
+                {
+                    ReplaceCard(replacement, Apparition.ID);
+                    ReplaceCard(replacement, Apparition.ID);
+                    break;
+                }
+
+                case "infinitespire:UltimateForm":
+                {
+                    ReplaceCard(replacement, Inflame.ID);
+                    ReplaceCard(replacement, Defragment.ID);
+                    ReplaceCard(replacement, Footwork.ID);
+                    break;
+                }
+
+                case "infinitespire:Collect":
+                case "infinitespire:Haul":
+                {
+                    ReplaceCard(replacement, MasterOfStrategy.ID);
+                    break;
+                }
+
+                case "ReplayTheSpireMod:Black Plague":
+                {
+                    ReplaceCard(replacement, Malaise.ID);
+                    ReplaceCard(replacement, NoxiousFumes.ID);
+                    break;
+                }
+
+                case "ReplayTheSpireMod:??????????????????????":
+                {
+                    ReplaceCard(replacement, HigakiRinne.ID);
+                    break;
+                }
+
+                default:
+                {
+                    replacement.add(card.makeCopy());
+                }
             }
         }
 

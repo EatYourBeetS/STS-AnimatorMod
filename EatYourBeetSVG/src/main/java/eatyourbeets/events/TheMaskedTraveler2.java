@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.effects.MaskedTravelerTransformCardsEffect;
+import eatyourbeets.effects.MaskedTravelerUpgradeSameCardEffect;
 import eatyourbeets.effects.UnnamedRelicEquipEffect;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 import eatyourbeets.relics.UnnamedReign.TheEgnaroPiece;
@@ -23,6 +24,7 @@ public class TheMaskedTraveler2 extends AnimatorEvent
 
     private static final int REMOVE_CARDS = 2;
     private static final int OBTAIN_CARDS = 2;
+    private static final int UPGRADE_SAME_CARD = 4;
 
     public TheMaskedTraveler2()
     {
@@ -95,12 +97,15 @@ public class TheMaskedTraveler2 extends AnimatorEvent
 
     private void CreatePhase3()
     {
-        String message = OPTIONS[3].replace("{0}", String.valueOf(REMOVE_CARDS));
-        message = message.replace("{1}", String.valueOf(OBTAIN_CARDS));
+        String message1 = OPTIONS[3].replace("{0}", String.valueOf(REMOVE_CARDS));
+        message1 = message1.replace("{1}", String.valueOf(OBTAIN_CARDS));
+
+        String message2 = OPTIONS[4].replace("{0}", String.valueOf(UPGRADE_SAME_CARD));
 
         UpdateBodyText(eventStrings.DESCRIPTIONS[2], true);
         UpdateDialogOption(0, OPTIONS[2], medallion);
-        UpdateDialogOption(1, message);
+        UpdateDialogOption(1, message1);
+        UpdateDialogOption(2, message2);
     }
 
     private void HandlePhase3(int button)
@@ -113,6 +118,10 @@ public class TheMaskedTraveler2 extends AnimatorEvent
         else if (button == 1)
         {
             AbstractDungeon.effectsQueue.add(new MaskedTravelerTransformCardsEffect(REMOVE_CARDS));
+        }
+        else if (button == 2)
+        {
+            AbstractDungeon.effectsQueue.add(new MaskedTravelerUpgradeSameCardEffect(UPGRADE_SAME_CARD));
         }
 
         ProgressPhase(-1);

@@ -48,7 +48,7 @@ public class Rena extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
+            upgradeMagicNumber(1);
         }
     }
 }

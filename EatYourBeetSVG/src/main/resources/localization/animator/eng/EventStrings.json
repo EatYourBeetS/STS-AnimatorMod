@@ -28,7 +28,8 @@
 			"[Leave]",
 			"[Inquire]",
 			"[Accept] #gObtain #gRelic",
-			"[Accept] #gRemove #g{0} #gcards, #gobtain #g{1} #grandom #gUpgraded #gcards."
+			"[Accept] #gRemove #g{0} #gcards, #gobtain #g{1} #grandom #gUpgraded #gcards.",
+			"[Accept] #gUpgrade #ga #gsingle #gcard #g{0} #gtimes."
 		]
 	},
 	"animator:TheMaskedTraveler3":

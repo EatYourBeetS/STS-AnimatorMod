@@ -31,6 +31,7 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
         Actions,
         SpecialEffects,
         CardSelect,
+        TetAction,
         Trophies
     }
 

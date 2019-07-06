@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
+import eatyourbeets.actions.common.MoveMonsterAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
 import eatyourbeets.resources.Resources_Common;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -141,6 +142,15 @@ public class UltimateCrystal extends Crystal
 
     public void SummonCopy()
     {
-        GameActionsHelper.AddToBottom(new SummonMonsterAction(new UltimateCrystal(-330, -12, this), false));
+        UltimateCrystal copy = new UltimateCrystal(-330, -12, this);
+
+        float targetX = copy.drawX;
+        float targetY = copy.drawY;
+
+        copy.drawX = this.drawX;
+        copy.drawY = this.drawY;
+
+        GameActionsHelper.AddToBottom(new SummonMonsterAction(copy, false));
+        GameActionsHelper.AddToBottom(new MoveMonsterAction(copy, targetX, targetY, 1.5f));
     }
 }

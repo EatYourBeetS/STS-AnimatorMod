@@ -86,7 +86,11 @@ public class MotivateAction extends AnimatorAction implements OnAfterCardPlayedS
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        GameActionsHelper.AddToBottom(new ModifyCostForTurnAction(card.uuid, -costReduction));
+        if (AbstractDungeon.player.hand.contains(card))
+        {
+            GameActionsHelper.AddToBottom(new ModifyCostForTurnAction(card.uuid, -costReduction));
+        }
+
         firstActivation = false;
     }
 
@@ -100,6 +104,11 @@ public class MotivateAction extends AnimatorAction implements OnAfterCardPlayedS
     @Override
     public void OnAfterCardDrawn(AbstractCard card)
     {
+        if (firstActivation)
+        {
+            return;
+        }
+
         if (this.card.uuid.equals(card.uuid))
         {
             this.card.modifyCostForTurn(-costReduction);

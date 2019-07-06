@@ -28,7 +28,8 @@
 			"[Partir]",
 			"[Se renseigner]",
 			"[Accepter] #gObtenez #gune #gRelique",
-			"[Accepter] #gRetirez #g{0} #gcartes, #gObtenez #g{1} #gcartes #gAméliorées #galéatoires."
+			"[Accepter] #gRetirez #g{0} #gcartes, #gObtenez #g{1} #gcartes #gAméliorées #galéatoires.",
+			"[Accepter] #gAméliorez #gune #gseule #gcarte #g{0} #gfois."
 		]
 	},
 	"animator:TheMaskedTraveler3":

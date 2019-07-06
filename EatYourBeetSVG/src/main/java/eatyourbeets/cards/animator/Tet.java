@@ -2,12 +2,13 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.DiscardFromPileAction;
-import eatyourbeets.cards.AnimatorCard_Boost;
+import eatyourbeets.actions.animator.TetDiscardAction;
+import eatyourbeets.actions.animator.TetRecoverAction;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
-public class Tet extends AnimatorCard_Boost
+public class Tet extends AnimatorCard
 {
     public static final String ID = CreateFullID(Tet.class.getSimpleName());
 
@@ -21,15 +22,21 @@ public class Tet extends AnimatorCard_Boost
     }
 
     @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        if (upgraded)
+        {
+            this.retain = true;
+        }
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new DiscardFromPileAction(p.drawPile, 2, true));
-        GameActionsHelper.DrawCard(p, magicNumber);
-
-        if (ProgressBoost())
-        {
-            GameActionsHelper.GainEnergy(1);
-        }
+        GameActionsHelper.AddToBottom(new TetDiscardAction(magicNumber));
+        GameActionsHelper.AddToBottom(new TetRecoverAction(magicNumber));
     }
 
     @Override
@@ -37,14 +44,7 @@ public class Tet extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeBoost(1);
-            //upgradeSecondaryValue(1);
+            this.retain = true;
         }
-    }
-
-    @Override
-    protected int GetBaseBoost()
-    {
-        return upgraded ? 1 : 0;
     }
 }

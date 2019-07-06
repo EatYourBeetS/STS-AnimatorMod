@@ -157,7 +157,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
         if (cardsPlayed < (maxCardsPerTurn / 2))
         {
-            CardMessage(card);
+            CardMessage(card, action);
         }
 
         if (cardsPlayed == (maxCardsPerTurn - 2))
@@ -177,7 +177,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         }
     }
 
-    private void CardMessage(AbstractCard card)
+    private void CardMessage(AbstractCard card, UseCardAction action)
     {
         if (card instanceof Gilgamesh)
         {
@@ -195,7 +195,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         {
             Talk(14, 2);
         }
-        else if (card instanceof Saitama)
+        else if (card instanceof Saitama && owner.equals(action.target) && owner.currentHealth > 800)
         {
             Talk(15, 3);
         }
@@ -269,7 +269,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
     private void Talk(int line, float duration)
     {
-        if (!linesUsed.contains(line) && !((TheUnnamed)owner).phase2)
+        if (!linesUsed.contains(line) && owner.currentHealth > 500 && !((TheUnnamed)owner).phase2)
         {
             GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[line], duration, duration));
 

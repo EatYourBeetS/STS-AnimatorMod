@@ -1,16 +1,13 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-
-import java.util.ArrayList;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class MaesHughes extends AnimatorCard
 {
@@ -20,10 +17,8 @@ public class MaesHughes extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(12,0,2);
+        Initialize(0,0,6, 3);
 
-        this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
-        this.isMultiDamage = true;
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -33,18 +28,19 @@ public class MaesHughes extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        applyPowers();
-
-        if (this.multiDamage != null && this.multiDamage.length > 0)
+        AbstractPlayer p = AbstractDungeon.player;
+        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {
-            GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
+            GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, secondaryValue), secondaryValue);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DrawCard(p, 1, this::OnCardDrawn, this);
+        int cardDraw = Math.floorDiv(p.drawPile.size(), magicNumber);
+        GameActionsHelper.DrawCard(p, cardDraw);
+        GameActionsHelper.Motivate(1, 1);
     }
 
     @Override
@@ -52,25 +48,8 @@ public class MaesHughes extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(6);
-            upgradeMagicNumber(1);
-        }
-    }
-
-    private void OnCardDrawn(Object state, ArrayList<AbstractCard> cards)
-    {
-        if (state != this)
-        {
-            return;
-        }
-
-        if (cards != null && cards.size() > 0)
-        {
-            AbstractCard card = cards.get(0);
-            if (card.costForTurn > 0)
-            {
-                card.setCostForTurn(card.costForTurn - this.magicNumber);
-            }
+            upgradeMagicNumber(-1);
+            upgradeSecondaryValue(2);
         }
     }
 }

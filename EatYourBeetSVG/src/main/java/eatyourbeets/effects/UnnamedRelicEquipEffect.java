@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.colorless.Apparition;
 import com.megacrit.cardcrawl.cards.colorless.Discovery;
 import com.megacrit.cardcrawl.cards.colorless.MasterOfStrategy;
 import com.megacrit.cardcrawl.cards.colorless.MindBlast;
+import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.cards.green.*;
 import com.megacrit.cardcrawl.cards.red.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -45,6 +46,8 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
         AbstractPlayer p = AbstractDungeon.player;
 
         ModHelper.setModsFalse();
+
+        int apparitionsCount = 0;
 
         ArrayList<AbstractCard> replacement = new ArrayList<>();
         for (AbstractCard card : p.masterDeck.group)
@@ -136,6 +139,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
                 {
                     ReplaceCard(replacement, Apparition.ID);
                     ReplaceCard(replacement, Apparition.ID);
+                    apparitionsCount += 2;
                     break;
                 }
 
@@ -167,6 +171,18 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
                     break;
                 }
 
+                case Apparition.ID:
+                {
+                    apparitionsCount += 1;
+                    replacement.add(card.makeCopy());
+                    break;
+                }
+
+                case Necronomicurse.ID:
+                {
+                    break;
+                }
+
                 default:
                 {
                     replacement.add(card.makeCopy());
@@ -174,7 +190,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
             }
         }
 
-        CharSelectInfo info = AbstractDungeon.player.getLoadout();
+        CharSelectInfo info = p.getLoadout();
         int hp = 100;
         if (info != null)
         {
@@ -196,6 +212,16 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
         else if (hp < 999)
         {
             hp = 150;
+        }
+
+        if (hp < 999 && apparitionsCount > 1)
+        {
+            hp *= 1 - (0.1f * (apparitionsCount - 1));
+
+            if (hp < 10)
+            {
+                hp = 10;
+            }
         }
 
         p.gold = goldBonus;

@@ -4,6 +4,7 @@ import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.TheMaskedTraveler1;
 import eatyourbeets.events.UnnamedReign.TheAbandonedCabin;
@@ -96,6 +97,7 @@ public class Resources_Common extends AbstractResources
     @Override
     protected void PostInitialize()
     {
+        AnimatorMetrics.Initialize();
         BaseMod.addSaveField("animator_SaveData", PlayerStatistics.Instance);
 
         Map_Act5Entrance = new Texture("images/ui/map/act5Entrance.png");

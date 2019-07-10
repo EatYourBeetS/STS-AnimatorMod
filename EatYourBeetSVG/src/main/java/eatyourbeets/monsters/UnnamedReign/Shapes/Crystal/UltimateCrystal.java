@@ -47,20 +47,23 @@ public class UltimateCrystal extends Crystal
 
         movesetMode = Mode.Sequential;
 
-        moveset.AddSpecial(new Move_AttackMultiple(1, 32));
+        moveset.AddSpecial(new Move_AttackMultiple(6, 32));
+
+        int crystallize = PlayerStatistics.GetAscensionLevel() >= 4 ? 3 : 2;
+        int block = PlayerStatistics.GetAscensionLevel() >= 4 ? 12 : 8;
 
         this.original = original;
         if (original == null)
         {
             moveset.AddNormal(new Move_GainStrengthAndArtifactAll(3, 2));
-            moveset.AddNormal(new Move_UltimateCrystalAttack(1, 8));
-            moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 2));
+            moveset.AddNormal(new Move_UltimateCrystalAttack(1, block));
+            moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), crystallize));
         }
         else
         {
-            moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 2));
+            moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), crystallize));
             moveset.AddNormal(new Move_GainStrengthAndArtifactAll(3, 2));
-            moveset.AddNormal(new Move_UltimateCrystalAttack(1, 8));
+            moveset.AddNormal(new Move_UltimateCrystalAttack(1, block));
         }
     }
 
@@ -142,7 +145,7 @@ public class UltimateCrystal extends Crystal
 
     public void SummonCopy()
     {
-        UltimateCrystal copy = new UltimateCrystal(-330, -12, this);
+        UltimateCrystal copy = new UltimateCrystal(-310, -10, this);
 
         float targetX = copy.drawX;
         float targetY = copy.drawY;

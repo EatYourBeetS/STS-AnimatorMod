@@ -29,7 +29,6 @@ public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
     private final boolean hFlip1;
     private final boolean hFlip2;
 
-
     private boolean evoked;
     private int turns;
 
@@ -86,6 +85,7 @@ public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
         if (turns <= 0)
         {
             GameActionsHelper.AddToTop(new EvokeSpecificOrbAction(this));
+            evoked = true;
         }
     }
 
@@ -161,6 +161,7 @@ public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
     public void playChannelSFX()
     {
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.2f);
+        turns = 3;
         evoked = false;
     }
 }

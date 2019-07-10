@@ -151,9 +151,13 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             AnimatorCard a1 = Utilities.SafeCast(c1, AnimatorCard.class);
             AnimatorCard a2 = Utilities.SafeCast(c2, AnimatorCard.class);
 
-            if (a1 == null)
+            if (c1 == c2)
             {
-                return a2 == null ? 0 : -1;
+                return 0;
+            }
+            else if (a1 == null)
+            {
+                return -1;
             }
             else if (a2 == null)
             {
@@ -172,9 +176,13 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             Synergy s1 = a1.GetSynergy();
             Synergy s2 = a2.GetSynergy();
 
-            if (s1 == null)
+            if (s1 == s2)
             {
-                return s2 == null ? 0 : -1;
+                return 0;
+            }
+            else if (s1 == null)
+            {
+                return -1;
             }
             else if (s2 == null)
             {

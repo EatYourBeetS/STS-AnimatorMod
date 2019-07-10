@@ -59,7 +59,7 @@
 	},
 	"animator:Archer":
 	{
-		"DESCRIPTION": "À la fin de votre tour, infligez !D! dégât(s) à TOUS les ennemis pour chaque Debuff qu'ils ont. Augmente avec la Force.",
+		"DESCRIPTION": "À la fin de votre tour, infligez !M! dégât(s) à TOUS les ennemis pour chaque Debuff qu'ils ont. Augmente avec la Force.",
 		"NAME": "Archer"
 	},
 	"animator:Arpeggio":
@@ -555,9 +555,9 @@
 	},
 	"animator:Kaijin":
 	{
-		"DESCRIPTION": "Lorsque vous pigez une carte, augmentez sa quantité de dégâts et d'Armure par !M! pour ce combat.",
+		"DESCRIPTION": "À la fin du tour, Conservez 1 carte et augmentez sa quantité de dégâts et d'Armure par !M! pour ce combat.",
 		"NAME": "Kaijin",
-		"UPGRADE_DESCRIPTION": "Lorsque vous pigez une carte, augmentez sa quantité de dégâts et d'Armure par !M! pour ce combat. Au prochain tour, piochez 2 cartes."
+		"UPGRADE_DESCRIPTION": "Inné. À la fin du tour, Conservez 1 carte et augmentez sa quantité de dégâts et d'Armure par !M! pour ce combat."
 	},
 	"animator:Kazuma":
 	{
@@ -827,7 +827,7 @@
 			"Empêche votre prochaine perte de PV.",
 			"Gagnez !M! de Force. NL Gagnez !B! d'Armure.",
 			"Infligez !D! dégât(s) !M! fois.",
-			"Supprimez Intangible. NL Infligez !D! NL dégats Perçant."
+			"Supprimez Intangible. NL Infligez !D! NL dégats Perçant. Assommez l'ennemi."
 		],
 		"NAME": "Saitama",
 		"UPGRADE_DESCRIPTION": "Inné. À chaque fois que cette carte est jouée, augmentez son coût et changez son effet sur ce combat."

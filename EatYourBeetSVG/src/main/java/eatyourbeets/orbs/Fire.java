@@ -52,7 +52,7 @@ public class Fire extends AnimatorOrb
 
     public void onEvoke()
     {
-        GameActionsHelper.AddToBottom(new FireOrbEvokeAction(evokeAmount));
+        GameActionsHelper.AddToTop(new FireOrbEvokeAction(evokeAmount));
     }
 
     public void onEndOfTurn()

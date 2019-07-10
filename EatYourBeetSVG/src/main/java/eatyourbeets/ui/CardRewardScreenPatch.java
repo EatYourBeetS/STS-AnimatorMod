@@ -1,5 +1,6 @@
 package eatyourbeets.ui;
 
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -40,7 +41,7 @@ public class CardRewardScreenPatch
         rewardItem = rItem;
         rewardBundle = null;
 
-        if (PlayerStatistics.InBattle() || !(AbstractDungeon.player instanceof AnimatorCharacter))
+        if (PlayerStatistics.InBattle()) // || !(AbstractDungeon.player instanceof AnimatorCharacter))
         {
             return;
         }

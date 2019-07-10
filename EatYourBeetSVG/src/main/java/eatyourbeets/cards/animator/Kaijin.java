@@ -14,9 +14,9 @@ public class Kaijin extends AnimatorCard
 
     public Kaijin()
     {
-        super(ID, 2, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0, 1, 2);
+        Initialize(0,0, 1);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -25,16 +25,14 @@ public class Kaijin extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.ApplyPower(p, p, new KaijinPower(p, this.magicNumber), this.magicNumber);
-
-        if (upgraded)
-        {
-            GameActionsHelper.ApplyPowerSilently(p, p, new DrawCardNextTurnPower(p, secondaryValue), secondaryValue);
-        }
     }
 
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            this.isInnate = true;
+        }
     }
 }

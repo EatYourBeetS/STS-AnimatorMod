@@ -1,13 +1,15 @@
 package eatyourbeets.characters;
 
 import com.badlogic.gdx.utils.Base64Coder;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
-import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.Utilities;
 import patches.AbstractEnums;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
@@ -15,6 +17,7 @@ import java.util.regex.Pattern;
 public class AnimatorMetrics
 {
     private static final String TROPHY_DATA_KEY = "TDAL";
+    private static SpireConfig config = null;
     private static Prefs prefs = null;
 
     public static final ArrayList<AnimatorTrophies> trophiesData = new ArrayList<>();
@@ -33,18 +36,37 @@ public class AnimatorMetrics
             sj.add(t.Serialize());
         }
 
-        if (AbstractDungeon.player != null)
-        {
-            AbstractDungeon.player.getPrefs().putString(TROPHY_DATA_KEY, Base64Coder.encodeString(sj.toString()));
+        String toSave = Base64Coder.encodeString(sj.toString());
 
-            if (flush)
+        config.setString(TROPHY_DATA_KEY, toSave);
+        if (flush)
+        {
+            try
             {
-                AbstractDungeon.player.getPrefs().flush();
+                config.save();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
             }
         }
-        else
+
+        if (AbstractDungeon.player != null)
         {
-            prefs.putString(TROPHY_DATA_KEY, Base64Coder.encodeString(sj.toString()));
+            Prefs currentPrefs = AbstractDungeon.player.getPrefs();
+            if (currentPrefs != null)
+            {
+                currentPrefs.putString(TROPHY_DATA_KEY, toSave);
+
+                if (flush)
+                {
+                    currentPrefs.flush();
+                }
+            }
+        }
+        else if (prefs != null)
+        {
+            prefs.putString(TROPHY_DATA_KEY, toSave);
 
             if (flush)
             {
@@ -53,16 +75,32 @@ public class AnimatorMetrics
         }
     }
 
-    public static void LoadPrefs()
+    public static void Initialize()
     {
-        prefs = SaveHelper.getPrefs(AbstractEnums.Characters.THE_ANIMATOR.name());
+        String data = null;
+        try
+        {
+            config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
+            prefs = SaveHelper.getPrefs(AbstractEnums.Characters.THE_ANIMATOR.name());
+
+            data = config.getString(TROPHY_DATA_KEY);
+            if (data == null)
+            {
+                data = prefs.getString(TROPHY_DATA_KEY);
+                config.setString(TROPHY_DATA_KEY, data);
+                config.save();
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        SetupTrophies(data);
     }
 
-    static
+    private static void SetupTrophies(String data)
     {
-        LoadPrefs();
-
-        String data = prefs.getString(TROPHY_DATA_KEY);
         if (data != null && data.length() > 0)
         {
             trophiesData.clear();

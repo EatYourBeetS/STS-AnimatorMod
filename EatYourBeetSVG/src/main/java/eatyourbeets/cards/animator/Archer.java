@@ -1,12 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.ArcherPower;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Archer extends AnimatorCard
 {
@@ -16,7 +15,7 @@ public class Archer extends AnimatorCard
     {
         super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(2,0);
+        Initialize(0,0, 2);
 
         SetSynergy(Synergies.Fate);
     }
@@ -24,7 +23,7 @@ public class Archer extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ArcherPower(p, this.baseDamage), this.baseDamage));
+        GameActionsHelper.ApplyPower(p, p, new ArcherPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override
@@ -32,7 +31,7 @@ public class Archer extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(1);
+            upgradeMagicNumber(1);
         }
     }
 }

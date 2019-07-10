@@ -187,7 +187,7 @@
 	},
 	"animator:KaijinPower":
 	{
-		"DESCRIPTIONS": ["Lorsque vous pigez une carte, augmentez sa quantité de dégâts et d'Armure par #b", " pour ce combat."],
+		"DESCRIPTIONS": ["À la fin du tour, Conservez 1 carte et augmentez sa quantité de dégâts et d'Armure par #b", " pour ce combat."],
 		"NAME": "Kaijin"
 	},
 	"animator:LightningCrystalPower":

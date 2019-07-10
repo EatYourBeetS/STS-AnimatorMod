@@ -60,7 +60,7 @@
 	},
 	"animator:Archer":
 	{
-		"DESCRIPTION": "At the end of your turn, deal !D! damage to all enemies for each Debuff they have. Scales with Strength.",
+		"DESCRIPTION": "At the end of your turn, deal !M! damage to all enemies for each Debuff they have. Scales with Strength.",
 		"NAME": "Archer"
 	},
 	"animator:Arpeggio":
@@ -557,9 +557,9 @@
 	},
 	"animator:Kaijin":
 	{
-		"DESCRIPTION": "Whenever you draw a card, increase its damage and Block by !M! this combat.",
+		"DESCRIPTION": "At the end of each turn, Retain 1 card and increase its damage and Block by !M! this combat.",
 		"NAME": "Kaijin",
-		"UPGRADE_DESCRIPTION": "Whenever you draw a card, increase its damage and Block by !M! this combat. Next turn, draw !SV! cards."
+		"UPGRADE_DESCRIPTION": "Innate. At the end of each turn, Retain 1 card and increase its damage and Block by !M! this combat."
 	},
 	"animator:Kazuma":
 	{
@@ -829,7 +829,7 @@
 			"Prevent the next time you would lose HP.",
 			"Gain !M! Strength. NL Gain !B! Block.",
 			"Deal !D! damage NL !M! times.",
-			"Remove Intangible. NL Deal !D! NL Piercing damage."
+			"Remove Intangible. NL Deal !D! NL Piercing damage. NL Stun the enemy."
 		],
 		"NAME": "Saitama",
 		"UPGRADE_DESCRIPTION": "Innate. NL Whenever this card is played, increase its cost and change its effect for this combat."

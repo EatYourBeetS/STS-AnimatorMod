@@ -49,7 +49,7 @@ public class Air extends AnimatorOrb
 
     public void onEvoke()
     {
-        GameActionsHelper.AddToBottom(new AirOrbEvokeAction(this));
+        GameActionsHelper.AddToTop(new AirOrbEvokeAction(this));
     }
 
     public void onEndOfTurn()

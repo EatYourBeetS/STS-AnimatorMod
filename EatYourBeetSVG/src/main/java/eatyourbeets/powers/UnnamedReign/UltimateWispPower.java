@@ -18,6 +18,8 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
 {
     private boolean shouldExhaust = false;
 
+    private static final Color RED = Color.RED.cpy();
+
     public static final String POWER_ID = CreateFullID(UltimateWispPower.class.getSimpleName());
 
     public UltimateWispPower(AbstractCreature owner)
@@ -84,12 +86,12 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     {
         PlayerStatistics.onBattleStart.Subscribe(this);
         PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
-        CardGlowBorderPatch.overrideColor = Color.ORANGE.cpy();
+        CardGlowBorderPatch.overrideColor = RED;
     }
 
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        CardGlowBorderPatch.overrideColor = Color.ORANGE.cpy();
+        CardGlowBorderPatch.overrideColor = RED;
     }
 }

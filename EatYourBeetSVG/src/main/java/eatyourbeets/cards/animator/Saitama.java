@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -10,12 +11,15 @@ import com.megacrit.cardcrawl.actions.defect.IncreaseMiscAction;
 import com.megacrit.cardcrawl.actions.unique.LimitBreakAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.resources.Resources_Animator;
@@ -23,6 +27,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.Utilities;
 
 public class Saitama extends AnimatorCard
 {
@@ -51,6 +56,21 @@ public class Saitama extends AnimatorCard
             stage = misc = Math.max(Math.min(misc, 5), 0);
             SetEffect(stage);
         }
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        AbstractCard card = super.makeStatEquivalentCopy();
+
+        Saitama other = Utilities.SafeCast(card, Saitama.class);
+        if (other != null)
+        {
+            other.misc = other.stage = this.misc;
+            other.SetEffect(stage);
+        }
+
+        return card;
     }
 
     @Override
@@ -106,7 +126,7 @@ public class Saitama extends AnimatorCard
 
             case 5:
             {
-                // Remove Intangible. Deal !D! damage.
+                // Remove Intangible. Deal !D! damage. Stun The Enemy
                 GameActionsHelper.AddToDefault(new RemoveSpecificPowerAction(m, p, IntangiblePower.POWER_ID));
                 GameActionsHelper.AddToDefault(new RemoveSpecificPowerAction(m, p, IntangiblePlayerPower.POWER_ID));
 
@@ -115,6 +135,8 @@ public class Saitama extends AnimatorCard
                 GameActionsHelper.AddToDefault(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
                 GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
                 GameActionsHelper.AddToDefault(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
+
+                GameActionsHelper.ApplyPowerSilently(p, m, new StunMonsterPower(m, 1), 1);
 
                 break;
             }

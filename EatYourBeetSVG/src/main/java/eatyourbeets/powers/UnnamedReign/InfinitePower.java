@@ -195,13 +195,13 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         {
             Talk(14, 2);
         }
-        else if (card instanceof Saitama && owner.equals(action.target) && owner.currentHealth > 800)
-        {
-            Talk(15, 3);
-        }
+//        else if (card instanceof Saitama && owner.equals(action.target) && owner.currentHealth > 800)
+//        {
+//            Talk(15, 3);
+//        }
         else if (card instanceof Eve)
         {
-            Talk(16,2);
+            Talk(16,2.5f);
         }
         else if (card instanceof Guren)
         {
@@ -218,6 +218,10 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         else if (card instanceof ChlammyZell)
         {
             Talk(20, 3f);
+        }
+        else if (card instanceof Togame)
+        {
+            Talk(29, 2.2f);
         }
         else if (card instanceof HigakiRinne)
         {

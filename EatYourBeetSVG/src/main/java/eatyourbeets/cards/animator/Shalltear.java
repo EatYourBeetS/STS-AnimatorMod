@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -58,8 +59,8 @@ public class Shalltear extends AnimatorCard
             }
         }
 
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-        GameActionsHelper.Callback(new WaitAction(0.1f), this::OnDamage, enemies);
+        DamageAllEnemiesAction action = new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+        GameActionsHelper.Callback(action, this::OnDamage, enemies);
     }
 
     @Override
@@ -78,7 +79,7 @@ public class Shalltear extends AnimatorCard
         {
             for (AbstractMonster monster : enemies)
             {
-                if ((monster.isDying || monster.currentHealth <= 0) && !monster.halfDead && !monster.hasPower(MinionPower.POWER_ID))
+                if (monster != null && (monster.isDying || monster.currentHealth <= 0) && !monster.halfDead && !monster.hasPower(MinionPower.POWER_ID))
                 {
                     GameActionsHelper.GainEnergy(1);
                     AbstractDungeon.player.heal(3, true);

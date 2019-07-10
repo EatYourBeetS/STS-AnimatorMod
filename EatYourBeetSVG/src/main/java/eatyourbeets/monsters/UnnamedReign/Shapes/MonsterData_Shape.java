@@ -90,7 +90,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -60f;
                 hb_w = 230;
                 hb_h = 230;
-                maxHealth = 620;
+                maxHealth = 640;
                 break;
             }
         }
@@ -135,7 +135,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -50;
                 hb_w = 220;
                 hb_h = 130;
-                maxHealth = 677;
+                maxHealth = 680;
                 break;
             }
         }
@@ -180,7 +180,7 @@ public class MonsterData_Shape extends AbstractMonsterData
                 hb_y = -60f;
                 hb_w = 240;
                 hb_h = 240;
-                maxHealth = 600;
+                maxHealth = 620;
                 break;
             }
         }

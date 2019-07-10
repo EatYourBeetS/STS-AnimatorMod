@@ -187,7 +187,7 @@
 	},
 	"animator:KaijinPower":
 	{
-		"DESCRIPTIONS": ["每当你抽一张牌时，使其造成的伤害与获得的格挡量在本场战斗中提高 #b", " 点 。"],
+		"DESCRIPTIONS": ["在每轮结束时， 保留1张卡 并使其造成的伤害与获得的格挡量在本场战斗中提高 #b", " 点 。"],
 		"NAME": "凯·金"
 	},
 	"animator:LightningCrystalPower":

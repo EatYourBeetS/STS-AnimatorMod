@@ -83,13 +83,13 @@ public class Utilities
     {
         if (orbs.Count() == 0)
         {
-            orbs.Add(new Lightning(), 7);
-            orbs.Add(new Frost()    , 7);
-            orbs.Add(new Earth()    , 6);
-            orbs.Add(new Fire()     , 6);
-            orbs.Add(new Plasma()   , 4);
-            orbs.Add(new Dark()     , 4);
-            orbs.Add(new Air()     , 4);
+            orbs.Add(new Lightning (), 7);
+            orbs.Add(new Frost     (), 7);
+            orbs.Add(new Earth     (), 6);
+            orbs.Add(new Fire      (), 6);
+            orbs.Add(new Plasma    (), 4);
+            orbs.Add(new Dark      (), 4);
+            orbs.Add(new Air       (), 4);
         }
 
         return orbs.Retrieve(AbstractDungeon.miscRng, false).makeCopy();

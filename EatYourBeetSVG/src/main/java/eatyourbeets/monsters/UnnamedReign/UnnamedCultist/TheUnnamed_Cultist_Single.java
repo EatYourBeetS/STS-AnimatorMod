@@ -42,7 +42,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
     {
         super.usePreBattleAction();
 
-        GameActionsHelper.ApplyPower(this, this, new TheUnnamedCultistPower(this, 10), 10);
+        GameActionsHelper.ApplyPower(this, this, new TheUnnamedCultistPower(this, 15), 15);
         GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[10], 1f, 3f));
     }
 

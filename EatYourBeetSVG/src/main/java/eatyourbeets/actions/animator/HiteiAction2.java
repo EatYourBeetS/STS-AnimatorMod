@@ -39,7 +39,7 @@ public class HiteiAction2 extends AnimatorAction
             {
                 if (randomizedList.Count() > 0)
                 {
-                    group.addToTop(randomizedList.Retrieve(AbstractDungeon.miscRng));
+                    group.addToTop(randomizedList.Retrieve(AbstractDungeon.cardRandomRng));
                 }
             }
 

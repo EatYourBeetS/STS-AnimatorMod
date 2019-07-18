@@ -145,12 +145,12 @@ public class UltimateCrystal extends Crystal
 
     public void SummonCopy()
     {
-        UltimateCrystal copy = new UltimateCrystal(-310, -10, this);
+        UltimateCrystal copy = new UltimateCrystal(-310, -14, this);
 
         float targetX = copy.drawX;
         float targetY = copy.drawY;
 
-        copy.drawX = this.drawX;
+        copy.drawX = this.drawX - 30;
         copy.drawY = this.drawY;
 
         GameActionsHelper.AddToBottom(new SummonMonsterAction(copy, false));

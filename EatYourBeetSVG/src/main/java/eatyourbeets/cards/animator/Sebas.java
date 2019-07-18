@@ -22,14 +22,17 @@ public class Sebas extends AnimatorCard
 
         Initialize(0,9);
 
+        this.exhaust = true;
+
         SetSynergy(Synergies.Overlord);
     }
 
-    @SpireOverride
-    protected void applyPowersToBlock()
+    @Override
+    public void applyPowers()
     {
-        float tmp = (float) this.baseBlock;
+        super.applyPowers();
 
+        int tmp = 0;
         for (AbstractCard c : AbstractDungeon.player.hand.group)
         {
             if (c.costForTurn > 0)// && !uuid.equals(c.uuid))
@@ -38,24 +41,15 @@ public class Sebas extends AnimatorCard
             }
         }
 
-        for (AbstractPower p : AbstractDungeon.player.powers)
-        {
-            tmp = p.modifyBlock(tmp);
-        }
-
-        if (tmp < 0.0F)
-        {
-            tmp = 0.0F;
-        }
-
-        this.block = MathUtils.floor(tmp);
-        this.isBlockModified = this.block != this.baseBlock;
+        secondaryValue = tmp;
+        isSecondaryValueModified = secondaryValue > 0;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper.GainTemporaryHP(p, p, secondaryValue);
     }
 
     @Override
@@ -63,7 +57,7 @@ public class Sebas extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
+            upgradeBlock(4);
         }
     }
 }

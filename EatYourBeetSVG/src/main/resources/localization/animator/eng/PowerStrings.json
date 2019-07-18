@@ -87,7 +87,7 @@
 	},
 	"animator:EntouJyuuPower":
 	{
-		"DESCRIPTIONS": ["The next #b", " #yAttack/s you play this turn will gain #b", " damage and draw you 1 card."],
+		"DESCRIPTIONS": ["On your next #b", " #yAttack(s) this turn, draw #b1 card, then discard #b1 card."],
 		"NAME": "Entou Jyuu"
 	},
 	"animator:EnvyPower":
@@ -275,10 +275,20 @@
 		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b", "% more damage."],
 		"NAME": "Rory Mercury"
 	},
+	"animator:ShikizakiKikiPower":
+	{
+		"DESCRIPTIONS": ["#yStrength affects ALL cards #b", " times."],
+		"NAME": "Shikizaki Kiki"
+	},
 	"animator:ShiroPower":
 	{
 		"DESCRIPTIONS": ["At the start of you turn gain #b", " energy."],
 		"NAME": "Shiro"
+	},
+	"animator:SonicPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, add #b", " #yThrowing-Knives to your hand."],
+		"NAME": "Speed-o'-Sound Sonic"
 	},
 	"animator:StolenGoldPower":
 	{
@@ -333,5 +343,10 @@
 	{
 		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use/s ), or #pRight-Click to discard it ( #b", " use/s)."],
 		"NAME": "Yuko Shionji"
+	},
+	"animator:VitalityPower":
+	{
+		"DESCRIPTIONS": ["Whenever you are attacked this turn, gain #b", " #yTemporary #HP."],
+		"NAME": "Vitality"
 	}
 }

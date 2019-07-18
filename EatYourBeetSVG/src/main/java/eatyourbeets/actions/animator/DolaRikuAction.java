@@ -107,7 +107,7 @@ public class DolaRikuAction extends AnimatorAction
             int max = Math.min(choices, sameRarity.Count());
             for (int i = 0; i < max; i++)
             {
-                cardGroup.group.add(sameRarity.Retrieve(AbstractDungeon.miscRng));
+                cardGroup.group.add(sameRarity.Retrieve(AbstractDungeon.cardRandomRng));
             }
 
             GameActionsHelper.AddToTop(new ChooseFromPileAction(1, false, cardGroup, DolaRikuAction::OnCardChosen, this, discoveryMessage));

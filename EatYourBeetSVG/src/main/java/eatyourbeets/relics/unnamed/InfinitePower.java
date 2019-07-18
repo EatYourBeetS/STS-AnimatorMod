@@ -47,4 +47,10 @@ public class InfinitePower extends UnnamedRelic implements AllowedUnnamedReignRe
 
         AbstractDungeon.effectsQueue.add(new ObtainRelicEffect(this));
     }
+
+    @Override
+    public void OnEquipUnnamedReignRelic()
+    {
+
+    }
 }

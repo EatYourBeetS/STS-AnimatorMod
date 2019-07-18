@@ -27,7 +27,7 @@ public class Utilities
 
     public static <T> T GetRandomElement(ArrayList<T> list)
     {
-        return GetRandomElement(list, AbstractDungeon.miscRng);
+        return GetRandomElement(list, AbstractDungeon.cardRandomRng);
     }
 
     public static <T> T GetRandomElement(ArrayList<T> list, Random rng)
@@ -92,7 +92,7 @@ public class Utilities
             orbs.Add(new Air       (), 4);
         }
 
-        return orbs.Retrieve(AbstractDungeon.miscRng, false).makeCopy();
+        return orbs.Retrieve(AbstractDungeon.cardRandomRng, false).makeCopy();
     }
 
     public static <T> ArrayList<T> Where(ArrayList<T> list, Predicate<T> predicate)

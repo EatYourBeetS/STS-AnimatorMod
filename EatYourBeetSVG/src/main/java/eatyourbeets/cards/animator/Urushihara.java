@@ -36,7 +36,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         Urushihara other = (Urushihara) makeStatEquivalentCopy();
 
-        other.lazyCounter = AbstractDungeon.miscRng.random(3);
+        other.lazyCounter = AbstractDungeon.cardRandomRng.random(3);
         if (!upgraded)
         {
             other.lazyCounter += 1;

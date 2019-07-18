@@ -220,8 +220,8 @@
 		"DESCRIPTION": "Deal damage to the enemy with lowest HP at the end of each turn."
 	},
 	{
-		"PROPER_NAME": "Motivate <N>",
+		"PROPER_NAME": "Motivate",
 		"NAMES": ["motivate"],
-		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated <N> times."
+		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times."
 	}
 ]

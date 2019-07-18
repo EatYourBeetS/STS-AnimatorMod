@@ -1,14 +1,12 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.unique.ApotheosisAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.animator.ShikizakiKikiPower;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class ShikizakiKiki extends AnimatorCard_UltraRare
 {
@@ -16,7 +14,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
 
     public ShikizakiKiki()
     {
-        super(ID, 3, CardType.SKILL, CardTarget.SELF);
+        super(ID, 3, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0, 2);
 
@@ -24,10 +22,21 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     }
 
     @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        if (upgraded)
+        {
+            this.retain = true;
+        }
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DrawCard(p, this.magicNumber);
-        GameActionsHelper.AddToBottom(new ShikizakiKikiAction());
+        GameActionsHelper.AddToBottom(new ApotheosisAction());
+        GameActionsHelper.ApplyPower(p, p, new ShikizakiKikiPower(p, magicNumber), magicNumber);
     }
 
     @Override
@@ -36,31 +45,6 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
-        }
-    }
-
-    private class ShikizakiKikiAction extends AnimatorAction
-    {
-        @Override
-        public void update()
-        {
-            for (AbstractCard card : AbstractDungeon.player.hand.group)
-            {
-                if (card.canUpgrade())
-                {
-                    card.upgrade();
-                }
-
-                int newDamage = Math.min(9999, card.baseDamage * 2) - card.baseDamage;
-                if (newDamage > 0)
-                {
-                    GameActionsHelper.AddToBottom(new ModifyDamageAction(card.uuid, newDamage));
-
-                    card.flash();
-                }
-            }
-
-            this.isDone = true;
         }
     }
 }

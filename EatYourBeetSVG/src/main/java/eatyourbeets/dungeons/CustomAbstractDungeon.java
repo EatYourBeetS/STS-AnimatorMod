@@ -238,11 +238,18 @@ public class CustomAbstractDungeon extends AbstractDungeon
         {
             if (c instanceof AnimatorCard_UltraRare)
             {
-                chances *= 0.5f;
+                if (synergy.ID == ((AnimatorCard_UltraRare) c).GetSynergy().ID)
+                {
+                    return; // No duplicates
+                }
+                else
+                {
+                    chances *= 0.5f;
+                }
             }
         }
 
-        float roll = AbstractDungeon.miscRng.random(100f);
+        float roll = AbstractDungeon.cardRng.random(100f);
         if (roll > chances)
         {
             return;
@@ -305,7 +312,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
 
         if (card != null && cards.size() > 0)
         {
-            card.tags.remove(AbstractEnums.CardTags.UNOBTAINABLE);
+            //card.tags.remove(AbstractEnums.CardTags.UNOBTAINABLE);
             cards.remove(0);
             cards.add(card);
         }

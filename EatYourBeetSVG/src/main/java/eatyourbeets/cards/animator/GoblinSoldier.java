@@ -33,14 +33,7 @@ public class GoblinSoldier extends AnimatorCard_Status
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (!this.dontTriggerOnUseCard)
-        {
-            if (p.hasRelic(MedicalKit.ID))
-            {
-                this.useMedicalKit(p);
-            }
-        }
-        else
+        if (this.dontTriggerOnUseCard)
         {
             GameActionsHelper.DamageTarget(p, p, this.magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         }

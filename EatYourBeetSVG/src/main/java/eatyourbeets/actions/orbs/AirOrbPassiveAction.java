@@ -11,6 +11,10 @@ import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.orbs.Air;
 import eatyourbeets.powers.PlayerStatistics;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 public class AirOrbPassiveAction extends AnimatorAction
 {
     private final Air wind;
@@ -28,7 +32,10 @@ public class AirOrbPassiveAction extends AnimatorAction
 
         GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
 
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
+        Collections.reverse(enemies);
+
+        for (AbstractMonster m : enemies)
         {
             int actualDamage = AbstractOrb.applyLockOn(m, wind.passiveAmount);
             if (actualDamage > 0)

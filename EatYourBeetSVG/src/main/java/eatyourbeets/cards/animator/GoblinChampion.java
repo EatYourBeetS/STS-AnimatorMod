@@ -24,14 +24,7 @@ public class GoblinChampion extends AnimatorCard_Status
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (!this.dontTriggerOnUseCard)
-        {
-            if (p.hasRelic(MedicalKit.ID))
-            {
-                this.useMedicalKit(p);
-            }
-        }
-        else
+        if (this.dontTriggerOnUseCard)
         {
             AbstractDungeon.actionManager.addToBottom(new ShuffleRandomGoblinAction(1));
         }

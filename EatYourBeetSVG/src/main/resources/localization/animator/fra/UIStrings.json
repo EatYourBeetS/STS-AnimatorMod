@@ -35,6 +35,14 @@
 			"Youjo Senki"
 		]
 	},
+		
+	"animator:Tips":
+	{
+		"TEXT":
+		[
+			"Même si les trophées et les synergies vous incitent à construire votre deck autour d’une série, il est bon de mélanger différentes séries et même un deck sans synergie pourrait réussir."
+		]
+	},
 	
 	"animator:Actions":
 	{

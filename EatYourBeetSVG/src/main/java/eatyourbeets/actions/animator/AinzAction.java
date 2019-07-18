@@ -36,7 +36,7 @@ public class AinzAction extends AnimatorAction
         {
             currentEffects.clear();
 
-            Random rng = AbstractDungeon.miscRng;
+            Random rng = AbstractDungeon.cardRandomRng;
             for (int i = 0; i < choices ; i++)
             {
                 currentEffects.add(effectList.Retrieve(rng));

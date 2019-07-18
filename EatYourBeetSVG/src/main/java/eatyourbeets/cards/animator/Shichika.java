@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Shichika extends AnimatorCard
 {
@@ -16,9 +16,11 @@ public class Shichika extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 2);
+        Initialize(0, 0, 1, 2);
 
         AddExtendedDescription();
+
+        this.exhaust = true;
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -26,13 +28,10 @@ public class Shichika extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
-        GameActionsHelper.GainBlock(p, block);
+        GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, secondaryValue), secondaryValue);
+        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
 
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new ShichikaKyotouryuu()));
-        }
+        GameActionsHelper.MakeCardInHand(new ShichikaKyotouryuu(), 1, upgraded);
     }
 
     @Override
@@ -40,7 +39,7 @@ public class Shichika extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
+            upgradeSecondaryValue(1);
         }
     }
 }

@@ -15,7 +15,7 @@ public class Tatsumaki extends AnimatorCard
 
     public Tatsumaki()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
         Initialize(0, 0, 2,3);
 

@@ -168,7 +168,7 @@ public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedRei
         if (upgradableCards.Count() > 0)
         {
             upgraded += 1;
-            AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.miscRng);
+            AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
             card1.upgrade();
             AbstractDungeon.player.bottledCardUpgradeCheck(card1);
             AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
@@ -177,7 +177,7 @@ public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedRei
         if (upgradableCards.Count() > 0)
         {
             upgraded += 1;
-            AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.miscRng);
+            AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
             card1.upgrade();
             AbstractDungeon.player.bottledCardUpgradeCheck(card1);
             AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F - AbstractCard.IMG_WIDTH / 2.0F - 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
@@ -258,5 +258,11 @@ public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedRei
 
             event = false;
         }
+    }
+
+    @Override
+    public void OnEquipUnnamedReignRelic()
+    {
+
     }
 }

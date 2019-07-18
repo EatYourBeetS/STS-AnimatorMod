@@ -89,7 +89,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
 
         public CommonMoveset()
         {
-            moveOffset = AbstractDungeon.miscRng.random(100);
+            moveOffset = AbstractDungeon.aiRng.random(100);
         }
 
         public AbstractMove GetNextMove(TheUnnamed_Hat owner)

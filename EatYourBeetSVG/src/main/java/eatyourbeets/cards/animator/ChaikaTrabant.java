@@ -98,7 +98,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         WeightedList<AbstractPower> debuffs = GetRandomDebuffs(p, target);
         for (int i = 0; i < magicNumber; i++)
         {
-            AbstractPower debuff = debuffs.Retrieve(AbstractDungeon.miscRng);
+            AbstractPower debuff = debuffs.Retrieve(AbstractDungeon.cardRandomRng);
             GameActionsHelper.ApplyPower(p, target, debuff, debuff.amount);
         }
     }

@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 
@@ -18,28 +19,37 @@ public class CardLibraryPatches
             AbstractCard card;
             if (key.startsWith("animator_"))
             {
-                card = CardLibrary.getCard(key.replace("animator_", "animator:"));
+                key = key.replace("animator_", "animator:");
+                card = CardLibrary.getCard(key);
+
+                if (card != null)
+                {
+                    card = card.makeCopy();
+                    card.misc = misc;
+
+                    for (int i = 0; i < upgradeTime; ++i)
+                    {
+                        card.upgrade();
+                    }
+
+                    return SpireReturn.Return(card);
+                }
             }
             else
             {
                 card = AnimatorCard_UltraRare.GetCards().get(key);
                 if (card != null)
                 {
-                    card.tags.remove(AbstractEnums.CardTags.UNOBTAINABLE);
+                    card = card.makeCopy();
+                    card.misc = misc;
+
+                    for (int i = 0; i < upgradeTime; ++i)
+                    {
+                        card.upgrade();
+                    }
+
+                    return SpireReturn.Return(card);
                 }
-            }
-
-            if (card != null)
-            {
-                card = card.makeCopy();
-                card.misc = misc;
-
-                for(int i = 0; i < upgradeTime; ++i)
-                {
-                    card.upgrade();
-                }
-
-                return SpireReturn.Return(card);
             }
 
             return SpireReturn.Continue();
@@ -49,19 +59,27 @@ public class CardLibraryPatches
     @SpirePatch(clz = CardLibrary.class, method = "getCard", paramtypez = {String.class})
     public static class CardLibraryPatches_getCard
     {
-        public static boolean allowed = false;
-
         @SpirePrefixPatch
         public static SpireReturn<AbstractCard> Prefix(String key)
         {
-            if (allowed)
+            if (key.startsWith("animator:ur:"))
+            {
+                String series = key.replace("animator:ur:", "").toLowerCase();
+                for (AnimatorCard_UltraRare card : AnimatorCard_UltraRare.GetCards().values())
+                {
+                    if (card.GetSynergy().NAME.toLowerCase().equals(series) && AnimatorCard_UltraRare.IsSeen(card.cardID))
+                    {
+                        return SpireReturn.Return(card.makeCopy());
+                    }
+                }
+            }
+
+            if (AnimatorCard_UltraRare.IsSeen(key))
             {
                 AbstractCard card = AnimatorCard_UltraRare.GetCards().get(key);
                 if (card != null)
                 {
-                    card.tags.remove(AbstractEnums.CardTags.UNOBTAINABLE);
-
-                    return SpireReturn.Return(card);
+                    return SpireReturn.Return(card.makeCopy());
                 }
             }
 

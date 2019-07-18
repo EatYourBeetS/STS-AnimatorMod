@@ -32,14 +32,7 @@ public class GoblinShaman extends AnimatorCard_Status
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (!this.dontTriggerOnUseCard)
-        {
-            if (p.hasRelic(MedicalKit.ID))
-            {
-                this.useMedicalKit(p);
-            }
-        }
-        else
+        if (this.dontTriggerOnUseCard)
         {
             GameActionsHelper.ApplyPower(p, p, new FrailPower(p,1, false),1);
         }

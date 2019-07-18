@@ -14,7 +14,7 @@ public class Strike_Overlord extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(5,0, 2);
+        Initialize(5,0, 3);
     }
 
     @Override

@@ -56,7 +56,7 @@ public class OldCoffin extends AnimatorRelic
 
                 GameActionsHelper.AddToTop(new RelicAboveCreatureAction(m, this));
 
-                int n = AbstractDungeon.miscRng.random(12);
+                int n = AbstractDungeon.cardRandomRng.random(12);
                 if (n < 4)
                 {
                     GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);

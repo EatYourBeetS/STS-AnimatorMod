@@ -17,7 +17,7 @@ public class SilverFang extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(9, 7, 2);
+        Initialize(7, 7, 3);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -41,8 +41,8 @@ public class SilverFang extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
-            upgradeMagicNumber(1);
+            upgradeDamage(2);
+            upgradeBlock(2);
         }
     }
 }

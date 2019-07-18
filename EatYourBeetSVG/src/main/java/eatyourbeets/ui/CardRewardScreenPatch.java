@@ -155,14 +155,11 @@ public class CardRewardScreenPatch
                 {
                     searchingCard = false;
 
-                    int tries = 5;
-                    AbstractCard temp;
-                    do
+                    AbstractCard temp = returnRandomCard();
+                    if (temp == null)
                     {
-                        temp = AbstractDungeon.returnRandomCard();
-                        tries -= 1;
+                        break;
                     }
-                    while (tries > 0 && temp.rarity == AbstractCard.CardRarity.RARE);
 
                     for (AbstractCard c : rewardItem.cards)
                     {
@@ -178,9 +175,14 @@ public class CardRewardScreenPatch
                     }
                 }
 
+                if (replacement == null)
+                {
+                    break;
+                }
+
                 if (replacement.type == AbstractCard.CardType.ATTACK && player.hasRelic(MoltenEgg2.ID) ||
-                   (replacement.type == AbstractCard.CardType.SKILL  && player.hasRelic(ToxicEgg2.ID)) ||
-                   (replacement.type == AbstractCard.CardType.POWER  && player.hasRelic(FrozenEgg2.ID)))
+                        (replacement.type == AbstractCard.CardType.SKILL && player.hasRelic(ToxicEgg2.ID)) ||
+                        (replacement.type == AbstractCard.CardType.POWER && player.hasRelic(FrozenEgg2.ID)))
                 {
                     replacement.upgrade();
                 }
@@ -197,19 +199,6 @@ public class CardRewardScreenPatch
                     banButton.show();
                     buttons.add(banButton);
                 }
-
-
-//                if (rewardItem.cards.size() == 0)
-//                {
-//                    AbstractDungeon.combatRewardScreen.rewards.remove(rewardItem);
-//                    AbstractDungeon.combatRewardScreen.positionRewards();
-//
-//                    if (AbstractDungeon.combatRewardScreen.rewards.isEmpty())
-//                    {
-//                        AbstractDungeon.combatRewardScreen.hasTakenAll = true;
-//                        AbstractDungeon.overlayMenu.proceedButton.show();
-//                    }
-//                }
             }
 
             toRemove = null;
@@ -228,6 +217,29 @@ public class CardRewardScreenPatch
                     break;
                 }
             }
+        }
+    }
+
+
+    public static AbstractCard returnRandomCard()
+    {
+        ArrayList<AbstractCard> list;
+        if (AbstractDungeon.cardRng.randomBoolean(0.4f))
+        {
+            list = AbstractDungeon.srcUncommonCardPool.group;
+        }
+        else
+        {
+            list = AbstractDungeon.srcCommonCardPool.group;
+        }
+
+        if (list != null && list.size() > 0)
+        {
+            return list.get(AbstractDungeon.cardRng.random(list.size() - 1));
+        }
+        else
+        {
+            return null;
         }
     }
 }

@@ -52,6 +52,8 @@ public class Move_Fading extends AbstractMove
             target.powers.add(fading);
         }
 
+        fadingTurns = Math.max(1, fadingTurns / 2);
+
         fading.flash();
         if (owner instanceof TheUnnamed)
         {

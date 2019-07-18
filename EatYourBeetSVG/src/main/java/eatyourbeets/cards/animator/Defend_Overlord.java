@@ -13,7 +13,7 @@ public class Defend_Overlord extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 4, 2);
+        Initialize(0, 5, 1);
     }
 
     @Override

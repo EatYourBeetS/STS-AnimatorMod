@@ -35,7 +35,7 @@
 	},
 	"animator:Aisha":
 	{
-		"DESCRIPTION": "Spellcaster. Deal !D! damage for each Orb you have. Boost !SV!: NL Gain 1 Orb Slot.",
+		"DESCRIPTION": "Spellcaster. Deal !D! damage for each Orb you have. Boost !SV! : Gain 1 Orb Slot.",
 		"NAME": "Aisha"
 	},
 	"animator:Albedo":
@@ -199,7 +199,7 @@
 	},
 	"animator:Defend_Fate":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Gain !M! extra Block for each enemy.",
+		"DESCRIPTION": "Gain !B! Block. NL Gain !M! additional Block for each enemy.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_FullmetalAlchemist":
@@ -349,7 +349,7 @@
 	},
 	"animator:EntouJyuu":
 	{
-		"DESCRIPTION": "Twice per turn, after you play an [#EFC851]Attack, increase its damage by !M! this combat and draw 1 card.",
+		"DESCRIPTION": "Twice per turn, after you play an [#EFC851]Attack, draw 1 card and apply !M! Burning to ALL enemies.",
 		"NAME": "Entou Jyuu"
 	},
 	"animator:Envy":
@@ -398,8 +398,9 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Apply !M! Burning. NL Synergy: Energy is conserved this turn.",
-		"NAME": "Genos"
+		"DESCRIPTION": "Deal !D! Damage. NL Apply !M! Burning. NL Add 1 [#EFC851]Overheat[] to your hand.",
+		"NAME": "Genos",
+		"EXTENDED_DESCRIPTION": ["Overheat", "0-Cost #yStatus that damages the player and draws cards."]
 	},
 	"animator:Geryuganshoop":
 	{
@@ -463,7 +464,7 @@
 	},
 	"animator:GuildGirl":
 	{
-		"DESCRIPTION": "At the start of each turn, Cycle 1 card. NL When a non-minion enemy dies, gain !M! [#EFC851]Gold.",
+		"DESCRIPTION": "At the start of each turn, Cycle 1 card. NL When a non-minion NL enemy dies, gain NL !M! [#EFC851]Gold.",
 		"NAME": "'Guild Girl'"
 	},
 	"animator:Guren":
@@ -552,7 +553,7 @@
 	},
 	"animator:Jibril":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Draw 1 card for each unique Orb you have. NL Synergy: Deal !M! additional damage.",
+		"DESCRIPTION": "Deal !D! damage. NL Draw 1 card and deal !M! additional damage for each unique Orb you have.",
 		"NAME": "Jibril"
 	},
 	"animator:Kaijin":
@@ -750,6 +751,11 @@
 		"DESCRIPTION": "Channel !SV! Plasma. NL On your second Synergy each turn, gain !M! Temp._HP.",
 		"NAME": "Plasma Core"
 	},
+	"animator:Overheat":
+	{
+		"DESCRIPTION": "Draw 2 cards. NL Take !M! damage. NL ALL copies of this NL card gain 1 damage NL this combat.",
+		"NAME": "Overheat"
+	},
 	"animator:PandorasActor":
 	{
 		"DESCRIPTION": "Shapeshifter. NL Gain !B! Block. NL Synergy: Gain !M! additional Block.",
@@ -842,7 +848,7 @@
 	},
 	"animator:Sebas":
 	{
-		"DESCRIPTION": "Gain !B! Block. Gain additional Block equal to the total cost of cards in your hand.",
+		"DESCRIPTION": "Gain !B! Block. NL Gain Temp._HP equal NL to the total cost NL of cards in your NL hand ( !SV! ). Exhaust.",
 		"NAME": "Sebas"
 	},
 	"animator:SeriousSaitama":
@@ -859,13 +865,14 @@
 	},
 	"animator:Shichika":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Gain 1 Strength. NL Synergy: NL Add [#EFC851]Kyotouryuu[] to your hand.",
+		"DESCRIPTION": "Gain !SV! Thorns. NL Gain !M! Strength. NL Add [#EFC851]Kyotouryuu[] to your hand. Exhaust.",
 		"EXTENDED_DESCRIPTION": ["Kyotouryuu", "A special 1-cost #yAttack that hits multiple times and #yExhausts."],
-		"NAME": "Shichika"
+		"NAME": "Shichika",
+		"UPGRADE_DESCRIPTION": "Gain !SV! Thorns. NL Gain !M! Strength. NL Add [#EFC851]Kyotouryuu+[] to your hand. Exhaust."
 	},
 	"animator:ShichikaKyotouryuu":
 	{
-		"DESCRIPTION": "Deal !D! damage 4 times. If you have 3 or more Dexterity, draw 1 card and gain [E]. Ethereal. Exhaust.",
+		"DESCRIPTION": "Deal !D! damage !M! times. If you have 3 or more Dexterity, draw 1 card and gain [E]. Exhaust.",
 		"NAME": "Kyotouryuu"
 	},
 	"animator:Shigure":
@@ -875,7 +882,7 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL Upgrade all cards in your hand and double their damage for the rest of this combat.",
+		"DESCRIPTION": "Upgrade ALL cards for the rest of this combat. Strength affects ALL cards !M! times.",
 		"NAME": "Shikizaki Kiki"
 	},
 	"animator:Shimakaze":
@@ -900,8 +907,9 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "Draw 1 card. Increase this card's Block by !M! this combat. [#EFC851]Drawn: Gain !B! Block twice.",
-		"NAME": "Shuna"
+		"DESCRIPTION": "Draw !M! card. NL Gain !B! Block. NL [#EFC851]Drawn: NL Gain !B! Block.",
+		"NAME": "Shuna",
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Gain !B! Block. NL [#EFC851]Drawn: NL Gain !B! Block."
 	},
 	"animator:SilverFang":
 	{
@@ -921,8 +929,9 @@
 	},
 	"animator:Sonic":
 	{
-		"DESCRIPTION": "Martial_Artist. Deal !D! Piercing damage. Synergy: Add 1 Throwing-Knife to your hand.",
-		"NAME": "Sonic"
+		"DESCRIPTION": "At the start of each turn, add 1 Throwing-Knife to your hand.",
+		"NAME": "Sonic",
+		"UPGRADE_DESCRIPTION": "Gain !M! Dexterity. NL At the start of each turn, add 1 Throwing-Knife to your hand."
 	},
 	"animator:Sora":
 	{

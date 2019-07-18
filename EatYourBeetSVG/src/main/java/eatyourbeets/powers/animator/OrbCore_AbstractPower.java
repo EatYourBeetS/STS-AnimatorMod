@@ -124,7 +124,7 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
             cores.addAll(cores2.GetInnerList());
         }
 
-        Random rng = AbstractDungeon.miscRng;
+        Random rng = AbstractDungeon.cardRandomRng;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
 
         if (anyCost)

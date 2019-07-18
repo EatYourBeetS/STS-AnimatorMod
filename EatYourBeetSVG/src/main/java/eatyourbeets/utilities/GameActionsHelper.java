@@ -298,6 +298,18 @@ public class GameActionsHelper
         return action;
     }
 
+    public static MakeTempCardInDrawPileAction MakeCardInDrawPile(AbstractCard card, int amount, boolean upgraded)
+    {
+        if (upgraded)
+        {
+            card.upgrade();
+        }
+
+        MakeTempCardInDrawPileAction action = new MakeTempCardInDrawPileAction(card, amount, true, true);
+        AddToDefault(action);
+        return action;
+    }
+
     public static MakeTempCardInDiscardAction MakeCardInDiscardPile(AbstractCard card, int amount, boolean upgraded)
     {
         if (upgraded)

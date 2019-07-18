@@ -96,8 +96,8 @@ public class UltimateCubePower extends AnimatorPower
         int damageStep = EXPLOSION_DAMAGE / 20;
         for (int i = 0; i < 20; i++)
         {
-            float x = owner.hb.cX + AbstractDungeon.miscRng.random(-40, 40);
-            float y = owner.hb.cY + AbstractDungeon.miscRng.random(-40, 40);
+            float x = owner.hb.cX + AbstractDungeon.cardRandomRng.random(-40, 40);
+            float y = owner.hb.cY + AbstractDungeon.cardRandomRng.random(-40, 40);
             GameActionsHelper.AddToBottom(new WaitAction(0.3f));
             GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(x, y), 0F));
             GameActionsHelper.DamageTarget(owner, p, damageStep, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
@@ -123,11 +123,11 @@ public class UltimateCubePower extends AnimatorPower
 
         if (buffSwitch = !buffSwitch)
         {
-            buffs2.Retrieve(AbstractDungeon.miscRng).accept(c);
+            buffs2.Retrieve(AbstractDungeon.cardRandomRng).accept(c);
         }
         else
         {
-            buffs1.Retrieve(AbstractDungeon.miscRng).accept(c);
+            buffs1.Retrieve(AbstractDungeon.cardRandomRng).accept(c);
         }
     }
 

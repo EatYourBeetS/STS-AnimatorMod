@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.animator.SonicPower;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Sonic extends AnimatorCard
 {
@@ -14,28 +14,22 @@ public class Sonic extends AnimatorCard
 
     public Sonic()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(3, 0, 1);
+        Initialize(0, 0, 0);
 
         SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetDexterity(player));
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-
-        if (HasActiveSynergy())
+        if (upgraded)
         {
-            GameActionsHelper.MakeCardInHand(ThrowingKnife.GetRandomCard(), 1, false);
+            GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, magicNumber), magicNumber);
         }
+
+        GameActionsHelper.ApplyPower(p, p, new SonicPower(p, 1), 1);
     }
 
     @Override
@@ -43,7 +37,7 @@ public class Sonic extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeMagicNumber(1);
         }
     }
 }

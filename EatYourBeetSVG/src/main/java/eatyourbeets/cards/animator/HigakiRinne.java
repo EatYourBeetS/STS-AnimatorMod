@@ -68,7 +68,7 @@ public class HigakiRinne extends AnimatorCard
             ChangeForm(CardType.SKILL);
         }
 
-        int n = AbstractDungeon.miscRng.random(100);
+        int n = AbstractDungeon.cardRandomRng.random(100);
         if (n < 3)
         {
             AbstractDungeon.actionManager.addToBottom(new WaitAction(0.6f));
@@ -104,7 +104,7 @@ public class HigakiRinne extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        int n = AbstractDungeon.miscRng.random(100);
+        int n = AbstractDungeon.cardRandomRng.random(100);
         if (n < 20)
         {
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Shiv()));
@@ -156,7 +156,7 @@ public class HigakiRinne extends AnimatorCard
 
     private void AttackAction(AbstractPlayer p, AbstractMonster m)
     {
-        Random rng = AbstractDungeon.miscRng;
+        Random rng = AbstractDungeon.cardRandomRng;
 
         int n = rng.random(15);
         if (n < 5)

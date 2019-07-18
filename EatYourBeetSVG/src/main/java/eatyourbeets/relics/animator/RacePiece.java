@@ -173,7 +173,7 @@ public class RacePiece extends AnimatorRelic
             float displayCount = 0.0F;
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
             {
-                AbstractCard reward = rewards.Retrieve(AbstractDungeon.miscRng, false);
+                AbstractCard reward = rewards.Retrieve(AbstractDungeon.cardRandomRng, false);
                 if (reward != null)
                 {
                     reward = reward.makeCopy();

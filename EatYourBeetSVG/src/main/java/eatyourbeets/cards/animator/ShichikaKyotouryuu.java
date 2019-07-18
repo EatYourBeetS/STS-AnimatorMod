@@ -20,10 +20,10 @@ public class ShichikaKyotouryuu extends AnimatorCard implements Hidden
     {
         super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        Initialize(1, 0);
+        Initialize(1, 0, 3);
 
         this.exhaust = true;
-        this.isEthereal = true;
+        //this.isEthereal = true;
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -35,7 +35,12 @@ public class ShichikaKyotouryuu extends AnimatorCard implements Hidden
 
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+
+        if (upgraded)
+        {
+            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        }
+
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
         GameActionsHelper.AddToBottom(new VFXAction(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F));
@@ -52,7 +57,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements Hidden
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
+            upgradeMagicNumber(1);
         }
     }
 }

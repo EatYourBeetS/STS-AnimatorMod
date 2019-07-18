@@ -77,17 +77,20 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
             m = PlayerStatistics.GetRandomEnemy(true);
         }
 
-        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+        if (m != null)
         {
-            AddSecondaryEffect(p, m);
-
-            GameActionsHelper.AddToDefault(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), true));
-            if (m.hb != null)
+            GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
             {
-                GameActionsHelper.AddToDefault(new VFXAction(new ThrowDaggerEffect(m.hb.cX, m.hb.cY)));
+                AddSecondaryEffect(p, m);
+
+                GameActionsHelper.AddToDefault(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), true));
+                if (m.hb != null)
+                {
+                    GameActionsHelper.AddToDefault(new VFXAction(new ThrowDaggerEffect(m.hb.cX, m.hb.cY)));
+                }
             }
+            GameActionsHelper.ResetOrder();
         }
-        GameActionsHelper.ResetOrder();
 
         GameActionsHelper.PurgeCard(this);
     }

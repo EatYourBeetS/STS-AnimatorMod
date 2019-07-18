@@ -41,14 +41,7 @@ public class AnimatorMetrics
         config.setString(TROPHY_DATA_KEY, toSave);
         if (flush)
         {
-            try
-            {
-                config.save();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+            SaveConfig();
         }
 
         if (AbstractDungeon.player != null)
@@ -72,6 +65,18 @@ public class AnimatorMetrics
             {
                 prefs.flush();
             }
+        }
+    }
+
+    public static void SaveConfig()
+    {
+        try
+        {
+            config.save();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -99,6 +104,11 @@ public class AnimatorMetrics
         SetupTrophies(data);
     }
 
+    public static SpireConfig GetConfig()
+    {
+        return config;
+    }
+
     private static void SetupTrophies(String data)
     {
         if (data != null && data.length() > 0)
@@ -120,6 +130,8 @@ public class AnimatorMetrics
 
                     Utilities.Logger.warn("Could not Parse player prefs, " + e.getMessage());
                 }
+
+                AnimatorCharacterSelect.SetLoadout(lastLoadout);
             }
 
             for (int i = 1; i < items.length; i++)

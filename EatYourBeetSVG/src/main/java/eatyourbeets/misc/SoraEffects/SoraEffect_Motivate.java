@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.RandomCostReductionAction;
 
-public class SoraEffect_ReduceRandomCost extends SoraEffect
+public class SoraEffect_Motivate extends SoraEffect
 {
-    public SoraEffect_ReduceRandomCost(int descriptionIndex, int nameIndex)
+    public SoraEffect_Motivate(int descriptionIndex, int nameIndex)
     {
         super(descriptionIndex,nameIndex);
         sora.baseMagicNumber = sora.magicNumber = 1;
@@ -15,7 +15,8 @@ public class SoraEffect_ReduceRandomCost extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper.AddToBottom(new RandomCostReductionAction(sora.magicNumber, false));
-        GameActionsHelper.AddToBottom(new RandomCostReductionAction(sora.magicNumber, false));
+        GameActionsHelper.Motivate(1, 1);
+//        GameActionsHelper.AddToBottom(new RandomCostReductionAction(sora.magicNumber, false));
+//        GameActionsHelper.AddToBottom(new RandomCostReductionAction(sora.magicNumber, false));
     }
 }

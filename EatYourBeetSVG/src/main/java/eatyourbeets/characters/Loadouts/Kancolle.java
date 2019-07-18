@@ -100,7 +100,7 @@ public class Kancolle extends AnimatorCustomLoadout
         }
 
         PurgingStone_Cards p = PurgingStone_Cards.GetInstance();
-        if (uniqueSynergies >= 10 && p != null && p.GetBannedCount() == 0)
+        if (uniqueSynergies >= 10 && (p == null || p.GetBannedCount() == 0))
         {
             trophies.trophy3 = Math.max(trophies.trophy3, ascensionLevel);
         }

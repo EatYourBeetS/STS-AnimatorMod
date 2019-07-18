@@ -58,4 +58,10 @@ public class CursedGlyph extends AnimatorRelic implements AllowedUnnamedReignRel
 
         AbstractDungeon.player.decreaseMaxHealth(LOSE_MAX_HP);
     }
+
+    @Override
+    public void OnEquipUnnamedReignRelic()
+    {
+        AbstractDungeon.player.decreaseMaxHealth(LOSE_MAX_HP);
+    }
 }

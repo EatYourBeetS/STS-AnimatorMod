@@ -2,28 +2,26 @@ package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class EntouJyuuPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(EntouJyuuPower.class.getSimpleName());
 
-    private static final int baseAmount = 2;
+    private int stacks;
 
-    private int damageBonus;
-
-    public EntouJyuuPower(AbstractCreature owner, int damageBonus)
+    public EntouJyuuPower(AbstractCreature owner, int stacks)
     {
         super(owner, POWER_ID);
 
-        this.amount = baseAmount;
-        this.damageBonus = damageBonus;
+        this.amount = stacks;
+        this.stacks = stacks;
 
         updateDescription();
     }
@@ -33,7 +31,7 @@ public class EntouJyuuPower extends AnimatorPower
     {
         String[] desc = powerStrings.DESCRIPTIONS;
 
-        this.description = desc[0] + amount + desc[1] + damageBonus + desc[2];
+        this.description = desc[0] + amount + desc[1];
     }
 
     @Override
@@ -53,17 +51,15 @@ public class EntouJyuuPower extends AnimatorPower
     public void atStartOfTurn()
     {
         super.atStartOfTurn();
-
-        this.amount = baseAmount;
-
+        this.amount = stacks;
         updateDescription();
     }
 
     @Override
     public void stackPower(int stackAmount)
     {
-        this.damageBonus += stackAmount;
-        this.fontScale = 8.0F;
+        this.stacks += stackAmount;
+        super.stackPower(stackAmount);
     }
 
     @Override
@@ -73,8 +69,12 @@ public class EntouJyuuPower extends AnimatorPower
         {
             if (card.type == AbstractCard.CardType.ATTACK)
             {
-                GameActionsHelper.AddToBottom(new ModifyDamageAction(card.uuid, this.damageBonus));
-                GameActionsHelper.DrawCard(AbstractDungeon.player, 1);
+                //GameActionsHelper.AddToBottom(new ModifyDamageAction(card.uuid, this.damageBonus));
+                GameActionsHelper.DrawCard(owner, 1);
+                for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+                {
+                    GameActionsHelper.ApplyPower(owner, m1, new BurningPower(m1, owner, 1), 1);
+                }
 
                 this.flash();
 

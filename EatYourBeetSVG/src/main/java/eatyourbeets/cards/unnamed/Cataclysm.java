@@ -47,12 +47,12 @@ public class Cataclysm extends UnnamedCard
             RandomizedList<AbstractMonster> enemies = new RandomizedList<>(characters);
             while (enemies.Count() > 0)
             {
-                AbstractMonster c = enemies.Retrieve(AbstractDungeon.miscRng);
+                AbstractMonster c = enemies.Retrieve(AbstractDungeon.cardRandomRng);
                 //ImpactEffect(c);
                 float width = c.hb.width / 2f;
                 float height = c.hb.height / 2f;
-                float x = c.hb.cX + AbstractDungeon.miscRng.random(-width, width);
-                float y = c.hb.cY + AbstractDungeon.miscRng.random(-height, height);
+                float x = c.hb.cX + AbstractDungeon.cardRandomRng.random(-width, width);
+                float y = c.hb.cY + AbstractDungeon.cardRandomRng.random(-height, height);
 
                 GameActionsHelper.VFX(new CataclysmEffect(x, y));
                 GameActionsHelper.DamageTarget(p, c, this, AbstractGameAction.AttackEffect.NONE, true);

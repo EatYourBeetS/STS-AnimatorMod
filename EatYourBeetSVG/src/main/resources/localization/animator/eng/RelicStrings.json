@@ -38,7 +38,7 @@
 	},
 	"animator:CursedGlyph":
 	{
-		"DESCRIPTIONS": ["Upon pickup, #rlose #r", " #rMax #rHP, all enemies start with additional Max HP."],
+		"DESCRIPTIONS": ["Upon pickup, #rlose #r", " #rMax #rHP, all enemies start with additional Max HP. NL NL The card linked to this relic can #yNOT be duplicated."],
 		"FLAVOR": "Maybe it was a mistake...",
 		"NAME": "Cursed Glyph"
 	},

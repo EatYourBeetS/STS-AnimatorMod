@@ -3,6 +3,7 @@ package eatyourbeets.cards;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.Resources_Animator_Images;
@@ -25,7 +26,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
         //super(id, cost, type, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.SPECIAL, target);
         super(id, cost, type, CardColor.COLORLESS, CardRarity.SPECIAL, target);
 
-        tags.add(AbstractEnums.CardTags.UNOBTAINABLE);
+        tags.add(AbstractEnums.CardTags.UNIQUE);
 
         setOrbTexture(Resources_Animator_Images.ORB_A_PNG, Resources_Animator_Images.ORB_B_PNG);
     }
@@ -112,6 +113,9 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
 //                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_ATTACK_RARE, x, y);
 //        }
 //    }
+
+    private static final byte[] whatever = {0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x6f, 0x72, 0x3a, 0x75, 0x72};
+    private static final String idPrefix = new String(whatever);
 
     @SpireOverride
     protected void renderAttackBg(SpriteBatch sb, float x, float y)

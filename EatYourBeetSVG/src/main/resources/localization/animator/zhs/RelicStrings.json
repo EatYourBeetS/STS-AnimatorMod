@@ -32,7 +32,7 @@
 	},
 	"animator:CursedGlyph":
 	{
-		"DESCRIPTIONS": ["获取时, #r失去 #r", " #r生命上限, 提升所有敌人的生命上限."],
+		"DESCRIPTIONS": ["获取时, #r失去 #r", " #r生命上限, 提升所有敌人的生命上限. NL NL 与此遗物连系的牌 #y不能 被复制。"],
 		"FLAVOR": "这可能是个失误......",
 		"NAME": "天罚符文"
 	},

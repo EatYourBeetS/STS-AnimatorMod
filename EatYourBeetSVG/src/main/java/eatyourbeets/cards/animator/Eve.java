@@ -34,7 +34,7 @@ public class Eve extends AnimatorCard
     {
         GameActionsHelper.ApplyPower(p, p, new EvePower(p, this.magicNumber, 1), 1);
 
-        Random rng = AbstractDungeon.miscRng;
+        Random rng = AbstractDungeon.cardRandomRng;
         RandomizedList<AbstractCard> cores = new RandomizedList<>(OrbCore_AbstractPower.GetAllCores());
 
         CardGroup group1 = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);

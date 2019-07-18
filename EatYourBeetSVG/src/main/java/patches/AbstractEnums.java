@@ -56,8 +56,8 @@ public class AbstractEnums
         //@SpireEnum
         //public static AbstractCard.CardTags SHAPESHIFTER;
 
-        @SpireEnum
-        public static AbstractCard.CardTags UNOBTAINABLE;
+        //@SpireEnum
+        //public static AbstractCard.CardTags UNOBTAINABLE;
 
         @SpireEnum
         public static AbstractCard.CardTags UNIQUE;

@@ -19,7 +19,7 @@ public class Elsword extends AnimatorCard_Cooldown
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,0);
+        Initialize(9,0);
 
         SetSynergy(Synergies.Elsword);
     }

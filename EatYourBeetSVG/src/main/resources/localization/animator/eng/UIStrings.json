@@ -37,6 +37,14 @@
 		]
 	},
 
+	"animator:Tips":
+	{
+		"TEXT":
+		[
+			"Even though trophies and Synergies encourage you to build a deck around a single series, it is perfectly fine to mix different series, and even decks with no synergy at all can be successful."
+		]
+	},
+
 	"animator:Actions":
 	{
 		"TEXT":
@@ -74,14 +82,14 @@
 			"Attack",
 			"Defend",
 			"Prepare",
-			"Upgrade All the cards in your hand.",
+			"Upgrade all cards in your hand.",
 			"Deal !D! damage to a random enemy !M! times.",
 			"Deal !D! damage to ALL enemies.",
 			"Gain !B! Block.",
 			"Gain !M! Strength.",
 			"Gain !M! Dexterity.",
 			"Gain !M! Thorns.",
-			"Reduce the cost of 2 random cards in your hand by !M! this turn.",
+			"Motivate !M!.",
 			"Apply !M! Weak to ALL enemies.",
 			"Apply !M! Vulnerable to ALL enemies.",
 			"Cycle !M! cards",

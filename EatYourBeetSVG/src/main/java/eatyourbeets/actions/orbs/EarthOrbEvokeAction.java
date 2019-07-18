@@ -87,7 +87,7 @@ public class EarthOrbEvokeAction extends AnimatorAction
                 //CardCrawlGame.sound.play("ATTACK_HEAVY", AbstractDungeon.miscRng.random(0.1f, 0.3f));
 
                 AttackEffect effect;
-                switch (AbstractDungeon.miscRng.random(2))
+                switch (AbstractDungeon.cardRandomRng.random(2))
                 {
                     case 0:
                         effect = AttackEffect.SMASH;

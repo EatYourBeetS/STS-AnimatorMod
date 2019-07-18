@@ -41,7 +41,7 @@ public class AishaAction extends AnimatorAction
                 {
                     if (randomSkills.Count() > 0)
                     {
-                        group.addToTop(randomSkills.Retrieve(AbstractDungeon.miscRng));
+                        group.addToTop(randomSkills.Retrieve(AbstractDungeon.cardRandomRng));
                     }
                 }
 

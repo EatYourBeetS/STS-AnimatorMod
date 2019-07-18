@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.defect.CompileDriverAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -16,7 +17,7 @@ public class Jibril extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(7,0, 4);
+        Initialize(6,0, 2);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -24,14 +25,7 @@ public class Jibril extends AnimatorCard
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        if (HasActiveSynergy())
-        {
-            return super.calculateModifiedCardDamage(player, mo, tmp + magicNumber);
-        }
-        else
-        {
-            return super.calculateModifiedCardDamage(player, mo, tmp);
-        }
+        return super.calculateModifiedCardDamage(player, mo, tmp + (PlayerStatistics.GetUniqueOrbsCount() * magicNumber));
     }
 
     @Override
@@ -46,7 +40,8 @@ public class Jibril extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(2);
+            upgradeMagicNumber(1);
         }
     }
 }

@@ -116,6 +116,20 @@ public class AnimatorCharacterSelect
         customLoadouts.add(loadout);
     }
 
+    public static void SetLoadout(int loadout)
+    {
+        Utilities.Logger.info("Last Layout: " + loadout);
+        for (int i = 0; i < customLoadouts.size(); i++)
+        {
+            Utilities.Logger.info(customLoadouts.get(i).Name + " (" + customLoadouts.get(i).ID + ")");
+            if (loadout == customLoadouts.get(i).ID)
+            {
+                index = i;
+                break;
+            }
+        }
+    }
+
     static
     {
 //        String recommended = uiText[5];
@@ -140,20 +154,5 @@ public class AnimatorCharacterSelect
         AddLoadout(new Kancolle()           , 4, "");
         AddLoadout(new AccelWorld()         , 4, "");
         AddLoadout(new Random()             , 0, "");
-
-        int synergyID = AnimatorMetrics.lastLoadout;
-
-        Utilities.Logger.info("Last Layout: " + synergyID);
-
-        //noinspection ConstantConditions
-        for (int i = 0; i < customLoadouts.size(); i++)
-        {
-            Utilities.Logger.info(customLoadouts.get(i).Name + " (" + customLoadouts.get(i).ID + ")");
-            if (synergyID == customLoadouts.get(i).ID)
-            {
-                index = i;
-                break;
-            }
-        }
     }
 }

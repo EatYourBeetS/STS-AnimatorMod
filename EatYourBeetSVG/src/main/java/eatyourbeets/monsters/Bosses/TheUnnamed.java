@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -20,13 +19,11 @@ import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
-import eatyourbeets.actions.animator.EndPlayerTurnAction;
-import eatyourbeets.actions.animator.KillCharacterAction;
 import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
-import eatyourbeets.monsters.SharedMoveset.Move_Poison;
+import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.Move_ScalingPoison;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.InfinitePower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
@@ -40,8 +37,7 @@ public class TheUnnamed extends AnimatorMonster
     public static final String NAME = "The Unnamed";
 
     private final Move_Fading moveFading;
-    private final Move_Poison movePoison;
-    private int stunCounter = 0;
+    private final Move_ScalingPoison movePoison;
 
     private final InfinitePower infinitePower;
 
@@ -56,26 +52,33 @@ public class TheUnnamed extends AnimatorMonster
 
         data.SetIdleAnimation(this, 1);
 
-        moveFading = (Move_Fading)
-                moveset.AddSpecial(new Move_Fading(5));
-
-        movePoison = (Move_Poison)
-                moveset.AddSpecial(new Move_Poison(3));
-
-        moveset.AddSpecial(new Move_SummonDoll());
-
+        int poisonScaling;
+        int singleAttackDamage;
+        int multiAttackDamage;
         if (PlayerStatistics.GetAscensionLevel() >= 4)
         {
-            moveset.AddNormal(new Move_Taunt());
-            moveset.AddNormal(new Move_SingleAttack(25));
-            moveset.AddNormal(new Move_MultiAttack(8, 3));
+            poisonScaling = 4;
+            singleAttackDamage = 26;
+            multiAttackDamage = 8;
         }
         else
         {
-            moveset.AddNormal(new Move_Taunt());
-            moveset.AddNormal(new Move_SingleAttack(20));
-            moveset.AddNormal(new Move_MultiAttack(7, 3));
+            poisonScaling = 3;
+            singleAttackDamage = 20;
+            multiAttackDamage = 7;
         }
+
+        moveFading = (Move_Fading)
+                moveset.AddSpecial(new Move_Fading(4));
+
+        movePoison = (Move_ScalingPoison)
+                moveset.AddSpecial(new Move_ScalingPoison(1, poisonScaling));
+
+        moveset.AddSpecial(new Move_SummonDoll());
+
+        moveset.AddNormal(new Move_Taunt());
+        moveset.AddNormal(new Move_SingleAttack(singleAttackDamage));
+        moveset.AddNormal(new Move_MultiAttack(multiAttackDamage, 3));
 
         infinitePower = new InfinitePower(this);
     }
@@ -146,35 +149,7 @@ public class TheUnnamed extends AnimatorMonster
 
         if (intent == Intent.STUN || intent == Intent.SLEEP)
         {
-            if (stunCounter <= 0)
-            {
-                GameActionsHelper.AddToTop(new TalkAction(this, data.strings.DIALOG[23], 4, 4));
-                stunCounter = 1;
-            }
-            else if (stunCounter == 1)
-            {
-                GameActionsHelper.AddToTop(new TalkAction(this, data.strings.DIALOG[24], 4, 4));
-                stunCounter = 2;
-            }
-            else if (stunCounter == 2)
-            {
-                GameActionsHelper.AddToTop(new EndPlayerTurnAction());
-                GameActionsHelper.AddToTop(new TalkAction(this, data.strings.DIALOG[25], 4, 4));
-
-                stunCounter = 3;
-            }
-            else if (stunCounter == 3)
-            {
-                GameActionsHelper.AddToTop(new EndPlayerTurnAction());
-                GameActionsHelper.AddToTop(new TalkAction(this, data.strings.DIALOG[26], 3, 3));
-
-                stunCounter = 4;
-            }
-            else
-            {
-                GameActionsHelper.AddToTop(new KillCharacterAction(this, AbstractDungeon.player));
-                GameActionsHelper.AddToTop(new TalkAction(this, data.strings.DIALOG[27], 3, 3));
-            }
+            infinitePower.onSleepOrStun();
         }
     }
 
@@ -188,10 +163,6 @@ public class TheUnnamed extends AnimatorMonster
 
         if (phase2 && moveFading.CanUse(previousMove))
         {
-            if (moveFading.fadingTurns > 2)
-            {
-                moveFading.fadingTurns -= 1;
-            }
             moveFading.SetMove();
 
             return;
@@ -206,15 +177,6 @@ public class TheUnnamed extends AnimatorMonster
 
         if (moveset.GetMove(previousMove) instanceof Move_Taunt)
         {
-            if (movePoison.poisonAmount > 6)
-            {
-                movePoison.poisonAmount += 2;
-            }
-            else
-            {
-                movePoison.poisonAmount += 1;
-            }
-
             movePoison.SetMove();
 
             return;
@@ -271,14 +233,14 @@ public class TheUnnamed extends AnimatorMonster
         {
             int minions = RemoveMinions();
             int regen = (minions >= 1) ? 110 : 80;
-            int plated = (minions >= 2) ? 22 : 16;
-            int angry = (minions >= 3) ? 6 : 5;
+            int plated = (minions >= 2) ? 24 : 18;
+            int angry = (minions >= 3) ? 6 : 4;
 
             GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[0], 3, 3));
             GameActionsHelper.ApplyPower(this, this, new RegenPower(this, regen), regen);
             GameActionsHelper.ApplyPower(this, this, new AngryPower(this, angry), angry);
             GameActionsHelper.ApplyPower(this, this, new PlatedArmorPower(this, plated), plated);
-            GameActionsHelper.ApplyPower(this, this, new EarthenThornsPower(this, 3), 3);
+            GameActionsHelper.ApplyPower(this, this, new EarthenThornsPower(this, 6), 6);
 
 //            moveFading.SetMove();
 //            this.createIntent();

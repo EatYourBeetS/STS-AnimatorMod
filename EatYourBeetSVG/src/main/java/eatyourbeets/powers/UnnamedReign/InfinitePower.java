@@ -14,7 +14,10 @@ import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
+import eatyourbeets.actions.animator.EndPlayerTurnAction;
+import eatyourbeets.actions.animator.KillCharacterAction;
 import eatyourbeets.blights.CustomTimeMaze;
+import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.actions.common.WaitRealtimeAction;
@@ -26,10 +29,11 @@ import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.utilities.Utilities;
 
 import java.util.ArrayList;
 
-public class InfinitePower extends AnimatorPower implements OnBattleStartSubscriber, OnApplyPowerSubscriber
+public class InfinitePower extends AnimatorPower implements OnBattleStartSubscriber, OnApplyPowerSubscriber, OnStartOfTurnPostDrawSubscriber
 {
     public static final String POWER_ID = CreateFullID(InfinitePower.class.getSimpleName());
 
@@ -38,6 +42,9 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     private final EnchantedArmorPower enchantedArmorPower;
     private final CustomTimeMaze timeMaze;
     private final int maxCardsPerTurn;
+
+    private boolean progressStunCounter = true;
+    private int stunCounter = 0;
 
     public InfinitePower(TheUnnamed owner)
     {
@@ -146,6 +153,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     {
         PlayerStatistics.onBattleStart.Subscribe(this);
         PlayerStatistics.onApplyPower.Subscribe(this);
+        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
@@ -240,7 +248,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         {
             AbstractPlayer p = AbstractDungeon.player;
             HigakiRinne rinne = (HigakiRinne) state;
-            Random rng = AbstractDungeon.miscRng;
+            Random rng = AbstractDungeon.cardRandomRng;
             RandomizedList<AbstractCreature> characters = new RandomizedList<>(PlayerStatistics.GetAllCharacters(true));
             RandomizedList<AbstractMonster> enemies = new RandomizedList<>(PlayerStatistics.GetCurrentEnemies(true));
 
@@ -278,6 +286,54 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
             GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[line], duration, duration));
 
             linesUsed.add(line);
+        }
+    }
+
+    @Override
+    public void OnStartOfTurnPostDraw()
+    {
+        progressStunCounter = true;
+    }
+
+    public void onSleepOrStun()
+    {
+        if (progressStunCounter)
+        {
+            progressStunCounter = false;
+        }
+        else
+        {
+            return;
+        }
+
+        if (stunCounter <= 0)
+        {
+            GameActionsHelper.AddToTop(new TalkAction(owner, dialog[23], 4, 4));
+            stunCounter = 1;
+        }
+        else if (stunCounter == 1)
+        {
+            GameActionsHelper.AddToTop(new TalkAction(owner, dialog[24], 4, 4));
+            stunCounter = 2;
+        }
+        else if (stunCounter == 2)
+        {
+            GameActionsHelper.AddToTop(new EndPlayerTurnAction());
+            GameActionsHelper.AddToTop(new TalkAction(owner, dialog[25], 4, 4));
+
+            stunCounter = 3;
+        }
+        else if (stunCounter == 3)
+        {
+            GameActionsHelper.AddToTop(new EndPlayerTurnAction());
+            GameActionsHelper.AddToTop(new TalkAction(owner, dialog[26], 3, 3));
+
+            stunCounter = 4;
+        }
+        else
+        {
+            GameActionsHelper.AddToTop(new KillCharacterAction(owner, AbstractDungeon.player));
+            GameActionsHelper.AddToTop(new TalkAction(owner, dialog[27], 3, 3));
         }
     }
 }

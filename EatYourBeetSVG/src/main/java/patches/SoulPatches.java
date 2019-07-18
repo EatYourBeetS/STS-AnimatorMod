@@ -39,12 +39,7 @@ public class SoulPatches
     {
         public static void Postfix(Soul soul, AbstractCard card)
         {
-            if (card.tags.contains(AbstractEnums.CardTags.UNOBTAINABLE))
-            {
-                AbstractDungeon.player.masterDeck.group.remove(card);
-                AbstractDungeon.player.masterDeck.group.add(new Madness());
-            }
-            else if (card.tags.contains(AbstractEnums.CardTags.UNIQUE))
+            if (card.tags.contains(AbstractEnums.CardTags.UNIQUE))
             {
                 AbstractCard first = null;
 

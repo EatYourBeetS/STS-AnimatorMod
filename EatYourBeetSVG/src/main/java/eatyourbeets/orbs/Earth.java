@@ -53,8 +53,6 @@ public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
         this.updateDescription();
         this.channelAnimTimer = 0.5F;
         this.turns = 3;
-
-        PlayerStatistics.onEndOfTurn.Subscribe(this);
     }
 
     public void updateDescription()
@@ -80,6 +78,12 @@ public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
     @Override
     public void OnEndOfTurn(boolean isPlayer)
     {
+        if (!AbstractDungeon.player.orbs.contains(this))
+        {
+            PlayerStatistics.onEndOfTurn.Unsubscribe(this);
+            return;
+        }
+
         this.turns -= 1;
 
         if (turns <= 0)
@@ -163,5 +167,6 @@ public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.2f);
         turns = 3;
         evoked = false;
+        PlayerStatistics.onEndOfTurn.Subscribe(this);
     }
 }

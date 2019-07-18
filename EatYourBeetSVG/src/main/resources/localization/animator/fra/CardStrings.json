@@ -898,7 +898,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "Piochez 1 carte. Augmentez l'Armure de cette carte de !M! pour ce combat. [#EFC851]Pioché: Gagnez !B! d'Armure.",
+		"DESCRIPTION": "Piochez 1 carte. NL Gagnez !B! d'Armure. NL [#EFC851]Pioché: NL Gagnez !B! d'Armure.",
 		"NAME": "Shuna"
 	},
 	"animator:SilverFang":

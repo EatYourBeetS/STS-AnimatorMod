@@ -76,7 +76,7 @@ public class HiteiPower extends AnimatorPower
 
     private void GainRandomBuff(AbstractPlayer p)
     {
-        int roll = AbstractDungeon.miscRng.random(38);
+        int roll = AbstractDungeon.cardRandomRng.random(38);
         if (roll <= 4)
         {
             GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);

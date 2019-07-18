@@ -34,11 +34,6 @@ public class Crystallize extends AnimatorCard_Status
     {
         if (!this.dontTriggerOnUseCard)
         {
-            if (p.hasRelic(MedicalKit.ID))
-            {
-                this.useMedicalKit(p);
-            }
-
             CardCrawlGame.sound.play("ORB_FROST_Evoke", 0.2F);
             GameActionsHelper.DamageTarget(p, p, this.secondaryValue/2, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
             GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, this.magicNumber), this.magicNumber);

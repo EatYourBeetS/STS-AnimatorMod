@@ -43,7 +43,7 @@ public class Gluttony extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBaseCost(1);
         }
     }
 

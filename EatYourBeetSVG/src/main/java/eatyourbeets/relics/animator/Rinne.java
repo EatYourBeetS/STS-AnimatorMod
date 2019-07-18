@@ -52,7 +52,7 @@ public class Rinne extends AnimatorRelic// implements AllowedUnnamedReignRelic
         if (AbstractDungeon.player.currentHealth == 1)
         {
             this.flash();
-            AbstractDungeon.player.heal(AbstractDungeon.miscRng.random(5, 20));
+            AbstractDungeon.player.heal(AbstractDungeon.cardRandomRng.random(5, 20));
         }
     }
 

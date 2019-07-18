@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class EYBCard extends CustomCard
@@ -180,6 +181,70 @@ public abstract class EYBCard extends CustomCard
         if (masterDeckInstance != null)
         {
             cards.add(masterDeckInstance);
+        }
+
+        return cards;
+    }
+
+    public HashSet<AbstractCard> GetAllCopies()
+    {
+        HashSet<AbstractCard> cards = new HashSet<>();
+        AbstractCard c;
+
+        c = AbstractDungeon.player.cardInUse;
+        if (c != null && c.cardID.equals(cardID))
+        {
+            cards.add(c);
+        }
+
+        Iterator var2 = AbstractDungeon.player.drawPile.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.discardPile.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.exhaustPile.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.limbo.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.hand.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
         }
 
         return cards;

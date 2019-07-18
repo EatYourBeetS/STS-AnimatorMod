@@ -118,8 +118,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
             for (AbstractRelic r : p.relics)
             {
-                if (r != null && r != relic
-                        && !(r instanceof AllowedUnnamedReignRelic)
+                if (r != null && (r != relic) && !(r instanceof AllowedUnnamedReignRelic)
 
                         // Son of Sparda
                         && !r.relicId.equals("SSS") && !r.relicId.equals("Combocheck")

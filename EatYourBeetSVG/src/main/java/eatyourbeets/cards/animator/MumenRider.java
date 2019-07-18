@@ -38,7 +38,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
             GameActionsHelper.DrawCard(p, 1);
         }
 
-        turns = AbstractDungeon.miscRng.random(0, 5);
+        turns = AbstractDungeon.cardRandomRng.random(0, 5);
         PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
 

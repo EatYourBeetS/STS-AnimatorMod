@@ -38,9 +38,9 @@ public class SoraAction extends AnimatorAction
         if (this.duration == Settings.ACTION_DUR_FAST)
         {
             currentEffects.clear();
-            currentEffects.add(attackList.Retrieve(AbstractDungeon.miscRng));
-            currentEffects.add(defendList.Retrieve(AbstractDungeon.miscRng));
-            currentEffects.add(prepareList.Retrieve(AbstractDungeon.miscRng));
+            currentEffects.add(attackList.Retrieve(AbstractDungeon.cardRandomRng));
+            currentEffects.add(defendList.Retrieve(AbstractDungeon.cardRandomRng));
+            currentEffects.add(prepareList.Retrieve(AbstractDungeon.cardRandomRng));
 
             CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
@@ -119,7 +119,7 @@ public class SoraAction extends AnimatorAction
         defendPool.add(new SoraEffect_GainTemporaryHP  (15, 1));
 
         preparePool.add(new SoraEffect_UpgradeCard     (3 , 2));
-        preparePool.add(new SoraEffect_ReduceRandomCost(10, 2));
+        preparePool.add(new SoraEffect_Motivate(10, 2));
         preparePool.add(new SoraEffect_CycleCards      (13, 2));
         preparePool.add(new SoraEffect_DrawCards       (14, 2));
     }

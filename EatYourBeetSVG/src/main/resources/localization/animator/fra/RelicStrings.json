@@ -32,7 +32,7 @@
 	},
 	"animator:CursedGlyph":
 	{
-		"DESCRIPTIONS": ["À l'obtention, #rperdez #r", " #rPV Max, Tous les ennemis recoivent des PV Max suppémentaire."],
+		"DESCRIPTIONS": ["À l'obtention, #rperdez #r", " #rPV Max, Tous les ennemis recoivent des PV Max suppémentaire. NL NL La carte liée à cette relique #yNE #yPEUT #yPAS être dupliquée."],
 		"FLAVOR": "C'était une erreur...",
 		"NAME": "Glyphe Maudit"
 	},

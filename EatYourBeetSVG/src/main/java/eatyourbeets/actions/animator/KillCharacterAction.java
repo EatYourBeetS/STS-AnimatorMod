@@ -28,10 +28,13 @@ public class KillCharacterAction extends AbstractGameAction
         {
             GameActionsHelper.AddToBottom(new WaitAction(0.8f));
             GameActionsHelper.AddToBottom(new VFXAction(new CollectorCurseEffect(target.hb.cX, target.hb.cY), 2.0F));
-            for (int i = 1; i <= 16; i ++)
+            for (int i = 1; i <= 10; i ++)
             {
                 GameActionsHelper.DamageTarget(owner, target, i * i * i, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE, true);
+                GameActionsHelper.DamageTarget(owner, target, i * i * i, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE, true);
             }
+
+            GameActionsHelper.DamageTarget(owner, target, 99999, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE);
 
             GameActionsHelper.AddToBottom(new DieAction(target));
         }

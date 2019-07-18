@@ -58,6 +58,12 @@ public class TheMissingPiece extends AnimatorRelic implements OnReceiveRewardsSu
         }
 
         AbstractRoom room = AbstractDungeon.getCurrRoom();
+        if (room == null || room instanceof MonsterRoomBoss)
+        {
+            skipReward = true;
+            return;
+        }
+
         if (room.rewardAllowed)
         {
             this.counter += 1;

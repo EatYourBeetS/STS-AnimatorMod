@@ -474,7 +474,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
 
         for (int i = 0; i < SaveData.TheHaunt; i++)
         {
-            if (AbstractDungeon.miscRng.random(100) < 6)
+            if (AbstractDungeon.cardRandomRng.random(100) < 6)
             {
                 AbstractDungeon.player.drawPile.addToRandomSpot(new TheHaunt());
             }
@@ -503,7 +503,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     {
         RandomizedList<AbstractMonster> enemies = new RandomizedList<>(GetCurrentEnemies(aliveOnly));
 
-        AbstractCreature result = enemies.Retrieve(AbstractDungeon.miscRng, false);
+        AbstractCreature result = enemies.Retrieve(AbstractDungeon.cardRandomRng, false);
         if (result == null)
         {
             return AbstractDungeon.player;

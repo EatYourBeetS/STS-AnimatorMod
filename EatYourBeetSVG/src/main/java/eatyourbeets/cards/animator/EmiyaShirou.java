@@ -20,7 +20,7 @@ public class EmiyaShirou extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0,0, 12);
+        Initialize(0,0, 16);
 
         //AddExtendedDescription();
 
@@ -47,11 +47,11 @@ public class EmiyaShirou extends AnimatorCard
         AbstractCreature target = null;
         if (enemiesWithoutBlock.Count() > 0)
         {
-            target = enemiesWithoutBlock.Retrieve(AbstractDungeon.miscRng);
+            target = enemiesWithoutBlock.Retrieve(AbstractDungeon.cardRandomRng);
         }
         else if (enemiesWithBlock.Count() > 0)
         {
-            target = enemiesWithBlock.Retrieve(AbstractDungeon.miscRng);
+            target = enemiesWithBlock.Retrieve(AbstractDungeon.cardRandomRng);
         }
 
         if (target != null)

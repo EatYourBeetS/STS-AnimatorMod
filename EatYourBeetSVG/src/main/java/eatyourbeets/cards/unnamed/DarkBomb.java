@@ -65,8 +65,8 @@ public class DarkBomb extends UnnamedCard
 
     private void ExplosionEffect(AbstractCreature target)
     {
-        float x = target.hb.cX + AbstractDungeon.miscRng.random(-40, 40);
-        float y = target.hb.cY + AbstractDungeon.miscRng.random(-40, 40);
+        float x = target.hb.cX + AbstractDungeon.cardRandomRng.random(-40, 40);
+        float y = target.hb.cY + AbstractDungeon.cardRandomRng.random(-40, 40);
         GameActionsHelper.AddToBottom(new WaitAction(0.1f));
         GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(x, y), 0F));
     }

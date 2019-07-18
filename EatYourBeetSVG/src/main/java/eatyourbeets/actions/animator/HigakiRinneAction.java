@@ -52,7 +52,7 @@ public class HigakiRinneAction extends AnimatorAction
 
     public void update()
     {
-        roll = AbstractDungeon.miscRng.random(185);
+        roll = AbstractDungeon.cardRandomRng.random(185);
         
         AbstractPlayer p = AbstractDungeon.player;
         if (tryActivate(6)) // 6
@@ -139,7 +139,7 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (tryActivate(3)) // 111
         {
-            AbstractCard card = CardLibrary.getRandomColorSpecificCard(higakiRinne.color, AbstractDungeon.miscRng);
+            AbstractCard card = CardLibrary.getRandomColorSpecificCard(higakiRinne.color, AbstractDungeon.cardRandomRng);
             if (!card.tags.contains(AbstractCard.CardTags.HEALING))
             {
                 GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(card));

@@ -18,7 +18,7 @@ public class Shuna extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,2, 1);
+        Initialize(0,3, 1);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -38,15 +38,15 @@ public class Shuna extends AnimatorCard
             this.applyPowers();
             AbstractPlayer p = AbstractDungeon.player;
             GameActionsHelper.GainBlock(p, this.block);
-            GameActionsHelper.GainBlock(p, this.block);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DrawCard(p, 1);
-        GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, magicNumber));
+        GameActionsHelper.DrawCard(p, magicNumber);
+        GameActionsHelper.GainBlock(p, block);
+        //GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, magicNumber));
     }
 
     @Override
@@ -54,7 +54,7 @@ public class Shuna extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(1);
+            upgradeMagicNumber(1);
         }
     }
 }

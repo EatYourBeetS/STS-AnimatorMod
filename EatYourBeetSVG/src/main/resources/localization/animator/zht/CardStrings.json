@@ -893,7 +893,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "抽 1 張牌 。 本次戰鬥中，這張牌的 格擋 提高 !M! 點 。 [#EFC851]被抽到時[] : 獲得 !B! 點 格擋 。",
+		"DESCRIPTION": "抽 1 張牌 。 獲得 !B! 點 格擋 。 [#EFC851]被抽到時[] : 獲得 !B! 點 格擋 。",
 		"NAME": "朱菜"
 	},
 	"animator:SilverFang":

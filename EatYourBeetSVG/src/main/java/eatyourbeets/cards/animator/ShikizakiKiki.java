@@ -22,17 +22,6 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        super.triggerOnEndOfTurnForPlayingCard();
-
-        if (upgraded)
-        {
-            this.retain = true;
-        }
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.AddToBottom(new ApotheosisAction());
@@ -44,7 +33,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            this.isInnate = true;
         }
     }
 }

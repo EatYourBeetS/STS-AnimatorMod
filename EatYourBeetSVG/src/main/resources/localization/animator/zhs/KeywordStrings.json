@@ -213,5 +213,10 @@
 		"PROPER_NAME": "激励 <N>",
 		"NAMES": ["激励"],
 		"DESCRIPTION": "随机选择1张手牌，并减少其1点能耗。 重复 <N> 次。"
+	},
+	{
+		"PROPER_NAME": "animator:Unique",
+		"NAMES": ["animator:unique"],
+		"DESCRIPTION": "唯一|卡组中只能存在一张该牌 ， 额外获得的同名牌会 #y升级 这张牌 。 可被多次升级 。"
 	}
 ]

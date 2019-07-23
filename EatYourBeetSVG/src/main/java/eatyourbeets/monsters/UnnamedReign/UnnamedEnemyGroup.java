@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
 import eatyourbeets.monsters.UnnamedReign.Shapes.UnnamedShape;
+import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Crystal;
@@ -48,13 +49,13 @@ public class UnnamedEnemyGroup
     {
         BaseMod.addMonster(TWO_SHAPES, UnnamedEnemyGroup::TwoShapes);
         BaseMod.addMonster(THREE_NORMAL_SHAPES, UnnamedEnemyGroup::ThreeNormalShapes);
-        BaseMod.addMonster(CULTIST, UnnamedEnemyGroup::Cultist);
+        BaseMod.addMonster(CULTIST, TheUnnamed_Cultist.STRINGS.NAME, UnnamedEnemyGroup::Cultist);
         BaseMod.addMonster(UNNAMED_HAT, UnnamedEnemyGroup::UnnamedHat);
         BaseMod.addMonster(LARGE_CRYSTAL, UnnamedEnemyGroup::LargeCrystal);
         BaseMod.addMonster(LARGE_CUBE, UnnamedEnemyGroup::LargeCube);
         BaseMod.addMonster(LARGE_WISP, UnnamedEnemyGroup::LargeWisp);
         BaseMod.addMonster(CULTIST_AND_TWO_SHAPES, UnnamedEnemyGroup::CultistAndTwoShapes);
-        BaseMod.addMonster(THREE_LAGAVULIN, UnnamedEnemyGroup::ThreeLagavulin);
+        BaseMod.addMonster(THREE_LAGAVULIN, Lagavulin.NAME + " (x3)", UnnamedEnemyGroup::ThreeLagavulin);
         BaseMod.addMonster(ULTIMATE_CRYSTAL, UltimateCrystal.NAME, UnnamedEnemyGroup::UltimateCrystal);
         BaseMod.addMonster(ULTIMATE_CUBE, UltimateCube.NAME, UnnamedEnemyGroup::UltimateCube);
         BaseMod.addMonster(ULTIMATE_WISP, UltimateWisp.NAME, UnnamedEnemyGroup::UltimateWisp);

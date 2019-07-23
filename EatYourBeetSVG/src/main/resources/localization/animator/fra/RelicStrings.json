@@ -54,13 +54,19 @@
 		"FLAVOR": "Le détenteur du fourreau bénéficie d'un puissant don de régénération, permettant aux blessures mortelles d'être rapidement soignées.",
 		"NAME": "Fourreau Sanctifié"
 	},
+	"animator:Haunted":
+	{
+		"DESCRIPTIONS": ["..."],
+		"FLAVOR": "...",
+		"NAME": "Haunted"
+	},
 	"animator:HeavyHalberd":
 	{
 		"DESCRIPTIONS": ["Vos #yAttaques inflige #b", "% dégats supplémentaires."],
 		"FLAVOR": "Regner sur la mort, c'est regner sur la vie. La mort est l'apothéose de la vie. Pour une belle mort, tu dois honorer la vie.",
 		"NAME": "Hallebarde Lourde"
 	},
-		"animator:Hoodie":
+	"animator:Hoodie":
 	{
 		"DESCRIPTIONS": ["Si vous finissez un combat sans prendre de dégât, gagnez #b", " #yPV #ymax."],
 		"FLAVOR": "Avec cela, vous seriez peut-être admis à l'Association des Héros.",

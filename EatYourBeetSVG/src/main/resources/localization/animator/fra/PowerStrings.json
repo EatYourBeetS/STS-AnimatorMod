@@ -87,7 +87,7 @@
 	},
 	"animator:EntouJyuuPower":
 	{
-		"DESCRIPTIONS": ["Vos prochaines #b", " #yAttaques joué ce tour gagne #b", " dégats et piochez 1 card."],
+		"DESCRIPTIONS": ["Sur votre prochain #b", " #yAttaque(s) ce tour, piochez #b", " carte(s) et appliquez #b", " de #yBrûlure à TOUS les ennemis."],
 		"NAME": "Entou Jyuu"
 	},
 	"animator:EnvyPower":
@@ -182,7 +182,7 @@
 	},
 	"animator:InfinitePower":
 	{
-		"DESCRIPTIONS": ["- Avant de prendre des dégâts non-bloqués: Gagnez autant #yd'Armure #yEnchantée. NL - En recevant les Debuffs: Gagnez autant de #yRegénération. NL - Lorsque l'ennemi reçoit un Buff: Gagnez autant de #yForce. NL NL Ces Buffs seront diminués de moitié à chaque fin de tour."],
+		"DESCRIPTIONS": ["- Avant de prendre des dégâts non-bloqués: Gagnez autant #yd'Armure #yEnchantée. NL - En recevant les Debuffs: Gagnez autant de #yRegénération. NL - Lorsque l'ennemi reçoit un Buff: Gagnez autant de #yForce. NL - Ces Buffs seront diminués de moitié à chaque fin de tour."],
 		"NAME": "Pouvoir Infini"
 	},
 	"animator:KaijinPower":
@@ -275,10 +275,20 @@
 		"DESCRIPTIONS": ["Vos #yAttaques ce tour inflige #b", "% dégat(s) supplémentaires."],
 		"NAME": "Rory Mercury"
 	},
+	"animator:ShikizakiKikiPower":
+	{
+		"DESCRIPTIONS": ["La #yForce affecte toutes les cartes #b", " fois."],
+		"NAME": "Shikizaki Kiki"
+	},
 	"animator:ShiroPower":
 	{
 		"DESCRIPTIONS": ["Au début de votre tour gagnez #b", " Energie."],
 		"NAME": "Shiro"
+	},
+	"animator:SonicPower":
+	{
+		"DESCRIPTIONS": ["Au début de vos #b", " prochains tours, gagnez 1 de #yDextérité et ajoutez un #yCouteau #yde #yJet à votre main."],
+		"NAME": "Speed-o'-Sound Sonic"
 	},
 	"animator:StolenGoldPower":
 	{

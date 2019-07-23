@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -43,6 +44,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     private final CustomTimeMaze timeMaze;
     private final int maxCardsPerTurn;
 
+    private boolean necronomicursed = false;
     private boolean progressStunCounter = true;
     private int stunCounter = 0;
 
@@ -181,6 +183,21 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
             else
             {
                 GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[22], 4, 4));
+            }
+        }
+        else
+        {
+            if (!necronomicursed && PlayerStatistics.getCardsDrawnThisTurn() > 10)
+            {
+                AbstractPlayer p = AbstractDungeon.player;
+
+                int totalSize = (p.drawPile.size() + p.discardPile.size() + p.hand.size());
+                if (totalSize <= 10)
+                {
+                    Talk(31, 2f);
+                    GameActionsHelper.MakeCardInDrawPile(new Necronomicurse(), 4, false);
+                    necronomicursed = true;
+                }
             }
         }
     }

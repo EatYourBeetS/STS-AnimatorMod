@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.*;
 import eatyourbeets.powers.animator.AnimatorPower;
+import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.TemporaryBiasPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
@@ -192,6 +193,19 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         {
             s.OnCostRefresh(card);
         }
+    }
+
+    public static <T> T  GetPower(AbstractCreature owner, Class<T> powerType)
+    {
+        for (AbstractPower power : owner.powers)
+        {
+            if (powerType.isInstance(power))
+            {
+                return powerType.cast(power);
+            }
+        }
+
+        return null;
     }
 
     public void OnBattleStart()
@@ -468,20 +482,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     }
 
     @Override
-    public void atStartOfTurn()
-    {
-        super.atStartOfTurn();
-
-        for (int i = 0; i < SaveData.TheHaunt; i++)
-        {
-            if (AbstractDungeon.cardRandomRng.random(100) < 6)
-            {
-                AbstractDungeon.player.drawPile.addToRandomSpot(new TheHaunt());
-            }
-        }
-    }
-
-    @Override
     public void atStartOfTurnPostDraw()
     {
         super.atStartOfTurnPostDraw();
@@ -712,7 +712,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
 
     public static class SaveData
     {
-        public Integer TheHaunt = 0;
         public Boolean EnteredUnnamedReign = false;
         public Integer RNGCounter = 0;
 
@@ -738,11 +737,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
 
         protected void ValidateFields()
         {
-            if (TheHaunt == null)
-            {
-                TheHaunt = 0;
-            }
-
             if (EnteredUnnamedReign == null)
             {
                 EnteredUnnamedReign = false;

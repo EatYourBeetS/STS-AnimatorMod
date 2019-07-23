@@ -32,6 +32,18 @@ public class Gilgamesh extends AnimatorCard
 
     private static AbstractRelic lastRelicObtained = null;
 
+    public Gilgamesh()
+    {
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+
+        Initialize(3,0, 3);
+
+        AddUniqueTag();
+        AddExtendedDescription(GOLD_REWARD);
+
+        SetSynergy(Synergies.Fate);
+    }
+
     public static void OnRelicReceived(AbstractRelic relic, RelicObtainedPatches.Trigger trigger)
     {
         if (lastRelicObtained != relic)
@@ -75,20 +87,6 @@ public class Gilgamesh extends AnimatorCard
                 }
             }
         }
-    }
-
-    public Gilgamesh()
-    {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
-
-        Initialize(3,0, 3);
-
-        AddExtendedDescription(3,4);
-        AddExtendedDescription(GOLD_REWARD);
-
-        tags.add(AbstractEnums.CardTags.UNIQUE);
-
-        SetSynergy(Synergies.Fate);
     }
 
     @Override

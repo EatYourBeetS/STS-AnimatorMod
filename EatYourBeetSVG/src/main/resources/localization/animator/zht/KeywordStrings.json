@@ -213,5 +213,10 @@
 		"PROPER_NAME": "激勵 <N>",
 		"NAMES": ["激勵"],
 		"DESCRIPTION": "隨機從手牌裡一張牌的能量消耗減1。 重複 <N> 次。"
+	},
+	{
+		"PROPER_NAME": "animator:Unique",
+		"NAMES": ["animator:unique"],
+		"DESCRIPTION": "唯一|卡組中只能存在一張該牌 ， 額外獲得的同名牌會 #y升級 這張牌 。 可被多次升級。"
 	}
 ]

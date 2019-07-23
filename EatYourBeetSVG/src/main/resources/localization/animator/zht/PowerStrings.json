@@ -87,7 +87,7 @@
 	},
 	"animator:EntouJyuuPower":
 	{
-		"DESCRIPTIONS": ["這回合打出的下一張攻擊牌 #b", " #y獲得額外的 #b", " 傷害，然後抽一張牌。"],
+		"DESCRIPTIONS": ["接下來的 #b", " 次你在這輪攻擊中 ， 抽一張牌 並 對所有敵人施加 1 層 燃燒 。"],
 		"NAME": "炎刃·銃"
 	},
 	"animator:EnvyPower":
@@ -182,7 +182,7 @@
 	},
 	"animator:InfinitePower":
 	{
-		"DESCRIPTIONS": ["- 受到未被格擋的傷害前: 獲得此數量的 #y魔法護甲 . NL - 受到 負面效果 時: 獲得此數量的 #y再生 . NL - 當敵人獲得 積極影響 時: 獲得此數量的 #y力量 . NL NL 這些加成會在每回合結束時減半."],
+		"DESCRIPTIONS": ["- 受到未被格擋的傷害前: 獲得此數量的 #y魔法護甲 . NL - 受到 負面效果 時: 獲得此數量的 #y再生 . NL - 當敵人獲得 積極影響 時: 獲得此數量的 #y力量 . NL - 這些加成會在每回合結束時減半."],
 		"NAME": "無盡之力"
 	},
 	"animator:KaijinPower":
@@ -275,10 +275,20 @@
 		"DESCRIPTIONS": ["你的攻擊本輪會造成 #b", " % 更多傷害。"],
 		"NAME": "蘿莉·麥丘利-"
 	},
+	"animator:ShikizakiKikiPower":
+	{
+		"DESCRIPTIONS": ["#y力量 影響所有卡 #b", " 次"],
+		"NAME": "四季崎·記纪"
+	},
 	"animator:ShiroPower":
 	{
 		"DESCRIPTIONS": ["你的回合開始時獲得 #b", " 點能量。"],
 		"NAME": "白"
+	},
+	"animator:SonicPower":
+	{
+		"DESCRIPTIONS": ["在接下來的 #b", " 個回合開始時 ， 獲得 1 層 敏捷 並 增加 1 張 飛刃 到你的手牌"],
+		"NAME": "音速索尼克"
 	},
 	"animator:StolenGoldPower":
 	{

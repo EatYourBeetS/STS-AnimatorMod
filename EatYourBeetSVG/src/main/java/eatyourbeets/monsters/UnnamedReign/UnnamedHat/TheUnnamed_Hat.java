@@ -46,7 +46,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
 
         if (PlayerStatistics.GetAscensionLevel() >= 7)
         {
-            moveset.AddNormal(new Move_GainStrengthAndBlock(3, 11));
+            moveset.AddNormal(new Move_GainStrengthAndBlock(4, 11));
         }
         else
         {
@@ -54,7 +54,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
         }
 
         moveset.AddNormal(new Move_ShuffleDazed(1));
-        moveset.AddNormal(new Move_AttackFrail(3, 1));
+        moveset.AddNormal(new Move_AttackFrail(4, 1));
     }
 
     @Override

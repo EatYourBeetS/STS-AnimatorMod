@@ -18,7 +18,7 @@ public class Millim extends AnimatorCard
 
         Initialize(11,0, 2);
 
-        AddExtendedDescription();
+        AddUniqueTag();
 
         tags.add(AbstractEnums.CardTags.UNIQUE);
 

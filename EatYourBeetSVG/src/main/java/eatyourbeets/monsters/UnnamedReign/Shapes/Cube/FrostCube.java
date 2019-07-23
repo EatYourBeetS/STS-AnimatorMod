@@ -14,7 +14,7 @@ public class FrostCube extends Cube
 
         moveset.AddNormal(new Move_GainStrength(tier.Add(2,1)));
         moveset.AddNormal(new Move_Attack(tier.Add(12,4)));
-        moveset.AddNormal(new Move_AttackDefend(tier.Add(8,2), tier.Add(4,2)));
+        moveset.AddNormal(new Move_AttackDefend(tier.Add(7,3), tier.Add(4,2)));
     }
 
     @Override

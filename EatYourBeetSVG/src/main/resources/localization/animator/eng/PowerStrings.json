@@ -87,7 +87,7 @@
 	},
 	"animator:EntouJyuuPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #yAttack(s) this turn, draw #b1 card, then discard #b1 card."],
+		"DESCRIPTIONS": ["On your next #b", " #yAttack(s) this turn, draw #b1 card and apply #b1 #yBurning to ALL enemies."],
 		"NAME": "Entou Jyuu"
 	},
 	"animator:EnvyPower":
@@ -182,7 +182,7 @@
 	},
 	"animator:InfinitePower":
 	{
-		"DESCRIPTIONS": ["- Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL - When receiving a debuff: Gains that much #yRegeneration. NL - When the enemy receives a buff: Gains that much #yStrength. NL NL These stats will be halved at the end of each turn."],
+		"DESCRIPTIONS": ["- Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL - When receiving a debuff: Gains that much #yRegeneration. NL - When the enemy receives a buff: Gains that much #yStrength. NL - Lose half of these stats at the end of each turn."],
 		"NAME": "Infinite Power"
 	},
 	"animator:KaijinPower":
@@ -287,7 +287,7 @@
 	},
 	"animator:SonicPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, add #b", " #yThrowing-Knives to your hand."],
+		"DESCRIPTIONS": ["At the start of your next #b", " turns, gain #b1 #yDexterity and add #b1 #yThrowing-Knives to your hand."],
 		"NAME": "Speed-o'-Sound Sonic"
 	},
 	"animator:StolenGoldPower":

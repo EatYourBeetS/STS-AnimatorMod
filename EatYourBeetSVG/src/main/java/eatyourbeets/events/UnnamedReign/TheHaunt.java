@@ -2,10 +2,12 @@ package eatyourbeets.events.UnnamedReign;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
+import eatyourbeets.blights.Haunted;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.powers.PlayerStatistics;
@@ -85,7 +87,10 @@ public class TheHaunt extends AnimatorEvent
 
     private void OnCompletion(Object state, AbstractGameAction action)
     {
-        PlayerStatistics.SaveData.TheHaunt += 1;
+        AbstractPlayer p = AbstractDungeon.player;
+        AbstractDungeon.getCurrRoom().spawnBlightAndObtain(p.hb.cX, p.hb.cY, new Haunted());
+
+        //PlayerStatistics.SaveData.TheHaunt += 1;
         this.imageEventText.updateBodyText(eventStrings.DESCRIPTIONS[5]);
         this.imageEventText.setDialogOption(OPTIONS[2]);
     }

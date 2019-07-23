@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.HemokinesisEffect;
 import eatyourbeets.effects.Hemokinesis2Effect;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.animator.AnimatorPower;
@@ -15,14 +14,15 @@ public class UnnamedDollPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(UnnamedDollPower.class.getSimpleName());
 
-    private static final int HP_GAIN = 3;
+    private int hpGain = 3;
     private static final int STRENGTH = 30;
 
-    public UnnamedDollPower(AbstractCreature owner, int amount)
+    public UnnamedDollPower(AbstractCreature owner, int amount, int hpGain)
     {
         super(owner, POWER_ID);
 
         this.amount = amount;
+        this.hpGain = hpGain;
 
         updateDescription();
     }
@@ -33,7 +33,7 @@ public class UnnamedDollPower extends AnimatorPower
         String[] text = powerStrings.DESCRIPTIONS;
         if (amount > 0)
         {
-            this.description = text[0] + amount + text[1] + HP_GAIN + text[2] + text[3] + STRENGTH + text[4];
+            this.description = text[0] + amount + text[1] + hpGain + text[2] + text[3] + STRENGTH + text[4];
         }
         else
         {
@@ -48,7 +48,7 @@ public class UnnamedDollPower extends AnimatorPower
 
         if (action.target != owner && amount > 0)
         {
-            owner.increaseMaxHp(HP_GAIN, true);
+            owner.increaseMaxHp(hpGain, true);
         }
     }
 

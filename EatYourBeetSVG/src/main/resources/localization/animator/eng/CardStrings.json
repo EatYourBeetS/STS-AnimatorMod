@@ -55,7 +55,7 @@
 	},
 	"animator:Ara":
 	{
-		"DESCRIPTION": "Deal !D! damage twice. NL If the enemy has a Debuff, draw 2 cards, then discard 1 card.",
+		"DESCRIPTION": "Deal !D! damage twice. NL Draw 1 card for every NL Debuff on the enemy. NL Discard 1 card.",
 		"NAME": "Ara"
 	},
 	"animator:Archer":
@@ -229,7 +229,7 @@
 	},
 	"animator:Defend_Katanagatari":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Gain !M! temporary [#EFC851]Thorns.",
+		"DESCRIPTION": "Gain !B! Block. NL Gain !M! temporary Thorns.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Konosuba":
@@ -297,7 +297,7 @@
 	},
 	"animator:Elesis":
 	{
-		"DESCRIPTION": "Deal !D! damage. Retain. Increase this card's damage by !M! each turn while in your hand.",
+		"DESCRIPTION": "Retain. Deal !D! damage. Increase this card's damage by !M! each turn while in your hand.",
 		"NAME": "Elesis"
 	},
 	"animator:ElricAlphonse":
@@ -343,8 +343,8 @@
 	},
 	"animator:Entoma":
 	{
-		"DESCRIPTION": "Augmentable. NL Deal !D! damage. NL Apply !M! Poison. [#EFC851]Hunger.",
-		"EXTENDED_DESCRIPTION": ["Hunger", "Lose #b1 damage each turn. If this kills a non-minion enemy, permanently upgrade this card and gain #b2 Max HP."],
+		"DESCRIPTION": "[#EFC851]Unique. NL Deal !D! damage. NL Apply !M! Poison. [#EFC851]Hunger.",
+		"EXTENDED_DESCRIPTION": [ "Hunger", "Lose #b1 damage each turn. If this kills a non-minion enemy, permanently upgrade this card and gain #b2 Max HP." ],
 		"NAME": "Entoma"
 	},
 	"animator:EntouJyuu":
@@ -398,9 +398,9 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Apply !M! Burning. NL Add 1 [#EFC851]Overheat[] to your hand.",
-		"NAME": "Genos",
-		"EXTENDED_DESCRIPTION": ["Overheat", "0-Cost #yStatus that damages the player and draws cards."]
+		"DESCRIPTION": "Deal !D! Damage. NL Apply !M! Burning. NL Add 1 [#EFC851]Overheat[] to NL your hand.",
+		"EXTENDED_DESCRIPTION": ["Overheat", "0-Cost #yStatus that damages the player and draws cards."],
+		"NAME": "Genos"
 	},
 	"animator:Geryuganshoop":
 	{
@@ -411,7 +411,7 @@
 	"animator:Gilgamesh":
 	{
 		"DESCRIPTION": "[#EFC851]Unique. NL Deal !D! damage NL 3 times. NL [#EFC851]Gate [#EFC851]of [#EFC851]Babylon.",
-		"EXTENDED_DESCRIPTION": ["Gate of Babylon", "Whenever you obtain a relic, #yUpgrade this card and gain #b", " #yGold. Does not activate when purchasing relics or with some event relics.", "Unique", "Can be upgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead."],
+		"EXTENDED_DESCRIPTION": ["Gate of Babylon", "Whenever you obtain a relic, #yUpgrade this card and gain #b", " #yGold. Does not activate when purchasing relics or with some event relics."],
 		"NAME": "Gilgamesh"
 	},
 	"animator:Gillette":
@@ -464,7 +464,7 @@
 	},
 	"animator:GuildGirl":
 	{
-		"DESCRIPTION": "At the start of each turn, Cycle 1 card. NL When a non-minion NL enemy dies, gain NL !M! [#EFC851]Gold.",
+		"DESCRIPTION": "At the start of each turn, Cycle 1 card. NL When a non-minion NL enemy dies, NL gain !M! [#EFC851]Gold.",
 		"NAME": "'Guild Girl'"
 	},
 	"animator:Guren":
@@ -497,13 +497,12 @@
 	"animator:HigakiRinne":
 	{
 		"DESCRIPTION": "Shapeshifter. NL Behaves erratically...",
-		"EXTENDED_DESCRIPTION": ["What Happened?"],
 		"NAME": "Higaki Rinne",
 		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Behaves very erratically..."
 	},
 	"animator:HighElfArcher":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. Boost !SV! : Draw !M! card.",
+		"DESCRIPTION": "Deal !D! Piercing NL damage. Gain !M! NL Temporary NL Dexterity.",
 		"NAME": "'High Elf Archer'"
 	},
 	"animator:HiiragiShinya":
@@ -592,14 +591,14 @@
 	"animator:Kuroyukihime":
 	{
 		"DESCRIPTION": "Discard !M! cards. Add [#EFC851]Black [#EFC851]Lotus to your hand. Exhaust.",
-		"EXTENDED_DESCRIPTION": ["Black Lotus", "A special 1-cost #yAttack."],
+		"EXTENDED_DESCRIPTION": ["Black Lotus", "A special 1-cost #yAttack which deals damage to ALL enemies and grants #yBlock and #yBlur."],
 		"NAME": "Kuroyukihime"
 	},
 	"animator:Kyubey":
 	{
-		"DESCRIPTION": "Gain [E] [E]. NL Draw !M! Cards. NL Add 2 random [#EFC851]Curses to your discard pile.",
+		"DESCRIPTION": "Gain [E] [E]. NL Draw !M! Cards. NL Add 2 random [#EFC851]Curses to your discard pile. Exhaust",
 		"NAME": "Kyubey",
-		"UPGRADE_DESCRIPTION": "Gain [E] [E] [E]. NL Draw !M! Cards. NL Add 2 random [#EFC851]Curses to your discard pile."
+		"UPGRADE_DESCRIPTION": "Gain [E] [E]. NL Draw !M! Cards. NL Add 2 random [#EFC851]Curses to your discard pile."
 	},
 	"animator:Lancer":
 	{
@@ -608,7 +607,7 @@
 	},
 	"animator:Layla":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. Reload: Apply !M! Poison to a random enemy.",
+		"DESCRIPTION": "Deal !D! Piercing NL damage. Reload: NL Apply !M! Poison to a NL random enemy.",
 		"NAME": "Layla"
 	},
 	"animator:LeleiLaLalena":
@@ -640,7 +639,7 @@
 	},
 	"animator:Megumin":
 	{
-		"DESCRIPTION": "Augmentable. Deal !D! damage to ALL Enemies. Exhaust. Synergy: Permanently Upgrade this card.",
+		"DESCRIPTION": "[#EFC851]Unique. Deal !D! damage to ALL Enemies. Exhaust. Synergy: Permanently Upgrade this card.",
 		"NAME": "Megumin"
 	},
 	"animator:Melzalgald":
@@ -677,7 +676,6 @@
 	"animator:Millim":
 	{
 		"DESCRIPTION": "[#EFC851]Unique. NL Deal !D! damage. NL Draw !M! cards. NL Synergy: Gain [E].",
-		"EXTENDED_DESCRIPTION": ["Unique", "Can be upgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead."],
 		"NAME": "Millim"
 	},
 	"animator:MisaKurobane":
@@ -775,7 +773,7 @@
 	},
 	"animator:Priestess":
 	{
-		"DESCRIPTION": "Gain !B! Temp._HP ([#EFC851]*[]). Synergy: Gain !M! [#EFC851]Regeneration[], can activate !SV! time(s).",
+		"DESCRIPTION": "Gain !B! Temp._HP. This number is affected by Block modifiers.",
 		"EXTENDED_DESCRIPTION": ["* Note", "Affected by Block modifiers."],
 		"NAME": "'Priestess'"
 	},
@@ -829,14 +827,7 @@
 	"animator:Saitama":
 	{
 		"DESCRIPTION": "Whenever this card is played, increase its cost and change its effect for this combat.",
-		"EXTENDED_DESCRIPTION": 
-		[
-			"Draw !M! cards. NL Gain !SV! Temporary Dexterity.",
-			"Prevent the next time you would lose HP.",
-			"Gain !M! Strength. NL Gain !B! Block.",
-			"Deal !D! damage NL !M! times.",
-			"Remove Intangible. NL Deal !D! NL Piercing damage. NL Stun the enemy."
-		],
+		"EXTENDED_DESCRIPTION": ["Draw !M! cards. NL Gain !SV! Temporary Dexterity.", "Prevent the next time you would lose HP.", "Gain !M! Strength. NL Gain !B! Block.", "Deal !D! damage NL !M! times.", "Remove Intangible. NL Deal !D! NL Piercing damage. NL Stun the enemy."],
 		"NAME": "Saitama",
 		"UPGRADE_DESCRIPTION": "Innate. NL Whenever this card is played, increase its cost and change its effect for this combat."
 	},
@@ -883,7 +874,8 @@
 	"animator:ShikizakiKiki":
 	{
 		"DESCRIPTION": "Upgrade ALL cards for the rest of this combat. Strength affects ALL cards !M! times.",
-		"NAME": "Shikizaki Kiki"
+		"NAME": "Shikizaki Kiki",
+		"UPGRADE_DESCRIPTION": "Innate. Upgrade ALL cards for the rest of this combat. Strength affects ALL cards !M! times."
 	},
 	"animator:Shimakaze":
 	{
@@ -929,9 +921,8 @@
 	},
 	"animator:Sonic":
 	{
-		"DESCRIPTION": "At the start of each turn, add 1 Throwing-Knife to your hand.",
-		"NAME": "Sonic",
-		"UPGRADE_DESCRIPTION": "Gain !M! Dexterity. NL At the start of each turn, add 1 Throwing-Knife to your hand."
+		"DESCRIPTION": "At the start of your next !M! Turns, gain 1 Dexterity and add a Throwing-Knife to your hand.",
+		"NAME": "Sonic"
 	},
 	"animator:Sora":
 	{
@@ -945,8 +936,9 @@
 	},
 	"animator:Spearman":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Boost !SV! : Gain !M! Dexterity.",
-		"NAME": "'Spearman'"
+		"DESCRIPTION": "Deal !D! Piercing damage. Deal additional damage equal to your Block. Lose ALL Block.",
+		"NAME": "'Spearman'",
+		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage. Deal additional damage equal to your Block. Set your Block to !B!."
 	},
 	"animator:Strike":
 	{
@@ -1181,9 +1173,10 @@
 	},
 	"animator:Yuuichirou":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary Dexterity. Legacy: Obtain [#EFC851]Asuramaru.",
-		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 1-Cost #yAttack."],
-		"NAME": "Yuuichirou"
+		"DESCRIPTION": "Deal !D! damage. NL Legacy: Add NL [#EFC851]Asuramaru and a NL Wound to your NL discard pile.",
+		"EXTENDED_DESCRIPTION": ["Asuramaru", "A special 2-Cost #yAttack which grants #yDemon #yForm, #yDexterity and Block."],
+		"NAME": "Yuuichirou",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Legacy: Add NL [#EFC851]Asuramaru and a NL Dazed to your NL discard pile."
 	},
 	"animator:ZankiKiguchi":
 	{

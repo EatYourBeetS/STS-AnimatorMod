@@ -22,6 +22,8 @@ public class Kyubey extends AnimatorCard
 
         Initialize(0, 0, 2);
 
+        this.exhaust = true;
+
         SetSynergy(Synergies.MadokaMagica);
     }
 
@@ -39,7 +41,7 @@ public class Kyubey extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            this.exhaust = false;
         }
     }
 

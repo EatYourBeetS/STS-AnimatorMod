@@ -31,7 +31,7 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
 
         moveset.AddNormal(new Move_AttackDefend( 12, 12));
         moveset.AddNormal(new Move_AttackMultiple(9, 2));
-        moveset.AddNormal(new Move_ShuffleCard(new VoidCard(), 2));
+        moveset.AddNormal(new Move_ShuffleCard(new VoidCard(), 3));
     }
 
     @Override

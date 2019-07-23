@@ -41,7 +41,8 @@ public class DrawAndUpgradeCardAction extends AnimatorAction
                 c.flash();
 
                 //AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(c.target_x, c.target_y));
-                AbstractDungeon.actionManager.addToBottom(new DrawSpecificCardAction(c));
+                GameActionsHelper.AddToBottom(new DrawSpecificCardAction(c));
+                GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
 
                 if (count == 0)
                 {

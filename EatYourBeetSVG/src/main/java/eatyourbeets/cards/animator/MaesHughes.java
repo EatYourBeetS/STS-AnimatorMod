@@ -19,7 +19,6 @@ public class MaesHughes extends AnimatorCard
 
         Initialize(0,0,6, 3);
 
-
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 

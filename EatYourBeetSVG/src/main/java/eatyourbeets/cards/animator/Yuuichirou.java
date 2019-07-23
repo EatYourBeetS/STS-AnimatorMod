@@ -2,7 +2,10 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import com.megacrit.cardcrawl.cards.status.Dazed;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -17,7 +20,7 @@ public class Yuuichirou extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(8,0, 2);
+        Initialize(8,0);
 
         //AddExtendedDescription();
 
@@ -29,7 +32,7 @@ public class Yuuichirou extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
-        PlayerStatistics.ApplyTemporaryDexterity(p, p, magicNumber);
+        //PlayerStatistics.ApplyTemporaryDexterity(p, p, magicNumber);
     }
 
     @Override
@@ -37,7 +40,16 @@ public class Yuuichirou extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(new Asuramaru(), 1));
+        GameActionsHelper.MakeCardInDiscardPile(new Asuramaru(), 1, false);
+
+        if (upgraded)
+        {
+            AbstractDungeon.player.discardPile.addToTop(new Dazed());
+        }
+        else
+        {
+            AbstractDungeon.player.discardPile.addToTop(new Wound());
+        }
     }
 
     @Override
@@ -45,7 +57,7 @@ public class Yuuichirou extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(4);
+            upgradeDamage(3);
         }
     }
 }

@@ -49,8 +49,10 @@ public class UltimateCrystal extends Crystal
 
         moveset.AddSpecial(new Move_AttackMultiple(6, 32));
 
-        int crystallize = PlayerStatistics.GetAscensionLevel() >= 4 ? 3 : 2;
-        int block = PlayerStatistics.GetAscensionLevel() >= 4 ? 12 : 8;
+        boolean asc4 = PlayerStatistics.GetActualAscensionLevel() >= 4;
+
+        int crystallize = asc4 ? 3 : 2;
+        int block = asc4 ? 18 : 11;
 
         this.original = original;
         if (original == null)

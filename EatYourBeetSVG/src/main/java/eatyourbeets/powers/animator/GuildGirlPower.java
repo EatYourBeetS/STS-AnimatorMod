@@ -73,7 +73,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
         super.onVictory();
 
         AbstractRoom room = PlayerStatistics.GetCurrentRoom();
-        if (room != null && room.rewardAllowed)
+        if (room != null && room.rewardAllowed && goldReward > 0)
         {
             room.rewards.add(0, new SpecialGoldReward(guildGirl.originalName.replace("'", ""), goldReward));
         }

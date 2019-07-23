@@ -54,7 +54,7 @@
 	},
 	"animator:Ara":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 2 次 。 如果敌人有 负面效果， 抽 2 张牌 ， 然后丢弃 1 张牌 。",
+		"DESCRIPTION": "造成 !D! 点 伤害 2 次 。 为敌人的每个 负面效果 抽 1 张牌 。 丢弃 1 张牌 。",
 		"NAME": "爱拉"
 	},
 	"animator:Archer":
@@ -340,13 +340,13 @@
 	},
 	"animator:Entoma":
 	{
-		"DESCRIPTION": "多重进化 。 造成 !D! 点 伤害与 !M! 层毒 。 [#EFC851]饥饿[] 。",
+		"DESCRIPTION": "[#EFC851]唯一[] 。 造成 !D! 点 伤害与 !M! 层毒 。 [#EFC851]饥饿[] 。",
 		"EXTENDED_DESCRIPTION": ["饥饿", "每回合造成的伤害减少 #b1 点 。 如果这张牌消灭了非爪牙的敌人 ， 永久获得 #b1 点伤害 和 #b2 点生命上限 。"],
 		"NAME": "艾多玛"
 	},
 	"animator:EntouJyuu":
 	{
-		"DESCRIPTION": "每回合两次， 打出 [#EFC851]攻击牌[] 时使其增加 !M! 点 伤害 ， 抽一张牌 。",
+		"DESCRIPTION": "每回合两次， 打出 [#EFC851]攻击牌[] 抽一张牌 并 对所有敌人施加 1 层 燃烧 。",
 		"NAME": "炎刀·铳"
 	},
 	"animator:Envy":
@@ -394,7 +394,8 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害。 NL 给予 !M! 层 烧伤 。 NL 同调 : 此回合，保存你的剩余能量。",
+		"DESCRIPTION": "造成 !D! 点 伤害。 NL 给予 !M! 层 烧伤 。 增加 1 张 [#EFC851]烧伤[] 到你的手牌 。",
+		"EXTENDED_DESCRIPTION": ["过热", "0能耗的 #yStatus ，效果为：伤害玩家并额外抽牌。"],
 		"NAME": "杰诺斯"
 	},
 	"animator:Geryuganshoop":
@@ -406,7 +407,7 @@
 	"animator:Gilgamesh":
 	{
 		"DESCRIPTION": "[#EFC851]唯一[] 。 对一个敌人造成 !D! 点 伤害 3 次 。 NL [#EFC851]巴比伦的宝藏[] 。",
-		"EXTENDED_DESCRIPTION": ["巴比伦的宝藏", "每当你获得遗物时升级这张牌并获得 ", " 个金币 。 买的遗物不会触发该效果 。", "唯一", "卡组中只能存在一张该牌 ， 额外获得的同名牌会 #y升级 这张牌 。可被多次升级。"],
+		"EXTENDED_DESCRIPTION": ["巴比伦的宝藏", "每当你获得遗物时升级这张牌并获得 ", " 个金币 。 买的遗物不会触发该效果 。"],
 		"NAME": "英雄王·吉尔伽美什"
 	},
 	"animator:Gillette":
@@ -497,9 +498,8 @@
 	},
 	"animator:HighElfArcher":
 	{
-		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 鼓舞 !SV! : 抽 !M! 张牌 。",
-		"NAME": "精灵弓手",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 鼓舞 !SV! : 抽 !M! 张牌 。"
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 获得 !M! 点 临时 敏捷 。",
+		"NAME": "精灵弓手"
 	},
 	"animator:HiiragiShinya":
 	{
@@ -548,7 +548,7 @@
 	},
 	"animator:Jibril":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 为每一种不同的充能球抽 1 张牌 。 NL 同调 ： 造成 !M! 点 额外伤害。",
+		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 为每一种不同的充能球抽 1 张牌 并 造成 !M! 点 额外伤害。",
 		"NAME": "吉普莉尔"
 	},
 	"animator:Kaijin":
@@ -592,9 +592,9 @@
 	},
 	"animator:Kyubey":
 	{
-		"DESCRIPTION": "获得 [E] [E] NL 抽 !M! 张牌 。 NL 在你的弃牌堆中添加 2 个随机诅咒 。",
+		"DESCRIPTION": "获得 [E] [E] NL 抽 !M! 张牌 。 NL 在你的弃牌堆中添加 2 个随机诅咒 。 消耗 。",
 		"NAME": "QB",
-		"UPGRADE_DESCRIPTION": "获得 [E] [E] [E] NL 抽 !M! 张牌 。 NL 在你的弃牌堆中添加 2 个随机诅咒 。"
+		"UPGRADE_DESCRIPTION": "获得 [E] [E] NL 抽 !M! 张牌 。 NL 在你的弃牌堆中添加 2 个随机诅咒 。"
 	},
 	"animator:Lancer":
 	{
@@ -635,7 +635,7 @@
 	},
 	"animator:Megumin":
 	{
-		"DESCRIPTION": "多重进化 。 对所有敌人造成 !D! 点 伤害 。 消耗 。 NL 同调 : 在本局游戏中，永久升级这张牌 。",
+		"DESCRIPTION": "[#EFC851]唯一[] 。 对所有敌人造成 !D! 点 伤害 。 消耗 。 NL 同调 : 在本局游戏中 ， 永久升级这张牌 。",
 		"NAME": "惠惠"
 	},
 	"animator:Melzalgald":
@@ -672,7 +672,6 @@
 	"animator:Millim":
 	{
 		"DESCRIPTION": "[#EFC851]唯一[] 。 抽 !M! 张牌 。 造成 !D! 点 伤害 。 NL 同调 : 获得 [E] 。",
-		"EXTENDED_DESCRIPTION": ["唯一", "卡组中只能存在一张该牌 ， 额外获得的同名牌会 #y升级 这张牌 。可被多次升级。"],
 		"NAME": "米莉姆"
 	},
 	"animator:MisaKurobane":
@@ -745,6 +744,11 @@
 		"DESCRIPTION": "生成 !SV! 个 等离子 充能球 。 NL 每回合第二次同调时 ， 获得 !M! 点 临时生命",
 		"NAME": "等离子核心"
 	},
+	"animator:Overheat":
+	{
+		"DESCRIPTION": "抽 2 张牌 。 受到 !M! 点 伤害 。 所有同名卡均获得 1 点 额外伤害 。",
+		"NAME": "Overheat"
+	},
 	"animator:PandorasActor":
 	{
 		"DESCRIPTION": "获得 !B! 点 格挡 。 穿越者 。 NL 同调 : 额外获得 !M! 点 格挡 。",
@@ -764,7 +768,7 @@
 	},
 	"animator:Priestess":
 	{
-		"DESCRIPTION": "获得 !B! 点 临时生命 [#EFC851]*[] 。 同调 : 最多 !SV! 次 ， 获得 !M! 层 [#EFC851]再生[] 。",
+		"DESCRIPTION": "获得 !B! 点 临时生命 。 受格挡修饰词影响 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "受格挡修饰词影响 。"],
 		"NAME": "女神官"
 	},
@@ -837,7 +841,7 @@
 	},
 	"animator:Sebas":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得相当于手牌总能耗数量的额外 格挡 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得相当于手牌总能耗数量的额外 临时生命 ( !SV! ) 。 消耗 。",
 		"NAME": "塞巴斯"
 	},
 	"animator:SeriousSaitama":
@@ -854,13 +858,14 @@
 	},
 	"animator:Shichika":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 1 点 力量 。 NL 同调 : 增加 [#EFC851]虚刀流[] 到你的手牌 。",
+		"DESCRIPTION": "获得 !SV! 点 荆棘 !M! 点 力量 。 增加 [#EFC851]虚刀流[] 到你的手牌 。 消耗 。",
 		"EXTENDED_DESCRIPTION": ["虚刀流", "特殊的 1 耗 攻击牌，消耗."],
-		"NAME": "鑢七花"
+		"NAME": "鑢七花",
+		"UPGRADE_DESCRIPTION": "获得 !SV! 点 荆棘 !M! 点 力量 。 增加 [#EFC851]虚刀流+[] 到你的手牌 。 消耗 。"
 	},
 	"animator:ShichikaKyotouryuu":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 4 次 。 如果你有至少3点 敏捷 ， 抽 1 张牌 并 获得 [E] 。 虚无 。 消耗 。",
+		"DESCRIPTION": "造成 !D! 点伤害 !M! 次 。 如果你有至少3点 敏捷 ， 抽 1 张牌 并 获得 [E] 。 消耗 。",
 		"NAME": "虚刀流"
 	},
 	"animator:Shigure":
@@ -870,8 +875,9 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 NL 升级你手中的所有牌 ， 然后将它们的伤害翻倍 。",
-		"NAME": "四季崎 记纪"
+		"DESCRIPTION": "在本场战斗中 升级 你的所有牌 。 力量 影响所有卡 2 次 。",
+		"NAME": "四季崎 记纪",
+		"UPGRADE_DESCRIPTION": "固有 。 在本场战斗中 升级 你的所有牌 。 力量 影响所有卡 2 次 。"
 	},
 	"animator:Shimakaze":
 	{
@@ -895,7 +901,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "抽 1 张牌 。 获得 !B! 点 格挡 。 [#EFC851]被抽到时[] : 获得 !B! 点 格挡 。",
+		"DESCRIPTION": "抽 !M! 张牌 。 获得 !B! 点 格挡 。 [#EFC851]被抽到时[] : 获得 !B! 点 格挡 。",
 		"NAME": "朱菜"
 	},
 	"animator:SilverFang":
@@ -916,7 +922,7 @@
 	},
 	"animator:Sonic":
 	{
-		"DESCRIPTION": "忍者 . 造成 !D! 点 穿刺 伤害。 同调 : 获得1张 飞刃 。",
+		"DESCRIPTION": "在接下来的 !M! 个回合开始时 ， 获得 1 层 敏捷 并 增加 1 张 飞刃 到你的手牌 。",
 		"NAME": "音速索尼克"
 	},
 	"animator:Sora":
@@ -931,8 +937,9 @@
 	},
 	"animator:Spearman":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 鼓舞 !SV! : 获得 !M! 点 敏捷 。 ",
-		"NAME": "斯皮尔曼"
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 造成与你的 格挡 相等的额外伤害 。 失去所有 格挡 。",
+		"NAME": "斯皮尔曼",
+		"UPGRADE_DESCRIPTION": "造成 !D! 点 穿刺 伤害 。 造成与你的格挡相等的额外伤害 。 将你的 格挡 设置为 !B! 。"
 	},
 	"animator:Strike":
 	{
@@ -1128,7 +1135,7 @@
 	},
 	"animator:Viivi":
 	{
-		"DESCRIPTION": "对随机敌人造成 !D! 点 伤害 !M! 次 。 撤回 : 增加 2 张 飞刃 到你的手牌 。",
+		"DESCRIPTION": "对随机敌人造成 !D! 点 伤害 !M! 次 。 撤回 : 增加 1 张 飞刃 到你的手牌 。",
 		"NAME": "薇薇·荷罗派涅"
 	},
 	"animator:Witch":
@@ -1166,9 +1173,10 @@
 	},
 	"animator:Yuuichirou":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害 。 NL 获得 !M! 点 临时 敏捷 。 NL 遗赠 : 将一张 [#EFC851]阿修罗丸[] 放到你的弃牌堆 。",
-		"EXTENDED_DESCRIPTION": ["阿修罗丸", "特殊的1耗#y攻击牌 。"],
-		"NAME": "百夜优一郎"
+		"DESCRIPTION": "造成 !D! 点 伤害 。 遗赠 : 将一张 [#EFC851]阿修罗丸[] 和 伤口 放到你的弃牌堆 。",
+		"EXTENDED_DESCRIPTION": ["阿修罗丸", "特殊的 2 耗 #y攻击 牌 。"],
+		"NAME": "百夜优一郎",
+		"UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 。 遗赠 : 将一张 [#EFC851]阿修罗丸[] 和 晕眩 放到你的弃牌堆 。"
 	},
 	"animator:ZankiKiguchi":
 	{

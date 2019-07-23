@@ -14,12 +14,13 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.interfaces.OnEndOfTurnSubscriber;
+import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
+public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ORB_ID = CreateFullID(Earth.class.getSimpleName());
 
@@ -50,9 +51,9 @@ public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
         this.evokeAmount = this.baseEvokeAmount;
         this.basePassiveAmount = 2;
         this.passiveAmount = this.basePassiveAmount;
-        this.updateDescription();
         this.channelAnimTimer = 0.5F;
         this.turns = 3;
+        this.updateDescription();
     }
 
     public void updateDescription()
@@ -71,16 +72,16 @@ public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
         }
 
         turns = 0;
-        PlayerStatistics.onEndOfTurn.Unsubscribe(this);
+        PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
         evoked = true;
     }
 
     @Override
-    public void OnEndOfTurn(boolean isPlayer)
+    public void OnStartOfTurnPostDraw()
     {
         if (!AbstractDungeon.player.orbs.contains(this))
         {
-            PlayerStatistics.onEndOfTurn.Unsubscribe(this);
+            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
             return;
         }
 
@@ -89,6 +90,7 @@ public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
         if (turns <= 0)
         {
             GameActionsHelper.AddToTop(new EvokeSpecificOrbAction(this));
+
             evoked = true;
         }
     }
@@ -167,6 +169,6 @@ public class Earth extends AnimatorOrb implements OnEndOfTurnSubscriber
         CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.2f);
         turns = 3;
         evoked = false;
-        PlayerStatistics.onEndOfTurn.Subscribe(this);
+        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
 }

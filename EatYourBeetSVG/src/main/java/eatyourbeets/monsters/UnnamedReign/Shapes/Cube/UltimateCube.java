@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleFrail;
@@ -29,9 +30,14 @@ public class UltimateCube extends Cube
 
         movesetMode = Mode.Sequential;
 
-        moveset.AddNormal(new Move_AttackMultipleWeak(4, 2, 2));
-        moveset.AddNormal(new Move_AttackMultipleFrail(4, 2, 2));
-        moveset.AddNormal(new Move_AttackMultipleVulnerable(4, 2, 2));
+        boolean asc4 = PlayerStatistics.GetActualAscensionLevel() >= 4;
+
+        int debuffsAmount = asc4 ? 3 : 2;
+        int damageAmount = asc4 ? 5 : 4;
+
+        moveset.AddNormal(new Move_AttackMultipleWeak(damageAmount, 2, debuffsAmount));
+        moveset.AddNormal(new Move_AttackMultipleVulnerable(damageAmount, 2, debuffsAmount));
+        moveset.AddNormal(new Move_AttackMultipleFrail(damageAmount, 2, debuffsAmount));
     }
 
     @Override

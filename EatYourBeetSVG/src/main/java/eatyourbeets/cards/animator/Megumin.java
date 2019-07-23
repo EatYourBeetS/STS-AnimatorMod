@@ -13,11 +13,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
 
 public class Megumin extends AnimatorCard//_SavableInteger implements CustomSavable<Integer>
 {
@@ -32,7 +32,9 @@ public class Megumin extends AnimatorCard//_SavableInteger implements CustomSava
 
         this.isMultiDamage = true;
         this.exhaust = true;
-        
+
+        AddUniqueTag();
+
         SetSynergy(Synergies.Konosuba);
     }
 

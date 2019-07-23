@@ -186,7 +186,7 @@
 	},
 	{
 		"PROPER_NAME": "Découvrir",
-		"NAMES": ["discover"],
+		"NAMES": ["découvrir"],
 		"DESCRIPTION": "Choisir 1 carte parmis 3 cartes aléatoires à ajouter à votre main. Elle coute 0 ce tour."
 	},
 	{
@@ -220,8 +220,13 @@
 		"DESCRIPTION": "Inflige des dégats à l'ennemi avec le moins de PV."
 	},
 	{
-		"PROPER_NAME": "Motiver <N>",
+		"PROPER_NAME": "Motiver",
 		"NAMES": ["motiver", "motivation"],
-		"DESCRIPTION": "Reduit le coût d'une carte aléatoire de votre main par 1 jusqu'à ce qu'elle soit jouée. Répète <N> fois."
+		"DESCRIPTION": "Reduit le coût d'une carte aléatoire de votre main par 1 jusqu'à ce qu'elle soit jouée. Répète N fois."
+	},
+	{
+		"PROPER_NAME": "animator:Unique",
+		"NAMES": ["animator:unique"],
+		"DESCRIPTION": "Unique|Peut s'améliorer un nombre infini de fois. Vous ne pouvez avoir qu'une copie de cette carte, les copies additionnelles #yAmélioreront cette carte à la place."
 	}
 ]

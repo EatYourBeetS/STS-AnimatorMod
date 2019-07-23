@@ -31,7 +31,9 @@ public class Entoma extends AnimatorCard//_SavableInteger implements CustomSavab
 
         Initialize(ORIGINAL_DAMAGE,0,ORIGINAL_MAGIC_NUMBER);
 
+        AddUniqueTag();
         AddExtendedDescription();
+
         SetSynergy(Synergies.Overlord);
     }
 

@@ -54,13 +54,18 @@
 		"FLAVOR": "劍鞘的持有者被授予強力恢復能力,能夠迅速恢復致命傷.",
 		"NAME": "阿瓦隆"
 	},
+	"animator:Haunted":
+	{
+		"DESCRIPTIONS": ["..."],
+		"FLAVOR": "...",
+		"NAME": "Haunted"
+	},
 	"animator:HeavyHalberd":
 	{
 		"DESCRIPTIONS": ["你的 #y攻擊牌 造成 #b", "% 點額外傷害."],
 		"FLAVOR": "統治死亡即統治生命， 死即生之巔峰, 崇敬生命吧.",
 		"NAME": "重戟"
 	},
-	
 	"animator:Hoodie":
 	{
 		"DESCRIPTIONS": ["如果你在一場戰鬥沒有受到傷害, 獲得 #b", " #y生命上限 。"],

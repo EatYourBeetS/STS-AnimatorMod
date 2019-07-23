@@ -29,7 +29,7 @@ public class Elsword extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Defend.ID);
-        res.add(Ara.ID);
+        res.add(Chung.ID);
         res.add(Raven.ID);
 
         return res;

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -290,5 +291,12 @@ public abstract class AnimatorCard extends EYBCard
             case RARE:
                 this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_POWER_RARE, x, y);
         }
+    }
+
+    protected void AddUniqueTag()
+    {
+        String[] unique = GameDictionary.keywords.get("animator:unique").split("\\|");
+        AddTooltip(new TooltipInfo(unique[0], unique[1]));
+        tags.add(AbstractEnums.CardTags.UNIQUE);
     }
 }

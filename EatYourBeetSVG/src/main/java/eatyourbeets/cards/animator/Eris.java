@@ -21,6 +21,11 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
 
     public Eris()
     {
+        this(true);
+    }
+
+    private Eris(boolean revive)
+    {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0,0, 4);
@@ -28,7 +33,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
         this.exhaust = true;
         this.tags.add(CardTags.HEALING);
 
-        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
+        if (revive && PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
         {
             OnBattleStart();
         }
@@ -46,7 +51,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     public int OnLoseHp(int damageAmount)
     {
         AbstractPlayer player = AbstractDungeon.player;
-        if (InPlayerDeck() && damageAmount > 0 && player.currentHealth < damageAmount)
+        if (InPlayerDeck() && damageAmount > 0 && player.currentHealth <= damageAmount)
         {
             AbstractCard c = StSLib.getMasterDeckEquivalent(this);
             if (c != null)
@@ -61,11 +66,12 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
                 player.hand.refreshHandLayout();
             }
 
-            Eris temp = new Eris();
+            Eris temp = new Eris(false);
             if (upgraded)
             {
                 temp.upgrade();
             }
+
             AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(temp));
             PlayerStatistics.onLoseHp.Unsubscribe(this);
 

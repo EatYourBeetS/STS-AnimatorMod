@@ -29,8 +29,8 @@ public class OnePunchMan extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Defend.ID);
-        res.add(MumenRider.ID);
         res.add(Genos.ID);
+        res.add(MumenRider.ID);
 
         return res;
     }

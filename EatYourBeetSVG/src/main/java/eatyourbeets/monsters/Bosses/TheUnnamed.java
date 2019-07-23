@@ -58,13 +58,13 @@ public class TheUnnamed extends AnimatorMonster
         if (PlayerStatistics.GetAscensionLevel() >= 4)
         {
             poisonScaling = 4;
-            singleAttackDamage = 26;
+            singleAttackDamage = 34;
             multiAttackDamage = 8;
         }
         else
         {
             poisonScaling = 3;
-            singleAttackDamage = 20;
+            singleAttackDamage = 26;
             multiAttackDamage = 7;
         }
 
@@ -117,6 +117,9 @@ public class TheUnnamed extends AnimatorMonster
             AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
             return;
         }
+
+        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
+                3f, data.strings.DIALOG[30], this.isPlayer));
 
         //AbstractDungeon.aiRng.setCounter(AbstractDungeon.aiRng.counter + MathUtils.random(100));
 

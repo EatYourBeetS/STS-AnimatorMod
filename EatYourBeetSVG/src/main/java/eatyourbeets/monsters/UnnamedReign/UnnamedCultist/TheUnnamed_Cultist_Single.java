@@ -32,8 +32,13 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
 
         moveset.AddSpecial(new Move_SummonEnemy());
 
-        moveset.AddNormal(new Move_GainPlatedArmorAll(4));
-        moveset.AddNormal(new Move_GainStrengthAll(3));
+        boolean asc4 = PlayerStatistics.GetAscensionLevel() >= 4;
+
+        int strengthGain = asc4 ? 4 : 3;
+        int platedArmor = asc4 ? 5 : 4;
+
+        moveset.AddNormal(new Move_GainPlatedArmorAll(platedArmor));
+        moveset.AddNormal(new Move_GainStrengthAll(strengthGain));
         moveset.AddNormal(new Move_AttackDefend(12, 12));
     }
 

@@ -54,7 +54,7 @@
 	},
 	"animator:Ara":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) deux fois. NL Si l'ennemi a un Debuff, piochez 2 cartes, puis défaussez 1 carte.",
+		"DESCRIPTION": "Infligez !D! dégât(s) deux fois. Piochez 1 carte pour chaque Debuff sur l'ennemi. Défaussez 1 carte.",
 		"NAME": "Ara"
 	},
 	"animator:Archer":
@@ -328,7 +328,7 @@
 	},
 	"animator:EmiyaShirou":
 	{
-		"DESCRIPTION": "Donnez à un ennemi aléatoire !M! d'Armure et 1 Vulnérabilité. Chaque fois qu'un ennemi perd son Armure ce tour, Gagnez 1 #yEnergy et piochez une #yAttack.",
+		"DESCRIPTION": "Donnez à un ennemi aléatoire !M! d'Armure et 1 Vulnérabilité. Chaque fois qu'un ennemi perd son Armure ce tour, Gagnez 1 Energy et piochez une Attack.",
 		"EXTENDED_DESCRIPTION": ["Unlimited Blade Works", "Chaque fois qu'un ennemi perd son Armure ce tour, Gagnez 1 #yEnergy et piochez une #yAttack aléatoire de votre pioche."],
 		"NAME": "Emiya Shirou"
 	},
@@ -341,13 +341,13 @@
 	},
 	"animator:Entoma":
 	{
-		"DESCRIPTION": "Augmentable. NL Infligez !D! dégât(s). NL Appliquez !M! Poison. [#EFC851]Faim.",
+		"DESCRIPTION": "[#EFC851]Unique. NL Infligez !D! dégât(s). NL Appliquez !M! Poison. [#EFC851]Faim.",
 		"EXTENDED_DESCRIPTION": ["Faim", "Perdez #b1 dégât(s) chaque tour. Si l'ennemi (non-minion) succombe, Améliorer de manière permanente cette carte et Gagnez #b2 PV Max."],
 		"NAME": "Entoma"
 	},
 	"animator:EntouJyuu":
 	{
-		"DESCRIPTION": "Deux fois par tour, après que vous ayez joué une [#EFC851]Attaque, augmentez ces dégât(s) de !M! pour ce combat et piochez une carte.",
+		"DESCRIPTION": "Deux fois par tour, après que vous ayez joué une [#EFC851]Attaque, piochez 1 carte et appliquez 1 de Brûlure à TOUS les ennemis.",
 		"NAME": "Entou Jyuu"
 	},
 	"animator:Envy":
@@ -396,7 +396,8 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! de Brulûre. NL Synergie: L'énergie est conservée ce tour.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Appliquez !M! de Brulûre. Ajoutez 1 [#EFC851]Surchauffe[] à votre main. .",
+		"EXTENDED_DESCRIPTION": ["Surchauffe", "#yStatus qui coûte 0, pioche des cartes et inflige des dégâts au joueur."],
 		"NAME": "Genos"
 	},
 	"animator:Geryuganshoop":
@@ -408,7 +409,7 @@
 	"animator:Gilgamesh":
 	{
 		"DESCRIPTION": "[#EFC851]Unique. NL Infligez !D! dégât(s) à un ennemi 3 fois. NL [#EFC851]Gate [#EFC851]of [#EFC851]Babylon.",
-		"EXTENDED_DESCRIPTION": ["Gate of Babylon", "Quand vous obtenez une relique, #yAméliorez cette carte et Gagnez #b", " #yOr. Ne s'active pas à l'achat de relique et dans certains évènements.", "Unique", "Peut s'améliorer un nombre infini de fois. Vous ne pouvez avoir qu'une copie de cette carte, les copies additionnelles #yAmélioreront cette carte à la place."],
+		"EXTENDED_DESCRIPTION": ["Gate of Babylon", "Quand vous obtenez une relique, #yAméliorez cette carte et Gagnez #b", " #yOr. Ne s'active pas à l'achat de relique et dans certains évènements."],
 		"NAME": "Gilgamesh"
 	},
 	"animator:Gillette":
@@ -418,7 +419,7 @@
 	},
 	"animator:Giselle":
 	{
-		"DESCRIPTION": "Ingligez !D! dégat(s). NL Infligez !M! Brûlure. NL Dégats triplé sur les ennemis qui ont moins de !SV! HP.",
+		"DESCRIPTION": "Infligez !D! dégat(s). NL Infligez !M! Brûlure. NL Dégats triplé sur les ennemis qui ont moins de !SV! HP.",
 		"NAME": "Giselle"
 	},
 	"animator:Gluttony":
@@ -500,7 +501,7 @@
 	},
 	"animator:HighElfArcher":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) Perçant. Boost !SV! : Piochez !M! carte(s).",
+		"DESCRIPTION": "Infligez !D! dégât(s) Perçant. Gagnez !M! Dextérité temporaire.",
 		"NAME": "'Archère Haut Elfe'"
 	},
 	"animator:HiiragiShinya":
@@ -550,7 +551,7 @@
 	},
 	"animator:Jibril":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Piochez une carte pour chaque Orbe unique que vous avez. NL Synergie: Infligez !M! de dégâts addtionnels",
+		"DESCRIPTION": "Infligez !D! dégât(s). Piochez une carte et infligez !M! de dégâts addtionnels pour chaque Orbe unique que vous avez.",
 		"NAME": "Jibril"
 	},
 	"animator:Kaijin":
@@ -594,9 +595,9 @@
 	},
 	"animator:Kyubey":
 	{
-		"DESCRIPTION": "Gagnez [E] [E]. NL Piochez !M! Cartes. NL Ajouter 2 [#EFC851]Malédiction aléatoire à votre Défausse.",
+		"DESCRIPTION": "Gagnez [E] [E]. NL Piochez !M! Cartes. NL Ajouter 2 [#EFC851]Malédiction aléatoire à votre Défausse. Épuisement",
 		"NAME": "Kyubey",
-		"UPGRADE_DESCRIPTION": "Gagnez [E] [E] [E]. NL Piochez !M! Cartes. NL Ajouter 2 [#EFC851]Malédiction aléatoire à votre Défausse."
+		"UPGRADE_DESCRIPTION": "Gagnez [E] [E]. NL Piochez !M! Cartes. NL Ajouter 2 [#EFC851]Malédiction aléatoire à votre Défausse."
 	},
 	"animator:Lancer":
 	{
@@ -637,14 +638,14 @@
 	},
 	"animator:Megumin":
 	{
-		"DESCRIPTION": "Augmentable. Infligez !D! dégât(s) à TOUS les ennemis. Épuisement. Synergie: Améliorez de manière permanente cet carte.",
+		"DESCRIPTION": "[#EFC851]Unique. Infligez !D! dégât(s) à TOUS les ennemis. Épuisement. Synergie: Améliorez de manière permanente cet carte.",
 		"NAME": "Megumin"
 	},
 	"animator:Melzalgald":
 	{
 		"DESCRIPTION": "Changeforme. NL Infligez !D! dégât(s). NL Se divise en 3 [#EFC851]Attaques. Épuisement.",
 		"NAME": "Melzalgald",
-		"UPGRADE_DESCRIPTION": "Changeforme. NL Infligez !D! dégât(s) perçant(s). NL Se divise en 3 [#EFC851]Attaques Améliorées. Épuisement."
+		"UPGRADE_DESCRIPTION": "Changeforme. NL Infligez !D! dégât(s). NL Se divise en 3 [#EFC851]Attaques Améliorées. Épuisement."
 	},
 	"animator:MelzalgaldAlt_1":
 	{
@@ -674,7 +675,6 @@
 	"animator:Millim":
 	{
 		"DESCRIPTION": "[#EFC851]Unique. NL Infligez !D! dégât(s). NL Piochez !M! Cartes. NL Synergie: Gagnez [E].",
-		"EXTENDED_DESCRIPTION": ["Unique", "Peut s'améliorer un nombre infini de fois. Vous ne pouvez avoir qu'une copie de cette carte, les copies additionnalles #yAmélioreront cette carte à la place."],
 		"NAME": "Millim"
 	},
 	"animator:MisaKurobane":
@@ -748,6 +748,11 @@
 		"DESCRIPTION": "Canalisez !SV! Orbe Plasmique. NL À la seconde Synergie de chaque tour, NL Gagnez !M! de Temp._PV.",
 		"NAME": "Noyau Plasmique"
 	},
+	"animator:Overheat":
+	{
+		"DESCRIPTION": "Piochez 2 cartes. Prendre !M! dégâts. Toutes les copies de cette carte Gagne 1 dégât(s) pour ce combat.",
+		"NAME": "Overheat"
+	},
 	"animator:PandorasActor":
 	{
 		"DESCRIPTION": "Changeforme. NL Gagnez !B! d'Armure. NL Synergie: NLGagnez !M! d'Armure additionnelle.",
@@ -767,7 +772,7 @@
 	},
 	"animator:Priestess":
 	{
-		"DESCRIPTION": "Gagnez !B! Temp._PV ([#EFC851]*[]). Synergie: Gagnez !M! [#EFC851]Regeneration[], peut s'activer !SV! fois.",
+		"DESCRIPTION": "Gagnez !B! Temp._PV. Ce nombre est affecté par les modificateurs d'Armure.",
 		"EXTENDED_DESCRIPTION": ["* Note", "Affecté par les modificateurs d'Armure."],
 		"NAME": "'Prêtresse'"
 	},
@@ -840,7 +845,7 @@
 	},
 	"animator:Sebas":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez de l'Armure supplémentaire égale au coût total des cartes en main.",
+		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez de Temp._PV égale au coût total des cartes en main ( !SV! ) . Épuisement.",
 		"NAME": "Sebas"
 	},
 	"animator:SeriousSaitama":
@@ -857,13 +862,14 @@
 	},
 	"animator:Shichika":
 	{
-		"DESCRIPTION": "Gagnez !B! d'Armure. NL Gagnez 1 Force. NL Synergie: Ajoutez [#EFC851]Kyotouryuu[] à votre main.",
+		"DESCRIPTION": "Gagnez !SV! de Épines. NL Gagnez !M! de Force. Ajoutez [#EFC851]Kyotouryuu[] à votre main. Épuisement.",
 		"EXTENDED_DESCRIPTION": ["Kyotouryuu", "Une attaque spéciale à 1 coût qui frappe plusieurs fois et épuise"],
-		"NAME": "Shichika"
+		"NAME": "Shichika",
+		"UPGRADE_DESCRIPTION": "Gagnez !SV! de Épines. NL Gagnez !M! de Force. Ajoutez [#EFC851]Kyotouryuu+[] à votre main. Épuisement."
 	},
 	"animator:ShichikaKyotouryuu":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) 4 fois. Si vous avez au moins 3 Dextérité, piochez 1 carte et Gagnez [E]. Éthérée. Épuisement.",
+		"DESCRIPTION": "Infligez !D! dégât(s) !M! fois. Si vous avez au moins 3 Dextérité, piochez 1 carte et Gagnez [E]. Épuisement.",
 		"NAME": "Kyotouryuu"
 	},
 	"animator:Shigure":
@@ -873,8 +879,9 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "Piochez !M! carte(s). NL Améliorez toutes les cartes de votre main et doublez leurs dégâts pour le restant du combat.",
-		"NAME": "Shikizaki Kiki"
+		"DESCRIPTION": "Améliorez toutes les cartes pour le restant du combat. La Force affecte toutes les cartes 2 fois.",
+		"NAME": "Shikizaki Kiki",
+		"UPGRADE_DESCRIPTION": "Inné. Améliorez toutes les cartes pour le restant du combat. La Force affecte toutes les cartes 2 fois."
 	},
 	"animator:Shimakaze":
 	{
@@ -898,7 +905,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "Piochez 1 carte. NL Gagnez !B! d'Armure. NL [#EFC851]Pioché: NL Gagnez !B! d'Armure.",
+		"DESCRIPTION": "Piochez !M! carte(s). NL Gagnez !B! d'Armure. NL [#EFC851]Pioché: NL Gagnez !B! d'Armure.",
 		"NAME": "Shuna"
 	},
 	"animator:SilverFang":
@@ -908,7 +915,7 @@
 	},
 	"animator:SirTouchMe":
 	{
-		"DESCRIPTION": "Ingligez !D! dégat(s). NL Gagnez !M! Juggernaut. NL Gagnez !B! d'Armure. NL Gagnez !SV! d'Armure_Plaquée.",
+		"DESCRIPTION": "Infligez !D! dégat(s). NL Gagnez !M! Juggernaut. NL Gagnez !B! d'Armure. NL Gagnez !SV! d'Armure_Plaquée.",
 		"NAME": "Sir Touch Me"
 	},
 	"animator:Sloth":
@@ -919,7 +926,7 @@
 	},
 	"animator:Sonic":
 	{
-		"DESCRIPTION": "Artiste_Martial. Infligez !D! dégât(s) perçant(s). Synergie: Ajoutez un Couteau_de_Jet dans votre main.",
+		"DESCRIPTION": "Au début de vos !M! prochains tours, gagnez 1 de Dextérité et ajoutez un Couteau_de_Jet à votre main.",
 		"NAME": "Sonic"
 	},
 	"animator:Sora":
@@ -934,8 +941,9 @@
 	},
 	"animator:Spearman":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Boost !SV! : Gagnez !M! Dextérité.",
-		"NAME": "'Lancier'"
+		"DESCRIPTION": "Infligez !D! dégât(s) Perçant(s). Infligez des dégâts supplémentaires égaux à votre quantité d’Armure. Perdez toute votre Armure.",
+		"NAME": "'Lancier'",
+		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s) Perçant(s). Infligez des dégâts supplémentaires égaux à votre quantité d’Armure. Mettez votre Armure à !B!."
 	},
 	"animator:Strike":
 	{
@@ -1169,9 +1177,10 @@
 	},
 	"animator:Yuuichirou":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Gagnez !M! Dextérité temporaire.NL Héritage: Obtenez [#EFC851]Asuramaru.",
-		"EXTENDED_DESCRIPTION": ["Asuramaru", "Une carte #yAttaque spéciale qui coûte 1."],
-		"NAME": "Yuuichirou"
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Héritage: Ajoutez [#EFC851]Asuramaru et 1 Plaie à votre Défausse.",
+		"EXTENDED_DESCRIPTION": ["Asuramaru", "Une carte #yAttaque spéciale qui coûte 2."],
+		"NAME": "Yuuichirou",
+		"UPGRADE_DESCRIPTION": "Infligez !D! dégât(s). NL Héritage: Ajoutez [#EFC851]Asuramaru et 1 Dazed à votre Défausse."
 	},
 	"animator:ZankiKiguchi":
 	{

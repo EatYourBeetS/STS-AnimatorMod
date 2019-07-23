@@ -27,15 +27,17 @@ public class Ara extends AnimatorCard
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
+        int debuffs = 0;
         for (AbstractPower power : m.powers)
         {
             if (power.type == AbstractPower.PowerType.DEBUFF)
             {
-                GameActionsHelper.DrawCard(p, 2);
-                GameActionsHelper.Discard(1, false);
-                return;
+                debuffs += 1;
             }
         }
+
+        GameActionsHelper.DrawCard(p, debuffs);
+        GameActionsHelper.Discard(1, false);
     }
 
     @Override

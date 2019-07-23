@@ -24,7 +24,7 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
     {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(10, 0);
+        Initialize(9, 0);
 
         this.isMultiDamage = true;
 

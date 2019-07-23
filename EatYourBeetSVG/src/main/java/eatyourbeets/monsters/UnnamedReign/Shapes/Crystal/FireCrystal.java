@@ -1,5 +1,7 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
+import eatyourbeets.cards.animator.Crystallize;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
@@ -12,9 +14,13 @@ public class FireCrystal extends Crystal
     {
         super(MonsterElement.Fire, tier, x, y);
 
+        boolean asc4 = PlayerStatistics.GetAscensionLevel() >= 4;
+
+        int debuffAmount = asc4 ? 2 : 1;
+
         moveset.AddNormal(new Move_Attack( tier.Add(10,4)));
-        moveset.AddNormal(new Move_AttackWeak( tier.Add(6,3),1));
-        moveset.AddNormal(new Move_Defend( tier.Add(7,3)));
+        moveset.AddNormal(new Move_AttackWeak( tier.Add(6,3),debuffAmount));
+        moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 3));
     }
 
     @Override

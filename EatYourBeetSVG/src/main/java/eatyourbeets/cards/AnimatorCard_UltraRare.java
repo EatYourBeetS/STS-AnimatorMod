@@ -67,52 +67,8 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
 
     public static boolean IsSeen(String cardID)
     {
-        return IsOldVersionSeen(cardID) || UnlockTracker.seenPref.getInteger(cardID, 0) == 2;
+        return UnlockTracker.seenPref.getInteger(cardID, 0) >= 1;
     }
-
-    protected static boolean IsOldVersionSeen(String cardID)
-    {
-        String oldID = cardID.replace(":", "_");
-
-        if (UnlockTracker.seenPref.data.containsKey(oldID))
-        {
-            int res = UnlockTracker.seenPref.getInteger(oldID);
-
-            UnlockTracker.seenPref.data.remove(oldID);
-            if (res == 2)
-            {
-                MarkAsSeen(cardID);
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    //    @SpireOverride
-//    protected void renderAttackPortrait(SpriteBatch sb, float x, float y)
-//    {
-//        switch (this.rarity)
-//        {
-//            case BASIC:
-//            case CURSE:
-//            case COMMON:
-//                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_ATTACK_COMMON, x, y);
-//                return;
-//
-//            case SPECIAL:
-//                this.renderHelper(sb, RENDER_COLOR, Resources_Animator.CARD_FRAME_ATTACK_SPECIAL, x, y);
-//                return;
-//
-//            case UNCOMMON:
-//                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_ATTACK_UNCOMMON, x, y);
-//                return;
-//
-//            case RARE:
-//                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_ATTACK_RARE, x, y);
-//        }
-//    }
 
     private static final byte[] whatever = {0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x6f, 0x72, 0x3a, 0x75, 0x72};
     private static final String idPrefix = new String(whatever);

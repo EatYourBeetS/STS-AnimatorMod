@@ -1,14 +1,20 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import eatyourbeets.actions.common.ShuffleRandomGoblinAction;
+import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.powers.animator.DexterityTrainingPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
-public class Spearman extends AnimatorCard_Boost
+public class Spearman extends AnimatorCard
 {
     public static final String ID = CreateFullID(Spearman.class.getSimpleName());
 
@@ -16,19 +22,26 @@ public class Spearman extends AnimatorCard_Boost
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8, 0,1);
+        Initialize(6, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
 
     @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        return super.calculateModifiedCardDamage(player, mo, tmp + player.currentBlock);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageTarget(p, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActionsHelper.DamageTargetPiercing(p, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActionsHelper.AddToBottom(new LoseBlockAction(p, p, p.currentBlock));
 
-        if (ProgressBoost())
+        if (upgraded)
         {
-            GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber);
+            GameActionsHelper.GainBlock(p, block);
         }
     }
 
@@ -37,14 +50,8 @@ public class Spearman extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
-            upgradeBoost(1);
+            upgradeDamage(2);
+            upgradeBlock(3);
         }
-    }
-
-    @Override
-    protected int GetBaseBoost()
-    {
-        return upgraded ? 2 : 1;
     }
 }

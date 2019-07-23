@@ -17,7 +17,7 @@ public class Shinoa extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(0,7, 1);
+        Initialize(0,6, 1);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }

@@ -63,11 +63,13 @@ public class EntouJyuuPower extends AnimatorPower
     }
 
     @Override
-    public void onPlayCard(AbstractCard card, AbstractMonster m)
+    public void onAfterCardPlayed(AbstractCard usedCard)
     {
+        super.onAfterCardPlayed(usedCard);
+
         if (amount > 0)
         {
-            if (card.type == AbstractCard.CardType.ATTACK)
+            if (usedCard.type == AbstractCard.CardType.ATTACK)
             {
                 //GameActionsHelper.AddToBottom(new ModifyDamageAction(card.uuid, this.damageBonus));
                 GameActionsHelper.DrawCard(owner, 1);
@@ -82,7 +84,5 @@ public class EntouJyuuPower extends AnimatorPower
                 updateDescription();
             }
         }
-
-        super.onPlayCard(card, m);
     }
 }

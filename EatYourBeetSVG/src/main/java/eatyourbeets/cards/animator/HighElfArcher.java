@@ -3,11 +3,13 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
-public class HighElfArcher extends AnimatorCard_Boost
+public class HighElfArcher extends AnimatorCard
 {
     public static final String ID = CreateFullID(HighElfArcher.class.getSimpleName());
 
@@ -15,7 +17,7 @@ public class HighElfArcher extends AnimatorCard_Boost
     {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(4, 0, 1);
+        Initialize(2, 0, 2);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -24,20 +26,7 @@ public class HighElfArcher extends AnimatorCard_Boost
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-
-//        int count = 0;
-//        for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisTurn)
-//        {
-//            if (c instanceof HighElfArcher)
-//            {
-//                count += 1;
-//            }
-//        }
-
-        if (ProgressBoost())
-        {
-            GameActionsHelper.DrawCard(p, this.magicNumber);
-        }
+        PlayerStatistics.ApplyTemporaryDexterity(p, p, this.magicNumber);
     }
 
     @Override
@@ -45,15 +34,7 @@ public class HighElfArcher extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
-            upgradeBoost(1);
-            //upgradeSecondaryValue(1);
+            upgradeDamage(3);
         }
-    }
-
-    @Override
-    protected int GetBaseBoost()
-    {
-        return upgraded ? 3 : 2;
     }
 }

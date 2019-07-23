@@ -43,10 +43,15 @@ public class TheUnnamed_Doll extends AnimatorMonster
         ritualAndArtifactAll = (Move_GainRitualAndArtifactAll)
                 moveset.AddSpecial(new Move_GainRitualAndArtifactAll(2, 2), 1);
 
+        boolean asc4 = PlayerStatistics.GetAscensionLevel() >= 4;
+
+        int debuffAmount = asc4 ? 2 : 1;
+        int tempThorns = asc4 ? 3 : 2;
+
         moveset.AddNormal(new Move_ShieldAll(16));
-        moveset.AddNormal(new Move_GainTempThornsAndBlockAll(2, 9));
-        moveset.AddNormal(new Move_AttackFrailAndDexLoss(1, 1));
-        moveset.AddNormal(new Move_AttackWeakAndStrLoss(1, 1));
+        moveset.AddNormal(new Move_GainTempThornsAndBlockAll(tempThorns, 9));
+        moveset.AddNormal(new Move_AttackFrailAndDexLoss(1, debuffAmount));
+        moveset.AddNormal(new Move_AttackWeakAndStrLoss(1, debuffAmount));
     }
 
     @Override
@@ -57,11 +62,11 @@ public class TheUnnamed_Doll extends AnimatorMonster
         GameActionsHelper.ApplyPower(this, this, new CursedStabsPower(this));
         if (PlayerStatistics.GetAscensionLevel() >= 7)
         {
-            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 4), 4);
+            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 3, 5), 3);
         }
         else
         {
-            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 3), 3);
+            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 3, 3), 3);
         }
     }
 

@@ -60,6 +60,12 @@
 		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
 		"NAME": "Hallowed Scabbard"
 	},
+	"animator:Haunted":
+	{
+		"DESCRIPTIONS": ["..."],
+		"FLAVOR": "...",
+		"NAME": "Haunted"
+	},
 	"animator:HeavyHalberd":
 	{
 		"DESCRIPTIONS": ["Your #yAttacks deal #b", "% more damage."],

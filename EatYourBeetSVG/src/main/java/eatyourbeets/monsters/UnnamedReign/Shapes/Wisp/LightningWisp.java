@@ -1,5 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
@@ -12,8 +13,12 @@ public class LightningWisp extends Wisp
     {
         super(MonsterElement.Lightning, tier, x, y);
 
-        moveset.AddNormal(new Move_AttackWeak(tier.Add(6,3), 1));
-        moveset.AddNormal(new Move_AttackFrail(tier.Add(6,3), 1));
+        boolean asc4 = PlayerStatistics.GetAscensionLevel() >= 4;
+
+        int debuffAmount = asc4 ? 2 : 1;
+
+        moveset.AddNormal(new Move_AttackWeak(tier.Add(6,3), debuffAmount));
+        moveset.AddNormal(new Move_AttackFrail(tier.Add(6,3), debuffAmount));
         moveset.AddNormal(new Move_GainStrengthAndArtifact(tier.Add(2,3), 1));
     }
 

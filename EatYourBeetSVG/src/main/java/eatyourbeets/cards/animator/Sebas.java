@@ -20,7 +20,7 @@ public class Sebas extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,9);
+        Initialize(0,8);
 
         this.exhaust = true;
 

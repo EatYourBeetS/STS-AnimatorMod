@@ -58,7 +58,7 @@ public class ZankiKiguchi extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
+            upgradeDamage(2);
             upgradeMagicNumber(-1);
         }
     }

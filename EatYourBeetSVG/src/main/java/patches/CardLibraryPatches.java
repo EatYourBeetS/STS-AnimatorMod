@@ -16,40 +16,18 @@ public class CardLibraryPatches
         @SpirePrefixPatch
         public static SpireReturn<AbstractCard> Prefix(String key, int upgradeTime, int misc)
         {
-            AbstractCard card;
-            if (key.startsWith("animator_"))
+            AbstractCard card = AnimatorCard_UltraRare.GetCards().get(key);
+            if (card != null)
             {
-                key = key.replace("animator_", "animator:");
-                card = CardLibrary.getCard(key);
+                card = card.makeCopy();
+                card.misc = misc;
 
-                if (card != null)
+                for (int i = 0; i < upgradeTime; ++i)
                 {
-                    card = card.makeCopy();
-                    card.misc = misc;
-
-                    for (int i = 0; i < upgradeTime; ++i)
-                    {
-                        card.upgrade();
-                    }
-
-                    return SpireReturn.Return(card);
+                    card.upgrade();
                 }
-            }
-            else
-            {
-                card = AnimatorCard_UltraRare.GetCards().get(key);
-                if (card != null)
-                {
-                    card = card.makeCopy();
-                    card.misc = misc;
 
-                    for (int i = 0; i < upgradeTime; ++i)
-                    {
-                        card.upgrade();
-                    }
-
-                    return SpireReturn.Return(card);
-                }
+                return SpireReturn.Return(card);
             }
 
             return SpireReturn.Continue();
@@ -73,8 +51,7 @@ public class CardLibraryPatches
                     }
                 }
             }
-
-            if (AnimatorCard_UltraRare.IsSeen(key))
+            else if (AnimatorCard_UltraRare.IsSeen(key))
             {
                 AbstractCard card = AnimatorCard_UltraRare.GetCards().get(key);
                 if (card != null)

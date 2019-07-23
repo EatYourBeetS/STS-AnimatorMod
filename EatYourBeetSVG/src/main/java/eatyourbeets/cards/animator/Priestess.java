@@ -3,11 +3,13 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.RegenPower;
+import eatyourbeets.actions.common.ModifyMagicNumberAction;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
-public class Priestess extends AnimatorCard_Boost
+public class Priestess extends AnimatorCard
 {
     public static final String ID = CreateFullID(Priestess.class.getSimpleName());
 
@@ -15,11 +17,10 @@ public class Priestess extends AnimatorCard_Boost
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 5, 2);
+        Initialize(0, 4);
 
-        this.tags.add(CardTags.HEALING);
-
-        AddExtendedDescription();
+        //this.tags.add(CardTags.HEALING);
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -29,10 +30,11 @@ public class Priestess extends AnimatorCard_Boost
     {
         GameActionsHelper.GainTemporaryHP(p, p, this.block);
 
-        if (HasActiveSynergy() && ProgressBoost())
-        {
-            GameActionsHelper.ApplyPower(p, p, new RegenPower(p, this.magicNumber), this.magicNumber);
-        }
+//        if (magicNumber > 0 && HasActiveSynergy())
+//        {
+//            GameActionsHelper.ApplyPower(p, p, new RegenPower(p, this.magicNumber), this.magicNumber);
+//            GameActionsHelper.AddToBottom(new ModifyMagicNumberAction(this.uuid, -1));
+//        }
     }
 
     @Override
@@ -40,14 +42,8 @@ public class Priestess extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
-            upgradeBoost(1);
+            upgradeBlock(-1);
+            upgradeBaseCost(0);
         }
-    }
-
-    @Override
-    protected int GetBaseBoost()
-    {
-        return upgraded ? 2 : 1;
     }
 }

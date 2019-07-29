@@ -78,6 +78,12 @@
 		"FLAVOR": "With this, you might be admitted to the Hero association.",
 		"NAME": "Hoodie"
 	},
+	"animator:InfinitePower":
+	{
+		"DESCRIPTIONS": ["Upon pickup, gain #b"," #yGold and #rlose #r", " #rMax #rHP. For every #b", " cards in your deck, obtain an #pUnnamed card reward."],
+		"FLAVOR": "Infinite Power! At a price...",
+		"NAME": "InfinitePower"
+	},
 	"animator:LivingPicture":
 	{
 		"DESCRIPTIONS": ["Once per turn, when a card #ySynergizes, draw #b1 card."],

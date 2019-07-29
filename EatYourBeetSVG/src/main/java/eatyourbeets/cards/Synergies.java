@@ -44,6 +44,11 @@ public class Synergies
     public final static Synergy KamisamaNoMemochu = CreateSynergy(27);
     public final static Synergy CodeGeass = CreateSynergy(28);
     public final static Synergy YoujoSenki = CreateSynergy(29);
+    public final static Synergy Bleach = CreateSynergy(30);
+    public final static Synergy Jojo = CreateSynergy(31);
+    public final static Synergy TateNoYuusha = CreateSynergy(32);
+    public final static Synergy Symphogear = CreateSynergy(33);
+    public final static Synergy CallOfCthulhu = CreateSynergy(34);
 
     private static Synergy CreateSynergy(int id)
     {

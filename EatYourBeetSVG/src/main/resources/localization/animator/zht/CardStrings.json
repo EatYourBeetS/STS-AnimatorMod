@@ -173,6 +173,11 @@
 		"DESCRIPTION": "失去 !SV! 點生命值。 NL 獲得 !M! 層 金屬化 。消耗 。",
 		"NAME": "晶體化"
 	},
+	"animator:Cthulhu":
+	{
+		"DESCRIPTION": "Purge ALL your cards, add !M! random cards to your draw pile. Draw 10 cards.",
+		"NAME": "Cthulhu"
+	},
 	"animator:Darkness":
 	{
 		"DESCRIPTION": "獲得 !M! 層 多層護甲 。 每次受傷時隨機 升級 !M! 張卡 ， 以手牌優先 。",
@@ -916,7 +921,7 @@
 	"animator:Sloth":
 	{
 		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 給予 !M! 層 易傷 。 NL 獲得 !B! 格擋 。 [#EFC851]懶惰[] 。",
-		"EXTENDED_DESCRIPTION": ["懶惰", "每輪開始時， 將此卡的格擋和傷害提高 #b2 點 ， 並為每個不同的充能球增加 #b1 點 。 每次使用後， 將這張牌的 #y格擋 與傷害減半。"],
+		"EXTENDED_DESCRIPTION": ["懶惰", "每回合開始時，將這張牌的格擋和傷害提高 #b2 點 對於你擁有的每個orb插槽。 每次使用後， 將這張牌的 #y格擋 與傷害減半。"],
 		"NAME": "斯洛斯"
 	},
 	"animator:Sonic":

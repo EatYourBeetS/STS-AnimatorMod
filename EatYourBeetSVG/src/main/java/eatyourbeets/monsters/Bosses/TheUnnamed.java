@@ -299,6 +299,12 @@ public class TheUnnamed extends AnimatorMonster
             atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.atlas";
             jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.json";
 
+            int level = PlayerStatistics.GetActualAscensionLevel();
+            if (level > 0)
+            {
+                maxHealth += level * 5;
+            }
+
             SetHB(0, -20, 200, 260, 0, 80);
         }
     }

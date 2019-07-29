@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.rooms.TreasureRoomBoss;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -58,7 +59,7 @@ public class TheMissingPiece extends AnimatorRelic implements OnReceiveRewardsSu
         }
 
         AbstractRoom room = AbstractDungeon.getCurrRoom();
-        if (room == null || room instanceof MonsterRoomBoss)
+        if (room == null || room instanceof MonsterRoomBoss || room instanceof TreasureRoomBoss)
         {
             skipReward = true;
             return;

@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.actions.common.ModifyBlockActionWhichActuallyWorks;
@@ -17,9 +18,9 @@ public class Sloth extends AnimatorCard
 
     public Sloth()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(2,2, 2);
+        Initialize(3,3, 2);
 
         AddExtendedDescription();
 
@@ -33,7 +34,8 @@ public class Sloth extends AnimatorCard
 
         if (PlayerStatistics.getTurnCount() > 0)
         {
-            int bonusAmount = PlayerStatistics.GetUniqueOrbsCount() + 2;
+            int bonusAmount = AbstractDungeon.player.orbs.size();
+            //int bonusAmount = PlayerStatistics.GetUniqueOrbsCount() + 2;
 
             GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, bonusAmount));
             GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, bonusAmount));
@@ -55,8 +57,8 @@ public class Sloth extends AnimatorCard
         GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, this.magicNumber, false), this.magicNumber);
         //GameActionsHelper.ApplyPower(p, m, new WeakPower(m, this.magicNumber, false), this.magicNumber);
 
-        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, - this.baseDamage/2));
-        GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, - this.baseBlock/2));
+        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, -(int)Math.ceil(this.baseDamage/2.0)));
+        GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, -(int)Math.ceil(this.baseBlock/2.0)));
     }
 
     @Override
@@ -64,8 +66,9 @@ public class Sloth extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
-            upgradeBlock(3);
+            upgradeMagicNumber(1);
+            upgradeDamage(1);
+            upgradeBlock(1);
         }
     }
 }

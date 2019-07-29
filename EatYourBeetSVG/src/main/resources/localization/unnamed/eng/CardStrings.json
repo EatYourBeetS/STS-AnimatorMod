@@ -1,81 +1,35 @@
 
 {
-	"unnamed:Strike_Unnamed":
-	{
-		"DESCRIPTION": "Deal !D! damage. NL Lose !M! HP",
-		"NAME": "Strike"
-	},
-	"unnamed:Defend_Unnamed":
-	{
-		"DESCRIPTION": "Gain !B! Block. NL Lose !M! HP",
-		"NAME": "Defend"
-	},
-	"unnamed:SoulTap":
-	{
-		"DESCRIPTION": "Lose 2 Max HP. NL Draw !SV! cards. NL Gain !M! Strength.",
-		"NAME": "Soul Tap"
-	},
-	"unnamed:Overpower":
-	{
-		"DESCRIPTION": "Deal !D! damage. NL Exhaust the top 3 cards of your draw pile.",
-		"NAME": "Overpower"
-	},
-	"unnamed:Laziness":
-	{
-		"DESCRIPTION": "Gain !M! Weak. NL Summon [#EFC851]Urushihara[].",
-		"NAME": "Laziness"
-	},
-	"unnamed:DarkShroud":
-	{
-		"DESCRIPTION": "Gain !M! Ench._Armor for each Dark orb. NL Exhaust.",
-		"NAME": "Dark Shroud",
-		"UPGRADE_DESCRIPTION": "Retain. NL Gain !M! Ench._Armor for each Dark orb. NL Exhaust."
-	},
-	"unnamed:Attunement":
-	{
-		"DESCRIPTION": "Gain !M! Orb Slots. NL Channel 1 Dark.",
-		"NAME": "Attunement"
-	},
-	"unnamed:Refinement":
-	{
-		"DESCRIPTION": "Draw 1 card. NL Lose ALL Strength. NL Gain that much Focus.",
-		"NAME": "Refinement"
-	},
-	"unnamed:Hellfire":
-	{
-		"DESCRIPTION": "Channel !SV! Fire. NL Apply !M! Burning to ALL enemies.",
-		"NAME": "Hellfire"
-	},
-	"unnamed:Miasma":
-	{
-		"DESCRIPTION": "Lose !M! HP. NL Apply !SV! Poison and Weak to ALL enemies.",
-		"NAME": "Miasma"
-	},
 	"unnamed:Visions":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL All cards are Ethereal this turn. Exhaust.",
+		"DESCRIPTION": "Draw !M! cards. NL ALL cards are Ethereal this turn. Exhaust.",
 		"NAME": "Visions"
 	},
 	"unnamed:UnnamedDoll":
 	{
-		"DESCRIPTION": "Gain X+2 Max HP. NL Fleeting.",
+		"DESCRIPTION": "Gain !M! Temporary HP. ALL characters gain !SV! Ritual. Exhaust.",
 		"NAME": "Unnamed Doll"
 	},
 	"unnamed:Respite":
 	{
-		"DESCRIPTION": "Draw 1 card. NL Gain !M! Temp._HP. NL Exhaust. Startup: NL Gain !SV! Max HP.",
+		"DESCRIPTION": "Draw 1 card. NL Gain !M! Temp._HP. NL Startup: NL Gain !SV! Max HP.",
 		"NAME": "Respite"
 	},
 	"unnamed:Cataclysm":
 	{
-		"DESCRIPTION": "Lose !SV! Max HP. NL Deal !D! damage to ALL enemies !M! times.",
+		"DESCRIPTION": "Lose !SV! Max HP. Exhaust 20 random cards. Deal !D! damage to ALL enemies !M! times.",
 		"NAME": "Cataclysm"
 	},
-	"unnamed:DarkBomb":
+	"unnamed:SoulTap":
 	{
-		"DESCRIPTION": "Channel !M! Dark. NL Deal !D! damage to ALL characters.",
-		"NAME": "Dark Bomb",
-		"UPGRADE_DESCRIPTION": "Innate. NL Channel !M! Dark. NL Deal !D! damage to ALL characters."
+		"DESCRIPTION": "Lose !SV! Max HP. NL Draw !M! cards. NL Gain !M! Strength.",
+		"NAME": "Sould Tap"
+	},
+	"unnamed:InfinitePower":
+	{
+		"DESCRIPTION": "Ethereal. Add !M! random [#EFC851]Powers[] to your hand. They cost 0 this turn. Exhaust.",
+		"NAME": "Infinite Power",
+		"UPGRADE_DESCRIPTION": "Ethereal. Add !M! random Upgraded [#EFC851]Powers[] to your hand. They cost 0 this turn. Exhaust."
 	},
 	"unnamed:Reaper":
 	{

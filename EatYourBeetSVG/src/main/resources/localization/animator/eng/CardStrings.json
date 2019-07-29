@@ -175,6 +175,11 @@
 		"DESCRIPTION": "Lose !SV! HP. NL Gain !M! Metallicize. NL Exhaust.",
 		"NAME": "Crystallize"
 	},
+	"animator:Cthulhu":
+	{
+		"DESCRIPTION": "Purge ALL your cards, add !M! random cards to your draw pile. Draw 10 cards.",
+		"NAME": "Cthulhu"
+	},
 	"animator:Darkness":
 	{
 		"DESCRIPTION": "Gain !M! Plated_Armor. Whenever you take damage, Upgrade !M! random card ([#EFC851]*[#FFFFFF]).",
@@ -344,7 +349,7 @@
 	"animator:Entoma":
 	{
 		"DESCRIPTION": "[#EFC851]Unique. NL Deal !D! damage. NL Apply !M! Poison. [#EFC851]Hunger.",
-		"EXTENDED_DESCRIPTION": [ "Hunger", "Lose #b1 damage each turn. If this kills a non-minion enemy, permanently upgrade this card and gain #b2 Max HP." ],
+		"EXTENDED_DESCRIPTION": ["Hunger", "Lose #b1 damage each turn. If this kills a non-minion enemy, permanently upgrade this card and gain #b2 Max HP."],
 		"NAME": "Entoma"
 	},
 	"animator:EntouJyuu":
@@ -916,7 +921,7 @@
 	"animator:Sloth":
 	{
 		"DESCRIPTION": "[#EFC851]Sloth. NL Gain !B! Block. NL Deal !D! damage. NL Apply !M! Vulnerable.",
-		"EXTENDED_DESCRIPTION": ["Sloth", "At the start of each turn, increase this card's #yBlock and damage by 2, gain an additional 1 for each unique Orb you have. On use, halve this card's damage and #yBlock."],
+		"EXTENDED_DESCRIPTION": ["Sloth", "At the start of each turn, increase this card's #yBlock and damage by #b1 for each Orb Slot you have. On use, halve this card's damage and #yBlock."],
 		"NAME": "Sloth"
 	},
 	"animator:Sonic":

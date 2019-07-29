@@ -12,6 +12,9 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.BloodVial;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.KrulTepesAction;
@@ -65,7 +68,8 @@ public class KrulTepes extends AnimatorCard
 
     public boolean CanGetReward()
     {
-        for (RewardItem r : AbstractDungeon.getCurrRoom().rewards)
+        AbstractRoom room = AbstractDungeon.getCurrRoom();
+        for (RewardItem r : room.rewards)
         {
             if (r.relic != null && r.relic.relicId.equals(relicReward.relicId))
             {

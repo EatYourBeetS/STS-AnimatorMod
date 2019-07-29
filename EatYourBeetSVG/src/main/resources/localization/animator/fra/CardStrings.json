@@ -173,6 +173,11 @@
 		"DESCRIPTION": "Perdez !SV! PV. NL Gagnez !M! de Métallisation. NL Épuisement.",
 		"NAME": "Crystallisation"
 	},
+	"animator:Cthulhu":
+	{
+		"DESCRIPTION": "Purge ALL your cards, add !M! random cards to your draw pile. Draw 10 cards.",
+		"NAME": "Cthulhu"
+	},
 	"animator:Darkness":
 	{
 		"DESCRIPTION": "Gagnez !M! d'Armure_Plaquée. Chaque fois que prenez des dégât(s), Amélioré !M! carte(s) aléatoire(s) ([#EFC851]*[#FFFFFF]).",
@@ -921,7 +926,7 @@
 	"animator:Sloth":
 	{
 		"DESCRIPTION": "Gagnez !B! d'Armure. NL Infligez !D! dégât(s). NL Appliquez !M! de Vulnérable. NL [#EFC851]Paresse.",
-		"EXTENDED_DESCRIPTION": ["Paresse", "Au début de chaque tour, augmentez le montant #yd'Armure and de dégâts par 2, et par 1 pour chaque unique Orbe que vous avez. Après l'utilisation, diminuez les dégâts et le montant #y d'Armure de cette carte de moitié."],
+		"EXTENDED_DESCRIPTION": ["Paresse", "Au début de chaque tour, augmentez le montant #yd'Armure and de dégâts par #b1 pour chaque emplacement d'Orbe que vous avez. Après l'utilisation, diminuez les dégâts et le montant #y d'Armure de cette carte de moitié."],
 		"NAME": "Paresse"
 	},
 	"animator:Sonic":

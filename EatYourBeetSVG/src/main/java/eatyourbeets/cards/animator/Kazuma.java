@@ -36,7 +36,7 @@ public class Kazuma extends AnimatorCard
     public void upgrade() 
     {
         if (TryUpgrade())
-        {          
+        {
             upgradeDamage(2);
             upgradeBlock(2);
         }

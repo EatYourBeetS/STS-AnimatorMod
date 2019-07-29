@@ -18,7 +18,7 @@ public class PurgeAnywhereAction extends AbstractGameAction
         this(card, 3);
     }
 
-    private PurgeAnywhereAction(AbstractCard card, int repeat)
+    public PurgeAnywhereAction(AbstractCard card, int repeat)
     {
         this.card = card;
         this.card.tags.add(AbstractEnums.CardTags.PURGE);

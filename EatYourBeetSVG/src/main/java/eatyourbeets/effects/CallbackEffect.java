@@ -12,6 +12,11 @@ public class CallbackEffect extends AbstractGameEffect
     private final BiConsumer<Object, AbstractGameAction> onCompletion;
     private final Object state;
 
+    public CallbackEffect(AbstractGameAction action)
+    {
+        this(action, null, null);
+    }
+
     public CallbackEffect(AbstractGameAction action, BiConsumer<Object, AbstractGameAction> onCompletion, Object state)
     {
         this.action = action;
@@ -29,7 +34,10 @@ public class CallbackEffect extends AbstractGameEffect
         else
         {
             this.isDone = true;
-            onCompletion.accept(state, action);
+            if (onCompletion != null)
+            {
+                onCompletion.accept(state, action);
+            }
         }
     }
 

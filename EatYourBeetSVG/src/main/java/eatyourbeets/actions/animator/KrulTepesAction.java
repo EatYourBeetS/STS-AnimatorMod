@@ -1,7 +1,12 @@
 package eatyourbeets.actions.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import eatyourbeets.cards.animator.KrulTepes;
 
 public class KrulTepesAction extends AnimatorAction
@@ -28,7 +33,8 @@ public class KrulTepesAction extends AnimatorAction
 
         if (krul.CanGetReward())
         {
-            if ((monster.type == AbstractMonster.EnemyType.ELITE || monster.type == AbstractMonster.EnemyType.BOSS))
+            AbstractRoom room = AbstractDungeon.getCurrRoom();
+            if (!monster.hasPower(MinionPower.POWER_ID) && room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
             {
                 krul.ObtainReward();
             }

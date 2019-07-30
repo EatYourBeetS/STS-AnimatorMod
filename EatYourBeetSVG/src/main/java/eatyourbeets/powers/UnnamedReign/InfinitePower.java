@@ -194,12 +194,12 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         }
         else
         {
-            if (!necronomicursed && PlayerStatistics.getCardsDrawnThisTurn() > 10)
+            if (!necronomicursed)
             {
                 AbstractPlayer p = AbstractDungeon.player;
 
                 int totalSize = (p.drawPile.size() + p.discardPile.size() + p.hand.size());
-                if (totalSize <= 10)
+                if (totalSize < 10 && PlayerStatistics.getCardsDrawnThisTurn() > (totalSize + 2))
                 {
                     GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[31], 2f, 2f));
                     GameActionsHelper.AddToBottom(new WaitRealtimeAction(2.5f));
@@ -209,9 +209,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
                     GameActionsHelper.MakeCardInDrawPile(new Necronomicurse(), 4, false);
 
                     AnimatorCard_UltraRare.MarkAsSeen(Cthulhu.ID);
-                    Cthulhu cthulhu = new Cthulhu();
-                    cthulhu.upgrade();
-                    AbstractDungeon.player.discardPile.addToTop(cthulhu);
+                    AbstractDungeon.player.discardPile.addToTop(new Cthulhu());
                     necronomicursed = true;
                 }
             }

@@ -175,7 +175,7 @@
 	},
 	"animator:Cthulhu":
 	{
-		"DESCRIPTION": "Purge ALL your cards, add !M! random cards to your draw pile. Draw 10 cards.",
+		"DESCRIPTION": "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.",
 		"NAME": "Cthulhu"
 	},
 	"animator:Darkness":

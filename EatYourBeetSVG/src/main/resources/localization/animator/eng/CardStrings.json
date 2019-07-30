@@ -177,7 +177,7 @@
 	},
 	"animator:Cthulhu":
 	{
-		"DESCRIPTION": "Purge ALL your cards, add !M! random cards to your draw pile. Draw 10 cards.",
+		"DESCRIPTION": "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.",
 		"NAME": "Cthulhu"
 	},
 	"animator:Darkness":
@@ -354,7 +354,7 @@
 	},
 	"animator:EntouJyuu":
 	{
-		"DESCRIPTION": "Twice per turn, after you play an [#EFC851]Attack, draw 1 card and apply !M! Burning to ALL enemies.",
+		"DESCRIPTION": "Twice per turn, after you play an [#EFC851]Attack, draw 1 card and apply 1 Burning to ALL enemies.",
 		"NAME": "Entou Jyuu"
 	},
 	"animator:Envy":

@@ -177,7 +177,7 @@
 	},
 	"animator:Cthulhu":
 	{
-		"DESCRIPTION": "Purge ALL your cards, add !M! random cards to your draw pile. Draw 10 cards.",
+		"DESCRIPTION": "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.",
 		"NAME": "Cthulhu"
 	},
 	"animator:Darkness":
@@ -353,7 +353,7 @@
 	},
 	"animator:EntouJyuu":
 	{
-		"DESCRIPTION": "每回合两次，打出 [#EFC851]攻击牌[] 时，抽一张牌并给予所有敌人 !M! 层 燃烧 。",
+		"DESCRIPTION": "每回合两次，打出 [#EFC851]攻击牌[] 时， 抽一张牌并给予所有敌人 1 层 燃烧 。",
 		"NAME": "炎刀·铳"
 	},
 	"animator:Envy":

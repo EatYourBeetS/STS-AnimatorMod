@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.ExceptionHandler;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
@@ -96,13 +95,13 @@ public abstract class EYBCard extends CustomCard
         this.baseSecondaryValue = this.secondaryValue = baseSecondaryValue;
     }
 
-    public Boolean TryUpgrade()
+    public Boolean TryUpgrade(boolean updateDescription)
     {
         if (!this.upgraded)
         {
             upgradeName();
 
-            if (StringUtils.isNotEmpty(upgradedDescription))
+            if (updateDescription && StringUtils.isNotEmpty(upgradedDescription))
             {
                 this.rawDescription = upgradedDescription;
                 this.initializeDescription();
@@ -112,6 +111,11 @@ public abstract class EYBCard extends CustomCard
         }
 
         return false;
+    }
+
+    public Boolean TryUpgrade()
+    {
+        return TryUpgrade(true);
     }
 
     protected void upgradeSecondaryValue(int amount)
@@ -181,6 +185,20 @@ public abstract class EYBCard extends CustomCard
         if (masterDeckInstance != null)
         {
             cards.add(masterDeckInstance);
+        }
+
+        return cards;
+    }
+
+    public HashSet<AbstractCard> GetOtherCardsInHand()
+    {
+        HashSet<AbstractCard> cards = new HashSet<>();
+        for (AbstractCard c : AbstractDungeon.player.hand.group)
+        {
+            if (c != this)
+            {
+                cards.add(c);
+            }
         }
 
         return cards;

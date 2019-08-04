@@ -3,11 +3,11 @@ package eatyourbeets.monsters.Bosses.TheUnnamedMoveset;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.common.PoisonPlayerPower;
 
 public class Move_ScalingPoison extends AbstractMove
 {
@@ -32,7 +32,7 @@ public class Move_ScalingPoison extends AbstractMove
             GameActionsHelper.VFX(new PotionBounceEffect(target.hb.cX + MathUtils.random(-5, 5),
                     target.hb.cY + MathUtils.random(-5, 5), target.hb.cX, target.hb.cY), 0.4F);
 
-            GameActionsHelper.ApplyPower(owner, target, new PoisonPlayerPower(target, owner, amount), amount);
+            GameActionsHelper.ApplyPower(owner, target, new PoisonPower(target, owner, amount), amount);
             GameActionsHelper.AddToBottom(new WaitRealtimeAction(0.1f));
         }
 

@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
+import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
+import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffects;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -20,7 +22,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     public static final String ID = CreateFullID(Vesta.class.getSimpleName());
 
     private int timer;
-    private AbstractCard toRetrieve;
+    private Vesta_Elixir elixir;
 
     public Vesta()
     {
@@ -38,8 +40,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DrawCard(p, 1);
-        GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, Vesta_Elixir.GetCardGroup(), this::OnSelected,this, "", true));
+        VestaElixirEffects.BeginCreateElixir((Vesta)this.makeStatEquivalentCopy());
     }
 
     @Override
@@ -51,14 +52,27 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         }
     }
 
-    protected void OnSelected(Object state, ArrayList<AbstractCard> cards)
+    public void ResearchElixir(Vesta_Elixir elixir)
     {
-        if (state == this && cards.size() == 1)
+        this.elixir = elixir;
+        this.timer = magicNumber;
+
+        ArrayList<VestaElixirEffect> effects = new ArrayList<>();
+        for (VestaElixirEffect effect : elixir.effects)
         {
-            toRetrieve = cards.get(0).makeStatEquivalentCopy();
-            timer = magicNumber;
-            PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
+            if (effect instanceof VestaElixirEffect_CompleteFaster)
+            {
+                this.timer -= 1;
+            }
+            else
+            {
+                effects.add(effect);
+            }
         }
+
+        this.elixir.ApplyEffects(effects);
+
+        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
@@ -72,8 +86,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         {
             AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this.makeStatEquivalentCopy()));
 
-            toRetrieve.upgrade();
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(toRetrieve));
+            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(elixir));
 
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
         }

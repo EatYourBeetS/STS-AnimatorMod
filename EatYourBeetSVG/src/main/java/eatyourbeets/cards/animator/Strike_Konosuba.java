@@ -18,9 +18,7 @@ public class Strike_Konosuba extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6,0, 2);
-
-        this.tags.add(CardTags.HEALING);
+        Initialize(6,2, 0);
 
         this.baseSecondaryValue = this.secondaryValue = 1;
     }
@@ -29,11 +27,11 @@ public class Strike_Konosuba extends Strike
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-
-        if (ProgressBoost())
-        {
-            GameActionsHelper.AddToBottom(new HealAction(p, p, this.magicNumber));
-        }
+        GameActionsHelper.GainBlock(p, block);
+//        if (ProgressBoost())
+//        {
+//            GameActionsHelper.AddToBottom(new HealAction(p, p, this.magicNumber));
+//        }
     }
 
     @Override
@@ -45,33 +43,33 @@ public class Strike_Konosuba extends Strike
         }
     }
 
-    protected boolean ProgressBoost()
-    {
-        if (this.secondaryValue > 0)
-        {
-            int newValue = this.secondaryValue - 1;
-
-            for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
-            {
-                AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
-                if (card != null)
-                {
-                    if (newValue == 0)
-                    {
-                        card.baseSecondaryValue = 1;
-                        card.secondaryValue = 0;
-                        card.isSecondaryValueModified = true;
-                    }
-                    else
-                    {
-                        card.baseSecondaryValue = card.secondaryValue = newValue;
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        return false;
-    }
+//    protected boolean ProgressBoost()
+//    {
+//        if (this.secondaryValue > 0)
+//        {
+//            int newValue = this.secondaryValue - 1;
+//
+//            for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
+//            {
+//                AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+//                if (card != null)
+//                {
+//                    if (newValue == 0)
+//                    {
+//                        card.baseSecondaryValue = 1;
+//                        card.secondaryValue = 0;
+//                        card.isSecondaryValueModified = true;
+//                    }
+//                    else
+//                    {
+//                        card.baseSecondaryValue = card.secondaryValue = newValue;
+//                    }
+//                }
+//            }
+//
+//            return true;
+//        }
+//
+//        return false;
+//    }
 }

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.misc.AinzEffects.*;
-import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;

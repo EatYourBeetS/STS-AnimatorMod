@@ -1,0 +1,390 @@
+
+{
+	"animator:darkness_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "¾ÏÈæ Cube (S)",
+		"DIALOG": [""]
+	},
+	"animator:darkness_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "¾ÏÈæ Cube (M)",
+		"DIALOG": [""]
+	},
+	"animator:darkness_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "¾ÏÈæ Cube (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:Lightning_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "¹ø°³ Cube (S)",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "¹ø°³ Cube (M)",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "¹ø°³ Cube (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:³Ã±â_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "³Ã±â Cube (S)",
+		"DIALOG": [""]
+	},
+	"animator:³Ã±â_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "³Ã±â Cube (M)",
+		"DIALOG": [""]
+	},
+	"animator:³Ã±â_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "³Ã±â Cube (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:ºÒ_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "ºÒ Cube (S)",
+		"DIALOG": [""]
+	},
+	"animator:ºÒ_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "ºÒ Cube (M)",
+		"DIALOG": [""]
+	},
+	"animator:ºÒ_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "ºÒ Cube (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:Healing_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "Healing Cube (S)",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "Healing Cube (M)",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "Healing Cube (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:darkness_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "¾ÏÈæ Crystal (S)",
+		"DIALOG": [""]
+	},
+	"animator:darkness_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "¾ÏÈæ Crystal (M)",
+		"DIALOG": [""]
+	},
+	"animator:darkness_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "¾ÏÈæ Crystal (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:Lightning_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "¹ø°³ Crystal (S)",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "¹ø°³ Crystal (M)",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "¹ø°³ Crystal (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:³Ã±â_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "³Ã±â Crystal (S)",
+		"DIALOG": [""]
+	},
+	"animator:³Ã±â_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "³Ã±â Crystal (M)",
+		"DIALOG": [""]
+	},
+	"animator:³Ã±â_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "³Ã±â Crystal (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:ºÒ_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "ºÒ Crystal (S)",
+		"DIALOG": [""]
+	},
+	"animator:ºÒ_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "ºÒ Crystal (M)",
+		"DIALOG": [""]
+	},
+	"animator:ºÒ_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "ºÒ Crystal (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:Healing_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "Healing Crystal (S)",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "Healing Crystal (M)",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "Healing Crystal (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:darkness_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "¾ÏÈæ Wisp (S)",
+		"DIALOG": [""]
+	},
+	"animator:darkness_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "¾ÏÈæ Wisp (M)",
+		"DIALOG": [""]
+	},
+	"animator:darkness_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "¾ÏÈæ Wisp (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:Lightning_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "¹ø°³ Wisp (S)",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "¹ø°³ Wisp (M)",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "¹ø°³ Wisp (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:³Ã±â_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "³Ã±â Wisp (S)",
+		"DIALOG": [""]
+	},
+	"animator:³Ã±â_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "³Ã±â Wisp (M)",
+		"DIALOG": [""]
+	},
+	"animator:³Ã±â_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "³Ã±â Wisp (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:ºÒ_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "ºÒ Wisp (S)",
+		"DIALOG": [""]
+	},
+	"animator:ºÒ_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "ºÒ Wisp (M)",
+		"DIALOG": [""]
+	},
+	"animator:ºÒ_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "ºÒ Wisp (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:Healing_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "Healing Wisp (S)",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "Healing Wisp (M)",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "Healing Wisp (L)",
+		"DIALOG": [""]
+	},
+
+	"animator:Ultimate_Cube_3":
+	{
+		"MOVES": [],
+		"NAME": "Ultimate Cube",
+		"DIALOG": [""]
+	},
+	"animator:Ultimate_Wisp_3":
+	{
+		"MOVES": [],
+		"NAME": "Ultimate Wisp",
+		"DIALOG": [""]
+	},
+	"animator:Ultimate_Crystal_3":
+	{
+		"MOVES": [],
+		"NAME": "Ultimate Crystal",
+		"DIALOG": [""]
+	},
+
+	"animator:KrulTepes":
+	{
+		"MOVES": [],
+		"NAME": "Krul Tepes",
+		"DIALOG": [""]
+	},
+	"animator:TheUnnamed_Doll":
+	{
+		"MOVES": [],
+		"NAME": "",
+		"DIALOG": [""]
+	},
+
+	"animator:TheUnnamed_Hat":
+	{
+		"MOVES": [],
+		"NAME": "H4T",
+		"DIALOG": 
+		[
+			"Intruder!"
+		]
+	},
+
+	"animator:TheUnnamed_Cultist":
+	{
+		"MOVES": [],
+		"NAME": "Cultist",
+		"DIALOG":
+		[
+			"BEHOLD! The Ultimate Crystal!",
+			"BEHOLD! The Ultimate Weapon!",
+			"BEHOLD! The Ultimate @!",
+			"BEHOLD! The Ultimate Gremlin!",
+			"BEHOLD! The Ultimate... Thingy!",
+			"I have a surprise, just give me some time to prepare...",
+			"Still not ready!",
+			"Wait a little longer!",
+			"Almost ready!",
+			"Here it is!",
+			"I am a cultist."
+		]
+	},
+	"animator:TheUnnamed":
+	{
+		"MOVES": [],
+		"NAME": "The Unnamed",
+		"DIALOG":
+		[
+			"That's enough! It all ends here...",
+			"What is this? I am the one with infinite power here!",
+			"The Death Note will not work on me! I have no name, remember?",
+			"You are annoying me... I have a gift for you.",
+			"I am the master of this universe, or something.",
+			"Aren't you glad I am not attacking this turn?",
+			"...",
+			"You are not prepared.",
+			"It will all end soon...",
+			"My power is unmatched!",
+			"I am invincible!",
+			"Why is Gilgamesh helping you?",
+			"You need a bigger explosion than that.",
+			"You are cheating, Ainz is not allowed in here.",
+			"Boros, you are on the wrong side.",
+			"Oh look, one punch man cannot one punch me, how unfortunate.",
+			"How about you go back to sleep for another couple of centuries?",
+			"Guren? Are you being redesigned again?",
+			"I am almost scared of Nanami. Almost.",
+			"Goblins... Would you like me to ¼¯½À´Ï´Ù some goblins into your deck?",
+			"Kurami? Beware, you can only play 16 Ä«µåµé.",
+			"Want to see something TRULY erratical?",
+			"The clock is ticking...",
+			"Nice try. Do not do that again.",
+			"I am warning you...",
+			"Stop this nonsense",
+			"LAST WARNING.",
+			"You were warned... Goodnight.",
+			"I... will return...",
+			"Ahem... Cheerio?",
+			"You dare approach me?",
+			"That deck is too small, wait a second...",
+			"Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn."
+		]
+	}
+}

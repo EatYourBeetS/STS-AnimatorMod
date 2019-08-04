@@ -2,11 +2,8 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BlurPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.DexterityTrainingPower;
 import eatyourbeets.powers.animator.SonicPower;
 import eatyourbeets.utilities.GameActionsHelper;
 

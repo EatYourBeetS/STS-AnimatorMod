@@ -1,10 +1,9 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -26,25 +25,26 @@ public class Kuroyukihime extends AnimatorCard
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
+    public void triggerWhenDrawn()
     {
-        CardGroup hand = AbstractDungeon.player.hand;
-        int toDiscard = 0;
-        if (hand.contains(this))
-        {
-            toDiscard = -1;
-        }
-        toDiscard += hand.size();
+        super.triggerWhenDrawn();
 
-        return toDiscard >= 2 && super.cardPlayable(m);
+        this.exhaust = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.Discard(this.magicNumber, false);
-
-        GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new BlackLotus(), 1));
+        if (GetOtherCardsInHand().size() >= this.magicNumber)
+        {
+            GameActionsHelper.Discard(this.magicNumber, false);
+            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new BlackLotus(), 1));
+            this.exhaust = true;
+        }
+        else
+        {
+            this.exhaust = false;
+        }
     }
 
     @Override

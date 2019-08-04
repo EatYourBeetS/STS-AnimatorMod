@@ -153,7 +153,12 @@
 	"animator:GuildGirlPower":
 	{
 		"DESCRIPTIONS": ["Au début de votre tour Recycler #b", " cartes."],
-		"NAME": "Bookkeeping"
+		"NAME": "Comptabilité"
+	},
+	"animator:HandSizePower":
+	{
+		"DESCRIPTIONS": ["Quantité maximale de cartes dans ta main: #b", "."],
+		"NAME": "Qté. max. de cartes dans la main"
 	},
 	"animator:HealingCrystalPower":
 	{

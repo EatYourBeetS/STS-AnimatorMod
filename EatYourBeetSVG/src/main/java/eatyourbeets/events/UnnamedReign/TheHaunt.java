@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import eatyourbeets.blights.Haunted;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.events.AnimatorEvent;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Common;
 
 public class TheHaunt extends AnimatorEvent

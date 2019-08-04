@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -14,11 +15,9 @@ public class AcuraTooru extends AnimatorCard
 
     public AcuraTooru()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(6, 0, 1);
-
-        baseSecondaryValue = secondaryValue = 2;
+        Initialize(4, 4, 0, 2);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -36,7 +35,8 @@ public class AcuraTooru extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.CycleCardAction(this.magicNumber);
+            GameActionsHelper.GainBlock(p, block);
+            //GameActionsHelper.CycleCardAction(this.magicNumber);
             //GameActionsHelper.ApplyPower(p, p, new DrawCardNextTurnPower(p, 1), 1);
         }
     }
@@ -46,8 +46,7 @@ public class AcuraTooru extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
-            upgradeDamage(2);
+            upgradeSecondaryValue(1);
         }
     }
 }

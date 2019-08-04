@@ -1,0 +1,352 @@
+
+{
+	"animator:AinzPower":
+	{
+		"DESCRIPTIONS": ["당신의 턴이 시작할때 발동합니다 1 of 4 랜덤 효과들 #b", " time/s."],
+		"NAME": "Ainz Ooal Gown"
+	},
+	"animator:ArcherPower":
+	{
+		"DESCRIPTIONS": ["당신의 턴이 끝날때, deal #b", " 적 전체에게 피해를 !D! 줍니다 적 전체의 디버프 수마다."],
+		"NAME": "Archer"
+	},
+	"animator:AzrielPower":
+	{
+		"DESCRIPTIONS": ["디버프를 적에게 부여할때마다, 얻습니다 #b", " 힘."],
+		"NAME": "Azriel"
+	},
+	"animator:BiyorigoPower":
+	{
+		"DESCRIPTIONS": ["Every 4 #yAttacks played, 얻습니다 #b", " 힘 and #b", " 민첩."],
+		"NAME": "Bito Kanzashi"
+	},
+	"animator:BorosPower":
+	{
+		"DESCRIPTIONS": ["All #yPowers are played 두번."],
+		"NAME": "Boros"
+	},
+	"animator:BozesPower":
+	{
+		"DESCRIPTIONS": ["When a 카드 #ySynergizes, 얻습니다 #b", " #yPlated #yArmor."],
+		"NAME": "Bozes Co Palesti"
+	},
+	"animator:BurningPower":
+	{
+		"DESCRIPTIONS": ["Take #b", " 피해 at the end of turn. Receive #b", "% more #y공격 피해."],
+		"NAME": "화상"
+	},
+	"animator:ChlammyZellPower":
+	{
+		"DESCRIPTIONS": ["Whenever you play alternating 카드 types this turn, deal #b", " 적 전체에게 피해를 !D! 줍니다 and #y순환 #b1 카드. NL NL Last 타입 played: #y"],
+		"NAME": "Chlammy Zell"
+	},
+	"animator:CursedStabsPower":
+	{
+		"DESCRIPTIONS": ["Whenever it deals 막히지않은 피해, add 1 #yPain to your 덱."],
+		"NAME": "Cursed Stabs"
+	},
+	"animator:darknessCrystalPower":
+	{
+		"DESCRIPTIONS": ["When targeted by a 카드, 부여합니다 #b", " #yConstricted to ALL other characters."],
+		"NAME": "암흑 Crystal"
+	},
+	"animator:darknessCubePower":
+	{
+		"DESCRIPTIONS": ["At the end of 턴마다, 부여합니다 #b", " #yConstricted to the 적."],
+		"NAME": "암흑 Cube"
+	},
+	"animator:darknessWispPower":
+	{
+		"DESCRIPTIONS": ["On death, 부여합니다 #b", " #yConstricted to ALL characters."],
+		"NAME": "암흑 Wisp"
+	},
+	"animator:darknessnessPower":
+	{
+		"DESCRIPTIONS": ["피해를 입을때마다 강화 #b", " 랜덤 카드/s, prioritizing those 핸드에 있는."],
+		"NAME": "Dustiness Ford Lalatina"
+	},
+	"animator:DelayedHealPower":
+	{
+		"DESCRIPTIONS": ["회복 #g", " HP at the start of your 다음턴."],
+		"NAME": "Delayed 회복"
+	},
+	"animator:대지enThornsPower":
+	{
+		"DESCRIPTIONS": ["When attacked, deal #b", " 피해 back."],
+		"NAME": "대지en Thorns"
+	},
+	"animator:EmiyaShirouPower":
+	{
+		"DESCRIPTIONS": ["Whenever an 적 잃어버린다 its 방어도 this turn, 얻습니다 #b1 energy and 뽑습니다 #b1 랜덤 #y공격."],
+		"NAME": "Unlimited Blade Works"
+	},
+	"animator:EnchantedArmorPower":
+	{
+		"DESCRIPTIONS": ["Take #b", "% less 피해."],
+		"NAME": "Enchanted Armor"
+	},
+	"animator:EntouJyuuPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #y공격(s) this turn, 뽑습니다 #b1 카드 그리고 적용시킵니다 #b1 #y화상 적 전체에게."],
+		"NAME": "Entou Jyuu"
+	},
+	"animator:EnvyPower":
+	{
+		"DESCRIPTIONS": ["The first #b", " 카드/s you play every turn will 시너지를 활성화하면."],
+		"NAME": "Envy"
+	},
+	"animator:EvePower":
+	{
+		"DESCRIPTIONS": ["Whenever a 카드 #ySynergizes, deal #b", " 피해 to a 랜덤 적, then 증가 this 피해 by 1."],
+		"NAME": "Eve"
+	},
+	"animator:FeridBathoryPower":
+	{
+		"DESCRIPTIONS": ["When a 카드 is 소멸된 얻습니다 #b", " 힘 and 회복 #b", " Hp."],
+		"NAME": "Ferid Bathory"
+	},
+	"animator:불CrystalPower":
+	{
+		"DESCRIPTIONS": ["When targeted by a 카드, ALL other characters 얻습니다 #b", " #y힘 and #y화상."],
+		"NAME": "불 Crystal"
+	},
+	"animator:불CubePower":
+	{
+		"DESCRIPTIONS": ["At the end of 턴마다, ALL allies 얻습니다 #b", " #y힘 and #y화상."],
+		"NAME": "불 Cube"
+	},
+	"animator:불WispPower":
+	{
+		"DESCRIPTIONS": ["On death, ALL characters 얻습니다 #b", " #y힘 and #y화상."],
+		"NAME": "불 Wisp"
+	},
+	"animator:FlamingWeaponPower":
+	{
+		"DESCRIPTIONS": ["Whenever you deal 막히지않은 피해 to an 적, 부여합니다 #b", " #y화상."],
+		"NAME": "Flaming Weapon"
+	},
+	"animator:냉기CrystalPower":
+	{
+		"DESCRIPTIONS": ["When targeted by a 카드, All other characters 얻습니다 #b", " #yPlated #yArmor."],
+		"NAME": "냉기 Crystal"
+	},
+	"animator:냉기CubePower":
+	{
+		"DESCRIPTIONS": ["At the end of 턴마다, All allies 얻습니다 #b", " #yPlated #yArmor."],
+		"NAME": "냉기 Cube"
+	},
+	"animator:냉기WispPower":
+	{
+		"DESCRIPTIONS": ["On death, All characters 얻습니다 #b", " #yPlated #yArmor."],
+		"NAME": "냉기 Wisp"
+	},
+	"animator:GazelDwargonPower":
+	{
+		"DESCRIPTIONS": ["Maintain half your 방어도 at the start of 턴마다, whenever you play an #y공격, 얻습니다 #b", " 방어도."],
+		"NAME": "Gazel Dwargon"
+	},
+	"animator:GeassPower":
+	{
+		"DESCRIPTIONS": ["Will attack itself this turn."],
+		"NAME": "Geass"
+	},
+	"animator:GuildGirlPower":
+	{
+		"DESCRIPTIONS": ["당신의 턴이 시작할때 순환 #b", " 카드들."],
+		"NAME": "Bookkeeping"
+	},
+	"animator:HealingCrystalPower":
+	{
+		"DESCRIPTIONS": ["When targeted by a 카드, ALL other characters 회복 #b", " HP."],
+		"NAME": "Healing Crystal"
+	},
+	"animator:HealingCubePower":
+	{
+		"DESCRIPTIONS": ["At the end of 턴마다, ALL allies 회복 #b", " HP."],
+		"NAME": "Healing Cube"
+	},
+	"animator:HealingWispPower":
+	{
+		"DESCRIPTIONS": ["On death, ALL characters 회복 #b", " HP."],
+		"NAME": "Healing Wisp"
+	},
+	"animator:HigakiRinnePower":
+	{
+		"DESCRIPTIONS": ["???"],
+		"NAME": "???"
+	},
+	"animator:HiteiPower":
+	{
+		"DESCRIPTIONS": ["당신의 턴이 시작할때 얻습니다 a 랜덤 #yBuff, then 고릅니다 and 소멸 #b", " 카드/s in your deck."],
+		"NAME": "Princess Hitei"
+	},
+	"animator:InfinitePower":
+	{
+		"DESCRIPTIONS": ["- Before taking 막히지않은 피해: Gains that much #yEnchanted #yArmor. NL - When receiving a debuff: Gains that much #yRegeneration. NL - When the 적 receives a buff: Gains that much #y힘. NL - Lose half of these stats at the end of 턴마다."],
+		"NAME": "Infinite Power"
+	},
+	"animator:KaijinPower":
+	{
+		"DESCRIPTIONS": ["At the end of 턴마다, #y보존 a 카드 and 증가 its 피해 and 방어도 by #b", " this 전투."],
+		"NAME": "Kaijin"
+	},
+	"animator:LightningCrystalPower":
+	{
+		"DESCRIPTIONS": ["When targeted by a 카드, ALL other characters take #b", " #y관통 피해."],
+		"NAME": "번개 Crystal"
+	},
+	"animator:LightningCubePower":
+	{
+		"DESCRIPTIONS": ["At the end of 턴마다, deal #b", " #y관통 피해 to the 적."],
+		"NAME": "번개 Cube"
+	},
+	"animator:LightningWispPower":
+	{
+		"DESCRIPTIONS": ["On death, ALL characters take #b", " #y관통 피해."],
+		"NAME": "번개 Wisp"
+	},
+	"animator:MarkOfPoisonPower":
+	{
+		"DESCRIPTIONS": ["Whenever you receive 피해 also receive #b", " #yPoison."],
+		"NAME": "Mark of 중독"
+	},
+	"animator:NextTurn민첩Power":
+	{
+		"DESCRIPTIONS": ["다음턴, 얻습니다 #b", " 일시적인 #y민첩."],
+		"NAME": "다음턴 민첩"
+	},
+	"animator:OrbCore_ChaosPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, #yDiscover #b", " 카드/s."],
+		"NAME": "Chaos Core"
+	},
+	"animator:OrbCore_darknessPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, 뽑습니다 #b", " 카드들, then 버립니다 #b1 카드."],
+		"NAME": "암흑 Core"
+	},
+	"animator:OrbCore_대지Power":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, 얻습니다 #b", " 일시적인 #가시."],
+		"NAME": "대지 Core"
+	},
+	"animator:OrbCore_불Power":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, 부여합니다 #b", " #y화상 적 전체에게."],
+		"NAME": "불 Core"
+	},
+	"animator:OrbCore_냉기Power":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, 얻습니다 #b", " #yPlated #yArmor."],
+		"NAME": "냉기 Core"
+	},
+	"animator:OrbCore_LightningPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, deal #b", " 적 전체에게 피해를 !D! 줍니다."],
+		"NAME": "번개 Core"
+	},
+	"animator:OrbCore_PlasmaPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, 얻습니다 #b", " #y일시적인 #yHP."],
+		"NAME": "Plasma Core"
+	},
+	"animator:PinaCoLadaPower":
+	{
+		"DESCRIPTIONS": ["Your next #b", " #y0-Cost 카드/s are played 두번."],
+		"NAME": "Piña Co Lada"
+	},
+	"animator:PlayerStatistics":
+	{
+		"DESCRIPTIONS": ["Hidden Player Statistics power."],
+		"NAME": "Player Statistics"
+	},
+	"animator:PoisonAffinityPower":
+	{
+		"DESCRIPTIONS": ["#y중독을 적용할때마다, 추가적으로 부여한다 #b", " #yPoison."],
+		"NAME": "중독 가산"
+	},
+	"animator:PridePower":
+	{
+		"DESCRIPTIONS": ["Until your 다음턴, when you would take 막히지않은 피해, your rightmost #ydarkness Orb 잃어버린다 that much 피해 instead."],
+		"NAME": "Pride"
+	},
+	"animator:RoryMercuryPower":
+	{
+		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b", "% more 피해."],
+		"NAME": "Rory Mercury"
+	},
+	"animator:ShikizakiKikiPower":
+	{
+		"DESCRIPTIONS": ["#y힘 affects ALL 카드들 #b", " times."],
+		"NAME": "Shikizaki Kiki"
+	},
+	"animator:ShiroPower":
+	{
+		"DESCRIPTIONS": ["At the start of you turn 얻습니다 #b", " energy."],
+		"NAME": "Shiro"
+	},
+	"animator:SonicPower":
+	{
+		"DESCRIPTIONS": ["At the start of your next #b", " turns, 얻습니다 #b1 #y민첩 and add #b1 #y단도 카드 를 얻습니다."],
+		"NAME": "Speed-o'-Sound Sonic"
+	},
+	"animator:StolenGoldPower":
+	{
+		"DESCRIPTIONS": ["You stole #b", " Gold. You can 훔침 #b", " more Gold."],
+		"NAME": "Stolen Gold"
+	},
+	"animator:StrategicInformationPower":
+	{
+		"DESCRIPTIONS": ["The next #b", " time/s you 버립니다 a 카드, 얻습니다 #b", " #y방어도 and deal #b", " 피해 to the lowest health 적."],
+		"NAME": "Strategic Information"
+	},
+	"animator:Support피해Power":
+	{
+		"DESCRIPTIONS": ["Deal #b", " 피해 to the 적 with lowest HP 당신의 턴이 끝날때."],
+		"NAME": "Support 피해"
+	},
+	"animator:TheUnnamedCultistPower":
+	{
+		"DESCRIPTIONS": ["While there are other allies alive, gains #b", " Enchanted Armor for 각각의."],
+		"NAME": "Unnamed Cultist"
+	},
+	"animator:TheUnnamedHatPower":
+	{
+		"DESCRIPTIONS": ["At the start of 턴마다, all allies 회복 #b", " HP. NL NL On death, 부여합니다 #yEntangle to the opponent."],
+		"NAME": "H4T"
+	},
+	"animator:UltimateCrystalPower":
+	{
+		"DESCRIPTIONS": ["Whenever a 카드 is played, gains #b", " #y힘. NL NL After #b", " turn(s), summons a copy of itself."],
+		"NAME": "Ultimate Crystal"
+	},
+	"animator:UltimateCubePower":
+	{
+		"DESCRIPTIONS": ["At the end of 턴마다, gains #b", " 랜덤 Buff. NL NL Explodes after #b", " turns, dealing #b", " 피해."],
+		"NAME": "Ultimate Cube"
+	},
+	"animator:UltimateWispPower":
+	{
+		"DESCRIPTIONS": ["Whenever it deals 막히지않은 피해, add #b1 #yBurn to your 묘지. NL NL The first 카드 played 턴마다 is #y소멸된."],
+		"NAME": "Ultimate Wisp"
+	},
+	"animator:UnnamedDollPower":
+	{
+		"DESCRIPTIONS": 
+		[
+			"For the next #b", " turns, when playing a 카드 which does not target this character, gains #b", " #yMax #yHP. NL NL ", 
+			"On death, ALL characters 얻습니다 #b", " #y힘."
+		],
+		"NAME": "Unnamed Doll"
+	},
+	"animator:YukoShionjiPower":
+	{
+		"DESCRIPTIONS": ["Reveal the top 카드 of your 덱, NL you may #pLeft-Click to 뽑습니다 it ( #b", " use/s ), or #pRight-Click to 버립니다 it ( #b", " use/s)."],
+		"NAME": "Yuko Shionji"
+	},
+	"animator:VitalityPower":
+	{
+		"DESCRIPTIONS": ["Whenever you are attacked this turn, 얻습니다 #b", " #y일시적인 #HP."],
+		"NAME": "Vitality"
+	}
+}

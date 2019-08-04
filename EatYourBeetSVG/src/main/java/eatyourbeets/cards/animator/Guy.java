@@ -4,10 +4,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.VariableDiscardAction;
+import eatyourbeets.actions.common.DiscardTopCardsAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
 import java.util.ArrayList;
 
@@ -17,9 +17,9 @@ public class Guy extends AnimatorCard
 
     public Guy()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,3, 1);
+        Initialize(0,0, 1);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -28,7 +28,13 @@ public class Guy extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DrawCard(p, this.magicNumber);
-        GameActionsHelper.AddToBottom(new VariableDiscardAction(p, this.magicNumber, this, this::OnDiscard, false));
+        GameActionsHelper.Discard(this.magicNumber, false);
+        //GameActionsHelper.AddToBottom(new VariableDiscardAction(p, this.magicNumber, this, this::OnDiscard, false));
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.AddToBottom(new DiscardTopCardsAction(p.drawPile, 2));
+        }
     }
 
     @Override

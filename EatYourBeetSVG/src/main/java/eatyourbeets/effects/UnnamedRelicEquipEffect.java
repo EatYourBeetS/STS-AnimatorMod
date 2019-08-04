@@ -52,30 +52,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
         ArrayList<AbstractCard> replacement = ReplaceCards(p);
 
-        CharSelectInfo info = p.getLoadout();
-        int hp = 100;
-        if (info != null)
-        {
-            hp = info.maxHp;
-        }
-
-        if (hp <= 60)
-        {
-            hp = 80;
-        }
-        else if (hp <= 100)
-        {
-            hp = 100;
-        }
-        else if (hp <= 120)
-        {
-            hp = 120;
-        }
-        else if (hp < 999)
-        {
-            hp = 150;
-        }
-
+        int hp = CalculateMaxHealth();
         if (hp < 999 && apparitionsCount > 1)
         {
             hp *= 1 - (0.1f * (apparitionsCount - 1));
@@ -121,6 +98,35 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
     public void dispose()
     {
 
+    }
+
+    public static int CalculateMaxHealth()
+    {
+        CharSelectInfo info = AbstractDungeon.player.getLoadout();
+        int hp = 100;
+        if (info != null)
+        {
+            hp = info.maxHp;
+        }
+
+        if (hp <= 60)
+        {
+            hp = 80;
+        }
+        else if (hp <= 100)
+        {
+            hp = 100;
+        }
+        else if (hp <= 120)
+        {
+            hp = 120;
+        }
+        else if (hp < 999)
+        {
+            hp = 150;
+        }
+
+        return hp;
     }
 
     public static int CalculateGoldBonus()
@@ -171,7 +177,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
         for (AbstractCard c : p.masterDeck.group)
         {
-            bonus += Math.min(c.timesUpgraded, 20) * 3;
+            bonus += Math.min(c.timesUpgraded, 20) * 5;
         }
 
         for (AbstractPotion potion : p.potions)

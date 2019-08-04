@@ -1,0 +1,137 @@
+
+{
+	"animator:TheMaskedTraveler1":
+	{
+		"NAME": "The Masked Traveler",
+		"DESCRIPTIONS": [
+			"While passing by this #ytotally not #yreused game asset, a masked figure with a large backpack approaches you. NL NL \"Greetings friend, are you perchance carrying some @'special'@ weaponry?\" NL ... NL \"Are you willing to sell it?\" NL NL \"Or perhaps you would prefer to buy some from my ... #ycollection ?\"",
+			"\"Did he actually accept?\" NL ... NL NL \"Ahem... I am @grateful@ for the #ytrade , be safe on your journey.\" NL NL That said, he disappeared from your sight."
+		],
+		"OPTIONS": [
+			"[Sell] #gRemove ", ". #gGain #g", " #gGold.",
+			"[Trade] #gImprove #gall Strikes #gand Defends. #rLose #r", " #rGold.",
+			"[Leave]",
+			"[Locked] No card to sell.",
+			"[Locked] Not enough Gold."
+		]
+	},
+	"animator:TheMaskedTraveler2":
+	{
+		"NAME": "The Masked Traveler (Part 2)",
+		"DESCRIPTIONS": [
+			"\"너구나! @Heart@ of the Spire 을 처치하러 가는거야?\" NL NL \"나를 도와서 다른 위험을 제거하러가는건 어때? 보다시피, 무명이 돌아왔어, 하지만 걱정하지마! 너가 이길수 없는건 없으니까!\"",
+			"\"흠, 조금 상세히 알려주자면... 무명을 처치하러 가려면 너의 모든 유물들과 금, 포션들과 카드 업그레이드를 이 #y특별한 #y유물들 중 하나와 거래해야해:\" NL NL \"어찌됬든 너는 장버기반으로 골드를 조금 되돌려 받을수 있어, #b{0} #yGold 어치만큼 말이야.\"",
+			"\"완벽해! 그냥 앞으로 가면 그를 찾을 수 있을꺼야, 믿고있어!\" NL NL \"잠깐! 거의 잊어버렸는데, 거기서 엄청많은걸 찾게될꺼야. 여기, 하나 가져가거나 몇개의 카드들좀 변화시켜 줄 수 있어.\" NL NL [ #yPLEASE #yNOTICE: This act has been released earlier than intended since it's already fully playable. It is still being developed and will be updated often. ]"
+		],
+		"OPTIONS":
+		[
+			"[Leave]",
+			"[Inquire]",
+			"[Accept] #gObtain #gRelic",
+			"[Accept] #gRemove #g{0} #g카드들, #gobtain #g{1} #g랜덤 #gUpgraded #g카드들.",
+			"[Accept] #gUpgrade #ga #gsingle #gcard #g{0} #gtimes."
+		]
+	},
+	"animator:TheMaskedTraveler3":
+	{
+		"NAME": "The Masked Traveler (Part 3)",
+		"DESCRIPTIONS": [
+			"\"Good evening friend!\" NL NL \"How did I get here? It matters not. We simply needed another event for this act! Trade 1 medallion or #b150 #yGold for a rare card, your choice. Or well... you could also leave\"",
+			"\"Thanks! Now you can click on 'Leave'.\""
+		],
+		"OPTIONS": [
+			"[Trade] #rLose #rAncient #rMedallion. #gObtain #gan #gUpgraded #grare #gcard.",
+			"[Trade] #rLose #r150 #rGold. #gObtain #gan #gUpgraded #grare #gcard.",
+			"[Leave]",
+			"[Locked] No #yAncient #yMedallion to trade.",
+			"[Locked] Not enough Gold."
+		]
+	},
+
+	"animator:TheDomVedeloper1":
+	{
+		"NAME": "The Dom Vedeloper",
+		"DESCRIPTIONS": [
+			"You hear someone shouting in the distance: NL NL \" Rinne should behave more @erratically@ \" NL \" #yGilgamesh probably deserves a buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL You are slightly intrigued by those strange words... NL Do you decide to approach him?",
+			"\"Oh hello, hello! Those are some #pinteresting 카드들, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your 카드들, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
+			"\"Wonderful! Wonderful! Here, tell me, what do you think of this card?\"",
+			"\"Nice, how about this one?\"",
+			"\"Interesting, and this one?\"",
+			"\"I see... Lastly, what's your opinion on this one?\"",
+			"\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you accept, your answers will be sent to the developer)",
+			"\"Excellent, have a nice day!\" NL NL \"... So... the next series could be...\""
+		],
+		"OPTIONS": [
+			"[Leave]",
+			"[Accept] Answer 4 questions. #gGain #g100 #gGold.",
+			"[1] It is definitely too strong...",
+			"[2] It is a very strong card!",
+			"[3] It is a good card in most situations.",
+			"[4] It has its uses sometimes.",
+			"[5] What? Never show me that thing again.",
+			"[Sign the paper]",
+			"[Continue]"
+		]
+	},
+
+	"animator:TheHaunt":
+	{
+		"NAME": "The Haunt",
+		"DESCRIPTIONS":
+		[
+			"#yEverything #yin #ythis #yplace #yseems #yto #ybe #ymade #yof #ygold. #yIt #yseems #ythe #ywhole #ylandscape #yhas #ychanged... ",
+			"#yMountains #yof #yglimmering #yGold #yeverywhere. #yA #yriver #yof #ymolten #ygold #ycourses #ythrough #yit. #yWhy #ydid #yyou #ynot #ynotice #yit #yearlier? NL NL ",
+			"#yNo #ymatter, #yyou #yfeel #ycompelled #yto #ytake #ysome #yof #yit, NL ",
+			"#yyou #r@HAVE@ #yto #ytake #ysome #yof #yit. #yJust #ya #yfew #ygolden #yrocks. NL NL ",
+			"#y... #ywhat #yis #ythe #yworst #ythat #ycould #yhappen?",
+			"NL NL NL NL NL NL NL #ySomething #yis #ylaughing #yin #ythe #yfar #ydistance."
+		],
+		"OPTIONS": [
+			"#y[Take #ythe #yGold] #yGain #y{0} #yGold.",
+			"#r[Leave] #gHeal #g{0} #gHP",
+			"#r[Leave]"
+		]
+	},
+	"animator:TheUnnamedMerchant":
+	{
+		"NAME": "The Unnamed Merchant",
+		"DESCRIPTIONS": [
+			"\"I am a merchant\" NL NL You hear someone speaking, you turn your head and see a strange person, completely still, staring at you, as if expecting something.",
+			"\"I sell and I buy things...\" NL NL \"But the only things of value here are these #yAncient #yMedallions. Are you buying? Or are you selling?\"",
+			"\"Fine, but do not tempt your fate.\"",
+			"\"These are my prices. I will not change them.\"",
+			"\"Good Deal... Good Deal\""
+		],
+		"OPTIONS": [
+			"[Sell] #gGain #g{0} #gGold. #rLose #rAncient #rMedallion.",
+			"[Buy] #gObtain #gAncient #gMedallion. #rLose #r{0} #rGold.",
+			"[Haggle] #g50%: #gBetter #gDeal. #r50%: #rWorse #rDeal.",
+			"[Leave]",
+			"[Locked] No #yAncient #yMedallion to sell.",
+			"[Locked] Not enough Gold.",
+			"[Continue]"
+		]
+	},
+	"animator:TheAbandonedCabin":
+	{
+		"NAME": "The Abandoned Cabin",
+		"DESCRIPTIONS": [
+			"You stumble across a small and seemingly abandoned cabin. NL NL Tired and hungry, you decide to go against your better instincts and enter it. NL NL After checking for possible inhabitants, you soon fall asleep...",
+			"You are awakened by a loud knocking noise. NL NL The room is almost #pcompletely #pdarkness, NL but you perceive a @creature@ standing in front of you.",
+			"\"허기... need #rblood... trade?\" NL NL The @creature@ extends his arm towards you, revealing an #yAncient #yMedallion, you wonder if accepting would be a good idea...",
+			"You ran towards the door as fast as you could, NL and then as far away from the cabin as possible.",
+			"You try to grab the medallion when suddenly the @creature@ #rbites your arm with great force. Nonetheless, it lets you take the 유물.",
+			"\"Need more... trade... again...\" NL NL The @creature@ reveals another #yAncient #yMedallion. NL NL You are #rseverely #rwounded from the previous trade...",
+			"You ran out of the cabin, NL but the creature managed to hurt you once more.",
+			"This hurt much more than before. NL NL But the @creature@ seems satisfied as it slowly abandons the cabin."
+		],
+		"OPTIONS":
+		[
+			"[Continue]",
+			"[Accept] #rLose #r{0} #rHP. #gObtain #gRelic",
+			"[Run]",
+			"[Try to Run] #r50% #rchance #rto #rlose #r{0} #rHP",
+			"[Leave]"
+		]
+	}
+}

@@ -384,6 +384,13 @@ public class GameActionsHelper
         return action;
     }
 
+    public static AddTemporaryHPAction GainTemporaryHP(AbstractCreature target, int amount)
+    {
+        AddTemporaryHPAction action = new AddTemporaryHPAction(target, target, amount);
+        AddToDefault(action);
+        return action;
+    }
+
     public static AddTemporaryHPAction GainTemporaryHP(AbstractCreature source, AbstractCreature target, int amount)
     {
         AddTemporaryHPAction action = new AddTemporaryHPAction(target, source, amount);

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PenNibPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.animator.Nanami;
 
@@ -18,10 +19,7 @@ public class NanamiEffect_Defend_Buff extends NanamiEffect
         if (damage > 0)
         {
             GameActionsHelper.DamageTarget(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-            if (p.hasPower(PenNibPower.POWER_ID))
-            {
-                GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
-            }
+            PlayerStatistics.UsePenNib();
         }
 
         int strength = GetStrength(nanami);

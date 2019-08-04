@@ -3,7 +3,6 @@ package eatyourbeets.resources;
 import basemod.BaseMod;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,7 +10,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.interfaces.Hidden;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -232,6 +230,7 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
         BaseMod.addCard(card);
     }
 
+    @SuppressWarnings("unchecked") // I miss C# ...
     protected static void LoadCustomPowers(String character)
     {
         String jsonString = Gdx.files.internal("localization/" + character +"/eng/PowerStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));

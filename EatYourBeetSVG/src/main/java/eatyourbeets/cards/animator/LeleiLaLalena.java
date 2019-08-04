@@ -17,9 +17,7 @@ public class LeleiLaLalena extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0,0, 1);
-
-        baseSecondaryValue = secondaryValue = 1;
+        Initialize(0,0, 1, 4);
 
         SetSynergy(Synergies.Gate);
     }
@@ -42,14 +40,14 @@ public class LeleiLaLalena extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        for (int i = 0; i < this.magicNumber; i++)
+        if (GetOtherCardsInHand().size() > 0)
         {
-            GameActionsHelper.ChannelOrb(new Frost(), true);
-        }
+            GameActionsHelper.Discard(1, !upgraded);
 
-        if (upgraded)
-        {
-            GameActionsHelper.CycleCardAction(1);
+            for (int i = 0; i < this.magicNumber; i++)
+            {
+                GameActionsHelper.ChannelOrb(new Frost(), true);
+            }
         }
 
         if (HasActiveSynergy())
@@ -64,6 +62,9 @@ public class LeleiLaLalena extends AnimatorCard
     @Override
     public void upgrade() 
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeSecondaryValue(-2);
+        }
     }
 }

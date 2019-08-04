@@ -18,7 +18,6 @@ public class StolenGoldPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
         type = PowerType.DEBUFF;
 
         AbstractMonster m = (AbstractMonster) owner;
@@ -38,6 +37,8 @@ public class StolenGoldPower extends AnimatorPower
         {
             goldCap = 10;
         }
+
+        this.amount = Math.min(goldCap, amount);
 
         updateDescription();
     }

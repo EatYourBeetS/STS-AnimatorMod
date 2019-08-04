@@ -23,14 +23,13 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.Kuroyukihime;
 import eatyourbeets.interfaces.*;
 import eatyourbeets.powers.animator.AnimatorPower;
-import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.TemporaryBiasPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.animator.TheHaunt;
 import eatyourbeets.utilities.RandomizedList;
 import patches.CardGlowBorderPatch;
 

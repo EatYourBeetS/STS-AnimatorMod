@@ -1,6 +1,5 @@
 package eatyourbeets.ui;
 
-import basemod.BaseMod;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,7 +11,6 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.effects.HideCardEffect;
 import eatyourbeets.relics.BundledRelicContainer;
 import eatyourbeets.relics.BundledRelicProvider;

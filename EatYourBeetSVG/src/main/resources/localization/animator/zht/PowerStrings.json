@@ -155,6 +155,11 @@
 		"DESCRIPTIONS": ["在你的回合開始時循環 ", " 張牌。"],
 		"NAME": "簿記"
 	},
+	"animator:HandSizePower":
+	{
+	"DESCRIPTIONS": ["你的手牌上限為#b", "。"],
+	"NAME": "手牌上限"
+	},
 	"animator:HealingCrystalPower":
 	{
 		"DESCRIPTIONS": ["被牌指定時, 一名隨機角色修復 #b", " 點生命值."],

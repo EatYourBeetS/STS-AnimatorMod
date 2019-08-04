@@ -31,14 +31,15 @@ public class Tatsumaki extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
-            {
-                GameActionsHelper.ApplyPower(p, m1, new StrengthPower(m1, -this.secondaryValue), -this.secondaryValue);
-                if (!m1.hasPower(ArtifactPower.POWER_ID))
-                {
-                    GameActionsHelper.ApplyPower(p, m1, new GainStrengthPower(m1, this.secondaryValue), this.secondaryValue);
-                }
-            }
+            GameActionsHelper.ApplyPower(p, p, new EnergizedPower(p, 1));
+//            for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+//            {
+//                GameActionsHelper.ApplyPower(p, m1, new StrengthPower(m1, -this.secondaryValue), -this.secondaryValue);
+//                if (!m1.hasPower(ArtifactPower.POWER_ID))
+//                {
+//                    GameActionsHelper.ApplyPower(p, m1, new GainStrengthPower(m1, this.secondaryValue), this.secondaryValue);
+//                }
+//            }
         }
     }
 

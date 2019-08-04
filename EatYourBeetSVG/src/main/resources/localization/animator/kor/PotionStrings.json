@@ -1,0 +1,10 @@
+{
+  "animator:FalseLifePotion": 
+  {
+    "NAME": "False Life Potion",
+    "DESCRIPTIONS": 
+	[ 
+      "얻습니다 #b"," #y일시적인 #yHP."
+    ]
+  }
+}

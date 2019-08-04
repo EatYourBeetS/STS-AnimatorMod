@@ -29,7 +29,7 @@
 			"[Se renseigner]",
 			"[Accepter] #gObtenez #gune #gRelique",
 			"[Accepter] #gRetirez #g{0} #gcartes, #gObtenez #g{1} #gcartes #gAméliorées #galéatoires.",
-			"[Accepter] #gAméliorez #gune #gseule #gcarte #g{0} #gfois."
+			"[Accepter] #gRegagnez #gvotre/vos #grelique(s) #gde #gdépart. #rPerdez #r{0} #rPV #rMax."
 		]
 	},
 	"animator:TheMaskedTraveler3":

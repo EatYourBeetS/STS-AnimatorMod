@@ -155,6 +155,11 @@
 		"DESCRIPTIONS": ["At the start of your turn Cycle #b", " cards."],
 		"NAME": "Bookkeeping"
 	},
+	"animator:HandSizePower":
+	{
+		"DESCRIPTIONS": ["Your current maximum hand size is #b", "."],
+		"NAME": "Hand Size"
+	},
 	"animator:HealingCrystalPower":
 	{
 		"DESCRIPTIONS": ["When targeted by a card, ALL other characters heal #b", " HP."],

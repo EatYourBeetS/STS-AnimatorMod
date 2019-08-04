@@ -41,6 +41,7 @@ public class Utilities
         return null;
     }
 
+    @SuppressWarnings("unchecked") // I miss C# ...
     public static <T extends AbstractPower> T GetPower(AbstractCreature creature, String powerID)
     {
         for (AbstractPower p : creature.powers)

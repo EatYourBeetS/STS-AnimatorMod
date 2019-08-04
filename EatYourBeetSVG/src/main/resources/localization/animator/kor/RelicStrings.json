@@ -1,0 +1,171 @@
+
+{
+	"animator:AlchemistGlove":
+	{
+		"DESCRIPTIONS": ["Every #b", " turns, 부여합니다 #b", " #y화상 적 전체에게."],
+		"FLAVOR": "It allows you to control 불 with the snap of a finger.",
+		"NAME": "Alchemist Glove"
+	},
+	"animator:AncientMedallion":
+	{
+		"DESCRIPTIONS": ["Upon pickup, #y강화 2 랜덤 카드들 and a 카드 of your choice. At the start of 각각의 전투, 회복 #b", " HP."],
+		"FLAVOR": "...",
+		"NAME": "Ancient Medallion"
+	},
+	"animator:BattleDrones":
+	{
+		"DESCRIPTIONS": ["Whenever a 카드 #ySynergizes, deal #b", " 피해 to a 랜덤 적 and 얻습니다 #b", " #y방어도."],
+		"FLAVOR": "Engineering perfection.",
+		"NAME": "Battle Drones"
+	},
+	"animator:Buoy":
+	{
+		"DESCRIPTIONS": ["턴마다 한번, when you 뽑습니다 a total of 3 or more 카드들, 얻습니다 #b", " #y방어도 and #b", " #y민첩 턴이 끝날때까지."],
+		"FLAVOR": "When it comes to speed I'm the best there is, swift like the island breeze!",
+		"NAME": "Buoy"
+	},
+	"animator:CerealBox":
+	{
+    "DESCRIPTIONS": [ "#pRight #pClick to #yHeal #b", " HP. NL Starts at #b", " uses, 상점에 입장했을때 얻습니다 #b", " uses . NL 최대 #b", " uses 저장 가능합니다." ],
+		"FLAVOR": "Whole Grain Guaranteed! Approved by Konayuki.",
+		"NAME": "Cereal Box"
+	},
+	"animator:CursedBlade":
+	{
+		"DESCRIPTIONS": ["막히지않은 피해를 줄때마다, #yHeal #b2 HP. NL 영구히 #rLose #rHalf of your Max HP. 효과들 that 증가 your Max HP are reduced by half.", "Whenever you deal 막히지않은 피해, #yHeal #b2 HP. NL If your HP is full, 얻습니다 #b3 일시적인 HP 당신의 턴이 끝날때. NL 영구히 #rLose #rHalf of your Max HP. 효과들 that 증가 your Max HP are reduced by half."],
+		"FLAVOR": "It 뽑습니다s 힘 from the blood of its user, truly fitting for a vampire.",
+		"NAME": "Cursed Blade"
+	},
+	"animator:CursedGlyph":
+	{
+		"DESCRIPTIONS": ["Upon pickup, #rlose #r", " #rMax #rHP, all enemies start with 추가적인 Max HP. NL NL The 카드 linked to this 유물 can #yNOT be duplicated."],
+		"FLAVOR": "Maybe it was a mistake...",
+		"NAME": "Cursed Glyph"
+	},
+	"animator:EngravedStaff":
+	{
+		"DESCRIPTIONS": ["당신의 턴이 끝날때, #y보존 your highest cost 카드, it costs #b1 less 다음턴."],
+		"FLAVOR": "One of the most treasured possessions of the Guild.",
+		"NAME": "Engraved Staff"
+	},
+	"animator:ExquisiteBloodVial":
+	{
+		"DESCRIPTIONS": ["각각의 전투 시작마다, 회복 #b", " HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special fight, winning it will 발동합니다 this 유물's true 효과. NL NL You can click this after using a rest site option, Act 3 deck level suggested.", "At the start of 각각의 전투, 얻습니다 #b", " #yRegeneration and #b", " Max HP. NL NL Lose all #yBlood #yVials, whenever you would 얻습니다 a #yBlood #yVial, improve this 유물's 효과 instead."],
+		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
+		"NAME": "Exquisite Blood Vial"
+	},
+	"animator:HallowedScabbard":
+	{
+		"DESCRIPTIONS": ["If you lose a total of #b15 HP or more in a 전투, 얻습니다 #b5 #yRegeneration and #b2 #y힘. Activates once per 전투."],
+		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
+		"NAME": "Hallowed Scabbard"
+	},
+	"animator:Haunted":
+	{
+		"DESCRIPTIONS": ["..."],
+		"FLAVOR": "...",
+		"NAME": "Haunted"
+	},
+	"animator:HeavyHalberd":
+	{
+		"DESCRIPTIONS": ["Your #yAttacks deal #b", "% more 피해."],
+		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
+		"NAME": "Heavy Halberd"
+	},
+	"animator:Hoodie":
+	{
+		"DESCRIPTIONS": ["If you end a 전투 without taking 피해, 얻습니다 #b", " #yMax #yHP."],
+		"FLAVOR": "With this, you might be admitted to the Hero association.",
+		"NAME": "Hoodie"
+	},
+	"animator:InfinitePower":
+	{
+		"DESCRIPTIONS": ["Upon pickup, 얻습니다 #b"," #yGold and #rlose #r", " #rMax #rHP. For every #b", " 카드들 in your deck, 얻습니다 an #pUnnamed 카드 reward."],
+		"FLAVOR": "Infinite Power! At a price...",
+		"NAME": "InfinitePower"
+	},
+	"animator:LivingPicture":
+	{
+		"DESCRIPTIONS": ["턴마다 한번, when a 카드 #ySynergizes, 뽑습니다 #b1 카드."],
+		"FLAVOR": "It's always watching.",
+		"NAME": "Living Picture"
+	},
+	"animator:OldCoffin":
+	{
+		"DESCRIPTIONS": ["Starting from your #b4th turn, 부여합니다 a 랜덤 #yDebuff to a 랜덤 적 at the start of 턴마다."],
+		"FLAVOR": "Shocking Truth!",
+		"NAME": "Old Coffin"
+	},
+	"animator:PurgingStone_cards":
+	{
+    "DESCRIPTIONS": [ "미래에 나타나는 #ynormal 보상과 상점에서 카드를 삭제할수 있습니다. 각각의 전투가 끝날때마다 #b1 사용횟수를 얻고, #b2 사용횟수를 Elites or Bosses 를 처치하고 얻습니다, 최대 #b", " 횟수까지 저장가능합니다. NL #pRight #pClick 삭제시킨 카드들을 볼수 있습니다." ],
+		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
+		"NAME": "Purging Stone"
+	},
+	"animator:PurgingStone_Series":
+	{
+    "DESCRIPTIONS": [ "미래에 나타나는 #yseries 보상과 상점에서 카드를 삭제할수 있습니다. 보스를 쓰러트리고 더 많은 사용횟수를 얻습니다.", "Removed Series:" ],
+		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
+		"NAME": "Purging Stone (Alt)"
+	},
+	"animator:RacePiece":
+	{
+		"DESCRIPTIONS": ["Upon pickup, select #b1 카드, then 고릅니다 and #yTransform #b3 카드들 in your deck into #b3 카드들 of the selected 카드's #ySeries."],
+		"FLAVOR": "Did you see that coming Mr. Mind Reader? Checkmate.",
+		"NAME": "Race Piece"
+	},
+	"animator:Rinne":
+	{
+		"DESCRIPTIONS": ["YmVoYXZlcw== ZXJyYXRpY2FsbHk=, 57GFD0c= NzQ="],
+		"FLAVOR": "???",
+		"NAME": "???"
+	},
+	"animator:ShionDessert":
+	{
+		"DESCRIPTIONS": ["Every time you play #b", " #yAttacks in a turn, 부여합니다 #b", " #yPoison to a 랜덤 적."],
+		"FLAVOR": "Here, have a taste, how bad can it be?",
+		"NAME": "Shion's Dessert"
+	},
+	"animator:TheEgnaroPiece":
+	{
+		"DESCRIPTIONS": ["얻습니다 [E] and 카드를 한장 뽑습니다 at the start of 턴마다. NL 얻습니다 #b", " #y일시적인 #yHP at the end of 턴마다, then 증가 this number by #b1."],
+		"FLAVOR": "What is this thing?",
+		"NAME": "The Egnaro Piece"
+	},
+	"animator:TheEruzaStone":
+	{
+		"DESCRIPTIONS": ["얻습니다 [E] [E] at the start of 턴마다. NL Whenever you play a #y파워, 카드를 한장 뽑습니다."],
+		"FLAVOR": "What is this thing?",
+		"NAME": "The Eruza Stone"
+	},
+	"animator:TheMissingPiece":
+	{
+		"DESCRIPTIONS": ["매 #b", " 번 전투 마다, 개선된 카드 보상을 받습니다. 한 시리즈의 여러개의 카드를 가지고 있다면, 그 시리즈를 찾을 확률이 늘어난다."],
+		"FLAVOR": "What is this thing?",
+		"NAME": "The Missing Piece"
+	},
+	"animator:TheWolleyCore":
+	{
+		"DESCRIPTIONS": ["뽑습니다 #b", " 카드들 at the start of 턴마다. NL Whenever you play a 카드, deal #b", " 적 전체에게 피해를 !D! 줍니다 and 얻습니다 #b", " #y방어도."],
+		"FLAVOR": "What is this thing?",
+		"NAME": "The Wolley Core"
+	},
+	"animator:VividPicture":
+	{
+		"DESCRIPTIONS": ["턴마다 한번, when a 카드 #ySynergizes, 뽑습니다 #b1 카드 and 얻습니다 [E]"],
+		"FLAVOR": "It's always watching.",
+		"NAME": "Vivid Picture"
+	},
+	"animator:WizardHat":
+	{
+		"DESCRIPTIONS": ["At the end of 턴마다, consume #b1 of your unspent Energy. Every time this consumes a total of #b", " Energy, deal #b", " 적 전체에게 피해를 !D! 줍니다."],
+		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
+		"NAME": "Wizard Hat"
+	},
+	"animator:WornHelmet":
+	{
+		"DESCRIPTIONS": ["Start 각각의 전투 with #b", " #y방어도. Whenever you 뽑습니다 a #y저주 or #y상태이상, deal #b", " 피해 to a 랜덤 적."],
+		"FLAVOR": "Goblins.",
+		"NAME": "Worn Helmet"
+	}
+}

@@ -16,6 +16,7 @@ public class Field<T>
         }
     }
 
+    @SuppressWarnings("unchecked") // I miss C# ...
     public T Get(Object instance)
     {
         try

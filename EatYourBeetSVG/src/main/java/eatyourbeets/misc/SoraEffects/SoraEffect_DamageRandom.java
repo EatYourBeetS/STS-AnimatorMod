@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.PenNibPower;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class SoraEffect_DamageRandom extends SoraEffect
@@ -24,9 +25,6 @@ public class SoraEffect_DamageRandom extends SoraEffect
         {
             GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(player, sora.damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
         }
-        if (player.hasPower(PenNibPower.POWER_ID))
-        {
-            GameActionsHelper.AddToBottom(new ReducePowerAction(player, player, PenNibPower.POWER_ID, 1));
-        }
+        PlayerStatistics.UsePenNib();
     }
 }

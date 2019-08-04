@@ -2,7 +2,7 @@
 {
 	"animator:AcuraAkari":
 	{
-		"DESCRIPTION": "Discard 1 card. Add !SV! Throwing-Knives NL to your hand. NL Gain !M! Envenom until end of turn.",
+		"DESCRIPTION": "Discard 1 card: Add !SV! Throwing-Knives NL to your hand. NL Gain !M! Envenom until end of turn.",
 		"NAME": "Akari"
 	},
 	"animator:AcuraShin":
@@ -13,9 +13,9 @@
 	},
 	"animator:AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage NL twice. Add !SV! Throwing-Knives to your hand. Synergy: Cycle !M! card.",
+		"DESCRIPTION": "Deal !D! damage NL twice. Add !SV! Throwing-Knives to your hand. Synergy: Gain !B! Block.",
 		"NAME": "Tooru",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage NL twice. Add !SV! Throwing-Knives to your hand. Synergy: Cycle !M! cards."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage NL twice. Add !SV! Throwing-Knives to your hand. Synergy: Gain !B! Block."
 	},
 	"animator:Add":
 	{
@@ -50,8 +50,10 @@
 	},
 	"animator:Aqua":
 	{
-		"DESCRIPTION": "Heal !M! HP. NL Reduce this card's healing by !SV! this combat.",
-		"NAME": "Aqua"
+		"DESCRIPTION": "Heal !M! HP. NL Draw 1 card. NL Becomes useless for the rest of this combat.",
+		"EXTENDED_DESCRIPTION": ["", "When this card is Exhausted or discarded, gain !SV! Temp._HP."],
+		"NAME": "Aqua",
+		"UPGRADE_DESCRIPTION": "Heal !M! HP. NL Draw 1 card. NL Becomes slightly less useless for the rest of this combat."
 	},
 	"animator:Ara":
 	{
@@ -182,10 +184,15 @@
 	},
 	"animator:Darkness":
 	{
-		"DESCRIPTION": "Gain !M! Plated_Armor. Whenever you take damage, Upgrade !M! random card ([#EFC851]*[#FFFFFF]).",
-		"EXTENDED_DESCRIPTION": ["* Note", "It will prioritize cards in your hand."],
-		"NAME": "Darkness",
-		"UPGRADE_DESCRIPTION": "Gain !M! Plated_Armor. Whenever you take damage, Upgrade !M! random cards ([#EFC851]*[#FFFFFF])."
+		"DESCRIPTION": "Gain !M! Plated_Armor. NL The next time you take damage, add 1 [#EFC851]Adrenaline to your draw pile.",
+		"EXTENDED_DESCRIPTION": ["Adrenaline", "Gain 1 Energy. NL Draw 2 cards. NL #yExhaust."],
+		"NAME": "Darkness"
+	},
+	"animator:DarknessAdrenaline":
+	{
+		"DESCRIPTION": "Gain [E]. NL Draw 2 cards. NL Exhaust.",
+		"NAME": "Adrenaline",
+		"UPGRADE_DESCRIPTION": "Gain [E] [E]. NL Draw 2 cards. NL Exhaust."
 	},
 	"animator:Defend":
 	{
@@ -479,9 +486,9 @@
 	},
 	"animator:Guy":
 	{
-		"DESCRIPTION": "Draw !M! card. NL Discard !M! card. NL If you discarded an [#EFC851]Attack, gain !B! Block.",
+		"DESCRIPTION": "Draw !M! card. NL Discard !M! card. NL Synergy: Discard the top 2 cards of your draw pile.",
 		"NAME": "Guy",
-		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard !M! cards. NL If you discarded an [#EFC851]Attack, gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard !M! cards. NL Synergy: Discard the top 2 cards of your draw pile."
 	},
 	"animator:Hakurou":
 	{
@@ -568,7 +575,7 @@
 	},
 	"animator:Kazuma":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Synergy: NL Draw 1 card.",
+		"DESCRIPTION": "Gain !B! Block. NL Cycle 1 card. Synergy: NL Deal !M! damage to a random enemy.",
 		"NAME": "Kazuma"
 	},
 	"animator:Kira":
@@ -595,7 +602,7 @@
 	},
 	"animator:Kuroyukihime":
 	{
-		"DESCRIPTION": "Discard !M! cards. Add [#EFC851]Black [#EFC851]Lotus to your hand. Exhaust.",
+		"DESCRIPTION": "Discard !M! cards: Add [#EFC851]Black [#EFC851]Lotus to your hand. Exhaust.",
 		"EXTENDED_DESCRIPTION": ["Black Lotus", "A special 1-cost #yAttack which deals damage to ALL enemies and grants #yBlock and #yBlur."],
 		"NAME": "Kuroyukihime"
 	},
@@ -617,9 +624,9 @@
 	},
 	"animator:LeleiLaLalena":
 	{
-		"DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Synergy: Apply !SV! Weak to ALL NL enemies.",
+		"DESCRIPTION": "Discard a random card: [#EFC851]Channel !M! Frost. Synergy: Apply 1 Weak to ALL enemies.",
 		"NAME": "Lelei La Lalena",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Channel !M! Frost. NL Cycle 1 card. NL Synergy: Apply !SV! Weak to ALL NL enemies."
+		"UPGRADE_DESCRIPTION": "Discard a card: [#EFC851]Channel !M! Frost. Synergy: Apply 1 Weak to ALL enemies."
 	},
 	"animator:Lelouch":
 	{
@@ -857,7 +864,8 @@
 	{
 		"DESCRIPTION": "[#EFC851]Bloodlust. NL Deal !D! damage to ALL enemies. Synergy: Steal !M! Strength.",
 		"EXTENDED_DESCRIPTION": ["Bloodlust", "If this kills a non-minion enemy, heal 3 HP and gain [E]"],
-		"NAME": "Shalltear"
+		"NAME": "Shalltear",
+		"UPGRADE_DESCRIPTION": "[#EFC851]Bloodlust. NL Deal !D! damage to ALL enemies. Steal !M! Strength."
 	},
 	"animator:Shichika":
 	{
@@ -998,7 +1006,7 @@
 	},
 	"animator:Strike_Konosuba":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Boost !SV! : Heal !M! HP.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !B! Block.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_NoGameNoLife":
@@ -1043,7 +1051,7 @@
 	},
 	"animator:Tatsumaki":
 	{
-		"DESCRIPTION": "Channel 1 Air. NL Gain !M! Temporary Focus. Synergy: NL ALL enemies lose !SV! Strength this turn.",
+		"DESCRIPTION": "Channel 1 Air. NL Gain !M! Temporary Focus. Synergy: NL Next turn, gain [E].",
 		"NAME": "Tatsumaki"
 	},
 	"animator:Tet":
@@ -1085,7 +1093,7 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "Gain !B! Block. Next NL turn, gain !B! Block. NL If this is your first Synergy this turn, draw 1 card.",
+		"DESCRIPTION": "Gain !B! Block. NL Draw 1 card. Reduce your maximum hand size by !SV! this turn.",
 		"NAME": "Tuka"
 	},
 	"animator:Tyuule":
@@ -1113,28 +1121,28 @@
 	},
 	"animator:Vesta":
 	{
-		"DESCRIPTION": "Draw 1 card. NL Research an [#EFC851]Elixir, NL it will be completed after !M! turns. NL Exhaust.",
+		"DESCRIPTION": "Research an [#EFC851]Elixir, NL it will be completed after !M! turns. NL Exhaust.",
 		"EXTENDED_DESCRIPTION": ["Elixir", "0-cost #ySkill with a variety of different effects."],
 		"NAME": "Vesta"
 	},
-	"animator:Vesta_Elixir_0":
+	"animator:Vesta_Elixir":
 	{
-		"DESCRIPTION": "Gain !M! Focus. NL Gain 2 Orb slots. NL Gain !SV! Blur. NL Exhaust.",
-		"NAME": "Elixir"
-	},
-	"animator:Vesta_Elixir_1":
-	{
-		"DESCRIPTION": "Gain !M! Strength. NL Gain !SV! Dexterity. NL Gain 6 Temp._HP. NL Exhaust.",
-		"NAME": "Elixir"
-	},
-	"animator:Vesta_Elixir_2":
-	{
-		"DESCRIPTION": "Gain [E] [E] [E]. NL Exhaust !M! cards. NL Draw !SV! cards. NL Exhaust.",
-		"NAME": "Elixir"
-	},
-	"animator:Vesta_Elixir_3":
-	{
-		"DESCRIPTION": "Draw !M! cards. NL Discard 2 cards. NL Gain !SV! Metallicize. NL Exhaust.",
+		"DESCRIPTION": "",
+		"EXTENDED_DESCRIPTION": 
+		[
+			"Takes 1 less turn NL to complete.",
+			"Draw {0} Cards.",
+			"Gain {0} Focus.",
+			"Gain {0} Strength.",
+			"Gain {0} Dexterity.",
+			"Gain {0} Orb slots.",
+			"Gain {0} Temp._HP.",
+			"Gain {0} Metallicize.",
+			"Gain {0} Energy.",
+			"Exhaust {0} Cards:",
+			"Discard {0} Cards:",
+			"Purge."
+		],
 		"NAME": "Elixir"
 	},
 	"animator:Viivi":

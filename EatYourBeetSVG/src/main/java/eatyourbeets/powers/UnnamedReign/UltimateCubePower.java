@@ -133,7 +133,7 @@ public class UltimateCubePower extends AnimatorPower
 
     private void BuffHealing(AbstractCreature c)
     {
-        GameActionsHelper.ApplyPower(c, c, new HealingCubePower(c, 6), 6);
+        GameActionsHelper.ApplyPower(c, c, new HealingCubePower(c, 8), 8);
     }
 
     private void BuffFire(AbstractCreature c)
@@ -143,7 +143,7 @@ public class UltimateCubePower extends AnimatorPower
 
     private void BuffFrost(AbstractCreature c)
     {
-        GameActionsHelper.ApplyPower(c, c, new FrostCubePower(c, 4), 4);
+        GameActionsHelper.ApplyPower(c, c, new FrostCubePower(c, 6), 6);
     }
 
     private void BuffDark(AbstractCreature c)

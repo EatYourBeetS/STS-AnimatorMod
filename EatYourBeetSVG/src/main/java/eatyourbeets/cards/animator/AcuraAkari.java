@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -26,27 +27,16 @@ public class AcuraAkari extends AnimatorCard
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        CardGroup hand = AbstractDungeon.player.hand;
-        int toDiscard = 0;
-        if (hand.contains(this))
-        {
-            toDiscard = -1;
-        }
-        toDiscard += hand.size();
-
-        return toDiscard >= 1 && super.cardPlayable(m);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.Discard(1, false);
-
-        for (int i = 0; i < secondaryValue; i++)
+        if (GetOtherCardsInHand().size() > 0)
         {
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomCard()));
+            GameActionsHelper.Discard(1, false);
+
+            for (int i = 0; i < secondaryValue; i++)
+            {
+                GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomCard()));
+            }
         }
 
         GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, this.magicNumber), this.magicNumber);

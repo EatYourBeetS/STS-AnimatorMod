@@ -1,6 +1,5 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.animator.KaijinAction;

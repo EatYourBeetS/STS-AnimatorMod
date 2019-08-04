@@ -2,16 +2,10 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
-import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import eatyourbeets.actions.common.ShuffleRandomGoblinAction;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.powers.animator.DexterityTrainingPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
 public class Spearman extends AnimatorCard
@@ -22,7 +16,7 @@ public class Spearman extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(7, 0);
+        Initialize(6, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
     }

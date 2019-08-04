@@ -18,7 +18,6 @@ import eatyourbeets.actions.common.SummonMonsterAction;
 import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.cards.animator.Crystallize;
 import eatyourbeets.effects.CallbackEffect;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifactAll;
 import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;

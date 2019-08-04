@@ -19,7 +19,7 @@ public class MetalKnight extends AnimatorCard_Boost
     {
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(13, 0, 3, 1);
+        Initialize(12, 0, 3, 1);
 
         SetSynergy(Synergies.OnePunchMan);
     }

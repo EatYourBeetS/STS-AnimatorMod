@@ -31,7 +31,7 @@
 			"[諮詢]",
 			"[接受] #g獲得 #g特殊遺物。",
 			"[接受] #g失去 #g{0} #g張卡牌 。 #g獲得 #g{1} #g張已升級卡牌 。",
-			"[接受] #g升级同一张卡 #g{0} #g次"
+			"[接受] #gRecover #gyour #gstarting #grelics. #rLose #r{0} #rMax #rHP."
 		]
 	},
 	"animator:TheMaskedTraveler3":

@@ -3,24 +3,16 @@ package eatyourbeets.cards.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
-import com.megacrit.cardcrawl.powers.RegrowPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
-import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.OnDamageAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.Utilities;
@@ -52,7 +44,7 @@ public class Shalltear extends AnimatorCard
         {
             GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m1.hb.cX, m1.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
 
-            if (HasActiveSynergy() && PlayerStatistics.UseArtifact(m1))
+            if ((upgraded || HasActiveSynergy()) && PlayerStatistics.UseArtifact(m1))
             {
                 GameActionsHelper.ApplyPower(p, m1, new StrengthPower(m1, -1), -1);
                 GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
@@ -68,10 +60,11 @@ public class Shalltear extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(3);
+            upgradeDamage(1);
         }
     }
 
+    @SuppressWarnings("unchecked") // I miss C# ...
     private void OnDamage(Object state, AbstractGameAction action)
     {
         ArrayList<AbstractMonster> enemies = Utilities.SafeCast(state, ArrayList.class);

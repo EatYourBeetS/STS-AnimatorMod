@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.blights.Haunted;
 import eatyourbeets.cards.AnimatorCard_Status;
 import eatyourbeets.interfaces.Hidden;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class TheHaunt extends AnimatorCard_Status implements Hidden
 {

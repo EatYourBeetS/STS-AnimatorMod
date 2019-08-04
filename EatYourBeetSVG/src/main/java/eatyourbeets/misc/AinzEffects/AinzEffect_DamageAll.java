@@ -30,9 +30,6 @@ public class AinzEffect_DamageAll extends AinzEffect
         {
             GameActionsHelper.DamageTarget(p, m, ainz.damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
         }
-        if (p.hasPower(PenNibPower.POWER_ID))
-        {
-            GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
-        }
+        PlayerStatistics.UsePenNib();
     }
 }

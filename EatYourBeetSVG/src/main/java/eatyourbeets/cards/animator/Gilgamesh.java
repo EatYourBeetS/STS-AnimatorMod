@@ -19,7 +19,6 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
-import patches.AbstractEnums;
 import patches.RelicObtainedPatches;
 import patches.StoreRelicPatch;
 

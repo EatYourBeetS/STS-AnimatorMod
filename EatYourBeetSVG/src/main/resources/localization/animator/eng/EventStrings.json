@@ -29,7 +29,7 @@
 			"[Inquire]",
 			"[Accept] #gObtain #gRelic",
 			"[Accept] #gRemove #g{0} #gcards, #gobtain #g{1} #grandom #gUpgraded #gcards.",
-			"[Accept] #gUpgrade #ga #gsingle #gcard #g{0} #gtimes."
+			"[Accept] #gRecover #gyour #gstarting #grelics. #rLose #r{0} #rMax #rHP."
 		]
 	},
 	"animator:TheMaskedTraveler3":

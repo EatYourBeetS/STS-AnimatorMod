@@ -13,7 +13,6 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.Utilities;
 
 public class CrowleyEusford extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardExhaustedSubscriber, OnCostRefreshSubscriber
 {

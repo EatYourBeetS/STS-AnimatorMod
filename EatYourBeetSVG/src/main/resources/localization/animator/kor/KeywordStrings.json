@@ -1,0 +1,232 @@
+[
+	{
+		"DESCRIPTION": "Activates if the last 카드 played this turn was from the same series.",
+    "NAMES": [ "시너지", "synergies", "시너지를 활성화하면", "synergizes" ],
+		"PROPERNAME": "시너지"
+	},
+	{
+		"DESCRIPTION": "Triggers when this 카드 is 소멸된.",
+		"NAMES": ["죽음의메아리"],
+		"PROPERNAME": "죽음의메아리"
+	},
+	{
+		"DESCRIPTION": "Whenever this 카드 would enter your 묘지, 섞습니다 it into your 덱.",
+		"NAMES": ["loyal"],
+		"PROPERNAME": "Loyal"
+	},
+	{
+		"DESCRIPTION": "Whenever this 카드 would enter your 묘지, 섞습니다 it into your 덱.",
+		"NAMES": ["persistent"],
+		"PROPERNAME": "Persistent"
+	},
+	{
+		"DESCRIPTION": "The owner is inflicted with the specified #yDebuff or 효과 when receiving 피해. Lasts 1 turn.",
+		"NAMES": ["mark", "marks"],
+		"PROPERNAME": "Mark"
+	},
+	{
+		"DESCRIPTION": "If the target has less than #b50% HP, deal double 피해.",
+		"NAMES": ["heartseeker"],
+		"PROPERNAME": "Heartseeker"
+	},
+	{
+		"DESCRIPTION": "Ignore the target's #y방어도 and #가시.",
+		"NAMES": ["관통"],
+		"PROPERNAME": "관통"
+	},
+	{
+		"DESCRIPTION": "If you would die, and this 카드 is anywhere in your deck, prevent all 피해 and 영구히 lose this 카드. Will not work if 소멸된 or Purged.",
+		"NAMES": ["부활"],
+		"PROPERNAME": "부활"
+	},
+	{
+		"DESCRIPTION": "Reduced by #b1 when this 카드 is #yplayed or #y버려진, if it was at #b0, 발동합니다 the 효과 and reset.",
+		"NAMES": ["cooldown"],
+		"PROPERNAME": "Cooldown"
+	},
+	{
+		"DESCRIPTION": "Cannot act for #b1 turn.",
+		"NAMES": ["stun", "stunned", "stslib:stunned"],
+		"PROPERNAME": "Stun"
+	},
+	{
+		"DESCRIPTION": "For every 카드 you have played this turn, 적 takes #b10% more 피해 from #yAttacks.",
+		"NAMES": ["slow"],
+		"PROPERNAME": "Slow"
+	},
+	{
+		"DESCRIPTION": "Synergizes with any 카드.",
+		"NAMES": ["형상변환자", "shapeshift"],
+		"PROPERNAME": "형상변환자"
+	},
+	{
+		"DESCRIPTION": "버립니다 a certain number of 카드들 then 뽑습니다 that many 카드들.",
+		"NAMES": ["순환"],
+		"PROPERNAME": "순환"
+	},
+	{
+		"DESCRIPTION": "무제한으로 강화됩니다.",
+		"NAMES": ["augmentable"],
+		"PROPERNAME": "Augmentable"
+	},
+	{
+		"DESCRIPTION": "Upon receiving attack 피해, 얻습니다 #y방어도. #y방어도 얻습니다 증가s as this power is triggered. Resets 당신의 턴이 시작할때.",
+		"NAMES": ["malleable"],
+		"PROPERNAME": "Malleable"
+	},
+	{
+		"DESCRIPTION": "Take 피해 at the end of 턴마다.",
+		"NAMES": ["constricted"],
+		"PROPERNAME": "Constricted"
+	},
+	{
+		"DESCRIPTION": "Trigger when this 카드 is manually 버려진 or 순환d.",
+		"NAMES": ["귀환"],
+		"PROPERNAME": "귀환"
+	},
+	{
+		"DESCRIPTION": "Activates for 각각의 적 that 잃어버린다 its 방어도 during this attack.",
+		"NAMES": ["overrun"],
+		"PROPERNAME": "Overrun"
+	},
+	{
+		"DESCRIPTION": "If this counter is greater NL than 0, 발동합니다 the 효과 then reduce this counter by 1. Resets at the end of 각각의 fight.",
+		"NAMES": ["부스트"],
+		"PROPERNAME": "부스트"
+	},
+	{
+		"NAMES": ["대지", "대지+"],
+		"DESCRIPTION": "Orb: 얻습니다 일시적인 #가시 while #y영창ed. 3턴후 자동으로 #y발현 전체 적들에게 랜덤하게 분산하여 피해를 입힙니다.",
+		"PROPERNAME": "대지"
+	},
+	{
+		"NAMES": ["air", "air+"],
+		"DESCRIPTION": "Orb: Deal #y관통 적 전체에게 피해를 !D! 줍니다.",
+		"PROPERNAME": "Air"
+	},
+	{
+		"NAMES": ["불", "불+"],
+		"DESCRIPTION": "Orb: 부여합니다 #y화상 and 피해 the highest health 적.",
+		"PROPERNAME": "불"
+	},
+	{
+		"NAMES": ["흐릿함"],
+		"DESCRIPTION": "Your #y방어도 will not be removed at the start of your 다음턴.",
+		"PROPERNAME": "흐릿함"
+	},
+	{
+		"NAMES": ["화상"],
+		"DESCRIPTION": "Take 피해 당신의 턴이 시작할때. Also take #b4% more #y공격 피해 per stack. Reduced by 1 턴마다.",
+		"PROPERNAME": "화상"
+	},
+	{
+		"NAMES": ["맹독"],
+		"DESCRIPTION": "막히지 않은 데미지를 입혔을때, 타격마다 #b1 #y중독을 부여합니다.",
+		"PROPERNAME": "맹독"
+	},
+	{
+		"NAMES": ["금속화"],
+		"DESCRIPTION": "얻습니다 #y방어도 당신의 턴이 시작할때.",
+		"PROPERNAME": "금속화"
+	},
+	{
+		"NAMES": ["choked"],
+		"DESCRIPTION": "Whenever you play a 카드 this turn, the target 잃어버린다 1 HP.",
+		"PROPERNAME": "Choked"
+	},
+	{
+		"NAMES": ["orb core", "orb_core", "orb cores", "orb_cores", "불_core", "대지_core", "lightning_core", "plasma_core", "불_core", "냉기_core"],
+		"DESCRIPTION": "#y파워: #y영창 1 orb on use, 얻습니다 a 보너스 효과 on your second #y시너지 턴마다.",
+		"PROPER_NAME": "Orb Core"
+	},
+	{
+		"PROPER_NAME": "Plated Armor",
+		"NAMES": ["plated armor", "판금_갑옷"],
+		"DESCRIPTION": "얻습니다 #y방어도 당신의 턴이 끝날때. Reduced by #b1 when receiving 막히지않은 피해."
+	},
+	{
+		"PROPER_NAME": "Enchanted Armor",
+		"NAMES": ["enchanted armor", "enchanted_armor", "ench. armor", "ench._armor"],
+		"DESCRIPTION": "모든 공격에 더 적은피해를 입습니다, 스택이 올라갈수록 효율이 떨어집니다."
+	},
+	{
+		"PROPER_NAME": "Martial Artist",
+		"NAMES": ["martial artist", "martial_artist"],
+		"DESCRIPTION": "This 카드's 피해 also scales with #y민첩."
+	},
+	{
+		"PROPER_NAME": "주문시전자",
+		"NAMES": ["주문시전자"],
+		"DESCRIPTION": "This 카드's 피해 also scales with #y밀집."
+	},
+	{
+		"PROPER_NAME": "재장전",
+		"NAMES": ["재장전"],
+		"DESCRIPTION": "버립니다 any number of 카드들, 발동합니다 this 효과 that many times."
+	},
+	{
+		"PROPER_NAME": "Lazy",
+		"NAMES": ["lazy"],
+		"DESCRIPTION": "This 카드's 피해 will be delayed by a 랜덤 number of turns."
+	},
+	{
+		"PROPER_NAME": "Flame Barrier",
+		"NAMES": ["flame barrier", "flame_barrier"],
+		"DESCRIPTION": "Until your 다음턴, whenever you are attacked, deal 1 피해 back to the 적."
+	},
+	{
+		"PROPER_NAME": "Rebound",
+		"NAMES": ["rebound"],
+		"DESCRIPTION": "Put the next 카드 you play this turn on top of your 덱."
+	},
+	{
+		"PROPER_NAME": "Throwing-Knife",
+		"NAMES": ["throwing-knife", "단도 카드"],
+		"DESCRIPTION": "0-Cost #y공격 which applies a 랜덤ized debuff and #y소멸s."
+	},
+	{
+		"PROPER_NAME": "Discover",
+		"NAMES": ["discover"],
+		"DESCRIPTION": "고릅니다 1 of 3 랜덤 카드들 to add 를 얻습니다. It costs 0 this turn."
+	},
+	{
+		"PROPER_NAME": "일시적인 HP",
+		"NAMES": ["temp. hp", "temp._hp"],
+		"DESCRIPTION": "일시적인 HP 전투가 끝나면 사라집니다."
+	},
+	{
+		"PROPER_NAME": "Flight",
+		"NAMES": ["flight"],
+		"DESCRIPTION": "50% 감소된 #y공격 피해를 받습니다. 피해를 받으면 턴이 끝날때까지 1 stack 감소합니다, 0 stacks이 되면 취소됩니다."
+	},
+	{
+		"PROPER_NAME": "Flaming Weapon",
+		"NAMES": ["flaming weapon", "flaming_weapon"],
+		"DESCRIPTION": "공격이 막히지않은 피해를 줄때마다, 부여합니다 #b1 #y화상."
+	},
+	{
+		"PROPER_NAME": "Demon Form",
+		"NAMES": ["demon form", "악마화"],
+		"DESCRIPTION": "얻습니다 #y힘 at the start of 턴마다."
+	},
+	{
+		"PROPER_NAME": "Juggernaut",
+		"NAMES": ["juggernaut"],
+		"DESCRIPTION": "#y방어도를 얻을때마다, 랜덤 적에게 피해를 줍니다."
+	},
+	{
+		"PROPER_NAME": "Support 피해",
+		"NAMES": ["support 피해", "support_피해"],
+		"DESCRIPTION": "가장 체력이 적은 적에게 턴종료시 추가적인 피해를 입힙니다."
+	},
+	{
+		"PROPER_NAME": "응원",
+		"NAMES": ["응원"],
+		"DESCRIPTION": "손에 있는 랜덤 카드의 코스트를 플레이 하기 전까지 1 낮춥니다. N번 반복됩니다."
+	},
+	{
+		"PROPER_NAME": "animator:Unique",
+		"NAMES": ["animator:unique"],
+		"DESCRIPTION": "유니크 카드는 무제한으로 강화가능합니다. 덱에서 1장만 보유가능하며, 추가적인 동일한 카드는 이 카드를 #y강화 시킵니다."
+	}
+]

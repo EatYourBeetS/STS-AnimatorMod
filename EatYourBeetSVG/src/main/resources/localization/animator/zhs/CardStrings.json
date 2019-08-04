@@ -2,7 +2,7 @@
 {
 	"animator:AcuraAkari":
 	{
-		"DESCRIPTION": "丢弃 1 张牌 。 NL 将 !SV! 张飞刀加入你的手牌 。 NL 获得 !M! 点 临时 涂毒 。",
+		"DESCRIPTION": "丢弃 1 张牌 : NL 将 !SV! 张飞刀加入你的手牌 。 NL 获得 !M! 点 临时 涂毒 。",
 		"NAME": "阿卡莉"
 	},
 	"animator:AcuraShin":
@@ -13,9 +13,8 @@
 	},
 	"animator:AcuraTooru":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 2 次 。 将 !SV! 张飞刀加入你的手牌。 同调 : 循环 !M! 张手牌。",
-		"NAME": "托鲁",
-		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害 2 次 。 将 !SV! 张飞刀加入你的手牌。 同调 : 循环 !M! 张手牌。"
+		"DESCRIPTION": "造成 !D! 点伤害 2 次 。 将 !SV! 张飞刀加入你的手牌。 同调 : 获得 !B! 点 格挡 。",
+		"NAME": "托鲁"
 	},
 	"animator:Add":
 	{
@@ -50,8 +49,10 @@
 	},
 	"animator:Aqua":
 	{
-		"DESCRIPTION": "回复 !M! 点生命。在本场战斗中减少 !SV! 点 回复量 。",
-		"NAME": "阿库娅"
+		"DESCRIPTION": "回复 !M! 点生命。 在本场战斗中变成无用的废物。",
+		"EXTENDED_DESCRIPTION": ["", "如果这张牌被 消耗 或 丢弃， 获得 !SV! 点 暂时性生命 。"],
+		"NAME": "阿库娅",
+		"UPGRADE_DESCRIPTION": "回复 !M! 点生命。 在本场战斗中变成有用的废物。"
 	},
 	"animator:Ara":
 	{
@@ -182,9 +183,15 @@
 	},
 	"animator:Darkness":
 	{
-		"DESCRIPTION": "获得 !M! 点 多层护甲 。 每次受伤时随机 升级 !M! 张卡 ，手牌优先。",
-		"EXTENDED_DESCRIPTION": ["", ""],
+		"DESCRIPTION": "获得 !M! 点 多层护甲 。 下次受伤时，在抽牌堆里添加一张 肾上腺素 。",
+		"EXTENDED_DESCRIPTION": ["肾上腺素", "获得 1 点能量。 NL 抽 2 张牌。 NL #y消耗 。"],
 		"NAME": "达克尼斯"
+	},
+	"animator:DarknessAdrenaline":
+	{
+		"DESCRIPTION": "获得 [E] 。 NL 抽 2 牌。 NL 消耗 。",
+		"NAME": "肾上腺素",
+		"UPGRADE_DESCRIPTION": "获得 [E] [E] 。 NL 抽 2 牌。 NL 消耗 。"
 	},
 	"animator:Defend":
 	{
@@ -419,7 +426,7 @@
 	},
 	"animator:Gillette":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害。下一回合，获得 [E] 。 召回 : 给予所有敌人 !M! 层 虚弱 。",
+		"DESCRIPTION": "造成 !D! 点伤害。 下一回合， 获得 [E] 。 召回 : 给予所有敌人 !M! 层 虚弱 。",
 		"NAME": "基烈特"
 	},
 	"animator:Giselle":
@@ -477,7 +484,7 @@
 	},
 	"animator:Guy":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。 NL 丢弃 !M! 张牌 。 NL 若丢弃的牌中有攻击牌，获得 !B! 点 格挡 。",
+		"DESCRIPTION": "抽 !M! 张牌 。 NL 丢弃 !M! 张牌 。 NL 同调 ： 从抽牌堆顶丢弃 2 张牌。",
 		"NAME": "奇伊"
 	},
 	"animator:Hakurou":
@@ -566,7 +573,7 @@
 	},
 	"animator:Kazuma":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 ， 造成 !D! 点伤害。 NL 同调 : 抽一张牌 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 ， 循环 1 张牌。 NL 同调 : 随机对敌人造成 !M! 点伤害 。",
 		"NAME": "和真"
 	},
 	"animator:Kira":
@@ -593,7 +600,7 @@
 	},
 	"animator:Kuroyukihime":
 	{
-		"DESCRIPTION": "丢弃 !M! 张牌。将一张 [#EFC851]黑莲花[] 加入你的手牌。 消耗 。",
+		"DESCRIPTION": "丢弃 !M! 张牌 : 将一张 [#EFC851]黑莲花[] 加入你的手牌。 消耗 。",
 		"EXTENDED_DESCRIPTION": ["黑莲花", "特殊的1耗 #y攻击牌 。"],
 		"NAME": "黑雪公主"
 	},
@@ -615,9 +622,9 @@
 	},
 	"animator:LeleiLaLalena":
 	{
-		"DESCRIPTION": "生成 !M! 个 冰霜 充能球。 NL 同调 : 给予所有敌人 !SV! 层 虚弱 。 ",
+		"DESCRIPTION": "随机丢弃1张牌： 生成 !M! 个 冰霜 充能球。 NL 同调 : 给予所有敌人 !SV! 层 虚弱 。 ",
 		"NAME": "蕾莱·拉·列娜",
-		"UPGRADE_DESCRIPTION": "生成 !M! 个 冰霜 充能球。 NL 循环 1 张牌 。 NL 同调 : 给予所有敌人 !SV! 层 虚弱 。"
+		"UPGRADE_DESCRIPTION": "丢弃1张牌： 生成 !M! 个 冰霜 充能球。  NL 同调 : 给予所有敌人 !SV! 层 虚弱 。"
 	},
 	"animator:Lelouch":
 	{
@@ -809,7 +816,7 @@
 	},
 	"animator:RoryMercury":
 	{
-		"DESCRIPTION": "随机对敌人造成 !D! 点伤害2次 。 [#EFC851]被抽到时[] ； 获得 !M! 点 临时 力量 。",
+		"DESCRIPTION": "随机对敌人造成 !D! 点 伤害 2次 。 [#EFC851]被抽到时[] ； 获得 !M! 点 临时 力量 。",
 		"NAME": "萝莉·麦丘利"
 	},
 	"animator:Rose":
@@ -862,7 +869,8 @@
 	{
 		"DESCRIPTION": "[#EFC851]吸血[] 。 NL 对所有敌人造成 !D! 点伤害。 NL 同调 : 偷取 !M! 点 力量 。",
 		"EXTENDED_DESCRIPTION": ["吸血", "如果这张牌消灭了一个非爪牙的敌人，回复 3 生命并获得 [E]"],
-		"NAME": "夏提雅"
+		"NAME": "夏提雅",
+		"UPGRADE_DESCRIPTION": "[#EFC851]吸血[] 。 NL 对所有敌人造成 !D! 点伤害。 NL 偷取 !M! 点 力量 。"
 	},
 	"animator:Shichika":
 	{
@@ -1002,7 +1010,7 @@
 	},
 	"animator:Strike_Konosuba":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害 。 NL 鼓舞 !SV! :回复 !M! 生命 。",
+		"DESCRIPTION": "造成 !D! 点伤害 。 NL 获得 !B! 点 格挡 。",
 		"NAME": "改良打击"
 	},
 	"animator:Strike_NoGameNoLife":
@@ -1042,12 +1050,12 @@
 	},
 	"animator:TanyaDegurechaff_Type95":
 	{
-		"DESCRIPTION": "循环 2 张牌。保留 所有 [#EFC851]攻击牌[] 。下一回合，你的所有 [#EFC851]攻击牌[] 将造成双倍伤害。消耗 。",
+		"DESCRIPTION": "循环 2 张牌。 保留 所有 [#EFC851]攻击牌[] 。下一回合，你的所有 [#EFC851]攻击牌[] 将造成双倍伤害。消耗 。",
 		"NAME": "九五式演算宝珠"
 	},
 	"animator:Tatsumaki":
 	{
-		"DESCRIPTION": "生成 1 个 凌风 充能球 。 NL 获得 !M! 点 临时 集中 。 NL 同调 ：本回合，所有敌人失去 !SV! 点 力量 。",
+		"DESCRIPTION": "生成 1 个 凌风 充能球 。 NL 获得 !M! 点 临时 集中 。 NL 同调 ： 下一回合， 获得 [E] 。",
 		"NAME": "龙卷"
 	},
 	"animator:Tet":
@@ -1078,7 +1086,7 @@
 	},
 	"animator:Togame":
 	{
-		"DESCRIPTION": "抽 !M! 张牌 。可以选择并 消耗 一张手牌，再抽一张牌 ",
+		"DESCRIPTION": "抽 !M! 张牌 。 可以选择并 消耗 一张手牌，再抽一张牌 ",
 		"NAME": "咎儿"
 	},
 	"animator:Truth":
@@ -1089,7 +1097,7 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。下一回合，获得 !B! 点 格挡 。 如果这是本回合第一次 同调 ，抽一张牌 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。你的手牌上限在此轮减 !SV!。",
 		"NAME": "杜嘉"
 	},
 	"animator:Tyuule":
@@ -1106,7 +1114,7 @@
 	},
 	"animator:Vanir":
 	{
-		"DESCRIPTION": "穿越者。 [#EFC851]巴尼尔[] 。造成 !D! 点伤害。 鼓舞 !SV! : 造成 !M! 点伤害。",
+		"DESCRIPTION": "穿越者 。 [#EFC851]巴尼尔[] 。造成 !D! 点伤害。 鼓舞 !SV! : 造成 !M! 点伤害。",
 		"EXTENDED_DESCRIPTION": ["巴尼尔", "如果这张卡被消耗，将抽牌堆中的一张牌变为这张牌的复制品。"],
 		"NAME": "巴尼尔"
 	},
@@ -1117,28 +1125,28 @@
 	},
 	"animator:Vesta":
 	{
-		"DESCRIPTION": "抽 1 张牌 。 研究1瓶 [#EFC851]灵药[] ， NL 在 !M! 回合后获得此研究成果 。 消耗 。",
+		"DESCRIPTION": "研究1瓶 [#EFC851]灵药[] ， NL 在 !M! 回合后获得此研究成果 。 消耗 。",
 		"EXTENDED_DESCRIPTION": ["灵药", "0费 #y技能牌 ， 拥有不同的特殊功效 。"],
 		"NAME": "大臣"
 	},
-	"animator:Vesta_Elixir_0":
+	"animator:Vesta_Elixir":
 	{
-		"DESCRIPTION": "获得 !M! 点 集中 。 NL 获得 2 个充能球栏位 。 NL 获得 !SV! 层 残影 。 NL 消耗 。",
-		"NAME": "灵药"
-	},
-	"animator:Vesta_Elixir_1":
-	{
-		"DESCRIPTION": "获得 !M! 点 力量 。 NL 获得 !SV! 点 敏捷 。 NL 获得 6 暂时性生命 。 NL 消耗 。",
-		"NAME": "灵药"
-	},
-	"animator:Vesta_Elixir_2":
-	{
-		"DESCRIPTION": "获得 [E] [E] [E] 。 NL 消耗 !M! 张牌 。 NL 抽 !SV! 张牌 。 NL 消耗 。",
-		"NAME": "灵药"
-	},
-	"animator:Vesta_Elixir_3":
-	{
-		"DESCRIPTION": "抽 !M! 张牌 。 NL 丢弃 2 张牌 。 NL 获得 !SV! 点 金属化 。 NL 消耗 。",
+		"DESCRIPTION": "",
+		"EXTENDED_DESCRIPTION": 
+		[
+			"完成时间减少 1 轮",
+			"抽 {0} 张牌。",
+			"获得 {0} 层 集中 。",
+			"获得 {0} 层 力量 。",
+			"获得 {0} 层 敏捷 。",
+			"获得 {0} 充能球栏位 。",
+			"获得 {0} 暂时性生命 。",
+			"获得 {0} 层 金属化 。",
+			"获得 {0} 能量 。",
+			"消耗 {0} 张牌 :",
+			"丢弃 {0} 张牌 :",
+			"抹除 。"
+		],
 		"NAME": "灵药"
 	},
 	"animator:Viivi":

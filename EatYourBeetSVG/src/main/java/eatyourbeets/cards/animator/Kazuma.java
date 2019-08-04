@@ -1,10 +1,12 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Kazuma extends AnimatorCard
@@ -13,9 +15,9 @@ public class Kazuma extends AnimatorCard
 
     public Kazuma()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(5,5);
+        Initialize(0,7, 3);
 
         SetSynergy(Synergies.Konosuba);
     }
@@ -24,11 +26,11 @@ public class Kazuma extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActionsHelper.CycleCardAction(1);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.DrawCard(p, 1);
+            GameActionsHelper.DamageRandomEnemy(p, this.magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
     }
 
@@ -37,8 +39,8 @@ public class Kazuma extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
             upgradeBlock(2);
+            upgradeMagicNumber(1);
         }
     }
 }

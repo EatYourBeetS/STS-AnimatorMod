@@ -2,7 +2,6 @@ package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.RandomCostReductionAction;
 
 public class SoraEffect_Motivate extends SoraEffect
 {

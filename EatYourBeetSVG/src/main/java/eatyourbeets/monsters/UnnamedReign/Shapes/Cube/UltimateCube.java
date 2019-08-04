@@ -37,7 +37,7 @@ public class UltimateCube extends Cube
 
         moveset.AddNormal(new Move_AttackMultipleWeak(damageAmount, 2, debuffsAmount));
         moveset.AddNormal(new Move_AttackMultipleVulnerable(damageAmount, 2, debuffsAmount));
-        moveset.AddNormal(new Move_AttackMultipleFrail(damageAmount, 2, debuffsAmount));
+        moveset.AddNormal(new Move_AttackMultipleFrail(damageAmount, asc4 ? 3 : 2, debuffsAmount));
     }
 
     @Override

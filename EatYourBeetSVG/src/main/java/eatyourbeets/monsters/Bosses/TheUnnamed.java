@@ -23,7 +23,6 @@ import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
-import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.Move_ScalingPoison;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.InfinitePower;
 import eatyourbeets.powers.animator.EarthenThornsPower;

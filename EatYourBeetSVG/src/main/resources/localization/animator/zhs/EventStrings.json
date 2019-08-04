@@ -28,7 +28,7 @@
             "[咨询]",
             "[接受] #g获得特殊遗物。",
 			"[接受] #g失去 #g{0} #g张牌， #g获得 #g{1} #g张随机已升级的牌。",
-			"[接受] #g升级同一张牌 #g{0} #g次。"
+			"[接受] #gRecover #gyour #gstarting #grelics. #rLose #r{0} #rMax #rHP."
         ]
     },
     "animator:TheMaskedTraveler3": {

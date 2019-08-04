@@ -1,43 +1,41 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.interfaces.Hidden;
+import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
+import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_Purge;
 
 import java.util.ArrayList;
 
-public abstract class Vesta_Elixir extends AnimatorCard implements Hidden
+public class Vesta_Elixir extends AnimatorCard implements Hidden
 {
     public static final String ID = CreateFullID(Vesta_Elixir.class.getSimpleName());
 
-    private static ArrayList<Vesta_Elixir> subTypes = null;
+    public final ArrayList<VestaElixirEffect> effects = new ArrayList<>();
 
-    public Vesta_Elixir(String id)
+    public Vesta_Elixir()
     {
-        super(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(ID), 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
-
-        this.exhaust = true;
+        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
     }
 
-    public static CardGroup GetCardGroup()
+    public Vesta_Elixir(ArrayList<VestaElixirEffect> effects)
     {
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        if (subTypes == null)
-        {
-            subTypes = new ArrayList<>();
-            subTypes.add(new Vesta_Elixir_0());
-            subTypes.add(new Vesta_Elixir_1());
-            subTypes.add(new Vesta_Elixir_2());
-            subTypes.add(new Vesta_Elixir_3());
-        }
+        ApplyEffects(effects);
+    }
 
-        group.group.addAll(subTypes);
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        Vesta_Elixir other = (Vesta_Elixir) super.makeStatEquivalentCopy();
 
-        return group;
+        other.ApplyEffects(effects);
+
+        return other;
     }
 
     @Override
@@ -53,8 +51,46 @@ public abstract class Vesta_Elixir extends AnimatorCard implements Hidden
     }
 
     @Override
-    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster)
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
+        for (VestaElixirEffect effect : effects)
+        {
+            effect.EnqueueAction(this, p);
+        }
+    }
 
+    public void ApplyEffect(VestaElixirEffect effect)
+    {
+        this.effects.add(effect);
+        this.rawDescription += " NL " + effect.GetDescription();
+        this.initializeDescription();
+    }
+
+    public void ApplyEffects(ArrayList<VestaElixirEffect> effects)
+    {
+        this.effects.clear();
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < effects.size(); i++)
+        {
+            VestaElixirEffect effect = effects.get(i);
+
+            this.effects.add(effect);
+
+            String desc = effect.GetDescription();
+            if (desc != null && !desc.isEmpty())
+            {
+                sb.append(effect.GetDescription());
+
+                if (i < effects.size() - 1)
+                {
+                    sb.append(" NL ");
+                }
+            }
+        }
+
+        this.rawDescription = sb.toString();
+        this.initializeDescription();
     }
 }

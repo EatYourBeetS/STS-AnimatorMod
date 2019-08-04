@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -30,9 +29,10 @@ public class Kaijin extends AnimatorCard
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
+        if (TryUpgrade(false))
         {
-            this.isInnate = true;
+            upgradeBaseCost(0);
+            //this.isInnate = true;
         }
     }
 }

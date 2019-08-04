@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
-import eatyourbeets.interfaces.OnEndOfTurnSubscriber;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
@@ -111,7 +110,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         if (turns > 0)
         {
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.ApplyPower(p, p, new EarthenThornsPower(p, this.passiveAmount), this.passiveAmount);
+            GameActionsHelper.ApplyPowerSilently(p, p, new EarthenThornsPower(p, this.passiveAmount), this.passiveAmount);
         }
 
         this.updateDescription();

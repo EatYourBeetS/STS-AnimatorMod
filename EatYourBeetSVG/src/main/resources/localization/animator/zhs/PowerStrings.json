@@ -62,7 +62,7 @@
 	},
 	"animator:DarknessPower":
 	{
-		"DESCRIPTIONS": ["每当你受到伤害时时，随机升级 #b", " 张牌，手牌优先。"],
+		"DESCRIPTIONS": ["下 #b", " 次受伤时，在抽牌堆里添加一张 #y肾上腺素 。"],
 		"NAME": "拉拉蒂娜！"
 	},
 	"animator:DelayedHealPower":

@@ -62,7 +62,7 @@
 	},
 	"animator:DarknessPower":
 	{
-		"DESCRIPTIONS": ["當你受到傷害時升級 #b", " 張隨機牌，以手牌為優先"],
+		"DESCRIPTIONS": ["下 #b", " 次受傷時， 在抽牌堆裡添加一張 腎上腺素 。"],
 		"NAME": "拉拉蒂娜"
 	},
 	"animator:DelayedHealPower":

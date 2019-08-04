@@ -62,7 +62,7 @@
 	},
 	"animator:DarknessPower":
 	{
-		"DESCRIPTIONS": ["Whenever you take damage upgrade #b", " random card/s, prioritizing those in your hand."],
+		"DESCRIPTIONS": ["The next #b", " time(s) you take damage, add 1 #yAdrenaline to your draw pile."],
 		"NAME": "Dustiness Ford Lalatina"
 	},
 	"animator:DelayedHealPower":

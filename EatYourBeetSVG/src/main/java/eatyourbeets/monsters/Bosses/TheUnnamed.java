@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.powers.AngryPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -326,6 +327,8 @@ public class TheUnnamed extends AnimatorMonster
             if (wait.isDone)
             {
                 MapRoomNode cur = AbstractDungeon.currMapNode;
+
+                cur.getRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
 
                 AbstractDungeon.nextRoom = new MapRoomNode(cur.x, cur.y + 1);
                 AbstractDungeon.nextRoom.room = new TrueVictoryRoom();

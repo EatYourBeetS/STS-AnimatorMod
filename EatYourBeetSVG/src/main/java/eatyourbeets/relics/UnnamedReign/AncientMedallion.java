@@ -15,6 +15,7 @@ import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.relics.AnimatorRelic;
+import patches.AbstractEnums;
 import patches.RelicObtainedPatches;
 
 public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedReignRelic
@@ -232,12 +233,30 @@ public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedRei
 
     private boolean UpdateSelection()
     {
+        AbstractCard preview = AbstractDungeon.gridSelectScreen.upgradePreviewCard;
+        if (preview != null && !preview.tags.contains(AbstractEnums.CardTags.TEMPORARY) && preview.canUpgrade())
+        {
+            preview.upgrade();
+            preview.displayUpgrades();
+            preview.tags.add(AbstractEnums.CardTags.TEMPORARY);
+        }
+
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
         {
             AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 
             AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-            c.upgrade();
+
+            if (c.canUpgrade())
+            {
+                c.upgrade();
+            }
+
+            if (c.canUpgrade())
+            {
+                c.upgrade();
+            }
+
             AbstractDungeon.player.bottledCardUpgradeCheck(c);
             AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
 

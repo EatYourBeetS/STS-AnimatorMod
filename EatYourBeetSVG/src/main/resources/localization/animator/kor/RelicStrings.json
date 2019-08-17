@@ -1,62 +1,61 @@
-
+ï»¿
 {
 	"animator:AlchemistGlove":
 	{
-		"DESCRIPTIONS": ["Every #b", " turns, ºÎ¿©ÇÕ´Ï´Ù #b", " #yÈ­»ó Àû ÀüÃ¼¿¡°Ô."],
-		"FLAVOR": "It allows you to control ºÒ with the snap of a finger.",
+    "DESCRIPTIONS": [ "ë§¤ #b", " í„´ë§ˆë‹¤,  #b", " #yí™”ìƒ ì„ ì  ì „ì²´ì—ê²Œ ë¶€ì—¬í•©ë‹ˆë‹¤." ],
+		"FLAVOR": "It allows you to control ë¶ˆ with the snap of a finger.",
 		"NAME": "Alchemist Glove"
 	},
 	"animator:AncientMedallion":
 	{
-		"DESCRIPTIONS": ["Upon pickup, #y°­È­ 2 ·£´ı Ä«µåµé and a Ä«µå of your choice. At the start of °¢°¢ÀÇ ÀüÅõ, È¸º¹ #b", " HP."],
+    "DESCRIPTIONS": [ "ì „íˆ¬ë¥¼ ì‹œì‘í• ë•Œ ë§ˆë‹¤, #b", " HPë¥¼ íšŒë³µí•©ë‹ˆë‹¤. íœ™ë“ì‹œ, 2ì¥ì˜ ëœë¤ ì¹´ë“œì™€ í•œì¥ì˜ ì„ íƒ ì¹´ë“œë¥¼  #yê°•í™” í•©ë‹ˆë‹¤. ì„ íƒí•œ ì¹´ë“œê°€ ì—¬ëŸ¬ë²ˆ ê°•í™”ë  ìˆ˜ ìˆìœ¼ë©´, 2ë²ˆ ê°•í™”í•©ë‹ˆë‹¤." ],
 		"FLAVOR": "...",
 		"NAME": "Ancient Medallion"
 	},
 	"animator:BattleDrones":
 	{
-		"DESCRIPTIONS": ["Whenever a Ä«µå #ySynergizes, deal #b", " ÇÇÇØ to a ·£´ı Àû and ¾ò½À´Ï´Ù #b", " #y¹æ¾îµµ."],
+    "DESCRIPTIONS": [ "ì¹´ë“œê°€ #ySynergizes ë ë•Œë§ˆë‹¤, #b", " í”¼í•´ë¥¼ ëœë¤í•œ ì ì—ê²Œ ì£¼ê³  #b", " #yë°©ì–´ë„ ë¥¼ ì–»ìŠµë‹ˆë‹¤." ],
 		"FLAVOR": "Engineering perfection.",
 		"NAME": "Battle Drones"
 	},
 	"animator:Buoy":
 	{
-		"DESCRIPTIONS": ["ÅÏ¸¶´Ù ÇÑ¹ø, when you »Ì½À´Ï´Ù a total of 3 or more Ä«µåµé, ¾ò½À´Ï´Ù #b", " #y¹æ¾îµµ and #b", " #y¹ÎÃ¸ ÅÏÀÌ ³¡³¯¶§±îÁö."],
+    "DESCRIPTIONS": [ "í„´ë§ˆë‹¤ í•œë²ˆ, 3ì¥ í˜¹ì€ ê·¸ ì´ìƒì˜ ì¹´ë“œë¥¼ ë½‘ì„ë•Œë§ˆë‹¤, #b", " #yë°©ì–´ë„ ì™€ #b", " #yë¯¼ì²© ì„ í„´ì´ ëë‚ ë•Œê¹Œì§€ ì–»ìŠµë‹ˆë‹¤." ],
 		"FLAVOR": "When it comes to speed I'm the best there is, swift like the island breeze!",
 		"NAME": "Buoy"
 	},
 	"animator:CerealBox":
 	{
-    "DESCRIPTIONS": [ "#pRight #pClick to #yHeal #b", " HP. NL Starts at #b", " uses, »óÁ¡¿¡ ÀÔÀåÇßÀ»¶§ ¾ò½À´Ï´Ù #b", " uses . NL ÃÖ´ë #b", " uses ÀúÀå °¡´ÉÇÕ´Ï´Ù." ],
+    "DESCRIPTIONS": [ "#pRight #pClick ì„ í•˜ì—¬ #yíšŒë³µ #b", " HP. NL #b", " ì‚¬ìš©ê°€ëŠ¥ íšŸìˆ˜ë¥¼ ê°€ì§€ê³  ì‹œì‘í•©ë‹ˆë‹¤, ìƒì ì— ì…ì¥í–ˆì„ë•Œ #b", " íšŸìˆ˜ë¥¼ ì–»ìŠµë‹ˆë‹¤. NL ìµœëŒ€ #b", " íšŸìˆ˜ ì €ì¥ ê°€ëŠ¥í•©ë‹ˆë‹¤." ],
 		"FLAVOR": "Whole Grain Guaranteed! Approved by Konayuki.",
 		"NAME": "Cereal Box"
 	},
-	"animator:CursedBlade":
-	{
-		"DESCRIPTIONS": ["¸·È÷Áö¾ÊÀº ÇÇÇØ¸¦ ÁÙ¶§¸¶´Ù, #yHeal #b2 HP. NL ¿µ±¸È÷ #rLose #rHalf of your Max HP. È¿°úµé that Áõ°¡ your Max HP are reduced by half.", "Whenever you deal ¸·È÷Áö¾ÊÀº ÇÇÇØ, #yHeal #b2 HP. NL If your HP is full, ¾ò½À´Ï´Ù #b3 ÀÏ½ÃÀûÀÎ HP ´ç½ÅÀÇ ÅÏÀÌ ³¡³¯¶§. NL ¿µ±¸È÷ #rLose #rHalf of your Max HP. È¿°úµé that Áõ°¡ your Max HP are reduced by half."],
-		"FLAVOR": "It »Ì½À´Ï´Ùs Èû from the blood of its user, truly fitting for a vampire.",
-		"NAME": "Cursed Blade"
-	},
+  "animator:CursedBlade": {
+    "DESCRIPTIONS": [ "ë§‰íˆì§€ì•Šì€ í”¼í•´ë¥¼ ì¤„ë•Œë§ˆë‹¤, #b2 HPë¥¼ #yíšŒë³µ í•©ë‹ˆë‹¤. NL ì˜êµ¬íˆ ìµœëŒ€ HPì˜ #rì ˆë°˜ ì„ #rìƒì–´ë²„ë¦½ë‹ˆë‹¤ . ìµœëŒ€ HPë¥¼ ì¦ê°€ì‹œí‚¤ëŠ” íš¨ê³¼ëŠ” ì ˆë°˜ì˜ íš¨ê³¼ë¡œ ê°ì†Œë©ë‹ˆë‹¤.", "ë§‰íˆì§€ì•Šì€ í”¼í•´ë¥¼ ì¤„ë•Œë§ˆë‹¤, #yíšŒë³µ #b2 HP. NL ë§Œì•½ HPê°€ ê°€ë“ì°¨ ìˆë‹¤ë©´, ë‹¹ì‹ ì˜ í„´ì´ ëë‚ ë•Œ #b3 ì¼ì‹œì ì¸ HPë¥¼ ì–»ìŠµë‹ˆë‹¤ . NL ì˜êµ¬íˆ ìµœëŒ€ HPì˜ #rì ˆë°˜ ì„ #rìƒì–´ë²„ë¦½ë‹ˆë‹¤ . ìµœëŒ€ HPë¥¼ ì¦ê°€ì‹œí‚¤ëŠ” íš¨ê³¼ëŠ” ì ˆë°˜ì˜ íš¨ê³¼ë¡œ ê°ì†Œë©ë‹ˆë‹¤." ],
+    "FLAVOR": "It draws í˜ from the blood of its user, truly fitting for a vampire.",
+    "NAME": "Cursed Blade"
+  },
 	"animator:CursedGlyph":
 	{
-		"DESCRIPTIONS": ["Upon pickup, #rlose #r", " #rMax #rHP, all enemies start with Ãß°¡ÀûÀÎ Max HP. NL NL The Ä«µå linked to this À¯¹° can #yNOT be duplicated."],
+		"DESCRIPTIONS": ["íœ™ë“ì‹œ, #rìƒì–´ë²„ë¦½ë‹ˆë‹¤ #r", " #rìµœëŒ€ #rHP, ëª¨ë“  ì ì´ ì¶”ê°€ì ì¸ Max HPë¥¼ ê°€ì§€ê³  ì‹œì‘í•©ë‹ˆë‹¤. NL NL The ì¹´ë“œ linked to this ìœ ë¬¼ can #yNOT be ë³µì œ."],
 		"FLAVOR": "Maybe it was a mistake...",
 		"NAME": "Cursed Glyph"
 	},
 	"animator:EngravedStaff":
 	{
-		"DESCRIPTIONS": ["´ç½ÅÀÇ ÅÏÀÌ ³¡³¯¶§, #yº¸Á¸ your highest cost Ä«µå, it costs #b1 less ´ÙÀ½ÅÏ."],
+		"DESCRIPTIONS": ["ë‹¹ì‹ ì˜ í„´ì´ ëë‚ ë•Œ, ê°€ì¥ ë†’ì€ ì½”ìŠ¤íŠ¸ì˜ ì¹´ë“œë¥¼ #yë³´ì¡´ í•©ë‹ˆë‹¤, ë‹¤ìŒí„´ì— ê·¸ ì¹´ë“œì˜ ì½”ìŠ¤íŠ¸ë¥¼ #b1 ì¤„ì…ë‹ˆë‹¤."],
 		"FLAVOR": "One of the most treasured possessions of the Guild.",
 		"NAME": "Engraved Staff"
 	},
 	"animator:ExquisiteBloodVial":
 	{
-		"DESCRIPTIONS": ["°¢°¢ÀÇ ÀüÅõ ½ÃÀÛ¸¶´Ù, È¸º¹ #b", " HP. NL NL #y[Special #yRelic] NL #pRight #pClick at a rest site to start a special fight, winning it will ¹ßµ¿ÇÕ´Ï´Ù this À¯¹°'s true È¿°ú. NL NL You can click this after using a rest site option, Act 3 deck level suggested.", "At the start of °¢°¢ÀÇ ÀüÅõ, ¾ò½À´Ï´Ù #b", " #yRegeneration and #b", " Max HP. NL NL Lose all #yBlood #yVials, whenever you would ¾ò½À´Ï´Ù a #yBlood #yVial, improve this À¯¹°'s È¿°ú instead."],
+    "DESCRIPTIONS": [ "ê°ê°ì˜ ì „íˆ¬ ì‹œì‘ë§ˆë‹¤, #b", " HPë¥¼ íšŒë³µí•©ë‹ˆë‹¤. NL NL #y[Special #yRelic] NL íœ´ì‹ì¥ì†Œì—ì„œ #pRight #pClick í•¨ìœ¼ë¡œì„œ íŠ¹ë³„ ì „íˆ¬ë¥¼ ì‹œì‘í• ìˆ˜ ìˆìœ¼ë©°, ì „íˆ¬ì—ì„œ ì´ê¸¸ì‹œ ì´ ìœ ë¬¼ì˜ ì§„ì •í•œ íš¨ê³¼ë¥¼ ë°œë™í•©ë‹ˆë‹¤. NL NL You can click this after using a rest site option, Act 3 deck level suggested.", "ì „íˆ¬ë¥¼ ì‹œì‘í• ë•Œ ë§ˆë‹¤, #b", " #yì¬ìƒ ê³¼ #b", " Max HPë¥¼ ì–»ìŠµë‹ˆë‹¤. NL NL ëª¨ë“  #yBlood #yVials ì„ ìƒì–´ë²„ë¦½ë‹ˆë‹¤, #yBlood #yVial ì„ ì–»ì„ë•Œë§ˆë‹¤, ì´ ìœ ë¬¼ì˜ íš¨ê³¼ë¥¼ ëŒ€ì‹  í–¥ìƒì‹œí‚µë‹ˆë‹¤." ],
 		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
 		"NAME": "Exquisite Blood Vial"
 	},
 	"animator:HallowedScabbard":
 	{
-		"DESCRIPTIONS": ["If you lose a total of #b15 HP or more in a ÀüÅõ, ¾ò½À´Ï´Ù #b5 #yRegeneration and #b2 #yÈû. Activates once per ÀüÅõ."],
+    "DESCRIPTIONS": [ "ì „íˆ¬ì—ì„œ #b15 HPë‚˜ ê·¸ì´ìƒì„ ìƒì–´ë²„ë¦¬ë©´, #b5 #yì¬ìƒ ê³¼ #b2 #yí˜ì„ ì–»ìŠµë‹ˆë‹¤. ì „íˆ¬ë‹¹ í•œë²ˆë§Œ ë°œë™í•©ë‹ˆë‹¤." ],
 		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
 		"NAME": "Hallowed Scabbard"
 	},
@@ -68,49 +67,49 @@
 	},
 	"animator:HeavyHalberd":
 	{
-		"DESCRIPTIONS": ["Your #yAttacks deal #b", "% more ÇÇÇØ."],
+		"DESCRIPTIONS": ["#yAttacks ì¹´ë“œê°€ #b", "% í”¼í•´ë¥¼ ë” ì¤ë‹ˆë‹¤."],
 		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
 		"NAME": "Heavy Halberd"
 	},
 	"animator:Hoodie":
 	{
-		"DESCRIPTIONS": ["If you end a ÀüÅõ without taking ÇÇÇØ, ¾ò½À´Ï´Ù #b", " #yMax #yHP."],
+    "DESCRIPTIONS": [ "ì „íˆ¬ë¥¼ í”¼í•´ë¥¼ ë°›ì§€ì•Šê³  ë§ˆì³¤ì„ë•Œ, #b", " #yMax #yHP ë¥¼ ì–»ìŠµë‹ˆë‹¤ ." ],
 		"FLAVOR": "With this, you might be admitted to the Hero association.",
 		"NAME": "Hoodie"
 	},
 	"animator:InfinitePower":
 	{
-		"DESCRIPTIONS": ["Upon pickup, ¾ò½À´Ï´Ù #b"," #yGold and #rlose #r", " #rMax #rHP. For every #b", " Ä«µåµé in your deck, ¾ò½À´Ï´Ù an #pUnnamed Ä«µå reward."],
+    "DESCRIPTIONS": [ "íœ™ë“ì‹œ,  #b", " #yGold ë¥¼ ì–»ê³  #r", " #rMax #rHP ë¥¼ #rìƒì–´ë²„ë¦½ë‹ˆë‹¤. ë±ì—ìˆëŠ” ëª¨ë“  #b", " ì¹´ë“œë“¤ ë§ˆë‹¤, #pUnnamed ì¹´ë“œ ë³´ìƒì„ ì–»ìŠµë‹ˆë‹¤." ],
 		"FLAVOR": "Infinite Power! At a price...",
 		"NAME": "InfinitePower"
 	},
 	"animator:LivingPicture":
 	{
-		"DESCRIPTIONS": ["ÅÏ¸¶´Ù ÇÑ¹ø, when a Ä«µå #ySynergizes, »Ì½À´Ï´Ù #b1 Ä«µå."],
+    "DESCRIPTIONS": [ "í„´ë§ˆë‹¤ í•œë²ˆ, ì¹´ë“œê°€ #ySynergizes ë ë•Œë§ˆë‹¤, #b1 ì¹´ë“œë¥¼ ë½‘ìŠµë‹ˆë‹¤." ],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},
 	"animator:OldCoffin":
 	{
-		"DESCRIPTIONS": ["Starting from your #b4th turn, ºÎ¿©ÇÕ´Ï´Ù a ·£´ı #yDebuff to a ·£´ı Àû at the start of ÅÏ¸¶´Ù."],
+		"DESCRIPTIONS": ["#b4ë²ˆì§¸ í„´ë¶€í„°, í„´ ì‹œì‘ë§ˆë‹¤ ëœë¤ #yë””ë²„í”„ ë¥¼ ëœë¤ ì ì—ê²Œ ë¶€ì—¬í•©ë‹ˆë‹¤."],
 		"FLAVOR": "Shocking Truth!",
 		"NAME": "Old Coffin"
 	},
-	"animator:PurgingStone_cards":
+	"animator:PurgingStone_Cards":
 	{
-    "DESCRIPTIONS": [ "¹Ì·¡¿¡ ³ªÅ¸³ª´Â #ynormal º¸»ó°ú »óÁ¡¿¡¼­ Ä«µå¸¦ »èÁ¦ÇÒ¼ö ÀÖ½À´Ï´Ù. °¢°¢ÀÇ ÀüÅõ°¡ ³¡³¯¶§¸¶´Ù #b1 »ç¿ëÈ½¼ö¸¦ ¾ò°í, #b2 »ç¿ëÈ½¼ö¸¦ Elites or Bosses ¸¦ Ã³Ä¡ÇÏ°í ¾ò½À´Ï´Ù, ÃÖ´ë #b", " È½¼ö±îÁö ÀúÀå°¡´ÉÇÕ´Ï´Ù. NL #pRight #pClick »èÁ¦½ÃÅ² Ä«µåµéÀ» º¼¼ö ÀÖ½À´Ï´Ù." ],
+    "DESCRIPTIONS": [ "ë¯¸ë˜ì— ë‚˜íƒ€ë‚˜ëŠ” #ynormal ë³´ìƒê³¼ ìƒì ì—ì„œ ì¹´ë“œë¥¼ ì‚­ì œí• ìˆ˜ ìˆìŠµë‹ˆë‹¤. ê°ê°ì˜ ì „íˆ¬ê°€ ëë‚ ë•Œë§ˆë‹¤ #b1 ì‚¬ìš©íšŸìˆ˜ë¥¼ ì–»ê³ , #b2 ì‚¬ìš©íšŸìˆ˜ë¥¼ Elites or Bosses ë¥¼ ì²˜ì¹˜í•˜ê³  ì–»ìŠµë‹ˆë‹¤, ìµœëŒ€ #b", " íšŸìˆ˜ê¹Œì§€ ì €ì¥ê°€ëŠ¥í•©ë‹ˆë‹¤. NL #pRight #pClick ì‚­ì œì‹œí‚¨ ì¹´ë“œë“¤ì„ ë³¼ìˆ˜ ìˆìŠµë‹ˆë‹¤." ],
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
 		"NAME": "Purging Stone"
 	},
 	"animator:PurgingStone_Series":
 	{
-    "DESCRIPTIONS": [ "¹Ì·¡¿¡ ³ªÅ¸³ª´Â #yseries º¸»ó°ú »óÁ¡¿¡¼­ Ä«µå¸¦ »èÁ¦ÇÒ¼ö ÀÖ½À´Ï´Ù. º¸½º¸¦ ¾²·¯Æ®¸®°í ´õ ¸¹Àº »ç¿ëÈ½¼ö¸¦ ¾ò½À´Ï´Ù.", "Removed Series:" ],
+    "DESCRIPTIONS": [ "ë¯¸ë˜ì— ë‚˜íƒ€ë‚˜ëŠ” #yseries ë³´ìƒê³¼ ìƒì ì—ì„œ ì¹´ë“œë¥¼ ì‚­ì œí• ìˆ˜ ìˆìŠµë‹ˆë‹¤. ë³´ìŠ¤ë¥¼ ì“°ëŸ¬íŠ¸ë¦¬ê³  ë” ë§ì€ ì‚¬ìš©íšŸìˆ˜ë¥¼ ì–»ìŠµë‹ˆë‹¤.", "Removed Series:" ],
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
 		"NAME": "Purging Stone (Alt)"
 	},
 	"animator:RacePiece":
 	{
-		"DESCRIPTIONS": ["Upon pickup, select #b1 Ä«µå, then °í¸¨´Ï´Ù and #yTransform #b3 Ä«µåµé in your deck into #b3 Ä«µåµé of the selected Ä«µå's #ySeries."],
+		"DESCRIPTIONS": ["íœ™ë“ì‹œ, #b1 ì¹´ë“œë¥¼ ê³ ë¥´ê³ , #yë³€í™” ì‹œí‚¬ #b3 ì¥ì˜ ì¹´ë“œë“¤ ë±ì—ì„œ ê³ ë¦…ë‹ˆë‹¤. #b3 ì¹´ë“œë“¤ì€ ì²˜ìŒ ì„ íƒí•œ ì¹´ë“œì˜ ì‹œë¦¬ì¦ˆë¡œ ë³€í™”í•©ë‹ˆë‹¤."],
 		"FLAVOR": "Did you see that coming Mr. Mind Reader? Checkmate.",
 		"NAME": "Race Piece"
 	},
@@ -122,49 +121,49 @@
 	},
 	"animator:ShionDessert":
 	{
-		"DESCRIPTIONS": ["Every time you play #b", " #yAttacks in a turn, ºÎ¿©ÇÕ´Ï´Ù #b", " #yPoison to a ·£´ı Àû."],
+    "DESCRIPTIONS": [ "í•œí„´ì— #yAttacks ì¹´ë“œë¥¼ #b", " íšŒ ì‚¬ìš©í• ë•Œë§ˆë‹¤, #b", " #yPoison ëœë¤ ì ì—ê²Œ ë¶€ì—¬í•©ë‹ˆë‹¤." ],
 		"FLAVOR": "Here, have a taste, how bad can it be?",
 		"NAME": "Shion's Dessert"
 	},
 	"animator:TheEgnaroPiece":
 	{
-		"DESCRIPTIONS": ["¾ò½À´Ï´Ù [E] and Ä«µå¸¦ ÇÑÀå »Ì½À´Ï´Ù at the start of ÅÏ¸¶´Ù. NL ¾ò½À´Ï´Ù #b", " #yÀÏ½ÃÀûÀÎ #yHP at the end of ÅÏ¸¶´Ù, then Áõ°¡ this number by #b1."],
+    "DESCRIPTIONS": [ " [E] ë¥¼ ì–»ê³  ì¹´ë“œë¥¼ í•œì¥ ë½‘ìŠµë‹ˆë‹¤. í„´ ì‹œì‘ë§ˆë‹¤. NL  #b", " #yì¼ì‹œì ì¸ #yHP ë¥¼ ì–»ìŠµë‹ˆë‹¤ í„´ì¢…ë£Œì‹œë§ˆë‹¤, ì´ ìˆ˜ì¹˜ë¥¼ #b1 ì¦ê°€ ì‹œí‚µë‹ˆë‹¤." ],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Egnaro Piece"
 	},
 	"animator:TheEruzaStone":
 	{
-		"DESCRIPTIONS": ["¾ò½À´Ï´Ù [E] [E] at the start of ÅÏ¸¶´Ù. NL Whenever you play a #yÆÄ¿ö, Ä«µå¸¦ ÇÑÀå »Ì½À´Ï´Ù."],
+    "DESCRIPTIONS": [ "ê° í„´ì´ ì‹œì‘í• ë•Œë§ˆë‹¤ [E] [E] ë¥¼ ì–»ìŠµë‹ˆë‹¤. NL #yíŒŒì›Œ ì¹´ë“œë¥¼ ì‚¬ìš©í•  ë•Œ ë§ˆë‹¤, ì¹´ë“œë¥¼ í•œì¥ ë½‘ìŠµë‹ˆë‹¤." ],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Eruza Stone"
 	},
 	"animator:TheMissingPiece":
 	{
-		"DESCRIPTIONS": ["¸Å #b", " ¹ø ÀüÅõ ¸¶´Ù, °³¼±µÈ Ä«µå º¸»óÀ» ¹Ş½À´Ï´Ù. ÇÑ ½Ã¸®ÁîÀÇ ¿©·¯°³ÀÇ Ä«µå¸¦ °¡Áö°í ÀÖ´Ù¸é, ±× ½Ã¸®Áî¸¦ Ã£À» È®·üÀÌ ´Ã¾î³­´Ù."],
+		"DESCRIPTIONS": ["ë§¤ #b", " ë²ˆ ì „íˆ¬ ë§ˆë‹¤, ê°œì„ ëœ ì¹´ë“œ ë³´ìƒì„ ë°›ìŠµë‹ˆë‹¤. í•œ ì‹œë¦¬ì¦ˆì˜ ì—¬ëŸ¬ê°œì˜ ì¹´ë“œë¥¼ ê°€ì§€ê³  ìˆë‹¤ë©´, ê·¸ ì‹œë¦¬ì¦ˆë¥¼ ì°¾ì„ í™•ë¥ ì´ ëŠ˜ì–´ë‚©ë‹ˆë‹¤."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Missing Piece"
 	},
 	"animator:TheWolleyCore":
 	{
-		"DESCRIPTIONS": ["»Ì½À´Ï´Ù #b", " Ä«µåµé at the start of ÅÏ¸¶´Ù. NL Whenever you play a Ä«µå, deal #b", " Àû ÀüÃ¼¿¡°Ô ÇÇÇØ¸¦ !D! Áİ´Ï´Ù and ¾ò½À´Ï´Ù #b", " #y¹æ¾îµµ."],
+    "DESCRIPTIONS": [ " #b", " ì¹´ë“œë“¤ ê° í„´ì´ ì‹œì‘í• ë•Œë§ˆë‹¤ ë½‘ìŠµë‹ˆë‹¤. NL ì¹´ë“œë¥¼ ë‚¼ë•Œë§ˆë‹¤,  #b", " í”¼í•´ë¥¼ ì  ì „ì²´ì—ê²Œ ì£¼ê³  #b", " #yë°©ì–´ë„ ë¥¼ ì–»ìŠµë‹ˆë‹¤ ." ],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Wolley Core"
 	},
 	"animator:VividPicture":
 	{
-		"DESCRIPTIONS": ["ÅÏ¸¶´Ù ÇÑ¹ø, when a Ä«µå #ySynergizes, »Ì½À´Ï´Ù #b1 Ä«µå and ¾ò½À´Ï´Ù [E]"],
+    "DESCRIPTIONS": [ "í„´ë§ˆë‹¤ í•œë²ˆ, ì¹´ë“œê°€ #ySynergizes ë ë•Œë§ˆë‹¤, #b1 ì¹´ë“œ ë¥¼ ë½‘ê³  [E] ë¥¼ ì–»ìŠµë‹ˆë‹¤" ],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Vivid Picture"
 	},
 	"animator:WizardHat":
 	{
-		"DESCRIPTIONS": ["At the end of ÅÏ¸¶´Ù, consume #b1 of your unspent Energy. Every time this consumes a total of #b", " Energy, deal #b", " Àû ÀüÃ¼¿¡°Ô ÇÇÇØ¸¦ !D! Áİ´Ï´Ù."],
+    "DESCRIPTIONS": [ "ê° í„´ì´ ì¢…ë£Œë ë•Œë§ˆë‹¤, ì‚¬ìš©í•˜ì§€ ì•Šì€ ì—ë„ˆì§€ë¥¼ #b1 í¡ìˆ˜í•©ë‹ˆë‹¤. ì´ í¡ìˆ˜ë¡œ ì´ #b", " ì—ë„ˆì§€ë¥¼ í¡ìˆ˜í• ë•Œë§ˆë‹¤, ì  ì „ì²´ì—ê²Œ í”¼í•´ë¥¼ #b", " ì¤ë‹ˆë‹¤." ],
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"NAME": "Wizard Hat"
 	},
 	"animator:WornHelmet":
 	{
-		"DESCRIPTIONS": ["Start °¢°¢ÀÇ ÀüÅõ with #b", " #y¹æ¾îµµ. Whenever you »Ì½À´Ï´Ù a #yÀúÁÖ or #y»óÅÂÀÌ»ó, deal #b", " ÇÇÇØ to a ·£´ı Àû."],
+		"DESCRIPTIONS": ["ì „íˆ¬ë¥¼ ì‹œì‘í• ë•Œë§ˆë‹¤ #b", " #yë°©ì–´ë„ ë¥¼ ê°€ì§€ê³  ì‹œì‘í•©ë‹ˆë‹¤. #yì €ì£¼ ë‚˜ #yìƒíƒœì´ìƒ ì¹´ë“œë¥¼ ë½‘ì„ë•Œ ë§ˆë‹¤, #b", " í”¼í•´ë¥¼ ëœë¤ ì ì—ê²Œ ì¤ë‹ˆë‹¤."],
 		"FLAVOR": "Goblins.",
 		"NAME": "Worn Helmet"
 	}

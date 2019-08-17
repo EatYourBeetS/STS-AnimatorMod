@@ -2,6 +2,7 @@ package patches;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -10,9 +11,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.cards.Synergy;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
+import eatyourbeets.utilities.Utilities;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -22,6 +25,51 @@ public class SingleCardViewPopupPatches
 {
     private static Field cardField;
     private static Method renderDynamicFrameMethod;
+
+    @SpirePatch(clz = SingleCardViewPopup.class, method = "renderTitle")
+    public static class CardHeaderSingleView
+    {
+        @SpireInsertPatch(rloc = 0, localvars = {"card"})
+        public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard card)
+        {
+            AnimatorCard c = Utilities.SafeCast(card, AnimatorCard.class);
+            if (c != null)
+            {
+                Synergy synergy = c.GetSynergy();
+
+                if (synergy != null && !c.isFlipped)
+                {
+                    BitmapFont.BitmapFontData fontData = FontHelper.SCP_cardTitleFont_small.getData();
+
+                    float originalScale = fontData.scaleX;
+                    float scaleMulti = 0.8f;
+
+                    int length = synergy.NAME.length();
+                    if (length > 20)
+                    {
+                        scaleMulti -= 0.02f * (length - 20);
+                        if (scaleMulti < 0.5f)
+                        {
+                            scaleMulti = 0.5f;
+                        }
+                    }
+
+                    fontData.setScale(scaleMulti);
+                    Color textColor = Settings.CREAM_COLOR.cpy();
+
+                    float xPos = (float)Settings.WIDTH / 2.0F + (10 * Settings.scale);
+                    float yPos = (float)Settings.HEIGHT / 2.0F + ((338.0F + 55) * Settings.scale);
+
+                    FontHelper.renderRotatedText(sb, FontHelper.SCP_cardTitleFont_small, synergy.NAME,
+                            xPos, yPos, 0.0F, 0,
+                            c.angle, true, textColor);
+
+                    fontData.setScale(originalScale);
+                }
+
+            }
+        }
+    }
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderFrame")
     public static class SingleCardViewPopup_RenderFrame
@@ -164,7 +212,7 @@ public class SingleCardViewPopupPatches
             {
                 Color tmp = sb.getColor();
                 sb.setColor(AnimatorCard_UltraRare.RENDER_COLOR2);
-                renderHelper(sb, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F, tmpImg);
+                renderHelper(sb, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F, tmpImg);
                 sb.setColor(tmp);
                 //renderHelper(card, sb, AnimatorCard_UltraRare.RENDER_COLOR2, tmpImg, (float) Settings.WIDTH / 2.0F - 512.0F, (float) Settings.HEIGHT / 2.0F - 512.0F, card.drawScale);
                 //sb.draw(tmpImg, (float)Settings.WIDTH / 2.0F - 512.0F, (float)Settings.HEIGHT / 2.0F - 512.0F, 512.0F, 512.0F, 1024.0F, 1024.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 1024, 1024, false, false);
@@ -230,9 +278,11 @@ public class SingleCardViewPopupPatches
         }
     }
 
-    private static void renderHelper(SpriteBatch sb, float x, float y, TextureAtlas.AtlasRegion img) {
-        if (img != null) {
-            sb.draw(img, x + img.offsetX - (float)img.originalWidth / 2.0F, y + img.offsetY - (float)img.originalHeight / 2.0F, (float)img.originalWidth / 2.0F - img.offsetX, (float)img.originalHeight / 2.0F - img.offsetY, (float)img.packedWidth, (float)img.packedHeight, Settings.scale, Settings.scale, 0.0F);
+    private static void renderHelper(SpriteBatch sb, float x, float y, TextureAtlas.AtlasRegion img)
+    {
+        if (img != null)
+        {
+            sb.draw(img, x + img.offsetX - (float) img.originalWidth / 2.0F, y + img.offsetY - (float) img.originalHeight / 2.0F, (float) img.originalWidth / 2.0F - img.offsetX, (float) img.originalHeight / 2.0F - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, Settings.scale, Settings.scale, 0.0F);
         }
     }
 

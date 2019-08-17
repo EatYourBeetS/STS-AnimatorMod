@@ -1,10 +1,10 @@
-
+﻿
 {
 	"animator:Synergies":
 	{
 		"TEXT":
 		[
-			"[����ȯ��]",
+			"[형상변환자]",
 			"Elsword",
 			"Kantai Collection",
 			"Hitsugi no Chaika",
@@ -38,7 +38,8 @@
 			"Jojo's Bizzarre Adventures",
 			"Tate no Yuusha",
 			"Symphogear",
-			"Call Of Cthulhu"
+			"Call Of Cthulhu",
+			"Chuunibyou demo Koi ga Shitai!"
 		]
 	},
 
@@ -46,7 +47,7 @@
 	{
 		"TEXT":
 		[
-			"Ʈ���ǿ� �ó����� ���� �ø�� ¥���� ����������, �ٸ� �ø�� ��� ���� ��������ϴ�, ������ ���� �ó����� �ϳ��� ��� �������ϼ� �ֽ��ϴ�."
+			"트로피와 시너지가 단일 시리즈를 짜도록 유도하지만, 다른 시리즈를 섞어도 전혀 상관없습니다, 심지어 덱에 시너지가 하나도 없어도 성공적일수 있습니다."
 		]
 	},
 
@@ -54,11 +55,11 @@
 	{
 		"TEXT":
 		[
-      "fetch ī��� with the same �ó���.",
-			"ī�带 ������ ������ ���� ī�带 �̽��ϴ�.",
-			"�� ī���� ȿ���� �׸�ŭ ���� �ߵ��մϴ�.",
-			"�̹��������� ���� �װ��� �ڽ�Ʈ�� ���ҽ�ŵ�ϴ�.",
-			"�̽��ϴ� # ī��/s.",
+			"같은 시너지인 카드를 가져옵니다.",
+			"카드를 버리고 동일한 수의 카드를 뽑습니다.",
+			"이 카드의 효과를 그만큼 많이 발동합니다.",
+			"이번전투에서 전투 그것의 코스트를 감소시킵니다.",
+			"뽑습니다 # 카드/s.",
 			"Transform into "
 		]
 	},
@@ -67,8 +68,8 @@
 	{
 		"TEXT":
 		[
-			"Move up to # ī��/s to your ����.",
-			"�����ϴ� # ī��/s into your ��."
+			"Move up to # 카드/s to your 묘지.",
+			"섞습니다 # 카드/s into your 덱."
 		]
 	},
 
@@ -80,35 +81,35 @@
 		]
 	},
 
-	"animator:Specialȿ����":
+	"animator:SpecialEffects":
 	{
 		"TEXT":
 		[
 			"Attack",
 			"Defend",
 			"Prepare",
-			"��ȭ all ī��� �ڵ忡 �ִ�.",
-			"!D! ���ظ� �����ϴ� to a ���� �� !M! times.",
-			"Deal !D! �� ��ü���� ���ظ� !D! �ݴϴ�.",
-			"����ϴ� !B! ��.",
-			"����ϴ� !M! ��.",
-			"����ϴ� !M! ��ø.",
-			"����ϴ� !M! Thorns.",
-			"���� !M!.",
-			"�ο��մϴ� !M! ��ȭ �� ��ü����.",
-			"�ο��մϴ� !M! ��� �� ��ü����.",
-			"��ȯ !M! ī���",
-			"�̽��ϴ� !M! ī���.",
-			"����ϴ� !M! �ӽ�._ü��.",
-			"����ϴ� !M! ����.",
-			"����ϴ� !M! Energy.",
-			"�ο��մϴ� !M! �ߵ� �� ��ü����.",
-			"�ο��մϴ� !M! [#EFC851]ȭ�� �� ��ü����.",
-			"����ϴ� !M! �Ұ�ħ",
-			"����ϴ� !M! �ΰ���. NL Remove all of your �������.",
-			"Play the top ī�� of your ��.",
-			"��â !M! ���� Orbs.",
-			"Play the top ī�� of your �� �ι�."
+			"강화 all 카드들 핸드에 있는.",
+			"!D! 피해를 입힙니다 랜덤적에게 !M! times.",
+			"Deal !D! 적 전체에게 피해를 !D! 줍니다.",
+			"!B! 방어도를 얻습니다.",
+			"얻습니다 !M! 힘.",
+			"얻습니다 !M! 민첩.",
+			"얻습니다 !M! 가시.",
+			"응원 !M!.",
+			"부여합니다 !M! 약화 적 전체에게.",
+			"부여합니다 !M! 취약 적 전체에게.",
+			"순환 !M! 카드들",
+			"!M! 개의 카드를 뽑습니다.",
+			"얻습니다 !M! 임시._체력.",
+			"얻습니다 !M! 밀집.",
+			"얻습니다 !M! Energy.",
+			"부여합니다 !M! 중독 적 전체에게.",
+			"부여합니다 !M! [#EFC851]화상 적 전체에게.",
+			"얻습니다 !M! 불가침",
+			"얻습니다 !M! 인공물. NL 당신의 모든 디버프 들을 제거합니다.",
+			"덱에서 가장 위에있는 카드를 사용합니다.",
+			"영창 !M! 랜덤 구체들.",
+			"덱에서 가장 위에있는 카드를 두번 사용합니다."
 		]
 	},
 
@@ -119,15 +120,15 @@
 			"Bronze",
 			"Silver",
 			"Gold",
-			"�����ϴ� this starting deck and complete act 4.",
-			"Complete act 4 with at least #yhalf of the ī��� in your deck being from this series.",
-			"Complete act 4 with at least #b8 #ydifferent ī��� from this series in your deck.",
-			"Complete act 4 with at least #b7 #ydifferent ī�� series in your deck. (Colorless ī��� will not count)",
-			"Complete act 4 with at least #b10 #ydifferent ī�� series in your deck, and without banishing any ī��. (Colorless ī��� will not count)",
-			"Complete act 4 with at least #b20 ī��� in your deck, and without any duplicate.",
-			"Complete act 4 with at least #b30 ī��� in your deck, and without any duplicate.",
-			"This Trophy will be revealed once it is obtained. #yHint: Collect all 3 keys.",
-			"Defeat The Unnamed. NL Whenever you ����ϴ� this trophy, ������ ���� the chance to find #pUltra #pRare ī���, higher ascension ����s this ���ʽ� by a larger amount. NL NL #yThe #yUnnamed #yReign is now available to all characters.",
+			"이 스타트 덱을 고르고 act 4 를 클리어.",
+			"최소 #y절반 의 이 시리즈로 구성된 덱으로 act 4 를 클리어.",
+			"최소 #b8 장의 이 시리즈의 #y서로다른 카드가 포함된 덱으로 act 4 를 클리어.",
+			"최소 #b7 장의 #y서로다른 시리즈의 카드가 포함된 덱으로 act 4 를 클리어 (무색 카드들은 카운트 되지 않습니다).",
+			"최소 #b10 장의 #y서로다른 시리즈의 카드가 포함된 덱과 어떤 카드도 소멸시키지 않고 act 4 를 클리어 (무색 카드들은 카운트 되지 않습니다)",
+			"최소 #b20 장의 카드가 포함되고 중복이 없는 덱으로 act 4 를 클리어.",
+			"최소 #b30 장의 카드가 포함되고 중복이 없는 덱으로 act 4 를 클리어.",
+			"이 트로피는 한번 얻으면 밝혀집니다. #y힌트: 3키를 모두 모으세요.",
+			"The Unnamed 격파. NL 이 트로피를 얻을때마다, #pUltra #pRare 카드들을 찾을 확률이 영구히 증가하며, 승천 난이도는 이 보너스를 큰 수치로 증가시켜줍니다. NL NL #yThe #yUnnamed #yReign 은 이제 모든 캐릭터에 허용됩니다.",
 			"Platinum"
 		]
 	},
@@ -136,13 +137,13 @@
 	{
 		"TEXT":
 		[
-      "Only contains ī��� with this �ó���. WARNING: once you click on this, the other 2 ī�� rewards will disappear.",
-			"���ʽ� ����",
-			"Cursed ����"
+			"오직 이 시너지의 카드들만을 포함하고있습니다. 경고: 한번이라도 이것을 클릭시, 다른 2개의 카드 보상들은 사라질겁니다.",
+			"보너스 유물",
+			"저주받은 유물"
 		]
 	},
 
-	"animator:ī���elect":
+	"animator:CardSelect":
 	{
 		"TEXT":
 		[
@@ -154,7 +155,7 @@
 	{
 		"TEXT":
 		[
-			"Starting ī���: ",
+			"Starting 카드들: ",
 			"###############",
 			"Unlocks at Level ",
 			" (You are Level ",

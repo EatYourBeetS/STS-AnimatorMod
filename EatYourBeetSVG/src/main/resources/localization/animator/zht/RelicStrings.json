@@ -6,6 +6,12 @@
 		"FLAVOR": "使你可以通過一根手指控制火焰.",
 		"NAME": "煉金術士的手套"
 	},
+	"animator:AncientMedallion":
+	{
+		"DESCRIPTIONS": ["在每場戰鬥開始時, 回复 #b", " 生命值。 NL 獲得時, #y升級 2張隨機的牌並且升級1張你選擇的牌。 如果被選中的牌可以被多次升級，則升級此牌2次。"],
+		"FLAVOR": "...",
+		"NAME": "上古挂墜"
+	},
 	"animator:BattleDrones":
 	{
 		"DESCRIPTIONS": ["每當你觸發一次同調時, 對一個隨機敵人造成 #b", " 點傷害並獲得 #b", " 點格擋."],
@@ -114,35 +120,29 @@
 		"FLAVOR": "來，嚐嚐吧，味道不會太差......吧?",
 		"NAME": "紫苑的甜品"
 	},
-	"animator:TheMissingPiece":
-	{
-		"DESCRIPTIONS": ["每場", " 戰鬥, 獲得同系列卡牌的獎勵。 如果您擁有該系列中的多張牌，您將有更多機會找到一個系列。"],
-		"FLAVOR": "這是什麼?",
-		"NAME": "缺少的部分"
-	},
-	"animator:AncientMedallion":
-	{
-		"DESCRIPTIONS": ["獲得時, #y升級 2張隨機的牌並且升級1張你選擇的牌。 在每場戰鬥開始時, 回复 #b", " 生命值。"],
-		"FLAVOR": "...",
-		"NAME": "上古挂墜"
-	},
 	"animator:TheEgnaroPiece":
 	{
 		"DESCRIPTIONS": ["每回合開始時， 獲得 [E] 並抽1張牌。 NL 每回合結束時，獲得 #b", " 點 #y臨時生命, 並且將此數量增加 #b1."],
 		"FLAVOR": "這是什麼?",
 		"NAME": "片碎色橘"
 	},
-	"animator:TheWolleyCore":
-	{
-		"DESCRIPTIONS": ["每輪開始時， 抽 #b"," 張牌。 NL 每當你打出1張牌, 對所有敵人造成 #b"," 點傷害並且獲得 #b", " 點 #y格擋 。"],
-		"FLAVOR": "這是什麼?",
-		"NAME": "心核色綠"
-	},
 	"animator:TheEruzaStone":
 	{
 		"DESCRIPTIONS": ["獲得 [E] [E] 每輪開始時。 NL 每當你打出1張 #y能力 , 抽1張牌。"],
 		"FLAVOR": "這是什麼?",
 		"NAME": "頭石色藍"
+	},
+	"animator:TheMissingPiece":
+	{
+		"DESCRIPTIONS": ["每場", " 戰鬥, 獲得同系列卡牌的獎勵。 如果您擁有該系列中的多張牌，您將有更多機會找到一個系列。"],
+		"FLAVOR": "這是什麼?",
+		"NAME": "缺少的部分"
+	},
+	"animator:TheWolleyCore":
+	{
+		"DESCRIPTIONS": ["每輪開始時， 抽 #b", " 張牌。 NL 每當你打出1張牌, 對所有敵人造成 #b", " 點傷害並且獲得 #b", " 點 #y格擋 。"],
+		"FLAVOR": "這是什麼?",
+		"NAME": "心核色綠"
 	},
 	"animator:VividPicture":
 	{

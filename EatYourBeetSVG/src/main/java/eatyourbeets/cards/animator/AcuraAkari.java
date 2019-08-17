@@ -1,15 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class AcuraAkari extends AnimatorCard
 {
@@ -17,11 +13,11 @@ public class AcuraAkari extends AnimatorCard
 
     public AcuraAkari()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 0, 1);
 
-        this.baseSecondaryValue = this.secondaryValue = 2;
+        this.baseSecondaryValue = this.secondaryValue = 1;
 
         SetSynergy(Synergies.Chaika);
     }
@@ -29,25 +25,22 @@ public class AcuraAkari extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, this.magicNumber), this.magicNumber);
+
         if (GetOtherCardsInHand().size() > 0)
         {
             GameActionsHelper.Discard(1, false);
 
             for (int i = 0; i < secondaryValue; i++)
             {
-                GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomCard()));
+                GameActionsHelper.MakeCardInHand(ThrowingKnife.GetRandomCard(), 1, upgraded);
             }
         }
-
-        GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, this.magicNumber), this.magicNumber);
     }
 
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(0);
-        }
+        TryUpgrade();
     }
 }

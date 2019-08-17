@@ -43,9 +43,9 @@ public class TheUnnamedHatPower extends AnimatorPower
     }
 
     @Override
-    public void atStartOfTurn()
+    public void atEndOfTurn(boolean isPlayer)
     {
-        super.atStartOfTurn();
+        super.atEndOfTurn(isPlayer);
 
         for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {

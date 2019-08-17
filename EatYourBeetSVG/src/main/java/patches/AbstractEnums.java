@@ -53,6 +53,9 @@ public class AbstractEnums
 
     public static class CardTags
     {
+        @SpireEnum
+        public static AbstractCard.CardTags TEMPORARY;
+
         //@SpireEnum
         //public static AbstractCard.CardTags SHAPESHIFTER;
 

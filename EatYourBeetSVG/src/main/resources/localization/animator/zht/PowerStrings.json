@@ -70,6 +70,11 @@
 		"DESCRIPTIONS": ["下回合開始時治療 #g", "點生命。"],
 		"NAME": "延遲治療"
 	},
+	"animator:DemiurgePower":
+	{
+		"DESCRIPTIONS": ["在本回合結束時 ， 受到 #b", " 點 傷害 。"],
+		"NAME": "Demiurge"
+	},
 	"animator:EarthenThornsPower":
 	{
 		"DESCRIPTIONS": ["每次受到 #y攻擊 傷害時，就造成 #b", " 點反傷"],

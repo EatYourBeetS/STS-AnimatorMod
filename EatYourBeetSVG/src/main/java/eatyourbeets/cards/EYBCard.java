@@ -294,4 +294,99 @@ public abstract class EYBCard extends CustomCard
                 this.drawScale * Settings.scale, this.drawScale * Settings.scale,
                 this.angle, 0, 0, 512, 512, false, false);
     }
+
+// TODO: Implement this
+//
+//    private boolean lastHovered = false;
+//    private boolean hoveredInHand = false;
+//
+//    @Override
+//    public boolean isHoveredInHand(float scale)
+//    {
+//        hoveredInHand = super.isHoveredInHand(scale);
+//
+//        return hoveredInHand;
+//    }
+//
+//
+//    @Override
+//    public void hover()
+//    {
+//        super.hover();
+//
+//        lastHovered = true;
+//    }
+//
+//    @Override
+//    public void unhover()
+//    {
+//        super.unhover();
+//
+//        lastHovered = false;
+//    }
+//
+//    @Override
+//    public void update()
+//    {
+//        super.update();
+//
+//        if (lastHovered && !Settings.hideCards && !hoveredInHand)
+//        {
+//            AbstractCard preview = GetCardPreview();
+//            if (preview != null)
+//            {
+//                final float HB_W = 300.0F * Settings.scale;
+//                final float HB_H = 420.0F * Settings.scale;
+//
+//                preview.hb.move(preview.current_x, preview.current_y);
+//                preview.hb.resize(HB_W * preview.drawScale, HB_H * preview.drawScale);
+//                preview.hb.update();
+//
+//                if (preview.hb.hovered)
+//                {
+//                    logger.info("display preview");
+//                }
+//            }
+//        }
+//    }
+//
+//    protected void RenderCardPreview(SpriteBatch sb)
+//    {
+//        if (lastHovered && !Settings.hideCards && !hoveredInHand)
+//        {
+//            AbstractCard preview = GetCardPreview();
+//            if ((preview != null))
+//            {
+//                final float CARD_TIP_PAD = 16.0F;
+//                float tmpScale = this.drawScale / 1.5F;
+//
+//                if ((AbstractDungeon.player != null) && (AbstractDungeon.player.isDraggingCard))
+//                {
+//                    return;
+//                }
+//
+//                preview.drawScale = 0.15f;
+//                preview.current_y = this.current_y + (AbstractCard.IMG_HEIGHT / 2.0F) - (Settings.scale * 18);
+//                preview.current_x = this.current_x + (AbstractCard.IMG_WIDTH / 2.0F) - (Settings.scale * 18);
+//
+////                //x = card center + half the card width + half the preview width + Padding * Viewport scale * draw scale
+////                if (this.current_x > Settings.WIDTH * 0.75F)
+////                {
+////                    preview.current_x = this.current_x + (((AbstractCard.IMG_WIDTH / 2.0F)
+////                            + ((AbstractCard.IMG_WIDTH / 2.0F) / 1.5F) + (CARD_TIP_PAD)) * this.drawScale);
+////                }
+////                else
+////                {
+////                    preview.current_x = this.current_x - (((AbstractCard.IMG_WIDTH / 2.0F)
+////                            + ((AbstractCard.IMG_WIDTH / 2.0F) / 1.5F) + (CARD_TIP_PAD)) * this.drawScale);
+////                }
+////
+////                preview.current_y = this.current_y + ((AbstractCard.IMG_HEIGHT / 2.0F)
+////                        - (AbstractCard.IMG_HEIGHT / 2.0F / 1.5F)) * this.drawScale;
+////
+////                preview.drawScale = tmpScale;
+//                preview.render(sb);
+//            }
+//        }
+//    }
 }

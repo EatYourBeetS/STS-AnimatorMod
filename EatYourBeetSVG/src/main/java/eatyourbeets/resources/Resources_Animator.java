@@ -35,6 +35,10 @@ public class Resources_Animator extends AbstractResources
         {
             languagePath = filePath;
         }
+        else if (Settings.language == Settings.GameLanguage.KOR)
+        {
+            languagePath = "localization/animator/kor/";
+        }
         else if (Settings.language == Settings.GameLanguage.ZHT)
         {
             languagePath = "localization/animator/zht/";

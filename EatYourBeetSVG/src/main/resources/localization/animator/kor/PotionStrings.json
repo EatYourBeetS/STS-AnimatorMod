@@ -1,10 +1,10 @@
-{
+﻿{
   "animator:FalseLifePotion": 
   {
     "NAME": "False Life Potion",
-    "DESCRIPTIONS": 
-	[ 
-      "����ϴ� #b"," #y�Ͻ����� #yHP."
+    "DESCRIPTIONS": [
+      "#b",
+      " #y일시적인 #yHP 를 얻습니다."
     ]
   }
 }

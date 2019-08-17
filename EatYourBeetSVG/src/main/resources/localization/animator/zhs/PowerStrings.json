@@ -70,6 +70,11 @@
 		"DESCRIPTIONS": ["你的回合开始时回复 #g", " 生命。"],
 		"NAME": "延迟治愈"
 	},
+	"animator:DemiurgePower":
+	{
+		"DESCRIPTIONS": ["在本回合结束时， 受到 #b", " 点伤害。"],
+		"NAME": "Demiurge"
+	},
 	"animator:EarthenThornsPower":
 	{
 		"DESCRIPTIONS": ["每受到一次 #y攻击 ，造成 #b", " 点反伤。"],

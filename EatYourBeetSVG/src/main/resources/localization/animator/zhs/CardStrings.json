@@ -3,7 +3,8 @@
 	"animator:AcuraAkari":
 	{
 		"DESCRIPTION": "丢弃 1 张牌 : NL 将 !SV! 张飞刀加入你的手牌 。 NL 获得 !M! 点 临时 涂毒 。",
-		"NAME": "阿卡莉"
+		"NAME": "阿卡莉",
+		"UPGRADE_DESCRIPTION": "丢弃 1 张牌 : NL 将 !SV! 张飞已升级刀加入你的手牌 。 NL 获得 !M! 点 临时 涂毒 。"
 	},
 	"animator:AcuraShin":
 	{

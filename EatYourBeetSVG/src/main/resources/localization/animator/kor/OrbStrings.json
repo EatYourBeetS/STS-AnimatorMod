@@ -1,33 +1,33 @@
-
+ï»¿
 {
-	"animator:´ëÁö":
+	"animator:Earth":
 	{
-		"NAME": "´ëÁö",
+		"NAME": "ëŒ€ì§€",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, ¾ò½À´Ï´Ù #b",
-			" ÀÏ½ÃÀûÀÎ #°¡½Ã. NL #y¹ßÇö: Deal #b",
-			" ÇÇÇØ ·£´ıly split amongst ALL enemies. NL After #b",
-			" turns have passed, automatically #y¹ßÇö this Orb."
+			"#yPassive: í„´ì´ ëë‚ ë•Œ, ì–»ìŠµë‹ˆë‹¤ #b",
+			" ì¼ì‹œì ì¸ #ê°€ì‹œ. NL #yë°œí˜„: Deal #b",
+			" í”¼í•´ ëœë¤ly split amongst ALL enemies. NL After #b",
+			" turns have passed, automatically #yë°œí˜„ this Orb."
 		]
 	},
 	"animator:Air":
 	{
-		"NAME": "Air",
+		"NAME": "ë°”ëŒ",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, deal #b", " #y°üÅë Àû ÀüÃ¼¿¡°Ô ÇÇÇØ¸¦ !D! Áİ´Ï´Ù. NL #y¹ßÇö: »Ì½À´Ï´Ù #b",
-			" Ä«µåµé."
+			"#yPassive: í„´ì´ ëë‚ ë•Œ, deal #b", " #yê´€í†µ ì  ì „ì²´ì—ê²Œ í”¼í•´ë¥¼ !D! ì¤ë‹ˆë‹¤. NL #yë°œí˜„: ë½‘ìŠµë‹ˆë‹¤ #b",
+			" ì¹´ë“œë“¤."
 		]
 	},
-	"animator:ºÒ":
+	"animator:Fire":
 	{
-		"NAME": "ºÒ",
+		"NAME": "ë¶ˆ",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, deal #b", " ÇÇÇØ to the highest health Àû ±×¸®°í Àû¿ë½ÃÅµ´Ï´Ù #b",
-			" #yÈ­»ó. NL #y¹ßÇö: ºÎ¿©ÇÕ´Ï´Ù #b",
-			" #yÈ­»ó Àû ÀüÃ¼¿¡°Ô."
+			"#yPassive: í„´ì´ ëë‚ ë•Œ, deal #b", " í”¼í•´ to the highest health ì  ê·¸ë¦¬ê³  ì ìš©ì‹œí‚µë‹ˆë‹¤ #b",
+			" #yí™”ìƒ. NL #yë°œí˜„: ë¶€ì—¬í•©ë‹ˆë‹¤ #b",
+			" #yí™”ìƒ ì  ì „ì²´ì—ê²Œ."
 		]
 	}
 }

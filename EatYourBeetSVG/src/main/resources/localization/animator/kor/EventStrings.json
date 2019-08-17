@@ -1,48 +1,48 @@
-
+﻿
 {
 	"animator:TheMaskedTraveler1":
 	{
-		"NAME": "The Masked Traveler",
+		"NAME": "가면을 쓴 여행자",
 		"DESCRIPTIONS": [
-			"While passing by this #ytotally not #yreused game asset, a masked figure with a large backpack approaches you. NL NL \"Greetings friend, are you perchance carrying some @'special'@ weaponry?\" NL ... NL \"Are you willing to sell it?\" NL NL \"Or perhaps you would prefer to buy some from my ... #ycollection ?\"",
-			"\"Did he actually accept?\" NL ... NL NL \"Ahem... I am @grateful@ for the #ytrade , be safe on your journey.\" NL NL That said, he disappeared from your sight."
+			"While passing by this #ytotally not #yreused game asset, 큰 가방을 맨 가면을 쓴 형상이 당신에게 다가옵니다. NL NL \"반갑군 친구여, 우연히 @'특별한'@ 무기를 가지고 있니?\" NL ... NL \"팔 생각이 있니?\" NL NL \"아니면 내...#y수집품 중에서 뭐 좀 살래?\"",
+			"\"Did he actually 수락?\" NL ... NL NL \"흠... 나는 #y거래 해줘서 @고맙게 생각@ 하고 있어 , 안전하게 여행해.\" NL NL 그렇게 말한후, 그는 당신의 시야에서 사라졌다."
 		],
 		"OPTIONS": [
-			"[Sell] #gRemove ", ". #gGain #g", " #gGold.",
-			"[Trade] #gImprove #gall Strikes #gand Defends. #rLose #r", " #rGold.",
-			"[Leave]",
-			"[Locked] No card to sell.",
-			"[Locked] Not enough Gold."
+			"[판다] #g제거한다 ", ". #gGain #g", " #gGold.",
+			"[거래한다] #gImprove #gall Strikes #gand Defends. #rLose #r", " #rGold.",
+			"[떠난다]",
+			"[잠김] No card to sell.",
+			"[잠김] Not enough Gold."
 		]
 	},
 	"animator:TheMaskedTraveler2":
 	{
-		"NAME": "The Masked Traveler (Part 2)",
+		"NAME": "가면을 쓴 여행자 (파트 2)",
 		"DESCRIPTIONS": [
-			"\"�ʱ���! @Heart@ of the Spire �� óġ�Ϸ� ���°ž�?\" NL NL \"���� ���ͼ� �ٸ� ������ �����Ϸ����°� �? ���ٽ���, ������ ���ƿԾ�, ������ ����������! �ʰ� �̱�� ���°� �����ϱ�!\"",
-			"\"��, ���� ���� �˷����ڸ�... ������ óġ�Ϸ� ������ ���� ��� ������� ��, ���ǵ�� ī�� ���׷��̵带 �� #yƯ���� #y������ �� �ϳ��� �ŷ��ؾ���:\" NL NL \"������ �ʴ� ���������� ��带 ���� �ǵ��� ������ �־�, #b{0} #yGold ��ġ��ŭ ���̾�.\"",
-			"\"�Ϻ���! �׳� ������ ���� �׸� ã�� �� ��������, �ϰ��־�!\" NL NL \"���! ���� �ؾ���ȴµ�, �ű⼭ ��û������ ã�Եɲ���. ����, �ϳ� �������ų� ��� ī����� ��ȭ���� �� �� �־�.\" NL NL [ #yPLEASE #yNOTICE: This act has been released earlier than intended since it's already fully playable. It is still being developed and will be updated often. ]"
+			"\"너구나! 첨탑의 @Heart@ 을 처치하러 가는거야?\" NL NL \"나를 도와서 다른 위험을 제거하러가는건 어때? 보다시피, 무명이 돌아왔어, 하지만 걱정하지마! 너가 이길수 없는건 없으니까!\"",
+			"\"흠, 조금 상세히 알려주자면... 무명을 처치하러 가려면 너의 모든 유물들과 금, 포션들과 카드 업그레이드를 이 #y특별한 #y유물들 중 하나와 거래해야해:\" NL NL \"어찌됐든 너는 장버기준으로 골드를 조금 되돌려 받을수 있어, #b{0} #yGold 어치만큼 말이야.\"",
+			"\"완벽해! 그냥 앞으로 가면 그를 찾을 수 있을꺼야, 믿고있어!\" NL NL \"잠깐! 거의 잊어버렸는데, 거기서 엄청많은걸 찾게될꺼야. 여기, 하나 가져가거나 몇개의 카드들좀 변화시켜 줄 수 있어.\" NL NL [ #yPLEASE #yNOTICE: 이번 스테이지는 완전히 플레이 할 수 있기에 기대보다 일찍 출시됬습니다. 이 스테이지는 지속적으로 개발될것이며 자주 업데이트 될 것입니다. ]"
 		],
 		"OPTIONS":
 		[
-			"[Leave]",
-			"[Inquire]",
-			"[Accept] #gObtain #gRelic",
-			"[Accept] #gRemove #g{0} #gī���, #gobtain #g{1} #g���� #gUpgraded #gī���.",
-			"[Accept] #gUpgrade #ga #gsingle #gcard #g{0} #gtimes."
+			"[떠난다]",
+			"[알아본다]",
+			"[수락] #gObtain #gRelic",
+			"[수락] #g제거한다 #g{0} #g카드들, #gobtain #g{1} #g랜덤 #gUpgraded #g카드들.",
+			"[수락] #gRecover #gyour #gstarting #grelics. #rL잃어버린다 #r{0} #rMax #rHP."
 		]
 	},
 	"animator:TheMaskedTraveler3":
 	{
-		"NAME": "The Masked Traveler (Part 3)",
+		"NAME": "가면을 쓴 여행자 (파트 3)",
 		"DESCRIPTIONS": [
-			"\"Good evening friend!\" NL NL \"How did I get here? It matters not. We simply needed another event for this act! Trade 1 medallion or #b150 #yGold for a rare card, your choice. Or well... you could also leave\"",
-			"\"Thanks! Now you can click on 'Leave'.\""
+			"\"Good evening friend!\" NL NL \"How did I get here? It matters not. We simply needed another event for this act! Trade 1 medallion or #b150 #yGold for a rare card, your choice. Or well... you could also 떠난다\"",
+			"\"Thanks! Now you can click on '떠난다'.\""
 		],
 		"OPTIONS": [
 			"[Trade] #rLose #rAncient #rMedallion. #gObtain #gan #gUpgraded #grare #gcard.",
 			"[Trade] #rLose #r150 #rGold. #gObtain #gan #gUpgraded #grare #gcard.",
-			"[Leave]",
+			"[떠난다]",
 			"[Locked] No #yAncient #yMedallion to trade.",
 			"[Locked] Not enough Gold."
 		]
@@ -53,17 +53,17 @@
 		"NAME": "The Dom Vedeloper",
 		"DESCRIPTIONS": [
 			"You hear someone shouting in the distance: NL NL \" Rinne should behave more @erratically@ \" NL \" #yGilgamesh probably deserves a buff! \" NL \" The #bexplosion girl might be a tad too strong... \" NL NL You are slightly intrigued by those strange words... NL Do you decide to approach him?",
-			"\"Oh hello, hello! Those are some #pinteresting ī���, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your ī���, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
+			"\"Oh hello, hello! Those are some #pinteresting 카드들, mind if give them a look?\" NL NL  Without waiting for your answer, he picked all of your 카드들, and quickly sorted them. NL NL \"Interesting... Listen friend, how about you take part in a #ySurvey? Of course, you will be #yrewarded.\"",
 			"\"Wonderful! Wonderful! Here, tell me, what do you think of this card?\"",
 			"\"Nice, how about this one?\"",
 			"\"Interesting, and this one?\"",
 			"\"I see... Lastly, what's your opinion on this one?\"",
-			"\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you accept, your answers will be sent to the developer)",
+			"\"Thank you friend, as promised here's your reward\" NL NL You have received #b100 #yGold. NL NL \"One last thing, would you mind #gsigning this paper?\" NL NL (If you 수락, your answers will be sent to the developer)",
 			"\"Excellent, have a nice day!\" NL NL \"... So... the next series could be...\""
 		],
 		"OPTIONS": [
-			"[Leave]",
-			"[Accept] Answer 4 questions. #gGain #g100 #gGold.",
+			"[떠난다]",
+			"[수락] Answer 4 questions. #gGain #g100 #gGold.",
 			"[1] It is definitely too strong...",
 			"[2] It is a very strong card!",
 			"[3] It is a good card in most situations.",
@@ -88,8 +88,8 @@
 		],
 		"OPTIONS": [
 			"#y[Take #ythe #yGold] #yGain #y{0} #yGold.",
-			"#r[Leave] #gHeal #g{0} #gHP",
-			"#r[Leave]"
+			"#r[떠난다] #gHeal #g{0} #gHP",
+			"#r[떠난다]"
 		]
 	},
 	"animator:TheUnnamedMerchant":
@@ -103,35 +103,35 @@
 			"\"Good Deal... Good Deal\""
 		],
 		"OPTIONS": [
-			"[Sell] #gGain #g{0} #gGold. #rLose #rAncient #rMedallion.",
-			"[Buy] #gObtain #gAncient #gMedallion. #rLose #r{0} #rGold.",
-			"[Haggle] #g50%: #gBetter #gDeal. #r50%: #rWorse #rDeal.",
-			"[Leave]",
-			"[Locked] No #yAncient #yMedallion to sell.",
-			"[Locked] Not enough Gold.",
-			"[Continue]"
+			"[판다] #gGain #g{0} #gGold. #rLose #rAncient #rMedallion.",
+			"[산다] #gObtain #gAncient #gMedallion. #rLose #r{0} #rGold.",
+			"[흥정] #g50%: #gBetter #gDeal. #r50%: #rWorse #rDeal.",
+			"[떠난다]",
+			"[잠김] No #yAncient #yMedallion to sell.",
+			"[잠김] Not enough Gold.",
+			"[계속한다]"
 		]
 	},
 	"animator:TheAbandonedCabin":
 	{
 		"NAME": "The Abandoned Cabin",
-		"DESCRIPTIONS": [
-			"You stumble across a small and seemingly abandoned cabin. NL NL Tired and hungry, you decide to go against your better instincts and enter it. NL NL After checking for possible inhabitants, you soon fall asleep...",
-			"You are awakened by a loud knocking noise. NL NL The room is almost #pcompletely #pdarkness, NL but you perceive a @creature@ standing in front of you.",
-			"\"���... need #rblood... trade?\" NL NL The @creature@ extends his arm towards you, revealing an #yAncient #yMedallion, you wonder if accepting would be a good idea...",
-			"You ran towards the door as fast as you could, NL and then as far away from the cabin as possible.",
-			"You try to grab the medallion when suddenly the @creature@ #rbites your arm with great force. Nonetheless, it lets you take the ����.",
-			"\"Need more... trade... again...\" NL NL The @creature@ reveals another #yAncient #yMedallion. NL NL You are #rseverely #rwounded from the previous trade...",
-			"You ran out of the cabin, NL but the creature managed to hurt you once more.",
-			"This hurt much more than before. NL NL But the @creature@ seems satisfied as it slowly abandons the cabin."
-		],
+    "DESCRIPTIONS": [
+      "당신은 작고 겉보기에 버려진 오두막을 우연히 발견했습니다. NL NL 피곤하고 배가 고파서, 당신은 더 나은 본능에 맞서고 들어가기로 결심합니다. NL NL 주민이 있는지 확인한 후 곧 잠이 들었습니다...",
+      "문을 두들기는 큰 소음으로 깨어납니다. NL NL 방은 거의 #p완벽한 #p어둠 에 휩사여있었지만 NL 당신 앞에 @ 생물체 @가 있다고 생각합니다.",
+      "\"배고파... #r피 가 필요해... 거래할래?\" NL NL @생물체@ 는 팔을 당신에게 내밀어 #yAncient #yMedallion 을 보여줍니다, 당신은 이게 좋은 생각인지 생각합니다...",
+      "당신은 가능한 한 빨리 문을 향해 달려갔습니다, NL 그리고 가능한 오두막에서 멀리 떨어졌습니다.",
+      "당신이 medallion을 잡으려고 했을때 갑자기 @생물체@ 가 당신의 팔을 강한 힘으로 #r깨뭅니다 . 그럼에도 불구하고, 그것은 당신이 유물을 챙기게 내버려둡니다.",
+      "\"더 필요해...거래...다시해...\" NL NL @생물체@가 또 다른 #yAncient #yMedallion 를 보여줍니다. NL NL 당신은 저번 거래에서 #r심하게 #r다쳤습니다 ...",
+      "당신은 오두막에서 뛰쳐나갔지만, NL 생물체는 가까스로 다시한번 당신을 한번 더 상처 입히는데 성공했습니다.",
+      "이번에는 전보다 훨씬 더 아팠습니다. NL NL 하지만 @생물체@ 는 만족한듯 보이며 천천히 오두막을 떠났습니다."
+    ],
 		"OPTIONS":
 		[
-			"[Continue]",
-			"[Accept] #rLose #r{0} #rHP. #gObtain #gRelic",
-			"[Run]",
-			"[Try to Run] #r50% #rchance #rto #rlose #r{0} #rHP",
-			"[Leave]"
+			"[계속한다]",
+			"[수락] #r{0} #rHP 를 #r잃어버립니다. #gObtain #gRelic",
+			"[도망친다]",
+			"[도망을 시도한다] #r50% #r확률로 #r{0} #rHP #r를 #r잃어버립니다",
+			"[떠난다]"
 		]
 	}
 }

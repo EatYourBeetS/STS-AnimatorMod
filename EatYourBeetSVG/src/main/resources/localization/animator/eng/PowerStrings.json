@@ -70,6 +70,11 @@
 		"DESCRIPTIONS": ["Heal #g", " HP at the start of your next turn."],
 		"NAME": "Delayed Heal"
 	},
+	"animator:DemiurgePower":
+	{
+		"DESCRIPTIONS": ["At the end of your turn, take #b", " damage."],
+		"NAME": "Demiurge"
+	},
 	"animator:EarthenThornsPower":
 	{
 		"DESCRIPTIONS": ["When attacked, deal #b", " damage back."],
@@ -317,7 +322,7 @@
 	},
 	"animator:TheUnnamedHatPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, all allies heal #b", " HP. NL NL On death, apply #yEntangle to the opponent."],
+		"DESCRIPTIONS": ["At the end of each turn, all allies heal #b", " HP. NL NL On death, apply #yEntangle to the opponent."],
 		"NAME": "H4T"
 	},
 	"animator:UltimateCrystalPower":

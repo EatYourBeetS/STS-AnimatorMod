@@ -1,78 +1,78 @@
-
+ï»¿
 {
-	"animator:darkness_Cube_0":
+	"animator:Darkness_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "¾ÏÈæ Cube (S)",
+		"NAME": "Â¾ÃÃˆÃ¦ Cube (S)",
 		"DIALOG": [""]
 	},
-	"animator:darkness_Cube_1":
+	"animator:Darkness_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "¾ÏÈæ Cube (M)",
+		"NAME": "Â¾ÃÃˆÃ¦ Cube (M)",
 		"DIALOG": [""]
 	},
-	"animator:darkness_Cube_2":
+	"animator:Darkness_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "¾ÏÈæ Cube (L)",
+		"NAME": "Â¾ÃÃˆÃ¦ Cube (L)",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "¹ø°³ Cube (S)",
+		"NAME": "Â¹Ã¸Â°Â³ Cube (S)",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "¹ø°³ Cube (M)",
+		"NAME": "Â¹Ã¸Â°Â³ Cube (M)",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "¹ø°³ Cube (L)",
+		"NAME": "Â¹Ã¸Â°Â³ Cube (L)",
 		"DIALOG": [""]
 	},
 
-	"animator:³Ã±â_Cube_0":
+	"animator:Frost_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "³Ã±â Cube (S)",
+		"NAME": "Â³ÃƒÂ±Ã¢ Cube (S)",
 		"DIALOG": [""]
 	},
-	"animator:³Ã±â_Cube_1":
+	"animator:Frost_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "³Ã±â Cube (M)",
+		"NAME": "Â³ÃƒÂ±Ã¢ Cube (M)",
 		"DIALOG": [""]
 	},
-	"animator:³Ã±â_Cube_2":
+	"animator:Frost_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "³Ã±â Cube (L)",
+		"NAME": "Â³ÃƒÂ±Ã¢ Cube (L)",
 		"DIALOG": [""]
 	},
 
-	"animator:ºÒ_Cube_0":
+	"animator:Fire_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "ºÒ Cube (S)",
+		"NAME": "ÂºÃ’ Cube (S)",
 		"DIALOG": [""]
 	},
-	"animator:ºÒ_Cube_1":
+	"animator:Fire_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "ºÒ Cube (M)",
+		"NAME": "ÂºÃ’ Cube (M)",
 		"DIALOG": [""]
 	},
-	"animator:ºÒ_Cube_2":
+	"animator:Fire_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "ºÒ Cube (L)",
+		"NAME": "ÂºÃ’ Cube (L)",
 		"DIALOG": [""]
 	},
 
@@ -95,79 +95,79 @@
 		"DIALOG": [""]
 	},
 
-	"animator:darkness_Crystal_0":
+	"animator:Darkness_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "¾ÏÈæ Crystal (S)",
+		"NAME": "Â¾ÃÃˆÃ¦ Crystal (S)",
 		"DIALOG": [""]
 	},
-	"animator:darkness_Crystal_1":
+	"animator:Darkness_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "¾ÏÈæ Crystal (M)",
+		"NAME": "Â¾ÃÃˆÃ¦ Crystal (M)",
 		"DIALOG": [""]
 	},
-	"animator:darkness_Crystal_2":
+	"animator:Darkness_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "¾ÏÈæ Crystal (L)",
+		"NAME": "Â¾ÃÃˆÃ¦ Crystal (L)",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "¹ø°³ Crystal (S)",
+		"NAME": "Â¹Ã¸Â°Â³ Crystal (S)",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "¹ø°³ Crystal (M)",
+		"NAME": "Â¹Ã¸Â°Â³ Crystal (M)",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "¹ø°³ Crystal (L)",
+		"NAME": "Â¹Ã¸Â°Â³ Crystal (L)",
 		"DIALOG": [""]
 	},
 
-	"animator:³Ã±â_Crystal_0":
+	"animator:Frost_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "³Ã±â Crystal (S)",
+		"NAME": "Â³ÃƒÂ±Ã¢ Crystal (S)",
 		"DIALOG": [""]
 	},
-	"animator:³Ã±â_Crystal_1":
+	"animator:Frost_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "³Ã±â Crystal (M)",
+		"NAME": "Â³ÃƒÂ±Ã¢ Crystal (M)",
 		"DIALOG": [""]
 	},
-	"animator:³Ã±â_Crystal_2":
+	"animator:Frost_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "³Ã±â Crystal (L)",
+		"NAME": "Â³ÃƒÂ±Ã¢ Crystal (L)",
 		"DIALOG": [""]
 	},
 
-	"animator:ºÒ_Crystal_0":
+	"animator:Fire_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "ºÒ Crystal (S)",
+		"NAME": "ÂºÃ’ Crystal (S)",
 		"DIALOG": [""]
 	},
-	"animator:ºÒ_Crystal_1":
+	"animator:Fire_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "ºÒ Crystal (M)",
+		"NAME": "ÂºÃ’ Crystal (M)",
 		"DIALOG": [""]
 	},
-	"animator:ºÒ_Crystal_2":
+	"animator:Fire_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "ºÒ Crystal (L)",
+		"NAME": "ÂºÃ’ Crystal (L)",
 		"DIALOG": [""]
 	},
 
@@ -190,79 +190,79 @@
 		"DIALOG": [""]
 	},
 
-	"animator:darkness_Wisp_0":
+	"animator:Darkness_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "¾ÏÈæ Wisp (S)",
+		"NAME": "Â¾ÃÃˆÃ¦ Wisp (S)",
 		"DIALOG": [""]
 	},
-	"animator:darkness_Wisp_1":
+	"animator:Darkness_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "¾ÏÈæ Wisp (M)",
+		"NAME": "Â¾ÃÃˆÃ¦ Wisp (M)",
 		"DIALOG": [""]
 	},
-	"animator:darkness_Wisp_2":
+	"animator:Darkness_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "¾ÏÈæ Wisp (L)",
+		"NAME": "Â¾ÃÃˆÃ¦ Wisp (L)",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "¹ø°³ Wisp (S)",
+		"NAME": "Â¹Ã¸Â°Â³ Wisp (S)",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "¹ø°³ Wisp (M)",
+		"NAME": "Â¹Ã¸Â°Â³ Wisp (M)",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "¹ø°³ Wisp (L)",
+		"NAME": "Â¹Ã¸Â°Â³ Wisp (L)",
 		"DIALOG": [""]
 	},
 
-	"animator:³Ã±â_Wisp_0":
+	"animator:Frost_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "³Ã±â Wisp (S)",
+		"NAME": "Â³ÃƒÂ±Ã¢ Wisp (S)",
 		"DIALOG": [""]
 	},
-	"animator:³Ã±â_Wisp_1":
+	"animator:Frost_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "³Ã±â Wisp (M)",
+		"NAME": "Â³ÃƒÂ±Ã¢ Wisp (M)",
 		"DIALOG": [""]
 	},
-	"animator:³Ã±â_Wisp_2":
+	"animator:Frost_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "³Ã±â Wisp (L)",
+		"NAME": "Â³ÃƒÂ±Ã¢ Wisp (L)",
 		"DIALOG": [""]
 	},
 
-	"animator:ºÒ_Wisp_0":
+	"animator:Fire_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "ºÒ Wisp (S)",
+		"NAME": "ÂºÃ’ Wisp (S)",
 		"DIALOG": [""]
 	},
-	"animator:ºÒ_Wisp_1":
+	"animator:Fire_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "ºÒ Wisp (M)",
+		"NAME": "ÂºÃ’ Wisp (M)",
 		"DIALOG": [""]
 	},
-	"animator:ºÒ_Wisp_2":
+	"animator:Fire_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "ºÒ Wisp (L)",
+		"NAME": "ÂºÃ’ Wisp (L)",
 		"DIALOG": [""]
 	},
 
@@ -371,8 +371,8 @@
 			"How about you go back to sleep for another couple of centuries?",
 			"Guren? Are you being redesigned again?",
 			"I am almost scared of Nanami. Almost.",
-			"Goblins... Would you like me to ¼¯½À´Ï´Ù some goblins into your deck?",
-			"Kurami? Beware, you can only play 16 Ä«µåµé.",
+			"Goblins... Would you like me to Â¼Â¯Â½Ã€Â´ÃÂ´Ã™ some goblins into your deck?",
+			"Kurami? Beware, you can only play 16 Ã„Â«ÂµÃ¥ÂµÃ©.",
 			"Want to see something TRULY erratical?",
 			"The clock is ticking...",
 			"Nice try. Do not do that again.",

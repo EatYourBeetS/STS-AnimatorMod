@@ -130,7 +130,7 @@ public class TheMaskedTraveler2 extends AnimatorEvent
             hpLossPercentage = 16;
         }
 
-        currentHPLoss = (int) ((UnnamedRelicEquipEffect.CalculateMaxHealth() / 100f) * hpLossPercentage);
+        currentHPLoss = (int) Math.ceil((UnnamedRelicEquipEffect.CalculateMaxHealth() / 100.0) * hpLossPercentage);
         String message2 = OPTIONS[4].replace("{0}", String.valueOf(currentHPLoss));
 
         UpdateBodyText(eventStrings.DESCRIPTIONS[2], true);

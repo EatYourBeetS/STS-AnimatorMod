@@ -49,6 +49,7 @@ public class Synergies
     public final static Synergy TateNoYuusha = CreateSynergy(32);
     public final static Synergy Symphogear = CreateSynergy(33);
     public final static Synergy CallOfCthulhu = CreateSynergy(34);
+    public final static Synergy Chuunibyou = CreateSynergy(35);
 
     private static Synergy CreateSynergy(int id)
     {

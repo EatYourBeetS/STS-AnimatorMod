@@ -37,7 +37,6 @@ public abstract class AnimatorCard extends EYBCard
 
     private final List<TooltipInfo> customTooltips = new ArrayList<>();
     private Synergy synergy;
-    private boolean lastHovered = false;
 
     protected final Color RENDER_COLOR = Color.WHITE.cpy();
 
@@ -105,33 +104,6 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    public boolean isHoveredInHand(float scale)
-    {
-        boolean hovered = super.isHoveredInHand(scale);
-
-        if (hovered && !lastHovered)
-        {
-            logger.info("Hovered: " + name);
-            ArrayList<AbstractCard> hand = AbstractDungeon.player.hand.group;
-            for (AbstractCard c : hand)
-            {
-                if (c != this)
-                {
-                    AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
-                    if ((card != null && card.HasSynergy(this)))
-                    {
-                        c.targetDrawScale = 0.9f;
-                    }
-                }
-            }
-        }
-
-        lastHovered = hovered;
-
-        return hovered;
-    }
-
-    @Override
     public void triggerOnOtherCardPlayed(AbstractCard c)
     {
         super.triggerOnOtherCardPlayed(c);
@@ -156,26 +128,54 @@ public abstract class AnimatorCard extends EYBCard
         RenderSynergy(sb);
     }
 
-    private void RenderSynergy(SpriteBatch sb)
+    //    @Override
+//    public boolean isHoveredInHand(float scale)
+//    {
+//        boolean hovered = super.isHoveredInHand(scale);
+//
+//        if (hovered && !lastHovered)
+//        {
+//            logger.info("Hovered: " + name);
+//            ArrayList<AbstractCard> hand = AbstractDungeon.player.hand.group;
+//            for (AbstractCard c : hand)
+//            {
+//                if (c != this)
+//                {
+//                    AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+//                    if ((card != null && card.HasSynergy(this)))
+//                    {
+//                        c.targetDrawScale = 0.9f;
+//                    }
+//                }
+//            }
+//        }
+//
+//        lastHovered = hovered;
+//
+//        return hovered;
+//    }
+
+    public void RenderSynergy(SpriteBatch sb)
     {
-        AbstractRoom room = PlayerStatistics.GetCurrentRoom();
         if (this.synergy != null)
         {
             if (!this.isFlipped)
             {
                 float originalScale = FontHelper.cardTitleFont_small.getData().scaleX;
+                float scaleMulti = 0.8f;
 
-                Color textColor;
-                if (HasActiveSynergy())
+                int length = this.synergy.NAME.length();
+                if (length > 20)
                 {
-                    FontHelper.cardTitleFont_small.getData().setScale(this.drawScale * 0.85f);
-                    textColor = Color.YELLOW.cpy();
+                    scaleMulti -= 0.02f * (length - 20);
+                    if (scaleMulti < 0.5f)
+                    {
+                        scaleMulti = 0.5f;
+                    }
                 }
-                else
-                {
-                    FontHelper.cardTitleFont_small.getData().setScale(this.drawScale * 0.8f);
-                    textColor = Settings.CREAM_COLOR.cpy();
-                }
+
+                FontHelper.cardTitleFont_small.getData().setScale(this.drawScale * scaleMulti);
+                Color textColor = Settings.CREAM_COLOR.cpy();
 
                 FontHelper.renderRotatedText(sb, FontHelper.cardTitleFont_small, this.synergy.NAME,
                         this.current_x, this.current_y, 0.0F, 400.0F * Settings.scale * this.drawScale / 2.0F,
@@ -298,5 +298,10 @@ public abstract class AnimatorCard extends EYBCard
         String[] unique = GameDictionary.keywords.get("animator:unique").split("\\|");
         AddTooltip(new TooltipInfo(unique[0], unique[1]));
         tags.add(AbstractEnums.CardTags.UNIQUE);
+    }
+
+    protected AbstractCard GetCardPreview()
+    {
+        return null;
     }
 }

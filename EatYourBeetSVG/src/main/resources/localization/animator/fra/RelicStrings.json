@@ -6,6 +6,12 @@
 		"FLAVOR": "Cela vous permet de contrôler le feu d'un claquement de doigt.",
 		"NAME": "Gant d'Alchimiste"
 	},
+	"animator:AncientMedallion":
+	{
+		"DESCRIPTIONS": ["Au début de chaque combat, soignez #b", " PV. NL À l'obtention, #yAméliorez 2 cartes aléatoires et une autre carte au choix. Si la carte choisie peut être améliorée plusieurs fois, elle sera alors améliorée 2 fois."],
+		"FLAVOR": "...",
+		"NAME": "Médaillon Ancien"
+	},
 	"animator:BattleDrones":
 	{
 		"DESCRIPTIONS": ["Quand une carte #ySynergizes, inflige #b", " dégat(s) à un ennemi aléatoire et gagnez #b", " #yd'Armure."],
@@ -114,35 +120,29 @@
 		"FLAVOR": "Venez par ici, venez goûter, que voulez-vous que ca vous fasse?",
 		"NAME": "Le Dessert de Shion"
 	},
-	"animator:TheMissingPiece":
-	{
-		"DESCRIPTIONS": ["Tous les #b", " combats, recevez carte récompenses améliorer. Vous aurez plus de chance de trouvez une série si vous avez plusieurs cartes d'une série."],
-		"FLAVOR": "Quelle est cette chose?",
-		"NAME": "La pièce manquante"
-	},
-	"animator:AncientMedallion":
-	{
-		"DESCRIPTIONS": ["À l'obtention, #yAméliorez 2 cartes aléatoires et une autre carte au choix. Au début de chaque combat, soignez #b", " PV."],
-		"FLAVOR": "...",
-		"NAME": "Médaillon Ancien"
-	},
 	"animator:TheEgnaroPiece":
 	{
 		"DESCRIPTIONS": ["Gagnez [E] et piochez #b", " cartes au début de chaque tour. NL Gagnez #b", " de #yPV #yTemporaire à la fin de chaque tour, augmentez ensuite ce nombre de #b1."],
 		"FLAVOR": "Qu'est-ce que c'est?",
 		"NAME": "La Pièce Egnaro"
 	},
-	"animator:TheWolleyCore":
-	{
-		"DESCRIPTIONS": ["Piochez #b", " cartes au début de chaque tour. NL Lorsque vous jouez une carte,  infligez #b", " dégât à TOUS les ennemis and gagnez #b", " #yd'Armure."],
-		"FLAVOR": "Qu'est-ce que c'est?",
-		"NAME": "Le Noyau Trev"
-	},
 	"animator:TheEruzaStone":
 	{
 		"DESCRIPTIONS": ["Gagnez [E] [E] au début de chaque tour. NL Lorsque vous jouez un #yPouvoir, piochez 1 carte."],
 		"FLAVOR": "Qu'est-ce que c'est?",
 		"NAME": "La Pierre Ezura"
+	},
+	"animator:TheMissingPiece":
+	{
+		"DESCRIPTIONS": ["Tous les #b", " combats, recevez en récompense des cartes améliorées. Vous aurez plus de chance de trouvez une série si vous avez plusieurs cartes de la telle série."],
+		"FLAVOR": "Quelle est cette chose?",
+		"NAME": "La pièce manquante"
+	},
+	"animator:TheWolleyCore":
+	{
+		"DESCRIPTIONS": ["Piochez #b", " cartes au début de chaque tour. NL Lorsque vous jouez une carte,  infligez #b", " dégât à TOUS les ennemis and gagnez #b", " #yd'Armure."],
+		"FLAVOR": "Qu'est-ce que c'est?",
+		"NAME": "Le Noyau Trev"
 	},
 	"animator:VividPicture":
 	{

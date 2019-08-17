@@ -14,11 +14,11 @@ public class TheAbandonedCabin extends AnimatorEvent
 {
     public static final String ID = CreateFullID(TheAbandonedCabin.class.getSimpleName());
 
-    private static final int HP_PRICE1 = 30;
-    private static final int HP_PRICE2 = 40;
-    private static final int RUN_DAMAGE = 20;
-
     private static final AncientMedallion medallion = new AncientMedallion();
+
+    private final int HP_TRADE_1;
+    private final int HP_TRADE_2;
+    private final int RUN_DAMAGE;
 
     private int medallions = 0;
 
@@ -27,6 +27,10 @@ public class TheAbandonedCabin extends AnimatorEvent
         super(ID, "Cabin1.png");
 
         this.noCardsInRewards = true;
+
+        HP_TRADE_1 = CalculateDamage(30);
+        HP_TRADE_2 = CalculateDamage(40);
+        RUN_DAMAGE = CalculateDamage(20);
 
         RegisterPhase(-1, this::CreateSpecialPhase, this::HandleSpecialPhase);
         RegisterPhase(1, this::CreatePhase1, this::HandlePhase1);
@@ -65,7 +69,7 @@ public class TheAbandonedCabin extends AnimatorEvent
     private void CreatePhase3() // Evaluate Trade
     {
         UpdateBodyText(eventStrings.DESCRIPTIONS[2], true);
-        UpdateDialogOption(0, OPTIONS[1].replace("{0}", String.valueOf(HP_PRICE1)), medallion); // Take damage, Obtain Medallion
+        UpdateDialogOption(0, OPTIONS[1].replace("{0}", String.valueOf(HP_TRADE_1)), medallion); // Take damage, Obtain Medallion
         UpdateDialogOption(1, OPTIONS[4]); // Leave
     }
 
@@ -74,7 +78,7 @@ public class TheAbandonedCabin extends AnimatorEvent
         if (button == 0)
         {
             CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05F);
-            AbstractDungeon.player.damage(new DamageInfo(null, HP_PRICE1));
+            AbstractDungeon.player.damage(new DamageInfo(null, HP_TRADE_1));
             medallions += 1;
 
             ProgressPhase();
@@ -101,7 +105,7 @@ public class TheAbandonedCabin extends AnimatorEvent
     private void CreatePhase5() // Evaluate second trade
     {
         UpdateBodyText(eventStrings.DESCRIPTIONS[5], true);
-        UpdateDialogOption(0, OPTIONS[1].replace("{0}", String.valueOf(HP_PRICE2)), medallion); // Take damage, Obtain Medallion
+        UpdateDialogOption(0, OPTIONS[1].replace("{0}", String.valueOf(HP_TRADE_2)), medallion); // Take damage, Obtain Medallion
         UpdateDialogOption(1, OPTIONS[3].replace("{0}", String.valueOf(RUN_DAMAGE))); // Try to run
     }
 
@@ -111,7 +115,7 @@ public class TheAbandonedCabin extends AnimatorEvent
         {
             CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05F);
             AbstractDungeon.effectList.add(new BorderLongFlashEffect(Color.RED));
-            AbstractDungeon.player.damage(new DamageInfo(null, HP_PRICE2));
+            AbstractDungeon.player.damage(new DamageInfo(null, HP_TRADE_2));
             medallions += 1;
 
             ProgressPhase();
@@ -163,5 +167,10 @@ public class TheAbandonedCabin extends AnimatorEvent
             relic.instantObtain();
             medallions = 0;
         }
+    }
+
+    private static int CalculateDamage(int percentage)
+    {
+        return (int)Math.ceil(AbstractDungeon.player.maxHealth * percentage / 100.0);
     }
 }

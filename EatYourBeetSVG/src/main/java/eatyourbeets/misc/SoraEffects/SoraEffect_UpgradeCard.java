@@ -2,6 +2,7 @@ package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import eatyourbeets.actions.common.RefreshHandLayoutAction;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class SoraEffect_UpgradeCard extends SoraEffect
@@ -17,5 +18,6 @@ public class SoraEffect_UpgradeCard extends SoraEffect
     public void EnqueueAction(AbstractPlayer player)
     {
         GameActionsHelper.AddToBottom(new ArmamentsAction(true));
+        GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
     }
 }

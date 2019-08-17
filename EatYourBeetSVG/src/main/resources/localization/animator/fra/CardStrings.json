@@ -3,7 +3,8 @@
 	"animator:AcuraAkari":
 	{
 		"DESCRIPTION": "Défaussez 1 carte: NL Ajoutez !SV! Couteaux_de_Jet à votre main. NL Gagnez !M! d'Envenimer jusqu'à la fin du tour.",
-		"NAME": "Akari"
+		"NAME": "Akari",
+		"UPGRADE_DESCRIPTION": "Défaussez 1 carte: NL Ajoutez !SV! Couteaux_de_Jet amélioré à votre main. NL Gagnez !M! d'Envenimer jusqu'à la fin du tour."
 	},
 	"animator:AcuraShin":
 	{

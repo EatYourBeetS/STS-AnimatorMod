@@ -2,8 +2,9 @@
 {
 	"animator:AcuraAkari":
 	{
-		"DESCRIPTION": "Discard 1 card: Add !SV! Throwing-Knives NL to your hand. NL Gain !M! Envenom until end of turn.",
-		"NAME": "Akari"
+		"DESCRIPTION": "Gain !M! Temporary Envenom. NL Discard 1 card: Add NL !SV! Throwing-Knife NL to your hand.",
+		"NAME": "Akari",
+		"UPGRADE_DESCRIPTION": "Gain !M! Temporary Envenom. Discard 1 card: Add !SV! Upgraded Throwing-Knife to your hand."
 	},
 	"animator:AcuraShin":
 	{
@@ -1067,17 +1068,17 @@
 	},
 	"animator:ThrowingKnife_0":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Purge. Recall: Play this card.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Purge. Recall: NL Play this card.",
 		"NAME": "Throwing-Knife"
 	},
 	"animator:ThrowingKnife_1":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Purge. Recall: Play this card.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Purge. Recall: NL Play this card.",
 		"NAME": "Throwing-Knife"
 	},
 	"animator:ThrowingKnife_2":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Purge. Recall: Play this card.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Purge. Recall: NL Play this card.",
 		"NAME": "Throwing-Knife"
 	},
 	"animator:Togame":

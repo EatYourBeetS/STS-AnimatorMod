@@ -3,10 +3,7 @@ package eatyourbeets.effects;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
-import com.megacrit.cardcrawl.cards.colorless.Apparition;
-import com.megacrit.cardcrawl.cards.colorless.Discovery;
-import com.megacrit.cardcrawl.cards.colorless.MasterOfStrategy;
-import com.megacrit.cardcrawl.cards.colorless.MindBlast;
+import com.megacrit.cardcrawl.cards.colorless.*;
 import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.cards.green.*;
 import com.megacrit.cardcrawl.cards.red.*;
@@ -22,6 +19,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.animator.HigakiRinne;
 import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
 
 import java.util.ArrayList;
@@ -124,6 +122,11 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
         else if (hp < 999)
         {
             hp = 150;
+        }
+
+        if (hp < 999 && PlayerStatistics.GetActualAscensionLevel() >= 14)
+        {
+            hp = (int)Math.ceil(hp * 0.9);
         }
 
         return hp;
@@ -252,6 +255,12 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
                 case "infinitespire:SevenWalls":
                 {
                     ReplaceCard(replacement, Dash.ID);
+                    break;
+                }
+
+                case "infinitespire:Starlight":
+                {
+                    ReplaceCard(replacement, BandageUp.ID);
                     break;
                 }
 

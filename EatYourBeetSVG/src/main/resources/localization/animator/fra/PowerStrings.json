@@ -70,6 +70,11 @@
 		"DESCRIPTIONS": ["Soigner #g", " PV au début de votre prochain tour."],
 		"NAME": "Soin retardé"
 	},
+	"animator:DemiurgePower":
+	{
+		"DESCRIPTIONS": ["Prendre #b", " dégâts à la fin de votre tour."],
+		"NAME": "Demiurge"
+	},
 	"animator:EarthenThornsPower":
 	{
 		"DESCRIPTIONS": ["Quand attaqué, inflige #b", " dégat(s) en retour."],

@@ -1,18 +1,20 @@
 package eatyourbeets.cards.animator;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.powers.animator.DemiurgePower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnEndOfTurnSubscriber;
 
-public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
+public class Demiurge extends AnimatorCard
 {
     public static final String ID = CreateFullID(Demiurge.class.getSimpleName());
 
@@ -30,29 +32,17 @@ public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super.triggerOnExhaust();
 
-        if (upgraded)
-        {
-            GameActionsHelper.GainEnergy(2);
-        }
-        else
-        {
-            GameActionsHelper.GainEnergy(1);
-        }
+        GameActionsHelper.GainEnergy(GetEnergyGain());
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (upgraded)
-        {
-            GameActionsHelper.GainEnergy(2);
-        }
-        else
-        {
-            GameActionsHelper.GainEnergy(1);
-        }
+        int energy = GetEnergyGain();
+        int stacks = GetSelfDamage();
 
-        PlayerStatistics.onEndOfTurn.Subscribe(this);
+        GameActionsHelper.GainEnergy(energy);
+        GameActionsHelper.ApplyPowerSilently(p, p, new DemiurgePower(p, stacks), stacks);
     }
 
     @Override
@@ -61,20 +51,13 @@ public class Demiurge extends AnimatorCard implements OnEndOfTurnSubscriber
         TryUpgrade();
     }
 
-    @Override
-    public void OnEndOfTurn(boolean isPlayer)
+    private int GetEnergyGain()
     {
-        AbstractPlayer p = AbstractDungeon.player;
+        return upgraded ? 2 : 1;
+    }
 
-        AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this.makeStatEquivalentCopy()));
-        if (upgraded)
-        {
-            GameActionsHelper.DamageTarget(p, p, this.secondaryValue, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        }
-        else
-        {
-            GameActionsHelper.DamageTarget(p, p, this.magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        }
-        PlayerStatistics.onEndOfTurn.Unsubscribe(this);
+    private int GetSelfDamage()
+    {
+        return upgraded ? secondaryValue : magicNumber;
     }
 }

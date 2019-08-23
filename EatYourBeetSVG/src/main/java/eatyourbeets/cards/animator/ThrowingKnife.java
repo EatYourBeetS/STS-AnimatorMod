@@ -17,6 +17,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.powers.PlayerStatistics;
+import patches.AbstractEnums;
 
 public abstract class ThrowingKnife extends AnimatorCard implements Hidden
 {
@@ -27,6 +28,8 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
     public ThrowingKnife(String id)
     {
         super(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
+
+        this.tags.add(AbstractEnums.CardTags.PURGE);
     }
 
     public static AbstractCard GetRandomCard()
@@ -91,8 +94,6 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
             }
             GameActionsHelper.ResetOrder();
         }
-
-        GameActionsHelper.PurgeCard(this);
     }
 
     @Override

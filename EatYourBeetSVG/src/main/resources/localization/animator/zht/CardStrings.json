@@ -1040,6 +1040,11 @@
 		"DESCRIPTION": "獲得 !M! 層 [#EFC851]再生[] 。 移除你身上的所有負面效果 。 NL 消耗 。",
 		"NAME": "劍之聖女"
 	},
+	"animator:TakanashiRikka":
+	{
+		"DESCRIPTION": "Create a 0-Cost copy of every [#EFC851]Attack in your hand, they deal !M! damage and Purge on use. Exhaust.",
+		"NAME": "Rikka Takanashi"
+	},
 	"animator:TanyaDegurechaff":
 	{
 		"DESCRIPTION": "造成 !D! 傷害。 NL 丟棄所有 [#EFC851]技能[] 並且為每一個技能獲得 !M! 格擋。 遺贈: 獲得 [#EFC851]95號兵器[] 。",

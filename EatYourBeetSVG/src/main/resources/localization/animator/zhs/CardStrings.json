@@ -1044,6 +1044,11 @@
 		"DESCRIPTION": "获得 !M! 暂时性生命 。 NL 移除你身上的所有负面效果。 NL 消耗 。",
 		"NAME": "剑之圣女"
 	},
+	"animator:TakanashiRikka":
+	{
+		"DESCRIPTION": "Create a 0-Cost copy of every [#EFC851]Attack in your hand, they deal !M! damage and Purge on use. Exhaust.",
+		"NAME": "Rikka Takanashi"
+	},
 	"animator:TanyaDegurechaff":
 	{
 		"DESCRIPTION": "造成 !D! 伤害。 NL 丢弃所有 [#EFC851]技能牌[] 。每丢弃一张获得 !M! 点 格挡 。 遗赠: 获得一张 [#EFC851]九五式演算宝珠[] 。",

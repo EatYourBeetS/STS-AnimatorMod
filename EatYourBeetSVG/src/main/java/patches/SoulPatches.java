@@ -23,11 +23,11 @@ public class SoulPatches
                     soul.isReadyForReuse = true;
                     AbstractDungeon.player.discardPile.moveToDeck(card, true);
                 }
-                else if (card.tags.contains(AbstractEnums.CardTags.PURGE))
+                else if (card.tags.contains(AbstractEnums.CardTags.PURGING))
                 {
                     soul.isReadyForReuse = true;
                     AbstractDungeon.player.discardPile.removeCard(card);
-                    card.tags.remove(AbstractEnums.CardTags.PURGE);
+                    card.tags.remove(AbstractEnums.CardTags.PURGING);
                 }
             }
         }

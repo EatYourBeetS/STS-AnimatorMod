@@ -30,6 +30,12 @@
 		"FLAVOR": "100% Céréales complètes! Approuvé par Konayuki.",
 		"NAME": "Boîte à céréales"
 	},
+	"animator:ColorlessFragment":
+	{
+		"DESCRIPTIONS": ["Replaces #yThe #yMissing #yPiece. Every #b", " combats, receive improved card rewards. Chance to contain colorless cards."],
+		"FLAVOR": "The colors are slowly fading away...",
+		"NAME": "Colorless Fragment"
+	},
 	"animator:CursedBlade":
 	{
 		"DESCRIPTIONS": ["Quand vous infligé des dégat(s) non bloqué, #ySoigne #b2 PV. NL #rPerdez de manière permanente la #rMoitié de vos PV Max. Les Effets qui augmente PV Max sont réduit de moitié.", "Quand vous infligé des dégat(s) non bloqué, #ySoignez #b2 PV. NL Si vos PV sont au Max, gagnez #b3 PV Temporaire à la fin de votre tour. NL #rPerdez de manière permanente la #rMoitié de vos PV Max. Les Effets qui augmente PV Max sont réduit de moitié."],

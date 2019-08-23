@@ -1040,6 +1040,11 @@
 		"DESCRIPTION": "Gain !M! Temp._HP. NL Remove ALL of your Debuffs. Exhaust.",
 		"NAME": "'Sword Maiden'"
 	},
+	"animator:TakanashiRikka":
+	{
+		"DESCRIPTION": "Create a 0-Cost copy of every [#EFC851]Attack in your hand, they deal !M! damage and Purge on use. Exhaust.",
+		"NAME": "Rikka Takanashi"
+	},
 	"animator:TanyaDegurechaff":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Discard ALL [#EFC851]Skills and gain !M! Block for each of them. Legacy: Obtain [#EFC851]Type [#EFC851]95.",
@@ -1129,21 +1134,7 @@
 	"animator:Vesta_Elixir":
 	{
 		"DESCRIPTION": "",
-		"EXTENDED_DESCRIPTION": 
-		[
-			"Takes 1 less turn NL to complete.",
-			"Draw {0} Cards.",
-			"Gain {0} Focus.",
-			"Gain {0} Strength.",
-			"Gain {0} Dexterity.",
-			"Gain {0} Orb slots.",
-			"Gain {0} Temp._HP.",
-			"Gain {0} Metallicize.",
-			"Gain {0} Energy.",
-			"Exhaust {0} Cards:",
-			"Discard {0} Cards:",
-			"Purge."
-		],
+		"EXTENDED_DESCRIPTION": ["Takes 1 less turn NL to complete.", "Draw {0} Cards.", "Gain {0} Focus.", "Gain {0} Strength.", "Gain {0} Dexterity.", "Gain {0} Orb slots.", "Gain {0} Temp._HP.", "Gain {0} Metallicize.", "Gain {0} Energy.", "Exhaust {0} Cards:", "Discard {0} Cards:", "Purge."],
 		"NAME": "Elixir"
 	},
 	"animator:Viivi":

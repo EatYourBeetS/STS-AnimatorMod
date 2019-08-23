@@ -1045,6 +1045,11 @@
 		"DESCRIPTION": "Gagnez !M! Temp._PV. NL Enlève TOUS vos Debuff. Épuisement.",
 		"NAME": "'Sword Maiden'"
 	},
+	"animator:TakanashiRikka":
+	{
+		"DESCRIPTION": "Create a 0-Cost copy of every [#EFC851]Attack in your hand, they deal !M! damage and Purge on use. Exhaust.",
+		"NAME": "Rikka Takanashi"
+	},
 	"animator:TanyaDegurechaff":
 	{
 		"DESCRIPTION": "Infligez !D! dégât(s). NL Défaussez TOUTES les [#EFC851]Compétences and gagnez !M! d'Armure pour chacune d'elles. Héritage: Obtenez [#EFC851]Type [#EFC851]95.",
@@ -1181,7 +1186,7 @@
 	},
 	"animator:YunYun":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s) à TOUS les ennemis. Coûte 1 de moins pour chaque [#EFC851]Attaque dans votre main.",
+		"DESCRIPTION": "Infligez !D! dégât(s) à TOUS les ennemis. Coûte 1 en plus pour chaque [#EFC851]Attaque dans votre main.",
 		"NAME": "YunYun"
 	},
 	"animator:Yusarin":

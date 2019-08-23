@@ -124,6 +124,7 @@ public class Resources_Animator extends AbstractResources
         BaseMod.addRelicToCustomPool(new HallowedScabbard(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new EngravedStaff(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new CerealBox(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new ColorlessFragment(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new Hoodie(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new ShionDessert(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new TheEgnaroPiece(), AbstractEnums.Cards.THE_ANIMATOR);

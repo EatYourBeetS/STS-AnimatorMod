@@ -9,6 +9,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
 
         Initialize(0, 0);
 
-        this.purgeOnUse = true;
+        this.tags.add(AbstractEnums.CardTags.PURGE);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -44,8 +45,6 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
             this.energyOnUse = EnergyPanel.totalCount;
         }
 
-        this.purgeOnUse = true;
-
         int amount = energyOnUse;
         if (upgraded)
         {
@@ -55,7 +54,6 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
         if (!this.freeToPlayOnce)
         {
             p.energy.use(EnergyPanel.totalCount);
-
         }
 
         if (amount > 0)

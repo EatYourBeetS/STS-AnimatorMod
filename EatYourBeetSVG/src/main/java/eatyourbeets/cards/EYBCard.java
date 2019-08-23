@@ -7,10 +7,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.Utilities;
 import org.apache.commons.lang3.StringUtils;
 
@@ -295,7 +297,7 @@ public abstract class EYBCard extends CustomCard
                 this.angle, 0, 0, 512, 512, false, false);
     }
 
-// TODO: Implement this
+    // TODO: Implement this
 //
 //    private boolean lastHovered = false;
 //    private boolean hoveredInHand = false;

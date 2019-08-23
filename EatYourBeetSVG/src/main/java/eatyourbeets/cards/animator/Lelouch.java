@@ -13,6 +13,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.GeassPower;
 import eatyourbeets.powers.PlayerStatistics;
+import patches.AbstractEnums;
 
 public class Lelouch extends AnimatorCard
 {
@@ -27,6 +28,8 @@ public class Lelouch extends AnimatorCard
         AddExtendedDescription();
 
         SetSynergy(Synergies.CodeGeass);
+
+        this.tags.add(AbstractEnums.CardTags.PURGE);
     }
 
     @Override
@@ -48,8 +51,6 @@ public class Lelouch extends AnimatorCard
                 GameActionsHelper.ApplyPower(p, m1, new GeassPower(m1), 1);
             }
         }
-
-        GameActionsHelper.PurgeCard(this);
     }
 
     @Override

@@ -30,6 +30,12 @@
 		"FLAVOR": "保证后备补给！由 冻空粉雪 提供。",
 		"NAME": "谷物箱"
 	},
+	"animator:ColorlessFragment":
+	{
+		"DESCRIPTIONS": ["Replaces #yThe #yMissing #yPiece. Every #b", " combats, receive improved card rewards. Chance to contain colorless cards."],
+		"FLAVOR": "The colors are slowly fading away...",
+		"NAME": "Colorless Fragment"
+	},
 	"animator:CursedBlade":
 	{
 		"DESCRIPTIONS": ["每造成一次未被格挡的攻击伤害时，回复 #b2 生命。失去 #b50％ 的生命上限。所有增加生命上限的效果减少50%", "每造成一次未被格挡的攻击伤害时，回复 #b2 生命。在你生命值为满时，每回合结束时获得 #b3 暂时性生命。失去 #b50％ 的生命上限。所有增加生命上限的效果减少50%。"],

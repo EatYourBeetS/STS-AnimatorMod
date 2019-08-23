@@ -24,9 +24,21 @@ public class SynergyCardsReward extends AnimatorReward
     public final Synergy synergy;
     private boolean skip = false;
 
+    private static String GenerateRewardTitle(Synergy synergy)
+    {
+        if (synergy.ID == Synergies.ANY.ID)
+        {
+            return "#yColorless";
+        }
+        else
+        {
+            return "#y" + synergy.NAME.replace(" ", " #y");
+        }
+    }
+
     public SynergyCardsReward(Synergy synergy)
     {
-        super(ID,"#y" + synergy.NAME.replace(" ", " #y"), AbstractEnums.Rewards.SYNERGY_CARDS);
+        super(ID, GenerateRewardTitle(synergy), AbstractEnums.Rewards.SYNERGY_CARDS);
 
         this.synergy = synergy;
         this.cards = CustomAbstractDungeon.getRewardCards(synergy);

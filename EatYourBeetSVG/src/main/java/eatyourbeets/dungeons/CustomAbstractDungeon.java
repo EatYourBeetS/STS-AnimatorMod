@@ -77,59 +77,70 @@ public class CustomAbstractDungeon extends AbstractDungeon
             --numCards;
         }
 
-        ArrayList<AbstractCard> animatorCards = new ArrayList<>();
-        AbstractDungeon.player.getCardPool(animatorCards);
+        ArrayList<AnimatorCard> animatorCards;
+
+        if (synergy.equals(Synergies.ANY))
+        {
+            animatorCards = Synergies.GetColorlessCards();
+        }
+        else
+        {
+            animatorCards = Synergies.GetCardsWithSynergy(synergy);
+        }
 
         ArrayList<AnimatorCard> common = new ArrayList<>();
         ArrayList<AnimatorCard> uncommon = new ArrayList<>();
         ArrayList<AnimatorCard> rare = new ArrayList<>();
-        for (AbstractCard card : animatorCards)
+        for (AnimatorCard card : animatorCards)
         {
-            AnimatorCard ac = Utilities.SafeCast(card, AnimatorCard.class);
-            if (ac != null && ac.HasExactSynergy(synergy))
-            {
-                switch (ac.rarity)
-                {
-                    case COMMON:
-                        common.add(ac);
-                        break;
-
-                    case UNCOMMON:
-                        uncommon.add(ac);
-                        break;
-
-                    case RARE:
-                        rare.add(ac);
-                        break;
-                }
-            }
-        }
-
-        AbstractCard c;
-        for(int i = 0; i < numCards; ++i)
-        {
-            int roll = cardRng.random(99);
-            roll += cardBlizzRandomizer;
-
-            AbstractCard.CardRarity rarity = rollRarityRoom.getCardRarity(roll);
-            c = null;
-            switch(rarity)
+            switch (card.rarity)
             {
                 case COMMON:
-                    cardBlizzRandomizer -= cardBlizzGrowth;
-                    if (cardBlizzRandomizer <= cardBlizzMaxOffset)
-                    {
-                        cardBlizzRandomizer = cardBlizzMaxOffset;
-                    }
+                    common.add(card);
+                    break;
+
                 case UNCOMMON:
+                    uncommon.add(card);
                     break;
 
                 case RARE:
-                    cardBlizzRandomizer = cardBlizzStartOffset;
+                    rare.add(card);
                     break;
+            }
+        }
 
-                default:
-                    logger.info("I don't know");
+        for(int i = 0; i < numCards; ++i)
+        {
+            AbstractCard.CardRarity rarity;
+
+            if (synergy.equals(Synergies.ANY))
+            {
+                rarity = cardRng.randomBoolean(0.16f) ? AbstractCard.CardRarity.RARE : AbstractCard.CardRarity.UNCOMMON;
+            }
+            else
+            {
+                int roll = cardRng.random(99);
+                roll += cardBlizzRandomizer;
+                rarity = rollRarityRoom.getCardRarity(roll);
+
+                switch(rarity)
+                {
+                    case COMMON:
+                        cardBlizzRandomizer -= cardBlizzGrowth;
+                        if (cardBlizzRandomizer <= cardBlizzMaxOffset)
+                        {
+                            cardBlizzRandomizer = cardBlizzMaxOffset;
+                        }
+                    case UNCOMMON:
+                        break;
+
+                    case RARE:
+                        cardBlizzRandomizer = cardBlizzStartOffset;
+                        break;
+
+                    default:
+                        logger.info("I don't know");
+                }
             }
 
             if (rarity == AbstractCard.CardRarity.COMMON && common.size() == 0)
@@ -166,6 +177,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
                 }
             }
 
+            AbstractCard c = null;
             switch (rarity)
             {
                 case COMMON:
@@ -308,6 +320,10 @@ public class CustomAbstractDungeon extends AbstractDungeon
         else if (synergy == Synergies.OnePunchMan)
         {
             card = new SeriousSaitama();
+        }
+        else if (synergy == Synergies.ANY)
+        {
+            card = new Cthulhu();
         }
 
         if (card != null && cards.size() > 0)

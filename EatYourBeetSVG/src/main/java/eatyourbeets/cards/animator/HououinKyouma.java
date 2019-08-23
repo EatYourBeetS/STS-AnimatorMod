@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import patches.AbstractEnums;
 
 public class HououinKyouma extends AnimatorCard
 {
@@ -20,7 +21,7 @@ public class HououinKyouma extends AnimatorCard
 
         Initialize(0, 0);
 
-        this.purgeOnUse = true;
+        this.tags.add(AbstractEnums.CardTags.PURGE);
 
         AddExtendedDescription();
 

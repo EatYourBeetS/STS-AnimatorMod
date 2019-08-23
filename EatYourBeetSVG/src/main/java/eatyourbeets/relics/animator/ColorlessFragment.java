@@ -1,0 +1,94 @@
+package eatyourbeets.relics.animator;
+
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+
+import java.util.ArrayList;
+
+public class ColorlessFragment extends AbstractMissingPiece
+{
+    public static final String ID = CreateFullID(ColorlessFragment.class.getSimpleName());
+    public static final int COLORLESS_WEIGHT = 12;
+    public static final int REWARD_INTERVAL = 3;
+
+    public ColorlessFragment()
+    {
+        super(ID, RelicTier.SHOP, LandingSound.FLAT);
+    }
+
+    @Override
+    public boolean canSpawn()
+    {
+        return super.canSpawn() && AbstractDungeon.floorNum <= 33 && AbstractDungeon.player.hasRelic(TheMissingPiece.ID);
+    }
+
+    @Override
+    public int getPrice()
+    {
+        return super.getPrice() + 90;
+    }
+
+    @Override
+    protected int GetRewardInterval()
+    {
+        return REWARD_INTERVAL;
+    }
+
+    private boolean whyAreThere300ObtainMethods = false;
+
+    @Override
+    public void obtain()
+    {
+        ArrayList<AbstractRelic> relics = AbstractDungeon.player.relics;
+        for (int i = 0; i < relics.size(); i++)
+        {
+            if (relics.get(i).relicId.equals(TheMissingPiece.ID))
+            {
+                whyAreThere300ObtainMethods = true;
+                instantObtain(AbstractDungeon.player, i, true);
+                return;
+            }
+        }
+
+        super.obtain();
+    }
+
+    @Override
+    public void instantObtain()
+    {
+        ArrayList<AbstractRelic> relics = AbstractDungeon.player.relics;
+        for (int i = 0; i < relics.size(); i++)
+        {
+            if (relics.get(i).relicId.equals(TheMissingPiece.ID))
+            {
+                whyAreThere300ObtainMethods = true;
+                instantObtain(AbstractDungeon.player, i, true);
+                return;
+            }
+        }
+
+        super.instantObtain();
+    }
+
+    @Override
+    public void instantObtain(AbstractPlayer p, int slot, boolean callOnEquip)
+    {
+        if (!whyAreThere300ObtainMethods)
+        {
+            ArrayList<AbstractRelic> relics = AbstractDungeon.player.relics;
+            for (int i = 0; i < relics.size(); i++)
+            {
+                if (relics.get(i).relicId.equals(TheMissingPiece.ID))
+                {
+                    whyAreThere300ObtainMethods = true;
+                    instantObtain(AbstractDungeon.player, i, true);
+                    return;
+                }
+            }
+        }
+
+        super.instantObtain(p, slot, callOnEquip);
+    }
+}

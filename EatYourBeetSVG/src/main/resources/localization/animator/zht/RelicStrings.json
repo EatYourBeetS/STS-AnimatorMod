@@ -30,6 +30,12 @@
 		"FLAVOR": "保證後備補給! 由 凍空粉雪 提供.",
 		"NAME": "穀物箱"
 	},
+	"animator:ColorlessFragment":
+	{
+		"DESCRIPTIONS": ["Replaces #yThe #yMissing #yPiece. Every #b", " combats, receive improved card rewards. Chance to contain colorless cards."],
+		"FLAVOR": "The colors are slowly fading away...",
+		"NAME": "Colorless Fragment"
+	},
 	"animator:CursedBlade":
 	{
 		"DESCRIPTIONS": ["每當一次攻擊 並造成傷害時, 恢復 #b2 點 生命 . 失去 #b50％ 的最大生命。所有增加生命上限的效果減少50%.", "每當一次攻擊 並造成傷害時, 恢復 #b2 點 生命 . 在你生命值為滿時，每回合結束時獲得 #b3 點 臨時生命. 失去 #b50％ 的最大生命. 所有增加生命上限的效果減少50%。"],

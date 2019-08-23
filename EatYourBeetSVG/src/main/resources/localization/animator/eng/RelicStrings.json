@@ -30,6 +30,12 @@
 		"FLAVOR": "Whole Grain Guaranteed! Approved by Konayuki.",
 		"NAME": "Cereal Box"
 	},
+	"animator:ColorlessFragment":
+	{
+		"DESCRIPTIONS": ["Replaces #yThe #yMissing #yPiece. Every #b", " combats, receive improved card rewards. Chance to contain colorless cards."],
+		"FLAVOR": "The colors are slowly fading away...",
+		"NAME": "Colorless Fragment"
+	},
 	"animator:CursedBlade":
 	{
 		"DESCRIPTIONS": ["Whenever you deal unblocked damage, #yHeal #b2 HP. NL Permanently #rLose #rHalf of your Max HP. Effects that increase your Max HP are reduced by half.", "Whenever you deal unblocked damage, #yHeal #b2 HP. NL If your HP is full, gain #b3 Temporary HP at the end of your turn. NL Permanently #rLose #rHalf of your Max HP. Effects that increase your Max HP are reduced by half."],
@@ -80,7 +86,7 @@
 	},
 	"animator:InfinitePower":
 	{
-		"DESCRIPTIONS": ["Upon pickup, gain #b"," #yGold and #rlose #r", " #rMax #rHP. For every #b", " cards in your deck, obtain an #pUnnamed card reward."],
+		"DESCRIPTIONS": ["Upon pickup, gain #b", " #yGold and #rlose #r", " #rMax #rHP. For every #b", " cards in your deck, obtain an #pUnnamed card reward."],
 		"FLAVOR": "Infinite Power! At a price...",
 		"NAME": "InfinitePower"
 	},

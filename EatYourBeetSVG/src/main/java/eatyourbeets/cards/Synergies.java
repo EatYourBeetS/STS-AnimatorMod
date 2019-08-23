@@ -72,6 +72,20 @@ public class Synergies
         return All.size() - 1;
     }
 
+    public static ArrayList<AnimatorCard> GetColorlessCards()
+    {
+        ArrayList<AnimatorCard> result = new ArrayList<>();
+        for (AbstractCard c : AbstractDungeon.srcColorlessCardPool.group)
+        {
+            if (c instanceof AnimatorCard)
+            {
+                result.add((AnimatorCard)c);
+            }
+        }
+
+        return result;
+    }
+
     public static ArrayList<AnimatorCard> GetAnimatorCards()
     {
         ArrayList<AnimatorCard> result = new ArrayList<>();
@@ -109,7 +123,7 @@ public class Synergies
         for (AbstractCard c : source)
         {
             AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
-            if (card != null && synergy.Equals(card.GetSynergy()))
+            if (card != null && (synergy.Equals(card.GetSynergy()) || synergy.Equals(Synergies.ANY)))
             {
                 destination.add(card);
             }

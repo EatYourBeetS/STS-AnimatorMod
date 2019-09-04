@@ -11,7 +11,7 @@ public class VestaElixirEffect_Dexterity extends VestaElixirEffect
 {
     public VestaElixirEffect_Dexterity(int index)
     {
-        super(index, 1);
+        super(index, 2);
     }
 
     @Override

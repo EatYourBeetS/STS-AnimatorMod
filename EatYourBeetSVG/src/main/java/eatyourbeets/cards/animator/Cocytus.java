@@ -1,9 +1,12 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -21,7 +24,7 @@ public class Cocytus extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,0,6);
+        Initialize(7,0,1);
 
         AddExtendedDescription();
 
@@ -36,7 +39,7 @@ public class Cocytus extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            AbstractDungeon.actionManager.addToBottom(new ModifyDamageAction(this.uuid, this.magicNumber));
+            GameActionsHelper.Callback(new WaitAction(0.1f), this::ImproveAttacks, this);
         }
     }
 
@@ -45,8 +48,24 @@ public class Cocytus extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(3);
-            upgradeMagicNumber(2);
+            upgradeDamage(2);
+            upgradeMagicNumber(1);
+        }
+    }
+
+    private void ImproveAttacks(Object state, AbstractGameAction action)
+    {
+        for (AbstractCard c : AbstractDungeon.player.hand.group)
+        {
+            if (c.type == CardType.ATTACK)
+            {
+                GameActionsHelper.AddToBottom(new ModifyDamageAction(c.uuid, this.magicNumber));
+
+                if (c != this)
+                {
+                    c.flash();
+                }
+            }
         }
     }
 }

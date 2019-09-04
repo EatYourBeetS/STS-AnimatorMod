@@ -111,4 +111,23 @@ public class Aqua extends AnimatorCard
             this.isDone = true;
         }
     }
+
+    private static Aqua preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null || (preview.upgraded != this.upgraded))
+        {
+            preview = new Aqua();
+            preview.SetSecondForm();
+
+            if (upgraded)
+            {
+                preview.upgrade();
+            }
+        }
+
+        return preview;
+    }
 }

@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -51,5 +52,22 @@ public class ElricAlphonse extends AnimatorCard
         {
             upgradeBlock(2);
         }
+    }
+
+    private static AbstractCard preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null || (preview.upgraded != this.upgraded))
+        {
+            preview = new ElricAlphonseAlt();
+            if (upgraded)
+            {
+                preview.upgrade();
+            }
+        }
+
+        return preview;
     }
 }

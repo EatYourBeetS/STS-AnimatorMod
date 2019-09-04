@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -41,5 +42,22 @@ public class Shichika extends AnimatorCard
         {
             upgradeSecondaryValue(1);
         }
+    }
+
+    private static AbstractCard preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null || (preview.upgraded != this.upgraded))
+        {
+            preview = new ShichikaKyotouryuu();
+            if (upgraded)
+            {
+                preview.upgrade();
+            }
+        }
+
+        return preview;
     }
 }

@@ -321,10 +321,10 @@ public class CustomAbstractDungeon extends AbstractDungeon
         {
             card = new SeriousSaitama();
         }
-        else if (synergy == Synergies.ANY)
-        {
-            card = new Cthulhu();
-        }
+//        else if (synergy == Synergies.ANY)
+//        {
+//            card = new InfinitePower();
+//        }
 
         if (card != null && cards.size() > 0)
         {

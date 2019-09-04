@@ -27,7 +27,7 @@ public class SingleCardViewPopupPatches
     private static Method renderDynamicFrameMethod;
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderTitle")
-    public static class CardHeaderSingleView
+    public static class SingleCardViewPopup_RenderTitle
     {
         @SpireInsertPatch(rloc = 0, localvars = {"card"})
         public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard card)
@@ -67,6 +67,7 @@ public class SingleCardViewPopupPatches
                     fontData.setScale(originalScale);
                 }
 
+                c.RenderPopupPreview(sb);
             }
         }
     }

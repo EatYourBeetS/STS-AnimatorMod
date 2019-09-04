@@ -157,7 +157,7 @@
 	},
 	"animator:Cocytus":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 [#EFC851]吸收裝甲[] 。 同調 : 額外造成 !M! 點 傷害 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 [#EFC851]吸收裝甲[] 。 同調 : All [#EFC851]Attacks in your hand gain !M! damage this combat.",
 		"EXTENDED_DESCRIPTION": ["吸收裝甲", "獲得敵人損失的格擋 。"],
 		"NAME": "科賽特斯"
 	},
@@ -380,7 +380,7 @@
 	},
 	"animator:Evileye":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 NL 抽一張牌 。 NL 重新裝填 : 使用你最右側的1個充能球的被動能力 。",
+		"DESCRIPTION": "施法者。 造成 !D! 點傷害 。 NL 抽一張牌 。 NL 重新裝填 : 使用你最右側的1個充能球的被動能力 。",
 		"NAME": "邪眼"
 	},
 	"animator:Excalibur":
@@ -390,10 +390,8 @@
 	},
 	"animator:FeridBathory":
 	{
-		"DESCRIPTION": "每回合可觸發一旦 ， 消耗 一張牌時 獲得 1 點 力量 ， 回復 2 點 生命 [#EFC851]*[] 。",
-		"EXTENDED_DESCRIPTION": ["*備註", "當你的生命為滿時，你會得到 #b2 點臨時生命。"],
-		"NAME": "費里德·巴特利",
-		"UPGRADE_DESCRIPTION": "每回合可觸發兩次 ， 消耗 一張牌時 獲得 1 點 力量 ， 回復 2 點 生命 。"
+		"DESCRIPTION": "Whenever a card is Exhausted, a random enemy loses !M! HP and you gain !M! Temp._HP.",
+		"NAME": "費里德·巴特利"
 	},
 	"animator:Fredrika":
 	{
@@ -764,7 +762,7 @@
 	},
 	"animator:PandorasActor":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 變形者 。 NL 同調 : 額外獲得 !M! 點 格擋 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 變形者 。 NL Startup : 打這張牌 。",
 		"NAME": "潘多拉·亞克特"
 	},
 	"animator:PinaCoLada":
@@ -801,6 +799,11 @@
 		"DESCRIPTION": "獲得 1 層 殘影 ，獲得 !B! 點 格擋 。 撤回 與 同調 ： 下一輪，獲得 !B! 點 格擋 。",
 		"NAME": "蕾娜‧艾蘭黛"
 	},
+	"animator:Respite":
+	{
+		"DESCRIPTION": "Retain. NL Gain !M! Temp._HP. NL Delay certain doom by 1 turn. Purge.",
+		"NAME": "Respite"
+	},
 	"animator:Rimuru":
 	{
 		"DESCRIPTION": "當你打出一張牌時，變成打出的那張牌 。",
@@ -835,21 +838,13 @@
 	"animator:Saitama":
 	{
 		"DESCRIPTION": "每當玩這張牌時 ， 將其成本增加 1 並改變形式 。",
-		"EXTENDED_DESCRIPTION": 
-		[
-			"抽 !M! 張牌 。 NL 獲得 !SV! 層 臨時 敏捷 。",
-			"阻止下一次你受到的生命值損傷。",
-			"獲得 !B! 點 格擋 。獲得 !M! 點 力量 。",
-			"造成 !D! 點 傷害 !M! 次 。",
-			"從敵人那裡刪除 無實體 。 NL 造成 !D! 點 穿刺 傷害 。 給予 眩暈 。"
-		],
+		"EXTENDED_DESCRIPTION": ["抽 !M! 張牌 。 NL 獲得 !SV! 層 臨時 敏捷 。", "阻止下一次你受到的生命值損傷。", "獲得 !B! 點 格擋 。獲得 !M! 點 力量 。", "造成 !D! 點 傷害 !M! 次 。", "從敵人那裡刪除 無實體 。 NL 造成 !D! 點 穿刺 傷害 。 給予 眩暈 。"],
 		"NAME": "埼玉",
 		"UPGRADE_DESCRIPTION": "固有 。 每當玩這張牌時 ， 將其成本增加 1 並改變形式 。"
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "虛無 。 造成 !D! 點 穿刺 傷害 。 NL [#EFC851]龍之吐息[] 。",
-		"EXTENDED_DESCRIPTION": ["龍之吐息", "如果這張牌殺死非爪牙的敵人， 抹除這張牌並在牌庫永久升級1張隨機牌。"],
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 。 When an Orb is Evoked, draw this card and reduce its cost by 1 this turn.",
 		"NAME": "斯卡"
 	},
 	"animator:Sebas":
@@ -1047,12 +1042,12 @@
 	},
 	"animator:TanyaDegurechaff":
 	{
-		"DESCRIPTION": "造成 !D! 傷害。 NL 丟棄所有 [#EFC851]技能[] 並且為每一個技能獲得 !M! 格擋。 遺贈: 獲得 [#EFC851]95號兵器[] 。",
+		"DESCRIPTION": "造成 !D! 傷害。 NL 丟棄所有 [#EFC851]技能[] 並且為每一個技能獲得 !M! 格擋。 Upon pickup, add [#EFC851]95號兵器[] to your deck.",
 		"NAME": "譚雅·提古雷查夫"
 	},
 	"animator:TanyaDegurechaff_Type95":
 	{
-		"DESCRIPTION": "循環2張牌。 保留 所有 [#EFC851]攻擊[] 。 下一輪，你的所有 [#EFC851]攻擊[] 將會造成雙倍傷害。 消耗。",
+		"DESCRIPTION": "產生 1 等離子 充能球 。 NL Reset this card's cost. [#EFC851]Drawn and Recall: Decrease this card's cost by 1.",
 		"NAME": "95號兵器"
 	},
 	"animator:Tatsumaki":
@@ -1134,21 +1129,7 @@
 	"animator:Vesta_Elixir":
 	{
 		"DESCRIPTION": "",
-		"EXTENDED_DESCRIPTION": 
-		[
-			"完成時間減少 1 輪",
-			"抽 {0} 張牌。",
-			"獲得 {0} 層 集中 。",
-			"獲得 {0} 層 力量 。",
-			"獲得 {0} 層 敏捷 。",
-			"獲得 {0} 充能球欄位 。",
-			"獲得 {0} 暫時性生命 。",
-			"獲得 {0} 層 金屬化 。",
-			"獲得 {0} 能量 。",
-			"消耗 {0} 張牌 :",
-			"丟棄 {0} 張牌 :",
-			"抹除."
-		],
+		"EXTENDED_DESCRIPTION": ["完成時間減少 1 輪", "抽 {0} 張牌。", "獲得 {0} 層 集中 。", "獲得 {0} 層 力量 。", "獲得 {0} 層 敏捷 。", "獲得 {0} 充能球欄位 。", "獲得 {0} 暫時性生命 。", "獲得 {0} 層 金屬化 。", "獲得 {0} 能量 。", "消耗 {0} 張牌 :", "丟棄 {0} 張牌 :", "抹除."],
 		"NAME": "該部"
 	},
 	"animator:Viivi":

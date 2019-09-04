@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.actions.common.VariableDiscardAction;
@@ -29,13 +30,19 @@ public class Evileye extends AnimatorCard
     }
 
     @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetFocus(player));
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         CardCrawlGame.sound.play("ORB_FROST_CHANNEL", 0.2F);
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         CardCrawlGame.sound.play("ORB_FROST_Evoke", 0.2F);
 
-        GameActionsHelper.DrawCard(p, 1);
+        //GameActionsHelper.DrawCard(p, 1);
         GameActionsHelper.AddToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
     }
 

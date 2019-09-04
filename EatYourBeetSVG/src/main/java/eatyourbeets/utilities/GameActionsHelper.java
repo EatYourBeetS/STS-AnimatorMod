@@ -21,6 +21,7 @@ import eatyourbeets.actions.common.*;
 import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -105,6 +106,13 @@ public class GameActionsHelper
     public static VFXAction VFX(AbstractGameEffect effect, float duration)
     {
         VFXAction action = new VFXAction(effect, duration);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static PurgeAnywhereAction PurgeCard(UUID uuid)
+    {
+        PurgeAnywhereAction action = new PurgeAnywhereAction(uuid);
         AddToDefault(action);
         return action;
     }

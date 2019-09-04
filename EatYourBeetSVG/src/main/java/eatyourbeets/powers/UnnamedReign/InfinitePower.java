@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
@@ -142,7 +143,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
             {
                 if (owner.isPlayer != source.isPlayer && power.type == PowerType.BUFF)
                 {
-                    GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, stacks), stacks);
+                    GameActionsHelper.ApplyPowerSilently(owner, owner, new GainStrengthPower(owner, stacks), stacks);
                 }
             }
         }

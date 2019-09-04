@@ -17,7 +17,7 @@ public class LeleiLaLalena extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0,0, 1, 4);
+        Initialize(0,0, 1);
 
         SetSynergy(Synergies.Gate);
     }
@@ -54,7 +54,7 @@ public class LeleiLaLalena extends AnimatorCard
         {
             for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
             {
-                GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, this.secondaryValue, false), this.secondaryValue);
+                GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, 1, false), 1);
             }
         }
     }
@@ -62,9 +62,6 @@ public class LeleiLaLalena extends AnimatorCard
     @Override
     public void upgrade() 
     {
-        if (TryUpgrade())
-        {
-            upgradeSecondaryValue(-2);
-        }
+        TryUpgrade();
     }
 }

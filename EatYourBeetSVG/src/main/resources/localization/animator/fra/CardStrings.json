@@ -157,7 +157,7 @@
 	},
 	"animator:Cocytus":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL [#EFC851]Absorbez [#EFC851]Armure. NL Synergie: Augmentez les dommages de cette carte de !M! pour ce combat.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL [#EFC851]Absorbez [#EFC851]Armure. NL Synergie: All [#EFC851]Attacks in your hand gain !M! damage this combat.",
 		"EXTENDED_DESCRIPTION": ["Absorbez Armure", "Gagnez autant d'Armure que votre ennemi durant cette attaque."],
 		"NAME": "Cocytus"
 	},
@@ -381,7 +381,7 @@
 	},
 	"animator:Evileye":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Piochez 1 carte. NL Rechargement: Active la capacité passive de votre prochaine orbe.",
+		"DESCRIPTION": "Jeteuse_de_Sorts. NL Infligez !D! dégât(s). NL Rechargement: Active la capacité passive de votre prochaine orbe.",
 		"NAME": "Evileye"
 	},
 	"animator:Excalibur":
@@ -391,10 +391,8 @@
 	},
 	"animator:FeridBathory":
 	{
-		"DESCRIPTION": "Une fois par tour, NL quand une carte est Épuisé, Gagnez 1 Force et Soignez 2 PV ([#EFC851]*[]).",
-		"EXTENDED_DESCRIPTION": ["*Note", "Si vos PV sont au Max, le soin est converti en Temp._PV."],
-		"NAME": "Ferid Bathory",
-		"UPGRADE_DESCRIPTION": "Deux fois par tour, NL quand une carte est Épuisé, Gagnez 1 Force et Soignez 2 PV ([#EFC851]*[])."
+		"DESCRIPTION": "Whenever a card is Exhausted, a random enemy loses !M! HP and you gain !M! Temp._HP.",
+		"NAME": "Ferid Bathory"
 	},
 	"animator:Fredrika":
 	{
@@ -768,7 +766,7 @@
 	},
 	"animator:PandorasActor":
 	{
-		"DESCRIPTION": "Changeforme. NL Gagnez !B! d'Armure. NL Synergie: NLGagnez !M! d'Armure additionnelle.",
+		"DESCRIPTION": "Changeforme. NL Gagnez !B! d'Armure. NL Startup: NL Jouez cette carte.",
 		"NAME": "Acteur de Pandora"
 	},
 	"animator:PinaCoLada":
@@ -805,6 +803,11 @@
 		"DESCRIPTION": "Gagnez !M! de Flou. NL Gagnez !B! d'Armure. NL Rappel et Synergie: Au prochain tour, gagnez !B! d'Armure",
 		"NAME": "Rena"
 	},
+	"animator:Respite":
+	{
+		"DESCRIPTION": "Retain. NL Gain !M! Temp._HP. NL Delay certain doom by 1 turn. Purge.",
+		"NAME": "Respite"
+	},
 	"animator:Rimuru":
 	{
 		"DESCRIPTION": "Devient la copie de la dernière carte joué.",
@@ -839,21 +842,13 @@
 	"animator:Saitama":
 	{
 		"DESCRIPTION": "À chaque fois que cette carte est jouée, augmentez son coût et changez son effet sur ce combat.",
-		"EXTENDED_DESCRIPTION": 
-		[
-			"Piochez !M! cartes. NL Gagnez !SV! de Dextérité Temporaire.",
-			"Empêche votre prochaine perte de PV.",
-			"Gagnez !M! de Force. NL Gagnez !B! d'Armure.",
-			"Infligez !D! dégât(s) !M! fois.",
-			"Supprimez Intangible. NL Infligez !D! NL dégats Perçant. Assommez l'ennemi."
-		],
+		"EXTENDED_DESCRIPTION": ["Piochez !M! cartes. NL Gagnez !SV! de Dextérité Temporaire.", "Empêche votre prochaine perte de PV.", "Gagnez !M! de Force. NL Gagnez !B! d'Armure.", "Infligez !D! dégât(s) !M! fois.", "Supprimez Intangible. NL Infligez !D! NL dégats Perçant. Assommez l'ennemi."],
 		"NAME": "Saitama",
 		"UPGRADE_DESCRIPTION": "Inné. À chaque fois que cette carte est jouée, augmentez son coût et changez son effet sur ce combat."
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "Éthérée. Infligez !D! dégât(s) Perçant. NL [#EFC851]Dragon's[] [#EFC851]Pulse[].",
-		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "Si cette carte tue un ennemi (non-minion), #ypurgez cette carte et #yaméliorez de manière permanente une carte aléatoire de votre deck"],
+		"DESCRIPTION": "Infligez !D! dégât(s) Perçant. When an Orb is Evoked, draw this card and reduce its cost by 1 this turn.",
 		"NAME": "Scar"
 	},
 	"animator:Sebas":
@@ -1052,12 +1047,12 @@
 	},
 	"animator:TanyaDegurechaff":
 	{
-		"DESCRIPTION": "Infligez !D! dégât(s). NL Défaussez TOUTES les [#EFC851]Compétences and gagnez !M! d'Armure pour chacune d'elles. Héritage: Obtenez [#EFC851]Type [#EFC851]95.",
+		"DESCRIPTION": "Infligez !D! dégât(s). NL Défaussez TOUTES les [#EFC851]Compétences and gagnez !M! d'Armure pour chacune. Upon pickup, add [#EFC851]Type [#EFC851]95 to your deck.",
 		"NAME": "Tanya Degurechaff"
 	},
 	"animator:TanyaDegurechaff_Type95":
 	{
-		"DESCRIPTION": "Recyclez 2 cartes. Conservez TOUTES les [#EFC851]Attaques. Au prochain tour, vos [#EFC851]Attaques will causeront le double des dégâts. Épuisement.",
+		"DESCRIPTION": "Canalisez 1 Orbe Plasmique. NL Reset this card's cost. [#EFC851]Drawn and Recall: Decrease this card's cost by 1.",
 		"NAME": "Type 95"
 	},
 	"animator:Tatsumaki":
@@ -1139,21 +1134,7 @@
 	"animator:Vesta_Elixir":
 	{
 		"DESCRIPTION": "",
-		"EXTENDED_DESCRIPTION": 
-		[
-			"Complétez ce 1 tour plus tôt.",
-			"Piochez {0} Cartes.",
-			"Gagnez {0} Concentration.",
-			"Gagnez {0} Force.",
-			"Gagnez {0} Dextérité.",
-			"Gagnez {0} Orb slots.",
-			"Gagnez {0} Temp._PV.",
-			"Gagnez {0} Métallisation.",
-			"Gagnez {0} Energie.",
-			"Épuisez {0} Cartes:",
-			"Défaussez {0} Cartes:",
-			"Purge."
-		],
+		"EXTENDED_DESCRIPTION": ["Complétez ce 1 tour plus tôt.", "Piochez {0} Cartes.", "Gagnez {0} Concentration.", "Gagnez {0} Force.", "Gagnez {0} Dextérité.", "Gagnez {0} Orb slots.", "Gagnez {0} Temp._PV.", "Gagnez {0} Métallisation.", "Gagnez {0} Energie.", "Épuisez {0} Cartes:", "Défaussez {0} Cartes:", "Purge."],
 		"NAME": "Élixir"
 	},
 	"animator:Viivi":

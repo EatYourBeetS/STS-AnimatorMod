@@ -107,7 +107,7 @@
 	},
 	"animator:FeridBathoryPower":
 	{
-		"DESCRIPTIONS": ["When a card is Exhausted gain #b", " Strength and Heal #b", " Hp."],
+		"DESCRIPTIONS": ["Whenever a card is Exhausted, a random enemy loses #b", " HP and you gain #b", " #yTemporary #yHp."],
 		"NAME": "Ferid Bathory"
 	},
 	"animator:FireCrystalPower":
@@ -342,21 +342,17 @@
 	},
 	"animator:UnnamedDollPower":
 	{
-		"DESCRIPTIONS": 
-		[
-			"For the next #b", " turns, when playing a card which does not target this character, gains #b", " #yMax #yHP. NL NL ", 
-			"On death, ALL characters gain #b", " #yStrength."
-		],
+		"DESCRIPTIONS": ["For the next #b", " turns, when playing a card which does not target this character, gains #b", " #yMax #yHP. NL NL ", "On death, ALL characters gain #b", " #yStrength."],
 		"NAME": "Unnamed Doll"
-	},
-	"animator:YukoShionjiPower":
-	{
-		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use/s ), or #pRight-Click to discard it ( #b", " use/s)."],
-		"NAME": "Yuko Shionji"
 	},
 	"animator:VitalityPower":
 	{
 		"DESCRIPTIONS": ["Whenever you are attacked this turn, gain #b", " #yTemporary #HP."],
 		"NAME": "Vitality"
+	},
+	"animator:YukoShionjiPower":
+	{
+		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use/s ), or #pRight-Click to discard it ( #b", " use/s)."],
+		"NAME": "Yuko Shionji"
 	}
 }

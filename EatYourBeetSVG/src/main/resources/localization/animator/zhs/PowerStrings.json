@@ -160,7 +160,7 @@
 		"DESCRIPTIONS": ["在你的回合开始时循环 #b", " 张牌。"],
 		"NAME": "簿记"
 	},
-		"animator:HandSizePower":
+	"animator:HandSizePower":
 	{
 		"DESCRIPTIONS": ["你的手牌上限为#b", "。"],
 		"NAME": "手牌上限"
@@ -345,14 +345,14 @@
 		"DESCRIPTIONS": ["接下来的 #b", " 个回合，每当打出一张不以该名敌人为目标的牌时，获得 #b", " 点 #y生命上限 。 NL NL ", "死亡时，所有单位获得 #b", " #y力量 。"],
 		"NAME": "无名傀儡"
 	},
-	"animator:YukoShionjiPower":
-	{
-		"DESCRIPTIONS": ["查看抽牌堆顶部的牌， NL 鼠标 #p左键 将其拿进手牌 （ #b", " 次 ）, 或 #p右键 将其丢弃 （ #b", " 次）。"],
-		"NAME": "紫苑寺有子"
-	},
 	"animator:VitalityPower":
 	{
 		"DESCRIPTIONS": ["每当你本回合受到攻击时，获得 #b", " #y暂时性生命 。"],
 		"NAME": "活力"
+	},
+	"animator:YukoShionjiPower":
+	{
+		"DESCRIPTIONS": ["查看抽牌堆顶部的牌， NL 鼠标 #p左键 将其拿进手牌 （ #b", " 次 ）, 或 #p右键 将其丢弃 （ #b", " 次）。"],
+		"NAME": "紫苑寺有子"
 	}
 }

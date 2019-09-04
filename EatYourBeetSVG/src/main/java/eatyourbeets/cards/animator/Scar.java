@@ -1,17 +1,30 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import eatyourbeets.actions.common.DrawSpecificCardAction;
+import eatyourbeets.actions.common.RefreshHandLayoutAction;
+import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.OnCostRefreshSubscriber;
+import eatyourbeets.interfaces.OnEvokeOrbSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.OnTargetDeadAction;
 import eatyourbeets.actions.common.PiercingDamageAction;
 import eatyourbeets.actions.animator.ScarAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import patches.AbstractEnums;
 
-public class Scar extends AnimatorCard
+public class Scar extends AnimatorCard implements OnBattleStartSubscriber, OnEvokeOrbSubscriber
 {
     public static final String ID = CreateFullID(Scar.class.getSimpleName());
 
@@ -21,8 +34,10 @@ public class Scar extends AnimatorCard
 
         Initialize(12,0);
 
-        this.isEthereal = true;
-        AddExtendedDescription();
+        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
+        {
+            OnBattleStart();
+        }
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -30,8 +45,12 @@ public class Scar extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        PiercingDamageAction damageAction = new PiercingDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE);
-        GameActionsHelper.AddToBottom(new OnTargetDeadAction(m, damageAction, new ScarAction(p, this), true));
+        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.SMASH);
+
+//        if (p.masterDeck.size() >= magicNumber)
+//        {
+//            GameActionsHelper.AddToBottom(new ScarAction(p, this));
+//        }
     }
 
     @Override
@@ -41,5 +60,24 @@ public class Scar extends AnimatorCard
         {
             upgradeDamage(4);
         }
+    }
+
+    @Override
+    public void OnEvokeOrb(AbstractOrb orb)
+    {
+        if (AbstractDungeon.player.drawPile.contains(this) || AbstractDungeon.player.hand.contains(this))
+        {
+            modifyCostForTurn(-1);
+            this.flash();
+
+            GameActionsHelper.AddToBottom(new DrawSpecificCardAction(this));
+            GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
+        }
+    }
+
+    @Override
+    public void OnBattleStart()
+    {
+        PlayerStatistics.onEvokeOrb.Subscribe(this);
     }
 }

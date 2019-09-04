@@ -17,7 +17,8 @@ public class LivingPicture extends AnimatorRelic
 {
     public static final String ID = CreateFullID(LivingPicture.class.getSimpleName());
 
-    private static Boolean hasShownTip = null;
+    private static Boolean hasShownTip1 = null;
+    private static Boolean hasShownTip2 = null;
 
     private Boolean active = true;
 
@@ -31,11 +32,11 @@ public class LivingPicture extends AnimatorRelic
     {
         super.atBattleStart();
 
-        if (hasShownTip == null && AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y == 0)
+        if (hasShownTip1 == null && AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y == 0)
         {
-            hasShownTip = AnimatorMetrics.GetConfig().getBool("LivingPictureTipShown");
+            hasShownTip1 = AnimatorMetrics.GetConfig().getBool("LivingPictureTipShown");
 
-            if (!hasShownTip)
+            if (!hasShownTip1)
             {
                 AbstractDungeon.ftue = new FtueTip("The Animator",
                         Resources_Animator.GetUIStrings(AbstractResources.UIStringType.Tips).TEXT[0],
@@ -43,7 +44,23 @@ public class LivingPicture extends AnimatorRelic
 
                 AnimatorMetrics.GetConfig().setBool("LivingPictureTipShown", true);
                 AnimatorMetrics.SaveConfig();
-                hasShownTip = true;
+                hasShownTip1 = true;
+            }
+        }
+
+        if (hasShownTip2 == null && AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y > 0)
+        {
+            hasShownTip2 = AnimatorMetrics.GetConfig().getBool("LivingPictureTip2Shown");
+
+            if (!hasShownTip2)
+            {
+                AbstractDungeon.ftue = new FtueTip("The Animator",
+                        Resources_Animator.GetUIStrings(AbstractResources.UIStringType.Tips).TEXT[1],
+                        Settings.WIDTH / 2f, Settings.HEIGHT / 2f, FtueTip.TipType.CARD_REWARD);
+
+                AnimatorMetrics.GetConfig().setBool("LivingPictureTip2Shown", true);
+                AnimatorMetrics.SaveConfig();
+                hasShownTip2 = true;
             }
         }
     }

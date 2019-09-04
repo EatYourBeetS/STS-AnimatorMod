@@ -48,6 +48,12 @@
 		"FLAVOR": "Maybe it was a mistake...",
 		"NAME": "Cursed Glyph"
 	},
+	"animator:Doomed":
+	{
+		"DESCRIPTIONS": ["Die in #b", " turns. NL Can #yNOT be prevented."],
+		"FLAVOR": "...",
+		"NAME": "Doomed"
+	},
 	"animator:EngravedStaff":
 	{
 		"DESCRIPTIONS": ["At the end of your turn, #yRetain your highest cost card, it costs #b1 less next turn."],
@@ -158,7 +164,7 @@
 	},
 	"animator:VividPicture":
 	{
-		"DESCRIPTIONS": ["Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]"],
+		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]"],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Vivid Picture"
 	},

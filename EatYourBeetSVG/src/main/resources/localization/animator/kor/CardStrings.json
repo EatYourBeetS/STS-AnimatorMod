@@ -159,7 +159,7 @@
 	},
 	"animator:Cocytus":
 	{
-		"DESCRIPTION": "!D! 피해를 입힙니다. NL [#EFC851]흡수 [#EFC851]갑옷. NL 시너지: 이번 전투에서 이 카드의 피해를 !M! 만큼 증가시킵니다.",
+		"DESCRIPTION": "!D! 피해를 입힙니다. NL [#EFC851]흡수 [#EFC851]갑옷. NL 시너지: All [#EFC851]Attacks in your hand gain !M! damage this combat.",
 		"EXTENDED_DESCRIPTION": ["흡수 갑옷", "적이 이 공격으로 잃은 방어도만큼 방어도를 얻습니다."],
 		"NAME": "Cocytus"
 	},
@@ -383,7 +383,7 @@
 	},
 	"animator:Evileye":
 	{
-		"DESCRIPTION": "!D! 피해를 입힙니다. NL 카드를 한장 뽑습니다. NL 전탄발사: 다음 구체의 지속효과를 발동합니다.",
+		"DESCRIPTION": "마법사. NL !D! 피해를 입힙니다. NL 전탄발사: 다음 구체의 지속효과를 발동합니다.",
 		"NAME": "Evileye"
 	},
 	"animator:Excalibur":
@@ -393,10 +393,8 @@
 	},
 	"animator:FeridBathory":
 	{
-		"DESCRIPTION": "턴마다 한번, NL 카드가 소멸될때마다, 얻습니다 1 힘 and NL 회복 2 HP ([#EFC851]*[]).",
-		"EXTENDED_DESCRIPTION": ["*Note", "Max HP라면, 회복은 #y임시. #y체력 이 됩니다."],
-		"NAME": "Ferid Bathory",
-		"UPGRADE_DESCRIPTION": "턴마다 두번, NL when a 카드 is 소멸된, 얻습니다 1 힘 and NL 회복 2 HP ([#EFC851]*[])."
+		"DESCRIPTION": "Whenever a card is Exhausted, a random enemy loses !M! HP and you gain !M! Temp._HP.",
+		"NAME": "Ferid Bathory"
 	},
 	"animator:Fredrika":
 	{
@@ -769,7 +767,7 @@
 	},
 	"animator:PandorasActor":
 	{
-		"DESCRIPTION": "형상변환자. NL !B! 방어도를 얻습니다. NL 시너지: 얻습니다 !M! 추가적인 방어도.",
+		"DESCRIPTION": "형상변환자. NL !B! 방어도를 얻습니다. NL Startup: 이 카드를 사용합니다.",
 		"NAME": "Pandora's Actor"
 	},
 	"animator:PinaCoLada":
@@ -805,6 +803,11 @@
 	{
 		"DESCRIPTION": "얻습니다 !M! 흐릿함. NL !B! 방어도를 얻습니다. NL 시너지 또는 귀환: NL 다음턴, 얻습니다 NL !B! 방어도.",
 		"NAME": "Rena"
+	},
+	"animator:Respite":
+	{
+		"DESCRIPTION": "Retain. NL Gain !M! Temp._HP. NL Delay certain doom by 1 turn. Purge.",
+		"NAME": "Respite"
 	},
 	"animator:Rimuru":
 	{
@@ -846,8 +849,7 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "휘발성. !D! 관통 피해를 줍니다. NL [#EFC851]용의[] [#EFC851]파동[].",
-		"EXTENDED_DESCRIPTION": ["용의 파동", "이 카드로 적을 죽이면, 이 카드를 #y제외 시키고 덱에있는 카드 중 하나를 랜덤으로 영구히 #y강화 합니다"],
+		"DESCRIPTION": "휘발성. !D! 관통 피해를 줍니다. When an Orb is Evoked, draw this card and reduce its cost by 1 this turn.",
 		"NAME": "Scar"
 	},
 	"animator:Sebas":
@@ -1047,12 +1049,12 @@
 	},
 	"animator:TanyaDegurechaff":
 	{
-		"DESCRIPTION": "!D! 피해를 입힙니다. NL 버립니다 ALL [#EFC851]Skills and 얻습니다 !M! 방어도 for 각각의 of them. 죽음의메아리: 얻습니다 [#EFC851]타입 [#EFC851]95.",
+		"DESCRIPTION": "!D! 피해를 입힙니다. NL 버립니다 ALL [#EFC851]Skills and 얻습니다 !M! 방어도 for 각각의. Upon pickup, add[#EFC851]타입 [#EFC851]95 to your deck.",
 		"NAME": "Tanya Degurechaff"
 	},
 	"animator:TanyaDegurechaff_Type95":
 	{
-		"DESCRIPTION": "순환 2 카드들. 모든 [#EFC851]Attacks 카드 들을 보존 합니다. 다음턴, [#EFC851]Attacks 카드는 두배의 피해를 입힙니다. 소멸.",
+		"DESCRIPTION": "영창 1 Plasma. NL Reset this card's cost. [#EFC851]Drawn and Recall: Decrease this card's cost by 1.",
 		"NAME": "타입 95"
 	},
 	"animator:Tatsumaki":

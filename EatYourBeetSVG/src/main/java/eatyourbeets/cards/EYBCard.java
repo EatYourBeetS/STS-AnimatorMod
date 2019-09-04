@@ -2,6 +2,8 @@ package eatyourbeets.cards;
 
 import basemod.abstracts.CustomCard;
 import basemod.helpers.TooltipInfo;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,9 +13,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.Utilities;
+import javafx.scene.input.KeyCode;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.InvocationTargetException;
@@ -171,6 +175,11 @@ public abstract class EYBCard extends CustomCard
     {
         HashSet<AbstractCard> cards = GetAllInBattleInstances.get(uuid);
 
+        if (cards == null)
+        {
+            cards = new HashSet<>();
+        }
+
         if (!cards.contains(this))
         {
             cards.add(this);
@@ -182,6 +191,11 @@ public abstract class EYBCard extends CustomCard
     public HashSet<AbstractCard> GetAllInstances()
     {
         HashSet<AbstractCard> cards = GetAllInBattleInstances.get(uuid);
+
+        if (cards == null)
+        {
+            cards = new HashSet<>();
+        }
 
         AbstractCard masterDeckInstance = GetMasterDeckInstance();
         if (masterDeckInstance != null)
@@ -297,98 +311,71 @@ public abstract class EYBCard extends CustomCard
                 this.angle, 0, 0, 512, 512, false, false);
     }
 
-    // TODO: Implement this
-//
-//    private boolean lastHovered = false;
-//    private boolean hoveredInHand = false;
-//
-//    @Override
-//    public boolean isHoveredInHand(float scale)
-//    {
-//        hoveredInHand = super.isHoveredInHand(scale);
-//
-//        return hoveredInHand;
-//    }
-//
-//
-//    @Override
-//    public void hover()
-//    {
-//        super.hover();
-//
-//        lastHovered = true;
-//    }
-//
-//    @Override
-//    public void unhover()
-//    {
-//        super.unhover();
-//
-//        lastHovered = false;
-//    }
-//
-//    @Override
-//    public void update()
-//    {
-//        super.update();
-//
-//        if (lastHovered && !Settings.hideCards && !hoveredInHand)
-//        {
-//            AbstractCard preview = GetCardPreview();
-//            if (preview != null)
-//            {
-//                final float HB_W = 300.0F * Settings.scale;
-//                final float HB_H = 420.0F * Settings.scale;
-//
-//                preview.hb.move(preview.current_x, preview.current_y);
-//                preview.hb.resize(HB_W * preview.drawScale, HB_H * preview.drawScale);
-//                preview.hb.update();
-//
-//                if (preview.hb.hovered)
-//                {
-//                    logger.info("display preview");
-//                }
-//            }
-//        }
-//    }
-//
-//    protected void RenderCardPreview(SpriteBatch sb)
-//    {
-//        if (lastHovered && !Settings.hideCards && !hoveredInHand)
-//        {
-//            AbstractCard preview = GetCardPreview();
-//            if ((preview != null))
-//            {
-//                final float CARD_TIP_PAD = 16.0F;
-//                float tmpScale = this.drawScale / 1.5F;
-//
-//                if ((AbstractDungeon.player != null) && (AbstractDungeon.player.isDraggingCard))
-//                {
-//                    return;
-//                }
-//
-//                preview.drawScale = 0.15f;
-//                preview.current_y = this.current_y + (AbstractCard.IMG_HEIGHT / 2.0F) - (Settings.scale * 18);
-//                preview.current_x = this.current_x + (AbstractCard.IMG_WIDTH / 2.0F) - (Settings.scale * 18);
-//
-////                //x = card center + half the card width + half the preview width + Padding * Viewport scale * draw scale
-////                if (this.current_x > Settings.WIDTH * 0.75F)
-////                {
-////                    preview.current_x = this.current_x + (((AbstractCard.IMG_WIDTH / 2.0F)
-////                            + ((AbstractCard.IMG_WIDTH / 2.0F) / 1.5F) + (CARD_TIP_PAD)) * this.drawScale);
-////                }
-////                else
-////                {
-////                    preview.current_x = this.current_x - (((AbstractCard.IMG_WIDTH / 2.0F)
-////                            + ((AbstractCard.IMG_WIDTH / 2.0F) / 1.5F) + (CARD_TIP_PAD)) * this.drawScale);
-////                }
-////
-////                preview.current_y = this.current_y + ((AbstractCard.IMG_HEIGHT / 2.0F)
-////                        - (AbstractCard.IMG_HEIGHT / 2.0F / 1.5F)) * this.drawScale;
-////
-////                preview.drawScale = tmpScale;
-//                preview.render(sb);
-//            }
-//        }
-//    }
+    private boolean lastHovered = false;
+    private boolean hoveredInHand = false;
+
+    protected AbstractCard GetCardPreview()
+    {
+        return null;
+    }
+
+    @Override
+    public boolean isHoveredInHand(float scale)
+    {
+        hoveredInHand = super.isHoveredInHand(scale);
+
+        return hoveredInHand;
+    }
+
+    @Override
+    public void hover()
+    {
+        super.hover();
+
+        lastHovered = true;
+    }
+
+    @Override
+    public void unhover()
+    {
+        super.unhover();
+
+        lastHovered = false;
+    }
+
+    public void RenderPopupPreview(SpriteBatch sb)
+    {
+        final int DEFAULT_KEY = Input.Keys.SHIFT_LEFT;
+
+        if (!Settings.hideCards && Gdx.input.isKeyPressed(DEFAULT_KEY))
+        {
+            AbstractCard preview = GetCardPreview();
+            if ((preview != null))
+            {
+                preview.current_x = (float)Settings.WIDTH / 5.0F - 10.0F * Settings.scale;
+                preview.current_y = (float)Settings.HEIGHT / 4.0F;
+                preview.drawScale = 1f;
+
+                preview.render(sb);
+            }
+        }
+    }
+
+    protected void RenderCardPreview(SpriteBatch sb)
+    {
+        final int DEFAULT_KEY = Input.Keys.SHIFT_LEFT;
+
+        if (lastHovered && !Settings.hideCards && !hoveredInHand && Gdx.input.isKeyPressed(DEFAULT_KEY))
+        {
+            AbstractCard preview = GetCardPreview();
+            if ((preview != null))
+            {
+                preview.current_x = this.current_x;
+                preview.current_y = this.current_y;
+                preview.drawScale = this.drawScale;
+
+                preview.render(sb);
+            }
+        }
+    }
 }

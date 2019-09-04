@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -20,7 +21,7 @@ public class Emonzaemon extends AnimatorCard
 
         Initialize(4,0);
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -56,5 +57,22 @@ public class Emonzaemon extends AnimatorCard
         {
             upgradeDamage(2);
         }
+    }
+
+    private static AbstractCard preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null || (preview.upgraded != this.upgraded))
+        {
+            preview = new EntouJyuu();
+            if (upgraded)
+            {
+                preview.upgrade();
+            }
+        }
+
+        return preview;
     }
 }

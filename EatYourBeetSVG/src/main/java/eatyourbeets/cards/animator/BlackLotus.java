@@ -7,12 +7,13 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BlurPower;
+import eatyourbeets.interfaces.Hidden;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.ColoredSweepingBeamEffect;
 
-public class BlackLotus extends AnimatorCard
+public class BlackLotus extends AnimatorCard implements Hidden
 {
     public static final String ID = CreateFullID(BlackLotus.class.getSimpleName());
 

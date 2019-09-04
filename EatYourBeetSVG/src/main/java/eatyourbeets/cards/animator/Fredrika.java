@@ -45,16 +45,16 @@ public class Fredrika extends AnimatorCard
     {
         super.triggerOnEndOfTurnForPlayingCard();
 
-        this.ChangeForm(0);
-    }
-
-    @Override
-    public void onMoveToDiscard()
-    {
-        super.onMoveToDiscard();
-
         this.ChangeForm(FORM_DEFAULT);
     }
+//
+//    @Override
+//    public void onMoveToDiscard()
+//    {
+//        super.onMoveToDiscard();
+//
+//        this.ChangeForm(FORM_DEFAULT);
+//    }
 
     @Override
     public void triggerOnManualDiscard()

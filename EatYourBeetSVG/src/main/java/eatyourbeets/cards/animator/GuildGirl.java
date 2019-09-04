@@ -17,6 +17,8 @@ public class GuildGirl extends AnimatorCard
 
         Initialize(0,0, 2);
 
+        tags.add(CardTags.HEALING);
+
         SetSynergy(Synergies.GoblinSlayer);
     }
 

@@ -55,7 +55,7 @@ public class Defend_Kancolle extends Defend// implements OnRemoveFromDeckSubscri
         {
             int newValue = this.secondaryValue - 1;
 
-            for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
+            for (AbstractCard c : GetAllInBattleInstances())
             {
                 AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
                 if (card != null)

@@ -4,11 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
+import eatyourbeets.interfaces.Hidden;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Asuramaru extends AnimatorCard
+public class Asuramaru extends AnimatorCard implements Hidden
 {
     public static final String ID = CreateFullID(Asuramaru.class.getSimpleName());
 
@@ -16,7 +17,7 @@ public class Asuramaru extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        Initialize(12,12,2);
+        Initialize(9,9,2);
 
         this.exhaust = true;
 

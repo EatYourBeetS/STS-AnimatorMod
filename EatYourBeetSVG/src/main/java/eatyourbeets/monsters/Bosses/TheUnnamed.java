@@ -171,11 +171,14 @@ public class TheUnnamed extends AnimatorMonster
             return;
         }
 
-        Move_SummonDoll summonDoll = moveset.GetMove(Move_SummonDoll.class);
-        if (summonDoll.CanUse(previousMove))
+        if (!phase2)
         {
-            summonDoll.SetMove();
-            return;
+            Move_SummonDoll summonDoll = moveset.GetMove(Move_SummonDoll.class);
+            if (summonDoll.CanUse(previousMove))
+            {
+                summonDoll.SetMove();
+                return;
+            }
         }
 
         if (moveset.GetMove(previousMove) instanceof Move_Taunt)

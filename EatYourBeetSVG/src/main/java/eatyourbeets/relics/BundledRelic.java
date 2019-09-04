@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import eatyourbeets.blights.Doomed;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.animator.Hero;
@@ -72,17 +74,25 @@ public class BundledRelic
                 return;
             }
 
+            if (relicID.equals(CursedGlyph.ID))
+            {
+                relic = new CursedGlyph();
+                relic.flash();
+                return;
+            }
+
             ArrayList<String> relicPool = GetRelicPool();
             if (relicPool == null || relicPool.contains(relicID))
             {
                 for (AbstractRelic r : AbstractDungeon.player.relics)
                 {
-                    if (r.relicId.equals(relicID) && !relicID.equals(CursedGlyph.ID))
+                    if (r.relicId.equals(relicID))
                     {
                         Utilities.Logger.info(relicID + " Skipped");
                         return;
                     }
                 }
+
                 Utilities.Logger.info(relicID + " Created");
                 relic = RelicLibrary.getRelic(relicID).makeCopy();
                 relic.flash();

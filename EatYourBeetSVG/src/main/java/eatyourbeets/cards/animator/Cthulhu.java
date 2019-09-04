@@ -76,7 +76,7 @@ public class Cthulhu extends AnimatorCard_UltraRare
     {
         for (AbstractCard card : group.group)
         {
-            GameActionsHelper.AddToBottom(new PurgeAnywhereAction(card, 1));
+            GameActionsHelper.AddToBottom(new PurgeAnywhereAction(card, null, 1));
             GameActionsHelper.SFX("CARD_EXHAUST");
         }
     }

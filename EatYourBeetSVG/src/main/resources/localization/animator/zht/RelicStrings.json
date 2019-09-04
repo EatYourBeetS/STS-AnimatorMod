@@ -48,6 +48,12 @@
 		"FLAVOR": "這可能是個失誤......",
 		"NAME": "天罰符文"
 	},
+	"animator:Doomed":
+	{
+		"DESCRIPTIONS": ["Die in #b", " turns. NL Can #yNOT be prevented."],
+		"FLAVOR": "...",
+		"NAME": "Doomed"
+	},
 	"animator:EngravedStaff":
 	{
 		"DESCRIPTIONS": ["在你的回合結束時，保留手牌中消耗最高的牌,直到被打出之前消耗減 #1 ."],

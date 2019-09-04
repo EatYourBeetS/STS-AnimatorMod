@@ -119,6 +119,7 @@ public abstract class AnimatorCard extends EYBCard
     {
         super.render(sb);
         RenderSynergy(sb);
+        RenderCardPreview(sb);
     }
 
     @Override
@@ -126,34 +127,8 @@ public abstract class AnimatorCard extends EYBCard
     {
         super.renderInLibrary(sb);
         RenderSynergy(sb);
+        RenderCardPreview(sb);
     }
-
-    //    @Override
-//    public boolean isHoveredInHand(float scale)
-//    {
-//        boolean hovered = super.isHoveredInHand(scale);
-//
-//        if (hovered && !lastHovered)
-//        {
-//            logger.info("Hovered: " + name);
-//            ArrayList<AbstractCard> hand = AbstractDungeon.player.hand.group;
-//            for (AbstractCard c : hand)
-//            {
-//                if (c != this)
-//                {
-//                    AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
-//                    if ((card != null && card.HasSynergy(this)))
-//                    {
-//                        c.targetDrawScale = 0.9f;
-//                    }
-//                }
-//            }
-//        }
-//
-//        lastHovered = hovered;
-//
-//        return hovered;
-//    }
 
     public void RenderSynergy(SpriteBatch sb)
     {
@@ -298,10 +273,5 @@ public abstract class AnimatorCard extends EYBCard
         String[] unique = GameDictionary.keywords.get("animator:unique").split("\\|");
         AddTooltip(new TooltipInfo(unique[0], unique[1]));
         tags.add(AbstractEnums.CardTags.UNIQUE);
-    }
-
-    protected AbstractCard GetCardPreview()
-    {
-        return null;
     }
 }

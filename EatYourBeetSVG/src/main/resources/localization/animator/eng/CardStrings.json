@@ -159,7 +159,7 @@
 	},
 	"animator:Cocytus":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL [#EFC851]Absorb [#EFC851]Armor. NL Synergy: Increase this card's damage by !M! this combat.",
+		"DESCRIPTION": "Deal !D! damage. NL [#EFC851]Absorb [#EFC851]Armor. NL Synergy: ALL [#EFC851]Attacks in your hand gain !M! damage this combat.",
 		"EXTENDED_DESCRIPTION": ["Absorb Armor", "Gain any block lost by the enemy during this attack."],
 		"NAME": "Cocytus"
 	},
@@ -383,7 +383,7 @@
 	},
 	"animator:Evileye":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Draw 1 card. NL Reload: Trigger the passive ability of your next Orb.",
+		"DESCRIPTION": "Spellcaster. NL Deal !D! damage. NL Reload: Trigger the NL passive ability of NL your next Orb.",
 		"NAME": "Evileye"
 	},
 	"animator:Excalibur":
@@ -393,10 +393,8 @@
 	},
 	"animator:FeridBathory":
 	{
-		"DESCRIPTION": "Once per turn, NL when a card is Exhausted, gain 1 Strength and NL Heal 2 HP ([#EFC851]*[]).",
-		"EXTENDED_DESCRIPTION": ["*Note", "If you are at Max HP, the healing is converted to #yTemp. #yHP."],
-		"NAME": "Ferid Bathory",
-		"UPGRADE_DESCRIPTION": "Twice per turn, NL when a card is Exhausted, gain 1 Strength and NL Heal 2 HP ([#EFC851]*[])."
+		"DESCRIPTION": "Whenever a card is Exhausted, a random enemy loses !M! HP and you gain !M! Temp._HP.",
+		"NAME": "Ferid Bathory"
 	},
 	"animator:Fredrika":
 	{
@@ -769,7 +767,7 @@
 	},
 	"animator:PandorasActor":
 	{
-		"DESCRIPTION": "Shapeshifter. NL Gain !B! Block. NL Synergy: Gain !M! additional Block.",
+		"DESCRIPTION": "Shapeshifter. NL Gain !B! Block. NL Startup: Play NL this card.",
 		"NAME": "Pandora's Actor"
 	},
 	"animator:PinaCoLada":
@@ -805,6 +803,11 @@
 	{
 		"DESCRIPTION": "Gain !M! Blur. NL Gain !B! Block. NL Synergy and Recall: NL Next turn, gain NL !B! Block.",
 		"NAME": "Rena"
+	},
+	"animator:Respite":
+	{
+		"DESCRIPTION": "Retain. NL Gain !M! Temp._HP. NL Delay certain doom by 1 turn. Purge.",
+		"NAME": "Respite"
 	},
 	"animator:Rimuru":
 	{
@@ -846,8 +849,7 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "Ethereal. Deal !D! Piercing damage. NL [#EFC851]Dragon's[] [#EFC851]Pulse[].",
-		"EXTENDED_DESCRIPTION": ["Dragon's Pulse", "If this kills an enemy, #yPurge this card and permanently #yUpgrade a random card in your deck"],
+		"DESCRIPTION": "Deal !D! Piercing damage. When an Orb is Evoked, draw this card and reduce its cost by 1 this turn.",
 		"NAME": "Scar"
 	},
 	"animator:Sebas":
@@ -1047,12 +1049,12 @@
 	},
 	"animator:TanyaDegurechaff":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Discard ALL [#EFC851]Skills and gain !M! Block for each of them. Legacy: Obtain [#EFC851]Type [#EFC851]95.",
+		"DESCRIPTION": "Deal !D! damage. NL Discard ALL [#EFC851]Skills and gain !M! Block for each. Upon pickup, add [#EFC851]Type [#EFC851]95 to your deck.",
 		"NAME": "Tanya Degurechaff"
 	},
 	"animator:TanyaDegurechaff_Type95":
 	{
-		"DESCRIPTION": "Cycle 2 cards. Retain ALL [#EFC851]Attacks. Next turn, your [#EFC851]Attacks will deal double damage. Exhaust.",
+		"DESCRIPTION": "Channel 1 Plasma. NL Reset this card's cost. [#EFC851]Drawn and Recall: Decrease this card's cost by 1.",
 		"NAME": "Type 95"
 	},
 	"animator:Tatsumaki":

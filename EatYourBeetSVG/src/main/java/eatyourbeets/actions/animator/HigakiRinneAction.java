@@ -88,7 +88,8 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (tryActivate(6)) // 46
         {
-            GameActionsHelper.AddToBottom(new BouncingFlaskAction(p, 2, 2));
+            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            GameActionsHelper.AddToBottom(new BouncingFlaskAction(m, 2, 2));
         }
         else if (tryActivate(6)) // 52
         {

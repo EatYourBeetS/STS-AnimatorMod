@@ -162,8 +162,8 @@
 	},
 	"animator:HandSizePower":
 	{
-	"DESCRIPTIONS": ["你的手牌上限為#b", "。"],
-	"NAME": "手牌上限"
+		"DESCRIPTIONS": ["你的手牌上限為#b", "。"],
+		"NAME": "手牌上限"
 	},
 	"animator:HealingCrystalPower":
 	{
@@ -342,7 +342,7 @@
 	},
 	"animator:UnnamedDollPower":
 	{
-		"DESCRIPTIONS": ["接下來的 #b"," 輪比賽, 在播放不僅僅針對此角色的卡片時， 獲得#b", " 點 #y生命上限。 NL NL ","死亡時， 所有角色獲得 #b", " #y力量 。"],
+		"DESCRIPTIONS": ["接下來的 #b", " 輪比賽, 在播放不僅僅針對此角色的卡片時， 獲得#b", " 點 #y生命上限。 NL NL ", "死亡時， 所有角色獲得 #b", " #y力量 。"],
 		"NAME": "無名傀儡"
 	},
 	"animator:YukoShionjiPower":

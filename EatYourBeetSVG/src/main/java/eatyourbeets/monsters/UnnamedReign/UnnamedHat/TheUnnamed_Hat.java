@@ -69,7 +69,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
             GameActionsHelper.GainBlock(this, 33);
         }
 
-        GameActionsHelper.ApplyPower(this, this, new ArtifactPower(this, 6), 6);
+        GameActionsHelper.ApplyPower(this, this, new ArtifactPower(this, 3), 3);
         GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[0]));
     }
 

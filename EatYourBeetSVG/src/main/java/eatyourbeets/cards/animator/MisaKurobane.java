@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -38,5 +39,22 @@ public class MisaKurobane extends AnimatorCard
         {
             upgradeMagicNumber(1);
         }
+    }
+
+    private static AbstractCard preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null || (preview.upgraded != this.upgraded))
+        {
+            preview = new Yusarin();
+            if (upgraded)
+            {
+                preview.upgrade();
+            }
+        }
+
+        return preview;
     }
 }

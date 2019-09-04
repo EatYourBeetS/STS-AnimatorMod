@@ -48,6 +48,12 @@
 		"FLAVOR": "这可能是个失误……",
 		"NAME": "天罚符文"
 	},
+	"animator:Doomed":
+	{
+		"DESCRIPTIONS": ["Die in #b", " turns. NL Can #yNOT be prevented."],
+		"FLAVOR": "...",
+		"NAME": "Doomed"
+	},
 	"animator:EngravedStaff":
 	{
 		"DESCRIPTIONS": ["在你的回合结束时，保留手牌中消耗最高的牌，直到被打出之前消耗减 #b1 。"],
@@ -126,29 +132,29 @@
 		"FLAVOR": "来，尝尝吧，味道不会太差……吧？",
 		"NAME": "紫苑的甜品"
 	},
-	"animator:TheMissingPiece":
-	{
-		"DESCRIPTIONS": ["每", "场战斗,获得一次同系列卡牌的奖励机会。 你当前牌组中数量最多的系列出现几率会提高。"],
-		"FLAVOR": "这是什么？",
-		"NAME": "遗失残片"
-	},
 	"animator:TheEgnaroPiece":
 	{
 		"DESCRIPTIONS": ["每回合开始时， 获得 [E] 并抽1张牌。 NL 每回合结束时，获得 #b", " 点 #y暂时性生命, 并且将此数量增加 #b1。"],
 		"FLAVOR": "这是什么？",
 		"NAME": "橘色碎片"
 	},
-	"animator:TheWolleyCore":
-	{
-		"DESCRIPTIONS": ["每回合开始时， 抽 #b", " 张牌。 NL 每当你打出1张牌, 对所有敌人造成 #b", " 点伤害并且获得 #b", " 点 #y格挡 。"],
-		"FLAVOR": "这是什么？",
-		"NAME": "绿色核心"
-	},
 	"animator:TheEruzaStone":
 	{
 		"DESCRIPTIONS": ["每回合开始时，获得 [E] [E] 。 NL 每当你打出1张 #y能力牌 ，抽1张牌。"],
 		"FLAVOR": "这是什么？",
 		"NAME": "蓝色石头"
+	},
+	"animator:TheMissingPiece":
+	{
+		"DESCRIPTIONS": ["每", "场战斗,获得一次同系列卡牌的奖励机会。 你当前牌组中数量最多的系列出现几率会提高。"],
+		"FLAVOR": "这是什么？",
+		"NAME": "遗失残片"
+	},
+	"animator:TheWolleyCore":
+	{
+		"DESCRIPTIONS": ["每回合开始时， 抽 #b", " 张牌。 NL 每当你打出1张牌, 对所有敌人造成 #b", " 点伤害并且获得 #b", " 点 #y格挡 。"],
+		"FLAVOR": "这是什么？",
+		"NAME": "绿色核心"
 	},
 	"animator:VividPicture":
 	{
@@ -158,7 +164,7 @@
 	},
 	"animator:WizardHat":
 	{
-		"DESCRIPTIONS": ["你的回合结束时，从当前剩余的能量中吸收 #b1 能量。每当该遗物吸收 #b" , " 点能量时，对所有敌人造成 #b", " 点伤害。"],
+		"DESCRIPTIONS": ["你的回合结束时，从当前剩余的能量中吸收 #b1 能量。每当该遗物吸收 #b", " 点能量时，对所有敌人造成 #b", " 点伤害。"],
 		"FLAVOR": "爆裂魔法天下第一！ ……当然，需要时间准备。",
 		"NAME": "巫师帽"
 	},

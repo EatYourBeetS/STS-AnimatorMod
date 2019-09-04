@@ -103,4 +103,28 @@ public class IzunaHatsuse extends AnimatorCard
             upgradeBlock(2);
         }
     }
+
+    private static IzunaHatsuse preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null || (preview.upgraded != this.upgraded))
+        {
+            preview = new IzunaHatsuse();
+
+            if (upgraded)
+            {
+                preview.upgrade();
+            }
+
+            preview.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
+            preview.type = CardType.ATTACK;
+            preview.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
+            preview.initializeDescription();
+            preview.transformed = true;
+        }
+
+        return preview;
+    }
 }

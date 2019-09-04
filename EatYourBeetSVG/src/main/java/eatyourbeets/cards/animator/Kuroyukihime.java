@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.PlayerStatistics;
@@ -20,7 +21,8 @@ public class Kuroyukihime extends AnimatorCard
 
         this.exhaust = true;
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
+
         SetSynergy(Synergies.AccelWorld);
     }
 
@@ -54,5 +56,18 @@ public class Kuroyukihime extends AnimatorCard
         {
             upgradeBaseCost(0);
         }
+    }
+
+    private static AbstractCard preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null)
+        {
+            preview = new BlackLotus();
+        }
+
+        return preview;
     }
 }

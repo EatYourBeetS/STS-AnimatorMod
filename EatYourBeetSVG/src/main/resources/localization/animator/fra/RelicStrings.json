@@ -48,6 +48,12 @@
 		"FLAVOR": "C'était une erreur...",
 		"NAME": "Glyphe Maudit"
 	},
+	"animator:Doomed":
+	{
+		"DESCRIPTIONS": ["Die in #b", " turns. NL Can #yNOT be prevented."],
+		"FLAVOR": "...",
+		"NAME": "Doomed"
+	},
 	"animator:EngravedStaff":
 	{
 		"DESCRIPTIONS": ["A la fin de votre tour, #yConcervez votre carte au plus haut coût, elle #b1 coûte 1 de moins au prochain tour."],

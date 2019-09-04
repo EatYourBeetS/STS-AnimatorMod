@@ -48,6 +48,12 @@
 		"FLAVOR": "Maybe it was a mistake...",
 		"NAME": "Cursed Glyph"
 	},
+	"animator:Doomed":
+	{
+		"DESCRIPTIONS": ["Die in #b", " turns. NL Can #yNOT be prevented."],
+		"FLAVOR": "...",
+		"NAME": "Doomed"
+	},
 	"animator:EngravedStaff":
 	{
 		"DESCRIPTIONS": ["당신의 턴이 끝날때, 가장 높은 코스트의 카드를 #y보존 합니다, 다음턴에 그 카드의 코스트를 #b1 줄입니다."],

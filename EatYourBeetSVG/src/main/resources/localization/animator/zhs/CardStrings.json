@@ -35,7 +35,7 @@
 	},
 	"animator:Aisha":
 	{
-		"DESCRIPTION": "施法者 。你每拥有一个充能球，造成 !D! 点伤害。 鼓舞 !M! : 获得一个充能球栏位。",
+		"DESCRIPTION": "施法者 。 你每拥有一个充能球，造成 !D! 点伤害。 鼓舞 !M! : 获得一个充能球栏位。",
 		"NAME": "爱莎‧蓝塔"
 	},
 	"animator:Albedo":
@@ -158,7 +158,7 @@
 	},
 	"animator:Cocytus":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害。 [#EFC851]吸收护甲[] 。 同调 : 本次战斗中，这张牌的伤害提高 !M! 点 。",
+		"DESCRIPTION": "造成 !D! 点 伤害。 [#EFC851]吸收护甲[] 。 同调 : All [#EFC851]Attacks in your hand gain !M! damage this combat.。",
 		"EXTENDED_DESCRIPTION": ["吸收护甲", "获得敌人在本次攻击中失去的所有格挡 。"],
 		"NAME": "科赛特斯"
 	},
@@ -381,7 +381,7 @@
 	},
 	"animator:Evileye":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害。 NL 抽一张牌 。 NL 重装填 : 使用你最右侧的1个充能球的被动能力 。",
+		"DESCRIPTION": "施法者 。 造成 !D! 点伤害。 NL 重装填 : 使用你最右侧的1个充能球的被动能力 。",
 		"NAME": "邪眼"
 	},
 	"animator:Excalibur":
@@ -391,10 +391,8 @@
 	},
 	"animator:FeridBathory":
 	{
-		"DESCRIPTION": "每回合可触发一次 ， 消耗 一张牌时 获得 1 点 力量 ， 回复 2 生命 [#EFC851]*[] 。",
-		"EXTENDED_DESCRIPTION": ["*备注", "如果血量已满，则回复将溢出为暂时性生命。"],
-		"NAME": "费里德·巴特利",
-		"UPGRADE_DESCRIPTION": "每回合可触发两次 ， 消耗 一张牌时 获得 1 点 力量 ， 回复 2 生命。"
+		"DESCRIPTION": "Whenever a card is Exhausted, a random enemy loses !M! HP and you gain !M! Temp._HP.",
+		"NAME": "费里德·巴特利"
 	},
 	"animator:Fredrika":
 	{
@@ -767,7 +765,7 @@
 	},
 	"animator:PandorasActor":
 	{
-		"DESCRIPTION": "穿越者 。 NL 获得 !B! 点 格挡 。 NL 同调 : 额外获得 !M! 点 格挡 。",
+		"DESCRIPTION": "穿越者 。 NL 获得 !B! 点 格挡 。 NL Startup : 打出这张牌 。",
 		"NAME": "潘多拉·亚克特"
 	},
 	"animator:PinaCoLada":
@@ -804,6 +802,11 @@
 		"DESCRIPTION": "获得 1 层 残影 ，获得 !B! 点 格挡 。 同调 与 召回 ： 下一回合，获得 !B! 点 格挡 。",
 		"NAME": "蕾娜‧艾兰黛"
 	},
+	"animator:Respite":
+	{
+		"DESCRIPTION": "Retain. NL Gain !M! Temp._HP. NL Delay certain doom by 1 turn. Purge.",
+		"NAME": "Respite"
+	},
 	"animator:Rimuru":
 	{
 		"DESCRIPTION": "当你打出一张牌时，将这张牌变成那张牌的复制品。",
@@ -838,21 +841,13 @@
 	"animator:Saitama":
 	{
 		"DESCRIPTION": "每当打出这张牌时，本场战斗将其能耗增加 1 并改变效果。",
-		"EXTENDED_DESCRIPTION": 
-		[
-			"抽 !M! 张牌 。 NL 获得 !SV! 层 临时 敏捷 。",
-			"阻止下一次你受到的生命损伤。",
-			"获得 !B! 点 格挡 。 获得 !M! 点 力量 。",
-			"造成 !D! 点伤害 !M! 次 。",
-			"移除 无实体 。 NL 造成 !D! 点 穿刺 伤害。 给予一层 眩晕 。"
-		],
+		"EXTENDED_DESCRIPTION": ["抽 !M! 张牌 。 NL 获得 !SV! 层 临时 敏捷 。", "阻止下一次你受到的生命损伤。", "获得 !B! 点 格挡 。 获得 !M! 点 力量 。", "造成 !D! 点伤害 !M! 次 。", "移除 无实体 。 NL 造成 !D! 点 穿刺 伤害。 给予一层 眩晕 。"],
 		"NAME": "埼玉",
 		"UPGRADE_DESCRIPTION": "固有 。每当打出这张牌时，本场战斗将其能耗增加 1 并改变效果。"
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "虚无。 造成 !D! 点 穿刺 伤害。 NL [#EFC851]龙之吐息[] 。",
-		"EXTENDED_DESCRIPTION": ["龙之吐息", "如果这张牌消灭了一个非爪牙的敌人， #y抹除 这张牌，在你的牌库中永久 #y升级 一张牌"],
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害。 When an Orb is Evoked, draw this card and reduce its cost by 1 this turn.",
 		"NAME": "斯卡"
 	},
 	"animator:Sebas":
@@ -1051,12 +1046,12 @@
 	},
 	"animator:TanyaDegurechaff":
 	{
-		"DESCRIPTION": "造成 !D! 伤害。 NL 丢弃所有 [#EFC851]技能牌[] 。每丢弃一张获得 !M! 点 格挡 。 遗赠: 获得一张 [#EFC851]九五式演算宝珠[] 。",
+		"DESCRIPTION": "造成 !D! 伤害。 NL 丢弃所有 [#EFC851]技能牌[] 。 每丢弃一张获得 !M! 点 格挡 。 Upon pickup, add [#EFC851]九五式演算宝珠[] to your deck.",
 		"NAME": "谭雅·提古雷查夫"
 	},
 	"animator:TanyaDegurechaff_Type95":
 	{
-		"DESCRIPTION": "循环 2 张牌。 保留 所有 [#EFC851]攻击牌[] 。下一回合，你的所有 [#EFC851]攻击牌[] 将造成双倍伤害。消耗 。",
+		"DESCRIPTION": "生成 1 个 等离子 充能球 。 NL Reset this card's cost. [#EFC851]Drawn and Recall: Decrease this card's cost by 1.",
 		"NAME": "九五式演算宝珠"
 	},
 	"animator:Tatsumaki":
@@ -1138,21 +1133,7 @@
 	"animator:Vesta_Elixir":
 	{
 		"DESCRIPTION": "",
-		"EXTENDED_DESCRIPTION": 
-		[
-			"完成时间减少 1 轮",
-			"抽 {0} 张牌。",
-			"获得 {0} 层 集中 。",
-			"获得 {0} 层 力量 。",
-			"获得 {0} 层 敏捷 。",
-			"获得 {0} 充能球栏位 。",
-			"获得 {0} 暂时性生命 。",
-			"获得 {0} 层 金属化 。",
-			"获得 {0} 能量 。",
-			"消耗 {0} 张牌 :",
-			"丢弃 {0} 张牌 :",
-			"抹除 。"
-		],
+		"EXTENDED_DESCRIPTION": ["完成时间减少 1 轮", "抽 {0} 张牌。", "获得 {0} 层 集中 。", "获得 {0} 层 力量 。", "获得 {0} 层 敏捷 。", "获得 {0} 充能球栏位 。", "获得 {0} 暂时性生命 。", "获得 {0} 层 金属化 。", "获得 {0} 能量 。", "消耗 {0} 张牌 :", "丢弃 {0} 张牌 :", "抹除 。"],
 		"NAME": "灵药"
 	},
 	"animator:Viivi":

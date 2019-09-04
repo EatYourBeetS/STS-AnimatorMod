@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
@@ -18,7 +19,7 @@ public class Darkness extends AnimatorCard
 
         Initialize(0,0,2);
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.Konosuba);
     }
@@ -37,5 +38,18 @@ public class Darkness extends AnimatorCard
         {
             upgradeMagicNumber(1);
         }
+    }
+
+    private static AbstractCard preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null)
+        {
+            preview = new DarknessAdrenaline();
+        }
+
+        return preview;
     }
 }

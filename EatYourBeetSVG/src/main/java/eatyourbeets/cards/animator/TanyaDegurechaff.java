@@ -6,12 +6,16 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class TanyaDegurechaff extends AnimatorCard
+public class TanyaDegurechaff extends AnimatorCard implements OnAddedToDeckSubscriber
 {
     public static final String ID = CreateFullID(TanyaDegurechaff.class.getSimpleName());
 
@@ -22,14 +26,6 @@ public class TanyaDegurechaff extends AnimatorCard
         Initialize(12, 0, 4);
 
         SetSynergy(Synergies.YoujoSenki);
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(new TanyaDegurechaff_Type95(), 1, true, true));
     }
 
     @Override
@@ -59,5 +55,24 @@ public class TanyaDegurechaff extends AnimatorCard
             upgradeDamage(3);
             upgradeMagicNumber(1);
         }
+    }
+
+    private AbstractCard preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null)
+        {
+            preview = new TanyaDegurechaff_Type95();
+        }
+
+        return preview;
+    }
+
+    @Override
+    public void OnAddedToDeck()
+    {
+        AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(new TanyaDegurechaff_Type95(), (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
     }
 }

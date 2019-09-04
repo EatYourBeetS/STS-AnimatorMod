@@ -49,6 +49,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
     public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = new GameEvent<>();
     public static final GameEvent<OnAfterCardExhaustedSubscriber> onAfterCardExhausted = new GameEvent<>();
+    public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = new GameEvent<>();
     public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
@@ -66,6 +67,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     private static int turnCount = 0;
     private static int cardsDrawnThisTurn = 0;
     private static int cardsExhaustedThisTurn = 0;
+    private static int orbsEvokedThisTurn = 0;
     private static int synergiesThisTurn = 0;
 
     protected PlayerStatistics()
@@ -79,11 +81,12 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
 
         CardGlowBorderPatch.overrideColor = null;
         AnimatorCard.SetLastCardPlayed(null);
-        synergiesThisTurn = 0;
-        cardsExhaustedThisTurn = 0;
-        cardsDrawnThisTurn = 0;
         turnDamageMultiplier = 0;
         turnCount = 0;
+        cardsDrawnThisTurn = 0;
+        cardsExhaustedThisTurn = 0;
+        orbsEvokedThisTurn = 0;
+        synergiesThisTurn = 0;
 
         onSynergy.Clear();
         onEnemyDying.Clear();
@@ -315,9 +318,29 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         return cardsDrawnThisTurn;
     }
 
+    public static int getOrbsEvokedThisTurn()
+    {
+        return orbsEvokedThisTurn;
+    }
+
     public static int getTurnCount()
     {
         return turnCount;
+    }
+
+    @Override
+    public void onEvokeOrb(AbstractOrb orb)
+    {
+        super.onEvokeOrb(orb);
+
+        if (orb != null && !(orb instanceof EmptyOrbSlot))
+        {
+            for (OnEvokeOrbSubscriber p : onEvokeOrb.GetSubscribers())
+            {
+                p.OnEvokeOrb(orb);
+            }
+            orbsEvokedThisTurn += 1;
+        }
     }
 
     @Override
@@ -424,6 +447,8 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         cardsExhaustedThisTurn = 0;
         synergiesThisTurn = 0;
         cardsDrawnThisTurn = 0;
+        orbsEvokedThisTurn = 0;
+
         turnCount += 1;
 
         AnimatorCard.SetLastCardPlayed(null);

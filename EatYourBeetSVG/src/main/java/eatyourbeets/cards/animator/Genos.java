@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -18,7 +19,7 @@ public class Genos extends AnimatorCard
 
         Initialize(8, 0, 4);
 
-        AddExtendedDescription();
+        //AddExtendedDescription();
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -38,5 +39,18 @@ public class Genos extends AnimatorCard
         {
             upgradeDamage(4);
         }
+    }
+
+    private static AbstractCard preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null)
+        {
+            preview = new Overheat();
+        }
+
+        return preview;
     }
 }

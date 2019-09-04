@@ -3,6 +3,7 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedDoll;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.BlurPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainTempThornsAndBlockAll;
@@ -60,14 +61,8 @@ public class TheUnnamed_Doll extends AnimatorMonster
         super.init();
 
         GameActionsHelper.ApplyPower(this, this, new CursedStabsPower(this));
-        if (PlayerStatistics.GetAscensionLevel() >= 7)
-        {
-            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 3, 5), 3);
-        }
-        else
-        {
-            GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this, 3, 3), 3);
-        }
+        GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this));
+        GameActionsHelper.GainBlock(this, 26 + (int)(PlayerStatistics.GetActualAscensionLevel() * 0.66f));
     }
 
     @Override
@@ -151,11 +146,11 @@ public class TheUnnamed_Doll extends AnimatorMonster
 
             if (PlayerStatistics.GetAscensionLevel() > 7)
             {
-                maxHealth = 211;
+                maxHealth = 231;
             }
             else
             {
-                maxHealth = 189;
+                maxHealth = 201;
             }
 
             atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamedMinion.atlas";

@@ -10,20 +10,21 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.interfaces.Hidden;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Excalibur extends AnimatorCard
+public class Excalibur extends AnimatorCard implements Hidden
 {
     public static final String ID = CreateFullID(Excalibur.class.getSimpleName());
 
     public Excalibur()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super(ID, 4, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
 
-        Initialize(60,0);
+        Initialize(90,0);
 
         this.retain = true;
         this.exhaust = true;
@@ -65,7 +66,8 @@ public class Excalibur extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(20);
+            upgradeBaseCost(3);
+            //upgradeDamage(20);
         }
     }
 }

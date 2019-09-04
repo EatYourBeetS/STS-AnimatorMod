@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,11 @@ public class SoulPatches
     {
         public static void Postfix(Soul soul, AbstractCard card)
         {
+            if (card instanceof OnAddedToDeckSubscriber)
+            {
+                ((OnAddedToDeckSubscriber)card).OnAddedToDeck();
+            }
+
             if (card.tags.contains(AbstractEnums.CardTags.UNIQUE))
             {
                 AbstractCard first = null;

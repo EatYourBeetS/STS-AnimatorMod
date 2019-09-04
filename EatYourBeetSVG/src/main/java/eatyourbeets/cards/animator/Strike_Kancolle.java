@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -55,7 +56,7 @@ public class Strike_Kancolle extends Strike// implements OnRemoveFromDeckSubscri
         {
             int newValue = this.secondaryValue - 1;
 
-            for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
+            for (AbstractCard c : GetAllInBattleInstances())
             {
                 AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
                 if (card != null)

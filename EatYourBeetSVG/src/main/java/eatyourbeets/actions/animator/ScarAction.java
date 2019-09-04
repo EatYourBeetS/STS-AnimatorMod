@@ -47,7 +47,9 @@ public class ScarAction extends AnimatorAction
             }
         }
 
-        scar.purgeOnUse = true;
+//        scar.purgeOnUse = true;
+//        GameActionsHelper.PurgeCard(scar.uuid);
+        scar.exhaustOnUseOnce = true;
         GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
 
         this.isDone = true;

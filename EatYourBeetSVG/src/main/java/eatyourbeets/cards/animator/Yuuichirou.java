@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -57,5 +58,18 @@ public class Yuuichirou extends AnimatorCard
         {          
             upgradeDamage(3);
         }
+    }
+
+    private AbstractCard preview;
+
+    @Override
+    protected AbstractCard GetCardPreview()
+    {
+        if (preview == null)
+        {
+            preview = new Asuramaru();
+        }
+
+        return preview;
     }
 }

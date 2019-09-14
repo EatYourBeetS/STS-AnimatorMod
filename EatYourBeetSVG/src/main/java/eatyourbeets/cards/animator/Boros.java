@@ -16,7 +16,9 @@ public class Boros extends AnimatorCard
     {
         super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0, 0, 1, 3);
+        Initialize(0, 0, 2);
+
+        isEthereal = true;
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -25,7 +27,7 @@ public class Boros extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
-        GameActionsHelper.GainTemporaryHP(p, p, secondaryValue);
+        //GameActionsHelper.GainTemporaryHP(p, p, secondaryValue);
 
         if (!p.hasPower(BorosPower.POWER_ID))
         {
@@ -38,8 +40,7 @@ public class Boros extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
-            upgradeSecondaryValue(3);
+            isEthereal = false;
         }
     }
 }

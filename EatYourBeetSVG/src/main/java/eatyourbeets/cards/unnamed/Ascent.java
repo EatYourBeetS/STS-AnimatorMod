@@ -7,13 +7,13 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class Attunement extends UnnamedCard
+public class Ascent extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Attunement.class.getSimpleName());
+    public static final String ID = CreateFullID(Ascent.class.getSimpleName());
 
-    public Attunement()
+    public Ascent()
     {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF, true);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0,0,2);
     }

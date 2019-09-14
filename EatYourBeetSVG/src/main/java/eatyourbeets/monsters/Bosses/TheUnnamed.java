@@ -43,7 +43,6 @@ public class TheUnnamed extends AnimatorMonster
 
     public boolean appliedFading = false;
     public int minionsCount = 3;
-    public boolean phase2;
     public final AbstractMonster[] minions = new AbstractMonster[3];
 
     public TheUnnamed()
@@ -164,14 +163,14 @@ public class TheUnnamed extends AnimatorMonster
             GameActionsHelper.ApplyPowerSilently(this, this, infinitePower, 0);
         }
 
-        if (phase2 && moveFading.CanUse(previousMove))
+        if (infinitePower.phase2 && moveFading.CanUse(previousMove))
         {
             moveFading.SetMove();
 
             return;
         }
 
-        if (!phase2)
+        if (!infinitePower.phase2)
         {
             Move_SummonDoll summonDoll = moveset.GetMove(Move_SummonDoll.class);
             if (summonDoll.CanUse(previousMove))
@@ -221,12 +220,12 @@ public class TheUnnamed extends AnimatorMonster
 
     private void StartPhase2()
     {
-        if (phase2)
+        if (infinitePower.phase2)
         {
             return;
         }
 
-        phase2 = true;
+        infinitePower.phase2 = true;
 
         GameActionsHelper.VFX(new BorderLongFlashEffect(Color.BLACK, false));
         CardCrawlGame.music.silenceTempBgmInstantly();

@@ -110,8 +110,9 @@
 	},
 	"animator:Boros":
 	{
-		"DESCRIPTION": "Gain !M! Strength. NL Gain !SV! Temp._HP. NL All [#EFC851]Powers[] are NL played twice.",
-		"NAME": "Boros"
+		"DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL All [#EFC851]Powers[] are NL played twice.",
+		"NAME": "Boros",
+		"UPGRADE_DESCRIPTION": "Gain !M! Strength. NL All [#EFC851]Powers[] are NL played twice."
 	},
 	"animator:Bozes":
 	{

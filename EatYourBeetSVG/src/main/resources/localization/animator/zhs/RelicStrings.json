@@ -32,9 +32,9 @@
 	},
 	"animator:ColorlessFragment":
 	{
-		"DESCRIPTIONS": ["Replaces #yThe #yMissing #yPiece. Every #b", " combats, receive improved card rewards. Chance to contain colorless cards."],
-		"FLAVOR": "The colors are slowly fading away...",
-		"NAME": "Colorless Fragment"
+		"DESCRIPTIONS": ["替换 #y遗失残片 。 每 #b", " 场战斗，提高卡牌奖励。概率获得无色牌。"],
+		"FLAVOR": "颜色正在慢慢褪去…",
+		"NAME": "无色残片"
 	},
 	"animator:CursedBlade":
 	{
@@ -50,9 +50,9 @@
 	},
 	"animator:Doomed":
 	{
-		"DESCRIPTIONS": ["Die in #b", " turns. NL Can #yNOT be prevented."],
-		"FLAVOR": "...",
-		"NAME": "Doomed"
+		"DESCRIPTIONS": ["在 #b", " 回合后死亡。 NL #y不能 被免疫。"],
+		"FLAVOR": "……",
+		"NAME": "命定"
 	},
 	"animator:EngravedStaff":
 	{

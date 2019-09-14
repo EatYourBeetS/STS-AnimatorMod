@@ -17,7 +17,7 @@ public class AinzEffect_ApplyPoison extends AinzEffect
     @Override
     protected void Setup(boolean upgraded)
     {
-        ainz.baseMagicNumber = ainz.magicNumber = upgraded ? 8 : 6;
+        ainz.baseMagicNumber = ainz.magicNumber = upgraded ? 10 : 8;
     }
 
     @Override

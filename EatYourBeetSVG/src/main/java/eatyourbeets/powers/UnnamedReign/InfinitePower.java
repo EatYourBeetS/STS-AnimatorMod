@@ -10,10 +10,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.RegenPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import eatyourbeets.actions.animator.EndPlayerTurnAction;
@@ -39,6 +36,8 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 {
     public static final String POWER_ID = CreateFullID(InfinitePower.class.getSimpleName());
 
+    public boolean phase2 = false;
+
     private final ArrayList<Integer> linesUsed = new ArrayList<>();
     private final String[] dialog;
     private final EnchantedArmorPower enchantedArmorPower;
@@ -48,6 +47,8 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     private boolean necronomicursed = false;
     private boolean progressStunCounter = true;
     private int stunCounter = 0;
+    private int playerIntangibleCounter = 0;
+    private boolean gainedIntangible = false;
 
     public InfinitePower(TheUnnamed owner)
     {
@@ -144,6 +145,27 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
                 if (owner.isPlayer != source.isPlayer && power.type == PowerType.BUFF)
                 {
                     GameActionsHelper.ApplyPowerSilently(owner, owner, new GainStrengthPower(owner, stacks), stacks);
+                }
+            }
+
+            if (target.isPlayer && IntangiblePlayerPower.POWER_ID.equals(power.ID))
+            {
+                if (!phase2)
+                {
+                    playerIntangibleCounter += power.amount;
+
+                    if (playerIntangibleCounter >= 3)
+                    {
+                        if (!gainedIntangible)
+                        {
+                            GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[33], 2f, 2f));
+                            GameActionsHelper.AddToBottom(new WaitRealtimeAction(2.5f));
+                            gainedIntangible = true;
+                        }
+
+                        GameActionsHelper.ApplyPowerToAllEnemies(owner, (c) -> new IntangiblePlayerPower(c, 2), 2);
+                        playerIntangibleCounter = 0;
+                    }
                 }
             }
         }
@@ -258,7 +280,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         }
         else if (card instanceof HigakiRinne)
         {
-            if (!linesUsed.contains(21) && owner.currentHealth > 500 && !((TheUnnamed)owner).phase2)
+            if (!linesUsed.contains(21) && owner.currentHealth > 500 && !phase2)
             {
                 GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[21], 1.2f, 1.2f));
                 GameActionsHelper.Callback(new WaitRealtimeAction(1.2f), this::Rinne, card);
@@ -306,7 +328,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
     private void Talk(int line, float duration)
     {
-        if (!linesUsed.contains(line) && owner.currentHealth > 500 && !((TheUnnamed)owner).phase2)
+        if (!linesUsed.contains(line) && owner.currentHealth > 500 && !phase2)
         {
             GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[line], duration, duration));
 

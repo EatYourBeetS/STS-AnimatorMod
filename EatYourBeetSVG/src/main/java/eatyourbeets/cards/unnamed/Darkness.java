@@ -17,13 +17,13 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 import java.util.ArrayList;
 
-public class DarkBomb extends UnnamedCard
+public class Darkness extends UnnamedCard
 {
-    public static final String ID = CreateFullID(DarkBomb.class.getSimpleName());
+    public static final String ID = CreateFullID(Darkness.class.getSimpleName());
 
-    public DarkBomb()
+    public Darkness()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL, true);
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
 
         Initialize(20, 0, 2);
 

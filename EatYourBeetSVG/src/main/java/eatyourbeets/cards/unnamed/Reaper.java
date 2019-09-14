@@ -18,9 +18,9 @@ public class Reaper extends UnnamedCard
 
     public Reaper()
     {
-        super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ALL, true);
+        super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
 
-        Initialize(0,0, 2, 30);
+        Initialize(0,0, 20, 4);
 
         AddExtendedDescription();
 

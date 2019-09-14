@@ -109,8 +109,9 @@
 	},
 	"animator:Boros":
 	{
-		"DESCRIPTION": "獲得 !M! 點 力量 。 獲得 !SV! 點 臨時生命 。 所有 [#EFC851]能力[] 將會被 NL 打出兩次 。",
-		"NAME": "波羅斯"
+		"DESCRIPTION": "虛無 。 獲得 !M! 點 力量 。 所有 [#EFC851]能力[] 將會被 NL 打出兩次 。",
+		"NAME": "波羅斯",
+		"UPGRADE_DESCRIPTION": "獲得 !M! 點 力量 。 所有 [#EFC851]能力[] 將會被 NL 打出兩次 。"
 	},
 	"animator:Bozes":
 	{

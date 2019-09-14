@@ -8,13 +8,13 @@ import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.cards.animator.Urushihara;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class Laziness extends UnnamedCard
+public class Abyss extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Laziness.class.getSimpleName());
+    public static final String ID = CreateFullID(Abyss.class.getSimpleName());
 
-    public Laziness()
+    public Abyss()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, true);
+        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
         Initialize(0,0,2);
     }

@@ -13,7 +13,7 @@ import patches.AbstractEnums;
 public class Ainz extends AnimatorCard
 {
     public static final String ID = CreateFullID(Ainz.class.getSimpleName());
-    public static final int BASE_COST = 8;
+    public static final int BASE_COST = 9;
 
     private AinzEffect effect = null;
 

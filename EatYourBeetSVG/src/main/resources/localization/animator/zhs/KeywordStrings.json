@@ -86,8 +86,8 @@
 	},
 	{
 		"DESCRIPTION": "在每名敌人因为这张牌的攻击失去格挡时触发。",
-		"NAMES": ["overrun"],
-		"PROPERNAME": "Overrun"
+		"NAMES": ["突破"],
+		"PROPERNAME": "突破"
 	},
 	{
 		"DESCRIPTION": "如果计数器大于0， 则激活效果然后将计数器减1。 每次战斗结束时重置。",

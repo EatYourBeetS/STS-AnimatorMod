@@ -109,8 +109,9 @@
 	},
 	"animator:Boros":
 	{
-		"DESCRIPTION": "获得 !M! 点 力量 。 获得 !SV! 点 暂时性生命 。所有能力牌将会被打出两次。",
-		"NAME": "波罗斯"
+		"DESCRIPTION": "虚无 。 获得 !M! 点 力量 。 所有能力牌将会被打出两次。",
+		"NAME": "波罗斯",
+		"UPGRADE_DESCRIPTION": "获得 !M! 点 力量 。 所有能力牌将会被打出两次。"
 	},
 	"animator:Bozes":
 	{
@@ -158,7 +159,7 @@
 	},
 	"animator:Cocytus":
 	{
-		"DESCRIPTION": "造成 !D! 点 伤害。 [#EFC851]吸收护甲[] 。 同调 : All [#EFC851]Attacks in your hand gain !M! damage this combat.。",
+		"DESCRIPTION": "造成 !D! 点 伤害。 [#EFC851]吸收护甲[] 。 同调 : 将你手牌中的所有 [#EFC851]攻击牌[] 在本场战斗中伤害提高 !M! 。",
 		"EXTENDED_DESCRIPTION": ["吸收护甲", "获得敌人在本次攻击中失去的所有格挡 。"],
 		"NAME": "科赛特斯"
 	},
@@ -180,7 +181,7 @@
 	"animator:Cthulhu":
 	{
 		"DESCRIPTION": "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.",
-		"NAME": "Cthulhu"
+		"NAME": "克苏鲁"
 	},
 	"animator:Darkness":
 	{
@@ -391,7 +392,7 @@
 	},
 	"animator:FeridBathory":
 	{
-		"DESCRIPTION": "Whenever a card is Exhausted, a random enemy loses !M! HP and you gain !M! Temp._HP.",
+		"DESCRIPTION": "每当你消耗一张牌，随机一名敌人失去 !M! 生命，你获得 !M! 暂时性生命 。",
 		"NAME": "费里德·巴特利"
 	},
 	"animator:Fredrika":
@@ -765,7 +766,7 @@
 	},
 	"animator:PandorasActor":
 	{
-		"DESCRIPTION": "穿越者 。 NL 获得 !B! 点 格挡 。 NL Startup : 打出这张牌 。",
+		"DESCRIPTION": "穿越者 。 NL 获得 !B! 点 格挡 。 NL 起动 : 打出这张牌 。",
 		"NAME": "潘多拉·亚克特"
 	},
 	"animator:PinaCoLada":
@@ -804,8 +805,8 @@
 	},
 	"animator:Respite":
 	{
-		"DESCRIPTION": "Retain. NL Gain !M! Temp._HP. NL Delay certain doom by 1 turn. Purge.",
-		"NAME": "Respite"
+		"DESCRIPTION": "保留 。 NL 获得 !M! 暂时性生命 。 NL 推迟命定 1 回合。 抹除 。",
+		"NAME": "喘息"
 	},
 	"animator:Rimuru":
 	{
@@ -847,7 +848,7 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "造成 !D! 点 穿刺 伤害。 When an Orb is Evoked, draw this card and reduce its cost by 1 this turn.",
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害。 当激发一个充能求时，抽出这张牌并将他的耗能本回合降低 1 。",
 		"NAME": "斯卡"
 	},
 	"animator:Sebas":
@@ -929,7 +930,7 @@
 	"animator:Sloth":
 	{
 		"DESCRIPTION": " [#EFC851]懒惰[] 。 NL 获得 !B! 格挡 。 NL 造成 !D! 点伤害。 NL 给予 !M! 层 易伤 。 ",
-		"EXTENDED_DESCRIPTION": ["懒惰", "每回合开始时，将这张牌的格挡和伤害提高 #b2 点 对于你拥有的每个orb插槽。 每次使用后，将这张牌的 #y格挡 与 #y伤害 减半。"],
+		"EXTENDED_DESCRIPTION": ["懒惰", "每回合开始时，你每有一个充能求栏位，将这张牌的格挡和伤害提高 #b2 点。 每次使用后，将这张牌的 #y格挡 与 #y伤害 减半。"],
 		"NAME": "懒惰"
 	},
 	"animator:Sonic":
@@ -1041,17 +1042,17 @@
 	},
 	"animator:TakanashiRikka":
 	{
-		"DESCRIPTION": "Create a 0-Cost copy of every [#EFC851]Attack in your hand, they deal !M! damage and Purge on use. Exhaust.",
-		"NAME": "Rikka Takanashi"
+		"DESCRIPTION": "将手牌中所有 [#EFC851]攻击牌[] 的 0 耗能复制品加入你的手牌，它们造成 !M! 点伤害并在打出后 抹除 。 消耗 。",
+		"NAME": "小鸟游六花"
 	},
 	"animator:TanyaDegurechaff":
 	{
-		"DESCRIPTION": "造成 !D! 伤害。 NL 丢弃所有 [#EFC851]技能牌[] 。 每丢弃一张获得 !M! 点 格挡 。 Upon pickup, add [#EFC851]九五式演算宝珠[] to your deck.",
+		"DESCRIPTION": "造成 !D! 伤害。 NL 丢弃所有 [#EFC851]技能牌[] 。 每丢弃一张获得 !M! 点 格挡 。 拾起时，将 [#EFC851]九五式演算宝珠[] 加入你的牌组。",
 		"NAME": "谭雅·提古雷查夫"
 	},
 	"animator:TanyaDegurechaff_Type95":
 	{
-		"DESCRIPTION": "生成 1 个 等离子 充能球 。 NL Reset this card's cost. [#EFC851]Drawn and Recall: Decrease this card's cost by 1.",
+		"DESCRIPTION": "生成 1 个 等离子 充能球 。 NL 重置这张牌的耗能。 [#EFC851]抽牌 和 召回 ：将这张牌的耗能降低 1 。",
 		"NAME": "九五式演算宝珠"
 	},
 	"animator:Tatsumaki":

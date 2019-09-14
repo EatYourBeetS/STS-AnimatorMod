@@ -24,13 +24,14 @@ public class NarberalGamma extends AnimatorCard// implements OnStartOfTurnPostDr
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DrawCard(p, 1);
         GameActionsHelper.ChannelOrb(new Lightning(), true);
 
         if (upgraded)
         {
             GameActionsHelper.ApplyPower(p, p, new TemporaryElectroPower(p));
         }
+
+        GameActionsHelper.DrawCard(p, 1);
     }
 
     @Override

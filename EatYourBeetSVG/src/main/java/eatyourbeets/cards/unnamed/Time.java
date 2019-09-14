@@ -8,13 +8,13 @@ import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class Respite extends UnnamedCard implements OnBattleStartSubscriber
+public class Time extends UnnamedCard implements OnBattleStartSubscriber
 {
-    public static final String ID = CreateFullID(Respite.class.getSimpleName());
+    public static final String ID = CreateFullID(Time.class.getSimpleName());
 
-    public Respite()
+    public Time()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF, true);
+        super(ID, 1, CardType.POWER, CardRarity.BASIC, CardTarget.SELF);
 
         Initialize(0,0, 6, 1);
 

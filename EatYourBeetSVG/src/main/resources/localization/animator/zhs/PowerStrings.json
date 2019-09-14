@@ -267,8 +267,8 @@
 	},
 	"animator:PlayerStatistics":
 	{
-		"DESCRIPTIONS": ["Hidden Player Statistics power。"],
-		"NAME": "Player Statistics"
+		"DESCRIPTIONS": ["隐藏玩家统计能力。"],
+		"NAME": "玩家统计"
 	},
 	"animator:PoisonAffinityPower":
 	{

@@ -8,13 +8,13 @@ import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class DarkShroud extends UnnamedCard
+public class Banshee extends UnnamedCard
 {
-    public static final String ID = CreateFullID(DarkShroud.class.getSimpleName());
+    public static final String ID = CreateFullID(Banshee.class.getSimpleName());
 
-    public DarkShroud()
+    public Banshee()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, true);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
         Initialize(0,0,5);
 

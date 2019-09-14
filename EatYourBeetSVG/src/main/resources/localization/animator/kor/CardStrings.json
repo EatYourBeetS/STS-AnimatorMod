@@ -110,8 +110,9 @@
 	},
 	"animator:Boros":
 	{
-		"DESCRIPTION": "얻습니다 !M! 힘. NL !SV!  임시._체력 을 얻습니다. NL 모든 [#EFC851]Powers[]가 NL 두번씩 사용됩니다.",
-		"NAME": "Boros"
+		"DESCRIPTION": "휘발성. 얻습니다 !M! 힘. NL _체력 을 얻습니다. NL 모든 [#EFC851]Powers[]가 NL 두번씩 사용됩니다.",
+		"NAME": "Boros",
+		"UPGRADE_DESCRIPTION": "얻습니다 !M! 힘. NL _체력 을 얻습니다. NL 모든 [#EFC851]Powers[]가 NL 두번씩 사용됩니다."
 	},
 	"animator:Bozes":
 	{

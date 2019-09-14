@@ -2,7 +2,7 @@
 {
 	"unnamed:InfinitePower":
 	{
-		"DESCRIPTIONS": ["At the end of each turn, gain #b", " #yStrength, heal #b", " HP, and lose #b", " Max HP. NL NL #yCannot #ybe #yremoved."],
+		"DESCRIPTIONS": ["Whenever you obtain a card, gain #b", " Max HP. Whenever you obtain a relic, #yUpgrade your oldest card. #b", ".", "."],
 		"FLAVOR": "Infinite Power! At a cost...",
 		"NAME": "Infinite Power"
 	}

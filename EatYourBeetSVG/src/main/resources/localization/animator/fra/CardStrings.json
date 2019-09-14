@@ -109,8 +109,9 @@
 	},
 	"animator:Boros":
 	{
-		"DESCRIPTION": "Gagnez !M! de Force. NL Gagnez !SV! de Temp._PV. NL TOUS les [#EFC851]Pouvoirs[] seront NL joués deux fois.",
-		"NAME": "Boros"
+		"DESCRIPTION": "Éthérée. NL Gagnez !M! de Force. NL TOUS les [#EFC851]Pouvoirs[] seront NL joués deux fois.",
+		"NAME": "Boros",
+		"UPGRADE_DESCRIPTION": "Gagnez !M! de Force. NL TOUS les [#EFC851]Pouvoirs[] seront NL joués deux fois."
 	},
 	"animator:Bozes":
 	{

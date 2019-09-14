@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
-import eatyourbeets.cards.unnamed.Respite;
+import eatyourbeets.cards.unnamed.Time;
 import eatyourbeets.cards.unnamed.SoulTap;
 import eatyourbeets.relics.unnamed.InfinitePower;
 import eatyourbeets.resources.Resources_Animator;
@@ -146,16 +146,15 @@ public class UnnamedCharacter extends CustomPlayer
     {
         ArrayList<String> cards = new ArrayList<>();
 
-        cards.add(Strike_Unnamed.ID);
-        cards.add(Strike_Unnamed.ID);
-        cards.add(Strike_Unnamed.ID);
-        cards.add(Strike_Unnamed.ID);
-        cards.add(Defend_Unnamed.ID);
-        cards.add(Defend_Unnamed.ID);
-        cards.add(Defend_Unnamed.ID);
-        cards.add(Defend_Unnamed.ID);
-        cards.add(Respite.ID);
-        cards.add(SoulTap.ID);
+        cards.add(Time.ID);
+        cards.add(Time.ID);
+        cards.add(Time.ID);
+        cards.add(Time.ID);
+        cards.add(Time.ID);
+        cards.add(Time.ID);
+        cards.add(Time.ID);
+        cards.add(Time.ID);
+        cards.add(Time.ID);
 
         return cards;
     }

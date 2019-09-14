@@ -19,15 +19,15 @@ import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
-public class Cataclysm extends UnnamedCard
+public class Devastation extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Cataclysm.class.getSimpleName());
+    public static final String ID = CreateFullID(Devastation.class.getSimpleName());
 
-    public Cataclysm()
+    public Devastation()
     {
         super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL);
 
-        Initialize(16, 0, 8, 12);
+        Initialize(8, 0, 4);
     }
 
     @Override

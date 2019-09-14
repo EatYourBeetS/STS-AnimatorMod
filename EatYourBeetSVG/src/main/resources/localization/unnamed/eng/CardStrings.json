@@ -1,40 +1,79 @@
 
 {
-	"unnamed:Visions":
+	"unnamed:Devastation":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL ALL cards are Ethereal this turn. Exhaust.",
-		"NAME": "Visions"
-	},
-	"unnamed:UnnamedDoll":
-	{
-		"DESCRIPTION": "Gain !M! Temporary HP. ALL characters gain !SV! Ritual. Exhaust.",
-		"NAME": "Unnamed Doll"
-	},
-	"unnamed:Respite":
-	{
-		"DESCRIPTION": "Draw 1 card. NL Gain !M! Temp._HP. NL Startup: NL Gain !SV! Max HP.",
-		"NAME": "Respite"
-	},
-	"unnamed:Cataclysm":
-	{
-		"DESCRIPTION": "Lose !SV! Max HP. Exhaust 20 random cards. Deal !D! damage to ALL enemies !M! times.",
-		"NAME": "Cataclysm"
-	},
-	"unnamed:SoulTap":
-	{
-		"DESCRIPTION": "Lose !SV! Max HP. NL Draw !M! cards. NL Gain !M! Strength.",
-		"NAME": "Sould Tap"
-	},
-	"unnamed:InfinitePower":
-	{
-		"DESCRIPTION": "Ethereal. Add !M! random [#EFC851]Powers[] to your hand. They cost 0 this turn. Exhaust.",
-		"NAME": "Infinite Power",
-		"UPGRADE_DESCRIPTION": "Ethereal. Add !M! random Upgraded [#EFC851]Powers[] to your hand. They cost 0 this turn. Exhaust."
+		"DESCRIPTION": "Limited. NL Deal !D! damage to ALL enemies !M! times. Double this card's damage. Exhaust 6 random cards.",
+		"NAME": "Devastation",
+		"UPGRADE_DESCRIPTION": "Limited. NL Deal !D! damage to ALL enemies !M! times. Triple this card's damage. Exhaust 6 random cards."
 	},
 	"unnamed:Reaper":
 	{
-		"DESCRIPTION": "Kill ALL enemies with less than !SV! HP ([#EFC851]*[]). Gain !M! Max HP for each enemy killed. Exhaust.",
-		"EXTENDED_DESCRIPTION": ["* Note", "This number is affected by Strength 3 times."],
-		"NAME": "Reaper"
+		"DESCRIPTION": "Kill EVERYTHING below !M! HP. Whenever you play a card, increase this number by !SV!.",
+		"NAME": "Death"
+	},
+	"unnamed:Time":
+	{
+		"DESCRIPTION": "Gain [E] [E] at the start of each turn. At the end of each turn, take 10 damage for each unspent energy.",
+		"NAME": "Time"
+	},
+	"unnamed:Abyss":
+	{
+		"DESCRIPTION": "Apply X - !M! Doomed to ALL enemies.",
+		"NAME": "Abyss"
+	},
+	"unnamed:Ascent":
+	{
+		"DESCRIPTION": "ALL cards are played twice this turn. Exhaust.",
+		"NAME": "Ascent"
+	},
+	"unnamed:Noise":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Next turn, deal !D! damage.",
+		"NAME": "Noise"
+	},
+	"unnamed:Glass":
+	{
+		"DESCRIPTION": "Gain !B! Block. NL Draw 1 card. Discard your leftmost card.",
+		"NAME": "Glass"
+	},
+	"unnamed:Rupture":
+	{
+		"DESCRIPTION": "Can only be played if the enemy has !M! different [#EFC851]Debuffs. Deal !D! damage.",
+		"NAME": "Rupture"
+	},
+	"unnamed:Sun":
+	{
+		"DESCRIPTION": "The next time you would take damage, heal that many HP instead. Purge.",
+		"NAME": "Sun"
+	},
+	"unnamed:Dimension":
+	{
+		"DESCRIPTION": "Draw 1 card. Transform ALL cards in your hand into copies of it.",
+		"NAME": "Dimension"
+	},
+	"unnamed:Shine":
+	{
+		"DESCRIPTION": "Draw 1 card. Transform ALL cards in your hand into copies of it.",
+		"NAME": "Shine"
+	},
+	"unnamed:Visions":
+	{
+		"DESCRIPTION": "Draw 2 additional cards at the start of each turn. ALL cards are Ethereal.",
+		"NAME": "Visions"
+	},
+	"unnamed:Darkness":
+	{
+		"DESCRIPTION": "ALL enemies lose !M! HP. Draw 1 card for each enemy.",
+		"NAME": "Darkness"
+	},
+	"unnamed:Banshee":
+	{
+		"DESCRIPTION": "Gain !M! Regeneration and !SV! Constricted.",
+		"NAME": "Banshee"
+	},
+	"unnamed:BlindingLight":
+	{
+		"DESCRIPTION": "Deal !D! damage. NL Gain [E]",
+		"NAME": "Blinding Light"
 	}
 }

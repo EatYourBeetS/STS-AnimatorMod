@@ -146,11 +146,11 @@ public class TheUnnamed_Doll extends AnimatorMonster
 
             if (PlayerStatistics.GetAscensionLevel() > 7)
             {
-                maxHealth = 231;
+                maxHealth = 241;
             }
             else
             {
-                maxHealth = 201;
+                maxHealth = 221;
             }
 
             atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamedMinion.atlas";

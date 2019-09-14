@@ -225,6 +225,11 @@
 		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times."
 	},
 	{
+		"PROPER_NAME": "Limited",
+		"NAMES": ["limited"],
+		"DESCRIPTION": "Can only be played once per turn. Affects ALL copies of this card."
+	},
+	{
 		"PROPER_NAME": "animator:Unique",
 		"NAMES": ["animator:unique"],
 		"DESCRIPTION": "Unique|Can be upgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead."

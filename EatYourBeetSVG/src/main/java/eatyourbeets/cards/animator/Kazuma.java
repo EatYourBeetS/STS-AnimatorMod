@@ -17,7 +17,7 @@ public class Kazuma extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,7, 3);
+        Initialize(0,6, 4);
 
         SetSynergy(Synergies.Konosuba);
     }
@@ -39,8 +39,7 @@ public class Kazuma extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
-            upgradeMagicNumber(1);
+            upgradeBlock(3);
         }
     }
 }

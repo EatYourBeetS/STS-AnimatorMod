@@ -19,9 +19,13 @@ public class ElricAlphonse extends AnimatorCard
 
         Initialize(0,2, 2);
 
-        this.isEthereal = true;
-
+        SetEthereal(true);
         SetSynergy(Synergies.FullmetalAlchemist);
+
+        if (InitializingPreview())
+        {
+            cardPreview.Initialize(new ElricAlphonseAlt(), true);
+        }
     }
 
     @Override
@@ -52,22 +56,5 @@ public class ElricAlphonse extends AnimatorCard
         {
             upgradeBlock(2);
         }
-    }
-
-    private static AbstractCard preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (preview == null || (preview.upgraded != this.upgraded))
-        {
-            preview = new ElricAlphonseAlt();
-            if (upgraded)
-            {
-                preview.upgrade();
-            }
-        }
-
-        return preview;
     }
 }

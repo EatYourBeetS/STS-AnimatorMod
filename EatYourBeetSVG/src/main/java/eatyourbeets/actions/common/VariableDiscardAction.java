@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.resources.Resources_Animator_Strings;
 
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
@@ -49,7 +50,7 @@ public class VariableDiscardAction extends AnimatorAction
                 String discardMessage;
                 if (anyNumber)
                 {
-                    discardMessage = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Actions).TEXT[2];
+                    discardMessage = Resources_Animator_Strings.Actions.TEXT[2];
                 }
                 else
                 {

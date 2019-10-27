@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class CycleCardAction extends AnimatorAction
@@ -34,7 +35,7 @@ public class CycleCardAction extends AnimatorAction
             }
             else
             {
-                String discardMessage = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Actions).TEXT[1];
+                String discardMessage = Resources_Animator_Strings.Actions.TEXT[1];
                 AbstractDungeon.handCardSelectScreen.open(discardMessage, this.amount, true,true);
                 GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
                 this.tickDuration();

@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.animator.MotivateAction;
 import eatyourbeets.actions.common.*;
+import eatyourbeets.actions.unnamed.MoveToVoidAction;
 import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
@@ -120,6 +121,13 @@ public class GameActionsHelper
     public static PurgeAnywhereAction PurgeCard(AbstractCard card)
     {
         PurgeAnywhereAction action = new PurgeAnywhereAction(card);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static MoveToVoidAction MoveToVoid(AbstractCard card)
+    {
+        MoveToVoidAction action = new MoveToVoidAction(card);
         AddToDefault(action);
         return action;
     }

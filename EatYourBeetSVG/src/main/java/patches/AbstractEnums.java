@@ -66,10 +66,16 @@ public class AbstractEnums
         public static AbstractCard.CardTags UNIQUE;
 
         @SpireEnum
-        public static AbstractCard.CardTags PURGING;
+        public static AbstractCard.CardTags VOIDBOUND;
+
+        @SpireEnum
+        public static AbstractCard.CardTags ECHO;
 
         @SpireEnum
         public static AbstractCard.CardTags PURGE;
+
+        @SpireEnum
+        public static AbstractCard.CardTags PURGING;
 
         @SpireEnum
         public static AbstractCard.CardTags LOYAL;

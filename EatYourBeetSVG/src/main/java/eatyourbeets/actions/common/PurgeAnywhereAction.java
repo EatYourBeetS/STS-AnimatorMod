@@ -6,9 +6,11 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import patches.AbstractEnums;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class PurgeAnywhereAction extends AbstractGameAction
@@ -48,6 +50,8 @@ public class PurgeAnywhereAction extends AbstractGameAction
             p.drawPile.removeCard(card);
             p.discardPile.removeCard(card);
             p.exhaustPile.removeCard(card);
+
+            PlayerStatistics.Void.removeCard(card);
         }
 
         if (uuid != null)
@@ -57,6 +61,8 @@ public class PurgeAnywhereAction extends AbstractGameAction
             RemoveAll(p.drawPile);
             RemoveAll(p.discardPile);
             RemoveAll(p.exhaustPile);
+
+            RemoveAll(PlayerStatistics.Void);
         }
 
         this.isDone = true;
@@ -69,6 +75,18 @@ public class PurgeAnywhereAction extends AbstractGameAction
 
     private void RemoveAll(CardGroup group)
     {
-        group.group.removeIf((c -> c.uuid.equals(uuid)));
+        ArrayList<AbstractCard> toRemove = new ArrayList<>();
+        for (AbstractCard c : group.group)
+        {
+            if (c.uuid.equals(uuid))
+            {
+                toRemove.add(c);
+            }
+        }
+
+        for (AbstractCard c : toRemove)
+        {
+            group.removeCard(c);
+        }
     }
 }

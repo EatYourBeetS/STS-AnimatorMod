@@ -1,0 +1,171 @@
+
+{
+	"Air":
+	{
+		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
+		"NAMES": ["air", "air+"],
+		"PROPER_NAME": "Air"
+	},
+	"Blur":
+	{
+		"DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
+		"NAMES": ["blur"],
+		"PROPER_NAME": "Blur"
+	},
+	"Burning":
+	{
+		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by 1 each turn.",
+		"NAMES": ["burning"],
+		"PROPER_NAME": "Burning"
+	},
+	"Choked":
+	{
+		"DESCRIPTION": "Whenever you play a card this turn, the target loses 1 HP.",
+		"NAMES": ["choked"],
+		"PROPER_NAME": "Choked"
+	},
+	"Constricted":
+	{
+		"DESCRIPTION": "Take damage at the end of each turn.",
+		"NAMES": ["constricted"],
+		"PROPER_NAME": "Constricted"
+	},
+	"Cycle":
+	{
+		"DESCRIPTION": "Discard a certain number of cards then draw that many cards.",
+		"NAMES": ["cycle"],
+		"PROPER_NAME": "Cycle"
+	},
+	"Demon Form":
+	{
+		"DESCRIPTION": "Gain #yStrength at the start of each turn.",
+		"NAMES": ["demon form", "demon_form"],
+		"PROPER_NAME": "Demon Form"
+	},
+	"Discover":
+	{
+		"DESCRIPTION": "Choose 1 of 3 random cards to add to your hand. It costs 0 this turn.",
+		"NAMES": ["discover"],
+		"PROPER_NAME": "Discover"
+	},
+	"Earth":
+	{
+		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage randomly split amongst ALL enemies.",
+		"NAMES": ["earth", "earth+"],
+		"PROPER_NAME": "Earth"
+	},
+	"Enchanted Armor":
+	{
+		"DESCRIPTION": "Take less damage from ALL Sources. Further stacks are less effective.",
+		"NAMES": ["enchanted armor", "enchanted_armor", "ench. armor", "ench._armor"],
+		"PROPER_NAME": "Enchanted Armor"
+	},
+	"Envenom":
+	{
+		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison per stack.",
+		"NAMES": ["envenom"],
+		"PROPER_NAME": "Envenom"
+	},
+	"Fire":
+	{
+		"DESCRIPTION": "Orb: Apply #yBurning and damage the highest health enemy.",
+		"NAMES": ["fire", "fire+"],
+		"PROPER_NAME": "Fire"
+	},
+	"Flight":
+	{
+		"DESCRIPTION": "Take 50% less #yAttack damage. Lose 1 stack until end of turn when taking damage, the power is cancelled at 0 stacks.",
+		"NAMES": ["flight"],
+		"PROPER_NAME": "Flight"
+	},
+	"Juggernaut":
+	{
+		"DESCRIPTION": "Whenever you gain #yBlock, deal damage to a random enemy.",
+		"NAMES": ["juggernaut"],
+		"PROPER_NAME": "Juggernaut"
+	},
+	"Limited":
+	{
+		"DESCRIPTION": "Any copy of this card can only be played once per turn.",
+		"NAMES": ["limited"],
+		"PROPER_NAME": "Limited"
+	},
+	"Malleable":
+	{
+		"DESCRIPTION": "Upon receiving attack damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of your turn.",
+		"NAMES": ["malleable"],
+		"PROPER_NAME": "Malleable"
+	},
+	"Metallicize":
+	{
+		"DESCRIPTION": "Gain #yBlock at the start of your turn.",
+		"NAMES": ["metallicize"],
+		"PROPER_NAME": "Metallicize"
+	},
+	"Piercing":
+	{
+		"DESCRIPTION": "Ignore the target's #yBlock and #yThorns.",
+		"NAMES": ["piercing"],
+		"PROPER_NAME": "Piercing"
+	},
+	"Plated Armor":
+	{
+		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving unblocked damage.",
+		"NAMES": ["plated armor", "plated_armor"],
+		"PROPER_NAME": "Plated Armor"
+	},
+	"Force":
+	{
+		"DESCRIPTION": "When you gain or lose #yForce, gain or lose that much #yStrength. Lose #b1 #yForce at the start of each turn.",
+		"NAMES": ["force"],
+		"PROPER_NAME": "Force"
+	},
+	"Agility":
+	{
+		"DESCRIPTION": "When you gain or lose #yAgility, gain or lose that much #yDexterity. Lose #b1 #yAgility at the start of each turn.",
+		"NAMES": ["agility"],
+		"PROPER_NAME": "Agility"
+	},
+	"Intellect":
+	{
+		"DESCRIPTION": "When you gain or lose #yIntellect, gain or lose that much #yFocus. Lose #b1 #yIntellect at the start of each turn.",
+		"NAMES": ["intellect"],
+		"PROPER_NAME": "Intellect"
+	},
+	"Rebound":
+	{
+		"DESCRIPTION": "Put the next card you play this turn on top of your draw pile.",
+		"NAMES": ["rebound"],
+		"PROPER_NAME": "Rebound"
+	},
+	"Slow":
+	{
+		"DESCRIPTION": "For every card you have played this turn, enemy takes #b10% more damage from #yAttacks.",
+		"NAMES": ["slow"],
+		"PROPER_NAME": "Slow"
+	},
+	"Stun":
+	{
+		"DESCRIPTION": "Cannot act for #b1 turn.",
+		"NAMES": ["stun", "stunned", "stslib:stunned"],
+		"PROPER_NAME": "Stun"
+	},
+	"Temporary HP":
+	{
+		"DESCRIPTION": "Temporary HP disappears at the end of combat.",
+		"NAMES": ["temporary hp", "temporary_hp", "temp. hp", "temp._hp"],
+		"PROPER_NAME": "Temporary HP"
+	},
+	"~Preview":
+	{
+		"DESCRIPTION": "Press #pSHIFT to view related cards.",
+		"NAMES": ["~"],
+		"PROPER_NAME": "Card Preview"
+	},
+	"~Unique":
+	{
+		"DESCRIPTION": "Can be upgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead.",
+		"NAMES": ["~"],
+		"PROPER_NAME": "Unique"
+	}
+}

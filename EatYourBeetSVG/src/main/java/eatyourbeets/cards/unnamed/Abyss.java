@@ -1,11 +1,11 @@
 package eatyourbeets.cards.unnamed;
 
-import com.megacrit.cardcrawl.actions.utility.QueueCardAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.cards.animator.Urushihara;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Abyss extends UnnamedCard
@@ -14,16 +14,18 @@ public class Abyss extends UnnamedCard
 
     public Abyss()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.NONE);
 
-        Initialize(0,0,2);
+        Initialize(0,0, 5);
+
+        SetMastery(2);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new WeakPower(p, magicNumber, false), magicNumber);
-        GameActionsHelper.AddToTop(new QueueCardAction(new Urushihara(), null));
+        GameActionsHelper.AddToBottom(new LoseHPAction(p, p, magicNumber));
+        GameActionsHelper.AddToBottom(new FetchAction(PlayerStatistics.Void, 1));
     }
 
     @Override
@@ -31,7 +33,7 @@ public class Abyss extends UnnamedCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(-1);
+            upgradeMagicNumber(-2);
         }
     }
 }

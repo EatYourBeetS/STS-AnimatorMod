@@ -26,6 +26,11 @@ public class TanyaDegurechaff extends AnimatorCard implements OnAddedToDeckSubsc
         Initialize(12, 0, 4);
 
         SetSynergy(Synergies.YoujoSenki);
+
+        if (InitializingPreview())
+        {
+            cardPreview.Initialize(new TanyaDegurechaff_Type95(), false);
+        }
     }
 
     @Override
@@ -55,19 +60,6 @@ public class TanyaDegurechaff extends AnimatorCard implements OnAddedToDeckSubsc
             upgradeDamage(3);
             upgradeMagicNumber(1);
         }
-    }
-
-    private AbstractCard preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (preview == null)
-        {
-            preview = new TanyaDegurechaff_Type95();
-        }
-
-        return preview;
     }
 
     @Override

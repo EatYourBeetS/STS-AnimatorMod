@@ -26,9 +26,16 @@ public class IzunaHatsuse extends AnimatorCard
 
         AddExtendedDescription();
 
-        transformed = false;
-
+        SetTransformed(false);
         SetSynergy(Synergies.NoGameNoLife);
+
+        if (InitializingPreview())
+        {
+            // InitializingPreview will only be true once
+            IzunaHatsuse copy = new IzunaHatsuse();
+            copy.SetTransformed(true);
+            cardPreview.Initialize(copy, true);
+        }
     }
 
     @Override
@@ -37,42 +44,15 @@ public class IzunaHatsuse extends AnimatorCard
         super.applyPowers();
 
         AbstractPlayer p = AbstractDungeon.player;
-        if ((p.currentHealth / (float)p.maxHealth) < 0.25f)
-        {
-            if (!transformed)
-            {
-                this.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
-                this.type = CardType.ATTACK;
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
-                initializeDescription();
-                transformed = true;
-            }
-        }
-        else
-        {
-            if (transformed)
-            {
-                this.loadCardImage(Resources_Animator.GetCardImage(ID));
-                this.type = CardType.SKILL;
-                rawDescription = cardStrings.DESCRIPTION;
-                initializeDescription();
-                transformed = false;
-            }
-        }
+        SetTransformed((p.currentHealth / (float)p.maxHealth) < 0.25f);
     }
 
     @Override
-    public AbstractCard makeSameInstanceOf()
+    public AbstractCard makeStatEquivalentCopy()
     {
-        IzunaHatsuse other = (IzunaHatsuse) super.makeSameInstanceOf();
-        if (transformed)
-        {
-            other.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
-            other.type = CardType.ATTACK;
-            other.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
-            other.initializeDescription();
-            other.transformed = true;
-        }
+        IzunaHatsuse other = (IzunaHatsuse) super.makeStatEquivalentCopy();
+
+        other.SetTransformed(transformed);
 
         return other;
     }
@@ -104,27 +84,28 @@ public class IzunaHatsuse extends AnimatorCard
         }
     }
 
-    private static IzunaHatsuse preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
+    private void SetTransformed(boolean value)
     {
-        if (preview == null || (preview.upgraded != this.upgraded))
+        if (transformed != value)
         {
-            preview = new IzunaHatsuse();
+            transformed = value;
 
-            if (upgraded)
+            if (transformed)
             {
-                preview.upgrade();
+                this.loadCardImage(Resources_Animator.GetCardImage(ID));
+                this.type = CardType.SKILL;
+                rawDescription = cardStrings.DESCRIPTION;
+                initializeDescription();
+                transformed = false;
             }
-
-            preview.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
-            preview.type = CardType.ATTACK;
-            preview.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
-            preview.initializeDescription();
-            preview.transformed = true;
+            else
+            {
+                this.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
+                this.type = CardType.ATTACK;
+                rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
+                initializeDescription();
+                transformed = true;
+            }
         }
-
-        return preview;
     }
 }

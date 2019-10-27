@@ -17,20 +17,18 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
-import eatyourbeets.cards.unnamed.Time;
-import eatyourbeets.cards.unnamed.SoulTap;
+import eatyourbeets.cards.unnamed.Defend;
+import eatyourbeets.cards.unnamed.Strike;
 import eatyourbeets.relics.unnamed.InfinitePower;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.Resources_Unnamed;
 import eatyourbeets.resources.Resources_Unnamed_Images;
-import eatyourbeets.cards.unnamed.Defend_Unnamed;
-import eatyourbeets.cards.unnamed.Strike_Unnamed;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
 public class UnnamedCharacter extends CustomPlayer
 {
-    public static final CharacterStrings characterStrings = Resources_Animator.GetCharacterStrings("Unnamed");
+    public static final CharacterStrings characterStrings = Resources_Unnamed.GetCharacterStrings("Unnamed");
     public static final Color MAIN_COLOR = CardHelper.getColor(210, 147, 106);
     public static final String[] NAMES = characterStrings.NAMES;
     public static final String[] TEXT = characterStrings.TEXT;
@@ -146,15 +144,14 @@ public class UnnamedCharacter extends CustomPlayer
     {
         ArrayList<String> cards = new ArrayList<>();
 
-        cards.add(Time.ID);
-        cards.add(Time.ID);
-        cards.add(Time.ID);
-        cards.add(Time.ID);
-        cards.add(Time.ID);
-        cards.add(Time.ID);
-        cards.add(Time.ID);
-        cards.add(Time.ID);
-        cards.add(Time.ID);
+        cards.add(Strike.ID);
+        cards.add(Strike.ID);
+        cards.add(Strike.ID);
+        cards.add(Strike.ID);
+        cards.add(Defend.ID);
+        cards.add(Defend.ID);
+        cards.add(Defend.ID);
+        cards.add(Defend.ID);
 
         return cards;
     }
@@ -172,7 +169,7 @@ public class UnnamedCharacter extends CustomPlayer
     @Override
     public AbstractCard getStartCardForEvent()
     {
-        return new Strike_Unnamed();
+        return new Strike();
     }
 
     @Override

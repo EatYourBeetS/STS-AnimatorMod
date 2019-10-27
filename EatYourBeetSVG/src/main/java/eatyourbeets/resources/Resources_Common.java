@@ -21,8 +21,31 @@ import eatyourbeets.rewards.SynergyCardsReward;
 import eatyourbeets.variables.SecondaryValueVariable;
 import patches.AbstractEnums;
 
+import java.io.File;
+
 public class Resources_Common extends AbstractResources
 {
+    private static String languagePath = null;
+
+    private static void LoadLanguagePath()
+    {
+        if (languagePath != null)
+        {
+            return;
+        }
+
+        String filePath = "c:/temp/common-localization/";
+        File f = new File(filePath);
+        if(f.exists() && f.isDirectory())
+        {
+            languagePath = filePath;
+        }
+        else
+        {
+            languagePath = "localization/common/eng/";
+        }
+    }
+
     public static Texture Map_Act5Entrance;
     public static Texture Map_Act5EntranceOutline;
 
@@ -102,5 +125,19 @@ public class Resources_Common extends AbstractResources
 
         Map_Act5Entrance = new Texture("images/ui/map/act5Entrance.png");
         Map_Act5EntranceOutline = new Texture("images/ui/map/act5EntranceOutline.png");
+    }
+
+    @Override
+    protected void InitializeStrings()
+    {
+        LoadLanguagePath();
+
+        super.InitializeStrings();
+    }
+
+    @Override
+    protected void InitializeKeywords()
+    {
+        LoadKeywords(languagePath + "KeywordStrings.json");
     }
 }

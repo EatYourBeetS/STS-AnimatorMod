@@ -2,7 +2,7 @@
 {
 	"unnamed:InfinitePower":
 	{
-		"DESCRIPTIONS": ["Whenever you obtain a card, gain #b", " Max HP. Whenever you obtain a relic, #yUpgrade your oldest card. #b", ".", "."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} #yTemporary #yHP. When you obtain a card, heal #b{1} HP."],
 		"FLAVOR": "Infinite Power! At a cost...",
 		"NAME": "Infinite Power"
 	}

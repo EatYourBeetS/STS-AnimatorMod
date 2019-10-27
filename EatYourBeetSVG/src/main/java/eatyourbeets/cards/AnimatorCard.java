@@ -2,7 +2,9 @@ package eatyourbeets.cards;
 
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -13,6 +15,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.utilities.Utilities;
@@ -24,10 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static eatyourbeets.cards.AnimatorCard_UltraRare.RENDER_COLOR;
+
 public abstract class AnimatorCard extends EYBCard
 {
     protected static final Logger logger = LogManager.getLogger(AnimatorCard.class.getName());
-    //private static final Color SYNERGY_COLOR = new Color(0.565f, 0.933f, 0.565f, 1);
 
     public static int SynergyReserves;
     public static int SynergiesActivatedThisTurn;
@@ -37,8 +41,6 @@ public abstract class AnimatorCard extends EYBCard
 
     private final List<TooltipInfo> customTooltips = new ArrayList<>();
     private Synergy synergy;
-
-    protected final Color RENDER_COLOR = Color.WHITE.cpy();
 
     public boolean anySynergy;
 
@@ -104,61 +106,14 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c)
+    protected String GetHeaderText()
     {
-        super.triggerOnOtherCardPlayed(c);
-
-        if (HasSynergy(c))
+        if (synergy != null)
         {
-            this.targetDrawScale = 0.9f;
+            return synergy.NAME;
         }
-    }
 
-    @Override
-    public void render(SpriteBatch sb)
-    {
-        super.render(sb);
-        RenderSynergy(sb);
-        RenderCardPreview(sb);
-    }
-
-    @Override
-    public void renderInLibrary(SpriteBatch sb)
-    {
-        super.renderInLibrary(sb);
-        RenderSynergy(sb);
-        RenderCardPreview(sb);
-    }
-
-    public void RenderSynergy(SpriteBatch sb)
-    {
-        if (this.synergy != null)
-        {
-            if (!this.isFlipped)
-            {
-                float originalScale = FontHelper.cardTitleFont_small.getData().scaleX;
-                float scaleMulti = 0.8f;
-
-                int length = this.synergy.NAME.length();
-                if (length > 20)
-                {
-                    scaleMulti -= 0.02f * (length - 20);
-                    if (scaleMulti < 0.5f)
-                    {
-                        scaleMulti = 0.5f;
-                    }
-                }
-
-                FontHelper.cardTitleFont_small.getData().setScale(this.drawScale * scaleMulti);
-                Color textColor = Settings.CREAM_COLOR.cpy();
-
-                FontHelper.renderRotatedText(sb, FontHelper.cardTitleFont_small, this.synergy.NAME,
-                        this.current_x, this.current_y, 0.0F, 400.0F * Settings.scale * this.drawScale / 2.0F,
-                        this.angle, true, textColor);
-
-                FontHelper.cardTitleFont_small.getData().setScale(originalScale);
-            }
-        }
+        return null;
     }
 
     public void SetSynergy(Synergy synergy)
@@ -196,82 +151,18 @@ public abstract class AnimatorCard extends EYBCard
         }
     }
 
-    @SpireOverride
-    protected void renderAttackPortrait(SpriteBatch sb, float x, float y)
+    protected void SetLoyal(boolean value)
     {
-        switch (this.rarity)
+        if (value)
         {
-            case BASIC:
-            case CURSE:
-            case COMMON:
-                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_ATTACK_COMMON, x, y);
-                return;
-
-            case SPECIAL:
-                this.renderHelper(sb, RENDER_COLOR, Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL, x, y);
-                return;
-
-            case UNCOMMON:
-                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_ATTACK_UNCOMMON, x, y);
-                return;
-
-            case RARE:
-                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_ATTACK_RARE, x, y);
+            if (!tags.contains(AbstractEnums.CardTags.LOYAL))
+            {
+                tags.add(AbstractEnums.CardTags.LOYAL);
+            }
         }
-    }
-
-    @SpireOverride
-    protected void renderSkillPortrait(SpriteBatch sb, float x, float y)
-    {
-        switch (this.rarity)
+        else
         {
-            case BASIC:
-            case CURSE:
-            case COMMON:
-                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_SKILL_COMMON, x, y);
-                return;
-
-            case SPECIAL:
-                this.renderHelper(sb, RENDER_COLOR, Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL, x, y);
-                return;
-
-            case UNCOMMON:
-                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_SKILL_UNCOMMON, x, y);
-                return;
-
-            case RARE:
-                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_SKILL_RARE, x, y);
+            tags.remove(AbstractEnums.CardTags.LOYAL);
         }
-    }
-
-    @SpireOverride
-    protected void renderPowerPortrait(SpriteBatch sb, float x, float y)
-    {
-        switch (this.rarity)
-        {
-            case BASIC:
-            case CURSE:
-            case COMMON:
-                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_POWER_COMMON, x, y);
-                break;
-
-            case SPECIAL:
-                this.renderHelper(sb, RENDER_COLOR, Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL, x, y);
-                return;
-
-            case UNCOMMON:
-                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_POWER_UNCOMMON, x, y);
-                break;
-
-            case RARE:
-                this.renderHelper(sb, RENDER_COLOR, ImageMaster.CARD_FRAME_POWER_RARE, x, y);
-        }
-    }
-
-    protected void AddUniqueTag()
-    {
-        String[] unique = GameDictionary.keywords.get("animator:unique").split("\\|");
-        AddTooltip(new TooltipInfo(unique[0], unique[1]));
-        tags.add(AbstractEnums.CardTags.UNIQUE);
     }
 }

@@ -1,12 +1,10 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.Hidden;
-import eatyourbeets.utilities.GameActionsHelper;
 
 public class IchigoKurosaki extends AnimatorCard implements Hidden
 {
@@ -19,6 +17,11 @@ public class IchigoKurosaki extends AnimatorCard implements Hidden
         Initialize(0, 0, 5);
 
         SetSynergy(Synergies.Bleach);
+
+        if (InitializingPreview())
+        {
+            cardPreview.Initialize(new IchigoBankai(), false);
+        }
     }
 
     @Override
@@ -35,17 +38,5 @@ public class IchigoKurosaki extends AnimatorCard implements Hidden
             upgradeBlock(-1);
             upgradeBaseCost(0);
         }
-    }
-
-    private static AbstractCard cardPreview;
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (cardPreview == null)
-        {
-            cardPreview = new IchigoBankai();
-        }
-
-        return cardPreview;
     }
 }

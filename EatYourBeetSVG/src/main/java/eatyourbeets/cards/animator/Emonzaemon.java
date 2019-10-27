@@ -21,9 +21,12 @@ public class Emonzaemon extends AnimatorCard
 
         Initialize(4,0);
 
-        //AddExtendedDescription();
-
         SetSynergy(Synergies.Katanagatari);
+
+        if (InitializingPreview())
+        {
+            cardPreview.Initialize(new EntouJyuu(), true);
+        }
     }
 
     @Override
@@ -57,22 +60,5 @@ public class Emonzaemon extends AnimatorCard
         {
             upgradeDamage(2);
         }
-    }
-
-    private static AbstractCard preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (preview == null || (preview.upgraded != this.upgraded))
-        {
-            preview = new EntouJyuu();
-            if (upgraded)
-            {
-                preview.upgrade();
-            }
-        }
-
-        return preview;
     }
 }

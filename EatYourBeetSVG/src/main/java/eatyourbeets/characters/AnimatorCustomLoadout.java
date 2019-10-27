@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.dungeons.CustomAbstractDungeon;
+import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 
 public abstract class AnimatorCustomLoadout
 {
-    protected static final String[] trophyStrings = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Trophies).TEXT;
+    protected static final String[] trophyStrings = Resources_Animator_Strings.Trophies.TEXT;
     protected static final Texture bronze = new Texture(Resources_Animator.GetRewardImage("Animator_Bronze"));
     protected static final Texture silver = new Texture(Resources_Animator.GetRewardImage("Animator_Silver"));
     protected static final Texture gold = new Texture(Resources_Animator.GetRewardImage("Animator_Gold"));

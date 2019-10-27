@@ -15,6 +15,7 @@ import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.characters.AnimatorCharacterSelect;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.resources.Resources_Animator_Strings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
@@ -23,7 +24,7 @@ public class CharacterSelectScreenPatch
 {
     protected static final Logger logger = LogManager.getLogger(CharacterSelectScreenPatch.class.getName());
 
-    public static final UIStrings UIStrings = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.CharacterSelect);
+    public static final UIStrings UIStrings = Resources_Animator_Strings.CharacterSelect;
 
     public static Hitbox startingCardsLabelHb;
     public static Hitbox startingCardsSelectedHb;
@@ -73,6 +74,8 @@ public class CharacterSelectScreenPatch
         AnimatorCustomLoadout.LoadSpecialTrophies();
         PlayerStatistics.UnlockAllKeys();
 
+//        TrophyWindow.Initialize();
+
         selectedOption = null;
     }
 
@@ -119,6 +122,8 @@ public class CharacterSelectScreenPatch
 
             RefreshLoadout(selectScreen, selectedOption);
         }
+
+//        TrophyWindow.Update();
 
         AnimatorCharacterSelect.GetSelectedLoadout(false).UpdateTrophies(trophy1Hb, trophy2Hb, trophy3Hb);
         AnimatorCustomLoadout.UpdateSpecialTrophies(trophySpecialHb);
@@ -169,6 +174,8 @@ public class CharacterSelectScreenPatch
         startingCardsLabelHb.render(sb);
         startingCardsLeftHb.render(sb);
         startingCardsRightHb.render(sb);
+
+//        TrophyWindow.Render(sb);
 
         AnimatorCharacterSelect.GetSelectedLoadout(false).RenderTrophies(trophy1Hb, trophy2Hb, trophy3Hb, sb);
         AnimatorCustomLoadout.RenderSpecialTrophies(trophySpecialHb, sb);

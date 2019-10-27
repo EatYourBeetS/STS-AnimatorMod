@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
-import eatyourbeets.actions.animator.KillCharacterAction;
+import eatyourbeets.actions.common.DieAction;
 import eatyourbeets.actions.common.IncreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.powers.PlayerStatistics;
@@ -20,7 +20,7 @@ public class Reaper extends UnnamedCard
     {
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
 
-        Initialize(0,0, 20, 4);
+        Initialize(0,0, 2, 30);
 
         AddExtendedDescription();
 
@@ -48,7 +48,7 @@ public class Reaper extends UnnamedCard
                 GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
                 GameActionsHelper.AddToBottom(new VFXAction(new CollectorCurseEffect(m1.hb.cX, m1.hb.cY), 1.0F));
 
-                GameActionsHelper.AddToBottom(new KillCharacterAction(p, m));
+                GameActionsHelper.AddToBottom(new DieAction(m));
                 GameActionsHelper.AddToBottom(new IncreaseMaxHpAction(p, magicNumber, true));
             }
         }

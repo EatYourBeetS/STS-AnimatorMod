@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Aqua extends AnimatorCard
 {
-    private boolean secondForm = false;
+    private boolean transformed = false;
 
     public static final String ID = CreateFullID(Aqua.class.getSimpleName());
 
@@ -24,9 +24,15 @@ public class Aqua extends AnimatorCard
 
         Initialize(0,0, 2, 3);
 
-        this.tags.add(CardTags.HEALING);
-
+        SetHealing(true);
         SetSynergy(Synergies.Konosuba);
+
+        if (InitializingPreview())
+        {
+            Aqua copy = new Aqua(); // InitializingPreview will be true only once
+            copy.SetTransformed(true);
+            cardPreview.Initialize(copy, true);
+        }
     }
 
     @Override
@@ -34,7 +40,7 @@ public class Aqua extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (upgraded && secondForm)
+        if (upgraded && transformed)
         {
             GameActionsHelper.GainTemporaryHP(AbstractDungeon.player, secondaryValue);
         }
@@ -45,7 +51,7 @@ public class Aqua extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        if (upgraded && secondForm)
+        if (upgraded && transformed)
         {
             GameActionsHelper.GainTemporaryHP(AbstractDungeon.player, secondaryValue);
         }
@@ -54,7 +60,7 @@ public class Aqua extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (!secondForm)
+        if (!transformed)
         {
             GameActionsHelper.AddToBottom(new HealAction(p, p, magicNumber));
             GameActionsHelper.DrawCard(p, 1);
@@ -69,14 +75,10 @@ public class Aqua extends AnimatorCard
     @Override
     public void upgrade() 
     {
-        if (TryUpgrade())
+        if (TryUpgrade(false))
         {
             upgradeMagicNumber(1);
-
-            if (secondForm)
-            {
-                SetSecondForm();
-            }
+            SetTransformed(transformed);
         }
     }
 
@@ -85,20 +87,29 @@ public class Aqua extends AnimatorCard
     {
         Aqua other = (Aqua) super.makeStatEquivalentCopy();
 
-        if (secondForm)
-        {
-            other.SetSecondForm();
-        }
+        other.SetTransformed(transformed);
 
         return other;
     }
 
-    private void SetSecondForm()
+    private void SetTransformed(boolean value)
     {
-        this.loadCardImage(Resources_Animator.GetCardImage(ID + "2"));
-        rawDescription = cardStrings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0];
-        secondForm = true;
-        initializeDescription();
+        transformed = value;
+
+        if (transformed)
+        {
+            this.loadCardImage(Resources_Animator.GetCardImage(ID + "2"));
+            rawDescription = cardStrings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0];
+            transformed = true;
+            initializeDescription();
+        }
+        else
+        {
+            this.loadCardImage(Resources_Animator.GetCardImage(ID));
+            rawDescription = (upgraded && (upgradedDescription != null)) ? upgradedDescription : cardStrings.DESCRIPTION;
+            transformed = false;
+            initializeDescription();
+        }
     }
 
     private class BecomeUselessAction extends AnimatorAction
@@ -106,28 +117,9 @@ public class Aqua extends AnimatorCard
         @Override
         public void update()
         {
-            SetSecondForm();
+            SetTransformed(true);
 
             this.isDone = true;
         }
-    }
-
-    private static Aqua preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (preview == null || (preview.upgraded != this.upgraded))
-        {
-            preview = new Aqua();
-            preview.SetSecondForm();
-
-            if (upgraded)
-            {
-                preview.upgrade();
-            }
-        }
-
-        return preview;
     }
 }

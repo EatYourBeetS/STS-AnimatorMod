@@ -73,6 +73,12 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
     public void OnReceiveRewards(ArrayList<RewardItem> rewards)
     {
+        AbstractRoom room = AbstractDungeon.getCurrRoom();
+        if (room == null || room instanceof MonsterRoomBoss || room instanceof TreasureRoomBoss)
+        {
+            return;
+        }
+
         if (counter == 0)
         {
             if (skipReward)
@@ -91,21 +97,14 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         this.flash();
 
         int startingIndex = -1;
-        if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss)
+        for (int i = 0; i < rewards.size(); i++)
         {
-            startingIndex = rewards.size();
-        }
-        else
-        {
-            for (int i = 0; i < rewards.size(); i++)
+            RewardItem reward = rewards.get(i);
+            if (reward.type == RewardItem.RewardType.CARD)
             {
-                RewardItem reward = rewards.get(i);
-                if (reward.type == RewardItem.RewardType.CARD)
-                {
-                    startingIndex = i;
-                    rewards.remove(startingIndex);
-                    break;
-                }
+                startingIndex = i;
+                rewards.remove(startingIndex);
+                break;
             }
         }
 

@@ -6,37 +6,41 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardGlowBorder;
+import eatyourbeets.cards.EYBCard;
+import eatyourbeets.cards.UnnamedCard;
+import eatyourbeets.utilities.Field;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
-
-import java.lang.reflect.Field;
 
 @SpirePatch(clz= CardGlowBorder.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class})
 public class CardGlowBorderPatch
 {
-    private static Field colorField;
+    private static Field<Color> colorField = Utilities.GetPrivateField("color", AbstractGameEffect.class);
 
     public static Color overrideColor;
 
     @SpirePostfixPatch
-    public static void Method(CardGlowBorder __instance, AbstractCard card) throws IllegalAccessException, NoSuchFieldException
+    public static void Method(CardGlowBorder __instance, AbstractCard card)
     {
         if (overrideColor != null)
         {
-            Color color = GetColor(__instance);
+            Color color = colorField.Get(__instance);
             if (color != null)
             {
                 color.r = overrideColor.r;
                 color.g = overrideColor.g;
                 color.b = overrideColor.b;
             }
+
+            return;
         }
-        else
+
+        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
+        if (c != null)
         {
-            AnimatorCard c = Utilities.SafeCast(card, AnimatorCard.class);
-            if (c != null && c.HasActiveSynergy())
+            if (c instanceof AnimatorCard && ((AnimatorCard)c).HasActiveSynergy())
             {
-                Color color = GetColor(__instance);
+                Color color = colorField.Get(__instance);
                 if (color != null)
                 {
                     color.r = Color.GOLD.r;
@@ -44,17 +48,16 @@ public class CardGlowBorderPatch
                     color.b = Color.GOLD.b;
                 }
             }
+            else if (c instanceof UnnamedCard && ((UnnamedCard)c).isDepleted())
+            {
+                Color color = colorField.Get(__instance);
+                if (color != null)
+                {
+                    color.r = Color.LIGHT_GRAY.r;
+                    color.g = Color.LIGHT_GRAY.g;
+                    color.b = Color.LIGHT_GRAY.b;
+                }
+            }
         }
-    }
-
-    private static Color GetColor(CardGlowBorder instance) throws NoSuchFieldException, IllegalAccessException
-    {
-        if (colorField == null)
-        {
-            colorField = AbstractGameEffect.class.getDeclaredField("color");
-            colorField.setAccessible(true);
-        }
-
-        return (Color) colorField.get(instance);
     }
 }

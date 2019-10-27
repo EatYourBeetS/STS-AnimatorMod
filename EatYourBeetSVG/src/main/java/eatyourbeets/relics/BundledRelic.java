@@ -16,6 +16,7 @@ import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 import eatyourbeets.relics.animator.CursedGlyph;
 import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.Utilities;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class BundledRelic
     public final String cardID;
     public AbstractCard card;
 
-    private static final String[] text = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Rewards).TEXT;
+    private static final String[] text = Resources_Animator_Strings.Rewards.TEXT;
 
     private final AbstractRelic.RelicTier relicTier;
     private final String relicID;
@@ -57,7 +58,10 @@ public class BundledRelic
 
         if (PlayerStatistics.GetActualAscensionLevel() > 6 && !hasHero)
         {
-            chance = 0;
+            if (chance < 50)
+            {
+                chance = 0;
+            }
         }
 
         //Utilities.Logger.info(cardID + ", Rolled: " + roll + " (" + chance + ")");

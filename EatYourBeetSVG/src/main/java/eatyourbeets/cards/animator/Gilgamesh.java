@@ -37,9 +37,9 @@ public class Gilgamesh extends AnimatorCard
 
         Initialize(3,0, 3);
 
-        AddUniqueTag();
         AddExtendedDescription(GOLD_REWARD);
 
+        SetUnique(true);
         SetSynergy(Synergies.Fate);
     }
 

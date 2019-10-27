@@ -1,21 +1,20 @@
 package eatyourbeets.cards.unnamed;
 
 import basemod.helpers.BaseModCardTags;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class Defend_Unnamed extends UnnamedCard
+public class Defend extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Defend_Unnamed.class.getSimpleName());
+    public static final String ID = CreateFullID(Defend.class.getSimpleName());
 
-    public Defend_Unnamed()
+    public Defend()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF, true);
+        super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
 
-        Initialize(0, 7,3);
+        Initialize(0, 6);
 
         this.tags.add(BaseModCardTags.BASIC_DEFEND);
     }
@@ -24,7 +23,6 @@ public class Defend_Unnamed extends UnnamedCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.AddToBottom(new LoseHPAction(p, p, this.magicNumber));
     }
 
     @Override

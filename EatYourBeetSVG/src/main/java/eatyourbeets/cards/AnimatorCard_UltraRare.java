@@ -20,6 +20,9 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     private static final float B = 0.4f;
     public static final Color RENDER_COLOR2 = new Color(B, B, B, 1);
 
+    private static final byte[] whatever = {0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x6f, 0x72, 0x3a, 0x75, 0x72};
+    private static final String idPrefix = new String(whatever);
+
     protected AnimatorCard_UltraRare(String id, int cost, CardType type, CardTarget target)
     {
         //super(id, cost, type, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.SPECIAL, target);
@@ -70,9 +73,6 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     {
         return UnlockTracker.seenPref.getInteger(cardID, 0) >= 1;
     }
-
-    private static final byte[] whatever = {0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x6f, 0x72, 0x3a, 0x75, 0x72};
-    private static final String idPrefix = new String(whatever);
 
     @SpireOverride
     protected void renderAttackBg(SpriteBatch sb, float x, float y)

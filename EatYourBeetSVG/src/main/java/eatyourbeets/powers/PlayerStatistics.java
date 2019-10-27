@@ -23,10 +23,11 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.animator.Kuroyukihime;
 import eatyourbeets.interfaces.*;
 import eatyourbeets.powers.animator.AnimatorPower;
 import eatyourbeets.powers.common.TemporaryBiasPower;
+import eatyourbeets.powers.unnamed.ResonancePower;
+import eatyourbeets.ui.Void;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -62,6 +63,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
 
     public static boolean LoadingPlayerSave;
     public static SaveData SaveData = new SaveData();
+    public static Void Void = new Void();
 
     private static int turnDamageMultiplier = 0;
     private static int turnCount = 0;
@@ -103,6 +105,8 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         onAfterDeath.Clear();
         onCostRefresh.Clear();
         onStartOfTurnPostDraw.Clear();
+
+        Void.Initialize(true);
     }
 
     public static void EnsurePowerIsApplied()
@@ -596,6 +600,22 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     public static int GetDexterity(AbstractCreature creature)
     {
         DexterityPower power = (DexterityPower) creature.getPower(DexterityPower.POWER_ID);
+        if (power != null)
+        {
+            return power.amount;
+        }
+
+        return 0;
+    }
+
+    public static int GetResonance()
+    {
+        return GetResonance(AbstractDungeon.player);
+    }
+
+    public static int GetResonance(AbstractCreature creature)
+    {
+        ResonancePower power = (ResonancePower) creature.getPower(ResonancePower.POWER_ID);
         if (power != null)
         {
             return power.amount;

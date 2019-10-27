@@ -3,11 +3,13 @@ package eatyourbeets.resources;
 import basemod.BaseMod;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.*;
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.Hidden;
@@ -15,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,24 +26,31 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
                                                    EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
                                                    AddAudioSubscriber
 {
-    public enum UIStringType
-    {
-        CharacterSelect,
-        Synergies,
-        Rewards,
-        Actions,
-        Tips,
-        SpecialEffects,
-        CardSelect,
-        TetAction,
-        Trophies
-    }
-
+    protected static final HashMap<String, Keyword> keywords = new HashMap<>();
+    protected static final HashMap<String, Texture> textures = new HashMap<>();
     protected static final Logger logger = LogManager.getLogger(Resources_Animator.class.getName());
 
     protected static Resources_Common commonResources;
     protected static Resources_Unnamed unnamedResources;
     protected static Resources_Animator animatorResources;
+
+    public static Texture GetTexture(String path)
+    {
+        Texture texture = textures.get(path);
+        if (texture == null)
+        {
+            texture = new Texture(path);
+            texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            textures.put(path, texture);
+        }
+
+        return texture;
+    }
+
+    public static Keyword GetKeyword(String keywordID)
+    {
+        return keywords.get(keywordID);
+    }
 
     public static CharacterStrings GetCharacterStrings(String characterID)
     {
@@ -62,12 +72,15 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
         return CardCrawlGame.languagePack.getEventString(eventID);
     }
 
+    public static UIStrings GetUIStrings(String stringID)
+    {
+        return CardCrawlGame.languagePack.getUIString(stringID);
+    }
+
     public static OrbStrings GetOrbStrings(String orbID)
     {
         return CardCrawlGame.languagePack.getOrbString(orbID);
     }
-
-    public static UIStrings GetUIStrings(UIStringType type) { return CardCrawlGame.languagePack.getUIString("animator:" + type.name()); }
 
     public static String GetCardImage(String cardID)
     {
@@ -98,7 +111,7 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
     {
         commonResources = Initialize(commonResources, new Resources_Common());
         animatorResources = Initialize(animatorResources, new Resources_Animator());
-        //unnamedResources = Initialize(unnamedResources, new Resources_Unnamed());
+        unnamedResources = Initialize(unnamedResources, new Resources_Unnamed());
     }
 
     private static <T extends AbstractResources> T Initialize(AbstractResources existing, T resources)
@@ -212,21 +225,6 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
             card.isLocked = false;
         }
 
-        // animator_ -> animator:
-        String oldID = id.replace(":", "_");
-        if (UnlockTracker.seenPref.data.containsKey(oldID))
-        {
-            int res = UnlockTracker.seenPref.getInteger(oldID);
-
-            UnlockTracker.seenPref.data.remove(oldID);
-
-            if (res > 0)
-            {
-                UnlockTracker.seenPref.putInteger(id, 1);
-                UnlockTracker.seenPref.flush();
-            }
-        }
-
         BaseMod.addCard(card);
     }
 
@@ -254,49 +252,26 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
         }
     }
 
-    protected static void LoadPower(Class<?> cardClass)
+    protected void LoadKeywords(String path)
     {
-        if (Hidden.class.isAssignableFrom(cardClass))
+        String json = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
+
+        Gson gson = new Gson();
+        Type typeToken = new TypeToken<Map<String, Keyword>>() {}.getType();
+        Map<String, Keyword> keywords = gson.fromJson(json, typeToken);
+
+        for (Map.Entry<String, Keyword> pair : keywords.entrySet())
         {
-            return;
-        }
+            String id = pair.getKey();
+            Keyword keyword = pair.getValue();
 
-        AbstractCard card;
-        String id;
-
-        try
-        {
-            card = (AbstractCard) cardClass.getConstructor().newInstance();
-            id = card.cardID;
-        }
-        catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
-        {
-            e.printStackTrace();
-            return;
-        }
-
-        if (UnlockTracker.isCardLocked(id))
-        {
-            UnlockTracker.unlockCard(id);
-            card.isLocked = false;
-        }
-
-        // animator_ -> animator:
-        String oldID = id.replace(":", "_");
-        if (UnlockTracker.seenPref.data.containsKey(oldID))
-        {
-            int res = UnlockTracker.seenPref.getInteger(oldID);
-
-            UnlockTracker.seenPref.data.remove(oldID);
-
-            if (res > 0)
+            if (!id.startsWith("~"))
             {
-                UnlockTracker.seenPref.putInteger(id, 1);
-                UnlockTracker.seenPref.flush();
+                BaseMod.addKeyword(keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
-        }
 
-        BaseMod.addCard(card);
+            AbstractResources.keywords.put(id, keyword);
+        }
     }
 
     protected void InitializeInternal()

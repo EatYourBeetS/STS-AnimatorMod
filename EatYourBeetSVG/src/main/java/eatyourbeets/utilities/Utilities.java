@@ -1,5 +1,6 @@
 package eatyourbeets.utilities;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.*;
@@ -10,6 +11,7 @@ import eatyourbeets.orbs.Fire;
 import eatyourbeets.orbs.Air;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import patches.AbstractEnums;
 
 import java.util.ArrayList;
 import java.util.function.Predicate;
@@ -64,6 +66,22 @@ public class Utilities
         return null;
     }
 
+    public static Method GetPrivateMethod(String methodName, Class type, Class<?>... parameterTypes)
+    {
+        java.lang.reflect.Method method = null;
+        try
+        {
+            method = type.getDeclaredMethod(methodName, parameterTypes);
+            method.setAccessible(true);
+        }
+        catch (NoSuchMethodException e)
+        {
+            e.printStackTrace();
+        }
+
+        return new Method(method);
+    }
+
     public static <T> Field<T> GetPrivateField(String fieldName, Class type)
     {
         java.lang.reflect.Field field = null;
@@ -108,5 +126,17 @@ public class Utilities
         }
 
         return res;
+    }
+
+    public static String Format(String format, Object... args)
+    {
+        int index = 0;
+        for (Object val : args)
+        {
+            format = format.replace("{" + index + "}", val.toString());
+            index += 1;
+        }
+
+        return format;
     }
 }

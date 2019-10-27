@@ -1,237 +1,129 @@
-[
-	{
-		"DESCRIPTION": "Activates if the last card played this turn was from the same series.",
-		"NAMES": ["synergy", "synergies", "synergize", "synergizes"],
-		"PROPERNAME": "Synergy"
-	},
-	{
-		"DESCRIPTION": "Triggers when this card is exhausted.",
-		"NAMES": ["legacy"],
-		"PROPERNAME": "Legacy"
-	},
-	{
-		"DESCRIPTION": "Whenever this card would enter your discard pile, shuffle it into your draw pile.",
-		"NAMES": ["loyal"],
-		"PROPERNAME": "Loyal"
-	},
-	{
-		"DESCRIPTION": "Whenever this card would enter your discard pile, shuffle it into your draw pile.",
-		"NAMES": ["persistent"],
-		"PROPERNAME": "Persistent"
-	},
-	{
-		"DESCRIPTION": "The owner is inflicted with the specified #yDebuff or Effect when receiving damage. Lasts 1 turn.",
-		"NAMES": ["mark", "marks"],
-		"PROPERNAME": "Mark"
-	},
-	{
-		"DESCRIPTION": "If the target has less than #b50% HP, deal double damage.",
-		"NAMES": ["heartseeker"],
-		"PROPERNAME": "Heartseeker"
-	},
-	{
-		"DESCRIPTION": "Ignore the target's #yBlock and #yThorns.",
-		"NAMES": ["piercing"],
-		"PROPERNAME": "Piercing"
-	},
-	{
-		"DESCRIPTION": "If you would die, and this card is anywhere in your deck, prevent all Damage and permanently lose this card. Will not work if Exhausted or Purged.",
-		"NAMES": ["resurrect"],
-		"PROPERNAME": "Resurrect"
-	},
-	{
-		"DESCRIPTION": "Reduced by #b1 when this card is #yplayed or #ydiscarded, if it was at #b0, activate the effect and reset.",
-		"NAMES": ["cooldown"],
-		"PROPERNAME": "Cooldown"
-	},
-	{
-		"DESCRIPTION": "Cannot act for #b1 turn.",
-		"NAMES": ["stun", "stunned", "stslib:stunned"],
-		"PROPERNAME": "Stun"
-	},
-	{
-		"DESCRIPTION": "For every card you have played this turn, enemy takes #b10% more damage from #yAttacks.",
-		"NAMES": ["slow"],
-		"PROPERNAME": "Slow"
-	},
-	{
-		"DESCRIPTION": "Synergizes with any card.",
-		"NAMES": ["shapeshifter", "shapeshift"],
-		"PROPERNAME": "Shapeshifter"
-	},
-	{
-		"DESCRIPTION": "Discard a certain number of cards then draw that many cards.",
-		"NAMES": ["cycle"],
-		"PROPERNAME": "Cycle"
-	},
+
+{
+	"Augmentable":
 	{
 		"DESCRIPTION": "Can be upgraded any number of times.",
 		"NAMES": ["augmentable"],
-		"PROPERNAME": "Augmentable"
+		"PROPER_NAME": "Augmentable"
 	},
-	{
-		"DESCRIPTION": "Upon receiving attack damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of your turn.",
-		"NAMES": ["malleable"],
-		"PROPERNAME": "Malleable"
-	},
-	{
-		"DESCRIPTION": "Take damage at the end of each turn.",
-		"NAMES": ["constricted"],
-		"PROPERNAME": "Constricted"
-	},
-	{
-		"DESCRIPTION": "Trigger when this card is manually discarded or cycled.",
-		"NAMES": ["recall"],
-		"PROPERNAME": "Recall"
-	},
-	{
-		"DESCRIPTION": "Activates for each enemy that loses its block during this attack.",
-		"NAMES": ["overrun"],
-		"PROPERNAME": "Overrun"
-	},
+	"Boost":
 	{
 		"DESCRIPTION": "If this counter is greater NL than 0, activate the effect then reduce this counter by 1. Resets at the end of each fight.",
 		"NAMES": ["boost"],
-		"PROPERNAME": "Boost"
+		"PROPER_NAME": "Boost"
 	},
+	"Cooldown":
 	{
-		"NAMES": ["earth", "earth+"],
-		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage randomly split amongst ALL enemies.",
-		"PROPERNAME": "Earth"
+		"DESCRIPTION": "Reduced by #b1 when this card is #yplayed or #ydiscarded, if it was at #b0, activate the effect and reset.",
+		"NAMES": ["cooldown"],
+		"PROPER_NAME": "Cooldown"
 	},
+	"Flaming Weapon":
 	{
-		"NAMES": ["air", "air+"],
-		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
-		"PROPERNAME": "Air"
+		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yBurning.",
+		"NAMES": ["flaming weapon", "flaming_weapon"],
+		"PROPER_NAME": "Flaming Weapon"
 	},
+	"Heartseeker":
 	{
-		"NAMES": ["fire", "fire+"],
-		"DESCRIPTION": "Orb: Apply #yBurning and damage the highest health enemy.",
-		"PROPERNAME": "Fire"
+		"DESCRIPTION": "If the target has less than #b50% HP, deal double damage.",
+		"NAMES": ["heartseeker"],
+		"PROPER_NAME": "Heartseeker"
 	},
+	"Lazy":
 	{
-		"NAMES": ["blur"],
-		"DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
-		"PROPERNAME": "Blur"
+		"DESCRIPTION": "This card's damage will be delayed by a random number of turns.",
+		"NAMES": ["lazy"],
+		"PROPER_NAME": "Lazy"
 	},
+	"Legacy":
 	{
-		"NAMES": ["burning"],
-		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by 1 each turn.",
-		"PROPERNAME": "Burning"
+		"DESCRIPTION": "Triggers when this card is exhausted.",
+		"NAMES": ["legacy"],
+		"PROPER_NAME": "Legacy"
 	},
+	"Loyal":
 	{
-		"NAMES": ["envenom"],
-		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison per stack.",
-		"PROPERNAME": "Envenom"
+		"DESCRIPTION": "Whenever this card would enter your discard pile, shuffle it into your draw pile.",
+		"NAMES": ["loyal"],
+		"PROPER_NAME": "Loyal"
 	},
+	"Martial Artist":
 	{
-		"NAMES": ["metallicize"],
-		"DESCRIPTION": "Gain #yBlock at the start of your turn.",
-		"PROPERNAME": "Metallicize"
+		"DESCRIPTION": "This card's damage also scales with #yDexterity.",
+		"NAMES": ["martial artist", "martial_artist"],
+		"PROPER_NAME": "Martial Artist"
 	},
+	"Motivate":
 	{
-		"NAMES": ["choked"],
-		"DESCRIPTION": "Whenever you play a card this turn, the target loses 1 HP.",
-		"PROPERNAME": "Choked"
+		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times.",
+		"NAMES": ["motivate"],
+		"PROPER_NAME": "Motivate"
 	},
+	"Orb Core":
 	{
-		"NAMES": ["orb core", "orb_core", "orb cores", "orb_cores", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
 		"DESCRIPTION": "#yPower: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy each turn.",
+		"NAMES": ["orb core", "orb_core", "orb cores", "orb_cores", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
 		"PROPER_NAME": "Orb Core"
 	},
+	"Overrun":
 	{
-		"PROPER_NAME": "Plated Armor",
-		"NAMES": ["plated armor", "plated_armor"],
-		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving unblocked damage."
+		"DESCRIPTION": "Activates for each enemy that loses its block during this attack.",
+		"NAMES": ["overrun"],
+		"PROPER_NAME": "Overrun"
 	},
+	"Persistent":
 	{
-		"PROPER_NAME": "Enchanted Armor",
-		"NAMES": ["enchanted armor", "enchanted_armor", "ench. armor", "ench._armor"],
-		"DESCRIPTION": "Take less damage from ALL Sources. Further stacks are less effective."
+		"DESCRIPTION": "Whenever this card would enter your discard pile, shuffle it into your draw pile.",
+		"NAMES": ["persistent"],
+		"PROPER_NAME": "Persistent"
 	},
+	"Recall":
 	{
-		"PROPER_NAME": "Martial Artist",
-		"NAMES": ["martial artist", "martial_artist"],
-		"DESCRIPTION": "This card's damage also scales with #yDexterity."
+		"DESCRIPTION": "Trigger when this card is manually discarded or cycled.",
+		"NAMES": ["recall"],
+		"PROPER_NAME": "Recall"
 	},
+	"Reload":
 	{
-		"PROPER_NAME": "Spellcaster",
-		"NAMES": ["spellcaster"],
-		"DESCRIPTION": "This card's damage also scales with #yFocus."
-	},
-	{
-		"PROPER_NAME": "Reload",
+		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",
 		"NAMES": ["reload"],
-		"DESCRIPTION": "Discard any number of cards, activate this effect that many times."
+		"PROPER_NAME": "Reload"
 	},
+	"Resurrect":
 	{
-		"PROPER_NAME": "Lazy",
-		"NAMES": ["lazy"],
-		"DESCRIPTION": "This card's damage will be delayed by a random number of turns."
+		"DESCRIPTION": "If you would die, and this card is anywhere in your deck, prevent all Damage and permanently lose this card. Will not work if Exhausted or Purged.",
+		"NAMES": ["resurrect"],
+		"PROPER_NAME": "Resurrect"
 	},
+	"Shapeshifter":
 	{
-		"PROPER_NAME": "Flame Barrier",
-		"NAMES": ["flame barrier", "flame_barrier"],
-		"DESCRIPTION": "Until your next turn, whenever you are attacked, deal 1 damage back to the enemy."
+		"DESCRIPTION": "Synergizes with any card.",
+		"NAMES": ["shapeshifter", "shapeshift"],
+		"PROPER_NAME": "Shapeshifter"
 	},
+	"Spellcaster":
 	{
-		"PROPER_NAME": "Rebound",
-		"NAMES": ["rebound"],
-		"DESCRIPTION": "Put the next card you play this turn on top of your draw pile."
+		"DESCRIPTION": "This card's damage also scales with #yFocus.",
+		"NAMES": ["spellcaster"],
+		"PROPER_NAME": "Spellcaster"
 	},
+	"Support Damage":
 	{
-		"PROPER_NAME": "Throwing-Knife",
-		"NAMES": ["throwing-knife", "throwing-knives"],
-		"DESCRIPTION": "0-Cost #yAttack which applies a randomized debuff and #yExhausts."
-	},
-	{
-		"PROPER_NAME": "Discover",
-		"NAMES": ["discover"],
-		"DESCRIPTION": "Choose 1 of 3 random cards to add to your hand. It costs 0 this turn."
-	},
-	{
-		"PROPER_NAME": "Temporary HP",
-		"NAMES": ["temp. hp", "temp._hp"],
-		"DESCRIPTION": "Temporary HP disappears at the end of combat."
-	},
-	{
-		"PROPER_NAME": "Flight",
-		"NAMES": ["flight"],
-		"DESCRIPTION": "Take 50% less #yAttack damage. Lose 1 stack until end of turn when taking damage, the power is cancelled at 0 stacks."
-	},
-	{
-		"PROPER_NAME": "Flaming Weapon",
-		"NAMES": ["flaming weapon", "flaming_weapon"],
-		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yBurning."
-	},
-	{
-		"PROPER_NAME": "Demon Form",
-		"NAMES": ["demon form", "demon_form"],
-		"DESCRIPTION": "Gain #yStrength at the start of each turn."
-	},
-	{
-		"PROPER_NAME": "Juggernaut",
-		"NAMES": ["juggernaut"],
-		"DESCRIPTION": "Whenever you gain #yBlock, deal damage to a random enemy."
-	},
-	{
-		"PROPER_NAME": "Support Damage",
+		"DESCRIPTION": "Deal damage to the enemy with lowest HP at the end of each turn.",
 		"NAMES": ["support damage", "support_damage"],
-		"DESCRIPTION": "Deal damage to the enemy with lowest HP at the end of each turn."
+		"PROPER_NAME": "Support Damage"
 	},
+	"Synergy":
 	{
-		"PROPER_NAME": "Motivate",
-		"NAMES": ["motivate"],
-		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times."
+		"DESCRIPTION": "Activates if the last card played this turn was from the same series.",
+		"NAMES": ["synergy", "synergies", "synergize", "synergizes"],
+		"PROPER_NAME": "Synergy"
 	},
+	"Throwing-Knife":
 	{
-		"PROPER_NAME": "Limited",
-		"NAMES": ["limited"],
-		"DESCRIPTION": "Can only be played once per turn. Affects ALL copies of this card."
-	},
-	{
-		"PROPER_NAME": "animator:Unique",
-		"NAMES": ["animator:unique"],
-		"DESCRIPTION": "Unique|Can be upgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead."
+		"DESCRIPTION": "0-Cost #yAttack which applies a randomized debuff and #yExhausts.",
+		"NAMES": ["throwing-knife", "throwing-knives"],
+		"PROPER_NAME": "Throwing-Knife"
 	}
-]
+}

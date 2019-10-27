@@ -18,10 +18,7 @@ public class Millim extends AnimatorCard
 
         Initialize(11,0, 2);
 
-        AddUniqueTag();
-
-        tags.add(AbstractEnums.CardTags.UNIQUE);
-
+        SetUnique(true);
         SetSynergy(Synergies.TenSura);
     }
 

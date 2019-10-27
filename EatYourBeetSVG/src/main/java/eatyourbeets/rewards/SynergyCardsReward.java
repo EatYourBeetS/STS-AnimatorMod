@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.dungeons.CustomAbstractDungeon;
+import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
@@ -52,7 +53,7 @@ public class SynergyCardsReward extends AnimatorReward
         if (this.hb.hovered)
         {
             TipHelper.renderGenericTip(360.0F * Settings.scale, (float) InputHelper.mY, synergy.NAME,
-                    Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Rewards).TEXT[0]);
+                    Resources_Animator_Strings.Rewards.TEXT[0]);
         }
     }
 

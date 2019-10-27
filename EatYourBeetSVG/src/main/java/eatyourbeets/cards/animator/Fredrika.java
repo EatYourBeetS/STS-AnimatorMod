@@ -47,14 +47,14 @@ public class Fredrika extends AnimatorCard
 
         this.ChangeForm(FORM_DEFAULT);
     }
-//
-//    @Override
-//    public void onMoveToDiscard()
-//    {
-//        super.onMoveToDiscard();
-//
-//        this.ChangeForm(FORM_DEFAULT);
-//    }
+
+    @Override
+    public void onMoveToDiscard()
+    {
+        super.onMoveToDiscard();
+
+        this.ChangeForm(FORM_DEFAULT);
+    }
 
     @Override
     public void triggerOnManualDiscard()
@@ -99,7 +99,6 @@ public class Fredrika extends AnimatorCard
             case FORM_CAT:
             {
                 GameActionsHelper.GainBlock(p, this.block);
-                //GameActionsHelper.DrawCard(p, 1);
 
                 break;
             }
@@ -129,7 +128,7 @@ public class Fredrika extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
+            upgradeBlock(1);
             upgradeDamage(2);
         }
     }

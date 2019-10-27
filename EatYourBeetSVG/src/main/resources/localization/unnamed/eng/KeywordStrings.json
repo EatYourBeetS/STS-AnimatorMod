@@ -1,0 +1,39 @@
+
+{
+	"Echo":
+	{
+		"DESCRIPTION": "If you play two cards with #yEcho in a row, increase your #yResonance by #b1.",
+		"NAMES": ["echo"],
+		"PROPER_NAME": "Echo"
+	},
+	"Fate":
+	{
+		"DESCRIPTION": "This effect triggers at the start of each turn while this card is in your #yVoid.",
+		"NAMES": ["fate"],
+		"PROPER_NAME": "fate"
+	},
+	"Resonance":
+	{
+		"DESCRIPTION": "Increases your #yAttack damage. Reduced by #b1 at the start of your turn.",
+		"NAMES": ["resonance", "resonances"],
+		"PROPER_NAME": "Resonance"
+	},
+	"SoundWave":
+	{
+		"DESCRIPTION": "#y0-cost #yAttack card with #yEcho.",
+		"NAMES": ["sound wave", "sound_wave", "sound waves", "sound_waves"],
+		"PROPER_NAME": "Sound Wave"
+	},
+	"Void":
+	{
+		"DESCRIPTION": "A part of your #yExhaust pile which only contains #yVoidbound cards.",
+		"NAMES": ["void"],
+		"PROPER_NAME": "Void"
+	},
+	"Voidbound":
+	{
+		"DESCRIPTION": "Enters your #yVoid when it is #yExhausted or played. This card has #rno #reffect until it has entered your #yVoid at least once.",
+		"NAMES": ["voidbound"],
+		"PROPER_NAME": "Voidbound"
+	}
+}

@@ -10,6 +10,7 @@ import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 
@@ -39,28 +40,12 @@ public class LivingPicture extends AnimatorRelic
             if (!hasShownTip1)
             {
                 AbstractDungeon.ftue = new FtueTip("The Animator",
-                        Resources_Animator.GetUIStrings(AbstractResources.UIStringType.Tips).TEXT[0],
+                        Resources_Animator_Strings.Tips.TEXT[0],
                         Settings.WIDTH / 2f, Settings.HEIGHT / 2f, FtueTip.TipType.CARD_REWARD);
 
                 AnimatorMetrics.GetConfig().setBool("LivingPictureTipShown", true);
                 AnimatorMetrics.SaveConfig();
                 hasShownTip1 = true;
-            }
-        }
-
-        if (hasShownTip2 == null && AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y > 0)
-        {
-            hasShownTip2 = AnimatorMetrics.GetConfig().getBool("LivingPictureTip2Shown");
-
-            if (!hasShownTip2)
-            {
-                AbstractDungeon.ftue = new FtueTip("The Animator",
-                        Resources_Animator.GetUIStrings(AbstractResources.UIStringType.Tips).TEXT[1],
-                        Settings.WIDTH / 2f, Settings.HEIGHT / 2f, FtueTip.TipType.CARD_REWARD);
-
-                AnimatorMetrics.GetConfig().setBool("LivingPictureTip2Shown", true);
-                AnimatorMetrics.SaveConfig();
-                hasShownTip2 = true;
             }
         }
     }

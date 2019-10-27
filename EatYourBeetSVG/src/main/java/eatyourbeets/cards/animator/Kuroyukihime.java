@@ -19,11 +19,13 @@ public class Kuroyukihime extends AnimatorCard
 
         Initialize(0, 0, 2);
 
-        this.exhaust = true;
-
-        //AddExtendedDescription();
-
+        SetExhaust(true);
         SetSynergy(Synergies.AccelWorld);
+
+        if (InitializingPreview())
+        {
+            cardPreview.Initialize(new BlackLotus(), false);
+        }
     }
 
     @Override
@@ -56,18 +58,5 @@ public class Kuroyukihime extends AnimatorCard
         {
             upgradeBaseCost(0);
         }
-    }
-
-    private static AbstractCard preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (preview == null)
-        {
-            preview = new BlackLotus();
-        }
-
-        return preview;
     }
 }

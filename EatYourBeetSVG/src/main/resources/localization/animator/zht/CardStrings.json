@@ -8,7 +8,7 @@
 	},
 	"animator:AcuraShin":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 ， 並給予 !M! 層 中毒 。 獲得 1 層 [#EFC851]毒素親和[] 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 ， 並給予 !M! 層 中毒 。 獲得 1 層 [*]毒素親和 。",
 		"EXTENDED_DESCRIPTION": ["毒素親和", "每當給予敵人毒效果時 ， 額外給予一層毒 。"],
 		"NAME": "辛·亞裘拉"
 	},
@@ -30,7 +30,7 @@
 	},
 	"animator:Ainz":
 	{
-		"DESCRIPTION": "每回合減少 1 點耗能。在你的回合開始時， 從 !M! 個 [#EFC851]特殊效果[] 中選擇一個。",
+		"DESCRIPTION": "每回合減少 1 點耗能。在你的回合開始時， 從 !M! 個 [*]特殊效果 中選擇一個。",
 		"NAME": "安茲·烏爾·恭"
 	},
 	"animator:Aisha":
@@ -50,10 +50,10 @@
 	},
 	"animator:Aqua":
 	{
-		"DESCRIPTION": "回复 !M! 點生命。 在本場戰鬥中變成無用的廢物。",
+		"DESCRIPTION": "抽 1 張牌 。 回复 !M! 點生命。 在本場戰鬥中變成無用的廢物。",
 		"EXTENDED_DESCRIPTION": ["", "如果這張牌被 消耗 或 丟棄， 獲得 !SV! 點 暫時性生命 。"],
 		"NAME": "阿庫婭",
-		"UPGRADE_DESCRIPTION": "回复 !M! 點生命。 在本場戰鬥中變成有用的廢物。"
+		"UPGRADE_DESCRIPTION": "抽 1 張牌 。 回复 !M! 點生命。 在本場戰鬥中變成有用的廢物。"
 	},
 	"animator:Ara":
 	{
@@ -78,7 +78,7 @@
 	},
 	"animator:Azekura":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 2 次 。 獲得 !SV! 層 [＃EFC851]臨時荊棘[] 。 同調 : 獲得 !M! 層 多層護甲 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 2 次 。 獲得 !SV! 層 [＃EFC851]臨時荊棘 。 同調 : 獲得 !M! 層 多層護甲 。",
 		"NAME": "校倉必"
 	},
 	"animator:Azriel":
@@ -109,9 +109,9 @@
 	},
 	"animator:Boros":
 	{
-		"DESCRIPTION": "虛無 。 獲得 !M! 點 力量 。 所有 [#EFC851]能力[] 將會被 NL 打出兩次 。",
+		"DESCRIPTION": "虛無 。 獲得 !M! 點 力量 。 所有 [*]能力 將會被 NL 打出兩次 。",
 		"NAME": "波羅斯",
-		"UPGRADE_DESCRIPTION": "獲得 !M! 點 力量 。 所有 [#EFC851]能力[] 將會被 NL 打出兩次 。"
+		"UPGRADE_DESCRIPTION": "獲得 !M! 點 力量 。 所有 [*]能力 將會被 NL 打出兩次 。"
 	},
 	"animator:Bozes":
 	{
@@ -125,13 +125,13 @@
 	},
 	"animator:ChaikaBohdan":
 	{
-		"DESCRIPTION": " [#EFC851]急躁[] NL !M! 。 造成 !D! 點 傷害 。 如果你的手是空的, 抽 !SV! 張牌",
+		"DESCRIPTION": " [*]急躁 NL !M! 。 造成 !D! 點 傷害 。 如果你的手是空的, 抽 !SV! 張牌",
 		"EXTENDED_DESCRIPTION": ["急躁", "當此牌在手牌中時，你打出的 #y攻擊 牌額外增加等同於急躁層數的傷害 。 使用後重置傷害 。"],
 		"NAME": "嘉依卡·布芙丹"
 	},
 	"animator:ChaikaTrabant":
 	{
-		"DESCRIPTION": "下一輪 ， 造成 !D! 點 傷害 並 給予目標 !M! 個隨機的 [#EFC851]負面效果[] 。 撤回 : 對所有敵人造成 !SV! 點 傷害 。",
+		"DESCRIPTION": "下一輪 ， 造成 !D! 點 傷害 並 給予目標 !M! 個隨機的 [*]負面效果 。 撤回 : 對所有敵人造成 !SV! 點 傷害 。",
 		"NAME": "嘉依卡·托勒龐特"
 	},
 	"animator:ChlammyZell":
@@ -147,7 +147,7 @@
 	},
 	"animator:Chris":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 NL 偷3金幣 [#EFC851]*[] 。 冷卻 !SV! : 張0耗牌 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 NL 偷3金幣 [*]* 。 冷卻 !SV! : 張0耗牌 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "首領最多偷取 50 金幣 ， 從精英最多偷取 25 金幣 ， 從其他非爪牙敵人最多偷取 10 金幣 。"],
 		"NAME": "克里斯"
 	},
@@ -158,7 +158,7 @@
 	},
 	"animator:Cocytus":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 [#EFC851]吸收裝甲[] 。 同調 : All [#EFC851]Attacks in your hand gain !M! damage this combat.",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 [*]吸收裝甲 。 同調 : All [*]Attacks in your hand gain !M! damage this combat.",
 		"EXTENDED_DESCRIPTION": ["吸收裝甲", "獲得敵人損失的格擋 。"],
 		"NAME": "科賽特斯"
 	},
@@ -216,7 +216,7 @@
 	},
 	"animator:Defend_FullmetalAlchemist":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 冷卻 !SV! : [#EFC851]產生[] 1 個 冰霜 充能球 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 冷卻 !SV! : [*]產生 1 個 冰霜 充能球 。",
 		"NAME": "優越防禦"
 	},
 	"animator:Defend_GATE":
@@ -241,7 +241,7 @@
 	},
 	"animator:Defend_Katanagatari":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 獲得 !M! 層  [＃EFC851]臨時荊棘[] 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 獲得 !M! 層  [＃EFC851]臨時荊棘 。",
 		"NAME": "優越防禦"
 	},
 	"animator:Defend_Konosuba":
@@ -314,9 +314,9 @@
 	},
 	"animator:ElricAlphonse":
 	{
-		"DESCRIPTION": "虛無 。 獲得 !M! 點 臨時 集中 。 獲得 !B! 點 格擋 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯[] 。",
+		"DESCRIPTION": "虛無 。 獲得 !M! 點 臨時 集中 。 獲得 !B! 點 格擋 。 NL 遺產 : 獲得 [*]裝甲阿爾馮斯 。",
 		"NAME": "阿爾馮斯·艾力克",
-		"UPGRADE_DESCRIPTION": "虛無 。 獲得 !M! 點 臨時 集中 。 獲得 !B! 點 格擋 。 NL 遺產 : 獲得 [#EFC851]裝甲阿爾馮斯+[] 。"
+		"UPGRADE_DESCRIPTION": "虛無 。 獲得 !M! 點 臨時 集中 。 獲得 !B! 點 格擋 。 NL 遺產 : 獲得 [*]裝甲阿爾馮斯+ 。"
 	},
 	"animator:ElricAlphonseAlt":
 	{
@@ -325,13 +325,13 @@
 	},
 	"animator:ElricEdward":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 循環 1 張牌 。 NL 根據你循環的卡片種類獲得一個 [#EFC851]額外充能球[] 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 循環 1 張牌 。 NL 根據你循環的卡片種類獲得一個 [*]額外充能球 。",
 		"EXTENDED_DESCRIPTION": ["額外充能球", "#y攻擊牌: 獲得1個閃電充能球 NL #y技能牌: 獲得1個冰霜充能球 NL #y能力牌: 獲得1個 土素 充能球"],
 		"NAME": "愛德華·艾力克"
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 如果敵人帶有 燃燒 ， 激勵 1 。 冷却 !SV! : [#EFC851]生成[] 1 個 火焰 充能球 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 如果敵人帶有 燃燒 ， 激勵 1 。 冷却 !SV! : [*]生成 1 個 火焰 充能球 。",
 		"NAME": "艾索德"
 	},
 	"animator:Emilia":
@@ -348,20 +348,20 @@
 	},
 	"animator:Emonzaemon":
 	{
-		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 2 次 。 遺產 : 獲得獲得 [#EFC851]炎刀·銃[] 。",
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害 2 次 。 遺產 : 獲得獲得 [*]炎刀·銃 。",
 		"EXTENDED_DESCRIPTION": ["炎刀·銃", "一個特殊的無耗能的 #y能力 。"],
 		"NAME": "左右田右衛門左衛門",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 穿刺 傷害 2 次 。 遺產 : 獲得獲得 [#EFC851]炎刀·銃+[] 。"
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 穿刺 傷害 2 次 。 遺產 : 獲得獲得 [*]炎刀·銃+ 。"
 	},
 	"animator:Entoma":
 	{
-		"DESCRIPTION": "[#EFC851]唯一[] 。 造成 !D! 點 傷害與 !M! 層 中毒 。 [#EFC851]飢餓[] 。",
+		"DESCRIPTION": "[*]唯一 。 造成 !D! 點 傷害與 !M! 層 中毒 。 [*]飢餓 。",
 		"EXTENDED_DESCRIPTION": ["飢餓", "每回合造成的傷害減少 #b1 點 。 如果這張牌消滅了非爪牙的敵人 ， 永久獲得 #b1 點傷害 和 #b2 點生命上限 。"],
 		"NAME": "艾多瑪"
 	},
 	"animator:EntouJyuu":
 	{
-		"DESCRIPTION": "每輪兩次， 打出 [#EFC851]攻擊牌[] 抽一張牌 並 對所有敵人施加 1 層 燃燒 。",
+		"DESCRIPTION": "每輪兩次， 打出 [*]攻擊牌 抽一張牌 並 對所有敵人施加 1 層 燃燒 。",
 		"NAME": "炎刀·銃"
 	},
 	"animator:Envy":
@@ -407,7 +407,7 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害。 NL 給予 !M! 層 燒傷 。 增加 1 張 [#EFC851]燒傷[] 到你的手牌 。",
+		"DESCRIPTION": "造成 !D! 點 傷害。 NL 給予 !M! 層 燒傷 。 增加 1 張 [*]燒傷 到你的手牌 。",
 		"EXTENDED_DESCRIPTION": ["過熱", "0能耗的 #yStatus ， 效果為 ： 傷害玩家並額外抽牌。"],
 		"NAME": "杰諾斯"
 	},
@@ -419,7 +419,7 @@
 	},
 	"animator:Gilgamesh":
 	{
-		"DESCRIPTION": "[#EFC851]唯一[] 。對一個敵人造成 !D! 點 傷害 3 次 。 NL [#EFC851]巴比倫的寶藏[] 。",
+		"DESCRIPTION": "[*]唯一 。對一個敵人造成 !D! 點 傷害 3 次 。 NL [*]巴比倫的寶藏 。",
 		"EXTENDED_DESCRIPTION": ["巴比倫的寶藏", "每當你獲得遺物時升級這張牌並獲得 ", " 個金幣 。 買的遺物不會觸發該效果 。"],
 		"NAME": "英雄王·吉爾伽美什"
 	},
@@ -435,7 +435,7 @@
 	},
 	"animator:Gluttony":
 	{
-		"DESCRIPTION": "消耗 手上最多!M! 張牌，根據你消耗的卡片種類發動一個 [#EFC851]額外效果[] 。 消耗 。",
+		"DESCRIPTION": "消耗 手上最多!M! 張牌，根據你消耗的卡片種類發動一個 [*]額外效果 。 消耗 。",
 		"EXTENDED_DESCRIPTION": ["額外效果", "#y攻擊牌: 獲得 1 點 力量 NL #y技能: 獲得3 點 臨時生命 NL #y能力牌: 回復 7 點 生命 NL #y狀態牌: 獲得 1 點 能量 NL #y詛咒: 獲得 6 點 格擋"],
 		"NAME": "庫拉多尼"
 	},
@@ -456,7 +456,7 @@
 	},
 	"animator:GoblinSlayer":
 	{
-		"DESCRIPTION": "[#EFC851]哥布林殺手[] 。 造成 !D! 點傷害 。 NL 獲得 !B! 點 格擋 。 NL 保留 。",
+		"DESCRIPTION": "[*]哥布林殺手 。 造成 !D! 點傷害 。 NL 獲得 !B! 點 格擋 。 NL 保留 。",
 		"EXTENDED_DESCRIPTION": ["哥布林殺手", "消耗所有位於手牌和棄牌堆中的狀態牌和詛咒牌 。 已消耗牌堆中每有一張牌 ， 額外造成 3 點 傷害 。 #y警告 : 哥布林將開始入侵你的牌堆 。"],
 		"NAME": "哥布林殺手"
 	},
@@ -467,7 +467,7 @@
 	},
 	"animator:Greed":
 	{
-		"DESCRIPTION": "獲得 !SV! 層 多層護甲 。 NL 獲得 !M! 層 金屬化 。 NL 獲得 3 層 鍛鑄 。 NL [#EFC851]貪婪[] 。",
+		"DESCRIPTION": "獲得 !SV! 層 多層護甲 。 NL 獲得 !M! 層 金屬化 。 NL 獲得 3 層 鍛鑄 。 NL [*]貪婪 。",
 		"EXTENDED_DESCRIPTION": ["貪婪", "如果這張卡在你的初始卡組中 ， 打出時獲得 #b8 個 #y金幣。你每擁有 #b100 個 #y金幣 ， 減少這張牌 1 點消耗 。"],
 		"NAME": "古利德"
 	},
@@ -478,7 +478,7 @@
 	},
 	"animator:Guren":
 	{
-		"DESCRIPTION": "打出抽牌堆頂部的三張牌， 消耗其中的所有 [#EFC851]攻擊[] 牌， [#EFC851]的狀態牌[] 和 [#EFC851]詛咒牌[] ， 每消耗一張牌， 獲得 !M! 點 支援傷害 。",
+		"DESCRIPTION": "打出抽牌堆頂部的三張牌， 消耗其中的所有 [*]攻擊 牌， [*]的狀態牌 和 [*]詛咒牌 ， 每消耗一張牌， 獲得 !M! 點 支援傷害 。",
 		"NAME": "紅蓮"
 	},
 	"animator:Guy":
@@ -488,13 +488,13 @@
 	},
 	"animator:Hakurou":
 	{
-		"DESCRIPTION": "武術家 。 造成 !D! 點傷害 !M! 次 。 NL [#EFC851]被抽到時[] : 獲得 !SV! 點 臨時 敏捷 。",
+		"DESCRIPTION": "武術家 。 造成 !D! 點傷害 !M! 次 。 NL [*]被抽到時 : 獲得 !SV! 點 臨時 敏捷 。",
 		"NAME": "白老",
-		"UPGRADE_DESCRIPTION": "武術家 。 造成 !D! 點傷害 !M! 次 。 抽 1 張牌 並 升級 它。 NL [#EFC851]被抽到時[] : 獲得 !SV! 點 臨時 敏捷 。"
+		"UPGRADE_DESCRIPTION": "武術家 。 造成 !D! 點傷害 !M! 次 。 抽 1 張牌 並 升級 它。 NL [*]被抽到時 : 獲得 !SV! 點 臨時 敏捷 。"
 	},
 	"animator:Hero":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害. NL 抽 !M! 張牌 。 NL 位於牌組中時, 增加獲得 [#EFC851]遺物獎勵[] 的機會 。",
+		"DESCRIPTION": "造成 !D! 點傷害. NL 抽 !M! 張牌 。 NL 位於牌組中時, 增加獲得 [*]遺物獎勵 的機會 。",
 		"NAME": "勇者'"
 	},
 	"animator:Hibiki":
@@ -525,21 +525,21 @@
 	},
 	"animator:Hitei":
 	{
-		"DESCRIPTION": "在你的回合開始時 獲 得隨機 [#EFC851]積極影響[] 。 選擇並且 消耗 抽牌堆 1 到 !M! 張的隨機卡牌 。",
+		"DESCRIPTION": "在你的回合開始時 獲 得隨機 [*]積極影響 。 選擇並且 消耗 抽牌堆 1 到 !M! 張的隨機卡牌 。",
 		"NAME": "否定姬"
 	},
 	"animator:HououinKyouma":
 	{
-		"DESCRIPTION": "選擇 1 張本場戰鬥中使用過的牌 ， 並將它的複制加入到手牌中 [#EFC851]*[] 。 抹除 。",
+		"DESCRIPTION": "選擇 1 張本場戰鬥中使用過的牌 ， 並將它的複制加入到手牌中 [*]* 。 抹除 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "你不能複制這張牌 ， 因為這是石頭門的選擇 。"],
 		"NAME": "鳳凰院兇真",
-		"UPGRADE_DESCRIPTION": "選擇 1 張本場戰鬥中使用過的牌 ， 並將它的複制加入到手牌中 [#EFC851]*[] 。在此輪， 將這張牌的能耗減1。 抹除 。"
+		"UPGRADE_DESCRIPTION": "選擇 1 張本場戰鬥中使用過的牌 ， 並將它的複制加入到手牌中 [*]* 。在此輪， 將這張牌的能耗減1。 抹除 。"
 	},
 	"animator:Illya":
 	{
-		"DESCRIPTION": "獲得 1 層 易傷 。 NL 將抽牌堆中傷害最高的 [#EFC851]攻擊[] 牌 打出 。 消耗 。",
+		"DESCRIPTION": "獲得 1 層 易傷 。 NL 將抽牌堆中傷害最高的 [*]攻擊 牌 打出 。 消耗 。",
 		"NAME": "伊莉雅",
-		"UPGRADE_DESCRIPTION": "獲得 1 層 易傷 。 NL 將抽牌堆中傷害最高的 [#EFC851]攻擊[] 牌 打出 。"
+		"UPGRADE_DESCRIPTION": "獲得 1 層 易傷 。 NL 將抽牌堆中傷害最高的 [*]攻擊 牌 打出 。"
 	},
 	"animator:ItamiYouji":
 	{
@@ -548,10 +548,10 @@
 	},
 	"animator:IzunaHatsuse":
 	{
-		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 給予 1 層 虛弱 。 NL [#EFC851]血液破壞[] 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 給予 1 層 虛弱 。 NL [*]血液破壞 。",
 		"EXTENDED_DESCRIPTION": ["血液破壞", "當你的HP低於25％時， 這張卡將成為一個特殊的0耗能 #攻擊牌 。", "造成 !D! 點 傷害 兩次 。 NL 回復 !M! 點 生命 。"],
 		"NAME": "初賴伊剛",
-		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 NL 給予 1 層 虛弱 。 NL [#EFC851]血液破壞+[] 。"
+		"UPGRADE_DESCRIPTION": "獲得 !B! 點 格擋 。 NL 給予 1 層 虛弱 。 NL [*]血液破壞+ 。"
 	},
 	"animator:JeanneDArc":
 	{
@@ -576,7 +576,7 @@
 	},
 	"animator:Kira":
 	{
-		"DESCRIPTION": "虛無 。 敵人很快就會死去 [#EFC851]*[] 。 NL 給予敵人 !SV! 層 力量。 NL 消耗 。",
+		"DESCRIPTION": "虛無 。 敵人很快就會死去 [*]* 。 NL 給予敵人 !SV! 層 力量。 NL 消耗 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "這張卡片的文字會在針對敵人時發生變化 ， 生命值較多的敵人將會存活更長時間 。 忽略 #y人工製品 。", "虛無 。 敵人將在 @ 回合後死亡 。 NL 消耗 。"],
 		"NAME": "夜神月"
 	},
@@ -587,7 +587,7 @@
 	},
 	"animator:KrulTepes":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 給予 !M! 層 虛弱 。 若這張牌消滅了一個精英或王 ， 獲得 [#EFC851]小血瓶[] [#EFC851]*[] 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 給予 !M! 層 虛弱 。 若這張牌消滅了一個精英或王 ， 獲得 [*]小血瓶 [*]* 。",
 		"EXTENDED_DESCRIPTION": ["*備註", "若本場戰鬥中有多個精英存在 ， 只能獲得一次遺物 。"],
 		"NAME": "克魯魯·采佩西"
 	},
@@ -598,7 +598,7 @@
 	},
 	"animator:Kuroyukihime":
 	{
-		"DESCRIPTION": "丟棄 !M! 張牌 : 將 [#EFC851]黑蓮花[] 加入到你的手牌中 。 消耗 。",
+		"DESCRIPTION": "丟棄 !M! 張牌 : 將 [*]黑蓮花 加入到你的手牌中 。 消耗 。",
 		"EXTENDED_DESCRIPTION": ["黑蓮花", "特殊的1耗 #y攻擊牌 。"],
 		"NAME": "黑雪公主"
 	},
@@ -626,7 +626,7 @@
 	},
 	"animator:Lelouch":
 	{
-		"DESCRIPTION": "消耗 你手中的所有攻擊卡。 這一輪 ， 所有敵人都會攻擊自己 。 NL 抹除 。 [#EFC851]*[]",
+		"DESCRIPTION": "消耗 你手中的所有攻擊卡。 這一輪 ， 所有敵人都會攻擊自己 。 NL 抹除 。 [*]*",
 		"EXTENDED_DESCRIPTION": ["* 注", "若有敵人未有打算攻擊，擊暈它們"],
 		"NAME": "魯路修"
 	},
@@ -647,14 +647,14 @@
 	},
 	"animator:Megumin":
 	{
-		"DESCRIPTION": "[#EFC851]唯一[] 。 對所有敵人造成 !D! 點傷害 。 消耗 。 NL 同調 : 永久 升級 這張牌 。",
+		"DESCRIPTION": "[*]唯一 。 對所有敵人造成 !D! 點傷害 。 消耗 。 NL 同調 : 永久 升級 這張牌 。",
 		"NAME": "惠惠"
 	},
 	"animator:Melzalgald":
 	{
-		"DESCRIPTION": "穿越者 。 NL 造成 !D! 點 傷害 。 NL 分裂成3張不同的 [#EFC851]攻擊[] 。 消耗 。",
+		"DESCRIPTION": "穿越者 。 NL 造成 !D! 點 傷害 。 NL 分裂成3張不同的 [*]攻擊 。 消耗 。",
 		"NAME": "梅魯扎嘎魯多",
-		"UPGRADE_DESCRIPTION": "穿越者 。 NL 造成 !D! 點 傷害 。 NL 分裂成3張不同的升級 [#EFC851]攻擊[] 。 消耗 。"
+		"UPGRADE_DESCRIPTION": "穿越者 。 NL 造成 !D! 點 傷害 。 NL 分裂成3張不同的升級 [*]攻擊 。 消耗 。"
 	},
 	"animator:MelzalgaldAlt_1":
 	{
@@ -683,12 +683,12 @@
 	},
 	"animator:Millim":
 	{
-		"DESCRIPTION": "[#EFC851]唯一[] 。NL 造成 !D! 點 傷害 。 抽 !M! 張牌  NL 同調 : 獲得 [E] 。",
+		"DESCRIPTION": "[*]唯一 。NL 造成 !D! 點 傷害 。 抽 !M! 張牌  NL 同調 : 獲得 [E] 。",
 		"NAME": "米莉姆"
 	},
 	"animator:MisaKurobane":
 	{
-		"DESCRIPTION": "獲得 1 個 火素 充能球 。 NL 抽 1 張牌 。 NL 將 [#EFC851]西森柚咲[] 加到你的棄牌堆。 NL 消耗 。",
+		"DESCRIPTION": "獲得 1 個 火素 充能球 。 NL 抽 1 張牌 。 NL 將 [*]西森柚咲 加到你的棄牌堆。 NL 消耗 。",
 		"NAME": "黑羽美砂"
 	},
 	"animator:Mitsuba":
@@ -710,10 +710,10 @@
 	},
 	"animator:Nanami":
 	{
-		"DESCRIPTION": "根據敵人的意圖觸發一個 [#EFC851]效果[] 。 [#c6be6f]選擇目標時[] ， [#c6be6f]這段敘述會變為效果敘述[] 。",
+		"DESCRIPTION": "根據敵人的意圖觸發一個 [*]效果 。 選擇目標時 ， 這段敘述會變為效果敘述 。",
 		"EXTENDED_DESCRIPTION": ["造成 # 點 傷害。", "獲得 # 點 格擋 。", "獲得 # 點 力量 。", "造成 # 點 虛弱 。", "造成 # 點 易傷 。 ", "暈眩 敵人 。", "生成 # 個隨機充能球 。", "UNUSED", "UNUSED", "造成 # 點 中毒 。", "獲得 [E]", "獲得 # 暫時生命 。", "抽 # 張牌 。"],
 		"NAME": "鑢七實",
-		"UPGRADE_DESCRIPTION": "根據敵人的意圖觸發一個 [#EFC851]效果+[] 。 [#c6be6f]選擇目標時[] ， [#c6be6f]這段敘述會變為效果敘述] 。"
+		"UPGRADE_DESCRIPTION": "根據敵人的意圖觸發一個 [*]效果+ 。 選擇目標時 ， 這段敘述會變為效果敘述] 。"
 	},
 	"animator:NarberalGamma":
 	{
@@ -774,7 +774,7 @@
 	},
 	"animator:Pride":
 	{
-		"DESCRIPTION": "變形者 。 [#EFC851]普萊德[] 。 NL  [#EFC851]生成[] !M! 顆黑暗充能球 。 NL 同調 : 賦予 !SV! 層 纏繞 。 ",
+		"DESCRIPTION": "變形者 。 [*]普萊德 。 NL  [*]生成 !M! 顆黑暗充能球 。 NL 同調 : 賦予 !SV! 層 纏繞 。 ",
 		"EXTENDED_DESCRIPTION": ["普萊德", "直到你的下個回合 ， 當你受到未格擋的傷害時 ， 你最右邊的黑暗充能球失去該數值的傷害 。"],
 		"NAME": "普萊德"
 	},
@@ -786,13 +786,13 @@
 	},
 	"animator:QuestionMark":
 	{
-		"DESCRIPTION": "[#EFC851]被抽到時[] : 變成一張隨機牌的複制 ， 並 帶有 變形者 。",
+		"DESCRIPTION": "[*]被抽到時 : 變成一張隨機牌的複制 ， 並 帶有 變形者 。",
 		"NAME": "問號",
-		"UPGRADE_DESCRIPTION": "[#EFC851]被抽到時[] : 變成一張昇級過的隨機牌的複制 ， 並 帶有 變形者 。"
+		"UPGRADE_DESCRIPTION": "[*]被抽到時 : 變成一張昇級過的隨機牌的複制 ， 並 帶有 變形者 。"
 	},
 	"animator:Raven":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 給予 !M! 層 虛弱 。 將抽牌堆中傷害最低 的 [#EFC851]攻擊[] 牌 加入手牌 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 給予 !M! 層 虛弱 。 將抽牌堆中傷害最低 的 [*]攻擊 牌 加入手牌 。",
 		"NAME": "雷文"
 	},
 	"animator:Rena":
@@ -818,7 +818,7 @@
 	},
 	"animator:RoryMercury":
 	{
-		"DESCRIPTION": "隨機對敵人造成 !D! 點 傷害 2次 。 [#EFC851]被抽到時[] ； 獲得 !M! 點 臨時 力量 。",
+		"DESCRIPTION": "隨機對敵人造成 !D! 點 傷害 2次 。 [*]被抽到時 ； 獲得 !M! 點 臨時 力量 。",
 		"NAME": "蘿莉·麥丘利"
 	},
 	"animator:Rose":
@@ -828,12 +828,12 @@
 	},
 	"animator:RoyMustang":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點傷害 。 每個敵人使你 [#EFC851]生成[] 1 個 火焰 充能球 。 NL 同調 : 獲得 !M! 層 火焰護盾 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點傷害 。 每個敵人使你 [*]生成 1 個 火焰 充能球 。 NL 同調 : 獲得 !M! 層 火焰護盾 。",
 		"NAME": "羅伊·馬斯坦古"
 	},
 	"animator:Saber":
 	{
-		"DESCRIPTION": "忠誠 。 造成 !D! 點傷害 ， 當這張牌觸發 !M! 次 同調 效果後 ， 抹除並獲得 [#EFC851]誓約勝利之劍[] 。",
+		"DESCRIPTION": "忠誠 。 造成 !D! 點傷害 ， 當這張牌觸發 !M! 次 同調 效果後 ， 抹除並獲得 [*]誓約勝利之劍 。",
 		"NAME": "Saber"
 	},
 	"animator:Saitama":
@@ -861,17 +861,17 @@
 	},
 	"animator:Shalltear":
 	{
-		"DESCRIPTION": "[#EFC851]嗜血[] 。 對所有敵人造成 !D! 點傷害 。 NL 同調 : 所有攻擊目標失去1點 力量，獲得等量的 力量 。",
+		"DESCRIPTION": "[*]嗜血 。 對所有敵人造成 !D! 點傷害 。 NL 同調 : 所有攻擊目標失去1點 力量，獲得等量的 力量 。",
 		"EXTENDED_DESCRIPTION": ["嗜血", "如果這張牌消滅了一個非爪牙的敵人 ， 恢復 3 點 生命 並 獲得 [E]"],
 		"NAME": "夏提雅",
-		"UPGRADE_DESCRIPTION": "[#EFC851]嗜血[] 。 對所有敵人造成 !D! 點傷害 。 NL 所有攻擊目標失去1點 力量， 獲得等量的 力量 。"
+		"UPGRADE_DESCRIPTION": "[*]嗜血 。 對所有敵人造成 !D! 點傷害 。 NL 所有攻擊目標失去1點 力量， 獲得等量的 力量 。"
 	},
 	"animator:Shichika":
 	{
-		"DESCRIPTION": "獲得 !SV! 點 荊棘 和 !M! 點 力量 。 增加 [#EFC851]虛刀流[] 到你的手牌 。 消耗 ",
+		"DESCRIPTION": "獲得 !SV! 點 荊棘 和 !M! 點 力量 。 增加 [*]虛刀流 到你的手牌 。 消耗 ",
 		"EXTENDED_DESCRIPTION": ["虛刀流", "特殊的1能耗多次 攻擊，消耗."],
 		"NAME": "鑢七花",
-		"UPGRADE_DESCRIPTION": "獲得 !SV! 點 荊棘 和 !M! 點 力量 。 增加 [#EFC851]虛刀流+[] 到你的手牌 。 消耗 "
+		"UPGRADE_DESCRIPTION": "獲得 !SV! 點 荊棘 和 !M! 點 力量 。 增加 [*]虛刀流+ 到你的手牌 。 消耗 "
 	},
 	"animator:ShichikaKyotouryuu":
 	{
@@ -911,7 +911,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "抽 !M! 張牌 。 獲得 !B! 點 格擋 。 [#EFC851]被抽到時[] : 獲得 !B! 點 格擋 。",
+		"DESCRIPTION": "抽 !M! 張牌 。 獲得 !B! 點 格擋 。 [*]被抽到時 : 獲得 !B! 點 格擋 。",
 		"NAME": "朱菜"
 	},
 	"animator:SilverFang":
@@ -926,7 +926,7 @@
 	},
 	"animator:Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 給予 !M! 層 易傷 。 NL 獲得 !B! 格擋 。 [#EFC851]懶惰[] 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 NL 給予 !M! 層 易傷 。 NL 獲得 !B! 格擋 。 [*]懶惰 。",
 		"EXTENDED_DESCRIPTION": ["懶惰", "每回合開始時，將這張牌的格擋和傷害提高 #b2 點 對於你擁有的每個orb插槽。 每次使用後， 將這張牌的 #y格擋 與傷害減半。"],
 		"NAME": "斯洛斯"
 	},
@@ -973,7 +973,7 @@
 	},
 	"animator:Strike_FullmetalAlchemist":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害 。 NL 冷卻 !SV! : NL [#EFC851]產生[] 1 個 閃電 充能球 。",
+		"DESCRIPTION": "造成 !D! 點傷害 。 NL 冷卻 !SV! : NL [*]產生 1 個 閃電 充能球 。",
 		"NAME": "優越打擊"
 	},
 	"animator:Strike_GATE":
@@ -1033,22 +1033,22 @@
 	},
 	"animator:SwordMaiden":
 	{
-		"DESCRIPTION": "獲得 !M! 層 [#EFC851]再生[] 。 移除你身上的所有負面效果 。 NL 消耗 。",
+		"DESCRIPTION": "獲得 !M! 層 [*]再生 。 移除你身上的所有負面效果 。 NL 消耗 。",
 		"NAME": "劍之聖女"
 	},
 	"animator:TakanashiRikka":
 	{
-		"DESCRIPTION": "Create a 0-Cost copy of every [#EFC851]Attack in your hand, they deal !M! damage and Purge on use. Exhaust.",
+		"DESCRIPTION": "Create a 0-Cost copy of every [*]Attack in your hand, they deal !M! damage and Purge on use. Exhaust.",
 		"NAME": "Rikka Takanashi"
 	},
 	"animator:TanyaDegurechaff":
 	{
-		"DESCRIPTION": "造成 !D! 傷害。 NL 丟棄所有 [#EFC851]技能[] 並且為每一個技能獲得 !M! 格擋。 Upon pickup, add [#EFC851]95號兵器[] to your deck.",
+		"DESCRIPTION": "造成 !D! 傷害。 NL 丟棄所有 [*]技能 並且為每一個技能獲得 !M! 格擋。 Upon pickup, add [*]95號兵器 to your deck.",
 		"NAME": "譚雅·提古雷查夫"
 	},
 	"animator:TanyaDegurechaff_Type95":
 	{
-		"DESCRIPTION": "產生 1 等離子 充能球 。 NL Reset this card's cost. [#EFC851]Drawn and Recall: Decrease this card's cost by 1.",
+		"DESCRIPTION": "產生 1 等離子 充能球 。 NL Reset this card's cost. [*]Drawn and Recall: Decrease this card's cost by 1.",
 		"NAME": "95號兵器"
 	},
 	"animator:Tatsumaki":
@@ -1064,7 +1064,7 @@
 	},
 	"animator:TheHaunt":
 	{
-		"DESCRIPTION": "獲得 !M! [#EFC851]金幣。 NL 鬼更加作祟。 NL 虛無 。 消耗 。",
+		"DESCRIPTION": "獲得 !M! [*]金幣。 NL 鬼更加作祟。 NL 虛無 。 消耗 。",
 		"NAME": "鬼出沒"
 	},
 	"animator:ThrowingKnife_0":
@@ -1089,7 +1089,7 @@
 	},
 	"animator:Truth":
 	{
-		"DESCRIPTION": "獲得 1 點 集中 。 NL 獲得 2 點 能量 。 NL 抽 3 張牌 。 NL 獲得 4 點 力量 。 NL [#EFC851]真相[] 。",
+		"DESCRIPTION": "獲得 1 點 集中 。 NL 獲得 2 點 能量 。 NL 抽 3 張牌 。 NL 獲得 4 點 力量 。 NL [*]真相 。",
 		"EXTENDED_DESCRIPTION": ["真相", "如果您擁有至少 3 種不同充能球 ， 失去所有充能球 。否則選擇牌組中的一張牌而且永久的將那張牌用 #y傷口 代替 。"],
 		"NAME": "真相"
 	},
@@ -1112,18 +1112,18 @@
 	},
 	"animator:Vanir":
 	{
-		"DESCRIPTION": "變形者 。 [#EFC851]巴尼爾[] 。 造成 !D! 點傷害. 鼓舞 !SV! : 造成 !M! 點 傷害 。",
+		"DESCRIPTION": "變形者 。 [*]巴尼爾 。 造成 !D! 點傷害. 鼓舞 !SV! : 造成 !M! 點 傷害 。",
 		"EXTENDED_DESCRIPTION": ["巴尼爾", "如果這張卡被消耗了 ， 將手牌中的一張牌變為這張牌的複制 。"],
 		"NAME": "巴尼爾"
 	},
 	"animator:Veldora":
 	{
-		"DESCRIPTION": "獲得 !SV! 點 集中 。 NL 激發 所有 充能球 !M! 次 。 [#EFC851]被抽到時[] : 生成 2 個 隨機 充能球 。",
+		"DESCRIPTION": "獲得 !SV! 點 集中 。 NL 激發 所有 充能球 !M! 次 。 [*]被抽到時 : 生成 2 個 隨機 充能球 。",
 		"NAME": "暴風龍·维鲁德拉"
 	},
 	"animator:Vesta":
 	{
-		"DESCRIPTION": "研究1瓶 [#EFC851]靈藥[] ， NL !M! 輪後獲得此研究成果 。 消耗 。",
+		"DESCRIPTION": "研究1瓶 [*]靈藥 ， NL !M! 輪後獲得此研究成果 。 消耗 。",
 		"EXTENDED_DESCRIPTION": ["靈藥", "0 能耗 #y技能 ， 擁有不同的特殊功效 。"],
 		"NAME": "該部"
 	},
@@ -1145,10 +1145,10 @@
 	},
 	"animator:Wiz":
 	{
-		"DESCRIPTION": "消耗 一張牌， 從已 消耗 的牌中選擇一張加入你的手牌 。 抹除 [#EFC851]*[] 。",
+		"DESCRIPTION": "消耗 一張牌， 從已 消耗 的牌中選擇一張加入你的手牌 。 抹除 [*]* 。",
 		"EXTENDED_DESCRIPTION": ["* 注", "不能在被消耗牌中選另一張<維茲> 。"],
 		"NAME": "維茲",
-		"UPGRADE_DESCRIPTION": "消耗 一張牌， 從已 消耗 的牌中選擇一張加入你的手牌。 使用 !M! 次後 抹除 [#EFC851]*[] 。"
+		"UPGRADE_DESCRIPTION": "消耗 一張牌， 從已 消耗 的牌中選擇一張加入你的手牌。 使用 !M! 次後 抹除 [*]* 。"
 	},
 	"animator:YaoHaDucy":
 	{
@@ -1157,13 +1157,13 @@
 	},
 	"animator:YukoShionji":
 	{
-		"DESCRIPTION": "顯示您的抽牌堆的頂部卡片 。 每回合一次 ， 您可以抽出或丟棄它 [#EFC851]*[] 。",
+		"DESCRIPTION": "顯示您的抽牌堆的頂部卡片 。 每回合一次 ， 您可以抽出或丟棄它 [*]* 。",
 		"EXTENDED_DESCRIPTION": ["* 注意", "您可以左鍵單擊卡片進行抽出 ， 也可以右鍵單擊它以丟棄它 。"],
 		"NAME": "紫苑寺有子"
 	},
 	"animator:YunYun":
 	{
-		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 手牌中每有一張別的 [#EFC851]攻擊[] 牌， 增加一點消耗 。",
+		"DESCRIPTION": "對所有敵人造成 !D! 點 傷害 。 手牌中每有一張別的 [*]攻擊 牌， 增加一點消耗 。",
 		"NAME": "芸芸"
 	},
 	"animator:Yusarin":
@@ -1173,10 +1173,10 @@
 	},
 	"animator:Yuuichirou":
 	{
-		"DESCRIPTION": "造成 !D! 點 傷害 。 遺產 : 將一張 [#EFC851]阿修羅丸[] 和 伤口 放到你的棄牌堆 。",
+		"DESCRIPTION": "造成 !D! 點 傷害 。 遺產 : 將一張 [*]阿修羅丸 和 伤口 放到你的棄牌堆 。",
 		"EXTENDED_DESCRIPTION": ["阿修羅丸", "特殊的 2 耗 #y攻擊 牌 。"],
 		"NAME": "百夜優一郎",
-		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 遺產 : 將一張 [#EFC851]阿修羅丸[] 和 晕眩 放到你的棄牌堆 。"
+		"UPGRADE_DESCRIPTION": "造成 !D! 點 傷害 。 遺產 : 將一張 [*]阿修羅丸 和 晕眩 放到你的棄牌堆 。"
 	},
 	"animator:ZankiKiguchi":
 	{
@@ -1185,8 +1185,8 @@
 	},
 	"animator:Zero":
 	{
-		"DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 消耗 。",
+		"DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [*]技能牌 。 消耗 。",
 		"NAME": "零",
-		"UPGRADE_DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [#EFC851]技能牌[] 。 "
+		"UPGRADE_DESCRIPTION": "從你的抽牌堆中打出一張隨機的 [*]技能牌 。 "
 	}
 }

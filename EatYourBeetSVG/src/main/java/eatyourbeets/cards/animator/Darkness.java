@@ -19,9 +19,12 @@ public class Darkness extends AnimatorCard
 
         Initialize(0,0,2);
 
-        //AddExtendedDescription();
-
         SetSynergy(Synergies.Konosuba);
+
+        if (InitializingPreview())
+        {
+            cardPreview.Initialize(new DarknessAdrenaline(), false);
+        }
     }
 
     @Override
@@ -38,18 +41,5 @@ public class Darkness extends AnimatorCard
         {
             upgradeMagicNumber(1);
         }
-    }
-
-    private static AbstractCard preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (preview == null)
-        {
-            preview = new DarknessAdrenaline();
-        }
-
-        return preview;
     }
 }

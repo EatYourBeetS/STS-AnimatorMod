@@ -19,22 +19,19 @@ import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 
-public class Megumin extends AnimatorCard//_SavableInteger implements CustomSavable<Integer>
+public class Megumin extends AnimatorCard
 {
     public static final String ID = CreateFullID(Megumin.class.getSimpleName());
-    private static final int ORIGINAL_DAMAGE = 14;
 
     public Megumin()
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(ORIGINAL_DAMAGE, 0);
+        Initialize(14, 0);
 
-        this.isMultiDamage = true;
-        this.exhaust = true;
-
-        AddUniqueTag();
-
+        SetMultiDamage(true);
+        SetExhaust(true);
+        SetUnique(true);
         SetSynergy(Synergies.Konosuba);
     }
 
@@ -65,20 +62,10 @@ public class Megumin extends AnimatorCard//_SavableInteger implements CustomSava
                 if (megumin != null)
                 {
                     megumin.upgrade();
-//                    megumin.secondaryValue += this.magicNumber;
-//                    megumin.baseSecondaryValue = megumin.secondaryValue;
-//                    megumin.applyPowers();
                 }
             }
         }
     }
-
-//    public void applyPowers()
-//    {
-//        this.baseDamage = ORIGINAL_DAMAGE + this.secondaryValue;
-//        super.applyPowers();
-//        initializeDescription();
-//    }
 
     @Override
     public boolean canUpgrade()
@@ -91,23 +78,10 @@ public class Megumin extends AnimatorCard//_SavableInteger implements CustomSava
     {
         this.timesUpgraded += 1;
 
-//        int damageBonus = 2;
-//        if (timesUpgraded % 2 == 0)
-//        {
-//            damageBonus += 1;
-//        }
-//        upgradeDamage(damageBonus);
         upgradeDamage(2);
 
         this.upgraded = true;
         this.name = cardStrings.NAME + "+" + this.timesUpgraded;
         this.initializeTitle();
     }
-
-//    @Override
-//    protected void SetValue(Integer integer)
-//    {
-//        super.SetValue(integer);
-//        this.baseDamage = ORIGINAL_DAMAGE + this.secondaryValue;
-//    }
 }

@@ -19,9 +19,12 @@ public class Genos extends AnimatorCard
 
         Initialize(8, 0, 4);
 
-        //AddExtendedDescription();
-
         SetSynergy(Synergies.OnePunchMan);
+
+        if (InitializingPreview())
+        {
+            cardPreview.Initialize(new Overheat(), true);
+        }
     }
 
     @Override
@@ -39,18 +42,5 @@ public class Genos extends AnimatorCard
         {
             upgradeDamage(4);
         }
-    }
-
-    private static AbstractCard preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (preview == null)
-        {
-            preview = new Overheat();
-        }
-
-        return preview;
     }
 }

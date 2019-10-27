@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -38,7 +39,7 @@ public class StephanieAction extends AnimatorAction
             }
             else
             {
-                String fetchMessage = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.Actions).TEXT[0];
+                String fetchMessage = Resources_Animator_Strings.Actions.TEXT[0];
                 AbstractDungeon.handCardSelectScreen.open(fetchMessage, 1, false, false, false, false, false);
                 this.tickDuration();
             }

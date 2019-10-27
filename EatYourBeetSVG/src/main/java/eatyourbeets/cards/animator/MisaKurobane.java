@@ -19,9 +19,13 @@ public class MisaKurobane extends AnimatorCard
 
         Initialize(0, 0,1);
 
-        this.exhaust = true;
-
+        SetExhaust(true);
         SetSynergy(Synergies.Charlotte);
+
+        if (InitializingPreview())
+        {
+            cardPreview.Initialize(new Yusarin(), true);
+        }
     }
 
     @Override
@@ -39,22 +43,5 @@ public class MisaKurobane extends AnimatorCard
         {
             upgradeMagicNumber(1);
         }
-    }
-
-    private static AbstractCard preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (preview == null || (preview.upgraded != this.upgraded))
-        {
-            preview = new Yusarin();
-            if (upgraded)
-            {
-                preview.upgrade();
-            }
-        }
-
-        return preview;
     }
 }

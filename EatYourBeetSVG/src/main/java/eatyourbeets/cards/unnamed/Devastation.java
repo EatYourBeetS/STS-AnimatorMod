@@ -27,7 +27,9 @@ public class Devastation extends UnnamedCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL);
 
-        Initialize(8, 0, 4);
+        Initialize(16, 0, 8, 16);
+
+        SetMastery(secondaryValue);
     }
 
     @Override
@@ -68,29 +70,4 @@ public class Devastation extends UnnamedCard
             upgradeSecondaryValue(-4);
         }
     }
-
-//    private void ImpactEffect(AbstractCreature target)
-//    {
-//        float x = target.hb.cX + AbstractDungeon.miscRng.random(-40, 40);
-//        float y = target.hb.cY + AbstractDungeon.miscRng.random(-40, 40);
-//
-//        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5f));
-//        //GameActionsHelper.AddToBottom(new VFXAction(new WeightyImpactEffect(x, y)));
-//        GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(target.hb.cX + target.hb.width / 4.0F, target.hb.cY - target.hb.height / 4.0F)));
-//        GameActionsHelper.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
-//        //GameActionsHelper.AddToBottom(new WaitAction(0.1f));
-//
-//        for (int i = 0; i < 3; i++)
-//        {
-//            ExplosionEffect(target);
-//        }
-//    }
-//
-//    private void ExplosionEffect(AbstractCreature target)
-//    {
-//        float x = target.hb.cX + AbstractDungeon.miscRng.random(-40, 40);
-//        float y = target.hb.cY + AbstractDungeon.miscRng.random(-40, 40);
-//        //GameActionsHelper.AddToBottom(new WaitAction(0.1f));
-//        GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(x, y), 0F));
-//    }
 }

@@ -21,17 +21,18 @@ public class Yuuichirou extends AnimatorCard
 
         Initialize(8,0);
 
-        //AddExtendedDescription();
-
         SetSynergy(Synergies.OwariNoSeraph);
+
+        if (InitializingPreview())
+        {
+            cardPreview.Initialize(new Asuramaru(), false);
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-
-        //PlayerStatistics.ApplyTemporaryDexterity(p, p, magicNumber);
     }
 
     @Override
@@ -58,18 +59,5 @@ public class Yuuichirou extends AnimatorCard
         {          
             upgradeDamage(3);
         }
-    }
-
-    private AbstractCard preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (preview == null)
-        {
-            preview = new Asuramaru();
-        }
-
-        return preview;
     }
 }

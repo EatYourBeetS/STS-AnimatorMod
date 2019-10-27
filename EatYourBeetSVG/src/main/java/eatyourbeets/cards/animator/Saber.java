@@ -23,9 +23,13 @@ public class Saber extends AnimatorCard
 
         Initialize(11,0,3);
 
-        tags.add(AbstractEnums.CardTags.LOYAL);
-
+        SetLoyal(true);
         SetSynergy(Synergies.Fate);
+
+        if (InitializingPreview())
+        {
+            cardPreview.Initialize(new Excalibur(), false);
+        }
     }
 
     @Override
@@ -54,18 +58,5 @@ public class Saber extends AnimatorCard
         {
             upgradeDamage(3);
         }
-    }
-
-    private static AbstractCard preview;
-
-    @Override
-    protected AbstractCard GetCardPreview()
-    {
-        if (preview == null)
-        {
-            preview = new Excalibur();
-        }
-
-        return preview;
     }
 }

@@ -8,10 +8,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.Resources_Animator_Strings;
 
 public class TetDiscardAction extends AnimatorAction
 {
-    private static final String[] TEXT = Resources_Animator.GetUIStrings(Resources_Animator.UIStringType.TetAction).TEXT;
+    private static final String[] TEXT = Resources_Animator_Strings.TetAction.TEXT;
 
     public TetDiscardAction(int num)
     {

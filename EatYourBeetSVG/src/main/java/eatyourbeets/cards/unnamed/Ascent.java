@@ -1,11 +1,8 @@
 package eatyourbeets.cards.unnamed;
 
-import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.utilities.GameActionsHelper;
 
 public class Ascent extends UnnamedCard
 {
@@ -13,16 +10,18 @@ public class Ascent extends UnnamedCard
 
     public Ascent()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.NONE);
 
-        Initialize(0,0,2);
+        Initialize(0,0, 7, 9);
+
+        SetVoidbound(true);
+        SetMastery(9);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(magicNumber));
-        GameActionsHelper.ChannelOrb(new Dark(), true);
+
     }
 
     @Override
@@ -30,7 +29,7 @@ public class Ascent extends UnnamedCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeSecondaryValue(-3);
         }
     }
 }

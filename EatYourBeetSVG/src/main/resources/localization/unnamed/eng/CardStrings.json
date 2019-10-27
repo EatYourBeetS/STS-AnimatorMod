@@ -1,79 +1,125 @@
 
 {
-	"unnamed:Devastation":
-	{
-		"DESCRIPTION": "Limited. NL Deal !D! damage to ALL enemies !M! times. Double this card's damage. Exhaust 6 random cards.",
-		"NAME": "Devastation",
-		"UPGRADE_DESCRIPTION": "Limited. NL Deal !D! damage to ALL enemies !M! times. Triple this card's damage. Exhaust 6 random cards."
-	},
-	"unnamed:Reaper":
-	{
-		"DESCRIPTION": "Kill EVERYTHING below !M! HP. Whenever you play a card, increase this number by !SV!.",
-		"NAME": "Death"
-	},
-	"unnamed:Time":
-	{
-		"DESCRIPTION": "Gain [E] [E] at the start of each turn. At the end of each turn, take 10 damage for each unspent energy.",
-		"NAME": "Time"
-	},
-	"unnamed:Abyss":
-	{
-		"DESCRIPTION": "Apply X - !M! Doomed to ALL enemies.",
-		"NAME": "Abyss"
-	},
-	"unnamed:Ascent":
-	{
-		"DESCRIPTION": "ALL cards are played twice this turn. Exhaust.",
-		"NAME": "Ascent"
-	},
-	"unnamed:Noise":
-	{
-		"DESCRIPTION": "Deal !D! damage. NL Next turn, deal !D! damage.",
-		"NAME": "Noise"
-	},
-	"unnamed:Glass":
-	{
-		"DESCRIPTION": "Gain !B! Block. NL Draw 1 card. Discard your leftmost card.",
-		"NAME": "Glass"
-	},
-	"unnamed:Rupture":
-	{
-		"DESCRIPTION": "Can only be played if the enemy has !M! different [#EFC851]Debuffs. Deal !D! damage.",
-		"NAME": "Rupture"
-	},
-	"unnamed:Sun":
-	{
-		"DESCRIPTION": "The next time you would take damage, heal that many HP instead. Purge.",
-		"NAME": "Sun"
-	},
-	"unnamed:Dimension":
-	{
-		"DESCRIPTION": "Draw 1 card. Transform ALL cards in your hand into copies of it.",
-		"NAME": "Dimension"
-	},
-	"unnamed:Shine":
-	{
-		"DESCRIPTION": "Draw 1 card. Transform ALL cards in your hand into copies of it.",
-		"NAME": "Shine"
-	},
-	"unnamed:Visions":
-	{
-		"DESCRIPTION": "Draw 2 additional cards at the start of each turn. ALL cards are Ethereal.",
-		"NAME": "Visions"
-	},
-	"unnamed:Darkness":
-	{
-		"DESCRIPTION": "ALL enemies lose !M! HP. Draw 1 card for each enemy.",
-		"NAME": "Darkness"
-	},
-	"unnamed:Banshee":
-	{
-		"DESCRIPTION": "Gain !M! Regeneration and !SV! Constricted.",
-		"NAME": "Banshee"
-	},
-	"unnamed:BlindingLight":
-	{
-		"DESCRIPTION": "Deal !D! damage. NL Gain [E]",
-		"NAME": "Blinding Light"
-	}
+  "unnamed:colorless:Finesse":
+  {
+	"DESCRIPTION": "Gain !B! Block. NL If your draw pile is not empty, draw 1 card.",
+	"NAME": "Finesse"
+  },
+  "unnamed:colorless:FlashOfSteel":
+  {
+	"DESCRIPTION": "Deal !B! Damage. NL If your draw pile is not empty, draw 1 card.",
+	"NAME": "Flash of Steel"
+  },
+  "unnamed:Abyss":
+  {
+	"DESCRIPTION": "Fetch a card NL from your Void. NL Lose !M! HP.",
+	"NAME": "Abyss"
+  },
+  "unnamed:Accelerate":
+  {
+	"DESCRIPTION": "Draw your next !M! NL [#EFC851]0-Cost[] cards.",
+	"NAME": "Accelerate",
+	"UPGRADE_DESCRIPTION": "Echo. NL Draw your next !M! NL [#EFC851]0-Cost[] cards."
+  },
+  "unnamed:Ascent":
+  {
+	"DESCRIPTION": "Draw !M! cards. NL Refill your Energy. NL Purge.",
+	"NAME": "Ascent"
+  },
+  "unnamed:Infection":
+  {
+	"DESCRIPTION": "Whenever the enemy NL receives a Debuff, NL apply 1 Poison.",
+	"NAME": "Infection"
+  },
+  "unnamed:Banshee":
+  {
+	"DESCRIPTION": "ALL enemies lose !M! Strength this turn.",
+	"NAME": "Banshee"
+  },
+  "unnamed:BlindingLight":
+  {
+	"DESCRIPTION": "Deal !D! damage. NL Fate: If you played no [#EFC851]Skills[] last turn, draw this card.",
+	"NAME": "Blinding Light"
+  },
+  "unnamed:Darkness":
+  {
+	"DESCRIPTION": "Apply !M! Constricted. NL Gain !B! Block.",
+	"NAME": "Darkness"
+  },
+  "unnamed:Defend":
+  {
+	"DESCRIPTION": "Gain !B! Block.",
+	"NAME": "Defend"
+  },
+  "unnamed:Devastation":
+  {
+	"DESCRIPTION": "Purge 8 cards from your Void. Deal !D! damage to ALL enemies !M! times.",
+	"NAME": "Devastation"
+  },
+  "unnamed:Dimension":
+  {
+	"DESCRIPTION": "Gain !B! Block. NL Exhaust a random Voidbound card in your draw pile.",
+	"NAME": "Dimension"
+  },
+  "unnamed:Glass":
+  {
+	"DESCRIPTION": "Gain !B! Block. NL Add 1 Sound_Wave to your hand.",
+	"NAME": "Glass",
+	"UPGRADE_DESCRIPTION": "Echo. NL Gain !B! Block. NL Add 1 Sound_Wave to your hand."
+  },
+  "unnamed:Noise":
+  {
+	"DESCRIPTION": "Echo. NL Deal !D! damage to ALL enemies.",
+	"NAME": "Noise"
+  },
+  "unnamed:Reactor":
+  {
+	"DESCRIPTION": "Whenever you draw NL a card with Echo, NL gain !M! Block.",
+	"NAME": "Reactor"
+  },
+  "unnamed:Reaper":
+  {
+	"DESCRIPTION": "Kill ALL enemies with less than !M! HP. This number is increased by 2 for each card in your Void.",
+	"NAME": "Reaper"
+  },
+  "unnamed:Rupture":
+  {
+	"DESCRIPTION": "Deal !D! damage. NL If you have at least !M! Resonance, Stun the enemy. Purge.",
+	"NAME": "Rupture"
+  },
+  "unnamed:Shine":
+  {
+	"DESCRIPTION": "Gain !M! Temp._HP. NL Purge a card in NL your Void.",
+	"NAME": "Shine"
+  },
+  "unnamed:SoundWave":
+  {
+	"DESCRIPTION": "Echo. NL Deal !D! damage.",
+	"NAME": "Sound Wave"
+  },
+  "unnamed:StarSystem":
+  {
+	"DESCRIPTION": "At the start of NL each turn, you may Exhaust a card to add 1 Sound_Wave to your hand.",
+	"NAME": "Star System"
+  },
+  "unnamed:Strike":
+  {
+	"DESCRIPTION": "Deal !D! damage.",
+	"NAME": "Strike"
+  },
+  "unnamed:Sun":
+  {
+	"DESCRIPTION": "Purge ALL cards in your Void and gain !M! Temp._HP for each.",
+	"NAME": "Sun"
+  },
+  "unnamed:Time":
+  {
+	"DESCRIPTION": "Exhaust every Voidbound card in your hand. Draw that many cards. Exhaust.",
+	"NAME": "Time"
+  },
+  "unnamed:Visions":
+  {
+	"DESCRIPTION": "Draw !M! additional cards each turn. Whenever you take damage, reduce this power by 1.",
+	"NAME": "Visions"
+  }
 }

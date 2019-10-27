@@ -874,7 +874,6 @@
 	"animator:Shichika":
 	{
 		"DESCRIPTION": "Gain !SV! Thorns. NL Gain !M! Strength. NL Add [#EFC851]Kyotouryuu[] to your hand. Exhaust.",
-		"EXTENDED_DESCRIPTION": ["Kyotouryuu", "A special 1-cost #yAttack that hits multiple times and #yExhausts."],
 		"NAME": "Shichika",
 		"UPGRADE_DESCRIPTION": "Gain !SV! Thorns. NL Gain !M! Strength. NL Add [#EFC851]Kyotouryuu+[] to your hand. Exhaust."
 	},

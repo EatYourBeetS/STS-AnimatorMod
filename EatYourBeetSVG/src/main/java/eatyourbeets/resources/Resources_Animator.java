@@ -4,6 +4,7 @@ import basemod.BaseMod;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
@@ -55,12 +56,6 @@ public class Resources_Animator extends AbstractResources
         {
             languagePath = "localization/animator/eng/";
         }
-    }
-
-    @Override
-    protected void InitializeInternal()
-    {
-
     }
 
     @Override
@@ -136,17 +131,6 @@ public class Resources_Animator extends AbstractResources
     @Override
     protected void InitializeKeywords()
     {
-        LoadLanguagePath();
-
-        final String json = Gdx.files.internal(languagePath + "KeywordStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
-
-        final com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = new Gson().fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
-        if (keywords != null)
-        {
-            for (final com.evacipated.cardcrawl.mod.stslib.Keyword keyword : keywords)
-            {
-                BaseMod.addKeyword(keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
-            }
-        }
+        LoadKeywords(languagePath + "KeywordStrings.json");
     }
 }

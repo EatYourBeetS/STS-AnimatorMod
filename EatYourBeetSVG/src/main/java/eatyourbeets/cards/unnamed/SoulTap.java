@@ -13,7 +13,7 @@ public class SoulTap extends UnnamedCard
 
     public SoulTap()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF, true);
+        super(ID, 0, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
 
         Initialize(0,0, 2, 2);
     }

@@ -13,7 +13,7 @@ import eatyourbeets.cards.Synergies;
 
 public class _Vigne extends AnimatorCard
 {
-    public static final String ID = CreateFullID(_Vigne.class.getSimpleName());
+    public static final String ID = Register(_Vigne.class.getSimpleName());
 
     public _Vigne()
     {

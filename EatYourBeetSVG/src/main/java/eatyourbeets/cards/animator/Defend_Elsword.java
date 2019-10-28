@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend_Elsword extends Defend
 {
-    public static final String ID = CreateFullID(Defend_Elsword.class.getSimpleName());
+    public static final String ID = Register(Defend_Elsword.class.getSimpleName());
 
     public Defend_Elsword()
     {

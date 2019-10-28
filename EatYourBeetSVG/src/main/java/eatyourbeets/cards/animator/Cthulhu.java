@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class Cthulhu extends AnimatorCard_UltraRare
 {
-    public static final String ID = CreateFullID(Cthulhu.class.getSimpleName());
+    public static final String ID = Register(Cthulhu.class.getSimpleName());
 
     public Cthulhu()
     {

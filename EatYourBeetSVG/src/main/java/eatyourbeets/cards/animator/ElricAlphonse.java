@@ -1,9 +1,9 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -11,20 +11,20 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class ElricAlphonse extends AnimatorCard
 {
-    public static final String ID = CreateFullID(ElricAlphonse.class.getSimpleName());
+    public static final String ID = Register(ElricAlphonse.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public ElricAlphonse()
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,2, 2);
+        Initialize(0,2, 1);
 
         SetEthereal(true);
         SetSynergy(Synergies.FullmetalAlchemist);
 
         if (InitializingPreview())
         {
-            cardPreview.Initialize(new ElricAlphonseAlt(), true);
+            cardData.InitializePreview(new ElricAlphonseAlt(), true);
         }
     }
 

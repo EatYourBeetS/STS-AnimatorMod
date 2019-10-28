@@ -4,13 +4,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class DolaCouronne extends AnimatorCard
 {
-    public static final String ID = CreateFullID(DolaCouronne.class.getSimpleName());
+    public static final String ID = Register(DolaCouronne.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public DolaCouronne()
     {

@@ -12,7 +12,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Raven extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Raven.class.getSimpleName());
+    public static final String ID = Register(Raven.class.getSimpleName());
 
     public Raven()
     {

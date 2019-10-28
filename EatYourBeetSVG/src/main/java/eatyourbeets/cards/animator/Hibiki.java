@@ -10,7 +10,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Hibiki extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Hibiki.class.getSimpleName());
+    public static final String ID = Register(Hibiki.class.getSimpleName());
 
     public Hibiki()
     {

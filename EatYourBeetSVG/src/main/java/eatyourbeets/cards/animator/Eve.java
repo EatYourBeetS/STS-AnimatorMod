@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Eve extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Eve.class.getSimpleName());
+    public static final String ID = Register(Eve.class.getSimpleName());
 
     public Eve()
     {

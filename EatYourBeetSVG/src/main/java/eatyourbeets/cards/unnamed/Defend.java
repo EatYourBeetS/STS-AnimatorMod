@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Defend.class.getSimpleName());
+    public static final String ID = Register(Defend.class.getSimpleName());
 
     public Defend()
     {

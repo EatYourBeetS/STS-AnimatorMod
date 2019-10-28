@@ -9,7 +9,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Defend_OwariNoSeraph extends Defend
 {
-    public static final String ID = CreateFullID(Defend_OwariNoSeraph.class.getSimpleName());
+    public static final String ID = Register(Defend_OwariNoSeraph.class.getSimpleName());
 
     public Defend_OwariNoSeraph()
     {

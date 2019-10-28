@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = CreateFullID(Vesta.class.getSimpleName());
+    public static final String ID = Register(Vesta.class.getSimpleName());
 
     private int timer;
     private Vesta_Elixir elixir;

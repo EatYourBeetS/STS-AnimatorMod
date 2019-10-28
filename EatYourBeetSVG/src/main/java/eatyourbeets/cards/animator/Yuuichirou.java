@@ -1,19 +1,19 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class Yuuichirou extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Yuuichirou.class.getSimpleName());
+    public static final String ID = Register(Yuuichirou.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Yuuichirou()
     {
@@ -25,7 +25,7 @@ public class Yuuichirou extends AnimatorCard
 
         if (InitializingPreview())
         {
-            cardPreview.Initialize(new Asuramaru(), false);
+            cardData.InitializePreview(new Asuramaru(), false);
         }
     }
 

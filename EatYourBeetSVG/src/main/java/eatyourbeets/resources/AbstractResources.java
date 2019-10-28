@@ -111,7 +111,7 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
     {
         commonResources = Initialize(commonResources, new Resources_Common());
         animatorResources = Initialize(animatorResources, new Resources_Animator());
-        unnamedResources = Initialize(unnamedResources, new Resources_Unnamed());
+        //unnamedResources = Initialize(unnamedResources, new Resources_Unnamed());
     }
 
     private static <T extends AbstractResources> T Initialize(AbstractResources existing, T resources)

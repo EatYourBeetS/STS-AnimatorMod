@@ -18,7 +18,7 @@ import eatyourbeets.interfaces.OnAttackSubscriber;
 
 public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscriber, OnAttackSubscriber
 {
-    public static final String ID = CreateFullID(ChaikaBohdan.class.getSimpleName());
+    public static final String ID = Register(ChaikaBohdan.class.getSimpleName());
 
     private int bonusDamage = 0;
 

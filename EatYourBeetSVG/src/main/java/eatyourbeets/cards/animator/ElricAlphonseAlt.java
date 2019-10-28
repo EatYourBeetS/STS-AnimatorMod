@@ -11,7 +11,7 @@ import eatyourbeets.cards.Synergies;
 
 public class ElricAlphonseAlt extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(ElricAlphonseAlt.class.getSimpleName());
+    public static final String ID = Register(ElricAlphonseAlt.class.getSimpleName());
 
     public ElricAlphonseAlt()
     {

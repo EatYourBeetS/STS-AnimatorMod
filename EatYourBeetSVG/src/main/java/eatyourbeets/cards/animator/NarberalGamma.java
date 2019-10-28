@@ -4,13 +4,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.common.TemporaryElectroPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class NarberalGamma extends AnimatorCard// implements OnStartOfTurnPostDrawSubscriber
+public class NarberalGamma extends AnimatorCard
 {
-    public static final String ID = CreateFullID(NarberalGamma.class.getSimpleName());
+    public static final String ID = Register(NarberalGamma.class.getSimpleName(), EYBCardBadge.Special);
 
     public NarberalGamma()
     {

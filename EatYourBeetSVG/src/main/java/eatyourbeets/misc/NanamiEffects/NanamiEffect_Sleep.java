@@ -15,9 +15,9 @@ public class NanamiEffect_Sleep extends NanamiEffect
         GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, poison), poison);
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(POISON, GetPoison(nanami));
+        return Desc(POISON, GetPoison(nanami));
     }
 
     private static int GetPoison(Nanami nanami)

@@ -14,7 +14,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Aisha extends AnimatorCard_Boost
 {
-    public static final String ID = CreateFullID(Aisha.class.getSimpleName());
+    public static final String ID = Register(Aisha.class.getSimpleName());
 
     public Aisha()
     {

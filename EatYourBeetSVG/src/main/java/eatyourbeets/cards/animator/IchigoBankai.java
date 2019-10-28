@@ -5,11 +5,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.Hidden;
-import eatyourbeets.utilities.GameActionsHelper;
 
 public class IchigoBankai extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(IchigoBankai.class.getSimpleName());
+    public static final String ID = Register(IchigoBankai.class.getSimpleName());
 
     public IchigoBankai()
     {

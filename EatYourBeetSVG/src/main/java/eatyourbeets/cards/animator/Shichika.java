@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Shichika extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Shichika.class.getSimpleName());
+    public static final String ID = Register(Shichika.class.getSimpleName());
 
     public Shichika()
     {
@@ -23,7 +23,7 @@ public class Shichika extends AnimatorCard
 
         if (InitializingPreview())
         {
-            cardPreview.Initialize(new ShichikaKyotouryuu(), true);
+            cardData.InitializePreview(new ShichikaKyotouryuu(), true);
         }
     }
 

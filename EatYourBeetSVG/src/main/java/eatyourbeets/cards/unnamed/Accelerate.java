@@ -6,7 +6,7 @@ import eatyourbeets.cards.UnnamedCard;
 
 public class Accelerate extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Accelerate.class.getSimpleName());
+    public static final String ID = Register(Accelerate.class.getSimpleName());
 
     public Accelerate()
     {

@@ -1,17 +1,15 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class Kuroyukihime extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Kuroyukihime.class.getSimpleName());
+    public static final String ID = Register(Kuroyukihime.class.getSimpleName());
 
     public Kuroyukihime()
     {
@@ -24,7 +22,7 @@ public class Kuroyukihime extends AnimatorCard
 
         if (InitializingPreview())
         {
-            cardPreview.Initialize(new BlackLotus(), false);
+            cardData.InitializePreview(new BlackLotus(), false);
         }
     }
 

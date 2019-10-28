@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
@@ -17,7 +18,7 @@ import eatyourbeets.interfaces.OnLoseHpSubscriber;
 
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleStartSubscriber
 {
-    public static final String ID = CreateFullID(Eris.class.getSimpleName());
+    public static final String ID = Register(Eris.class.getSimpleName(), EYBCardBadge.Special);
 
     public Eris()
     {
@@ -28,7 +29,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0, 4);
+        Initialize(0,0, 2);
 
         this.exhaust = true;
         this.tags.add(CardTags.HEALING);
@@ -92,7 +93,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(3);
+            upgradeMagicNumber(1);
         }
     }
 

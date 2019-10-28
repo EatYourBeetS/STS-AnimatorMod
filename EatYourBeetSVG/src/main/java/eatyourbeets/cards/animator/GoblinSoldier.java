@@ -11,7 +11,7 @@ import eatyourbeets.cards.Synergies;
 
 public class GoblinSoldier extends AnimatorCard_Status
 {
-    public static final String ID = CreateFullID(GoblinSoldier.class.getSimpleName());
+    public static final String ID = Register(GoblinSoldier.class.getSimpleName());
 
     public GoblinSoldier()
     {

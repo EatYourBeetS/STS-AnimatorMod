@@ -4,6 +4,7 @@ import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.TheMaskedTraveler1;
@@ -131,6 +132,8 @@ public class Resources_Common extends AbstractResources
     protected void InitializeStrings()
     {
         LoadLanguagePath();
+
+        BaseMod.loadCustomStringsFile(UIStrings.class, languagePath + "UIStrings.json");
 
         super.InitializeStrings();
     }

@@ -1,22 +1,16 @@
 package eatyourbeets.cards.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.animator.DemiurgePower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.interfaces.OnEndOfTurnSubscriber;
 
 public class Demiurge extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Demiurge.class.getSimpleName());
+    public static final String ID = Register(Demiurge.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Demiurge()
     {

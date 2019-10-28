@@ -6,7 +6,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend_GATE extends Defend
 {
-    public static final String ID = CreateFullID(Defend_GATE.class.getSimpleName());
+    public static final String ID = Register(Defend_GATE.class.getSimpleName());
 
     public Defend_GATE()
     {

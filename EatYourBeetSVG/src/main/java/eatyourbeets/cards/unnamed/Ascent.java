@@ -6,7 +6,7 @@ import eatyourbeets.cards.UnnamedCard;
 
 public class Ascent extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Ascent.class.getSimpleName());
+    public static final String ID = Register(Ascent.class.getSimpleName());
 
     public Ascent()
     {

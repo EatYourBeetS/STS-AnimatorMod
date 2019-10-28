@@ -9,7 +9,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Guren extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Guren.class.getSimpleName());
+    public static final String ID = Register(Guren.class.getSimpleName());
 
     public Guren()
     {

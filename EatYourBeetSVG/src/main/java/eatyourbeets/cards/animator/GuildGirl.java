@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -9,15 +10,13 @@ import eatyourbeets.powers.animator.GuildGirlPower;
 
 public class GuildGirl extends AnimatorCard
 {
-    public static final String ID = CreateFullID(GuildGirl.class.getSimpleName());
+    public static final String ID = Register(GuildGirl.class.getSimpleName(), EYBCardBadge.Special);
 
     public GuildGirl()
     {
-        super(ID, 0, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0, 2);
-
-        tags.add(CardTags.HEALING);
+        Initialize(0,0, 4);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -33,7 +32,7 @@ public class GuildGirl extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(4);
+            upgradeBaseCost(0);
         }
     }
 }

@@ -13,7 +13,7 @@ import patches.AbstractEnums;
 
 public class HououinKyouma extends AnimatorCard
 {
-    public static final String ID = CreateFullID(HououinKyouma.class.getSimpleName());
+    public static final String ID = Register(HououinKyouma.class.getSimpleName());
 
     public HououinKyouma()
     {

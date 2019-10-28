@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_GoblinSlayer extends Strike
 {
-    public static final String ID = CreateFullID(Strike_GoblinSlayer.class.getSimpleName());
+    public static final String ID = Register(Strike_GoblinSlayer.class.getSimpleName());
 
     public Strike_GoblinSlayer()
     {

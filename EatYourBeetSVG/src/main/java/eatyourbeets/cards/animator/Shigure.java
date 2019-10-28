@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -15,13 +16,13 @@ import eatyourbeets.powers.animator.SupportDamagePower;
 
 public class Shigure extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Shigure.class.getSimpleName());
+    public static final String ID = Register(Shigure.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
 
     public Shigure()
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(9,0, 2);
+        Initialize(7,0, 2);
 
         //AddExtendedDescription();
 
@@ -59,7 +60,6 @@ public class Shigure extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(3);
-            upgradeMagicNumber(1);
         }
     }
 }

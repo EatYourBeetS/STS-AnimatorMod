@@ -2,14 +2,9 @@ package eatyourbeets.cards;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Unnamed;
@@ -29,9 +24,9 @@ public abstract class UnnamedCard extends EYBCard
     public boolean enteredVoid = false;
     public int masteryCost = -2;
 
-    public static String CreateFullID(String cardID)
+    protected static String Register(String cardID, EYBCardBadge... badges)
     {
-        return "unnamed:" + cardID;
+        return RegisterCard("unnamed:" + cardID, badges);
     }
 
     private static String GetCardImage(String cardID)
@@ -54,12 +49,12 @@ public abstract class UnnamedCard extends EYBCard
 
     protected UnnamedCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        this(Resources_Unnamed.GetCardStrings(id), id, GetCardImage(id), cost, type, color, rarity, target);
+        this(staticCardData.get(id), id, GetCardImage(id), cost, type, color, rarity, target);
     }
 
-    protected UnnamedCard(CardStrings strings, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
+    protected UnnamedCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        super(strings, id, imagePath, cost, type, color, rarity, target);
+        super(data, id, imagePath, cost, type, color, rarity, target);
     }
 
     @Override

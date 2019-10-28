@@ -29,7 +29,7 @@ public class SingleCardViewPopupPatches
             EYBCard c = Utilities.SafeCast(card, EYBCard.class);
             if (c != null && !c.isFlipped)
             {
-                c.renderInSingleCardPopup(sb);
+                c.renderInSingleCardPopup(sb, false);
             }
         }
     }
@@ -37,102 +37,42 @@ public class SingleCardViewPopupPatches
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderFrame")
     public static class SingleCardViewPopup_RenderFrame
     {
-        @SpirePrefixPatch
-        public static SpireReturn Method(SingleCardViewPopup __instance, SpriteBatch sb)
+        @SpireInsertPatch(rloc = 0, localvars = {"card"})
+        public static SpireReturn Method(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard card)
         {
-            AbstractCard card = cardField.Get(__instance);
-            Texture tmpImg;
-            float tOffset;
-            float tWidth;
-
-            if (!(card instanceof AnimatorCard) || card.rarity != AbstractCard.CardRarity.SPECIAL)
+            EYBCard c = Utilities.SafeCast(card, EYBCard.class);
+            if (c != null)
             {
-                return SpireReturn.Continue();
+                c.renderInSingleCardPopup(sb, true);
+
+                if (c.rarity == AbstractCard.CardRarity.SPECIAL)
+                {
+                    Texture tmpImg;
+                    switch (card.type)
+                    {
+                        case ATTACK:
+                            tmpImg = Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL_L;
+                            break;
+
+                        case POWER:
+                            tmpImg = Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL_L;
+                            break;
+
+                        case SKILL:
+                        default:
+                            tmpImg = Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL_L;
+                            break;
+                    }
+
+                    //renderHelper(card, sb, sb.getColor(), tmpImg, (float) Settings.WIDTH / 2.0F - 512.0F, (float) Settings.HEIGHT / 2.0F - 512.0F, card.drawScale);
+                    //renderDynamicFrameMethod.invoke(__instance, sb, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F, tOffset, tWidth);
+                    sb.draw(tmpImg, (float) Settings.WIDTH / 2.0F - 512.0F, (float) Settings.HEIGHT / 2.0F - 512.0F, 512.0F, 512.0F, 1024.0F, 1024.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 1024, 1024, false, false);
+
+                    return SpireReturn.Return(null);
+                }
             }
 
-            label36:
-            switch (card.type)
-            {
-                case ATTACK:
-                    tWidth = AbstractCard.typeWidthAttack;
-                    tOffset = AbstractCard.typeOffsetAttack;
-                    tmpImg = Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL_L;
-                    break;
-//                    switch (card.rarity)
-//                    {
-////                        case SPECIAL:
-////                            tmpImg = Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL_L;
-////                            break label36;
-//                        case COMMON:
-//                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_COMMON_L;
-//                            break label36;
-//                        case UNCOMMON:
-//                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_UNCOMMON_L;
-//                            break label36;
-//                        case RARE:
-//                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_RARE_L;
-//                            break label36;
-//                        default:
-//                            tmpImg = ImageMaster.CARD_FRAME_ATTACK_COMMON_L;
-//                            break label36;
-//                    }
-
-                case POWER:
-                    tWidth = AbstractCard.typeWidthPower;
-                    tOffset = AbstractCard.typeOffsetPower;
-                    tmpImg = Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL_L;
-                    break;
-//                    switch (card.rarity)
-//                    {
-//                        case SPECIAL:
-//                            tmpImg = Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL_L;
-//                            break label36;
-//                        case COMMON:
-//                            tmpImg = ImageMaster.CARD_FRAME_POWER_COMMON_L;
-//                            break label36;
-//                        case UNCOMMON:
-//                            tmpImg = ImageMaster.CARD_FRAME_POWER_UNCOMMON_L;
-//                            break label36;
-//                        case RARE:
-//                            tmpImg = ImageMaster.CARD_FRAME_POWER_RARE_L;
-//                            break label36;
-//                        default:
-//                            tmpImg = ImageMaster.CARD_FRAME_POWER_COMMON_L;
-//                            break label36;
-//                    }
-
-                case SKILL:
-                default:
-                    tWidth = AbstractCard.typeWidthSkill;
-                    tOffset = AbstractCard.typeOffsetSkill;
-                    tmpImg = Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL_L;
-                    break;
-//                    switch (card.rarity)
-//                    {
-//                        case SPECIAL:
-//                            tmpImg = Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL_L;
-//                            break label36;
-//                        case COMMON:
-//                            tmpImg = ImageMaster.CARD_FRAME_SKILL_COMMON_L;
-//                            break label36;
-//                        case UNCOMMON:
-//                            tmpImg = ImageMaster.CARD_FRAME_SKILL_UNCOMMON_L;
-//                            break label36;
-//                        case RARE:
-//                            tmpImg = ImageMaster.CARD_FRAME_SKILL_RARE_L;
-//                            break label36;
-//                        default:
-//                            tmpImg = ImageMaster.CARD_FRAME_SKILL_COMMON_L;
-//                            break label36;
-//                    }
-            }
-
-            //renderHelper(card, sb, sb.getColor(), tmpImg, (float) Settings.WIDTH / 2.0F - 512.0F, (float) Settings.HEIGHT / 2.0F - 512.0F, card.drawScale);
-            sb.draw(tmpImg, (float) Settings.WIDTH / 2.0F - 512.0F, (float) Settings.HEIGHT / 2.0F - 512.0F, 512.0F, 512.0F, 1024.0F, 1024.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 1024, 1024, false, false);
-
-            //renderDynamicFrameMethod.invoke(__instance, sb, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F, tOffset, tWidth);
-
-            return SpireReturn.Return(null);
+            return SpireReturn.Continue();
         }
     }
 
@@ -201,59 +141,56 @@ public class SingleCardViewPopupPatches
 
             AbstractCard card = cardField.Get(__instance);
 
-            if (card instanceof UnnamedCard)
+            if (card.isLocked || card.isFlipped || !card.isSeen)
             {
-                UnnamedCard c = Utilities.SafeCast(card, UnnamedCard.class);
-                if (c != null && c.masteryCost >= 0)
+                return SpireReturn.Continue();
+            }
+            else if (card instanceof UnnamedCard)
+            {
+                UnnamedCard c = (UnnamedCard) card;
+                if (c.masteryCost >= 0)
                 {
                     renderHelper(sb, Settings.WIDTH / 2.0F + 266.0F * Settings.scale, Settings.HEIGHT / 2.0F + 382.0F * Settings.scale, Unnamed_Orb2B);
                     FontHelper.renderFontCentered(sb, FontHelper.SCP_cardEnergyFont, Integer.toString(c.masteryCost),
                             1228.0F * Settings.scale, Settings.HEIGHT / 2.0F + 390.0F * Settings.scale, Color.WHITE);
                 }
-
-                return SpireReturn.Continue();
             }
             else if (card instanceof AnimatorCard_UltraRare)
             {
-                if (!card.isLocked && card.isSeen)
+                if (card.cost > -2)
                 {
-                    if (card.cost > -2)
-                    {
-                        sb.draw(Animator_OrbB, (float) Settings.WIDTH / 2.0F - 82.0F - 270.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F - 82.0F + 380.0F * Settings.scale, 82.0F, 82.0F, 164.0F, 164.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 164, 164, false, false);
-                    }
+                    sb.draw(Animator_OrbB, (float) Settings.WIDTH / 2.0F - 82.0F - 270.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F - 82.0F + 380.0F * Settings.scale, 82.0F, 82.0F, 164.0F, 164.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 164, 164, false, false);
+                }
 
-                    Color c;
-                    if (card.isCostModified)
-                    {
-                        c = Settings.GREEN_TEXT_COLOR;
-                    }
-                    else
-                    {
-                        c = Settings.CREAM_COLOR;
-                    }
+                Color c;
+                if (card.isCostModified)
+                {
+                    c = Settings.GREEN_TEXT_COLOR;
+                }
+                else
+                {
+                    c = Settings.CREAM_COLOR;
+                }
 
-                    switch (card.cost)
-                    {
-                        case -2:
-                            break;
-                        case -1:
-                            FontHelper.renderFont(sb, FontHelper.SCP_cardEnergyFont, "X", 666.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F + 404.0F * Settings.scale, c);
-                            break;
-                        case 0:
-                        default:
-                            FontHelper.renderFont(sb, FontHelper.SCP_cardEnergyFont, Integer.toString(card.cost), 668.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F + 404.0F * Settings.scale, c);
-                            break;
-                        case 1:
-                            FontHelper.renderFont(sb, FontHelper.SCP_cardEnergyFont, Integer.toString(card.cost), 674.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F + 404.0F * Settings.scale, c);
-                    }
+                switch (card.cost)
+                {
+                    case -2:
+                        break;
+                    case -1:
+                        FontHelper.renderFont(sb, FontHelper.SCP_cardEnergyFont, "X", 666.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F + 404.0F * Settings.scale, c);
+                        break;
+                    case 0:
+                    default:
+                        FontHelper.renderFont(sb, FontHelper.SCP_cardEnergyFont, Integer.toString(card.cost), 668.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F + 404.0F * Settings.scale, c);
+                        break;
+                    case 1:
+                        FontHelper.renderFont(sb, FontHelper.SCP_cardEnergyFont, Integer.toString(card.cost), 674.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F + 404.0F * Settings.scale, c);
                 }
 
                 return SpireReturn.Return(null);
             }
-            else
-            {
-                return SpireReturn.Continue();
-            }
+
+            return SpireReturn.Continue();
         }
     }
 

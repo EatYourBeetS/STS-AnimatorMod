@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.DolaRikuAction;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 
 public class DolaRiku extends AnimatorCard
 {
-    public static final String ID = CreateFullID(DolaRiku.class.getSimpleName());
+    public static final String ID = Register(DolaRiku.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public DolaRiku()
     {

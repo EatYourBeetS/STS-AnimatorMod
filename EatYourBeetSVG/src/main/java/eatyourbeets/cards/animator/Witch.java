@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -12,15 +13,13 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Witch extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Witch.class.getSimpleName());
+    public static final String ID = Register(Witch.class.getSimpleName(), EYBCardBadge.Special);
 
     public Witch()
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
         Initialize(0, 12,3);
-
-        this.tags.add(CardTags.HEALING);
 
         SetSynergy(Synergies.GoblinSlayer);
     }

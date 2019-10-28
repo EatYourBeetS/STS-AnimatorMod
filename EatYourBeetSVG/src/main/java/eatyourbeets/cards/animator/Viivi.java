@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class Viivi extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Viivi.class.getSimpleName());
+    public static final String ID = Register(Viivi.class.getSimpleName(), EYBCardBadge.Discard);
 
     public Viivi()
     {

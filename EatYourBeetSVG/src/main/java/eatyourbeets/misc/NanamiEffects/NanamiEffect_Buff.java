@@ -13,9 +13,9 @@ public class NanamiEffect_Buff extends NanamiEffect
         GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, GetStrength(nanami)), GetStrength(nanami));
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(STRENGTH, GetStrength(nanami));
+        return Desc(STRENGTH, GetStrength(nanami));
     }
 
     private static int GetStrength(Nanami nanami)

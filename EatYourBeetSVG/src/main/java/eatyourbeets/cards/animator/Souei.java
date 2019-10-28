@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -15,7 +16,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Souei extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Souei.class.getSimpleName());
+    public static final String ID = Register(Souei.class.getSimpleName(), EYBCardBadge.Discard);
 
     public Souei()
     {

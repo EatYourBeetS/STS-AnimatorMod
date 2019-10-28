@@ -27,9 +27,9 @@ public class NanamiEffect_Escape extends NanamiEffect
         GameActionsHelper.ApplyPower(p, m, new StunMonsterPower(m, 1), 1);
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(DAMAGE, GetDamage(nanami), true) + Desc(STUN, 1);
+        return Desc(DAMAGE, GetDamage(nanami), true) + Desc(STUN, 1);
     }
 
     private static int GetDamage(Nanami nanami)

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Emilia extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Emilia.class.getSimpleName());
+    public static final String ID = Register(Emilia.class.getSimpleName());
 
     public Emilia()
     {

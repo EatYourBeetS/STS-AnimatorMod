@@ -1,9 +1,9 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -11,7 +11,7 @@ import eatyourbeets.powers.animator.BurningPower;
 
 public class Genos extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Genos.class.getSimpleName());
+    public static final String ID = Register(Genos.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Genos()
     {
@@ -21,10 +21,10 @@ public class Genos extends AnimatorCard
 
         SetSynergy(Synergies.OnePunchMan);
 
-        if (InitializingPreview())
-        {
-            cardPreview.Initialize(new Overheat(), true);
-        }
+//        if (InitializingPreview())
+//        {
+//            cardData.InitializePreview(new Overheat(), true);
+//        }
     }
 
     @Override

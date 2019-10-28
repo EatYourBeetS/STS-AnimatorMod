@@ -16,7 +16,7 @@ public class Aqua extends AnimatorCard
 {
     private boolean transformed = false;
 
-    public static final String ID = CreateFullID(Aqua.class.getSimpleName());
+    public static final String ID = Register(Aqua.class.getSimpleName());
 
     public Aqua() 
     {
@@ -31,7 +31,7 @@ public class Aqua extends AnimatorCard
         {
             Aqua copy = new Aqua(); // InitializingPreview will be true only once
             copy.SetTransformed(true);
-            cardPreview.Initialize(copy, true);
+            cardData.InitializePreview(copy, true);
         }
     }
 
@@ -99,16 +99,16 @@ public class Aqua extends AnimatorCard
         if (transformed)
         {
             this.loadCardImage(Resources_Animator.GetCardImage(ID + "2"));
-            rawDescription = cardStrings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0];
+            cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0];
+            cardText.Update(cardText.index, true);
             transformed = true;
-            initializeDescription();
         }
         else
         {
             this.loadCardImage(Resources_Animator.GetCardImage(ID));
-            rawDescription = (upgraded && (upgradedDescription != null)) ? upgradedDescription : cardStrings.DESCRIPTION;
+            cardText.overrideDescription = null;
+            cardText.Update(cardText.index, true);
             transformed = false;
-            initializeDescription();
         }
     }
 

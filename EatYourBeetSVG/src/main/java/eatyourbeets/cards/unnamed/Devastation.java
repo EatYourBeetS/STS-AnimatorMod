@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class Devastation extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Devastation.class.getSimpleName());
+    public static final String ID = Register(Devastation.class.getSimpleName());
 
     public Devastation()
     {

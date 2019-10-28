@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -12,7 +13,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class ZankiKiguchi extends AnimatorCard
 {
-    public static final String ID = CreateFullID(ZankiKiguchi.class.getSimpleName());
+    public static final String ID = Register(ZankiKiguchi.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public ZankiKiguchi()
     {
@@ -59,7 +60,7 @@ public class ZankiKiguchi extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(2);
-            upgradeMagicNumber(-1);
+            upgradeMagicNumber(1);
         }
     }
 

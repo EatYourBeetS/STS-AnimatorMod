@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 
 public class HigakiRinne extends AnimatorCard
 {
-    public static final String ID = CreateFullID(HigakiRinne.class.getSimpleName());
+    public static final String ID = Register(HigakiRinne.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Drawn, EYBCardBadge.Discard, EYBCardBadge.Exhaust, EYBCardBadge.Special);
 
     public HigakiRinne()
     {

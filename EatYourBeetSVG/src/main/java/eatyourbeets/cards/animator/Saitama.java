@@ -25,7 +25,7 @@ import eatyourbeets.utilities.Utilities;
 
 public class Saitama extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Saitama.class.getSimpleName());
+    public static final String ID = Register(Saitama.class.getSimpleName());
 
     private int stage;
 
@@ -163,7 +163,7 @@ public class Saitama extends AnimatorCard
             case 0:
             {
                 // Do Nothing
-                this.rawDescription = cardStrings.DESCRIPTION;
+                this.cardText.overrideDescription = cardData.strings.DESCRIPTION;
 
                 Initialize(0, 0, 0, 0);
 
@@ -178,7 +178,7 @@ public class Saitama extends AnimatorCard
             case 1:
             {
                 // Draw !M! Cards. NL Gain !SV! Temporary Dexterity.
-                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
 
                 Initialize(0, 0, 3, 3);
 
@@ -193,7 +193,7 @@ public class Saitama extends AnimatorCard
             case 2:
             {
                 // Prevent the next time you would lose HP
-                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
+                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[1];
 
                 Initialize(0, 8, 0, 0);
 
@@ -208,7 +208,7 @@ public class Saitama extends AnimatorCard
             case 3:
             {
                 // Gain !M! Strength. Gain !B! Block
-                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
+                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[2];
 
                 Initialize(0, 9, 6, 0);
 
@@ -223,7 +223,7 @@ public class Saitama extends AnimatorCard
             case 4:
             {
                 // Deal !D! damage !M! times.
-                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[3];
+                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[3];
 
                 Initialize(6, 0, 8, 0);
 
@@ -238,7 +238,7 @@ public class Saitama extends AnimatorCard
             case 5:
             {
                 // Remove Intangible. Deal !D! damage.
-                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[4];
+                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[4];
 
                 Initialize(1000, 0, 0, 0);
 
@@ -252,7 +252,7 @@ public class Saitama extends AnimatorCard
         }
 
         this.upgradeBaseCost(stage);
-        this.initializeDescription();
+        this.cardText.Update(cardText.index, true);
     }
 
     private class ProgressPhaseAction extends AnimatorAction

@@ -17,7 +17,7 @@ import eatyourbeets.monsters.Bosses.TheUnnamed;
 
 public class Kira extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Kira.class.getSimpleName());
+    public static final String ID = Register(Kira.class.getSimpleName());
     public static final String[] DESCRIPTIONS = Resources_Animator.GetCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private int countdown;
@@ -109,17 +109,17 @@ public class Kira extends AnimatorCard
     {
         if (monster == null)
         {
-            rawDescription = cardStrings.DESCRIPTION;
+            rawDescription = cardData.strings.DESCRIPTION;
         }
         else if (monster instanceof TheUnnamed)
         {
-            rawDescription = cardStrings.DESCRIPTION;
+            rawDescription = cardData.strings.DESCRIPTION;
             ((TheUnnamed)monster).TriedUsingDeathNote();
         }
         else
         {
             updateCountdown(monster);
-            rawDescription = cardStrings.EXTENDED_DESCRIPTION[2].replace("@", String.valueOf(countdown));
+            rawDescription = cardData.strings.EXTENDED_DESCRIPTION[2].replace("@", String.valueOf(countdown));
         }
 
         initializeDescription();

@@ -6,7 +6,7 @@ import eatyourbeets.cards.UnnamedCard;
 
 public class Glass extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Glass.class.getSimpleName());
+    public static final String ID = Register(Glass.class.getSimpleName());
 
     public Glass()
     {

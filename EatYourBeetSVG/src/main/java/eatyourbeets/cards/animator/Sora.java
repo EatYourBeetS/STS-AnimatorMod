@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.SoraAction;
@@ -13,13 +14,13 @@ import patches.AbstractEnums;
 
 public class Sora extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Sora.class.getSimpleName());
+    public static final String ID = Register(Sora.class.getSimpleName(), EYBCardBadge.Special);
 
     public final SoraEffect effect;
 
     public Sora(SoraEffect effect)
     {
-        super(Resources_Animator.GetCardStrings(ID), ID + "Alt", Resources_Animator.GetCardImage(ID + "Alt"),
+        super(staticCardData.get(ID), ID + "Alt", Resources_Animator.GetCardImage(ID + "Alt"),
                 0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
         this.effect = effect;
         //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;

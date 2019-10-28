@@ -11,7 +11,7 @@ import eatyourbeets.orbs.Earth;
 
 public class Arpeggio extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Arpeggio.class.getSimpleName());
+    public static final String ID = Register(Arpeggio.class.getSimpleName());
 
     public Arpeggio()
     {

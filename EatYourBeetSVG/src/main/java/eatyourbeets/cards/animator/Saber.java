@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,11 +10,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.ModifyMagicNumberAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import patches.AbstractEnums;
 
 public class Saber extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Saber.class.getSimpleName());
+    public static final String ID = Register(Saber.class.getSimpleName());
 
     public Saber()
     {
@@ -28,7 +26,7 @@ public class Saber extends AnimatorCard
 
         if (InitializingPreview())
         {
-            cardPreview.Initialize(new Excalibur(), false);
+            cardData.InitializePreview(new Excalibur(), false);
         }
     }
 

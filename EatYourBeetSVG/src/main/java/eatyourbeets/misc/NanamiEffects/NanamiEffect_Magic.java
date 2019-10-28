@@ -18,9 +18,9 @@ public class NanamiEffect_Magic extends NanamiEffect
         }
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(RANDOM_ORB, GetOrbs(nanami));
+        return Desc(RANDOM_ORB, GetOrbs(nanami));
     }
 
     private static int GetOrbs(Nanami nanami)

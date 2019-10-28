@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -21,7 +22,7 @@ import eatyourbeets.utilities.Utilities;
 
 public class Megumin extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Megumin.class.getSimpleName());
+    public static final String ID = Register(Megumin.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Megumin()
     {
@@ -81,7 +82,7 @@ public class Megumin extends AnimatorCard
         upgradeDamage(2);
 
         this.upgraded = true;
-        this.name = cardStrings.NAME + "+" + this.timesUpgraded;
+        this.name = cardData.strings.NAME + "+" + this.timesUpgraded;
         this.initializeTitle();
     }
 }

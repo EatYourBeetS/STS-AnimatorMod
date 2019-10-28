@@ -23,9 +23,9 @@ public class NanamiEffect_Attack_Buff extends NanamiEffect
         }
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(BLOCK, GetBlock(nanami), true) + Desc(STRENGTH, GetStrength(nanami));
+        return Desc(BLOCK, GetBlock(nanami), true) + Desc(STRENGTH, GetStrength(nanami));
     }
 
     private static int GetStrength(Nanami nanami)

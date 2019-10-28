@@ -17,7 +17,7 @@ import patches.AbstractEnums;
 
 public class Lelouch extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Lelouch.class.getSimpleName());
+    public static final String ID = Register(Lelouch.class.getSimpleName());
 
     public Lelouch()
     {

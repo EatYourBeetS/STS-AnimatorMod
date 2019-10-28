@@ -8,7 +8,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Yusarin extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Yusarin.class.getSimpleName());
+    public static final String ID = Register(Yusarin.class.getSimpleName());
 
     public Yusarin()
     {

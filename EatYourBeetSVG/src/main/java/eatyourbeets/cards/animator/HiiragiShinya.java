@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.SupportDamagePower;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class HiiragiShinya extends AnimatorCard
 {
-    public static final String ID = CreateFullID(HiiragiShinya.class.getSimpleName());
+    public static final String ID = Register(HiiragiShinya.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public HiiragiShinya()
     {

@@ -6,7 +6,7 @@ import eatyourbeets.cards.UnnamedCard;
 
 public class Darkness extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Darkness.class.getSimpleName());
+    public static final String ID = Register(Darkness.class.getSimpleName());
 
     public Darkness()
     {

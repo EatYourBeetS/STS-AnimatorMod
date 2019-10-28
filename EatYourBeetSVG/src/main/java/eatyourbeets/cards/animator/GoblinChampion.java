@@ -9,7 +9,7 @@ import eatyourbeets.cards.Synergies;
 
 public class GoblinChampion extends AnimatorCard_Status
 {
-    public static final String ID = CreateFullID(GoblinChampion.class.getSimpleName());
+    public static final String ID = Register(GoblinChampion.class.getSimpleName());
 
     public GoblinChampion()
     {

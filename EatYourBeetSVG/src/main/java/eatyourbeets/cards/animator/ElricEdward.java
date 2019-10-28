@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ElricEdward extends AnimatorCard
 {
-    public static final String ID = CreateFullID(ElricEdward.class.getSimpleName());
+    public static final String ID = Register(ElricEdward.class.getSimpleName());
 
     public ElricEdward()
     {

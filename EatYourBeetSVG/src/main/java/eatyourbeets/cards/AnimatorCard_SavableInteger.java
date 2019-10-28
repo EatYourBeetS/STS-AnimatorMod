@@ -15,9 +15,9 @@ public abstract class AnimatorCard_SavableInteger extends AnimatorCard implement
         super(id, cost, type, color, rarity, target);
     }
 
-    protected AnimatorCard_SavableInteger(CardStrings strings, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
+    protected AnimatorCard_SavableInteger(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        super(strings, id, imagePath, cost, type, color, rarity, target);
+        super(data, id, imagePath, cost, type, color, rarity, target);
     }
 
     @Override

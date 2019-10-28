@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Tet extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Tet.class.getSimpleName());
+    public static final String ID = Register(Tet.class.getSimpleName());
 
     public Tet()
     {

@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -11,13 +12,13 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Tatsumaki extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Tatsumaki.class.getSimpleName());
+    public static final String ID = Register(Tatsumaki.class.getSimpleName(), EYBCardBadge.Special);
 
     public Tatsumaki()
     {
         super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 2,3);
+        Initialize(0, 0, 1);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -49,7 +50,6 @@ public class Tatsumaki extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
-            upgradeSecondaryValue(1);
         }
     }
 }

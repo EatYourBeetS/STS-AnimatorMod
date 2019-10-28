@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class Alexander extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Alexander.class.getSimpleName());
+    public static final String ID = Register(Alexander.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Alexander()
     {

@@ -10,11 +10,11 @@ import patches.AbstractEnums;
 
 public class Defend extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Defend.class.getSimpleName());
+    public static final String ID = Register(Defend.class.getSimpleName());
 
     public Defend(String id, int cost, CardTarget target)
     {
-        super(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(ID + "Alt"), cost, CardType.SKILL, CardColor.COLORLESS,
+        super(staticCardData.get(id), id, Resources_Animator.GetCardImage(ID + "Alt"), cost, CardType.SKILL, CardColor.COLORLESS,
                 CardRarity.BASIC, target);
 
         //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");

@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_TenSura extends Strike
 {
-    public static final String ID = CreateFullID(Strike_TenSura.class.getSimpleName());
+    public static final String ID = Register(Strike_TenSura.class.getSimpleName());
 
     public Strike_TenSura()
     {

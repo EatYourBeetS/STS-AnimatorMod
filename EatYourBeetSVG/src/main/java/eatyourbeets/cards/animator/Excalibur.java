@@ -18,7 +18,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Excalibur extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(Excalibur.class.getSimpleName());
+    public static final String ID = Register(Excalibur.class.getSimpleName());
 
     public Excalibur()
     {

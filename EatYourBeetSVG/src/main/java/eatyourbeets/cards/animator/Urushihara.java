@@ -15,7 +15,7 @@ import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 
 public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = CreateFullID(Urushihara.class.getSimpleName());
+    public static final String ID = Register(Urushihara.class.getSimpleName());
 
     private int lazyCounter;
 

@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Reaper extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Reaper.class.getSimpleName());
+    public static final String ID = Register(Reaper.class.getSimpleName());
 
     public Reaper()
     {

@@ -4,16 +4,14 @@ import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
-import com.megacrit.cardcrawl.powers.PhantasmalPower;
 import eatyourbeets.actions.common.ModifyCostAction;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.RetainCardsOfTypeAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class TanyaDegurechaff_Type95 extends AnimatorCard
 {
-    public static final String ID = CreateFullID(TanyaDegurechaff_Type95.class.getSimpleName());
+    public static final String ID = Register(TanyaDegurechaff_Type95.class.getSimpleName());
 
     public TanyaDegurechaff_Type95()
     {

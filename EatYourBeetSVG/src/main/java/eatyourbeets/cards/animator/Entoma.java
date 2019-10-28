@@ -12,15 +12,16 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.EntomaAction;
 import eatyourbeets.actions.common.OnTargetDeadAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Entoma extends AnimatorCard//_SavableInteger implements CustomSavable<Integer>
+public class Entoma extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Entoma.class.getSimpleName());
+    public static final String ID = Register(Entoma.class.getSimpleName(), EYBCardBadge.Special);
 
     private static final int ORIGINAL_DAMAGE = 7;
     private static final int ORIGINAL_MAGIC_NUMBER = 3;
@@ -82,7 +83,7 @@ public class Entoma extends AnimatorCard//_SavableInteger implements CustomSavab
         this.upgradedMagicNumber = true;
 
         this.upgraded = true;
-        this.name = cardStrings.NAME + "+" + this.timesUpgraded;
+        this.name = cardData.strings.NAME + "+" + this.timesUpgraded;
         this.initializeTitle();
     }
 }

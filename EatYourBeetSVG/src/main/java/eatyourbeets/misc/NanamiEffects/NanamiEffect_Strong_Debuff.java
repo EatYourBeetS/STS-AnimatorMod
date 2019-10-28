@@ -21,11 +21,11 @@ public class NanamiEffect_Strong_Debuff extends NanamiEffect
 
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
         int stack = GetStack(nanami);
 
-        nanami.rawDescription = Desc(WEAK, stack, true) + Desc(VULNERABLE, stack, true) + Desc(POISON, GetPoison(nanami));
+        return Desc(WEAK, stack, true) + Desc(VULNERABLE, stack, true) + Desc(POISON, GetPoison(nanami));
     }
 
     private static int GetStack(Nanami nanami)

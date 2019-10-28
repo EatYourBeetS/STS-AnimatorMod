@@ -15,7 +15,7 @@ import eatyourbeets.effects.ColoredSweepingBeamEffect;
 
 public class BlackLotus extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(BlackLotus.class.getSimpleName());
+    public static final String ID = Register(BlackLotus.class.getSimpleName());
 
     public BlackLotus()
     {

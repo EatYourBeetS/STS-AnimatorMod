@@ -9,7 +9,7 @@ import eatyourbeets.powers.animator.EnvyPower;
 
 public class Envy extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Envy.class.getSimpleName());
+    public static final String ID = Register(Envy.class.getSimpleName());
 
     public Envy()
     {

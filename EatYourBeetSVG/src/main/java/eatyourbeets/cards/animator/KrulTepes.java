@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.relics.BloodVial;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.KrulTepesAction;
 import eatyourbeets.actions.common.OnTargetDeadAction;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 
 public class KrulTepes extends AnimatorCard
 {
-    public static final String ID = CreateFullID(KrulTepes.class.getSimpleName());
+    public static final String ID = Register(KrulTepes.class.getSimpleName(), EYBCardBadge.Special);
 
     private static final AbstractRelic relicReward = new BloodVial();
 

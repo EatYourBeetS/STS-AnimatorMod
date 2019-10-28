@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_GATE extends Strike
 {
-    public static final String ID = CreateFullID(Strike_GATE.class.getSimpleName());
+    public static final String ID = Register(Strike_GATE.class.getSimpleName());
 
     public Strike_GATE()
     {

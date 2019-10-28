@@ -2,13 +2,14 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class CowGirl extends AnimatorCard
 {
-    public static final String ID = CreateFullID(CowGirl.class.getSimpleName());
+    public static final String ID = Register(CowGirl.class.getSimpleName(), EYBCardBadge.Special);
 
     public CowGirl()
     {
@@ -16,8 +17,7 @@ public class CowGirl extends AnimatorCard
 
         Initialize(0, 0, 2);
 
-        this.exhaust = true;
-
+        SetExhaust(true);
         SetSynergy(Synergies.GoblinSlayer);
     }
 

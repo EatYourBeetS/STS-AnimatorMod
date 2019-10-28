@@ -9,7 +9,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Melzalgald extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Melzalgald.class.getSimpleName());
+    public static final String ID = Register(Melzalgald.class.getSimpleName());
 
     public Melzalgald()
     {

@@ -11,7 +11,7 @@ import eatyourbeets.cards.AnimatorCard;
 
 public class Strike_FullmetalAlchemist extends Strike
 {
-    public static final String ID = CreateFullID(Strike_FullmetalAlchemist.class.getSimpleName());
+    public static final String ID = Register(Strike_FullmetalAlchemist.class.getSimpleName());
 
     public Strike_FullmetalAlchemist()
     {

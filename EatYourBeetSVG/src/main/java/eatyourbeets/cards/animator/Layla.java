@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class Layla extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Layla.class.getSimpleName());
+    public static final String ID = Register(Layla.class.getSimpleName(), EYBCardBadge.Discard);
 
     public Layla()
     {

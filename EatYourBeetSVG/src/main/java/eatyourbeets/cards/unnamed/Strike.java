@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Strike.class.getSimpleName());
+    public static final String ID = Register(Strike.class.getSimpleName());
 
     public Strike()
     {

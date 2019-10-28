@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class JeanneDArc extends AnimatorCard_UltraRare
 {
-    public static final String ID = CreateFullID(JeanneDArc.class.getSimpleName());
+    public static final String ID = Register(JeanneDArc.class.getSimpleName());
 
     public JeanneDArc()
     {

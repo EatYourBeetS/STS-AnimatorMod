@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Geryuganshoop extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Geryuganshoop.class.getSimpleName());
+    public static final String ID = Register(Geryuganshoop.class.getSimpleName());
 
     public Geryuganshoop()
     {
@@ -29,7 +29,7 @@ public class Geryuganshoop extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.CycleCardAction(this.secondaryValue);
-        String message = cardStrings.EXTENDED_DESCRIPTION[0].replace("@", String.valueOf(magicNumber));
+        String message = cardData.strings.EXTENDED_DESCRIPTION[0].replace("@", String.valueOf(magicNumber));
         GameActionsHelper.AddToBottom(new ChooseAnyNumberFromPileAction(magicNumber, p.exhaustPile, this::OnCardChosen, this, message, true));
     }
 

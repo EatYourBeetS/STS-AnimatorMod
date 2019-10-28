@@ -1,0 +1,15 @@
+
+{
+  "common:CardBadges":
+  {
+	"TEXT":
+	[
+	  "You can hold #pRight #pClick at any moment to view this effect or you can press #pLeft #pControl to toggle.",
+	  "Triggers on Synergy.",
+	  "Triggers when Discarded.",
+	  "Triggers when Exhausted.",
+	  "Triggers when Drawn.",
+	  "Special Effect."
+	]
+  }
+}

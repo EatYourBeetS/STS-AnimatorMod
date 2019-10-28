@@ -3,9 +3,9 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -13,7 +13,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Emonzaemon extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Emonzaemon.class.getSimpleName());
+    public static final String ID = Register(Emonzaemon.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Emonzaemon()
     {
@@ -25,7 +25,7 @@ public class Emonzaemon extends AnimatorCard
 
         if (InitializingPreview())
         {
-            cardPreview.Initialize(new EntouJyuu(), true);
+            cardData.InitializePreview(new EntouJyuu(), true);
         }
     }
 

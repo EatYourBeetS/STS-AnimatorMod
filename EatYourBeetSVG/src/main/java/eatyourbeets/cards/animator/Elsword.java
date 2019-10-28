@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.Synergies;
@@ -11,7 +12,7 @@ import eatyourbeets.orbs.Fire;
 
 public class Elsword extends AnimatorCard_Cooldown
 {
-    public static final String ID = CreateFullID(Elsword.class.getSimpleName());
+    public static final String ID = Register(Elsword.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Elsword()
     {

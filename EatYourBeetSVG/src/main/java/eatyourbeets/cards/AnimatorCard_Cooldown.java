@@ -5,20 +5,30 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public abstract class AnimatorCard_Cooldown extends AnimatorCard// extends AnimatorCard_SavableInteger
+public abstract class AnimatorCard_Cooldown extends AnimatorCard
 {
     protected abstract int GetBaseCooldown();
 
     protected AnimatorCard_Cooldown(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
         super(id, cost, type, color, rarity, target);
-        this.baseSecondaryValue = this.secondaryValue = GetBaseCooldown();
     }
 
     protected AnimatorCard_Cooldown(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
         super(id, cost, type, rarity, target);
-        this.baseSecondaryValue = this.secondaryValue = GetBaseCooldown();
+    }
+
+    @Override
+    protected void Initialize(int baseDamage, int baseBlock)
+    {
+        super.Initialize(baseDamage, baseBlock, -1, GetBaseCooldown());
+    }
+
+    @Override
+    protected void Initialize(int baseDamage, int baseBlock, int baseMagicNumber)
+    {
+        super.Initialize(baseDamage, baseBlock, baseMagicNumber, GetBaseCooldown());
     }
 
     @Override

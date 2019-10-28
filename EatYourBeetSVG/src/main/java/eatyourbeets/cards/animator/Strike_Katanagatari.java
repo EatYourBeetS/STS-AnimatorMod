@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_Katanagatari extends Strike
 {
-    public static final String ID = CreateFullID(Strike_Katanagatari.class.getSimpleName());
+    public static final String ID = Register(Strike_Katanagatari.class.getSimpleName());
 
     public Strike_Katanagatari()
     {

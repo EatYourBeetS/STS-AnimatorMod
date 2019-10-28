@@ -16,7 +16,7 @@ import eatyourbeets.cards.Synergies;
 
 public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
 {
-    public static final String ID = CreateFullID(YunYun.class.getSimpleName());
+    public static final String ID = Register(YunYun.class.getSimpleName());
 
     private int costModifier = 0;
 

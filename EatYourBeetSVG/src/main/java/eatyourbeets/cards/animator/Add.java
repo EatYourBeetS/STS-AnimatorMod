@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.ChooseFromAnyPileAction;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 
 public class Add extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Add.class.getSimpleName());
+    public static final String ID = Register(Add.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Add()
     {

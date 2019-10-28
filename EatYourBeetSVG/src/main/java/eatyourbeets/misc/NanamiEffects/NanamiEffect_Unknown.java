@@ -18,9 +18,9 @@ public class NanamiEffect_Unknown extends NanamiEffect
         }
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(TEMP_HP, GetTempHP(nanami), true) + Desc(ENERGY, 1);
+        return Desc(TEMP_HP, GetTempHP(nanami), true) + Desc(ENERGY, 1);
     }
 
     private static int GetTempHP(Nanami nanami)

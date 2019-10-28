@@ -3,9 +3,9 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.TransformIntoSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard_Boost;
@@ -13,7 +13,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Vanir extends AnimatorCard_Boost
 {
-    public static final String ID = CreateFullID(Vanir.class.getSimpleName());
+    public static final String ID = Register(Vanir.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Vanir()
     {
@@ -29,7 +29,7 @@ public class Vanir extends AnimatorCard_Boost
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        if (secondaryValue > 0)
+        if (GetCurrentBoost() > 0)
         {
             return super.calculateModifiedCardDamage(player, mo, tmp + magicNumber);
         }

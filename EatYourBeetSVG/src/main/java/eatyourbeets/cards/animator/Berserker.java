@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.actions.common.OnDamageAction;
@@ -18,7 +19,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Berserker extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Berserker.class.getSimpleName());
+    public static final String ID = Register(Berserker.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Berserker()
     {

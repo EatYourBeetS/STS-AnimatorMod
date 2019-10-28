@@ -9,7 +9,7 @@ import eatyourbeets.powers.animator.OrbCore_PlasmaPower;
 
 public class OrbCore_Plasma extends AnimatorCard
 {
-    public static final String ID = CreateFullID(OrbCore_Plasma.class.getSimpleName());
+    public static final String ID = Register(OrbCore_Plasma.class.getSimpleName());
 
     public static final int VALUE = 3;
 

@@ -12,7 +12,7 @@ import eatyourbeets.misc.NanamiEffects.*;
 
 public class Nanami extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Nanami.class.getSimpleName());
+    public static final String ID = Register(Nanami.class.getSimpleName());
     public static final String[] DESCRIPTIONS = Resources_Animator.GetCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private AbstractMonster lastTarget = null;
@@ -150,16 +150,8 @@ public class Nanami extends AnimatorCard
     {
         if (monster == null)
         {
-            if (upgraded)
-            {
-                rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-            }
-            else
-            {
-                rawDescription = cardStrings.DESCRIPTION;
-            }
-
-            initializeDescription();
+            cardText.overrideDescription = null;
+            cardText.Update(cardText.index, true);
 
             return;
         }
@@ -173,72 +165,73 @@ public class Nanami extends AnimatorCard
         switch (monster.intent)
         {
             case ATTACK:
-                NanamiEffect_Attack.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Attack.UpdateDescription(this);
                 break;
 
             case ATTACK_BUFF:
-                NanamiEffect_Attack_Buff.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Attack_Buff.UpdateDescription(this);
                 break;
 
             case ATTACK_DEBUFF:
-                NanamiEffect_Attack_Debuff.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Attack_Debuff.UpdateDescription(this);
                 break;
 
             case ATTACK_DEFEND:
-                NanamiEffect_Attack_Defend.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Attack_Defend.UpdateDescription(this);
                 break;
 
             case BUFF:
-                NanamiEffect_Buff.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Buff.UpdateDescription(this);
                 break;
 
             case DEBUFF:
-                NanamiEffect_Debuff.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Debuff.UpdateDescription(this);
                 break;
 
             case STRONG_DEBUFF:
-                NanamiEffect_Strong_Debuff.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Strong_Debuff.UpdateDescription(this);
                 break;
 
             case DEFEND:
-                NanamiEffect_Defend.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Defend.UpdateDescription(this);
                 break;
 
             case DEFEND_DEBUFF:
-                NanamiEffect_Defend_Debuff.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Defend_Debuff.UpdateDescription(this);
                 break;
 
             case DEFEND_BUFF:
-                NanamiEffect_Defend_Buff.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Defend_Buff.UpdateDescription(this);
                 break;
 
             case ESCAPE:
-                NanamiEffect_Escape.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Escape.UpdateDescription(this);
                 break;
 
             case SLEEP:
-                NanamiEffect_Sleep.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Sleep.UpdateDescription(this);
                 break;
 
             case STUN:
-                NanamiEffect_Stun.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Stun.UpdateDescription(this);
                 break;
 
             case UNKNOWN:
-                NanamiEffect_Unknown.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Unknown.UpdateDescription(this);
                 break;
 
             case DEBUG:
             case NONE:
-                NanamiEffect_None.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_None.UpdateDescription(this);
                 break;
 
             case MAGIC:
             default:
-                NanamiEffect_Magic.UpdateDescription(this);
+                cardText.overrideDescription = NanamiEffect_Magic.UpdateDescription(this);
                 break;
         }
 
-        initializeDescription();
+        cardText.Update(cardText.index, true);
     }
+
 }

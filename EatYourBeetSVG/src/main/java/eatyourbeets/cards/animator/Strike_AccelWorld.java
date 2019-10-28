@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_AccelWorld extends Strike
 {
-    public static final String ID = CreateFullID(Strike_AccelWorld.class.getSimpleName());
+    public static final String ID = Register(Strike_AccelWorld.class.getSimpleName());
 
     public Strike_AccelWorld()
     {

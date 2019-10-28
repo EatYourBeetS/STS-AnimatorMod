@@ -3,13 +3,14 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class AcuraAkari extends AnimatorCard
 {
-    public static final String ID = CreateFullID(AcuraAkari.class.getSimpleName());
+    public static final String ID = Register(AcuraAkari.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public AcuraAkari()
     {

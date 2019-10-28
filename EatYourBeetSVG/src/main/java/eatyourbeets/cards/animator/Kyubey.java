@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Kyubey extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Kyubey.class.getSimpleName());
+    public static final String ID = Register(Kyubey.class.getSimpleName());
 
     public Kyubey()
     {

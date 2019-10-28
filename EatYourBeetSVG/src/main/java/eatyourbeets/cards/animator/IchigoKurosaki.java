@@ -8,7 +8,7 @@ import eatyourbeets.interfaces.Hidden;
 
 public class IchigoKurosaki extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(IchigoKurosaki.class.getSimpleName());
+    public static final String ID = Register(IchigoKurosaki.class.getSimpleName());
 
     public IchigoKurosaki()
     {
@@ -20,7 +20,7 @@ public class IchigoKurosaki extends AnimatorCard implements Hidden
 
         if (InitializingPreview())
         {
-            cardPreview.Initialize(new IchigoBankai(), false);
+            cardData.InitializePreview(new IchigoBankai(), false);
         }
     }
 

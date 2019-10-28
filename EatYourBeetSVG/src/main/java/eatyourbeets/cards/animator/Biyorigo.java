@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -10,7 +11,7 @@ import eatyourbeets.powers.animator.BiyorigoPower;
 
 public class Biyorigo extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Biyorigo.class.getSimpleName());
+    public static final String ID = Register(Biyorigo.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Biyorigo()
     {
@@ -39,7 +40,7 @@ public class Biyorigo extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBaseCost(1);
         }
     }
 }

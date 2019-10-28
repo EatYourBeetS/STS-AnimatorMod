@@ -10,13 +10,23 @@ public abstract class AnimatorCard_Boost extends AnimatorCard
     protected AnimatorCard_Boost(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
         super(id, cost, type, color, rarity, target);
-        this.baseSecondaryValue = this.secondaryValue = GetBaseBoost();
     }
 
     protected AnimatorCard_Boost(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
         super(id, cost, type, rarity, target);
-        this.baseSecondaryValue = this.secondaryValue = GetBaseBoost();
+    }
+
+    @Override
+    protected void Initialize(int baseDamage, int baseBlock)
+    {
+        super.Initialize(baseDamage, baseBlock, -1, GetBaseBoost());
+    }
+
+    @Override
+    protected void Initialize(int baseDamage, int baseBlock, int baseMagicNumber)
+    {
+        super.Initialize(baseDamage, baseBlock, baseMagicNumber, GetBaseBoost());
     }
 
     protected void ResetBoost()

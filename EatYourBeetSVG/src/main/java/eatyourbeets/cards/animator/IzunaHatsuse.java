@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -14,7 +15,7 @@ import eatyourbeets.cards.Synergies;
 
 public class IzunaHatsuse extends AnimatorCard
 {
-    public static final String ID = CreateFullID(IzunaHatsuse.class.getSimpleName());
+    public static final String ID = Register(IzunaHatsuse.class.getSimpleName(), EYBCardBadge.Special);
 
     private boolean transformed;
 
@@ -24,8 +25,6 @@ public class IzunaHatsuse extends AnimatorCard
 
         Initialize(4, 2, 4);
 
-        AddExtendedDescription();
-
         SetTransformed(false);
         SetSynergy(Synergies.NoGameNoLife);
 
@@ -34,7 +33,7 @@ public class IzunaHatsuse extends AnimatorCard
             // InitializingPreview will only be true once
             IzunaHatsuse copy = new IzunaHatsuse();
             copy.SetTransformed(true);
-            cardPreview.Initialize(copy, true);
+            cardData.InitializePreview(copy, true);
         }
     }
 
@@ -92,19 +91,19 @@ public class IzunaHatsuse extends AnimatorCard
 
             if (transformed)
             {
-                this.loadCardImage(Resources_Animator.GetCardImage(ID));
-                this.type = CardType.SKILL;
-                rawDescription = cardStrings.DESCRIPTION;
-                initializeDescription();
-                transformed = false;
+                this.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
+                this.type = CardType.ATTACK;
+
+                cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
+                cardText.Update(cardText.index, true);
             }
             else
             {
-                this.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
-                this.type = CardType.ATTACK;
-                rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
-                initializeDescription();
-                transformed = true;
+                this.loadCardImage(Resources_Animator.GetCardImage(ID));
+                this.type = CardType.SKILL;
+
+                cardText.overrideDescription = null;
+                cardText.Update(cardText.index, true);
             }
         }
     }

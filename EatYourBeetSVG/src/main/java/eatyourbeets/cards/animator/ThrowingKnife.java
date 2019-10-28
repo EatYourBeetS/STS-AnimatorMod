@@ -21,13 +21,13 @@ import patches.AbstractEnums;
 
 public abstract class ThrowingKnife extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(ThrowingKnife.class.getSimpleName());
+    public static final String ID = Register(ThrowingKnife.class.getSimpleName());
 
     private static RandomizedList<ThrowingKnife> subTypes = null;
 
     public ThrowingKnife(String id)
     {
-        super(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(staticCardData.get(id), id, Resources_Animator.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
 
         this.tags.add(AbstractEnums.CardTags.PURGE);
     }

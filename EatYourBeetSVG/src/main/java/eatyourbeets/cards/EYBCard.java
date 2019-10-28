@@ -17,11 +17,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.Resources_Animator_Images;
+import eatyourbeets.resources.Resources_Common_Strings;
+import eatyourbeets.utilities.RenderHelpers;
 import eatyourbeets.utilities.Utilities;
-import org.apache.commons.lang3.StringUtils;
 import patches.AbstractEnums;
 
 import java.lang.reflect.InvocationTargetException;
@@ -29,34 +31,35 @@ import java.util.*;
 
 public abstract class EYBCard extends CustomCard
 {
+    protected final static Map<String, EYBCardData> staticCardData = new HashMap<>();
+
     private final static Color FRAME_COLOR = Color.WHITE.cpy();
-    private final static Map<String, EYBCardPreview> cardPreviews = new HashMap<>();
     private final List<TooltipInfo> customTooltips = new ArrayList<>();
     private boolean lastHovered = false;
     private boolean hoveredInHand = false;
 
-    protected final CardStrings cardStrings;
-    protected final String upgradedDescription;
-    protected EYBCardPreview cardPreview;
+    protected final EYBCardText cardText;
+    protected EYBCardData cardData;
 
     public boolean isSecondaryValueModified = false;
     public boolean upgradedSecondaryValue = false;
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
 
-    protected EYBCard(CardStrings strings, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
+    protected static String RegisterCard(String cardID, EYBCardBadge[] badges)
     {
-        super(id, strings.NAME, imagePath, cost, strings.DESCRIPTION, type, color, rarity, target);
+        staticCardData.put(cardID, new EYBCardData(badges, AbstractResources.GetCardStrings(cardID)));
 
-        this.cardStrings = strings;
-        if (StringUtils.isNotEmpty(strings.UPGRADE_DESCRIPTION))
-        {
-            this.upgradedDescription = strings.UPGRADE_DESCRIPTION;
-        }
-        else
-        {
-            this.upgradedDescription = null;
-        }
+        return cardID;
+    }
+
+    protected EYBCard(EYBCardData cardData, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
+    {
+        super(id, cardData.strings.NAME, imagePath, cost, "", type, color, rarity, target);
+
+        this.cardData = cardData;
+        this.cardText = new EYBCardText(this, cardData.strings);
+        this.cardText.Update(0, true);
     }
 
     @Override
@@ -136,19 +139,19 @@ public abstract class EYBCard extends CustomCard
             case BASIC:
             case CURSE:
             case COMMON:
-                this.renderHelper(sb, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_COMMON, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_COMMON, x, y);
                 return;
 
             case SPECIAL:
-                this.renderHelper(sb, FRAME_COLOR, Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
-                this.renderHelper(sb, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_UNCOMMON, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_UNCOMMON, x, y);
                 return;
 
             case RARE:
-                this.renderHelper(sb, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_RARE, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_RARE, x, y);
         }
     }
 
@@ -160,19 +163,19 @@ public abstract class EYBCard extends CustomCard
             case BASIC:
             case CURSE:
             case COMMON:
-                this.renderHelper(sb, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_COMMON, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_COMMON, x, y);
                 return;
 
             case SPECIAL:
-                this.renderHelper(sb, FRAME_COLOR, Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
-                this.renderHelper(sb, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_UNCOMMON, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_UNCOMMON, x, y);
                 return;
 
             case RARE:
-                this.renderHelper(sb, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_RARE, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_RARE, x, y);
         }
     }
 
@@ -184,42 +187,54 @@ public abstract class EYBCard extends CustomCard
             case BASIC:
             case CURSE:
             case COMMON:
-                this.renderHelper(sb, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_COMMON, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_COMMON, x, y);
                 break;
 
             case SPECIAL:
-                this.renderHelper(sb, FRAME_COLOR, Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
-                this.renderHelper(sb, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_UNCOMMON, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_UNCOMMON, x, y);
                 break;
 
             case RARE:
-                this.renderHelper(sb, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_RARE, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_RARE, x, y);
         }
     }
     
     @Override
     public void render(SpriteBatch sb)
     {
+        UpdateCardText();
         super.render(sb);
-        RenderHeader(sb);
-        RenderCardPreview(sb);
+        RenderHeader(sb, false);
+        RenderBadges(sb, false);
+        RenderCardPreview(sb, false);
     }
 
     @Override
     public void renderInLibrary(SpriteBatch sb)
     {
+        UpdateCardText();
         super.renderInLibrary(sb);
-        RenderHeader(sb);
-        RenderCardPreview(sb);
+        RenderHeader(sb, false);
+        RenderBadges(sb, false);
+        RenderCardPreview(sb, false);
     }
 
-    public void renderInSingleCardPopup(SpriteBatch sb)
+    public void renderInSingleCardPopup(SpriteBatch sb, boolean preRender)
     {
-        RenderHeader_Popup(sb);
-        RenderCardPreview_Popup(sb);
+        if (preRender)
+        {
+            UpdateCardText();
+        }
+        else
+        {
+            RenderHeader(sb, true);
+            RenderBadges(sb, true);
+            RenderCardPreview(sb, true);
+        }
     }
 
     public HashSet<AbstractCard> GetAllInBattleInstances()
@@ -337,12 +352,12 @@ public abstract class EYBCard extends CustomCard
 
     protected void Initialize(int baseDamage, int baseBlock)
     {
-        Initialize(baseDamage, baseBlock, -1, -1);
+        Initialize(baseDamage, baseBlock, -1, 0);
     }
 
     protected void Initialize(int baseDamage, int baseBlock, int baseMagicNumber)
     {
-        Initialize(baseDamage, baseBlock, baseMagicNumber, -1);
+        Initialize(baseDamage, baseBlock, baseMagicNumber, 0);
     }
 
     protected void Initialize(int baseDamage, int baseBlock, int baseMagicNumber, int baseSecondaryValue)
@@ -364,10 +379,9 @@ public abstract class EYBCard extends CustomCard
         {
             upgradeName();
 
-            if (updateDescription && StringUtils.isNotEmpty(upgradedDescription))
+            if (updateDescription)
             {
-                this.rawDescription = upgradedDescription;
-                this.initializeDescription();
+                cardText.Update(0, true);
             }
 
             return true;
@@ -383,13 +397,13 @@ public abstract class EYBCard extends CustomCard
 
     protected void AddExtendedDescription(Object param)
     {
-        String[] info = this.cardStrings.EXTENDED_DESCRIPTION;
+        String[] info = this.cardData.strings.EXTENDED_DESCRIPTION;
         AddTooltip(new TooltipInfo(info[0], info[1] + param + info[2]));
     }
 
     protected void AddExtendedDescription(int headerIndex, int contentIndex)
     {
-        String[] info = this.cardStrings.EXTENDED_DESCRIPTION;
+        String[] info = this.cardData.strings.EXTENDED_DESCRIPTION;
         if (info != null && info.length >= 2 && info[headerIndex].length() > 0)
         {
             AddTooltip(new TooltipInfo(info[headerIndex], info[contentIndex]));
@@ -478,60 +492,116 @@ public abstract class EYBCard extends CustomCard
         Keyword preview = AbstractResources.GetKeyword("~Preview");
         AddTooltip(new TooltipInfo(preview.PROPER_NAME, preview.DESCRIPTION));
 
-        cardPreview = cardPreviews.get(cardID);
+        cardData = staticCardData.get(cardID);
 
-        if (cardPreview == null)
+        if (!cardData.previewInitialized)
         {
-            cardPreview = new EYBCardPreview();
-            cardPreviews.put(cardID, cardPreview);
+            cardData.previewInitialized = true;
+            return true;
         }
 
-        return !cardPreview.initialized;
+        return false;
     }
 
-    protected void RenderCardPreview(SpriteBatch sb)
+    protected void RenderBadges(SpriteBatch sb, boolean isCardPopup)
+    {
+        if (cardData.badges.length == 0)
+        {
+            return;
+        }
+
+        float x, y, scale;
+        if (isCardPopup)
+        {
+            scale = Settings.scale;
+            y = (float)Settings.HEIGHT / 2.0F + 160 * scale;
+            x = (float)Settings.WIDTH / 2.0F - 320.0F * scale;
+
+            float mX = Gdx.input.getX();
+            float mY = Settings.HEIGHT - Gdx.input.getY();
+
+            //Utilities.Logger.info("mY: " + mY + ", mY(s): " + mY * scale + ", Y: " + y);
+
+            for (EYBCardBadge badge : cardData.badges)
+            {
+                RenderHelpers.RenderOnScreen(sb, badge.texture, x, y, 96);
+
+                if (mX > (x + 10 * scale) && mX < (x + 90 * scale))
+                {
+                    if (mY < (y + 76 * scale) && mY > (y + 20 * scale))
+                    {
+                        String[] text = Resources_Common_Strings.CardBadges.TEXT;
+                        TipHelper.renderGenericTip(x - (360 * scale), y + (96 * scale), text[badge.id + 1], text[0]);
+                    }
+                }
+
+                y -= 48 * scale;
+            }
+        }
+        else
+        {
+            scale = this.drawScale * Settings.scale;
+            y = this.current_y + 80 * scale;
+            x = this.current_x - 160 * scale;
+
+            for (EYBCardBadge badge : cardData.badges)
+            {
+                RenderHelpers.RenderOnCard(sb, this, badge.texture, x, y, 48);
+                y -= 24 * scale;
+            }
+        }
+    }
+
+    protected void RenderCardPreview(SpriteBatch sb, boolean isCardPopup)
     {
         final int DEFAULT_KEY = Input.Keys.SHIFT_LEFT;
 
-        if (cardPreview != null && lastHovered && !Settings.hideCards && !hoveredInHand && Gdx.input.isKeyPressed(DEFAULT_KEY))
+        if (cardData.previewInitialized && (isCardPopup || (lastHovered && !hoveredInHand)) && !Settings.hideCards && Gdx.input.isKeyPressed(DEFAULT_KEY))
         {
-            AbstractCard preview = cardPreview.GetCardPreview(this);
+            AbstractCard preview = cardData.GetCardPreview(this);
             if ((preview != null))
             {
-                preview.current_x = this.current_x;
-                preview.current_y = this.current_y;
-                preview.drawScale = this.drawScale;
+                if (isCardPopup)
+                {
+                    preview.current_x = (float)Settings.WIDTH / 5.0F - 10.0F * Settings.scale;
+                    preview.current_y = (float)Settings.HEIGHT / 4.0F;
+                    preview.drawScale = 1f;
+                }
+                else
+                {
+                    preview.current_x = this.current_x;
+                    preview.current_y = this.current_y;
+                    preview.drawScale = this.drawScale;
+                }
 
                 preview.render(sb);
             }
         }
     }
 
-    protected void RenderCardPreview_Popup(SpriteBatch sb)
-    {
-        final int DEFAULT_KEY = Input.Keys.SHIFT_LEFT;
-
-        if (cardPreview != null && !Settings.hideCards && Gdx.input.isKeyPressed(DEFAULT_KEY))
-        {
-            AbstractCard preview = cardPreview.GetCardPreview(this);
-            if ((preview != null))
-            {
-                preview.current_x = (float)Settings.WIDTH / 5.0F - 10.0F * Settings.scale;
-                preview.current_y = (float)Settings.HEIGHT / 4.0F;
-                preview.drawScale = 1f;
-
-                preview.render(sb);
-            }
-        }
-    }
-
-    protected void RenderHeader(SpriteBatch sb)
+    protected void RenderHeader(SpriteBatch sb, boolean isCardPopup)
     {
         String text = GetHeaderText();
         if (text != null && !this.isFlipped && !this.isLocked)
         {
-            BitmapFont.BitmapFontData fontData = FontHelper.cardTitleFont_small.getData();
+            float xPos, yPos, offsetY;
+            BitmapFont font;
+            if (isCardPopup)
+            {
+                font = FontHelper.SCP_cardTitleFont_small;
+                xPos = (float) Settings.WIDTH / 2.0F + (10 * Settings.scale);
+                yPos = (float) Settings.HEIGHT / 2.0F + ((338.0F + 55) * Settings.scale);
+                offsetY = 0;
+            }
+            else
+            {
+                font = FontHelper.cardTitleFont_small;
+                xPos = current_x;
+                yPos = current_y;
+                offsetY = 400.0F * Settings.scale * this.drawScale / 2.0F;
+            }
 
+            BitmapFont.BitmapFontData fontData = font.getData();
             float originalScale = fontData.scaleX;
             float scaleMulti = 0.8f;
 
@@ -545,61 +615,28 @@ public abstract class EYBCard extends CustomCard
                 }
             }
 
-            fontData.setScale(this.drawScale * scaleMulti);
+            fontData.setScale(scaleMulti * (isCardPopup ? 1 : this.drawScale));
 
-            FontHelper.renderRotatedText(sb, FontHelper.cardTitleFont_small, text,
-                    this.current_x, this.current_y, 0.0F, 400.0F * Settings.scale * this.drawScale / 2.0F,
+            FontHelper.renderRotatedText(sb, font, text,
+                    xPos, yPos, 0.0F, offsetY,
                     this.angle, true, GetHeaderColor());
 
             fontData.setScale(originalScale);
         }
     }
 
-    protected void RenderHeader_Popup(SpriteBatch sb)
+    protected void UpdateCardText()
     {
-        String text = GetHeaderText();
-        if (text != null)
+        if (cardText.canUpdate)
         {
-            BitmapFont.BitmapFontData fontData = FontHelper.SCP_cardTitleFont_small.getData();
-
-            float originalScale = fontData.scaleX;
-            float scaleMulti = 0.8f;
-
-            int length = text.length();
-            if (length > 20)
+            int effectIndex = 0;
+            if (EYBCardText.Toggled || Gdx.input.isButtonPressed(1))
             {
-                scaleMulti -= 0.02f * (length - 20);
-                if (scaleMulti < 0.5f)
-                {
-                    scaleMulti = 0.5f;
-                }
+                effectIndex = 1;
             }
 
-            fontData.setScale(scaleMulti);
-
-            float xPos = (float) Settings.WIDTH / 2.0F + (10 * Settings.scale);
-            float yPos = (float) Settings.HEIGHT / 2.0F + ((338.0F + 55) * Settings.scale);
-
-            FontHelper.renderRotatedText(sb, FontHelper.SCP_cardTitleFont_small, text,
-                    xPos, yPos, 0.0F, 0,
-                    angle, true, GetHeaderColor());
-
-            fontData.setScale(originalScale);
+            cardText.Update(effectIndex, false);
         }
-    }
-
-    protected void renderHelper(SpriteBatch sb, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY)
-    {
-        sb.setColor(color);
-        sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2.0F, drawY + img.offsetY - (float) img.originalHeight / 2.0F, (float) img.originalWidth / 2.0F - img.offsetX, (float) img.originalHeight / 2.0F - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, this.drawScale * Settings.scale, this.drawScale * Settings.scale, this.angle);
-    }
-
-    protected void renderHelper(SpriteBatch sb, Color color, Texture img, float drawX, float drawY)
-    {
-        sb.setColor(color);
-        sb.draw(img, drawX - (img.getWidth() / 2f), drawY - (img.getHeight() / 2f), 256.0F, 256.0F, 512.0F, 512.0F,
-                this.drawScale * Settings.scale, this.drawScale * Settings.scale,
-                this.angle, 0, 0, 512, 512, false, false);
     }
 
     protected void upgradeSecondaryValue(int amount)

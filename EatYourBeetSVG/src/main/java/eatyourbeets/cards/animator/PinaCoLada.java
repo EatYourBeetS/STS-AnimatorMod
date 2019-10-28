@@ -11,7 +11,7 @@ import eatyourbeets.powers.animator.PinaCoLadaPower;
 
 public class PinaCoLada extends AnimatorCard
 {
-    public static final String ID = CreateFullID(PinaCoLada.class.getSimpleName());
+    public static final String ID = Register(PinaCoLada.class.getSimpleName());
 
     public PinaCoLada()
     {

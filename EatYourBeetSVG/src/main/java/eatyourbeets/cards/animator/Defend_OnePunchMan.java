@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -11,7 +10,7 @@ import eatyourbeets.cards.AnimatorCard;
 
 public class Defend_OnePunchMan extends Defend
 {
-    public static final String ID = CreateFullID(Defend_OnePunchMan.class.getSimpleName());
+    public static final String ID = Register(Defend_OnePunchMan.class.getSimpleName());
 
     public Defend_OnePunchMan()
     {

@@ -10,7 +10,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Strike_OwariNoSeraph extends Strike
 {
-    public static final String ID = CreateFullID(Strike_OwariNoSeraph.class.getSimpleName());
+    public static final String ID = Register(Strike_OwariNoSeraph.class.getSimpleName());
 
     public Strike_OwariNoSeraph()
     {

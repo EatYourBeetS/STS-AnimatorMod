@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Strike_NoGameNoLife extends Strike
 {
-    public static final String ID = CreateFullID(Strike_NoGameNoLife.class.getSimpleName());
+    public static final String ID = Register(Strike_NoGameNoLife.class.getSimpleName());
 
     public Strike_NoGameNoLife()
     {

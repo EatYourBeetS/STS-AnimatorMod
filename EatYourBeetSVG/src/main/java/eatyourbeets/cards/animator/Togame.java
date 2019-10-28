@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Togame extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Togame.class.getSimpleName());
+    public static final String ID = Register(Togame.class.getSimpleName());
 
     public Togame()
     {

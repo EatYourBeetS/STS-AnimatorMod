@@ -11,7 +11,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Shimakaze extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Shimakaze.class.getSimpleName());
+    public static final String ID = Register(Shimakaze.class.getSimpleName());
 
     public Shimakaze()
     {

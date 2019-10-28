@@ -8,7 +8,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Strike_OnePunchMan extends Strike
 {
-    public static final String ID = CreateFullID(Strike_OnePunchMan.class.getSimpleName());
+    public static final String ID = Register(Strike_OnePunchMan.class.getSimpleName());
 
     public Strike_OnePunchMan()
     {

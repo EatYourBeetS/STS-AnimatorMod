@@ -14,9 +14,9 @@ public class NanamiEffect_Attack_Defend extends NanamiEffect
         GameActionsHelper.DamageTarget(p, m, GetDamage(nanami), nanami.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(DAMAGE, GetDamage(nanami), true) + Desc(BLOCK, GetBlock(nanami));
+        return Desc(DAMAGE, GetDamage(nanami), true) + Desc(BLOCK, GetBlock(nanami));
     }
 
     private static int GetBlock(Nanami nanami)

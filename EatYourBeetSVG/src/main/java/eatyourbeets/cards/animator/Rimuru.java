@@ -14,7 +14,7 @@ import eatyourbeets.interfaces.OnBattleStartSubscriber;
 
 public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardPlayedSubscriber
 {
-    public static final String ID = CreateFullID(Rimuru.class.getSimpleName());
+    public static final String ID = Register(Rimuru.class.getSimpleName());
 
     private AbstractCard copy;
 

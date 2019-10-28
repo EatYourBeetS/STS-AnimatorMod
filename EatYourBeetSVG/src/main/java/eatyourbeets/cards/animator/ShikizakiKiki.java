@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class ShikizakiKiki extends AnimatorCard_UltraRare
 {
-    public static final String ID = CreateFullID(ShikizakiKiki.class.getSimpleName());
+    public static final String ID = Register(ShikizakiKiki.class.getSimpleName());
 
     public ShikizakiKiki()
     {

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
@@ -16,7 +17,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class CrowleyEusford extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardExhaustedSubscriber, OnCostRefreshSubscriber
 {
-    public static final String ID = CreateFullID(CrowleyEusford.class.getSimpleName());
+    public static final String ID = Register(CrowleyEusford.class.getSimpleName(), EYBCardBadge.Synergy);
 
     private Integer actualCost = null;
     private int lastTurnCount = -1;
@@ -26,7 +27,7 @@ public class CrowleyEusford extends AnimatorCard implements OnBattleStartSubscri
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(7, 0, 3);
+        Initialize(7, 0, 3, 4);
 
         if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
         {

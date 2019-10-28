@@ -1,18 +1,13 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
-import eatyourbeets.cards.AnimatorCard;
 
 public class Strike_Konosuba extends Strike
 {
-    public static final String ID = CreateFullID(Strike_Konosuba.class.getSimpleName());
+    public static final String ID = Register(Strike_Konosuba.class.getSimpleName());
 
     public Strike_Konosuba()
     {

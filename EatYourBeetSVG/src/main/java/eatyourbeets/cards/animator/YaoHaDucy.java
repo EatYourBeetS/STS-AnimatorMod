@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 public class YaoHaDucy extends AnimatorCard
 {
-    public static final String ID = CreateFullID(YaoHaDucy.class.getSimpleName());
+    public static final String ID = Register(YaoHaDucy.class.getSimpleName());
 
     public YaoHaDucy()
     {

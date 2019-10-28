@@ -1,32 +1,23 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.actions.common.DrawSpecificCardAction;
 import eatyourbeets.actions.common.RefreshHandLayoutAction;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
-import eatyourbeets.interfaces.OnCostRefreshSubscriber;
 import eatyourbeets.interfaces.OnEvokeOrbSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.OnTargetDeadAction;
-import eatyourbeets.actions.common.PiercingDamageAction;
-import eatyourbeets.actions.animator.ScarAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import patches.AbstractEnums;
 
 public class Scar extends AnimatorCard implements OnBattleStartSubscriber, OnEvokeOrbSubscriber
 {
-    public static final String ID = CreateFullID(Scar.class.getSimpleName());
+    public static final String ID = Register(Scar.class.getSimpleName());
 
     public Scar()
     {

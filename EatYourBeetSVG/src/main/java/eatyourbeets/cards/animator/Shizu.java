@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.RegrowPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.OnDamageAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -17,7 +18,7 @@ import eatyourbeets.powers.animator.FlamingWeaponPower;
 
 public class Shizu extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Shizu.class.getSimpleName());
+    public static final String ID = Register(Shizu.class.getSimpleName(), EYBCardBadge.Special);
 
     public Shizu()
     {

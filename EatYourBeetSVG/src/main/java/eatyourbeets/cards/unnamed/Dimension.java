@@ -6,7 +6,7 @@ import eatyourbeets.cards.UnnamedCard;
 
 public class Dimension extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Dimension.class.getSimpleName());
+    public static final String ID = Register(Dimension.class.getSimpleName());
 
     public Dimension()
     {

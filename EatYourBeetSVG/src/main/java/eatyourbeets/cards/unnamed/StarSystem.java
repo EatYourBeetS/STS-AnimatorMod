@@ -6,7 +6,7 @@ import eatyourbeets.cards.UnnamedCard;
 
 public class StarSystem extends UnnamedCard
 {
-    public static final String ID = CreateFullID(StarSystem.class.getSimpleName());
+    public static final String ID = Register(StarSystem.class.getSimpleName());
 
     public StarSystem()
     {

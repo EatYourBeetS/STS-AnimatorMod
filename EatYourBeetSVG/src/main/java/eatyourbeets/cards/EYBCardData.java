@@ -1,14 +1,23 @@
 package eatyourbeets.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.localization.CardStrings;
 
-public class EYBCardPreview
+public class EYBCardData
 {
-    public boolean initialized;
+    public CardStrings strings;
+    public EYBCardBadge[] badges;
     public AbstractCard defaultPreview;
     public AbstractCard upgradedPreview;
+    public boolean previewInitialized;
 
-    public void Initialize(AbstractCard defaultPreview, boolean upgrade)
+    public EYBCardData(EYBCardBadge[] badges, CardStrings cardStrings)
+    {
+        this.strings = cardStrings;
+        this.badges = badges;
+    }
+
+    public void InitializePreview(AbstractCard defaultPreview, boolean upgrade)
     {
         this.defaultPreview = defaultPreview;
 
@@ -21,15 +30,12 @@ public class EYBCardPreview
         {
             this.upgradedPreview = null;
         }
-
-        this.initialized = true;
     }
 
-    public void Initialize(AbstractCard defaultPreview, AbstractCard upgradedPreview)
+    public void InitializePreview(AbstractCard defaultPreview, AbstractCard upgradedPreview)
     {
         this.defaultPreview = defaultPreview;
         this.upgradedPreview = upgradedPreview;
-        this.initialized = true;
     }
 
     public AbstractCard GetCardPreview(AbstractCard card)

@@ -86,7 +86,7 @@
 	},
 	"Limited":
 	{
-		"DESCRIPTION": "Any copy of this card can only be played once per turn.",
+		"DESCRIPTION": "This effect can only trigger once per combat, across all copies of this card.",
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
 	},
@@ -119,6 +119,12 @@
 		"DESCRIPTION": "When you gain or lose #yForce, gain or lose that much #yStrength. Lose #b1 #yForce at the start of each turn.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
+	},
+	"Flame Barrier":
+	{
+		"DESCRIPTION": "Whenever you are attacked this turn, deal #b1 damage back.",
+		"NAMES": ["flame barrier", "flame_barrier"],
+		"PROPER_NAME": "Flame Barrier"
 	},
 	"Agility":
 	{

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
 import eatyourbeets.interfaces.OnSynergySubscriber;
@@ -15,7 +16,7 @@ import eatyourbeets.powers.animator.ShiroPower;
 
 public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSynergySubscriber, OnCostRefreshSubscriber
 {
-    public static final String ID = CreateFullID(Shiro.class.getSimpleName());
+    public static final String ID = Register(Shiro.class.getSimpleName(), EYBCardBadge.Special);
 
     public Shiro()
     {

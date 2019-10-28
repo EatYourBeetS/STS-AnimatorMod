@@ -10,7 +10,7 @@ import eatyourbeets.powers.animator.YukoShionjiPower;
 
 public class _YukoShionji extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(_YukoShionji.class.getSimpleName());
+    public static final String ID = Register(_YukoShionji.class.getSimpleName());
 
     public _YukoShionji()
     {

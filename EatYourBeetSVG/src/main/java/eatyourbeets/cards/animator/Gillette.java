@@ -8,13 +8,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class Gillette extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Gillette.class.getSimpleName());
+    public static final String ID = Register(Gillette.class.getSimpleName(), EYBCardBadge.Discard);
 
     public Gillette()
     {

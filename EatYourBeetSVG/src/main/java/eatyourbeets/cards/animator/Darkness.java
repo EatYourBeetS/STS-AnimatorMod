@@ -1,29 +1,29 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.DarknessPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Darkness extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Darkness.class.getSimpleName());
+    public static final String ID = Register(Darkness.class.getSimpleName(), EYBCardBadge.Special);
 
     public Darkness()
     {
         super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0,2);
+        Initialize(0,2,2);
 
         SetSynergy(Synergies.Konosuba);
 
         if (InitializingPreview())
         {
-            cardPreview.Initialize(new DarknessAdrenaline(), false);
+            cardData.InitializePreview(new DarknessAdrenaline(), false);
         }
     }
 
@@ -39,6 +39,7 @@ public class Darkness extends AnimatorCard
     {
         if (TryUpgrade())
         {
+            upgradeBlock(1);
             upgradeMagicNumber(1);
         }
     }

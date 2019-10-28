@@ -8,7 +8,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Strike_Elsword extends Strike
 {
-    public static final String ID = CreateFullID(Strike_Elsword.class.getSimpleName());
+    public static final String ID = Register(Strike_Elsword.class.getSimpleName());
 
     public Strike_Elsword()
     {

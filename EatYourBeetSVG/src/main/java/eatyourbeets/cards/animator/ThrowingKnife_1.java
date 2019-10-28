@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class ThrowingKnife_1 extends ThrowingKnife
 {
-    public static final String ID = CreateFullID(ThrowingKnife_1.class.getSimpleName());
+    public static final String ID = Register(ThrowingKnife_1.class.getSimpleName());
 
     public ThrowingKnife_1()
     {

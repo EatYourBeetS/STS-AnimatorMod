@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,7 +16,7 @@ import eatyourbeets.cards.Synergies;
 
 public class TanyaDegurechaff extends AnimatorCard implements OnAddedToDeckSubscriber
 {
-    public static final String ID = CreateFullID(TanyaDegurechaff.class.getSimpleName());
+    public static final String ID = Register(TanyaDegurechaff.class.getSimpleName());
 
     public TanyaDegurechaff()
     {
@@ -29,7 +28,7 @@ public class TanyaDegurechaff extends AnimatorCard implements OnAddedToDeckSubsc
 
         if (InitializingPreview())
         {
-            cardPreview.Initialize(new TanyaDegurechaff_Type95(), false);
+            cardData.InitializePreview(new TanyaDegurechaff_Type95(), false);
         }
     }
 

@@ -18,9 +18,9 @@ public class NanamiEffect_Defend extends NanamiEffect
         PlayerStatistics.UsePenNib();
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(DAMAGE, GetDamage(nanami));
+        return Desc(DAMAGE, GetDamage(nanami));
     }
 
     private static int GetDamage(Nanami nanami)

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -11,7 +12,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class LeleiLaLalena extends AnimatorCard
 {
-    public static final String ID = CreateFullID(LeleiLaLalena.class.getSimpleName());
+    public static final String ID = Register(LeleiLaLalena.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public LeleiLaLalena()
     {

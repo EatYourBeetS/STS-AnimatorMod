@@ -8,13 +8,13 @@
 	},
 	"Boost":
 	{
-		"DESCRIPTION": "If this counter is greater NL than 0, activate the effect then reduce this counter by 1. Resets at the end of each fight.",
+		"DESCRIPTION": "This effect activates a limited number of times.",
 		"NAMES": ["boost"],
 		"PROPER_NAME": "Boost"
 	},
 	"Cooldown":
 	{
-		"DESCRIPTION": "Reduced by #b1 when this card is #yplayed or #ydiscarded, if it was at #b0, activate the effect and reset.",
+		"DESCRIPTION": "Whenever you play or discard a card, reduce its #yCooldown by 1. If the #yCooldown is at 0, activate its effect instead.",
 		"NAMES": ["cooldown"],
 		"PROPER_NAME": "Cooldown"
 	},
@@ -116,14 +116,14 @@
 	},
 	"Synergy":
 	{
-		"DESCRIPTION": "Activates if the last card played this turn was from the same series.",
+		"DESCRIPTION": "A card #ySynergizes if the card previously played this turn was from the same series.",
 		"NAMES": ["synergy", "synergies", "synergize", "synergizes"],
 		"PROPER_NAME": "Synergy"
 	},
 	"Throwing-Knife":
 	{
 		"DESCRIPTION": "0-Cost #yAttack which applies a randomized debuff and #yExhausts.",
-		"NAMES": ["throwing-knife", "throwing-knives"],
+		"NAMES": ["throwing-knife", "throwing-knives", "throwing-knife+", "throwing-knives+"],
 		"PROPER_NAME": "Throwing-Knife"
 	}
 }

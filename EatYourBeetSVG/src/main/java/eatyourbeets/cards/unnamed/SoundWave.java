@@ -6,7 +6,7 @@ import eatyourbeets.cards.UnnamedCard;
 
 public class SoundWave extends UnnamedCard
 {
-    public static final String ID = CreateFullID(SoundWave.class.getSimpleName());
+    public static final String ID = Register(SoundWave.class.getSimpleName());
 
     public SoundWave()
     {

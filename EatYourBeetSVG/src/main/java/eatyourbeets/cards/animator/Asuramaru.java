@@ -11,7 +11,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Asuramaru extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(Asuramaru.class.getSimpleName());
+    public static final String ID = Register(Asuramaru.class.getSimpleName());
 
     public Asuramaru()
     {

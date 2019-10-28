@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class Mitsurugi extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Mitsurugi.class.getSimpleName());
+    public static final String ID = Register(Mitsurugi.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
 
     private AbstractMonster lastTargetEnemy = null;
     private AbstractMonster targetEnemy = null;
@@ -79,11 +80,11 @@ public class Mitsurugi extends AnimatorCard
     {
         if (monster == null || CanDealDamage(monster))
         {
-            rawDescription = cardStrings.DESCRIPTION;
+            rawDescription = cardData.strings.DESCRIPTION;
         }
         else
         {
-            rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+            rawDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
         }
 
         initializeDescription();

@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_Fate extends Strike
 {
-    public static final String ID = CreateFullID(Strike_Fate.class.getSimpleName());
+    public static final String ID = Register(Strike_Fate.class.getSimpleName());
 
     public Strike_Fate()
     {

@@ -10,7 +10,7 @@ import eatyourbeets.powers.animator.BorosPower;
 
 public class Boros extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Boros.class.getSimpleName());
+    public static final String ID = Register(Boros.class.getSimpleName());
 
     public Boros()
     {

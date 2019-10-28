@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class DwarfShaman extends AnimatorCard
 {
-    public static final String ID = CreateFullID(DwarfShaman.class.getSimpleName());
+    public static final String ID = Register(DwarfShaman.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public DwarfShaman()
     {

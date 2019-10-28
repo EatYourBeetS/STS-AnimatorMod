@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.Synergies;
 
 public class Caster extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Caster.class.getSimpleName());
+    public static final String ID = Register(Caster.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Caster()
     {

@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MalleablePower;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class Greed extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Greed.class.getSimpleName());
+    public static final String ID = Register(Greed.class.getSimpleName(), EYBCardBadge.Special);
 
     public Greed()
     {

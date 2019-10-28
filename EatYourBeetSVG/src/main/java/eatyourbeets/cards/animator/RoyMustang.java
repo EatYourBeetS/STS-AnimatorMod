@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FlameBarrierPower;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -14,7 +15,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class RoyMustang extends AnimatorCard
 {
-    public static final String ID = CreateFullID(RoyMustang.class.getSimpleName());
+    public static final String ID = Register(RoyMustang.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public RoyMustang()
     {

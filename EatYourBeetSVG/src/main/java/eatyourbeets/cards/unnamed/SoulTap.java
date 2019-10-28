@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class SoulTap extends UnnamedCard
 {
-    public static final String ID = CreateFullID(SoulTap.class.getSimpleName());
+    public static final String ID = Register(SoulTap.class.getSimpleName());
 
     public SoulTap()
     {

@@ -6,7 +6,7 @@ import eatyourbeets.cards.UnnamedCard;
 
 public class Infection extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Infection.class.getSimpleName());
+    public static final String ID = Register(Infection.class.getSimpleName());
 
     public Infection()
     {

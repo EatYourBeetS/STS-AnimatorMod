@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class TukaLunaMarceau extends AnimatorCard
 {
-    public static final String ID = CreateFullID(TukaLunaMarceau.class.getSimpleName());
+    public static final String ID = Register(TukaLunaMarceau.class.getSimpleName());
 
     private int handSizeReduction = 0;
 

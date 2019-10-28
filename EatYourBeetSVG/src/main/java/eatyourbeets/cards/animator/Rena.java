@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BlurPower;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class Rena extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Rena.class.getSimpleName());
+    public static final String ID = Register(Rena.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Discard);
 
     public Rena()
     {

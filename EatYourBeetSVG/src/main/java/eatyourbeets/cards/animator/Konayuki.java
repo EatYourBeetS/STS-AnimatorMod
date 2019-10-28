@@ -12,7 +12,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Konayuki extends AnimatorCard// implements OnBattleStartSubscriber, OnApplyPowerSubscriber
 {
-    public static final String ID = CreateFullID(Konayuki.class.getSimpleName());
+    public static final String ID = Register(Konayuki.class.getSimpleName());
 
     public Konayuki()
     {

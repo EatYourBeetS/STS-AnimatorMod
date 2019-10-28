@@ -6,13 +6,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.interfaces.Hidden;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
-import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_Purge;
 
 import java.util.ArrayList;
 
 public class Vesta_Elixir extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(Vesta_Elixir.class.getSimpleName());
+    public static final String ID = Register(Vesta_Elixir.class.getSimpleName());
 
     public final ArrayList<VestaElixirEffect> effects = new ArrayList<>();
 

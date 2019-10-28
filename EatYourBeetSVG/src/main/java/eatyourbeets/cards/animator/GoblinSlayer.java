@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.actions.common.ShuffleRandomGoblinAction;
@@ -14,7 +15,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class GoblinSlayer extends AnimatorCard
 {
-    public static final String ID = CreateFullID(GoblinSlayer.class.getSimpleName());
+    public static final String ID = Register(GoblinSlayer.class.getSimpleName(), EYBCardBadge.Special);
 
     public GoblinSlayer()
     {

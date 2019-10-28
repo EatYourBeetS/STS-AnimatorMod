@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.actions.common.ModifyBlockActionWhichActuallyWorks;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Chung extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Chung.class.getSimpleName());
+    public static final String ID = Register(Chung.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Chung()
     {

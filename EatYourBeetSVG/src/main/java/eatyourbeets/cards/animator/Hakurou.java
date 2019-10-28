@@ -6,15 +6,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.DrawAndUpgradeCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
+public class Hakurou extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Hakurou.class.getSimpleName());
+    public static final String ID = Register(Hakurou.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Drawn);
 
     public Hakurou()
     {
@@ -60,6 +61,9 @@ public class Hakurou extends AnimatorCard //implements OnEndOfTurnSubscriber
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeDamage(1);
+        }
     }
 }

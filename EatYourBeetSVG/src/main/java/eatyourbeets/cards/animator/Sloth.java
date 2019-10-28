@@ -14,7 +14,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Sloth extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Sloth.class.getSimpleName());
+    public static final String ID = Register(Sloth.class.getSimpleName());
 
     public Sloth()
     {

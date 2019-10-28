@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend_Overlord extends Defend
 {
-    public static final String ID = CreateFullID(Defend_Overlord.class.getSimpleName());
+    public static final String ID = Register(Defend_Overlord.class.getSimpleName());
 
     public Defend_Overlord()
     {

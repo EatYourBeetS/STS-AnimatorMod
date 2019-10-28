@@ -7,12 +7,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.Hidden;
 import patches.AbstractEnums;
 
 public class TakanashiRikka extends AnimatorCard
 {
-    public static final String ID = CreateFullID(TakanashiRikka.class.getSimpleName());
+    public static final String ID = Register(TakanashiRikka.class.getSimpleName());
 
     public TakanashiRikka()
     {

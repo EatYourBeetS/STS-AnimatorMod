@@ -11,7 +11,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Mikaela extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Mikaela.class.getSimpleName());
+    public static final String ID = Register(Mikaela.class.getSimpleName());
 
     public Mikaela()
     {

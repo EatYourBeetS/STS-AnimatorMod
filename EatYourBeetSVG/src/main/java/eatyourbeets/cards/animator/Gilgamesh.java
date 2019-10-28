@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 
 public class Gilgamesh extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Gilgamesh.class.getSimpleName());
+    public static final String ID = Register(Gilgamesh.class.getSimpleName(), EYBCardBadge.Special);
     public static final int GOLD_REWARD = 25;
 
     private static AbstractRelic lastRelicObtained = null;
@@ -35,9 +36,7 @@ public class Gilgamesh extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(3,0, 3);
-
-        AddExtendedDescription(GOLD_REWARD);
+        Initialize(3,0, 3, GOLD_REWARD);
 
         SetUnique(true);
         SetSynergy(Synergies.Fate);
@@ -129,7 +128,7 @@ public class Gilgamesh extends AnimatorCard
         this.timesUpgraded += 1;
         this.upgradeDamage(1);
         this.upgraded = true;
-        this.name = cardStrings.NAME + "+" + this.timesUpgraded;
+        this.name = cardData.strings.NAME + "+" + this.timesUpgraded;
         this.initializeTitle();
     }
 }

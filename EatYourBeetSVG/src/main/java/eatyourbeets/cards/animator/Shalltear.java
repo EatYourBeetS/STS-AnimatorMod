@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -21,18 +22,15 @@ import java.util.ArrayList;
 
 public class Shalltear extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Shalltear.class.getSimpleName());
+    public static final String ID = Register(Shalltear.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Shalltear()
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(11,0, 1);
+        Initialize(6,0, 3);
 
-        AddExtendedDescription();
-
-        this.isMultiDamage = true;
-
+        SetMultiDamage(true);
         SetSynergy(Synergies.Overlord);
     }
 
@@ -60,7 +58,8 @@ public class Shalltear extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(1);
+            upgradeDamage(3);
+            upgradeMagicNumber(1);
         }
     }
 

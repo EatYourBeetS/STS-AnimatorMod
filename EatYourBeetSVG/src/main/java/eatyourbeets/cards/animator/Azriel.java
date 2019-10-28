@@ -10,7 +10,7 @@ import eatyourbeets.powers.common.PlayerFlightPower;
 
 public class Azriel extends AnimatorCard_UltraRare
 {
-    public static final String ID = CreateFullID(Azriel.class.getSimpleName());
+    public static final String ID = Register(Azriel.class.getSimpleName());
 
     public Azriel()
     {

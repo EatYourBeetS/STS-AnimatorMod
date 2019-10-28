@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -13,7 +14,7 @@ import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = CreateFullID(MumenRider.class.getSimpleName());
+    public static final String ID = Register(MumenRider.class.getSimpleName(), EYBCardBadge.Special);
 
     private int turns;
 
@@ -21,7 +22,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(2, 0);
+        Initialize(2, 0, 20);
 
         this.exhaust = true;
 

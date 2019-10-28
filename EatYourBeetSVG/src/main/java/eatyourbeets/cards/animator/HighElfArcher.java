@@ -10,7 +10,7 @@ import eatyourbeets.cards.Synergies;
 
 public class HighElfArcher extends AnimatorCard
 {
-    public static final String ID = CreateFullID(HighElfArcher.class.getSimpleName());
+    public static final String ID = Register(HighElfArcher.class.getSimpleName());
 
     public HighElfArcher()
     {

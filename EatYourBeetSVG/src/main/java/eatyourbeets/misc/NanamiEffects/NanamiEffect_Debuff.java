@@ -17,11 +17,11 @@ public class NanamiEffect_Debuff extends NanamiEffect
         GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, stack, false), stack);
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
         int stack = GetStack(nanami);
 
-        nanami.rawDescription = Desc(WEAK, stack, true) + Desc(VULNERABLE, stack);
+        return Desc(WEAK, stack, true) + Desc(VULNERABLE, stack);
     }
 
     private static int GetStack(Nanami nanami)

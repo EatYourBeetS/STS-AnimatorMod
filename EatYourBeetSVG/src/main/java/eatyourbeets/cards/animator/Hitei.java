@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.HiteiPower;
 
 public class Hitei extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Hitei.class.getSimpleName());
+    public static final String ID = Register(Hitei.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Hitei()
     {

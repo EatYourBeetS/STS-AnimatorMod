@@ -12,9 +12,9 @@ public class NanamiEffect_Attack extends NanamiEffect
         GameActionsHelper.GainBlock(p, GetBlock(nanami));
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(BLOCK, GetBlock(nanami));
+        return Desc(BLOCK, GetBlock(nanami));
     }
 
     private static int GetBlock(Nanami nanami)

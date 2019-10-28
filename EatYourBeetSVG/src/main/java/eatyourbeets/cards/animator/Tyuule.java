@@ -11,7 +11,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Tyuule extends AnimatorCard_Boost
 {
-    public static final String ID = CreateFullID(Tyuule.class.getSimpleName());
+    public static final String ID = Register(Tyuule.class.getSimpleName());
 
     public Tyuule()
     {

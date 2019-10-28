@@ -3,24 +3,16 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BlurPower;
-import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
-import com.megacrit.cardcrawl.vfx.campfire.CampfireSleepEffect;
-import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import eatyourbeets.blights.Doomed;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.Hidden;
-import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
 import patches.AbstractEnums;
 
 public class Respite extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(Respite.class.getSimpleName());
+    public static final String ID = Register(Respite.class.getSimpleName());
 
     public Respite()
     {

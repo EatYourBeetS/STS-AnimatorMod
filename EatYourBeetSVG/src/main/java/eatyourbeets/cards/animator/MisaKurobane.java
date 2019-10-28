@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -11,7 +10,7 @@ import eatyourbeets.orbs.Fire;
 
 public class MisaKurobane extends AnimatorCard
 {
-    public static final String ID = CreateFullID(MisaKurobane.class.getSimpleName());
+    public static final String ID = Register(MisaKurobane.class.getSimpleName());
 
     public MisaKurobane()
     {
@@ -24,7 +23,7 @@ public class MisaKurobane extends AnimatorCard
 
         if (InitializingPreview())
         {
-            cardPreview.Initialize(new Yusarin(), true);
+            cardData.InitializePreview(new Yusarin(), true);
         }
     }
 

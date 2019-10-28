@@ -11,7 +11,7 @@ import eatyourbeets.cards.AnimatorCard;
 
 public class Defend_Konosuba extends Defend
 {
-    public static final String ID = CreateFullID(Defend_Konosuba.class.getSimpleName());
+    public static final String ID = Register(Defend_Konosuba.class.getSimpleName());
 
     public Defend_Konosuba()
     {

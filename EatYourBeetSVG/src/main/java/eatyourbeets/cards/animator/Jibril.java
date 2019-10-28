@@ -11,7 +11,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Jibril extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Jibril.class.getSimpleName());
+    public static final String ID = Register(Jibril.class.getSimpleName());
 
     public Jibril()
     {

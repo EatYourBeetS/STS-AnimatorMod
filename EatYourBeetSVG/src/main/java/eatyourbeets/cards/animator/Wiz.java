@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Wiz extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Wiz.class.getSimpleName());
+    public static final String ID = Register(Wiz.class.getSimpleName());
 
     public Wiz()
     {

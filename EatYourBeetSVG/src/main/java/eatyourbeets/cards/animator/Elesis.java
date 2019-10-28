@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Elesis extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Elesis.class.getSimpleName());
+    public static final String ID = Register(Elesis.class.getSimpleName());
 
     public Elesis()
     {

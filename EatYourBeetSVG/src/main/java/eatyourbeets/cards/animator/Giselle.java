@@ -17,7 +17,7 @@ import eatyourbeets.powers.animator.BurningPower;
 
 public class Giselle extends AnimatorCard_UltraRare
 {
-    public static final String ID = CreateFullID(Giselle.class.getSimpleName());
+    public static final String ID = Register(Giselle.class.getSimpleName());
 
     public Giselle()
     {

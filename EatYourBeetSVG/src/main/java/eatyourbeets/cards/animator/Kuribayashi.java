@@ -10,13 +10,14 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.ChokePower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class Kuribayashi extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Kuribayashi.class.getSimpleName());
+    public static final String ID = Register(Kuribayashi.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Kuribayashi()
     {

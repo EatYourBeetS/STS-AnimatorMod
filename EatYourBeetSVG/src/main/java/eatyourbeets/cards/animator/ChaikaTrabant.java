@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -19,7 +20,7 @@ import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 
 public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = CreateFullID(ChaikaTrabant.class.getSimpleName());
+    public static final String ID = Register(ChaikaTrabant.class.getSimpleName(), EYBCardBadge.Discard);
 
     private AbstractMonster target;
 

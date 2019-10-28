@@ -6,7 +6,7 @@ import eatyourbeets.cards.UnnamedCard;
 
 public class Rupture extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Rupture.class.getSimpleName());
+    public static final String ID = Register(Rupture.class.getSimpleName());
 
     public Rupture()
     {

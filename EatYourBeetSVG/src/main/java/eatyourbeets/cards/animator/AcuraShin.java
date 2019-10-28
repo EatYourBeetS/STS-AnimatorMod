@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -12,7 +13,7 @@ import eatyourbeets.powers.animator.PoisonAffinityPower;
 
 public class AcuraShin extends AnimatorCard
 {
-    public static final String ID = CreateFullID(AcuraShin.class.getSimpleName());
+    public static final String ID = Register(AcuraShin.class.getSimpleName(), EYBCardBadge.Special);
 
     public AcuraShin()
     {

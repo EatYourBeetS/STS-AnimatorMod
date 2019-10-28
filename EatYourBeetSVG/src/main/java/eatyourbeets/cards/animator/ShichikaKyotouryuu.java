@@ -14,7 +14,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class ShichikaKyotouryuu extends AnimatorCard implements Hidden
 {
-    public static final String ID = CreateFullID(ShichikaKyotouryuu.class.getSimpleName());
+    public static final String ID = Register(ShichikaKyotouryuu.class.getSimpleName());
 
     public ShichikaKyotouryuu()
     {

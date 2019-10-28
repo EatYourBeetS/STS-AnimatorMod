@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -12,14 +13,14 @@ import patches.AbstractEnums;
 
 public class Ainz extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Ainz.class.getSimpleName());
-    public static final int BASE_COST = 9;
+    public static final String ID = Register(Ainz.class.getSimpleName(), EYBCardBadge.Drawn);
+    public static final int BASE_COST = 7;
 
     private AinzEffect effect = null;
 
     public Ainz(AinzEffect effect)
     {
-        super(Resources_Animator.GetCardStrings(ID), ID + "Alt", Resources_Animator.GetCardImage(ID + "Alt"),
+        super(staticCardData.get(ID), ID + "Alt", Resources_Animator.GetCardImage(ID + "Alt"),
                 0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
         this.effect = effect;
 
@@ -61,7 +62,7 @@ public class Ainz extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBaseCost(6);
         }
     }
 

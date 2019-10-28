@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Gluttony extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Gluttony.class.getSimpleName());
+    public static final String ID = Register(Gluttony.class.getSimpleName());
 
     public Gluttony()
     {

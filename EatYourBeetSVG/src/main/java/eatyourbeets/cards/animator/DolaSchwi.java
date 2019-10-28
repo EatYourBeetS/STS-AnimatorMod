@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
@@ -18,13 +19,13 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class DolaSchwi extends AnimatorCard_Cooldown
 {
-    public static final String ID = CreateFullID(DolaSchwi.class.getSimpleName());
+    public static final String ID = Register(DolaSchwi.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public DolaSchwi()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(18,0,2);
+        Initialize(12,0,1);
 
         SetSynergy(Synergies.NoGameNoLife);
     }

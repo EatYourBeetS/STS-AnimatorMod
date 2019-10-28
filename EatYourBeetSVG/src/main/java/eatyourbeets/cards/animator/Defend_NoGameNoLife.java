@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Defend_NoGameNoLife extends Defend
 {
-    public static final String ID = CreateFullID(Defend_NoGameNoLife.class.getSimpleName());
+    public static final String ID = Register(Defend_NoGameNoLife.class.getSimpleName());
 
     public Defend_NoGameNoLife()
     {

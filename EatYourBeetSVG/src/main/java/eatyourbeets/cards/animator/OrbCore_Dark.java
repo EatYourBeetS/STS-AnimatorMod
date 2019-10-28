@@ -9,7 +9,7 @@ import eatyourbeets.powers.animator.OrbCore_DarkPower;
 
 public class OrbCore_Dark extends AnimatorCard
 {
-    public static final String ID = CreateFullID(OrbCore_Dark.class.getSimpleName());
+    public static final String ID = Register(OrbCore_Dark.class.getSimpleName());
 
     public static final int VALUE = 3;
 

@@ -11,7 +11,7 @@ import eatyourbeets.cards.Synergies;
 
 public class SirTouchMe extends AnimatorCard_UltraRare
 {
-    public static final String ID = CreateFullID(SirTouchMe.class.getSimpleName());
+    public static final String ID = Register(SirTouchMe.class.getSimpleName());
 
     public SirTouchMe()
     {

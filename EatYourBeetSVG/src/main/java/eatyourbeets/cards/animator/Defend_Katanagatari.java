@@ -7,7 +7,7 @@ import eatyourbeets.powers.animator.EarthenThornsPower;
 
 public class Defend_Katanagatari extends Defend
 {
-    public static final String ID = CreateFullID(Defend_Katanagatari.class.getSimpleName());
+    public static final String ID = Register(Defend_Katanagatari.class.getSimpleName());
 
     public Defend_Katanagatari()
     {

@@ -19,9 +19,9 @@ public class NanamiEffect_Attack_Debuff extends NanamiEffect
         GameActionsHelper.ApplyPower(p, m, new WeakPower(m, GetWeak(nanami), false), GetWeak(nanami));
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(BLOCK, GetBlock(nanami), true) + Desc(WEAK, GetWeak(nanami));
+        return Desc(BLOCK, GetBlock(nanami), true) + Desc(WEAK, GetWeak(nanami));
     }
 
     private static int GetWeak(Nanami nanami)

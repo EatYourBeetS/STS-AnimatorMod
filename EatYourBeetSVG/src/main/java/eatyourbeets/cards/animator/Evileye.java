@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Evileye extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Evileye.class.getSimpleName());
+    public static final String ID = Register(Evileye.class.getSimpleName());
 
     public Evileye()
     {

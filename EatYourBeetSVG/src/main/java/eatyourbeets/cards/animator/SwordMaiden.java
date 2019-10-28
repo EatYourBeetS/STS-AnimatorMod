@@ -9,7 +9,7 @@ import eatyourbeets.cards.Synergies;
 
 public class SwordMaiden extends AnimatorCard
 {
-    public static final String ID = CreateFullID(SwordMaiden.class.getSimpleName());
+    public static final String ID = Register(SwordMaiden.class.getSimpleName());
 
     public SwordMaiden()
     {

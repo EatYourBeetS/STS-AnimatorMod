@@ -11,7 +11,7 @@ import eatyourbeets.cards.AnimatorCard_Status;
 
 public class Crystallize extends AnimatorCard_Status
 {
-    public static final String ID = CreateFullID(Crystallize.class.getSimpleName());
+    public static final String ID = Register(Crystallize.class.getSimpleName());
 
     public Crystallize()
     {

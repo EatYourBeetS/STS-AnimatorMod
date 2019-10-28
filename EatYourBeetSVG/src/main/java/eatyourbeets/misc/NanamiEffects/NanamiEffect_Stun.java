@@ -26,9 +26,9 @@ public class NanamiEffect_Stun extends NanamiEffect
         GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, stacks, false), stacks);
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(DAMAGE, GetDamage(nanami), true) + Desc(VULNERABLE, GetVulnerable(nanami));
+        return Desc(DAMAGE, GetDamage(nanami), true) + Desc(VULNERABLE, GetVulnerable(nanami));
     }
 
     private static int GetDamage(Nanami nanami)

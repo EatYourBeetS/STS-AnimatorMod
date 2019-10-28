@@ -11,7 +11,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Chomusuke extends AnimatorCard_UltraRare
 {
-    public static final String ID = CreateFullID(Chomusuke.class.getSimpleName());
+    public static final String ID = Register(Chomusuke.class.getSimpleName());
 
     public Chomusuke()
     {

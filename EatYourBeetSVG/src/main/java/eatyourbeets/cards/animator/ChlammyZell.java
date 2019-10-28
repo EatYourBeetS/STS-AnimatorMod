@@ -9,7 +9,7 @@ import eatyourbeets.powers.animator.ChlammyZellPower;
 
 public class ChlammyZell extends AnimatorCard
 {
-    public static final String ID = CreateFullID(ChlammyZell.class.getSimpleName());
+    public static final String ID = Register(ChlammyZell.class.getSimpleName());
 
     public ChlammyZell()
     {

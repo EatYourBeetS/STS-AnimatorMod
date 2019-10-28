@@ -9,7 +9,7 @@ import eatyourbeets.cards.Synergies;
 
 public class DolaStephanie extends AnimatorCard
 {
-    public static final String ID = CreateFullID(DolaStephanie.class.getSimpleName());
+    public static final String ID = Register(DolaStephanie.class.getSimpleName());
 
     public DolaStephanie()
     {

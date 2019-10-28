@@ -10,7 +10,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Sebas extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Sebas.class.getSimpleName());
+    public static final String ID = Register(Sebas.class.getSimpleName());
 
     public Sebas()
     {

@@ -11,7 +11,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Defend_Fate extends Defend
 {
-    public static final String ID = CreateFullID(Defend_Fate.class.getSimpleName());
+    public static final String ID = Register(Defend_Fate.class.getSimpleName());
 
     public Defend_Fate()
     {

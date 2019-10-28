@@ -9,7 +9,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Hero extends AnimatorCard_UltraRare
 {
-    public static final String ID = CreateFullID(Hero.class.getSimpleName());
+    public static final String ID = Register(Hero.class.getSimpleName());
 
     public Hero()
     {

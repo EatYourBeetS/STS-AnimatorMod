@@ -44,9 +44,9 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean anySynergy;
 
-    public static String CreateFullID(String cardID)
+    protected static String Register(String cardID, EYBCardBadge... badges)
     {
-        return "animator:" + cardID;
+        return RegisterCard("animator:" + cardID, badges);
     }
 
     public static void SetLastCardPlayed(AbstractCard card)
@@ -65,6 +65,41 @@ public abstract class AnimatorCard extends EYBCard
         {
             previousCard = lastCardPlayed;
             lastCardPlayed = Utilities.SafeCast(card, AnimatorCard.class);
+        }
+    }
+
+    @Override
+    protected String GetHeaderText()
+    {
+        if (synergy != null)
+        {
+            return synergy.NAME;
+        }
+
+        return null;
+    }
+
+    protected AnimatorCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
+    {
+        this(staticCardData.get(id), id, Resources_Animator.GetCardImage(id), cost, type, AbstractEnums.Cards.THE_ANIMATOR, rarity, target);
+    }
+
+    protected AnimatorCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
+    {
+        this(staticCardData.get(id), id, Resources_Animator.GetCardImage(id), cost, type, color, rarity, target);
+    }
+
+    protected AnimatorCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
+    {
+        super(data, id, imagePath, cost, type, color, rarity, target);
+
+        if (this instanceof AnimatorCard_UltraRare)
+        {
+            setBannerTexture(Resources_Animator_Images.BANNER_SPECIAL2_PNG, Resources_Animator_Images.BANNER_SPECIAL2_P_PNG);
+        }
+        else if (rarity == CardRarity.SPECIAL)
+        {
+            setBannerTexture(Resources_Animator_Images.BANNER_SPECIAL_PNG, Resources_Animator_Images.BANNER_SPECIAL_P_PNG);
         }
     }
 
@@ -105,17 +140,6 @@ public abstract class AnimatorCard extends EYBCard
         return synergy;
     }
 
-    @Override
-    protected String GetHeaderText()
-    {
-        if (synergy != null)
-        {
-            return synergy.NAME;
-        }
-
-        return null;
-    }
-
     public void SetSynergy(Synergy synergy)
     {
         SetSynergy(synergy, false);
@@ -125,30 +149,6 @@ public abstract class AnimatorCard extends EYBCard
     {
         this.synergy = synergy;
         this.anySynergy = shapeshifter;
-    }
-
-    protected AnimatorCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
-    {
-        this(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(id), cost, type, AbstractEnums.Cards.THE_ANIMATOR, rarity, target);
-    }
-
-    protected AnimatorCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
-    {
-        this(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(id), cost, type, color, rarity, target);
-    }
-
-    protected AnimatorCard(CardStrings strings, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
-    {
-        super(strings, id, imagePath, cost, type, color, rarity, target);
-
-        if (this instanceof AnimatorCard_UltraRare)
-        {
-            setBannerTexture(Resources_Animator_Images.BANNER_SPECIAL2_PNG, Resources_Animator_Images.BANNER_SPECIAL2_P_PNG);
-        }
-        else if (rarity == CardRarity.SPECIAL)
-        {
-            setBannerTexture(Resources_Animator_Images.BANNER_SPECIAL_PNG, Resources_Animator_Images.BANNER_SPECIAL_P_PNG);
-        }
     }
 
     protected void SetLoyal(boolean value)

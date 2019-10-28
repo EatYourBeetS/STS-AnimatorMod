@@ -6,7 +6,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend_GoblinSlayer extends Defend
 {
-    public static final String ID = CreateFullID(Defend_GoblinSlayer.class.getSimpleName());
+    public static final String ID = Register(Defend_GoblinSlayer.class.getSimpleName());
 
     public Defend_GoblinSlayer()
     {

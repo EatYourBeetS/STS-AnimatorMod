@@ -15,13 +15,13 @@ import java.util.ArrayList;
 
 public class ItamiYouji extends AnimatorCard
 {
-    public static final String ID = CreateFullID(ItamiYouji.class.getSimpleName());
+    public static final String ID = Register(ItamiYouji.class.getSimpleName());
 
     public ItamiYouji()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(3,0,2);
+        Initialize(3,0,4);
 
         SetSynergy(Synergies.Gate);
     }

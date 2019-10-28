@@ -12,11 +12,11 @@ import patches.AbstractEnums;
 
 public class Strike extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Strike.class.getSimpleName());
+    public static final String ID = Register(Strike.class.getSimpleName());
 
     public Strike(String id, int cost, CardTarget target)
     {
-        super(Resources_Animator.GetCardStrings(id), id, Resources_Animator.GetCardImage(ID + "Alt"), cost, CardType.ATTACK, CardColor.COLORLESS,
+        super(staticCardData.get(id), id, Resources_Animator.GetCardImage(ID + "Alt"), cost, CardType.ATTACK, CardColor.COLORLESS,
                 CardRarity.BASIC, target);
 
         //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");

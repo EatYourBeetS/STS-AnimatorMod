@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Abyss extends UnnamedCard
 {
-    public static final String ID = CreateFullID(Abyss.class.getSimpleName());
+    public static final String ID = Register(Abyss.class.getSimpleName());
 
     public Abyss()
     {

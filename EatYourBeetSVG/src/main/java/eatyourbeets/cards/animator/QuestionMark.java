@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class QuestionMark extends AnimatorCard implements OnEndOfTurnSubscriber
 {
-    public static final String ID = CreateFullID(QuestionMark.class.getSimpleName());
+    public static final String ID = Register(QuestionMark.class.getSimpleName());
 
     private static ArrayList<AnimatorCard> cardPool;
     private AnimatorCard copy = null;

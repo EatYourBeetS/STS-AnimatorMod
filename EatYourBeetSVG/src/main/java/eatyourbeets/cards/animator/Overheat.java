@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Overheat extends AnimatorCard_Status
 {
-    public static final String ID = CreateFullID(Overheat.class.getSimpleName());
+    public static final String ID = Register(Overheat.class.getSimpleName());
 
     public Overheat()
     {

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -12,7 +11,7 @@ import eatyourbeets.cards.AnimatorCard;
 
 public class Defend_Kancolle extends Defend// implements OnRemoveFromDeckSubscriber
 {
-    public static final String ID = CreateFullID(Defend_Kancolle.class.getSimpleName());
+    public static final String ID = Register(Defend_Kancolle.class.getSimpleName());
 
     public Defend_Kancolle()
     {

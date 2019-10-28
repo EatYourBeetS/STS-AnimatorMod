@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class Rose extends AnimatorCard_UltraRare
 {
-    public static final String ID = CreateFullID(Rose.class.getSimpleName());
+    public static final String ID = Register(Rose.class.getSimpleName());
 
     public Rose()
     {

@@ -12,8 +12,8 @@ public class NanamiEffect_None extends NanamiEffect
         GameActionsHelper.DrawCard(p, 10);
     }
 
-    public static void UpdateDescription(Nanami nanami)
+    public static String UpdateDescription(Nanami nanami)
     {
-        nanami.rawDescription = Desc(DRAW, 10);
+        return Desc(DRAW, 10);
     }
 }

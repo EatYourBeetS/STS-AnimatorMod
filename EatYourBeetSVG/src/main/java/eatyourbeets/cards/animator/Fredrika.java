@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 
 public class Fredrika extends AnimatorCard
 {
-    public static final String ID = CreateFullID(Fredrika.class.getSimpleName());
+    public static final String ID = Register(Fredrika.class.getSimpleName(), EYBCardBadge.Discard);
 
     private static final int FORM_DEFAULT = 0;
     private static final int FORM_CAT = 1;
@@ -35,7 +36,7 @@ public class Fredrika extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(9, 4);
+        Initialize(9, 3, 3);
 
         SetSynergy(Synergies.Chaika, true);
     }
@@ -172,7 +173,7 @@ public class Fredrika extends AnimatorCard
             case FORM_DEFAULT:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID));
-                this.rawDescription = cardStrings.DESCRIPTION;
+                this.rawDescription = cardData.strings.DESCRIPTION;
                 this.type = CardType.SKILL;
                 this.target = CardTarget.SELF;
                 this.cost = 1;
@@ -183,7 +184,7 @@ public class Fredrika extends AnimatorCard
             case FORM_CAT:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Cat"));
-                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+                this.rawDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
                 this.type = CardType.SKILL;
                 this.target = CardTarget.NONE;
                 this.cost = 0;
@@ -194,7 +195,7 @@ public class Fredrika extends AnimatorCard
             case FORM_DRAGOON:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Dragoon"));
-                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
+                this.rawDescription = cardData.strings.EXTENDED_DESCRIPTION[1];
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
@@ -205,7 +206,7 @@ public class Fredrika extends AnimatorCard
             case FORM_DOMINICA:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Dominica"));
-                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
+                this.rawDescription = cardData.strings.EXTENDED_DESCRIPTION[2];
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;

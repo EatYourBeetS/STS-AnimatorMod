@@ -4,14 +4,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 public class AcuraTooru extends AnimatorCard
 {
-    public static final String ID = CreateFullID(AcuraTooru.class.getSimpleName());
+    public static final String ID = Register(AcuraTooru.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public AcuraTooru()
     {

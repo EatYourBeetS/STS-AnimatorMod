@@ -3,7 +3,7 @@ package eatyourbeets.powers.UnnamedReign;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.powers.animator.AnimatorPower;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.PlayerStatistics;
 

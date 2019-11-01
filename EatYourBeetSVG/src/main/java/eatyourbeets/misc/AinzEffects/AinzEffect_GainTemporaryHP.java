@@ -13,7 +13,7 @@ public class AinzEffect_GainTemporaryHP extends AinzEffect
     @Override
     protected void Setup(boolean upgraded)
     {
-        ainz.baseMagicNumber = ainz.magicNumber = upgraded ? 12 : 8;
+        ainz.baseMagicNumber = ainz.magicNumber = upgraded ? 9 : 6;
     }
 
     @Override

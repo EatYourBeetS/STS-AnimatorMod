@@ -2,19 +2,20 @@ package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class SoraEffect_GainStrength extends SoraEffect
+public class SoraEffect_GainForce extends SoraEffect
 {
-    public SoraEffect_GainStrength(int descriptionIndex, int nameIndex)
+    public SoraEffect_GainForce(int descriptionIndex, int nameIndex)
     {
         super(descriptionIndex,nameIndex);
-        sora.baseMagicNumber = sora.magicNumber = 1;
+        sora.baseMagicNumber = sora.magicNumber = 2;
     }
 
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper.ApplyPower(player, player, new StrengthPower(player, sora.magicNumber), sora.magicNumber);
+        GameActionsHelper.ApplyPower(player, player, new ForcePower(player, sora.magicNumber), sora.magicNumber);
     }
 }

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -16,13 +17,13 @@ import eatyourbeets.cards.Synergies;
 
 public class TanyaDegurechaff extends AnimatorCard implements OnAddedToDeckSubscriber
 {
-    public static final String ID = Register(TanyaDegurechaff.class.getSimpleName());
+    public static final String ID = Register(TanyaDegurechaff.class.getSimpleName(), EYBCardBadge.Special);
 
     public TanyaDegurechaff()
     {
         super(ID, 2, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(12, 0, 4);
+        Initialize(4, 3);
 
         SetSynergy(Synergies.YoujoSenki);
 
@@ -56,8 +57,7 @@ public class TanyaDegurechaff extends AnimatorCard implements OnAddedToDeckSubsc
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
-            upgradeMagicNumber(1);
+            upgradeDamage(2);
         }
     }
 

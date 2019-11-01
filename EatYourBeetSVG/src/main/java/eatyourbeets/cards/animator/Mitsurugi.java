@@ -5,10 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Mitsurugi extends AnimatorCard
 {
@@ -61,7 +62,7 @@ public class Mitsurugi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (CanDealDamage(m))
+        if (PlayerStatistics.IsAttacking(m.intent))
         {
             GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         }
@@ -78,7 +79,7 @@ public class Mitsurugi extends AnimatorCard
 
     private void updateCurrentEffect(AbstractMonster monster)
     {
-        if (monster == null || CanDealDamage(monster))
+        if (monster == null || PlayerStatistics.IsAttacking(monster.intent))
         {
             rawDescription = cardData.strings.DESCRIPTION;
         }
@@ -89,10 +90,10 @@ public class Mitsurugi extends AnimatorCard
 
         initializeDescription();
     }
-
-    private boolean CanDealDamage(AbstractMonster m)
-    {
-        return (m.intent == AbstractMonster.Intent.ATTACK_DEBUFF || m.intent == AbstractMonster.Intent.ATTACK_BUFF ||
-                m.intent == AbstractMonster.Intent.ATTACK_DEFEND || m.intent == AbstractMonster.Intent.ATTACK);
-    }
+//
+//    private boolean CanDealDamage(AbstractMonster m)
+//    {
+//        return (m.intent == AbstractMonster.Intent.ATTACK_DEBUFF || m.intent == AbstractMonster.Intent.ATTACK_BUFF ||
+//                m.intent == AbstractMonster.Intent.ATTACK_DEFEND || m.intent == AbstractMonster.Intent.ATTACK);
+//    }
 }

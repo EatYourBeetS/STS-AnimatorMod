@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.powers.animator.AnimatorPower;
+import eatyourbeets.powers.AnimatorPower;
 
 import java.util.function.Consumer;
 

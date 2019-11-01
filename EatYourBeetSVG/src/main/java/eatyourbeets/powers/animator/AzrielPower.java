@@ -2,6 +2,7 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.*;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class AzrielPower extends AnimatorPower

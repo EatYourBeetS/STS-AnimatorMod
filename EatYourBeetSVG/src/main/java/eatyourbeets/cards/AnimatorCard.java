@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import eatyourbeets.interfaces.metadata.MartialArtist;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.Resources_Animator;
@@ -124,7 +126,10 @@ public abstract class AnimatorCard extends EYBCard
         AnimatorCard card = Utilities.SafeCast(other, AnimatorCard.class);
         if (card != null && card.synergy != null)
         {
-            return this.synergy != null && (HasExactSynergy(card.synergy) || this.anySynergy || card.anySynergy);
+            return  this instanceof Spellcaster && other instanceof Spellcaster ||
+                    this instanceof MartialArtist && other instanceof MartialArtist ||
+                    this.anySynergy || card.anySynergy ||
+                    this.synergy != null && (HasExactSynergy(card.synergy));
         }
 
         return false;

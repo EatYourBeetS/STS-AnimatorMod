@@ -16,7 +16,7 @@ public class Wiz extends AnimatorCard
 
     public Wiz()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0,0,0);
 
@@ -50,7 +50,7 @@ public class Wiz extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeBaseCost(0);
         }
     }
 }

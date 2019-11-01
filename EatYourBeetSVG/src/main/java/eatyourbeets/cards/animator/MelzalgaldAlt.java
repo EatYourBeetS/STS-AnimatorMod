@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator;
 
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.interfaces.Hidden;
+import eatyourbeets.interfaces.metadata.Hidden;
 
 public abstract class MelzalgaldAlt extends AnimatorCard implements Hidden
 {

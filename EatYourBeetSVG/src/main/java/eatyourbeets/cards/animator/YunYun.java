@@ -9,12 +9,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
+public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber, Spellcaster
 {
     public static final String ID = Register(YunYun.class.getSimpleName());
 
@@ -24,10 +25,9 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber
     {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(9, 0);
+        Initialize(8, 0);
 
-        this.isMultiDamage = true;
-
+        SetMultiDamage(true);
         SetSynergy(Synergies.Konosuba);
     }
 

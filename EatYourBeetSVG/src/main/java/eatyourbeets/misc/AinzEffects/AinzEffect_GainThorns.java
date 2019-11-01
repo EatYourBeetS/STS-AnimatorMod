@@ -15,7 +15,7 @@ public class AinzEffect_GainThorns extends AinzEffect
     @Override
     protected void Setup(boolean upgraded)
     {
-        ainz.baseMagicNumber = ainz.magicNumber = upgraded ? 4 : 3;
+        ainz.baseMagicNumber = ainz.magicNumber = upgraded ? 3 : 2;
     }
 
     @Override

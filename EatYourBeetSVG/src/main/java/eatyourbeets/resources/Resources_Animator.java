@@ -132,5 +132,6 @@ public class Resources_Animator extends AbstractResources
     protected void InitializeKeywords()
     {
         LoadKeywords(languagePath + "KeywordStrings.json");
+        LoadDynamicKeywords(languagePath + "DynamicKeywordStrings.json");
     }
 }

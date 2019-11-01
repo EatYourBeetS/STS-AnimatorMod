@@ -25,6 +25,12 @@ public class EYBCardText
         this.descriptions = cardStrings.DESCRIPTION.split(Pattern.quote(" || "));
         this.canUpdate = true;
 
+        String[] ext = cardStrings.EXTENDED_DESCRIPTION;
+        if (ext != null && ext.length > 2 && ext[0].equals("~TIP~"))
+        {
+            this.card.AddExtendedDescription(1, 2);
+        }
+
         if (StringUtils.isNotEmpty(cardStrings.UPGRADE_DESCRIPTION))
         {
             this.upgradedDescriptions = cardStrings.UPGRADE_DESCRIPTION.split(Pattern.quote(" || "));

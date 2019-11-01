@@ -2,6 +2,7 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.powers.AnimatorPower;
 
 public class EnvyPower extends AnimatorPower
 {

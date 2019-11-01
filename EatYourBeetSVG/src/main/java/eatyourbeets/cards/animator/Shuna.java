@@ -44,9 +44,13 @@ public class Shuna extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DrawCard(p, magicNumber);
-        GameActionsHelper.GainBlock(p, block);
-        //GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, magicNumber));
+        GameActionsHelper.DrawCard(p, 1);
+        GameActionsHelper.GainTemporaryHP(p, magicNumber);
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.GainBlock(p, block);
+        }
     }
 
     @Override

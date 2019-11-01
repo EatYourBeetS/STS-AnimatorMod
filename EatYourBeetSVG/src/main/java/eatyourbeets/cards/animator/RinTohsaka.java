@@ -3,13 +3,14 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 
-public class RinTohsaka extends AnimatorCard
+public class RinTohsaka extends AnimatorCard implements Spellcaster
 {
     public static final String ID = Register(RinTohsaka.class.getSimpleName(), EYBCardBadge.Synergy);
 

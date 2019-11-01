@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.RegrowPower;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
+import eatyourbeets.powers.AnimatorPower;
 
 public class StolenGoldPower extends AnimatorPower
 {

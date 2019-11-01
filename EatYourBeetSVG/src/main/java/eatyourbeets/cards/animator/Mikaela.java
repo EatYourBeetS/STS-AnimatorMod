@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ExhaustFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -11,7 +12,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Mikaela extends AnimatorCard
 {
-    public static final String ID = Register(Mikaela.class.getSimpleName());
+    public static final String ID = Register(Mikaela.class.getSimpleName(), EYBCardBadge.Special);
 
     public Mikaela()
     {
@@ -26,11 +27,16 @@ public class Mikaela extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, this.magicNumber), this.magicNumber);
 
         if (p.discardPile.size() > 0)
         {
             GameActionsHelper.AddToBottom(new ExhaustFromPileAction(1, false, p.discardPile, false));
+        }
+
+        if (m.intent != AbstractMonster.Intent.ATTACK_DEBUFF && m.intent != AbstractMonster.Intent.ATTACK_BUFF &&
+            m.intent != AbstractMonster.Intent.ATTACK_DEFEND && m.intent != AbstractMonster.Intent.ATTACK)
+        {
+            GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, this.magicNumber), this.magicNumber);
         }
     }
 
@@ -39,7 +45,7 @@ public class Mikaela extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(4);
         }
     }
 }

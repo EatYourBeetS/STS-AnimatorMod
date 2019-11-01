@@ -1,22 +1,15 @@
 package eatyourbeets.cards.animator;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.cards.Synergies;
+import eatyourbeets.effects.Hemokinesis2Effect;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.Utilities;
 
 import java.util.ArrayList;
 
@@ -30,7 +23,6 @@ public class Shalltear extends AnimatorCard
 
         Initialize(6,0, 3);
 
-        SetMultiDamage(true);
         SetSynergy(Synergies.Overlord);
     }
 
@@ -40,17 +32,18 @@ public class Shalltear extends AnimatorCard
         ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
         for (AbstractMonster m1 : enemies)
         {
-            GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m1.hb.cX, m1.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
+            //GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m1.hb.cX, m1.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
+            GameActionsHelper.VFX(new Hemokinesis2Effect(m1.hb.cX, m1.hb.cY, p.hb.cX, p.hb.cY), 0.2f);
+            GameActionsHelper.AddToBottom(new LoseHPAction(m1, p, damage));
 
-            if ((upgraded || HasActiveSynergy()) && PlayerStatistics.UseArtifact(m1))
+            if (HasActiveSynergy() && PlayerStatistics.UseArtifact(m1))
             {
                 GameActionsHelper.ApplyPower(p, m1, new StrengthPower(m1, -1), -1);
                 GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
             }
         }
 
-        DamageAllEnemiesAction action = new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-        GameActionsHelper.Callback(action, this::OnDamage, enemies);
+        GameActionsHelper.GainTemporaryHP(p, magicNumber);
     }
 
     @Override
@@ -60,24 +53,6 @@ public class Shalltear extends AnimatorCard
         {          
             upgradeDamage(3);
             upgradeMagicNumber(1);
-        }
-    }
-
-    @SuppressWarnings("unchecked") // I miss C# ...
-    private void OnDamage(Object state, AbstractGameAction action)
-    {
-        ArrayList<AbstractMonster> enemies = Utilities.SafeCast(state, ArrayList.class);
-        if (enemies != null && action != null)
-        {
-            for (AbstractMonster monster : enemies)
-            {
-                if (monster != null && (monster.isDying || monster.currentHealth <= 0) && !monster.halfDead && !monster.hasPower(MinionPower.POWER_ID))
-                {
-                    GameActionsHelper.GainEnergy(1);
-                    AbstractDungeon.player.heal(3, true);
-                    //returnToHand = true;
-                }
-            }
         }
     }
 }

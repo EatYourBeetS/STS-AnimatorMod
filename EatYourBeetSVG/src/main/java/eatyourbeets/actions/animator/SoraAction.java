@@ -110,11 +110,11 @@ public class SoraAction extends AnimatorAction
         //attackPool.add(new SoraEffect_GainThorns       (9 , 0));
         attackPool.add(new SoraEffect_DamageRandom     (4 , 0));
         attackPool.add(new SoraEffect_DamageAll        (5 , 0));
-        attackPool.add(new SoraEffect_GainStrength     (7 , 0));
+        attackPool.add(new SoraEffect_GainForce(7 , 0));
         attackPool.add(new SoraEffect_ApplyVulnerable  (12, 0));
 
         defendPool.add(new SoraEffect_GainBlock        (6 , 1));
-        defendPool.add(new SoraEffect_GainDexterity    (8 , 1));
+        defendPool.add(new SoraEffect_GainAgility(8 , 1));
         defendPool.add(new SoraEffect_ApplyWeak        (11, 1));
         defendPool.add(new SoraEffect_GainTemporaryHP  (15, 1));
 

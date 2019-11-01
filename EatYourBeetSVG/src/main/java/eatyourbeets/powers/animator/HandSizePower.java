@@ -4,10 +4,9 @@ import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class HandSizePower extends AnimatorPower

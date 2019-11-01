@@ -24,7 +24,7 @@ import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.cards.animator.*;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.powers.animator.AnimatorPower;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnApplyPowerSubscriber;

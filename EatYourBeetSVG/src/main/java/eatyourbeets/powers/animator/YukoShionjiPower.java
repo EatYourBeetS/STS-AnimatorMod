@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class YukoShionjiPower extends AnimatorPower

@@ -3,7 +3,7 @@ package eatyourbeets.powers.UnnamedReign;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.powers.animator.AnimatorPower;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 
 public abstract class AbstractCrystalPower extends AnimatorPower

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.TemporaryElectroPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
@@ -29,10 +30,13 @@ public class NarberalGamma extends AnimatorCard
 
         if (upgraded)
         {
-            GameActionsHelper.ApplyPower(p, p, new TemporaryElectroPower(p));
+            GameActionsHelper.DrawCard(p, 1);
         }
 
-        GameActionsHelper.DrawCard(p, 1);
+        if (PlayerStatistics.TryActivateSemiLimited(this.cardID))
+        {
+            GameActionsHelper.ApplyPower(p, p, new TemporaryElectroPower(p));
+        }
     }
 
     @Override

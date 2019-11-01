@@ -12,13 +12,13 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.effects.RemoveRelicEffect;
-import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
+import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.relics.AnimatorRelic;
 import patches.AbstractEnums;
 import patches.RelicObtainedPatches;
 
-public class AncientMedallion extends AnimatorRelic implements AllowedUnnamedReignRelic
+public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber
 {
     public static final String ID = CreateFullID(AncientMedallion.class.getSimpleName());
 

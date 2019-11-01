@@ -34,7 +34,7 @@ public class Layla extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActionsHelper.AddToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, this, this::OnDiscard));
+        GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, this, this::OnDiscard));
     }
 
     @Override

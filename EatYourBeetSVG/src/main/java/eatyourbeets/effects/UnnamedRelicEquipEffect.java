@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.animator.HigakiRinne;
-import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
+import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
 
@@ -79,9 +79,9 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
         for (AbstractRelic relic : p.relics)
         {
-            if (relic instanceof AllowedUnnamedReignRelic)
+            if (relic instanceof OnEquipUnnamedReignRelicSubscriber)
             {
-                ((AllowedUnnamedReignRelic)relic).OnEquipUnnamedReignRelic();
+                ((OnEquipUnnamedReignRelicSubscriber)relic).OnEquipUnnamedReignRelic();
             }
         }
 
@@ -139,7 +139,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
         int bonus = 60;
         for (AbstractRelic r : p.relics)
         {
-            if (!(r instanceof AllowedUnnamedReignRelic))
+            if (!(r instanceof OnEquipUnnamedReignRelicSubscriber))
             {
                 if (r instanceof ExquisiteBloodVial)
                 {

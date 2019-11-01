@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
-import eatyourbeets.powers.animator.AnimatorPower;
+import eatyourbeets.powers.AnimatorPower;
 
 public class UltimateCrystalPower extends AnimatorPower
 {

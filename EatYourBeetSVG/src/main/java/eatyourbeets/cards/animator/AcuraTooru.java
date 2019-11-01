@@ -11,13 +11,13 @@ import eatyourbeets.cards.Synergies;
 
 public class AcuraTooru extends AnimatorCard
 {
-    public static final String ID = Register(AcuraTooru.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(AcuraTooru.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Discard);
 
     public AcuraTooru()
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(4, 4, 0, 2);
+        Initialize(4, 3, 0, 2);
 
         SetSynergy(Synergies.Chaika);
     }

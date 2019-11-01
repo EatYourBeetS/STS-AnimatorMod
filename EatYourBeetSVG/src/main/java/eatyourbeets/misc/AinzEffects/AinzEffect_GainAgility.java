@@ -2,12 +2,13 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 
-public class AinzEffect_GainDexterity extends AinzEffect
+public class AinzEffect_GainAgility extends AinzEffect
 {
-    public AinzEffect_GainDexterity(int descriptionIndex)
+    public AinzEffect_GainAgility(int descriptionIndex)
     {
         super(descriptionIndex);
     }
@@ -21,6 +22,6 @@ public class AinzEffect_GainDexterity extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
-        GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, ainz.magicNumber), ainz.magicNumber);
+        GameActionsHelper.ApplyPower(p, p, new AgilityPower(p, ainz.magicNumber), ainz.magicNumber);
     }
 }

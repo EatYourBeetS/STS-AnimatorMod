@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPF
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class VitalityPower extends AnimatorPower

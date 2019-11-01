@@ -1,0 +1,18 @@
+
+{
+	"common:ForcePower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b1 #yForce and #yStrength."],
+		"NAME": "Force"
+	},
+	"common:AgilityPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b1 #yAgility and #yDexterity."],
+		"NAME": "Agility"
+	},
+	"common:IntellectPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b1 #yIntellect and #yFocus."],
+		"NAME": "Intellect"
+	}
+}

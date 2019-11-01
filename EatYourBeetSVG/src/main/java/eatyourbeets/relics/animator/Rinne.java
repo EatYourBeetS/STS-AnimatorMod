@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.animator.HigakiRinne;
 
-public class Rinne extends AnimatorRelic// implements AllowedUnnamedReignRelic
+public class Rinne extends AnimatorRelic// implements OnEquipUnnamedReignRelicSubscriber
 {
     public static final int RINNE_DOES = 3 + 1 + 1;
     public static final int RINNE_SAYS = 33 + 27 + 9 + RINNE_DOES;

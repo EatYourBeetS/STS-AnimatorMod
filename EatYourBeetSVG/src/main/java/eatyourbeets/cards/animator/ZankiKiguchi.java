@@ -6,20 +6,22 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.MartialArtist;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class ZankiKiguchi extends AnimatorCard
+public class ZankiKiguchi extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(ZankiKiguchi.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(ZankiKiguchi.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
 
     public ZankiKiguchi()
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5,0,5);
+        Initialize(2,0,5);
 
         //AddExtendedDescription();
 
@@ -59,8 +61,7 @@ public class ZankiKiguchi extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
+            upgradeDamage(3);
         }
     }
 

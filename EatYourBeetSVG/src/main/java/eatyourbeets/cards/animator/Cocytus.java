@@ -3,18 +3,14 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.OnTargetBlockLostAction;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Cocytus extends AnimatorCard
 {
@@ -24,11 +20,22 @@ public class Cocytus extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(7,0,1);
-
-        AddExtendedDescription();
+        Initialize(6,0);
 
         SetSynergy(Synergies.Overlord);
+    }
+
+    @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        if (HasActiveSynergy())
+        {
+            return super.calculateModifiedCardDamage(player, mo, tmp) * 2;
+        }
+        else
+        {
+            return super.calculateModifiedCardDamage(player, mo, tmp);
+        }
     }
 
     @Override
@@ -39,7 +46,7 @@ public class Cocytus extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.Callback(new WaitAction(0.1f), this::ImproveAttacks, this);
+            this.exhaustOnUseOnce = true;
         }
     }
 
@@ -49,23 +56,6 @@ public class Cocytus extends AnimatorCard
         if (TryUpgrade())
         {          
             upgradeDamage(2);
-            upgradeMagicNumber(1);
-        }
-    }
-
-    private void ImproveAttacks(Object state, AbstractGameAction action)
-    {
-        for (AbstractCard c : AbstractDungeon.player.hand.group)
-        {
-            if (c.type == CardType.ATTACK)
-            {
-                GameActionsHelper.AddToBottom(new ModifyDamageAction(c.uuid, this.magicNumber));
-
-                if (c != this)
-                {
-                    c.flash();
-                }
-            }
         }
     }
 }

@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
+import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class CursedGlyph extends AnimatorRelic implements AllowedUnnamedReignRelic
+public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber
 {
     private static final int LOSE_MAX_HP = 4;
 

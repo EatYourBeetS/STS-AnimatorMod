@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Ara extends AnimatorCard
+public class Ara extends AnimatorCard implements MartialArtist
 {
     public static final EYBCardBadge[] BADGES = {EYBCardBadge.Discard};
     public static final String ID = Register(Ara.class.getSimpleName(), EYBCardBadge.Special);
@@ -18,7 +19,7 @@ public class Ara extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5,0);
+        Initialize(3,0);
 
         SetSynergy(Synergies.Elsword);
     }

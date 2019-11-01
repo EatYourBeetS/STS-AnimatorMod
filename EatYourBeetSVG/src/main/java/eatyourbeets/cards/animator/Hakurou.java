@@ -7,23 +7,22 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.DrawAndUpgradeCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Hakurou extends AnimatorCard
+public class Hakurou extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(Hakurou.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Drawn);
 
     public Hakurou()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(1,0, 3);
-
-        baseSecondaryValue = secondaryValue = 1;
+        Initialize(1,0, 4);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -39,8 +38,7 @@ public class Hakurou extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        PlayerStatistics.ApplyTemporaryDexterity(p, p, secondaryValue);
+        PlayerStatistics.GainAgility(1);
     }
 
     @Override
@@ -52,9 +50,9 @@ public class Hakurou extends AnimatorCard
             GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
         }
 
-        if (upgraded)
+        if (HasActiveSynergy())
         {
-            GameActionsHelper.AddToBottom(new DrawAndUpgradeCardAction(p, 1));
+            PlayerStatistics.GainAgility(1);
         }
     }
 
@@ -63,7 +61,7 @@ public class Hakurou extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
+            upgradeMagicNumber(1);
         }
     }
 }

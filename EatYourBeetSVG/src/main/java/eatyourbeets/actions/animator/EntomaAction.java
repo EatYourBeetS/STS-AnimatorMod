@@ -3,6 +3,7 @@ package eatyourbeets.actions.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.Entoma;
+import eatyourbeets.powers.PlayerStatistics;
 
 public class EntomaAction extends AnimatorAction
 {
@@ -17,14 +18,13 @@ public class EntomaAction extends AnimatorAction
 
     public void update()
     {
-        AbstractDungeon.player.increaseMaxHp(2, false);
-        for (AbstractCard c : entoma.GetAllInstances())
+        if (PlayerStatistics.TryActivateLimited(entoma.cardID))
         {
-            Entoma card = (Entoma)c;
-            card.upgrade();
-//            card.secondaryValue += 1;
-//            card.baseSecondaryValue = card.secondaryValue;
-//            card.applyPowers();
+            AbstractDungeon.player.increaseMaxHp(2, false);
+            for (AbstractCard c : entoma.GetAllInstances())
+            {
+                c.upgrade();
+            }
         }
 
         this.isDone = true;

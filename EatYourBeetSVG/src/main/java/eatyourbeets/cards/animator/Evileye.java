@@ -2,11 +2,14 @@ package eatyourbeets.cards.animator;
 
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
@@ -16,34 +19,51 @@ import eatyourbeets.cards.Synergies;
 
 import java.util.ArrayList;
 
-public class Evileye extends AnimatorCard
+public class Evileye extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Evileye.class.getSimpleName());
+    public static final String ID = Register(Evileye.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Discard);
 
     public Evileye()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(5,0);
+        Initialize(0,0, 1);
 
         SetSynergy(Synergies.Overlord);
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    public void triggerOnManualDiscard()
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetFocus(player));
+        super.triggerOnManualDiscard();
+
+        if (PlayerStatistics.TryActivateSemiLimited(this.cardID))
+        {
+            PlayerStatistics.GainIntellect(1);
+            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+        }
+    }
+
+    @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+
+        this.magicNumber = baseMagicNumber + Math.max(0, Math.floorDiv(PlayerStatistics.GetFocus(), 2));
+        this.isMagicNumberModified = (magicNumber != baseMagicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        CardCrawlGame.sound.play("ORB_FROST_CHANNEL", 0.2F);
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        CardCrawlGame.sound.play("ORB_FROST_Evoke", 0.2F);
+        GameActionsHelper.DrawCard(p, magicNumber);
+        GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
 
-        //GameActionsHelper.DrawCard(p, 1);
-        GameActionsHelper.AddToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
+        if (HasActiveSynergy() && PlayerStatistics.TryActivateSemiLimited(this.cardID))
+        {
+            PlayerStatistics.GainIntellect(1);
+            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+        }
     }
 
     @Override
@@ -51,7 +71,7 @@ public class Evileye extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeBaseCost(1);
         }
     }
 

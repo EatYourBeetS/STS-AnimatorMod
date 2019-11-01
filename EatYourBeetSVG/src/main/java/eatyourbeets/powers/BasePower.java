@@ -1,4 +1,4 @@
-package eatyourbeets.powers.unnamed;
+package eatyourbeets.powers;
 
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
@@ -6,29 +6,24 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.resources.Resources_Unnamed;
+import eatyourbeets.resources.Resources_Animator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.StringJoiner;
 
-public abstract class UnnamedPower extends AbstractPower implements CloneablePowerInterface
+public abstract class BasePower extends AbstractPower implements CloneablePowerInterface
 {
-    protected static final Logger logger = LogManager.getLogger(UnnamedPower.class.getName());
+    protected static final Logger logger = LogManager.getLogger(BasePower.class.getName());
 
     protected final PowerStrings powerStrings;
 
-    public static String CreateFullID(String id)
-    {
-        return "unnamed:" + id;
-    }
-
-    public UnnamedPower(AbstractCreature owner, String id)
+    public BasePower(AbstractCreature owner, String id)
     {
         this.owner = owner;
         this.ID = id;
-        this.img = new Texture(Resources_Unnamed.GetPowerImage(ID));
+        this.img = new Texture(Resources_Animator.GetPowerImage(ID));
 
         powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
 
@@ -36,7 +31,7 @@ public abstract class UnnamedPower extends AbstractPower implements CloneablePow
     }
 
     @Override
-    public  void updateDescription()
+    public void updateDescription()
     {
         switch (powerStrings.DESCRIPTIONS.length)
         {
@@ -68,8 +63,6 @@ public abstract class UnnamedPower extends AbstractPower implements CloneablePow
                 this.description = stringJoiner.toString();
             }
         }
-        //logger.info(powerStrings.DESCRIPTIONS.length + ": " + powerStrings.DESCRIPTIONS[0]);
-        //logger.info(this.description);
     }
 
     @Override

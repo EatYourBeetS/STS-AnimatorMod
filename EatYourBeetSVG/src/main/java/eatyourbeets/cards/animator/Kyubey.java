@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -14,11 +15,11 @@ import java.util.ArrayList;
 
 public class Kyubey extends AnimatorCard
 {
-    public static final String ID = Register(Kyubey.class.getSimpleName());
+    public static final String ID = Register(Kyubey.class.getSimpleName(), EYBCardBadge.Special);
 
     public Kyubey()
     {
-        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0, 0, 2);
 
@@ -41,7 +42,7 @@ public class Kyubey extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            this.exhaust = false;
+            upgradeBaseCost(0);
         }
     }
 

@@ -40,7 +40,7 @@ public class Rose extends AnimatorCard_UltraRare
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DrawCard(p, this.magicNumber);
-        GameActionsHelper.AddToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
+        GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
     }
 
     @Override

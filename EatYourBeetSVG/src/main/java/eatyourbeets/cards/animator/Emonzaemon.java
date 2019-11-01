@@ -13,7 +13,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Emonzaemon extends AnimatorCard
 {
-    public static final String ID = Register(Emonzaemon.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(Emonzaemon.class.getSimpleName(), EYBCardBadge.Special);
 
     public Emonzaemon()
     {

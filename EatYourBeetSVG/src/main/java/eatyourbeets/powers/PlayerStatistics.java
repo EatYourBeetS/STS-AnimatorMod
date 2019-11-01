@@ -24,9 +24,12 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.*;
-import eatyourbeets.powers.animator.AnimatorPower;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.powers.common.TemporaryBiasPower;
 import eatyourbeets.powers.unnamed.ResonancePower;
+import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.ui.Void;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
@@ -35,12 +38,17 @@ import eatyourbeets.utilities.RandomizedList;
 import patches.CardGlowBorderPatch;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class PlayerStatistics extends AnimatorPower implements InvisiblePower, CustomSavable<PlayerStatistics.SaveData>
 {
     public static final String POWER_ID = CreateFullID(PlayerStatistics.class.getSimpleName());
 
     public static final PlayerStatistics Instance = new PlayerStatistics();
+
+    public static final HashSet<String> limitedEffects = new HashSet<>();
+    public static final HashSet<String> semiLimitedEffects = new HashSet<>();
 
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying  = new GameEvent<>();
     public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
@@ -89,6 +97,9 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         cardsExhaustedThisTurn = 0;
         orbsEvokedThisTurn = 0;
         synergiesThisTurn = 0;
+
+        limitedEffects.clear();
+        semiLimitedEffects.clear();
 
         onSynergy.Clear();
         onEnemyDying.Clear();
@@ -212,6 +223,12 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         }
 
         return null;
+    }
+
+    public static boolean IsAttacking(AbstractMonster.Intent intent)
+    {
+        return (intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.ATTACK_BUFF ||
+                intent == AbstractMonster.Intent.ATTACK_DEFEND || intent == AbstractMonster.Intent.ATTACK);
     }
 
     public void OnBattleStart()
@@ -392,8 +409,41 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     @Override
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
-        //logger.info("ON APPLY POWER: " + onApplyPower.Count());
         super.onApplyPower(power, target, source);
+
+        switch (power.ID)
+        {
+            case "common:ForcePower"://ForcePower.POWER_ID:
+            {
+                power.priority = -2100;
+                break;
+            }
+            case StrengthPower.POWER_ID:
+            {
+                power.priority = -2099;
+                break;
+            }
+            case "common:AgilityPower"://AgilityPower.POWER_ID:
+            {
+                power.priority = -2098;
+                break;
+            }
+            case DexterityPower.POWER_ID:
+            {
+                power.priority = -2097;
+                break;
+            }
+            case "common:IntellectPower"://IntellectPower.POWER_ID:
+            {
+                power.priority = -2096;
+                break;
+            }
+            case FocusPower.POWER_ID:
+            {
+                power.priority = -2095;
+                break;
+            }
+        }
 
         for (OnApplyPowerSubscriber p : onApplyPower.GetSubscribers())
         {
@@ -446,6 +496,8 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         {
             s.OnEndOfTurn(isPlayer);
         }
+
+        semiLimitedEffects.clear();
 
         turnDamageMultiplier = 0;
         cardsExhaustedThisTurn = 0;
@@ -520,6 +572,16 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
                 s.OnStartOfTurnPostDraw();
             }
         }
+    }
+
+    public static boolean TryActivateLimited(String effectID)
+    {
+        return limitedEffects.add(effectID);
+    }
+
+    public static boolean TryActivateSemiLimited(String effectID)
+    {
+        return semiLimitedEffects.add(effectID);
     }
 
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
@@ -597,6 +659,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         return orbList.size();
     }
 
+    public static int GetDexterity()
+    {
+        return GetDexterity(AbstractDungeon.player);
+    }
+
     public static int GetDexterity(AbstractCreature creature)
     {
         DexterityPower power = (DexterityPower) creature.getPower(DexterityPower.POWER_ID);
@@ -635,6 +702,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         return 0;
     }
 
+    public static int GetFocus()
+    {
+        return GetFocus(AbstractDungeon.player);
+    }
+
     public static int GetFocus(AbstractCreature creature)
     {
         FocusPower power = (FocusPower) creature.getPower(FocusPower.POWER_ID);
@@ -644,6 +716,24 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         }
 
         return 0;
+    }
+
+    public static void GainForce(int amount)
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+        GameActionsHelper.ApplyPower(p, p, new ForcePower(p, amount), amount);
+    }
+
+    public static void GainIntellect(int amount)
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+        GameActionsHelper.ApplyPower(p, p, new IntellectPower(p, amount), amount);
+    }
+
+    public static void GainAgility(int amount)
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+        GameActionsHelper.ApplyPower(p, p, new AgilityPower(p, amount), amount);
     }
 
     public static void LoseTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)

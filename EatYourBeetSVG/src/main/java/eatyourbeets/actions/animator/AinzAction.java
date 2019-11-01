@@ -97,9 +97,9 @@ public class AinzAction extends AnimatorAction
         effectList.Add(new AinzEffect_DrawCards(14), 10);
         effectList.Add(new AinzEffect_GainThorns(9), 10);
         effectList.Add(new AinzEffect_DamageAll(5), 10);
-        effectList.Add(new AinzEffect_GainFocus(16), 8);
+        effectList.Add(new AinzEffect_GainIntellect(16), 8);
         effectList.Add(new AinzEffect_GainEnergy(17), 8);
-        effectList.Add(new AinzEffect_GainDexterity(8),8);
+        effectList.Add(new AinzEffect_GainAgility(8),8);
         effectList.Add(new AinzEffect_GainStrength(7), 8);
         effectList.Add(new AinzEffect_GainIntangibleLosePower(20),4);
         effectList.Add(new AinzEffect_GainArtifactRemoveDebuffs(21), 2);
@@ -113,9 +113,9 @@ public class AinzAction extends AnimatorAction
 //        effectPool.add(new AinzEffect_DamageAll(5));
 //        effectPool.add(new AinzEffect_DrawCards(14));
 //        effectPool.add(new AinzEffect_GainArtifactRemoveDebuffs(21));
-//        effectPool.add(new AinzEffect_GainDexterity(8));
+//        effectPool.add(new AinzEffect_GainAgility(8));
 //        effectPool.add(new AinzEffect_GainEnergy(17));
-//        effectPool.add(new AinzEffect_GainFocus(16));
+//        effectPool.add(new AinzEffect_GainIntellect(16));
 //        effectPool.add(new AinzEffect_GainIntangibleLosePower(20));
 //        effectPool.add(new AinzEffect_GainStrength(7));
 //        effectPool.add(new AinzEffect_GainTemporaryHP(15));

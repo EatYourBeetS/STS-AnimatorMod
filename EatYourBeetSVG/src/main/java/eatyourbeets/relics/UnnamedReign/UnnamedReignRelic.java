@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.effects.SequentialEffect;
 import eatyourbeets.effects.UnnamedRelicEquipEffect;
-import eatyourbeets.interfaces.AllowedUnnamedReignRelic;
+import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
@@ -118,7 +118,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
             for (AbstractRelic r : p.relics)
             {
-                if (r != null && (r != relic) && !(r instanceof AllowedUnnamedReignRelic))
+                if (r != null && (r != relic) && !(r instanceof OnEquipUnnamedReignRelicSubscriber))
                 {
                     effect.Enqueue(new RemoveRelicEffect(relic, r));
                 }
@@ -133,7 +133,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
             AbstractDungeon.effectList.add(effect);
         }
-        else if (!(relic instanceof AllowedUnnamedReignRelic) && relic.tier != RelicTier.STARTER)
+        else if (!(relic instanceof OnEquipUnnamedReignRelicSubscriber) && relic.tier != RelicTier.STARTER)
         {
             AbstractPlayer p = AbstractDungeon.player;
             for (AbstractRelic r : p.relics)

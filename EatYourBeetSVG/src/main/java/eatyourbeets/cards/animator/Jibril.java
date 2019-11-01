@@ -4,14 +4,16 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.defect.CompileDriverAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Jibril extends AnimatorCard
+public class Jibril extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Jibril.class.getSimpleName());
+    public static final String ID = Register(Jibril.class.getSimpleName(), EYBCardBadge.Special);
 
     public Jibril()
     {

@@ -1,12 +1,17 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.VariableDiscardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.animator.DemiurgePower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+
+import java.util.ArrayList;
 
 public class Demiurge extends AnimatorCard
 {
@@ -16,7 +21,7 @@ public class Demiurge extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0,4, 6);
+        Initialize(0,0,4);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -26,17 +31,22 @@ public class Demiurge extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.GainEnergy(GetEnergyGain());
+        GameActionsHelper.GainEnergy(1);
+        GameActionsHelper.CycleCardAction(1);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        int energy = GetEnergyGain();
-        int stacks = GetSelfDamage();
-
-        GameActionsHelper.GainEnergy(energy);
-        GameActionsHelper.ApplyPowerSilently(p, p, new DemiurgePower(p, stacks), stacks);
+        GameActionsHelper.GainEnergy(1);
+        if (upgraded)
+        {
+            GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, 1, this, this::OnDiscard));
+        }
+        else
+        {
+            GameActionsHelper.ApplyPowerSilently(p, p, new DemiurgePower(p, magicNumber), magicNumber);
+        }
     }
 
     @Override
@@ -45,13 +55,15 @@ public class Demiurge extends AnimatorCard
         TryUpgrade();
     }
 
-    private int GetEnergyGain()
+    private void OnDiscard(Object state, ArrayList<AbstractCard> cards)
     {
-        return upgraded ? 2 : 1;
-    }
-
-    private int GetSelfDamage()
-    {
-        return upgraded ? secondaryValue : magicNumber;
+        if (state == this && cards != null)
+        {
+            if (cards.size() == 0)
+            {
+                AbstractPlayer p = AbstractDungeon.player;
+                GameActionsHelper.ApplyPowerSilently(p, p, new DemiurgePower(p, magicNumber), magicNumber);
+            }
+        }
     }
 }

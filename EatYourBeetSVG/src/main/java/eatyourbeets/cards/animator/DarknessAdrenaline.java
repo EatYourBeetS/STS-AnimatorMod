@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AdrenalineEffect;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.interfaces.Hidden;
+import eatyourbeets.interfaces.metadata.Hidden;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class DarknessAdrenaline extends AnimatorCard implements Hidden

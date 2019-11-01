@@ -4,14 +4,16 @@ import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Zero extends AnimatorCard
+public class Zero extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Zero.class.getSimpleName());
+    public static final String ID = Register(Zero.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Zero()
     {

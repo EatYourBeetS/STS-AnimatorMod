@@ -50,7 +50,7 @@
 	},
 	"Martial Artist":
 	{
-		"DESCRIPTION": "This card's damage also scales with #yDexterity.",
+		"DESCRIPTION": "This card's damage is enhanced by #yDexterity.",
 		"NAMES": ["martial artist", "martial_artist"],
 		"PROPER_NAME": "Martial Artist"
 	},
@@ -104,7 +104,7 @@
 	},
 	"Spellcaster":
 	{
-		"DESCRIPTION": "This card's damage also scales with #yFocus.",
+		"DESCRIPTION": "This card's damage is enhanced by #yFocus.",
 		"NAMES": ["spellcaster"],
 		"PROPER_NAME": "Spellcaster"
 	},

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.PoisonPower;
+import eatyourbeets.powers.AnimatorPower;
 
 public class MarkOfPoisonPower extends AnimatorPower
 {

@@ -34,7 +34,7 @@ public class ElricEdward extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
-        GameActionsHelper.AddToBottom(new VariableDiscardAction(p, this.magicNumber, this, this::OnCardDiscard));
+        GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, this.magicNumber, this, this::OnCardDiscard));
     }
 
     @Override

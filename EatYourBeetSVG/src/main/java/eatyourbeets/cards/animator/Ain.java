@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Ain extends AnimatorCard
+public class Ain extends AnimatorCard implements Spellcaster
 {
     public static final String ID = Register(Ain.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -18,7 +19,7 @@ public class Ain extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(2,0, 3);
+        Initialize(1,0, 3);
 
         this.isMultiDamage = true;
 

@@ -36,7 +36,7 @@ public class Fredrika extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(9, 3, 3);
+        Initialize(9, 2, 2);
 
         SetSynergy(Synergies.Chaika, true);
     }
@@ -129,6 +129,7 @@ public class Fredrika extends AnimatorCard
     {
         if (TryUpgrade())
         {
+            upgradeMagicNumber(1);
             upgradeBlock(1);
             upgradeDamage(2);
         }

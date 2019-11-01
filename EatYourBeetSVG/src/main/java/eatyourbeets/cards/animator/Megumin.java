@@ -16,11 +16,12 @@ import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 
-public class Megumin extends AnimatorCard
+public class Megumin extends AnimatorCard implements Spellcaster
 {
     public static final String ID = Register(Megumin.class.getSimpleName(), EYBCardBadge.Synergy);
 

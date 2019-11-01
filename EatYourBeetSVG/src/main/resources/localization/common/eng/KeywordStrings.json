@@ -90,6 +90,12 @@
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
 	},
+	"Semi-Limited":
+	{
+		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",
+		"NAMES": ["semi-limited"],
+		"PROPER_NAME": "Semi-Limited"
+	},
 	"Malleable":
 	{
 		"DESCRIPTION": "Upon receiving attack damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of your turn.",

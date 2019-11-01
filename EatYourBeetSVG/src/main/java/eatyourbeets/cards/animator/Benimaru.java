@@ -17,7 +17,7 @@ public class Benimaru extends AnimatorCard
 
     public Benimaru()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
         Initialize(3, 0, 2);
 

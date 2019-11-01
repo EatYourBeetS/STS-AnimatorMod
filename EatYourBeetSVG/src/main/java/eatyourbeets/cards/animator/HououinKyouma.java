@@ -17,7 +17,7 @@ public class HououinKyouma extends AnimatorCard
 
     public HououinKyouma()
     {
-        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0, 0);
 
@@ -68,6 +68,9 @@ public class HououinKyouma extends AnimatorCard
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeBaseCost(1);
+        }
     }
 }

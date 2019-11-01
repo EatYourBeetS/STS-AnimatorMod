@@ -1,12 +1,9 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.powers.BlurPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.powers.AnimatorPower;
 
 public class GazelDwargonPower extends AnimatorPower
 {
@@ -14,25 +11,13 @@ public class GazelDwargonPower extends AnimatorPower
 
     private boolean handlePlayerBlock = false;
 
-    public GazelDwargonPower(AbstractPlayer owner, int amount)
+    public GazelDwargonPower(AbstractPlayer owner)
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
+        this.amount = -1;
 
         updateDescription();
-    }
-
-    @Override
-    public void onAfterUseCard(AbstractCard card, UseCardAction action)
-    {
-        super.onAfterUseCard(card, action);
-
-        if (card.type == AbstractCard.CardType.ATTACK)
-        {
-            GameActionsHelper.GainBlock(AbstractDungeon.player, this.amount);
-            this.flash();
-        }
     }
 
     @Override

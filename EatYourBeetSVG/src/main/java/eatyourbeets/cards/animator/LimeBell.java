@@ -25,9 +25,7 @@ public class LimeBell extends AnimatorCard
 
         this.tags.add(CardTags.HEALING);
 
-        this.exhaust = true;
-
-        AddExtendedDescription();
+        SetExhaust(true);
         SetSynergy(Synergies.AccelWorld);
     }
 
@@ -36,7 +34,7 @@ public class LimeBell extends AnimatorCard
     {
         GameActionsHelper.GainBlock(p, this.block);
 
-        GameActionsHelper.AddToBottom(new VariableDiscardAction(p, BaseMod.MAX_HAND_SIZE, this, this::OnDiscard));
+        GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, this, this::OnDiscard));
     }
 
     @Override

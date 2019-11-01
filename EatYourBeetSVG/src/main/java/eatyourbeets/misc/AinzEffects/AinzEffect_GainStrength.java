@@ -2,6 +2,7 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 
@@ -21,6 +22,6 @@ public class AinzEffect_GainStrength extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, ainz.magicNumber), ainz.magicNumber);
+        GameActionsHelper.ApplyPower(p, p, new ForcePower(p, ainz.magicNumber), ainz.magicNumber);
     }
 }

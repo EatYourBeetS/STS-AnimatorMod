@@ -33,6 +33,7 @@ public class Yuuichirou extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActionsHelper.DrawCard(p, 1);
     }
 
     @Override
@@ -42,14 +43,8 @@ public class Yuuichirou extends AnimatorCard
 
         GameActionsHelper.MakeCardInDiscardPile(new Asuramaru(), 1, false);
 
-        if (upgraded)
-        {
-            AbstractDungeon.player.discardPile.addToTop(new Dazed());
-        }
-        else
-        {
-            AbstractDungeon.player.discardPile.addToTop(new Wound());
-        }
+        AbstractDungeon.player.discardPile.addToTop(new Wound());
+        AbstractDungeon.player.discardPile.addToTop(new Wound());
     }
 
     @Override
@@ -57,7 +52,7 @@ public class Yuuichirou extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(3);
+            upgradeDamage(4);
         }
     }
 }

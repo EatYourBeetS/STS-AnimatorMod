@@ -9,14 +9,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Souei extends AnimatorCard
+public class Souei extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Souei.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(Souei.class.getSimpleName(), EYBCardBadge.Special);
 
     public Souei()
     {
@@ -25,6 +26,17 @@ public class Souei extends AnimatorCard
         Initialize(0,0, 6);
 
         SetSynergy(Synergies.TenSura);
+    }
+
+    @Override
+    public void applyPowers()
+    {
+        int dex = PlayerStatistics.GetDexterity();
+
+        magicNumber = baseMagicNumber + Math.max(0, Math.floorDiv(dex, 2));
+        isMagicNumberModified = (magicNumber != baseMagicNumber);
+
+        super.applyPowers();
     }
 
     @Override

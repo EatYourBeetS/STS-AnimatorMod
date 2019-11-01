@@ -2,12 +2,13 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.FocusPower;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 
-public class AinzEffect_GainFocus extends AinzEffect
+public class AinzEffect_GainIntellect extends AinzEffect
 {
-    public AinzEffect_GainFocus(int descriptionIndex)
+    public AinzEffect_GainIntellect(int descriptionIndex)
     {
         super(descriptionIndex);
     }
@@ -21,6 +22,6 @@ public class AinzEffect_GainFocus extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
-        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, ainz.magicNumber), ainz.magicNumber);
+        GameActionsHelper.ApplyPower(p, p, new IntellectPower(p, ainz.magicNumber), ainz.magicNumber);
     }
 }

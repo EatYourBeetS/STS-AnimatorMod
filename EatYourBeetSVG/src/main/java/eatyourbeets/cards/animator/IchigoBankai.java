@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.Hidden;
+import eatyourbeets.interfaces.metadata.Hidden;
 
 public class IchigoBankai extends AnimatorCard implements Hidden
 {

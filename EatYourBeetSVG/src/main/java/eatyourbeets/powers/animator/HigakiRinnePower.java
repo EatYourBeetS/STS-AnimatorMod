@@ -1,6 +1,7 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.animator.HigakiRinne;

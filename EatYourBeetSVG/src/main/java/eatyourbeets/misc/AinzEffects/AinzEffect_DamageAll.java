@@ -20,7 +20,7 @@ public class AinzEffect_DamageAll extends AinzEffect
     @Override
     protected void Setup(boolean upgraded)
     {
-        ainz.baseDamage = ainz.damage = upgraded ? 20 : 14;
+        ainz.baseDamage = ainz.damage = upgraded ? 16 : 10;
     }
 
     @Override

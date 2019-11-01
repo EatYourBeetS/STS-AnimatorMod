@@ -97,7 +97,7 @@
 	},
 	"animator:EnvyPower":
 	{
-		"DESCRIPTIONS": ["The first #b", " card/s you play every turn will Synergize."],
+		"DESCRIPTIONS": ["The first #b", " card(s) you play each turn will Synergize."],
 		"NAME": "Envy"
 	},
 	"animator:EvePower":
@@ -147,7 +147,7 @@
 	},
 	"animator:GazelDwargonPower":
 	{
-		"DESCRIPTIONS": ["Maintain half your Block at the start of each turn, whenever you play an #yAttack, gain #b", " Block."],
+		"DESCRIPTIONS": ["Maintain half your Block at the start of each turn."],
 		"NAME": "Gazel Dwargon"
 	},
 	"animator:GeassPower":
@@ -197,7 +197,7 @@
 	},
 	"animator:KaijinPower":
 	{
-		"DESCRIPTIONS": ["At the end of each turn, #yRetain a card and increase its damage and Block by #b", " this combat."],
+		"DESCRIPTIONS": ["At the end of each turn, #yRetain a card and increase its damage and #yBlock by #b", " this combat."],
 		"NAME": "Kaijin"
 	},
 	"animator:LightningCrystalPower":

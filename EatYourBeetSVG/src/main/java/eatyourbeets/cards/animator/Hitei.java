@@ -7,7 +7,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.HiteiPower;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Hitei extends AnimatorCard
 {
@@ -25,7 +27,14 @@ public class Hitei extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new HiteiPower(p, upgraded), 1));
+        GameActionsHelper.ApplyPower(p, p, new HiteiPower(p, upgraded), 1);
+
+        if (HasActiveSynergy())
+        {
+            PlayerStatistics.GainAgility(magicNumber);
+            PlayerStatistics.GainForce(magicNumber);
+            PlayerStatistics.GainIntellect(magicNumber);
+        }
     }
 
     @Override

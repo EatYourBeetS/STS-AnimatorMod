@@ -87,7 +87,7 @@ public class GurenAction extends AbstractGameAction
                     AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(card, AbstractDungeon.player.limbo));
                     AbstractDungeon.actionManager.addToTop(new WaitRealtimeAction(0.4F));
 
-                    GameActionsHelper.ApplyPower(source, source, new SupportDamagePower(source, supportDamage), supportDamage);
+                    //GameActionsHelper.ApplyPower(source, source, new SupportDamagePower(source, supportDamage), supportDamage);
                 }
                 else if (skip || !card.canUse(AbstractDungeon.player, (AbstractMonster) this.target))
                 {
@@ -100,7 +100,7 @@ public class GurenAction extends AbstractGameAction
                     if (card.type == AbstractCard.CardType.ATTACK)
                     {
                         card.exhaustOnUseOnce = true;
-                        GameActionsHelper.ApplyPower(source, source, new SupportDamagePower(source, supportDamage), supportDamage);
+                        //GameActionsHelper.ApplyPower(source, source, new SupportDamagePower(source, supportDamage), supportDamage);
                     }
 
                     card.applyPowers();

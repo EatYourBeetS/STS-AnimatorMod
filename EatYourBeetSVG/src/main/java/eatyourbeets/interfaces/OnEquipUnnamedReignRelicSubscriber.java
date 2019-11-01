@@ -1,6 +1,6 @@
 package eatyourbeets.interfaces;
 
-public interface AllowedUnnamedReignRelic
+public interface OnEquipUnnamedReignRelicSubscriber
 {
     void OnEquipUnnamedReignRelic();
 }

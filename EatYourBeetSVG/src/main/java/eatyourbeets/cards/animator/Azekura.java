@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class Azekura extends AnimatorCard
 {
-    public static final String ID = Register(Azekura.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Azekura.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
 
     public Azekura()
     {

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -18,7 +19,7 @@ import eatyourbeets.interfaces.OnAttackSubscriber;
 
 public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscriber, OnAttackSubscriber
 {
-    public static final String ID = Register(ChaikaBohdan.class.getSimpleName());
+    public static final String ID = Register(ChaikaBohdan.class.getSimpleName(), EYBCardBadge.Special);
 
     private int bonusDamage = 0;
 

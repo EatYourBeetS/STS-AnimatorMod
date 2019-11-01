@@ -9,15 +9,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.Resources_Animator_Images;
@@ -40,6 +38,7 @@ public abstract class EYBCard extends CustomCard
 
     protected final EYBCardText cardText;
     protected EYBCardData cardData;
+    protected boolean useDynamicTooltip;
 
     public boolean isSecondaryValueModified = false;
     public boolean upgradedSecondaryValue = false;
@@ -510,17 +509,15 @@ public abstract class EYBCard extends CustomCard
             return;
         }
 
-        float x, y, scale;
+        float scale;
         if (isCardPopup)
         {
             scale = Settings.scale;
-            y = (float)Settings.HEIGHT / 2.0F + 160 * scale;
-            x = (float)Settings.WIDTH / 2.0F - 320.0F * scale;
+            float x = (float)Settings.WIDTH / 2.0F + 228.0F * scale;
+            float y = (float)Settings.HEIGHT / 2.0F + 320 * scale;
 
             float mX = Gdx.input.getX();
             float mY = Settings.HEIGHT - Gdx.input.getY();
-
-            //Utilities.Logger.info("mY: " + mY + ", mY(s): " + mY * scale + ", Y: " + y);
 
             for (EYBCardBadge badge : cardData.badges)
             {
@@ -528,26 +525,30 @@ public abstract class EYBCard extends CustomCard
 
                 if (mX > (x + 10 * scale) && mX < (x + 90 * scale))
                 {
-                    if (mY < (y + 76 * scale) && mY > (y + 20 * scale))
+                    if (mY < (y + 76 * scale) && mY > (y + 16 * scale))
                     {
                         String[] text = Resources_Common_Strings.CardBadges.TEXT;
-                        TipHelper.renderGenericTip(x - (360 * scale), y + (96 * scale), text[badge.id + 1], text[0]);
+                        TipHelper.renderGenericTip(1300.0f * Settings.scale, 900.0f * Settings.scale, text[badge.id + 1], text[0]);
                     }
                 }
 
-                y -= 48 * scale;
+                y -= 60 * scale;
             }
         }
         else
         {
             scale = this.drawScale * Settings.scale;
-            y = this.current_y + 80 * scale;
-            x = this.current_x - 160 * scale;
 
+            int base_Y = 0;
             for (EYBCardBadge badge : cardData.badges)
             {
-                RenderHelpers.RenderOnCard(sb, this, badge.texture, x, y, 48);
-                y -= 24 * scale;
+                Vector2 offset = new Vector2(110, 160 + base_Y);
+
+                offset.rotate(angle);
+                offset.scl(scale);
+
+                RenderHelpers.RenderOnCard(sb, this, badge.texture, this.current_x + offset.x, this.current_y + offset.y, 48);
+                base_Y -= 30;
             }
         }
     }

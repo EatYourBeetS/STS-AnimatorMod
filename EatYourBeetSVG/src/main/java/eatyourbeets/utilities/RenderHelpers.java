@@ -1,11 +1,14 @@
 package eatyourbeets.utilities;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import eatyourbeets.cards.animator.Shuna;
 
 public class RenderHelpers
 {
@@ -47,6 +50,8 @@ public class RenderHelpers
     {
         RenderOnCard(sb, card, color, img, drawX, drawY, size, size);
     }
+
+    public static float offset = 0;
 
     public static void RenderOnCard(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height)
     {

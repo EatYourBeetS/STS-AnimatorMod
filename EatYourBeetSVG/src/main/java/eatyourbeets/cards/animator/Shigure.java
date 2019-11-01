@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -22,9 +23,7 @@ public class Shigure extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(7,0, 2);
-
-        //AddExtendedDescription();
+        Initialize(4,0, 3, 2);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -34,18 +33,19 @@ public class Shigure extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GainSupportDamage(AbstractDungeon.player, this.magicNumber);
+        GainSupportDamage(AbstractDungeon.player, this.secondaryValue);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new VFXAction(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F));
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
+        GameActionsHelper.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
+        GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, magicNumber), magicNumber);
 
         if (HasActiveSynergy())
         {
-            GainSupportDamage(p, this.magicNumber);
+            GainSupportDamage(p, this.secondaryValue);
         }
     }
 
@@ -59,7 +59,8 @@ public class Shigure extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(2);
+            upgradeMagicNumber(1);
         }
     }
 }

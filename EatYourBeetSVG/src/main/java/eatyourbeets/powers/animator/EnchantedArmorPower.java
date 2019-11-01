@@ -2,6 +2,7 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.powers.AnimatorPower;
 
 import java.text.DecimalFormat;
 

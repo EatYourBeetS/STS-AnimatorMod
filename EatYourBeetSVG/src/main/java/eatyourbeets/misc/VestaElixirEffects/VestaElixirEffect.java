@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.Sora;
 import eatyourbeets.cards.animator.Vesta_Elixir;
 import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.utilities.Utilities;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public abstract class VestaElixirEffect
 
     public String GetDescription()
     {
-        return rawDescription.replace("{0}", String.valueOf(amount));
+        return Utilities.Format(rawDescription, String.valueOf(amount));
     }
 
     public abstract void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player);

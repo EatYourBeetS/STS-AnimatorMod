@@ -14,12 +14,12 @@ public class Hemokinesis2Effect extends AbstractGameEffect
     private float tX;
     private float tY;
 
-    public Hemokinesis2Effect(float sX, float sY, float tX, float tY)
+    public Hemokinesis2Effect(float x, float y, float targetX, float targetY)
     {
-        this.x = sX;
-        this.y = sY;
-        this.tX = tX;
-        this.tY = tY;
+        this.x = x;
+        this.y = y;
+        this.tX = targetX;
+        this.tY = targetY;
         this.scale = 0.12F;
         this.duration = 0.5F;
     }

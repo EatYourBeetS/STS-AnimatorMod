@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.localization.*;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.interfaces.Hidden;
+import eatyourbeets.interfaces.metadata.Hidden;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,6 +26,7 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
                                                    EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
                                                    AddAudioSubscriber
 {
+    protected static final HashMap<String, Map<String, String>> dynamicKeywords = new HashMap<>();
     protected static final HashMap<String, Keyword> keywords = new HashMap<>();
     protected static final HashMap<String, Texture> textures = new HashMap<>();
     protected static final Logger logger = LogManager.getLogger(Resources_Animator.class.getName());
@@ -45,6 +46,11 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
         }
 
         return texture;
+    }
+
+    public static Map<String, String> GetDynamicKeyword(String keywordID)
+    {
+        return dynamicKeywords.get(keywordID);
     }
 
     public static Keyword GetKeyword(String keywordID)
@@ -271,6 +277,23 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
             }
 
             AbstractResources.keywords.put(id, keyword);
+        }
+    }
+
+    protected void LoadDynamicKeywords(String path)
+    {
+        String json = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
+
+        Gson gson = new Gson();
+        Type typeToken = new TypeToken<Map<String, Map<String, String>>>() {}.getType();
+        Map<String, Map<String, String>> keywords = gson.fromJson(json, typeToken);
+
+        for (Map.Entry<String, Map<String, String>> pair : keywords.entrySet())
+        {
+            String id = pair.getKey();
+            Map<String, String> keyword = pair.getValue();
+
+            AbstractResources.dynamicKeywords.put(id, keyword);
         }
     }
 

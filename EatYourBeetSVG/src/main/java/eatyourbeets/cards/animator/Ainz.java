@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -41,13 +42,15 @@ public class Ainz extends AnimatorCard
     }
 
     @Override
-    public void atTurnStart()
+    public void triggerWhenDrawn()
     {
-        super.atTurnStart();
+        super.triggerWhenDrawn();
 
         if (this.cost > 0)
         {
             this.updateCost(-1);
+            PlayerStatistics.GainIntellect(1);
+            PlayerStatistics.GainForce(1);
         }
     }
 

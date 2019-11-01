@@ -5,10 +5,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.powers.animator.SonicPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class Sonic extends AnimatorCard
+public class Sonic extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(Sonic.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -16,7 +17,7 @@ public class Sonic extends AnimatorCard
     {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 1);
 
         SetSynergy(Synergies.OnePunchMan);
     }

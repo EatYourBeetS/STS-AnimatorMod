@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.VariableDiscardAction;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.powers.animator.DemiurgePower;
+import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -45,7 +45,7 @@ public class Demiurge extends AnimatorCard
         }
         else
         {
-            GameActionsHelper.ApplyPowerSilently(p, p, new DemiurgePower(p, magicNumber), magicNumber);
+            GameActionsHelper.ApplyPowerSilently(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
         }
     }
 
@@ -62,7 +62,7 @@ public class Demiurge extends AnimatorCard
             if (cards.size() == 0)
             {
                 AbstractPlayer p = AbstractDungeon.player;
-                GameActionsHelper.ApplyPowerSilently(p, p, new DemiurgePower(p, magicNumber), magicNumber);
+                GameActionsHelper.ApplyPowerSilently(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
             }
         }
     }

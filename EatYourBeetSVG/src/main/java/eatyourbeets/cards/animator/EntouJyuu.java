@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.metadata.Hidden;
+import eatyourbeets.powers.animator.FlamingWeaponPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -24,7 +25,8 @@ public class EntouJyuu extends AnimatorCard implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new EntouJyuuPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.GainAgility(magicNumber);
+        GameActionsHelper.ApplyPower(p, p, new FlamingWeaponPower(p, 1), 1);
     }
 
     @Override

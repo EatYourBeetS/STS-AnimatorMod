@@ -1,13 +1,10 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.HiteiPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
@@ -31,9 +28,9 @@ public class Hitei extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            PlayerStatistics.GainAgility(magicNumber);
-            PlayerStatistics.GainForce(magicNumber);
-            PlayerStatistics.GainIntellect(magicNumber);
+            GameActionsHelper.GainAgility(magicNumber);
+            GameActionsHelper.GainForce(magicNumber);
+            GameActionsHelper.GainIntellect(magicNumber);
         }
     }
 

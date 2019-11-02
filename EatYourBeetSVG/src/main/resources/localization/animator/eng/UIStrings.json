@@ -47,8 +47,7 @@
 	{
 		"TEXT":
 		[
-			"Even though trophies and Synergies encourage you to build a deck around a single series, it is perfectly fine to mix different series, and even decks with no synergy at all can be successful.",
-			"You can press 'Shift' while hovering certain cards to see a preview of related cards or alternate card forms."
+			"Most of the cards in this mod have a secondary effect which triggers on certain conditions. NL You can hold #yRight #yClick at any time to check them, or #yLeft #yControl to toggle them."
 		]
 	},
 
@@ -69,8 +68,8 @@
 	{
 		"TEXT":
 		[
-			"Move up to # card/s to your Discard Pile.",
-			"Shuffle # card/s into your Draw Pile."
+			"Move up to {0} card/s to your Discard Pile.",
+			"Shuffle {0} card/s into your Draw Pile."
 		]
 	},
 
@@ -89,28 +88,28 @@
 			"Attack",
 			"Defend",
 			"Prepare",
-			"Upgrade all cards in your hand.",
-			"Deal !D! damage to a random enemy !M! times.",
+			"Upgrade all cards NL in your hand.",
+			"Deal !D! damage NL to a random NL enemy !M! times.",
 			"Deal !D! damage NL to ALL enemies.",
 			"Gain !B! Block.",
 			"Gain !M! Force.",
 			"Gain !M! Agility.",
 			"Gain !M! Thorns.",
 			"Motivate !M!.",
-			"Apply !M! Weak to ALL enemies.",
-			"Apply !M! Vulnerable to ALL enemies.",
+			"Apply !M! Weak NL to ALL enemies.",
+			"Apply !M! Vulnerable NL to ALL enemies.",
 			"Cycle !M! cards",
 			"Draw !M! cards.",
 			"Gain !M! Temp._HP.",
 			"Gain !M! Intellect.",
 			"Gain !M! Energy.",
-			"Apply !M! Poison to ALL enemies.",
-			"Apply !M! Burning to ALL enemies.",
+			"Apply !M! Poison NL to ALL enemies.",
+			"Apply !M! Burning NL to ALL enemies.",
 			"Gain !M! Intangible. NL Lose this Power.",
-			"Gain !M! Artifact. NL Remove all of your debuffs.",
-			"Play the top card of your draw pile.",
-			"Channel !M! random Orbs.",
-			"Play the top card of your draw pile twice."
+			"Gain !M! Artifact. NL Remove all of NL your debuffs.",
+			"Play the top NL card of your NL draw pile.",
+			"Channel !M! NL random Orbs.",
+			"Play the top NL card of your NL draw pile twice."
 		]
 	},
 

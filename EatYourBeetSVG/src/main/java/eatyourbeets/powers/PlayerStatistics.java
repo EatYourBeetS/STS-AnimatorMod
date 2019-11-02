@@ -574,9 +574,19 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         }
     }
 
+    public static boolean HasActivatedLimited(String effectID)
+    {
+        return limitedEffects.contains(effectID);
+    }
+
     public static boolean TryActivateLimited(String effectID)
     {
         return limitedEffects.add(effectID);
+    }
+
+    public static boolean HasActivatedSemiLimited(String effectID)
+    {
+        return semiLimitedEffects.contains(effectID);
     }
 
     public static boolean TryActivateSemiLimited(String effectID)
@@ -691,6 +701,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         return 0;
     }
 
+    public static int GetStrength()
+    {
+        return GetStrength(AbstractDungeon.player);
+    }
+
     public static int GetStrength(AbstractCreature creature)
     {
         StrengthPower power = (StrengthPower) creature.getPower(StrengthPower.POWER_ID);
@@ -716,24 +731,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         }
 
         return 0;
-    }
-
-    public static void GainForce(int amount)
-    {
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new ForcePower(p, amount), amount);
-    }
-
-    public static void GainIntellect(int amount)
-    {
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new IntellectPower(p, amount), amount);
-    }
-
-    public static void GainAgility(int amount)
-    {
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new AgilityPower(p, amount), amount);
     }
 
     public static void LoseTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)

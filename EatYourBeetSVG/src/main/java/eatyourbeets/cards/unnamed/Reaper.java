@@ -24,9 +24,8 @@ public class Reaper extends UnnamedCard
 
         AddExtendedDescription();
 
-        this.tags.add(CardTags.HEALING);
-
-        this.exhaust = true;
+        SetExhaust(true);
+        SetHealing(true);
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -20,6 +21,9 @@ import eatyourbeets.actions.animator.MotivateAction;
 import eatyourbeets.actions.common.*;
 import eatyourbeets.actions.unnamed.MoveToVoidAction;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.common.IntellectPower;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -398,6 +402,24 @@ public class GameActionsHelper
         ApplyPowerSilentlyAction action = new ApplyPowerSilentlyAction(target, source, power, stacks);
         AddToDefault(action);
         return action;
+    }
+
+    public static ApplyPowerAction GainForce(int amount)
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+        return ApplyPower(p, p, new ForcePower(p, amount), amount);
+    }
+
+    public static ApplyPowerAction GainIntellect(int amount)
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+        return ApplyPower(p, p, new IntellectPower(p, amount), amount);
+    }
+
+    public static ApplyPowerAction GainAgility(int amount)
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+        return ApplyPower(p, p, new AgilityPower(p, amount), amount);
     }
 
     public static AddTemporaryHPAction GainTemporaryHP(AbstractCreature target, int amount)

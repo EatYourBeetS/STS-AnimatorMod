@@ -23,9 +23,8 @@ public class LimeBell extends AnimatorCard
 
         Initialize(0, 7, 2);
 
-        this.tags.add(CardTags.HEALING);
-
         SetExhaust(true);
+        SetHealing(true);
         SetSynergy(Synergies.AccelWorld);
     }
 

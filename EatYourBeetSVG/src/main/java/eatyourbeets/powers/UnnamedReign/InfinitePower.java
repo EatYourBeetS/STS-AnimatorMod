@@ -44,7 +44,8 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     private final CustomTimeMaze timeMaze;
     private final int maxCardsPerTurn;
 
-    private boolean necronomicursed = false;
+    //private boolean necronomicursed = false; Solved by not allowing deck shuffling more than twice per turn
+
     private boolean progressStunCounter = true;
     private int stunCounter = 0;
     private int playerIntangibleCounter = 0;
@@ -208,28 +209,28 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
                 GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[22], 4, 4));
             }
         }
-        else
-        {
-            if (!necronomicursed)
-            {
-                AbstractPlayer p = AbstractDungeon.player;
-
-                int totalSize = (p.drawPile.size() + p.discardPile.size() + p.hand.size());
-                if (totalSize < 10 && PlayerStatistics.getCardsDrawnThisTurn() > (totalSize + 2))
-                {
-                    GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[31], 2f, 2f));
-                    GameActionsHelper.AddToBottom(new WaitRealtimeAction(2.5f));
-                    GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[32], 2f, 2f));
-                    GameActionsHelper.AddToBottom(new WaitRealtimeAction(2.5f));
-                    GameActionsHelper.SFX("NECRONOMICON");
-                    GameActionsHelper.MakeCardInDrawPile(new Necronomicurse(), 4, false);
-
-                    AnimatorCard_UltraRare.MarkAsSeen(Cthulhu.ID);
-                    AbstractDungeon.player.discardPile.addToTop(new Cthulhu());
-                    necronomicursed = true;
-                }
-            }
-        }
+//        else
+//        {
+//            if (!necronomicursed)
+//            {
+//                AbstractPlayer p = AbstractDungeon.player;
+//
+//                int totalSize = (p.drawPile.size() + p.discardPile.size() + p.hand.size());
+//                if (totalSize < 10 && PlayerStatistics.getCardsDrawnThisTurn() > (totalSize + 2))
+//                {
+//                    GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[31], 2f, 2f));
+//                    GameActionsHelper.AddToBottom(new WaitRealtimeAction(2.5f));
+//                    GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[32], 2f, 2f));
+//                    GameActionsHelper.AddToBottom(new WaitRealtimeAction(2.5f));
+//                    GameActionsHelper.SFX("NECRONOMICON");
+//                    GameActionsHelper.MakeCardInDrawPile(new Necronomicurse(), 4, false);
+//
+//                    AnimatorCard_UltraRare.MarkAsSeen(Cthulhu.ID);
+//                    AbstractDungeon.player.discardPile.addToTop(new Cthulhu());
+//                    necronomicursed = true;
+//                }
+//            }
+//        }
     }
 
     private void CardMessage(AbstractCard card, UseCardAction action)

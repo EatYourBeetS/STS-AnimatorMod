@@ -16,15 +16,13 @@ public class MelzalgaldAlt_3 extends MelzalgaldAlt
         super(ID);
 
         Initialize(7,0, 2);
-
-        SetSynergy(Synergies.OnePunchMan, true);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActionsHelper.ApplyPower(p, p, new RegenPower(p, magicNumber), magicNumber);
+        GameActionsHelper.GainIntellect(magicNumber);
     }
 
     @Override

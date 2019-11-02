@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class Evileye extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Evileye.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Discard);
+    public static final String ID = Register(Evileye.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Evileye()
     {
@@ -30,18 +30,6 @@ public class Evileye extends AnimatorCard implements Spellcaster
         Initialize(0,0, 1);
 
         SetSynergy(Synergies.Overlord);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        if (PlayerStatistics.TryActivateSemiLimited(this.cardID))
-        {
-            PlayerStatistics.GainIntellect(1);
-            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
-        }
     }
 
     @Override
@@ -59,9 +47,9 @@ public class Evileye extends AnimatorCard implements Spellcaster
         GameActionsHelper.DrawCard(p, magicNumber);
         GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
 
-        if (HasActiveSynergy() && PlayerStatistics.TryActivateSemiLimited(this.cardID))
+        if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(this.cardID))
         {
-            PlayerStatistics.GainIntellect(1);
+            GameActionsHelper.GainIntellect(2);
             GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
         }
     }

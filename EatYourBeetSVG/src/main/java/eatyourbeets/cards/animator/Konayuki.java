@@ -5,27 +5,35 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Konayuki extends AnimatorCard// implements OnBattleStartSubscriber, OnApplyPowerSubscriber
+public class Konayuki extends AnimatorCard
 {
-    public static final String ID = Register(Konayuki.class.getSimpleName());
+    public static final String ID = Register(Konayuki.class.getSimpleName(), EYBCardBadge.Drawn);
 
     public Konayuki()
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(25,0, 3);
-
-//        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
-//        {
-//            OnBattleStart();
-//        }
+        Initialize(30,0, 3);
 
         SetSynergy(Synergies.Katanagatari);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        if (PlayerStatistics.GetStrength() == 0 && PlayerStatistics.TryActivateSemiLimited(cardID))
+        {
+            modifyCostForTurn(-1);
+            this.flash();
+        }
     }
 
     @Override
@@ -33,7 +41,7 @@ public class Konayuki extends AnimatorCard// implements OnBattleStartSubscriber,
     {
         super.applyPowers();
 
-        if (PlayerStatistics.GetStrength(AbstractDungeon.player) >= 10)
+        if (PlayerStatistics.GetStrength() >= 10)
         {
             this.target = CardTarget.ENEMY;
         }
@@ -52,7 +60,7 @@ public class Konayuki extends AnimatorCard// implements OnBattleStartSubscriber,
         }
         else
         {
-            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber);
+            GameActionsHelper.GainForce(magicNumber);
         }
     }
 
@@ -61,38 +69,8 @@ public class Konayuki extends AnimatorCard// implements OnBattleStartSubscriber,
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(5);
+            upgradeDamage(10);
             upgradeMagicNumber(1);
         }
     }
-
-//    @Override
-//    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-//    {
-//        if (target.isPlayer && power.ID.equals(StrengthPower.POWER_ID))
-//        {
-//            if ((PlayerStatistics.GetStrength(target) + power.amount) >= 10)
-//            {
-//                this.target = CardTarget.ENEMY;
-//            }
-//            else
-//            {
-//                this.target = CardTarget.SELF;
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public void OnBattleStart()
-//    {
-//        PlayerStatistics.onApplyPower.Subscribe(this);
-//        if (PlayerStatistics.GetStrength(AbstractDungeon.player) >= 10)
-//        {
-//            this.target = CardTarget.ENEMY;
-//        }
-//        else
-//        {
-//            this.target = CardTarget.SELF;
-//        }
-//    }
 }

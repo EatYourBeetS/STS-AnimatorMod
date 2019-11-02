@@ -19,13 +19,11 @@ public class GoblinSlayer extends AnimatorCard
 
     public GoblinSlayer()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(6,6);
+        Initialize(6,0);
 
-        this.retain = true;
-
-        AddExtendedDescription();
+        SetRetain(true);
         SetSynergy(Synergies.GoblinSlayer);
     }
 
@@ -33,8 +31,6 @@ public class GoblinSlayer extends AnimatorCard
     public void atTurnStart()
     {
         super.atTurnStart();
-
-        this.retain = true;
 
         int turnCount = PlayerStatistics.getTurnCount();
         if (turnCount % 2 == 1)
@@ -58,7 +54,7 @@ public class GoblinSlayer extends AnimatorCard
     {
         super.triggerOnEndOfTurnForPlayingCard();
 
-        this.retain = true;
+        SetRetain(true);
     }
 
     @Override
@@ -70,8 +66,7 @@ public class GoblinSlayer extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActionsHelper.AddToBottom(new GoblinSlayerAction());
     }
 
@@ -80,8 +75,7 @@ public class GoblinSlayer extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
-            upgradeDamage(3);
+            upgradeBaseCost(1);
         }
     }
 

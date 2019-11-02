@@ -15,7 +15,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class ZankiKiguchi extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(ZankiKiguchi.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
+    public static final String ID = Register(ZankiKiguchi.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public ZankiKiguchi()
     {
@@ -23,18 +23,8 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
 
         Initialize(2,0,5);
 
-        //AddExtendedDescription();
-
         SetSynergy(Synergies.Katanagatari);
     }
-
-//    @Override
-//    public void triggerOnManualDiscard()
-//    {
-//        super.triggerOnManualDiscard();
-//
-//        BuffCards();
-//    }
 
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
@@ -45,15 +35,7 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        //GameActionsHelper.GainBlock(p, this.block);
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        //DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        //GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
-        if (HasActiveSynergy() && p.currentBlock >= this.magicNumber)
-        {
-            GameActionsHelper.AddToBottom(new LoseBlockAction(p, p, this.magicNumber));
-            GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, 1), 1);
-        }
     }
 
     @Override
@@ -64,27 +46,4 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
             upgradeDamage(3);
         }
     }
-
-//    private void OnDamage(Object state, AbstractMonster monster)
-//    {
-//        Integer initialBlock = Utilities.SafeCast(state, Integer.class);
-//        if (initialBlock != null && monster != null)
-//        {
-//            if (initialBlock > 0 && monster.currentBlock <= 0)
-//            {
-//                BuffCards();
-//            }
-//        }
-//    }
-//
-//    private void BuffCards()
-//    {
-//        for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-//        {
-//            if (c != this && c.baseDamage > 0)
-//            {
-//                GameActionsHelper.AddToBottom(new ModifyDamageAction(c.uuid, this.magicNumber));
-//            }
-//        }
-//    }
 }

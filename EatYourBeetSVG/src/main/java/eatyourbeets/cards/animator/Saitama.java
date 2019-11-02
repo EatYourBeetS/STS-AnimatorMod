@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -25,7 +26,7 @@ import eatyourbeets.utilities.Utilities;
 
 public class Saitama extends AnimatorCard
 {
-    public static final String ID = Register(Saitama.class.getSimpleName());
+    public static final String ID = Register(Saitama.class.getSimpleName(), EYBCardBadge.Special);
 
     private int stage;
 
@@ -81,9 +82,9 @@ public class Saitama extends AnimatorCard
 
             case 1:
             {
-                // Draw !M! Cards. NL Gain !SV! Temporary Dexterity.
+                // Draw !M! Cards. NL Gain 1 Dexterity.
                 GameActionsHelper.DrawCard(p, magicNumber);
-                PlayerStatistics.ApplyTemporaryDexterity(p, p, secondaryValue);
+                GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, 1), 1);
 
                 break;
             }
@@ -163,7 +164,7 @@ public class Saitama extends AnimatorCard
             case 0:
             {
                 // Do Nothing
-                this.cardText.overrideDescription = cardData.strings.DESCRIPTION;
+                this.cardText.overrideDescription = null;
 
                 Initialize(0, 0, 0, 0);
 
@@ -177,10 +178,10 @@ public class Saitama extends AnimatorCard
 
             case 1:
             {
-                // Draw !M! Cards. NL Gain !SV! Temporary Dexterity.
+                // Draw !M! Cards. NL Gain 1 Dexterity.
                 this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
 
-                Initialize(0, 0, 3, 3);
+                Initialize(0, 0, 3, 0);
 
                 this.target = CardTarget.SELF;
                 this.type = CardType.SKILL;

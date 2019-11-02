@@ -30,8 +30,8 @@ public class Asuramaru extends AnimatorCard implements Hidden
         //GameActionsHelper.GainBlock(p, this.block);
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.FIRE);
         GameActionsHelper.ApplyPower(p, p, new DemonFormPower(p, this.magicNumber), this.magicNumber);
-        PlayerStatistics.GainIntellect(magicNumber);
-        PlayerStatistics.GainAgility(magicNumber);
+        GameActionsHelper.GainIntellect(magicNumber);
+        GameActionsHelper.GainAgility(magicNumber);
 
         //GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber);
         //GameActionsHelper.ApplyPower(p, p, new FocusPower(p, this.magicNumber), this.magicNumber);

@@ -17,9 +17,7 @@ public class Melzalgald extends AnimatorCard
 
         Initialize(21, 0);
 
-        this.exhaust = true;
-        this.tags.add(CardTags.HEALING);
-
+        SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan, true);
     }
 

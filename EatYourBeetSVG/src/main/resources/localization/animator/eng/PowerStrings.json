@@ -17,7 +17,7 @@
 	},
 	"animator:BiyorigoPower":
 	{
-		"DESCRIPTIONS": ["Every 4 #yAttacks played, gain #b", " Strength and #b", " Dexterity."],
+		"DESCRIPTIONS": ["Whenever you gain #yDexterity, also gain #b", " #yForce."],
 		"NAME": "Bito Kanzashi"
 	},
 	"animator:BorosPower":
@@ -69,11 +69,6 @@
 	{
 		"DESCRIPTIONS": ["Heal #g", " HP at the start of your next turn."],
 		"NAME": "Delayed Heal"
-	},
-	"animator:DemiurgePower":
-	{
-		"DESCRIPTIONS": ["At the end of your turn, take #b", " damage."],
-		"NAME": "Demiurge"
 	},
 	"animator:EarthenThornsPower":
 	{
@@ -187,7 +182,7 @@
 	},
 	"animator:HiteiPower":
 	{
-		"DESCRIPTIONS": ["At the start of your turn gain a random #yBuff, then choose and Exhaust #b", " card/s in your deck."],
+		"DESCRIPTIONS": ["At the start of your turn, choose and Exhaust #b", " card/s in your deck."],
 		"NAME": "Princess Hitei"
 	},
 	"animator:InfinitePower":

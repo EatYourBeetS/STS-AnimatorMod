@@ -24,7 +24,7 @@ public class GuildGirl extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new GuildGirlPower(p, 1, this), 1);
+        GameActionsHelper.ApplyPower(p, p, new GuildGirlPower(p, 1, magicNumber), 1);
     }
 
     @Override

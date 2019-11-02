@@ -38,7 +38,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
     {
         super.triggerWhenDrawn();
 
-        PlayerStatistics.GainAgility(1);
+        GameActionsHelper.GainAgility(1);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
 
         if (HasActiveSynergy())
         {
-            PlayerStatistics.GainAgility(1);
+            GameActionsHelper.GainAgility(1);
         }
     }
 

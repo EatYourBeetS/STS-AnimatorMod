@@ -17,9 +17,7 @@ public class Biyorigo extends AnimatorCard
     {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0,1);
-
-        //this.baseSecondaryValue = this.secondaryValue = 0;
+        Initialize(0,0);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -27,12 +25,12 @@ public class Biyorigo extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-//        if (upgraded)
-//        {
-//            GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, this.secondaryValue), this.secondaryValue);
-//        }
-        GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
-        GameActionsHelper.ApplyPower(p, p, new BiyorigoPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.ApplyPower(p, p, new BiyorigoPower(p, 1), 1);
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
+        }
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.utilities.Utilities;
 
 public class TetRecoverAction extends AnimatorAction
 {
@@ -31,7 +32,7 @@ public class TetRecoverAction extends AnimatorAction
                 return;
             }
 
-            String message = TEXT[1].replace("#", String.valueOf(replaceNumber));
+            String message = Utilities.Format(TEXT[1], replaceNumber);
 
             AbstractDungeon.gridSelectScreen.open(p.discardPile, replaceNumber, true, message);
         }

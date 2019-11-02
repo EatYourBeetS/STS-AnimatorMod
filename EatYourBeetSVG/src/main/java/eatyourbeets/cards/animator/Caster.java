@@ -21,7 +21,7 @@ public class Caster extends AnimatorCard implements Spellcaster
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0,0, 2);
+        Initialize(0,0, 1);
 
         SetSynergy(Synergies.Fate);
     }
@@ -57,7 +57,7 @@ public class Caster extends AnimatorCard implements Spellcaster
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(2);
         }
     }
 }

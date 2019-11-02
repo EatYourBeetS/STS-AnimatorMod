@@ -1,17 +1,18 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.utilities.GameActionsHelper;
 
-public class Witch extends AnimatorCard
+public class Witch extends AnimatorCard implements OnAddedToDeckSubscriber
 {
     public static final String ID = Register(Witch.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -19,17 +20,18 @@ public class Witch extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0, 12,3);
+        Initialize(0, 9,2);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
 
     @Override
-    public void triggerOnExhaust()
+    public void applyPowers()
     {
-        super.triggerOnExhaust();
+        super.applyPowers();
 
-        GameActionsHelper.AddToBottom(new ObtainPotionAction(AbstractDungeon.returnRandomPotion(true)));
+        magicNumber = baseMagicNumber + Math.max(0, PlayerStatistics.GetFocus());
+        isMagicNumberModified = (baseMagicNumber != magicNumber);
     }
 
     @Override
@@ -48,7 +50,14 @@ public class Witch extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(3);
+            upgradeBlock(3);
+            upgradeMagicNumber(1);
         }
+    }
+
+    @Override
+    public void OnAddedToDeck()
+    {
+        AbstractDungeon.player.obtainPotion(AbstractDungeon.returnRandomPotion(AbstractPotion.PotionRarity.UNCOMMON, false));
     }
 }

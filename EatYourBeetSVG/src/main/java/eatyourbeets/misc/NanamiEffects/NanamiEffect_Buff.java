@@ -10,7 +10,7 @@ public class NanamiEffect_Buff extends NanamiEffect
 {
     public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
     {
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, GetStrength(nanami)), GetStrength(nanami));
+        GameActionsHelper.GainForce(GetStrength(nanami));
     }
 
     public static String UpdateDescription(Nanami nanami)

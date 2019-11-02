@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -28,18 +29,14 @@ public class DolaCouronne extends AnimatorCard
         super.triggerOnExhaust();
 
         AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, 1), 1);
+        GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.GainBlock(p, this.block);
-
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.DrawCard(p, 1);
-        }
+        GameActionsHelper.Discard(1, false);
     }
 
     @Override

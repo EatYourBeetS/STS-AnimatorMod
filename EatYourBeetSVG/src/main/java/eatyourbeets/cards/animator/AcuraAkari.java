@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
@@ -14,11 +15,9 @@ public class AcuraAkari extends AnimatorCard
 
     public AcuraAkari()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 1);
-
-        this.baseSecondaryValue = this.secondaryValue = 1;
+        Initialize(0, 0, 2, 2);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -26,22 +25,28 @@ public class AcuraAkari extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, this.magicNumber), this.magicNumber);
-
-        if (GetOtherCardsInHand().size() > 0)
+        if (GetOtherCardsInHand().size() >= 1)
         {
             GameActionsHelper.Discard(1, false);
 
-            for (int i = 0; i < secondaryValue; i++)
+            for (int i = 0; i < magicNumber; i++)
             {
                 GameActionsHelper.MakeCardInHand(ThrowingKnife.GetRandomCard(), 1, upgraded);
             }
+        }
+
+        if (HasActiveSynergy() && PlayerStatistics.TryActivateSemiLimited(cardID))
+        {
+            GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, secondaryValue), secondaryValue);
         }
     }
 
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeBaseCost(0);
+        }
     }
 }

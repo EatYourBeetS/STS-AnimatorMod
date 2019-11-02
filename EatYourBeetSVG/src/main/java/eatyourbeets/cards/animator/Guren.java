@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -14,7 +15,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Guren extends AnimatorCard
 {
-    public static final String ID = Register(Guren.class.getSimpleName());
+    public static final String ID = Register(Guren.class.getSimpleName(), EYBCardBadge.Special);
 
     public Guren()
     {

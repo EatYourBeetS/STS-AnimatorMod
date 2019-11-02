@@ -14,7 +14,7 @@ import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register(MumenRider.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(MumenRider.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     private int turns;
 
@@ -24,9 +24,17 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
         Initialize(2, 0, 20);
 
-        this.exhaust = true;
-
+        SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        turns = AbstractDungeon.cardRandomRng.random(0, 5);
+        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
@@ -38,9 +46,6 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         {
             GameActionsHelper.DrawCard(p, 1);
         }
-
-        turns = AbstractDungeon.cardRandomRng.random(0, 5);
-        PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.powers.NoDrawPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
@@ -16,12 +17,15 @@ import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
+import eatyourbeets.utilities.GameActionsHelper;
 import patches.RelicObtainedPatches;
 
 import java.util.ArrayList;
 
 public abstract class UnnamedReignRelic extends AnimatorRelic implements OnReceiveRewardsSubscriber
 {
+    int shuffles = 0;
+
     public UnnamedReignRelic(String id, RelicTier tier, LandingSound sfx)
     {
         super(id, tier, sfx);
@@ -43,7 +47,28 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
         return false;
     }
 
-// TODO: Re-Enable this
+    @Override
+    public void atTurnStartPostDraw()
+    {
+        super.atTurnStartPostDraw();
+
+        shuffles = 0;
+    }
+
+    @Override
+    public void onShuffle()
+    {
+        super.onShuffle();
+
+        shuffles += 1;
+        if (shuffles > 2)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.ApplyPower(p, p, new NoDrawPower(p));
+        }
+    }
+
+    // TODO: Re-Enable this
 //
     @Override
     public void update()

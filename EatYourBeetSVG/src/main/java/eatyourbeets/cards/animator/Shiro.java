@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.DrawSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
@@ -35,6 +36,15 @@ public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSy
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        for (AbstractCard c : p.drawPile.group)
+        {
+            if (Sora.ID.equals(c.cardID))
+            {
+                GameActionsHelper.AddToTop(new DrawSpecificCardAction(c));
+                break;
+            }
+        }
+
         GameActionsHelper.ApplyPower(p, p, new ShiroPower(p), 1);
     }
 

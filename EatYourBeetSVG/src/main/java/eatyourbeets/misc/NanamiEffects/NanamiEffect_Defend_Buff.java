@@ -23,8 +23,10 @@ public class NanamiEffect_Defend_Buff extends NanamiEffect
         }
 
         int strength = GetStrength(nanami);
-
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, strength), strength);
+        if (strength > 0)
+        {
+            GameActionsHelper.GainForce(strength);
+        }
     }
 
     public static String UpdateDescription(Nanami nanami)

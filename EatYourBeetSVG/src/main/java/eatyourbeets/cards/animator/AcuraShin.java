@@ -17,13 +17,9 @@ public class AcuraShin extends AnimatorCard
 
     public AcuraShin()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
         Initialize(2,0, 3);
-
-        this.isMultiDamage = true;
-
-        AddExtendedDescription();
 
         SetSynergy(Synergies.Chaika);
     }
@@ -31,12 +27,9 @@ public class AcuraShin extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.POISON);
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
-        {
-            GameActionsHelper.ApplyPower(p, m1, new PoisonPower(m1, p, this.magicNumber), this.magicNumber);
-        }
-
+        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, 3), 3);
         GameActionsHelper.ApplyPower(p, p, new PoisonAffinityPower(p, 1), 1);
     }
 

@@ -15,6 +15,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnLoseHpSubscriber;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleStartSubscriber
 {
@@ -29,17 +30,16 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0, 2);
+        Initialize(0,0, 3);
 
-        this.exhaust = true;
-        this.tags.add(CardTags.HEALING);
+        SetExhaust(true);
+        SetHealing(true);
+        SetSynergy(Synergies.Konosuba);
 
         if (revive && PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
         {
             OnBattleStart();
         }
-
-        SetSynergy(Synergies.Konosuba);
     }
 
     @Override
@@ -51,32 +51,36 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     @Override
     public int OnLoseHp(int damageAmount)
     {
-        AbstractPlayer player = AbstractDungeon.player;
-        if (InPlayerDeck() && damageAmount > 0 && player.currentHealth <= damageAmount)
+        if (!PlayerStatistics.HasActivatedLimited(cardID))
         {
-            AbstractCard c = StSLib.getMasterDeckEquivalent(this);
-            if (c != null)
+            AbstractPlayer player = AbstractDungeon.player;
+            if (InPlayerDeck() && damageAmount > 0 && player.currentHealth <= damageAmount)
             {
-                player.masterDeck.removeCard(c);
-            }
-            for (AbstractCard card : GetAllInBattleInstances.get(this.uuid))
-            {
-                player.discardPile.removeCard(card);
-                player.drawPile.removeCard(card);
-                player.hand.removeCard(card);
-                player.hand.refreshHandLayout();
-            }
+                AbstractCard c = StSLib.getMasterDeckEquivalent(this);
+                if (c != null)
+                {
+                    player.masterDeck.removeCard(c);
+                }
+                for (AbstractCard card : GetAllInBattleInstances.get(this.uuid))
+                {
+                    player.discardPile.removeCard(card);
+                    player.drawPile.removeCard(card);
+                    player.hand.removeCard(card);
+                    player.hand.refreshHandLayout();
+                }
 
-            Eris temp = new Eris(false);
-            if (upgraded)
-            {
-                temp.upgrade();
+                Eris temp = new Eris(false);
+                if (upgraded)
+                {
+                    temp.upgrade();
+                }
+
+                AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(temp));
+                PlayerStatistics.onLoseHp.Unsubscribe(this);
+                PlayerStatistics.TryActivateLimited(cardID);
+
+                return 0;
             }
-
-            AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(temp));
-            PlayerStatistics.onLoseHp.Unsubscribe(this);
-
-            return 0;
         }
 
         return damageAmount;
@@ -85,7 +89,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToBottom(new HealAction(p, p, this.magicNumber));
+        GameActionsHelper.AddToBottom(new HealAction(p, p, magicNumber));
     }
 
     @Override
@@ -93,7 +97,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(3);
         }
     }
 

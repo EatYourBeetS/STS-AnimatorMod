@@ -116,8 +116,8 @@
 	},
 	"Synergy":
 	{
-		"DESCRIPTION": "A card #ySynergizes if the card previously played this turn was from the same series.",
-		"NAMES": ["synergy", "synergies", "synergize", "synergizes"],
+		"DESCRIPTION": "A card #ySynergizes if the card previously played this turn was from the same series. NL #ySpellcasters and #yMartial #yArtists also #ySynergize among themselves.",
+		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized"],
 		"PROPER_NAME": "Synergy"
 	},
 	"Throwing-Knife":

@@ -16,8 +16,9 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnAttackSubscriber;
+import eatyourbeets.utilities.Utilities;
 
-public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscriber, OnAttackSubscriber
+public class ChaikaBohdan extends AnimatorCard
 {
     public static final String ID = Register(ChaikaBohdan.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -27,17 +28,29 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5,0,2);
+        Initialize(5,0,3, 2);
 
-        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
-        {
-            OnBattleStart();
-        }
-
-        this.baseSecondaryValue = this.secondaryValue = 3;
-
-        AddExtendedDescription();
         SetSynergy(Synergies.Chaika);
+    }
+
+    @Override
+    public void triggerOnOtherCardPlayed(AbstractCard c)
+    {
+        super.triggerOnOtherCardPlayed(c);
+
+        if (c.type == CardType.ATTACK && AbstractDungeon.player.hand.contains(this))
+        {
+            for (AbstractCard c2 : GetAllInBattleInstances())
+            {
+                ChaikaBohdan chaika = Utilities.SafeCast(c2, ChaikaBohdan.class);
+                if (chaika != null)
+                {
+                    chaika.AddDamageBonus(this.secondaryValue);
+                }
+            }
+
+            this.flash();
+        }
     }
 
     @Override
@@ -50,9 +63,10 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
         {
             handSize -= 1;
         }
+
         if (handSize <= 0)
         {
-            GameActionsHelper.DrawCard(p, this.secondaryValue);
+            GameActionsHelper.DrawCard(p, magicNumber);
         }
 
         AddDamageBonus(-bonusDamage);
@@ -64,27 +78,6 @@ public class ChaikaBohdan extends AnimatorCard implements OnBattleStartSubscribe
         if (TryUpgrade())
         {
             upgradeDamage(4);
-        }
-    }
-
-    @Override
-    public void OnBattleStart()
-    {
-        PlayerStatistics.onAttack.Subscribe(this);
-    }
-
-    @Override
-    public void OnAttack(DamageInfo info, int damageAmount, AbstractCreature target)
-    {
-        AbstractPlayer player = AbstractDungeon.player;
-        if (player.hand.contains(this) && target instanceof AbstractMonster && info.owner == player && info.type != DamageInfo.DamageType.THORNS)
-        {
-            for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
-            {
-                AddDamageBonus(this.magicNumber);
-            }
-
-            this.flash();
         }
     }
 

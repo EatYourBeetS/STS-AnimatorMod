@@ -29,7 +29,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
         //super(id, cost, type, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.SPECIAL, target);
         super(id, cost, type, CardColor.COLORLESS, CardRarity.SPECIAL, target);
 
-        tags.add(AbstractEnums.CardTags.UNIQUE);
+        SetUnique(true);
 
         setOrbTexture(Resources_Animator_Images.ORB_A_PNG, Resources_Animator_Images.ORB_B_PNG);
     }

@@ -47,7 +47,7 @@ public class EYBCardText
         {
             this.index = index;
 
-            if (overrideDescription != null)
+            if (index == 0 && overrideDescription != null)
             {
                 card.rawDescription = overrideDescription;
             }

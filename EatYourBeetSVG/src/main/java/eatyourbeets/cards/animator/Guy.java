@@ -30,7 +30,6 @@ public class Guy extends AnimatorCard
     {
         GameActionsHelper.DrawCard(p, this.magicNumber);
         GameActionsHelper.Discard(this.magicNumber, false);
-        //GameActionsHelper.AddToBottom(new VariableDiscardAction(p, this.magicNumber, this, this::OnDiscard, false));
 
         if (HasActiveSynergy())
         {
@@ -44,21 +43,6 @@ public class Guy extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
-        }
-    }
-
-    private void OnDiscard(Object state, ArrayList<AbstractCard> cards)
-    {
-        if (state == this && cards != null && cards.size() > 0)
-        {
-            for (AbstractCard card : cards)
-            {
-                if (card.type == CardType.ATTACK)
-                {
-                    GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
-                    return;
-                }
-            }
         }
     }
 }

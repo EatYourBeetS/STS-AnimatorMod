@@ -1,12 +1,15 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.DolaRikuAction;
+import eatyourbeets.actions.common.DrawSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class DolaRiku extends AnimatorCard
 {
@@ -24,7 +27,19 @@ public class DolaRiku extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager.addToTop(new DolaRikuAction(p, this.magicNumber));
+        GameActionsHelper.AddToBottom(new DolaRikuAction(p, this.magicNumber));
+
+        if (HasActiveSynergy())
+        {
+            for (AbstractCard c : p.drawPile.group)
+            {
+                if (c.costForTurn == 0 && c.type != CardType.CURSE && c.type != CardType.STATUS)
+                {
+                    GameActionsHelper.AddToTop(new DrawSpecificCardAction(c));
+                    return;
+                }
+            }
+        }
     }
 
     @Override

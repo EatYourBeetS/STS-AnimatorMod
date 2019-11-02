@@ -84,7 +84,7 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (tryActivate(8)) // 40
         {
-            GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
+            GameActionsHelper.GainIntellect(1);
         }
         else if (tryActivate(6)) // 46
         {
@@ -97,26 +97,26 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (tryActivate(6)) // 58
         {
-            GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, 1), 1);
+            GameActionsHelper.GainAgility(1);
         }
         else if (tryActivate(6)) // 64
         {
-            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
+            GameActionsHelper.GainForce(1);
         }
         else if (tryActivate(4)) // 68
         {
-            GameActionsHelper.ApplyPower(p, p, new IntangiblePlayerPower(p, 1), 1);
+            GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
         }
         else if (tryActivate(6)) // 74
         {
-            GameActionsHelper.AddToBottom(new ApplyPowerAction(p, p, new ArtifactPower(p, 1), 1));
+            GameActionsHelper.GainTemporaryHP(p, 2);
         }
         else if (tryActivate(8)) // 82
         {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
             if (m != null)
             {
-                GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, 2, false), 2));
+                GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, 1, false), 1));
             }
         }
         else if (tryActivate(8)) // 90
@@ -124,7 +124,7 @@ public class HigakiRinneAction extends AnimatorAction
             AbstractMonster m = AbstractDungeon.getRandomMonster();
             if (m != null)
             {
-                GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new WeakPower(m, 2, false), 2));
+                GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new WeakPower(m, 1, false), 1));
             }
         }
         else if (tryActivate(8)) // 98
@@ -223,15 +223,7 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (tryActivate(3)) // 172
         {
-            if (p.hand.size() > 0)
-            {
-                AbstractCard c = p.hand.getRandomCard(true);
-                if (c.costForTurn > 0)
-                {
-                    c.setCostForTurn(c.costForTurn - 1);
-                    c.flash();
-                }
-            }
+            GameActionsHelper.Motivate(1);
         }
         else if (tryActivate(3)) // 175
         {

@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -23,6 +24,14 @@ public class AcuraTooru extends AnimatorCard
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActionsHelper.GainBlock(AbstractDungeon.player, block);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
@@ -36,8 +45,6 @@ public class AcuraTooru extends AnimatorCard
         if (HasActiveSynergy())
         {
             GameActionsHelper.GainBlock(p, block);
-            //GameActionsHelper.CycleCardAction(this.magicNumber);
-            //GameActionsHelper.ApplyPower(p, p, new DrawCardNextTurnPower(p, 1), 1);
         }
     }
 

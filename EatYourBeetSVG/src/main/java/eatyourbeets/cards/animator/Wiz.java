@@ -7,18 +7,20 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.ModifyMagicNumberAction;
 import eatyourbeets.actions.animator.WizAction;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Wiz extends AnimatorCard
 {
-    public static final String ID = Register(Wiz.class.getSimpleName());
+    public static final String ID = Register(Wiz.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Wiz()
     {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0,0);
+        Initialize(0,0);
 
         AddExtendedDescription();
 
@@ -32,17 +34,14 @@ public class Wiz extends AnimatorCard
         {
             AbstractDungeon.actionManager.addToBottom(new ExhaustAction(p, p, 1, false));
             AbstractDungeon.actionManager.addToBottom(new WizAction(p));
-
-            if (this.magicNumber > 1)
-            {
-                AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(this.uuid, -1));
-            }
         }
 
-        if (this.magicNumber <= 1)
+        if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(cardID))
         {
-            GameActionsHelper.PurgeCard(this);
+            return;
         }
+
+        GameActionsHelper.PurgeCard(this);
     }
 
     @Override

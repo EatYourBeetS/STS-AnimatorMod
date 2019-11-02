@@ -28,11 +28,10 @@ public class Add extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 9);
+        Initialize(0,0, 6);
 
-        this.exhaust = true;
-        this.isEthereal = true;
-
+        SetExhaust(true);
+        SetEthereal(true);
         SetSynergy(Synergies.Elsword);
     }
 
@@ -56,7 +55,7 @@ public class Add extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            this.isEthereal = false;
+            SetEthereal(false);
             upgradeMagicNumber(3);
         }
     }

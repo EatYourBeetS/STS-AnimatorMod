@@ -5,12 +5,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Shichika extends AnimatorCard
 {
-    public static final String ID = Register(Shichika.class.getSimpleName());
+    public static final String ID = Register(Shichika.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Shichika()
     {
@@ -28,12 +30,24 @@ public class Shichika extends AnimatorCard
     }
 
     @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+
+        magicNumber = baseMagicNumber + Math.max(0, Math.floorDiv(PlayerStatistics.GetDexterity(), 2));
+        isMagicNumberModified = (baseMagicNumber != magicNumber);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, secondaryValue), secondaryValue);
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
+        GameActionsHelper.GainForce(magicNumber);
 
-        GameActionsHelper.MakeCardInHand(new ShichikaKyotouryuu(), 1, upgraded);
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.MakeCardInHand(new ShichikaKyotouryuu(), 1, false);
+        }
     }
 
     @Override
@@ -42,6 +56,7 @@ public class Shichika extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeSecondaryValue(1);
+            upgradeMagicNumber(1);
         }
     }
 }

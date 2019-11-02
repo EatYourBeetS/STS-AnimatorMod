@@ -17,8 +17,7 @@ public class Envy extends AnimatorCard
 
         Initialize(0,0, 20);
 
-        tags.add(CardTags.HEALING);
-
+        SetHealing(true);
         SetSynergy(Synergies.FullmetalAlchemist, true);
     }
 

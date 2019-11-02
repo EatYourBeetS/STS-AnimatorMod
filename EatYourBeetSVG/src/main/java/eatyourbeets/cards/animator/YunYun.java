@@ -7,7 +7,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.PlayerStatistics;
@@ -17,7 +19,7 @@ import eatyourbeets.cards.Synergies;
 
 public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber, Spellcaster
 {
-    public static final String ID = Register(YunYun.class.getSimpleName());
+    public static final String ID = Register(YunYun.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     private int costModifier = 0;
 
@@ -29,6 +31,14 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber, Spe
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Konosuba);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        GameActionsHelper.ChannelOrb(new Lightning(), true);
     }
 
     @Override

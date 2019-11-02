@@ -66,6 +66,11 @@ public class Mitsurugi extends AnimatorCard
         {
             GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         }
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.GainForce(1);
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.common.TemporaryRetainPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -10,15 +11,13 @@ import eatyourbeets.cards.Synergies;
 
 public class LizardPriest extends AnimatorCard
 {
-    public static final String ID = Register(LizardPriest.class.getSimpleName());
+    public static final String ID = Register(LizardPriest.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public LizardPriest()
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0, 8, 1);
-
-        this.baseSecondaryValue = this.secondaryValue = 2;
+        Initialize(0, 8, 1, 2);
 
         SetSynergy(Synergies.GoblinSlayer);
     }

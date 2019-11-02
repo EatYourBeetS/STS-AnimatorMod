@@ -25,29 +25,6 @@ public class PandorasActor extends AnimatorCard implements StartupCard
         SetSynergy(Synergies.Overlord, true);
     }
 
-//    @SpireOverride
-//    protected void applyPowersToBlock()
-//    {
-//        float tmp = (float) this.baseBlock;
-//        if (HasActiveSynergy())
-//        {
-//            tmp += magicNumber;
-//        }
-//
-//        for (AbstractPower p : AbstractDungeon.player.powers)
-//        {
-//            tmp = p.modifyBlock(tmp);
-//        }
-//
-//        if (tmp < 0.0F)
-//        {
-//            tmp = 0.0F;
-//        }
-//
-//        this.block = MathUtils.floor(tmp);
-//        this.isBlockModified = this.block != this.baseBlock;
-//    }
-
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {

@@ -19,7 +19,7 @@ public class NanamiEffect_Attack_Buff extends NanamiEffect
         int strength = GetStrength(nanami);
         if (strength > 0)
         {
-            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, strength), strength);
+            GameActionsHelper.GainForce(strength);
         }
     }
 

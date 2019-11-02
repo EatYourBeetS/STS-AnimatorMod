@@ -18,14 +18,18 @@ public class ShichikaKyotouryuu extends AnimatorCard implements Hidden
 
     public ShichikaKyotouryuu()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(ID, 0, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
         Initialize(1, 0, 3);
 
-        this.exhaust = true;
-        //this.isEthereal = true;
-
+        SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
+    }
+
+    @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetDexterity(player));
     }
 
     @Override
@@ -36,20 +40,14 @@ public class ShichikaKyotouryuu extends AnimatorCard implements Hidden
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        if (upgraded)
-        {
-            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        }
+//        if (upgraded)
+//        {
+//            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+//        }
 
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
         GameActionsHelper.AddToBottom(new VFXAction(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F));
-
-        if (PlayerStatistics.GetDexterity(p) >= 3)
-        {
-            GameActionsHelper.GainEnergy(1);
-            GameActionsHelper.DrawCard(p, 1);
-        }
     }
 
     @Override

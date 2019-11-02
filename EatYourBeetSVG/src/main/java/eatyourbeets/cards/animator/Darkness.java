@@ -30,6 +30,7 @@ public class Darkness extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        GameActionsHelper.GainBlock(p, block);
         GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber);
         GameActionsHelper.ApplyPower(p, p, new DarknessPower(p, 1), 1);
     }

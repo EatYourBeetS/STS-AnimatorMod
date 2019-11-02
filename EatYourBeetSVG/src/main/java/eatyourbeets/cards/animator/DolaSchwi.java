@@ -33,12 +33,16 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ChannelOrb(new Lightning(), true);
         GameActionsHelper.ApplyPower(p, m, new LockOnPower(m, this.magicNumber), this.magicNumber);
 
         if (ProgressCooldown())
         {
             OnCooldownCompleted(p, m);
+        }
+
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.ChannelOrb(new Lightning(), false);
         }
     }
 
@@ -63,6 +67,11 @@ public class DolaSchwi extends AnimatorCard_Cooldown
         if (m == null)
         {
             m = Utilities.GetRandomElement(PlayerStatistics.GetCurrentEnemies(true));
+
+            if (m == null)
+            {
+                return;
+            }
         }
 
         this.calculateCardDamage(m);

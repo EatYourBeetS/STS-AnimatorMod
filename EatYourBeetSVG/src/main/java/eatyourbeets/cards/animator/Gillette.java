@@ -38,11 +38,6 @@ public class Gillette extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-//        if (GameActionManager.totalDiscardedThisTurn > 0)
-//        {
-//            GameActionsHelper.GainBlock(p, this.block);
-//        }
-
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActionsHelper.ApplyPower(p, p, new EnergizedPower(p, 1), 1);
     }

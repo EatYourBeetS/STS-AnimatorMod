@@ -26,12 +26,6 @@ public class Viivi extends AnimatorCard
     }
 
     @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-    }
-
-    @Override
     public void triggerOnManualDiscard()
     {
         super.triggerOnManualDiscard();

@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.ChemicalX;
@@ -24,6 +25,9 @@ public class Nanami extends AnimatorCard
 
         Initialize(5,4, 3);
 
+        AddExtendedDescription();
+
+        SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
     }
 
@@ -31,6 +35,10 @@ public class Nanami extends AnimatorCard
     public void calculateCardDamage(AbstractMonster mo)
     {
         super.calculateCardDamage(mo);
+
+        targetDrawScale = 1f;
+        target_x = Settings.WIDTH * 0.4f;
+        target_y = Settings.HEIGHT * 0.4f;
 
         target = mo;
     }

@@ -26,9 +26,8 @@ public class Gluttony extends AnimatorCard
 
         AddExtendedDescription();
 
-        this.exhaust = true;
-        this.tags.add(CardTags.HEALING);
-
+        SetExhaust(true);
+        SetHealing(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 

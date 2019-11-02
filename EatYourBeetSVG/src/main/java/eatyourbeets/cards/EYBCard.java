@@ -414,22 +414,47 @@ public abstract class EYBCard extends CustomCard
         customTooltips.add(tooltip);
     }
 
-    protected void SetMultiDamage(boolean value)
+    public void SetMultiDamage(boolean value)
     {
         this.isMultiDamage = value;
     }
 
-    protected void SetExhaust(boolean value)
+    public void SetRetain(boolean value)
+    {
+        this.retain = value;
+    }
+
+    public void SetInnate(boolean value)
+    {
+        this.isInnate = value;
+    }
+
+    public void SetExhaust(boolean value)
     {
         this.exhaust = value;
     }
 
-    protected void SetEthereal(boolean value)
+    public void SetEthereal(boolean value)
     {
         this.isEthereal = value;
     }
 
-    protected void SetHealing(boolean value)
+    public void SetLoyal(boolean value)
+    {
+        if (value)
+        {
+            if (!tags.contains(AbstractEnums.CardTags.LOYAL))
+            {
+                tags.add(AbstractEnums.CardTags.LOYAL);
+            }
+        }
+        else
+        {
+            tags.remove(AbstractEnums.CardTags.LOYAL);
+        }
+    }
+
+    public void SetHealing(boolean value)
     {
         if (value)
         {
@@ -444,7 +469,7 @@ public abstract class EYBCard extends CustomCard
         }
     }
 
-    protected void SetPurge(boolean value)
+    public void SetPurge(boolean value)
     {
         if (value)
         {
@@ -459,7 +484,7 @@ public abstract class EYBCard extends CustomCard
         }
     }
 
-    protected void SetUnique(boolean value)
+    public void SetUnique(boolean value)
     {
         if (value)
         {

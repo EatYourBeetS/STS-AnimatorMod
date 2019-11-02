@@ -38,6 +38,12 @@ public class Megumin extends AnimatorCard implements Spellcaster
     }
 
     @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        return super.calculateModifiedCardDamage(player, mo, tmp + (PlayerStatistics.GetFocus(player) * 4));
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.1F));
@@ -56,7 +62,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
         }
         GameActionsHelper.AddToBottom(new DamageAllEnemiesAction(p, multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
 
-        if (HasActiveSynergy())
+        if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(cardID))
         {
             for (AbstractCard c : GetAllInstances())
             {

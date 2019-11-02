@@ -27,20 +27,12 @@ public class Tatsumaki extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.ChannelOrb(new Air(), true);
+        GameActionsHelper.GainIntellect(magicNumber);
 
-        PlayerStatistics.ApplyTemporaryFocus(p, p, magicNumber);
-
-        if (HasActiveSynergy())
+        if (PlayerStatistics.GetUniqueOrbsCount() >= 3 && PlayerStatistics.TryActivateLimited(this.cardID))
         {
-            GameActionsHelper.ApplyPower(p, p, new EnergizedPower(p, 1));
-//            for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
-//            {
-//                GameActionsHelper.ApplyPower(p, m1, new StrengthPower(m1, -this.secondaryValue), -this.secondaryValue);
-//                if (!m1.hasPower(ArtifactPower.POWER_ID))
-//                {
-//                    GameActionsHelper.ApplyPower(p, m1, new GainStrengthPower(m1, this.secondaryValue), this.secondaryValue);
-//                }
-//            }
+            GameActionsHelper.GainEnergy(2);
+            GameActionsHelper.DrawCard(p, 2);
         }
     }
 

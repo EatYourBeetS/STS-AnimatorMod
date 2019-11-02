@@ -1,9 +1,11 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.NoDrawPower;
 import com.megacrit.cardcrawl.ui.FtueTip;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.characters.AnimatorMetrics;
@@ -19,7 +21,6 @@ public class LivingPicture extends AnimatorRelic
     public static final String ID = CreateFullID(LivingPicture.class.getSimpleName());
 
     private static Boolean hasShownTip1 = null;
-    private static Boolean hasShownTip2 = null;
 
     private Boolean active = true;
 
@@ -35,7 +36,7 @@ public class LivingPicture extends AnimatorRelic
 
         if (hasShownTip1 == null && AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y == 0)
         {
-            hasShownTip1 = AnimatorMetrics.GetConfig().getBool("LivingPictureTipShown");
+            hasShownTip1 = AnimatorMetrics.GetConfig().getBool("TheAnimator-ftue1");
 
             if (!hasShownTip1)
             {
@@ -43,7 +44,7 @@ public class LivingPicture extends AnimatorRelic
                         Resources_Animator_Strings.Tips.TEXT[0],
                         Settings.WIDTH / 2f, Settings.HEIGHT / 2f, FtueTip.TipType.CARD_REWARD);
 
-                AnimatorMetrics.GetConfig().setBool("LivingPictureTipShown", true);
+                //AnimatorMetrics.GetConfig().setBool("TheAnimator-ftue1", true);
                 AnimatorMetrics.SaveConfig();
                 hasShownTip1 = true;
             }

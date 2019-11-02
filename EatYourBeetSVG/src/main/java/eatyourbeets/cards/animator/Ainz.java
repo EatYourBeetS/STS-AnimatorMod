@@ -34,11 +34,8 @@ public class Ainz extends AnimatorCard
 
         Initialize(0,0,4);
 
+        SetHealing(true);
         SetSynergy(Synergies.Overlord);
-
-        this.tags.add(CardTags.HEALING);
-
-        AddExtendedDescription();
     }
 
     @Override
@@ -49,8 +46,8 @@ public class Ainz extends AnimatorCard
         if (this.cost > 0)
         {
             this.updateCost(-1);
-            PlayerStatistics.GainIntellect(1);
-            PlayerStatistics.GainForce(1);
+            GameActionsHelper.GainIntellect(1);
+            GameActionsHelper.GainForce(1);
         }
     }
 
@@ -58,6 +55,7 @@ public class Ainz extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.ApplyPower(p, p, new AinzPower(p, magicNumber), 1);
+        PlayerStatistics.TryActivateLimited(Ainz.ID);
     }
 
     @Override

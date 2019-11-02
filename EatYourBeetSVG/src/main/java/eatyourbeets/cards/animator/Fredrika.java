@@ -1,5 +1,7 @@
 package eatyourbeets.cards.animator;
 
+import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -7,11 +9,13 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
@@ -38,7 +42,43 @@ public class Fredrika extends AnimatorCard
 
         Initialize(9, 2, 2);
 
+        if (InitializingPreview())
+        {
+            Fredrika c1 = new Fredrika();
+            Fredrika c2 = new Fredrika();
+
+            c1.ChangeForm(FORM_DRAGOON);
+            c2.ChangeForm(FORM_DRAGOON);
+            c2.upgrade();
+
+            cardData.InitializePreview(c1, c2);
+        }
+
         SetSynergy(Synergies.Chaika, true);
+    }
+
+    @SpireOverride
+    protected void applyPowersToBlock()
+    {
+        float tmp = (float) this.baseBlock;
+
+        if (currentForm == FORM_DEFAULT)
+        {
+            tmp += PlayerStatistics.GetCurrentEnemies(true).size() * magicNumber;
+        }
+
+        for (AbstractPower p : AbstractDungeon.player.powers)
+        {
+            tmp = p.modifyBlock(tmp);
+        }
+
+        if (tmp < 0.0F)
+        {
+            tmp = 0.0F;
+        }
+
+        this.block = MathUtils.floor(tmp);
+        this.isBlockModified = (this.baseBlock != this.block);
     }
 
     @Override
@@ -86,20 +126,14 @@ public class Fredrika extends AnimatorCard
         {
             case FORM_DEFAULT:
             {
-                for (AbstractMonster m1 : AbstractDungeon.getCurrRoom().monsters.monsters)
-                {
-                    if (!m1.isDying && m1.currentHealth > 0)
-                    {
-                        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block, true));
-                    }
-                }
+                GameActionsHelper.GainBlock(p, block);
 
                 break;
             }
 
             case FORM_CAT:
             {
-                GameActionsHelper.GainBlock(p, this.block);
+                GameActionsHelper.GainBlock(p, block);
 
                 break;
             }
@@ -129,8 +163,8 @@ public class Fredrika extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
-            upgradeBlock(1);
+            //upgradeMagicNumber(1);
+            upgradeBlock(2);
             upgradeDamage(2);
         }
     }

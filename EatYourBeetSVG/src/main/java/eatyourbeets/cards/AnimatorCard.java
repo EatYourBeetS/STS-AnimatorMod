@@ -124,12 +124,11 @@ public abstract class AnimatorCard extends EYBCard
     public boolean HasSynergy(AbstractCard other)
     {
         AnimatorCard card = Utilities.SafeCast(other, AnimatorCard.class);
-        if (card != null && card.synergy != null)
+        if (card != null && card.synergy != null && this.synergy != null)
         {
-            return  this instanceof Spellcaster && other instanceof Spellcaster ||
-                    this instanceof MartialArtist && other instanceof MartialArtist ||
-                    this.anySynergy || card.anySynergy ||
-                    this.synergy != null && (HasExactSynergy(card.synergy));
+            return  (this instanceof Spellcaster && other instanceof Spellcaster) ||
+                    (this instanceof MartialArtist && other instanceof MartialArtist) ||
+                    (this.anySynergy || card.anySynergy) || HasExactSynergy(card.synergy);
         }
 
         return false;
@@ -154,20 +153,5 @@ public abstract class AnimatorCard extends EYBCard
     {
         this.synergy = synergy;
         this.anySynergy = shapeshifter;
-    }
-
-    protected void SetLoyal(boolean value)
-    {
-        if (value)
-        {
-            if (!tags.contains(AbstractEnums.CardTags.LOYAL))
-            {
-                tags.add(AbstractEnums.CardTags.LOYAL);
-            }
-        }
-        else
-        {
-            tags.remove(AbstractEnums.CardTags.LOYAL);
-        }
     }
 }

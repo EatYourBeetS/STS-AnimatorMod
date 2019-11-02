@@ -4,19 +4,21 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.AnimatorCard_Boost;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.Synergies;
 
-public class HighElfArcher extends AnimatorCard
+public class HighElfArcher extends AnimatorCard_Boost
 {
-    public static final String ID = Register(HighElfArcher.class.getSimpleName());
+    public static final String ID = Register(HighElfArcher.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public HighElfArcher()
     {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(2, 0, 2);
+        Initialize(3, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -25,7 +27,17 @@ public class HighElfArcher extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        PlayerStatistics.ApplyTemporaryDexterity(p, p, this.magicNumber);
+
+        if (ProgressBoost())
+        {
+            GameActionsHelper.GainAgility(1);
+        }
+
+        if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(cardID))
+        {
+            GameActionsHelper.GainAgility(1);
+            GameActionsHelper.DrawCard(p, 1);
+        }
     }
 
     @Override
@@ -33,7 +45,14 @@ public class HighElfArcher extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(2);
+            upgradeBoost(1);
         }
+    }
+
+    @Override
+    protected int GetBaseBoost()
+    {
+        return upgraded ? 2 : 1;
     }
 }

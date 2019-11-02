@@ -1,7 +1,6 @@
 package eatyourbeets.monsters.Bosses.TheUnnamedMoveset;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,12 +8,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.actions.animator.PlayTempBgmAction;
-import eatyourbeets.blights.Doomed;
+import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.animator.Respite;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.powers.common.GenericFadingPower;
 
 public class Move_Fading extends AbstractMove
 {

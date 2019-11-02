@@ -11,25 +11,26 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.function.Predicate;
 
 public class ChooseFromAnyPileAction extends AbstractGameAction
 {
-    private static final UIStrings uiStrings;
-    public static final String[] TEXT;
-
     private final String message;
     private final ArrayList<AbstractCard> selectedCards;
+    private final CardGroup[] groups;
     private final BiConsumer<Object, ArrayList<AbstractCard>> onCompletion;
     private final Object state;
 
     private final CardGroup fakeHandGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-    public ChooseFromAnyPileAction(int amount, BiConsumer<Object, ArrayList<AbstractCard>> onCompletion, Object state, String message)
+    public ChooseFromAnyPileAction(int amount, BiConsumer<Object, ArrayList<AbstractCard>> onCompletion, Object state, String message, CardGroup... groups)
     {
         this.message = message;
         this.selectedCards = new ArrayList<>();
         this.onCompletion = onCompletion;
+        this.groups = groups;
         this.state = state;
 
         this.setValues(AbstractDungeon.player, AbstractDungeon.player, amount);
@@ -43,12 +44,19 @@ public class ChooseFromAnyPileAction extends AbstractGameAction
         {
             AbstractPlayer p = AbstractDungeon.player;
 
-            fakeHandGroup.group.addAll(p.hand.group);
-            p.hand.clear();
-
-            GridCardSelectScreenPatch.AddGroup(fakeHandGroup);
-            GridCardSelectScreenPatch.AddGroup(p.drawPile);
-            GridCardSelectScreenPatch.AddGroup(p.discardPile);
+            for (CardGroup group : groups)
+            {
+                if (group.type == CardGroup.CardGroupType.HAND)
+                {
+                    fakeHandGroup.group.addAll(p.hand.group);
+                    p.hand.clear();
+                    GridCardSelectScreenPatch.AddGroup(fakeHandGroup);
+                }
+                else
+                {
+                    GridCardSelectScreenPatch.AddGroup(group);
+                }
+            }
 
             CardGroup group = GridCardSelectScreenPatch.GetCardGroup();
             if (group.isEmpty())
@@ -77,11 +85,5 @@ public class ChooseFromAnyPileAction extends AbstractGameAction
 
             this.tickDuration();
         }
-    }
-
-    static
-    {
-        uiStrings = CardCrawlGame.languagePack.getUIString("ExhaustAction");
-        TEXT = uiStrings.TEXT;
     }
 }

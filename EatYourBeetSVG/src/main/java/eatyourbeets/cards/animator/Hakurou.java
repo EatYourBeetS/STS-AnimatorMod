@@ -22,7 +22,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(1,0, 4);
+        Initialize(1,0, 3);
 
         SetSynergy(Synergies.TenSura);
     }

@@ -5,26 +5,41 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.helpers.BlightHelper;
-import eatyourbeets.blights.Doomed;
-import eatyourbeets.blights.Haunted;
+import eatyourbeets.blights.animator.*;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 
 @SpirePatch(clz= BlightHelper.class, method = "getBlight", paramtypez = {String.class})
 public class BlightHelperPatches
 {
+    private static final HashMap<String, Class<? extends AbstractBlight>> customBlights = new HashMap<>();
+
     @SpirePrefixPatch
     public static SpireReturn<AbstractBlight> Method(String id)
     {
-        if (Haunted.ID.equals(id))
+        Class<? extends AbstractBlight> blight = customBlights.get(id);
+        if (blight != null)
         {
-            return SpireReturn.Return(new Haunted());
+            try
+            {
+                return SpireReturn.Return(blight.getConstructor().newInstance());
+            }
+            catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
+            {
+                e.printStackTrace();
+            }
         }
-        else if (Doomed.ID.equals(id))
-        {
-            return SpireReturn.Return(new Doomed());
-        }
-        else
-        {
-            return SpireReturn.Continue();
-        }
+
+        return SpireReturn.Continue();
+    }
+
+    static
+    {
+        customBlights.put(Haunted.ID, Haunted.class);
+        customBlights.put(Doomed.ID, Doomed.class);
+        customBlights.put(UltimateCube.ID, UltimateCube.class);
+        customBlights.put(UltimateCrystal.ID, UltimateCrystal.class);
+        customBlights.put(UltimateWisp.ID, UltimateWisp.class);
     }
 }

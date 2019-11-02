@@ -95,6 +95,7 @@ public class Resources_Animator extends AbstractResources
         BaseMod.loadCustomStringsFile(EventStrings.class, languagePath + "EventStrings.json");
         BaseMod.loadCustomStringsFile(PotionStrings.class, languagePath + "PotionStrings.json");
         BaseMod.loadCustomStringsFile(MonsterStrings.class, languagePath + "MonsterStrings.json");
+        BaseMod.loadCustomStringsFile(BlightStrings.class, languagePath + "BlightStrings.json");
     }
 
     @Override

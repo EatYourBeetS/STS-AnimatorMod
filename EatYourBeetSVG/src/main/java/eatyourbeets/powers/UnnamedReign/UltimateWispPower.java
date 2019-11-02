@@ -6,7 +6,9 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
@@ -93,5 +95,17 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     public void OnStartOfTurnPostDraw()
     {
         CardGlowBorderPatch.overrideColor = RED;
+    }
+
+    @Override
+    public void onDeath()
+    {
+        super.onDeath();
+
+        AbstractPlayer p = AbstractDungeon.player;
+        if (!AbstractDungeon.player.hasBlight(eatyourbeets.blights.animator.UltimateWisp.ID))
+        {
+            AbstractDungeon.getCurrRoom().spawnBlightAndObtain(p.hb.cX, p.hb.cY, new eatyourbeets.blights.animator.UltimateWisp());
+        }
     }
 }

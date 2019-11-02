@@ -66,6 +66,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
     public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
     public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = new GameEvent<>();
+    public static final GameEvent<OnShuffleSubscriber> onShuffle = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
     public static final GameEvent<OnCostRefreshSubscriber> onCostRefresh = new GameEvent<>();
 
@@ -112,6 +113,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         onAttack.Clear();
         onLoseHp.Clear();
         onEndOfTurn.Clear();
+        onShuffle.Clear();
         onApplyPower.Clear();
         onAfterDeath.Clear();
         onCostRefresh.Clear();
@@ -229,6 +231,14 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     {
         return (intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.ATTACK_BUFF ||
                 intent == AbstractMonster.Intent.ATTACK_DEFEND || intent == AbstractMonster.Intent.ATTACK);
+    }
+
+    public static void OnShuffle(boolean triggerRelics)
+    {
+        for (OnShuffleSubscriber s : onShuffle.GetSubscribers())
+        {
+            s.OnShuffle(triggerRelics);
+        }
     }
 
     public void OnBattleStart()

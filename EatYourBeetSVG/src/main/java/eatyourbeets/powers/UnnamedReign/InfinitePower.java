@@ -3,9 +3,9 @@ package eatyourbeets.powers.UnnamedReign;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import eatyourbeets.actions.animator.EndPlayerTurnAction;
 import eatyourbeets.actions.animator.KillCharacterAction;
-import eatyourbeets.blights.CustomTimeMaze;
-import eatyourbeets.cards.AnimatorCard_UltraRare;
+import eatyourbeets.blights.animator.Doomed;
+import eatyourbeets.blights.common.CustomTimeMaze;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.HigakiRinneAction;
@@ -49,6 +49,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     private boolean progressStunCounter = true;
     private int stunCounter = 0;
     private int playerIntangibleCounter = 0;
+    private int maxStrengthThisTurn = 20;
     private boolean gainedIntangible = false;
 
     public InfinitePower(TheUnnamed owner)
@@ -93,6 +94,14 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
             return;
         }
 
+        AbstractBlight doomed = AbstractDungeon.player.getBlight(Doomed.ID);
+        if (doomed != null && doomed.counter <= 2 && !linesUsed.contains(34))
+        {
+            linesUsed.add(34);
+            GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[34], 2f, 2f));
+            GameActionsHelper.AddToBottom(new WaitRealtimeAction(1f));
+        }
+
         if (enchantedArmorPower.amount > 0)
         {
             enchantedArmorPower.amount = Math.max(1, enchantedArmorPower.amount / 2);
@@ -133,19 +142,32 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     {
         if (source != null && target != null)
         {
-            int stacks = Math.max(1, Math.abs(power.amount));
-            if (source != owner && target == owner)
+            int stacks = Math.max(0, Math.abs(power.amount));
+            if (stacks > 0)
             {
-                if (owner.isPlayer != source.isPlayer && power.type == PowerType.DEBUFF)
+                if (source != owner && target == owner)
                 {
-                    GameActionsHelper.ApplyPower(owner, owner, new RegenPower(owner, stacks), stacks);
+                    if (owner.isPlayer != source.isPlayer && power.type == PowerType.DEBUFF)
+                    {
+                        GameActionsHelper.ApplyPower(owner, owner, new RegenPower(owner, stacks), stacks);
+                    }
                 }
-            }
-            else if (source != owner && target == source)
-            {
-                if (owner.isPlayer != source.isPlayer && power.type == PowerType.BUFF)
+                else if (source != owner && target == source)
                 {
-                    GameActionsHelper.ApplyPowerSilently(owner, owner, new GainStrengthPower(owner, stacks), stacks);
+                    if (owner.isPlayer != source.isPlayer && power.type == PowerType.BUFF)
+                    {
+                        int amount = stacks;
+                        if (amount > maxStrengthThisTurn)
+                        {
+                            amount = maxStrengthThisTurn;
+                        }
+
+                        if (amount > 0)
+                        {
+                            maxStrengthThisTurn -= amount;
+                            GameActionsHelper.ApplyPowerSilently(owner, owner, new GainStrengthPower(owner, amount), amount);
+                        }
+                    }
                 }
             }
 
@@ -281,49 +303,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         }
         else if (card instanceof HigakiRinne)
         {
-            if (!linesUsed.contains(21) && owner.currentHealth > 500 && !phase2)
-            {
-                GameActionsHelper.AddToBottom(new TalkAction(owner, dialog[21], 1.2f, 1.2f));
-                GameActionsHelper.Callback(new WaitRealtimeAction(1.2f), this::Rinne, card);
-                linesUsed.add(21);
-            }
-        }
-    }
-
-    private void Rinne(Object state, AbstractGameAction action)
-    {
-        if (state != null && action != null)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-            HigakiRinne rinne = (HigakiRinne) state;
-            Random rng = AbstractDungeon.cardRandomRng;
-            RandomizedList<AbstractCreature> characters = new RandomizedList<>(PlayerStatistics.GetAllCharacters(true));
-            RandomizedList<AbstractMonster> enemies = new RandomizedList<>(PlayerStatistics.GetCurrentEnemies(true));
-
-            HigakiRinneAction.PlayRandomSound();
-
-            for (int i = 0; i < 6 ; i++)
-            {
-                GameActionsHelper.DamageTarget(owner, enemies.Retrieve(rng, false), 1,
-                        DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY, true);
-            }
-
-            HigakiRinneAction.PlayRandomSound();
-
-            for (int i = 0; i < 6 ; i++)
-            {
-                GameActionsHelper.GainBlock(characters.Retrieve(rng, false), 1);
-            }
-
-            HigakiRinneAction.PlayRandomSound();
-
-            for (int i = 0; i < 6 ; i++)
-            {
-                GameActionsHelper.DamageTarget(owner, enemies.Retrieve(rng, false), 1,
-                        DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON, true);
-            }
-
-            HigakiRinneAction.PlayRandomSound();
+            Talk(21, 2.5f);
         }
     }
 
@@ -341,6 +321,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     public void OnStartOfTurnPostDraw()
     {
         progressStunCounter = true;
+        maxStrengthThisTurn = 20;
     }
 
     public void onSleepOrStun()

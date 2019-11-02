@@ -21,7 +21,7 @@
 		"DESCRIPTIONS": [
 			"\"It's you! Are you on your way to defeat the @Heart@ of the Spire?\" NL NL \"Why don't you help me with another menace instead? You see, The Unnamed has returned, but don't you worry! It's nothing you can't defeat!\"",
 			"\"Well, there is a small detail... To fight the Unnamed you will have to trade ALL your Relics, Gold, Potions and cards Upgrades for one of these #ySpecial #yRelics:\" NL NL \"However you might be able to gain some Gold back based on your Equipment, I would say about #b{0} #yGold.\"",
-			"\"Perfect! just go ahead and you shall find him, I'm counting on you!\" NL NL \"Oh wait! I almost forgot, you will find a lot of these in there. Here, have one... Or if you prefer I could change some of your cards.\" NL [#yAttention: while in this area, you cannot shuffle your deck more than twice per turn.]"
+			"\"Perfect! just go ahead and you shall find him, I'm counting on you!\" NL NL \"Oh wait! I almost forgot, you will find a lot of these in there. Here, have one... Or if you prefer I could change some of your cards.\""
 		],
 		"OPTIONS":
 		[

@@ -2,40 +2,39 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.blights.animator.*;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.Synergies;
 
 public class Spearman extends AnimatorCard
 {
-    public static final String ID = Register(Spearman.class.getSimpleName());
+    public static final String ID = Register(Spearman.class.getSimpleName(), EYBCardBadge.Special);
 
     public Spearman()
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(6, 0);
+        Initialize(9, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + player.currentBlock);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTargetPiercing(p, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActionsHelper.AddToBottom(new LoseBlockAction(p, p, p.currentBlock));
+        GameActionsHelper.MakeCardInHand(new Wound(), 1, false);
 
-        if (upgraded)
+        if (PlayerStatistics.GetStrength() > PlayerStatistics.GetStrength(m) && PlayerStatistics.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper.GainBlock(p, block);
+            GameActionsHelper.Motivate(1);
         }
     }
 
@@ -44,8 +43,7 @@ public class Spearman extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeBlock(3);
+            upgradeDamage(4);
         }
     }
 }

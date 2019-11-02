@@ -1,0 +1,27 @@
+{
+  "animator:Doomed":
+  {
+    "NAME": "Doomed",
+    "DESCRIPTION": [ "Die at the end of your #b{0}th turn. This effect cannot be prevented." ]
+  },
+  "animator:Haunted":
+  {
+    "NAME": "Haunted",
+    "DESCRIPTION": [ "That was a bad idea." ]
+  },
+  "animator:UltimateCrystal":
+  {
+    "NAME": "Ultimate Crystal",
+    "DESCRIPTION": [ "Start each combat with #b{0} #yWeak and #yFrail." ]
+  },
+  "animator:UltimateCube":
+  {
+    "NAME": "Ultimate Cube",
+    "DESCRIPTION": [ "At the end of your first turn, take #b{0} damage." ]
+  },
+  "animator:UltimateWisp":
+  {
+    "NAME": "Ultimate Wisp",
+    "DESCRIPTION": [ "Whenever you shuffle your deck, add a #yVoid to your draw pile." ]
+  }
+}

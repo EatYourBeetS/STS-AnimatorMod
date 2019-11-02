@@ -53,6 +53,10 @@ public class MoveSpecificCardAction extends AnimatorAction
                 {
                     source = player.hand;
                 }
+                if (player.drawPile.contains(card))
+                {
+                    source = player.drawPile;
+                }
                 else if (player.discardPile.contains(card))
                 {
                     source = player.discardPile;
@@ -61,6 +65,13 @@ public class MoveSpecificCardAction extends AnimatorAction
                 {
                     source = player.exhaustPile;
                 }
+            }
+
+            if (source == null)
+            {
+                logger.warn("Source was null, at common.MoveSpecificCardAction");
+                this.isDone = true;
+                return;
             }
 
             if ((source == destination) || !source.contains(card))
@@ -88,8 +99,8 @@ public class MoveSpecificCardAction extends AnimatorAction
                         case DRAW_PILE:
                         {
                             //AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(card, true, false));
-                            this.source.moveToDeck(card, true);
                             this.source.removeCard(card);
+                            this.source.moveToDeck(card, true);
                             break;
                         }
 

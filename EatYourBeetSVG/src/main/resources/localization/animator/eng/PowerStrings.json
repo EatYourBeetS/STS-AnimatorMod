@@ -187,7 +187,7 @@
 	},
 	"animator:InfinitePower":
 	{
-		"DESCRIPTIONS": ["- Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL - When receiving a debuff: Gains that much #yRegeneration. NL - When the enemy receives a buff: Gains that much #yStrength. NL - Lose half of these stats at the end of each turn."],
+		"DESCRIPTIONS": ["Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL When receiving a debuff: Gains that much #yRegeneration. NL When the enemy receives a buff: Gains that much #yStrength. NL Loses half of these stats at the end of each turn."],
 		"NAME": "Infinite Power"
 	},
 	"animator:KaijinPower":

@@ -1,4 +1,4 @@
-package eatyourbeets.blights;
+package eatyourbeets.blights.common;
 
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;

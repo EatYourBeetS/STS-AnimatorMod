@@ -78,6 +78,11 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
         return CardCrawlGame.languagePack.getEventString(eventID);
     }
 
+    public static BlightStrings GetBlightStrings(String blightID)
+    {
+        return CardCrawlGame.languagePack.getBlightString(blightID);
+    }
+
     public static UIStrings GetUIStrings(String stringID)
     {
         return CardCrawlGame.languagePack.getUIString(stringID);
@@ -96,6 +101,11 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
     public static String GetRelicImage(String relicID)
     {
         return "images/relics/" + relicID.replace(":", "/") + ".png";
+    }
+
+    public static String GetBlightImageName(String blightID)
+    {
+        return blightID.replace(":", "/") + ".png";
     }
 
     public static String GetPowerImage(String powerID)

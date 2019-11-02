@@ -122,7 +122,7 @@
 	},
 	"Throwing-Knife":
 	{
-		"DESCRIPTION": "0-Cost #yAttack which applies a randomized debuff and #yExhausts.",
+		"DESCRIPTION": "0-Cost #yAttack which applies a randomized debuff.",
 		"NAMES": ["throwing-knife", "throwing-knives", "throwing-knife+", "throwing-knives+"],
 		"PROPER_NAME": "Throwing-Knife"
 	}

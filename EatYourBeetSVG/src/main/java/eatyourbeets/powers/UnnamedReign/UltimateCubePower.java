@@ -155,4 +155,16 @@ public class UltimateCubePower extends AnimatorPower
     {
         GameActionsHelper.ApplyPower(c, c, new LightningCubePower(c, 4), 4);
     }
+
+    @Override
+    public void onDeath()
+    {
+        super.onDeath();
+
+        AbstractPlayer p = AbstractDungeon.player;
+        if (!AbstractDungeon.player.hasBlight(eatyourbeets.blights.animator.UltimateCube.ID))
+        {
+            AbstractDungeon.getCurrRoom().spawnBlightAndObtain(p.hb.cX, p.hb.cY, new eatyourbeets.blights.animator.UltimateCube());
+        }
+    }
 }

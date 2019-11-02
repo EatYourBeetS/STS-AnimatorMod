@@ -38,16 +38,12 @@ public class Add extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, this.magicNumber), this.magicNumber);
-        GameActionsHelper.AddToBottom(new ChooseFromAnyPileAction(1, this::OnCardChosen, this, ExhaustAction.TEXT[0]));
+        GameActionsHelper.AddToBottom(new ChooseFromAnyPileAction(1, this::OnCardChosen, this, ExhaustAction.TEXT[0], p.hand, p.drawPile, p.discardPile));
 
-//        if (p.drawPile.size() > 0)
-//        {
-//            //GameActionsHelper.AddToBottom(new ExhaustFromPileAction(1, false, p.drawPile));
-//
-//            CardGroup cores = OrbCore_AbstractPower.CreateCoresGroup(true);
-//            GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, cores, this::OrbChosen, this, "", true));
-//        }
+        if (HasActiveSynergy())
+        {
+            GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, this.magicNumber), this.magicNumber);
+        }
     }
 
     @Override
@@ -56,7 +52,6 @@ public class Add extends AnimatorCard
         if (TryUpgrade())
         {
             SetEthereal(false);
-            upgradeMagicNumber(3);
         }
     }
 

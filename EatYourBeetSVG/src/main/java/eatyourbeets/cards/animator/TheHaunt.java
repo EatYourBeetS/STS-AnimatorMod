@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
-import eatyourbeets.blights.Haunted;
+import eatyourbeets.blights.animator.Haunted;
 import eatyourbeets.cards.AnimatorCard_Status;
 import eatyourbeets.interfaces.metadata.Hidden;
 

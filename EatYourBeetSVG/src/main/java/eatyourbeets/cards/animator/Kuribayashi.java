@@ -6,11 +6,9 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.ChokePower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -19,11 +17,13 @@ public class Kuribayashi extends AnimatorCard
 {
     public static final String ID = Register(Kuribayashi.class.getSimpleName(), EYBCardBadge.Synergy);
 
+    private static final int STRENGTH_DOWN = 4;
+
     public Kuribayashi()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(6,0,4, 2);
+        Initialize(8,0,1, 2);
 
         SetSynergy(Synergies.Gate);
     }
@@ -33,15 +33,13 @@ public class Kuribayashi extends AnimatorCard
     {
         GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
         GameActionsHelper.DamageTarget(p, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+
+        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, magicNumber, false), magicNumber);
         GameActionsHelper.ApplyPower(p, m, new ChokePower(m, this.secondaryValue), this.secondaryValue);
 
-        if (HasActiveSynergy())
+        if (HasActiveSynergy() && PlayerStatistics.TryActivateSemiLimited(cardID))
         {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new StrengthPower(m, -this.magicNumber), -this.magicNumber));
-            if (m != null && !m.hasPower(ArtifactPower.POWER_ID))
-            {
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new GainStrengthPower(m, this.magicNumber), this.magicNumber));
-            }
+            PlayerStatistics.LoseTemporaryStrength(p, m, STRENGTH_DOWN);
         }
     }
 
@@ -50,8 +48,8 @@ public class Kuribayashi extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(1);
+            upgradeSecondaryValue(2);
         }
     }
 }

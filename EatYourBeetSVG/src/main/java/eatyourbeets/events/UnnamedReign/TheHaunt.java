@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-import eatyourbeets.blights.Haunted;
+import eatyourbeets.blights.animator.Haunted;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.resources.Resources_Common;

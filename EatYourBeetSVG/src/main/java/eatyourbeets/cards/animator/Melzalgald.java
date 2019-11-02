@@ -19,6 +19,11 @@ public class Melzalgald extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan, true);
+
+        if (InitializingPreview())
+        {
+            cardData.InitializePreview(new MelzalgaldAlt_1(), true);
+        }
     }
 
     @Override

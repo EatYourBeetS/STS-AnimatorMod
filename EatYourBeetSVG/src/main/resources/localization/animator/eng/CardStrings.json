@@ -67,9 +67,9 @@
 	},
 	"animator:Arpeggio":
 	{
-		"DESCRIPTION": "Spellcaster. NL Gain 1 Focus. NL Exhaust. || On Synergy, NL Channel 1 Earth.",
+		"DESCRIPTION": "Spellcaster. NL Gain !M! Intellect. NL Exhaust. || On Synergy, NL Channel 1 Earth.",
 		"NAME": "Arpeggio",
-		"UPGRADE_DESCRIPTION": "Spellcaster. NL Channel 1 Earth. NL Gain 1 Orb Slot. NL Exhaust. || On Synergy, NL Channel 1 Earth."
+		"UPGRADE_DESCRIPTION": "Spellcaster. NL Gain 1 Orb Slot. NL Gain !M! Intellect. NL Exhaust. || On Synergy, NL Channel 1 Earth."
 	},
 	"animator:Asuramaru":
 	{
@@ -163,8 +163,9 @@
 	},
 	"animator:CowGirl":
 	{
-		"DESCRIPTION": "Gain [E]. NL Gain !M! Temp._HP. NL Exhaust. || If you have [#EFC851]Goblin NL [#EFC851]Slayer in your hand, double this card's Effect.",
-		"NAME": "'Cow Girl'"
+		"DESCRIPTION": "Fetch a [#EFC851]0-Cost[] card NL from your draw pile. NL Exhaust. || Limited. NL When Discarded, NL Motivate 1.",
+		"NAME": "'Cow Girl'",
+		"UPGRADE_DESCRIPTION": "Fetch a [#EFC851]0-Cost[] card NL from your draw NL or discard pile. NL Exhaust. || Limited. NL When Discarded, NL Motivate 1."
 	},
 	"animator:CrowleyEusford":
 	{
@@ -301,7 +302,7 @@
 	},
 	"animator:DwarfShaman":
 	{
-		"DESCRIPTION": "Spellcaster. NL Deal !D! damage. NL Channel 1 Earth. || On Synergy, draw and NL Upgrade a card.",
+		"DESCRIPTION": "Spellcaster. NL Deal !D! damage. NL Channel 1 Earth. || On Synergy, NL draw a card and NL Upgrade it.",
 		"NAME": "'Dwarf Shaman'"
 	},
 	"animator:Elesis":
@@ -505,7 +506,7 @@
 	},
 	"animator:HighElfArcher":
 	{
-		"DESCRIPTION": "Deal !D! Piercing NL damage. Gain 1 NL Agility.",
+		"DESCRIPTION": "Deal !D! Piercing NL damage. Boost !SV!: NL Gain 1 Agility. || Limited. NL On Synergy, NL draw 1 card and NL gain 1 Agility.",
 		"NAME": "'High Elf Archer'"
 	},
 	"animator:HiiragiShinya":
@@ -584,7 +585,7 @@
 	},
 	"animator:Kuribayashi":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !SV! Choked. || On Synergy, NL the enemy loses 4 Strength this turn.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Apply !SV! Choked. || Semi-Limited. On NL Synergy, the enemy NL loses 4 Strength NL this turn.",
 		"NAME": "Kuribayashi"
 	},
 	"animator:Kuroyukihime":
@@ -610,9 +611,9 @@
 	},
 	"animator:LeleiLaLalena":
 	{
-		"DESCRIPTION": "Discard a NL random card to NL [#EFC851]Channel !M! Frost. || On Synergy, NL apply 1 Weak NL to ALL enemies.",
+		"DESCRIPTION": "Spellcaster. Discard NL a random card to NL [#EFC851]Channel !M! Frost. || On Synergy, NL apply 1 Weak NL to ALL enemies.",
 		"NAME": "Lelei La Lalena",
-		"UPGRADE_DESCRIPTION": "Discard a card to NL [#EFC851]Channel !M! Frost. || On Synergy, NL apply 1 Weak NL to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Spellcaster. NL Discard a card to NL [#EFC851]Channel !M! Frost. || On Synergy, NL apply 1 Weak NL to ALL enemies."
 	},
 	"animator:Lelouch":
 	{
@@ -771,7 +772,7 @@
 	},
 	"animator:Priestess":
 	{
-		"DESCRIPTION": "Cooldown !SV!: NL Gain !M! Temp._HP. || When Drawn, NL increase this card's NL Temporary_HP NL amount by 1.",
+		"DESCRIPTION": "Cooldown !SV!: NL Gain !M! Temp._HP. || On Synergy NL or when Drawn, NL gain 1 Temp._HP.",
 		"NAME": "'Priestess'"
 	},
 	"animator:QuestionMark":
@@ -934,9 +935,8 @@
 	},
 	"animator:Spearman":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. Deal additional damage equal to your Block. Lose ALL Block.",
-		"NAME": "'Spearman'",
-		"UPGRADE_DESCRIPTION": "Deal !D! Piercing damage. Deal additional damage equal to your Block. Set your Block to !B!."
+		"DESCRIPTION": "Deal !D! Piercing NL damage. Add 1 NL Wound to your NL hand. || Semi-Limited. NL If you have more NL Strength than the NL enemy, Motivate 1.",
+		"NAME": "'Spearman'"
 	},
 	"animator:Strike":
 	{
@@ -1058,17 +1058,17 @@
 	},
 	"animator:ThrowingKnife_0":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Exhaust. || When Discarded, NL play this card on NL a random enemy.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak. NL Purge. || When Discarded, NL play this card on NL a random enemy.",
 		"NAME": "Throwing-Knife"
 	},
 	"animator:ThrowingKnife_1":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Exhaust. || When Discarded, NL play this card on NL a random enemy.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Purge. || When Discarded, NL play this card on NL a random enemy.",
 		"NAME": "Throwing-Knife"
 	},
 	"animator:ThrowingKnife_2":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Exhaust. || When Discarded, NL play this card on NL a random enemy.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Purge. || When Discarded, NL play this card on NL a random enemy.",
 		"NAME": "Throwing-Knife"
 	},
 	"animator:Togame":
@@ -1084,14 +1084,13 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Draw 1 card. Reduce your maximum hand size by !SV! this turn.",
+		"DESCRIPTION": "Gain !B! Block. NL Next turn, NL gain !B! Block. || Semi-Limited. NL On Synergy, NL draw 1 card.",
 		"NAME": "Tuka"
 	},
 	"animator:Tyuule":
 	{
-		"DESCRIPTION": "Apply !M! Poison NL and 1 Vulnerable to ALL enemies.",
-		"NAME": "Tyuule",
-		"UPGRADE_DESCRIPTION": "Apply !M! Poison NL and 1 Vulnerable to ALL enemies. NL Boost !SV! : Gain [E]"
+		"DESCRIPTION": "Apply !M! Poison NL and 1 Vulnerable NL to ALL enemies.",
+		"NAME": "Tyuule"
 	},
 	"animator:Urushihara":
 	{
@@ -1160,7 +1159,7 @@
 	},
 	"animator:ZankiKiguchi":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Deal !D! Damage. || Limited. NL When Exhausted, NL move this card to NL your hand and NL gain 2 Agility.",
+		"DESCRIPTION": "Martial_Artist. NL Deal !D! Damage. || Limited. NL When Exhausted, NL move this card to NL your hand and NL gain !M! Agility.",
 		"NAME": "Zanki Kiguchi"
 	},
 	"animator:Zero":

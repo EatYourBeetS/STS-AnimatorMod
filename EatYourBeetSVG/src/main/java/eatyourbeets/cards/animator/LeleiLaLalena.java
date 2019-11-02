@@ -28,6 +28,9 @@ public class LeleiLaLalena extends AnimatorCard
     {
         super.applyPowers();
 
+        magicNumber = baseMagicNumber + Math.max(0, Math.floorDiv(PlayerStatistics.GetFocus(), 6));
+        isMagicNumberModified = (baseMagicNumber != magicNumber);
+
         if (HasActiveSynergy())
         {
             target = CardTarget.ALL;

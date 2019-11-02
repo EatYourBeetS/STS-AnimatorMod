@@ -1,26 +1,23 @@
-package eatyourbeets.blights;
+package eatyourbeets.blights.animator;
 
-import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.cards.animator.TheHaunt;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class Haunted extends AbstractBlight
+public class Haunted extends AnimatorBlight
 {
-    public static final String ID = "animator:Haunted";
-    private static final RelicStrings blightStrings;
-    public static final String NAME;
-    public static final String[] DESC;
+    public static final String ID = CreateFullID(Haunted.class.getSimpleName());
 
     public Haunted()
     {
-        super(ID, NAME, DESC[0], "Haunted.png", true);
+        super(ID);
+
         this.counter = 1;
     }
 
@@ -63,12 +60,5 @@ public class Haunted extends AbstractBlight
         {
             GameActionsHelper.ApplyPower(p, p, new FrailPower(p, 2, false), 2);
         }
-    }
-
-    static
-    {
-        blightStrings = CardCrawlGame.languagePack.getRelicStrings(ID);
-        NAME = blightStrings.NAME;
-        DESC = blightStrings.DESCRIPTIONS;
     }
 }

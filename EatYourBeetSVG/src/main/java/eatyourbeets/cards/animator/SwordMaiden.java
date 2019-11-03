@@ -47,25 +47,7 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
     {
         if (PlayerStatistics.TryActivateLimited(cardID))
         {
-            int roll = AbstractDungeon.cardRandomRng.random(2);
-            switch (roll)
-            {
-                case 0:
-                {
-                    GameActionsHelper.GainIntellect(2);
-                    break;
-                }
-                case 1:
-                {
-                    GameActionsHelper.GainAgility(2);
-                    break;
-                }
-                case 2:
-                {
-                    GameActionsHelper.GainForce(2);
-                    break;
-                }
-            }
+            GameActionsHelper.GainRandomStat(2);
 
             return true;
         }

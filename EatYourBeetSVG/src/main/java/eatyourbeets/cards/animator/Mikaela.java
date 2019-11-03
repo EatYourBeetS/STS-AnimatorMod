@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ExhaustFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -33,8 +34,7 @@ public class Mikaela extends AnimatorCard
             GameActionsHelper.AddToBottom(new ExhaustFromPileAction(1, false, p.discardPile, false));
         }
 
-        if (m.intent != AbstractMonster.Intent.ATTACK_DEBUFF && m.intent != AbstractMonster.Intent.ATTACK_BUFF &&
-            m.intent != AbstractMonster.Intent.ATTACK_DEFEND && m.intent != AbstractMonster.Intent.ATTACK)
+        if (!PlayerStatistics.IsAttacking(m.intent))
         {
             GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, this.magicNumber), this.magicNumber);
         }

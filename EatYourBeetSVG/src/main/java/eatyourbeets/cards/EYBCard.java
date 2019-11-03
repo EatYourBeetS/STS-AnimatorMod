@@ -222,6 +222,14 @@ public abstract class EYBCard extends CustomCard
         RenderCardPreview(sb, false);
     }
 
+    @Override
+    public void triggerWhenCopied()
+    {
+        // this is only used by ShowCardAndAddToHandEffect
+        super.triggerWhenCopied();
+        triggerWhenDrawn();
+    }
+
     public void renderInSingleCardPopup(SpriteBatch sb, boolean preRender)
     {
         if (preRender)

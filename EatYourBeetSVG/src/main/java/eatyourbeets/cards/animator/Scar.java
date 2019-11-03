@@ -1,13 +1,18 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.actions.animator.ScarAction;
 import eatyourbeets.actions.common.DrawSpecificCardAction;
+import eatyourbeets.actions.common.OnTargetDeadAction;
+import eatyourbeets.actions.common.PiercingDamageAction;
 import eatyourbeets.actions.common.RefreshHandLayoutAction;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnEvokeOrbSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
@@ -17,7 +22,7 @@ import eatyourbeets.cards.Synergies;
 
 public class Scar extends AnimatorCard implements OnBattleStartSubscriber, OnEvokeOrbSubscriber
 {
-    public static final String ID = Register(Scar.class.getSimpleName());
+    public static final String ID = Register(Scar.class.getSimpleName(), EYBCardBadge.Special);
 
     public Scar()
     {
@@ -36,12 +41,8 @@ public class Scar extends AnimatorCard implements OnBattleStartSubscriber, OnEvo
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.SMASH);
-
-//        if (p.masterDeck.size() >= magicNumber)
-//        {
-//            GameActionsHelper.AddToBottom(new ScarAction(p, this));
-//        }
+        PiercingDamageAction damageAction = new PiercingDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE);
+        GameActionsHelper.AddToBottom(new OnTargetDeadAction(m, damageAction, new ScarAction(p), true));
     }
 
     @Override

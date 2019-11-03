@@ -2,9 +2,12 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -14,28 +17,34 @@ import java.util.Iterator;
 
 public class YaoHaDucy extends AnimatorCard
 {
-    public static final String ID = Register(YaoHaDucy.class.getSimpleName());
+    public static final String ID = Register(YaoHaDucy.class.getSimpleName(), EYBCardBadge.Discard);
 
     public YaoHaDucy()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(2, 0, 1);
-
-        this.isMultiDamage = true;
+        Initialize(3, 0, 2, 3);
 
         SetSynergy(Synergies.Gate);
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        AbstractPlayer p = AbstractDungeon.player;
+        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.secondaryValue, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
 
-        for (AbstractCard c : getAllCopies())
+        if (PlayerStatistics.IsAttacking(m.intent))
         {
-            c.baseDamage += this.magicNumber;
-            c.applyPowers();
+            PlayerStatistics.LoseTemporaryStrength(p, m, magicNumber);
         }
     }
 
@@ -44,7 +53,7 @@ public class YaoHaDucy extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(3);
         }
     }
 

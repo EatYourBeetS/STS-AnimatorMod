@@ -31,7 +31,7 @@ public class AcuraAkari extends AnimatorCard
 
             for (int i = 0; i < magicNumber; i++)
             {
-                GameActionsHelper.MakeCardInHand(ThrowingKnife.GetRandomCard(), 1, upgraded);
+                GameActionsHelper.MakeCardInHand(ThrowingKnife.GetRandomCard(), 1, false);
             }
         }
 

@@ -18,7 +18,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,3, 5);
+        Initialize(0,2, 2);
 
         SetSynergy(Synergies.Fate);
     }
@@ -40,7 +40,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
+            upgradeBlock(1);
         }
     }
 }

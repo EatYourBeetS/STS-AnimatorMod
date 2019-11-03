@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -54,17 +55,17 @@ public class Geryuganshoop extends AnimatorCard
 
         if (state == this && cards != null && cards.size() > 0)
         {
+            AbstractPlayer p = AbstractDungeon.player;
             for (AbstractCard card : cards)
             {
-                AbstractDungeon.player.exhaustPile.removeCard(card);
-
                 if (!limited && (card.cardID.equals(Boros.ID) || card.cardID.startsWith(Melzalgald.ID)))
                 {
                     PlayerStatistics.TryActivateLimited(this.cardID);
-                    GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(card, 1, true, true));
+                    GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, p.hand, p.exhaustPile, true));
                 }
                 else
                 {
+                    p.exhaustPile.removeCard(card);
                     CardCrawlGame.sound.play("CARD_EXHAUST", 0.2F);
                 }
             }

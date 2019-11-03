@@ -1,8 +1,12 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.DrawSpecificCardAction;
+import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
@@ -29,10 +33,36 @@ public class MaesHughes extends AnimatorCard
         super.triggerOnExhaust();
 
         AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        if (!DrawRoyMustang(p.drawPile))
         {
-            GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, secondaryValue), secondaryValue);
+            if (!DrawRoyMustang(p.discardPile))
+            {
+                if (!DrawRoyMustang(p.exhaustPile))
+                {
+                    DrawRoyMustang(p.hand);
+                }
+            }
         }
+    }
+
+    private boolean DrawRoyMustang(CardGroup group)
+    {
+        for (AbstractCard c : group.group)
+        {
+            if (RoyMustang.ID.equals(c.cardID))
+            {
+                if (group.type != CardGroup.CardGroupType.HAND)
+                {
+                    GameActionsHelper.AddToBottom(new MoveSpecificCardAction(c, AbstractDungeon.player.hand, group, true));
+                }
+
+                c.modifyCostForTurn(-1);
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -49,7 +79,6 @@ public class MaesHughes extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(-1);
-            upgradeSecondaryValue(2);
         }
     }
 }

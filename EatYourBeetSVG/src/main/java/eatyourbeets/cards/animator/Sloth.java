@@ -1,12 +1,14 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import eatyourbeets.actions.common.ModifyBlockActionWhichActuallyWorks;
+import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -14,16 +16,15 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Sloth extends AnimatorCard
 {
-    public static final String ID = Register(Sloth.class.getSimpleName());
+    public static final String ID = Register(Sloth.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Sloth()
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(3,3, 2);
+        Initialize(40, 0, GetBaseCooldown());
 
-        AddExtendedDescription();
-
+        SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 
@@ -34,41 +35,83 @@ public class Sloth extends AnimatorCard
 
         if (PlayerStatistics.getTurnCount() > 0)
         {
-            int bonusAmount = AbstractDungeon.player.orbs.size();
-            //int bonusAmount = PlayerStatistics.GetUniqueOrbsCount() + 2;
-
-            GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, bonusAmount));
-            GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, bonusAmount));
+            UpdateCooldown(-1);
         }
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        GameActionsHelper.GainForce(2);
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        boolean playable = super.cardPlayable(m);
+
+        if (playable)
+        {
+            int turnCount = PlayerStatistics.getTurnCount();
+            if (magicNumber > 0)
+            {
+                return false;
+            }
+        }
+
+        return playable;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (this.block > 0)
-        {
-            GameActionsHelper.GainBlock(p, this.block);
-        }
-        if (this.damage > 0)
-        {
-            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        }
-
-        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, this.magicNumber, false), this.magicNumber);
-        //GameActionsHelper.ApplyPower(p, m, new WeakPower(m, this.magicNumber, false), this.magicNumber);
-
-        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, -(int)Math.ceil(this.baseDamage/2.0)));
-        GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, -(int)Math.ceil(this.baseBlock/2.0)));
+        GameActionsHelper.AddToDefault(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
+        GameActionsHelper.AddToDefault(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
     }
 
     @Override
     public void upgrade()
     {
+        int current = magicNumber;
+
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
-            upgradeDamage(1);
-            upgradeBlock(1);
+            if (!CardCrawlGame.isPopupOpen && PlayerStatistics.InBattle())
+            {
+                baseMagicNumber = GetBaseCooldown();
+                upgradedMagicNumber = true;
+                magicNumber = current;
+
+                UpdateCooldown(-1);
+            }
+            else
+            {
+                upgradeMagicNumber(-1);
+            }
         }
+    }
+
+    private void UpdateCooldown(int amount)
+    {
+        magicNumber += amount;
+
+        if (magicNumber <= 0)
+        {
+            magicNumber = baseMagicNumber = 0;
+
+            cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
+            cardText.Update(cardText.index, true);
+        }
+
+        baseMagicNumber = magicNumber;
+        isMagicNumberModified = false;
+    }
+
+    private int GetBaseCooldown()
+    {
+        return upgraded ? 3 : 4;
     }
 }

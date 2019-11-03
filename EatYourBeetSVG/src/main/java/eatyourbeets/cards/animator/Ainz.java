@@ -46,8 +46,8 @@ public class Ainz extends AnimatorCard
         if (this.cost > 0)
         {
             this.updateCost(-1);
-            GameActionsHelper.GainIntellect(1);
-            GameActionsHelper.GainForce(1);
+
+            GameActionsHelper.GainRandomStat(1);
         }
     }
 

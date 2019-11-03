@@ -1,5 +1,6 @@
 package eatyourbeets.cards;
 
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -67,7 +68,7 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
 
         for (AbstractCard c : GetAllInBattleInstances())
         {
-            AnimatorCard_Cooldown card = (AnimatorCard_Cooldown)c;
+            AnimatorCard_Cooldown card = (AnimatorCard_Cooldown) c;
             card.baseSecondaryValue = card.secondaryValue = newValue;
             //card.applyPowers();
         }

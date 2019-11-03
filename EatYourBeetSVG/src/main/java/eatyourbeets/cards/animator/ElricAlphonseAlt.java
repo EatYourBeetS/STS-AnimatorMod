@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
@@ -17,16 +18,17 @@ public class ElricAlphonseAlt extends AnimatorCard implements Hidden
     {
         super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,2, 2);
+        Initialize(0,0, 2);
 
+        SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
         GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber);
-        GameActionsHelper.GainBlock(p, this.block);
 
         if (HasActiveSynergy())
         {
@@ -39,7 +41,7 @@ public class ElricAlphonseAlt extends AnimatorCard implements Hidden
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
+            upgradeMagicNumber(1);
         }
     }
 }

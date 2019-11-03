@@ -58,7 +58,6 @@ public class Resources_Unnamed extends AbstractResources
     @Override
     protected void InitializeCards()
     {
-        BaseMod.addDynamicVariable(new SecondaryValueVariable());
         LoadCustomCards("unnamed");
     }
 

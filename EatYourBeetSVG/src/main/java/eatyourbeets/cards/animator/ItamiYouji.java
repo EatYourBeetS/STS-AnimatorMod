@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 
 public class ItamiYouji extends AnimatorCard
 {
-    public static final String ID = Register(ItamiYouji.class.getSimpleName());
+    public static final String ID = Register(ItamiYouji.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public ItamiYouji()
     {
@@ -29,13 +31,12 @@ public class ItamiYouji extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        int draw = magicNumber;
-        if (HasActiveSynergy())
-        {
-            draw += 1;
-        }
+        GameActionsHelper.DrawCard(p, magicNumber, this::OnDraw, m);
 
-        GameActionsHelper.DrawCard(p, draw, this::OnDraw, m);
+        if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(cardID))
+        {
+            GameActionsHelper.Motivate(1);
+        }
     }
 
     @Override
@@ -55,7 +56,7 @@ public class ItamiYouji extends AnimatorCard
             for (AbstractCard c : cards)
             {
                 GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-                GameActionsHelper.DamageTarget(AbstractDungeon.player, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+                GameActionsHelper.DamageTargetPiercing(AbstractDungeon.player, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
             }
         }
     }

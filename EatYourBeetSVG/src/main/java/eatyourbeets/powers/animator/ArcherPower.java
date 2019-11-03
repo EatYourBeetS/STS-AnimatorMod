@@ -16,38 +16,13 @@ public class ArcherPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(ArcherPower.class.getSimpleName());
 
-    private int baseDamage;
-
     public ArcherPower(AbstractCreature owner, int damage)
     {
         super(owner, POWER_ID);
-        this.baseDamage = damage;
-        this.amount = damage + PlayerStatistics.GetStrength(owner);
+
+        this.amount = damage;
 
         updateDescription();
-    }
-
-    @Override
-    public void stackPower(int stackAmount)
-    {
-        super.stackPower(stackAmount);
-        this.baseDamage += stackAmount;
-        this.amount = baseDamage + PlayerStatistics.GetStrength(owner);
-
-        updateDescription();
-    }
-
-    @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-    {
-        super.onApplyPower(power, target, source);
-
-        if (target.isPlayer)
-        {
-            this.amount = baseDamage + PlayerStatistics.GetStrength(owner);
-
-            updateDescription();
-        }
     }
 
     @Override
@@ -57,10 +32,6 @@ public class ArcherPower extends AnimatorPower
 
         if (isPlayer)
         {
-            this.amount = baseDamage + PlayerStatistics.GetStrength(owner);
-
-            updateDescription();
-
             for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
             {
                 for (AbstractPower p : m.powers)

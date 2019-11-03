@@ -21,7 +21,7 @@ public class RoyMustang extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(7,0, 4);
+        Initialize(6,0, 4);
 
         this.isMultiDamage = true;
         //AddExtendedDescription();

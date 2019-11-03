@@ -12,7 +12,7 @@
 	},
 	"animator:AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage NL twice. Add !SV! Throwing-Knives to your hand. || On Synergy, NL or when Discarded, NL gain !B! Block.",
+		"DESCRIPTION": "Deal !D! damage NL twice. Add !SV! Throwing-Knives to your hand. || On Synergy, NL or when Discarded, NL gain !M! Block. NL Does not scale.",
 		"NAME": "Tooru"
 	},
 	"animator:Add":
@@ -29,7 +29,7 @@
 	},
 	"animator:Ainz":
 	{
-		"DESCRIPTION": "At the start of your NL turn, choose and NL execute 1 of 4 NL random [#EFC851]Effects. || When Drawn, reduce NL this card's cost by 1 NL this combat and gain NL 1 Force and Intellect.",
+		"DESCRIPTION": "At the start of your NL turn, choose and NL execute 1 of 4 NL random [#EFC851]Effects. || When Drawn, reduce NL this card's cost by NL 1, then randomly NL gain 1 Intellect, NL Force or Agility.",
 		"NAME": "Ainz Ooal Gown"
 	},
 	"animator:Aisha":
@@ -45,7 +45,7 @@
 	},
 	"animator:Alexander":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Deal !D! damage NL to ALL enemies. || When Exhausted, gain !M! Plated_Armor.",
+		"DESCRIPTION": "Deal !D! damage NL to ALL enemies. NL Gain 1 Force. || When Exhausted, gain NL !M! Plated_Armor NL for each enemy.",
 		"NAME": "Alexander"
 	},
 	"animator:Aqua":
@@ -109,13 +109,12 @@
 	},
 	"animator:Boros":
 	{
-		"DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL All [#EFC851]Powers[] are NL played twice.",
-		"NAME": "Boros",
-		"UPGRADE_DESCRIPTION": "Gain !M! Strength. NL All [#EFC851]Powers[] are NL played twice."
+		"DESCRIPTION": "All [#EFC851]Powers[] are NL played twice. || When Drawn, NL gain !M! Temp._HP NL and !SV! Force.",
+		"NAME": "Boros"
 	},
 	"animator:Bozes":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Motivate !M!. NL Exhaust. || Whenever you Synergize this turn, gain 1 Plated_Armor.",
+		"DESCRIPTION": "Deal !D! damage. NL Motivate !M!. NL Exhaust. || Whenever you NL Synergize this turn, NL gain 1 Plated_Armor.",
 		"NAME": "Bozes"
 	},
 	"animator:Caster":
@@ -312,18 +311,17 @@
 	},
 	"animator:ElricAlphonse":
 	{
-		"DESCRIPTION": "[#EFC851]Ethereal. NL Gain !M! Intellect. NL Gain !B! Block. || When Exhausted, add [#EFC851]Armored [#EFC851]Alphonse to your hand.",
-		"NAME": "Alphonse Elric",
-		"UPGRADE_DESCRIPTION": "[#EFC851]Ethereal. NL Gain !M! Intellect. NL Gain !B! Block. || When Exhausted, add [#EFC851]Armored [#EFC851]Alphonse+ to your hand."
+		"DESCRIPTION": "[#EFC851]Ethereal[]. NL If you have NL !M! or less Focus, NL gain 1 Intellect. || When Exhausted, add NL [#EFC851]Armored [#EFC851]Alphonse to NL your discard pile.",
+		"NAME": "Alphonse Elric"
 	},
 	"animator:ElricAlphonseAlt":
 	{
-		"DESCRIPTION": "Gain !M! Plated_Armor. || On Synergy, NL Channel 1 Lightning.",
+		"DESCRIPTION": "Gain 1 Orb Slot. NL Gain !M! Plated_Armor. NL Exhaust. || On Synergy, NL Channel 1 Lightning.",
 		"NAME": "Armored Alphonse"
 	},
 	"animator:ElricEdward":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Cycle 1 card. NL Activate a [#EFC851]Bonus [#EFC851]Effect based on the card you cycled.",
+		"DESCRIPTION": "Deal !D! damage. NL Cycle 1 card. || [#EFC851]Channel[] 1 Orb NL based on the card NL you cycled.",
 		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#yAttack: Channel 1 #yLightning NL #ySkill: Channel 1 #yFrost NL #yPower: Channel 1 #yEarth"],
 		"NAME": "Edward Elric"
 	},
@@ -362,7 +360,7 @@
 	},
 	"animator:Envy":
 	{
-		"DESCRIPTION": "Shapeshifter. NL The first card NL you play each turn NL will Synergize. || Limited. NL On Synergy, NL Heal 20% of NL your missing HP.",
+		"DESCRIPTION": "Shapeshifter. NL The first card you NL play each turn NL will Synergize. || Limited. NL Gain 1 Max HP.",
 		"NAME": "Envy"
 	},
 	"animator:Eris":
@@ -410,7 +408,7 @@
 	},
 	"animator:Geryuganshoop":
 	{
-		"DESCRIPTION": "Cycle !SV! Cards. NL Purge up to !M! cards in your Exhaust pile, gain that much [E]. || Limited. If you Purged NL [#EFC851]Boros[] or [#EFC851]Melzalgald[], NL return them to NL your draw pile.",
+		"DESCRIPTION": "Cycle !SV! Cards. NL Purge up to !M! cards in your Exhaust pile, gain that much [E]. || Limited. If you NL Purged [#EFC851]Melzalgald[], or NL [#EFC851]Boros[], return them NL to your hand.",
 		"EXTENDED_DESCRIPTION": ["Choose {0} cards to Purge, gain that much Energy."],
 		"NAME": "Geryuganshoop"
 	},
@@ -431,8 +429,8 @@
 	},
 	"animator:Gluttony":
 	{
-		"DESCRIPTION": "Exhaust up to !M! Cards in your hand, activate a [#EFC851]Bonus [#EFC851]Effect based on each card type. Exhaust.",
-		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#yAttack: Gain 1 Strength NL #ySkill: Gain 6 #yTemporary #yHP NL #yPower: Heal 7 HP NL #yStatus: Gain 1 Energy NL #yCurse: Gain 6 Block"],
+		"DESCRIPTION": "Exhaust the top !M! NL cards of your draw NL pile to gain !SV! Force NL and Heal !SV! HP. Exhaust. || This card cannot NL be played while you NL have less than 20 NL total cards in play.",
+		"EXTENDED_DESCRIPTION": ["Not enough cards in play."],
 		"NAME": "Gluttony"
 	},
 	"animator:GoblinChampion":
@@ -462,9 +460,9 @@
 	},
 	"animator:Greed":
 	{
-		"DESCRIPTION": "Gain !SV! Plated_Armor. NL Gain !M! Metallicize. NL Gain 3 Malleable. || Costs 1 less for every 100 [#EFC851]Gold[] you have. Limited: Gain 8 [#EFC851]Gold[].",
-		"EXTENDED_DESCRIPTION": ["Greed", "If this card was not generated during combat, gain #b8 #yGold when played. This card costs 1 less energy for every #b100 #yGold you have."],
-		"NAME": "Greed"
+		"DESCRIPTION": "Gain 3 Metallicize. NL Gain 3 Malleable. || Costs 1 less NL for every 100 NL [#EFC851]Gold[] you have.",
+		"NAME": "Greed",
+		"UPGRADE_DESCRIPTION": "Gain 3 Plated_Armor. NL Gain 3 Metallicize. NL Gain 3 Malleable. || Costs 1 less NL for every 100 NL [#EFC851]Gold[] you have."
 	},
 	"animator:GuildGirl":
 	{
@@ -538,7 +536,7 @@
 	},
 	"animator:ItamiYouji":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL Deal !D! damage for NL each card drawn.",
+		"DESCRIPTION": "Draw !M! cards. NL Deal !D! Piercing NL damage for each NL card drawn. || Limited. NL On Synergy, NL Motivate 1.",
 		"NAME": "Itami Youji"
 	},
 	"animator:IzunaHatsuse":
@@ -633,7 +631,7 @@
 	},
 	"animator:MaesHughes":
 	{
-		"DESCRIPTION": "Draw 1 card NL for every !M! cards NL in your draw pile. NL Motivate 1. || When Exhausted, Fetch [#EFC851]Roy [#EFC851]Mustang from any pile, it costs 1 less this turn.",
+		"DESCRIPTION": "Draw 1 card NL for every !M! cards NL in your draw pile. NL Motivate 1. || When Exhausted, NL draw [#EFC851]Roy [#EFC851]Mustang NL from any pile, it costs NL 1 less this turn.",
 		"NAME": "Maes Hughes"
 	},
 	"animator:Megumin":
@@ -767,7 +765,7 @@
 	},
 	"animator:Pride":
 	{
-		"DESCRIPTION": "Shapeshifter. NL [#EFC851]Channel !M! [#EFC851]Dark. NL Apply !SV! Constricted. Exhaust. || Until your next turn, your rightmost Dark Orb will absorb all unblocked damage you would take.",
+		"DESCRIPTION": "Shapeshifter. NL Apply !SV! Constricted. NL [#EFC851]Channel !M! [#EFC851]Dark. NL Exhaust. || Until your next turn, your rightmost Dark Orb will absorb all unblocked damage you would take.",
 		"NAME": "Pride"
 	},
 	"animator:Priestess":
@@ -804,7 +802,7 @@
 	},
 	"animator:RinTohsaka":
 	{
-		"DESCRIPTION": "Spellcaster. NL Channel 1 random NL Orb. Gain !B! Block. || On Synergy, gain NL 4 Enchanted_Armor.",
+		"DESCRIPTION": "Spellcaster. NL Gain !B! Block. || On Synergy, NL Channel 1 orb NL you do not NL already have.",
 		"EXTENDED_DESCRIPTION": ["spellcaster", "For every point of #yFocus, gain #b1 additional #yBlock."],
 		"NAME": "Rin Tohsaka"
 	},
@@ -820,7 +818,7 @@
 	},
 	"animator:RoyMustang":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies and Channel 1 Fire for each enemy. || On Synergy, gain NL 4 Flame_Barrier.",
+		"DESCRIPTION": "Deal !D! damage NL to ALL enemies. NL Channel 1 Fire NL for each enemy. || On Synergy, gain NL 4 Flame_Barrier.",
 		"NAME": "Roy Mustang"
 	},
 	"animator:Saber":
@@ -837,7 +835,7 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. When an Orb is Evoked, draw this card and reduce its cost by 1 this turn.",
+		"DESCRIPTION": "Deal !D! Piercing damage. When an Orb is Evoked, draw this card and reduce its cost by 1 this turn. || Limited. If this kills NL an enemy before NL your third turn, NL permanently Upgrade NL a random card.",
 		"NAME": "Scar"
 	},
 	"animator:Sebas":
@@ -914,8 +912,8 @@
 	},
 	"animator:Sloth":
 	{
-		"DESCRIPTION": "[#EFC851]Sloth. NL Gain !B! Block. NL Deal !D! damage. NL Apply !M! Vulnerable.",
-		"EXTENDED_DESCRIPTION": ["Sloth", "At the start of each turn, increase this card's #yBlock and damage by #b1 for each Orb Slot you have. On use, halve this card's damage and #yBlock."],
+		"DESCRIPTION": "Deal !D! Damage. NL Cannot be played NL for !M! Turn(s). NL Exhaust. || When Exhausted, NL gain 2 Force.",
+		"EXTENDED_DESCRIPTION": ["Deal !D! Damage. NL Exhaust."],
 		"NAME": "Sloth"
 	},
 	"animator:Sonic":
@@ -925,7 +923,7 @@
 	},
 	"animator:Sora":
 	{
-		"DESCRIPTION": "Choose and NL execute !M! NL Effects. || Add [#EFC851]Shiro[] from NL your draw pile NL to your hand.",
+		"DESCRIPTION": "Choose !M! Effects. || Add [#EFC851]Shiro[] from NL your draw pile NL to your hand.",
 		"NAME": "Sora"
 	},
 	"animator:Souei":
@@ -1084,12 +1082,12 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Next turn, NL gain !B! Block. || Semi-Limited. NL On Synergy, NL draw 1 card.",
+		"DESCRIPTION": "Gain !B! Block. NL If you had no Block, NL draw 1 card. || When Discarded, NL gain !M! Block. NL Does not scale.",
 		"NAME": "Tuka"
 	},
 	"animator:Tyuule":
 	{
-		"DESCRIPTION": "Apply !M! Poison NL and 1 Vulnerable NL to ALL enemies.",
+		"DESCRIPTION": "Apply !M! Poison NL and 1 Vulnerable NL to ALL enemies. || When Exhausted, NL trigger the Poison NL of ALL enemies.",
 		"NAME": "Tyuule"
 	},
 	"animator:Urushihara":
@@ -1138,7 +1136,7 @@
 	},
 	"animator:YaoHaDucy":
 	{
-		"DESCRIPTION": "Deal !D! damage to ALL enemies. All copies of this card gain !M! damage this combat.",
+		"DESCRIPTION": "Deal !D! damage. NL If the enemy is NL attacking, it loses NL !M! Strength this turn. || When Discarded, NL deal !SV! damage NL to ALL enemies. NL Does not scale.",
 		"NAME": "Yao Ha Ducy"
 	},
 	"animator:YunYun":

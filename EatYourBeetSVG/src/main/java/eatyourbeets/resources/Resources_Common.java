@@ -24,6 +24,7 @@ import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.rewards.SynergyCardsReward;
+import eatyourbeets.variables.CooldownVariable;
 import eatyourbeets.variables.SecondaryValueVariable;
 import patches.AbstractEnums;
 

@@ -17,7 +17,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,2, 1);
+        Initialize(0,0, 2);
 
         SetEthereal(true);
         SetSynergy(Synergies.FullmetalAlchemist);
@@ -33,20 +33,16 @@ public class ElricAlphonse extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        ElricAlphonseAlt other = new ElricAlphonseAlt();
-        if (this.upgraded)
-        {
-            other.upgrade();
-        }
-
-        GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(other, 1, true, true));
+        GameActionsHelper.MakeCardInDiscardPile(new ElricAlphonseAlt(), 1, upgraded);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, this.block);
-        PlayerStatistics.ApplyTemporaryFocus(p, p, magicNumber);
+        if (PlayerStatistics.GetFocus(p) <= magicNumber)
+        {
+            GameActionsHelper.GainIntellect(1);
+        }
     }
 
     @Override
@@ -54,7 +50,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBlock(2);
+            upgradeMagicNumber(1);
         }
     }
 }

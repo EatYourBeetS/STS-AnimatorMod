@@ -36,7 +36,9 @@ public class LivingPicture extends AnimatorRelic
 
         if (hasShownTip1 == null && AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y == 0)
         {
-            hasShownTip1 = AnimatorMetrics.GetConfig().getBool("TheAnimator-ftue1");
+            final String key = "TheAnimator-ftue1";
+
+            hasShownTip1 = AnimatorMetrics.GetConfig().getBool(key);
 
             if (!hasShownTip1)
             {
@@ -44,7 +46,7 @@ public class LivingPicture extends AnimatorRelic
                         Resources_Animator_Strings.Tips.TEXT[0],
                         Settings.WIDTH / 2f, Settings.HEIGHT / 2f, FtueTip.TipType.CARD_REWARD);
 
-                //AnimatorMetrics.GetConfig().setBool("TheAnimator-ftue1", true);
+                AnimatorMetrics.GetConfig().setBool(key, true);
                 AnimatorMetrics.SaveConfig();
                 hasShownTip1 = true;
             }

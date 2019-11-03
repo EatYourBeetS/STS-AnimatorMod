@@ -422,6 +422,27 @@ public class GameActionsHelper
         return ApplyPower(p, p, new AgilityPower(p, amount), amount);
     }
 
+    public static ApplyPowerAction GainRandomStat(int amount)
+    {
+        int roll = AbstractDungeon.cardRandomRng.random(2);
+        switch (roll)
+        {
+            case 0:
+            {
+                return GameActionsHelper.GainIntellect(amount);
+            }
+            case 1:
+            {
+                return GameActionsHelper.GainAgility(amount);
+            }
+            case 2:
+            default:
+            {
+                return GameActionsHelper.GainForce(amount);
+            }
+        }
+    }
+
     public static AddTemporaryHPAction GainTemporaryHP(AbstractCreature target, int amount)
     {
         AddTemporaryHPAction action = new AddTemporaryHPAction(target, target, amount);

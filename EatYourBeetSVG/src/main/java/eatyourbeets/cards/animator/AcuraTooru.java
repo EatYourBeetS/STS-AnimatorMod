@@ -18,7 +18,7 @@ public class AcuraTooru extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(4, 3, 0, 2);
+        Initialize(4, 0, 4, 2);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -28,7 +28,7 @@ public class AcuraTooru extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.GainBlock(AbstractDungeon.player, block);
+        GameActionsHelper.GainBlock(AbstractDungeon.player, magicNumber);
     }
 
     @Override

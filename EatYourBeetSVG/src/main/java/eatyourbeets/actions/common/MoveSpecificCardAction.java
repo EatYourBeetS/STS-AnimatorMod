@@ -158,5 +158,10 @@ public class MoveSpecificCardAction extends AnimatorAction
         AbstractDungeon.player.hand.refreshHandLayout();
         AbstractDungeon.player.hand.applyPowers();
         AbstractDungeon.player.hand.glowCheck();
+
+        if (destination.type == CardGroup.CardGroupType.HAND)
+        {
+            card.triggerWhenDrawn();
+        }
     }
 }

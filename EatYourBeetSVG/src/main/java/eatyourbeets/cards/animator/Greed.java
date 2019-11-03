@@ -17,13 +17,9 @@ public class Greed extends AnimatorCard
 
     public Greed()
     {
-        super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0, 2);
-
-        baseSecondaryValue = secondaryValue = 1;
-
-        AddExtendedDescription();
+        Initialize(0,0);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -43,22 +39,18 @@ public class Greed extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, this.secondaryValue), this.secondaryValue);
-        GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, this.magicNumber), this.magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new MalleablePower(p, 3), 3);
-
-        if (GetMasterDeckInstance() != null)
+        if (upgraded)
         {
-            p.gainGold(8);
+            GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, 3), 3);
         }
+
+        GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, 3), 3);
+        GameActionsHelper.ApplyPower(p, p, new MalleablePower(p, 3), 3);
     }
 
     @Override
     public void upgrade() 
     {
-        if (TryUpgrade())
-        {
-            upgradeSecondaryValue(2);
-        }
+        TryUpgrade();
     }
 }

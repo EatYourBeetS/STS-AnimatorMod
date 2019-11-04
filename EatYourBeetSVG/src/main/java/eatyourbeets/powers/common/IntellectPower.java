@@ -37,21 +37,11 @@ public class IntellectPower extends CommonPower
     }
 
     @Override
-    public void reducePower(int reduceAmount)
-    {
-        super.reducePower(reduceAmount);
-
-        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, FocusPower.POWER_ID, reduceAmount));
-    }
-
-    @Override
-    public void atStartOfTurnPostDraw()
+    public void atStartOfTurn()
     {
         super.atStartOfTurnPostDraw();
 
-        if (amount > 0)
-        {
-            reducePower(1);
-        }
+        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, FocusPower.POWER_ID, 1));
+        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
     }
 }

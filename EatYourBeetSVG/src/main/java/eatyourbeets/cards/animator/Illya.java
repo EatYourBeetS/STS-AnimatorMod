@@ -1,34 +1,72 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.actions.common.PlayCardFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Illya extends AnimatorCard
 {
-    public static final String ID = Register(Illya.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Illya.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Illya()
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(0,0);
+        Initialize(0,0, 6, 8);
 
-        SetExhaust(true);
         SetSynergy(Synergies.Fate);
     }
 
     @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        AbstractPlayer p = AbstractDungeon.player;
+        if (!DrawBerserker(p.drawPile))
+        {
+            if (!DrawBerserker(p.discardPile))
+            {
+                if (!DrawBerserker(p.exhaustPile))
+                {
+                    DrawBerserker(p.hand);
+                }
+            }
+        }
+    }
+
+    private boolean DrawBerserker(CardGroup group)
+    {
+        for (AbstractCard c : group.group)
+        {
+            if (Berserker.ID.equals(c.cardID))
+            {
+                if (group.type != CardGroup.CardGroupType.HAND)
+                {
+                    GameActionsHelper.AddToBottom(new MoveSpecificCardAction(c, AbstractDungeon.player.hand, group, true));
+                }
+
+                GameActionsHelper.AddToBottom(new ModifyDamageAction(c.uuid, secondaryValue));
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new VulnerablePower(p, 1, false), 1);
-
         AbstractCard bestCard = null;
         int maxDamage = Integer.MIN_VALUE;
         for (AbstractCard c : p.drawPile.group)
@@ -48,6 +86,8 @@ public class Illya extends AnimatorCard
         {
             GameActionsHelper.AddToTop(new PlayCardFromPileAction(bestCard, p.drawPile, false, false, m));
         }
+
+        GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
     }
 
     @Override
@@ -55,7 +95,7 @@ public class Illya extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            SetExhaust(false);
+            upgradeMagicNumber(-2);
         }
     }
 }

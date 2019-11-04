@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class LeleiLaLalena extends AnimatorCard
+public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 {
     public static final String ID = Register(LeleiLaLalena.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -28,8 +29,7 @@ public class LeleiLaLalena extends AnimatorCard
     {
         super.applyPowers();
 
-        magicNumber = baseMagicNumber + Math.max(0, Math.floorDiv(PlayerStatistics.GetFocus(), 6));
-        isMagicNumberModified = (baseMagicNumber != magicNumber);
+        Spellcaster.ApplyScaling(this, 6);
 
         if (HasActiveSynergy())
         {

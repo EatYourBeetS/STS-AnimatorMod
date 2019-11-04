@@ -19,7 +19,7 @@ public class Defend_HitsugiNoChaika extends Defend
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.CycleCardAction(1);
+        GameActionsHelper.CycleCardAction(1, name);
     }
 
     @Override

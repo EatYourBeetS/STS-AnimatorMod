@@ -32,7 +32,7 @@ public class Demiurge extends AnimatorCard
         super.triggerOnExhaust();
 
         GameActionsHelper.GainEnergy(1);
-        GameActionsHelper.CycleCardAction(1);
+        GameActionsHelper.CycleCardAction(1, name);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Demiurge extends AnimatorCard
         }
         else
         {
-            GameActionsHelper.ApplyPowerSilently(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
+            GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
         }
     }
 

@@ -29,7 +29,7 @@ public class Gate extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Defend.ID);
-        res.add(Tyuule.ID);
+        res.add(TukaLunaMarceau.ID);
         res.add(Kuribayashi.ID);
 
         return res;

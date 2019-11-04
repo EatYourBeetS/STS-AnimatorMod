@@ -12,7 +12,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class Emilia extends AnimatorCard implements Spellcaster
+public class Emilia extends AnimatorCard
 {
     public static final String ID = Register(Emilia.class.getSimpleName());
 
@@ -22,8 +22,7 @@ public class Emilia extends AnimatorCard implements Spellcaster
 
         Initialize(0,0);
 
-        this.exhaust = true;
-
+        SetExhaust(true);
         SetSynergy(Synergies.ReZero);
     }
 
@@ -39,7 +38,7 @@ public class Emilia extends AnimatorCard implements Spellcaster
     {
         if (TryUpgrade())
         {
-            this.exhaust = false;
+            SetExhaust(false);
         }
     }
 

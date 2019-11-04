@@ -169,9 +169,9 @@ public class GameActionsHelper
         return action;
     }
 
-    public static CycleCardAction CycleCardAction(int amount)
+    public static CycleCardAction CycleCardAction(int amount, String sourceName)
     {
-        CycleCardAction action = new CycleCardAction(AbstractDungeon.player, amount);
+        CycleCardAction action = new CycleCardAction(AbstractDungeon.player, amount, sourceName);
         AddToDefault(action);
         return action;
     }
@@ -251,6 +251,13 @@ public class GameActionsHelper
     public static DamageAction DamageTarget(AbstractCreature source, AbstractCreature target, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
         DamageAction action = new DamageAction(target, new DamageInfo(source, amount, damageType), effect);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static DamageAllEnemiesPiercingAction DamageAllEnemiesPiercing(AbstractCreature source, int[] amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect, boolean isFast)
+    {
+        DamageAllEnemiesPiercingAction action = new DamageAllEnemiesPiercingAction(source, amount, damageType, effect, isFast);
         AddToDefault(action);
         return action;
     }

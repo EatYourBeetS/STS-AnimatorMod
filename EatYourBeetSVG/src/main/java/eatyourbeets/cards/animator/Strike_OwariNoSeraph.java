@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.PlayerStatistics;
 
 public class Strike_OwariNoSeraph extends Strike
 {
-    public static final String ID = Register(Strike_OwariNoSeraph.class.getSimpleName());
+    public static final String ID = Register(Strike_OwariNoSeraph.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Strike_OwariNoSeraph()
     {

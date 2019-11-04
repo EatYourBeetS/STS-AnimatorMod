@@ -7,10 +7,12 @@ import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.interfaces.metadata.MartialArtist;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class Azekura extends AnimatorCard
+public class Azekura extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(Azekura.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
 
@@ -18,9 +20,17 @@ public class Azekura extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,7,2, 2);
+        Initialize(0,6,2, 2);
 
         SetSynergy(Synergies.Katanagatari);
+    }
+
+    @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+
+        MartialArtist.ApplyScaling(this, 2);
     }
 
     @Override
@@ -50,7 +60,8 @@ public class Azekura extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(3);
+            upgradeBlock(1);
+            upgradeMagicNumber(2);
         }
     }
 }

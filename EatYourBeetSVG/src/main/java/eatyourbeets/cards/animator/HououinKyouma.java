@@ -49,12 +49,13 @@ public class HououinKyouma extends AnimatorCard
                 if (canAdd)
                 {
                     AbstractCard copy = c.makeStatEquivalentCopy();
-                    if (upgraded)
-                    {
-                        copy.setCostForTurn(copy.costForTurn - 1);
-                    }
+//                    if (upgraded)
+//                    {
+//                        copy.setCostForTurn(copy.costForTurn - 1);
+//                    }
 
-                    group.addToTop(copy.makeStatEquivalentCopy());
+                    copy.retain = true;
+                    group.addToTop(copy);
                 }
             }
         }

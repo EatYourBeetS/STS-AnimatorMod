@@ -12,7 +12,7 @@
 	},
 	"animator:AzrielPower":
 	{
-		"DESCRIPTIONS": ["Whenever you apply a debuff to an enemy, gain #b", " Strength."],
+		"DESCRIPTIONS": ["Whenever you apply a debuff, gain #b", " Strength."],
 		"NAME": "Azriel"
 	},
 	"animator:BiyorigoPower":
@@ -38,7 +38,7 @@
 	"animator:ChlammyZellPower":
 	{
 		"DESCRIPTIONS": ["Whenever you play alternating card types this turn, deal #b", " damage to ALL enemies and #yCycle #b1 card. NL NL Last Type played: #y"],
-		"NAME": "Chlammy Zell"
+		"NAME": "Kurami"
 	},
 	"animator:CursedStabsPower":
 	{
@@ -153,7 +153,7 @@
 	"animator:GuildGirlPower":
 	{
 		"DESCRIPTIONS": ["At the start of your turn Cycle #b", " cards."],
-		"NAME": "Bookkeeping"
+		"NAME": "Guild Girl"
 	},
 	"animator:HandSizePower":
 	{

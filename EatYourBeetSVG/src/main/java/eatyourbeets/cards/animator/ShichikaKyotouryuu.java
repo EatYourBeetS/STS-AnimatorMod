@@ -7,12 +7,13 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.interfaces.metadata.Hidden;
+import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class ShichikaKyotouryuu extends AnimatorCard implements Hidden
+public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, Hidden
 {
     public static final String ID = Register(ShichikaKyotouryuu.class.getSimpleName());
 
@@ -29,7 +30,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements Hidden
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetDexterity(player));
+        return super.calculateModifiedCardDamage(player, mo, tmp + MartialArtist.GetScaling());
     }
 
     @Override

@@ -55,8 +55,7 @@ public class Mitsurugi extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.GainForce(1);
     }
 
     @Override

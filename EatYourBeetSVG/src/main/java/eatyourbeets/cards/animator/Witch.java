@@ -8,11 +8,12 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class Witch extends AnimatorCard implements OnAddedToDeckSubscriber
+public class Witch extends AnimatorCard implements Spellcaster, OnAddedToDeckSubscriber
 {
     public static final String ID = Register(Witch.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -30,8 +31,7 @@ public class Witch extends AnimatorCard implements OnAddedToDeckSubscriber
     {
         super.applyPowers();
 
-        magicNumber = baseMagicNumber + Math.max(0, PlayerStatistics.GetFocus());
-        isMagicNumberModified = (baseMagicNumber != magicNumber);
+        Spellcaster.ApplyScaling(this);
     }
 
     @Override

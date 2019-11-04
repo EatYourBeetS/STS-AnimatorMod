@@ -1,5 +1,7 @@
 package eatyourbeets.cards.animator;
 
+import basemod.interfaces.OnStartBattleSubscriber;
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
@@ -8,14 +10,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class TanyaDegurechaff extends AnimatorCard implements OnAddedToDeckSubscriber
+public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
     public static final String ID = Register(TanyaDegurechaff.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -61,9 +65,17 @@ public class TanyaDegurechaff extends AnimatorCard implements OnAddedToDeckSubsc
         }
     }
 
+
     @Override
-    public void OnAddedToDeck()
+    public boolean atBattleStartPreDraw()
     {
-        AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(new TanyaDegurechaff_Type95(), (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+        if (PlayerStatistics.TryActivateLimited(cardID))
+        {
+            GameActionsHelper.MakeCardInDrawPile(new TanyaDegurechaff_Type95(), 1, false);
+
+            return true;
+        }
+
+        return false;
     }
 }

@@ -11,9 +11,9 @@ import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Zero extends AnimatorCard implements Spellcaster
+public class Zero extends AnimatorCard
 {
-    public static final String ID = Register(Zero.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Zero.class.getSimpleName());
 
     public Zero()
     {
@@ -21,7 +21,7 @@ public class Zero extends AnimatorCard implements Spellcaster
 
         Initialize(0, 0);
 
-        this.exhaust = true;
+        SetExhaust(true);
         SetSynergy(Synergies.GrimoireOfZero);
     }
 
@@ -43,7 +43,7 @@ public class Zero extends AnimatorCard implements Spellcaster
     {
         if (TryUpgrade())
         {
-            this.exhaust = false;
+            SetExhaust(false);
         }
     }
 }

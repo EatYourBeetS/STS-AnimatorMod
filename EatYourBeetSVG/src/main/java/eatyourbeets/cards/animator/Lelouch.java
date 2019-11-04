@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -13,6 +14,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.GeassPower;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.RandomizedList;
 import patches.AbstractEnums;
 
 public class Lelouch extends AnimatorCard
@@ -23,21 +25,25 @@ public class Lelouch extends AnimatorCard
     {
         super(ID, 3, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.ALL_ENEMY);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 3);
 
         AddExtendedDescription();
 
+        SetPurge(true);
         SetSynergy(Synergies.CodeGeass);
-
-        this.tags.add(AbstractEnums.CardTags.PURGE);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractCard card : p.hand.getAttacks().group)
+        RandomizedList<AbstractCard> cards = new RandomizedList<>(p.hand.group);
+        for (int i = 0; i < magicNumber; i++)
         {
-            GameActionsHelper.ExhaustCard(card, p.hand);
+            AbstractCard toExhaust = cards.Retrieve(AbstractDungeon.cardRandomRng);
+            if (toExhaust != null && toExhaust != this)
+            {
+                GameActionsHelper.ExhaustCard(toExhaust, p.hand);
+            }
         }
 
         GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());

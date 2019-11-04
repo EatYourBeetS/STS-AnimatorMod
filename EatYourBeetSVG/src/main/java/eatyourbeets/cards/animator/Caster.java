@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
@@ -21,9 +22,18 @@ public class Caster extends AnimatorCard implements Spellcaster
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0,0, 1);
+        Initialize(0,0, 2);
 
         SetSynergy(Synergies.Fate);
+    }
+
+
+    @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+
+        Spellcaster.ApplyScaling(this, 2);
     }
 
     @Override
@@ -45,9 +55,10 @@ public class Caster extends AnimatorCard implements Spellcaster
     {
         GameActionsHelper.ChannelOrb(new Dark(), true);
 
-        if (PlayerStatistics.UseArtifact(m))
+        PlayerStatistics.LoseTemporaryStrength(p, m, magicNumber);
+
+        if (!m.hasPower(ArtifactPower.POWER_ID))
         {
-            PlayerStatistics.LoseTemporaryStrength(p, m, magicNumber);
             PlayerStatistics.GainTemporaryStrength(p, p, magicNumber);
         }
     }
@@ -57,7 +68,7 @@ public class Caster extends AnimatorCard implements Spellcaster
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(1);
         }
     }
 }

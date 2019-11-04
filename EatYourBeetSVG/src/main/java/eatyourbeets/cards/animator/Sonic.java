@@ -19,7 +19,7 @@ public class Sonic extends AnimatorCard implements MartialArtist
     {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 2, 1);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -29,17 +29,14 @@ public class Sonic extends AnimatorCard implements MartialArtist
     {
         super.applyPowers();
 
-        secondaryValue = baseSecondaryValue + Math.max(0, Math.floorDiv(PlayerStatistics.GetDexterity(), 2));
-        isSecondaryValueModified = (baseSecondaryValue != secondaryValue);
+        MartialArtist.ApplyScaling(this, 2);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new SonicPower(p, magicNumber), magicNumber);
-
-        GameActionsHelper.GainAgility(magicNumber);
-        GameActionsHelper.DrawCard(p, secondaryValue);
+        GameActionsHelper.GainAgility(secondaryValue);
+        GameActionsHelper.DrawCard(p, magicNumber);
 
         if (HasActiveSynergy())
         {
@@ -52,7 +49,7 @@ public class Sonic extends AnimatorCard implements MartialArtist
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeSecondaryValue(1);
         }
     }
 }

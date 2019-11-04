@@ -44,7 +44,7 @@ public class AcuraTooru extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainBlock(p, block);
+            GameActionsHelper.GainBlock(p, magicNumber);
         }
     }
 

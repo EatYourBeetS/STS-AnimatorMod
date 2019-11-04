@@ -18,8 +18,7 @@ public class Azriel extends AnimatorCard_UltraRare
 
         Initialize(0,0, 1);
 
-        this.isEthereal = true;
-
+        SetEthereal(true);
         SetSynergy(Synergies.NoGameNoLife);
     }
 
@@ -35,7 +34,7 @@ public class Azriel extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            this.isEthereal = false;
+            SetEthereal(false);
         }
     }
 }

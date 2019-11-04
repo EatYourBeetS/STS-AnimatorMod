@@ -30,7 +30,7 @@ public class Overlord extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Cocytus.ID);
-        res.add(PandorasActor.ID);
+        res.add(Demiurge.ID);
 
         return res;
     }

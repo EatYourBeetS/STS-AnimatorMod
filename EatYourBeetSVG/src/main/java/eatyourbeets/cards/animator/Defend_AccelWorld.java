@@ -3,11 +3,12 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend_AccelWorld extends Defend
 {
-    public static final String ID = Register(Defend_AccelWorld.class.getSimpleName());
+    public static final String ID = Register(Defend_AccelWorld.class.getSimpleName(), EYBCardBadge.Discard);
 
     public Defend_AccelWorld()
     {

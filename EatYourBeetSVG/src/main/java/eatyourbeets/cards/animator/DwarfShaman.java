@@ -8,11 +8,12 @@ import eatyourbeets.actions.common.DrawAndUpgradeCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class DwarfShaman extends AnimatorCard
+public class DwarfShaman extends AnimatorCard implements Spellcaster
 {
     public static final String ID = Register(DwarfShaman.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -25,10 +26,11 @@ public class DwarfShaman extends AnimatorCard
         SetSynergy(Synergies.GoblinSlayer);
     }
 
+
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (PlayerStatistics.GetFocus(player) * 2));
+        return super.calculateModifiedCardDamage(player, mo, tmp + (Spellcaster.GetScaling() * 2));
     }
 
     @Override

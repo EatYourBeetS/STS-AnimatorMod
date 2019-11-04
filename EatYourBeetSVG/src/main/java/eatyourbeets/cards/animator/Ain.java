@@ -21,17 +21,14 @@ public class Ain extends AnimatorCard implements Spellcaster
 
         Initialize(1,0, 3);
 
-        this.isMultiDamage = true;
-
-        AddExtendedDescription();
-
+        SetMultiDamage(true);
         SetSynergy(Synergies.Elsword);
     }
 
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetFocus(player));
+        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
     }
 
     @Override
@@ -42,7 +39,10 @@ public class Ain extends AnimatorCard implements Spellcaster
             GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         }
 
-        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
+        if (PlayerStatistics.TryActivateSemiLimited(cardID))
+        {
+            GameActionsHelper.GainIntellect(2);
+        }
     }
 
     @Override

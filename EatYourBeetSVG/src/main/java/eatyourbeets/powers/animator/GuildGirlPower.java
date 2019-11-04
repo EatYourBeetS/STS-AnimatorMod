@@ -94,7 +94,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
         @Override
         public void update()
         {
-            GameActionsHelper.CycleCardAction(this.amount);
+            GameActionsHelper.CycleCardAction(this.amount, name);
 
             isDone = true;
         }

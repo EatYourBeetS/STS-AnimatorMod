@@ -3,6 +3,7 @@ package eatyourbeets.dungeons;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.*;
+import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
 
@@ -159,25 +160,35 @@ public class TheUnnamedReign_Map
         // |
         // M
         {
-            Ev1 = CreateMonsterRoomElite(center, y);
+            Mo2 = CreateMonsterRoomElite(center, y);
             row = CreateRow(y);
-            row.set(center, Ev1);
+            row.set(center, Mo2);
             y += 1;
 
-            Ev2 = CreateRestRoom(center, y);
-            row = CreateRow(y);
-            row.set(center, Ev2);
-            y += 1;
+            if (PlayerStatistics.GetActualAscensionLevel() >= 20)
+            {
+                Ev1 = CreateMonsterRoomElite(center, y);
+                row = CreateRow(y);
+                row.set(center, Ev1);
+                y += 1;
+            }
+            else
+            {
+                Ev1 = CreateRestRoom(center, y);
+                row = CreateRow(y);
+                row.set(center, Ev1);
+                y += 1;
+            }
 
             Mo1 = CreateMonsterRoomBoss(center, y);
             row = CreateRow(y);
             row.set(center, Mo1);
             //y += 1;
 
-            ConnectRooms(Sh1, Ev1);
-            ConnectRooms(Re1, Ev1);
-            ConnectRooms(Ev1, Ev2);
-            ConnectRooms(Ev2, Mo1);
+            ConnectRooms(Sh1, Mo2);
+            ConnectRooms(Re1, Mo2);
+            ConnectRooms(Mo2, Ev1);
+            ConnectRooms(Ev1, Mo1);
         }
     }
 

@@ -21,10 +21,9 @@ public class EmiyaShirou extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0,0, 16);
+        Initialize(0,0, 13);
 
-        //AddExtendedDescription();
-
+        SetExhaust(true);
         SetSynergy(Synergies.Fate);
     }
 
@@ -61,7 +60,10 @@ public class EmiyaShirou extends AnimatorCard
             GameActionsHelper.ApplyPower(p, target, new VulnerablePower(target, 1, false), 1);
         }
 
-        GameActionsHelper.ApplyPower(p, p, new EmiyaShirouPower(p), 1);
+        if (PlayerStatistics.TryActivateSemiLimited(cardID))
+        {
+            GameActionsHelper.ApplyPower(p, p, new EmiyaShirouPower(p), 1);
+        }
     }
 
     @Override
@@ -69,7 +71,7 @@ public class EmiyaShirou extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(-4);
+            SetExhaust(false);
         }
     }
 }

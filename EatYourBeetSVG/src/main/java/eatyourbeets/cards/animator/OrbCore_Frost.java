@@ -3,13 +3,14 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.powers.animator.OrbCore_FrostPower;
 
 public class OrbCore_Frost extends AnimatorCard
 {
-    public static final String ID = Register(OrbCore_Frost.class.getSimpleName());
+    public static final String ID = Register(OrbCore_Frost.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public static final int VALUE = 2;
 

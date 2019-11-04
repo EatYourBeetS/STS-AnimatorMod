@@ -1,14 +1,23 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Frost;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import eatyourbeets.actions.common.VariableDiscardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
+import eatyourbeets.orbs.Earth;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+
+import java.util.ArrayList;
 
 public class Ara extends AnimatorCard implements MartialArtist
 {
@@ -22,6 +31,12 @@ public class Ara extends AnimatorCard implements MartialArtist
         Initialize(3,0);
 
         SetSynergy(Synergies.Elsword);
+    }
+
+    @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        return super.calculateModifiedCardDamage(player, mo, tmp + MartialArtist.GetScaling());
     }
 
     @Override
@@ -40,15 +55,29 @@ public class Ara extends AnimatorCard implements MartialArtist
         }
 
         GameActionsHelper.DrawCard(p, debuffs);
-        GameActionsHelper.Discard(1, false);
+        GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, 1, this, this::OnCardDiscard, false));
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
-        {          
+        {
             upgradeDamage(2);
+        }
+    }
+
+    private void OnCardDiscard(Object state, ArrayList<AbstractCard> cards)
+    {
+        if (state != this || cards == null || cards.size() == 0)
+        {
+            return;
+        }
+
+        if (cards.get(0).type.equals(CardType.POWER) && PlayerStatistics.TryActivateSemiLimited(cardID))
+        {
+            GameActionsHelper.GainAgility(1);
+            GameActionsHelper.GainForce(2);
         }
     }
 }

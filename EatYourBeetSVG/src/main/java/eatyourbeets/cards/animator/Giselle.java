@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -10,55 +11,37 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.orbs.Fire;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.utilities.Utilities;
 
-public class Giselle extends AnimatorCard_UltraRare
+public class Giselle extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register(Giselle.class.getSimpleName());
+    public static final String ID = Register(Giselle.class.getSimpleName(), EYBCardBadge.Special);
 
     public Giselle()
     {
         super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(12,0, 8);
-
-        baseSecondaryValue = secondaryValue = 60;
+        Initialize(18,0);
 
         SetSynergy(Synergies.Gate);
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        if (mo != null && mo.currentHealth < secondaryValue)
-        {
-            tmp *= 3;
-        }
-
-        return super.calculateModifiedCardDamage(player, mo, tmp);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (m.currentHealth < secondaryValue)
-        {
-            GameActionsHelper.AddToBottom(new VFXAction(p, new FlameBarrierEffect(m.hb.cX, m.hb.cY), 0.5F));
-            DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
-            GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
-            GameActionsHelper.AddToBottom(damageAction);
-            GameActionsHelper.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-        }
-        else
+        BurningPower burning = Utilities.GetPower(m, BurningPower.POWER_ID);
+        if (burning != null)
         {
-            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+            GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, burning.amount), burning.amount);
         }
-
-        GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, this.magicNumber), this.magicNumber);
     }
 
     @Override
@@ -66,8 +49,15 @@ public class Giselle extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeSecondaryValue(20);
+            upgradeDamage(6);
         }
+    }
+
+    @Override
+    public boolean atBattleStartPreDraw()
+    {
+        GameActionsHelper.ChannelOrb(new Fire(), false);
+
+        return true;
     }
 }

@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -9,7 +10,7 @@ import eatyourbeets.powers.animator.OrbCore_ChaosPower;
 
 public class OrbCore_Chaos extends AnimatorCard
 {
-    public static final String ID = Register(OrbCore_Chaos.class.getSimpleName());
+    public static final String ID = Register(OrbCore_Chaos.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public static final int VALUE = 1;
 

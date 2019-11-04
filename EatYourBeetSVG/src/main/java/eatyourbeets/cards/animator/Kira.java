@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FadingPower;
@@ -14,6 +15,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
+import eatyourbeets.utilities.Utilities;
 
 public class Kira extends AnimatorCard
 {
@@ -28,14 +30,12 @@ public class Kira extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0, 0);
-
-        this.baseSecondaryValue = this.secondaryValue = 3;
-        this.isEthereal = true;
-        this.exhaust = true;
+        Initialize(0, 0, 3);
 
         AddExtendedDescription();
 
+        SetExhaust(true);
+        SetEthereal(true);
         SetSynergy(Synergies.DeathNote);
     }
 
@@ -49,6 +49,10 @@ public class Kira extends AnimatorCard
     public void calculateCardDamage(AbstractMonster mo)
     {
         super.calculateCardDamage(mo);
+
+        targetDrawScale = 1f;
+        target_x = Settings.WIDTH * 0.4f;
+        target_y = Settings.HEIGHT * 0.4f;
 
         targetEnemy = mo;
     }
@@ -101,7 +105,7 @@ public class Kira extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(-1);
+            upgradeMagicNumber(-1);
         }
     }
 
@@ -109,20 +113,20 @@ public class Kira extends AnimatorCard
     {
         if (monster == null)
         {
-            rawDescription = cardData.strings.DESCRIPTION;
+            cardText.overrideDescription = null;
         }
         else if (monster instanceof TheUnnamed)
         {
-            rawDescription = cardData.strings.DESCRIPTION;
+            cardText.overrideDescription = null;
             ((TheUnnamed)monster).TriedUsingDeathNote();
         }
         else
         {
             updateCountdown(monster);
-            rawDescription = cardData.strings.EXTENDED_DESCRIPTION[2].replace("@", String.valueOf(countdown));
+            cardText.overrideDescription = Utilities.Format(cardData.strings.EXTENDED_DESCRIPTION[2], countdown);
         }
 
-        initializeDescription();
+        cardText.Update(cardText.index, true);
     }
 
     private void updateCountdown(AbstractMonster m)

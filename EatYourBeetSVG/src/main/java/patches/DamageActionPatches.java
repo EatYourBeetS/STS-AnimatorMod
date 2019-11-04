@@ -16,6 +16,7 @@ public class DamageActionPatches
     {
         if (action != null && action.source != null && action.source.hasPower(GeassPower.POWER_ID))
         {
+            info.applyPowers(action.source, action.source);
             action.target = action.source;
         }
     }

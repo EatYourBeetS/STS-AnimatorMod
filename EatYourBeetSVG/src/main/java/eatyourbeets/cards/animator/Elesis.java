@@ -5,49 +5,48 @@ import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.ModifyMagicNumberAction;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Elesis extends AnimatorCard
 {
-    public static final String ID = Register(Elesis.class.getSimpleName());
+    public static final String ID = Register(Elesis.class.getSimpleName(), EYBCardBadge.Drawn, EYBCardBadge.Discard);
 
     public Elesis()
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(8,0, 6);
+        Initialize(6,0, 1, 4);
 
-        this.retain = true;
-
+        SetExhaust(true);
         SetSynergy(Synergies.Elsword);
     }
 
     @Override
-    public void atTurnStart()
+    public void triggerWhenDrawn()
     {
-        super.atTurnStart();
+        super.triggerWhenDrawn();
 
-        this.retain = true;
-        if (AbstractDungeon.player.hand.contains(this))
-        {
-            GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, this.magicNumber));
-        }
+        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, secondaryValue));
     }
 
     @Override
-    public void triggerOnEndOfTurnForPlayingCard()
+    public void triggerOnManualDiscard()
     {
-        super.triggerOnEndOfTurnForPlayingCard();
+        super.triggerOnManualDiscard();
 
-        this.retain = true;
+        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, secondaryValue));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper.GainForce(magicNumber);
+        GameActionsHelper.GainAgility(magicNumber);
     }
 
     @Override
@@ -56,7 +55,7 @@ public class Elesis extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(2);
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(1);
         }
     }
 }

@@ -29,6 +29,12 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
     }
 
     @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        return super.calculateModifiedCardDamage(player, mo, tmp + (MartialArtist.GetScaling() * 2));
+    }
+
+    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
@@ -38,12 +44,6 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
             GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, AbstractDungeon.player.hand));
             GameActionsHelper.GainAgility(magicNumber);
         }
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetDexterity(player));
     }
 
     @Override

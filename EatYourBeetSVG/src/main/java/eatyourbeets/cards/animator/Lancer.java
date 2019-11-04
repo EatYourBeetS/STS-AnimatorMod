@@ -3,12 +3,16 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.MartialArtist;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Lancer extends AnimatorCard
+public class Lancer extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(Lancer.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -16,7 +20,7 @@ public class Lancer extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(7,0);
+        Initialize(6,0);
 
         SetSynergy(Synergies.Fate);
     }
@@ -24,9 +28,11 @@ public class Lancer extends AnimatorCard
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        if (mo != null && mo.currentHealth <= mo.maxHealth / 2)
+        tmp += MartialArtist.GetScaling();
+
+        if (mo != null && (mo.maxHealth / (float)mo.currentHealth) < 0.5f)
         {
-            return super.calculateModifiedCardDamage(player, mo, tmp) * 2;
+            return super.calculateModifiedCardDamage(player, mo, tmp * 2);
         }
         else
         {
@@ -49,9 +55,10 @@ public class Lancer extends AnimatorCard
 
         GameActionsHelper.DamageTargetPiercing(p, m, this, attackEffect);
 
-        if (HasActiveSynergy())
+        if (m.currentBlock > 0)
         {
-            GameActionsHelper.GainEnergy(1);
+            GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
+            GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 1, false), 1);
         }
     }
 

@@ -22,8 +22,6 @@ public class Wiz extends AnimatorCard
 
         Initialize(0,0);
 
-        AddExtendedDescription();
-
         SetSynergy(Synergies.Konosuba);
     }
 
@@ -32,8 +30,8 @@ public class Wiz extends AnimatorCard
     {
         if (p.hand.size() > 0)
         {
-            AbstractDungeon.actionManager.addToBottom(new ExhaustAction(p, p, 1, false));
-            AbstractDungeon.actionManager.addToBottom(new WizAction(p));
+            GameActionsHelper.AddToBottom(new ExhaustAction(p, p, 1, false));
+            GameActionsHelper.AddToBottom(new WizAction(p));
         }
 
         if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(cardID))

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.FocusPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.actions.animator.AnimatorAction;
@@ -15,13 +16,13 @@ import eatyourbeets.cards.Synergies;
 
 public class Veldora extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Veldora.class.getSimpleName());
+    public static final String ID = Register(Veldora.class.getSimpleName(), EYBCardBadge.Drawn);
 
     public Veldora()
     {
         super(ID, 4, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 2, 2);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -38,7 +39,7 @@ public class Veldora extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, this.secondaryValue), this.secondaryValue);
+        GameActionsHelper.GainIntellect(secondaryValue);
 
         int orbCount =  p.filledOrbCount();
         for (int i = 0; i < this.magicNumber - 1; i++)

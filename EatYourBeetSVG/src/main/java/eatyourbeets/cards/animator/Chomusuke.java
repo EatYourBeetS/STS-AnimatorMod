@@ -1,35 +1,39 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Chomusuke extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Chomusuke.class.getSimpleName());
+    public static final String ID = Register(Chomusuke.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Chomusuke()
     {
         super(ID, 0, CardType.SKILL, CardTarget.NONE);
 
-        Initialize(0, 0, 1);
-
-        this.retain = true;
+        Initialize(0, 0);
 
         SetSynergy(Synergies.Konosuba);
     }
 
     @Override
-    public void triggerWhenDrawn()
+    public void triggerOnExhaust()
     {
-        super.triggerWhenDrawn();
+        super.triggerOnExhaust();
 
-        this.retain = true;
+        if (PlayerStatistics.TryActivateSemiLimited(cardID))
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.exhaustPile, true));
+            GameActionsHelper.GainEnergy(2);
+        }
     }
 
     @Override
@@ -37,41 +41,13 @@ public class Chomusuke extends AnimatorCard_UltraRare
     {
         super.triggerOnEndOfTurnForPlayingCard();
 
-        this.retain = true;
-    }
-
-    @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        this.baseSecondaryValue = this.secondaryValue = PlayerStatistics.getCardsExhaustedThisTurn();
-        this.isSecondaryValueModified = this.secondaryValue != 0;
-    }
-
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisTurn)
-        {
-            if (c == this)
-            {
-                return false;
-            }
-        }
-
-        return super.cardPlayable(m);
+        SetRetain(true);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        int exhaustedThisTurn = PlayerStatistics.getCardsExhaustedThisTurn();
-        if (exhaustedThisTurn > 0)
-        {
-            GameActionsHelper.GainEnergy(exhaustedThisTurn);
-            GameActionsHelper.DrawCard(p, exhaustedThisTurn * this.magicNumber);
-        }
+
     }
 
     @Override
@@ -79,7 +55,7 @@ public class Chomusuke extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            SetInnate(true);
         }
     }
 }

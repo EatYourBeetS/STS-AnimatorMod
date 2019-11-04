@@ -29,7 +29,7 @@ public class Genos extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.FIRE);
         GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, this.magicNumber), this.magicNumber);
-        GameActionsHelper.ApplyPowerSilently(p, p, new SelfDamagePower(p, secondaryValue), secondaryValue);
+        GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, secondaryValue), secondaryValue);
 
         if (HasActiveSynergy())
         {

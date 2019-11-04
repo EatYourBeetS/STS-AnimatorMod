@@ -1,10 +1,13 @@
 package eatyourbeets.cards.animator;
 
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
@@ -13,15 +16,15 @@ import eatyourbeets.powers.animator.EnchantedArmorPower;
 
 import java.util.ArrayList;
 
-public class JeanneDArc extends AnimatorCard_UltraRare
+public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register(JeanneDArc.class.getSimpleName());
+    public static final String ID = Register(JeanneDArc.class.getSimpleName(), EYBCardBadge.Special);
 
     public JeanneDArc()
     {
         super(ID, 1, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(10,0, 8);
+        Initialize(12,4, 8);
 
         SetSynergy(Synergies.Fate);
     }
@@ -30,8 +33,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper.GainTemporaryHP(p, p, this.magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.GainBlock(p, block);
 
         ArrayList<AbstractCard> cards = new ArrayList<>();
         if (!TryExhaust(p.hand))
@@ -48,8 +50,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
-            upgradeMagicNumber(1);
+            upgradeDamage(4);
         }
     }
 
@@ -72,5 +73,13 @@ public class JeanneDArc extends AnimatorCard_UltraRare
         }
 
         return false;
+    }
+
+    @Override
+    public boolean atBattleStartPreDraw()
+    {
+        GameActionsHelper.GainTemporaryHP(AbstractDungeon.player, secondaryValue);
+
+        return true;
     }
 }

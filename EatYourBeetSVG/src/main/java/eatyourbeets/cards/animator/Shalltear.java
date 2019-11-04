@@ -1,8 +1,10 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
@@ -30,6 +32,21 @@ public class Shalltear extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
+        if (enemies.size() == 0)
+        {
+            return;
+        }
+
+        // Only calculate player powers...
+        DamageInfo info = new DamageInfo(p, baseDamage);
+        AbstractMonster sample = enemies.get(0);
+        ArrayList<AbstractPower> temp = new ArrayList<>(sample.powers);
+        sample.powers.clear();
+        info.applyPowers(p, sample);
+        sample.powers.addAll(temp);
+        this.damage = info.output;
+        //
+
         for (AbstractMonster m1 : enemies)
         {
             //GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m1.hb.cX, m1.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));

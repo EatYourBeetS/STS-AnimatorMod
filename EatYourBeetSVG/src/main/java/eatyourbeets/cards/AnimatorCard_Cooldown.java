@@ -1,6 +1,5 @@
 package eatyourbeets.cards;
 
-import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -43,6 +42,18 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
         }
     }
 
+    protected void UpgradeCooldown(int amount)
+    {
+        secondaryValue += amount;
+        baseSecondaryValue = secondaryValue;
+
+        if (secondaryValue < 0)
+        {
+            baseSecondaryValue = secondaryValue = 0;
+            isSecondaryValueModified = true;
+        }
+    }
+
     @Override
     public void applyPowers()
     {
@@ -76,6 +87,11 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
         this.baseSecondaryValue = this.secondaryValue = newValue;
 
         return activate;
+    }
+
+    protected int GetCurrentCooldown()
+    {
+        return secondaryValue;
     }
 
     protected abstract void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m);

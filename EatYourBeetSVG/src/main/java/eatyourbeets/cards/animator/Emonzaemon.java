@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.RefreshHandLayoutAction;
@@ -16,7 +17,7 @@ import eatyourbeets.cards.Synergies;
 
 import java.util.ArrayList;
 
-public class Emonzaemon extends AnimatorCard
+public class Emonzaemon extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(Emonzaemon.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -35,6 +36,12 @@ public class Emonzaemon extends AnimatorCard
     }
 
     @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        return super.calculateModifiedCardDamage(player, mo, tmp + MartialArtist.GetScaling());
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
@@ -42,7 +49,7 @@ public class Emonzaemon extends AnimatorCard
         GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
         GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
 
-        if (PlayerStatistics.HasActivatedLimited(cardID))
+        if (!PlayerStatistics.HasActivatedLimited(cardID))
         {
             ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
             int size = cardsPlayed.size();
@@ -59,7 +66,7 @@ public class Emonzaemon extends AnimatorCard
 
                 if (threeInARow)
                 {
-                    GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(new EntouJyuu(), 1, true, true));
+                    GameActionsHelper.MakeCardInDrawPile(new EntouJyuu(), 1, false);
                     PlayerStatistics.TryActivateLimited(cardID);
                 }
             }

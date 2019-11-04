@@ -37,8 +37,7 @@ public class Evileye extends AnimatorCard implements Spellcaster
     {
         super.applyPowers();
 
-        this.magicNumber = baseMagicNumber + Math.max(0, Math.floorDiv(PlayerStatistics.GetFocus(), 2));
-        this.isMagicNumberModified = (magicNumber != baseMagicNumber);
+        Spellcaster.ApplyScaling(this, 2);
     }
 
     @Override

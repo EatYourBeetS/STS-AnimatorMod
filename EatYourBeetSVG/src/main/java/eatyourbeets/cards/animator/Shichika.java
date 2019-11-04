@@ -7,10 +7,11 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class Shichika extends AnimatorCard
+public class Shichika extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(Shichika.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -34,8 +35,7 @@ public class Shichika extends AnimatorCard
     {
         super.applyPowers();
 
-        magicNumber = baseMagicNumber + Math.max(0, Math.floorDiv(PlayerStatistics.GetDexterity(), 2));
-        isMagicNumberModified = (baseMagicNumber != magicNumber);
+        MartialArtist.ApplyScaling(this, 2);
     }
 
     @Override

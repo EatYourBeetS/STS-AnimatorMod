@@ -208,7 +208,7 @@ public class Fredrika extends AnimatorCard
             case FORM_DEFAULT:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID));
-                this.rawDescription = cardData.strings.DESCRIPTION;
+                this.cardText.overrideDescription = null;
                 this.type = CardType.SKILL;
                 this.target = CardTarget.SELF;
                 this.cost = 1;
@@ -219,7 +219,7 @@ public class Fredrika extends AnimatorCard
             case FORM_CAT:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Cat"));
-                this.rawDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
+                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
                 this.type = CardType.SKILL;
                 this.target = CardTarget.NONE;
                 this.cost = 0;
@@ -230,7 +230,7 @@ public class Fredrika extends AnimatorCard
             case FORM_DRAGOON:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Dragoon"));
-                this.rawDescription = cardData.strings.EXTENDED_DESCRIPTION[1];
+                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[1];
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
@@ -241,7 +241,7 @@ public class Fredrika extends AnimatorCard
             case FORM_DOMINICA:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Dominica"));
-                this.rawDescription = cardData.strings.EXTENDED_DESCRIPTION[2];
+                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[2];
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;
@@ -251,6 +251,6 @@ public class Fredrika extends AnimatorCard
         }
 
         this.setCostForTurn(cost);
-        this.initializeDescription();
+        this.cardText.Update(cardText.index, true);
     }
 }

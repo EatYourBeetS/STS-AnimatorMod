@@ -39,7 +39,6 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         super.triggerOnManualDiscard();
 
         AbstractPlayer p = AbstractDungeon.player;
-
         GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.secondaryValue, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
     }
 

@@ -22,6 +22,7 @@ public class Alexander extends AnimatorCard
 
         Initialize(5,0,4);
 
+        SetMultiDamage(true);
         SetSynergy(Synergies.Fate);
     }
 
@@ -31,14 +32,14 @@ public class Alexander extends AnimatorCard
         super.triggerOnExhaust();
 
         AbstractPlayer p = AbstractDungeon.player;
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber));
+        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.baseDamage, false), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.damage), this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper.GainForce(1);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class Alexander extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(2);
+            upgradeDamage(3);
         }
     }
 }

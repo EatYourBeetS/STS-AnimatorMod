@@ -40,7 +40,7 @@ public class PiercingDamageAction extends AbstractGameAction
         this.attackEffect = effect;
         this.duration = 0.1F;
 
-        addIgnoredPower(SharpHidePower.POWER_ID);
+        addIgnoredPower(ignoredPowers, target, SharpHidePower.POWER_ID);
     }
 
     public PiercingDamageAction(AbstractCreature target, DamageInfo info, int stealGoldAmount)
@@ -77,7 +77,7 @@ public class PiercingDamageAction extends AbstractGameAction
         if (this.shouldCancelAction() && this.info.type != DamageType.THORNS)
         {
             this.isDone = true;
-            reapplyIgnoredPowers();
+            ReapplyPowers(ignoredPowers, target, -1);
         }
         else
         {
@@ -86,7 +86,7 @@ public class PiercingDamageAction extends AbstractGameAction
                 if (this.info.type != DamageType.THORNS && (this.info.owner.isDying || this.info.owner.halfDead))
                 {
                     this.isDone = true;
-                    reapplyIgnoredPowers();
+                    ReapplyPowers(ignoredPowers, target, -1);
                     return;
                 }
 
@@ -113,32 +113,11 @@ public class PiercingDamageAction extends AbstractGameAction
                     this.target.tint.changeColor(Color.WHITE.cpy());
                 }
 
-
-                int block = this.target.currentBlock;
-
-                addIgnoredPower(ThornsPower.POWER_ID);
-                addIgnoredPower(EarthenThornsPower.POWER_ID);
-                addIgnoredPower(MalleablePower.POWER_ID);
-                addIgnoredPower(FlameBarrierPower.POWER_ID);
-                addIgnoredPower(CurlUpPower.POWER_ID);
-                addIgnoredPower("infinitespire:TempThorns");
-
-                if (bypassBlock)
-                {
-                    this.target.currentBlock = 0;
-                }
+                int block = RemovePowers(ignoredPowers, target, bypassBlock);
 
                 this.target.damage(this.info);
 
-                if (this.target.currentHealth > 0)
-                {
-                    if (bypassBlock)
-                    {
-                        this.target.currentBlock = block;
-                    }
-
-                    reapplyIgnoredPowers();
-                }
+                ReapplyPowers(ignoredPowers, target, block);
 
                 if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
                 {
@@ -153,29 +132,56 @@ public class PiercingDamageAction extends AbstractGameAction
         }
     }
 
-    private void reapplyIgnoredPowers()
+    public static int RemovePowers(ArrayList<AbstractPower> powers, AbstractCreature target, boolean removeBlock)
     {
-        for (AbstractPower p : ignoredPowers)
+        int block = -1;
+        if (removeBlock)
         {
-            AbstractPower current = this.target.getPower(p.ID);
-            if (current != null)
+            block = target.currentBlock;
+            target.currentBlock = 0;
+        }
+
+        addIgnoredPower(powers, target, ThornsPower.POWER_ID);
+        addIgnoredPower(powers, target, EarthenThornsPower.POWER_ID);
+        addIgnoredPower(powers, target, MalleablePower.POWER_ID);
+        addIgnoredPower(powers, target, FlameBarrierPower.POWER_ID);
+        addIgnoredPower(powers, target, CurlUpPower.POWER_ID);
+        addIgnoredPower(powers, target, "infinitespire:TempThorns");
+
+        return block;
+    }
+
+    public static void ReapplyPowers(ArrayList<AbstractPower> ignoredPowers, AbstractCreature target, int block)
+    {
+        if (target.currentHealth > 0)
+        {
+            if (block > 0)
             {
-                current.amount += p.amount;
+                target.currentBlock = block;
             }
-            else
+
+            for (AbstractPower p : ignoredPowers)
             {
-                this.target.powers.add(p);
+                AbstractPower current = target.getPower(p.ID);
+                if (current != null)
+                {
+                    current.amount += p.amount;
+                }
+                else
+                {
+                    target.powers.add(p);
+                }
             }
         }
     }
 
-    private void addIgnoredPower(String powerID)
+    private static void addIgnoredPower(ArrayList<AbstractPower> ignoredPowers, AbstractCreature target, String powerID)
     {
         AbstractPower power = target.getPower(powerID);
         if (power != null)
         {
-            this.ignoredPowers.add(power);
-            this.target.powers.remove(power);
+            ignoredPowers.add(power);
+            target.powers.remove(power);
         }
     }
 

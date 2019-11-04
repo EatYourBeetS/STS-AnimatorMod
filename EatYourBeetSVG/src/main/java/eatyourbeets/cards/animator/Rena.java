@@ -18,7 +18,7 @@ public class Rena extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 4, 1);
+        Initialize(0, 3, 0, 2);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -29,18 +29,18 @@ public class Rena extends AnimatorCard
         super.triggerOnManualDiscard();
 
         AbstractPlayer p =  AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, this.block), this.block);
+        GameActionsHelper.ApplyPower(p, p, new BlurPower(p, this.secondaryValue), this.secondaryValue);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.ApplyPower(p, p, new BlurPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper.MakeCardInHand(ThrowingKnife.GetRandomCard(), 1, false);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.ApplyPower(p, p, new NextTurnBlockPower(p, this.block), this.block);
+            GameActionsHelper.ApplyPower(p, p, new BlurPower(p, this.secondaryValue), this.secondaryValue);
         }
     }
 
@@ -49,7 +49,7 @@ public class Rena extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBlock(3);
         }
     }
 }

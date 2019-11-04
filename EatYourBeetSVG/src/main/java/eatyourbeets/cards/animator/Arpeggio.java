@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Earth;
 
-public class Arpeggio extends AnimatorCard
+public class Arpeggio extends AnimatorCard implements Spellcaster
 {
     public static final String ID = Register(Arpeggio.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -30,8 +31,7 @@ public class Arpeggio extends AnimatorCard
     {
         super.applyPowers();
 
-        magicNumber = baseMagicNumber + Math.max(0, Math.floorDiv(PlayerStatistics.GetFocus(), 3));
-        isMagicNumberModified = (baseMagicNumber != magicNumber);
+        Spellcaster.ApplyScaling(this, 3);
     }
 
     @Override

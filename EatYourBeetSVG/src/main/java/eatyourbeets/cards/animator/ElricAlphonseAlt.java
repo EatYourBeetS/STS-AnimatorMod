@@ -27,12 +27,12 @@ public class ElricAlphonseAlt extends AnimatorCard implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+        GameActionsHelper.ChannelOrb(new Lightning(), true);
         GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.ChannelOrb(new Lightning(), true);
+            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
         }
     }
 

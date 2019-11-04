@@ -26,10 +26,10 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
 
     protected AnimatorCard_UltraRare(String id, int cost, CardType type, CardTarget target)
     {
-        //super(id, cost, type, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.SPECIAL, target);
         super(id, cost, type, CardColor.COLORLESS, CardRarity.SPECIAL, target);
 
-        SetUnique(true);
+        // Do not use SetUnique()
+        tags.add(AbstractEnums.CardTags.UNIQUE);
 
         setOrbTexture(Resources_Animator_Images.ORB_A_PNG, Resources_Animator_Images.ORB_B_PNG);
     }

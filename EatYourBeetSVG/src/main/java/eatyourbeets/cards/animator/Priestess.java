@@ -18,7 +18,7 @@ public class Priestess extends AnimatorCard_Cooldown
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 6);
+        Initialize(0, 0, 5);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -51,14 +51,14 @@ public class Priestess extends AnimatorCard_Cooldown
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(3);
+            upgradeSecondaryValue(-1);
         }
     }
 
     @Override
     protected int GetBaseCooldown()
     {
-        return 2;
+        return upgraded ? 1 : 2;
     }
 
     @Override

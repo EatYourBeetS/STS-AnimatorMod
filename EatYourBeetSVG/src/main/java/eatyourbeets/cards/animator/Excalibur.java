@@ -22,22 +22,15 @@ public class Excalibur extends AnimatorCard implements Hidden
 
     public Excalibur()
     {
-        super(ID, 4, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super(ID, 3, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
 
         Initialize(90,0);
 
-        this.retain = true;
-        this.exhaust = true;
-        this.isMultiDamage = true;
+        SetRetain(true);
+        SetExhaust(true);
+        SetMultiDamage(true);
 
         SetSynergy(Synergies.Fate);
-    }
-
-    @Override
-    public void atTurnStart()
-    {
-        super.atTurnStart();
-        this.retain = true;
     }
 
     @Override
@@ -45,7 +38,7 @@ public class Excalibur extends AnimatorCard implements Hidden
     {
         super.triggerOnEndOfTurnForPlayingCard();
 
-        this.retain = true;
+        SetRetain(true);
     }
 
     @Override
@@ -66,8 +59,7 @@ public class Excalibur extends AnimatorCard implements Hidden
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(3);
-            //upgradeDamage(20);
+            upgradeDamage(20);
         }
     }
 }

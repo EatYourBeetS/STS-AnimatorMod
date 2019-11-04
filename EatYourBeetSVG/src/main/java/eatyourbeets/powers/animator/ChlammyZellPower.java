@@ -49,7 +49,7 @@ public class ChlammyZellPower extends AnimatorPower
 
             int[] damage = DamageInfo.createDamageMatrix(amount, true);
             GameActionsHelper.DamageAllEnemies(owner, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-            GameActionsHelper.CycleCardAction(1);
+            GameActionsHelper.CycleCardAction(1, name);
             updateDescription();
         }
     }

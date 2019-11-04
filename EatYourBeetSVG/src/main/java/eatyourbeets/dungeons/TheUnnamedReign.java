@@ -261,9 +261,10 @@ public class TheUnnamedReign extends AbstractDungeon
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(9, eliteEnemies.Retrieve(mapRng));  // mo1
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(10, null);  // tr1
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(11, null); // ev1
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(12, null); // r1/sh1
 
-        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(12, eliteEnemies.Retrieve(mapRng)); // sh1
-        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(13, eliteEnemies.Retrieve(mapRng)); // mo2
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(13, eliteEnemies.Retrieve(mapRng)); // mo1
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(14, eliteEnemies.Retrieve(mapRng)); // mo2
     }
 
 

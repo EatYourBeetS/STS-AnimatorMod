@@ -30,15 +30,7 @@ public class TenSura extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Benimaru.ID);
-        //res.add(Millim.ID);
-        //res.add(Hakurou.ID);
-        //res.add(Kaijin.ID);
-        //res.add(Souei.ID);
         res.add(Shuna.ID);
-        //res.add(GazelDwargon.ID);
-        //res.add(Vesta.ID);
-        //res.add(Shizu.ID);
-        //res.add(Rimuru.ID);
 
         return res;
     }

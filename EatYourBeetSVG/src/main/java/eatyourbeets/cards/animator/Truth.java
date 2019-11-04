@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
@@ -26,7 +27,7 @@ public class Truth extends AnimatorCard_UltraRare
 {
     private static final String[] TEXT = Resources_Animator_Strings.Actions.TEXT;
 
-    public static final String ID = Register(Truth.class.getSimpleName());
+    public static final String ID = Register(Truth.class.getSimpleName(), EYBCardBadge.Special);
 
     public Truth()
     {

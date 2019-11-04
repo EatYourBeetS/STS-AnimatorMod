@@ -1,11 +1,16 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -18,7 +23,7 @@ import java.util.ArrayList;
 
 public class Eve extends AnimatorCard
 {
-    public static final String ID = Register(Eve.class.getSimpleName());
+    public static final String ID = Register(Eve.class.getSimpleName(), EYBCardBadge.Special);
 
     public Eve()
     {
@@ -32,17 +37,21 @@ public class Eve extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new EvePower(p, this.magicNumber, 1), 1);
-
         Random rng = AbstractDungeon.cardRandomRng;
         RandomizedList<AbstractCard> cores = new RandomizedList<>(OrbCore_AbstractPower.GetAllCores());
-
         CardGroup group1 = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         group1.group.add(cores.Retrieve(rng));
         group1.group.add(cores.Retrieve(rng));
         group1.group.add(cores.Retrieve(rng));
+        GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, group1, this::OrbChosen, this, ""));
 
-        GameActionsHelper.AddToBottom(new ChooseFromPileAction(secondaryValue, false, group1, this::OrbChosen, this, ""));
+        if (PlayerStatistics.TryActivateLimited(cardID))
+        {
+            GameActionsHelper.ApplyPower(p, p, new EvePower(p, 1, 1), 1);
+        }
+
+        GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, magicNumber), magicNumber);
+        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(secondaryValue));
     }
 
     private void OrbChosen(Object state, ArrayList<AbstractCard> chosen)
@@ -63,6 +72,7 @@ public class Eve extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeSecondaryValue(1);
+            upgradeMagicNumber(1);
         }
     }
 }

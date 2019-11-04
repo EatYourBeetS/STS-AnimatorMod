@@ -4,13 +4,14 @@ import com.megacrit.cardcrawl.actions.unique.ApotheosisAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.ShikizakiKikiPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class ShikizakiKiki extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(ShikizakiKiki.class.getSimpleName());
+    public static final String ID = Register(ShikizakiKiki.class.getSimpleName(), EYBCardBadge.Special);
 
     public ShikizakiKiki()
     {
@@ -33,7 +34,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            this.isInnate = true;
+            SetInnate(true);
         }
     }
 }

@@ -36,21 +36,11 @@ public class ForcePower extends CommonPower
     }
 
     @Override
-    public void reducePower(int reduceAmount)
+    public void atStartOfTurn()
     {
-        super.reducePower(reduceAmount);
+        super.atStartOfTurn();
 
-        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, StrengthPower.POWER_ID, reduceAmount));
-    }
-
-    @Override
-    public void atStartOfTurnPostDraw()
-    {
-        super.atStartOfTurnPostDraw();
-
-        if (amount > 0)
-        {
-            reducePower(1);
-        }
+        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, StrengthPower.POWER_ID, 1));
+        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
     }
 }

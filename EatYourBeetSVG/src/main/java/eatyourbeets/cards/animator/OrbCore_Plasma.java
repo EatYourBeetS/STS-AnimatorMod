@@ -3,13 +3,14 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.powers.animator.OrbCore_PlasmaPower;
 
 public class OrbCore_Plasma extends AnimatorCard
 {
-    public static final String ID = Register(OrbCore_Plasma.class.getSimpleName());
+    public static final String ID = Register(OrbCore_Plasma.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public static final int VALUE = 3;
 

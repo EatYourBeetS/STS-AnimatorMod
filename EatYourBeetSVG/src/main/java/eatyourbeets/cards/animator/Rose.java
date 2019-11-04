@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.actions.common.PiercingDamageAction;
@@ -23,15 +24,13 @@ import java.util.ArrayList;
 
 public class Rose extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Rose.class.getSimpleName());
+    public static final String ID = Register(Rose.class.getSimpleName(), EYBCardBadge.Special);
 
     public Rose()
     {
         super(ID, 3, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(8,0, 2);
-
-        this.baseSecondaryValue = this.secondaryValue = 30;
+        Initialize(6,0, 2, 40);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -48,8 +47,7 @@ public class Rose extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
-            upgradeSecondaryValue(10);
+            upgradeDamage(3);
         }
     }
 

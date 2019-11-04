@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.*;
@@ -13,7 +14,7 @@ import eatyourbeets.cards.Synergies;
 
 import java.util.ArrayList;
 
-public class Kyubey extends AnimatorCard
+public class Kyubey extends AnimatorCard implements StartupCard
 {
     public static final String ID = Register(Kyubey.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -23,8 +24,7 @@ public class Kyubey extends AnimatorCard
 
         Initialize(0, 0, 2);
 
-        this.exhaust = true;
-
+        SetExhaust(true);
         SetSynergy(Synergies.MadokaMagica);
     }
 
@@ -33,8 +33,6 @@ public class Kyubey extends AnimatorCard
     {
         GameActionsHelper.DrawCard(p, this.magicNumber);
         GameActionsHelper.GainEnergy(this.magicNumber);
-        GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(GetRandomCurse(), 1));
-        GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(GetRandomCurse(), 1));
     }
 
     @Override
@@ -67,5 +65,13 @@ public class Kyubey extends AnimatorCard
         }
 
         return Utilities.GetRandomElement(curses).makeCopy();
+    }
+
+    @Override
+    public boolean atBattleStartPreDraw()
+    {
+        GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(GetRandomCurse(), 1));
+
+        return true;
     }
 }

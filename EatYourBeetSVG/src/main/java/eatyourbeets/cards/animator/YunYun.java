@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber, Spellcaster
+public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSubscriber
 {
     public static final String ID = Register(YunYun.class.getSimpleName(), EYBCardBadge.Exhaust);
 
@@ -31,6 +31,12 @@ public class YunYun extends AnimatorCard implements OnCostRefreshSubscriber, Spe
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Konosuba);
+    }
+
+    @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        return super.calculateModifiedCardDamage(player, mo, tmp + (Spellcaster.GetScaling() * 4));
     }
 
     @Override

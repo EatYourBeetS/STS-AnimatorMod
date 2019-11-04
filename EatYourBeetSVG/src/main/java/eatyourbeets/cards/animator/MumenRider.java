@@ -22,7 +22,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(2, 0, 20);
+        Initialize(3, 0, 20);
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);
@@ -62,7 +62,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         {
             if (turns <= 0)
             {
-                GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.exhaustPile, true));
+                GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.drawPile, p.exhaustPile, true));
                 PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
             }
             else

@@ -30,7 +30,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetDexterity(player));
+        return super.calculateModifiedCardDamage(player, mo, tmp + MartialArtist.GetScaling());
     }
 
     @Override

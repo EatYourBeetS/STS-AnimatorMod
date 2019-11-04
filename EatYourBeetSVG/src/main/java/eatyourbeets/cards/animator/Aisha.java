@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_Boost;
@@ -13,15 +15,15 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.SmallLaser2Effect;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class Aisha extends AnimatorCard_Boost implements Spellcaster
+public class Aisha extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Aisha.class.getSimpleName());
+    public static final String ID = Register(Aisha.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Aisha()
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(2, 0, 1);
+        Initialize(1, 0, 1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -29,7 +31,7 @@ public class Aisha extends AnimatorCard_Boost implements Spellcaster
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + PlayerStatistics.GetFocus(player));
+        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
     }
 
     @Override
@@ -46,7 +48,7 @@ public class Aisha extends AnimatorCard_Boost implements Spellcaster
              GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.FIRE, true);
         }
 
-        if (ProgressBoost())
+        if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(cardID))
         {
             GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
         }
@@ -57,14 +59,7 @@ public class Aisha extends AnimatorCard_Boost implements Spellcaster
     {
         if (TryUpgrade())
         {
-            upgradeBoost(1);
-            //upgradeSecondaryValue(1);
+            upgradeDamage(2);
         }
-    }
-
-    @Override
-    protected int GetBaseBoost()
-    {
-        return upgraded ? 2 : 1;
     }
 }

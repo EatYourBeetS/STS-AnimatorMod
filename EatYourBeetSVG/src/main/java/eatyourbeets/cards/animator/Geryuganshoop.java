@@ -35,7 +35,7 @@ public class Geryuganshoop extends AnimatorCard
     {
         String message = Utilities.Format(cardData.strings.EXTENDED_DESCRIPTION[0], magicNumber);
 
-        GameActionsHelper.CycleCardAction(this.secondaryValue);
+        GameActionsHelper.CycleCardAction(this.secondaryValue, name);
         GameActionsHelper.AddToBottom(new ChooseAnyNumberFromPileAction(magicNumber, p.exhaustPile, this::OnCardChosen, this, message, true));
     }
 

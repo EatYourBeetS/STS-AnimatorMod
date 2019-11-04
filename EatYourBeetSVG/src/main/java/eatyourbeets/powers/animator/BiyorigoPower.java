@@ -10,11 +10,11 @@ public class BiyorigoPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(BiyorigoPower.class.getSimpleName());
 
-    public BiyorigoPower(AbstractCreature owner, int value)
+    public BiyorigoPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = 0;
+        this.amount = amount;
 
         updateDescription();
     }

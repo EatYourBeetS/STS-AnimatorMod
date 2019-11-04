@@ -31,12 +31,9 @@ public class Souei extends AnimatorCard implements MartialArtist
     @Override
     public void applyPowers()
     {
-        int dex = PlayerStatistics.GetDexterity();
-
-        magicNumber = baseMagicNumber + Math.max(0, Math.floorDiv(dex, 2));
-        isMagicNumberModified = (magicNumber != baseMagicNumber);
-
         super.applyPowers();
+
+        MartialArtist.ApplyScaling(this, 2);
     }
 
     @Override

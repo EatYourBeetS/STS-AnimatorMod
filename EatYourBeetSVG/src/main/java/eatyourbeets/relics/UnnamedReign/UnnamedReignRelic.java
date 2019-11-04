@@ -46,7 +46,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
     }
 
     // TODO: Re-Enable this
-//
+
     @Override
     public void update()
     {

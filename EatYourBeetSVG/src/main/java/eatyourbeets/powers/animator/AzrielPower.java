@@ -20,7 +20,7 @@ public class AzrielPower extends AnimatorPower
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
         if (power.type == PowerType.DEBUFF && !power.ID.equals(GainStrengthPower.POWER_ID) &&
-            source == this.owner && target != this.owner && !target.hasPower(ArtifactPower.POWER_ID))
+            source == this.owner && !target.hasPower(ArtifactPower.POWER_ID))
         {
             this.flash();
             GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, amount), amount);

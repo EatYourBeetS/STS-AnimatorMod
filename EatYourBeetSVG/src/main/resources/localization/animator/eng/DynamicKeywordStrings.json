@@ -3,13 +3,17 @@
 	"martial artist":
 	{
 		"animator:Ara"         			: "For every point of #yDexterity, NL deal #b1 additional damage.",
+		"animator:Azekura"    			: "Every #b2 point of #yDexterity, NL gain #b1 additional #yThorns.",
 		"animator:Emonzaemon"  			: "For every point of #yDexterity, NL deal #b1 additional damage.",
 		"animator:Hakurou"     			: "For every point of #yDexterity, NL deal #b1 additional damage.",
+		"animator:IchigoBankai"     	: "Every #b3 points of #yDexterity, NL draw #b1 additional card.",
+		"animator:IchigoKurosaki"   	: "Every #b3 points of #yDexterity, NL gain #b1 additional #yForce.",
+		"animator:Lancer"     			: "For every point of #yDexterity, NL deal #b1 additional damage.",
 		"animator:Shichika"    			: "Every #b2 points of #yDexterity, NL gain #b1 additional #yForce.",
 		"animator:ShichikaKyotouryuu"   : "For every point of #yDexterity, NL deal #b1 additional damage.",
+		"animator:SilverFang"  			: "For every point of #yDexterity, NL deal #b1 additional damage.",
 		"animator:Sonic"       			: "Every #b2 points of #yDexterity, NL draw #b1 additional card.",
 		"animator:Souei"       			: "Every #b2 points of #yDexterity, NL apply #b1 additional #yPoison.",
-		"animator:SilverFang"  			: "For every point of #yDexterity, NL deal #b1 additional damage.",
 		"animator:ZankiKiguchi"			: "For every point of #yDexterity, NL deal #b2 additional damage."
 	},
 	
@@ -20,14 +24,13 @@
 		"animator:Arpeggio"	    : "Every #b3 points of #yFocus, NL gain #b1 additional #yIntellect.",
 		"animator:Caster"       : "Every #b2 points of #yFocus, NL steal #b1 additional #yStrength.",
 		"animator:DwarfShaman"  : "For every point of #yFocus, NL deal #b2 additional damage.",
-		"animator:Emilia"       : "Every #b3 points of #yFocus, NL gain an Orb Slot.",
 		"animator:Evileye"      : "Every #b2 points of #yFocus, NL draw #b1 additional card.",
 		"animator:Jibril"       : "For every point of #yFocus, NL deal #b1 additional damage.",
 		"animator:LeleiLaLalena": "Every #b6 points of #yFocus, NL #yChannel #b1 additional #yFrost.",
 		"animator:Megumin"      : "For every point of #yFocus, NL deal #b4 additional damage.",
-		"animator:RinTohsaka"   : "For every point of #yFocus, NL gain #b1 additional #yBlock.",
+		"animator:RinTohsaka"   : "Every #b6 points of #yFocus, NL #yChannel #b1 additional Orb.",
 		"animator:Witch"        : "For every point of #yFocus, NL apply #b1 additional #yBurning.",
 		"animator:YunYun"       : "For every point of #yFocus, NL deal #b1 additional damage.",
-		"animator:Zero"         : "Every #b3 points of #yFocus, NL play this card #b1 additional time."
+		"animator:Zero"         : "Every #b4 points of #yFocus, NL play this card #b1 additional time."
 	}
 }

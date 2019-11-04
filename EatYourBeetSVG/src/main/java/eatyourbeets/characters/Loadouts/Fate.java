@@ -29,7 +29,7 @@ public class Fate extends AnimatorCustomLoadout
         res.add(Defend.ID);
         res.add(Defend.ID);
         res.add(Defend.ID);
-        res.add(RinTohsaka.ID);
+        res.add(Caster.ID);
         res.add(Alexander.ID);
 
         return res;

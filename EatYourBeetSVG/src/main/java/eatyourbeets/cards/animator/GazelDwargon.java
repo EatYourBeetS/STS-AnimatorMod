@@ -1,9 +1,11 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -17,9 +19,21 @@ public class GazelDwargon extends AnimatorCard
     {
         super(ID, 3, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 2, 20);
+        Initialize(0,0, 2, 12);
 
+        SetHealing(true);
         SetSynergy(Synergies.TenSura);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        if (PlayerStatistics.TryActivateLimited(cardID))
+        {
+            AbstractDungeon.player.gainGold(secondaryValue);
+        }
     }
 
     @Override

@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_AccelWorld extends Strike
 {
-    public static final String ID = Register(Strike_AccelWorld.class.getSimpleName());
+    public static final String ID = Register(Strike_AccelWorld.class.getSimpleName(), EYBCardBadge.Discard);
 
     public Strike_AccelWorld()
     {

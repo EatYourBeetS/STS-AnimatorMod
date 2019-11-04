@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.actions.animator.AnimatorAction;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 
 public class QuestionMark extends AnimatorCard implements OnEndOfTurnSubscriber
 {
-    public static final String ID = Register(QuestionMark.class.getSimpleName());
+    public static final String ID = Register(QuestionMark.class.getSimpleName(), EYBCardBadge.Drawn);
 
     private static ArrayList<AnimatorCard> cardPool;
     private AnimatorCard copy = null;

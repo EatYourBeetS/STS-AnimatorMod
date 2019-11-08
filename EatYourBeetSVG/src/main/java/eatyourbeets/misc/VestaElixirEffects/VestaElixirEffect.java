@@ -1,12 +1,9 @@
 package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.cards.animator.Sora;
 import eatyourbeets.cards.animator.Vesta_Elixir;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.Utilities;
-
-import java.util.ArrayList;
 
 public abstract class VestaElixirEffect
 {

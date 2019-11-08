@@ -48,7 +48,7 @@ public class GazelDwargon extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeBaseCost(2);
         }
     }
 }

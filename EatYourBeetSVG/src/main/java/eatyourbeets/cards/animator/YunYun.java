@@ -36,7 +36,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (Spellcaster.GetScaling() * 4));
+        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
     }
 
     @Override
@@ -45,6 +45,9 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
         super.triggerOnExhaust();
 
         GameActionsHelper.ChannelOrb(new Lightning(), true);
+
+        this.resetAttributes();
+        costModifier = 0;
     }
 
     @Override

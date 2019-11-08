@@ -12,7 +12,6 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
 
 import java.util.ArrayList;
 

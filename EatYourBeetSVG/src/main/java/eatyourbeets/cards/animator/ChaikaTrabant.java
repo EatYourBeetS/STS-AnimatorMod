@@ -28,7 +28,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(21,0, 2, 6);
+        Initialize(21,0, 6, 2);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -39,7 +39,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         super.triggerOnManualDiscard();
 
         AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.secondaryValue, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.magicNumber, false), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
     }
 
     @Override
@@ -61,7 +61,6 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         if (TryUpgrade())
         {
             upgradeDamage(5);
-            upgradeSecondaryValue(2);
         }
     }
 
@@ -96,7 +95,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         GameActionsHelper.DamageTargetPiercing(p, target, this, AbstractGameAction.AttackEffect.FIRE).bypassBlock = false;
 
         WeightedList<AbstractPower> debuffs = GetRandomDebuffs(p, target);
-        for (int i = 0; i < magicNumber; i++)
+        for (int i = 0; i < secondaryValue; i++)
         {
             AbstractPower debuff = debuffs.Retrieve(AbstractDungeon.cardRandomRng);
             GameActionsHelper.ApplyPower(p, target, debuff, debuff.amount);

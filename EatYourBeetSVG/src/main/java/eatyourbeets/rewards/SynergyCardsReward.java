@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
-import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.dungeons.CustomAbstractDungeon;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.Utilities;

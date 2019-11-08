@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -43,6 +42,8 @@ public class Illya extends AnimatorCard
                 }
             }
         }
+
+        GameActionsHelper.GainEnergy(1);
     }
 
     private boolean DrawBerserker(CardGroup group)
@@ -56,14 +57,13 @@ public class Illya extends AnimatorCard
                     GameActionsHelper.AddToBottom(new MoveSpecificCardAction(c, AbstractDungeon.player.hand, group, true));
                 }
 
-                GameActionsHelper.AddToBottom(new ModifyDamageAction(c.uuid, secondaryValue));
-
                 return true;
             }
         }
 
         return false;
     }
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {

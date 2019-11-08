@@ -6,10 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
@@ -33,7 +31,7 @@ public class Veldora extends AnimatorCard_UltraRare
         super.triggerWhenDrawn();
 
         GameActionsHelper.ChannelOrb(AbstractOrb.getRandomOrb(true), true);
-        GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
+        GameActionsHelper.ChannelRandomOrb(true);
     }
 
     @Override

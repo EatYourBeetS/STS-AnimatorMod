@@ -9,7 +9,6 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.DrawSpecificCardAction;
-import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.StolenGoldPower;
 
@@ -33,14 +32,8 @@ public class Chris extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-        {
-            if (c.costForTurn == 0 && c.type != CardType.CURSE && c.type != CardType.STATUS)
-            {
-                GameActionsHelper.AddToBottom(new DrawSpecificCardAction(c));
-                return;
-            }
-        }
+        GameActionsHelper.AddToBottom(new DrawSpecificCardAction((c) ->
+                (c.costForTurn == 0 && c.type != CardType.CURSE && c.type != CardType.STATUS)));
     }
 
     @Override

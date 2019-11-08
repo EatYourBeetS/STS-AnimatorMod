@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.utilities.Utilities;
 import patches.AbstractEnums;
 
@@ -87,20 +88,41 @@ public class TheMaskedTraveler1 extends AnimatorEvent
 
             SetupCards();
 
+            RandomizedList<AbstractCard> strikes = new RandomizedList<>(replacementStrike);
+            RandomizedList<AbstractCard> defends = new RandomizedList<>(replacementDefend);
             ArrayList<AbstractCard> deck = AbstractDungeon.player.masterDeck.group;
-            for (int i = deck.size() - 1; i >= 0; i--)
+            ArrayList<AbstractCard> strikesToReplace = new ArrayList<>();
+            ArrayList<AbstractCard> defendsToReplace = new ArrayList<>();
+
+            for (AbstractCard card : deck)
             {
-                AbstractCard card = deck.get(i);
-                if (card.tags.contains(BaseModCardTags.BASIC_DEFEND) && !card.tags.contains(AbstractEnums.CardTags.IMPROVED_DEFEND))
+                if (card.tags.contains(AbstractEnums.CardTags.IMPROVED_STRIKE) || card.tags.contains(AbstractEnums.CardTags.IMPROVED_DEFEND))
                 {
-                    deck.remove(i);
-                    ObtainCard(replacementDefend, card.upgraded);
+                    if (card.tags.contains(AbstractCard.CardTags.HEALING))
+                    {
+                        strikes.GetInnerList().removeIf(c -> c.cardID.equals(card.cardID));
+                    }
                 }
-                else if (card.tags.contains(BaseModCardTags.BASIC_STRIKE) && !card.tags.contains(AbstractEnums.CardTags.IMPROVED_STRIKE))
+                else if (card.tags.contains(BaseModCardTags.BASIC_DEFEND))
                 {
-                    deck.remove(i);
-                    ObtainCard(replacementStrike, card.upgraded);
+                    defendsToReplace.add(card);
                 }
+                else if (card.tags.contains(BaseModCardTags.BASIC_STRIKE))
+                {
+                    strikesToReplace.add(card);
+                }
+            }
+
+            for (AbstractCard card : strikesToReplace)
+            {
+                deck.remove(card);
+                ObtainCard(strikes.Retrieve(AbstractDungeon.miscRng), card.upgraded);
+            }
+
+            for (AbstractCard card : defendsToReplace)
+            {
+                deck.remove(card);
+                ObtainCard(defends.Retrieve(AbstractDungeon.miscRng), card.upgraded);
             }
 
             ProgressPhase();
@@ -123,19 +145,21 @@ public class TheMaskedTraveler1 extends AnimatorEvent
         this.openMap();
     }
 
-    private static void ObtainCard(ArrayList<AbstractCard> pool, boolean upgraded)
+    private static void ObtainCard(AbstractCard replacement, boolean upgraded)
     {
-        AbstractCard replacement = Utilities.GetRandomElement(pool).makeCopy();
+        replacement = replacement.makeCopy();
+
         if (upgraded)
         {
             replacement.upgrade();
         }
+
         AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
     }
 
     private static void SetupCards()
     {
-        if (replacementStrike.size() > 0)
+        if (!replacementStrike.isEmpty())
         {
             return;
         }

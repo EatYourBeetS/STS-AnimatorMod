@@ -1,7 +1,6 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActionsHelper;
 

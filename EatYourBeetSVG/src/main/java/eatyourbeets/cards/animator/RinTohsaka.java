@@ -11,7 +11,6 @@ import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.orbs.Air;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.TemporaryArtifactPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.WeightedList;

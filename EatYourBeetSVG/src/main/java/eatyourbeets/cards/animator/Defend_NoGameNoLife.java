@@ -25,6 +25,7 @@ public class Defend_NoGameNoLife extends Defend
 
         ArrayList<AbstractCard> cards = p.hand.group;
 
+        //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < cards.size(); i++)
         {
             AbstractCard card = cards.get(i);

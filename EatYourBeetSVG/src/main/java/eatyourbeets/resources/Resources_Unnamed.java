@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.characters.UnnamedCharacter;
 import eatyourbeets.relics.unnamed.InfinitePower;
-import eatyourbeets.variables.SecondaryValueVariable;
 import patches.AbstractEnums;
 
 import java.io.File;

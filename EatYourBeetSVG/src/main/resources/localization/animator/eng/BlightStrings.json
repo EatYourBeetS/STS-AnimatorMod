@@ -12,7 +12,7 @@
   "animator:UltimateCrystal":
   {
     "NAME": "Ultimate Crystal",
-    "DESCRIPTION": [ "Start each combat with #b{0} #yWeak and #yFrail." ]
+    "DESCRIPTION": [ "At the start of each combat, move #b{0} cards from your hand to your draw pile." ]
   },
   "animator:UltimateCube":
   {
@@ -22,6 +22,6 @@
   "animator:UltimateWisp":
   {
     "NAME": "Ultimate Wisp",
-    "DESCRIPTION": [ "Whenever you shuffle your deck, add a #yVoid to your draw pile." ]
+    "DESCRIPTION": [ "Whenever you shuffle your deck, add #b{0} #yVoid to your draw pile." ]
   }
 }

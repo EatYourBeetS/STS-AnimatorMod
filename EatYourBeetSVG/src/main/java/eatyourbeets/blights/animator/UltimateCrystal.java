@@ -1,11 +1,17 @@
 package eatyourbeets.blights.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.actions.common.ChooseFromHandAction;
+import eatyourbeets.actions.common.RefreshHandLayoutAction;
 import eatyourbeets.blights.AnimatorBlight;
+import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActionsHelper;
+
+import java.util.ArrayList;
 
 public class UltimateCrystal extends AnimatorBlight
 {
@@ -13,7 +19,7 @@ public class UltimateCrystal extends AnimatorBlight
 
     public UltimateCrystal()
     {
-        super(ID, 2);
+        super(ID, 3);
 
         this.counter = -1;
     }
@@ -23,9 +29,23 @@ public class UltimateCrystal extends AnimatorBlight
     {
         super.atBattleStart();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new WeakPower(p, initialAmount, false), initialAmount);
-        GameActionsHelper.ApplyPower(p, p, new FrailPower(p, initialAmount, false), initialAmount);
+        String message = Resources_Animator_Strings.Actions.TEXT[6] + " (" + this.name + ")";
+        GameActionsHelper.ChooseFromHand(initialAmount, false, this::OnCompletion, this, message);
+
         this.flash();
+    }
+
+    private void OnCompletion(Object state, ArrayList<AbstractCard> cards)
+    {
+        if (state == this && cards != null)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            for (AbstractCard c : cards)
+            {
+                GameActionsHelper.MoveCard(c, p.drawPile, p.hand, true);
+            }
+
+            GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
+        }
     }
 }

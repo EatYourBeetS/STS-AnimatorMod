@@ -159,7 +159,7 @@ public class Nanami extends AnimatorCard
         if (monster == null)
         {
             cardText.overrideDescription = null;
-            cardText.Update(cardText.index, true);
+            cardText.ForceRefresh();
 
             return;
         }
@@ -239,7 +239,7 @@ public class Nanami extends AnimatorCard
                 break;
         }
 
-        cardText.Update(cardText.index, true);
+        cardText.ForceRefresh();
     }
 
 }

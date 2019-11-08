@@ -2,7 +2,6 @@ package eatyourbeets.characters;
 
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.animator.Defend;

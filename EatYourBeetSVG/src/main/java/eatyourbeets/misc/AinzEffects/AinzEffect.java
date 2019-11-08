@@ -1,7 +1,6 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.cards.animator.Ainz;
 import eatyourbeets.resources.Resources_Animator_Strings;
 
@@ -16,9 +15,9 @@ public abstract class AinzEffect
     {
         this.descriptionIndex = descriptionIndex;
 
-        ainz = new Ainz(this);
+        ainz = new Ainz(this, text[descriptionIndex]);
         ainz.setUpgraded(false);
-        ainz.rawDescription = text[descriptionIndex];
+        //ainz.rawDescription = text[descriptionIndex];
     }
 
     public void SetUpgraded(boolean upgrade)

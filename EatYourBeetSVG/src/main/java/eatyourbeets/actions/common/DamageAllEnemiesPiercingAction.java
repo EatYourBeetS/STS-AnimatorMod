@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class DamageAllEnemiesPiercingAction extends AbstractGameAction
 {

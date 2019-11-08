@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.animator.HigakiRinne;
@@ -53,9 +54,13 @@ public class HigakiRinneAction extends AnimatorAction
 
     public void update()
     {
-        roll = AbstractDungeon.cardRandomRng.random(185);
+        roll = AbstractDungeon.cardRandomRng.random(188);
         
         AbstractPlayer p = AbstractDungeon.player;
+        if (tryActivate(3))
+        {
+            GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, p.hand, (state, card) -> {}, this, "Choose", false));
+        }
         if (tryActivate(6)) // 6
         {
             for (int i = 0; i < 3; i++)
@@ -72,7 +77,7 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (tryActivate(6)) // 18
         {
-            GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
+            GameActionsHelper.ChannelRandomOrb(true);
         }
         else if (tryActivate(6)) // 24
         {

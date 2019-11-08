@@ -126,7 +126,7 @@ public class Kira extends AnimatorCard
             cardText.overrideDescription = Utilities.Format(cardData.strings.EXTENDED_DESCRIPTION[2], countdown);
         }
 
-        cardText.Update(cardText.index, true);
+        cardText.ForceRefresh();
     }
 
     private void updateCountdown(AbstractMonster m)

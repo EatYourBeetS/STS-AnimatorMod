@@ -4,6 +4,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.VariableExhaustAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 
 public class Togame extends AnimatorCard
 {
-    public static final String ID = Register(Togame.class.getSimpleName());
+    public static final String ID = Register(Togame.class.getSimpleName(), EYBCardBadge.Special);
 
     public Togame()
     {
@@ -45,6 +47,12 @@ public class Togame extends AnimatorCard
         if (state == this && cards.size() > 0)
         {
             GameActionsHelper.DrawCard(AbstractDungeon.player, 1);
+
+            AbstractCard card = cards.get(0);
+            if ((card.type == CardType.CURSE || card.type == CardType.STATUS) && PlayerStatistics.TryActivateSemiLimited(cardID))
+            {
+                GameActionsHelper.Motivate(1);
+            }
             //GameActionsHelper.ExhaustCard(this);
             //GameActionsHelper.GainEnergy(1);
         }

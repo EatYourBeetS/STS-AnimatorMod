@@ -3,7 +3,6 @@ package eatyourbeets.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.Utilities;
 
@@ -51,6 +50,7 @@ public class Synergies
     public final static Synergy Symphogear = CreateSynergy(33);
     public final static Synergy CallOfCthulhu = CreateSynergy(34);
     public final static Synergy Chuunibyou = CreateSynergy(35);
+    public final static Synergy FLCL = CreateSynergy(36);
 
     private static Synergy CreateSynergy(int id)
     {

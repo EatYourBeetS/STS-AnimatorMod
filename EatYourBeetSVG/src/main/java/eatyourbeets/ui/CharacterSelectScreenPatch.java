@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.characters.AnimatorCharacterSelect;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.powers.PlayerStatistics;
@@ -74,8 +73,6 @@ public class CharacterSelectScreenPatch
         AnimatorCustomLoadout.LoadSpecialTrophies();
         PlayerStatistics.UnlockAllKeys();
 
-//        TrophyWindow.Initialize();
-
         selectedOption = null;
     }
 
@@ -122,8 +119,6 @@ public class CharacterSelectScreenPatch
 
             RefreshLoadout(selectScreen, selectedOption);
         }
-
-//        TrophyWindow.Update();
 
         AnimatorCharacterSelect.GetSelectedLoadout(false).UpdateTrophies(trophy1Hb, trophy2Hb, trophy3Hb);
         AnimatorCustomLoadout.UpdateSpecialTrophies(trophySpecialHb);
@@ -175,8 +170,6 @@ public class CharacterSelectScreenPatch
         startingCardsLeftHb.render(sb);
         startingCardsRightHb.render(sb);
 
-//        TrophyWindow.Render(sb);
-
         AnimatorCharacterSelect.GetSelectedLoadout(false).RenderTrophies(trophy1Hb, trophy2Hb, trophy3Hb, sb);
         AnimatorCustomLoadout.RenderSpecialTrophies(trophySpecialHb, sb);
     }
@@ -197,6 +190,10 @@ public class CharacterSelectScreenPatch
                     }
 
                     selectedOption = o;
+                }
+                else if (o.c.chosenClass == AbstractEnums.Characters.THE_UNNAMED)
+                {
+                    selectScreen.confirmButton.isDisabled = true;
                 }
 
                 return;

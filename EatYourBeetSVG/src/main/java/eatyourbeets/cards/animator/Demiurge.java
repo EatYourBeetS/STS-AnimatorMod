@@ -62,7 +62,7 @@ public class Demiurge extends AnimatorCard
             if (cards.size() == 0)
             {
                 AbstractPlayer p = AbstractDungeon.player;
-                GameActionsHelper.ApplyPowerSilently(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
+                GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
             }
         }
     }

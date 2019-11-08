@@ -80,7 +80,7 @@ public class SingleCardViewPopupPatches
     public static class SingleCardViewPopup_RenderCardBack
     {
         @SpirePrefixPatch
-        public static SpireReturn Method(SingleCardViewPopup __instance, SpriteBatch sb) throws IllegalAccessException
+        public static SpireReturn Method(SingleCardViewPopup __instance, SpriteBatch sb)
         {
             AbstractCard card = cardField.Get(__instance);
 

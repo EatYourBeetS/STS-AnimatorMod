@@ -1,15 +1,17 @@
 package eatyourbeets.relics.UnnamedReign;
 
 import basemod.DevConsole;
+import com.evacipated.cardcrawl.modthespire.lib.SpireField;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.powers.NoDrawPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
+import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.effects.SequentialEffect;
 import eatyourbeets.effects.UnnamedRelicEquipEffect;
@@ -17,7 +19,9 @@ import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
+import eatyourbeets.utilities.Field;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
 import patches.RelicObtainedPatches;
 
 import java.util.ArrayList;
@@ -126,6 +130,8 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
                 }
             }
 
+            effect.Enqueue(new CallbackEffect(GameActionsHelper.Wait(0.1f), UnnamedReignRelic::RemoveSpecialRelics, null));
+
             AbstractRelic.relicPage = 0;
             AbstractDungeon.player.reorganizeRelics();
 
@@ -184,5 +190,20 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
         }
 
         rewards.add(new RewardItem(new FalseLifePotion()));
+    }
+
+    private static void RemoveSpecialRelics(Object state, AbstractGameAction action)
+    {
+        try
+        {
+            Class<?> c = Class.forName("riskOfSpire.patches.ForUsableRelics.UsableRelicSlot");
+            Field<SpireField> field = Utilities.GetPrivateField("usableRelic", c);
+            SpireField<?> f = field.Get(null);
+            if (f != null)
+            {
+                f.set(AbstractDungeon.player, null);
+            }
+        }
+        catch (ClassNotFoundException ignored) { }
     }
 }

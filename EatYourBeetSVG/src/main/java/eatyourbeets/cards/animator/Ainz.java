@@ -19,12 +19,15 @@ public class Ainz extends AnimatorCard
 
     private AinzEffect effect = null;
 
-    public Ainz(AinzEffect effect)
+    public Ainz(AinzEffect effect, String description)
     {
         super(staticCardData.get(ID), ID + "Alt", Resources_Animator.GetCardImage(ID + "Alt"),
                 0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
         this.effect = effect;
 
+        this.cardText.overrideDescription = description;
+        this.cardText.overrideSecondaryDescription = "-";
+        this.cardText.ForceRefresh();
         //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
     }
 

@@ -59,11 +59,11 @@ public class ExquisiteBloodVial extends AnimatorRelic
     {
         if (counter < 0)
         {
-            return this.DESCRIPTIONS[0] + HEAL_AMOUNT + this.DESCRIPTIONS[1];
+            return Utilities.Format(this.DESCRIPTIONS[0], HEAL_AMOUNT);
         }
         else
         {
-            return this.DESCRIPTIONS[2] + regenAmount + this.DESCRIPTIONS[3] + maxHPAmount + this.DESCRIPTIONS[4];
+            return Utilities.Format(this.DESCRIPTIONS[1], regenAmount, maxHPAmount);
         }
     }
 

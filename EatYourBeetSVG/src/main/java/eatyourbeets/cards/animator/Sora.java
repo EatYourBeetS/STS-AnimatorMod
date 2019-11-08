@@ -1,19 +1,18 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.DrawSpecificCardAction;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.SoraAction;
+import eatyourbeets.actions.common.DrawSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.misc.SoraEffects.SoraEffect;
+import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.utilities.GameActionsHelper;
 import patches.AbstractEnums;
 
 public class Sora extends AnimatorCard
@@ -22,12 +21,16 @@ public class Sora extends AnimatorCard
 
     public final SoraEffect effect;
 
-    public Sora(SoraEffect effect)
+    public Sora(SoraEffect effect, String name, String description)
     {
         super(staticCardData.get(ID), ID + "Alt", Resources_Animator.GetCardImage(ID + "Alt"),
                 0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
 
+        this.name = name;
         this.effect = effect;
+        this.cardText.overrideDescription = description;
+        this.cardText.overrideSecondaryDescription = "-";
+        this.cardText.ForceRefresh();
         //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
     }
 

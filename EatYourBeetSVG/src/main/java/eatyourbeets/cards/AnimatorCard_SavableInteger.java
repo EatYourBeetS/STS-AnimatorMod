@@ -1,7 +1,6 @@
 package eatyourbeets.cards;
 
 import basemod.abstracts.CustomSavable;
-import com.megacrit.cardcrawl.localization.CardStrings;
 
 public abstract class AnimatorCard_SavableInteger extends AnimatorCard implements CustomSavable<Integer>
 {

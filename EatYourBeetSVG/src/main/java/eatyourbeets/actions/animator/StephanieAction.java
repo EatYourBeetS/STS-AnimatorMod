@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;

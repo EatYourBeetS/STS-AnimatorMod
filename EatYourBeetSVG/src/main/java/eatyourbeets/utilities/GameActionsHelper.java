@@ -1,25 +1,34 @@
 package eatyourbeets.utilities;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
+import com.megacrit.cardcrawl.actions.utility.QueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.animator.MotivateAction;
 import eatyourbeets.actions.common.*;
 import eatyourbeets.actions.unnamed.MoveToVoidAction;
+import eatyourbeets.blights.animator.UltimateCrystal;
+import eatyourbeets.orbs.Air;
+import eatyourbeets.orbs.Earth;
+import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
@@ -58,16 +67,20 @@ public class GameActionsHelper
         switch (defaultOrder)
         {
             case Top:
-                AbstractDungeon.actionManager.addToTop(action); break;
+                AbstractDungeon.actionManager.addToTop(action);
+                break;
 
             case Bottom:
-                AbstractDungeon.actionManager.addToBottom(action); break;
+                AbstractDungeon.actionManager.addToBottom(action);
+                break;
 
             case TurnStart:
-                AbstractDungeon.actionManager.addToTurnStart(action); break;
+                AbstractDungeon.actionManager.addToTurnStart(action);
+                break;
 
             case NextCombat:
-                AbstractDungeon.actionManager.addToNextCombat(action); break;
+                AbstractDungeon.actionManager.addToNextCombat(action);
+                break;
         }
     }
 
@@ -86,6 +99,19 @@ public class GameActionsHelper
         AbstractDungeon.actionManager.addToBottom(action);
     }
 
+    public static WaitAction Wait(float duration)
+    {
+        WaitAction action = new WaitAction(duration);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static WaitRealtimeAction WaitRealtime(float duration)
+    {
+        WaitRealtimeAction action = new WaitRealtimeAction(duration);
+        AddToDefault(action);
+        return action;
+    }
 
     public static SFXAction SFX(String key)
     {
@@ -129,6 +155,13 @@ public class GameActionsHelper
         return action;
     }
 
+    public static MoveSpecificCardAction MoveCard(AbstractCard card, CardGroup destination, CardGroup source, boolean showEffect)
+    {
+        MoveSpecificCardAction action = new MoveSpecificCardAction(card, destination, source, showEffect);
+        AddToDefault(action);
+        return action;
+    }
+
     public static MoveToVoidAction MoveToVoid(AbstractCard card)
     {
         MoveToVoidAction action = new MoveToVoidAction(card);
@@ -146,6 +179,13 @@ public class GameActionsHelper
     public static ExhaustSpecificCardAction ExhaustCard(AbstractCard card, CardGroup group)
     {
         ExhaustSpecificCardAction action = new ExhaustSpecificCardAction(card, group);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static ChannelAction ChannelRandomOrb(boolean autoEvoke)
+    {
+        ChannelAction action = new ChannelAction(GetRandomOrb(), autoEvoke);
         AddToDefault(action);
         return action;
     }
@@ -318,6 +358,13 @@ public class GameActionsHelper
         return sequentialAction;
     }
 
+    public static ChooseFromHandAction ChooseFromHand(int amount, boolean random, BiConsumer<Object, ArrayList<AbstractCard>> onCompletion, Object state, String message)
+    {
+        ChooseFromHandAction action = new ChooseFromHandAction(amount, random, onCompletion, state, message);
+        AddToDefault(action);
+        return action;
+    }
+
     public static OnCardDrawnAction DrawCard(AbstractCreature source, int amount, BiConsumer<Object, ArrayList<AbstractCard>> onDraw, Object context)
     {
         OnCardDrawnAction action = new OnCardDrawnAction(source, amount, onDraw, context);
@@ -470,5 +517,83 @@ public class GameActionsHelper
         AddToDefault(action);
         AddToBottom(new WaitAction(0.2f));
         return action;
+    }
+
+    public static void PlayCard(AbstractCard card, AbstractMonster m)
+    {
+        if (card.cost > 0)
+        {
+            card.freeToPlayOnce = true;
+        }
+
+        AbstractDungeon.player.limbo.group.add(card);
+        card.current_y = -200.0F * Settings.scale;
+        card.target_x = (float) Settings.WIDTH / 2.0F + 200.0F * Settings.scale;
+        card.target_y = (float) Settings.HEIGHT / 2.0F;
+        card.targetAngle = 0.0F;
+        card.lighten(false);
+        card.drawScale = 0.12F;
+        card.targetDrawScale = 0.75F;
+        if (!card.canUse(AbstractDungeon.player, m))
+        {
+            AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
+            AbstractDungeon.actionManager.addToTop(new DiscardSpecificCardAction(card, AbstractDungeon.player.limbo));
+            AbstractDungeon.actionManager.addToTop(new WaitAction(0.4F));
+        }
+        else
+        {
+            card.applyPowers();
+            card.freeToPlayOnce = true;
+            AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, m));
+            AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
+            if (!Settings.FAST_MODE)
+            {
+                AbstractDungeon.actionManager.addToTop(new WaitAction(Settings.ACTION_DUR_MED));
+            }
+            else
+            {
+                AbstractDungeon.actionManager.addToTop(new WaitAction(Settings.ACTION_DUR_FASTER));
+            }
+        }
+    }
+
+    public static CardQueueItem PlayCopy(AbstractCard source, AbstractMonster m)
+    {
+        AbstractCard temp = source.makeSameInstanceOf();
+        AbstractDungeon.player.limbo.addToBottom(temp);
+        temp.current_x = source.current_x;
+        temp.current_y = source.current_y;
+        temp.target_x = (float) Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
+        temp.target_y = (float) Settings.HEIGHT / 2.0F;
+
+        if (temp.cost > 0)
+        {
+            temp.freeToPlayOnce = true;
+        }
+
+        temp.calculateCardDamage(m);
+        temp.purgeOnUse = true;
+
+        CardQueueItem item = new CardQueueItem(temp, m, source.energyOnUse, true);
+        AbstractDungeon.actionManager.cardQueue.add(item);
+
+        return item;
+    }
+
+    private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
+    private static AbstractOrb GetRandomOrb()
+    {
+        if (orbs.Count() == 0)
+        {
+            orbs.Add(new Lightning(), 7);
+            orbs.Add(new Frost(), 7);
+            orbs.Add(new Earth(), 6);
+            orbs.Add(new Fire(), 6);
+            orbs.Add(new Plasma(), 4);
+            orbs.Add(new Dark(), 4);
+            orbs.Add(new Air(), 4);
+        }
+
+        return orbs.Retrieve(AbstractDungeon.cardRandomRng, false).makeCopy();
     }
 }

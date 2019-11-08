@@ -1,21 +1,16 @@
 package eatyourbeets.cards.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.actions.common.ExhaustFromPileAction;
+import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.VariableExhaustAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-
-import java.util.ArrayList;
 
 public class Gluttony extends AnimatorCard
 {
@@ -59,7 +54,12 @@ public class Gluttony extends AnimatorCard
         {
             for (int i = 0; i < magicNumber; i++)
             {
-                GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(p.drawPile.getNCardFromTop(i), p.drawPile, true));
+                AbstractCard card = p.drawPile.getNCardFromTop(i);
+                card.target_x = Settings.WIDTH * (0.3f + (i * 0.05f));
+                card.target_y = Settings.HEIGHT * (0.4f + (i * 0.05f));
+                GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, p.exhaustPile, p.drawPile, true));
+                GameActionsHelper.Wait(0.2f);
+                //GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(p.drawPile.getNCardFromTop(i), p.drawPile, true));
             }
 
             GameActionsHelper.AddToBottom(new HealAction(p, p, secondaryValue));
@@ -73,41 +73,6 @@ public class Gluttony extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBaseCost(1);
-        }
-    }
-
-    private void OnExhaust(Object state, ArrayList<AbstractCard> cards)
-    {
-        if (state != this || cards == null || cards.size() == 0)
-        {
-            return;
-        }
-
-        AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractCard c : cards)
-        {
-            switch (c.type)
-            {
-                case ATTACK:
-                    GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
-                    break;
-
-                case SKILL:
-                    GameActionsHelper.AddToBottom(new AddTemporaryHPAction(p, p, 6));
-                    break;
-
-                case POWER:
-                    GameActionsHelper.AddToBottom(new HealAction(p, p, 7));
-                    break;
-
-                case CURSE:
-                    GameActionsHelper.GainBlock(p, 6);
-                    break;
-
-                case STATUS:
-                    GameActionsHelper.GainEnergy(1);
-                    break;
-            }
         }
     }
 }

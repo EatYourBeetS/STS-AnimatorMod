@@ -9,7 +9,6 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
-import patches.AbstractEnums;
 
 public class Albedo extends AnimatorCard
 {

@@ -1,23 +1,9 @@
 package eatyourbeets.cards;
 
 import basemod.helpers.TooltipInfo;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.Keyword;
-import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.GameDictionary;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.interfaces.metadata.Spellcaster;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.utilities.Utilities;
@@ -28,8 +14,6 @@ import patches.AbstractEnums;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import static eatyourbeets.cards.AnimatorCard_UltraRare.RENDER_COLOR;
 
 public abstract class AnimatorCard extends EYBCard
 {

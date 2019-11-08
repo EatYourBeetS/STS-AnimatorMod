@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -19,7 +18,7 @@ public class DolaCouronne extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,9);
+        Initialize(0,9, 10);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -34,7 +33,7 @@ public class DolaCouronne extends AnimatorCard
             applyPowers();
 
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.GainBlock(p, this.block);
+            GameActionsHelper.GainBlock(p, this.magicNumber);
             GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
         }
     }

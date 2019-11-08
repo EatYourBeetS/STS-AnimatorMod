@@ -1,7 +1,7 @@
 package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.Vesta_Elixir;
 import eatyourbeets.utilities.GameActionsHelper;
 
@@ -9,7 +9,7 @@ public class VestaElixirEffect_TempHP extends VestaElixirEffect
 {
     public VestaElixirEffect_TempHP(int index)
     {
-        super(index, 7);
+        super(index, AbstractDungeon.cardRandomRng.random(6, 9));
     }
 
     @Override

@@ -15,8 +15,6 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.resources.Resources_Unnamed;
 import eatyourbeets.resources.Resources_Unnamed_Strings;
 import org.apache.logging.log4j.LogManager;

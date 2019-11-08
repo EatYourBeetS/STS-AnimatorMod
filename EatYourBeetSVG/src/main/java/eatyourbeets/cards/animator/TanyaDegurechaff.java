@@ -1,23 +1,17 @@
 package eatyourbeets.cards.animator;
 
-import basemod.interfaces.OnStartBattleSubscriber;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.Synergies;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
@@ -27,7 +21,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     {
         super(ID, 2, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(4, 3);
+        Initialize(4, 7);
 
         SetSynergy(Synergies.YoujoSenki);
 
@@ -40,6 +34,8 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActionsHelper.GainBlock(p, this.block);
+
         int discarded = 0;
         for (AbstractCard card : p.hand.getSkills().group)
         {
@@ -47,13 +43,11 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
             discarded += 1;
         }
 
-        if (discarded > 0)
+        for (int i = 0; i < discarded; i++)
         {
-            GameActionsHelper.GainBlock(p, this.magicNumber * discarded);
+            GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
+            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
         }
-
-        GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
     }
 
     @Override
@@ -61,10 +55,9 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
+            upgradeDamage(3);
         }
     }
-
 
     @Override
     public boolean atBattleStartPreDraw()

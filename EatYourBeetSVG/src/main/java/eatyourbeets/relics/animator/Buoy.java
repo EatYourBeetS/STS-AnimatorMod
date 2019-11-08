@@ -1,24 +1,18 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.interfaces.OnAfterCardDrawnSubscriber;
+import eatyourbeets.utilities.Utilities;
 
-public class Buoy extends AnimatorRelic implements OnAfterCardDrawnSubscriber
+public class Buoy extends AnimatorRelic
 {
     public static final String ID = CreateFullID(Buoy.class.getSimpleName());
 
-    private static final int BLOCK_AMOUNT = 3;
-    private static final int DEXTERITY_AMOUNT = 1;
-
-    private int startingCardCount = 0;
-    private boolean enabled = false;
+    private static final int HP_THRESHOLD = 30;
+    private static final int BLOCK_AMOUNT = 4;
 
     public Buoy()
     {
@@ -26,15 +20,17 @@ public class Buoy extends AnimatorRelic implements OnAfterCardDrawnSubscriber
     }
 
     @Override
+    public String getUpdatedDescription()
+    {
+        return Utilities.Format(DESCRIPTIONS[0], HP_THRESHOLD, BLOCK_AMOUNT);
+    }
+
+    @Override
     public void onEquip()
     {
         super.onEquip();
 
-        if (PlayerStatistics.InBattle())
-        {
-            atBattleStart();
-            atTurnStartPostDraw();
-        }
+        counter = -1;
     }
 
     @Override
@@ -42,9 +38,7 @@ public class Buoy extends AnimatorRelic implements OnAfterCardDrawnSubscriber
     {
         super.atBattleStart();
 
-        PlayerStatistics.onAfterCardDrawn.Subscribe(this);
-
-        this.counter = 0;
+        counter = -1;
     }
 
     @Override
@@ -52,24 +46,7 @@ public class Buoy extends AnimatorRelic implements OnAfterCardDrawnSubscriber
     {
         super.onVictory();
 
-        this.counter = 0;
-    }
-
-    @Override
-    public void OnAfterCardDrawn(AbstractCard card)
-    {
-        this.counter = (PlayerStatistics.getCardsDrawnThisTurn() - startingCardCount);
-
-        if (enabled && counter >= 3)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.GainBlock(p, BLOCK_AMOUNT);
-            GameActionsHelper.ApplyPowerSilently(p, p, new LoseDexterityPower(p, DEXTERITY_AMOUNT), DEXTERITY_AMOUNT);
-            GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, DEXTERITY_AMOUNT), DEXTERITY_AMOUNT);
-
-            enabled = false;
-            this.flash();
-        }
+        stopPulse();
     }
 
     @Override
@@ -77,14 +54,57 @@ public class Buoy extends AnimatorRelic implements OnAfterCardDrawnSubscriber
     {
         super.atTurnStartPostDraw();
 
-        counter = 0;
-        startingCardCount = AbstractDungeon.player.masterHandSize;
-        enabled = true;
+        UpdateThreshold();
     }
 
     @Override
-    public String getUpdatedDescription()
+    public void onLoseHp(int damageAmount)
     {
-        return DESCRIPTIONS[0] + BLOCK_AMOUNT + DESCRIPTIONS[1] + DEXTERITY_AMOUNT + DESCRIPTIONS[2];
+        super.onLoseHp(damageAmount);
+
+        UpdateThreshold();
+    }
+
+    @Override
+    public int onPlayerHeal(int healAmount)
+    {
+        UpdateThreshold();
+
+        return super.onPlayerHeal(healAmount);
+    }
+
+    @Override
+    public void onPlayerEndTurn()
+    {
+        super.onPlayerEndTurn();
+
+        if (AbstractDungeon.player.currentHealth < counter)
+        {
+            GameActionsHelper.GainBlock(AbstractDungeon.player, BLOCK_AMOUNT);
+            this.flash();
+        }
+    }
+
+    private void UpdateThreshold()
+    {
+        GameActionsHelper.Callback(GameActionsHelper.Wait(0.1f), this::OnCompletion, this);
+    }
+
+    private void OnCompletion(Object state, AbstractGameAction action)
+    {
+        if (state == this && action != null)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+
+            counter = (int) Math.ceil(AbstractDungeon.player.maxHealth * (HP_THRESHOLD / 100f));
+            if (p.currentHealth < counter)
+            {
+                this.beginLongPulse();
+            }
+            else
+            {
+                this.stopPulse();
+            }
+        }
     }
 }

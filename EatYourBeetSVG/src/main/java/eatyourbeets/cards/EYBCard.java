@@ -1,14 +1,13 @@
 package eatyourbeets.cards;
 
+import basemod.ConsoleInputProcessor;
 import basemod.abstracts.CustomCard;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
@@ -16,7 +15,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.resources.Resources_Common_Strings;
@@ -208,7 +207,7 @@ public abstract class EYBCard extends CustomCard
         UpdateCardText();
         super.render(sb);
         RenderHeader(sb, false);
-        RenderBadges(sb, false);
+        RenderBadges(sb, false, false);
         RenderCardPreview(sb, false);
     }
 
@@ -218,7 +217,7 @@ public abstract class EYBCard extends CustomCard
         UpdateCardText();
         super.renderInLibrary(sb);
         RenderHeader(sb, false);
-        RenderBadges(sb, false);
+        RenderBadges(sb, false, true);
         RenderCardPreview(sb, false);
     }
 
@@ -239,7 +238,7 @@ public abstract class EYBCard extends CustomCard
         else
         {
             RenderHeader(sb, true);
-            RenderBadges(sb, true);
+            RenderBadges(sb, true, false);
             RenderCardPreview(sb, true);
         }
     }
@@ -535,19 +534,19 @@ public abstract class EYBCard extends CustomCard
         return false;
     }
 
-    protected void RenderBadges(SpriteBatch sb, boolean isCardPopup)
+    protected void RenderBadges(SpriteBatch sb, boolean isCardPopup, boolean isLibrary)
     {
-        if (cardData.badges.length == 0)
+        if (cardData.badges.length == 0 || this.isFlipped || this.isLocked)
         {
             return;
         }
 
-        float scale;
+        float scale, x, y;
         if (isCardPopup)
         {
             scale = Settings.scale;
-            float x = (float)Settings.WIDTH / 2.0F + 228.0F * scale;
-            float y = (float)Settings.HEIGHT / 2.0F + 320 * scale;
+            x = (float)Settings.WIDTH / 2.0F + 228.0F * scale;
+            y = (float)Settings.HEIGHT / 2.0F + 320 * scale;
 
             float mX = Gdx.input.getX();
             float mY = Settings.HEIGHT - Gdx.input.getY();
@@ -571,11 +570,23 @@ public abstract class EYBCard extends CustomCard
         else
         {
             scale = this.drawScale * Settings.scale;
+//            x = 110;
+//            y = 160;
+            if (isLibrary || (AbstractDungeon.isScreenUp && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.HAND_SELECT))
+            {
+                x = 110;
+                y = 160;
+            }
+            else
+            {
+                x = -160;
+                y = 88;
+            }
 
             int base_Y = 0;
             for (EYBCardBadge badge : cardData.badges)
             {
-                Vector2 offset = new Vector2(110, 160 + base_Y);
+                Vector2 offset = new Vector2(x,  base_Y + y);
 
                 offset.rotate(angle);
                 offset.scl(scale);

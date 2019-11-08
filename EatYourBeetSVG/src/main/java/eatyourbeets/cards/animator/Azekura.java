@@ -8,7 +8,6 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameActionsHelper;
 

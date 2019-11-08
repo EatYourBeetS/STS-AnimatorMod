@@ -1,12 +1,10 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -20,7 +18,7 @@ public class Alexander extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5,0,4);
+        Initialize(5,0,7);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Fate);
@@ -32,7 +30,7 @@ public class Alexander extends AnimatorCard
         super.triggerOnExhaust();
 
         AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.baseDamage, false), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.magicNumber, false), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override

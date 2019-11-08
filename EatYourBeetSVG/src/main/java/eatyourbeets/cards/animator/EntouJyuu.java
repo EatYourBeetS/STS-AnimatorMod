@@ -7,7 +7,6 @@ import eatyourbeets.powers.animator.FlamingWeaponPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.EntouJyuuPower;
 
 public class EntouJyuu extends AnimatorCard implements Hidden
 {

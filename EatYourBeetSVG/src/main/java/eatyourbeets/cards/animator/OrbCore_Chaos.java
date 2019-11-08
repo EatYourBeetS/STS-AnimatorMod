@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.powers.animator.OrbCore_ChaosPower;
 
@@ -26,7 +25,7 @@ public class OrbCore_Chaos extends AnimatorCard
     {
         for (int i = 0; i < secondaryValue; i++)
         {
-            GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
+            GameActionsHelper.ChannelRandomOrb(true);
         }
 
         GameActionsHelper.ApplyPower(p, p, new OrbCore_ChaosPower(p, 1), 1);

@@ -56,7 +56,7 @@ public class BundledRelicProvider
         BundledRelic relic = bundledRelicsPool.get(cardID);
         if (relic != null)
         {
-            relic = relic.Clone(AbstractDungeon.relicRng.random(99));
+            relic = relic.Clone(AbstractDungeon.relicRng.random(99f));
             //bundledRelics.add(relic);
             bundledRelics.add(relic);
         }
@@ -68,17 +68,17 @@ public class BundledRelicProvider
         return relic;
     }
 
-    private static void AddBundle(String cardID, String relicID, AbstractRelic.RelicTier tier, int chance)
+    private static void AddBundle(String cardID, String relicID, AbstractRelic.RelicTier tier, float chance)
     {
         bundledRelicsPool.put(cardID, new BundledRelic(cardID, relicID, tier, chance));
     }
 
-    final static int R1 = 1;
-    final static int R2 = 2;
-    final static int R3 = 2;
-    final static int R4 = 3;
-    final static int R5 = 4;
-    final static int R6 = 7;
+    final static float R1 = 0.5f;
+    final static float R2 = 1f;
+    final static float R3 = 1.5f;
+    final static float R4 = 2f;
+    final static float R5 = 2.5f;
+    final static float R6 = 3f;
 
     static
     {

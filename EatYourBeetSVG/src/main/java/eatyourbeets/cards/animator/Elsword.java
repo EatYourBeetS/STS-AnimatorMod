@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActionsHelper;

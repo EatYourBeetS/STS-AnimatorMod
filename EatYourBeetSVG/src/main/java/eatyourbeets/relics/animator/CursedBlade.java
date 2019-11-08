@@ -1,15 +1,15 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
 
 public class CursedBlade extends AnimatorRelic
 {
-    private static final int HEAL_AMOUNT = 2;
+    private static final int BUFF_AMOUNT = 4;
 
     public static final String ID = CreateFullID(CursedBlade.class.getSimpleName());
 
@@ -18,76 +18,28 @@ public class CursedBlade extends AnimatorRelic
         super(ID, RelicTier.BOSS, LandingSound.HEAVY);
     }
 
-//    @Override
-//    public void atBattleStart()
-//    {
-//        super.atBattleStart();
-//
-//        AbstractPlayer p = AbstractDungeon.player;
-//        GameActionsHelper.ApplyPower(p, p, new EnvenomPower(p, 1), 1);
-//    }
-//
-//    @Override
-//    public void onVictory()
-//    {
-//        super.onVictory();
-//
-//        AbstractPlayer p = AbstractDungeon.player;
-//        p.decreaseMaxHealth(2);
-//        this.flash();
-//    }
-
     @Override
     public String getUpdatedDescription()
     {
-        if (IsImproved())
-        {
-            return DESCRIPTIONS[1];
-        }
-        else
-        {
-            return DESCRIPTIONS[0];
-        }
+        return Utilities.Format(DESCRIPTIONS[0], BUFF_AMOUNT);
     }
 
     @Override
-    public void onEquip()
+    public void atBattleStart()
     {
-        super.onEquip();
+        super.atBattleStart();
 
-        AbstractDungeon.player.decreaseMaxHealth(AbstractDungeon.player.maxHealth / 2);
+        GameActionsHelper.GainForce(BUFF_AMOUNT);
     }
 
     @Override
-    public void onPlayerEndTurn()
+    public int onAttacked(DamageInfo info, int damageAmount)
     {
-        super.onPlayerEndTurn();
-
-        if (IsImproved())
+        if (info.type == DamageInfo.DamageType.NORMAL && damageAmount > AbstractDungeon.player.currentBlock)
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            if (p.currentHealth >= p.maxHealth)
-            {
-                GameActionsHelper.GainTemporaryHP(p, p, 3);
-            }
+            GameActionsHelper.MakeCardInHand(new Wound(), 1, false);
         }
-    }
 
-    public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
-    {
-        AbstractPlayer p = AbstractDungeon.player;
-        if (p.currentHealth > 0 && p.currentHealth < p.maxHealth)
-        {
-            if (damageAmount > 0 && target != p)
-            {
-                this.flash();
-                p.heal(HEAL_AMOUNT);
-            }
-        }
-    }
-
-    private boolean IsImproved()
-    {
-        return AbstractDungeon.isAscensionMode && AbstractDungeon.ascensionLevel >= 14;
+        return super.onAttacked(info, damageAmount);
     }
 }

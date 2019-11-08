@@ -24,12 +24,8 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.*;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.powers.common.TemporaryBiasPower;
 import eatyourbeets.powers.unnamed.ResonancePower;
-import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.ui.Void;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
@@ -38,7 +34,6 @@ import eatyourbeets.utilities.RandomizedList;
 import patches.CardGlowBorderPatch;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class PlayerStatistics extends AnimatorPower implements InvisiblePower, CustomSavable<PlayerStatistics.SaveData>
@@ -210,11 +205,14 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
 
         for (OnCostRefreshSubscriber s : onCostRefresh.GetSubscribers())
         {
-            s.OnCostRefresh(card);
+            if (card != s)
+            {
+                s.OnCostRefresh(card);
+            }
         }
     }
 
-    public static <T> T  GetPower(AbstractCreature owner, Class<T> powerType)
+    public static <T> T GetPower(AbstractCreature owner, Class<T> powerType)
     {
         for (AbstractPower power : owner.powers)
         {
@@ -239,6 +237,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         {
             s.OnShuffle(triggerRelics);
         }
+    }
+
+    public static float GetHealthPercentage(AbstractCreature creature)
+    {
+        return creature.currentHealth / (float)creature.maxHealth;
     }
 
     public void OnBattleStart()
@@ -423,7 +426,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
 
         switch (power.ID)
         {
-            case "common:ForcePower"://ForcePower.POWER_ID:
+            case "EYB:ForcePower"://ForcePower.POWER_ID:
             {
                 power.priority = -2100;
                 break;
@@ -433,7 +436,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
                 power.priority = -2099;
                 break;
             }
-            case "common:AgilityPower"://AgilityPower.POWER_ID:
+            case "EYB:AgilityPower"://AgilityPower.POWER_ID:
             {
                 power.priority = -2098;
                 break;
@@ -443,14 +446,14 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
                 power.priority = -2097;
                 break;
             }
-            case "common:IntellectPower"://IntellectPower.POWER_ID:
+            case "EYB:IntellectPower"://IntellectPower.POWER_ID:
             {
                 power.priority = -2096;
                 break;
             }
             case FocusPower.POWER_ID:
             {
-                power.priority = -2095;
+                power.priority = -2096;
                 break;
             }
         }
@@ -662,6 +665,29 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         }
 
         return monsters;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends AbstractPower> T GetPower(AbstractCreature creature, String powerID)
+    {
+        for (AbstractPower p : creature.powers)
+        {
+            if (p != null && powerID.equals(p.ID))
+            {
+                try
+                {
+                    return (T)p;
+                }
+                catch (ClassCastException e)
+                {
+                    e.printStackTrace();
+
+                    return null;
+                }
+            }
+        }
+
+        return null;
     }
 
     public static int GetUniqueOrbsCount()

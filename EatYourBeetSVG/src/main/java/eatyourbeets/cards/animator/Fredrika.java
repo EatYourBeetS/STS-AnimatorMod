@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -251,6 +250,6 @@ public class Fredrika extends AnimatorCard
         }
 
         this.setCostForTurn(cost);
-        this.cardText.Update(cardText.index, true);
+        this.cardText.ForceRefresh();
     }
 }

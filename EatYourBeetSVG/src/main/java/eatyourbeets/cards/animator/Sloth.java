@@ -103,7 +103,7 @@ public class Sloth extends AnimatorCard
             magicNumber = baseMagicNumber = 0;
 
             cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
-            cardText.Update(cardText.index, true);
+            cardText.ForceRefresh();
         }
 
         baseMagicNumber = magicNumber;

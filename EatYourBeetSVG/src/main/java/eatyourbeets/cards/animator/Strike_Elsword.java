@@ -3,8 +3,8 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class Strike_Elsword extends Strike
 {
@@ -21,7 +21,7 @@ public class Strike_Elsword extends Strike
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        PlayerStatistics.GainTemporaryStrength(p, p, 1);
+        GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, magicNumber), magicNumber);
     }
 
     @Override

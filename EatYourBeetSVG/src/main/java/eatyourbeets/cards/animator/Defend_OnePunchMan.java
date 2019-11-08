@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -18,7 +19,7 @@ public class Defend_OnePunchMan extends Defend
 
         Initialize(0, 5);
 
-        this.baseSecondaryValue = this.secondaryValue = 1;
+        SetHealing(true);
     }
 
     @Override
@@ -26,7 +27,7 @@ public class Defend_OnePunchMan extends Defend
     {
         GameActionsHelper.GainBlock(p, this.block);
 
-        if (ProgressBoost())
+        if (PlayerStatistics.TryActivateLimited(cardID))
         {
             GameActionsHelper.ApplyPower(p, p, new EnergizedBluePower(p, 1), 1);
         }

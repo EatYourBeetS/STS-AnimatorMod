@@ -8,8 +8,6 @@ import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.NextTurnDexterityPower;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class SilverFang extends AnimatorCard implements MartialArtist
 {

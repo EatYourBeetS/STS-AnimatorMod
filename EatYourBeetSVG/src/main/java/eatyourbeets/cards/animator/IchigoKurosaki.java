@@ -1,9 +1,13 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.ChemicalX;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
@@ -35,7 +39,7 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
     {
         super.applyPowers();
 
-        MartialArtist.ApplyScaling(this, 3);
+        MartialArtist.ApplyScaling(this, 4);
     }
 
     @Override
@@ -50,15 +54,17 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.GainForce(magicNumber);
+
+        if (upgraded)
+        {
+            GameActionsHelper.GainAgility(1);
+        }
     }
 
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
+        TryUpgrade();
     }
 
     private void OnCompletion(Object state, AbstractGameAction action)

@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
@@ -10,7 +11,7 @@ import eatyourbeets.powers.common.PlayerFlightPower;
 
 public class Azriel extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Azriel.class.getSimpleName());
+    public static final String ID = Register(Azriel.class.getSimpleName(), EYBCardBadge.Special);
 
     public Azriel()
     {

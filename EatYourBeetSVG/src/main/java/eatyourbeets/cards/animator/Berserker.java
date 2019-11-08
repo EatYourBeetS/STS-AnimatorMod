@@ -4,11 +4,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -45,24 +42,9 @@ public class Berserker extends AnimatorCard
             GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
             GameActionsHelper.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
-            if (p.currentHealth / (float)p.maxHealth < 0.1f && PlayerStatistics.TryActivateLimited(cardID))
+            if (PlayerStatistics.GetHealthPercentage(p) <= 0.1f && PlayerStatistics.TryActivateLimited(cardID))
             {
-                AbstractCard tmp = makeSameInstanceOf();
-                AbstractDungeon.player.limbo.addToBottom(tmp);
-                tmp.current_x = current_x;
-                tmp.current_y = current_y;
-                tmp.target_x = (float) Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
-                tmp.target_y = (float) Settings.HEIGHT / 2.0F;
-
-                if (tmp.cost > 0)
-                {
-                    tmp.freeToPlayOnce = true;
-                }
-
-                tmp.calculateCardDamage(m);
-                tmp.purgeOnUse = true;
-
-                AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(tmp, m, energyOnUse, true));
+                GameActionsHelper.PlayCopy(this, m);
             }
         }
     }

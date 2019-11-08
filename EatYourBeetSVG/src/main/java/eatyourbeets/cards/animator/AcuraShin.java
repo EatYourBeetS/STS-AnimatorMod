@@ -8,7 +8,6 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.PoisonAffinityPower;
 
 public class AcuraShin extends AnimatorCard

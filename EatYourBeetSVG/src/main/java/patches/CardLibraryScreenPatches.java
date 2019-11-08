@@ -9,22 +9,23 @@ import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar;
 import eatyourbeets.ui.CustomCardLibSortHeader;
+import eatyourbeets.utilities.Field;
+import eatyourbeets.utilities.Utilities;
 
-import java.lang.reflect.Field;
 
 @SpirePatch(clz=CardLibraryScreen.class, method="didChangeTab", paramtypez = {ColorTabBar.class, ColorTabBar.CurrentTab.class})
 public class CardLibraryScreenPatches
 {
-    private static final CustomCardLibSortHeader customHeader;
+    private static final Field<CardLibSortHeader> headerField = Utilities.GetPrivateField("sortHeader", CardLibraryScreen.class);
+    private static final CustomCardLibSortHeader customHeader = new CustomCardLibSortHeader(null);
     private static CardLibSortHeader defaultHeader;
-    private static Field headerField;
 
     @SpirePrefixPatch
-    public static void Prefix(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection) throws IllegalAccessException
+    public static void Prefix(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection)
     {
         if (defaultHeader == null)
         {
-            defaultHeader = GetCurrentHeader(screen);
+            defaultHeader = headerField.Get(screen);
 
             Hitbox upgradeHitbox = tabBar.viewUpgradeHb;
 
@@ -36,43 +37,18 @@ public class CardLibraryScreenPatches
 
         if (newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(AbstractEnums.Cards.THE_ANIMATOR))
         {
-            if (GetCurrentHeader(screen) != customHeader)
+            if (headerField.Get(screen) != customHeader)
             {
-                SetCurrentHeader(screen, customHeader);
+                headerField.Set(screen, customHeader);
                 customHeader.SetupButtons();
             }
         }
         else
         {
-            if (GetCurrentHeader(screen) != defaultHeader)
+            if (headerField.Get(screen) != defaultHeader)
             {
-                SetCurrentHeader(screen, defaultHeader);
+                headerField.Set(screen, defaultHeader);
             }
         }
-    }
-
-    private static CardLibSortHeader GetCurrentHeader(CardLibraryScreen screen) throws IllegalAccessException
-    {
-        return (CardLibSortHeader) headerField.get(screen);
-    }
-
-    private static void SetCurrentHeader(CardLibraryScreen screen, CardLibSortHeader header) throws IllegalAccessException
-    {
-        headerField.set(screen, header);
-    }
-
-    static
-    {
-        try
-        {
-            headerField = CardLibraryScreen.class.getDeclaredField("sortHeader");
-            headerField.setAccessible(true);
-        }
-        catch (NoSuchFieldException e)
-        {
-            e.printStackTrace();
-        }
-
-        customHeader = new CustomCardLibSortHeader(null);
     }
 }

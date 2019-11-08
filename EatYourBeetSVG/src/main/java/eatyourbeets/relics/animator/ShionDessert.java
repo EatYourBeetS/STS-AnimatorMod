@@ -6,9 +6,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -16,8 +19,7 @@ public class ShionDessert extends AnimatorRelic
 {
     public static final String ID = CreateFullID(ShionDessert.class.getSimpleName());
 
-    private static final int ATTACKS_COUNTER = 3;
-    private static final int POISON_AMOUNT = 3;
+    private static final int POISON_AMOUNT = 2;
 
     public ShionDessert()
     {
@@ -27,37 +29,38 @@ public class ShionDessert extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0] + ATTACKS_COUNTER + DESCRIPTIONS[1] + POISON_AMOUNT + DESCRIPTIONS[2];
+        return Utilities.Format(DESCRIPTIONS[0], POISON_AMOUNT);
     }
 
-    public void atTurnStart()
+    @Override
+    public void atTurnStartPostDraw()
     {
-        this.counter = 0;
-    }
+        super.atTurnStartPostDraw();
 
-    public void onUseCard(AbstractCard card, UseCardAction action)
-    {
-        if (card.type == AbstractCard.CardType.ATTACK)
+        int mostPoison = -1;
+        AbstractMonster enemy = null;
+
+        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
         {
-            this.counter += 1;
-            if (this.counter % ATTACKS_COUNTER == 0)
+            AbstractPower poison = PlayerStatistics.GetPower(m, PoisonPower.POWER_ID);
+            if (poison != null && poison.amount > mostPoison)
             {
-                this.counter = 0;
-                this.flash();
-                AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-
-                AbstractPlayer p = AbstractDungeon.player;
-                AbstractMonster enemy = Utilities.GetRandomElement(PlayerStatistics.GetCurrentEnemies(true));
-                if (enemy != null)
-                {
-                    GameActionsHelper.ApplyPower(p, enemy, new PoisonPower(enemy, p, POISON_AMOUNT), POISON_AMOUNT);
-                }
+                mostPoison = poison.amount;
+                enemy = m;
             }
         }
-    }
 
-    public void onVictory()
-    {
-        this.counter = -1;
+        if (enemy == null)
+        {
+            enemy = PlayerStatistics.GetRandomEnemy(true);
+        }
+
+        if (enemy != null)
+        {
+            this.flash();
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.AddToBottom(new RelicAboveCreatureAction(p, this));
+            GameActionsHelper.ApplyPower(p, enemy, new PoisonPower(enemy, p, POISON_AMOUNT), POISON_AMOUNT);
+        }
     }
 }

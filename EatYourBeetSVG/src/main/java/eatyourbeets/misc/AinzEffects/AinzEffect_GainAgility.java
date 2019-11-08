@@ -1,7 +1,6 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActionsHelper;
 

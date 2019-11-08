@@ -163,5 +163,13 @@ public class MoveSpecificCardAction extends AnimatorAction
         {
             card.triggerWhenDrawn();
         }
+        else if (destination.type == CardGroup.CardGroupType.EXHAUST_PILE)
+        {
+            card.triggerOnExhaust();
+        }
+        else if (destination.type == CardGroup.CardGroupType.DISCARD_PILE && source.type != CardGroup.CardGroupType.EXHAUST_PILE)
+        {
+            card.triggerOnManualDiscard();
+        }
     }
 }

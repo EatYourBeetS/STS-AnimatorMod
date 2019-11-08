@@ -1,9 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
-import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.RemoveRightmostDebuffAction;
 import eatyourbeets.cards.EYBCardBadge;

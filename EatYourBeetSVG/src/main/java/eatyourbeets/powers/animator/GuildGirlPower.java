@@ -2,17 +2,13 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.RegrowPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.cards.EYBCard;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.animator.GuildGirl;
 import eatyourbeets.rewards.SpecialGoldReward;

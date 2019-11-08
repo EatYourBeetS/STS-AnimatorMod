@@ -28,9 +28,9 @@ public class Hitei extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainAgility(magicNumber);
-            GameActionsHelper.GainForce(magicNumber);
-            GameActionsHelper.GainIntellect(magicNumber);
+            GameActionsHelper.GainAgility(2);
+            GameActionsHelper.GainForce(2);
+            GameActionsHelper.GainIntellect(2);
         }
     }
 

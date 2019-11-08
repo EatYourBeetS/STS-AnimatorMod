@@ -1,15 +1,13 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
-import eatyourbeets.cards.AnimatorCard;
 
-public class Defend_Kancolle extends Defend// implements OnRemoveFromDeckSubscriber
+public class Defend_Kancolle extends Defend
 {
     public static final String ID = Register(Defend_Kancolle.class.getSimpleName());
 
@@ -19,9 +17,7 @@ public class Defend_Kancolle extends Defend// implements OnRemoveFromDeckSubscri
 
         Initialize(0, 5, 5);
 
-        this.tags.add(CardTags.HEALING);
-
-        this.baseSecondaryValue = this.secondaryValue = 1;
+        SetHealing(true);
     }
 
     @Override
@@ -29,7 +25,7 @@ public class Defend_Kancolle extends Defend// implements OnRemoveFromDeckSubscri
     {
         GameActionsHelper.GainBlock(p, this.block);
 
-        if (ProgressBoost())
+        if (PlayerStatistics.TryActivateLimited(cardID))
         {
             for(int i = 0; i < this.magicNumber; ++i)
             {
@@ -46,35 +42,5 @@ public class Defend_Kancolle extends Defend// implements OnRemoveFromDeckSubscri
         {
             upgradeBlock(3);
         }
-    }
-
-    protected boolean ProgressBoost()
-    {
-        if (this.secondaryValue > 0)
-        {
-            int newValue = this.secondaryValue - 1;
-
-            for (AbstractCard c : GetAllInBattleInstances())
-            {
-                AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
-                if (card != null)
-                {
-                    if (newValue == 0)
-                    {
-                        card.baseSecondaryValue = 1;
-                        card.secondaryValue = 0;
-                        card.isSecondaryValueModified = true;
-                    }
-                    else
-                    {
-                        card.baseSecondaryValue = card.secondaryValue = newValue;
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        return false;
     }
 }

@@ -1,6 +1,5 @@
 package eatyourbeets.events;
 
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -9,10 +8,8 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.dungeons.TheUnnamedReign;
-import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.effects.MaskedTravelerTransformCardsEffect;
 import eatyourbeets.effects.UnnamedRelicEquipEffect;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;

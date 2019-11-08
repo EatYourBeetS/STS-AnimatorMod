@@ -1,14 +1,8 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.ModifyMagicNumberAction;
-import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;

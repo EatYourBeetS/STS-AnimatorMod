@@ -21,7 +21,6 @@ import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.Utilities;
 
 public class Saitama extends AnimatorCard
@@ -82,9 +81,9 @@ public class Saitama extends AnimatorCard
 
             case 1:
             {
-                // Draw !M! Cards. NL Gain 1 Dexterity.
+                // Draw !M! Cards. NL Gain !SV! Agility.
                 GameActionsHelper.DrawCard(p, magicNumber);
-                GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, 1), 1);
+                GameActionsHelper.GainAgility(secondaryValue);
 
                 break;
             }
@@ -99,8 +98,8 @@ public class Saitama extends AnimatorCard
 
             case 3:
             {
-                // Gain !M! Strength. Gain !B! Block.
-                GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
+                // Gain !M! Force. Gain !B! Block.
+                GameActionsHelper.GainForce(magicNumber);
                 GameActionsHelper.GainBlock(p, block);
 
                 break;
@@ -178,10 +177,10 @@ public class Saitama extends AnimatorCard
 
             case 1:
             {
-                // Draw !M! Cards. NL Gain 1 Dexterity.
+                // Draw !M! Cards. NL Gain !SV! Agility.
                 this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
 
-                Initialize(0, 0, 3, 0);
+                Initialize(0, 0, 3, 2);
 
                 this.target = CardTarget.SELF;
                 this.type = CardType.SKILL;
@@ -208,7 +207,7 @@ public class Saitama extends AnimatorCard
 
             case 3:
             {
-                // Gain !M! Strength. Gain !B! Block
+                // Gain !M! Force. Gain !B! Block
                 this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[2];
 
                 Initialize(0, 9, 6, 0);
@@ -253,7 +252,7 @@ public class Saitama extends AnimatorCard
         }
 
         this.upgradeBaseCost(stage);
-        this.cardText.Update(cardText.index, true);
+        this.cardText.ForceRefresh();
     }
 
     private class ProgressPhaseAction extends AnimatorAction

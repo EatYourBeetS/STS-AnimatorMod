@@ -129,14 +129,15 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         int focus = PlayerStatistics.GetFocus(AbstractDungeon.player);
         if (focus > 0)
         {
-            this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
+            //this.passiveAmount = Math.max(0, this.basePassiveAmount + Math.floorDiv(focus, 6));
             this.evokeAmount = Math.max(0, this.baseEvokeAmount + (focus * 2));
         }
         else
         {
             this.evokeAmount = this.baseEvokeAmount;
-            this.passiveAmount = this.basePassiveAmount;
         }
+
+        this.passiveAmount = this.basePassiveAmount;
     }
 
     public void updateAnimation()

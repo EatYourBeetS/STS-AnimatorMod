@@ -11,9 +11,10 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import eatyourbeets.cards.CardSeriesComparator;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.ui.CustomCardLibSortHeader;
+import eatyourbeets.utilities.Utilities;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -27,6 +28,12 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
     private static final int MAX_STORED_USES = 3;
     private static Field isBoss = null;
     private final ArrayList<String> bannedCards = new ArrayList<>();
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return Utilities.Format(DESCRIPTIONS[0], MAX_STORED_USES);
+    }
 
     public PurgingStone_Cards()
     {
@@ -55,12 +62,6 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
     public int GetBannedCount()
     {
         return bannedCards.size();
-    }
-
-    @Override
-    public String getUpdatedDescription()
-    {
-        return DESCRIPTIONS[0] + MAX_STORED_USES + DESCRIPTIONS[1];
     }
 
     @Override
@@ -116,7 +117,7 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
             }
 
             group.group.sort(new CardRarityComparator());
-            group.group.sort(new CustomCardLibSortHeader.CardSeriesComparator());
+            group.group.sort(new CardSeriesComparator());
 
             AbstractDungeon.dynamicBanner.hide();
             AbstractDungeon.gridSelectScreen.selectedCards.clear();

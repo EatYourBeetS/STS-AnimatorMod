@@ -7,23 +7,31 @@ import java.time.Instant;
 
 public class WaitRealtimeAction extends AbstractGameAction
 {
-    private final Instant targetTime;
+    private final float realtimeDuration;
+    private Instant targetTime;
 
     public WaitRealtimeAction(float setDur)
     {
         this.setValues(null, null, 0);
 
         this.duration = setDur;
+        this.realtimeDuration = setDur;
         this.actionType = ActionType.WAIT;
-        this.targetTime = Date.from(Instant.now()).toInstant().plusMillis((long)(setDur * 1000));
     }
 
     public void update()
     {
-        Instant now = Date.from(Instant.now()).toInstant();
-        if (now.isAfter(targetTime))
+        if (targetTime == null)
         {
-            this.isDone = true;
+            this.targetTime = Date.from(Instant.now()).toInstant().plusMillis((long)(realtimeDuration * 1000));
+        }
+        else
+        {
+            Instant now = Date.from(Instant.now()).toInstant();
+            if (now.isAfter(targetTime))
+            {
+                this.isDone = true;
+            }
         }
     }
 }

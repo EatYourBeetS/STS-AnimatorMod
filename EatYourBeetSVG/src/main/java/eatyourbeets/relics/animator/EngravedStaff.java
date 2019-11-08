@@ -1,11 +1,16 @@
 package eatyourbeets.relics.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.effects.CallbackEffect;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.AnimatorRelic;
-
-import java.util.ArrayList;
+import eatyourbeets.utilities.RandomizedList;
 
 public class EngravedStaff extends AnimatorRelic
 {
@@ -16,65 +21,44 @@ public class EngravedStaff extends AnimatorRelic
         super(ID, RelicTier.RARE, LandingSound.MAGICAL);
     }
 
-    private AbstractCard retained = null;
-
     @Override
     public void atBattleStart()
     {
         super.atBattleStart();
 
-        retained = null;
+        PlayerStatistics.TryActivateLimited(relicId);
     }
 
     @Override
-    public void onVictory()
+    public void onEquip()
     {
-        super.onVictory();
+        super.onEquip();
 
-        retained = null;
+        PlayerStatistics.TryActivateLimited(relicId);
+        AbstractDungeon.effectsQueue.add(new CallbackEffect(new WaitAction(0.1f), this::OnCompletion, this));
     }
 
-    @Override
-    public void atTurnStart()
+    private void OnCompletion(Object state, AbstractGameAction action)
     {
-        super.atTurnStart();
-
-        AbstractPlayer p = AbstractDungeon.player;
-        if (retained != null && p.hand.contains(retained))
+        if (state == this && action != null)
         {
-            retained.modifyCostForTurn(-1);
-            this.flash();
-        }
-
-        retained = null;
-    }
-
-    @Override
-    public void onPlayerEndTurn()
-    {
-        super.onPlayerEndTurn();
-
-        AbstractCard best = null;
-        int maxCost = Integer.MIN_VALUE;
-
-        ArrayList<AbstractCard> cards = AbstractDungeon.player.hand.group;
-        for (AbstractCard card : cards)
-        {
-            if (!card.isEthereal &&
-                    card.type != AbstractCard.CardType.CURSE &&
-                    card.type != AbstractCard.CardType.STATUS &&
-                    card.costForTurn > maxCost)
+            RandomizedList<AbstractCard> upgradableCards = new RandomizedList<>();
+            for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
             {
-                maxCost = card.costForTurn;
-                best = card;
+                if (c.rarity == AbstractCard.CardRarity.RARE && c.canUpgrade())
+                {
+                    upgradableCards.Add(c);
+                }
             }
-        }
 
-        if (best != null)
-        {
-            best.retain = true;
-            retained = best;
-            this.flash();
+            if (upgradableCards.Count() > 0)
+            {
+                AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
+                card1.upgrade();
+                AbstractDungeon.player.bottledCardUpgradeCheck(card1);
+                AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+                AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            }
         }
     }
 }

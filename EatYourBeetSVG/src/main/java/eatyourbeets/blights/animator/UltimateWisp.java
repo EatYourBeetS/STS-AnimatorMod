@@ -13,7 +13,9 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
 
     public UltimateWisp()
     {
-        super(ID);
+        super(ID, 1);
+
+        this.counter = -1;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
     @Override
     public void OnShuffle(boolean triggerRelics)
     {
-        GameActionsHelper.MakeCardInDrawPile(new VoidCard(), 1, false);
+        GameActionsHelper.MakeCardInDrawPile(new VoidCard(), initialAmount, false);
         this.flash();
     }
 

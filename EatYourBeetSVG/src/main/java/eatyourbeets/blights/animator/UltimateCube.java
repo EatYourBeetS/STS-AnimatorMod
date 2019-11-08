@@ -3,7 +3,6 @@ package eatyourbeets.blights.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.blights.AnimatorBlight;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
 
@@ -13,7 +12,7 @@ public class UltimateCube extends AnimatorBlight
 
     public UltimateCube()
     {
-        super(ID, 10);
+        super(ID, 12);
 
         this.counter = -1;
     }

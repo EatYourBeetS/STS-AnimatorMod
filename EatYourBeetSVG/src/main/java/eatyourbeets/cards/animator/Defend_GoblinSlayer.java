@@ -12,9 +12,9 @@ public class Defend_GoblinSlayer extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        this.exhaust = true;
-
         Initialize(0, 7);
+
+        SetExhaust(true);
     }
 
     @Override

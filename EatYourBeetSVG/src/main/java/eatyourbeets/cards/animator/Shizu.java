@@ -22,11 +22,9 @@ public class Shizu extends AnimatorCard
 
     public Shizu()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(12, 0, 1);
-
-        AddExtendedDescription();
+        Initialize(7, 0, 1);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -44,7 +42,7 @@ public class Shizu extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(2);
+            upgradeDamage(5);
         }
     }
 

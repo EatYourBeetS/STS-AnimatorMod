@@ -15,7 +15,6 @@ import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 import eatyourbeets.relics.animator.CursedGlyph;
-import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.Utilities;
 
@@ -30,12 +29,12 @@ public class BundledRelic
 
     private final AbstractRelic.RelicTier relicTier;
     private final String relicID;
-    private final int chance;
+    private final float chance;
 
-    private int roll;
+    private float roll;
     private AbstractRelic relic;
 
-    public BundledRelic(String cardID, String relicID, AbstractRelic.RelicTier tier, int chance)
+    public BundledRelic(String cardID, String relicID, AbstractRelic.RelicTier tier, float chance)
     {
         this.chance = chance;
         this.cardID = cardID;
@@ -43,10 +42,10 @@ public class BundledRelic
         this.relicID = relicID;
     }
 
-    public BundledRelic Clone(int roll)
+    public BundledRelic Clone(float roll)
     {
         boolean hasHero = false;
-        int chance = this.chance;
+        float chance = this.chance;
         for (AbstractCard c : AbstractDungeon.player.masterDeck.getAttacks().group)
         {
             if (c instanceof Hero)

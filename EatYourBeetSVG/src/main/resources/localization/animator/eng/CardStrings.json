@@ -12,7 +12,7 @@
 	},
 	"animator:AcuraTooru":
 	{
-		"DESCRIPTION": "Deal !D! damage NL twice. Add !SV! Throwing-Knives to your hand. || On Synergy, NL or when Discarded, NL gain !M! Block. NL Does not scale.",
+		"DESCRIPTION": "Deal !D! damage NL twice. Add !SV! Throwing-Knives to your hand. || On Synergy, NL or when Discarded, NL gain !M! Block.",
 		"NAME": "Tooru"
 	},
 	"animator:Add":
@@ -23,7 +23,7 @@
 	},
 	"animator:Ain":
 	{
-		"DESCRIPTION": "Spellcaster. NL Deal !D! damage NL to ALL enemies NL !M! times. || Semi-Limited. NL Gain 2 Intellect.",
+		"DESCRIPTION": "Spellcaster. NL Deal !D! damage NL to ALL enemies NL !M! times. || Semi-Limited. NL On Synergy, or NL when Discarded, NL gain !SV! Intellect.",
 		"NAME": "Ain"
 	},
 	"animator:Ainz":
@@ -43,7 +43,7 @@
 	},
 	"animator:Alexander":
 	{
-		"DESCRIPTION": "Deal !D! damage NL to ALL enemies. NL Gain 1 Force. || When Exhausted, NL Deal !D! damage NL to ALL enemies.",
+		"DESCRIPTION": "Deal !D! damage NL to ALL enemies. NL Gain 1 Force. || When Exhausted, NL Deal !M! damage NL to ALL enemies.",
 		"NAME": "Alexander"
 	},
 	"animator:Aqua":
@@ -127,7 +127,7 @@
 	},
 	"animator:ChaikaTrabant":
 	{
-		"DESCRIPTION": "Next turn, deal !D! damage and apply !M! random [#EFC851]Debuffs. || When Discarded, NL deal 6 damage NL to ALL enemies. NL Does not scale.",
+		"DESCRIPTION": "Next turn, deal !D! damage and apply !SV! random [#EFC851]Debuffs. || When Discarded, NL deal !M! damage NL to ALL enemies.",
 		"NAME": "Chaika Trabant"
 	},
 	"animator:ChlammyZell":
@@ -196,22 +196,22 @@
 	},
 	"animator:Defend_AccelWorld":
 	{
-		"DESCRIPTION": "Gain !B! Block. || When Discarded, NL gain !M! Block. NL Does not scale.",
+		"DESCRIPTION": "Gain !B! Block. || When Discarded, NL gain !M! Block.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Elsword":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Next turn, gain !M! Block.",
+		"DESCRIPTION": "Gain !B! Block. NL Next turn, NL gain !M! Block.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Fate":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Gain !M! additional Block for each enemy.",
+		"DESCRIPTION": "Gain !B! Block. NL Gain !M! additional NL Block for each enemy.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_FullmetalAlchemist":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Cooldown !SV!: NL [#EFC851]Channel 1 Frost.",
+		"DESCRIPTION": "Gain !B! Block. NL Cooldown !SV!: NL [#EFC851]Channel[] 1 Frost.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_GATE":
@@ -231,7 +231,7 @@
 	},
 	"animator:Defend_Kancolle":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Boost !SV! : Gain !M! [#EFC851]Gold.",
+		"DESCRIPTION": "Gain !B! Block. NL Limited: NL Gain !M! [#EFC851]Gold[].",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Katanagatari":
@@ -241,27 +241,27 @@
 	},
 	"animator:Defend_Konosuba":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Boost !SV! : Heal !M! HP.",
+		"DESCRIPTION": "Gain !B! Block. NL Gain !M! Temp._HP.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_NoGameNoLife":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Retain your leftmost playable card.",
+		"DESCRIPTION": "Gain !B! Block. NL Retain your leftmost NL playable card.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_OnePunchMan":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Boost !SV! : Next turn, gain [E].",
+		"DESCRIPTION": "Gain !B! Block. NL Limited : Next NL turn, gain [E].",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Overlord":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Increase this card's Block by !M! this combat.",
+		"DESCRIPTION": "Gain !B! Block. NL Increase this NL card's Block by !M! NL this combat.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_OwariNoSeraph":
 	{
-		"DESCRIPTION": "Gain !B! Block. || When Exhausted, apply !M! Weak NL to ALL enemies.",
+		"DESCRIPTION": "Gain !B! Block. || When Exhausted, NL apply !M! Weak NL to ALL enemies.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_TenSura":
@@ -277,7 +277,7 @@
 	},
 	"animator:DolaCouronne":
 	{
-		"DESCRIPTION": "Discard 1 card. NL Gain !B! Block. || Limited. NL When Exhausted, NL gain !B! Block NL and 1 Artifact.",
+		"DESCRIPTION": "Discard 1 card. NL Gain !B! Block. || Limited. NL When Exhausted, NL gain !M! Block NL and 1 Artifact.",
 		"NAME": "Couronne"
 	},
 	"animator:DolaRiku":
@@ -367,7 +367,7 @@
 	},
 	"animator:Eve":
 	{
-		"DESCRIPTION": "Play 1 Orb_Core. NL Gain !M! Metallicize. NL Gain !SV! Orb Slot(s). || Limited. NL When you Synergize, NL deal 1 damage to an NL enemy and increase NL this damage by 1.",
+		"DESCRIPTION": "Play 1 Orb_Core. NL Gain !M! Metallicize. NL Gain !SV! Orb Slot. || Limited. NL When you Synergize, NL deal 1 damage to an NL enemy and increase NL this damage by 1.",
 		"NAME": "Eve"
 	},
 	"animator:Evileye":
@@ -398,7 +398,7 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Apply !M! Burning. NL Take !SV! damage at NL the end of turn. || On Synergy, your NL Energy is conserved NL this turn.",
+		"DESCRIPTION": "Deal !D! Damage. NL Apply !M! Burning. NL Take !SV! damage at NL the end of turn. || Semi-Limited. NL On Synergy, Fetch NL a card which costs NL 3 or more Energy NL and Retain it.",
 		"NAME": "Genos"
 	},
 	"animator:Geryuganshoop":
@@ -480,6 +480,12 @@
 		"EXTENDED_DESCRIPTION": ["martial artist", "#ySynergizes with #yMartial #yArtists. For every point of #yDexterity, deal #b1 additional damage."],
 		"NAME": "Hakurou"
 	},
+	"animator:HarukoHaruhara":
+	{
+		"DESCRIPTION": "Gain 1 Temporary NL Artifact. Play a NL random card from NL any class.",
+		"NAME": "Haruko Haruhara",
+		"UPGRADE_DESCRIPTION": "Gain 1 Temporary NL Artifact. Play a NL random Upgraded NL card from any NL class."
+	},
 	"animator:Hero":
 	{
 		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! Cards. || While in your NL deck, greatly increase NL the chances of NL [#EFC851]Bonus [#EFC851]Relics.",
@@ -524,17 +530,18 @@
 	},
 	"animator:IchigoBankai":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Deal !D! Piercing NL damage to ALL NL enemies. Draw !M! NL cards. Exhaust.",
+		"DESCRIPTION": "Martial_Artist. NL Deal !D! damage NL to ALL enemies. NL Multiplied by X. NL Exhaust.",
 		"NAME": "Ichigo Bankai"
 	},
 	"animator:IchigoKurosaki":
 	{
 		"DESCRIPTION": "Martial_Artist. NL Gain !M! Force. NL Exhaust. || When Exhausted, NL if you have at NL least !SV! Strength, NL add [#EFC851]Ichigo[] [#EFC851]Bankai[] NL to your draw pile.",
-		"NAME": "Ichigo Kurosaki"
+		"NAME": "Ichigo Kurosaki",
+		"UPGRADE_DESCRIPTION": "Martial_Artist. NL Gain !M! Force. NL Gain 1 Agility. Exhaust. || When Exhausted, NL if you have at NL least !SV! Strength, NL add [#EFC851]Ichigo[] [#EFC851]Bankai[] NL to your draw pile."
 	},
 	"animator:Illya":
 	{
-		"DESCRIPTION": "Play the highest NL damage [#EFC851]Attack from NL your draw pile. NL Take !M! damage at NL the end of turn. || When Exhausted, NL draw [#EFC851]Berserker[] NL from any pile NL and increase its NL damage by !SV!.",
+		"DESCRIPTION": "Play the highest NL damage [#EFC851]Attack from NL your draw pile. NL Take !M! damage at NL the end of turn. || When Exhausted, NL draw [#EFC851]Berserker[] NL from any pile NL and gain [E].",
 		"NAME": "Illya"
 	},
 	"animator:ItamiYouji":
@@ -565,7 +572,7 @@
 	},
 	"animator:Kazuma":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Cycle 1 card. || On Synergy, NL deal !M! damage to NL a random enemy. NL Does not scale.",
+		"DESCRIPTION": "Gain !B! Block. NL Cycle 1 card. || On Synergy, NL deal !M! damage to NL a random enemy.",
 		"NAME": "Kazuma"
 	},
 	"animator:Kira":
@@ -666,7 +673,7 @@
 	},
 	"animator:MetalKnight":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Channel 1 Plasma. NL Boost !SV! : Gain !M! Metallicize. || When Discarded, NL gain 2 Block for NL each of your Orbs. NL Does not scale.",
+		"DESCRIPTION": "Deal !D! Damage. NL Channel 1 Plasma. NL Boost !SV! : Gain !M! Metallicize. || When Discarded, NL gain 2 Block for NL each of your Orbs.",
 		"NAME": "Metal Knight"
 	},
 	"animator:Mikaela":
@@ -773,7 +780,7 @@
 	},
 	"animator:Priestess":
 	{
-		"DESCRIPTION": "Cooldown !SV!: NL Gain !M! Temp._HP. || On Synergy NL or when Drawn, NL gain 1 Temp._HP.",
+		"DESCRIPTION": "Apply !SV! Weak. NL Gain !M! Temp._HP. || On Synergy NL Exhaust a random NL Status or Curse.",
 		"NAME": "'Priestess'"
 	},
 	"animator:QuestionMark":
@@ -833,7 +840,7 @@
 	"animator:Saitama":
 	{
 		"DESCRIPTION": "Oh. || Whenever this card is played, increase its cost and change its effect for this combat.",
-		"EXTENDED_DESCRIPTION": ["Draw !M! cards. NL Gain 1 Dexterity.", "Prevent the next NL time you would NL lose HP.", "Gain !M! Strength. NL Gain !B! Block.", "Deal !D! damage NL !M! times.", "Remove Intangible. NL Deal !D! damage. NL Stun the enemy."],
+		"EXTENDED_DESCRIPTION": ["Draw !M! cards. NL Gain !SV! Agility.", "Prevent the next NL time you would NL lose HP.", "Gain !M! Force. NL Gain !B! Block.", "Deal !D! damage NL !M! times.", "Remove Intangible. NL Deal !D! damage. NL Stun the enemy."],
 		"NAME": "Saitama",
 		"UPGRADE_DESCRIPTION": "Oh+. || Whenever this card is played, increase its cost and change its effect for this combat."
 	},
@@ -922,7 +929,7 @@
 	},
 	"animator:Sonic":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Draw !M! cards. NL Gain !SV! Agility. || On Synergy, add NL 1 Throwing-Knife NL to your hand.",
+		"DESCRIPTION": "Martial_Artist. Add NL !M! Throwing-Knives NL to your hand. NL Gain !SV! Agility. || On Synergy, NL gain !B! Block NL and 1 Blur.",
 		"NAME": "Sonic"
 	},
 	"animator:Sora":
@@ -948,17 +955,17 @@
 	},
 	"animator:Strike_AccelWorld":
 	{
-		"DESCRIPTION": "Deal !D! damage. || When Discarded, NL Deal !M! damage NL to a random enemy. NL Does not scale.",
+		"DESCRIPTION": "Deal !D! damage. || When Discarded, NL Deal !M! damage NL to a random enemy.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength until end of turn.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Fate":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If you have less than 3 cards in hand, NL gain [E].",
+		"DESCRIPTION": "Deal !D! damage. NL If you have less NL than 3 cards in NL hand, gain [E].",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_FullmetalAlchemist":
@@ -968,7 +975,7 @@
 	},
 	"animator:Strike_GATE":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Next turn, draw 1 card.",
+		"DESCRIPTION": "Deal !D! damage. NL Next turn, NL draw 1 card.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_GoblinSlayer":
@@ -983,7 +990,7 @@
 	},
 	"animator:Strike_Kancolle":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Boost !SV! : Gain !M! [#EFC851]Gold.",
+		"DESCRIPTION": "Deal !D! damage. NL Limited: NL Gain !M! [#EFC851]Gold[].",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Katanagatari":
@@ -998,17 +1005,17 @@
 	},
 	"animator:Strike_NoGameNoLife":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Retain your rightmost playable card.",
+		"DESCRIPTION": "Deal !D! damage. NL Retain your rightmost NL playable card.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_OnePunchMan":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Dexterity until end of turn.",
+		"DESCRIPTION": "Deal !D! damage. NL Draw a [#EFC851]Strike[].",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Overlord":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat.",
+		"DESCRIPTION": "Deal !D! damage. NL Increase this card's NL damage by !M! this NL combat.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_OwariNoSeraph":
@@ -1034,7 +1041,7 @@
 	},
 	"animator:TanyaDegurechaff":
 	{
-		"DESCRIPTION": "Discard all [#EFC851]Skills[]. NL Deal !D! damage NL and gain !B! Block NL for each. || Limited. NL At the start of NL combat, add [#EFC851]Type[] [#EFC851]95[] NL to your draw pile.",
+		"DESCRIPTION": "Gain !B! Block. NL Discard all [#EFC851]Skills[]. NL Deal !D! damage NL for each. || Limited. NL At the start of NL combat, add [#EFC851]Type[] [#EFC851]95[] NL to your draw pile.",
 		"NAME": "Tanya Degurechaff"
 	},
 	"animator:TanyaDegurechaff_Type95":
@@ -1075,7 +1082,7 @@
 	},
 	"animator:Togame":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL You may Exhaust a card to draw 1 additional card.",
+		"DESCRIPTION": "Draw !M! cards. NL You may Exhaust NL a card to draw 1 NL additional card. || Semi-Limited. NL If you Exhausted NL a Status or Curse, NL Motivate 1.",
 		"NAME": "Togame"
 	},
 	"animator:Truth":
@@ -1086,7 +1093,7 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL If you had no Block, NL draw 1 card. || When Discarded, NL gain !M! Block. NL Does not scale.",
+		"DESCRIPTION": "Gain !B! Block. NL If you had no Block, NL draw 1 card. || When Discarded, NL gain !M! Block.",
 		"NAME": "Tuka"
 	},
 	"animator:Tyuule":
@@ -1140,7 +1147,7 @@
 	},
 	"animator:YaoHaDucy":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If the enemy is NL attacking, it loses NL !M! Strength this turn. || When Discarded, NL deal !SV! damage NL to ALL enemies. NL Does not scale.",
+		"DESCRIPTION": "Deal !D! damage. NL If the enemy is NL attacking, it loses NL !M! Strength this turn. || When Discarded, NL deal !SV! damage NL to ALL enemies.",
 		"NAME": "Yao Ha Ducy"
 	},
 	"animator:YunYun":
@@ -1166,8 +1173,8 @@
 	},
 	"animator:Zero":
 	{
-		"DESCRIPTION": "Play a random [#EFC851]Skill NL from your draw pile. NL Exhaust.",
+		"DESCRIPTION": "Spellcaster. NL Play a random [#EFC851]Skill NL from your draw pile. NL Exhaust.",
 		"NAME": "Zero",
-		"UPGRADE_DESCRIPTION": "Play a random [#EFC851]Skill NL from your draw pile."
+		"UPGRADE_DESCRIPTION": "Spellcaster. NL Play a random [#EFC851]Skill NL from your draw pile."
 	}
 }

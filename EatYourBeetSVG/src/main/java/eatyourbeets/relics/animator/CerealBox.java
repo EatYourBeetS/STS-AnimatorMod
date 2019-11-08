@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.Utilities;
 
 public class CerealBox extends AnimatorRelic
 {
@@ -25,7 +26,7 @@ public class CerealBox extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0] + HEAL_AMOUNT + DESCRIPTIONS[1] + BASE_CHARGES + DESCRIPTIONS[2] + SHOP_CHARGES + DESCRIPTIONS[3] + MAX_CHARGES + DESCRIPTIONS[4];
+        return Utilities.Format(DESCRIPTIONS[0], HEAL_AMOUNT, BASE_CHARGES, SHOP_CHARGES, MAX_CHARGES);
     }
 
     @Override

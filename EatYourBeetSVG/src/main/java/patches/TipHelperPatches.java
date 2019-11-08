@@ -6,13 +6,10 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
-import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.utilities.Field;
 import eatyourbeets.utilities.Utilities;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public class TipHelperPatches

@@ -30,7 +30,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
     {
         tmp += MartialArtist.GetScaling();
 
-        if (mo != null && (mo.maxHealth / (float)mo.currentHealth) < 0.5f)
+        if (mo != null && (PlayerStatistics.GetHealthPercentage(mo) < 0.5f))
         {
             return super.calculateModifiedCardDamage(player, mo, tmp * 2);
         }
@@ -44,7 +44,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         AbstractGameAction.AttackEffect attackEffect;
-        if (m.currentHealth <= (m.maxHealth / 2))
+        if (PlayerStatistics.GetHealthPercentage(m) < 0.5f)
         {
             attackEffect = AbstractGameAction.AttackEffect.SLASH_HEAVY;
         }

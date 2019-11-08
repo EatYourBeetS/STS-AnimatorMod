@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.EYBCardBadge;
@@ -71,8 +70,7 @@ public class Eve extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(1);
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(2);
         }
     }
 }

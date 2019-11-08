@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -42,8 +43,7 @@ public class IzunaHatsuse extends AnimatorCard
     {
         super.applyPowers();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        SetTransformed((p.currentHealth / (float)p.maxHealth) < 0.25f);
+        SetTransformed(PlayerStatistics.GetHealthPercentage(AbstractDungeon.player) < 0.25f);
     }
 
     @Override
@@ -95,7 +95,6 @@ public class IzunaHatsuse extends AnimatorCard
                 this.type = CardType.ATTACK;
 
                 cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
-                cardText.Update(cardText.index, true);
             }
             else
             {
@@ -103,8 +102,9 @@ public class IzunaHatsuse extends AnimatorCard
                 this.type = CardType.SKILL;
 
                 cardText.overrideDescription = null;
-                cardText.Update(cardText.index, true);
             }
+
+            cardText.ForceRefresh();
         }
     }
 }

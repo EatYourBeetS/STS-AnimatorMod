@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Hidden;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -12,7 +13,7 @@ import eatyourbeets.cards.Synergies;
 
 public class ElricAlphonseAlt extends AnimatorCard implements Hidden
 {
-    public static final String ID = Register(ElricAlphonseAlt.class.getSimpleName());
+    public static final String ID = Register(ElricAlphonseAlt.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public ElricAlphonseAlt()
     {

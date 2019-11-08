@@ -15,7 +15,6 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.GeassPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.RandomizedList;
-import patches.AbstractEnums;
 
 public class Lelouch extends AnimatorCard
 {
@@ -37,10 +36,11 @@ public class Lelouch extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         RandomizedList<AbstractCard> cards = new RandomizedList<>(p.hand.group);
+        cards.Remove(this);
         for (int i = 0; i < magicNumber; i++)
         {
             AbstractCard toExhaust = cards.Retrieve(AbstractDungeon.cardRandomRng);
-            if (toExhaust != null && toExhaust != this)
+            if (toExhaust != null)
             {
                 GameActionsHelper.ExhaustCard(toExhaust, p.hand);
             }

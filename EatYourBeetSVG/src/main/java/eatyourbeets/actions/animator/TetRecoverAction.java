@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.Utilities;
 

@@ -2,7 +2,6 @@ package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.cards.animator.Vesta_Elixir;
 import eatyourbeets.utilities.GameActionsHelper;
 

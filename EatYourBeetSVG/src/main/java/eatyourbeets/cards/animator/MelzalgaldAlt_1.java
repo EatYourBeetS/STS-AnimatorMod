@@ -3,9 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.cards.Synergies;
 
 public class MelzalgaldAlt_1 extends MelzalgaldAlt
 {

@@ -2,7 +2,6 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
 
 
 public class AinzEffect_ChannelRandomOrbs extends AinzEffect
@@ -23,7 +22,7 @@ public class AinzEffect_ChannelRandomOrbs extends AinzEffect
     {
         for (int i = 0; i < ainz.magicNumber; i++)
         {
-            GameActionsHelper.ChannelOrb(Utilities.GetRandomOrb(), true);
+            GameActionsHelper.ChannelRandomOrb(true);
         }
     }
 }

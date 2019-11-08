@@ -1,11 +1,7 @@
 package eatyourbeets.resources;
 
 import basemod.BaseMod;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.google.gson.Gson;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import eatyourbeets.characters.AnimatorCharacter;
@@ -17,7 +13,6 @@ import eatyourbeets.relics.animator.*;
 import patches.AbstractEnums;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 
 public class Resources_Animator extends AbstractResources
 {

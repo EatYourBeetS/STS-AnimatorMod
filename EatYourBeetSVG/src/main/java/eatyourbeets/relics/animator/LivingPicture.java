@@ -1,18 +1,10 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.NoDrawPower;
-import com.megacrit.cardcrawl.ui.FtueTip;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 
@@ -20,8 +12,7 @@ public class LivingPicture extends AnimatorRelic
 {
     public static final String ID = CreateFullID(LivingPicture.class.getSimpleName());
 
-    private static Boolean hasShownTip1 = null;
-
+    private Boolean hasShownTip1 = null;
     private Boolean active = true;
 
     public LivingPicture()
@@ -36,20 +27,8 @@ public class LivingPicture extends AnimatorRelic
 
         if (hasShownTip1 == null && AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y == 0)
         {
-            final String key = "TheAnimator-ftue1";
-
-            hasShownTip1 = AnimatorMetrics.GetConfig().getBool(key);
-
-            if (!hasShownTip1)
-            {
-                AbstractDungeon.ftue = new FtueTip("The Animator",
-                        Resources_Animator_Strings.Tips.TEXT[0],
-                        Settings.WIDTH / 2f, Settings.HEIGHT / 2f, FtueTip.TipType.CARD_REWARD);
-
-                AnimatorMetrics.GetConfig().setBool(key, true);
-                AnimatorMetrics.SaveConfig();
-                hasShownTip1 = true;
-            }
+            Readme.SpawnAll();
+            hasShownTip1 = true;
         }
     }
 

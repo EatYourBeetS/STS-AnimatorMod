@@ -10,6 +10,7 @@ public class EYBCardText
     public static boolean Toggled;
 
     public String overrideDescription;
+    public String overrideSecondaryDescription;
     public boolean canUpdate;
     public int index;
 
@@ -51,6 +52,10 @@ public class EYBCardText
             {
                 card.rawDescription = overrideDescription;
             }
+            else if (overrideSecondaryDescription != null)
+            {
+                card.rawDescription = overrideSecondaryDescription;
+            }
             else if (card.upgraded && upgradedDescriptions != null)
             {
                 if (upgradedDescriptions.length > index)
@@ -76,5 +81,10 @@ public class EYBCardText
 
             card.initializeDescription();
         }
+    }
+
+    public void ForceRefresh()
+    {
+        Update(index, true);
     }
 }

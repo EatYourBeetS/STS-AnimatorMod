@@ -34,7 +34,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0] + GetRewardInterval() + DESCRIPTIONS[1];
+        return Utilities.Format(DESCRIPTIONS[0], GetRewardInterval());
     }
 
     protected abstract int GetRewardInterval();

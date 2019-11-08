@@ -3,7 +3,6 @@ package eatyourbeets.blights.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.RelicAboveCreatureEffect;
 import eatyourbeets.actions.animator.KillCharacterAction;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.effects.BlightAboveCreatureEffect;

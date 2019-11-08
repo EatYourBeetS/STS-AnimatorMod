@@ -15,33 +15,25 @@ import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.Utilities;
 
 public class WizardHat extends AnimatorRelic
 {
     public static final String ID = CreateFullID(WizardHat.class.getSimpleName());
 
+    private static final int INTELLECT_AMOUNT = 2;
     private static final int ENERGY_COST = 4;
-    private static final int DAMAGE_AMOUNT = 48;
+    private static final int DAMAGE_AMOUNT = 32;
 
     public WizardHat()
     {
         super(ID, RelicTier.RARE, LandingSound.FLAT);
-
-        this.counter = ENERGY_COST;
     }
 
     @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0] + ENERGY_COST + DESCRIPTIONS[1] + DAMAGE_AMOUNT + DESCRIPTIONS[2];
-    }
-
-    @Override
-    public void atBattleStart()
-    {
-        super.atBattleStart();
-
-        this.counter = ENERGY_COST;
+        return Utilities.Format(DESCRIPTIONS[0], INTELLECT_AMOUNT, ENERGY_COST, DAMAGE_AMOUNT);
     }
 
     @Override
@@ -49,15 +41,16 @@ public class WizardHat extends AnimatorRelic
     {
         super.onEquip();
 
-        this.counter = ENERGY_COST;
+        this.counter = 1;
     }
 
     @Override
-    public void onVictory()
+    public void atBattleStart()
     {
-        super.onVictory();
+        super.atBattleStart();
 
-        this.counter = ENERGY_COST;
+        this.counter = 1;
+        GameActionsHelper.GainIntellect(INTELLECT_AMOUNT);
     }
 
     @Override
@@ -68,22 +61,9 @@ public class WizardHat extends AnimatorRelic
         if (counter > 0)
         {
             int energy = EnergyPanel.getCurrentEnergy();
-            if (energy <= 0)
+            if (energy >= 4)
             {
-                return;
-            }
-
-            EnergyPanel.useEnergy(1);
-            counter -= 1;
-
-            this.flash();
-            if (counter > 0)
-            {
-                GameActionsHelper.AddToBottom(new SFXAction("ANIMATOR_MEGUMIN_CHARGE", 0.1F));
-            }
-            else
-            {
-                counter = ENERGY_COST;
+                setCounter(counter - 1);
 
                 GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.1F));
                 GameActionsHelper.AddToBottom(new WaitAction(0.35f));

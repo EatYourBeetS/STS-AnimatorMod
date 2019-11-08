@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
-import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.resources.Resources_Animator_Strings;
 
@@ -35,7 +34,7 @@ public class TransformIntoSpecificCardAction extends AnimatorAction
     {
         if (this.duration == Settings.ACTION_DUR_FAST)
         {
-            if (amount == 0)
+            if (amount == 0 || source.size() == 0)
             {
                 this.isDone = true;
                 return;

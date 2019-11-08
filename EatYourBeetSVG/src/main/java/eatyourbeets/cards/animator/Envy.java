@@ -28,7 +28,7 @@ public class Envy extends AnimatorCard
     {
         GameActionsHelper.ApplyPower(p, p, new EnvyPower(p, 1), 1);
 
-        if (p.currentHealth / (float)p.maxHealth <= 0.5f)
+        if (PlayerStatistics.GetHealthPercentage(p) < 0.5f)
         {
             GameActionsHelper.GainTemporaryHP(p, magicNumber);
         }

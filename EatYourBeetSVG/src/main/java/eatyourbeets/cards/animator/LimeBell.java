@@ -9,7 +9,6 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.DelayedHealPower;
 
 import java.util.ArrayList;
 
@@ -19,12 +18,11 @@ public class LimeBell extends AnimatorCard
 
     public LimeBell()
     {
-        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 7, 2);
 
         SetExhaust(true);
-        SetHealing(true);
         SetSynergy(Synergies.AccelWorld);
     }
 
@@ -51,7 +49,7 @@ public class LimeBell extends AnimatorCard
         {
             AbstractPlayer p = AbstractDungeon.player;
             int amount = discarded.size() * this.magicNumber;
-            GameActionsHelper.ApplyPower(p, p, new DelayedHealPower(p, amount), amount);
+            GameActionsHelper.GainTemporaryHP(p, amount);
         }
     }
 }

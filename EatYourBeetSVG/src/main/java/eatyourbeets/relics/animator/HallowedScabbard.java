@@ -3,24 +3,30 @@ package eatyourbeets.relics.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.RegenPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.Utilities;
 
 public class HallowedScabbard extends AnimatorRelic
 {
     public static final String ID = CreateFullID(HallowedScabbard.class.getSimpleName());
 
-    private static final int DAMAGE_THRESHOLD = 15;
-    private static final int REGENERATION = 5;
-    private static final int STRENGTH = 2;
+    private static final int DAMAGE_THRESHOLD = 12;
+    private static final int REGENERATION = 4;
+    private static final int FORCE = 2;
 
     private boolean used = false;
 
     public HallowedScabbard()
     {
         super(ID, RelicTier.RARE, LandingSound.MAGICAL);
+    }
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return Utilities.Format(DESCRIPTIONS[0], DAMAGE_THRESHOLD, REGENERATION, FORCE);
     }
 
     @Override
@@ -52,7 +58,7 @@ public class HallowedScabbard extends AnimatorRelic
             {
                 AbstractPlayer p = AbstractDungeon.player;
                 GameActionsHelper.ApplyPower(p, p, new RegenPower(p, REGENERATION), REGENERATION);
-                GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, STRENGTH), STRENGTH);
+                GameActionsHelper.GainForce(FORCE);
                 used = true;
                 this.flash();
             }

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -13,16 +12,27 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class Ain extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Ain.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Ain.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Discard);
 
     public Ain()
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(1,0, 3);
+        Initialize(1,0, 3, 1);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Elsword);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        if (PlayerStatistics.TryActivateSemiLimited(cardID))
+        {
+            GameActionsHelper.GainIntellect(secondaryValue);
+        }
     }
 
     @Override
@@ -39,9 +49,9 @@ public class Ain extends AnimatorCard implements Spellcaster
             GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         }
 
-        if (PlayerStatistics.TryActivateSemiLimited(cardID))
+        if (HasActiveSynergy() && PlayerStatistics.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper.GainIntellect(2);
+            GameActionsHelper.GainIntellect(secondaryValue);
         }
     }
 

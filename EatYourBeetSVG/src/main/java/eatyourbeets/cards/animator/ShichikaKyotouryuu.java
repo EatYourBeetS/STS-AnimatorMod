@@ -11,7 +11,6 @@ import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, Hidden
 {

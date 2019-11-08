@@ -7,8 +7,6 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import eatyourbeets.actions.common.WaitRealtimeAction;
-import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActionsHelper;
 

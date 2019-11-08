@@ -39,7 +39,8 @@
 			"Tate no Yuusha",
 			"Symphogear",
 			"Call Of Cthulhu",
-			"Chuunibyou demo Koi ga Shitai!"
+			"Chuunibyou demo Koi ga Shitai!",
+			"FLCL"
 		]
 	},
 
@@ -47,7 +48,10 @@
 	{
 		"TEXT":
 		[
-			"Most of the cards in this mod have a secondary effect which triggers on certain conditions. NL You can hold #yRight #yClick at any time to check them, or #yLeft #yControl to toggle them."
+			"-",
+			"General", "Each of these Notes disappears permanently once clicked. The mod is updated often, so you might see them again whenever there is an important change.",
+			"Synergies", "Certain cards have effects that trigger on #ySynergy. A card #ySynergizes if the previous card played this turn was from the same series, or if they both have a #ySpellcaster or #yMartial #yArtist keyword.",
+			"Badges", "Cards in this mod have a secondary effect which is #ynever affected by #yUpgrades and is represented by a badge on the card. Hold #bRight #bClick at any moment and anywhere on the screen to check them, or press #bLeft #bControl to toggle them."
 		]
 	},
 
@@ -60,7 +64,8 @@
 			"activate this card's effect that many times.",
 			"reduce its cost for this combat.",
 			"Draw # card/s.",
-			"Transform into "
+			"Transform into ",
+			"move to your draw pile."
 		]
 	},
 

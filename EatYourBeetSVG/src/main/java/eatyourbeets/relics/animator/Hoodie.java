@@ -3,6 +3,7 @@ package eatyourbeets.relics.animator;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.Utilities;
 
 public class Hoodie extends AnimatorRelic
 {
@@ -12,13 +13,13 @@ public class Hoodie extends AnimatorRelic
 
     public Hoodie()
     {
-        super(ID, RelicTier.RARE, LandingSound.FLAT);
+        super(ID, RelicTier.UNCOMMON, LandingSound.FLAT);
     }
 
     @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0] + MAX_HP_BONUS + DESCRIPTIONS[1];
+        return Utilities.Format(DESCRIPTIONS[0], MAX_HP_BONUS);
     }
 
     @Override

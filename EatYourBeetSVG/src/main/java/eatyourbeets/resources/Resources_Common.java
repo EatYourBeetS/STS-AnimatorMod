@@ -1,12 +1,8 @@
 package eatyourbeets.resources;
 
 import basemod.BaseMod;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.mod.stslib.Keyword;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -24,15 +20,10 @@ import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.rewards.SynergyCardsReward;
-import eatyourbeets.variables.CooldownVariable;
 import eatyourbeets.variables.SecondaryValueVariable;
 import patches.AbstractEnums;
 
 import java.io.File;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Resources_Common extends AbstractResources
 {

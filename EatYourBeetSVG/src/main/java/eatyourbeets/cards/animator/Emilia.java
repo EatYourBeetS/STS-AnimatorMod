@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Emilia extends AnimatorCard

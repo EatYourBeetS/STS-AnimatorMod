@@ -12,10 +12,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.WaitRealtimeAction;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.animator.Guren;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.animator.SupportDamagePower;
 
 public class GurenAction extends AbstractGameAction
 {

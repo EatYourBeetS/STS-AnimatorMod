@@ -1,7 +1,6 @@
 package eatyourbeets.cards;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import eatyourbeets.resources.AbstractResources;
 
 public class EYBCardBadge

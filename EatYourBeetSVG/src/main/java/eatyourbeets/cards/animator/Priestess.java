@@ -1,48 +1,46 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.ModifyMagicNumberAction;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.Utilities;
 
-public class Priestess extends AnimatorCard_Cooldown
+import java.util.ArrayList;
+
+public class Priestess extends AnimatorCard
 {
-    public static final String ID = Register(Priestess.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Drawn);
+    public static final String ID = Register(Priestess.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Priestess()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0, 0, 5);
+        Initialize(0, 0, 3, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.GainTemporaryHP(p, p, 1);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActionsHelper.ApplyPower(p, m, new WeakPower(m, secondaryValue, false), secondaryValue);
+        GameActionsHelper.GainTemporaryHP(p, magicNumber);
+
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainTemporaryHP(p, p, 1);
-        }
-
-        if (ProgressCooldown())
-        {
-            OnCooldownCompleted(p, m);
+            if (!TryExhaust(p.drawPile))
+            {
+                if (!TryExhaust(p.hand))
+                {
+                    TryExhaust(p.discardPile);
+                }
+            }
         }
     }
 
@@ -51,19 +49,29 @@ public class Priestess extends AnimatorCard_Cooldown
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(-1);
+            upgradeSecondaryValue(1);
         }
     }
 
-    @Override
-    protected int GetBaseCooldown()
+    private boolean TryExhaust(CardGroup source)
     {
-        return upgraded ? 1 : 2;
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        for (AbstractCard c : source.group)
+        {
+            if (c.type == CardType.CURSE || c.type == CardType.STATUS)
+            {
+                cards.add(c);
+            }
+        }
+
+        if (cards.size() > 0)
+        {
+            GameActionsHelper.ExhaustCard(Utilities.GetRandomElement(cards), source);
+
+            return true;
+        }
+
+        return false;
     }
 
-    @Override
-    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
-    {
-        GameActionsHelper.GainTemporaryHP(p, magicNumber);
-    }
 }

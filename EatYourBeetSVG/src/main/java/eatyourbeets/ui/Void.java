@@ -9,7 +9,6 @@ import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.OnVoidTurnStartSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.Utilities;
-import patches.AbstractEnums;
 import patches.EnergyPanelPatches;
 
 public class Void extends CardGroup implements OnStartOfTurnPostDrawSubscriber

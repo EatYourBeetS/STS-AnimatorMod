@@ -4,6 +4,8 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.relics.animator.EngravedStaff;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class IntellectPower extends CommonPower
@@ -41,7 +43,16 @@ public class IntellectPower extends CommonPower
     {
         super.atStartOfTurnPostDraw();
 
-        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, FocusPower.POWER_ID, 1));
+        if (amount <= 2 && PlayerStatistics.HasActivatedLimited(EngravedStaff.ID))
+        {
+            return;
+        }
+
+        if (PlayerStatistics.GetFocus() > 0)
+        {
+            GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, FocusPower.POWER_ID, 1));
+        }
+
         GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
     }
 }

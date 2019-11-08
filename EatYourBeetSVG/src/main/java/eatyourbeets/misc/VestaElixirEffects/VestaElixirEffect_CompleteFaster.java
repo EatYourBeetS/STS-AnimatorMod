@@ -1,9 +1,7 @@
 package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import eatyourbeets.cards.animator.Vesta_Elixir;
-import eatyourbeets.utilities.GameActionsHelper;
 
 public class VestaElixirEffect_CompleteFaster extends VestaElixirEffect
 {

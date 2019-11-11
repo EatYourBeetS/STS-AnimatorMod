@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.RemoveRightmostDebuffAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -43,7 +44,7 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        if (PlayerStatistics.TryActivateLimited(cardID))
+        if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActionsHelper.GainRandomStat(2);
 

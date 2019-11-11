@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_Konosuba extends Strike
@@ -13,9 +14,9 @@ public class Strike_Konosuba extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6,2, 0);
+        Initialize(6,2);
 
-        this.baseSecondaryValue = this.secondaryValue = 1;
+        SetSynergy(Synergies.Konosuba);
     }
 
     @Override
@@ -23,10 +24,6 @@ public class Strike_Konosuba extends Strike
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActionsHelper.GainBlock(p, block);
-//        if (ProgressBoost())
-//        {
-//            GameActionsHelper.AddToBottom(new HealAction(p, p, this.magicNumber));
-//        }
     }
 
     @Override
@@ -37,34 +34,4 @@ public class Strike_Konosuba extends Strike
             upgradeDamage(3);
         }
     }
-
-//    protected boolean ProgressBoost()
-//    {
-//        if (this.secondaryValue > 0)
-//        {
-//            int newValue = this.secondaryValue - 1;
-//
-//            for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
-//            {
-//                AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
-//                if (card != null)
-//                {
-//                    if (newValue == 0)
-//                    {
-//                        card.baseSecondaryValue = 1;
-//                        card.secondaryValue = 0;
-//                        card.isSecondaryValueModified = true;
-//                    }
-//                    else
-//                    {
-//                        card.baseSecondaryValue = card.secondaryValue = newValue;
-//                    }
-//                }
-//            }
-//
-//            return true;
-//        }
-//
-//        return false;
-//    }
 }

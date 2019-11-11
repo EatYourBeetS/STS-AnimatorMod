@@ -63,7 +63,7 @@ public class CycleCardAction extends AnimatorAction
             }
             if (discarded > 0)
             {
-                AbstractDungeon.actionManager.addToTop(new DrawCardAction(player, discarded));
+                GameActionsHelper.AddToTop(new DrawCardAction(player, discarded));
             }
 
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;

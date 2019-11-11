@@ -1,18 +1,23 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Gluttony extends AnimatorCard
+public class Gluttony extends AnimatorCard implements OnCallbackSubscriber
 {
     public static final String ID = Register(Gluttony.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -50,21 +55,7 @@ public class Gluttony extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (p.drawPile.size() >= magicNumber)
-        {
-            for (int i = 0; i < magicNumber; i++)
-            {
-                AbstractCard card = p.drawPile.getNCardFromTop(i);
-                card.target_x = Settings.WIDTH * (0.3f + (i * 0.05f));
-                card.target_y = Settings.HEIGHT * (0.4f + (i * 0.05f));
-                GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, p.exhaustPile, p.drawPile, true));
-                GameActionsHelper.Wait(0.2f);
-                //GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(p.drawPile.getNCardFromTop(i), p.drawPile, true));
-            }
-
-            GameActionsHelper.AddToBottom(new HealAction(p, p, secondaryValue));
-            GameActionsHelper.GainForce(secondaryValue);
-        }
+        GameActionsHelper.DelayedAction(this);
     }
 
     @Override
@@ -73,6 +64,27 @@ public class Gluttony extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBaseCost(1);
+        }
+    }
+
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+        if (p.drawPile.size() >= magicNumber)
+        {
+            for (int i = 0; i < magicNumber; i++)
+            {
+                AbstractCard card = p.drawPile.getNCardFromTop(i);
+                card.target_x = Settings.WIDTH * (0.3f + (i * 0.02f));
+                card.target_y = Settings.HEIGHT * (0.4f + (i * 0.02f));
+                GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, p.exhaustPile, p.drawPile, true));
+                GameActionsHelper.Wait(0.2f);
+                //GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(p.drawPile.getNCardFromTop(i), p.drawPile, true));
+            }
+
+            GameActionsHelper.AddToBottom(new HealAction(p, p, secondaryValue));
+            GameActionsHelper.GainForce(secondaryValue);
         }
     }
 }

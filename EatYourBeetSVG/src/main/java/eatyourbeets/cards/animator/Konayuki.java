@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -27,7 +28,7 @@ public class Konayuki extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        if (PlayerStatistics.GetStrength() == 0 && PlayerStatistics.TryActivateSemiLimited(cardID))
+        if (PlayerStatistics.GetStrength() == 0 && EffectHistory.TryActivateSemiLimited(cardID))
         {
             modifyCostForTurn(-1);
             this.flash();

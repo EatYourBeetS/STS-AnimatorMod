@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_TenSura extends Strike
@@ -14,6 +15,8 @@ public class Strike_TenSura extends Strike
         super(ID, 1, CardTarget.ENEMY);
 
         Initialize(6,0, 1);
+
+        SetSynergy(Synergies.TenSura);
     }
 
     @Override

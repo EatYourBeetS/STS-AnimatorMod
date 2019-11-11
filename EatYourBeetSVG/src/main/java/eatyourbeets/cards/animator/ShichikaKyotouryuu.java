@@ -18,9 +18,9 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
 
     public ShichikaKyotouryuu()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        Initialize(1, 0, 3);
+        Initialize(1, 0, 4);
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
@@ -40,6 +40,8 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
+        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+
 //        if (upgraded)
 //        {
 //            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
@@ -55,7 +57,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeDamage(1);
         }
     }
 }

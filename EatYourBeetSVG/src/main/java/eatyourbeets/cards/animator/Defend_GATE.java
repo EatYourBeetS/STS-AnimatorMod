@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend_GATE extends Defend
@@ -12,9 +13,10 @@ public class Defend_GATE extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        this.retain = true;
-
         Initialize(0, 6);
+
+        SetRetain(true);
+        SetSynergy(Synergies.Gate);
     }
 
     @Override
@@ -22,7 +24,7 @@ public class Defend_GATE extends Defend
     {
         super.triggerOnEndOfTurnForPlayingCard();
 
-        this.retain = true;
+        SetRetain(true);
     }
 
     @Override

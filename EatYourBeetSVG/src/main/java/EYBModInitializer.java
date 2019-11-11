@@ -1,7 +1,5 @@
 import basemod.BaseMod;
 import basemod.interfaces.*;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -10,11 +8,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.EYBCardText;
 import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.PurgingStone_Cards;
 import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.utilities.InputManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
@@ -24,7 +22,8 @@ import java.util.ArrayList;
 @SpireInitializer
 public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
                                            PostEnergyRechargeSubscriber, PostDrawSubscriber, StartGameSubscriber,
-                                           StartActSubscriber, MaxHPChangeSubscriber, PostDeathSubscriber, PreStartGameSubscriber, PreUpdateSubscriber
+                                           StartActSubscriber, MaxHPChangeSubscriber, PostDeathSubscriber,
+                                           PreStartGameSubscriber, PreUpdateSubscriber, PostUpdateSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
 
@@ -146,12 +145,24 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
         PlayerStatistics.OnAfterDeath();
     }
 
+//    @Override
+//    public void receivePreUpdate()
+//    {
+//        if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT))
+//        {
+//            EYBCardText.Toggled = !EYBCardText.Toggled;
+//        }
+//    }
+
+    @Override
+    public void receivePostUpdate()
+    {
+        InputManager.PostUpdate();
+    }
+
     @Override
     public void receivePreUpdate()
     {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT))
-        {
-            EYBCardText.Toggled = !EYBCardText.Toggled;
-        }
+        InputManager.PreUpdate();
     }
 }

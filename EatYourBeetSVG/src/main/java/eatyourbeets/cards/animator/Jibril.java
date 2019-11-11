@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -36,7 +37,7 @@ public class Jibril extends AnimatorCard implements Spellcaster
     {
         super.triggerWhenDrawn();
 
-        if (PlayerStatistics.TryActivateSemiLimited(cardID))
+        if (EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActionsHelper.AddToBottom(new TriggerPassiveAction(1));
         }

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -17,6 +18,7 @@ public class Defend_OwariNoSeraph extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5, 1);
+        SetSynergy(Synergies.OwariNoSeraph);
     }
 
     @Override

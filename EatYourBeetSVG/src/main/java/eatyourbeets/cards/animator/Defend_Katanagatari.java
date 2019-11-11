@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 
@@ -14,6 +15,8 @@ public class Defend_Katanagatari extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5, 2);
+
+        SetSynergy(Synergies.Katanagatari);
     }
 
     @Override

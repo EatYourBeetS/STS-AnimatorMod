@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.RandomizedList;
 
 public class EngravedStaff extends AnimatorRelic
@@ -26,7 +27,7 @@ public class EngravedStaff extends AnimatorRelic
     {
         super.atBattleStart();
 
-        PlayerStatistics.TryActivateLimited(relicId);
+        EffectHistory.TryActivateLimited(relicId);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class EngravedStaff extends AnimatorRelic
     {
         super.onEquip();
 
-        PlayerStatistics.TryActivateLimited(relicId);
+        EffectHistory.TryActivateLimited(relicId);
         AbstractDungeon.effectsQueue.add(new CallbackEffect(new WaitAction(0.1f), this::OnCompletion, this));
     }
 

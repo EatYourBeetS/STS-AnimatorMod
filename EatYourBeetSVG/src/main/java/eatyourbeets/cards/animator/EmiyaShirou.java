@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -60,7 +61,7 @@ public class EmiyaShirou extends AnimatorCard
             GameActionsHelper.ApplyPower(p, target, new VulnerablePower(target, 1, false), 1);
         }
 
-        if (PlayerStatistics.TryActivateSemiLimited(cardID))
+        if (EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActionsHelper.ApplyPower(p, p, new EmiyaShirouPower(p), 1);
         }

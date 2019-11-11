@@ -11,6 +11,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -48,7 +49,7 @@ public class CrowleyEusford extends AnimatorCard implements OnBattleStartSubscri
 
         GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
-        if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(this.cardID))
+        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(this.cardID))
         {
             GameActionsHelper.AddToBottom(new HealAction(p, p, secondaryValue));
         }

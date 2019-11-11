@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.PlayCardFromPileAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
@@ -32,7 +33,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     {
         super.triggerOnExhaust();
 
-        if (PlayerStatistics.TryActivateLimited(cardID))
+        if (EffectHistory.TryActivateLimited(cardID))
         {
             AbstractPlayer p = AbstractDungeon.player;
             GameActionsHelper.AddToBottom(new MoveCardsAction(p.drawPile, p.exhaustPile, Integer.MAX_VALUE));

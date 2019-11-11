@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.VariableExhaustAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -49,7 +50,7 @@ public class Togame extends AnimatorCard
             GameActionsHelper.DrawCard(AbstractDungeon.player, 1);
 
             AbstractCard card = cards.get(0);
-            if ((card.type == CardType.CURSE || card.type == CardType.STATUS) && PlayerStatistics.TryActivateSemiLimited(cardID))
+            if ((card.type == CardType.CURSE || card.type == CardType.STATUS) && EffectHistory.TryActivateSemiLimited(cardID))
             {
                 GameActionsHelper.Motivate(1);
             }

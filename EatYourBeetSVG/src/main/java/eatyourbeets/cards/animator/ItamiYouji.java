@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -33,7 +34,7 @@ public class ItamiYouji extends AnimatorCard
     {
         GameActionsHelper.DrawCard(p, magicNumber, this::OnDraw, m);
 
-        if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(cardID))
+        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
             GameActionsHelper.Motivate(1);
         }

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -18,6 +19,8 @@ public class Strike_OwariNoSeraph extends Strike
         super(ID, 1, CardTarget.ENEMY);
 
         Initialize(6,0, 1);
+
+        SetSynergy(Synergies.OwariNoSeraph);
     }
 
     @Override

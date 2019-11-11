@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.interfaces.metadata.Hidden;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -19,7 +20,7 @@ import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.powers.PlayerStatistics;
 import patches.AbstractEnums;
 
-public abstract class ThrowingKnife extends AnimatorCard implements Hidden
+public abstract class ThrowingKnife extends AnimatorCard implements Hidden, OnCallbackSubscriber
 {
     public static final String ID = Register(ThrowingKnife.class.getSimpleName());
 
@@ -57,10 +58,10 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.Callback(new WaitAction(0.1f), this::Callback, this);
+        GameActionsHelper.DelayedAction(this);
     }
 
-    private void Callback(Object state, AbstractGameAction action)
+    public void OnCallback(Object state, AbstractGameAction action)
     {
         if (state == this)
         {

@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ public class Defend_NoGameNoLife extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5);
+
+        SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override

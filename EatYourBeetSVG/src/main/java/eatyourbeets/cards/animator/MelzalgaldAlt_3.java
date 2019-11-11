@@ -20,7 +20,7 @@ public class MelzalgaldAlt_3 extends MelzalgaldAlt
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActionsHelper.GainIntellect(magicNumber);
+        GameActionsHelper.GainAgility(magicNumber);
     }
 
     @Override

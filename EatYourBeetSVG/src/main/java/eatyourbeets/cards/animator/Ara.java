@@ -9,6 +9,7 @@ import eatyourbeets.actions.common.VariableDiscardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -70,7 +71,7 @@ public class Ara extends AnimatorCard implements MartialArtist
             return;
         }
 
-        if (cards.get(0).type.equals(CardType.POWER) && PlayerStatistics.TryActivateSemiLimited(cardID))
+        if (cards.get(0).type.equals(CardType.POWER) && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActionsHelper.GainAgility(1);
             GameActionsHelper.GainForce(2);

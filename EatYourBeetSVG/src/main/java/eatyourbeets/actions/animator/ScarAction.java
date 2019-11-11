@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.actions.common.RefreshHandLayoutAction;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.animator.Scar;
 
@@ -24,7 +25,7 @@ public class ScarAction extends AnimatorAction
 
     public void update()
     {
-        if (PlayerStatistics.getTurnCount() < 3 && PlayerStatistics.TryActivateLimited(Scar.ID))
+        if (PlayerStatistics.getTurnCount() < 3 && EffectHistory.TryActivateLimited(Scar.ID))
         {
             CardGroup upgradableCards = player.masterDeck.getUpgradableCards();
             if (upgradableCards.size() > 0)

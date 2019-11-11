@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 public class EYBCardText
 {
     public static boolean Toggled;
+    public static int Index;
 
     public String overrideDescription;
     public String overrideSecondaryDescription;
@@ -22,7 +23,7 @@ public class EYBCardText
     public EYBCardText(EYBCard card, CardStrings cardStrings)
     {
         this.card = card;
-        this.index = 0;
+        this.index = Index;
         this.descriptions = cardStrings.DESCRIPTION.split(Pattern.quote(" || "));
         this.canUpdate = true;
 
@@ -42,11 +43,11 @@ public class EYBCardText
         }
     }
 
-    public void Update(int index, boolean forceUpdate)
+    public void Update(boolean forceUpdate)
     {
-        if (forceUpdate || this.index != index)
+        if (forceUpdate || this.index != Index)
         {
-            this.index = index;
+            this.index = Index;
 
             if (index == 0 && overrideDescription != null)
             {
@@ -85,6 +86,6 @@ public class EYBCardText
 
     public void ForceRefresh()
     {
-        Update(index, true);
+        Update(true);
     }
 }

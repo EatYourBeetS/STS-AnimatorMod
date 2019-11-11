@@ -8,6 +8,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Wiz extends AnimatorCard
@@ -32,7 +33,7 @@ public class Wiz extends AnimatorCard
             GameActionsHelper.AddToBottom(new WizAction(p));
         }
 
-        if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(cardID))
+        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
             return;
         }

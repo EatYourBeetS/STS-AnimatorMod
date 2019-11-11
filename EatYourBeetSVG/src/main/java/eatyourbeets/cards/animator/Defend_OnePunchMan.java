@@ -4,7 +4,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.cards.AnimatorCard;
@@ -20,6 +22,7 @@ public class Defend_OnePunchMan extends Defend
         Initialize(0, 5);
 
         SetHealing(true);
+        SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
@@ -27,7 +30,7 @@ public class Defend_OnePunchMan extends Defend
     {
         GameActionsHelper.GainBlock(p, this.block);
 
-        if (PlayerStatistics.TryActivateLimited(cardID))
+        if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActionsHelper.ApplyPower(p, p, new EnergizedBluePower(p, 1), 1);
         }

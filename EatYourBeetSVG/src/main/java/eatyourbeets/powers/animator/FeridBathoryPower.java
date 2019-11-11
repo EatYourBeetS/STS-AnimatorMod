@@ -12,6 +12,7 @@ import eatyourbeets.cards.animator.FeridBathory;
 import eatyourbeets.effects.Hemokinesis2Effect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class FeridBathoryPower extends AnimatorPower
@@ -43,7 +44,7 @@ public class FeridBathoryPower extends AnimatorPower
     {
         super.atStartOfTurnPostDraw();
 
-        if (AbstractDungeon.player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && PlayerStatistics.TryActivateLimited(FeridBathory.ID))
+        if (AbstractDungeon.player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && EffectHistory.TryActivateLimited(FeridBathory.ID))
         {
             GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, STRENGTH_GAIN), STRENGTH_GAIN);
 

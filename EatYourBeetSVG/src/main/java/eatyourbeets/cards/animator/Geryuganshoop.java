@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseAnyNumberFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -50,7 +51,7 @@ public class Geryuganshoop extends AnimatorCard
 
     private void OnCardChosen(Object state, ArrayList<AbstractCard> cards)
     {
-        boolean limited = PlayerStatistics.HasActivatedLimited(this.cardID);
+        boolean limited = EffectHistory.HasActivatedLimited(this.cardID);
 
         if (state == this && cards != null && cards.size() > 0)
         {
@@ -59,7 +60,7 @@ public class Geryuganshoop extends AnimatorCard
             {
                 if (!limited && (card.cardID.equals(Boros.ID) || card.cardID.startsWith(Melzalgald.ID)))
                 {
-                    PlayerStatistics.TryActivateLimited(this.cardID);
+                    EffectHistory.TryActivateLimited(this.cardID);
                     GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, p.hand, p.exhaustPile, true));
                 }
                 else

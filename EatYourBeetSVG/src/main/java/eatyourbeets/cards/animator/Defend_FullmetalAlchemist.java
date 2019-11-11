@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 
@@ -19,6 +20,8 @@ public class Defend_FullmetalAlchemist extends Defend
         Initialize(0, 4);
 
         this.baseSecondaryValue = this.secondaryValue = GetBaseCooldown();
+
+        SetSynergy(Synergies.FullmetalAlchemist);
     }
 
     @Override

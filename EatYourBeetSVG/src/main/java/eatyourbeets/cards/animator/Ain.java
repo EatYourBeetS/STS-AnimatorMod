@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Spellcaster;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -29,7 +30,7 @@ public class Ain extends AnimatorCard implements Spellcaster
     {
         super.triggerOnManualDiscard();
 
-        if (PlayerStatistics.TryActivateSemiLimited(cardID))
+        if (EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActionsHelper.GainIntellect(secondaryValue);
         }
@@ -49,7 +50,7 @@ public class Ain extends AnimatorCard implements Spellcaster
             GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         }
 
-        if (HasActiveSynergy() && PlayerStatistics.TryActivateSemiLimited(cardID))
+        if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActionsHelper.GainIntellect(secondaryValue);
         }

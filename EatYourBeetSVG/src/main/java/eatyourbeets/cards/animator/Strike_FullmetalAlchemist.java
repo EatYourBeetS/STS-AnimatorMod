@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 
@@ -20,6 +21,8 @@ public class Strike_FullmetalAlchemist extends Strike
         Initialize(5,0);
 
         this.baseSecondaryValue = this.secondaryValue = GetBaseCooldown();
+
+        SetSynergy(Synergies.FullmetalAlchemist);
     }
 
     @Override

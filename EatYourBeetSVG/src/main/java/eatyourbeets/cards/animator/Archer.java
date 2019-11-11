@@ -32,7 +32,7 @@ public class Archer extends AnimatorCard
         {
             for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
             {
-                GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 1, false), 1);
+                GameActionsHelper.ApplyPower(p, m1, new VulnerablePower(m1, 1, false), 1);
             }
         }
     }

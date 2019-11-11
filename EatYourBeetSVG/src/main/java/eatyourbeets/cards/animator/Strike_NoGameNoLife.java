@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class Strike_NoGameNoLife extends Strike
         super(ID, 1, CardTarget.ENEMY);
 
         Initialize(6,0);
+
+        SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override

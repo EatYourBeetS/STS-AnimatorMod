@@ -355,7 +355,7 @@ public abstract class AnimatorCustomLoadout
                 if (synergy != null && synergy.ID == ID)
                 {
                     synergyCount += 1;
-                    if (!cardsWithSynergy.contains(card.cardID))
+                    if (!cardsWithSynergy.contains(card.cardID) && card.rarity != AbstractCard.CardRarity.BASIC)
                     {
                         uniqueCards += 1;
                         cardsWithSynergy.add(card.cardID);

@@ -1,17 +1,14 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.animator.SupportDamagePower;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.GurenAction;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class Guren extends AnimatorCard
 {
@@ -21,8 +18,9 @@ public class Guren extends AnimatorCard
     {
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(0, 0,2);
+        Initialize(0, 0,3);
 
+        SetExhaust(true);
         SetSynergy(Synergies.OwariNoSeraph);
     }
 
@@ -34,9 +32,10 @@ public class Guren extends AnimatorCard
             GameActionsHelper.AddToTop(new GurenAction(m, this.magicNumber));
         }
 
-        if (PlayerStatistics.TryActivateSemiLimited(this.cardID))
+        int amount = p.exhaustPile.size();
+        if (amount > 0 && EffectHistory.TryActivateSemiLimited(this.cardID))
         {
-            GameActionsHelper.Callback(new WaitAction(0.1f), this::OnCompletion, this);
+            GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, amount), amount);
         }
     }
 
@@ -45,18 +44,7 @@ public class Guren extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
-        }
-    }
-
-    private void OnCompletion(Object state, AbstractGameAction action)
-    {
-        if (state == this && action != null)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-            int amount = p.exhaustPile.size();
-
-            GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, amount), amount);
+            SetExhaust(false);
         }
     }
 }

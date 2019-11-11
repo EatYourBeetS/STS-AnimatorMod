@@ -17,13 +17,14 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.Utilities;
 
-public class Saitama extends AnimatorCard
+public class Saitama extends AnimatorCard implements OnCallbackSubscriber
 {
     public static final String ID = Register(Saitama.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -136,10 +137,11 @@ public class Saitama extends AnimatorCard
             }
         }
 
-        GameActionsHelper.Callback(new WaitAction(0.1f), this::OnCallback, this);
+        GameActionsHelper.DelayedAction(this);
     }
 
-    private void OnCallback(Object state, AbstractGameAction action)
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
     {
         if (state == this && action != null)
         {

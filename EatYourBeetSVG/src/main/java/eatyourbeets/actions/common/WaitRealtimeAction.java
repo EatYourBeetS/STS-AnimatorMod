@@ -23,15 +23,11 @@ public class WaitRealtimeAction extends AbstractGameAction
     {
         if (targetTime == null)
         {
-            this.targetTime = Date.from(Instant.now()).toInstant().plusMillis((long)(realtimeDuration * 1000));
+            this.targetTime = Instant.now().plusMillis((long)(realtimeDuration * 1000));
         }
-        else
+        else if (Instant.now().isAfter(targetTime))
         {
-            Instant now = Date.from(Instant.now()).toInstant();
-            if (now.isAfter(targetTime))
-            {
-                this.isDone = true;
-            }
+            this.isDone = true;
         }
     }
 }

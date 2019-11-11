@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
@@ -15,6 +16,8 @@ public class Strike_Elsword extends Strike
         super(ID, 1, CardTarget.SELF_AND_ENEMY);
 
         Initialize(6,0, 1);
+
+        SetSynergy(Synergies.Elsword);
     }
 
     @Override

@@ -28,7 +28,7 @@ public class Add extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 6);
+        Initialize(0,0, 12);
 
         SetExhaust(true);
         SetEthereal(true);

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.Entoma;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 
 public class EntomaAction extends AnimatorAction
 {
@@ -18,7 +19,7 @@ public class EntomaAction extends AnimatorAction
 
     public void update()
     {
-        if (PlayerStatistics.TryActivateLimited(entoma.cardID))
+        if (EffectHistory.TryActivateLimited(entoma.cardID))
         {
             AbstractDungeon.player.increaseMaxHp(2, false);
             for (AbstractCard c : entoma.GetAllInstances())

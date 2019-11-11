@@ -6,6 +6,7 @@ import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnShuffleSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.Utilities;
 
 public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscriber, OnShuffleSubscriber
 {
@@ -23,7 +24,7 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
     {
         super.atBattleStart();
 
-        OnBattleStart();
+        PlayerStatistics.onBattleStart.Subscribe(this);
     }
 
     @Override
@@ -36,7 +37,6 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
     @Override
     public void OnBattleStart()
     {
-        PlayerStatistics.onBattleStart.Subscribe(this);
         PlayerStatistics.onShuffle.Subscribe(this);
     }
 }

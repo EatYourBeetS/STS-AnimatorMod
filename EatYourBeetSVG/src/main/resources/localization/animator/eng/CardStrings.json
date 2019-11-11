@@ -17,9 +17,9 @@
 	},
 	"animator:Add":
 	{
-		"DESCRIPTION": "Ethereal. NL Exhaust 1 card NL anywhere. Replace it NL with an Orb_Core. NL Exhaust. || On Synergy, gain 10 NL Enchanted_Armor.",
+		"DESCRIPTION": "Ethereal. NL Exhaust 1 card NL anywhere. Replace it NL with an Orb_Core. NL Exhaust. || On Synergy, gain !M! NL Enchanted_Armor.",
 		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Exhaust 1 card anywhere. Replace it with an Orb_Core. Exhaust. || On Synergy, gain 10 NL Enchanted_Armor."
+		"UPGRADE_DESCRIPTION": "Exhaust 1 card anywhere. Replace it with an Orb_Core. Exhaust. || On Synergy, gain !M! NL Enchanted_Armor."
 	},
 	"animator:Ain":
 	{
@@ -33,7 +33,7 @@
 	},
 	"animator:Aisha":
 	{
-		"DESCRIPTION": "Spellcaster. NL Deal !D! damage NL for each Orb NL you have. || Limited. NL On Synergy, NL gain 1 Orb Slot.",
+		"DESCRIPTION": "Spellcaster. NL Deal !D! damage NL for each Orb NL you have. || Limited. NL If you don't have NL any empty Orb Slot, NL gain 1 Orb Slot.",
 		"NAME": "Aisha"
 	},
 	"animator:Albedo":
@@ -287,7 +287,7 @@
 	},
 	"animator:DolaSchwi":
 	{
-		"DESCRIPTION": "Apply !M! Lock-On. NL Cooldown !SV! : NL Deal !D! damage. || On Synergy, NL if you have an NL empty Orb slot, NL Channel 1 Lightning.",
+		"DESCRIPTION": "Apply !M! Lock-On. NL Cooldown !SV! : NL Deal !D! damage. || On Synergy, NL Channel 1 Lightning.",
 		"NAME": "Schwi"
 	},
 	"animator:DolaStephanie":
@@ -382,7 +382,7 @@
 	},
 	"animator:FeridBathory":
 	{
-		"DESCRIPTION": "Whenever a card is NL Exhausted, steal !M! HP NL from a random enemy NL as Temp._HP. || Limited. At the start of your turn, if you have at least 20 cards in your Exhaust pile, gain 8 Strength.",
+		"DESCRIPTION": "Whenever a card is NL Exhausted, steal !M! HP NL from a random enemy NL as Temp._HP. || Limited. At the start of NL your turn, if you have NL at least 20 cards in NL your Exhaust pile, NL gain 8 Strength.",
 		"NAME": "Ferid Bathory"
 	},
 	"animator:Fredrika":
@@ -393,7 +393,7 @@
 	},
 	"animator:GazelDwargon":
 	{
-		"DESCRIPTION": "Gain !M! Plated_Armor. NL Maintain half your Block at the start of each turn. || Limited. NL When Exhausted, NL gain !SV! [#EFC851]Gold[].",
+		"DESCRIPTION": "Gain !M! Plated_Armor. NL Maintain half your Block at the start of each turn. || On Synergy, NL Motivate 1.",
 		"NAME": "Gazel Dwargon"
 	},
 	"animator:Genos":
@@ -465,8 +465,9 @@
 	},
 	"animator:Guren":
 	{
-		"DESCRIPTION": "Play the top !M! NL cards of your draw NL pile. Exhaust each NL [#EFC851]Attack[], [#EFC851]Status[] and NL [#EFC851]Curse[] played. || Semi-Limited. Gain 1 NL Support_Damage for NL each card in your NL Exhaust pile.",
-		"NAME": "Guren"
+		"DESCRIPTION": "Play the top !M! NL cards of your draw NL pile. Exhaust each NL [#EFC851]Attack[], [#EFC851]Status[] and NL [#EFC851]Curse[] played. Exhaust. || Semi-Limited. Gain 1 NL Support_Damage for NL each card in your NL Exhaust pile.",
+		"NAME": "Guren",
+		"UPGRADE_DESCRIPTION": "Play the top !M! NL cards of your draw NL pile. Exhaust each NL [#EFC851]Attack[], [#EFC851]Status[] and NL [#EFC851]Curse[] played. || Semi-Limited. Gain 1 NL Support_Damage for NL each card in your NL Exhaust pile."
 	},
 	"animator:Guy":
 	{
@@ -663,12 +664,12 @@
 	},
 	"animator:MelzalgaldAlt_2":
 	{
-		"DESCRIPTION": "Shapeshifter. NL Deal !D! Damage. NL Gain !M! Agility. NL Exhaust.",
+		"DESCRIPTION": "Shapeshifter. NL Deal !D! Damage. NL Gain !M! Intellect. NL Exhaust.",
 		"NAME": "Melzalgald"
 	},
 	"animator:MelzalgaldAlt_3":
 	{
-		"DESCRIPTION": "Shapeshifter. NL Deal !D! Damage. NL Gain !M! Intellect. NL Exhaust.",
+		"DESCRIPTION": "Shapeshifter. NL Deal !D! Damage. NL Gain !M! Agility. NL Exhaust.",
 		"NAME": "Melzalgald"
 	},
 	"animator:MetalKnight":
@@ -812,9 +813,8 @@
 	},
 	"animator:RinTohsaka":
 	{
-		"DESCRIPTION": "Spellcaster. NL Channel !M! random NL Orb(s) you do not NL already have. NL Exhaust. || On Synergy, NL Gain 1 Temporary NL Artifact.",
-		"NAME": "Rin Tohsaka",
-		"UPGRADE_DESCRIPTION": "Spellcaster. NL Channel !M! random NL Orb(s) you do not NL already have. || On Synergy, NL Gain 1 Temporary NL Artifact."
+		"DESCRIPTION": "Spellcaster. NL Channel !M! random NL Orb(s) you do not NL already have. Gain NL !B! Block. Exhaust. || Semi-Limited. NL When drawn, Gain NL 1 Temporary Artifact.",
+		"NAME": "Rin Tohsaka"
 	},
 	"animator:RoryMercury":
 	{
@@ -839,10 +839,10 @@
 	},
 	"animator:Saitama":
 	{
-		"DESCRIPTION": "Oh. || Whenever this card is played, increase its cost and change its effect for this combat.",
+		"DESCRIPTION": " || Whenever this card is played, increase its cost and change its effect for this combat.",
 		"EXTENDED_DESCRIPTION": ["Draw !M! cards. NL Gain !SV! Agility.", "Prevent the next NL time you would NL lose HP.", "Gain !M! Force. NL Gain !B! Block.", "Deal !D! damage NL !M! times.", "Remove Intangible. NL Deal !D! damage. NL Stun the enemy."],
 		"NAME": "Saitama",
-		"UPGRADE_DESCRIPTION": "Oh+. || Whenever this card is played, increase its cost and change its effect for this combat."
+		"UPGRADE_DESCRIPTION": "Innate. || Whenever this card is played, increase its cost and change its effect for this combat."
 	},
 	"animator:Scar":
 	{
@@ -867,7 +867,7 @@
 	},
 	"animator:Shichika":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Gain !SV! Thorns. NL Gain !M! Force. NL Exhaust. || On Synergy, NL add [#EFC851]Kyotouryuu[] NL to your hand.",
+		"DESCRIPTION": "Martial_Artist. NL Gain !M! Force. NL Add [#EFC851]Kyotouryuu[] NL to your hand. NL Exhaust. || On Synergy, NL gain 1 Agility NL and 2 Thorns.",
 		"NAME": "Shichika"
 	},
 	"animator:ShichikaKyotouryuu":
@@ -882,13 +882,13 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "Upgrade ALL cards NL for the rest of NL this combat. || ALL cards are NL affected by Strength NL !M! times.",
+		"DESCRIPTION": "Upgrade ALL cards NL for the rest of NL this combat. || ALL cards NL are affected NL by Strength NL !M! times.",
 		"NAME": "Shikizaki Kiki",
-		"UPGRADE_DESCRIPTION": "Innate. NL Upgrade ALL cards NL for the rest of NL this combat. || ALL cards are NL affected by Strength NL !M! times."
+		"UPGRADE_DESCRIPTION": "Innate. NL Upgrade ALL cards NL for the rest of NL this combat. || ALL cards NL are affected NL by Strength NL !M! times."
 	},
 	"animator:Shimakaze":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Draw !M! cards. NL Shuffle 1 Dazed in your draw pile.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Draw !M! cards. NL Add 1 Dazed to NL your draw pile.",
 		"NAME": "Shimakaze"
 	},
 	"animator:Shinoa":

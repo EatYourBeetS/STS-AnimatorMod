@@ -25,7 +25,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(12,0,1);
+        Initialize(12,0,2);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -42,7 +42,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.ChannelOrb(new Lightning(), false);
+            GameActionsHelper.ChannelOrb(new Lightning(), true);
         }
     }
 

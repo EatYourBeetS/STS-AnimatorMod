@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergy;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
@@ -48,6 +50,15 @@ public class Strike extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(3);
+        }
+    }
+
+    @Override
+    public void SetSynergy(Synergy synergy)
+    {
+        if (PlayerStatistics.GetActualAscensionLevel() > 9)
+        {
+            super.SetSynergy(synergy);
         }
     }
 }

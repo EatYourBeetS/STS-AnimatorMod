@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -47,7 +48,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
         GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
         GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
 
-        if (!PlayerStatistics.HasActivatedLimited(cardID))
+        if (!EffectHistory.HasActivatedLimited(cardID))
         {
             ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
             int size = cardsPlayed.size();
@@ -65,7 +66,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
                 if (threeInARow)
                 {
                     GameActionsHelper.MakeCardInDrawPile(new EntouJyuu(), 1, false);
-                    PlayerStatistics.TryActivateLimited(cardID);
+                    EffectHistory.TryActivateLimited(cardID);
                 }
             }
         }

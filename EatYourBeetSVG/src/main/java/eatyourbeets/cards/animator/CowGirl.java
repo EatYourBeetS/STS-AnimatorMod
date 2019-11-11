@@ -10,6 +10,7 @@ import eatyourbeets.actions.common.ChooseFromAnyPileAction;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -35,7 +36,7 @@ public class CowGirl extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (PlayerStatistics.TryActivateLimited(cardID))
+        if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActionsHelper.Motivate(1);
         }

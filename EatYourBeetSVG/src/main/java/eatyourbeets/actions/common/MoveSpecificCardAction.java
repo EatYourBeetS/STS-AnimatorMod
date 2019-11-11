@@ -1,6 +1,8 @@
 package eatyourbeets.actions.common;
 
 import basemod.BaseMod;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,6 +10,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.utilities.GameActionsHelper;
 
 import java.util.ArrayList;
 
@@ -96,35 +99,28 @@ public class MoveSpecificCardAction extends AnimatorAction
                 {
                     switch (destination.type)
                     {
-                        case DRAW_PILE:
-                        {
-                            //AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(card, true, false));
-                            this.source.removeCard(card);
-                            this.source.moveToDeck(card, true);
-                            break;
-                        }
-
                         case HAND:
                         {
-                            AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(card));
                             this.source.removeCard(card);
+                            AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(card));
                             break;
                         }
 
                         case DISCARD_PILE:
                         {
-                            AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(card));
                             this.source.removeCard(card);
+                            AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(card));
                             break;
                         }
 
                         case EXHAUST_PILE:
                         {
-                            AbstractDungeon.effectList.add(new ExhaustCardEffect(card));
-                            MoveCard();
+                            //AbstractDungeon.effectList.add(new ExhaustCardEffect(card));
+                            GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(card, source));
                             break;
                         }
 
+                        case DRAW_PILE:
                         default:
                         {
                             MoveCard();
@@ -137,6 +133,7 @@ public class MoveSpecificCardAction extends AnimatorAction
                     MoveCard();
                 }
             }
+
             card.initializeDescription();
         }
 
@@ -145,31 +142,43 @@ public class MoveSpecificCardAction extends AnimatorAction
 
     private void MoveCard()
     {
-        card.untip();
-        card.unhover();
-        card.lighten(true);
-        card.setAngle(0.0F);
-        card.drawScale = 0.12F;
-        card.targetDrawScale = 0.75F;
-        card.current_x = CardGroup.DRAW_PILE_X;
-        card.current_y = CardGroup.DRAW_PILE_Y;
-        this.source.removeCard(card);
-        this.destination.addToRandomSpot(card);
-        AbstractDungeon.player.hand.refreshHandLayout();
-        AbstractDungeon.player.hand.applyPowers();
-        AbstractDungeon.player.hand.glowCheck();
-
         if (destination.type == CardGroup.CardGroupType.HAND)
         {
+            this.source.moveToHand(card, source);
+
             card.triggerWhenDrawn();
         }
         else if (destination.type == CardGroup.CardGroupType.EXHAUST_PILE)
         {
-            card.triggerOnExhaust();
+            this.source.moveToExhaustPile(card);
         }
-        else if (destination.type == CardGroup.CardGroupType.DISCARD_PILE && source.type != CardGroup.CardGroupType.EXHAUST_PILE)
+        else if (destination.type == CardGroup.CardGroupType.DISCARD_PILE)
         {
-            card.triggerOnManualDiscard();
+            this.source.moveToDiscardPile(card);
+
+            if (source.type != CardGroup.CardGroupType.EXHAUST_PILE)
+            {
+                card.triggerOnManualDiscard();
+            }
+        }
+        else if (destination.type == CardGroup.CardGroupType.DRAW_PILE)
+        {
+            this.source.moveToDeck(card, true);
+        }
+        else
+        {
+            card.untip();
+            card.unhover();
+            card.lighten(true);
+            card.setAngle(0.0F);
+            card.drawScale = 0.12F;
+            card.targetDrawScale = 0.75F;
+            card.current_x = CardGroup.DRAW_PILE_X;
+            card.current_y = CardGroup.DRAW_PILE_Y;
+
+            AbstractDungeon.player.hand.refreshHandLayout();
+            AbstractDungeon.player.hand.applyPowers();
+            AbstractDungeon.player.hand.glowCheck();
         }
     }
 }

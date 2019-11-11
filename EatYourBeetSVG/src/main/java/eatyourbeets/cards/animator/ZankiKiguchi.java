@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -36,7 +37,7 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
     {
         super.triggerOnExhaust();
 
-        if (PlayerStatistics.TryActivateLimited(cardID))
+        if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, AbstractDungeon.player.hand));
             GameActionsHelper.GainAgility(magicNumber);

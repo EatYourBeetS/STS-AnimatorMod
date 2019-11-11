@@ -17,14 +17,14 @@ public class Shichika extends AnimatorCard implements MartialArtist
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
 
         if (InitializingPreview())
         {
-            cardData.InitializePreview(new ShichikaKyotouryuu(), true);
+            cardData.InitializePreview(new ShichikaKyotouryuu(), false);
         }
     }
 
@@ -33,18 +33,19 @@ public class Shichika extends AnimatorCard implements MartialArtist
     {
         super.applyPowers();
 
-        MartialArtist.ApplyScaling(this, 2);
+        MartialArtist.ApplyScaling(this, 3);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, secondaryValue), secondaryValue);
         GameActionsHelper.GainForce(magicNumber);
+        GameActionsHelper.MakeCardInHand(new ShichikaKyotouryuu(), 1, false);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.MakeCardInHand(new ShichikaKyotouryuu(), 1, false);
+            GameActionsHelper.GainAgility(1);
+            GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, 2), 2);
         }
     }
 
@@ -53,7 +54,6 @@ public class Shichika extends AnimatorCard implements MartialArtist
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(1);
             upgradeMagicNumber(1);
         }
     }

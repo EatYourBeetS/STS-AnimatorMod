@@ -61,8 +61,8 @@ public class Vesta_Elixir extends AnimatorCard implements Hidden
     public void ApplyEffect(VestaElixirEffect effect)
     {
         this.effects.add(effect);
-        this.rawDescription += " NL " + effect.GetDescription();
-        this.initializeDescription();
+        this.cardText.overrideDescription += " NL " + effect.GetDescription();
+        this.cardText.ForceRefresh();
     }
 
     public void ApplyEffects(ArrayList<VestaElixirEffect> effects)
@@ -89,7 +89,7 @@ public class Vesta_Elixir extends AnimatorCard implements Hidden
             }
         }
 
-        this.rawDescription = sb.toString();
-        this.initializeDescription();
+        this.cardText.overrideDescription = sb.toString();
+        this.cardText.ForceRefresh();
     }
 }

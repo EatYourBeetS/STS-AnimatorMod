@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.ModifyBlockActionWhichActuallyWorks;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend_Overlord extends Defend
@@ -14,6 +15,7 @@ public class Defend_Overlord extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5, 1);
+        SetSynergy(Synergies.Overlord);
     }
 
     @Override

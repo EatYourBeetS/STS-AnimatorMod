@@ -15,6 +15,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnLoseHpSubscriber;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleStartSubscriber
@@ -51,7 +52,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     @Override
     public int OnLoseHp(int damageAmount)
     {
-        if (!PlayerStatistics.HasActivatedLimited(cardID))
+        if (!EffectHistory.HasActivatedLimited(cardID))
         {
             AbstractPlayer player = AbstractDungeon.player;
             if (InPlayerDeck() && damageAmount > 0 && player.currentHealth <= damageAmount)
@@ -77,7 +78,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
 
                 AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(temp));
                 PlayerStatistics.onLoseHp.Unsubscribe(this);
-                PlayerStatistics.TryActivateLimited(cardID);
+                EffectHistory.TryActivateLimited(cardID);
 
                 return 0;
             }

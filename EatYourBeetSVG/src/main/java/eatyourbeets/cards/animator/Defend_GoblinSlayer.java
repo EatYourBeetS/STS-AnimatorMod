@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend_GoblinSlayer extends Defend
@@ -15,6 +16,7 @@ public class Defend_GoblinSlayer extends Defend
         Initialize(0, 7);
 
         SetExhaust(true);
+        SetSynergy(Synergies.GoblinSlayer);
     }
 
     @Override

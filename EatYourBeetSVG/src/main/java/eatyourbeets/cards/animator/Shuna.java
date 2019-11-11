@@ -6,11 +6,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Shuna extends AnimatorCard
+public class Shuna extends AnimatorCard implements OnCallbackSubscriber
 {
     public static final String ID = Register(Shuna.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Drawn);
 
@@ -28,17 +29,7 @@ public class Shuna extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActionsHelper.Callback(new WaitAction(0.1f), this::OnCompletion, this);
-    }
-
-    private void OnCompletion(Object state, AbstractGameAction action)
-    {
-        if (state == this && action != null)
-        {
-            this.applyPowers();
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.GainBlock(p, this.block);
-        }
+        GameActionsHelper.DelayedAction(this);
     }
 
     @Override
@@ -59,6 +50,17 @@ public class Shuna extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(2);
+        }
+    }
+
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
+    {
+        if (state == this && action != null)
+        {
+            this.applyPowers();
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.GainBlock(p, this.block);
         }
     }
 }

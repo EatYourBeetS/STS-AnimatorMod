@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.InputManager;
 import eatyourbeets.utilities.Utilities;
 
 public class CerealBox extends AnimatorRelic
@@ -14,7 +15,7 @@ public class CerealBox extends AnimatorRelic
     public static final String ID = CreateFullID(CerealBox.class.getSimpleName());
 
     private static final int HEAL_AMOUNT = 2;
-    private static final int BASE_CHARGES = 12;
+    private static final int BASE_CHARGES = 10;
     private static final int SHOP_CHARGES = 4;
     private static final int MAX_CHARGES = 20;
 
@@ -48,7 +49,7 @@ public class CerealBox extends AnimatorRelic
     {
         super.update();
 
-        if (HitboxRightClick.rightClicked.get(this.hb))
+        if (hb.hovered && !AbstractDungeon.isScreenUp && InputManager.RightClick.IsJustPressed())
         {
             stopPulse();
             Use();

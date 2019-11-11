@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -18,7 +19,7 @@ public class Albedo extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(7,0);
+        Initialize(8,0);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -29,7 +30,7 @@ public class Albedo extends AnimatorCard
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, this.damage), this.damage);
 
-        if (PlayerStatistics.HasActivatedLimited(Ainz.ID))
+        if (EffectHistory.HasActivatedLimited(Ainz.ID))
         {
             SetLoyal(true);
         }

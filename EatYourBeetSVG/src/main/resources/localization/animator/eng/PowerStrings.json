@@ -142,7 +142,7 @@
 	},
 	"animator:GazelDwargonPower":
 	{
-		"DESCRIPTIONS": ["Maintain half your Block at the start of each turn."],
+		"DESCRIPTIONS": ["Maintain half of your #yBlock at the start of each turn."],
 		"NAME": "Gazel Dwargon"
 	},
 	"animator:GeassPower":

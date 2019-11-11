@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 import eatyourbeets.actions.common.OnDamageAction;
@@ -42,7 +43,7 @@ public class Berserker extends AnimatorCard
             GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
             GameActionsHelper.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
-            if (PlayerStatistics.GetHealthPercentage(p) <= 0.1f && PlayerStatistics.TryActivateLimited(cardID))
+            if (PlayerStatistics.GetHealthPercentage(p) <= 0.1f && EffectHistory.TryActivateLimited(cardID))
             {
                 GameActionsHelper.PlayCopy(this, m);
             }

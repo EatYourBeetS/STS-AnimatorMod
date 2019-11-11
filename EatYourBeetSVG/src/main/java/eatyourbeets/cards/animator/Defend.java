@@ -3,6 +3,8 @@ package eatyourbeets.cards.animator;
 import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergy;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -44,6 +46,15 @@ public class Defend extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBlock(3);
+        }
+    }
+
+    @Override
+    public void SetSynergy(Synergy synergy)
+    {
+        if (PlayerStatistics.GetActualAscensionLevel() >= 7)
+        {
+            super.SetSynergy(synergy);
         }
     }
 }

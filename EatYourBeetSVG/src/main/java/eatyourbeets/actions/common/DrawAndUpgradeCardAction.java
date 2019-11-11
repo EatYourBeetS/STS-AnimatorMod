@@ -1,5 +1,6 @@
 package eatyourbeets.actions.common;
 
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -41,8 +42,8 @@ public class DrawAndUpgradeCardAction extends AnimatorAction
                 c.flash();
 
                 //AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(c.target_x, c.target_y));
-                GameActionsHelper.AddToBottom(new DrawSpecificCardAction(c));
-                GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
+                GameActionsHelper.AddToTop(new RefreshHandLayoutAction());
+                GameActionsHelper.AddToTop(new DrawSpecificCardAction(c));
 
                 if (count == 0)
                 {
@@ -53,12 +54,12 @@ public class DrawAndUpgradeCardAction extends AnimatorAction
 
         if (drawPile.size() < count && player.discardPile.size() > 0)
         {
-            GameActionsHelper.AddToBottom(new EmptyDeckShuffleAction());
-            GameActionsHelper.AddToBottom(new DrawAndUpgradeCardAction(player, count));
+            GameActionsHelper.AddToTop(new DrawAndUpgradeCardAction(player, count));
+            GameActionsHelper.AddToTop(new EmptyDeckShuffleAction());
         }
         else if (count > 0)
         {
-            GameActionsHelper.DrawCard(AbstractDungeon.player, count);
+            GameActionsHelper.AddToTop(new DrawCardAction(AbstractDungeon.player, count, false));
         }
     }
 }

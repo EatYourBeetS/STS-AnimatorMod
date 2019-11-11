@@ -18,6 +18,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 
@@ -62,7 +63,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
         }
         GameActionsHelper.AddToBottom(new DamageAllEnemiesAction(p, multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
 
-        if (HasActiveSynergy() && PlayerStatistics.TryActivateLimited(cardID))
+        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
             for (AbstractCard c : GetAllInstances())
             {

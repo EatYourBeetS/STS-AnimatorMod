@@ -2,6 +2,8 @@ package eatyourbeets.powers;
 
 import basemod.DevConsole;
 import basemod.abstracts.CustomSavable;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.google.gson.annotations.Expose;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -26,6 +28,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.*;
 import eatyourbeets.powers.common.TemporaryBiasPower;
 import eatyourbeets.powers.unnamed.ResonancePower;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.ui.Void;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
@@ -41,9 +44,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     public static final String POWER_ID = CreateFullID(PlayerStatistics.class.getSimpleName());
 
     public static final PlayerStatistics Instance = new PlayerStatistics();
-
-    public static final HashSet<String> limitedEffects = new HashSet<>();
-    public static final HashSet<String> semiLimitedEffects = new HashSet<>();
 
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying  = new GameEvent<>();
     public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
@@ -69,6 +69,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     public static SaveData SaveData = new SaveData();
     public static Void Void = new Void();
 
+    private static final EffectHistory effectHistory = new EffectHistory();
     private static int turnDamageMultiplier = 0;
     private static int turnCount = 0;
     private static int cardsDrawnThisTurn = 0;
@@ -94,8 +95,8 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         orbsEvokedThisTurn = 0;
         synergiesThisTurn = 0;
 
-        limitedEffects.clear();
-        semiLimitedEffects.clear();
+        EffectHistory.limitedEffects.clear();
+        EffectHistory.semiLimitedEffects.clear();
 
         onSynergy.Clear();
         onEnemyDying.Clear();
@@ -130,12 +131,16 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     public static void OnGameStart()
     {
         ClearStats();
+        onBattleStart.Clear();
+        onBattleEnd.Clear();
         SaveData = new SaveData();
     }
 
     public static void OnStartOver()
     {
         ClearStats();
+        onBattleStart.Clear();
+        onBattleEnd.Clear();
         SaveData = new SaveData();
         DevConsole.enabled = true;
     }
@@ -489,7 +494,20 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         this.description = "";
     }
 
-//    @Override
+    @Override
+    public void update(int slot)
+    {
+
+        super.update(slot);
+    }
+
+    @Override
+    public void renderIcons(SpriteBatch sb, float x, float y, Color c)
+    {
+        super.renderIcons(sb, x, y, c);
+    }
+
+    //    @Override
 //    public void atEndOfRound()
 //    {
 //        super.atEndOfRound();
@@ -510,7 +528,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
             s.OnEndOfTurn(isPlayer);
         }
 
-        semiLimitedEffects.clear();
+        EffectHistory.semiLimitedEffects.clear();
 
         turnDamageMultiplier = 0;
         cardsExhaustedThisTurn = 0;
@@ -585,26 +603,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
                 s.OnStartOfTurnPostDraw();
             }
         }
-    }
-
-    public static boolean HasActivatedLimited(String effectID)
-    {
-        return limitedEffects.contains(effectID);
-    }
-
-    public static boolean TryActivateLimited(String effectID)
-    {
-        return limitedEffects.add(effectID);
-    }
-
-    public static boolean HasActivatedSemiLimited(String effectID)
-    {
-        return semiLimitedEffects.contains(effectID);
-    }
-
-    public static boolean TryActivateSemiLimited(String effectID)
-    {
-        return semiLimitedEffects.add(effectID);
     }
 
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)

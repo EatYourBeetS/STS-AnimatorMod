@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Defend_Konosuba extends Defend
@@ -13,6 +14,8 @@ public class Defend_Konosuba extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 4, 2);
+
+        SetSynergy(Synergies.Konosuba);
     }
 
     @Override

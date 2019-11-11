@@ -11,6 +11,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
@@ -62,7 +63,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        if (PlayerStatistics.TryActivateLimited(cardID))
+        if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActionsHelper.MakeCardInDrawPile(new TanyaDegurechaff_Type95(), 1, false);
 

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.PlayerStatistics;
 
@@ -18,6 +19,8 @@ public class Defend_Fate extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 3, 2);
+
+        SetSynergy(Synergies.Fate);
     }
 
     @SpireOverride

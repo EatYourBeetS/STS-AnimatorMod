@@ -38,12 +38,11 @@ public class ArcherPower extends AnimatorPower
                 {
                     if (p.type == PowerType.DEBUFF)
                     {
-
                         float x = m.hb.cX + (m.hb.width * AbstractDungeon.cardRandomRng.random(-0.1f, 0.1f));
                         float y = m.hb.cY + (m.hb.height * AbstractDungeon.cardRandomRng.random(-0.2f, 0.2f));
 
-                        AbstractDungeon.actionManager.addToTop(new VFXAction(new ThrowDaggerEffect(x, y)));
-                        GameActionsHelper.DamageTarget(AbstractDungeon.player, m, this.amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+                        GameActionsHelper.VFX(new ThrowDaggerEffect(x, y));
+                        GameActionsHelper.DamageTarget(AbstractDungeon.player, m, this.amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE, true);
                     }
                 }
             }

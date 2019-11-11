@@ -7,6 +7,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class AcuraAkari extends AnimatorCard
@@ -35,7 +36,7 @@ public class AcuraAkari extends AnimatorCard
             }
         }
 
-        if (HasActiveSynergy() && PlayerStatistics.TryActivateSemiLimited(cardID))
+        if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, secondaryValue), secondaryValue);
         }

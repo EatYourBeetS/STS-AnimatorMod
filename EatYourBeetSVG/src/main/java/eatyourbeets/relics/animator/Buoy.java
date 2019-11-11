@@ -1,13 +1,15 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.Utilities;
 
-public class Buoy extends AnimatorRelic
+public class Buoy extends AnimatorRelic implements OnCallbackSubscriber
 {
     public static final String ID = CreateFullID(Buoy.class.getSimpleName());
 
@@ -87,10 +89,11 @@ public class Buoy extends AnimatorRelic
 
     private void UpdateThreshold()
     {
-        GameActionsHelper.Callback(GameActionsHelper.Wait(0.1f), this::OnCompletion, this);
+        GameActionsHelper.DelayedAction(this);
     }
 
-    private void OnCompletion(Object state, AbstractGameAction action)
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
     {
         if (state == this && action != null)
         {

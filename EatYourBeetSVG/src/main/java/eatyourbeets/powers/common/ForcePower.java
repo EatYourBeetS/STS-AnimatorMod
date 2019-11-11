@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.EngravedStaff;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class ForcePower extends CommonPower
@@ -42,7 +43,7 @@ public class ForcePower extends CommonPower
     {
         super.atStartOfTurn();
 
-        if (amount <= 2 && PlayerStatistics.HasActivatedLimited(EngravedStaff.ID))
+        if (amount <= 2 && EffectHistory.HasActivatedLimited(EngravedStaff.ID))
         {
             return;
         }

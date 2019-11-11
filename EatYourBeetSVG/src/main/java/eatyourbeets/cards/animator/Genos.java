@@ -12,6 +12,7 @@ import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -39,7 +40,7 @@ public class Genos extends AnimatorCard
         GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, this.magicNumber), this.magicNumber);
         GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, secondaryValue), secondaryValue);
 
-        if (HasActiveSynergy() && PlayerStatistics.TryActivateSemiLimited(cardID))
+        if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActionsHelper.AddToBottom(new ChooseFromAnyPileAction(1, this::OnCardSelected, this,
                                             FetchAction.TEXT[0], GetHighCost(p.drawPile), GetHighCost(p.discardPile)));
@@ -51,7 +52,8 @@ public class Genos extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
+            upgradeDamage(2);
+            upgradeMagicNumber(1);
         }
     }
 

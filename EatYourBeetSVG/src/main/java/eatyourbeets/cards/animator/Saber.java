@@ -7,6 +7,7 @@ import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Saber extends AnimatorCard_Cooldown
@@ -58,7 +59,7 @@ public class Saber extends AnimatorCard_Cooldown
     @Override
     protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
     {
-        if (PlayerStatistics.TryActivateLimited(cardID))
+        if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActionsHelper.MakeCardInHand(new Excalibur(), 1, false);
         }

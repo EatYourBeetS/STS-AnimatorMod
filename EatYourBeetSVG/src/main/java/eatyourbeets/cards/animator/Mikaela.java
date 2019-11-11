@@ -45,7 +45,7 @@ public class Mikaela extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(4);
+            upgradeDamage(3);
         }
     }
 }

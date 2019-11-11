@@ -10,9 +10,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 
-public class PandorasActor extends AnimatorCard implements StartupCard
+public class PandorasActor extends AnimatorCard implements StartupCard, OnCallbackSubscriber
 {
     public static final String ID = Register(PandorasActor.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -43,12 +44,13 @@ public class PandorasActor extends AnimatorCard implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        GameActionsHelper.Callback(new WaitAction(0.1f), this::AtStartup, this);
+        GameActionsHelper.DelayedAction(this);
 
         return true;
     }
 
-    private void AtStartup(Object state, AbstractGameAction action)
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
     {
         AbstractCard copy = this.makeStatEquivalentCopy();
         copy.applyPowers();

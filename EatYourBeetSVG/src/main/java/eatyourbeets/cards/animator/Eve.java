@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
@@ -44,7 +45,7 @@ public class Eve extends AnimatorCard
         group1.group.add(cores.Retrieve(rng));
         GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, group1, this::OrbChosen, this, ""));
 
-        if (PlayerStatistics.TryActivateLimited(cardID))
+        if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActionsHelper.ApplyPower(p, p, new EvePower(p, 1, 1), 1);
         }

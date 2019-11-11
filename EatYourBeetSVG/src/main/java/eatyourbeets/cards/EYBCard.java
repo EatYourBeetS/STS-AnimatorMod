@@ -15,10 +15,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.controller.CInputAction;
+import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.resources.Resources_Common_Strings;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.RenderHelpers;
 import eatyourbeets.utilities.Utilities;
 import patches.AbstractEnums;
@@ -57,7 +60,7 @@ public abstract class EYBCard extends CustomCard
 
         this.cardData = cardData;
         this.cardText = new EYBCardText(this, cardData.strings);
-        this.cardText.Update(0, true);
+        this.cardText.ForceRefresh();
     }
 
     @Override
@@ -209,6 +212,14 @@ public abstract class EYBCard extends CustomCard
         RenderHeader(sb, false);
         RenderBadges(sb, false, false);
         RenderCardPreview(sb, false);
+    }
+
+    public void renderAsPreview(SpriteBatch sb)
+    {
+        UpdateCardText();
+        super.render(sb);
+        RenderHeader(sb, false);
+        RenderBadges(sb, false, true);
     }
 
     @Override
@@ -387,7 +398,7 @@ public abstract class EYBCard extends CustomCard
 
             if (updateDescription)
             {
-                cardText.Update(0, true);
+                cardText.ForceRefresh();
             }
 
             return true;
@@ -572,6 +583,7 @@ public abstract class EYBCard extends CustomCard
             scale = this.drawScale * Settings.scale;
 //            x = 110;
 //            y = 160;
+
             if (isLibrary || (AbstractDungeon.isScreenUp && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.HAND_SELECT))
             {
                 x = 110;
@@ -619,7 +631,15 @@ public abstract class EYBCard extends CustomCard
                     preview.drawScale = this.drawScale;
                 }
 
-                preview.render(sb);
+                EYBCard card = Utilities.SafeCast(preview, EYBCard.class);
+                if (card != null)
+                {
+                    card.renderAsPreview(sb);
+                }
+                else
+                {
+                    preview.render(sb);
+                }
             }
         }
     }
@@ -674,13 +694,7 @@ public abstract class EYBCard extends CustomCard
     {
         if (cardText.canUpdate)
         {
-            int effectIndex = 0;
-            if (EYBCardText.Toggled || Gdx.input.isButtonPressed(1))
-            {
-                effectIndex = 1;
-            }
-
-            cardText.Update(effectIndex, false);
+            cardText.Update(false);
         }
     }
 

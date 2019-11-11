@@ -10,7 +10,7 @@ import eatyourbeets.powers.animator.OrbCore_EarthPower;
 
 public class OrbCore_Earth extends AnimatorCard
 {
-    public static final String ID = Register(OrbCore_Earth.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(OrbCore_Earth.class.getSimpleName(), EYBCardBadge.Special);
 
     public static final int VALUE = 3;
 

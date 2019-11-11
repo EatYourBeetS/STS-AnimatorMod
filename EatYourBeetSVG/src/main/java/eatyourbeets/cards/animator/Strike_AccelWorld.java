@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_AccelWorld extends Strike
@@ -17,6 +18,8 @@ public class Strike_AccelWorld extends Strike
         super(ID, 1, CardTarget.ENEMY);
 
         Initialize(6,0, 4);
+
+        SetSynergy(Synergies.AccelWorld);
     }
 
     @Override

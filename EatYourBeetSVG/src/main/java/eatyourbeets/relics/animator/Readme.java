@@ -10,6 +10,7 @@ import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.effects.SpawnRelicEffect;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.utilities.InputManager;
 
 public class Readme extends AnimatorRelic
 {
@@ -36,6 +37,12 @@ public class Readme extends AnimatorRelic
     public static void SpawnAll()
     {
         final String base = "TheAnimator-Readme:";
+
+        if (Settings.isControllerMode)
+        {
+            SpawnRelic(base + "Controller", 7, 8);
+        }
+
         SpawnRelic(base + "General", 1, 2);
         SpawnRelic(base + "Synergies", 3, 4);
         SpawnRelic(base + "Badges", 5, 6);
@@ -64,12 +71,12 @@ public class Readme extends AnimatorRelic
     {
         super.update();
 
-        if (HitboxRightClick.rightClicked.get(hb) && !AbstractDungeon.isScreenUp)
+        if (hb.hovered && !AbstractDungeon.isScreenUp && InputManager.RightClick.IsJustPressed())
         {
             AbstractDungeon.ftue = new FtueTip(header, content, Settings.WIDTH / 2f, Settings.HEIGHT / 2f, FtueTip.TipType.CARD_REWARD);
             AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, this));
-            AnimatorMetrics.GetConfig().setBool(key, true);
-            AnimatorMetrics.SaveConfig();
+            //AnimatorMetrics.GetConfig().setBool(key, true);
+            //AnimatorMetrics.SaveConfig();
         }
     }
 

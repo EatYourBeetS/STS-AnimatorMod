@@ -26,6 +26,7 @@ import eatyourbeets.actions.animator.MotivateAction;
 import eatyourbeets.actions.common.*;
 import eatyourbeets.actions.unnamed.MoveToVoidAction;
 import eatyourbeets.blights.animator.UltimateCrystal;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.orbs.Air;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
@@ -342,6 +343,18 @@ public class GameActionsHelper
         OnRandomEnemyDamagedAction action = new OnRandomEnemyDamagedAction(new DamageInfo(source, amount, damageType), effect, state, onDamage);
         AddToDefault(action);
         return action;
+    }
+
+    public static CallbackAction DelayedAction(OnCallbackSubscriber subscriber)
+    {
+        return DelayedAction(subscriber, subscriber);
+    }
+
+    public static CallbackAction DelayedAction(OnCallbackSubscriber subscriber, Object state)
+    {
+        CallbackAction callbackAction = new CallbackAction(new WaitAction(0.1f), subscriber::OnCallback, state);
+        AddToDefault(callbackAction);
+        return callbackAction;
     }
 
     public static CallbackAction Callback(AbstractGameAction action, BiConsumer<Object, AbstractGameAction> onCompletion, Object state)

@@ -11,7 +11,9 @@ import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.orbs.Air;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.TemporaryArtifactPower;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.WeightedList;
 
@@ -19,16 +21,28 @@ import java.util.ArrayList;
 
 public class RinTohsaka extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(RinTohsaka.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(RinTohsaka.class.getSimpleName(), EYBCardBadge.Drawn);
 
     public RinTohsaka()
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0, 1);
+        Initialize(0,3, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.Fate);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        if (EffectHistory.TryActivateSemiLimited(cardID))
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            TemporaryArtifactPower.Apply(p, p, 1);
+        }
     }
 
     @Override
@@ -60,10 +74,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
             }
         }
 
-        if (HasActiveSynergy())
-        {
-            TemporaryArtifactPower.Apply(p, p, 1);
-        }
+        GameActionsHelper.GainBlock(p, block);
     }
 
     @Override
@@ -71,7 +82,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
     {
         if (TryUpgrade())
         {
-            SetExhaust(false);
+            upgradeBlock(4);
         }
     }
 

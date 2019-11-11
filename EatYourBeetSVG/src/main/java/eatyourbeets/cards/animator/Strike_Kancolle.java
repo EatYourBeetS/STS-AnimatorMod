@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Strike_Kancolle extends Strike
@@ -19,6 +21,7 @@ public class Strike_Kancolle extends Strike
         Initialize(6, 0, 5);
 
         SetHealing(true);
+        SetSynergy(Synergies.Kancolle);
     }
 
     @Override
@@ -26,7 +29,7 @@ public class Strike_Kancolle extends Strike
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        if (PlayerStatistics.TryActivateLimited(cardID))
+        if (EffectHistory.TryActivateLimited(cardID))
         {
             for (int i = 0; i < this.magicNumber; ++i)
             {

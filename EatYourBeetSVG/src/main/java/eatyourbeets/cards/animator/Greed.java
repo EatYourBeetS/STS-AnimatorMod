@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.rewards.SpecialGoldReward;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -32,7 +33,7 @@ public class Greed extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        if (GetMasterDeckInstance() != null && PlayerStatistics.TryActivateLimited(cardID))
+        if (GetMasterDeckInstance() != null && EffectHistory.TryActivateLimited(cardID))
         {
             AbstractRoom room = PlayerStatistics.GetCurrentRoom();
             if (room != null && room.rewardAllowed)

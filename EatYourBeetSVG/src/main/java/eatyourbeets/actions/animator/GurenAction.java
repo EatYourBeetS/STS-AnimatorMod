@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.cards.animator.Guren;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActionsHelper;
 
 public class GurenAction extends AbstractGameAction
 {
@@ -81,17 +82,17 @@ public class GurenAction extends AbstractGameAction
 
                 if (card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS)
                 {
-                    AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
-                    AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(card, AbstractDungeon.player.limbo));
-                    AbstractDungeon.actionManager.addToTop(new WaitRealtimeAction(0.4F));
+                    GameActionsHelper.AddToTop(new UnlimboAction(card));
+                    GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(card, AbstractDungeon.player.limbo));
+                    GameActionsHelper.AddToTop(new WaitRealtimeAction(0.4F));
 
                     //GameActionsHelper.ApplyPower(source, source, new SupportDamagePower(source, supportDamage), supportDamage);
                 }
                 else if (skip || !card.canUse(AbstractDungeon.player, (AbstractMonster) this.target))
                 {
-                    AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
-                    AbstractDungeon.actionManager.addToTop(new DiscardSpecificCardAction(card, AbstractDungeon.player.limbo));
-                    AbstractDungeon.actionManager.addToTop(new WaitRealtimeAction(0.4F));
+                    GameActionsHelper.AddToTop(new UnlimboAction(card));
+                    GameActionsHelper.AddToTop(new DiscardSpecificCardAction(card, AbstractDungeon.player.limbo));
+                    GameActionsHelper.AddToTop(new WaitRealtimeAction(0.4F));
                 }
                 else
                 {
@@ -102,15 +103,15 @@ public class GurenAction extends AbstractGameAction
                     }
 
                     card.applyPowers();
-                    AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, this.target));
-                    AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
+                    GameActionsHelper.AddToTop(new QueueCardAction(card, this.target));
+                    GameActionsHelper.AddToTop(new UnlimboAction(card));
                     if (!Settings.FAST_MODE)
                     {
-                        AbstractDungeon.actionManager.addToTop(new WaitRealtimeAction(Settings.ACTION_DUR_MED));
+                        GameActionsHelper.AddToTop(new WaitRealtimeAction(Settings.ACTION_DUR_MED));
                     }
                     else
                     {
-                        AbstractDungeon.actionManager.addToTop(new WaitRealtimeAction(Settings.ACTION_DUR_FAST));
+                        GameActionsHelper.AddToTop(new WaitRealtimeAction(Settings.ACTION_DUR_FAST));
                     }
                 }
             }

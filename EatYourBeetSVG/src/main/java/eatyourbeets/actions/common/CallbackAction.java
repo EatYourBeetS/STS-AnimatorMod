@@ -3,6 +3,7 @@ package eatyourbeets.actions.common;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 
 import java.util.function.BiConsumer;
 

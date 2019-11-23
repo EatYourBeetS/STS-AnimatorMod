@@ -1,19 +1,19 @@
 package eatyourbeets.cards.animator;
 
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
+import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
 import eatyourbeets.interfaces.metadata.Spellcaster;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Witch extends AnimatorCard implements Spellcaster, OnAddedToDeckSubscriber
+public class Witch extends AnimatorCard implements Spellcaster, StartupCard
 {
     public static final String ID = Register(Witch.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -31,7 +31,7 @@ public class Witch extends AnimatorCard implements Spellcaster, OnAddedToDeckSub
     {
         super.applyPowers();
 
-        Spellcaster.ApplyScaling(this);
+        Spellcaster.ApplyScaling(this, 2);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Witch extends AnimatorCard implements Spellcaster, OnAddedToDeckSub
     {
         GameActionsHelper.GainBlock(p, this.block);
 
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(p, m1, new BurningPower(m1, p, this.magicNumber), this.magicNumber);
         }
@@ -56,8 +56,14 @@ public class Witch extends AnimatorCard implements Spellcaster, OnAddedToDeckSub
     }
 
     @Override
-    public void OnAddedToDeck()
+    public boolean atBattleStartPreDraw()
     {
-        AbstractDungeon.player.obtainPotion(AbstractDungeon.returnRandomPotion(AbstractPotion.PotionRarity.UNCOMMON, false));
+        if (AbstractDungeon.currMapNode != null && AbstractDungeon.currMapNode.room != null && AbstractDungeon.currMapNode.room.eliteTrigger)
+        {
+            GameActionsHelper.AddToBottom(new ObtainPotionAction(AbstractDungeon.returnRandomPotion(false)));
+            return true;
+        }
+
+        return false;
     }
 }

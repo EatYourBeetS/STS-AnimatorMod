@@ -26,9 +26,7 @@ public class Ainz extends AnimatorCard
                 0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
         this.effect = effect;
 
-        this.cardText.overrideDescription = description;
-        this.cardText.overrideSecondaryDescription = "-";
-        this.cardText.ForceRefresh();
+        this.cardText.OverrideDescription(description, "-", true);
         //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
     }
 

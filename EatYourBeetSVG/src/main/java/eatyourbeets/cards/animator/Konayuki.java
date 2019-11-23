@@ -4,11 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Konayuki extends AnimatorCard
 {
@@ -28,7 +29,7 @@ public class Konayuki extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        if (PlayerStatistics.GetStrength() == 0 && EffectHistory.TryActivateSemiLimited(cardID))
+        if (GameUtilities.GetPowerAmount(ForcePower.POWER_ID) <= 0 && EffectHistory.TryActivateSemiLimited(cardID))
         {
             modifyCostForTurn(-1);
             this.flash();
@@ -40,7 +41,7 @@ public class Konayuki extends AnimatorCard
     {
         super.applyPowers();
 
-        if (PlayerStatistics.GetStrength() >= 10)
+        if (GameUtilities.GetStrength() >= 10)
         {
             this.target = CardTarget.ENEMY;
         }
@@ -53,7 +54,7 @@ public class Konayuki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (PlayerStatistics.GetStrength(p) >= 10)
+        if (GameUtilities.GetStrength(p) >= 10)
         {
             GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         }

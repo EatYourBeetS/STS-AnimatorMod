@@ -8,7 +8,7 @@ import eatyourbeets.characters.UnnamedCharacter;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.OnVoidTurnStartSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import patches.EnergyPanelPatches;
 
 public class Void extends CardGroup implements OnStartOfTurnPostDrawSubscriber
@@ -41,7 +41,7 @@ public class Void extends CardGroup implements OnStartOfTurnPostDrawSubscriber
 
         for (AbstractCard c : group)
         {
-            OnVoidTurnStartSubscriber card = Utilities.SafeCast(c, OnVoidTurnStartSubscriber.class);
+            OnVoidTurnStartSubscriber card = JavaUtilities.SafeCast(c, OnVoidTurnStartSubscriber.class);
             if (card != null)
             {
                 card.OnVoidTurnStart();
@@ -51,7 +51,7 @@ public class Void extends CardGroup implements OnStartOfTurnPostDrawSubscriber
 
     public boolean CanUse(AbstractCard card)
     {
-        UnnamedCard c = Utilities.SafeCast(card, UnnamedCard.class);
+        UnnamedCard c = JavaUtilities.SafeCast(card, UnnamedCard.class);
         if (c != null)
         {
             return CanUse(c);
@@ -62,7 +62,7 @@ public class Void extends CardGroup implements OnStartOfTurnPostDrawSubscriber
 
     public void UseMastery(AbstractCard card)
     {
-        UnnamedCard c = Utilities.SafeCast(card, UnnamedCard.class);
+        UnnamedCard c = JavaUtilities.SafeCast(card, UnnamedCard.class);
         if (c != null)
         {
             UseMastery(c);

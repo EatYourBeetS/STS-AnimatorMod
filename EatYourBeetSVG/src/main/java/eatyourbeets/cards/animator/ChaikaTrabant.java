@@ -10,7 +10,8 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.WeightedList;
@@ -83,7 +84,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         if (target == null || target.isDeadOrEscaped())
         {
-            target = Utilities.GetRandomElement(PlayerStatistics.GetCurrentEnemies(true));
+            target = JavaUtilities.GetRandomElement(GameUtilities.GetCurrentEnemies(true));
         }
 
         AbstractPlayer p = AbstractDungeon.player;

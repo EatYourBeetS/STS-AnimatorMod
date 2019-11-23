@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_Fate extends Defend
 {
@@ -28,7 +28,7 @@ public class Defend_Fate extends Defend
     {
         float tmp = (float) this.baseBlock;
 
-        tmp += PlayerStatistics.GetCurrentEnemies(true).size() * magicNumber;
+        tmp += GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
 
         for (AbstractPower p : AbstractDungeon.player.powers)
         {

@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Unnamed;
 import eatyourbeets.resources.Resources_Unnamed_Strings;
+import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -73,7 +74,7 @@ public class VoidEnergyOrb
         {
             hb.update();
 
-            if (hb.hovered && PlayerStatistics.InBattle())
+            if (hb.hovered && GameUtilities.InBattle())
             {
                 if (!screenUp)
                 {

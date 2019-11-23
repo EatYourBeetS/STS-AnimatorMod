@@ -1,7 +1,6 @@
 package eatyourbeets.utilities;
 
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.utilities.Utilities;
 
 import java.util.ArrayList;
 
@@ -43,7 +42,7 @@ public class RandomizedList<T>
 
     public T Retrieve(Random rng, boolean remove)
     {
-        T item = Utilities.GetRandomElement(items, rng);
+        T item = JavaUtilities.GetRandomElement(items, rng);
         if (remove)
         {
             items.remove(item);

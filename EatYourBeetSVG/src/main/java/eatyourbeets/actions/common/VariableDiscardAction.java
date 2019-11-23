@@ -1,6 +1,7 @@
 package eatyourbeets.actions.common;
 
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -46,17 +47,7 @@ public class VariableDiscardAction extends AnimatorAction
             }
             else
             {
-
-//                if (anyNumber)
-//                {
-//                    discardMessage = Resources_Animator_Strings.Actions.TEXT[2];
-//                }
-//                else
-//                {
-//                    discardMessage = CardCrawlGame.languagePack.getUIString("DiscardAction").TEXT[0];
-//                }
-
-                String discardMessage = CardCrawlGame.languagePack.getUIString("DiscardAction").TEXT[0];
+                String discardMessage = DiscardAction.TEXT[0];
                 if (card != null)
                 {
                     discardMessage += " (" + card.name + ")";

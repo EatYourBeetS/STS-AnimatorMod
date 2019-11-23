@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -27,7 +27,7 @@ public class Zero extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractCard skill = Utilities.GetRandomElement(p.drawPile.getSkills().group);
+        AbstractCard skill = JavaUtilities.GetRandomElement(p.drawPile.getSkills().group);
         if (skill != null)
         {
             p.drawPile.removeCard(skill);

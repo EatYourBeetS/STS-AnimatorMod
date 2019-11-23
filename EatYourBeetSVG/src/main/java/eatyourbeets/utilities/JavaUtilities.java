@@ -1,9 +1,7 @@
 package eatyourbeets.utilities;
 
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.random.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,9 +9,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
-public class Utilities
+public class JavaUtilities
 {
-    public static final Logger Logger = LogManager.getLogger(Utilities.class.getName());
+    public static final Logger Logger = LogManager.getLogger(JavaUtilities.class.getName());
 
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 

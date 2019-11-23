@@ -1,7 +1,7 @@
 package eatyourbeets.monsters;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,7 +63,7 @@ public class Moveset
     {
         for (AbstractMove m : moves.values())
         {
-            T res = Utilities.SafeCast(m, type);
+            T res = JavaUtilities.SafeCast(m, type);
             if (res != null)
             {
                 return res;

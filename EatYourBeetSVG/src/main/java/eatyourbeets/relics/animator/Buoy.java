@@ -1,13 +1,12 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class Buoy extends AnimatorRelic implements OnCallbackSubscriber
 {
@@ -24,7 +23,7 @@ public class Buoy extends AnimatorRelic implements OnCallbackSubscriber
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], HP_THRESHOLD, BLOCK_AMOUNT);
+        return JavaUtilities.Format(DESCRIPTIONS[0], HP_THRESHOLD, BLOCK_AMOUNT);
     }
 
     @Override

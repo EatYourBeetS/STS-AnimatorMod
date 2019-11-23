@@ -11,9 +11,9 @@
 			" turns have passed, automatically #yEvoke this Orb."
 		]
 	},
-	"animator:Air":
+	"animator:Aether":
 	{
-		"NAME": "Air",
+		"NAME": "Aether",
 		"DESCRIPTION":
 		[
 			"#yPassive: At the end of turn, deal #b", " #yPiercing damage to ALL enemies. NL #yEvoke: Draw #b",

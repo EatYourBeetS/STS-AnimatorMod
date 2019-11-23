@@ -21,7 +21,7 @@ import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
 import eatyourbeets.utilities.Field;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import patches.RelicObtainedPatches;
 
 import java.util.ArrayList;
@@ -197,7 +197,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
         try
         {
             Class<?> c = Class.forName("riskOfSpire.patches.ForUsableRelics.UsableRelicSlot");
-            Field<SpireField> field = Utilities.GetPrivateField("usableRelic", c);
+            Field<SpireField> field = JavaUtilities.GetPrivateField("usableRelic", c);
             SpireField<?> f = field.Get(null);
             if (f != null)
             {

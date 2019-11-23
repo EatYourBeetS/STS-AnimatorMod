@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.relics.animator.*;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.animator.*;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class BundledRelicProvider
         {
             lastNode = mapNode;
             bundledRelics.clear();
-            Utilities.Logger.info("Clearing Bundles");
+            JavaUtilities.Logger.info("Clearing Bundles");
         }
 
         BundledRelicContainer bundle = new BundledRelicContainer(rItem);
@@ -62,7 +62,7 @@ public class BundledRelicProvider
         }
         else
         {
-            Utilities.Logger.info("Key not found: " + cardID);
+            JavaUtilities.Logger.info("Key not found: " + cardID);
         }
 
         return relic;

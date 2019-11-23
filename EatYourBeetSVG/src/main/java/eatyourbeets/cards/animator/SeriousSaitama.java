@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
+        ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
         for (AbstractMonster m1 : enemies)
         {
             if (!m1.hasPower(StunMonsterPower.POWER_ID))

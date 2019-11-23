@@ -9,7 +9,7 @@ import eatyourbeets.cards.animator.Vesta;
 import eatyourbeets.cards.animator.Vesta_Elixir;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class VestaElixirEffects
         Random rng = AbstractDungeon.cardRandomRng;
         if (rng == null)
         {
-            Utilities.Logger.warn("[VestaElixirEffects.ctor] cardRandomRNG was null");
+            JavaUtilities.Logger.warn("[VestaElixirEffects.ctor] cardRandomRNG was null");
             rng = new Random();
         }
 
@@ -60,7 +60,7 @@ public class VestaElixirEffects
 
     private void ChooseNextEffect(Object state, ArrayList<AbstractCard> cards)
     {
-        currentElixir = Utilities.SafeCast(cards.get(0), Vesta_Elixir.class);
+        currentElixir = JavaUtilities.SafeCast(cards.get(0), Vesta_Elixir.class);
         if (currentElixir == null)
         {
             currentElixir = new Vesta_Elixir();

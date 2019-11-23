@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class FrostWispPower extends AnimatorPower
 {
@@ -32,7 +32,7 @@ public class FrostWispPower extends AnimatorPower
     {
         super.onDeath();
 
-        for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
+        for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
         {
             GameActionsHelper.ApplyPower(null, c, new PlatedArmorPower(c, amount), amount);
         }

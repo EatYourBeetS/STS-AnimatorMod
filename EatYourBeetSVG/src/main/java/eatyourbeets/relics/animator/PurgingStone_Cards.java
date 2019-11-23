@@ -12,9 +12,9 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import eatyourbeets.cards.CardSeriesComparator;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], MAX_STORED_USES);
+        return JavaUtilities.Format(DESCRIPTIONS[0], MAX_STORED_USES);
     }
 
     public PurgingStone_Cards()
@@ -97,7 +97,7 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
     {
         super.update();
 
-        if (HitboxRightClick.rightClicked.get(this.hb) && !PlayerStatistics.InBattle() &&
+        if (HitboxRightClick.rightClicked.get(this.hb) && !GameUtilities.InBattle() &&
                 AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID && bannedCards.size() > 0)
         {
             CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
@@ -181,7 +181,7 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
 
     public boolean CanActivate(RewardItem rewardItem)
     {
-        if (!PlayerStatistics.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD)
+        if (!GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD)
         {
             try
             {

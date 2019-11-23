@@ -7,8 +7,8 @@ import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.orbs.Air;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.orbs.Aether;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Tatsumaki extends AnimatorCard
 {
@@ -26,10 +26,10 @@ public class Tatsumaki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ChannelOrb(new Air(), true);
+        GameActionsHelper.ChannelOrb(new Aether(), true);
         GameActionsHelper.GainIntellect(magicNumber);
 
-        if (PlayerStatistics.GetUniqueOrbsCount() >= 3 && EffectHistory.TryActivateLimited(this.cardID))
+        if (GameUtilities.GetUniqueOrbsCount() >= 3 && EffectHistory.TryActivateLimited(this.cardID))
         {
             GameActionsHelper.GainEnergy(2);
             GameActionsHelper.DrawCard(p, 2);

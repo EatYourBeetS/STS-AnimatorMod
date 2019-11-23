@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class TetDiscardAction extends AnimatorAction
 {
@@ -34,7 +34,7 @@ public class TetDiscardAction extends AnimatorAction
                 return;
             }
 
-            String message = Utilities.Format(TEXT[0], String.valueOf(replaceNumber));
+            String message = JavaUtilities.Format(TEXT[0], String.valueOf(replaceNumber));
 
             CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 

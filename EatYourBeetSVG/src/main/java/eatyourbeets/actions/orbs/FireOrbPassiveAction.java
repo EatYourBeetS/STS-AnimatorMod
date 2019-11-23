@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class FireOrbPassiveAction extends AnimatorAction
 {
@@ -28,7 +28,7 @@ public class FireOrbPassiveAction extends AnimatorAction
         int maxHealth = Integer.MIN_VALUE;
         AbstractMonster enemy = null;
         AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             if (m.currentHealth > maxHealth)
             {

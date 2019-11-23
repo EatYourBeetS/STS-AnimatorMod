@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class HallowedScabbard extends AnimatorRelic
 {
@@ -26,7 +26,7 @@ public class HallowedScabbard extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], DAMAGE_THRESHOLD, REGENERATION, FORCE);
+        return JavaUtilities.Format(DESCRIPTIONS[0], DAMAGE_THRESHOLD, REGENERATION, FORCE);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class HallowedScabbard extends AnimatorRelic
     {
         super.onLoseHp(damageAmount);
 
-        if (PlayerStatistics.InBattle())
+        if (GameUtilities.InBattle())
         {
             counter += damageAmount;
             if (!used && counter >= DAMAGE_THRESHOLD)

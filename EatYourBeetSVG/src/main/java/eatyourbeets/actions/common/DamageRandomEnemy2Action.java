@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class DamageRandomEnemy2Action extends AbstractGameAction
 {
@@ -16,7 +16,7 @@ public class DamageRandomEnemy2Action extends AbstractGameAction
     public DamageRandomEnemy2Action(DamageInfo info, AttackEffect effect)
     {
         this.info = info;
-        this.setValues(PlayerStatistics.GetRandomEnemy(true), info);
+        this.setValues(GameUtilities.GetRandomEnemy(true), info);
         this.actionType = ActionType.DAMAGE;
         this.attackEffect = effect;
         this.duration = 0.1F;
@@ -40,7 +40,7 @@ public class DamageRandomEnemy2Action extends AbstractGameAction
             {
                 if (target.isDeadOrEscaped() || target.currentHealth <= 0)
                 {
-                    if (PlayerStatistics.GetCurrentEnemies(true).size() > 0)
+                    if (GameUtilities.GetCurrentEnemies(true).size() > 0)
                     {
                         GameActionsHelper.AddToTop(new DamageRandomEnemy2Action(info, attackEffect));
                     }

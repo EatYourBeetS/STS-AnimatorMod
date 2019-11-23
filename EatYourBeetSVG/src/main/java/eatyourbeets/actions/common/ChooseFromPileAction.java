@@ -58,7 +58,7 @@ public class ChooseFromPileAction extends AbstractGameAction
                 }
             }
 
-            if (tmp.size() == 0)
+            if (tmp.size() == 0 || this.amount == 0)
             {
                 onCompletion.accept(state, selectedCards);
                 this.isDone = true;
@@ -73,24 +73,23 @@ public class ChooseFromPileAction extends AbstractGameAction
                 onCompletion.accept(state, selectedCards);
                 this.isDone = true;
             }
+            else if (this.random)
+            {
+                for (int i = 0; i < this.amount; i++)
+                {
+                    AbstractCard card = tmp.getRandomCard(true);
+
+                    tmp.removeCard(card);
+
+                    selectedCards.add(card);
+                }
+
+                onCompletion.accept(state, selectedCards);
+                this.isDone = true;
+            }
             else
             {
-                if (this.random)
-                {
-                    for (int i = 0; i < this.amount; i++)
-                    {
-                        AbstractCard card = tmp.getRandomCard(true);
-
-                        tmp.removeCard(card);
-
-                        selectedCards.add(card);
-                    }
-                }
-                else if (this.amount > 0)
-                {
-                    AbstractDungeon.gridSelectScreen.open(tmp, this.amount, message, false);
-                }
-
+                AbstractDungeon.gridSelectScreen.open(tmp, this.amount, message, false);
                 this.tickDuration();
             }
         }

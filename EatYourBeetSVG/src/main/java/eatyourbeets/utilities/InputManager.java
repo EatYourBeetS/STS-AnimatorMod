@@ -65,7 +65,7 @@ public class InputManager
 
     private static void UpdateEYBCardText()
     {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT))
+        if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT))
         {
             EYBCardText.Toggled = !EYBCardText.Toggled;
         }

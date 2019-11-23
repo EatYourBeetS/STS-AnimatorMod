@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -64,7 +64,7 @@ public class Kyubey extends AnimatorCard implements StartupCard
             //curses.add(new Necronomicurse());
         }
 
-        return Utilities.GetRandomElement(curses).makeCopy();
+        return JavaUtilities.GetRandomElement(curses).makeCopy();
     }
 
     @Override

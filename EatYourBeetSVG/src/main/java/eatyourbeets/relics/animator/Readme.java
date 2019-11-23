@@ -75,8 +75,8 @@ public class Readme extends AnimatorRelic
         {
             AbstractDungeon.ftue = new FtueTip(header, content, Settings.WIDTH / 2f, Settings.HEIGHT / 2f, FtueTip.TipType.CARD_REWARD);
             AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, this));
-            //AnimatorMetrics.GetConfig().setBool(key, true);
-            //AnimatorMetrics.SaveConfig();
+            AnimatorMetrics.GetConfig().setBool(key, true);
+            AnimatorMetrics.SaveConfig();
         }
     }
 

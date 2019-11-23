@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
@@ -60,7 +60,7 @@ public class TheMaskedTraveler3 extends AnimatorEvent
         AbstractPlayer p = AbstractDungeon.player;
         if (button == 0) // Trade
         {
-            AncientMedallion medallion = Utilities.SafeCast(p.getRelic(AncientMedallion.ID), AncientMedallion.class);
+            AncientMedallion medallion = JavaUtilities.SafeCast(p.getRelic(AncientMedallion.ID), AncientMedallion.class);
             if (medallion != null)
             {
                 medallion.setCounter(medallion.counter - 1);

@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.effects.Hemokinesis2Effect;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class UnnamedDollPower extends AnimatorPower
 {
@@ -62,7 +62,7 @@ public class UnnamedDollPower extends AnimatorPower
     {
         if (!AbstractDungeon.getCurrRoom().isBattleEnding())
         {
-            for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
+            for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
             {
                 GameActionsHelper.VFX(new Hemokinesis2Effect(owner.hb.cX, owner.hb.cY, c.hb.cX, c.hb.cY), 0.35f);
                 GameActionsHelper.ApplyPower(null, c, new StrengthPower(c, STRENGTH), STRENGTH);

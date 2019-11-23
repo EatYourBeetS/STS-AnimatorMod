@@ -5,10 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
 public class Defend_OnePunchMan extends Defend
@@ -53,7 +52,7 @@ public class Defend_OnePunchMan extends Defend
 
             for (AbstractCard c : GetAllInBattleInstances())
             {
-                AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+                AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
                 if (card != null)
                 {
                     if (newValue == 0)

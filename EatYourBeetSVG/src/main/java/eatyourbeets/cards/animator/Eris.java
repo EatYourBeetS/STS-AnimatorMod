@@ -17,6 +17,7 @@ import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnLoseHpSubscriber;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleStartSubscriber
 {
@@ -37,7 +38,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
         SetHealing(true);
         SetSynergy(Synergies.Konosuba);
 
-        if (revive && PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
+        if (revive && GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen)
         {
             OnBattleStart();
         }
@@ -105,7 +106,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     private boolean InPlayerDeck()
     {
         AbstractPlayer player = AbstractDungeon.player;
-        if (PlayerStatistics.InBattle())
+        if (GameUtilities.InBattle())
         {
             return player.hand.contains(this) || player.drawPile.contains(this) || player.discardPile.contains(this);
         }

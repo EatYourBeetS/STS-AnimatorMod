@@ -20,13 +20,14 @@ public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
 
         this.amount = amount;
         this.type = PowerType.DEBUFF;
+        this.priority = 105;
 
         updateDescription();
     }
 
     public void playApplyPowerSfx()
     {
-        CardCrawlGame.sound.play("POWER_CONSTRICTED", 0.05F);
+        CardCrawlGame.sound.play("BLOOD_SPLAT", 0.05F);
     }
 
     @Override

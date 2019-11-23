@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.localization.BlightStrings;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,7 +33,7 @@ public class AnimatorBlight extends AbstractBlight
 
     public AnimatorBlight(String id, BlightStrings strings, int amount)
     {
-        super(id, strings.NAME, Utilities.Format(strings.DESCRIPTION[0], amount), AbstractResources.GetBlightImageName(id), true);
+        super(id, strings.NAME, JavaUtilities.Format(strings.DESCRIPTION[0], amount), AbstractResources.GetBlightImageName(id), true);
 
         this.initialAmount = amount;
         this.counter = amount;

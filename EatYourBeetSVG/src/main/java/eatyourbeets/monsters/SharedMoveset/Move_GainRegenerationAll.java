@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Move_GainRegenerationAll extends AbstractMove
 {
@@ -23,7 +23,7 @@ public class Move_GainRegenerationAll extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(owner, m, new RegenPower(m, buffAmount), buffAmount);
         }

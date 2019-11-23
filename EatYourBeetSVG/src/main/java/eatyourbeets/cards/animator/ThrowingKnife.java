@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,8 +15,8 @@ import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.interfaces.metadata.Hidden;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.powers.PlayerStatistics;
 import patches.AbstractEnums;
 
 public abstract class ThrowingKnife extends AnimatorCard implements Hidden, OnCallbackSubscriber
@@ -78,7 +77,7 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden, OnCa
     {
         if (m == null || m.isDeadOrEscaped())
         {
-            m = PlayerStatistics.GetRandomEnemy(true);
+            m = GameUtilities.GetRandomEnemy(true);
         }
 
         if (m != null)

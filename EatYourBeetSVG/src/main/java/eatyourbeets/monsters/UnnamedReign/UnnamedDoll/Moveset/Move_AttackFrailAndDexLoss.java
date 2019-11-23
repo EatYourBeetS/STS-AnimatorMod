@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class Move_AttackFrailAndDexLoss extends AbstractMove
 {
@@ -37,8 +37,8 @@ public class Move_AttackFrailAndDexLoss extends AbstractMove
 
         if (!usedOnce)
         {
-            int dex = PlayerStatistics.GetDexterity(target);
-            LoseDexterityPower loseDex = Utilities.SafeCast(target.getPower(LoseDexterityPower.POWER_ID), LoseDexterityPower.class);
+            int dex = GameUtilities.GetDexterity(target);
+            LoseDexterityPower loseDex = JavaUtilities.SafeCast(target.getPower(LoseDexterityPower.POWER_ID), LoseDexterityPower.class);
             if (loseDex != null)
             {
                 dex -= loseDex.amount;

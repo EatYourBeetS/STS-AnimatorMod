@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Lightning;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
@@ -17,42 +19,82 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 
-public class CrowleyEusford extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardExhaustedSubscriber, OnCostRefreshSubscriber
+public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscriber
 {
-    public static final String ID = Register(CrowleyEusford.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(CrowleyEusford.class.getSimpleName(), EYBCardBadge.Special);
 
-    private Integer actualCost = null;
-    private int lastTurnCount = -1;
     private int costModifier = 0;
 
     public CrowleyEusford()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(7, 0, 3, 4);
-
-        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
-        {
-            OnBattleStart();
-        }
+        Initialize(5, 0, 3, 1);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
 
     @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        resetAttributes();
+    }
+
+    @Override
+    public void resetAttributes()
+    {
+        super.resetAttributes();
+
+        costModifier = 0;
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        costModifier = 0;
+    }
+
+    @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        costModifier = 0;
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        CrowleyEusford copy = (CrowleyEusford)super.makeStatEquivalentCopy();
+
+        copy.costModifier = this.costModifier;
+
+        return copy;
+    }
+
+    @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+
+        OnCostRefresh(this);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, secondaryValue, false), secondaryValue);
+
         for (int i = 1; i < magicNumber; i++)
         {
             GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
 
         GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-
-        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(this.cardID))
-        {
-            GameActionsHelper.AddToBottom(new HealAction(p, p, secondaryValue));
-        }
     }
 
     @Override
@@ -65,33 +107,18 @@ public class CrowleyEusford extends AnimatorCard implements OnBattleStartSubscri
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        OnCostRefresh(this);
-    }
-
-    @Override
-    public void OnAfterCardExhausted(AbstractCard card)
-    {
-        if (card != this && AbstractDungeon.player.hand.contains(this))
-        {
-            modifyCostForTurn(-1);
-        }
-    }
-
-    @Override
-    public void OnBattleStart()
-    {
-        PlayerStatistics.onAfterCardExhausted.Subscribe(this);
-        OnCostRefresh(this);
-    }
-
-    @Override
     public void OnCostRefresh(AbstractCard card)
     {
         if (card == this)
         {
-            modifyCostForTurn(-PlayerStatistics.getCardsExhaustedThisTurn());
+            int currentCost = (costForTurn + costModifier);
+
+            costModifier = PlayerStatistics.getCardsExhaustedThisTurn();
+
+            if (!this.freeToPlayOnce)
+            {
+                setCostForTurn(currentCost - costModifier);
+            }
         }
     }
 }

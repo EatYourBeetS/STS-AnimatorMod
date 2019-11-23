@@ -8,15 +8,15 @@ import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.utilities.Field;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.Map;
 
 public class TipHelperPatches
 {
-    //private static Field<Boolean> RenderedTipThisFrame = Utilities.GetPrivateField("renderedTipThisFrame", TipHelper.class);
-    private static Field<Boolean> IsCard = Utilities.GetPrivateField("isCard", TipHelper.class);
-    private static Field<AbstractCard> Card = Utilities.GetPrivateField("card", TipHelper.class);
+    //private static Field<Boolean> RenderedTipThisFrame = JavaUtilities.GetPrivateField("renderedTipThisFrame", TipHelper.class);
+    private static Field<Boolean> IsCard = JavaUtilities.GetPrivateField("isCard", TipHelper.class);
+    private static Field<AbstractCard> Card = JavaUtilities.GetPrivateField("card", TipHelper.class);
 
     @SpirePatch(clz= TipHelper.class, method="renderBox")
     public static class TipHelperPatches_renderTipForCard

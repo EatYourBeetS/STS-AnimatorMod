@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class Kira extends AnimatorCard
 {
@@ -113,20 +113,18 @@ public class Kira extends AnimatorCard
     {
         if (monster == null)
         {
-            cardText.overrideDescription = null;
+            cardText.OverrideDescription(null, true);
         }
         else if (monster instanceof TheUnnamed)
         {
-            cardText.overrideDescription = null;
+            cardText.OverrideDescription(null, true);
             ((TheUnnamed)monster).TriedUsingDeathNote();
         }
         else
         {
             updateCountdown(monster);
-            cardText.overrideDescription = Utilities.Format(cardData.strings.EXTENDED_DESCRIPTION[2], countdown);
+            cardText.OverrideDescription(JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[2], countdown), true);
         }
-
-        cardText.ForceRefresh();
     }
 
     private void updateCountdown(AbstractMonster m)

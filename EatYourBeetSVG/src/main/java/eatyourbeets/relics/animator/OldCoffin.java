@@ -10,9 +10,9 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class OldCoffin extends AnimatorRelic
 {
@@ -49,7 +49,7 @@ public class OldCoffin extends AnimatorRelic
         counter += 1;
         if (counter > ACTIVATION_THRESHOLD)
         {
-            AbstractMonster m = Utilities.GetRandomElement(PlayerStatistics.GetCurrentEnemies(true));
+            AbstractMonster m = JavaUtilities.GetRandomElement(GameUtilities.GetCurrentEnemies(true));
             if (m != null)
             {
                 AbstractPlayer p = AbstractDungeon.player;

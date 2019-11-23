@@ -3,7 +3,7 @@ package eatyourbeets.relics.animator;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class Hoodie extends AnimatorRelic
 {
@@ -19,7 +19,7 @@ public class Hoodie extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], MAX_HP_BONUS);
+        return JavaUtilities.Format(DESCRIPTIONS[0], MAX_HP_BONUS);
     }
 
     @Override

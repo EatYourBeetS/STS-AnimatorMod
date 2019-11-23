@@ -9,14 +9,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
-
-import java.util.function.BiConsumer;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Souei extends AnimatorCard implements MartialArtist
 {
@@ -70,7 +67,7 @@ public class Souei extends AnimatorCard implements MartialArtist
         int currentIntangible = GetIntangible();
         AbstractPlayer p = AbstractDungeon.player;
 
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
         {
             PoisonPower poisonPower = (PoisonPower)m1.getPower(PoisonPower.POWER_ID);
             if (poisonPower != null)

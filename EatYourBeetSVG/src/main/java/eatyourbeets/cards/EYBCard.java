@@ -1,6 +1,5 @@
 package eatyourbeets.cards;
 
-import basemod.ConsoleInputProcessor;
 import basemod.abstracts.CustomCard;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.Gdx;
@@ -15,15 +14,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
-import com.megacrit.cardcrawl.helpers.controller.CInputAction;
-import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
-import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.resources.Resources_Common_Strings;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
-import eatyourbeets.utilities.Utilities;
 import patches.AbstractEnums;
 
 import java.lang.reflect.InvocationTargetException;
@@ -94,7 +89,7 @@ public abstract class EYBCard extends CustomCard
     {
         AbstractCard result = super.makeStatEquivalentCopy();
 
-        EYBCard copy = Utilities.SafeCast(result, EYBCard.class);
+        EYBCard copy = JavaUtilities.SafeCast(result, EYBCard.class);
         if (copy != null)
         {
             copy.magicNumber = this.magicNumber;
@@ -631,7 +626,7 @@ public abstract class EYBCard extends CustomCard
                     preview.drawScale = this.drawScale;
                 }
 
-                EYBCard card = Utilities.SafeCast(preview, EYBCard.class);
+                EYBCard card = JavaUtilities.SafeCast(preview, EYBCard.class);
                 if (card != null)
                 {
                     card.renderAsPreview(sb);

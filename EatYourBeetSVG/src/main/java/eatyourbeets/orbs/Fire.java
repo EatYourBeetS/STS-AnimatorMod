@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.orbs.FireOrbEvokeAction;
 import eatyourbeets.actions.orbs.FireOrbPassiveAction;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Fire extends AnimatorOrb
 {
@@ -68,7 +68,7 @@ public class Fire extends AnimatorOrb
 
     public void applyFocus()
     {
-        int focus = PlayerStatistics.GetFocus(AbstractDungeon.player);
+        int focus = GameUtilities.GetFocus(AbstractDungeon.player);
 
         this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
     }

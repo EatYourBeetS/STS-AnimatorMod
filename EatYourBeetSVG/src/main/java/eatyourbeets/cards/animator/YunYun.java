@@ -12,10 +12,10 @@ import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
 import eatyourbeets.interfaces.metadata.Spellcaster;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSubscriber
 {
@@ -27,7 +27,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(8, 0);
+        Initialize(9, 0);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Konosuba);
@@ -47,6 +47,13 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
         GameActionsHelper.ChannelOrb(new Lightning(), true);
 
         this.resetAttributes();
+    }
+
+    @Override
+    public void resetAttributes()
+    {
+        super.resetAttributes();
+
         costModifier = 0;
     }
 
@@ -67,6 +74,16 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     }
 
     @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        YunYun copy = (YunYun)super.makeStatEquivalentCopy();
+
+        copy.costModifier = this.costModifier;
+
+        return copy;
+    }
+
+    @Override
     public void applyPowers()
     {
         super.applyPowers();
@@ -79,7 +96,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     {
         GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE"));
 
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.AddToBottom(new VFXAction(new LightningEffect(m1.drawX, m1.drawY)));
         }

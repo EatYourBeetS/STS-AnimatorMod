@@ -2,7 +2,7 @@ package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class HealingCubePower extends AnimatorPower
 {
@@ -35,7 +35,7 @@ public class HealingCubePower extends AnimatorPower
         {
             owner.heal(amount, true);
         }
-        else for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
+        else for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
         {
             m.heal(amount, true);
         }

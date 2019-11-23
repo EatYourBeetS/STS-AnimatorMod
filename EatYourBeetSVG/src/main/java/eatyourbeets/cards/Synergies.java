@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -111,7 +111,7 @@ public class Synergies
     {
         for (AbstractCard c : source)
         {
-            AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
             if (card != null)
             {
                 destination.add(card);
@@ -123,7 +123,7 @@ public class Synergies
     {
         for (AbstractCard c : source)
         {
-            AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
             if (card != null && (synergy.Equals(card.GetSynergy()) || synergy.Equals(Synergies.ANY)))
             {
                 destination.add(card);

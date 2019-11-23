@@ -4,10 +4,10 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.powers.CommonPower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.EngravedStaff;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ForcePower extends CommonPower
 {
@@ -48,7 +48,7 @@ public class ForcePower extends CommonPower
             return;
         }
 
-        if (PlayerStatistics.GetStrength() > 0)
+        if (GameUtilities.GetStrength() > 0)
         {
             GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, StrengthPower.POWER_ID, 1));
         }

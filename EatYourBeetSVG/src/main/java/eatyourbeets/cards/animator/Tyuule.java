@@ -12,7 +12,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Tyuule extends AnimatorCard
 {
@@ -32,7 +32,7 @@ public class Tyuule extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             AbstractPower poison = m.getPower(PoisonPower.POWER_ID);
             if (poison != null)
@@ -45,7 +45,7 @@ public class Tyuule extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(p, m1, new PoisonPower(m1, p, this.magicNumber), this.magicNumber);
             GameActionsHelper.ApplyPower(p, m1, new VulnerablePower(m1, 1, false), 1);

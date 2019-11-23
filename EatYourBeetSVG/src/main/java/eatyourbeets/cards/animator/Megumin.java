@@ -17,10 +17,10 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.Spellcaster;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class Megumin extends AnimatorCard implements Spellcaster
 {
@@ -56,7 +56,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
         GameActionsHelper.AddToBottom(new WaitAction(0.35f));
         GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.RED)));
         GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5f));
-        for (AbstractCreature m1 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractCreature m1 : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.AddToBottom(new VFXAction(new FlameBarrierEffect(m1.hb_x, m1.hb_y)));
             GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(m1.hb_x, m1.hb_y)));
@@ -67,7 +67,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
         {
             for (AbstractCard c : GetAllInstances())
             {
-                Megumin megumin = Utilities.SafeCast(c, Megumin.class);
+                Megumin megumin = JavaUtilities.SafeCast(c, Megumin.class);
                 if (megumin != null)
                 {
                     megumin.upgrade();
@@ -87,7 +87,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
     {
         this.timesUpgraded += 1;
 
-        upgradeDamage(2);
+        upgradeDamage(timesUpgraded % 2 == 0 ? 3 : 2);
 
         this.upgraded = true;
         this.name = cardData.strings.NAME + "+" + this.timesUpgraded;

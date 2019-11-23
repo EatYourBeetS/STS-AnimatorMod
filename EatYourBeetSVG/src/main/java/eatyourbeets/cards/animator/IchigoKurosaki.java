@@ -1,20 +1,15 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.ChemicalX;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoKurosaki extends AnimatorCard implements MartialArtist, OnCallbackSubscriber
 {
@@ -73,7 +68,7 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist, OnCal
     {
         if (state == this && action != null)
         {
-            if (PlayerStatistics.GetStrength() >= secondaryValue)
+            if (GameUtilities.GetStrength() >= secondaryValue)
             {
                 GameActionsHelper.MakeCardInDrawPile(new IchigoBankai(), 1, false);
             }

@@ -12,13 +12,13 @@ public class OrbCore_Dark extends AnimatorCard
 {
     public static final String ID = Register(OrbCore_Dark.class.getSimpleName(), EYBCardBadge.Special);
 
-    public static final int VALUE = 3;
+    public static final int VALUE = 1;
 
     public OrbCore_Dark()
     {
         super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0,0, VALUE,2);
+        Initialize(0,0, VALUE,1);
     }
 
     @Override

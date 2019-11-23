@@ -5,21 +5,21 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import eatyourbeets.utilities.Field;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
 public class GridCardSelectScreenPatch
 {
-    private static final Field<Float> Field_drawStartX = Utilities.GetPrivateField("drawStartX", GridCardSelectScreen.class);
-    private static final Field<Float> Field_padX = Utilities.GetPrivateField("padX", GridCardSelectScreen.class);
-    private static final Field<Float> Field_padY = Utilities.GetPrivateField("padY", GridCardSelectScreen.class);
-    private static final Field<Float> Field_drawStartY = Utilities.GetPrivateField("drawStartY", GridCardSelectScreen.class);
-    private static final Field<Float> Field_currentDiffY = Utilities.GetPrivateField("currentDiffY", GridCardSelectScreen.class);
-    private static final Field<AbstractCard> Field_hoveredCard = Utilities.GetPrivateField("hoveredCard", GridCardSelectScreen.class);
-    private static final Field<CardGroup> Field_targetGroup = Utilities.GetPrivateField("targetGroup", GridCardSelectScreen.class);
-    private static final Field<Integer> Field_prevDeckSize = Utilities.GetPrivateField("prevDeckSize", GridCardSelectScreen.class);
-    private static final Field<Float> Field_scrollUpperBound = Utilities.GetPrivateField("scrollUpperBound", GridCardSelectScreen.class);
+    private static final Field<Float> Field_drawStartX = JavaUtilities.GetPrivateField("drawStartX", GridCardSelectScreen.class);
+    private static final Field<Float> Field_padX = JavaUtilities.GetPrivateField("padX", GridCardSelectScreen.class);
+    private static final Field<Float> Field_padY = JavaUtilities.GetPrivateField("padY", GridCardSelectScreen.class);
+    private static final Field<Float> Field_drawStartY = JavaUtilities.GetPrivateField("drawStartY", GridCardSelectScreen.class);
+    private static final Field<Float> Field_currentDiffY = JavaUtilities.GetPrivateField("currentDiffY", GridCardSelectScreen.class);
+    private static final Field<AbstractCard> Field_hoveredCard = JavaUtilities.GetPrivateField("hoveredCard", GridCardSelectScreen.class);
+    private static final Field<CardGroup> Field_targetGroup = JavaUtilities.GetPrivateField("targetGroup", GridCardSelectScreen.class);
+    private static final Field<Integer> Field_prevDeckSize = JavaUtilities.GetPrivateField("prevDeckSize", GridCardSelectScreen.class);
+    private static final Field<Float> Field_scrollUpperBound = JavaUtilities.GetPrivateField("scrollUpperBound", GridCardSelectScreen.class);
 
     private static CardGroup mergedGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static ArrayList<CardGroup> cardGroups = new ArrayList<>();

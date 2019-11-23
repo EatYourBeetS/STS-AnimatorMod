@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class FireCubePower extends AnimatorPower
 {
@@ -39,7 +39,7 @@ public class FireCubePower extends AnimatorPower
             GameActionsHelper.ApplyPowerSilently(owner, owner, new BurningPower(owner, owner, amount), amount);
             GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, amount), amount);
         }
-        else for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
+        else for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPowerSilently(null, m, new BurningPower(m, null, amount), amount);
             GameActionsHelper.ApplyPower(null, m, new StrengthPower(m, amount), amount);

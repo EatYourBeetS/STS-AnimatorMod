@@ -1,19 +1,16 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-
-import java.util.HashSet;
-import java.util.Iterator;
+import eatyourbeets.utilities.GameUtilities;
 
 public class YaoHaDucy extends AnimatorCard
 {
@@ -23,7 +20,7 @@ public class YaoHaDucy extends AnimatorCard
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(3, 0, 2, 3);
+        Initialize(3, 0, 2, 2);
 
         SetSynergy(Synergies.Gate);
     }
@@ -33,8 +30,12 @@ public class YaoHaDucy extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.secondaryValue, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        if (EffectHistory.TryActivateLimited(cardID))
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, secondaryValue), secondaryValue);
+            GameActionsHelper.GainBlock(p, secondaryValue);
+        }
     }
 
     @Override
@@ -42,9 +43,9 @@ public class YaoHaDucy extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
 
-        if (PlayerStatistics.IsAttacking(m.intent))
+        if (GameUtilities.IsAttacking(m.intent))
         {
-            PlayerStatistics.LoseTemporaryStrength(p, m, magicNumber);
+            GameUtilities.LoseTemporaryStrength(p, m, magicNumber);
         }
     }
 
@@ -55,69 +56,5 @@ public class YaoHaDucy extends AnimatorCard
         {
             upgradeDamage(3);
         }
-    }
-
-    public HashSet<AbstractCard> getAllCopies()
-    {
-        HashSet<AbstractCard> cards = new HashSet<>();
-        AbstractCard c;
-
-        c = AbstractDungeon.player.cardInUse;
-        if (c != null && c.cardID.equals(cardID))
-        {
-            cards.add(c);
-        }
-
-        Iterator var2 = AbstractDungeon.player.drawPile.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.discardPile.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.exhaustPile.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.limbo.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.hand.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        return cards;
     }
 }

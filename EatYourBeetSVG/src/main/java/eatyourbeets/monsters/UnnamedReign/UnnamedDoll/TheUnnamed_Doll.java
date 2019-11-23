@@ -16,9 +16,9 @@ import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackFrailAndDexLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_AttackWeakAndStrLoss;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainRitualAndArtifactAll;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.CursedStabsPower;
 import eatyourbeets.powers.UnnamedReign.UnnamedDollPower;
+import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamed_Doll extends AnimatorMonster
 {
@@ -43,7 +43,7 @@ public class TheUnnamed_Doll extends AnimatorMonster
         ritualAndArtifactAll = (Move_GainRitualAndArtifactAll)
                 moveset.AddSpecial(new Move_GainRitualAndArtifactAll(2, 2), 1);
 
-        boolean asc4 = PlayerStatistics.GetAscensionLevel() >= 4;
+        boolean asc4 = GameUtilities.GetAscensionLevel() >= 4;
 
         int debuffAmount = asc4 ? 2 : 1;
         int tempThorns = asc4 ? 3 : 2;
@@ -61,7 +61,7 @@ public class TheUnnamed_Doll extends AnimatorMonster
 
         GameActionsHelper.ApplyPower(this, this, new CursedStabsPower(this));
         GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this));
-        GameActionsHelper.GainBlock(this, 26 + (int)(PlayerStatistics.GetActualAscensionLevel() * 0.66f));
+        GameActionsHelper.GainBlock(this, 26 + (int)(GameUtilities.GetActualAscensionLevel() * 0.66f));
     }
 
     @Override
@@ -143,7 +143,7 @@ public class TheUnnamed_Doll extends AnimatorMonster
         {
             super(id);
 
-            if (PlayerStatistics.GetAscensionLevel() > 7)
+            if (GameUtilities.GetAscensionLevel() > 7)
             {
                 maxHealth = 241;
             }

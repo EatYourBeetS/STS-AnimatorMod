@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Move_GainPlatedArmorAll extends AbstractMove
 {
@@ -23,7 +23,7 @@ public class Move_GainPlatedArmorAll extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(owner, m, new PlatedArmorPower(m, buffAmount), buffAmount);
         }

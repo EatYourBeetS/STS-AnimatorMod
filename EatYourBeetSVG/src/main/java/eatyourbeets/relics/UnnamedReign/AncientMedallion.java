@@ -15,7 +15,7 @@ import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import patches.AbstractEnums;
 import patches.RelicObtainedPatches;
 
@@ -57,7 +57,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], HEAL_AMOUNT * Math.max(1, counter));
+        return JavaUtilities.Format(DESCRIPTIONS[0], HEAL_AMOUNT * Math.max(1, counter));
     }
 
     public void onManualEquip()

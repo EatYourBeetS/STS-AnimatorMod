@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EntanglePower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamedHatPower extends AnimatorPower
 {
@@ -47,7 +47,7 @@ public class TheUnnamedHatPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             if (m.currentHealth < m.maxHealth)
             {

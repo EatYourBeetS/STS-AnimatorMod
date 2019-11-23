@@ -27,7 +27,7 @@
 	},
 	"animator:BozesPower":
 	{
-		"DESCRIPTIONS": ["When a card #ySynergizes, gain #b", " #yPlated #yArmor."],
+		"DESCRIPTIONS": ["When a card #ySynergizes, gain #b", " #ySupport #yDamage."],
 		"NAME": "Bozes Co Palesti"
 	},
 	"animator:BurningPower":
@@ -220,6 +220,11 @@
 		"DESCRIPTIONS": ["Next turn, gain #b", " Temporary #yDexterity."],
 		"NAME": "Next Turn Dexterity"
 	},
+	"animator:OrbCore_AetherPower":
+	{
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, draw #b", " cards, then discard 1 card."],
+		"NAME": "Aether Core"
+	},
 	"animator:OrbCore_ChaosPower":
 	{
 		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, #yDiscover #b", " card/s."],
@@ -227,7 +232,7 @@
 	},
 	"animator:OrbCore_DarkPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, draw #b", " cards, then discard #b1 card."],
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, apply #b", " #yWeak and #yVulnerable to a random enemy."],
 		"NAME": "Dark Core"
 	},
 	"animator:OrbCore_EarthPower":

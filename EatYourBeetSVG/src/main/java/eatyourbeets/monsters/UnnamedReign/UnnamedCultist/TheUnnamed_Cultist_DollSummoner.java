@@ -13,8 +13,8 @@ import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
 import eatyourbeets.monsters.SharedMoveset.Move_Talk;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset.Move_SummonEnemy;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.TheUnnamedCultistPower;
+import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
 {
@@ -49,7 +49,7 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
     {
         super.die();
 
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             if (m.hasPower(MinionPower.POWER_ID))
             {

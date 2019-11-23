@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Unnamed;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
@@ -162,7 +163,7 @@ public abstract class UnnamedCard extends EYBCard
         {
             text = "Voidbound";
 
-            if (PlayerStatistics.InBattle())
+            if (GameUtilities.InBattle())
             {
                 if (enteredVoid)
                 {

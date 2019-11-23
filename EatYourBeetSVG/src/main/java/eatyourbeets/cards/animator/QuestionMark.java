@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -108,7 +108,7 @@ public class QuestionMark extends AnimatorCard implements OnEndOfTurnSubscriber
             }
         }
 
-        return (AnimatorCard) Utilities.GetRandomElement(cardPool).makeCopy();
+        return (AnimatorCard) JavaUtilities.GetRandomElement(cardPool).makeCopy();
     }
 
     private class QuestionMarkAction extends AnimatorAction

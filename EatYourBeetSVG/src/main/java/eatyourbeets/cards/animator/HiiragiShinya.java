@@ -1,19 +1,22 @@
 package eatyourbeets.cards.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.JavaUtilities;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class HiiragiShinya extends AnimatorCard
+public class HiiragiShinya extends AnimatorCard implements OnCallbackSubscriber
 {
     public static final String ID = Register(HiiragiShinya.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -26,24 +29,13 @@ public class HiiragiShinya extends AnimatorCard
         SetSynergy(Synergies.OwariNoSeraph);
     }
 
-    private void OnFetch(List<AbstractCard> cards)
-    {
-        if (cards != null && cards.size() == 1)
-        {
-            AbstractCard c = cards.get(0);
-
-            c.applyPowers();
-            PlayerStatistics.OnCostRefresh(c);
-            c.setCostForTurn(c.costForTurn + 1);
-            c.retain = true;
-        }
-    }
-
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        String message = MoveCardsAction.TEXT[0] + " (" + name + ")";
+
         GameActionsHelper.GainBlock(p, block);
-        GameActionsHelper.AddToBottom(new FetchAction(p.discardPile, 1, this::OnFetch));
+        GameActionsHelper.ChooseFromPile(1, false, p.discardPile, this::OnCompletion, this, message, true);
 
         if (HasActiveSynergy())
         {
@@ -57,6 +49,29 @@ public class HiiragiShinya extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBlock(3);
+        }
+    }
+
+    private void OnCompletion(Object state, ArrayList<AbstractCard> cards)
+    {
+        if (state.equals(this) && cards != null && cards.size() == 1)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            AbstractCard c = cards.get(0);
+
+            GameActionsHelper.MoveCard(c, p.hand, p.discardPile, true);
+            GameActionsHelper.DelayedAction(this, c);
+        }
+    }
+
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
+    {
+        AbstractCard c = JavaUtilities.SafeCast(state, AbstractCard.class);
+        if (c != null)
+        {
+            c.setCostForTurn(c.costForTurn + 1);
+            c.retain = true;
         }
     }
 }

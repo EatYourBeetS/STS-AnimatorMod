@@ -37,13 +37,8 @@ public class Eve extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        Random rng = AbstractDungeon.cardRandomRng;
-        RandomizedList<AbstractCard> cores = new RandomizedList<>(OrbCore_AbstractPower.GetAllCores());
-        CardGroup group1 = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        group1.group.add(cores.Retrieve(rng));
-        group1.group.add(cores.Retrieve(rng));
-        group1.group.add(cores.Retrieve(rng));
-        GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, group1, this::OrbChosen, this, ""));
+        GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false,
+                OrbCore_AbstractPower.CreateCoresGroup(true), this::OrbChosen, this, ""));
 
         if (EffectHistory.TryActivateLimited(cardID))
         {

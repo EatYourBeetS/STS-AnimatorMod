@@ -9,13 +9,13 @@ import com.megacrit.cardcrawl.vfx.cardManip.CardGlowBorder;
 import eatyourbeets.cards.EYBCard;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.utilities.Field;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
 @SpirePatch(clz= CardGlowBorder.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class})
 public class CardGlowBorderPatch
 {
-    private static Field<Color> colorField = Utilities.GetPrivateField("color", AbstractGameEffect.class);
+    private static Field<Color> colorField = JavaUtilities.GetPrivateField("color", AbstractGameEffect.class);
 
     public static Color overrideColor;
 
@@ -35,7 +35,7 @@ public class CardGlowBorderPatch
             return;
         }
 
-        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
+        EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             if (c instanceof AnimatorCard && ((AnimatorCard)c).HasActiveSynergy())

@@ -8,7 +8,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.common.TemporaryArtifactPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
@@ -36,7 +36,7 @@ public class HarukoHaruhara extends AnimatorCard
         AbstractCard card;
         do
         {
-            key = Utilities.GetRandomElement(keys);
+            key = JavaUtilities.GetRandomElement(keys);
             card = CardLibrary.cards.get(key);
         }
         while (card.tags.contains(AbstractCard.CardTags.HEALING));

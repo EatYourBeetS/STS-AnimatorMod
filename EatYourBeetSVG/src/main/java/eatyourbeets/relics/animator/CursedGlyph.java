@@ -7,7 +7,7 @@ import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber
 {
@@ -23,7 +23,7 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], LOSE_MAX_HP);
+        return JavaUtilities.Format(DESCRIPTIONS[0], LOSE_MAX_HP);
     }
 
     public void atBattleStart()

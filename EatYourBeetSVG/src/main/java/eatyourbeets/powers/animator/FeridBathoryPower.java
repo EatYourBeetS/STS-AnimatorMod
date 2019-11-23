@@ -17,8 +17,8 @@ import eatyourbeets.utilities.GameActionsHelper;
 
 public class FeridBathoryPower extends AnimatorPower
 {
-    private static final int EXHAUST_PILE_THRESHOLD = 20;
-    private static final int STRENGTH_GAIN = 8;
+    public static final int EXHAUST_PILE_THRESHOLD = 20;
+    public static final int STRENGTH_GAIN = 9;
 
     public static final String POWER_ID = CreateFullID(FeridBathoryPower.class.getSimpleName());
 

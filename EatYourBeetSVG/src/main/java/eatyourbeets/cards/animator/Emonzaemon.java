@@ -65,7 +65,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
 
                 if (threeInARow)
                 {
-                    GameActionsHelper.MakeCardInDrawPile(new EntouJyuu(), 1, false);
+                    GameActionsHelper.MakeCardInDrawPile(new EntouJyuu(), 1, upgraded);
                     EffectHistory.TryActivateLimited(cardID);
                 }
             }

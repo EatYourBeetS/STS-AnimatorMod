@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Spearman extends AnimatorCard
 {
@@ -30,7 +30,7 @@ public class Spearman extends AnimatorCard
         GameActionsHelper.DamageTargetPiercing(p, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActionsHelper.MakeCardInHand(new Wound(), 1, false);
 
-        if (PlayerStatistics.GetStrength() > PlayerStatistics.GetStrength(m) && EffectHistory.TryActivateSemiLimited(cardID))
+        if (GameUtilities.GetStrength() > GameUtilities.GetStrength(m) && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActionsHelper.Motivate(1);
         }

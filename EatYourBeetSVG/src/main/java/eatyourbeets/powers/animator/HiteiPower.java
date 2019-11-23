@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions.animator.HiteiAction2;
 
 public class HiteiPower extends AnimatorPower
@@ -65,7 +65,7 @@ public class HiteiPower extends AnimatorPower
     @Override
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
-        HiteiPower other = Utilities.SafeCast(power, HiteiPower.class);
+        HiteiPower other = JavaUtilities.SafeCast(power, HiteiPower.class);
         if (other != null && power.owner == target)
         {
             this.unupgradedStacks += other.unupgradedStacks;

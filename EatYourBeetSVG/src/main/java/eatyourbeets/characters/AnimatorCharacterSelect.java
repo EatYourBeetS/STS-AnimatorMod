@@ -3,7 +3,7 @@ package eatyourbeets.characters;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.animator.Defend;
 import eatyourbeets.cards.animator.Strike;
 import eatyourbeets.characters.Loadouts.*;
@@ -35,7 +35,7 @@ public class AnimatorCharacterSelect
                 }
             }
 
-            AnimatorCustomLoadout newLoadout = Utilities.GetRandomElement(unlocked, new com.megacrit.cardcrawl.random.Random());
+            AnimatorCustomLoadout newLoadout = JavaUtilities.GetRandomElement(unlocked, new com.megacrit.cardcrawl.random.Random());
             if (newLoadout == null)
             {
                 index = 0;
@@ -118,10 +118,10 @@ public class AnimatorCharacterSelect
 
     public static void SetLoadout(int loadout)
     {
-        Utilities.Logger.info("Last Layout: " + loadout);
+        JavaUtilities.Logger.info("Last Layout: " + loadout);
         for (int i = 0; i < customLoadouts.size(); i++)
         {
-            Utilities.Logger.info(customLoadouts.get(i).Name + " (" + customLoadouts.get(i).ID + ")");
+            JavaUtilities.Logger.info(customLoadouts.get(i).Name + " (" + customLoadouts.get(i).ID + ")");
             if (loadout == customLoadouts.get(i).ID)
             {
                 index = i;

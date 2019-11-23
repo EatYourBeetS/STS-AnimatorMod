@@ -2,13 +2,13 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import eatyourbeets.cards.animator.Crystallize;
 import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackWeak;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.UnnamedReign.DarkCrystalPower;
+import eatyourbeets.utilities.GameUtilities;
 
 public class DarkCrystal extends Crystal
 {
@@ -16,7 +16,7 @@ public class DarkCrystal extends Crystal
     {
         super(MonsterElement.Dark, tier, x, y);
 
-        boolean asc4 = PlayerStatistics.GetAscensionLevel() >= 4;
+        boolean asc4 = GameUtilities.GetAscensionLevel() >= 4;
 
         int debuffAmount = asc4 ? 2 : 1;
 

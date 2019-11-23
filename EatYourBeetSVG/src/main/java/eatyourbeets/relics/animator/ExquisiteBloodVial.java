@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.monsters.Bosses.KrulTepes;
 import patches.RelicObtainedPatches;
@@ -59,11 +59,11 @@ public class ExquisiteBloodVial extends AnimatorRelic
     {
         if (counter < 0)
         {
-            return Utilities.Format(this.DESCRIPTIONS[0], HEAL_AMOUNT);
+            return JavaUtilities.Format(this.DESCRIPTIONS[0], HEAL_AMOUNT);
         }
         else
         {
-            return Utilities.Format(this.DESCRIPTIONS[1], regenAmount, maxHPAmount);
+            return JavaUtilities.Format(this.DESCRIPTIONS[1], regenAmount, maxHPAmount);
         }
     }
 
@@ -102,7 +102,7 @@ public class ExquisiteBloodVial extends AnimatorRelic
         }
         else if (HitboxRightClick.rightClicked.get(this.hb))
         {
-            RestRoom room = Utilities.SafeCast(AbstractDungeon.getCurrRoom(), RestRoom.class);
+            RestRoom room = JavaUtilities.SafeCast(AbstractDungeon.getCurrRoom(), RestRoom.class);
             if (room != null && room.event == null)
             {
                 MapRoomNode cur = AbstractDungeon.currMapNode;

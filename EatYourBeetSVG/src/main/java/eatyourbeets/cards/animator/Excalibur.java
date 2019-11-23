@@ -14,7 +14,7 @@ import eatyourbeets.interfaces.metadata.Hidden;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Excalibur extends AnimatorCard implements Hidden
 {
@@ -24,7 +24,7 @@ public class Excalibur extends AnimatorCard implements Hidden
     {
         super(ID, 3, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
 
-        Initialize(90,0);
+        Initialize(80,0);
 
         SetRetain(true);
         SetExhaust(true);
@@ -47,7 +47,7 @@ public class Excalibur extends AnimatorCard implements Hidden
         GameActionsHelper.ApplyPower(p, p, new IntangiblePlayerPower(p, 1), 1);
 
         GameActionsHelper.AddToBottom(new VFXAction(new BorderLongFlashEffect(Color.GOLD)));
-        for (AbstractCreature m1 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractCreature m1 : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m1.hb_x, m1.hb_y)));
         }

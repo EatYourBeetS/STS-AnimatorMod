@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public abstract class AbstractCrystalPower extends AnimatorPower
 {
@@ -32,7 +32,7 @@ public abstract class AbstractCrystalPower extends AnimatorPower
 
         if (action.target == owner)
         {
-            for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
+            for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
             {
                 if (c != owner)
                 {

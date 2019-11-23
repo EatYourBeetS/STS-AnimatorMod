@@ -14,13 +14,13 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -63,7 +63,7 @@ public class Fredrika extends AnimatorCard
 
         if (currentForm == FORM_DEFAULT)
         {
-            tmp += PlayerStatistics.GetCurrentEnemies(true).size() * magicNumber;
+            tmp += GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
         }
 
         for (AbstractPower p : AbstractDungeon.player.powers)
@@ -207,7 +207,7 @@ public class Fredrika extends AnimatorCard
             case FORM_DEFAULT:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID));
-                this.cardText.overrideDescription = null;
+                this.cardText.OverrideDescription(null, true);
                 this.type = CardType.SKILL;
                 this.target = CardTarget.SELF;
                 this.cost = 1;
@@ -218,7 +218,7 @@ public class Fredrika extends AnimatorCard
             case FORM_CAT:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Cat"));
-                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
+                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
                 this.type = CardType.SKILL;
                 this.target = CardTarget.NONE;
                 this.cost = 0;
@@ -229,7 +229,7 @@ public class Fredrika extends AnimatorCard
             case FORM_DRAGOON:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Dragoon"));
-                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[1];
+                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[1], true);
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
@@ -240,7 +240,7 @@ public class Fredrika extends AnimatorCard
             case FORM_DOMINICA:
             {
                 this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Dominica"));
-                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[2];
+                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[2], true);
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;
@@ -250,6 +250,5 @@ public class Fredrika extends AnimatorCard
         }
 
         this.setCostForTurn(cost);
-        this.cardText.ForceRefresh();
     }
 }

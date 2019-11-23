@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class StephanieAction extends AnimatorAction
             AbstractDungeon.player.hand.addToTop(card);
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
 
-            AnimatorCard selectedCard = Utilities.SafeCast(card, AnimatorCard.class);
+            AnimatorCard selectedCard = JavaUtilities.SafeCast(card, AnimatorCard.class);
             if (selectedCard == null)
             {
                 this.isDone = true;

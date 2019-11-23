@@ -13,6 +13,9 @@ import eatyourbeets.actions.animator.KillCharacterAction;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.blights.common.CustomTimeMaze;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.cards.animator.*;
@@ -42,7 +45,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     private boolean progressStunCounter = true;
     private int stunCounter = 0;
     private int playerIntangibleCounter = 0;
-    private int maxStrengthThisTurn = 20;
+    private int maxStrengthThisTurn = 25;
     private boolean gainedIntangible = false;
 
     public InfinitePower(TheUnnamed owner)
@@ -149,7 +152,16 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
                 {
                     if (owner.isPlayer != source.isPlayer && power.type == PowerType.BUFF)
                     {
-                        int amount = stacks;
+                        int amount;
+                        if ((power instanceof StrengthPower) || (power instanceof FocusPower) || (power instanceof DexterityPower))
+                        {
+                            amount = stacks;
+                        }
+                        else
+                        {
+                            amount = 1;
+                        }
+
                         if (amount > maxStrengthThisTurn)
                         {
                             amount = maxStrengthThisTurn;

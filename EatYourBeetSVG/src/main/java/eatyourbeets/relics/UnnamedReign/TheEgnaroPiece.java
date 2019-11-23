@@ -3,7 +3,7 @@ package eatyourbeets.relics.UnnamedReign;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class TheEgnaroPiece extends UnnamedReignRelic
 {
@@ -19,7 +19,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], INITIAL_TEMPORARY_HP);
+        return JavaUtilities.Format(DESCRIPTIONS[0], INITIAL_TEMPORARY_HP);
     }
 
     @Override

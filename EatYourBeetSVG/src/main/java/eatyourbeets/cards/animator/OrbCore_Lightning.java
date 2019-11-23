@@ -12,7 +12,7 @@ public class OrbCore_Lightning extends AnimatorCard
 {
     public static final String ID = Register(OrbCore_Lightning.class.getSimpleName(), EYBCardBadge.Special);
 
-    public static final int VALUE = 7;
+    public static final int VALUE = 9;
 
     public OrbCore_Lightning()
     {

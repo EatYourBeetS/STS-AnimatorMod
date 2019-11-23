@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class TheWolleyCore extends UnnamedReignRelic
 {
@@ -31,7 +31,7 @@ public class TheWolleyCore extends UnnamedReignRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], CARD_DRAW, DAMAGE_AMOUNT, BLOCK_AMOUNT);
+        return JavaUtilities.Format(DESCRIPTIONS[0], CARD_DRAW, DAMAGE_AMOUNT, BLOCK_AMOUNT);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
+import eatyourbeets.actions.common.SupportDamageAction;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -31,31 +32,9 @@ public class SupportDamagePower extends AnimatorPower
     public void atEndOfTurn(boolean isPlayer)
     {
         super.atEndOfTurn(isPlayer);
-        ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
 
-        AbstractMonster target = null;
-        int minHealth = Integer.MAX_VALUE;
-        for (AbstractMonster m : enemies)
-        {
-            if (m.currentHealth < minHealth)
-            {
-                minHealth = m.currentHealth;
-                target = m;
-            }
-        }
-
-        if (target != null)
-        {
-            if (amount < 10)
-            {
-                GameActionsHelper.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F);
-            }
-            else
-            {
-                GameActionsHelper.VFX(new DieDieDieEffect());
-            }
-
-            GameActionsHelper.DamageTarget(owner, target, this.amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        }
+        DamageInfo info = new DamageInfo(owner, amount, DamageInfo.DamageType.NORMAL);
+        SupportDamageAction action = new SupportDamageAction(info, AbstractGameAction.AttackEffect.NONE);
+        GameActionsHelper.AddToBottom(action);
     }
 }

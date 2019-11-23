@@ -12,6 +12,7 @@ import eatyourbeets.actions.common.ShuffleRandomGoblinAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class GoblinSlayer extends AnimatorCard
 {
@@ -21,7 +22,7 @@ public class GoblinSlayer extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(6,0);
+        Initialize(7,0);
 
         SetRetain(true);
         SetSynergy(Synergies.GoblinSlayer);
@@ -87,7 +88,7 @@ public class GoblinSlayer extends AnimatorCard
             AbstractPlayer p = AbstractDungeon.player;
             for (AbstractCard c : p.discardPile.group)
             {
-                if (c.type == CardType.STATUS || c.type == CardType.CURSE)
+                if (GameUtilities.IsCurseOrStatus(c))
                 {
                     GameActionsHelper.ExhaustCard(c, p.discardPile);
                 }
@@ -95,7 +96,7 @@ public class GoblinSlayer extends AnimatorCard
 
             for (AbstractCard c : p.hand.group)
             {
-                if (c.type == CardType.STATUS || c.type == CardType.CURSE)
+                if (GameUtilities.IsCurseOrStatus(c))
                 {
                     GameActionsHelper.ExhaustCard(c, p.hand);
                 }

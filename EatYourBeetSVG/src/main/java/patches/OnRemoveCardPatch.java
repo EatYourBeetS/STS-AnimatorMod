@@ -4,7 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.interfaces.OnRemoveFromDeckSubscriber;
 
 @SpirePatch(clz = CardGroup.class, method = "removeCard", paramtypez = {AbstractCard.class})
@@ -14,7 +14,7 @@ public class OnRemoveCardPatch
     {
         if (__instance.type == CardGroupType.MASTER_DECK)
         {
-            OnRemoveFromDeckSubscriber card = Utilities.SafeCast(c, OnRemoveFromDeckSubscriber.class);
+            OnRemoveFromDeckSubscriber card = JavaUtilities.SafeCast(c, OnRemoveFromDeckSubscriber.class);
             if (card != null)
             {
                 card.OnRemoveFromDeck();

@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -62,7 +62,7 @@ public class StrategicInformationPower extends AnimatorPower
         int discarded = GameActionManager.totalDiscardedThisTurn;
         if (amount > 0 && lastDiscardCount < discarded)
         {
-            ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
+            ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
 
             AbstractMonster target = null;
             int minHealth = Integer.MAX_VALUE;

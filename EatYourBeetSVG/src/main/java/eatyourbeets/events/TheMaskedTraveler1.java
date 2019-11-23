@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.utilities.Utilities;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class TheMaskedTraveler1 extends AnimatorEvent
             }
         }
 
-        toReplace = Utilities.GetRandomElement(cards);
+        toReplace = JavaUtilities.GetRandomElement(cards);
         if (toReplace != null)
         {
             this.imageEventText.updateDialogOption(0, OPTIONS[0] + toReplace.name + OPTIONS[1] + SELLING_PRICE + OPTIONS[2], toReplace);

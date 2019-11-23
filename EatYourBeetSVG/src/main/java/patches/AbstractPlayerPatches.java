@@ -10,7 +10,7 @@ import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
@@ -68,7 +68,7 @@ public class AbstractPlayerPatches
 
         public static boolean CanUse(AbstractCard c)
         {
-            UnnamedCard card = Utilities.SafeCast(c, UnnamedCard.class);
+            UnnamedCard card = JavaUtilities.SafeCast(c, UnnamedCard.class);
 
             return card == null || !card.isVoidbound() || card.enteredVoid;
         }

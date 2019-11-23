@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.animator.*;
 import eatyourbeets.utilities.RandomizedList;
@@ -82,7 +82,7 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     {
         super.onAfterCardPlayed(usedCard);
 
-        AnimatorCard card = Utilities.SafeCast(usedCard, AnimatorCard.class);
+        AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasActiveSynergy())
         {
             if (firstSynergy)
@@ -111,19 +111,7 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
 
     public static CardGroup CreateCoresGroup(boolean anyCost)
     {
-        if (cores.size() == 0)
-        {
-            cores0.Add(new OrbCore_Fire());
-            cores0.Add(new OrbCore_Lightning());
-            cores1.Add(new OrbCore_Dark());
-            cores1.Add(new OrbCore_Frost());
-            cores2.Add(new OrbCore_Plasma());
-            cores2.Add(new OrbCore_Chaos());
-
-            cores.addAll(cores0.GetInnerList());
-            cores.addAll(cores1.GetInnerList());
-            cores.addAll(cores2.GetInnerList());
-        }
+        InitializeCores();
 
         Random rng = AbstractDungeon.cardRandomRng;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
@@ -147,15 +135,26 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
 
     public static ArrayList<AbstractCard> GetAllCores()
     {
-        ArrayList<AbstractCard> cores = new ArrayList<>();
+        InitializeCores();
 
-        cores.add(new OrbCore_Fire());
-        cores.add(new OrbCore_Lightning());
-        cores.add(new OrbCore_Dark());
-        cores.add(new OrbCore_Frost());
-        cores.add(new OrbCore_Plasma());
-        cores.add(new OrbCore_Chaos());
+        return new ArrayList<>(cores);
+    }
 
-        return cores;
+    private static void InitializeCores()
+    {
+        if (cores.size() == 0)
+        {
+            cores0.Add(new OrbCore_Fire());
+            cores0.Add(new OrbCore_Lightning());
+            cores1.Add(new OrbCore_Dark());
+            cores1.Add(new OrbCore_Frost());
+            cores2.Add(new OrbCore_Plasma());
+            cores2.Add(new OrbCore_Chaos());
+            cores2.Add(new OrbCore_Aether());
+
+            cores.addAll(cores0.GetInnerList());
+            cores.addAll(cores1.GetInnerList());
+            cores.addAll(cores2.GetInnerList());
+        }
     }
 }

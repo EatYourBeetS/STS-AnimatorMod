@@ -14,8 +14,8 @@ import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class WizardHat extends AnimatorRelic
 {
@@ -33,7 +33,7 @@ public class WizardHat extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], INTELLECT_AMOUNT, ENERGY_COST, DAMAGE_AMOUNT);
+        return JavaUtilities.Format(DESCRIPTIONS[0], INTELLECT_AMOUNT, ENERGY_COST, DAMAGE_AMOUNT);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class WizardHat extends AnimatorRelic
                 GameActionsHelper.AddToBottom(new WaitAction(0.35f));
                 GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.RED)));
                 GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5f));
-                for (AbstractCreature m1 : PlayerStatistics.GetCurrentEnemies(true))
+                for (AbstractCreature m1 : GameUtilities.GetCurrentEnemies(true))
                 {
                     GameActionsHelper.AddToBottom(new VFXAction(new FlameBarrierEffect(m1.hb_x, m1.hb_y)));
                     GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(m1.hb_x, m1.hb_y)));

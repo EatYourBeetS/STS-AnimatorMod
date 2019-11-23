@@ -26,9 +26,9 @@ public class Genos extends AnimatorCard
 
     public Genos()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(6, 0, 2, 4);
+        Initialize(9, 0, 4, 4);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -52,8 +52,7 @@ public class Genos extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
+            upgradeDamage(3);
         }
     }
 

@@ -1,12 +1,12 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import eatyourbeets.cards.animator.Crystallize;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.UnnamedReign.FireCrystalPower;
+import eatyourbeets.utilities.GameUtilities;
 
 public class FireCrystal extends Crystal
 {
@@ -14,7 +14,7 @@ public class FireCrystal extends Crystal
     {
         super(MonsterElement.Fire, tier, x, y);
 
-        boolean asc4 = PlayerStatistics.GetAscensionLevel() >= 4;
+        boolean asc4 = GameUtilities.GetAscensionLevel() >= 4;
 
         int debuffAmount = asc4 ? 2 : 1;
 

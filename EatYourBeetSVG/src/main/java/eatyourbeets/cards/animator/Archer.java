@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.ArcherPower;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Archer extends AnimatorCard
 {
@@ -30,7 +30,7 @@ public class Archer extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+            for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
             {
                 GameActionsHelper.ApplyPower(p, m1, new VulnerablePower(m1, 1, false), 1);
             }

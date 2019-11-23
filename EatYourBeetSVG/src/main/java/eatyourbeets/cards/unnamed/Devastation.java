@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.actions.common.DecreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.effects.CataclysmEffect;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class Devastation extends UnnamedCard
     {
         GameActionsHelper.AddToBottom(new DecreaseMaxHpAction(p, secondaryValue));
 
-        ArrayList<AbstractMonster> characters = PlayerStatistics.GetCurrentEnemies(true);
+        ArrayList<AbstractMonster> characters = GameUtilities.GetCurrentEnemies(true);
 
         GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
         GameActionsHelper.AddToBottom(new WaitAction(0.35f));

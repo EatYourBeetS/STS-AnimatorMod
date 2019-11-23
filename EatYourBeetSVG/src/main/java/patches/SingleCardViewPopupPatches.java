@@ -14,11 +14,11 @@ import eatyourbeets.cards.*;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.resources.Resources_Unnamed_Images;
 import eatyourbeets.utilities.Field;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class SingleCardViewPopupPatches
 {
-    private static final Field<AbstractCard> cardField = Utilities.GetPrivateField("card", SingleCardViewPopup.class);
+    private static final Field<AbstractCard> cardField = JavaUtilities.GetPrivateField("card", SingleCardViewPopup.class);
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderTitle")
     public static class SingleCardViewPopup_RenderTitle
@@ -26,7 +26,7 @@ public class SingleCardViewPopupPatches
         @SpireInsertPatch(rloc = 0, localvars = {"card"})
         public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard card)
         {
-            EYBCard c = Utilities.SafeCast(card, EYBCard.class);
+            EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
             if (c != null && !c.isFlipped)
             {
                 c.renderInSingleCardPopup(sb, false);
@@ -40,7 +40,7 @@ public class SingleCardViewPopupPatches
         @SpireInsertPatch(rloc = 0, localvars = {"card"})
         public static SpireReturn Method(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard card)
         {
-            EYBCard c = Utilities.SafeCast(card, EYBCard.class);
+            EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
             if (c != null)
             {
                 c.renderInSingleCardPopup(sb, true);

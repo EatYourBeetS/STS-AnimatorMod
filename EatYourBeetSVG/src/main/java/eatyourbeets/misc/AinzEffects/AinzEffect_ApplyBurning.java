@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 
 public class AinzEffect_ApplyBurning extends AinzEffect
@@ -23,7 +23,7 @@ public class AinzEffect_ApplyBurning extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, ainz.magicNumber), ainz.magicNumber);
         }

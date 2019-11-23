@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.combat.DeckPoofEffect;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class DieAction extends AbstractGameAction
 {
@@ -34,7 +34,7 @@ public class DieAction extends AbstractGameAction
         {
             if (!target.isDeadOrEscaped())
             {
-                AbstractMonster m = Utilities.SafeCast(target, AbstractMonster.class);
+                AbstractMonster m = JavaUtilities.SafeCast(target, AbstractMonster.class);
                 if (m != null)
                 {
                     m.currentHealth = 0;

@@ -3,7 +3,7 @@ package eatyourbeets.monsters;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public abstract class AbstractMove
 {
@@ -28,7 +28,7 @@ public abstract class AbstractMove
     public AbstractMove()
     {
         this.disabled = false;
-        this.ascensionLevel = PlayerStatistics.GetAscensionLevel();
+        this.ascensionLevel = GameUtilities.GetAscensionLevel();
     }
 
     public int GetBonus(int base, float percentage)

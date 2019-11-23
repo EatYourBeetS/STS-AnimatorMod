@@ -11,8 +11,8 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.Spellcaster;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Caster extends AnimatorCard implements Spellcaster
 {
@@ -55,11 +55,11 @@ public class Caster extends AnimatorCard implements Spellcaster
     {
         GameActionsHelper.ChannelOrb(new Dark(), true);
 
-        PlayerStatistics.LoseTemporaryStrength(p, m, magicNumber);
+        GameUtilities.LoseTemporaryStrength(p, m, magicNumber);
 
         if (!m.hasPower(ArtifactPower.POWER_ID))
         {
-            PlayerStatistics.GainTemporaryStrength(p, p, magicNumber);
+            GameUtilities.GainTemporaryStrength(p, p, magicNumber);
         }
     }
 

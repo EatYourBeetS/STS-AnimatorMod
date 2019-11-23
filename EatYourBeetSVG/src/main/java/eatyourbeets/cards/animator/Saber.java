@@ -9,6 +9,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
+import patches.AbstractEnums;
 
 public class Saber extends AnimatorCard_Cooldown
 {
@@ -18,7 +19,7 @@ public class Saber extends AnimatorCard_Cooldown
     {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(8,0,0);
+        Initialize(9,0,0);
 
         SetLoyal(true);
         SetSynergy(Synergies.Fate);
@@ -34,7 +35,13 @@ public class Saber extends AnimatorCard_Cooldown
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
-        if (ProgressCooldown() || (HasActiveSynergy() && ProgressCooldown()))
+        int progress = 1;
+        if (HasActiveSynergy())
+        {
+            progress += 2;
+        }
+
+        if (ProgressCooldown(progress))
         {
             OnCooldownCompleted(p, m);
         }
@@ -59,8 +66,9 @@ public class Saber extends AnimatorCard_Cooldown
     @Override
     protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
     {
-        if (EffectHistory.TryActivateLimited(cardID))
+        if (!purgeOnUse)
         {
+            this.tags.add(AbstractEnums.CardTags.PURGE);
             GameActionsHelper.MakeCardInHand(new Excalibur(), 1, false);
         }
     }

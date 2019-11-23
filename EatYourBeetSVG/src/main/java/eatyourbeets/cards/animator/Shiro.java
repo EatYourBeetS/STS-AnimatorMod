@@ -3,7 +3,9 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.actions.common.DrawSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
@@ -15,9 +17,11 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.ShiroPower;
 
-public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSynergySubscriber, OnCostRefreshSubscriber
+public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
 {
     public static final String ID = Register(Shiro.class.getSimpleName(), EYBCardBadge.Special);
+
+    private int costModifier = 0;
 
     public Shiro()
     {
@@ -25,12 +29,57 @@ public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSy
 
         Initialize(0,0);
 
-        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
-        {
-            OnBattleStart();
-        }
-
         SetSynergy(Synergies.NoGameNoLife);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        this.resetAttributes();
+    }
+
+    @Override
+    public void resetAttributes()
+    {
+        super.resetAttributes();
+
+        costModifier = 0;
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        costModifier = 0;
+    }
+
+    @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+
+        costModifier = 0;
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        Shiro copy = (Shiro)super.makeStatEquivalentCopy();
+
+        copy.costModifier = this.costModifier;
+
+        return copy;
+    }
+
+    @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+
+        OnCostRefresh(this);
     }
 
     @Override
@@ -58,33 +107,18 @@ public class Shiro extends AnimatorCard implements OnBattleStartSubscriber, OnSy
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        OnCostRefresh(this);
-    }
-
-    @Override
-    public void OnSynergy(AnimatorCard card)
-    {
-        if (card != this)
-        {
-            modifyCostForTurn(-1);
-        }
-    }
-
-    @Override
-    public void OnBattleStart()
-    {
-        PlayerStatistics.onSynergy.Subscribe(this);
-        OnCostRefresh(this);
-    }
-
-    @Override
     public void OnCostRefresh(AbstractCard card)
     {
         if (card == this)
         {
-            modifyCostForTurn(-PlayerStatistics.getSynergiesThisTurn());
+            int currentCost = (costForTurn + costModifier);
+
+            costModifier = PlayerStatistics.getSynergiesThisTurn();
+
+            if (!this.freeToPlayOnce)
+            {
+                setCostForTurn(currentCost - costModifier);
+            }
         }
     }
 }

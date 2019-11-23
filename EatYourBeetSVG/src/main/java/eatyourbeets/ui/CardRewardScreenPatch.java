@@ -14,9 +14,9 @@ import eatyourbeets.cards.Synergy;
 import eatyourbeets.effects.HideCardEffect;
 import eatyourbeets.relics.BundledRelicContainer;
 import eatyourbeets.relics.BundledRelicProvider;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.PurgingStone_Cards;
 import eatyourbeets.ui.buttons.BanCardButton;
+import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,7 +39,7 @@ public class CardRewardScreenPatch
         rewardItem = rItem;
         rewardBundle = null;
 
-        if (PlayerStatistics.InBattle()) // || !(AbstractDungeon.player instanceof AnimatorCharacter))
+        if (GameUtilities.InBattle()) // || !(AbstractDungeon.player instanceof AnimatorCharacter))
         {
             return;
         }

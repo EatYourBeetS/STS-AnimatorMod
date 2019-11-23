@@ -13,6 +13,7 @@ import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.animator.GuildGirl;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.interfaces.OnEnemyDyingSubscriber;
+import eatyourbeets.utilities.GameUtilities;
 
 public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscriber
 {
@@ -73,7 +74,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     {
         super.onVictory();
 
-        AbstractRoom room = PlayerStatistics.GetCurrentRoom();
+        AbstractRoom room = GameUtilities.GetCurrentRoom();
         if (room != null && room.rewardAllowed && goldReward > 0)
         {
             room.rewards.add(0, new SpecialGoldReward(rewardName, goldReward));

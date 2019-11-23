@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class Move_AttackWeakAndStrLoss extends AbstractMove
 {
@@ -37,8 +37,8 @@ public class Move_AttackWeakAndStrLoss extends AbstractMove
 
         if (!usedOnce)
         {
-            int str = PlayerStatistics.GetStrength(target);
-            LoseStrengthPower loseStr = Utilities.SafeCast(target.getPower(LoseStrengthPower.POWER_ID), LoseStrengthPower.class);
+            int str = GameUtilities.GetStrength(target);
+            LoseStrengthPower loseStr = JavaUtilities.SafeCast(target.getPower(LoseStrengthPower.POWER_ID), LoseStrengthPower.class);
             if (loseStr != null)
             {
                 str -= loseStr.amount;

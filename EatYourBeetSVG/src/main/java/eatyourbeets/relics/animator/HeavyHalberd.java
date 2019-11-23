@@ -2,10 +2,10 @@ package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class HeavyHalberd extends AnimatorRelic
 {
@@ -21,7 +21,7 @@ public class HeavyHalberd extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], FORCE_AMOUNT);
+        return JavaUtilities.Format(DESCRIPTIONS[0], FORCE_AMOUNT);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class HeavyHalberd extends AnimatorRelic
         super.atTurnStartPostDraw();
 
         int force = 0;
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             if (m.hasPower(VulnerablePower.POWER_ID))
             {

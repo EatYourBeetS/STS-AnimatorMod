@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
-import eatyourbeets.powers.PlayerStatistics;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -152,7 +152,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
 
     public boolean IsBanned(AbstractCard card)
     {
-        AnimatorCard animatorCard = Utilities.SafeCast(card, AnimatorCard.class);
+        AnimatorCard animatorCard = JavaUtilities.SafeCast(card, AnimatorCard.class);
         if (animatorCard != null)
         {
             return IsBanned(animatorCard.GetSynergy());
@@ -163,7 +163,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
 
     public boolean CanActivate(RewardItem rewardItem)
     {
-        if (!PlayerStatistics.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD)
+        if (!GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD)
         {
             try
             {
@@ -185,7 +185,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
     {
         if (counter > 0)
         {
-            AnimatorCard c = Utilities.SafeCast(card, AnimatorCard.class);
+            AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
             if (c != null)
             {
                 Synergy s = c.GetSynergy();
@@ -201,7 +201,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
 
     public void Ban(AbstractCard card)
     {
-        AnimatorCard animatorCard = Utilities.SafeCast(card, AnimatorCard.class);
+        AnimatorCard animatorCard = JavaUtilities.SafeCast(card, AnimatorCard.class);
         if (animatorCard != null)
         {
             Synergy synergy = animatorCard.GetSynergy();

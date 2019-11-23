@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class CursedBlade extends AnimatorRelic
 {
@@ -21,7 +21,7 @@ public class CursedBlade extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], BUFF_AMOUNT);
+        return JavaUtilities.Format(DESCRIPTIONS[0], BUFF_AMOUNT);
     }
 
     @Override

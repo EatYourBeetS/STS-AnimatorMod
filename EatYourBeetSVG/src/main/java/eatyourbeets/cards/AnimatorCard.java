@@ -6,7 +6,7 @@ import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Images;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
@@ -50,7 +50,7 @@ public abstract class AnimatorCard extends EYBCard
         else
         {
             previousCard = lastCardPlayed;
-            lastCardPlayed = Utilities.SafeCast(card, AnimatorCard.class);
+            lastCardPlayed = JavaUtilities.SafeCast(card, AnimatorCard.class);
         }
     }
 
@@ -107,7 +107,7 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasSynergy(AbstractCard other)
     {
-        AnimatorCard card = Utilities.SafeCast(other, AnimatorCard.class);
+        AnimatorCard card = JavaUtilities.SafeCast(other, AnimatorCard.class);
         if (card != null && card.synergy != null && this.synergy != null)
         {
             return  (this instanceof Spellcaster && other instanceof Spellcaster) ||

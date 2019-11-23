@@ -3,7 +3,7 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ShikizakiKikiPower extends AnimatorPower
 {
@@ -20,6 +20,6 @@ public class ShikizakiKikiPower extends AnimatorPower
 
     public float atDamageGive(float damage, DamageInfo.DamageType type)
     {
-        return type == DamageInfo.DamageType.NORMAL ? damage + (float) (PlayerStatistics.GetStrength(owner) * (this.amount - 1)) : damage;
+        return type == DamageInfo.DamageType.NORMAL ? damage + (float) (GameUtilities.GetStrength(owner) * (this.amount - 1)) : damage;
     }
 }

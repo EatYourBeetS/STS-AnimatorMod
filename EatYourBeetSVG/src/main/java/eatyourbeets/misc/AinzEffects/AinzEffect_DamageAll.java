@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 
 public class AinzEffect_DamageAll extends AinzEffect
@@ -24,10 +24,10 @@ public class AinzEffect_DamageAll extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.DamageTarget(p, m, ainz.damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
         }
-        PlayerStatistics.UsePenNib();
+        GameUtilities.UsePenNib();
     }
 }

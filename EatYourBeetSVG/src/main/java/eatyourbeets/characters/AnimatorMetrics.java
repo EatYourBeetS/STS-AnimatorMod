@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import patches.AbstractEnums;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class AnimatorMetrics
 
     public static void SaveTrophies(boolean flush)
     {
-        Utilities.Logger.info("Saving Trophies");
+        JavaUtilities.Logger.info("Saving Trophies");
 
         lastLoadout = AnimatorCharacterSelect.GetSelectedLoadout(false).ID;
 
@@ -128,7 +128,7 @@ public class AnimatorMetrics
                 {
                     lastLoadout = Synergies.Konosuba.ID;
 
-                    Utilities.Logger.warn("Could not Parse player prefs, " + e.getMessage());
+                    JavaUtilities.Logger.warn("Could not Parse player prefs, " + e.getMessage());
                 }
 
                 AnimatorCharacterSelect.SetLoadout(lastLoadout);

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class WornHelmet extends AnimatorRelic
 {
@@ -22,7 +22,7 @@ public class WornHelmet extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], BLOCK_AMOUNT1, BLOCK_AMOUNT2);
+        return JavaUtilities.Format(DESCRIPTIONS[0], BLOCK_AMOUNT1, BLOCK_AMOUNT2);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class Jibril extends AnimatorCard implements Spellcaster
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(8,0);
+        Initialize(10,0);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.NoGameNoLife);

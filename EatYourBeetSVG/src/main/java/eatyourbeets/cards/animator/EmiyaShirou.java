@@ -1,18 +1,14 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import eatyourbeets.actions.common.UpgradeRandomCardAction;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.powers.animator.EmiyaShirouPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class EmiyaShirou extends AnimatorCard
 {
@@ -20,59 +16,46 @@ public class EmiyaShirou extends AnimatorCard
 
     public EmiyaShirou()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0,0, 13);
+        Initialize(0,5, 2);
 
-        SetExhaust(true);
         SetSynergy(Synergies.Fate);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        RandomizedList<AbstractCreature> enemiesWithoutBlock = new RandomizedList<>();
-        RandomizedList<AbstractCreature> enemiesWithBlock = new RandomizedList<>();
-        for (AbstractCreature m1 : PlayerStatistics.GetCurrentEnemies(true))
+        GameActionsHelper.GainBlock(p, block);
+
+        for (int i = 0; i < magicNumber; i++)
         {
-            if (m1.currentBlock <= 0)
+            GameActionsHelper.AddToBottom(new UpgradeRandomCardAction());
+        }
+
+        boolean fullyUpgraded = true;
+        for (AbstractCard card : p.hand.group)
+        {
+            if (card != this && !card.upgraded && !GameUtilities.IsCurseOrStatus(card))
             {
-                enemiesWithoutBlock.Add(m1);
-            }
-            else
-            {
-                enemiesWithBlock.Add(m1);
+                fullyUpgraded = false;
+                break;
             }
         }
 
-        AbstractCreature target = null;
-        if (enemiesWithoutBlock.Count() > 0)
+        if (fullyUpgraded)
         {
-            target = enemiesWithoutBlock.Retrieve(AbstractDungeon.cardRandomRng);
-        }
-        else if (enemiesWithBlock.Count() > 0)
-        {
-            target = enemiesWithBlock.Retrieve(AbstractDungeon.cardRandomRng);
-        }
-
-        if (target != null)
-        {
-            GameActionsHelper.GainBlock(target, this.magicNumber);
-            GameActionsHelper.ApplyPower(p, target, new VulnerablePower(target, 1, false), 1);
-        }
-
-        if (EffectHistory.TryActivateSemiLimited(cardID))
-        {
-            GameActionsHelper.ApplyPower(p, p, new EmiyaShirouPower(p), 1);
+            GameActionsHelper.DrawCard(p, 2);
         }
     }
 
     @Override
     public void upgrade() 
     {
-        if (TryUpgrade())
+        if (TryUpgrade(false))
         {
-            SetExhaust(false);
+            upgradeBlock(1);
+            upgradeMagicNumber(1);
         }
     }
 }

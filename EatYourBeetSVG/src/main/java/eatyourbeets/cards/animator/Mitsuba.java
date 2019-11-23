@@ -47,6 +47,7 @@ public class Mitsuba extends AnimatorCard
         if (TryUpgrade())
         {          
             upgradeDamage(3);
+            upgradeBlock(1);
         }
     }
 }

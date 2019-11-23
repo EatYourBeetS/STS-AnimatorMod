@@ -13,7 +13,8 @@ import eatyourbeets.actions.common.MoveMonsterAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
 import eatyourbeets.resources.Resources_Common;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions.common.SummonMonsterAction;
 import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.cards.animator.Crystallize;
@@ -25,7 +26,6 @@ import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.common.AntiArtifactSlowPower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.UltimateCrystalPower;
 
 public class UltimateCrystal extends Crystal
@@ -48,7 +48,7 @@ public class UltimateCrystal extends Crystal
 
         moveset.AddSpecial(new Move_AttackMultiple(6, 32));
 
-        boolean asc4 = PlayerStatistics.GetActualAscensionLevel() >= 4;
+        boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
 
         int crystallize = asc4 ? 3 : 2;
         int block = asc4 ? 18 : 11;
@@ -103,7 +103,7 @@ public class UltimateCrystal extends Crystal
         {
             for (AbstractPower p : original.powers)
             {
-                CloneablePowerInterface cloneablePower = Utilities.SafeCast(p, CloneablePowerInterface.class);
+                CloneablePowerInterface cloneablePower = JavaUtilities.SafeCast(p, CloneablePowerInterface.class);
                 if (cloneablePower != null)
                 {
                     AbstractPower power = cloneablePower.makeCopy();
@@ -116,10 +116,10 @@ public class UltimateCrystal extends Crystal
                 }
                 else if (p instanceof PoisonPower) // Poison does not implement CloneablePowerInterface...
                 {
-                    PoisonPower poison = Utilities.SafeCast(p, PoisonPower.class);
+                    PoisonPower poison = JavaUtilities.SafeCast(p, PoisonPower.class);
                     if (poison != null)
                     {
-                        AbstractCreature source = Utilities.<AbstractCreature>GetPrivateField("source", PoisonPower.class).Get(poison);
+                        AbstractCreature source = JavaUtilities.<AbstractCreature>GetPrivateField("source", PoisonPower.class).Get(poison);
 
                         this.powers.add(new PoisonPower(this, source, poison.amount));
                     }
@@ -137,7 +137,7 @@ public class UltimateCrystal extends Crystal
     {
         super.die();
 
-        if (PlayerStatistics.GetCurrentEnemies(true).isEmpty())
+        if (GameUtilities.GetCurrentEnemies(true).isEmpty())
         {
             AbstractDungeon.scene.fadeInAmbiance();
             CardCrawlGame.music.fadeOutTempBGM();

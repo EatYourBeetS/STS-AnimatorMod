@@ -2,7 +2,7 @@ package eatyourbeets.characters.Loadouts;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;
@@ -36,7 +36,7 @@ public class Random extends AnimatorCustomLoadout
 
     public void OnTrueVictory(AnimatorCustomLoadout currentLoadout, int ascensionLevel)
     {
-        Utilities.Logger.error("The random Loadout cannot reward trophies!");
+        JavaUtilities.Logger.error("The random Loadout cannot reward trophies!");
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Envy extends AnimatorCard
     {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0, 9);
+        Initialize(0,0);
 
         SetEthereal(true);
         SetSynergy(Synergies.FullmetalAlchemist, true);
@@ -28,9 +28,10 @@ public class Envy extends AnimatorCard
     {
         GameActionsHelper.ApplyPower(p, p, new EnvyPower(p, 1), 1);
 
-        if (PlayerStatistics.GetHealthPercentage(p) < 0.5f)
+        int tempHP = Math.floorDiv(p.maxHealth - p.currentHealth, 5);
+        if (tempHP > 0)
         {
-            GameActionsHelper.GainTemporaryHP(p, magicNumber);
+            GameActionsHelper.GainTemporaryHP(p, tempHP);
         }
     }
 

@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Lancer extends AnimatorCard implements MartialArtist
 {
@@ -30,7 +30,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
     {
         tmp += MartialArtist.GetScaling();
 
-        if (mo != null && (PlayerStatistics.GetHealthPercentage(mo) < 0.5f))
+        if (mo != null && (GameUtilities.GetHealthPercentage(mo) < 0.5f))
         {
             return super.calculateModifiedCardDamage(player, mo, tmp * 2);
         }
@@ -44,7 +44,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         AbstractGameAction.AttackEffect attackEffect;
-        if (PlayerStatistics.GetHealthPercentage(m) < 0.5f)
+        if (GameUtilities.GetHealthPercentage(m) < 0.5f)
         {
             attackEffect = AbstractGameAction.AttackEffect.SLASH_HEAVY;
         }

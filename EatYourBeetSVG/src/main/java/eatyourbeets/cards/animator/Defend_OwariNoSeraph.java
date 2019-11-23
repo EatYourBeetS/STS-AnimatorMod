@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_OwariNoSeraph extends Defend
 {
@@ -27,7 +27,7 @@ public class Defend_OwariNoSeraph extends Defend
         super.triggerOnExhaust();
 
         AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(p, m, new WeakPower(m, this.magicNumber, false), this.magicNumber);
         }

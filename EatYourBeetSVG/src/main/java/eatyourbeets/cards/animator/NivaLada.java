@@ -22,6 +22,7 @@ import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.interfaces.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.utilities.GameUtilities;
 
 public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSubscriber, OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
 {
@@ -35,7 +36,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
 
         this.baseSecondaryValue = this.secondaryValue = GetBaseCooldown();
 
-        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
+        if (GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen)
         {
             OnBattleStart();
         }
@@ -114,7 +115,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
     {
         if (m == null || m.isDeadOrEscaped())
         {
-            m = PlayerStatistics.GetRandomEnemy(true);
+            m = GameUtilities.GetRandomEnemy(true);
         }
 
         if (m.hasPower(IntangiblePower.POWER_ID))

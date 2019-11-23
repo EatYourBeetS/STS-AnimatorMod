@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.monsters.AbstractMove;
 
 public class Move_MultiSlash extends AbstractMove
@@ -37,7 +37,7 @@ public class Move_MultiSlash extends AbstractMove
     {
         if (super.CanUse(previousMove))
         {
-            StrengthPower strength = Utilities.SafeCast(owner.getPower(StrengthPower.POWER_ID), StrengthPower.class);
+            StrengthPower strength = JavaUtilities.SafeCast(owner.getPower(StrengthPower.POWER_ID), StrengthPower.class);
 
             return strength != null && strength.amount > 3;
         }
@@ -68,7 +68,7 @@ public class Move_MultiSlash extends AbstractMove
 
     private void OnDamage(Object state, AbstractGameAction action)
     {
-        Integer previousHealth = Utilities.SafeCast(state, Integer.class);
+        Integer previousHealth = JavaUtilities.SafeCast(state, Integer.class);
         if (previousHealth != null)
         {
             AbstractPlayer p = AbstractDungeon.player;

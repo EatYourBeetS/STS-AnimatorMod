@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class PoisonAffinityPower extends AnimatorPower
 {
@@ -28,7 +28,7 @@ public class PoisonAffinityPower extends AnimatorPower
         {
             if (power.ID.equals(PoisonPower.POWER_ID))
             {
-                ApplyPowerAction applyPowerAction = Utilities.SafeCast(AbstractDungeon.actionManager.currentAction, ApplyPowerAction.class);
+                ApplyPowerAction applyPowerAction = JavaUtilities.SafeCast(AbstractDungeon.actionManager.currentAction, ApplyPowerAction.class);
                 if (applyPowerAction != null)
                 {
                     applyPowerAction.amount += this.amount;

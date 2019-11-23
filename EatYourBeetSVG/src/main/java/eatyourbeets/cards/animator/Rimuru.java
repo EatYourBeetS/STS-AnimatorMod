@@ -11,6 +11,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardPlayedSubscriber
 {
@@ -26,7 +27,7 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
 
         this.copy = this;
 
-        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
+        if (GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen)
         {
             OnBattleStart();
         }
@@ -84,10 +85,10 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
                 newCopy.current_y = copy.current_y;
                 newCopy.target_x = copy.target_x;
                 newCopy.target_y = copy.target_y;
+                newCopy.applyPowers();
             }
 
             this.copy = newCopy;
-            this.copy.applyPowers();
 
             return true;
         }

@@ -10,8 +10,8 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.Hemokinesis2Effect;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class Shalltear extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
+        ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
         if (enemies.size() == 0)
         {
             return;
@@ -50,10 +50,15 @@ public class Shalltear extends AnimatorCard
         for (AbstractMonster m1 : enemies)
         {
             //GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m1.hb.cX, m1.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
-            GameActionsHelper.VFX(new Hemokinesis2Effect(m1.hb.cX, m1.hb.cY, p.hb.cX, p.hb.cY), 0.2f);
+
+            if (enemies.size() <= 4)
+            {
+                GameActionsHelper.VFX(new Hemokinesis2Effect(m1.hb.cX, m1.hb.cY, p.hb.cX, p.hb.cY), 0.1f);
+            }
+
             GameActionsHelper.AddToBottom(new LoseHPAction(m1, p, damage));
 
-            if (HasActiveSynergy() && PlayerStatistics.UseArtifact(m1))
+            if (HasActiveSynergy() && GameUtilities.UseArtifact(m1))
             {
                 GameActionsHelper.ApplyPower(p, m1, new StrengthPower(m1, -1), -1);
                 GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);

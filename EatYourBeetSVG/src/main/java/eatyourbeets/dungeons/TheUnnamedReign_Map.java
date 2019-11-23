@@ -3,7 +3,7 @@ package eatyourbeets.dungeons;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.*;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -165,7 +165,7 @@ public class TheUnnamedReign_Map
             row.set(center, Mo2);
             y += 1;
 
-            if (PlayerStatistics.GetActualAscensionLevel() >= 20)
+            if (GameUtilities.GetActualAscensionLevel() >= 20)
             {
                 Ev1 = CreateMonsterRoomElite(center, y);
                 row = CreateRow(y);

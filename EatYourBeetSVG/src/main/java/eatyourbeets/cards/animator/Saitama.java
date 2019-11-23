@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.PummelDamageAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -22,7 +21,7 @@ import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class Saitama extends AnimatorCard implements OnCallbackSubscriber
 {
@@ -58,7 +57,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
     {
         AbstractCard card = super.makeStatEquivalentCopy();
 
-        Saitama other = Utilities.SafeCast(card, Saitama.class);
+        Saitama other = JavaUtilities.SafeCast(card, Saitama.class);
         if (other != null)
         {
             other.misc = other.stage = this.misc;
@@ -165,7 +164,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 0:
             {
                 // Do Nothing
-                this.cardText.overrideDescription = null;
+                this.cardText.OverrideDescription(null, true);
 
                 Initialize(0, 0, 0, 0);
 
@@ -180,7 +179,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 1:
             {
                 // Draw !M! Cards. NL Gain !SV! Agility.
-                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
+                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
 
                 Initialize(0, 0, 3, 2);
 
@@ -195,7 +194,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 2:
             {
                 // Prevent the next time you would lose HP
-                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[1];
+                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[1], true);
 
                 Initialize(0, 8, 0, 0);
 
@@ -210,7 +209,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 3:
             {
                 // Gain !M! Force. Gain !B! Block
-                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[2];
+                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[2], true);
 
                 Initialize(0, 9, 6, 0);
 
@@ -225,7 +224,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 4:
             {
                 // Deal !D! damage !M! times.
-                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[3];
+                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[3], true);
 
                 Initialize(6, 0, 8, 0);
 
@@ -240,7 +239,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 5:
             {
                 // Remove Intangible. Deal !D! damage.
-                this.cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[4];
+                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[4], true);
 
                 Initialize(1000, 0, 0, 0);
 
@@ -254,7 +253,6 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
         }
 
         this.upgradeBaseCost(stage);
-        this.cardText.ForceRefresh();
     }
 
     private class ProgressPhaseAction extends AnimatorAction

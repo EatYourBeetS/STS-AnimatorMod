@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.actions.animator.EveDamageAction;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
 public class EvePower extends AnimatorPower
@@ -36,7 +36,7 @@ public class EvePower extends AnimatorPower
     {
         super.onAfterCardPlayed(usedCard);
 
-        AnimatorCard card = Utilities.SafeCast(usedCard, AnimatorCard.class);
+        AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasActiveSynergy())
         {
             GameActionsHelper.AddToBottom(new EveDamageAction(this));

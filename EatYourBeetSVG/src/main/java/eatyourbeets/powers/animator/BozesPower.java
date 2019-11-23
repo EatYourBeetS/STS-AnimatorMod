@@ -3,10 +3,9 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
 public class BozesPower extends AnimatorPower
@@ -43,12 +42,12 @@ public class BozesPower extends AnimatorPower
     {
         super.onAfterCardPlayed(usedCard);
 
-        AnimatorCard card = Utilities.SafeCast(usedCard, AnimatorCard.class);
+        AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasActiveSynergy())
         {
             if (amount > 0)
             {
-                GameActionsHelper.ApplyPower(owner, owner, new PlatedArmorPower(owner, amount), amount);
+                GameActionsHelper.ApplyPower(owner, owner, new SupportDamagePower(owner, amount), amount);
                 //GameActionsHelper.GainBlock(owner, amount);
 
                 this.flash();

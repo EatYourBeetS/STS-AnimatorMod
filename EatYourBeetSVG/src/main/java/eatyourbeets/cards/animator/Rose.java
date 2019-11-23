@@ -18,7 +18,7 @@ import eatyourbeets.actions.common.PiercingDamageAction;
 import eatyourbeets.actions.common.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -93,7 +93,7 @@ public class Rose extends AnimatorCard_UltraRare
                     {
                         int[] damageMatrix = DamageInfo.createDamageMatrix(rose.secondaryValue, true);
 
-                        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+                        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
                         {
                             Explosion(m.hb);
                         }

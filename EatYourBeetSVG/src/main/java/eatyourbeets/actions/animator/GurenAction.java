@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.WaitRealtimeAction;
 import eatyourbeets.cards.animator.Guren;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class GurenAction extends AbstractGameAction
 {
@@ -72,7 +72,7 @@ public class GurenAction extends AbstractGameAction
                 {
                     if (this.target == null || this.target.isDeadOrEscaped())
                     {
-                        this.target = PlayerStatistics.GetRandomEnemy(true);
+                        this.target = GameUtilities.GetRandomEnemy(true);
                     }
                 }
                 else
@@ -80,7 +80,7 @@ public class GurenAction extends AbstractGameAction
                     this.target = null;
                 }
 
-                if (card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS)
+                if (GameUtilities.IsCurseOrStatus(card))
                 {
                     GameActionsHelper.AddToTop(new UnlimboAction(card));
                     GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(card, AbstractDungeon.player.limbo));

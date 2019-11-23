@@ -17,7 +17,7 @@ import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.dungeons.CustomAbstractDungeon;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.relics.animator.LivingPicture;
@@ -76,7 +76,7 @@ public abstract class AnimatorCustomLoadout
                 hpField = CharacterOption.class.getDeclaredField("hp");
                 hpField.setAccessible(true);
             }
-            //Utilities.Logger.info("Gold Field: " + (goldField != null) + ", " + this.Name + ", " + this.StartingGold + ", Option: " + (option != null));
+            //JavaUtilities.Logger.info("Gold Field: " + (goldField != null) + ", " + this.Name + ", " + this.StartingGold + ", Option: " + (option != null));
             goldField.set(option, this.StartingGold);
             hpField.set(option, String.valueOf(this.MaxHP));
         }
@@ -185,7 +185,7 @@ public abstract class AnimatorCustomLoadout
 
         if (selected == null)
         {
-            Utilities.Logger.info("Trophy not found");
+            JavaUtilities.Logger.info("Trophy not found");
             selected = new AnimatorTrophies(id);
             AnimatorMetrics.trophiesData.add(selected);
             AnimatorMetrics.SaveTrophies(flush);
@@ -348,7 +348,7 @@ public abstract class AnimatorCustomLoadout
         ArrayList<AbstractCard> cards = AbstractDungeon.player.masterDeck.group;
         for (AbstractCard c : cards)
         {
-            AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
             if (card != null)
             {
                 Synergy synergy = card.GetSynergy();

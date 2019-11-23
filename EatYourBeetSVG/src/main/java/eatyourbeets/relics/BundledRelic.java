@@ -11,12 +11,12 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.Hero;
 import eatyourbeets.effects.ObtainRelicEffect;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 import eatyourbeets.relics.animator.CursedGlyph;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
@@ -55,7 +55,7 @@ public class BundledRelic
             }
         }
 
-        if (PlayerStatistics.GetActualAscensionLevel() > 6 && !hasHero)
+        if (GameUtilities.GetActualAscensionLevel() > 6 && !hasHero)
         {
             if (chance < 50)
             {
@@ -63,7 +63,7 @@ public class BundledRelic
             }
         }
 
-        //Utilities.Logger.info(cardID + ", Rolled: " + roll + " (" + chance + ")");
+        //JavaUtilities.Logger.info(cardID + ", Rolled: " + roll + " (" + chance + ")");
         BundledRelic bundledRelic = new BundledRelic(cardID, relicID, relicTier, chance);
         bundledRelic.roll = roll;
 
@@ -97,12 +97,12 @@ public class BundledRelic
                 {
                     if (r.relicId.equals(relicID))
                     {
-                        Utilities.Logger.info(relicID + " Skipped");
+                        JavaUtilities.Logger.info(relicID + " Skipped");
                         return;
                     }
                 }
 
-                Utilities.Logger.info(relicID + " Created");
+                JavaUtilities.Logger.info(relicID + " Created");
                 relic = RelicLibrary.getRelic(relicID).makeCopy();
                 relic.flash();
             }

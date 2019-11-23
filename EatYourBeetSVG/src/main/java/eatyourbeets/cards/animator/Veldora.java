@@ -60,6 +60,7 @@ public class Veldora extends AnimatorCard_UltraRare
     {
         if (TryUpgrade())
         {
+            upgradeSecondaryValue(1);
             upgradeMagicNumber(1);
         }
     }

@@ -21,14 +21,15 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.common.ChooseFromPileAction;
+import eatyourbeets.actions.common.UpgradeRandomCardAction;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.animator.HigakiRinne;
 import eatyourbeets.effects.ShuffleEnemiesEffect;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.MarkOfPoisonPower;
-import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
 
@@ -154,7 +155,7 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (tryActivate(7)) // 118
         {
-            GameActionsHelper.AddToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
+            GameActionsHelper.AddToBottom(new SFXAction(JavaUtilities.GetRandomElement(sounds)));
         }
         else if (tryActivate(6)) // 124
         {
@@ -163,7 +164,7 @@ public class HigakiRinneAction extends AnimatorAction
         else if (tryActivate(2)) // 126
         {
             ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
-            String key = Utilities.GetRandomElement(keys);
+            String key = JavaUtilities.GetRandomElement(keys);
             AbstractCard card = CardLibrary.cards.get(key).makeCopy();
             if (!card.tags.contains(AbstractCard.CardTags.HEALING))
             {
@@ -172,21 +173,21 @@ public class HigakiRinneAction extends AnimatorAction
         }
         else if (tryActivate(6)) // 132
         {
-            for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
             {
                 GameActionsHelper.DamageTarget(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.BLUNT_HEAVY);
             }
         }
         else if (tryActivate(6)) // 138
         {
-            for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
             {
                 GameActionsHelper.DamageTarget(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HEAVY);
             }
         }
         else if (tryActivate(6)) // 144
         {
-            for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
             {
                 GameActionsHelper.DamageTarget(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.POISON);
             }
@@ -278,7 +279,7 @@ public class HigakiRinneAction extends AnimatorAction
 
     public static void PlayRandomSound()
     {
-        GameActionsHelper.AddToBottom(new SFXAction(Utilities.GetRandomElement(sounds)));
+        GameActionsHelper.AddToBottom(new SFXAction(JavaUtilities.GetRandomElement(sounds)));
     }
 
     private static final ArrayList<String> sounds = new ArrayList<>();

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.screens.VictoryScreen;
 import eatyourbeets.characters.AnimatorCharacterSelect;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class VictoryScreenPatches
 {
@@ -17,7 +17,7 @@ public class VictoryScreenPatches
         {
             if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR && Settings.isStandardRun())
             {
-                AnimatorCharacterSelect.OnTrueVictory(PlayerStatistics.GetActualAscensionLevel());
+                AnimatorCharacterSelect.OnTrueVictory(GameUtilities.GetActualAscensionLevel());
             }
         }
     }

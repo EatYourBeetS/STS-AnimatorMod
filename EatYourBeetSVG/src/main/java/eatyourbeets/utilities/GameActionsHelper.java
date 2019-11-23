@@ -1,6 +1,5 @@
 package eatyourbeets.utilities;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -25,12 +24,10 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.animator.MotivateAction;
 import eatyourbeets.actions.common.*;
 import eatyourbeets.actions.unnamed.MoveToVoidAction;
-import eatyourbeets.blights.animator.UltimateCrystal;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
-import eatyourbeets.orbs.Air;
+import eatyourbeets.orbs.Aether;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
@@ -371,6 +368,13 @@ public class GameActionsHelper
         return sequentialAction;
     }
 
+    public static ChooseFromPileAction ChooseFromPile(int amount, boolean random, CardGroup source, BiConsumer<Object, ArrayList<AbstractCard>> onCompletion, Object state, String message, boolean useSource)
+    {
+        ChooseFromPileAction action = new ChooseFromPileAction(amount, random, source, onCompletion, state, message, useSource);
+        AddToDefault(action);
+        return action;
+    }
+
     public static ChooseFromHandAction ChooseFromHand(int amount, boolean random, BiConsumer<Object, ArrayList<AbstractCard>> onCompletion, Object state, String message)
     {
         ChooseFromHandAction action = new ChooseFromHandAction(amount, random, onCompletion, state, message);
@@ -437,7 +441,7 @@ public class GameActionsHelper
 
     public static void ApplyPowerToAllEnemies(AbstractCreature source, Function<AbstractCreature, AbstractPower> createPower, int stacks)
     {
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             AddToDefault(new ApplyPowerAction(m, source, createPower.apply(m), stacks));
         }
@@ -604,7 +608,7 @@ public class GameActionsHelper
             orbs.Add(new Fire(), 6);
             orbs.Add(new Plasma(), 4);
             orbs.Add(new Dark(), 4);
-            orbs.Add(new Air(), 4);
+            orbs.Add(new Aether(), 4);
         }
 
         return orbs.Retrieve(AbstractDungeon.cardRandomRng, false).makeCopy();

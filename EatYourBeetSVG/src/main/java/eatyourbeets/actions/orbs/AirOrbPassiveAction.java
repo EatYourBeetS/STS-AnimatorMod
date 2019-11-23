@@ -8,17 +8,17 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.AnimatorAction;
-import eatyourbeets.orbs.Air;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.orbs.Aether;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class AirOrbPassiveAction extends AnimatorAction
 {
-    private final Air wind;
+    private final Aether wind;
 
-    public AirOrbPassiveAction(Air wind)
+    public AirOrbPassiveAction(Aether wind)
     {
         this.actionType = ActionType.DAMAGE;
         this.duration = 0.1F;
@@ -31,7 +31,7 @@ public class AirOrbPassiveAction extends AnimatorAction
 
         GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
 
-        ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
+        ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
         Collections.reverse(enemies);
 
         for (AbstractMonster m : enemies)

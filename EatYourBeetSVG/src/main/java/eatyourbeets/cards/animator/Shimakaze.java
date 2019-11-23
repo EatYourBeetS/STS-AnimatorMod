@@ -44,7 +44,7 @@ public class Shimakaze extends AnimatorCard
 
 //    private void OnCardDrawn(Object context, ArrayList<AbstractCard> cards)
 //    {
-//        AbstractMonster m = Utilities.SafeCast(context, AbstractMonster.class);
+//        AbstractMonster m = JavaUtilities.SafeCast(context, AbstractMonster.class);
 //
 //        if (m != null && cards.size() > 0)
 //        {

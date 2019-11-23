@@ -3,13 +3,13 @@ package eatyourbeets.actions.orbs;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.AnimatorAction;
-import eatyourbeets.orbs.Air;
+import eatyourbeets.orbs.Aether;
 
 public class AirOrbEvokeAction extends AnimatorAction
 {
-    private final Air wind;
+    private final Aether wind;
 
-    public AirOrbEvokeAction(Air wind)
+    public AirOrbEvokeAction(Aether wind)
     {
         this.actionType = ActionType.DAMAGE;
         this.duration = 0.1F;

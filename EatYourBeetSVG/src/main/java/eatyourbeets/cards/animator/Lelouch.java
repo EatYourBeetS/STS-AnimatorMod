@@ -13,7 +13,7 @@ import eatyourbeets.actions.common.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.GeassPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class Lelouch extends AnimatorCard
@@ -50,7 +50,7 @@ public class Lelouch extends AnimatorCard
         GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.RED)));
         GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
 
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
         {
             if (!m1.hasPower(GeassPower.POWER_ID))
             {

@@ -10,17 +10,17 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.orbs.AirOrbEvokeAction;
 import eatyourbeets.actions.orbs.AirOrbPassiveAction;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Air extends AnimatorOrb
+public class Aether extends AnimatorOrb
 {
-    public static final String ORB_ID = CreateFullID(Air.class.getSimpleName());
+    public static final String ORB_ID = CreateFullID(Aether.class.getSimpleName());
 
     public static Texture imgExt1;
     public static Texture imgExt2;
     private final boolean hFlip1;
 
-    public Air()
+    public Aether()
     {
         super(ORB_ID);
 
@@ -65,7 +65,7 @@ public class Air extends AnimatorOrb
 
     public void applyFocus()
     {
-        int focus = PlayerStatistics.GetFocus(AbstractDungeon.player);
+        int focus = GameUtilities.GetFocus(AbstractDungeon.player);
 
         this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
     }

@@ -3,8 +3,8 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedCultist;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.AbstractMonsterData;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.utilities.GameUtilities;
 
 public abstract class TheUnnamed_Cultist extends AnimatorMonster
 {
@@ -29,7 +29,7 @@ public abstract class TheUnnamed_Cultist extends AnimatorMonster
             atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamedCultist.atlas";
             imgUrl = null;
 
-            if (PlayerStatistics.GetAscensionLevel() > 7)
+            if (GameUtilities.GetAscensionLevel() > 7)
             {
                 maxHealth = 222;
             }

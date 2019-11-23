@@ -6,12 +6,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.orbs.Fire;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Giselle extends AnimatorCard_UltraRare implements StartupCard
 {
@@ -31,7 +30,7 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
-        BurningPower burning = PlayerStatistics.GetPower(m, BurningPower.POWER_ID);
+        BurningPower burning = GameUtilities.GetPower(m, BurningPower.POWER_ID);
         if (burning != null)
         {
             GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, burning.amount), burning.amount);

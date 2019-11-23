@@ -6,7 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.audio.MusicMaster;
 import com.megacrit.cardcrawl.audio.TempMusic;
 import eatyourbeets.utilities.Field;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
@@ -50,7 +50,7 @@ public class MusicMasterPatch
 
         static
         {
-            tempTracksField = Utilities.GetPrivateField("tempTrack", MusicMaster.class);
+            tempTracksField = JavaUtilities.GetPrivateField("tempTrack", MusicMaster.class);
         }
     }
 }

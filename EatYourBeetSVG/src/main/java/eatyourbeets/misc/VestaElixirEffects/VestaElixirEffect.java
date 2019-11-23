@@ -3,7 +3,7 @@ package eatyourbeets.misc.VestaElixirEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.Vesta_Elixir;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public abstract class VestaElixirEffect
 {
@@ -20,7 +20,7 @@ public abstract class VestaElixirEffect
 
     public String GetDescription()
     {
-        return Utilities.Format(rawDescription, String.valueOf(amount));
+        return JavaUtilities.Format(rawDescription, String.valueOf(amount));
     }
 
     public abstract void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player);

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import eatyourbeets.dungeons.CustomAbstractDungeon;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import patches.AbstractEnums;
@@ -68,7 +68,7 @@ public class SynergyCardsReward extends AnimatorReward
         int i = 0;
         while (i < rewards.size())
         {
-            SynergyCardsReward other = Utilities.SafeCast(rewards.get(i), SynergyCardsReward.class);
+            SynergyCardsReward other = JavaUtilities.SafeCast(rewards.get(i), SynergyCardsReward.class);
             if (other != null && other != this)
             {
                 other.isDone = true;
@@ -109,7 +109,7 @@ public class SynergyCardsReward extends AnimatorReward
         @Override
         public RewardSave onSave(CustomReward customReward)
         {
-            SynergyCardsReward reward = Utilities.SafeCast(customReward, SynergyCardsReward.class);
+            SynergyCardsReward reward = JavaUtilities.SafeCast(customReward, SynergyCardsReward.class);
             if (reward != null)
             {
                 return new RewardSave(reward.type.toString(), null, reward.synergy.ID, 0);

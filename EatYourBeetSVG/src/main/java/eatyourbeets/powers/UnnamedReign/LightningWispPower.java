@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class LightningWispPower extends AnimatorPower
 {
@@ -36,7 +36,7 @@ public class LightningWispPower extends AnimatorPower
     {
         super.onDeath();
 
-        for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
+        for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
         {
             GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE"));
             GameActionsHelper.AddToBottom(new VFXAction(new LightningEffect(c.drawX, c.drawY)));

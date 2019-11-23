@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class ShuffleEnemiesEffect extends AbstractGameEffect
 {
@@ -29,7 +29,7 @@ public class ShuffleEnemiesEffect extends AbstractGameEffect
     {
         if (enemy1 == null)
         {
-            RandomizedList<AbstractMonster> enemies = new RandomizedList<>(PlayerStatistics.GetCurrentEnemies(true));
+            RandomizedList<AbstractMonster> enemies = new RandomizedList<>(GameUtilities.GetCurrentEnemies(true));
             if (enemies.Count() > 1)
             {
                 enemy1 = enemies.Retrieve(AbstractDungeon.miscRng);
@@ -82,7 +82,7 @@ public class ShuffleEnemiesEffect extends AbstractGameEffect
             targetReached = false;
         }
 
-        Utilities.Logger.info("TARGET REACHED " + targetReached);
+        JavaUtilities.Logger.info("TARGET REACHED " + targetReached);
 
         if (targetReached)
         {

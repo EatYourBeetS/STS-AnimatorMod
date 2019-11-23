@@ -3,8 +3,8 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class NextTurnDexterityPower extends AnimatorPower
 {
@@ -32,7 +32,7 @@ public class NextTurnDexterityPower extends AnimatorPower
     {
         super.atStartOfTurnPostDraw();
 
-        PlayerStatistics.ApplyTemporaryDexterity(owner, owner, amount);
+        GameUtilities.ApplyTemporaryDexterity(owner, owner, amount);
         GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
     }
 }

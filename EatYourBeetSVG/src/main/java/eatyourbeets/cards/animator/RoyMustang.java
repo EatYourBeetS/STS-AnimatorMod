@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Fire;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class RoyMustang extends AnimatorCard
 {
@@ -38,7 +38,7 @@ public class RoyMustang extends AnimatorCard
         int max = p.orbs.size();
         int i = 0;
 
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
         {
             if (i < max)
             {

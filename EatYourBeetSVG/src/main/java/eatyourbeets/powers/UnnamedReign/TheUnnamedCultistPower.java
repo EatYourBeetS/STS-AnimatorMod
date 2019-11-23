@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamedCultistPower extends AnimatorPower
 {
@@ -34,7 +34,7 @@ public class TheUnnamedCultistPower extends AnimatorPower
         super.atEndOfTurn(isPlayer);
 
         GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, owner, EnchantedArmorPower.POWER_ID));
-        int count = PlayerStatistics.GetCurrentEnemies(true).size() - 1;
+        int count = GameUtilities.GetCurrentEnemies(true).size() - 1;
         if (count > 0)
         {
             GameActionsHelper.ApplyPowerSilently(owner, owner, new EnchantedArmorPower(owner, amount * count), amount * count);

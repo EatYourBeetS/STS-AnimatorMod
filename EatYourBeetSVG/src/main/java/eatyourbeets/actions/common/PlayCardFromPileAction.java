@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class PlayCardFromPileAction extends AbstractGameAction
 {
@@ -73,7 +73,7 @@ public class PlayCardFromPileAction extends AbstractGameAction
 
                 if (target == null)
                 {
-                    target = PlayerStatistics.GetRandomEnemy(true);
+                    target = GameUtilities.GetRandomEnemy(true);
                 }
 
                 if (!card.canUse(AbstractDungeon.player, target))

@@ -1,7 +1,7 @@
 package eatyourbeets.relics.unnamed;
 
 import eatyourbeets.relics.UnnamedRelic;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class InfinitePower extends UnnamedRelic
 {
@@ -18,6 +18,6 @@ public class InfinitePower extends UnnamedRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], TEMP_HP_AMOUNT, HEAL_AMOUNT);
+        return JavaUtilities.Format(DESCRIPTIONS[0], TEMP_HP_AMOUNT, HEAL_AMOUNT);
     }
 }

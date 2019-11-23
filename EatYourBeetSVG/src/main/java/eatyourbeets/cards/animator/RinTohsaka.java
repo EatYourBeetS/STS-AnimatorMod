@@ -8,10 +8,9 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.Spellcaster;
-import eatyourbeets.orbs.Air;
+import eatyourbeets.orbs.Aether;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.TemporaryArtifactPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -62,7 +61,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
         TryAddOrb(new Earth(), 6, orbs, p.orbs);
         TryAddOrb(new Fire(), 6, orbs, p.orbs);
         TryAddOrb(new Dark(), 4, orbs, p.orbs);
-        TryAddOrb(new Air(), 4, orbs, p.orbs);
+        TryAddOrb(new Aether(), 4, orbs, p.orbs);
         TryAddOrb(new Plasma(), 2, orbs, p.orbs);
 
         for (int i = 0; i < magicNumber; i++)

@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.relics.animator.Readme;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -54,7 +55,9 @@ public class Gilgamesh extends AnimatorCard
         }
 
         AbstractPlayer player = AbstractDungeon.player;
-        if (player != null && player.masterDeck != null && !(relic instanceof UnnamedReignRelic))
+        if (player != null && player.masterDeck != null
+                && !(relic instanceof UnnamedReignRelic)
+                && !(relic instanceof Readme))
         {
             for (AbstractRelic r : StoreRelicPatch.last20Relics)
             {

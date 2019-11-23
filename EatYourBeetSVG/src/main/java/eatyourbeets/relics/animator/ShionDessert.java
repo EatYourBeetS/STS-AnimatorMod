@@ -1,19 +1,15 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.utilities.Utilities;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class ShionDessert extends AnimatorRelic
 {
@@ -29,7 +25,7 @@ public class ShionDessert extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], POISON_AMOUNT);
+        return JavaUtilities.Format(DESCRIPTIONS[0], POISON_AMOUNT);
     }
 
     @Override
@@ -40,9 +36,9 @@ public class ShionDessert extends AnimatorRelic
         int mostPoison = -1;
         AbstractMonster enemy = null;
 
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            AbstractPower poison = PlayerStatistics.GetPower(m, PoisonPower.POWER_ID);
+            AbstractPower poison = GameUtilities.GetPower(m, PoisonPower.POWER_ID);
             if (poison != null && poison.amount > mostPoison)
             {
                 mostPoison = poison.amount;
@@ -52,7 +48,7 @@ public class ShionDessert extends AnimatorRelic
 
         if (enemy == null)
         {
-            enemy = PlayerStatistics.GetRandomEnemy(true);
+            enemy = GameUtilities.GetRandomEnemy(true);
         }
 
         if (enemy != null)

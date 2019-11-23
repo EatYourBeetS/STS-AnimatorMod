@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions.animator.AnimatorAction;
-import eatyourbeets.powers.PlayerStatistics;
 
 import java.util.ArrayList;
 
@@ -77,8 +77,8 @@ public class EarthOrbEvokeAction extends AnimatorAction
         @Override
         public void update()
         {
-            ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
-            AbstractMonster m = Utilities.GetRandomElement(enemies);
+            ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
+            AbstractMonster m = JavaUtilities.GetRandomElement(enemies);
             if (m != null && baseDamage > 0)
             {
                 int actualDamage = AbstractOrb.applyLockOn(m, baseDamage);

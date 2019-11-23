@@ -13,6 +13,7 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Sloth extends AnimatorCard
 {
@@ -79,7 +80,7 @@ public class Sloth extends AnimatorCard
 
         if (TryUpgrade())
         {
-            if (!CardCrawlGame.isPopupOpen && PlayerStatistics.InBattle())
+            if (!CardCrawlGame.isPopupOpen && GameUtilities.InBattle())
             {
                 baseMagicNumber = GetBaseCooldown();
                 upgradedMagicNumber = true;
@@ -102,8 +103,7 @@ public class Sloth extends AnimatorCard
         {
             magicNumber = baseMagicNumber = 0;
 
-            cardText.overrideDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
-            cardText.ForceRefresh();
+            cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
         }
 
         baseMagicNumber = magicNumber;

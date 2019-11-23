@@ -13,6 +13,7 @@ import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_SummonEnemy;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.TheUnnamedHatPower;
+import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamed_Hat extends AnimatorMonster
 {
@@ -44,7 +45,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
 
         moveset.AddSpecial(new Move_SummonEnemy());
 
-        if (PlayerStatistics.GetAscensionLevel() >= 7)
+        if (GameUtilities.GetAscensionLevel() >= 7)
         {
             moveset.AddNormal(new Move_GainStrengthAndBlock(4, 11));
         }
@@ -126,7 +127,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
         {
             super(id);
 
-            if (PlayerStatistics.GetAscensionLevel() > 7)
+            if (GameUtilities.GetAscensionLevel() > 7)
             {
                 maxHealth = 74;
             }

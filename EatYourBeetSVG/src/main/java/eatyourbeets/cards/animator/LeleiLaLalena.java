@@ -9,7 +9,7 @@ import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 {
@@ -56,7 +56,7 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 
         if (HasActiveSynergy())
         {
-            for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+            for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
             {
                 GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, 1, false), 1);
             }

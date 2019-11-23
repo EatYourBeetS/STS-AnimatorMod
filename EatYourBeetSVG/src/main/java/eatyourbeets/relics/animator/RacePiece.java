@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
@@ -110,7 +110,7 @@ public class RacePiece extends AnimatorRelic
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
-            AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
             if (card != null && card.GetSynergy() != null && card.color != AbstractCard.CardColor.COLORLESS)
             {
                 group.addToTop(card);
@@ -206,7 +206,7 @@ public class RacePiece extends AnimatorRelic
             synergy = null;
 
             AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-            AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
             if (card != null)
             {
                 synergy = card.GetSynergy();

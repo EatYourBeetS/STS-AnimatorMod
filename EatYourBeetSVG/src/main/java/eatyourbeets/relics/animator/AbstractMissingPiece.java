@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.TreasureRoomBoss;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
@@ -34,7 +34,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], GetRewardInterval());
+        return JavaUtilities.Format(DESCRIPTIONS[0], GetRewardInterval());
     }
 
     protected abstract int GetRewardInterval();
@@ -174,7 +174,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
     private Synergy Group(AbstractCard card)
     {
-        AnimatorCard c = Utilities.SafeCast(card, AnimatorCard.class);
+        AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
 
         Synergy synergy = null;
         if (c != null)

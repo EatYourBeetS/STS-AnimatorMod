@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.DrawSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Raven extends AnimatorCard
 {
@@ -31,7 +31,7 @@ public class Raven extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
-        if (PlayerStatistics.IsAttacking(m.intent))
+        if (GameUtilities.IsAttacking(m.intent))
         {
             GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
         }

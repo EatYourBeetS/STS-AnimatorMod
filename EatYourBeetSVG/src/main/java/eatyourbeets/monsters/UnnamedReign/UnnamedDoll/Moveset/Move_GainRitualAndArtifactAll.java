@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Move_GainRitualAndArtifactAll extends AbstractMove
 {
@@ -26,7 +26,7 @@ public class Move_GainRitualAndArtifactAll extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(owner, m, new RitualPower(m, ritual), ritual);
             GameActionsHelper.ApplyPower(owner, m, new ArtifactPower(m, artifact), artifact);

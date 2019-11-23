@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
 import eatyourbeets.actions.animator.PlayTempBgmAction;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class SpecificMonsterPatches
             int lagavulinCount = 0;
             int aliveLagavulinCount = 0;
 
-            ArrayList<AbstractMonster> monsters = PlayerStatistics.GetCurrentEnemies(false);
+            ArrayList<AbstractMonster> monsters = GameUtilities.GetCurrentEnemies(false);
             for (AbstractMonster m : monsters)
             {
                 if (m instanceof Lagavulin)

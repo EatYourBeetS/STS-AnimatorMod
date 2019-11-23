@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class FireCrystalPower extends AnimatorPower
 {
@@ -37,7 +37,7 @@ public class FireCrystalPower extends AnimatorPower
 
         if (action.target == owner)
         {
-            for (AbstractCreature c : PlayerStatistics.GetAllCharacters(true))
+            for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
             {
                 if (c != owner)
                 {

@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsurugi extends AnimatorCard
 {
@@ -59,7 +59,9 @@ public class Mitsurugi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (PlayerStatistics.IsAttacking(m.intent))
+        //GameActionsHelper.GainBlock(p, block);
+
+        if (GameUtilities.IsAttacking(m.intent))
         {
             GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         }
@@ -81,16 +83,14 @@ public class Mitsurugi extends AnimatorCard
 
     private void updateCurrentEffect(AbstractMonster monster)
     {
-        if (monster == null || PlayerStatistics.IsAttacking(monster.intent))
+        if (monster == null || GameUtilities.IsAttacking(monster.intent))
         {
-            rawDescription = cardData.strings.DESCRIPTION;
+            cardText.OverrideDescription(null, true);
         }
         else
         {
-            rawDescription = cardData.strings.EXTENDED_DESCRIPTION[0];
+            cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
         }
-
-        initializeDescription();
     }
 //
 //    private boolean CanDealDamage(AbstractMonster m)

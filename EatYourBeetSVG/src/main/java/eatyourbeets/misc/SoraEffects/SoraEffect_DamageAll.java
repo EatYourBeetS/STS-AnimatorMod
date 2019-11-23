@@ -3,8 +3,8 @@ package eatyourbeets.misc.SoraEffects;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 
 public class SoraEffect_DamageAll extends SoraEffect
@@ -20,6 +20,6 @@ public class SoraEffect_DamageAll extends SoraEffect
     public void EnqueueAction(AbstractPlayer player)
     {
         GameActionsHelper.DamageAllEnemies(player, sora.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
-        PlayerStatistics.UsePenNib();
+        GameUtilities.UsePenNib();
     }
 }

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -7,6 +8,7 @@ import com.megacrit.cardcrawl.powers.MalleablePower;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.rewards.SpecialGoldReward;
@@ -15,32 +17,17 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
-public class Greed extends AnimatorCard
+public class Greed extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(Greed.class.getSimpleName(), EYBCardBadge.Exhaust, EYBCardBadge.Special);
+    public static final String ID = Register(Greed.class.getSimpleName(), EYBCardBadge.Special);
 
     public Greed()
     {
         super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0, 2, 8);
+        Initialize(0,2, 2, 8);
 
         SetSynergy(Synergies.FullmetalAlchemist);
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        if (GetMasterDeckInstance() != null && EffectHistory.TryActivateLimited(cardID))
-        {
-            AbstractRoom room = PlayerStatistics.GetCurrentRoom();
-            if (room != null && room.rewardAllowed)
-            {
-                room.rewards.add(0, new SpecialGoldReward(cardData.strings.NAME, secondaryValue));
-            }
-        }
     }
 
     @Override
@@ -68,7 +55,22 @@ public class Greed extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeBaseCost(3);
         }
+    }
+
+    @Override
+    public boolean atBattleStartPreDraw()
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+
+        for (int i = 0; i < this.secondaryValue; ++i)
+        {
+            AbstractDungeon.effectList.add(new GainPennyEffect(p.hb.cX, p.hb.cY + (p.hb.height / 2)));
+        }
+
+        p.gainGold(this.secondaryValue);
+
+        return true;
     }
 }

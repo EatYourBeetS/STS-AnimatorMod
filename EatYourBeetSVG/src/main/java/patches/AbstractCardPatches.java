@@ -13,11 +13,11 @@ import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Unnamed_Images;
 import eatyourbeets.utilities.Field;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class AbstractCardPatches
 {
-    private static Field<Boolean> DarkenField = Utilities.GetPrivateField("darken", AbstractCard.class);
+    private static Field<Boolean> DarkenField = JavaUtilities.GetPrivateField("darken", AbstractCard.class);
     private static TextureAtlas.AtlasRegion Orb2A = Resources_Unnamed_Images.ORB_2_ATLAS.findRegion(Resources_Unnamed_Images.ORB_2A_PNG);
 
     @SpirePatch(clz=AbstractCard.class, method="renderEnergy")
@@ -26,7 +26,7 @@ public class AbstractCardPatches
         @SpirePostfixPatch
         public static void Method(AbstractCard __instance, SpriteBatch sb)
         {
-            UnnamedCard card = Utilities.SafeCast(__instance, UnnamedCard.class);
+            UnnamedCard card = JavaUtilities.SafeCast(__instance, UnnamedCard.class);
             if (card != null && card.masteryCost > -2 && !DarkenField.Get(card) && !card.isLocked && card.isSeen)
             {
                 Color costColor = Color.WHITE.cpy();

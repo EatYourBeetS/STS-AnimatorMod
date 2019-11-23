@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Kuribayashi extends AnimatorCard
 {
@@ -38,7 +38,7 @@ public class Kuribayashi extends AnimatorCard
 
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            PlayerStatistics.LoseTemporaryStrength(p, m, STRENGTH_DOWN);
+            GameUtilities.LoseTemporaryStrength(p, m, STRENGTH_DOWN);
         }
     }
 

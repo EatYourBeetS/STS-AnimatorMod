@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class FireOrbEvokeAction extends AnimatorAction
 {
@@ -24,7 +24,7 @@ public class FireOrbEvokeAction extends AnimatorAction
     {
         if (this.amount > 0)
         {
-            for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+            for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
             {
                 GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, this.amount), this.amount);
             }

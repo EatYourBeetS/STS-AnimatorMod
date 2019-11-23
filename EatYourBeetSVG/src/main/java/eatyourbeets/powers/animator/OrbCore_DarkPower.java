@@ -1,9 +1,13 @@
 package eatyourbeets.powers.animator;
 
 import basemod.BaseMod;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerToRandomEnemyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.animator.OrbCore_Dark;
 
@@ -25,11 +29,8 @@ public class OrbCore_DarkPower extends OrbCore_AbstractPower
     {
         if (p.hand.size() < BaseMod.MAX_HAND_SIZE)
         {
-            GameActionsHelper.DrawCard(p, value);
-            if ((p.drawPile.size() + p.discardPile.size()) > 0)
-            {
-                GameActionsHelper.Discard(1, false);
-            }
+            GameActionsHelper.AddToBottom(new ApplyPowerToRandomEnemyAction(p, new VulnerablePower(null, value, false), value));
+            GameActionsHelper.AddToBottom(new ApplyPowerToRandomEnemyAction(p, new WeakPower(null, value, false), value));
         }
     }
 }

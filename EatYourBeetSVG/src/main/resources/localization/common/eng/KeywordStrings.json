@@ -1,10 +1,16 @@
 
 {
-	"Air":
+	"Aether":
 	{
 		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
-		"NAMES": ["air", "air+"],
-		"PROPER_NAME": "Air"
+		"NAMES": ["aether", "aether+"],
+		"PROPER_NAME": "Aether"
+	},
+	"Agility":
+	{
+		"DESCRIPTION": "When you gain or lose #yAgility, gain or lose that much #yDexterity. Lose #b1 #yAgility at the start of each turn.",
+		"NAMES": ["agility"],
+		"PROPER_NAME": "Agility"
 	},
 	"Blur":
 	{
@@ -72,11 +78,29 @@
 		"NAMES": ["fire", "fire+"],
 		"PROPER_NAME": "Fire"
 	},
+	"Flame Barrier":
+	{
+		"DESCRIPTION": "Whenever you are attacked this turn, deal #b1 damage back.",
+		"NAMES": ["flame barrier", "flame_barrier"],
+		"PROPER_NAME": "Flame Barrier"
+	},
 	"Flight":
 	{
 		"DESCRIPTION": "Take 50% less #yAttack damage. Lose 1 stack until end of turn when taking damage, the power is cancelled at 0 stacks.",
 		"NAMES": ["flight"],
 		"PROPER_NAME": "Flight"
+	},
+	"Force":
+	{
+		"DESCRIPTION": "When you gain or lose #yForce, gain or lose that much #yStrength. Lose #b1 #yForce at the start of each turn.",
+		"NAMES": ["force"],
+		"PROPER_NAME": "Force"
+	},
+	"Intellect":
+	{
+		"DESCRIPTION": "When you gain or lose #yIntellect, gain or lose that much #yFocus. Lose #b1 #yIntellect at the start of each turn.",
+		"NAMES": ["intellect"],
+		"PROPER_NAME": "Intellect"
 	},
 	"Juggernaut":
 	{
@@ -89,12 +113,6 @@
 		"DESCRIPTION": "This effect can only trigger once per combat, across all copies of this card.",
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
-	},
-	"Semi-Limited":
-	{
-		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",
-		"NAMES": ["semi-limited"],
-		"PROPER_NAME": "Semi-Limited"
 	},
 	"Malleable":
 	{
@@ -120,35 +138,17 @@
 		"NAMES": ["plated armor", "plated_armor"],
 		"PROPER_NAME": "Plated Armor"
 	},
-	"Force":
-	{
-		"DESCRIPTION": "When you gain or lose #yForce, gain or lose that much #yStrength. Lose #b1 #yForce at the start of each turn.",
-		"NAMES": ["force"],
-		"PROPER_NAME": "Force"
-	},
-	"Flame Barrier":
-	{
-		"DESCRIPTION": "Whenever you are attacked this turn, deal #b1 damage back.",
-		"NAMES": ["flame barrier", "flame_barrier"],
-		"PROPER_NAME": "Flame Barrier"
-	},
-	"Agility":
-	{
-		"DESCRIPTION": "When you gain or lose #yAgility, gain or lose that much #yDexterity. Lose #b1 #yAgility at the start of each turn.",
-		"NAMES": ["agility"],
-		"PROPER_NAME": "Agility"
-	},
-	"Intellect":
-	{
-		"DESCRIPTION": "When you gain or lose #yIntellect, gain or lose that much #yFocus. Lose #b1 #yIntellect at the start of each turn.",
-		"NAMES": ["intellect"],
-		"PROPER_NAME": "Intellect"
-	},
 	"Rebound":
 	{
 		"DESCRIPTION": "Put the next card you play this turn on top of your draw pile.",
 		"NAMES": ["rebound"],
 		"PROPER_NAME": "Rebound"
+	},
+	"Semi-Limited":
+	{
+		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",
+		"NAMES": ["semi-limited"],
+		"PROPER_NAME": "Semi-Limited"
 	},
 	"Slow":
 	{

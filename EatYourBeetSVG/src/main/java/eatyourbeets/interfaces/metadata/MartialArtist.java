@@ -1,7 +1,7 @@
 package eatyourbeets.interfaces.metadata;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public interface MartialArtist
 {
@@ -23,6 +23,6 @@ public interface MartialArtist
 
     static int GetScaling(int divisor)
     {
-        return Math.floorDiv(Math.max(0, PlayerStatistics.GetDexterity()), divisor);
+        return Math.floorDiv(Math.max(0, GameUtilities.GetDexterity()), divisor);
     }
 }

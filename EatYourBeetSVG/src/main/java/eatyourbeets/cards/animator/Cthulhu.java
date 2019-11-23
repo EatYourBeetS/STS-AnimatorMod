@@ -19,7 +19,7 @@ import eatyourbeets.actions.common.PurgeAnywhereAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
@@ -88,7 +88,7 @@ public class Cthulhu extends AnimatorCard_UltraRare
 
         for (int i = 0; i < magicNumber; i++)
         {
-            String key = Utilities.GetRandomElement(keys);
+            String key = JavaUtilities.GetRandomElement(keys);
 
             AbstractCard card = CardLibrary.cards.get(key).makeCopy();
             while (card.canUpgrade() && AbstractDungeon.cardRandomRng.randomBoolean(0.3f))

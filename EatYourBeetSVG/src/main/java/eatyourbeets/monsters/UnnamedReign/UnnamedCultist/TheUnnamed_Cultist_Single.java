@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.monsters.exordium.Sentry;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_GainPlatedArmorAll;
@@ -28,11 +28,11 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
     {
         super(x, y);
 
-        PreparePool(PlayerStatistics.GetAscensionLevel());
+        PreparePool(GameUtilities.GetAscensionLevel());
 
         moveset.AddSpecial(new Move_SummonEnemy());
 
-        boolean asc4 = PlayerStatistics.GetAscensionLevel() >= 4;
+        boolean asc4 = GameUtilities.GetAscensionLevel() >= 4;
 
         int strengthGain = asc4 ? 4 : 3;
         int platedArmor = asc4 ? 5 : 4;

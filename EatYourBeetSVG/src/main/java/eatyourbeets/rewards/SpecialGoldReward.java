@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rewards.RewardSave;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import patches.AbstractEnums;
 
 public class SpecialGoldReward extends AnimatorReward
@@ -47,7 +47,7 @@ public class SpecialGoldReward extends AnimatorReward
         @Override
         public RewardSave onSave(CustomReward customReward)
         {
-            SpecialGoldReward reward = Utilities.SafeCast(customReward, SpecialGoldReward.class);
+            SpecialGoldReward reward = JavaUtilities.SafeCast(customReward, SpecialGoldReward.class);
             if (reward != null)
             {
                 return new RewardSave(customReward.type.toString(), reward.text, reward.goldAmt, 0);

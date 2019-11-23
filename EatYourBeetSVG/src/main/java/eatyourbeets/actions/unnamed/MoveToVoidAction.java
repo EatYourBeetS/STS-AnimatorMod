@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class MoveToVoidAction extends AbstractGameAction
 {
@@ -47,7 +47,7 @@ public class MoveToVoidAction extends AbstractGameAction
             PlayerStatistics.Void.Initialize(false);
             PlayerStatistics.Void.addToBottom(card);
 
-            UnnamedCard c = Utilities.SafeCast(card, UnnamedCard.class);
+            UnnamedCard c = JavaUtilities.SafeCast(card, UnnamedCard.class);
             if (c != null)
             {
                 c.OnEnteredVoid();

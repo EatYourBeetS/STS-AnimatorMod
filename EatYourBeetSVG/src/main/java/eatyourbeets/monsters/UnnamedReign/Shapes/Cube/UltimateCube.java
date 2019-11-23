@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleFrail;
@@ -16,6 +15,7 @@ import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.UnnamedReign.UltimateCubePower;
+import eatyourbeets.utilities.GameUtilities;
 
 public class UltimateCube extends Cube
 {
@@ -30,7 +30,7 @@ public class UltimateCube extends Cube
 
         movesetMode = Mode.Sequential;
 
-        boolean asc4 = PlayerStatistics.GetActualAscensionLevel() >= 4;
+        boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
 
         int debuffsAmount = asc4 ? 3 : 2;
         int damageAmount = asc4 ? 5 : 4;

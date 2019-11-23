@@ -18,7 +18,7 @@ public class Shigure extends AnimatorCard
 
     public Shigure()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(4,0, 3, 2);
 
@@ -36,9 +36,9 @@ public class Shigure extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F);
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
         GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, magicNumber), magicNumber);
+        GameActionsHelper.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F);
+        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
 
         if (HasActiveSynergy())
         {

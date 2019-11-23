@@ -17,7 +17,7 @@ public class Elesis extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(6,0, 1, 4);
+        Initialize(6,0, 1, 6);
 
         SetExhaust(true);
         SetSynergy(Synergies.Elsword);

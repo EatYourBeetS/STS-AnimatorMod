@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class FrostCubePower extends AnimatorPower
 {
@@ -37,7 +37,7 @@ public class FrostCubePower extends AnimatorPower
         {
             GameActionsHelper.ApplyPower(owner, owner, new PlatedArmorPower(owner, amount), amount);
         }
-        else for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
+        else for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(null, m, new PlatedArmorPower(m, amount), amount);
         }

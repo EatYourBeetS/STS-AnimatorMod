@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.monsters.AbstractMove;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ public class Move_GainStrengthAndBlockAll extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        ArrayList<AbstractMonster> enemies = PlayerStatistics.GetCurrentEnemies(true);
+        ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
 
         boolean isFast = enemies.size() >= 6;
 

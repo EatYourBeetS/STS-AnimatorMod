@@ -19,6 +19,7 @@ import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Scar extends AnimatorCard implements OnBattleStartSubscriber, OnEvokeOrbSubscriber
 {
@@ -30,7 +31,7 @@ public class Scar extends AnimatorCard implements OnBattleStartSubscriber, OnEvo
 
         Initialize(12,0);
 
-        if (PlayerStatistics.InBattle() && !CardCrawlGame.isPopupOpen)
+        if (GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen)
         {
             OnBattleStart();
         }

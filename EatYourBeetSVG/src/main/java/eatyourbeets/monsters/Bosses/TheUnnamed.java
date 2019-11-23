@@ -29,7 +29,8 @@ import eatyourbeets.powers.UnnamedReign.InfinitePower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.scenes.TheUnnamedReignScene;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class TheUnnamed extends AnimatorMonster
 {
@@ -54,7 +55,7 @@ public class TheUnnamed extends AnimatorMonster
         int poisonScaling;
         int singleAttackDamage;
         int multiAttackDamage;
-        if (PlayerStatistics.GetAscensionLevel() >= 4)
+        if (GameUtilities.GetAscensionLevel() >= 4)
         {
             poisonScaling = 4;
             singleAttackDamage = 34;
@@ -259,7 +260,7 @@ public class TheUnnamed extends AnimatorMonster
 
     private static void ChangeOverlayColor(Color color)
     {
-        TheUnnamedReignScene scene = Utilities.SafeCast(AbstractDungeon.scene, TheUnnamedReignScene.class);
+        TheUnnamedReignScene scene = JavaUtilities.SafeCast(AbstractDungeon.scene, TheUnnamedReignScene.class);
         if (scene != null)
         {
             scene.overlayColor = color;
@@ -279,7 +280,7 @@ public class TheUnnamed extends AnimatorMonster
     private int RemoveMinions()
     {
         int removed = 0;
-        for (AbstractMonster m : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             if (m.hasPower(MinionPower.POWER_ID))
             {
@@ -301,7 +302,7 @@ public class TheUnnamed extends AnimatorMonster
             atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.atlas";
             jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.json";
 
-            int level = PlayerStatistics.GetActualAscensionLevel();
+            int level = GameUtilities.GetActualAscensionLevel();
             if (level > 0)
             {
                 maxHealth += level * 5;

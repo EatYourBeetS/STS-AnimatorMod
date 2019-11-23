@@ -19,8 +19,8 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.animator.HigakiRinne;
 import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -124,7 +124,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
             hp = 150;
         }
 
-        if (hp < 999 && PlayerStatistics.GetActualAscensionLevel() >= 14)
+        if (hp < 999 && GameUtilities.GetActualAscensionLevel() >= 14)
         {
             hp = (int)Math.ceil(hp * 0.9);
         }

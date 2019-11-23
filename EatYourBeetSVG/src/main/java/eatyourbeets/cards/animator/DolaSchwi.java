@@ -12,10 +12,10 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class DolaSchwi extends AnimatorCard_Cooldown
 {
@@ -66,7 +66,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     {
         if (m == null)
         {
-            m = Utilities.GetRandomElement(PlayerStatistics.GetCurrentEnemies(true));
+            m = JavaUtilities.GetRandomElement(GameUtilities.GetCurrentEnemies(true));
 
             if (m == null)
             {

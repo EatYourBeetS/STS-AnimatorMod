@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class LivingPicture extends AnimatorRelic
 {
@@ -44,7 +44,7 @@ public class LivingPicture extends AnimatorRelic
     {
         super.onPlayCard(c, m);
 
-        AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+        AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
         if (active && card != null && card.HasActiveSynergy())
         {
             GameActionsHelper.DrawCard(AbstractDungeon.player, 1);

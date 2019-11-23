@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.EYBCard;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class CooldownVariable extends DynamicVariable
 {
@@ -17,7 +17,7 @@ public class CooldownVariable extends DynamicVariable
 
     public boolean isModified(AbstractCard card)
     {
-        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
+        EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             return c.isSecondaryValueModified;
@@ -28,7 +28,7 @@ public class CooldownVariable extends DynamicVariable
 
     public void setIsModified(AbstractCard card, boolean v)
     {
-        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
+        EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             c.isSecondaryValueModified = v;
@@ -37,7 +37,7 @@ public class CooldownVariable extends DynamicVariable
 
     public int value(AbstractCard card)
     {
-        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
+        EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             return c.secondaryValue;
@@ -48,7 +48,7 @@ public class CooldownVariable extends DynamicVariable
 
     public int baseValue(AbstractCard card)
     {
-        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
+        EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             return c.baseSecondaryValue;
@@ -59,7 +59,7 @@ public class CooldownVariable extends DynamicVariable
 
     public boolean upgraded(AbstractCard card)
     {
-        EYBCard c = Utilities.SafeCast(card, EYBCard.class);
+        EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
             return c.upgradedSecondaryValue;

@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.actions.common.DieAction;
 import eatyourbeets.actions.common.IncreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Reaper extends UnnamedCard
 {
@@ -33,14 +33,14 @@ public class Reaper extends UnnamedCard
     {
         super.applyPowers();
 
-        this.secondaryValue = this.baseSecondaryValue + PlayerStatistics.GetStrength(AbstractDungeon.player) * 3;
+        this.secondaryValue = this.baseSecondaryValue + GameUtilities.GetStrength(AbstractDungeon.player) * 3;
         this.isSecondaryValueModified = (this.secondaryValue != this.baseSecondaryValue);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
         {
             if (m1.currentHealth < secondaryValue)
             {

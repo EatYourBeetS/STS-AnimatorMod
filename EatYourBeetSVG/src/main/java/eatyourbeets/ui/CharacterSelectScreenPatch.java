@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.characters.AnimatorCharacterSelect;
 import eatyourbeets.characters.AnimatorCustomLoadout;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
@@ -71,7 +71,7 @@ public class CharacterSelectScreenPatch
         trophy3Hb.move(baseX + 500.0F * Settings.scale, baseY + 94.0F * Settings.scale);
         trophySpecialHb.move(baseX + 492.0F * Settings.scale, baseY + 154.0F * Settings.scale);
         AnimatorCustomLoadout.LoadSpecialTrophies();
-        PlayerStatistics.UnlockAllKeys();
+        GameUtilities.UnlockAllKeys();
 
         selectedOption = null;
     }

@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.Field;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.ui.buttons.DialogRelicButton;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +26,7 @@ public abstract class AnimatorEvent extends AbstractImageEvent
         return "animator:" + id;
     }
 
-    private static final Field<ArrayList<LargeDialogOptionButton>> optionListField = Utilities.GetPrivateField("optionList", GenericEventDialog.class);
+    private static final Field<ArrayList<LargeDialogOptionButton>> optionListField = JavaUtilities.GetPrivateField("optionList", GenericEventDialog.class);
 
     protected final ArrayList<PhaseHandler> phaseHandlers = new ArrayList<>();
     protected final EventStrings eventStrings;

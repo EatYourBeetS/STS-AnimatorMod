@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 
@@ -89,7 +89,7 @@ public class TheUnnamedMerchant extends AnimatorEvent
         if (button == 0)
         {
             // selling
-            AncientMedallion medallion = Utilities.SafeCast(p.getRelic(AncientMedallion.ID), AncientMedallion.class);
+            AncientMedallion medallion = JavaUtilities.SafeCast(p.getRelic(AncientMedallion.ID), AncientMedallion.class);
             if (medallion != null)
             {
                 medallion.setCounter(medallion.counter - 1);

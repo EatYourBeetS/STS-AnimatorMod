@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class LightningCubePower extends AnimatorPower
 {
@@ -42,7 +42,7 @@ public class LightningCubePower extends AnimatorPower
 
         if (owner.isPlayer)
         {
-            target = PlayerStatistics.GetRandomEnemy(true);
+            target = GameUtilities.GetRandomEnemy(true);
         }
         else
         {

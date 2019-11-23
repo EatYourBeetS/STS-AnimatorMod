@@ -32,8 +32,11 @@ public class PurgeAnywhereAction extends AbstractGameAction
     public PurgeAnywhereAction(AbstractCard card, UUID uuid, int repeat)
     {
         this.card = card;
+        if (this.card != null)
+        {
+            this.card.tags.add(AbstractEnums.CardTags.PURGING);
+        }
         this.uuid = uuid;
-        this.card.tags.add(AbstractEnums.CardTags.PURGING);
         this.actionType = ActionType.EXHAUST;
         this.duration = Settings.ACTION_DUR_MED;
         this.repeat = repeat;

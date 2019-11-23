@@ -6,7 +6,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
@@ -38,7 +38,7 @@ public class ElricAlphonse extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (PlayerStatistics.GetFocus(p) <= magicNumber)
+        if (GameUtilities.GetFocus(p) <= magicNumber)
         {
             GameActionsHelper.GainIntellect(1);
         }

@@ -2,7 +2,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.monsters.AbstractMonsterData;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MonsterData_Shape extends AbstractMonsterData
 {
@@ -45,7 +45,7 @@ public class MonsterData_Shape extends AbstractMonsterData
             maxHealth += AbstractDungeon.monsterHpRng.random(-4, 4);
         }
 
-        if (PlayerStatistics.GetAscensionLevel() >= 7)
+        if (GameUtilities.GetAscensionLevel() >= 7)
         {
             maxHealth = Math.round(maxHealth * 1.1f);
         }

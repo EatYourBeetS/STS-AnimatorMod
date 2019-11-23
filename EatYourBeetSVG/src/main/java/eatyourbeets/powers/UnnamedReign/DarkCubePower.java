@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class DarkCubePower extends AnimatorPower
 {
@@ -37,7 +37,7 @@ public class DarkCubePower extends AnimatorPower
 
         if (owner.isPlayer)
         {
-            for (AbstractCreature m : PlayerStatistics.GetCurrentEnemies(true))
+            for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
             {
                 GameActionsHelper.ApplyPower(owner, m, new ConstrictedPower(m, owner, amount), amount);
             }

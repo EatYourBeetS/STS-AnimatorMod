@@ -28,9 +28,7 @@ public class Sora extends AnimatorCard
 
         this.name = name;
         this.effect = effect;
-        this.cardText.overrideDescription = description;
-        this.cardText.overrideSecondaryDescription = "-";
-        this.cardText.ForceRefresh();
+        this.cardText.OverrideDescription(description, "-", true);
         //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
     }
 

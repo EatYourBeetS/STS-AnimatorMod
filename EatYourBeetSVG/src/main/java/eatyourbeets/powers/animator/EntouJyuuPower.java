@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class EntouJyuuPower extends AnimatorPower
 {
@@ -73,7 +73,7 @@ public class EntouJyuuPower extends AnimatorPower
             {
                 //GameActionsHelper.AddToBottom(new ModifyDamageAction(card.uuid, this.damageBonus));
                 GameActionsHelper.DrawCard(owner, 1);
-                for (AbstractMonster m1 : PlayerStatistics.GetCurrentEnemies(true))
+                for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
                 {
                     GameActionsHelper.ApplyPower(owner, m1, new BurningPower(m1, owner, 1), 1);
                 }

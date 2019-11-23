@@ -1,6 +1,5 @@
 package eatyourbeets.relics.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.patches.HitboxRightClick;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -8,7 +7,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.InputManager;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class CerealBox extends AnimatorRelic
 {
@@ -27,7 +26,7 @@ public class CerealBox extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return Utilities.Format(DESCRIPTIONS[0], HEAL_AMOUNT, BASE_CHARGES, SHOP_CHARGES, MAX_CHARGES);
+        return JavaUtilities.Format(DESCRIPTIONS[0], HEAL_AMOUNT, BASE_CHARGES, SHOP_CHARGES, MAX_CHARGES);
     }
 
     @Override

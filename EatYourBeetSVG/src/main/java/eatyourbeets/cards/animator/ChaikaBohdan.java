@@ -2,16 +2,20 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.OnAttackSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 
-public class ChaikaBohdan extends AnimatorCard
+public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 {
     public static final String ID = Register(ChaikaBohdan.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -21,28 +25,43 @@ public class ChaikaBohdan extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5,0,3, 2);
+        Initialize(4,0,3, 2);
 
         SetSynergy(Synergies.Chaika);
     }
 
     @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c)
+    public void applyPowers()
     {
-        super.triggerOnOtherCardPlayed(c);
+        super.applyPowers();
 
-        if (c.type == CardType.ATTACK && AbstractDungeon.player.hand.contains(this))
+        if (AbstractDungeon.player.hand.contains(this))
         {
-            for (AbstractCard c2 : GetAllInBattleInstances())
+            PlayerStatistics.onAttack.Subscribe(this);
+        }
+    }
+
+    @Override
+    public void OnAttack(DamageInfo info, int damageAmount, AbstractCreature target)
+    {
+        if (AbstractDungeon.player.hand.contains(this))
+        {
+            if (info.type == DamageInfo.DamageType.NORMAL && target != null && !target.isPlayer)
             {
-                ChaikaBohdan chaika = Utilities.SafeCast(c2, ChaikaBohdan.class);
-                if (chaika != null)
+                for (AbstractCard c2 : GetAllInBattleInstances())
                 {
-                    chaika.AddDamageBonus(this.secondaryValue);
+                    ChaikaBohdan chaika = JavaUtilities.SafeCast(c2, ChaikaBohdan.class);
+                    if (chaika != null)
+                    {
+                        chaika.AddDamageBonus(this.secondaryValue);
+                        chaika.flash();
+                    }
                 }
             }
-
-            this.flash();
+        }
+        else
+        {
+            PlayerStatistics.onAttack.Unsubscribe(this);
         }
     }
 

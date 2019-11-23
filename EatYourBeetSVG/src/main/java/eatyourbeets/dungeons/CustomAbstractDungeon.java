@@ -16,7 +16,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
 import eatyourbeets.cards.animator.*;
 import eatyourbeets.characters.AnimatorCustomLoadout;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
@@ -181,17 +181,17 @@ public class CustomAbstractDungeon extends AbstractDungeon
             switch (rarity)
             {
                 case COMMON:
-                    c = Utilities.GetRandomElement(common, cardRng);
+                    c = JavaUtilities.GetRandomElement(common, cardRng);
                     common.remove(c);
                     break;
 
                 case UNCOMMON:
-                    c = Utilities.GetRandomElement(uncommon, cardRng);
+                    c = JavaUtilities.GetRandomElement(uncommon, cardRng);
                     uncommon.remove(c);
                     break;
 
                 case RARE:
-                    c = Utilities.GetRandomElement(rare, cardRng);
+                    c = JavaUtilities.GetRandomElement(rare, cardRng);
                     rare.remove(c);
                     break;
             }

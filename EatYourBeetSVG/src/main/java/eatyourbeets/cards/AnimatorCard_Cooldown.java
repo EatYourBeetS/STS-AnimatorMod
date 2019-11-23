@@ -64,6 +64,11 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
 
     protected boolean ProgressCooldown()
     {
+        return ProgressCooldown(1);
+    }
+
+    protected boolean ProgressCooldown(int amount)
+    {
         boolean activate;
         int newValue;
         if (secondaryValue <= 0)
@@ -73,7 +78,7 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
         }
         else
         {
-            newValue = secondaryValue - 1;
+            newValue = Math.max(0, secondaryValue - amount);
             activate = false;
         }
 

@@ -84,7 +84,7 @@
   },
   "unnamed:Rupture":
   {
-	"DESCRIPTION": "Deal !D! damage. NL If you have at least !M! Resonance, Stun the enemy. Purge.",
+	"DESCRIPTION": "Deal !D! damage. NL If you have at least !M! Force, Stun the enemy. Purge.",
 	"NAME": "Rupture"
   },
   "unnamed:Shine":

@@ -9,7 +9,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Shinoa extends AnimatorCard
 {
@@ -30,7 +30,7 @@ public class Shinoa extends AnimatorCard
         super.triggerOnExhaust();
 
         AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractMonster m2 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m2 : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(p, m2, new WeakPower(m2, this.magicNumber, false), this.magicNumber);
         }
@@ -40,7 +40,7 @@ public class Shinoa extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.GainBlock(p, this.block);
-        for (AbstractMonster m2 : PlayerStatistics.GetCurrentEnemies(true))
+        for (AbstractMonster m2 : GameUtilities.GetCurrentEnemies(true))
         {
             GameActionsHelper.ApplyPower(p, m2, new VulnerablePower(m2, this.magicNumber, false), this.magicNumber);
             if (HasActiveSynergy())

@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.metrics.Metrics;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.characters.AnimatorCharacterSelect;
@@ -82,7 +82,7 @@ public class MetricsPatches
                     String data = gson.toJson(params);
                     String url = "https://us-central1-sts-theanimator-api.cloudfunctions.net/addMetrics";
 
-                    //Utilities.Logger.info(data);
+                    //JavaUtilities.Logger.info(data);
 
                     HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
                     Net.HttpRequest httpRequest = requestBuilder.newRequest().method("POST").url(url).header("Content-Type", "text/plain").header("Accept", "text/plain").header("User-Agent", "curl/7.43.0").build();
@@ -105,7 +105,7 @@ public class MetricsPatches
                     String data = gson.toJson(params);
                     String url = "https://us-central1-sts-theanimator-api.cloudfunctions.net/addAlternativeMetrics";
 
-                    //Utilities.Logger.info(data);
+                    //JavaUtilities.Logger.info(data);
 
                     HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
                     Net.HttpRequest httpRequest = requestBuilder.newRequest().method("POST").url(url).header("Content-Type", "text/plain").header("Accept", "text/plain").header("User-Agent", "curl/7.43.0").build();
@@ -134,7 +134,7 @@ public class MetricsPatches
                 }
 
                 AbstractCard temp = GetCard(cardID);
-                AnimatorCard card = Utilities.SafeCast(temp, AnimatorCard.class);
+                AnimatorCard card = JavaUtilities.SafeCast(temp, AnimatorCard.class);
                 if (card != null)
                 {
                     for (HashMap<Object, Object> data : cardsData)

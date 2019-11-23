@@ -1,19 +1,24 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
-public class Priestess extends AnimatorCard
+public class Priestess extends AnimatorCard implements OnCallbackSubscriber
 {
     public static final String ID = Register(Priestess.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -34,13 +39,9 @@ public class Priestess extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            if (!TryExhaust(p.drawPile))
-            {
-                if (!TryExhaust(p.hand))
-                {
-                    TryExhaust(p.discardPile);
-                }
-            }
+            GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+            GameActionsHelper.DelayedAction(this);
+            GameActionsHelper.ResetOrder();
         }
     }
 
@@ -58,7 +59,7 @@ public class Priestess extends AnimatorCard
         ArrayList<AbstractCard> cards = new ArrayList<>();
         for (AbstractCard c : source.group)
         {
-            if (c.type == CardType.CURSE || c.type == CardType.STATUS)
+            if (GameUtilities.IsCurseOrStatus(c))
             {
                 cards.add(c);
             }
@@ -66,7 +67,7 @@ public class Priestess extends AnimatorCard
 
         if (cards.size() > 0)
         {
-            GameActionsHelper.ExhaustCard(Utilities.GetRandomElement(cards), source);
+            GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(JavaUtilities.GetRandomElement(cards), source));
 
             return true;
         }
@@ -74,4 +75,19 @@ public class Priestess extends AnimatorCard
         return false;
     }
 
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
+    {
+        if (state == this && action != null)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            if (!TryExhaust(p.drawPile))
+            {
+                if (!TryExhaust(p.hand))
+                {
+                    TryExhaust(p.discardPile);
+                }
+            }
+        }
+    }
 }

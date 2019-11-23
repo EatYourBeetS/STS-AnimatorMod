@@ -12,6 +12,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
@@ -67,7 +68,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
             GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
 
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
-            PlayerStatistics.UsePenNib();
+            GameUtilities.UsePenNib();
         }
     }
 }

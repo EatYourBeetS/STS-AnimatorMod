@@ -2,7 +2,7 @@ package eatyourbeets.characters.Loadouts;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.Utilities;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.cards.Synergy;
@@ -79,7 +79,7 @@ public class Kancolle extends AnimatorCustomLoadout
         ArrayList<AbstractCard> cards = AbstractDungeon.player.masterDeck.group;
         for (AbstractCard c : cards)
         {
-            AnimatorCard card = Utilities.SafeCast(c, AnimatorCard.class);
+            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
             if (card != null && card.color == AbstractEnums.Cards.THE_ANIMATOR)
             {
                 Synergy synergy = card.GetSynergy();

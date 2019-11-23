@@ -3,18 +3,16 @@ package patches;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Ghosts;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.events.TheDomVedeloper1;
 import eatyourbeets.events.TheMaskedTraveler1;
 import eatyourbeets.potions.FalseLifePotion;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
+import eatyourbeets.utilities.GameUtilities;
 
 public class AbstractDungeonPatches
 {
@@ -26,7 +24,7 @@ public class AbstractDungeonPatches
         {
             if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
             {
-                if (PlayerStatistics.GetActualAscensionLevel() > 9)
+                if (GameUtilities.GetActualAscensionLevel() >= 17)
                 {
                     AbstractDungeon.eventList.remove(Ghosts.ID);
                 }

@@ -63,7 +63,7 @@
 	"Orb Core":
 	{
 		"DESCRIPTION": "#yPower: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy each turn.",
-		"NAMES": ["orb core", "orb_core", "orb cores", "orb_cores", "fire_core", "earth_core", "lightning_core", "plasma_core", "fire_core", "frost_core"],
+		"NAMES": ["orb core", "orb_core", "orb cores", "orb_cores", "fire_core", "earth_core", "lightning_core", "plasma_core", "frost_core", "aether_core"],
 		"PROPER_NAME": "Orb Core"
 	},
 	"Overrun":
@@ -110,7 +110,7 @@
 	},
 	"Support Damage":
 	{
-		"DESCRIPTION": "Deal damage to the enemy with lowest HP at the end of each turn.",
+		"DESCRIPTION": "Deal damage to the enemy with the lowest HP at the end of each turn. Affected by damage modifiers.",
 		"NAMES": ["support damage", "support_damage"],
 		"PROPER_NAME": "Support Damage"
 	},

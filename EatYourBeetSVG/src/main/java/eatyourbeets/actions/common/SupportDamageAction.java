@@ -94,7 +94,8 @@ public class SupportDamageAction extends AbstractGameAction
                     AbstractDungeon.effectList.add(new DieDieDieEffect());
                 }
 
-                this.info.type = DamageInfo.DamageType.THORNS;
+                //this.info.type = DamageInfo.DamageType.THORNS;
+                this.info.owner = null;
                 this.target.damage(this.info);
                 if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
                 {

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.EYBCardBadge;
@@ -29,7 +30,7 @@ public class Eve extends AnimatorCard
     {
         super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0, 1, 1);
+        Initialize(0,0, 1, 0);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -45,8 +46,12 @@ public class Eve extends AnimatorCard
             GameActionsHelper.ApplyPower(p, p, new EvePower(p, 1, 1), 1);
         }
 
-        GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, magicNumber), magicNumber);
-        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(secondaryValue));
+        GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(magicNumber));
+
+        if (secondaryValue > 0)
+        {
+            GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, secondaryValue), secondaryValue);
+        }
     }
 
     private void OrbChosen(Object state, ArrayList<AbstractCard> chosen)
@@ -66,7 +71,7 @@ public class Eve extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
+            upgradeSecondaryValue(2);
         }
     }
 }

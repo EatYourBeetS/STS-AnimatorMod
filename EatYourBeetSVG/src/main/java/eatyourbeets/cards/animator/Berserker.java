@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
@@ -27,7 +28,7 @@ public class Berserker extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(28,14, 0);
+        Initialize(24,0, 2, 12);
 
         SetSynergy(Synergies.Fate);
     }
@@ -42,12 +43,10 @@ public class Berserker extends AnimatorCard
             GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
             GameActionsHelper.AddToBottom(new OnDamageAction(m, damageAction, this::OnDamage, m.currentBlock, true));
             GameActionsHelper.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-
-            if (GameUtilities.GetHealthPercentage(p) <= 0.1f && EffectHistory.TryActivateLimited(cardID))
-            {
-                GameActionsHelper.PlayCopy(this, m);
-            }
         }
+
+        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, magicNumber, false), magicNumber);
+        GameActionsHelper.GainForce(magicNumber);
     }
 
     @Override
@@ -55,8 +54,7 @@ public class Berserker extends AnimatorCard
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(4);
-            upgradeBlock(4);
+            upgradeDamage(6);
         }
     }
 
@@ -70,7 +68,7 @@ public class Berserker extends AnimatorCard
 
         if (monster.isDeadOrEscaped() || (initialBlock > 0 && monster.currentBlock <= 0))
         {
-            GameActionsHelper.GainBlock(AbstractDungeon.player, this.block);
+            GameActionsHelper.GainBlock(AbstractDungeon.player, this.secondaryValue);
         }
     }
 }

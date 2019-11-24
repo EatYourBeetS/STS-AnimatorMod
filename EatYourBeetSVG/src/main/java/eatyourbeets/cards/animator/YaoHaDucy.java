@@ -34,7 +34,7 @@ public class YaoHaDucy extends AnimatorCard
         {
             AbstractPlayer p = AbstractDungeon.player;
             GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, secondaryValue), secondaryValue);
-            GameActionsHelper.GainBlock(p, secondaryValue);
+            GameActionsHelper.GainAgility(1);
         }
     }
 

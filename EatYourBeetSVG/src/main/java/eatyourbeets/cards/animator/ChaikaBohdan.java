@@ -25,7 +25,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(4,0,3, 2);
+        Initialize(5,0,3, 2);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -89,7 +89,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(3);
         }
     }
 

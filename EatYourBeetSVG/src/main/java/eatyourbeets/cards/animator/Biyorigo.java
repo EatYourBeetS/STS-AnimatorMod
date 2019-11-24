@@ -11,13 +11,13 @@ import eatyourbeets.powers.animator.BiyorigoPower;
 
 public class Biyorigo extends AnimatorCard
 {
-    public static final String ID = Register(Biyorigo.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Biyorigo.class.getSimpleName());
 
     public Biyorigo()
     {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0,0, 1);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -25,12 +25,8 @@ public class Biyorigo extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+        GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, magicNumber), magicNumber);
         GameActionsHelper.ApplyPower(p, p, new BiyorigoPower(p, 1), 1);
-
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
-        }
     }
 
     @Override
@@ -38,7 +34,7 @@ public class Biyorigo extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeBaseCost(1);
+            upgradeMagicNumber(1);
         }
     }
 }

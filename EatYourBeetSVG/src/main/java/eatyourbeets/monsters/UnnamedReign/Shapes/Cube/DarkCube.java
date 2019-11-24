@@ -14,8 +14,8 @@ public class DarkCube extends Cube
     {
         super(MonsterElement.Dark, tier, x, y);
 
-        moveset.AddNormal(new Move_Attack(tier.Add(4,4)));
-        moveset.AddNormal(new Move_Defend(tier.Add(4,4)));
+        moveset.AddNormal(new Move_Attack(tier.Add(6,4)));
+        moveset.AddNormal(new Move_Defend(tier.Add(6,4)));
         moveset.AddNormal(new Move_AttackDefend(tier.Add(3,3), tier.Add(3, 2)));
     }
 
@@ -28,19 +28,19 @@ public class DarkCube extends Cube
         switch (data.tier)
         {
             case Small:
-                amount = 2;
+                amount = 1;
                 break;
 
             case Normal:
-                amount = 3;
+                amount = 2;
                 break;
 
             case Advanced:
-                amount = 4;
+                amount = 3;
                 break;
 
             case Ultimate:
-                amount = 5;
+                amount = 4;
                 break;
         }
 

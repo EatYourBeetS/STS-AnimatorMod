@@ -18,7 +18,7 @@ public class Sonic extends AnimatorCard implements MartialArtist
     {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 3, 2, 1);
+        Initialize(0, 2, 2, 1);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -28,7 +28,7 @@ public class Sonic extends AnimatorCard implements MartialArtist
     {
         super.applyPowers();
 
-        MartialArtist.ApplyScaling(this, 4);
+        MartialArtist.ApplyScaling(this, 6);
     }
 
     @Override

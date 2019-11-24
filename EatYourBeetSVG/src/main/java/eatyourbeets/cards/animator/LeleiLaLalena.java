@@ -33,7 +33,7 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 
         if (HasActiveSynergy())
         {
-            target = CardTarget.ALL;
+            target = CardTarget.SELF_AND_ENEMY;
         }
         else
         {
@@ -54,12 +54,9 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
             }
         }
 
-        if (HasActiveSynergy())
+        if (HasActiveSynergy() && m != null)
         {
-            for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
-            {
-                GameActionsHelper.ApplyPower(p, m1, new WeakPower(m1, 1, false), 1);
-            }
+            GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
         }
     }
 

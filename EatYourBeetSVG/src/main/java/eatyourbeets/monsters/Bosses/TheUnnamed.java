@@ -194,13 +194,11 @@ public class TheUnnamed extends AnimatorMonster
     @Override
     public void damage(DamageInfo info)
     {
-        // The enchanted armor already ensures no attack can go above 100 damage,
-        // this prevents taking extra damage from attacks that do not calculate
-        // their damage based on the enemy's powers.
-        if (info.output > 100)
-        {
-            info.output = 100;
-        }
+//        Now handled by InfinitePower
+//        if (info.output > 100)
+//        {
+//            info.output = 100;
+//        }
 
         super.damage(info);
 

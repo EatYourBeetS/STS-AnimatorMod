@@ -20,7 +20,7 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
     {
         super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(23,0);
+        Initialize(26,0);
 
         SetSynergy(Synergies.Gate);
     }
@@ -33,17 +33,16 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
         BurningPower burning = GameUtilities.GetPower(m, BurningPower.POWER_ID);
         if (burning != null)
         {
-            GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, burning.amount), burning.amount);
+            int amount = burning.amount * (upgraded ? 2 : 1);
+
+            GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, amount), amount);
         }
     }
 
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeDamage(7);
-        }
+        TryUpgrade();
     }
 
     @Override

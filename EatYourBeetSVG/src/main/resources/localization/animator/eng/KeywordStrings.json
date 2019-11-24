@@ -62,7 +62,7 @@
 	},
 	"Orb Core":
 	{
-		"DESCRIPTION": "#yPower: #yChannel 1 orb on use, gain a bonus effect on your second #ySynergy each turn.",
+		"DESCRIPTION": "#yPower: #yChannel orbs on use, gain a bonus effect on your second #ySynergy each turn.",
 		"NAMES": ["orb core", "orb_core", "orb cores", "orb_cores", "fire_core", "earth_core", "lightning_core", "plasma_core", "frost_core", "aether_core"],
 		"PROPER_NAME": "Orb Core"
 	},

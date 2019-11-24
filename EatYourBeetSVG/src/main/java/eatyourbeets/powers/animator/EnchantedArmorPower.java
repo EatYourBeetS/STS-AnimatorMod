@@ -3,7 +3,10 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.JavaUtilities;
 
+import javax.rmi.CORBA.Util;
+import javax.swing.text.Utilities;
 import java.text.DecimalFormat;
 
 public class EnchantedArmorPower extends AnimatorPower
@@ -68,6 +71,14 @@ public class EnchantedArmorPower extends AnimatorPower
     }
 
     @Override
+    public void reducePower(int reduceAmount)
+    {
+        this.amount -= reduceAmount;
+        UpdatePercentage();
+        updateDescription();
+    }
+
+    @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType type)
     {
         if (reactive)
@@ -81,7 +92,8 @@ public class EnchantedArmorPower extends AnimatorPower
     }
 
     @Override
-    public int onAttacked(DamageInfo info, int damageAmount)
+    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
+    //public int onAttacked(DamageInfo info, int damageAmount)
     {
         if (reactive)
         {
@@ -92,7 +104,7 @@ public class EnchantedArmorPower extends AnimatorPower
                 damageAmount = Math.round( (float) damageAmount * percentage);
                 info.output = damageAmount;
             }
-            else
+            else if (info.owner != null)
             {
                 stackPower(damageAmount);
             }
@@ -106,7 +118,8 @@ public class EnchantedArmorPower extends AnimatorPower
             }
         }
 
-        return super.onAttacked(info, damageAmount);
+        //return super.onAttacked(info, damageAmount);
+        return super.onAttackedToChangeDamage(info, damageAmount);
     }
 
     private float CalculatePercentage(int amount)

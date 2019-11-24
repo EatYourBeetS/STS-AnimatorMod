@@ -23,12 +23,12 @@ public class Entoma extends AnimatorCard
 {
     public static final String ID = Register(Entoma.class.getSimpleName(), EYBCardBadge.Special);
 
-    private static final int ORIGINAL_DAMAGE = 7;
+    private static final int ORIGINAL_DAMAGE = 6;
     private static final int ORIGINAL_MAGIC_NUMBER = 3;
 
     public Entoma()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(ORIGINAL_DAMAGE,0,ORIGINAL_MAGIC_NUMBER);
 

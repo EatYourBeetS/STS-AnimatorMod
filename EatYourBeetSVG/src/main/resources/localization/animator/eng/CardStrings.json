@@ -2,7 +2,7 @@
 {
 	"animator:AcuraAkari":
 	{
-		"DESCRIPTION": "Discard 1 card NL to obtain !M! NL Throwing-Knives. || Semi-Limited. NL On Synergy, gain NL !SV! Temporary NL Envenom.",
+		"DESCRIPTION": "Discard 2 cards NL to obtain !M! NL Throwing-Knives. || Semi-Limited. NL On Synergy, gain NL !SV! Temporary NL Envenom.",
 		"NAME": "Akari"
 	},
 	"animator:AcuraShin":
@@ -67,7 +67,7 @@
 	{
 		"DESCRIPTION": "Spellcaster 6. NL Gain !M! Intellect. NL Exhaust. || On Synergy, NL Channel 1 Earth.",
 		"NAME": "Arpeggio",
-		"UPGRADE_DESCRIPTION": "Spellcaster. NL Gain 1 Orb Slot. NL Gain !M! Intellect. NL Exhaust. || On Synergy, NL Channel 1 Earth."
+		"UPGRADE_DESCRIPTION": "Spellcaster 6. NL Gain !M! Intellect. NL Gain !SV! Orb Slot. NL Exhaust. || On Synergy, NL Channel 1 Earth."
 	},
 	"animator:Asuramaru":
 	{
@@ -92,12 +92,12 @@
 	},
 	"animator:Berserker":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If the enemy dies or loses its Block, NL gain !B! Block. || Limited. NL If you are below NL 10% HP, play this NL card twice.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Gain !M! Force. || If the enemy dies NL or loses its Block, NL gain !SV! Block.",
 		"NAME": "Berserker"
 	},
 	"animator:Biyorigo":
 	{
-		"DESCRIPTION": "Whenever you gain NL 1 or more Dexterity, NL also gain 1 Force. || On Synergy, NL gain 1 Artifact.",
+		"DESCRIPTION": "Gain !M! Artifact. NL Whenever you gain NL 1 or more Dexterity, NL also gain 1 Force.",
 		"NAME": "Biyorigo"
 	},
 	"animator:BlackLotus":
@@ -165,7 +165,7 @@
 	},
 	"animator:CrowleyEusford":
 	{
-		"DESCRIPTION": "Apply !SV! Vulnerable. NL Deal !D! damage NL to a random NL enemy !M! times. || Costs 1 less for NL each card you NL Exhausted this turn.",
+		"DESCRIPTION": "Heal !M! HP. NL Deal !D! damage to NL a random enemy. NL Exhaust. || Costs 1 less for NL each card that NL was Exhausted NL this turn.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator:Crystallize":
@@ -177,6 +177,16 @@
 	{
 		"DESCRIPTION": "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.",
 		"NAME": "Cthulhu"
+	},
+	"animator:Curse_Greed":
+	{
+		"DESCRIPTION": "Unplayable. NL When drawn, raise NL the cost of a random NL card in your hand NL by 1 this turn.",
+		"NAME": "Greed"
+	},
+	"animator:Curse_Nutcracker":
+	{
+		"DESCRIPTION": "Unplayable. NL At the end of your NL turn, ALL enemies NL heal !M! HP.",
+		"NAME": "Nutcracker"
 	},
 	"animator:Darkness":
 	{
@@ -308,7 +318,7 @@
 	},
 	"animator:ElricAlphonse":
 	{
-		"DESCRIPTION": "#yEthereal[]. NL If you have NL !M! or less Focus, NL gain 1 Intellect. || When Exhausted, add NL #yArmored #yAlphonse to NL your discard pile.",
+		"DESCRIPTION": "#yEthereal[]. NL If you have !M! NL or less Intellect, NL gain 1 Intellect. || When Exhausted, add NL #yArmored #yAlphonse to NL your discard pile.",
 		"NAME": "Alphonse Elric"
 	},
 	"animator:ElricAlphonseAlt":
@@ -324,7 +334,7 @@
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning. NL Cycle 1 card. || When Discarded, NL if you have an NL empty Orb Slot, NL Channel 1 Fire.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning. NL Cycle !SV! card(s). || When Discarded, NL if you have an NL empty Orb Slot, NL Channel 1 Fire.",
 		"NAME": "Elsword"
 	},
 	"animator:Emilia":
@@ -345,7 +355,7 @@
 	},
 	"animator:Entoma":
 	{
-		"DESCRIPTION": "#yUnique. NL Deal !D! damage. NL Apply !M! Poison. NL Loses 1 damage NL each turn. || Limited. NL If this card kills an NL enemy, gain 2 Max HP NL and permanently NL Upgrade this card.",
+		"DESCRIPTION": "#yUnique[]. NL Deal !D! damage. NL Apply !M! Poison. NL Loses 1 damage NL each turn. || Limited. NL If this card kills an NL enemy, gain 2 Max HP NL and permanently NL Upgrade this card.",
 		"NAME": "Entoma"
 	},
 	"animator:EntouJyuu":
@@ -366,8 +376,9 @@
 	},
 	"animator:Eve":
 	{
-		"DESCRIPTION": "Play 1 Orb_Core. NL Gain !M! Metallicize. NL Gain !SV! Orb Slot. || Limited. NL When you Synergize, NL deal 1 damage to an NL enemy and increase NL this damage by 1.",
-		"NAME": "Eve"
+		"DESCRIPTION": "Play 1 Orb_Core. NL Gain !M! Orb Slot. || Limited. NL When you Synergize, NL deal 1 damage to an NL enemy and increase NL this damage by 1.",
+		"NAME": "Eve",
+		"UPGRADE_DESCRIPTION": "Play 1 Orb_Core. NL Gain !SV! Metallicize. NL Gain !M! Orb Slot. || Limited. NL When you Synergize, NL deal 1 damage to an NL enemy and increase NL this damage by 1."
 	},
 	"animator:Evileye":
 	{
@@ -408,7 +419,7 @@
 	},
 	"animator:Gilgamesh":
 	{
-		"DESCRIPTION": "#yUnique. NL Deal !D! damage NL 3 times. || When you obtain NL a non-shop relic, NL gain !SV! #yGold[] and NL Upgrade this card.",
+		"DESCRIPTION": "#yUnique[]. NL Deal !D! damage NL 3 times. || When you obtain NL a non-shop relic, NL gain !SV! #yGold[] and NL Upgrade this card.",
 		"NAME": "Gilgamesh"
 	},
 	"animator:Gillette":
@@ -419,7 +430,8 @@
 	"animator:Giselle":
 	{
 		"DESCRIPTION": "Deal !D! damage. NL Double the enemy's NL Burning amount. || At the start NL of each combat, NL Channel 1 Fire.",
-		"NAME": "Giselle"
+		"NAME": "Giselle",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Triple the enemy's NL Burning amount. || At the start NL of each combat, NL Channel 1 Fire."
 	},
 	"animator:Gluttony":
 	{
@@ -619,9 +631,9 @@
 	},
 	"animator:LeleiLaLalena":
 	{
-		"DESCRIPTION": "Spellcaster 6. Discard NL a random card to NL #yChannel !M! Frost. || On Synergy, NL apply 1 Weak NL to ALL enemies.",
+		"DESCRIPTION": "Spellcaster 6. Discard NL a random card to NL #yChannel !M! Frost. || On Synergy, NL apply 1 Weak.",
 		"NAME": "Lelei La Lalena",
-		"UPGRADE_DESCRIPTION": "Spellcaster 6. NL Discard a card to NL #yChannel !M! Frost. || On Synergy, NL apply 1 Weak NL to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Spellcaster 6. NL Discard a card to NL #yChannel !M! Frost. || On Synergy, NL apply 1 Weak."
 	},
 	"animator:Lelouch":
 	{
@@ -646,8 +658,7 @@
 	},
 	"animator:Megumin":
 	{
-		"DESCRIPTION": "Spellcaster. #yUnique. NL Deal !D! damage NL to ALL Enemies. NL Exhaust. || Limited. On Synergy, NL Permanently Upgrade NL this card.",
-		"EXTENDED_DESCRIPTION": ["spellcaster", "If you have #b4 or more focus, this card will not #yExhaust."],
+		"DESCRIPTION": "Spellcaster. #yUnique[]. NL Deal !D! damage NL to ALL Enemies. NL Exhaust. || Limited. NL On Synergy, NL Upgrade this card NL permanently.",
 		"NAME": "Megumin"
 	},
 	"animator:Melzalgald":
@@ -855,7 +866,7 @@
 	},
 	"animator:Sebas":
 	{
-		"DESCRIPTION": "For each enemy who NL intends to attack, NL gain !B! Block and !M! NL temporary Thorns. NL Exhaust. || When Discarded, NL gain !SV! Temp._HP.",
+		"DESCRIPTION": "For each enemy who NL intends to attack, NL gain !B! Block and !M! NL Thorns. Exhaust. || When Discarded, NL gain !SV! Temp._HP.",
 		"NAME": "Sebas"
 	},
 	"animator:SeriousSaitama":
@@ -907,8 +918,9 @@
 	},
 	"animator:Shizu":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Whenever an #yAttack[] NL deals unblocked NL damage this combat, NL apply 1 Burning. || If this card kills NL a non-minion NL enemy, heal for its NL Burning amount.",
-		"NAME": "Shizu"
+		"DESCRIPTION": "Deal !D! Damage. NL Add a Burn to NL your discard pile. NL Exhaust. || Whenever an #yAttack[] NL deals unblocked NL damage this combat, NL apply 1 Burning.",
+		"NAME": "Shizu",
+		"UPGRADE_DESCRIPTION": "Deal !D! Damage. NL Add a Burn to NL your discard pile. || Whenever an #yAttack[] NL deals unblocked NL damage this combat, NL apply 1 Burning."
 	},
 	"animator:Shuna":
 	{
@@ -933,7 +945,7 @@
 	},
 	"animator:Sonic":
 	{
-		"DESCRIPTION": "Martial_Artist 4. NL Obtain !M! NL Throwing-Knives. NL Gain !SV! Agility. || On Synergy, NL gain !B! Block NL and 1 Blur.",
+		"DESCRIPTION": "Martial_Artist 6. NL Obtain !M! NL Throwing-Knives. NL Gain !SV! Agility. || On Synergy, NL gain !B! Block NL and 1 Blur.",
 		"NAME": "Sonic"
 	},
 	"animator:Sora":
@@ -943,7 +955,7 @@
 	},
 	"animator:Souei":
 	{
-		"DESCRIPTION": "Martial_Artist 2. NL Apply !M! Poison. NL Trigger the Poison NL of ALL enemies. || If this card kills NL 1 or more enemies, NL gain 1 Intangible.",
+		"DESCRIPTION": "Martial_Artist. NL Apply !M! Poison. NL Trigger the Poison NL of ALL enemies. || If this card kills NL 1 or more enemies, NL gain 1 Intangible.",
 		"NAME": "Souei"
 	},
 	"animator:Spearman":
@@ -1150,7 +1162,7 @@
 	},
 	"animator:YaoHaDucy":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If the enemy is NL attacking, it loses NL !M! Strength this turn. || Limited. NL When Discarded, NL gain !SV! Block and !SV! NL Support_Damage.",
+		"DESCRIPTION": "Deal !D! damage. NL If the enemy is NL attacking, it loses NL !M! Strength this turn. || Limited. NL When Discarded, NL gain 1 Agility and !SV! NL Support_Damage.",
 		"NAME": "Yao Ha Ducy"
 	},
 	"animator:YunYun":

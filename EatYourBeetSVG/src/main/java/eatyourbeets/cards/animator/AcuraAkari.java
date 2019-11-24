@@ -26,9 +26,9 @@ public class AcuraAkari extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (GetOtherCardsInHand().size() >= 1)
+        if (GetOtherCardsInHand().size() >= 2)
         {
-            GameActionsHelper.Discard(1, false);
+            GameActionsHelper.Discard(2, false);
 
             for (int i = 0; i < magicNumber; i++)
             {

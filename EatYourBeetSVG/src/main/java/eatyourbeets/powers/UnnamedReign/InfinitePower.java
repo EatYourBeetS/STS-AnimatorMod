@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
@@ -33,6 +34,8 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     public static final String POWER_ID = CreateFullID(InfinitePower.class.getSimpleName());
 
     public boolean phase2 = false;
+
+    private final static int MAX_DAMAGE_AT_ONCE = 199;
 
     private final ArrayList<Integer> linesUsed = new ArrayList<>();
     private final String[] dialog;
@@ -101,7 +104,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         if (enchantedArmorPower.amount > 0)
         {
             enchantedArmorPower.amount = Math.max(1, enchantedArmorPower.amount / 2);
-            enchantedArmorPower.updateDescription();
+            enchantedArmorPower.stackPower(0); // Update Description
         }
 
         boolean found = false;
@@ -258,6 +261,18 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 //                }
 //            }
 //        }
+    }
+
+    @Override
+    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type)
+    {
+        return super.atDamageFinalReceive(Math.min(MAX_DAMAGE_AT_ONCE, damage), type);
+    }
+
+    @Override
+    public int onAttacked(DamageInfo info, int damageAmount)
+    {
+        return super.onAttacked(info, Math.min(MAX_DAMAGE_AT_ONCE, damageAmount));
     }
 
     private void CardMessage(AbstractCard card, UseCardAction action)

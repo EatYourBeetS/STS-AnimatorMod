@@ -52,7 +52,7 @@ public class Defend extends AnimatorCard
     @Override
     public void SetSynergy(Synergy synergy)
     {
-        if (GameUtilities.GetActualAscensionLevel() >= 7)
+        if (GameUtilities.GetActualAscensionLevel() >= 9)
         {
             super.SetSynergy(synergy);
         }

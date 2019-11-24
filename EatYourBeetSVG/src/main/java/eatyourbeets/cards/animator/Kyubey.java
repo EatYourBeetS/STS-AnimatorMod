@@ -60,6 +60,8 @@ public class Kyubey extends AnimatorCard implements StartupCard
             curses.add(new Regret());
             curses.add(new Shame());
             curses.add(new Writhe());
+            curses.add(new Curse_Greed());
+            curses.add(new Curse_Nutcracker());
             //curses.add(new Pride());
             //curses.add(new Necronomicurse());
         }

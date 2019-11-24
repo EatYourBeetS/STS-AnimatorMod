@@ -18,7 +18,7 @@ public class Elsword extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(12,0, 4);
+        Initialize(11,0, 4, 1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -36,7 +36,7 @@ public class Elsword extends AnimatorCard
     {
         GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, magicNumber), magicNumber);
-        GameActionsHelper.CycleCardAction(1, name);
+        GameActionsHelper.CycleCardAction(secondaryValue, name);
     }
 
     @Override
@@ -44,7 +44,8 @@ public class Elsword extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(3);
+            upgradeSecondaryValue(1);
         }
     }
 }

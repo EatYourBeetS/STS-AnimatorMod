@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
@@ -18,7 +19,7 @@ public class Sebas extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,8, 3, 3);
+        Initialize(0,7, 2, 3);
 
         SetExhaust(true);
         SetSynergy(Synergies.Overlord);
@@ -40,7 +41,7 @@ public class Sebas extends AnimatorCard
             if (GameUtilities.IsAttacking(m1.intent))
             {
                 GameActionsHelper.GainBlock(p, block);
-                GameActionsHelper.ApplyPower(p, p, new EarthenThornsPower(p, magicNumber), magicNumber);
+                GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, magicNumber), magicNumber);
             }
         }
     }
@@ -50,7 +51,7 @@ public class Sebas extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(3);
+            upgradeBlock(4);
         }
     }
 }

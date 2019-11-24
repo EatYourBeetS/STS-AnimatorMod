@@ -18,7 +18,7 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 2);
+        Initialize(0,0, 2, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.Gate);
@@ -35,9 +35,9 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (upgraded)
+        if (secondaryValue > 0)
         {
-            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(secondaryValue));
         }
 
         GameActionsHelper.GainIntellect(magicNumber);
@@ -51,6 +51,9 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
     @Override
     public void upgrade() 
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeSecondaryValue(1);
+        }
     }
 }

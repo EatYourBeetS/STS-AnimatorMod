@@ -565,8 +565,8 @@ public abstract class EYBCard extends CustomCard
                 {
                     if (mY < (y + 76 * scale) && mY > (y + 16 * scale))
                     {
-                        String[] text = Resources_Common_Strings.CardBadges.TEXT;
-                        TipHelper.renderGenericTip(1300.0f * Settings.scale, 900.0f * Settings.scale, text[badge.id + 1], text[0]);
+                        TipHelper.renderGenericTip(1300.0f * Settings.scale, 900.0f * Settings.scale,
+                                                    badge.description, Resources_Common_Strings.CardBadges.TEXT[0]);
                     }
                 }
 

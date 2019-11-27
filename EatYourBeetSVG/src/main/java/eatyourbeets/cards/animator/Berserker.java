@@ -28,7 +28,7 @@ public class Berserker extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(24,0, 2, 12);
+        Initialize(26,0, 2, 12);
 
         SetSynergy(Synergies.Fate);
     }
@@ -45,7 +45,7 @@ public class Berserker extends AnimatorCard
             GameActionsHelper.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         }
 
-        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, magicNumber, false), magicNumber);
+        //GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, magicNumber, false), magicNumber);
         GameActionsHelper.GainForce(magicNumber);
     }
 

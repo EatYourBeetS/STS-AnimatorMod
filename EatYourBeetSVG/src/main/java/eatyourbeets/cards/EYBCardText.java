@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 public class EYBCardText
 {
     public static boolean Toggled;
+    public static boolean ToggledOnce;
     public static int Index;
 
     protected String overrideDescription;

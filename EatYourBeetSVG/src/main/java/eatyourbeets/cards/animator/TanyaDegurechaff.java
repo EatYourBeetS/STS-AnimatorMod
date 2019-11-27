@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import basemod.helpers.TooltipInfo;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
@@ -13,6 +14,8 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
+
+import java.util.List;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
@@ -31,6 +34,17 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
             cardData.InitializePreview(new TanyaDegurechaff_Type95(), false);
         }
     }
+
+//    @Override
+//    public List<TooltipInfo> getCustomTooltips()
+//    {
+//        if (cardText.index == 1)
+//        {
+//            return super.getCustomTooltips();
+//        }
+//
+//        return null;
+//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)

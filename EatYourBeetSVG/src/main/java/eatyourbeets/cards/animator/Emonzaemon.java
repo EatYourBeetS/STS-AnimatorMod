@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -15,6 +16,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Emonzaemon extends AnimatorCard implements MartialArtist
 {
@@ -33,6 +35,17 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
             cardData.InitializePreview(new EntouJyuu(), true);
         }
     }
+
+//    @Override
+//    public List<TooltipInfo> getCustomTooltips()
+//    {
+//        if (cardText.index == 1)
+//        {
+//            return super.getCustomTooltips();
+//        }
+//
+//        return null;
+//    }
 
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)

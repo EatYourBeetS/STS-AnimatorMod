@@ -92,7 +92,7 @@
 	},
 	"animator:Berserker":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Gain !M! Force. || If the enemy dies NL or loses its Block, NL gain !SV! Block.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Force. || If the enemy dies NL or loses its Block, NL gain !SV! Block.",
 		"NAME": "Berserker"
 	},
 	"animator:Biyorigo":
@@ -350,7 +350,7 @@
 	},
 	"animator:Emonzaemon":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Deal !D! Piercing damage twice. || Limited. If this is your third attack in a row, add #yEntou #yJyuu to your draw pile.",
+		"DESCRIPTION": "Martial_Artist. NL Deal !D! Piercing damage twice. || Limited. If this is your NL third attack in a row, NL add #yEntou #yJyuu to NL your draw pile.",
 		"NAME": "Emonzaemon"
 	},
 	"animator:Entoma":
@@ -796,8 +796,9 @@
 	},
 	"animator:Priestess":
 	{
-		"DESCRIPTION": "Apply !SV! Weak. NL Gain !M! Temp._HP. || On Synergy NL Exhaust a random NL Status or Curse.",
-		"NAME": "'Priestess'"
+		"DESCRIPTION": "Gain !M! Temp._HP. NL Apply !SV! Weak. || On Synergy NL Exhaust a random NL Status or Curse.",
+		"NAME": "'Priestess'",
+		"UPGRADE_DESCRIPTION": "Gain !M! Temp._HP. NL Apply !SV! Weak to NL ALL enemies. || On Synergy NL Exhaust a random NL Status or Curse."
 	},
 	"animator:QuestionMark":
 	{
@@ -955,7 +956,7 @@
 	},
 	"animator:Souei":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Apply !M! Poison. NL Trigger the Poison NL of ALL enemies. || If this card kills NL 1 or more enemies, NL gain 1 Intangible.",
+		"DESCRIPTION": "Martial_Artist 2. NL Apply !M! Poison. NL Trigger the Poison NL of ALL enemies. || If this card kills NL 1 or more enemies, NL gain 1 Intangible.",
 		"NAME": "Souei"
 	},
 	"animator:Spearman":
@@ -1072,9 +1073,9 @@
 	},
 	"animator:Tet":
 	{
-		"DESCRIPTION": "Discard up to 2 cards from your draw pile. Move 2 cards from your discard pile to your draw pile. || On Synergy, NL Motivate 1.",
+		"DESCRIPTION": "Discard up to 2 cards from your draw pile. Move 2 cards from your discard pile to your draw pile. || Semi-Limited. NL On Synergy, NL gain [E].",
 		"NAME": "Tet",
-		"UPGRADE_DESCRIPTION": "Retain. Discard up to 2 cards from your draw pile. Move 2 cards from your discard pile to your draw pile. || On Synergy, NL Motivate 1."
+		"UPGRADE_DESCRIPTION": "Retain. Discard up to 2 cards from your draw pile. Move 2 cards from your discard pile to your draw pile. || Semi-Limited. NL On Synergy, NL gain [E]."
 	},
 	"animator:TheHaunt":
 	{

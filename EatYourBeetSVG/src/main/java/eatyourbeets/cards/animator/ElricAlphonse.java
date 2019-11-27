@@ -1,12 +1,16 @@
 package eatyourbeets.cards.animator;
 
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
+
+import java.util.List;
 
 public class ElricAlphonse extends AnimatorCard
 {
@@ -27,6 +31,17 @@ public class ElricAlphonse extends AnimatorCard
         }
     }
 
+//    @Override
+//    public List<TooltipInfo> getCustomTooltips()
+//    {
+//        if (cardText.index == 1)
+//        {
+//            return super.getCustomTooltips();
+//        }
+//
+//        return null;
+//    }
+
     @Override
     public void triggerOnExhaust()
     {
@@ -38,7 +53,7 @@ public class ElricAlphonse extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (GameUtilities.GetFocus(p) <= magicNumber)
+        if (GameUtilities.GetPowerAmount(p, IntellectPower.POWER_ID) <= magicNumber)
         {
             GameActionsHelper.GainIntellect(1);
         }

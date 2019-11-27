@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,6 +14,8 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
+
+import java.util.List;
 
 public class IzunaHatsuse extends AnimatorCard
 {
@@ -37,6 +40,17 @@ public class IzunaHatsuse extends AnimatorCard
             cardData.InitializePreview(copy, true);
         }
     }
+
+//    @Override
+//    public List<TooltipInfo> getCustomTooltips()
+//    {
+//        if (cardText.index == 1)
+//        {
+//            return super.getCustomTooltips();
+//        }
+//
+//        return null;
+//    }
 
     @Override
     public void applyPowers()

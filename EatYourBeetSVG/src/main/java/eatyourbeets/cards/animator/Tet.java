@@ -7,6 +7,7 @@ import eatyourbeets.actions.animator.TetRecoverAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class Tet extends AnimatorCard
@@ -39,9 +40,9 @@ public class Tet extends AnimatorCard
         GameActionsHelper.AddToBottom(new TetDiscardAction(magicNumber));
         GameActionsHelper.AddToBottom(new TetRecoverAction(magicNumber));
 
-        if (HasActiveSynergy())
+        if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper.Motivate(1);
+            GameActionsHelper.GainEnergy(1);
         }
     }
 

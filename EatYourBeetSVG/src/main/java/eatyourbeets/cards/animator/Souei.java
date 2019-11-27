@@ -33,7 +33,7 @@ public class Souei extends AnimatorCard implements MartialArtist
     {
         super.applyPowers();
 
-        MartialArtist.ApplyScaling(this);
+        MartialArtist.ApplyScaling(this, 2);
     }
 
     @Override

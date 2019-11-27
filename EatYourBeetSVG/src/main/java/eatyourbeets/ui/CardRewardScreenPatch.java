@@ -1,22 +1,33 @@
 package eatyourbeets.ui;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.relics.FrozenEgg2;
 import com.megacrit.cardcrawl.relics.MoltenEgg2;
 import com.megacrit.cardcrawl.relics.ToxicEgg2;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
+import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.cards.EYBCardData;
+import eatyourbeets.cards.EYBCardText;
 import eatyourbeets.cards.Synergy;
+import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.effects.HideCardEffect;
 import eatyourbeets.relics.BundledRelicContainer;
 import eatyourbeets.relics.BundledRelicProvider;
 import eatyourbeets.relics.animator.PurgingStone_Cards;
+import eatyourbeets.resources.Resources_Common;
+import eatyourbeets.resources.Resources_Common_Strings;
 import eatyourbeets.ui.buttons.BanCardButton;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.InputManager;
+import eatyourbeets.utilities.RenderHelpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,11 +37,13 @@ public class CardRewardScreenPatch
 {
     public static final Logger logger = LogManager.getLogger(CardRewardScreenPatch.class.getName());
 
+    private static final Texture rightClickImage = new Texture("images/ui/rewards/RightClick.png");
     private static final ArrayList<BanCardButton> buttons = new ArrayList<>();
     private static BundledRelicContainer rewardBundle;
     private static PurgingStone_Cards purgingStone;
     private static RewardItem rewardItem;
     private static boolean canBan;
+    private static boolean showLegend;
 
     public static void Open(CardRewardScreen screen, ArrayList<AbstractCard> cards, RewardItem rItem, String header)
     {
@@ -41,7 +54,15 @@ public class CardRewardScreenPatch
 
         if (GameUtilities.InBattle()) // || !(AbstractDungeon.player instanceof AnimatorCharacter))
         {
+            showLegend = false;
+
             return;
+        }
+
+        showLegend = AbstractDungeon.player instanceof AnimatorCharacter;
+        if (showLegend)
+        {
+            EYBCardBadge.Open();
         }
 
         rewardBundle = BundledRelicProvider.SetupBundledRelics(rItem, cards);
@@ -84,10 +105,20 @@ public class CardRewardScreenPatch
         {
             rewardBundle.Update(screen);
         }
+
+        if (showLegend)
+        {
+            EYBCardBadge.UpdateLegend();
+        }
     }
 
     public static void PreRender(CardRewardScreen screen, SpriteBatch sb)
     {
+        if (showLegend)
+        {
+            EYBCardBadge.RenderLegend(sb);
+        }
+
         if (canBan)
         {
             for (BanCardButton banButton : buttons)

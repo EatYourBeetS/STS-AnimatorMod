@@ -69,6 +69,11 @@ public class InputManager
         {
             EYBCardText.Toggled = !EYBCardText.Toggled;
         }
+        else if (EYBCardText.ToggledOnce)
+        {
+            EYBCardText.Index = 1;
+            EYBCardText.ToggledOnce = false;
+        }
         else if (EYBCardText.Toggled)
         {
             EYBCardText.Index = 1;

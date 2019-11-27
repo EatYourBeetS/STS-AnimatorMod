@@ -55,7 +55,7 @@ public class ShionDessert extends AnimatorRelic
         {
             this.flash();
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.AddToBottom(new RelicAboveCreatureAction(p, this));
+            GameActionsHelper.AddToBottom(new RelicAboveCreatureAction(enemy, this));
             GameActionsHelper.ApplyPower(p, enemy, new PoisonPower(enemy, p, POISON_AMOUNT), POISON_AMOUNT);
         }
     }

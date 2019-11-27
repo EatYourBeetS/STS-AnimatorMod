@@ -13,7 +13,7 @@
 		"animator:ShichikaKyotouryuu"   : "For every point of #yDexterity, NL deal #b1 additional damage.",
 		"animator:SilverFang"  			: "For every point of #yDexterity, NL deal #b1 additional damage.",
 		"animator:Sonic"       			: "Every #b6 points of #yDexterity, NL obtain #b1 additional NL #yThrowing-Knife.",
-		"animator:Souei"       			: "For every point of #yDexterity, NL apply #b1 additional #yPoison.",
+		"animator:Souei"       			: "Every #b2 points of #yDexterity, NL apply #b1 additional #yPoison.",
 		"animator:ZankiKiguchi"			: "For every point of #yDexterity, NL deal #b2 additional damage."
 	},
 	

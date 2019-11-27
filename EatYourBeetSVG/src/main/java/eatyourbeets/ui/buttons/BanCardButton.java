@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import eatyourbeets.cards.animator.HigakiRinne;
 import eatyourbeets.resources.Resources_Animator_Strings;
 
 public class BanCardButton
@@ -58,6 +59,8 @@ public class BanCardButton
 
     public void update()
     {
+        updatePosition();
+
         if (showTimer >= 0)
         {
             showTimer -= Gdx.graphics.getDeltaTime();
@@ -66,11 +69,20 @@ public class BanCardButton
                 this.isHidden = false;
             }
         }
-        else if (!this.isHidden)
+        else if (!this.isHidden && this.card.targetDrawScale < 1)
         {
-            updatePosition();
-
             this.hb.update();
+//
+//            if (this.current_x != this.target_x)
+//            {
+//                this.current_x = MathUtils.lerp(this.current_x, this.target_x, Gdx.graphics.getDeltaTime() * 9.0F);
+//                if (Math.abs(this.current_x - this.target_x) < Settings.UI_SNAP_THRESHOLD)
+//                {
+//                    this.current_x = this.target_x;
+//                    this.hb.move(this.current_x, SHOW_Y);
+//                }
+//            }
+
             if (this.hb.justHovered)
             {
                 CardCrawlGame.sound.play("UI_HOVER");
@@ -88,16 +100,6 @@ public class BanCardButton
                 this.banned = true;
             }
 
-            if (this.current_x != this.target_x)
-            {
-                this.current_x = MathUtils.lerp(this.current_x, this.target_x, Gdx.graphics.getDeltaTime() * 9.0F);
-                if (Math.abs(this.current_x - this.target_x) < Settings.UI_SNAP_THRESHOLD)
-                {
-                    this.current_x = this.target_x;
-                    this.hb.move(this.current_x, SHOW_Y);
-                }
-            }
-
             this.textColor.a = MathHelper.fadeLerpSnap(this.textColor.a, 1.0F);
             this.btnColor.a = this.textColor.a;
         }
@@ -107,7 +109,20 @@ public class BanCardButton
     {
         this.target_x = this.SHOW_X = card.target_x;
         this.SHOW_Y = card.target_y + (Settings.scale * 200);
-        this.hb.move(SHOW_X, SHOW_Y);
+
+        if (this.current_x != this.target_x)
+        {
+            this.current_x = MathUtils.lerp(this.current_x, this.target_x, Gdx.graphics.getDeltaTime() * 9.0F);
+            if (Math.abs(this.current_x - this.target_x) < Settings.UI_SNAP_THRESHOLD)
+            {
+                this.current_x = this.target_x;
+                this.hb.move(this.current_x, SHOW_Y);
+            }
+        }
+        else
+        {
+            this.hb.move(SHOW_X, SHOW_Y);
+        }
     }
 
     public void hideInstantly()
@@ -128,7 +143,7 @@ public class BanCardButton
     {
         this.showTimer = 0.5f;
         this.textColor.a = 0.0F;
-        this.btnColor.a = 0.0F;
+        this.btnColor.a = 1;//0.0F;
         this.current_x = SHOW_X; //HIDE_X;
         this.target_x = SHOW_X;
         this.hb.move(SHOW_X, SHOW_Y);
@@ -145,13 +160,15 @@ public class BanCardButton
         if (!this.isHidden)
         {
             this.renderButton(sb);
-            if (FontHelper.getSmartWidth(FontHelper.smallDialogOptionFont, TEXT[0], 9999.0F, 0.0F) > 200.0F * Settings.scale)
+
+            String text = GetBanishText();
+            if (FontHelper.getSmartWidth(FontHelper.smallDialogOptionFont, text, 9999.0F, 0.0F) > 200.0F * Settings.scale)
             {
-                FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, TEXT[0], this.current_x, SHOW_Y, this.textColor, 0.8F);
+                FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, text, this.current_x, SHOW_Y, this.textColor, 0.8F);
             }
             else
             {
-                FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, TEXT[0], this.current_x, SHOW_Y, this.textColor);
+                FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, text, this.current_x, SHOW_Y, this.textColor);
             }
         }
     }
@@ -162,7 +179,7 @@ public class BanCardButton
         float height  = 256f;
         float originX = 256f;
         float originY = 128f;
-        float scale = Settings.scale * 0.6f;
+        float scale = Settings.scale * 0.75f;
 
         sb.setColor(this.btnColor);
         sb.draw(ImageMaster.REWARD_SCREEN_TAKE_BUTTON, this.current_x - originX, SHOW_Y - originY, originX, originY, width, height,
@@ -181,6 +198,18 @@ public class BanCardButton
         this.hb.render(sb);
     }
 
+    private String GetBanishText()
+    {
+        if (card instanceof HigakiRinne)
+        {
+            return "...";
+        }
+        else
+        {
+            return TEXT[0];
+        }
+    }
+
     static
     {
         uiStrings = Resources_Animator_Strings.CardSelect;
@@ -189,6 +218,6 @@ public class BanCardButton
 //        SHOW_X = (float) Settings.WIDTH / 2.0F;
 //        HIDE_X = (float) Settings.WIDTH / 2.0F;
         HITBOX_W = 200.0F * Settings.scale;
-        HITBOX_H = 50.0F * Settings.scale;
+        HITBOX_H = 70.0F * Settings.scale;
     }
 }

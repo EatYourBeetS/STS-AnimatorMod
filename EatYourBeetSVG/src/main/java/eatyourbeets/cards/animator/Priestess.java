@@ -10,9 +10,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -32,9 +32,32 @@ public class Priestess extends AnimatorCard implements OnCallbackSubscriber
     }
 
     @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+
+        if (upgraded)
+        {
+            target = CardTarget.ALL;
+        }
+        else
+        {
+            target = CardTarget.SELF_AND_ENEMY;
+        }
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, m, new WeakPower(m, secondaryValue, false), secondaryValue);
+        if (upgraded)
+        {
+            GameActionsHelper.ApplyPowerToAllEnemies(p, (m1) -> new WeakPower(m1, secondaryValue, false), secondaryValue);
+        }
+        else if (m != null)
+        {
+            GameActionsHelper.ApplyPower(p, m, new WeakPower(m, secondaryValue, false), secondaryValue);
+        }
+
         GameActionsHelper.GainTemporaryHP(p, magicNumber);
 
         if (HasActiveSynergy())
@@ -50,7 +73,8 @@ public class Priestess extends AnimatorCard implements OnCallbackSubscriber
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(1);
+            upgradeMagicNumber(1);
+            this.target = CardTarget.ALL;
         }
     }
 

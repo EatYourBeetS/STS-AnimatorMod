@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.ChooseFromAnyPileAction;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -17,7 +19,7 @@ import eatyourbeets.cards.Synergies;
 
 import java.util.ArrayList;
 
-public class CowGirl extends AnimatorCard
+public class CowGirl extends AnimatorCard implements OnCallbackSubscriber
 {
     public static final String ID = Register(CowGirl.class.getSimpleName(), EYBCardBadge.Discard);
 
@@ -45,17 +47,7 @@ public class CowGirl extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        ChooseFromAnyPileAction action;
-        if (upgraded)
-        {
-            action = new ChooseFromAnyPileAction(1, this::OnCardSelected, this, FetchAction.TEXT[0], GetZeroCost(p.drawPile), GetZeroCost(p.discardPile));
-        }
-        else
-        {
-            action = new ChooseFromAnyPileAction(1, this::OnCardSelected, this, FetchAction.TEXT[0], GetZeroCost(p.drawPile));
-        }
-
-        GameActionsHelper.AddToBottom(action);
+        GameActionsHelper.DelayedAction(this);
     }
 
     @Override
@@ -82,7 +74,24 @@ public class CowGirl extends AnimatorCard
     {
         if (state == this && cards != null && cards.size() > 0)
         {
-            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(cards.get(0), AbstractDungeon.player.hand));
+            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(cards.get(0), AbstractDungeon.player.hand, true));
+        }
+    }
+
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
+    {
+        if (state == this && action != null)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            if (upgraded)
+            {
+                GameActionsHelper.AddToBottom(new ChooseFromAnyPileAction(1, this::OnCardSelected, this, FetchAction.TEXT[0], GetZeroCost(p.drawPile), GetZeroCost(p.discardPile)));
+            }
+            else
+            {
+                GameActionsHelper.AddToBottom(new ChooseFromAnyPileAction(1, this::OnCardSelected, this, FetchAction.TEXT[0], GetZeroCost(p.drawPile)));
+            }
         }
     }
 }

@@ -1,10 +1,13 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -20,7 +23,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(6,0);
+        Initialize(6,0, 1);
 
         SetSynergy(Synergies.Fate);
     }
@@ -30,23 +33,22 @@ public class Lancer extends AnimatorCard implements MartialArtist
     {
         tmp += MartialArtist.GetScaling();
 
-        if (mo != null && (GameUtilities.GetHealthPercentage(mo) < 0.5f))
+        if (mo != null)
         {
-            return super.calculateModifiedCardDamage(player, mo, tmp * 2);
+            tmp += (tmp * (1 - GameUtilities.GetHealthPercentage(mo)));
         }
-        else
-        {
-            return super.calculateModifiedCardDamage(player, mo, tmp);
-        }
+
+        return super.calculateModifiedCardDamage(player, mo, tmp);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         AbstractGameAction.AttackEffect attackEffect;
-        if (GameUtilities.GetHealthPercentage(m) < 0.5f)
+        if (this.damage >= 15)
         {
-            attackEffect = AbstractGameAction.AttackEffect.SLASH_HEAVY;
+            GameActionsHelper.VFX(new ClashEffect(m.hb.cX, m.hb.cY), 0.1F);
+            attackEffect = null;
         }
         else
         {
@@ -54,12 +56,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
         }
 
         GameActionsHelper.DamageTargetPiercing(p, m, this, attackEffect);
-
-        if (m.currentBlock > 0)
-        {
-            GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
-            GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 1, false), 1);
-        }
+        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, magicNumber, false), magicNumber);
     }
 
     @Override
@@ -67,7 +64,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(3);
+            upgradeDamage(2);
         }
     }
 }

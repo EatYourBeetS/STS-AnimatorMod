@@ -27,6 +27,11 @@ public class GameUtilities
 {
     public static final Logger Logger = LogManager.getLogger(GameUtilities.class.getName());
 
+    public static Logger GetLogger(Class c)
+    {
+        return LogManager.getLogger(c.getName());
+    }
+
     public static boolean IsAttacking(AbstractMonster.Intent intent)
     {
         return (intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.ATTACK_BUFF ||

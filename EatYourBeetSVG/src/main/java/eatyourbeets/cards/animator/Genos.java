@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.common.ChooseFromAnyPileAction;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.ui.EffectHistory;
@@ -20,7 +21,7 @@ import eatyourbeets.powers.animator.BurningPower;
 
 import java.util.ArrayList;
 
-public class Genos extends AnimatorCard
+public class Genos extends AnimatorCard implements OnCallbackSubscriber
 {
     public static final String ID = Register(Genos.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -42,8 +43,7 @@ public class Genos extends AnimatorCard
 
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper.AddToBottom(new ChooseFromAnyPileAction(1, this::OnCardSelected, this,
-                                            FetchAction.TEXT[0], GetHighCost(p.drawPile), GetHighCost(p.discardPile)));
+            GameActionsHelper.DelayedAction(this);
         }
     }
 
@@ -76,7 +76,19 @@ public class Genos extends AnimatorCard
         {
             AbstractCard card = cards.get(0);
             card.retain = true;
-            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, AbstractDungeon.player.hand));
+            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, AbstractDungeon.player.hand, true));
+        }
+    }
+
+
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
+    {
+        if (state == this && action != null)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            GameActionsHelper.AddToBottom(new ChooseFromAnyPileAction(1, this::OnCardSelected, this,
+                    FetchAction.TEXT[0], GetHighCost(p.drawPile), GetHighCost(p.discardPile)));
         }
     }
 }

@@ -621,7 +621,7 @@
 	},
 	"animator:Lancer":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Deal !D! Piercing NL damage. Double NL damage to enemies NL below 50% HP. || If the enemy has NL Block, apply 1 Weak NL and Vulnerable.",
+		"DESCRIPTION": "Martial_Artist. NL Deal !D! Piercing NL damage. Apply NL !M! Vulnerable. || This card's damage NL is increased by the NL enemy's missing NL HP percentage.",
 		"NAME": "Lancer"
 	},
 	"animator:Layla":

@@ -30,8 +30,8 @@ public class TheEndingPatches
 //                }
                     MapRoomNode rest = __instance.getMap().get(0).get(3);
                     MapRoomNode shop = __instance.getMap().get(1).get(3);
-                    MapRoomNode fight = __instance.getMap().get(1).get(4);
                     MapRoomNode node = __instance.getMap().get(1).get(5);
+                    //MapRoomNode fight = __instance.getMap().get(2).get(3);
 
                     node.room = new AnimatorCustomEventRoom(TheMaskedTraveler2::new);
                     node.room.setMapImg(Resources_Common.Map_Act5Entrance, Resources_Common.Map_Act5EntranceOutline);

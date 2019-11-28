@@ -28,6 +28,11 @@ public class MoveSpecificCardAction extends AnimatorAction
         this(card, destination, null, false);
     }
 
+    public MoveSpecificCardAction(AbstractCard card, CardGroup destination, boolean showEffect)
+    {
+        this(card, destination, null, showEffect);
+    }
+
     public MoveSpecificCardAction(AbstractCard card, CardGroup destination, CardGroup source)
     {
         this(card, destination, source, false);

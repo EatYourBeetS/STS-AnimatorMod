@@ -29,7 +29,7 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
     {
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(18, 0, 4);
+        Initialize(18, 0, 5);
 
         this.tags.add(CardTags.HEALING);
 

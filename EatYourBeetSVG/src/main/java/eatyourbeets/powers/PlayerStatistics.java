@@ -62,6 +62,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
     public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = new GameEvent<>();
     public static final GameEvent<OnShuffleSubscriber> onShuffle = new GameEvent<>();
+    public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = new GameEvent<>();
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
     public static final GameEvent<OnCostRefreshSubscriber> onCostRefresh = new GameEvent<>();
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
@@ -116,6 +117,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         onApplyPower.Clear();
         onAfterDeath.Clear();
         onCostRefresh.Clear();
+        onStartOfTurn.Clear();
         onStartOfTurnPostDraw.Clear();
         onPhaseChanged.Clear();
 
@@ -508,6 +510,19 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         }
 
         return super.onLoseHp(damage);
+    }
+
+    @Override
+    public void atStartOfTurn()
+    {
+        super.atStartOfTurn();
+        if (onStartOfTurn.Count() > 0)
+        {
+            for (OnStartOfTurnSubscriber s : onStartOfTurn.GetSubscribers())
+            {
+                s.OnStartOfTurn();
+            }
+        }
     }
 
     @Override

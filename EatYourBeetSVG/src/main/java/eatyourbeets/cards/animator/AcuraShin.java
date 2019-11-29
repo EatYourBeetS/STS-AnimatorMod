@@ -37,8 +37,7 @@ public class AcuraShin extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(1);
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(2);
         }
     }
 }

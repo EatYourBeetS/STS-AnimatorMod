@@ -4,12 +4,16 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
+import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.screens.stats.CharStat;
+import com.megacrit.cardcrawl.screens.stats.StatsScreen;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.events.TheMaskedTraveler2;
 import eatyourbeets.resources.Resources_Common;
 import eatyourbeets.room.AnimatorCustomEventRoom;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class TheEndingPatches
 {
@@ -19,27 +23,19 @@ public class TheEndingPatches
         @SpirePostfixPatch
         public static void Postfix(TheEnding __instance)
         {
-//            if (Settings.isStandardRun() && PlayerStatistics.GetActualAscensionLevel() >= 0)
-//            {
-                if (AnimatorCustomLoadout.specialTrophies.trophy1 > 0 ||
-                        AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
-                {
-//                int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
-//                if (currentLevel <= 1)
-//                {
-//                }
-                    MapRoomNode rest = __instance.getMap().get(0).get(3);
-                    MapRoomNode shop = __instance.getMap().get(1).get(3);
-                    MapRoomNode node = __instance.getMap().get(1).get(5);
-                    //MapRoomNode fight = __instance.getMap().get(2).get(3);
+            if (AnimatorCustomLoadout.specialTrophies.trophy1 > 0 ||
+                AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+            {
+                MapRoomNode rest = __instance.getMap().get(0).get(3);
+                MapRoomNode shop = __instance.getMap().get(1).get(3);
+                MapRoomNode node = __instance.getMap().get(1).get(5);
 
-                    node.room = new AnimatorCustomEventRoom(TheMaskedTraveler2::new);
-                    node.room.setMapImg(Resources_Common.Map_Act5Entrance, Resources_Common.Map_Act5EntranceOutline);
+                node.room = new AnimatorCustomEventRoom(TheMaskedTraveler2::new);
+                node.room.setMapImg(Resources_Common.Map_Act5Entrance, Resources_Common.Map_Act5EntranceOutline);
 
-                    connectNode(rest, node);
-                    connectNode(node, shop);
-                }
- //           }
+                connectNode(rest, node);
+                connectNode(node, shop);
+            }
         }
 
         private static void connectNode(MapRoomNode src, MapRoomNode dst)

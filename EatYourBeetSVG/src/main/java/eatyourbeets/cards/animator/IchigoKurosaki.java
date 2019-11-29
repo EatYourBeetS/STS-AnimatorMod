@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,17 +11,15 @@ import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.GameUtilities;
 
-import java.util.List;
-
 public class IchigoKurosaki extends AnimatorCard implements MartialArtist, OnCallbackSubscriber
 {
     public static final String ID = Register(IchigoKurosaki.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public IchigoKurosaki()
     {
-        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 2, 6);
+        Initialize(0, 0, 1, 5);
 
         SetExhaust(true);
         SetSynergy(Synergies.Bleach);
@@ -64,17 +61,16 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist, OnCal
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.GainForce(magicNumber);
-
-        if (upgraded)
-        {
-            GameActionsHelper.GainAgility(1);
-        }
+        GameActionsHelper.GainAgility(1);
     }
 
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeMagicNumber(1);
+        }
     }
 
     @Override

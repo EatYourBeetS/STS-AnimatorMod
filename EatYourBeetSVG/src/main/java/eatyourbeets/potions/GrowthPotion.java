@@ -2,23 +2,22 @@ package eatyourbeets.potions;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.JavaUtilities;
 
-public class FalseLifePotion extends AbstractPotion
+public class GrowthPotion extends AbstractPotion
 {
-    public static final String POTION_ID = "animator:FalseLifePotion";
+    public static final String POTION_ID = "animator:GrowthPotion";
     private static final PotionStrings potionStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
 
-    public FalseLifePotion()
+    public GrowthPotion()
     {
-        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.HEART, PotionColor.ANCIENT);
+        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.S, PotionColor.NONE);
         this.potency = this.getPotency();
         this.description = JavaUtilities.Format(DESCRIPTIONS[0], this.potency);
         this.isThrown = false;
@@ -27,28 +26,19 @@ public class FalseLifePotion extends AbstractPotion
 
     public void use(AbstractCreature target)
     {
-        GameActionsHelper.GainTemporaryHP(AbstractDungeon.player, AbstractDungeon.player, this.potency);
+        GameActionsHelper.GainForce(potency);
+        GameActionsHelper.GainIntellect(potency);
+        GameActionsHelper.GainAgility(potency);
     }
 
     public AbstractPotion makeCopy()
     {
-        return new FalseLifePotion();
+        return new GrowthPotion();
     }
 
     public int getPotency(int ascensionLevel)
     {
-        if (ascensionLevel < 7)
-        {
-            return 8;
-        }
-        else if (ascensionLevel < 14)
-        {
-            return 10;
-        }
-        else
-        {
-            return 12;
-        }
+        return 2;
     }
 
     static

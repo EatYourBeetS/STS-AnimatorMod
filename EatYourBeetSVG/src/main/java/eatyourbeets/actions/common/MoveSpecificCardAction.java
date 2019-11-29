@@ -1,6 +1,7 @@
 package eatyourbeets.actions.common;
 
 import basemod.BaseMod;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -115,6 +116,14 @@ public class MoveSpecificCardAction extends AnimatorAction
                         {
                             this.source.removeCard(card);
                             AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(card));
+
+                            if (source.type != CardGroup.CardGroupType.EXHAUST_PILE)
+                            {
+                                AbstractDungeon.player.onCardDrawOrDiscard();
+                                card.triggerOnManualDiscard();
+                                GameActionManager.incrementDiscard(false);
+                            }
+
                             break;
                         }
 

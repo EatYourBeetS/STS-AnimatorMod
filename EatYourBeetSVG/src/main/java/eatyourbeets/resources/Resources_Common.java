@@ -16,6 +16,7 @@ import eatyourbeets.events.UnnamedReign.TheUnnamedMerchant;
 import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.potions.FalseLifePotion;
+import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.rewards.SpecialGoldReward;
@@ -111,6 +112,9 @@ public class Resources_Common extends AbstractResources
     {
         BaseMod.addPotion(FalseLifePotion.class, Color.GOLDENROD.cpy(), Color.WHITE.cpy(), Color.GOLDENROD.cpy(),
                             FalseLifePotion.POTION_ID, AbstractEnums.Characters.THE_ANIMATOR);
+
+        BaseMod.addPotion(GrowthPotion.class, Color.NAVY.cpy(), Color.FOREST.cpy(), Color.YELLOW.cpy(),
+                GrowthPotion.POTION_ID, AbstractEnums.Characters.THE_ANIMATOR);
     }
 
     @Override

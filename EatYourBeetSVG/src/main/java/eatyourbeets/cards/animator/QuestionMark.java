@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.interfaces.OnStartOfTurnSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions.animator.AnimatorAction;
@@ -18,7 +19,7 @@ import eatyourbeets.interfaces.OnEndOfTurnSubscriber;
 
 import java.util.ArrayList;
 
-public class QuestionMark extends AnimatorCard implements OnEndOfTurnSubscriber
+public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscriber
 {
     public static final String ID = Register(QuestionMark.class.getSimpleName(), EYBCardBadge.Drawn);
 
@@ -47,20 +48,16 @@ public class QuestionMark extends AnimatorCard implements OnEndOfTurnSubscriber
     }
 
     @Override
-    public void OnEndOfTurn(boolean isPlayer)
+    public void OnStartOfTurn()
     {
         AbstractPlayer p = AbstractDungeon.player;
+
         if (!p.hand.contains(copy))
         {
-            if (!transformBack(p.drawPile))
+            if (transformBack(p.drawPile) || transformBack(p.discardPile) || transformBack(p.exhaustPile))
             {
-                if (!transformBack(p.discardPile))
-                {
-                    boolean reallyJava = transformBack(p.exhaustPile);
-                }
+                PlayerStatistics.onStartOfTurn.Unsubscribe(this);
             }
-
-            PlayerStatistics.onEndOfTurn.Unsubscribe(this);
         }
     }
 
@@ -79,6 +76,12 @@ public class QuestionMark extends AnimatorCard implements OnEndOfTurnSubscriber
         {
             group.group.remove(index);
             group.group.add(index, this);
+
+            this.current_x = copy.current_x;
+            this.current_y = copy.current_y;
+            this.target_x  = copy.target_x;
+            this.target_y  = copy.target_y;
+
             this.untip();
             this.stopGlowing();
 
@@ -152,7 +155,7 @@ public class QuestionMark extends AnimatorCard implements OnEndOfTurnSubscriber
                 p.hand.group.add(index, copy);
                 p.hand.glowCheck();
 
-                PlayerStatistics.onEndOfTurn.Subscribe(instance);
+                PlayerStatistics.onStartOfTurn.Subscribe(instance);
             }
         }
     }

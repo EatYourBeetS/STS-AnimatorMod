@@ -547,9 +547,8 @@
 	},
 	"animator:IchigoKurosaki":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Gain !M! Force. NL Exhaust. || When Exhausted, NL if you have at NL least !SV! Strength, NL add #yIchigo[] #yBankai[] NL to your draw pile.",
-		"NAME": "Ichigo Kurosaki",
-		"UPGRADE_DESCRIPTION": "Martial_Artist. NL Gain !M! Force. NL Gain 1 Agility. Exhaust. || When Exhausted, NL if you have at NL least !SV! Strength, NL add #yIchigo[] #yBankai[] NL to your draw pile."
+		"DESCRIPTION": "Martial_Artist 4. NL Gain !M! Force. NL Gain 1 Agility. NL Exhaust. || When Exhausted, NL if you have at NL least !SV! Strength, NL add #yIchigo[] #yBankai[] NL to your draw pile.",
+		"NAME": "Ichigo Kurosaki"
 	},
 	"animator:Illya":
 	{

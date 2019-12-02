@@ -23,7 +23,7 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
     {
         super.atBattleStart();
 
-        PlayerStatistics.onBattleStart.Subscribe(this);
+        OnBattleStart();
     }
 
     @Override
@@ -36,6 +36,7 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
     @Override
     public void OnBattleStart()
     {
+        PlayerStatistics.onBattleStart.Subscribe(this);
         PlayerStatistics.onShuffle.Subscribe(this);
     }
 }

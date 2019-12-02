@@ -1,0 +1,183 @@
+
+{
+	"Aether":
+	{
+		"DESCRIPTION": "充能球: 对所有敌人造成 #y穿刺 伤害。",
+		"NAMES": ["凌风", "凌风+"],
+		"PROPER_NAME": "凌风"
+	},
+	"Agility":
+	{
+		"DESCRIPTION": "获得或失去 #y机敏 时， 获得或失去等量的 #y敏捷 。 每回合开始时失去 #b1 点 #y机敏 。",
+		"NAMES": ["机敏"],
+		"PROPER_NAME": "机敏"
+	},
+	"Blur":
+	{
+		"DESCRIPTION": "你的下回合开始时 #y格挡 不会消失。",
+		"NAMES": ["残影"],
+		"PROPER_NAME": "残影"
+	},
+	"Burning":
+	{
+		"DESCRIPTION": "每回合开始时受到伤害并受到每层 #b4% 的额外 #y攻击 伤害。 每回合减少1层。",
+		"NAMES": ["点燃"],
+		"PROPER_NAME": "点燃"
+	},
+	"Choked":
+	{
+		"DESCRIPTION": "回合内每打出一张牌，目标敌人失去1点生命。",
+		"NAMES": ["勒脖"],
+		"PROPER_NAME": "勒脖"
+	},
+	"Constricted":
+	{
+		"DESCRIPTION": "每回合结束时受到伤害。",
+		"NAMES": ["缠绕"],
+		"PROPER_NAME": "缠绕"
+	},
+	"Cycle":
+	{
+		"DESCRIPTION": "弃掉若干牌然后抽取等量的牌。",
+		"NAMES": ["循环"],
+		"PROPER_NAME": "循环"
+	},
+	"Demon Form":
+	{
+		"DESCRIPTION": "每回合开始时获得 #y力量 。",
+		"NAMES": ["恶魔形态", "恶魔形态"],
+		"PROPER_NAME": "恶魔形态"
+	},
+	"Discover":
+	{
+		"DESCRIPTION": "随机牌三选一加入手牌。 本回合0耗能。",
+		"NAMES": ["发现"],
+		"PROPER_NAME": "发现"
+	},
+	"Earth":
+	{
+		"DESCRIPTION": "充能球: #y生成 时获得临时 #y荆棘 。 3回合后自动 #y激发 并对所有敌人造成随机分配伤害。",
+		"NAMES": ["大地", "大地+"],
+		"PROPER_NAME": "大地"
+	},
+	"Enchanted Armor":
+	{
+		"DESCRIPTION": "百分比减少所有伤害。 层数越高收益越低。",
+		"NAMES": ["魔法盔甲"],
+		"PROPER_NAME": "魔法盔甲"
+	},
+	"Envenom":
+	{
+		"DESCRIPTION": "每次攻击造成未被格挡的伤害时，给予 #b1 层 #y中毒 。",
+		"NAMES": ["涂毒"],
+		"PROPER_NAME": "涂毒"
+	},
+	"Fire":
+	{
+		"DESCRIPTION": "充能球: 对生命值最高的敌人给予 #y点燃 并造成伤害。",
+		"NAMES": ["烈火", "烈火+"],
+		"PROPER_NAME": "烈火"
+	},
+	"Flame Barrier":
+	{
+		"DESCRIPTION": "每当本回合被攻击时，造成 #b1 点反伤。",
+		"NAMES": ["火焰屏障", "火焰屏障"],
+		"PROPER_NAME": "火焰屏障"
+	},
+	"Flight":
+	{
+		"DESCRIPTION": "减少50%受到的 #y攻击 伤害。 回合内每次受到伤害时失去1层。0层时结束效果。",
+		"NAMES": ["飞行"],
+		"PROPER_NAME": "飞行"
+	},
+	"Force":
+	{
+		"DESCRIPTION": "获得或失去 #y武力 时， 获得或失去等量的 #y力量 。 每回合开始时失去 #b1 点 #y武力 。",
+		"NAMES": ["武力"],
+		"PROPER_NAME": "武力"
+	},
+	"Intellect":
+	{
+		"DESCRIPTION": "获得或失去 #y智力 时， 获得或失去等量的 #y集中 。 每回合开始时失去 #b1 点 #y智力 。",
+		"NAMES": ["智力"],
+		"PROPER_NAME": "智力"
+	},
+	"Juggernaut":
+	{
+		"DESCRIPTION": "每当获得 #y格挡 时，对随机敌人造成伤害。",
+		"NAMES": ["势不可挡"],
+		"PROPER_NAME": "势不可挡"
+	},
+	"Limited":
+	{
+		"DESCRIPTION": "一场战斗中，本效果仅能触发一次。包括所有同名牌。",
+		"NAMES": ["昙现"],
+		"PROPER_NAME": "昙现"
+	},
+	"Malleable":
+	{
+		"DESCRIPTION": "受到伤害时得到 #y格挡 。每次触发会得到更多 #y格挡 。回合开始时重置。",
+		"NAMES": ["柔韧"],
+		"PROPER_NAME": "柔韧"
+	},
+	"Metallicize":
+	{
+		"DESCRIPTION": "回合结束时得到 #y格挡 。",
+		"NAMES": ["金属化"],
+		"PROPER_NAME": "金属化"
+	},
+	"Piercing":
+	{
+		"DESCRIPTION": "无视目标的 #y格挡 和 #y荆棘 。",
+		"NAMES": ["穿刺"],
+		"PROPER_NAME": "穿刺"
+	},
+	"Plated Armor":
+	{
+		"DESCRIPTION": "回合结束时获得 #y格挡 。每次受伤减少 #b1 层。",
+		"NAMES": ["多层护甲", "多层护甲"],
+		"PROPER_NAME": "多层护甲"
+	},
+	"Rebound":
+	{
+		"DESCRIPTION": "将本回合下一张打出的牌放到抽牌堆顶。",
+		"NAMES": ["弹回"],
+		"PROPER_NAME": "弹回"
+	},
+	"Semi-Limited":
+	{
+		"DESCRIPTION": "一个回合内， 此效果仅能触发一次。 包含所有同名牌。",
+		"NAMES": ["有限"],
+		"PROPER_NAME": "有限"
+	},
+	"Slow":
+	{
+		"DESCRIPTION": "回合内每打出一张牌， 敌人受到的 #y攻击 伤害增加 #b10% 。",
+		"NAMES": ["缓慢"],
+		"PROPER_NAME": "缓慢"
+	},
+	"Stun":
+	{
+		"DESCRIPTION": " #b1 回合不能行动。",
+		"NAMES": ["击晕", "stslib:stunned"],
+		"PROPER_NAME": "击晕"
+	},
+	"Temporary HP":
+	{
+		"DESCRIPTION": "临时生命将在战斗结束后消失。",
+		"NAMES": ["临时生命"],
+		"PROPER_NAME": "临时生命"
+	},
+	"~Preview":
+	{
+		"DESCRIPTION": "按 #pSHIFT 浏览相关卡牌。",
+		"NAMES": ["~"],
+		"PROPER_NAME": "卡牌预览"
+	},
+	"~Unique":
+	{
+		"DESCRIPTION": "可被多次 #y升级 。此牌只能在牌组中存在一张，加入同名牌会将本牌 #y升级 。",
+		"NAMES": ["~"],
+		"PROPER_NAME": "独一"
+	}
+}

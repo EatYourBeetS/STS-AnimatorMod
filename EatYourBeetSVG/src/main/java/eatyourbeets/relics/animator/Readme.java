@@ -1,6 +1,5 @@
 package eatyourbeets.relics.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.patches.HitboxRightClick;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -36,7 +35,16 @@ public class Readme extends AnimatorRelic
 
     public static void SpawnAll()
     {
-        final String base = "TheAnimator-Readme:";
+        String base;
+        if (Settings.language == Settings.GameLanguage.ZHS ||
+            Settings.language == Settings.GameLanguage.ZHT)
+        {
+            base = "TheAnimator-Readme-" + Settings.language + ":";
+        }
+        else
+        {
+            base = "TheAnimator-Readme:";
+        }
 
         if (Settings.isControllerMode)
         {

@@ -92,7 +92,12 @@ public class PiercingDamageAction extends AbstractGameAction
 
                 this.target.damageFlash = true;
                 this.target.damageFlashFrames = 4;
-                AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, this.muteSfx));
+
+                if (attackEffect != null)
+                {
+                    AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, this.muteSfx));
+                }
+
                 if (this.goldAmount != 0)
                 {
                     this.stealGold();

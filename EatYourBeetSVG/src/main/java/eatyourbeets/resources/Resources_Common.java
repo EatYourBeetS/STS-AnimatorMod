@@ -3,6 +3,7 @@ package eatyourbeets.resources;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -42,6 +43,14 @@ public class Resources_Common extends AbstractResources
         if(f.exists() && f.isDirectory())
         {
             languagePath = filePath;
+        }
+        else if (Settings.language == Settings.GameLanguage.ZHT)
+        {
+            languagePath = "localization/common/zht/";
+        }
+        else if (Settings.language == Settings.GameLanguage.ZHS)
+        {
+            languagePath = "localization/common/zhs/";
         }
         else
         {

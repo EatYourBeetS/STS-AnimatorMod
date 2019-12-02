@@ -46,7 +46,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
                 nameButton = buttons[3];
             }
 
-            seriesButton = new SortHeaderButton("Series", xPosition, 0.0F, this);
+            seriesButton = new SortHeaderButton(Synergies.GetUIStrings().EXTRA_TEXT[0], xPosition, 0.0F, this);
 
             float offsetX = -(Settings.scale * 30f);
 

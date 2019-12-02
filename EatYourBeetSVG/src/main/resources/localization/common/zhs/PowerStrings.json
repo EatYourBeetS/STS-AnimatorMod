@@ -1,0 +1,23 @@
+
+{
+	"EYB:SelfDamagePower":
+	{
+		"DESCRIPTIONS": ["回合结束时， 受到 #b", " 点伤害。"],
+		"NAME": "自残"
+	},
+	"EYB:ForcePower":
+	{
+		"DESCRIPTIONS": ["回合开始时， 失去 #b1 点 #y武力 和 #y力量。"],
+		"NAME": "武力"
+	},
+	"EYB:AgilityPower":
+	{
+		"DESCRIPTIONS": ["回合开始时， 失去 #b1 点 #y机敏 和 #y敏捷。"],
+		"NAME": "机敏"
+	},
+	"EYB:IntellectPower":
+	{
+		"DESCRIPTIONS": ["回合开始时， 失去 #b1 点 #y智力 和 #y集中。"],
+		"NAME": "智力"
+	}
+}

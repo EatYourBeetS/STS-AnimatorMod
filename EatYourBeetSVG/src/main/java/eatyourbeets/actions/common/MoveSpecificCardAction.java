@@ -107,6 +107,10 @@ public class MoveSpecificCardAction extends AnimatorAction
                     {
                         case HAND:
                         {
+                            card.untip();
+                            card.unhover();
+                            card.lighten(true);
+
                             this.source.removeCard(card);
                             AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(card));
                             break;

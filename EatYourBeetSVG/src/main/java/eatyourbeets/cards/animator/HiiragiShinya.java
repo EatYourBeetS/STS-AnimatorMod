@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
@@ -72,6 +73,7 @@ public class HiiragiShinya extends AnimatorCard implements OnCallbackSubscriber
         {
             c.setCostForTurn(c.costForTurn + 1);
             c.retain = true;
+            GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
         }
     }
 }

@@ -63,6 +63,11 @@ public class Synergies
         return s;
     }
 
+    public static UIStrings GetUIStrings()
+    {
+        return uiStrings;
+    }
+
     public static Synergy GetByID(int id)
     {
         return All.get(id);

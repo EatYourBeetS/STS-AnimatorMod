@@ -2,6 +2,7 @@ package eatyourbeets.resources;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import eatyourbeets.characters.AnimatorCharacter;
@@ -31,17 +32,17 @@ public class Resources_Animator extends AbstractResources
         {
             languagePath = filePath;
         }
+        else if (Settings.language == Settings.GameLanguage.ZHT)
+        {
+            languagePath = "localization/animator/zht/";
+        }
+        else if (Settings.language == Settings.GameLanguage.ZHS)
+        {
+            languagePath = "localization/animator/zhs/";
+        }
 //        else if (Settings.language == Settings.GameLanguage.KOR)
 //        {
 //            languagePath = "localization/animator/kor/";
-//        }
-//        else if (Settings.language == Settings.GameLanguage.ZHT)
-//        {
-//            languagePath = "localization/animator/zht/";
-//        }
-//        else if (Settings.language == Settings.GameLanguage.ZHS)
-//        {
-//            languagePath = "localization/animator/zhs/";
 //        }
 //        else if (Settings.language == Settings.GameLanguage.FRA)
 //        {

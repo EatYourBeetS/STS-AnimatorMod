@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,10 +11,14 @@ import eatyourbeets.actions.common.PlayCardFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.JavaUtilities;
 
-public class Illya extends AnimatorCard
+import javax.swing.text.Utilities;
+
+public class Illya extends AnimatorCard implements OnCallbackSubscriber
 {
     public static final String ID = Register(Illya.class.getSimpleName(), EYBCardBadge.Exhaust);
 
@@ -67,26 +72,7 @@ public class Illya extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractCard bestCard = null;
-        int maxDamage = Integer.MIN_VALUE;
-        for (AbstractCard c : p.drawPile.group)
-        {
-            if (c.type == CardType.ATTACK && c.cardPlayable(m))
-            {
-                c.calculateCardDamage(m);
-                if (c.damage > maxDamage)
-                {
-                    maxDamage = c.damage;
-                    bestCard = c;
-                }
-            }
-        }
-
-        if (bestCard != null)
-        {
-            GameActionsHelper.AddToTop(new PlayCardFromPileAction(bestCard, p.drawPile, false, false, m));
-        }
-
+        GameActionsHelper.DelayedAction(this, m);
         GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
     }
 
@@ -96,6 +82,35 @@ public class Illya extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(-2);
+        }
+    }
+
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
+    {
+        AbstractMonster m = JavaUtilities.SafeCast(state, AbstractMonster.class);
+        if (m != null && action != null)
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            AbstractCard bestCard = null;
+            int maxDamage = Integer.MIN_VALUE;
+            for (AbstractCard c : p.drawPile.group)
+            {
+                if (c.type == CardType.ATTACK && c.cardPlayable(m))
+                {
+                    c.calculateCardDamage(m);
+                    if (c.damage > maxDamage)
+                    {
+                        maxDamage = c.damage;
+                        bestCard = c;
+                    }
+                }
+            }
+
+            if (bestCard != null)
+            {
+                GameActionsHelper.AddToTop(new PlayCardFromPileAction(bestCard, p.drawPile, false, false, m));
+            }
         }
     }
 }

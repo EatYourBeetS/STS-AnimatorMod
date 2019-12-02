@@ -1,0 +1,129 @@
+
+{
+	"Augmentable":
+	{
+		"DESCRIPTION": "能被多次升級。",
+		"NAMES": ["無限成長"],
+		"PROPER_NAME": "無限成長"
+	},
+	"Boost":
+	{
+		"DESCRIPTION": "此效果使用次數有限。",
+		"NAMES": ["倉促"],
+		"PROPER_NAME": "倉促"
+	},
+	"Cooldown":
+	{
+		"DESCRIPTION": "每打出或棄置一次減少一層 #y冷卻 層數， 當  #y冷卻 層數為0時，打出時觸發 #y冷卻 效果，並重置 #y冷卻 層數。",
+		"NAMES": ["冷卻"],
+		"PROPER_NAME": "冷卻"
+	},
+	"Flaming Weapon":
+	{
+		"DESCRIPTION": "如果造成未被格擋的傷害，給予 #b1 層 #y點燃 。",
+		"NAMES": ["炎刃", "炎刃"],
+		"PROPER_NAME": "炎刃"
+	},
+	"Heartseeker":
+	{
+		"DESCRIPTION": "如果目標的血量低於 50% , 造成雙倍傷害。",
+		"NAMES": ["嗜血"],
+		"PROPER_NAME": "嗜血"
+	},
+	"Lazy":
+	{
+		"DESCRIPTION": "延遲若干回合造成傷害。",
+		"NAMES": ["懶惰"],
+		"PROPER_NAME": "懶惰"
+	},
+	"Legacy":
+	{
+		"DESCRIPTION": "這張卡被消耗時觸發。",
+		"NAMES": ["遺贈"],
+		"PROPER_NAME": "遺贈"
+	},
+	"Loyal":
+	{
+		"DESCRIPTION": "進入棄牌堆時，洗回抽牌堆。",
+		"NAMES": ["忠誠"],
+		"PROPER_NAME": "忠誠"
+	},
+	"Martial Artist":
+	{
+		"DESCRIPTION": "傷害受 #y敏捷 加成。",
+		"NAMES": ["武師", "武師"],
+		"PROPER_NAME": "武師"
+	},
+	"Motivate":
+	{
+		"DESCRIPTION": "隨機減少手中1張牌直到被打出的1點耗能，重複 N 次。",
+		"NAMES": ["激勵"],
+		"PROPER_NAME": "激勵"
+	},
+	"Orb Core":
+	{
+		"DESCRIPTION": " #y能力 : #y生成 1個充能球。 每回合第二次 #y同調 時得到一個額外效果。",
+		"NAMES": ["充能球核心", "火焰核心", "大地核心", "閃電核心", "等離子核心", "冰霜核心", "凌風核心"],
+		"PROPER_NAME": "充能球"
+	},
+	"Overrun":
+	{
+		"DESCRIPTION": "此攻擊中每有一個敵人失去格擋都觸發效果。",
+		"NAMES": ["追擊"],
+		"PROPER_NAME": "追擊"
+	},
+	"Persistent":
+	{
+		"DESCRIPTION": "每當此牌進入棄牌堆時，洗入抽牌堆。",
+		"NAMES": ["固執"],
+		"PROPER_NAME": "固執"
+	},
+	"Recall":
+	{
+		"DESCRIPTION": "手動棄置或循環時觸發。",
+		"NAMES": ["召回"],
+		"PROPER_NAME": "召回"
+	},
+	"Reload":
+	{
+		"DESCRIPTION": "棄置若干牌，觸發若干次。",
+		"NAMES": ["重裝填"],
+		"PROPER_NAME": "重裝填"
+	},
+	"Resurrect":
+	{
+		"DESCRIPTION": "若此牌沒有被消耗或清除，抵消致命傷害並永久失去此牌。",
+		"NAMES": ["重生"],
+		"PROPER_NAME": "重生"
+	},
+	"Shapeshifter":
+	{
+		"DESCRIPTION": "與所有系列同調。",
+		"NAMES": ["穿越者", "穿越"],
+		"PROPER_NAME": "穿越者"
+	},
+	"Spellcaster":
+	{
+		"DESCRIPTION": "傷害受 #y集中 加成。",
+		"NAMES": ["法師"],
+		"PROPER_NAME": "法師"
+	},
+	"Support Damage":
+	{
+		"DESCRIPTION": "每回合結束時，對血量最低的敵人造成傷害。受傷害調節影響。",
+		"NAMES": ["支援傷害"],
+		"PROPER_NAME": "支援傷害"
+	},
+	"Synergy":
+	{
+		"DESCRIPTION": "連續使用同一系列的牌或者 #y法師 或者 #y武師 時觸發 #y同調 。",
+		"NAMES": ["同調"],
+		"PROPER_NAME": "同調"
+	},
+	"Throwing-Knife":
+	{
+		"DESCRIPTION": "帶有隨機負面效果的0耗能 #y攻擊 牌。",
+		"NAMES": ["飛刀", "飛刀+"],
+		"PROPER_NAME": "飛刀"
+	}
+}

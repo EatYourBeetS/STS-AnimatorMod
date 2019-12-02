@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import basemod.helpers.TooltipInfo;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
@@ -11,11 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
-
-import java.util.List;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {

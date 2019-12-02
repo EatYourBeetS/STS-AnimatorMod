@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,8 +9,6 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-
-import java.util.List;
 
 public class Yuuichirou extends AnimatorCard
 {

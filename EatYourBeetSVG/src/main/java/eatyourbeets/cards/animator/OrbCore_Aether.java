@@ -2,13 +2,10 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.interfaces.metadata.Hidden;
 import eatyourbeets.orbs.Aether;
 import eatyourbeets.powers.animator.OrbCore_AetherPower;
-import eatyourbeets.powers.animator.OrbCore_DarkPower;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class OrbCore_Aether extends AnimatorCard

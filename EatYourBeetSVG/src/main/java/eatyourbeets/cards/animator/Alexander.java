@@ -18,7 +18,7 @@ public class Alexander extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(7,0,7);
+        Initialize(7,0,8);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Fate);

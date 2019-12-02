@@ -4,16 +4,12 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
-import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.screens.stats.CharStat;
-import com.megacrit.cardcrawl.screens.stats.StatsScreen;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.events.TheMaskedTraveler2;
 import eatyourbeets.resources.Resources_Common;
 import eatyourbeets.room.AnimatorCustomEventRoom;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class TheEndingPatches
 {

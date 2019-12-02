@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.TemporaryElectroPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;

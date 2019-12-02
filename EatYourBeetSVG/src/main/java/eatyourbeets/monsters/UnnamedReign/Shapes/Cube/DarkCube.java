@@ -40,7 +40,7 @@ public class DarkCube extends Cube
                 break;
 
             case Ultimate:
-                amount = 5;
+                amount = 4;
                 break;
         }
 

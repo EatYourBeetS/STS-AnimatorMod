@@ -11,7 +11,6 @@ import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.animator.FeridBathory;
 import eatyourbeets.effects.Hemokinesis2Effect;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 

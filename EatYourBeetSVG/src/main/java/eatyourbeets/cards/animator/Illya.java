@@ -16,8 +16,6 @@ import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.JavaUtilities;
 
-import javax.swing.text.Utilities;
-
 public class Illya extends AnimatorCard implements OnCallbackSubscriber
 {
     public static final String ID = Register(Illya.class.getSimpleName(), EYBCardBadge.Exhaust);

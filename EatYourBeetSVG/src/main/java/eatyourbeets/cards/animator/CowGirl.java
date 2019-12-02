@@ -11,7 +11,6 @@ import eatyourbeets.actions.common.ChooseFromAnyPileAction;
 import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;

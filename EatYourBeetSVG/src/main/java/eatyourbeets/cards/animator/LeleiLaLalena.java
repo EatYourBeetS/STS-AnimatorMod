@@ -9,7 +9,6 @@ import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameUtilities;
 
 public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 {

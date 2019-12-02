@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.OrbCore_Aether;
-import eatyourbeets.cards.animator.OrbCore_Dark;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class OrbCore_AetherPower extends OrbCore_AbstractPower

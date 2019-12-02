@@ -3,16 +3,9 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
-import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.actions.common.SupportDamageAction;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
-
-import java.util.ArrayList;
 
 public class SupportDamagePower extends AnimatorPower
 {

@@ -3,7 +3,6 @@ package patches;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
-import com.megacrit.cardcrawl.actions.common.ShuffleAction;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.Field;
 import eatyourbeets.utilities.JavaUtilities;

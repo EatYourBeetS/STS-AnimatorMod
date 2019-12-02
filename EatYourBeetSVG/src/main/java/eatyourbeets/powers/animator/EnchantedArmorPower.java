@@ -3,10 +3,7 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.JavaUtilities;
 
-import javax.rmi.CORBA.Util;
-import javax.swing.text.Utilities;
 import java.text.DecimalFormat;
 
 public class EnchantedArmorPower extends AnimatorPower

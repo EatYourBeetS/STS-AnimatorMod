@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
@@ -9,8 +8,6 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.DarknessPower;
 import eatyourbeets.utilities.GameActionsHelper;
-
-import java.util.List;
 
 public class Darkness extends AnimatorCard
 {

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.effects.CallbackEffect;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.RandomizedList;

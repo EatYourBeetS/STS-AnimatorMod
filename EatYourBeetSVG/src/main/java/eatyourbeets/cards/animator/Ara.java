@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.common.VariableDiscardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;

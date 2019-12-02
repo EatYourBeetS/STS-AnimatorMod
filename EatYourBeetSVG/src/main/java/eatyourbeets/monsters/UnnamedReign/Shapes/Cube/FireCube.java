@@ -40,7 +40,7 @@ public class FireCube extends Cube
                 break;
 
             case Ultimate:
-                amount = 4;
+                amount = 3;
                 break;
         }
 

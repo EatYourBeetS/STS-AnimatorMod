@@ -2,7 +2,6 @@ package eatyourbeets.actions.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
-import java.util.Date;
 import java.time.Instant;
 
 public class WaitRealtimeAction extends AbstractGameAction

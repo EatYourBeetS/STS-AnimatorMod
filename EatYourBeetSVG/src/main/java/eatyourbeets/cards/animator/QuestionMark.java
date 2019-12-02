@@ -15,7 +15,6 @@ import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.interfaces.OnEndOfTurnSubscriber;
 
 import java.util.ArrayList;
 

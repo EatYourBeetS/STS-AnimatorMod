@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.GameUtilities;
 

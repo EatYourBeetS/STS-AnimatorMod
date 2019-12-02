@@ -2,7 +2,6 @@ package eatyourbeets.cards;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,10 +11,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.Resources_Common_Strings;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RenderHelpers;
-
-import javax.swing.text.Utilities;
 
 public class EYBCardBadge
 {

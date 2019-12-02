@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -24,7 +23,7 @@ public class Sloth extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(40, 0, GetBaseCooldown());
+        Initialize(40, 0, GetBaseCooldown(), 3);
 
         SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
@@ -81,8 +80,6 @@ public class Sloth extends AnimatorCard
 
         if (TryUpgrade())
         {
-            upgradeDamage(10);
-
             if (!CardCrawlGame.isPopupOpen && GameUtilities.InBattle())
             {
                 baseMagicNumber = GetBaseCooldown();

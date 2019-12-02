@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.EYBCardBadge;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.animator.EntomaAction;
 import eatyourbeets.actions.common.OnTargetDeadAction;
@@ -57,7 +58,7 @@ public class Entoma extends AnimatorCard
     {
         super.atTurnStart();
 
-        if (this.baseDamage > 0)
+        if (PlayerStatistics.getTurnCount() > 0 && this.baseDamage > 0)
         {
             GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, -1));
         }

@@ -16,7 +16,6 @@ import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.actions.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.OrbCore_AbstractPower;
 
 import java.util.ArrayList;

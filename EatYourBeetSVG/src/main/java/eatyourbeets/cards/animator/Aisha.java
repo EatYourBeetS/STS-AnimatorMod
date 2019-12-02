@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,7 +13,6 @@ import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.SmallLaser2Effect;
-import eatyourbeets.powers.PlayerStatistics;
 
 public class Aisha extends AnimatorCard implements Spellcaster
 {

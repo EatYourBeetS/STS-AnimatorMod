@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,7 +8,6 @@ import eatyourbeets.actions.animator.GurenAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.SupportDamagePower;

@@ -65,7 +65,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
 
         if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
-            for (AbstractCard c : GetAllInstances())
+            for (AbstractCard c : GameUtilities.GetAllInstances(this))
             {
                 Megumin megumin = JavaUtilities.SafeCast(c, Megumin.class);
                 if (megumin != null)

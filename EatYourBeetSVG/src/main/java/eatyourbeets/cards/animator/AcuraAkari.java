@@ -8,6 +8,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class AcuraAkari extends AnimatorCard
 {
@@ -25,7 +26,7 @@ public class AcuraAkari extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (GetOtherCardsInHand().size() >= 2)
+        if (GameUtilities.GetOtherCardsInHand(this).size() >= 2)
         {
             GameActionsHelper.Discard(2, false);
 

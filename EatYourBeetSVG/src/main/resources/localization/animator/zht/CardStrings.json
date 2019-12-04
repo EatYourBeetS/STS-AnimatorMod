@@ -897,9 +897,8 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "本場戰鬥中 NL 升級所有牌 。 || 力量 在所有牌中 NL 發揮 !M! 倍效果。",
-		"NAME": "四季崎 記紀",
-		"UPGRADE_DESCRIPTION": "固有 。 NL 本場戰鬥中 NL 升級 所有牌 。 || 力量 在所有牌中 NL 發揮 !M! 倍效果。"
+		"DESCRIPTION": "At the start of each turn, add 1 of !M! random #yAttacks[] to your hand, gain Force equal to its cost. || Limited. NL Choose a card NL in your hand NL and Upgrade it NL permanently.",
+		"NAME": "四季崎 記紀"
 	},
 	"animator:Shimakaze":
 	{

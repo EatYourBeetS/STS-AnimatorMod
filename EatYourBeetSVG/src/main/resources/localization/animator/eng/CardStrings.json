@@ -897,9 +897,8 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "Upgrade ALL cards NL for the rest of NL this combat. || ALL cards NL are affected NL by Strength NL !M! times.",
-		"NAME": "Shikizaki Kiki",
-		"UPGRADE_DESCRIPTION": "Innate. NL Upgrade ALL cards NL for the rest of NL this combat. || ALL cards NL are affected NL by Strength NL !M! times."
+		"DESCRIPTION": "At the start of each turn, add 1 of !M! random #yAttacks[] to your hand, gain Force equal to its cost. || Limited. NL Choose a card NL in your hand NL and Upgrade it NL permanently.",
+		"NAME": "Shikizaki Kiki"
 	},
 	"animator:Shimakaze":
 	{
@@ -939,7 +938,7 @@
 	},
 	"animator:Sloth":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Cannot be played NL for !M! Turn(s). NL Exhaust. || When Exhausted, NL gain 2 Force.",
+		"DESCRIPTION": "Deal !D! Damage. NL Cannot be played NL for !M! Turn(s). NL Exhaust. || When Exhausted, NL gain !SV! Force.",
 		"EXTENDED_DESCRIPTION": ["Deal !D! Damage. NL Exhaust."],
 		"NAME": "Sloth"
 	},

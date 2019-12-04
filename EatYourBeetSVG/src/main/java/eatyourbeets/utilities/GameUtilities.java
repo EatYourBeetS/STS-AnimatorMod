@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -22,6 +23,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 
 public class GameUtilities
 {
@@ -366,6 +369,121 @@ public class GameUtilities
                 UnlockTracker.unlockAchievement("SAPPHIRE_PLUS");
             }
         }
+    }
+
+
+    public static HashSet<AbstractCard> GetAllInBattleInstances(AbstractCard card)
+    {
+        HashSet<AbstractCard> cards = GetAllInBattleInstances.get(card.uuid);
+
+        cards.add(card);
+
+        return cards;
+    }
+
+    public static HashSet<AbstractCard> GetAllInstances(AbstractCard card)
+    {
+        HashSet<AbstractCard> cards = GetAllInBattleInstances(card);
+
+        AbstractCard masterDeckInstance = GetMasterDeckInstance(card);
+        if (masterDeckInstance != null)
+        {
+            cards.add(masterDeckInstance);
+        }
+
+        return cards;
+    }
+
+    public static HashSet<AbstractCard> GetOtherCardsInHand(AbstractCard card)
+    {
+        HashSet<AbstractCard> cards = new HashSet<>();
+        for (AbstractCard c : AbstractDungeon.player.hand.group)
+        {
+            if (c != card)
+            {
+                cards.add(c);
+            }
+        }
+
+        return cards;
+    }
+
+    public static HashSet<AbstractCard> GetAllCopies(AbstractCard card)
+    {
+        String cardID = card.cardID;
+        HashSet<AbstractCard> cards = new HashSet<>();
+        AbstractCard c;
+
+        c = AbstractDungeon.player.cardInUse;
+        if (c != null && c.cardID.equals(cardID))
+        {
+            cards.add(c);
+        }
+
+        Iterator var2 = AbstractDungeon.player.drawPile.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.discardPile.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.exhaustPile.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.limbo.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        var2 = AbstractDungeon.player.hand.group.iterator();
+        while (var2.hasNext())
+        {
+            c = (AbstractCard) var2.next();
+            if (c.cardID.equals(cardID))
+            {
+                cards.add(c);
+            }
+        }
+
+        return cards;
+    }
+
+    public static AbstractCard GetMasterDeckInstance(AbstractCard card)
+    {
+        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+        {
+            if (c.uuid == card.uuid)
+            {
+                return c;
+            }
+        }
+
+        return null;
     }
 
     public static int GetAscensionLevel()

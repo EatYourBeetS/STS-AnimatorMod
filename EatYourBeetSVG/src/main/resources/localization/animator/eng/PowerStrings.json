@@ -2,7 +2,7 @@
 {
 	"animator:AinzPower":
 	{
-		"DESCRIPTIONS": ["At the start of your turn activate 1 of 4 random effects #b", " time/s."],
+		"DESCRIPTIONS": ["At the start of your turn activate 1 of 4 random effects #b", " time(s)."],
 		"NAME": "Ainz Ooal Gown"
 	},
 	"animator:ArcherPower":
@@ -182,7 +182,7 @@
 	},
 	"animator:HiteiPower":
 	{
-		"DESCRIPTIONS": ["At the start of your turn, choose and Exhaust #b", " card/s in your deck."],
+		"DESCRIPTIONS": ["At the start of your turn, choose and Exhaust #b", " card(s) in your deck."],
 		"NAME": "Princess Hitei"
 	},
 	"animator:InfinitePower":
@@ -227,7 +227,7 @@
 	},
 	"animator:OrbCore_ChaosPower":
 	{
-		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, #yDiscover #b", " card/s."],
+		"DESCRIPTIONS": ["On your next #b", " #ySynergies this turn, #yDiscover #b", " card(s)."],
 		"NAME": "Chaos Core"
 	},
 	"animator:OrbCore_DarkPower":
@@ -262,7 +262,7 @@
 	},
 	"animator:PinaCoLadaPower":
 	{
-		"DESCRIPTIONS": ["Your next #b", " #y0-Cost card/s are played twice."],
+		"DESCRIPTIONS": ["Your next #b", " #y0-Cost card(s) are played twice."],
 		"NAME": "Piña Co Lada"
 	},
 	"animator:PlayerStatistics":
@@ -287,7 +287,7 @@
 	},
 	"animator:ShikizakiKikiPower":
 	{
-		"DESCRIPTIONS": ["#yStrength affects ALL cards #b", " times."],
+		"DESCRIPTIONS": ["At the start of your turn, choose and Obtain #b", " #yAttack(s). Gain #yForce equal to their cost."],
 		"NAME": "Shikizaki Kiki"
 	},
 	"animator:ShiroPower":
@@ -307,7 +307,7 @@
 	},
 	"animator:StrategicInformationPower":
 	{
-		"DESCRIPTIONS": ["The next #b", " time/s you discard a card, gain #b", " #yBlock and deal #b", " damage to the lowest health enemy."],
+		"DESCRIPTIONS": ["The next #b", " time(s) you discard a card, gain #b", " #yBlock and deal #b", " damage to the lowest health enemy."],
 		"NAME": "Strategic Information"
 	},
 	"animator:SupportDamagePower":
@@ -352,7 +352,7 @@
 	},
 	"animator:YukoShionjiPower":
 	{
-		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use/s ), or #pRight-Click to discard it ( #b", " use/s)."],
+		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use(s) ), or #pRight-Click to discard it ( #b", " use(s))."],
 		"NAME": "Yuko Shionji"
 	}
 }

@@ -282,7 +282,7 @@
 	},
 	"animator:ShikizakiKikiPower":
 	{
-		"DESCRIPTIONS": ["#y力量 在所有牌中发挥 #b", " 倍效果。"],
+		"DESCRIPTIONS": ["At the start of your turn, choose and Obtain #b", " #yAttack(s). Gain #yForce equal to their cost."],
 		"NAME": "四季崎 记纪"
 	},
 	"animator:ShiroPower":

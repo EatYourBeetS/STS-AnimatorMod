@@ -42,6 +42,11 @@ public abstract class EYBCard extends CustomCard
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
 
+    public static EYBCardData GetCardData(String cardID)
+    {
+        return staticCardData.get(cardID);
+    }
+
     protected static String RegisterCard(String cardID, EYBCardBadge[] badges)
     {
         staticCardData.put(cardID, new EYBCardData(badges, AbstractResources.GetCardStrings(cardID)));
@@ -247,119 +252,6 @@ public abstract class EYBCard extends CustomCard
             RenderBadges(sb, true, false);
             RenderCardPreview(sb, true);
         }
-    }
-
-    public HashSet<AbstractCard> GetAllInBattleInstances()
-    {
-        HashSet<AbstractCard> cards = GetAllInBattleInstances.get(uuid);
-
-        cards.add(this);
-
-        return cards;
-    }
-
-    public HashSet<AbstractCard> GetAllInstances()
-    {
-        HashSet<AbstractCard> cards = GetAllInBattleInstances();
-
-        AbstractCard masterDeckInstance = GetMasterDeckInstance();
-        if (masterDeckInstance != null)
-        {
-            cards.add(masterDeckInstance);
-        }
-
-        return cards;
-    }
-
-    public HashSet<AbstractCard> GetOtherCardsInHand()
-    {
-        HashSet<AbstractCard> cards = new HashSet<>();
-        for (AbstractCard c : AbstractDungeon.player.hand.group)
-        {
-            if (c != this)
-            {
-                cards.add(c);
-            }
-        }
-
-        return cards;
-    }
-
-    public HashSet<AbstractCard> GetAllCopies()
-    {
-        HashSet<AbstractCard> cards = new HashSet<>();
-        AbstractCard c;
-
-        c = AbstractDungeon.player.cardInUse;
-        if (c != null && c.cardID.equals(cardID))
-        {
-            cards.add(c);
-        }
-
-        Iterator var2 = AbstractDungeon.player.drawPile.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.discardPile.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.exhaustPile.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.limbo.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        var2 = AbstractDungeon.player.hand.group.iterator();
-        while (var2.hasNext())
-        {
-            c = (AbstractCard) var2.next();
-            if (c.cardID.equals(cardID))
-            {
-                cards.add(c);
-            }
-        }
-
-        return cards;
-    }
-
-    public AbstractCard GetMasterDeckInstance()
-    {
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
-        {
-            if (c.uuid == uuid)
-            {
-                return c;
-            }
-        }
-
-        return null;
     }
 
     protected void Initialize(int baseDamage, int baseBlock)

@@ -13,6 +13,7 @@ import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
@@ -48,7 +49,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
         {
             if (info.type == DamageInfo.DamageType.NORMAL && target != null && !target.isPlayer)
             {
-                for (AbstractCard c2 : GetAllInBattleInstances())
+                for (AbstractCard c2 : GameUtilities.GetAllInBattleInstances(this))
                 {
                     ChaikaBohdan chaika = JavaUtilities.SafeCast(c2, ChaikaBohdan.class);
                     if (chaika != null)

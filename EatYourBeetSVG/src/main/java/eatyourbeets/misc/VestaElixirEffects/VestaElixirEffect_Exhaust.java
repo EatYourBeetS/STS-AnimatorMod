@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.Vesta_Elixir;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class VestaElixirEffect_Exhaust extends VestaElixirEffect
 {
@@ -19,7 +20,7 @@ public class VestaElixirEffect_Exhaust extends VestaElixirEffect
     @Override
     public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
     {
-        if (elixir.GetOtherCardsInHand().size() >= amount)
+        if (GameUtilities.GetOtherCardsInHand(elixir).size() >= amount)
         {
             GameActionsHelper.AddToBottom(new ExhaustAction(player, player, amount, false, false, false));
             linkedEffect.EnqueueAction(elixir, player);

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.utilities.GameUtilities;
 
 public abstract class AnimatorCard_Cooldown extends AnimatorCard
 {
@@ -82,7 +83,7 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
             activate = false;
         }
 
-        for (AbstractCard c : GetAllInBattleInstances())
+        for (AbstractCard c : GameUtilities.GetAllInBattleInstances(this))
         {
             AnimatorCard_Cooldown card = (AnimatorCard_Cooldown) c;
             card.baseSecondaryValue = card.secondaryValue = newValue;

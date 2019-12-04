@@ -9,6 +9,7 @@ import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 {
@@ -43,7 +44,7 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        if (GetOtherCardsInHand().size() > 0)
+        if (GameUtilities.GetOtherCardsInHand(this).size() > 0)
         {
             GameActionsHelper.Discard(1, !upgraded);
 

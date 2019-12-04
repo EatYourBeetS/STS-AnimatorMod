@@ -1,6 +1,7 @@
 package eatyourbeets.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 public abstract class AnimatorCard_Boost extends AnimatorCard
@@ -56,7 +57,7 @@ public abstract class AnimatorCard_Boost extends AnimatorCard
         {
             int newValue = this.secondaryValue - 1;
 
-            for (AbstractCard c : GetAllInBattleInstances())
+            for (AbstractCard c : GameUtilities.GetAllInBattleInstances(this))
             {
                 AnimatorCard_Boost card = JavaUtilities.SafeCast(c, AnimatorCard_Boost.class);
                 if (card != null)

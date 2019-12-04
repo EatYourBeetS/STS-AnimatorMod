@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Kuroyukihime extends AnimatorCard
 {
@@ -37,7 +38,7 @@ public class Kuroyukihime extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (GetOtherCardsInHand().size() >= this.magicNumber)
+        if (GameUtilities.GetOtherCardsInHand(this).size() >= this.magicNumber)
         {
             GameActionsHelper.Discard(this.magicNumber, false);
             GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new BlackLotus(), 1));

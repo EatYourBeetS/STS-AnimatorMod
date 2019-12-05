@@ -23,6 +23,7 @@ public class MetalKnight extends AnimatorCard_Boost
 
         Initialize(12, 0, 3);
 
+        SetEvokeOrbCount(1);
         SetSynergy(Synergies.OnePunchMan);
     }
 

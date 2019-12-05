@@ -22,7 +22,7 @@ public class Gluttony extends AnimatorCard implements OnCallbackSubscriber
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 4, 4);
+        Initialize(0,0, 4, 16);
 
         SetHealing(true);
         SetExhaust(true);
@@ -38,7 +38,7 @@ public class Gluttony extends AnimatorCard implements OnCallbackSubscriber
         if (playable)
         {
             int total = p.drawPile.size() + p.discardPile.size() + p.hand.size();
-            if (total < 20)
+            if (total < secondaryValue)
             {
                 cantUseMessage = cardData.strings.EXTENDED_DESCRIPTION[0];
 
@@ -80,8 +80,8 @@ public class Gluttony extends AnimatorCard implements OnCallbackSubscriber
                 //GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(p.drawPile.getNCardFromTop(i), p.drawPile, true));
             }
 
-            GameActionsHelper.AddToBottom(new HealAction(p, p, secondaryValue));
-            GameActionsHelper.GainForce(secondaryValue);
+            GameActionsHelper.AddToBottom(new HealAction(p, p, magicNumber));
+            GameActionsHelper.GainForce(magicNumber);
         }
     }
 }

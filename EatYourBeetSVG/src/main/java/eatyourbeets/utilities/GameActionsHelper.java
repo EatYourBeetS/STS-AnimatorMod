@@ -214,13 +214,6 @@ public class GameActionsHelper
         return action;
     }
 
-    public static GainBlockAction GainBlock(AbstractCreature source, int amount, boolean superfast)
-    {
-        GainBlockAction action = new GainBlockAction(source, source, amount, superfast);
-        AddToDefault(action);
-        return action;
-    }
-
     public static void RandomCostReduction(int times, int amount, boolean permanent)
     {
         for (int i = 0; i < times; i++)
@@ -240,6 +233,18 @@ public class GameActionsHelper
     public static MotivateAction Motivate(int costReduction)
     {
         MotivateAction action = new MotivateAction(costReduction);
+        AddToDefault(action);
+        return action;
+    }
+
+    public static GainBlockAction GainBlock(int amount)
+    {
+        return GainBlock(AbstractDungeon.player, amount);
+    }
+
+    public static GainBlockAction GainBlock(AbstractCreature source, int amount, boolean superfast)
+    {
+        GainBlockAction action = new GainBlockAction(source, source, amount, superfast);
         AddToDefault(action);
         return action;
     }
@@ -512,6 +517,11 @@ public class GameActionsHelper
                 return GameActionsHelper.GainForce(amount);
             }
         }
+    }
+
+    public static AddTemporaryHPAction GainTemporaryHP(int amount)
+    {
+        return GainTemporaryHP(AbstractDungeon.player, amount);
     }
 
     public static AddTemporaryHPAction GainTemporaryHP(AbstractCreature target, int amount)

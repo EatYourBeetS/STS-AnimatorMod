@@ -92,6 +92,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
 
         this.applyPowers();
+        this.calculateCardDamage(target);
 
         GameActionsHelper.DamageTargetPiercing(p, target, this, AbstractGameAction.AttackEffect.FIRE).bypassBlock = false;
 

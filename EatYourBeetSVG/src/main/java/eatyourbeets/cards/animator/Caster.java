@@ -24,6 +24,7 @@ public class Caster extends AnimatorCard implements Spellcaster
 
         Initialize(0,0, 2);
 
+        SetEvokeOrbCount(1);
         SetSynergy(Synergies.Fate);
     }
 

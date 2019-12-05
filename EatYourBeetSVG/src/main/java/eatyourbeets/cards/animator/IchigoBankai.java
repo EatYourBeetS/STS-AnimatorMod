@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -23,7 +24,7 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
     {
         super(ID, -1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
 
-        Initialize(7, 0);
+        Initialize(8, 0);
 
         SetExhaust(true);
         SetMultiDamage(true);
@@ -33,30 +34,29 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        return super.calculateModifiedCardDamage(player, mo, (EnergyPanel.totalCount) * (tmp + MartialArtist.GetScaling()));
-    }
-
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
         int effect = EnergyPanel.totalCount;
         if (this.energyOnUse != -1)
         {
             effect = this.energyOnUse;
         }
 
-        if (p.hasRelic(ChemicalX.ID))
+        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
         {
             effect += ChemicalX.BOOST;
-            p.getRelic(ChemicalX.ID).flash();
         }
 
+        return super.calculateModifiedCardDamage(player, mo, (effect) * (tmp + MartialArtist.GetScaling()));
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         if (!this.freeToPlayOnce)
         {
             p.energy.use(EnergyPanel.totalCount);
         }
 
-        if (effect > 0)
+        if (damage > 0)
         {
             GameActionsHelper.AddToTop(new VFXAction(new BorderLongFlashEffect(Color.LIGHT_GRAY)));
             GameActionsHelper.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.LIGHT_GRAY, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.75F);

@@ -21,6 +21,7 @@ public class Benimaru extends AnimatorCard
 
         Initialize(3, 0, 2);
 
+        SetEvokeOrbCount(1);
         SetMultiDamage(true);
         SetSynergy(Synergies.TenSura);
     }

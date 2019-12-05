@@ -30,6 +30,7 @@ public class ElricEdward extends AnimatorCard
 
         AddExtendedDescription();
 
+        SetEvokeOrbCount(1);
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 

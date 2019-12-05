@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsurugi extends AnimatorCard
 {
-    public static final String ID = Register(Mitsurugi.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Mitsurugi.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     private AbstractMonster lastTargetEnemy = null;
     private AbstractMonster targetEnemy = null;
@@ -20,7 +20,7 @@ public class Mitsurugi extends AnimatorCard
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9, 0, 2);
+        Initialize(6, 0, 1, 4);
 
         SetSynergy(Synergies.Konosuba);
     }
@@ -53,22 +53,16 @@ public class Mitsurugi extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.GainForce(1);
+        GameActionsHelper.GainBlock(secondaryValue);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        //GameActionsHelper.GainBlock(p, block);
-
         if (GameUtilities.IsAttacking(m.intent))
         {
             GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        }
-
-        if (HasActiveSynergy())
-        {
-            GameActionsHelper.GainForce(1);
+            GameActionsHelper.GainForce(magicNumber);
         }
     }
 
@@ -77,7 +71,7 @@ public class Mitsurugi extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeDamage(4);
+            upgradeDamage(3);
         }
     }
 

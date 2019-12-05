@@ -20,6 +20,7 @@ public class Pride extends AnimatorCard
 
         Initialize(0,0, 1, 3);
 
+        SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist, true);
     }
@@ -47,6 +48,7 @@ public class Pride extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
+            SetEvokeOrbCount(magicNumber);
         }
     }
 }

@@ -21,6 +21,7 @@ public class Emilia extends AnimatorCard
 
         Initialize(0,0);
 
+        SetEvokeOrbCount(1);
         SetExhaust(true);
         SetSynergy(Synergies.ReZero);
     }

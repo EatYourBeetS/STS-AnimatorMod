@@ -20,6 +20,7 @@ public class Tatsumaki extends AnimatorCard
 
         Initialize(0, 0, 1);
 
+        SetEvokeOrbCount(1);
         SetSynergy(Synergies.OnePunchMan);
     }
 

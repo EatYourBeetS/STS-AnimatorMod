@@ -1,14 +1,16 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Kuroyukihime extends AnimatorCard
+public class Kuroyukihime extends AnimatorCard implements OnCallbackSubscriber
 {
     public static final String ID = Register(Kuroyukihime.class.getSimpleName());
 
@@ -18,7 +20,6 @@ public class Kuroyukihime extends AnimatorCard
 
         Initialize(0, 0, 2);
 
-        SetExhaust(true);
         SetSynergy(Synergies.AccelWorld);
 
         if (InitializingPreview())
@@ -28,26 +29,9 @@ public class Kuroyukihime extends AnimatorCard
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        this.exhaust = true;
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (GameUtilities.GetOtherCardsInHand(this).size() >= this.magicNumber)
-        {
-            GameActionsHelper.Discard(this.magicNumber, false);
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new BlackLotus(), 1));
-            this.exhaust = true;
-        }
-        else
-        {
-            this.exhaust = false;
-        }
+        GameActionsHelper.DelayedAction(this);
     }
 
     @Override
@@ -56,6 +40,21 @@ public class Kuroyukihime extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBaseCost(0);
+        }
+    }
+
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
+    {
+        if (state == this && action != null)
+        {
+            if (GameUtilities.GetOtherCardsInHand(this).size() >= this.magicNumber)
+            {
+                GameActionsHelper.Discard(this.magicNumber, false);
+                GameActionsHelper.MakeCardInHand(new BlackLotus(), 1, false);
+
+                this.exhaustOnUseOnce = true;
+            }
         }
     }
 }

@@ -28,6 +28,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
 
         Initialize(0,3, 1);
 
+        SetEvokeOrbCount(1);
         SetExhaust(true);
         SetSynergy(Synergies.Fate);
     }

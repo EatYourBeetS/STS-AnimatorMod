@@ -344,6 +344,12 @@ public abstract class EYBCard extends CustomCard
         this.isEthereal = value;
     }
 
+    public void SetEvokeOrbCount(int count)
+    {
+        this.showEvokeValue = count > 0;
+        this.showEvokeOrbCount = count;
+    }
+
     public void SetLoyal(boolean value)
     {
         if (value)

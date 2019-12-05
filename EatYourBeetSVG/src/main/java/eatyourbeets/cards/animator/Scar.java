@@ -1,49 +1,46 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.animator.ScarAction;
-import eatyourbeets.actions.common.DrawSpecificCardAction;
-import eatyourbeets.actions.common.OnTargetDeadAction;
-import eatyourbeets.actions.common.PiercingDamageAction;
+import eatyourbeets.actions.common.MoveRandomCardAction;
 import eatyourbeets.actions.common.RefreshHandLayoutAction;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.interfaces.OnBattleStartSubscriber;
-import eatyourbeets.interfaces.OnEvokeOrbSubscriber;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.utilities.GameActionsHelper;
 
-public class Scar extends AnimatorCard implements OnBattleStartSubscriber, OnEvokeOrbSubscriber
+public class Scar extends AnimatorCard
 {
     public static final String ID = Register(Scar.class.getSimpleName(), EYBCardBadge.Special);
 
     public Scar()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(12,0);
+        Initialize(12,0, 0, 30);
 
-        if (GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen)
-        {
-            OnBattleStart();
-        }
-
+        SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        PiercingDamageAction damageAction = new PiercingDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE);
-        GameActionsHelper.AddToBottom(new OnTargetDeadAction(m, damageAction, new ScarAction(p), true));
+        GameActionsHelper.AddToTop(new RefreshHandLayoutAction());
+        GameActionsHelper.AddToTop(new ExhaustAction(p, p, 1, true));
+
+        CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F);
+        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
+
+        if (p.masterDeck.size() >= secondaryValue && EffectHistory.TryActivateLimited(cardID))
+        {
+            GameActionsHelper.AddToBottom(new ScarAction(p));
+        }
     }
 
     @Override
@@ -53,24 +50,5 @@ public class Scar extends AnimatorCard implements OnBattleStartSubscriber, OnEvo
         {
             upgradeDamage(4);
         }
-    }
-
-    @Override
-    public void OnEvokeOrb(AbstractOrb orb)
-    {
-        if (AbstractDungeon.player.drawPile.contains(this) || AbstractDungeon.player.hand.contains(this))
-        {
-            modifyCostForTurn(-1);
-            this.flash();
-
-            GameActionsHelper.AddToBottom(new DrawSpecificCardAction(this));
-            GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
-        }
-    }
-
-    @Override
-    public void OnBattleStart()
-    {
-        PlayerStatistics.onEvokeOrb.Subscribe(this);
     }
 }

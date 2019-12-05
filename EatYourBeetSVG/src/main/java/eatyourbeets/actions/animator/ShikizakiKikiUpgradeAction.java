@@ -108,7 +108,20 @@ public class ShikizakiKikiUpgradeAction extends AnimatorAction
         card.upgrade();
         card.superFlash();
 
-        AbstractCard deckInstance = GameUtilities.GetMasterDeckInstance(card);
+        AbstractCard deckInstance = null;
+        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+        {
+            if (c.uuid == card.uuid)
+            {
+                deckInstance = c;
+                break;
+            }
+            else if (c.cardID.equals(card.cardID) && c.canUpgrade())
+            {
+                deckInstance = c;
+            }
+        }
+
         if (deckInstance != null && deckInstance.canUpgrade())
         {
             deckInstance.upgrade();

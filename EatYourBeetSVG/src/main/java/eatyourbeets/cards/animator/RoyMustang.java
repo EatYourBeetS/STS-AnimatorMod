@@ -23,9 +23,8 @@ public class RoyMustang extends AnimatorCard
 
         Initialize(6,0, 4);
 
-        this.isMultiDamage = true;
-        //AddExtendedDescription();
-
+        SetEvokeOrbCount(1);
+        SetMultiDamage(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 

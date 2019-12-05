@@ -21,6 +21,7 @@ public class DwarfShaman extends AnimatorCard implements Spellcaster
 
         Initialize(2, 0, 0);
 
+        SetEvokeOrbCount(1);
         SetSynergy(Synergies.GoblinSlayer);
     }
 

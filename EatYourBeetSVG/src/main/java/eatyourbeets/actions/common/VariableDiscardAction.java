@@ -13,19 +13,19 @@ import java.util.function.BiConsumer;
 
 public class VariableDiscardAction extends AnimatorAction
 {
-    private final AbstractCard card;
+    private final AbstractCard cardSource;
     private final boolean anyNumber;
     private final Object state;
     private final BiConsumer<Object, ArrayList<AbstractCard>> onDiscard;
 
-    public VariableDiscardAction(AbstractCard card, AbstractPlayer player, int discard, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onDiscard)
+    public VariableDiscardAction(AbstractCard cardSource, AbstractPlayer player, int discard, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onDiscard)
     {
-        this(card, player, discard, state, onDiscard, true);
+        this(cardSource, player, discard, state, onDiscard, true);
     }
 
-    public VariableDiscardAction(AbstractCard card, AbstractPlayer player, int discard, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onDiscard, boolean anyNumber)
+    public VariableDiscardAction(AbstractCard cardSource, AbstractPlayer player, int discard, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onDiscard, boolean anyNumber)
     {
-        this.card = card;
+        this.cardSource = cardSource;
         this.state = state;
         this.onDiscard = onDiscard;
         this.target = player;
@@ -47,9 +47,9 @@ public class VariableDiscardAction extends AnimatorAction
             else
             {
                 String discardMessage = DiscardAction.TEXT[0];
-                if (card != null)
+                if (cardSource != null)
                 {
-                    discardMessage += " (" + card.name + ")";
+                    discardMessage += " (" + cardSource.name + ")";
                 }
 
                 AbstractDungeon.handCardSelectScreen.open(discardMessage, this.amount, anyNumber, anyNumber);

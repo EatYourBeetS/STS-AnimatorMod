@@ -1,9 +1,9 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.common.ImprovedModifyDamageAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
@@ -15,9 +15,9 @@ public class Elesis extends AnimatorCard
 
     public Elesis()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(6,0, 1, 6);
+        Initialize(6,0, 2, 8);
 
         SetExhaust(true);
         SetSynergy(Synergies.Elsword);
@@ -28,7 +28,7 @@ public class Elesis extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, secondaryValue));
+        GameActionsHelper.AddToBottom(new ImprovedModifyDamageAction(this.uuid, secondaryValue));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Elesis extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, secondaryValue));
+        GameActionsHelper.AddToBottom(new ImprovedModifyDamageAction(this.uuid, secondaryValue));
     }
 
     @Override

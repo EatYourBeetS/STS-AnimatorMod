@@ -1,16 +1,13 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.interfaces.OnCallbackSubscriber;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper;
 
-public class Shuna extends AnimatorCard implements OnCallbackSubscriber
+public class Shuna extends AnimatorCard
 {
     public static final String ID = Register(Shuna.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Drawn);
 
@@ -18,7 +15,7 @@ public class Shuna extends AnimatorCard implements OnCallbackSubscriber
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,2, 3);
+        Initialize(0,3, 2);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -28,18 +25,18 @@ public class Shuna extends AnimatorCard implements OnCallbackSubscriber
     {
         super.triggerWhenDrawn();
 
-        GameActionsHelper.DelayedAction(this);
+        GameActionsHelper.GainTemporaryHP(magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.DrawCard(p, 1);
-        GameActionsHelper.GainTemporaryHP(p, magicNumber);
+        GameActionsHelper.GainBlock(p, block);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainBlock(p, block);
+            GameActionsHelper.GainTemporaryHP(p, magicNumber);
         }
     }
 
@@ -48,18 +45,7 @@ public class Shuna extends AnimatorCard implements OnCallbackSubscriber
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(2);
-        }
-    }
-
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        if (state == this && action != null)
-        {
-            this.applyPowers();
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.GainBlock(p, this.block);
+            upgradeBlock(2);
         }
     }
 }

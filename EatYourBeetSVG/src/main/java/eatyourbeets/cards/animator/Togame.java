@@ -31,7 +31,7 @@ public class Togame extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActionsHelper.DrawCard(p, this.magicNumber);
-        GameActionsHelper.AddToBottom(new VariableExhaustAction(p, 1, this, this::OnExhaust));
+        GameActionsHelper.AddToBottom(new VariableExhaustAction(this, 1, this, this::OnExhaust));
     }
 
     @Override

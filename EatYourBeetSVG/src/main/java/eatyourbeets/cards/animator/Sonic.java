@@ -14,11 +14,13 @@ public class Sonic extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(Sonic.class.getSimpleName(), EYBCardBadge.Synergy);
 
+    private static final int BLOCK_ON_SYNERGY = 3;
+
     public Sonic()
     {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 2, 2, 1);
+        Initialize(0, 0, 2, 1);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -43,7 +45,7 @@ public class Sonic extends AnimatorCard implements MartialArtist
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainBlock(p, block);
+            GameActionsHelper.GainBlock(p, BLOCK_ON_SYNERGY);
             GameActionsHelper.ApplyPower(p, p, new BlurPower(p, 1), 1);
         }
     }

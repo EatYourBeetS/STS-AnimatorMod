@@ -26,9 +26,9 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
         Initialize(23, 0);
 
-        this.isMultiDamage = true;
         this.lazyCounter = 0;
-
+        SetMultiDamage(true);
+        SetEvokeOrbCount(1);
         SetSynergy(Synergies.HatarakuMaouSama);
     }
 

@@ -18,6 +18,8 @@ public class OrbCore_Chaos extends AnimatorCard
         super(ID, 1, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0,0, VALUE,1);
+
+        SetEvokeOrbCount(secondaryValue);
     }
 
     @Override

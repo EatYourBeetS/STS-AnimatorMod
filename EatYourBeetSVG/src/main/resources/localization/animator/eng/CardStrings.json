@@ -435,7 +435,7 @@
 	},
 	"animator:Gluttony":
 	{
-		"DESCRIPTION": "Exhaust the top !M! NL cards of your draw NL pile to gain !SV! Force NL and Heal !SV! HP. Exhaust. || This card cannot NL be played while you NL have less than 20 NL total cards in play.",
+		"DESCRIPTION": "Exhaust the top !M! NL cards of your draw NL pile to gain !M! Force NL and Heal !M! HP. Exhaust. || This card cannot NL be played while you NL have less than !SV! NL total cards in play.",
 		"EXTENDED_DESCRIPTION": ["Not enough cards in play."],
 		"NAME": "Gluttony"
 	},
@@ -709,7 +709,7 @@
 	},
 	"animator:Mitsurugi":
 	{
-		"DESCRIPTION": "If the enemy NL intends to attack, NL deal !D! damage. || On Synergy, or NL when Exhausted, NL gain 1 Force.",
+		"DESCRIPTION": "If the enemy NL intends to attack, NL deal !D! damage and NL gain !M! Force. || When Exhausted, NL gain !SV! Block.",
 		"EXTENDED_DESCRIPTION": ["The enemy does not intend to attack."],
 		"NAME": "Mitsurugi"
 	},
@@ -861,7 +861,7 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "Deal !D! Piercing damage. When an Orb is Evoked, draw this card and reduce its cost by 1 this turn. || Limited. If this kills NL an enemy before NL your third turn, NL permanently Upgrade NL a random card.",
+		"DESCRIPTION": "Deal !D! Piercing NL damage. Exhaust a random card in your hand. Exhaust. || Limited. If your deck has !SV! or more cards, permanently Upgrade a random card.",
 		"NAME": "Scar"
 	},
 	"animator:Sebas":
@@ -923,7 +923,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "Gain !M! NL Temporary_HP. NL Draw 1 card. || On Synergy NL or when Drawn, NL gain !B! Block.",
+		"DESCRIPTION": "Gain !B! Block. NL Draw 1 card. || On Synergy NL or when Drawn, NL gain !M! Temp._HP.",
 		"NAME": "Shuna"
 	},
 	"animator:SilverFang":
@@ -938,13 +938,12 @@
 	},
 	"animator:Sloth":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Cannot be played NL for !M! Turn(s). NL Exhaust. || When Exhausted, NL gain !SV! Force.",
-		"EXTENDED_DESCRIPTION": ["Deal !D! Damage. NL Exhaust."],
+		"DESCRIPTION": "Gain !B! Block. NL Deal !D! Damage. NL Next turn, draw NL 1 less card. || Limited. NL When Exhausted, NL gain !SV! Force.",
 		"NAME": "Sloth"
 	},
 	"animator:Sonic":
 	{
-		"DESCRIPTION": "Martial_Artist 6. NL Obtain !M! NL Throwing-Knives. NL Gain !SV! Agility. || On Synergy, NL gain !B! Block NL and 1 Blur.",
+		"DESCRIPTION": "Martial_Artist 6. NL Obtain !M! NL Throwing-Knives. NL Gain !SV! Agility. || On Synergy, NL gain 3 Block NL and 1 Blur.",
 		"NAME": "Sonic"
 	},
 	"animator:Sora":

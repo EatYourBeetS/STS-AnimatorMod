@@ -18,6 +18,7 @@ public class MisaKurobane extends AnimatorCard
 
         Initialize(0, 0,1);
 
+        SetEvokeOrbCount(1);
         SetExhaust(true);
         SetSynergy(Synergies.Charlotte);
 

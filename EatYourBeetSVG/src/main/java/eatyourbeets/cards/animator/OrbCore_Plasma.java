@@ -19,6 +19,8 @@ public class OrbCore_Plasma extends AnimatorCard
         super(ID, 1, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0,0, VALUE,1);
+
+        SetEvokeOrbCount(secondaryValue);
     }
 
     @Override

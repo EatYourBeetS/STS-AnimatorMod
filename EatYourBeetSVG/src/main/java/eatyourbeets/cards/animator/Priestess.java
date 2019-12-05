@@ -26,7 +26,7 @@ public class Priestess extends AnimatorCard implements OnCallbackSubscriber
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0, 0, 3, 1);
+        Initialize(0, 0, 4, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -73,7 +73,7 @@ public class Priestess extends AnimatorCard implements OnCallbackSubscriber
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            //upgradeMagicNumber(1);
             this.target = CardTarget.ALL;
         }
     }

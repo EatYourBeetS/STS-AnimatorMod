@@ -435,7 +435,7 @@
 	},
 	"animator:Gluttony":
 	{
-		"DESCRIPTION": "消耗 抽牌堆頂部的 !M! 張牌並獲得 !SV! 點 武力 同時回復 !SV! 生命。 消耗 。 || 這張牌在牌堆小於20張牌時 不能被打出 。",
+		"DESCRIPTION": "消耗 抽牌堆頂部的 !M! 張牌並獲得 !M! 點 武力 同時回復 !M! 生命。 消耗 。 || 這張牌在牌堆小於 !SV! 張牌時 不能被打出 。",
 		"EXTENDED_DESCRIPTION": ["牌堆太小了。"],
 		"NAME": "暴食"
 	},
@@ -709,7 +709,7 @@
 	},
 	"animator:Mitsurugi":
 	{
-		"DESCRIPTION": "如果敵人的 NL 意圖是攻擊， NL 造成 !D! 點傷害。 || 同調 或被 消耗 ： NL 獲得 1 點 武力 。",
+		"DESCRIPTION": "如果敵人的 NL 意圖是攻擊， NL 造成 !D! 點傷害 和 獲得 1 點 武力 。 || 被 消耗 ： NL 獲得 !B! 格擋 。",
 		"EXTENDED_DESCRIPTION": ["來敵不敢妄動。"],
 		"NAME": "御劍響夜"
 	},
@@ -861,7 +861,7 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "造成 !D! 點 穿刺 傷害。 激發 充能球時， 取出 這張牌並將他的耗能本回合降低 1 點。 || 曇現 。 如果這張牌在前三回合殺死了敵人， NL 永久 升級 1 張隨機牌。",
+		"DESCRIPTION": "造成 !D! 點 穿刺 傷害。 消耗一張隨機手牌。 消耗。 || 曇現 。 如果您的副牌上有 !SV! 或更多牌， NL 永久 升級 1 張隨機牌。",
 		"NAME": "斯卡"
 	},
 	"animator:Sebas":
@@ -923,7 +923,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "獲得 !M! 點 NL 臨時生命 。 NL 抽 1 張牌。 || 同調 或被抽到: NL 獲得 !B! 點 格擋 。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 抽 1 張牌。 || 同調 或被抽到: NL 獲得 !M! 點 NL 臨時生命 。",
 		"NAME": "朱菜"
 	},
 	"animator:SilverFang":
@@ -938,13 +938,12 @@
 	},
 	"animator:Sloth":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害。 NL 在 !M! 回合內， NL 不能被打出。 NL 消耗 。 || 被 消耗 ： NL 獲得 !SV! 點 武力 。",
-		"EXTENDED_DESCRIPTION": ["造成 !D! 點傷害。 NL 消耗 。"],
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 造成 !D! 點傷害。 NL 下一回合 ， 少 抽 1 張牌 。 || 曇現 。 被 消耗 ： NL 獲得 !SV! 點 武力 。",
 		"NAME": "懶惰"
 	},
 	"animator:Sonic":
 	{
-		"DESCRIPTION": "武師 6 。 NL 獲得 !M! 張 飛刀 。 NL 獲得 !SV! 點 機敏 。 || 同調 ： NL 獲得 !B! 點 格擋 NL 和 1 層 殘影 。",
+		"DESCRIPTION": "武師 6 。 NL 獲得 !M! 張 飛刀 。 NL 獲得 !SV! 點 機敏 。 || 同調 ： NL 獲得 3 點 格擋 NL 和 1 層 殘影 。",
 		"NAME": "音速索尼克"
 	},
 	"animator:Sora":

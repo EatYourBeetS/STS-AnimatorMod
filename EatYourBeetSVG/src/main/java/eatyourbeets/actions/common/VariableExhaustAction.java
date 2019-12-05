@@ -19,18 +19,20 @@ public class VariableExhaustAction extends AnimatorAction
     public final boolean canPickZero;
     public final boolean anyNumber;
 
+    private final AbstractCard cardSource;
     private final Object state;
     private final ArrayList<AbstractCard> exhausted;
     private final BiConsumer<Object, ArrayList<AbstractCard>> onExhaust;
 
-    public VariableExhaustAction(AbstractPlayer player, int amount, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onExhaust)
+    public VariableExhaustAction(AbstractCard cardSource, int amount, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onExhaust)
     {
+        this.cardSource = cardSource;
         this.canPickZero = true;
         this.anyNumber = true;
         this.exhausted = new ArrayList<>();
         this.state = state;
         this.onExhaust = onExhaust;
-        this.target = player;
+        this.target = AbstractDungeon.player;
         this.amount = amount;
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.DISCARD;
@@ -48,7 +50,13 @@ public class VariableExhaustAction extends AnimatorAction
             }
             else
             {
-                AbstractDungeon.handCardSelectScreen.open(TEXT[0], this.amount, this.anyNumber, this.canPickZero);
+                String message = TEXT[0];
+                if (cardSource != null)
+                {
+                    message += " (" + cardSource.name + ")";
+                }
+
+                AbstractDungeon.handCardSelectScreen.open(message, this.amount, this.anyNumber, this.canPickZero);
             }
         }
         else if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved)

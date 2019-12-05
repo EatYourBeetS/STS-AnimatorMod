@@ -3,12 +3,17 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FadingPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
+import eatyourbeets.actions.animator.PlayTempBgmAction;
+import eatyourbeets.actions.common.WaitRealtimeAction;
+import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -30,7 +35,7 @@ public class Kira extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 2);
 
         AddExtendedDescription();
 
@@ -75,10 +80,22 @@ public class Kira extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, m, new StrengthPower(m, this.secondaryValue), this.secondaryValue);
+        GameActionsHelper.ApplyPower(p, m, new StrengthPower(m, this.magicNumber), this.magicNumber);
         updateCountdown(m);
 
-        GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
+        if (m.type == AbstractMonster.EnemyType.BOSS)
+        {
+            CardCrawlGame.music.silenceBGMInstantly();
+            CardCrawlGame.music.silenceTempBgmInstantly();
+
+            GameActionsHelper.AddToBottom(new SFXAction("ANIMATOR_KIRA_POWER"));
+            AbstractDungeon.effectsQueue.add(new CallbackEffect(new WaitRealtimeAction(9f),
+                    (state, action) -> CardCrawlGame.music.unsilenceBGM(), this));
+        }
+        else
+        {
+            GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
+        }
         GameActionsHelper.AddToBottom(new VFXAction(new CollectorCurseEffect(m.hb.cX, m.hb.cY), 2.0F));
 
         AbstractPower fading = m.getPower(FadingPower.POWER_ID);

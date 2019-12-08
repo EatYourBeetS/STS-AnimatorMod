@@ -3,7 +3,7 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.SummonMonsterAction;
+import eatyourbeets.actions._legacy.common.SummonMonsterAction;
 import eatyourbeets.monsters.AbstractMove;
 
 public class Move_SummonEnemy extends AbstractMove

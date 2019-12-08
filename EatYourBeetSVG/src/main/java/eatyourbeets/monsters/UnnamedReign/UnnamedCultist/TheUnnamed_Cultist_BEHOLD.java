@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.SummonMonsterAction;
-import eatyourbeets.actions.common.WaitRealtimeAction;
+import eatyourbeets.actions._legacy.common.SummonMonsterAction;
+import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
 import eatyourbeets.monsters.SharedMoveset.Move_Talk;
 

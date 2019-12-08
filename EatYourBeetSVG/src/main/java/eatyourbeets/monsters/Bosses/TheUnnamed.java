@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
-import eatyourbeets.actions.common.WaitRealtimeAction;
+import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;

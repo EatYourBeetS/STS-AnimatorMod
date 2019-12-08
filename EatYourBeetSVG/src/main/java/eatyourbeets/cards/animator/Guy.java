@@ -6,12 +6,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.MoveSpecificCardAction;
+import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Guy extends AnimatorCard implements OnCallbackSubscriber
 {
@@ -29,7 +29,7 @@ public class Guy extends AnimatorCard implements OnCallbackSubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DrawCard(p, this.magicNumber);
+        GameActionsHelper2.Draw(this.magicNumber);
         GameActionsHelper.Discard(this.magicNumber, false);
 
         if (HasActiveSynergy())
@@ -57,7 +57,7 @@ public class Guy extends AnimatorCard implements OnCallbackSubscriber
             AbstractCard card = p.drawPile.getNCardFromTop(i);
             card.target_x = Settings.WIDTH * (0.3f + (i * 0.02f));
             card.target_y = Settings.HEIGHT * (0.4f + (i * 0.02f));
-            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, p.discardPile, p.drawPile, true));
+            GameActionsHelper.AddToBottom(new MoveCard(card, p.discardPile, p.drawPile, true));
             GameActionsHelper.Wait(0.2f);
         }
     }

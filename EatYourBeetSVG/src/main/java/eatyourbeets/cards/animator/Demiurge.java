@@ -4,12 +4,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.VariableDiscardAction;
+import eatyourbeets.actions._legacy.common.VariableDiscardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 import java.util.ArrayList;
 
@@ -31,21 +32,22 @@ public class Demiurge extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.GainEnergy(1);
-        GameActionsHelper.CycleCardAction(1, name);
+        GameActionsHelper2.GainEnergy(1);
+        GameActionsHelper2.Cycle(1, name);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainEnergy(1);
         if (upgraded)
         {
-            GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, 1, this, this::OnDiscard));
+            GameActionsHelper2.DiscardFromHand(name, 1, false)
+            .SetOptions(true, true, true)
+            .AddCallback(cards -> ExecuteEffect(cards.isEmpty()));
         }
         else
         {
-            GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
+            ExecuteEffect(true);
         }
     }
 
@@ -55,15 +57,13 @@ public class Demiurge extends AnimatorCard
         TryUpgrade();
     }
 
-    private void OnDiscard(Object state, ArrayList<AbstractCard> cards)
+    private void ExecuteEffect(boolean takeDamage)
     {
-        if (state == this && cards != null)
+        GameActionsHelper2.GainEnergy(1);
+
+        if (takeDamage)
         {
-            if (cards.size() == 0)
-            {
-                AbstractPlayer p = AbstractDungeon.player;
-                GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
-            }
+            GameActionsHelper2.StackPower(new SelfDamagePower(AbstractDungeon.player, magicNumber));
         }
     }
 }

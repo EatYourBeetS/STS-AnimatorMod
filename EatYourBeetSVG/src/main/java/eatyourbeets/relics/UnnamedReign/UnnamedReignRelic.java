@@ -19,8 +19,8 @@ import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
-import eatyourbeets.utilities.Field;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.JavaUtilities;
 import patches.RelicObtainedPatches;
 
@@ -197,7 +197,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
         try
         {
             Class<?> c = Class.forName("riskOfSpire.patches.ForUsableRelics.UsableRelicSlot");
-            Field<SpireField> field = JavaUtilities.GetPrivateField("usableRelic", c);
+            FieldInfo<SpireField> field = JavaUtilities.GetPrivateField("usableRelic", c);
             SpireField<?> f = field.Get(null);
             if (f != null)
             {

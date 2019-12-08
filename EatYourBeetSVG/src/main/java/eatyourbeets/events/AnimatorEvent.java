@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.Field;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.actions.EYBAction;
 import eatyourbeets.ui.buttons.DialogRelicButton;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,14 +19,14 @@ import java.util.function.Consumer;
 
 public abstract class AnimatorEvent extends AbstractImageEvent
 {
-    protected static final Logger logger = LogManager.getLogger(AnimatorAction.class.getName());
+    protected static final Logger logger = LogManager.getLogger(EYBAction.class.getName());
 
     public static String CreateFullID(String id)
     {
         return "animator:" + id;
     }
 
-    private static final Field<ArrayList<LargeDialogOptionButton>> optionListField = JavaUtilities.GetPrivateField("optionList", GenericEventDialog.class);
+    private static final FieldInfo<ArrayList<LargeDialogOptionButton>> optionListField = JavaUtilities.GetPrivateField("optionList", GenericEventDialog.class);
 
     protected final ArrayList<PhaseHandler> phaseHandlers = new ArrayList<>();
     protected final EventStrings eventStrings;

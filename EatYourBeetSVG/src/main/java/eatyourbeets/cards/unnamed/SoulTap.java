@@ -3,9 +3,9 @@ package eatyourbeets.cards.unnamed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.actions.common.DecreaseMaxHpAction;
+import eatyourbeets.actions._legacy.common.DecreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class SoulTap extends UnnamedCard
 {
@@ -23,7 +23,7 @@ public class SoulTap extends UnnamedCard
     {
         GameActionsHelper.AddToBottom(new DecreaseMaxHpAction(p, 2));
         GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
-        GameActionsHelper.DrawCard(p, secondaryValue);
+        GameActionsHelper2.Draw(secondaryValue);
     }
 
     @Override

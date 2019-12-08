@@ -2,13 +2,16 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.BlizzardEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Ain extends AnimatorCard implements Spellcaster
 {
@@ -18,7 +21,7 @@ public class Ain extends AnimatorCard implements Spellcaster
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(1,0, 3, 1);
+        Initialize(1, 0, 3, 1);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Elsword);
@@ -31,7 +34,7 @@ public class Ain extends AnimatorCard implements Spellcaster
 
         if (EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper.GainIntellect(secondaryValue);
+            GameActionsHelper2.GainIntellect(secondaryValue);
         }
     }
 
@@ -42,21 +45,23 @@ public class Ain extends AnimatorCard implements Spellcaster
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActionsHelper2.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), Settings.FAST_MODE ? 0.25f : 1.0F);
+
         for (int i = 0; i < this.magicNumber; i++)
         {
-            GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+            GameActionsHelper2.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         }
 
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper.GainIntellect(secondaryValue);
+            GameActionsHelper2.GainIntellect(secondaryValue);
         }
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {

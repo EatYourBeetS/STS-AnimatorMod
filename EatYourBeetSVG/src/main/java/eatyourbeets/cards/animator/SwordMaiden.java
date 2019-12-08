@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.RemoveRightmostDebuffAction;
+import eatyourbeets.actions._legacy.common.RemoveRightmostDebuffAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;

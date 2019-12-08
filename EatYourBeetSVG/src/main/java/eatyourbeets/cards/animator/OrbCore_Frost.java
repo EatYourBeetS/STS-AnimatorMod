@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.powers.animator.OrbCore_FrostPower;
+import eatyourbeets.utilities.GameActionsHelper2;
 
-public class OrbCore_Frost extends AnimatorCard
+public class OrbCore_Frost extends OrbCore
 {
     public static final String ID = Register(OrbCore_Frost.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -16,7 +16,7 @@ public class OrbCore_Frost extends AnimatorCard
 
     public OrbCore_Frost()
     {
-        super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 0);
 
         Initialize(0,0, VALUE,2);
 
@@ -31,18 +31,6 @@ public class OrbCore_Frost extends AnimatorCard
             GameActionsHelper.ChannelOrb(new Frost(), true);
         }
 
-        GameActionsHelper.ApplyPower(p, p, new OrbCore_FrostPower(p, 1), 1);
-    }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return false;
-    }
-
-    @Override
-    public void upgrade()
-    {
-
+        GameActionsHelper2.StackPower(new OrbCore_FrostPower(p, 1));
     }
 }

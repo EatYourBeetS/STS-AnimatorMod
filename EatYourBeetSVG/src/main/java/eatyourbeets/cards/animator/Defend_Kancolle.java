@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_Kancolle extends Defend
 {
@@ -25,7 +26,9 @@ public class Defend_Kancolle extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper2.GainBlock(this.block);
+
+        // TODO: Could be an action
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
@@ -33,6 +36,7 @@ public class Defend_Kancolle extends Defend
             {
                 AbstractDungeon.effectList.add(new GainPennyEffect(p.hb.cX, p.hb.cY + (p.hb.height / 2)));
             }
+
             p.gainGold(this.magicNumber);
         }
     }

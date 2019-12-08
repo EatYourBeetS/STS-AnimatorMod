@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.DrawSpecificCardAction;
+import eatyourbeets.actions._legacy.common.DrawSpecificCardAction;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.interfaces.OnBlockBrokenSubscriber;
 

@@ -3,11 +3,10 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.actions.common.ModifyBlockActionWhichActuallyWorks;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Chung extends AnimatorCard
 {
@@ -27,7 +26,7 @@ public class Chung extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.ChannelOrb(new Frost(), true);
+        GameActionsHelper2.ChannelOrb(new Frost(), true);
     }
 
     @Override
@@ -35,10 +34,10 @@ public class Chung extends AnimatorCard
     {
         if (this.block > 0)
         {
-            GameActionsHelper.GainBlock(p, this.block);
+            GameActionsHelper2.GainBlock(this.block);
         }
 
-        GameActionsHelper.AddToBottom(new ModifyBlockActionWhichActuallyWorks(this.uuid, -magicNumber));
+        GameActionsHelper2.ModifyAllCombatInstances(uuid, c -> c.baseBlock = Math.max(0, c.baseBlock - c.magicNumber));
     }
 
     @Override

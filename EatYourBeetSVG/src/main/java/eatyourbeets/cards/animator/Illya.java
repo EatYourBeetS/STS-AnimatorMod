@@ -6,15 +6,14 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.MoveSpecificCardAction;
-import eatyourbeets.actions.common.PlayCardFromPileAction;
+import eatyourbeets.actions.basic.MoveCard;
+import eatyourbeets.actions._legacy.common.PlayCardFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class Illya extends AnimatorCard implements OnCallbackSubscriber
 {
@@ -34,6 +33,28 @@ public class Illya extends AnimatorCard implements OnCallbackSubscriber
     {
         super.triggerOnExhaust();
 
+        GameActionsHelper.DelayedAction(this);
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+        GameActionsHelper.AddToBottom(new IllyaAction(m));
+        GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
+    }
+
+    @Override
+    public void upgrade() 
+    {
+        if (TryUpgrade())
+        {
+            upgradeMagicNumber(-2);
+        }
+    }
+
+    @Override
+    public void OnCallback(Object state, AbstractGameAction action)
+    {
         AbstractPlayer p = AbstractDungeon.player;
         if (!DrawBerserker(p.drawPile))
         {
@@ -57,7 +78,7 @@ public class Illya extends AnimatorCard implements OnCallbackSubscriber
             {
                 if (group.type != CardGroup.CardGroupType.HAND)
                 {
-                    GameActionsHelper.AddToBottom(new MoveSpecificCardAction(c, AbstractDungeon.player.hand, group, true));
+                    GameActionsHelper.AddToTop(new MoveCard(c, AbstractDungeon.player.hand, group, true));
                 }
 
                 return true;
@@ -67,36 +88,26 @@ public class Illya extends AnimatorCard implements OnCallbackSubscriber
         return false;
     }
 
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    private class IllyaAction extends AbstractGameAction
     {
-        GameActionsHelper.DelayedAction(this, m);
-        GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
-    }
+        private final AbstractMonster target;
 
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
+        private IllyaAction(AbstractMonster target)
         {
-            upgradeMagicNumber(-2);
+            this.target = target;
         }
-    }
 
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        AbstractMonster m = JavaUtilities.SafeCast(state, AbstractMonster.class);
-        if (m != null && action != null)
+        @Override
+        public void update()
         {
             AbstractPlayer p = AbstractDungeon.player;
             AbstractCard bestCard = null;
             int maxDamage = Integer.MIN_VALUE;
             for (AbstractCard c : p.drawPile.group)
             {
-                if (c.type == CardType.ATTACK && c.cardPlayable(m))
+                if (c.type == CardType.ATTACK && c.cardPlayable(target))
                 {
-                    c.calculateCardDamage(m);
+                    c.calculateCardDamage(target);
                     if (c.damage > maxDamage)
                     {
                         maxDamage = c.damage;
@@ -107,8 +118,10 @@ public class Illya extends AnimatorCard implements OnCallbackSubscriber
 
             if (bestCard != null)
             {
-                GameActionsHelper.AddToTop(new PlayCardFromPileAction(bestCard, p.drawPile, false, false, m));
+                GameActionsHelper.AddToTop(new PlayCardFromPileAction(bestCard, p.drawPile, false, false, target));
             }
+
+            this.isDone = true;
         }
     }
 }

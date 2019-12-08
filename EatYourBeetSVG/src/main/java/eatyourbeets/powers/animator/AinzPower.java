@@ -4,33 +4,22 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions.animator.AinzAction;
-
-import java.util.ArrayList;
+import eatyourbeets.actions._legacy.animator.AinzAction;
 
 public class AinzPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(AinzPower.class.getSimpleName());
+    public static final int CHOICES = 4;
 
-    private final AbstractPlayer player;
-
-    private final ArrayList<Integer> choices;
-
-    public AinzPower(AbstractPlayer owner, int choices)
+    public AinzPower(AbstractPlayer owner, int amount)
     {
         super(owner, POWER_ID);
-        this.amount = 1;
 
-        this.choices = new ArrayList<>();
-        this.choices.add(choices);
+        this.amount = amount;
 
-        this.player = JavaUtilities.SafeCast(this.owner, AbstractPlayer.class);
         updateDescription();
     }
 
@@ -45,25 +34,13 @@ public class AinzPower extends AnimatorPower
     }
 
     @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-    {
-        AinzPower other = JavaUtilities.SafeCast(power, AinzPower.class);
-        if (other != null && power.owner == target)
-        {
-            this.choices.add(other.choices.get(0));
-        }
-
-        super.onApplyPower(power, target, source);
-    }
-
-    @Override
     public void atStartOfTurnPostDraw()
     {
         super.atStartOfTurnPostDraw();
 
         for(int i = 0; i < this.amount; i++)
         {
-            GameActionsHelper.AddToBottom(new AinzAction(player, choices.get(i),false));
+            GameActionsHelper.AddToBottom(new AinzAction(CHOICES));
         }
 
         this.flash();

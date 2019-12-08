@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Albedo extends AnimatorCard
 {
@@ -26,8 +26,8 @@ public class Albedo extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActionsHelper.ApplyPower(p, p, new EnchantedArmorPower(p, this.damage), this.damage);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper2.StackPower(new EnchantedArmorPower(p, damage));
 
         if (EffectHistory.HasActivatedLimited(Ainz.ID))
         {

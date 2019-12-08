@@ -8,7 +8,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.common.TemporaryElectroPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class NarberalGamma extends AnimatorCard
 {
@@ -30,7 +30,7 @@ public class NarberalGamma extends AnimatorCard
 
         if (upgraded)
         {
-            GameActionsHelper.DrawCard(p, 1);
+            GameActionsHelper2.Draw(1);
         }
 
         if (EffectHistory.TryActivateSemiLimited(this.cardID))

@@ -3,12 +3,12 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.powers.animator.OrbCore_EarthPower;
+import eatyourbeets.utilities.GameActionsHelper2;
 
-public class OrbCore_Earth extends AnimatorCard
+public class OrbCore_Earth extends OrbCore
 {
     public static final String ID = Register(OrbCore_Earth.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -16,7 +16,7 @@ public class OrbCore_Earth extends AnimatorCard
 
     public OrbCore_Earth()
     {
-        super(ID, 0, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 0);
 
         Initialize(0,0, VALUE,2);
 
@@ -31,18 +31,6 @@ public class OrbCore_Earth extends AnimatorCard
             GameActionsHelper.ChannelOrb(new Earth(), true);
         }
 
-        GameActionsHelper.ApplyPower(p, p, new OrbCore_EarthPower(p, 1), 1);
-    }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return false;
-    }
-
-    @Override
-    public void upgrade()
-    {
-
+        GameActionsHelper2.StackPower(new OrbCore_EarthPower(p, 1));
     }
 }

@@ -2,7 +2,7 @@ package eatyourbeets.relics.animator;
 
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class AlchemistGlove extends AnimatorRelic
 {

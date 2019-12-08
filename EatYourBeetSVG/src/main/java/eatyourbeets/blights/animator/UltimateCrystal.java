@@ -3,7 +3,7 @@ package eatyourbeets.blights.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions.common.RefreshHandLayoutAction;
+import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActionsHelper;

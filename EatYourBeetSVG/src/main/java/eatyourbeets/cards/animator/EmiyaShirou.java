@@ -3,9 +3,9 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.UpgradeRandomCardAction;
+import eatyourbeets.actions._legacy.common.UpgradeRandomCardAction;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -26,7 +26,7 @@ public class EmiyaShirou extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, block);
+        GameActionsHelper2.GainBlock(block);
 
         for (int i = 0; i < magicNumber; i++)
         {
@@ -45,7 +45,7 @@ public class EmiyaShirou extends AnimatorCard
 
         if (fullyUpgraded)
         {
-            GameActionsHelper.DrawCard(p, 2);
+            GameActionsHelper2.Draw(2);
         }
     }
 

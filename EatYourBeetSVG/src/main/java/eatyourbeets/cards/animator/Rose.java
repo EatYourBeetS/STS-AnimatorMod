@@ -12,10 +12,9 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.animator.AnimatorAction;
-import eatyourbeets.actions.common.PiercingDamageAction;
-import eatyourbeets.actions.common.VariableDiscardAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.actions._legacy.common.PiercingDamageAction;
+import eatyourbeets.actions._legacy.common.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -38,7 +37,7 @@ public class Rose extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DrawCard(p, this.magicNumber);
+        GameActionsHelper2.Draw(this.magicNumber);
         GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
     }
 
@@ -61,7 +60,7 @@ public class Rose extends AnimatorCard_UltraRare
         }
     }
 
-    private class RoseDamageAction extends AnimatorAction
+    private class RoseDamageAction extends AbstractGameAction
     {
         private final int damage;
         private final int times;

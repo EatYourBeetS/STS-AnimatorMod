@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Defend_Konosuba extends Defend
 {
@@ -21,8 +21,8 @@ public class Defend_Konosuba extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.GainTemporaryHP(p, magicNumber);
+        GameActionsHelper2.GainBlock(this.block);
+        GameActionsHelper2.GainTemporaryHP(magicNumber);
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.common.TemporaryRetainPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -31,7 +31,7 @@ public class LizardPriest extends AnimatorCard
             GameActionsHelper.GainBlock(m, this.magicNumber);
         }
 
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper2.GainBlock(this.block);
 
         if (HasActiveSynergy())
         {

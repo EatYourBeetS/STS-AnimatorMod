@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Defend_AccelWorld extends Defend
 {
@@ -25,14 +25,13 @@ public class Defend_AccelWorld extends Defend
     {
         super.triggerOnManualDiscard();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.GainBlock(p, this.magicNumber);
+        GameActionsHelper2.GainBlock(this.magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper2.GainBlock(this.block);
     }
 
     @Override

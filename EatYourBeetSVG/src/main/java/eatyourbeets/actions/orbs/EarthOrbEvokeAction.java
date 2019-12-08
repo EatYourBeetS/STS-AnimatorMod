@@ -8,14 +8,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions.animator.AnimatorAction;
 
 import java.util.ArrayList;
 
-public class EarthOrbEvokeAction extends AnimatorAction
+public class EarthOrbEvokeAction extends AbstractGameAction
 {
     private final AbstractPlayer p;
     private int step;
@@ -65,7 +64,7 @@ public class EarthOrbEvokeAction extends AnimatorAction
     }
 
 
-    private class EarthDamageAction extends AnimatorAction
+    private class EarthDamageAction extends AbstractGameAction
     {
         private final int baseDamage;
 

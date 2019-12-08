@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Shuna extends AnimatorCard
 {
@@ -31,8 +31,8 @@ public class Shuna extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DrawCard(p, 1);
-        GameActionsHelper.GainBlock(p, block);
+        GameActionsHelper2.Draw(1);
+        GameActionsHelper2.GainBlock(block);
 
         if (HasActiveSynergy())
         {

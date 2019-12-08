@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.interfaces.metadata.Hidden;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -37,17 +37,17 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
     {
         GameActionsHelper.AddToBottom(new VFXAction(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F));
 
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
 //        if (upgraded)
 //        {
-//            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+//            GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 //        }
 
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
         GameActionsHelper.AddToBottom(new VFXAction(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F));
     }
@@ -75,7 +75,7 @@ import com.megacrit.cardcrawl.MONSTER_LIST_WHICH_ACTUALLY_WORKS.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -138,13 +138,13 @@ public class Shichika extends AnimatorCard
         {
             for (int i = 0; i < this.secondaryValue; i++)
             {
-                GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
             }
         }
         else
         {
             GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
-            GameActionsHelper.GainBlock(p, this.block);
+            GameActionsHelper2.GainBlock(this.block);
         }
 
         if (HasActiveSynergy())

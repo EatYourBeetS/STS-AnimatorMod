@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -9,9 +10,8 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnStartOfTurnSubscriber;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -113,7 +113,7 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
         return (AnimatorCard) JavaUtilities.GetRandomElement(cardPool).makeCopy();
     }
 
-    private class QuestionMarkAction extends AnimatorAction
+    private class QuestionMarkAction extends AbstractGameAction
     {
         private final QuestionMark instance;
 

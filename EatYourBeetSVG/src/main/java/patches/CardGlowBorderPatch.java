@@ -8,14 +8,14 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardGlowBorder;
 import eatyourbeets.cards.EYBCard;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.utilities.Field;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
 @SpirePatch(clz= CardGlowBorder.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class})
 public class CardGlowBorderPatch
 {
-    private static Field<Color> colorField = JavaUtilities.GetPrivateField("color", AbstractGameEffect.class);
+    private static FieldInfo<Color> colorField = JavaUtilities.GetPrivateField("color", AbstractGameEffect.class);
 
     public static Color overrideColor;
 

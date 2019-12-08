@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -25,9 +25,9 @@ public class Shimakaze extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.DrawCard(p, this.magicNumber);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActionsHelper2.GainBlock(this.block);
+        GameActionsHelper2.Draw(this.magicNumber);
         GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(new Dazed(), 1, true, true));
     }
 
@@ -53,7 +53,7 @@ public class Shimakaze extends AnimatorCard
 //            {
 //                if (c.type == CardType.ATTACK)
 //                {
-//                    GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+//                    GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 //                }
 //            }
 //        }

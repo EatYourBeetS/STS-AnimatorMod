@@ -1,20 +1,20 @@
 package eatyourbeets.actions.orbs;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.orbs.Aether;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class AirOrbPassiveAction extends AnimatorAction
+public class AirOrbPassiveAction extends AbstractGameAction
 {
     private final Aether wind;
 

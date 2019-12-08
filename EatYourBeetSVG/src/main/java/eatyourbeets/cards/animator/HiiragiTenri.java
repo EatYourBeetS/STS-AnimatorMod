@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.PlayCardFromPileAction;
+import eatyourbeets.actions._legacy.common.PlayCardFromPileAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 

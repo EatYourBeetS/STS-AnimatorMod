@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.MoveSpecificCardAction;
+import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.utilities.GameActionsHelper;
@@ -75,7 +75,7 @@ public class Gluttony extends AnimatorCard implements OnCallbackSubscriber
                 AbstractCard card = p.drawPile.getNCardFromTop(i);
                 card.target_x = Settings.WIDTH * (0.3f + (i * 0.02f));
                 card.target_y = Settings.HEIGHT * (0.4f + (i * 0.02f));
-                GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, p.exhaustPile, p.drawPile, true));
+                GameActionsHelper.AddToBottom(new MoveCard(card, p.exhaustPile, p.drawPile, true));
                 GameActionsHelper.Wait(0.2f);
                 //GameActionsHelper.AddToBottom(new ExhaustSpecificCardAction(p.drawPile.getNCardFromTop(i), p.drawPile, true));
             }

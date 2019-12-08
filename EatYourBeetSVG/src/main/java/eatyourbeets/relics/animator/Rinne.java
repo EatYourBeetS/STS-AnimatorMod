@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.animator.HigakiRinneAction;
+import eatyourbeets.actions._legacy.animator.HigakiRinneAction;
 import eatyourbeets.cards.animator.HigakiRinne;
 
 public class Rinne extends AnimatorRelic// implements OnEquipUnnamedReignRelicSubscriber

@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.audio.MusicMaster;
 import com.megacrit.cardcrawl.audio.TempMusic;
-import eatyourbeets.utilities.Field;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class MusicMasterPatch
     @SpirePatch(clz = MusicMaster.class, method = "playTempBgmInstantly", paramtypez = {String.class})
     public static class PlayTempBgmInstantly
     {
-        private static Field<ArrayList<TempMusic>> tempTracksField;
+        private static FieldInfo<ArrayList<TempMusic>> tempTracksField;
 
         @SpirePrefixPatch
         public static SpireReturn Prefix(MusicMaster instance, String key)

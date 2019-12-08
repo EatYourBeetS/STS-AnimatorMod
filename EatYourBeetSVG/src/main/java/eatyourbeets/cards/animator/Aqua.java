@@ -1,16 +1,14 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
-import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Aqua extends AnimatorCard
 {
@@ -42,7 +40,7 @@ public class Aqua extends AnimatorCard
 
         if (upgraded && transformed)
         {
-            GameActionsHelper.GainTemporaryHP(AbstractDungeon.player, secondaryValue);
+            GameActionsHelper2.GainTemporaryHP(secondaryValue);
         }
     }
 
@@ -53,7 +51,7 @@ public class Aqua extends AnimatorCard
 
         if (upgraded && transformed)
         {
-            GameActionsHelper.GainTemporaryHP(AbstractDungeon.player, secondaryValue);
+            GameActionsHelper2.GainTemporaryHP(secondaryValue);
         }
     }
 
@@ -62,13 +60,13 @@ public class Aqua extends AnimatorCard
     {
         if (!transformed)
         {
-            GameActionsHelper.AddToBottom(new HealAction(p, p, magicNumber));
-            GameActionsHelper.DrawCard(p, 1);
-            GameActionsHelper.AddToBottom(new BecomeUselessAction());
+            GameActionsHelper2.Heal(magicNumber);
+            GameActionsHelper2.Draw(1);
+            GameActionsHelper2.Callback(new WaitAction(0.1f), __ -> SetTransformed(true));
         }
         else
         {
-            GameActionsHelper.VFX(new RainbowCardEffect());
+            GameActionsHelper2.VFX(new RainbowCardEffect());
         }
     }
 
@@ -107,17 +105,6 @@ public class Aqua extends AnimatorCard
             this.loadCardImage(Resources_Animator.GetCardImage(ID));
             cardText.OverrideDescription(null, true);
             transformed = false;
-        }
-    }
-
-    private class BecomeUselessAction extends AnimatorAction
-    {
-        @Override
-        public void update()
-        {
-            SetTransformed(true);
-
-            this.isDone = true;
         }
     }
 }

@@ -3,27 +3,21 @@ package eatyourbeets.powers.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.animator.*;
-import eatyourbeets.utilities.RandomizedList;
-
-import java.util.ArrayList;
 
 public abstract class OrbCore_AbstractPower extends AnimatorPower
 {
+    private static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
+
     protected int value;
     protected int uses;
     protected boolean firstSynergy;
-
-    private static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
 
     public OrbCore_AbstractPower(String id, AbstractCreature owner, int amount)
     {
@@ -103,58 +97,4 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     }
 
     protected abstract void OnSynergy(AbstractPlayer p, AbstractCard usedCard);
-
-    private static final ArrayList<AbstractCard> cores = new ArrayList<>();
-    private static final RandomizedList<AbstractCard> cores0 = new RandomizedList<>();
-    private static final RandomizedList<AbstractCard> cores1 = new RandomizedList<>();
-    private static final RandomizedList<AbstractCard> cores2 = new RandomizedList<>();
-
-    public static CardGroup CreateCoresGroup(boolean anyCost)
-    {
-        InitializeCores();
-
-        Random rng = AbstractDungeon.cardRandomRng;
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-
-        if (anyCost)
-        {
-            RandomizedList<AbstractCard> temp = new RandomizedList<>(cores);
-            group.group.add(temp.Retrieve(rng, true));
-            group.group.add(temp.Retrieve(rng, true));
-            group.group.add(temp.Retrieve(rng, true));
-        }
-        else
-        {
-            group.group.add(cores0.Retrieve(rng, false));
-            group.group.add(cores1.Retrieve(rng, false));
-            group.group.add(cores2.Retrieve(rng, false));
-        }
-
-        return group;
-    }
-
-    public static ArrayList<AbstractCard> GetAllCores()
-    {
-        InitializeCores();
-
-        return new ArrayList<>(cores);
-    }
-
-    private static void InitializeCores()
-    {
-        if (cores.size() == 0)
-        {
-            cores0.Add(new OrbCore_Fire());
-            cores0.Add(new OrbCore_Lightning());
-            cores1.Add(new OrbCore_Dark());
-            cores1.Add(new OrbCore_Frost());
-            cores2.Add(new OrbCore_Plasma());
-            cores2.Add(new OrbCore_Chaos());
-            cores2.Add(new OrbCore_Aether());
-
-            cores.addAll(cores0.GetInnerList());
-            cores.addAll(cores1.GetInnerList());
-            cores.addAll(cores2.GetInnerList());
-        }
-    }
 }

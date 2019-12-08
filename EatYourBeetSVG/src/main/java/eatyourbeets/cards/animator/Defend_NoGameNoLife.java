@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 import java.util.ArrayList;
 
@@ -24,9 +24,11 @@ public class Defend_NoGameNoLife extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper2.GainBlock(this.block);
 
         ArrayList<AbstractCard> cards = p.hand.group;
+
+        // TODO: Should be an action
 
         //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < cards.size(); i++)

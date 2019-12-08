@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.animator.EntomaAction;
-import eatyourbeets.actions.common.OnTargetDeadAction;
+import eatyourbeets.actions._legacy.animator.EntomaAction;
+import eatyourbeets.actions._legacy.common.OnTargetDeadAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 

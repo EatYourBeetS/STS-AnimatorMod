@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.VariableExhaustAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.actions._legacy.common.VariableExhaustAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -30,8 +30,8 @@ public class Togame extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DrawCard(p, this.magicNumber);
-        GameActionsHelper.AddToBottom(new VariableExhaustAction(this, 1, this, this::OnExhaust));
+        GameActionsHelper2.Draw(this.magicNumber);
+        GameActionsHelper.AddToBottom(new VariableExhaustAction(name, 1, this, this::OnExhaust));
     }
 
     @Override

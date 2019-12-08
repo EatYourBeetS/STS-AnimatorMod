@@ -1,20 +1,16 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.basic.DrawCards;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.animator.SupportDamagePower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-
-import java.util.ArrayList;
 
 public class ItamiYouji extends AnimatorCard
 {
@@ -32,16 +28,25 @@ public class ItamiYouji extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DrawCard(p, magicNumber, this::OnDraw, m);
-
         if (HasActiveSynergy())
         {
             int supportDamage = secondaryValue * GameUtilities.GetCurrentEnemies(true).size();
             if (supportDamage > 0)
             {
-                GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, supportDamage), supportDamage);
+                GameActionsHelper2.StackPower(new SupportDamagePower(p, supportDamage));
             }
         }
+
+        GameActionsHelper2.AddToTop(new DrawCards(magicNumber)
+        .AddCallback(m, (enemy, cards) ->
+        {
+            for (int i = 0; i < cards.size(); i++)
+            {
+                GameActionsHelper2.SFX("ATTACK_FIRE");
+                GameActionsHelper2.DealDamage(this, (AbstractCreature) enemy, AbstractGameAction.AttackEffect.NONE)
+                        .SetOptions(true, true);
+            }
+        }));
     }
 
     @Override
@@ -50,19 +55,6 @@ public class ItamiYouji extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeDamage(2);
-        }
-    }
-
-    private void OnDraw(Object state, ArrayList<AbstractCard> cards)
-    {
-        AbstractMonster m = JavaUtilities.SafeCast(state, AbstractMonster.class);
-        if (m != null && cards != null && cards.size() > 0)
-        {
-            for (AbstractCard c : cards)
-            {
-                GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-                GameActionsHelper.DamageTargetPiercing(AbstractDungeon.player, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
-            }
         }
     }
 }

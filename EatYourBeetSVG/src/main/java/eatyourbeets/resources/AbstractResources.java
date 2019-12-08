@@ -68,6 +68,11 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
         return CardCrawlGame.languagePack.getMonsterStrings(monsterID);
     }
 
+    public static PowerStrings GetPowerStrings(String powerID)
+    {
+        return CardCrawlGame.languagePack.getPowerStrings(powerID);
+    }
+
     public static CardStrings GetCardStrings(String cardID)
     {
         return CardCrawlGame.languagePack.getCardStrings(cardID);

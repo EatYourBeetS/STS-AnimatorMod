@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.RefreshHandLayoutAction;
+import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class HiiragiShinya extends AnimatorCard implements OnCallbackSubscriber
     {
         String message = MoveCardsAction.TEXT[0] + " (" + name + ")";
 
-        GameActionsHelper.GainBlock(p, block);
+        GameActionsHelper2.GainBlock(block);
         GameActionsHelper.ChooseFromPile(1, false, p.discardPile, this::OnCompletion, this, message, true);
 
         if (HasActiveSynergy())

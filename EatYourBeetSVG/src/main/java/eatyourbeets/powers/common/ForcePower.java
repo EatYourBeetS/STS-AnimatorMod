@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.relics.animator.EngravedStaff;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ForcePower extends CommonPower

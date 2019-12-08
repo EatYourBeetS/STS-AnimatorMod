@@ -1,11 +1,11 @@
 package eatyourbeets.actions.orbs;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.orbs.Aether;
 
-public class AirOrbEvokeAction extends AnimatorAction
+public class AirOrbEvokeAction extends AbstractGameAction
 {
     private final Aether wind;
 

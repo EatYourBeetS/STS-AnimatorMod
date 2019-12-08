@@ -1,20 +1,15 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActionsHelper2;
 
-public class AcuraAkari extends AnimatorCard implements OnCallbackSubscriber
+public class AcuraAkari extends AnimatorCard
 {
     public static final String ID = Register(AcuraAkari.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -30,11 +25,13 @@ public class AcuraAkari extends AnimatorCard implements OnCallbackSubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DelayedAction(this);
+        GameActionsHelper2.DiscardFromHand(name, 2, false)
+        .SetOptions(false, false, false)
+        .AddCallback(__ -> GameActionsHelper2.CreateThrowingKnives(magicNumber));
 
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper.ApplyPower(p, p, new TemporaryEnvenomPower(p, secondaryValue), secondaryValue);
+            GameActionsHelper2.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }
     }
 
@@ -44,23 +41,6 @@ public class AcuraAkari extends AnimatorCard implements OnCallbackSubscriber
         if (TryUpgrade())
         {
             upgradeBaseCost(0);
-        }
-    }
-
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        if (state == this && action != null)
-        {
-            if (GameUtilities.GetOtherCardsInHand(this).size() >= 2)
-            {
-                GameActionsHelper.Discard(2, false);
-
-                for (int i = 0; i < magicNumber; i++)
-                {
-                    GameActionsHelper.MakeCardInHand(ThrowingKnife.GetRandomCard(), 1, false);
-                }
-            }
         }
     }
 }

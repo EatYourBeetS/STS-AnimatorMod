@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.Synergies;
 
 public class HighElfArcher extends AnimatorCard_Boost
@@ -35,7 +35,7 @@ public class HighElfArcher extends AnimatorCard_Boost
         if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
             GameActionsHelper.GainAgility(1);
-            GameActionsHelper.DrawCard(p, 1);
+            GameActionsHelper2.Draw(1);
         }
     }
 

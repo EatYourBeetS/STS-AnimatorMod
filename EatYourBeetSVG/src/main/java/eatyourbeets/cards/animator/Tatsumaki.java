@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Aether;
@@ -28,12 +28,12 @@ public class Tatsumaki extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActionsHelper.ChannelOrb(new Aether(), true);
-        GameActionsHelper.GainIntellect(magicNumber);
+        GameActionsHelper2.GainIntellect(magicNumber);
 
         if (GameUtilities.GetUniqueOrbsCount() >= 3 && EffectHistory.TryActivateLimited(this.cardID))
         {
             GameActionsHelper.GainEnergy(2);
-            GameActionsHelper.DrawCard(p, 2);
+            GameActionsHelper2.Draw(2);
         }
     }
 

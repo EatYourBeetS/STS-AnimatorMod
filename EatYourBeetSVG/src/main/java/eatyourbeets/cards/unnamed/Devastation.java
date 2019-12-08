@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
-import eatyourbeets.actions.common.DecreaseMaxHpAction;
+import eatyourbeets.actions._legacy.common.DecreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.effects.CataclysmEffect;
 import eatyourbeets.utilities.GameActionsHelper;

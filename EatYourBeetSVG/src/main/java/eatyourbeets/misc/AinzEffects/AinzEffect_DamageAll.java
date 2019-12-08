@@ -1,10 +1,9 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 
@@ -18,7 +17,7 @@ public class AinzEffect_DamageAll extends AinzEffect
     @Override
     protected void Setup(boolean upgraded)
     {
-        ainz.baseDamage = ainz.damage = upgraded ? 16 : 10;
+        ainz.baseDamage = ainz.damage = upgraded ? 18 : 12;
     }
 
     @Override
@@ -26,7 +25,8 @@ public class AinzEffect_DamageAll extends AinzEffect
     {
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.DamageTarget(p, m, ainz.damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+            GameActionsHelper2.DealDamage(ainz, m, AbstractGameAction.AttackEffect.FIRE)
+            .SetOptions(true, false);
         }
         GameUtilities.UsePenNib();
     }

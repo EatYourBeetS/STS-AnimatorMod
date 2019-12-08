@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.interfaces.metadata.Hidden;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Asuramaru extends AnimatorCard implements Hidden
 {
@@ -26,14 +26,10 @@ public class Asuramaru extends AnimatorCard implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        //GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.FIRE);
-        GameActionsHelper.ApplyPower(p, p, new DemonFormPower(p, this.magicNumber), this.magicNumber);
-        GameActionsHelper.GainIntellect(magicNumber);
-        GameActionsHelper.GainAgility(magicNumber);
-
-        //GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber);
-        //GameActionsHelper.ApplyPower(p, p, new FocusPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+        GameActionsHelper2.StackPower(new DemonFormPower(p, magicNumber));
+        GameActionsHelper2.GainIntellect(magicNumber);
+        GameActionsHelper2.GainAgility(magicNumber);
     }
 
     @Override
@@ -41,7 +37,7 @@ public class Asuramaru extends AnimatorCard implements Hidden
     {
         if (TryUpgrade())
         {
-            upgradeDamage(7);
+            upgradeDamage(9);
         }
     }
 }

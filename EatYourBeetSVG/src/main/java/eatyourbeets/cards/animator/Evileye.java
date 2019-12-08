@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.VariableDiscardAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.actions._legacy.common.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -40,12 +40,12 @@ public class Evileye extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DrawCard(p, magicNumber);
+        GameActionsHelper2.Draw(magicNumber);
         GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, this, this::OnDiscard, true));
 
         if (HasActiveSynergy() && EffectHistory.TryActivateLimited(this.cardID))
         {
-            GameActionsHelper.GainIntellect(2);
+            GameActionsHelper2.GainIntellect(2);
             GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
         }
     }

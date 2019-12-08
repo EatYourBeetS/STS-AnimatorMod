@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Cocytus extends AnimatorCard
@@ -34,18 +34,18 @@ public class Cocytus extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActionsHelper.GainForce(1);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActionsHelper2.GainForce(1);
 
         if (HasActiveSynergy())
         {
             if (AbstractDungeon.cardRandomRng.randomBoolean())
             {
-                GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, 1), 1);
+                GameActionsHelper2.GainThorns(1);
             }
             else
             {
-                GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, 1), 1);
+                GameActionsHelper2.GainPlatedArmor(1);
             }
         }
     }

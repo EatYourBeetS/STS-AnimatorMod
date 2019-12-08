@@ -3,12 +3,11 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.MoveSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Chomusuke extends AnimatorCard_UltraRare
 {
@@ -31,8 +30,8 @@ public class Chomusuke extends AnimatorCard_UltraRare
         if (EffectHistory.TryActivateSemiLimited(cardID))
         {
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.exhaustPile, true));
-            GameActionsHelper.GainEnergy(2);
+            GameActionsHelper2.MoveCard(this, p.hand, p.exhaustPile, true);
+            GameActionsHelper2.GainEnergy(2);
         }
     }
 

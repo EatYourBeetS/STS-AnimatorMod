@@ -1,15 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Defend_OnePunchMan extends Defend
 {
@@ -28,11 +24,11 @@ public class Defend_OnePunchMan extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper2.GainBlock(this.block);
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActionsHelper.ApplyPower(p, p, new EnergizedBluePower(p, 1), 1);
+            GameActionsHelper2.StackPower(new EnergizedBluePower(p, 1));
         }
     }
 
@@ -43,35 +39,5 @@ public class Defend_OnePunchMan extends Defend
         {
             upgradeBlock(3);
         }
-    }
-
-    protected boolean ProgressBoost()
-    {
-        if (this.secondaryValue > 0)
-        {
-            int newValue = this.secondaryValue - 1;
-
-            for (AbstractCard c : GameUtilities.GetAllInBattleInstances(this))
-            {
-                AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-                if (card != null)
-                {
-                    if (newValue == 0)
-                    {
-                        card.baseSecondaryValue = 1;
-                        card.secondaryValue = 0;
-                        card.isSecondaryValueModified = true;
-                    }
-                    else
-                    {
-                        card.baseSecondaryValue = card.secondaryValue = newValue;
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        return false;
     }
 }

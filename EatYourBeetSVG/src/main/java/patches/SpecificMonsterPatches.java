@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
-import eatyourbeets.actions.animator.PlayTempBgmAction;
+import eatyourbeets.actions._legacy.animator.PlayTempBgmAction;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.GameUtilities;
 

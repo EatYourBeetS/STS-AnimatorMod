@@ -5,11 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.MoveSpecificCardAction;
+import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.ChooseAnyNumberFromPileAction;
+import eatyourbeets.actions._legacy.common.ChooseAnyNumberFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.JavaUtilities;
@@ -60,7 +60,7 @@ public class Geryuganshoop extends AnimatorCard
                 if (!limited && (card.cardID.equals(Boros.ID) || card.cardID.startsWith(Melzalgald.ID)))
                 {
                     EffectHistory.TryActivateLimited(this.cardID);
-                    GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, p.hand, p.exhaustPile, true));
+                    GameActionsHelper.AddToBottom(new MoveCard(card, p.hand, p.exhaustPile, true));
                 }
                 else
                 {

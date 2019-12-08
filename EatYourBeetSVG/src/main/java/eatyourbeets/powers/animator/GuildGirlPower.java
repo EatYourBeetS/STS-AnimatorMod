@@ -1,5 +1,6 @@
 package eatyourbeets.powers.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
@@ -8,8 +9,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.animator.GuildGirl;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.interfaces.OnEnemyDyingSubscriber;
@@ -81,7 +81,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
         }
     }
 
-    private class GuildGirlAction extends AnimatorAction
+    private class GuildGirlAction extends AbstractGameAction
     {
         public GuildGirlAction(int amount)
         {

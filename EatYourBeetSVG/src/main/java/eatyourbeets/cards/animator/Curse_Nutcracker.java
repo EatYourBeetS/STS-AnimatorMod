@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard_Curse;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Curse_Nutcracker extends AnimatorCard_Curse
@@ -29,7 +29,7 @@ public class Curse_Nutcracker extends AnimatorCard_Curse
         {
             for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
             {
-                GameActionsHelper.AddToBottom(new HealAction(m1, null, magicNumber));
+                GameActionsHelper2.AddToBottom(new HealAction(m1, null, magicNumber));
             }
         }
     }

@@ -13,11 +13,12 @@ import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
+import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.ChooseFromPileAction;
-import eatyourbeets.actions.common.MoveSpecificCardAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.actions._legacy.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -125,21 +126,21 @@ public class Fredrika extends AnimatorCard
         {
             case FORM_DEFAULT:
             {
-                GameActionsHelper.GainBlock(p, block);
+                GameActionsHelper2.GainBlock(block);
 
                 break;
             }
 
             case FORM_CAT:
             {
-                GameActionsHelper.GainBlock(p, block);
+                GameActionsHelper2.GainBlock(block);
 
                 break;
             }
 
             case FORM_DOMINICA:
             {
-                GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
                 GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 1, false), 1);
                 GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
 
@@ -148,8 +149,8 @@ public class Fredrika extends AnimatorCard
 
             case FORM_DRAGOON:
             {
-                GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-                GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
                 GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, 2), 2);
 
                 break;
@@ -188,8 +189,8 @@ public class Fredrika extends AnimatorCard
 
             AbstractPlayer p = AbstractDungeon.player;
 
-            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.discardPile));
-            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(this, p.hand, p.drawPile));
+            GameActionsHelper.AddToBottom(new MoveCard(this, p.hand));
+            GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
         }
     }
 

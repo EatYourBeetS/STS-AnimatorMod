@@ -3,12 +3,11 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Alexander extends AnimatorCard
 {
@@ -29,15 +28,15 @@ public class Alexander extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.magicNumber, false), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper2.DealDamageToAll(DamageInfo.createDamageMatrix(this.magicNumber, false),
+        damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY).SetOptions(true,false);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActionsHelper.GainForce(1);
+        GameActionsHelper2.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper2.GainForce(1);
     }
 
     @Override

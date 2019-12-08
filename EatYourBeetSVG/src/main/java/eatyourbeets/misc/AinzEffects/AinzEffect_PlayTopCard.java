@@ -2,9 +2,9 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameUtilities;
 
 
 public class AinzEffect_PlayTopCard extends AinzEffect
@@ -36,10 +36,11 @@ public class AinzEffect_PlayTopCard extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
-        AbstractMonster target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        AbstractMonster target = GameUtilities.GetRandomEnemy(true);
+
         for (int i = 0; i < ainz.magicNumber; i++)
         {
-            GameActionsHelper.AddToBottom(new PlayTopCardAction(target, false));
+            GameActionsHelper2.AddToBottom(new PlayTopCardAction(target, false));
         }
     }
 }

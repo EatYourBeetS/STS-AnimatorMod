@@ -1,7 +1,7 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class AinzEffect_GainTemporaryHP extends AinzEffect
 {
@@ -19,6 +19,6 @@ public class AinzEffect_GainTemporaryHP extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
-        GameActionsHelper.GainTemporaryHP(p, p, ainz.magicNumber);
+        GameActionsHelper2.GainTemporaryHP(ainz.magicNumber);
     }
 }

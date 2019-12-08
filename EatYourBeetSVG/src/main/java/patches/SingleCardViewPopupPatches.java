@@ -13,12 +13,12 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.*;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.resources.Resources_Unnamed_Images;
-import eatyourbeets.utilities.Field;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class SingleCardViewPopupPatches
 {
-    private static final Field<AbstractCard> cardField = JavaUtilities.GetPrivateField("card", SingleCardViewPopup.class);
+    private static final FieldInfo<AbstractCard> cardField = JavaUtilities.GetPrivateField("card", SingleCardViewPopup.class);
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderTitle")
     public static class SingleCardViewPopup_RenderTitle

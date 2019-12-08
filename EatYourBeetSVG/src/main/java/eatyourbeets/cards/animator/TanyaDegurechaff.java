@@ -11,7 +11,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
@@ -45,7 +45,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper2.GainBlock(this.block);
 
         int discarded = 0;
         for (AbstractCard card : p.hand.getSkills().group)
@@ -57,7 +57,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
         for (int i = 0; i < discarded; i++)
         {
             GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-            GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
+            GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         }
     }
 

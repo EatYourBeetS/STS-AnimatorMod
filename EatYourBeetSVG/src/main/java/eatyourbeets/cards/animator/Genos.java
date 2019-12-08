@@ -7,13 +7,13 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.ChooseFromAnyPileAction;
-import eatyourbeets.actions.common.MoveSpecificCardAction;
+import eatyourbeets.actions._legacy.common.ChooseFromAnyPileAction;
+import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.BurningPower;
@@ -36,7 +36,7 @@ public class Genos extends AnimatorCard implements OnCallbackSubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.FIRE);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
         GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, this.magicNumber), this.magicNumber);
         GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, secondaryValue), secondaryValue);
 
@@ -75,7 +75,7 @@ public class Genos extends AnimatorCard implements OnCallbackSubscriber
         {
             AbstractCard card = cards.get(0);
             card.retain = true;
-            GameActionsHelper.AddToBottom(new MoveSpecificCardAction(card, AbstractDungeon.player.hand, true));
+            GameActionsHelper.AddToBottom(new MoveCard(card, AbstractDungeon.player.hand, true));
         }
     }
 

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Hidden;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -28,12 +28,12 @@ public class ElricAlphonseAlt extends AnimatorCard implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ChannelOrb(new Lightning(), true);
-        GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper2.ChannelOrb(new Lightning(), true);
+        GameActionsHelper2.GainPlatedArmor(this.magicNumber);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+            GameActionsHelper2.GainOrbSlots(1);
         }
     }
 

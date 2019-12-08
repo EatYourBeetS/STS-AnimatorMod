@@ -2,16 +2,13 @@ package eatyourbeets.cards.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BlurPower;
 import eatyourbeets.interfaces.metadata.Hidden;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.ColoredSweepingBeamEffect;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class BlackLotus extends AnimatorCard implements Hidden
 {
@@ -31,11 +28,11 @@ public class BlackLotus extends AnimatorCard implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.AddToBottom(new SFXAction("ATTACK_DEFECT_BEAM"));
-        GameActionsHelper.AddToBottom(new VFXAction(p, new ColoredSweepingBeamEffect(p.hb.cX, p.hb.cY, p.flipHorizontal, Color.valueOf("3d0066")), 0.3F));
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
-        GameActionsHelper.ApplyPower(p, p, new BlurPower(p, this.magicNumber), this.magicNumber);
+        GameActionsHelper2.GainBlock(this.block);
+        GameActionsHelper2.SFX("ATTACK_DEFECT_BEAM");
+        GameActionsHelper2.VFX(new ColoredSweepingBeamEffect(p.hb.cX, p.hb.cY, p.flipHorizontal, Color.valueOf("3d0066")), 0.3F);
+        GameActionsHelper2.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+        GameActionsHelper2.GainBlur(this.magicNumber);
     }
 
     @Override

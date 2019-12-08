@@ -1,14 +1,14 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.DolaRikuAction;
-import eatyourbeets.actions.common.DrawSpecificCardAction;
+import eatyourbeets.actions._legacy.animator.DolaRikuAction;
+import eatyourbeets.actions.basic.DrawCards;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameUtilities;
 
 public class DolaRiku extends AnimatorCard
 {
@@ -26,18 +26,14 @@ public class DolaRiku extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new DolaRikuAction(p, this.magicNumber));
+        GameActionsHelper2.ExhaustFromHand(name, 1, false)
+        .SetOptions(false, false, false)
+        .AddCallback(cards -> GameActionsHelper.AddToBottom(new DolaRikuAction(cards.get(0), magicNumber)));
 
         if (HasActiveSynergy())
         {
-            for (AbstractCard c : p.drawPile.group)
-            {
-                if (c.costForTurn == 0 && c.type != CardType.CURSE && c.type != CardType.STATUS)
-                {
-                    GameActionsHelper.AddToTop(new DrawSpecificCardAction(c));
-                    return;
-                }
-            }
+            GameActionsHelper2.AddToTop(new DrawCards(1)
+            .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(c), false));
         }
     }
 

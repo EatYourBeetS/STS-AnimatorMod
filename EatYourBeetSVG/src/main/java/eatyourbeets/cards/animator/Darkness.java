@@ -7,7 +7,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.DarknessPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Darkness extends AnimatorCard
 {
@@ -27,23 +27,12 @@ public class Darkness extends AnimatorCard
         }
     }
 
-//    @Override
-//    public List<TooltipInfo> getCustomTooltips()
-//    {
-//        if (cardText.index == 1)
-//        {
-//            return super.getCustomTooltips();
-//        }
-//
-//        return null;
-//    }
-
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, block);
-        GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, this.magicNumber), this.magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new DarknessPower(p, 1), 1);
+        GameActionsHelper2.GainBlock(block);
+        GameActionsHelper2.StackPower(new PlatedArmorPower(p, this.magicNumber));
+        GameActionsHelper2.StackPower(new DarknessPower(p, 1));
     }
 
     @Override

@@ -272,7 +272,7 @@
 	},
 	"animator:PoisonAffinityPower":
 	{
-		"DESCRIPTIONS": ["Whenever you apply #yPoison, apply an additional #b", " #yPoison."],
+		"DESCRIPTIONS": ["Whenever you apply #yPoison, apply #b", " additional #yPoison."],
 		"NAME": "Poison Affinity"
 	},
 	"animator:PridePower":

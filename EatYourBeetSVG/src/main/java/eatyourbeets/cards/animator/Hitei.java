@@ -6,7 +6,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.HiteiPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Hitei extends AnimatorCard
 {
@@ -30,7 +30,7 @@ public class Hitei extends AnimatorCard
         {
             GameActionsHelper.GainAgility(2);
             GameActionsHelper.GainForce(2);
-            GameActionsHelper.GainIntellect(2);
+            GameActionsHelper2.GainIntellect(2);
         }
     }
 

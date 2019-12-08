@@ -1,14 +1,12 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class AcuraTooru extends AnimatorCard
 {
@@ -28,23 +26,19 @@ public class AcuraTooru extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.GainBlock(AbstractDungeon.player, magicNumber);
+        GameActionsHelper2.GainBlock(magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-
-        for (int i = 0; i < this.secondaryValue; i++)
-        {
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomCard()));
-        }
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActionsHelper2.CreateThrowingKnives(secondaryValue);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainBlock(p, magicNumber);
+            GameActionsHelper2.GainBlock(magicNumber);
         }
     }
 

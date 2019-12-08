@@ -36,7 +36,7 @@ public class JavaUtilities
         return null;
     }
 
-    public static Method GetPrivateMethod(String methodName, Class<?> type, Class<?>... parameterTypes)
+    public static MethodInfo GetPrivateMethod(String methodName, Class<?> type, Class<?>... parameterTypes)
     {
         java.lang.reflect.Method method = null;
         try
@@ -49,10 +49,10 @@ public class JavaUtilities
             e.printStackTrace();
         }
 
-        return new Method(method);
+        return new MethodInfo(method);
     }
 
-    public static <T> Field<T> GetPrivateField(String fieldName, Class<?> type)
+    public static <T> FieldInfo<T> GetPrivateField(String fieldName, Class<?> type)
     {
         java.lang.reflect.Field field = null;
         try
@@ -65,7 +65,7 @@ public class JavaUtilities
             e.printStackTrace();
         }
 
-        return new Field<>(field);
+        return new FieldInfo<>(field);
     }
 
     public static <T> ArrayList<T> Where(ArrayList<T> list, Predicate<T> predicate)

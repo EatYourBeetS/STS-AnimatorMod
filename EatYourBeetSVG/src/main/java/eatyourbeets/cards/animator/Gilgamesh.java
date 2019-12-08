@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.relics.animator.Readme;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
@@ -112,7 +112,7 @@ public class Gilgamesh extends AnimatorCard
             {
                 GameActionsHelper.SFX("ATTACK_HEAVY");
                 GameActionsHelper.AddToBottom(new VFXAction(p, new CleaveEffect(), 0.0F));
-                GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
+                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
                 GameActionsHelper.VFX(new IronWaveEffect(p.hb.cX, p.hb.cY, m.hb.cX), 0.1F);
             }
         }
@@ -120,7 +120,7 @@ public class Gilgamesh extends AnimatorCard
         {
             for (int i = 0; i < this.magicNumber; i++)
             {
-                GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
             }
         }
     }

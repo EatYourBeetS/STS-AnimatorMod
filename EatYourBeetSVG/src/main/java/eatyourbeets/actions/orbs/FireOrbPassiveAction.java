@@ -6,13 +6,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameUtilities;
 
-public class FireOrbPassiveAction extends AnimatorAction
+public class FireOrbPassiveAction extends AbstractGameAction
 {
     private final Fire fire;
 

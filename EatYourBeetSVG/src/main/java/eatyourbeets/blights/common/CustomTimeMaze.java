@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.BlightStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.EndPlayerTurnAction;
+import eatyourbeets.actions._legacy.animator.EndPlayerTurnAction;
 import eatyourbeets.utilities.GameActionsHelper;
 
 public class CustomTimeMaze extends AbstractBlight

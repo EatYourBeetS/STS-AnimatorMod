@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions.animator.HiteiAction2;
+import eatyourbeets.actions._legacy.animator.HiteiAction2;
 
 public class HiteiPower extends AnimatorPower
 {

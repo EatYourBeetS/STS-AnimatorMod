@@ -1,14 +1,13 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Spellcaster;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Earth;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Arpeggio extends AnimatorCard implements Spellcaster
 {
@@ -37,14 +36,14 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
     {
         if (secondaryValue > 0)
         {
-            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(secondaryValue));
+            GameActionsHelper2.GainOrbSlots(secondaryValue);
         }
 
-        GameActionsHelper.GainIntellect(magicNumber);
+        GameActionsHelper2.GainIntellect(magicNumber);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.ChannelOrb(new Earth(), true);
+            GameActionsHelper2.ChannelOrb(new Earth(), true);
         }
     }
 

@@ -3,7 +3,7 @@ package eatyourbeets.powers.unnamed;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.actions.common.IncreaseMaxHpAction;
+import eatyourbeets.actions._legacy.common.IncreaseMaxHpAction;
 import eatyourbeets.powers.UnnamedPower;
 import eatyourbeets.utilities.GameActionsHelper;
 

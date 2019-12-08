@@ -1,10 +1,12 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.common.IntellectPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -44,7 +46,8 @@ public class ElricAlphonse extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.MakeCardInDiscardPile(new ElricAlphonseAlt(), 1, upgraded);
+        GameActionsHelper2.MakeTempCard(new ElricAlphonseAlt(), AbstractDungeon.player.hand)
+        .SetOptions(true, false);
     }
 
     @Override
@@ -52,7 +55,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         if (GameUtilities.GetPowerAmount(p, IntellectPower.POWER_ID) <= magicNumber)
         {
-            GameActionsHelper.GainIntellect(1);
+            GameActionsHelper2.GainIntellect(1);
         }
     }
 

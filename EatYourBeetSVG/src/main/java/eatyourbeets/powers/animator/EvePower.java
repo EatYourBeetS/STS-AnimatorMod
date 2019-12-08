@@ -2,7 +2,7 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.actions.animator.EveDamageAction;
+import eatyourbeets.actions._legacy.animator.EveDamageAction;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.JavaUtilities;

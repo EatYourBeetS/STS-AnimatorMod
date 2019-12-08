@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -27,13 +27,13 @@ public class Millim extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, magicNumber), magicNumber);
         GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, magicNumber), magicNumber);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.DrawCard(p, 2);
+            GameActionsHelper2.Draw(2);
         }
     }
 

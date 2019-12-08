@@ -32,7 +32,7 @@ public class PotionHelperPatches
 //    public static class PotionHelper_IsAPotion
 //    {
 //        @SpirePrefixPatch
-//        public static SpireReturn<Boolean> Method(String name)
+//        public static SpireReturn<Boolean> MethodInfo(String name)
 //        {
 //            if (name.equals(FalseLifePotion.POTION_ID))
 //            {
@@ -49,7 +49,7 @@ public class PotionHelperPatches
 //    public static class PotionHelper_Initialize
 //    {
 //        @SpirePrefixPatch
-//        public static SpireReturn<AbstractPotion> Method(AbstractPlayer.PlayerClass chosenClass)
+//        public static SpireReturn<AbstractPotion> MethodInfo(AbstractPlayer.PlayerClass chosenClass)
 //        {
 //            if (chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
 //            {

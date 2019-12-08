@@ -131,7 +131,7 @@ public class MonsterData_Shape extends AbstractMonsterData
 
             case Ultimate:
             {
-                scale = 1.3f;
+                scale = 1.4f;
                 hb_y = -50;
                 hb_w = 220;
                 hb_h = 130;

@@ -3,7 +3,7 @@ package eatyourbeets.monsters.Bosses.TheUnnamedMoveset;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.TheUnnamed_SummonDollAction;
+import eatyourbeets.actions._legacy.common.TheUnnamed_SummonDollAction;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 

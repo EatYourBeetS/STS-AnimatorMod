@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -50,7 +50,7 @@ public class WizardHat extends AnimatorRelic
         super.atBattleStart();
 
         this.counter = 1;
-        GameActionsHelper.GainIntellect(INTELLECT_AMOUNT);
+        GameActionsHelper2.GainIntellect(INTELLECT_AMOUNT);
     }
 
     @Override

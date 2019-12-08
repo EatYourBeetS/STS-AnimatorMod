@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.defect.AnimateOrbAction;
 import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -7,8 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.animator.AnimatorAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 
@@ -39,7 +39,7 @@ public class Veldora extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.GainIntellect(secondaryValue);
+        GameActionsHelper2.GainIntellect(secondaryValue);
 
         int orbCount =  p.filledOrbCount();
         for (int i = 0; i < this.magicNumber - 1; i++)
@@ -67,7 +67,7 @@ public class Veldora extends AnimatorCard_UltraRare
         }
     }
 
-    private class VeldoraAction extends AnimatorAction
+    private class VeldoraAction extends AbstractGameAction
     {
         private final AbstractOrb orb;
 

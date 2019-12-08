@@ -13,7 +13,7 @@ import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.common.TemporaryArtifactPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
@@ -74,7 +74,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
             }
         }
 
-        GameActionsHelper.GainBlock(p, block);
+        GameActionsHelper2.GainBlock(block);
     }
 
     @Override

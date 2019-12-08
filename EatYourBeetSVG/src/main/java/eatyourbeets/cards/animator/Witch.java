@@ -10,7 +10,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Witch extends AnimatorCard implements Spellcaster, StartupCard
@@ -37,7 +37,7 @@ public class Witch extends AnimatorCard implements Spellcaster, StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper2.GainBlock(this.block);
 
         for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
         {

@@ -3,11 +3,11 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.BozesPower;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Bozes extends AnimatorCard
 {
@@ -19,17 +19,16 @@ public class Bozes extends AnimatorCard
 
         Initialize(7,0,2, 1);
 
-        this.exhaust = true;
-
+        SetExhaust(true);
         SetSynergy(Synergies.Gate);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this.damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActionsHelper.Motivate(magicNumber, 1);
-        GameActionsHelper.ApplyPower(p, p, new BozesPower(p, this.secondaryValue), this.secondaryValue);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActionsHelper2.Motivate(magicNumber);
+        GameActionsHelper2.StackPower(new BozesPower(p, this.secondaryValue));
     }
 
     @Override

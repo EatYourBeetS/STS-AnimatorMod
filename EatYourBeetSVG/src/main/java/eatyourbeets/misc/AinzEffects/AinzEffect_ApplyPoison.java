@@ -2,8 +2,7 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 
@@ -25,7 +24,7 @@ public class AinzEffect_ApplyPoison extends AinzEffect
     {
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, ainz.magicNumber), ainz.magicNumber);
+            GameActionsHelper2.ApplyPoison(p, m, ainz.magicNumber);
         }
     }
 }

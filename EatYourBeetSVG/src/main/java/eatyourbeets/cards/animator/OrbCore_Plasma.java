@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.powers.animator.OrbCore_PlasmaPower;
+import eatyourbeets.utilities.GameActionsHelper2;
 
-public class OrbCore_Plasma extends AnimatorCard
+public class OrbCore_Plasma extends OrbCore
 {
     public static final String ID = Register(OrbCore_Plasma.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -16,7 +16,7 @@ public class OrbCore_Plasma extends AnimatorCard
 
     public OrbCore_Plasma()
     {
-        super(ID, 1, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 1);
 
         Initialize(0,0, VALUE,1);
 
@@ -31,18 +31,6 @@ public class OrbCore_Plasma extends AnimatorCard
             GameActionsHelper.ChannelOrb(new Plasma(), true);
         }
 
-        GameActionsHelper.ApplyPower(p, p, new OrbCore_PlasmaPower(p, 1), 1);
-    }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return false;
-    }
-
-    @Override
-    public void upgrade()
-    {
-
+        GameActionsHelper2.StackPower(new OrbCore_PlasmaPower(p, 1));
     }
 }

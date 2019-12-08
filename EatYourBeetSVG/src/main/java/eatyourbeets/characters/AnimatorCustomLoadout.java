@@ -76,7 +76,7 @@ public abstract class AnimatorCustomLoadout
                 hpField = CharacterOption.class.getDeclaredField("hp");
                 hpField.setAccessible(true);
             }
-            //JavaUtilities.Logger.info("Gold Field: " + (goldField != null) + ", " + this.Name + ", " + this.StartingGold + ", Option: " + (option != null));
+            //JavaUtilities.Logger.info("Gold FieldInfo: " + (goldField != null) + ", " + this.Name + ", " + this.StartingGold + ", Option: " + (option != null));
             goldField.set(option, this.StartingGold);
             hpField.set(option, String.valueOf(this.MaxHP));
         }

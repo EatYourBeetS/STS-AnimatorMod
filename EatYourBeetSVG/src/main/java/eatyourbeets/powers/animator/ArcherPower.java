@@ -5,10 +5,9 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ArcherPower extends AnimatorPower
@@ -33,16 +32,14 @@ public class ArcherPower extends AnimatorPower
         {
             for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
             {
-                for (AbstractPower p : m.powers)
+                for (int i = 0; i < GameUtilities.GetDebuffsCount(m.powers); i++)
                 {
-                    if (p.type == PowerType.DEBUFF)
-                    {
-                        float x = m.hb.cX + (m.hb.width * AbstractDungeon.cardRandomRng.random(-0.1f, 0.1f));
-                        float y = m.hb.cY + (m.hb.height * AbstractDungeon.cardRandomRng.random(-0.2f, 0.2f));
+                    float x = m.hb.cX + (m.hb.width * AbstractDungeon.cardRandomRng.random(-0.1f, 0.1f));
+                    float y = m.hb.cY + (m.hb.height * AbstractDungeon.cardRandomRng.random(-0.2f, 0.2f));
 
-                        GameActionsHelper.VFX(new ThrowDaggerEffect(x, y));
-                        GameActionsHelper.DamageTarget(AbstractDungeon.player, m, this.amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE, true);
-                    }
+                    GameActionsHelper2.VFX(new ThrowDaggerEffect(x, y));
+                    GameActionsHelper2.DealDamage(owner, m, this.amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+                    .SetOptions2(true, true, 0);
                 }
             }
 

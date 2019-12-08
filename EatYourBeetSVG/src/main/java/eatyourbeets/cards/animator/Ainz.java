@@ -9,7 +9,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.misc.AinzEffects.AinzEffect;
 import eatyourbeets.powers.animator.AinzPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper2;
 import patches.AbstractEnums;
 
 public class Ainz extends AnimatorCard
@@ -17,23 +17,11 @@ public class Ainz extends AnimatorCard
     public static final String ID = Register(Ainz.class.getSimpleName(), EYBCardBadge.Drawn);
     public static final int BASE_COST = 7;
 
-    private AinzEffect effect = null;
-
-    public Ainz(AinzEffect effect, String description)
-    {
-        super(staticCardData.get(ID), ID + "Alt", Resources_Animator.GetCardImage(ID + "Alt"),
-                0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
-        this.effect = effect;
-
-        this.cardText.OverrideDescription(description, "-", true);
-        //this.damageType = this.damageTypeForTurn = DamageInfo.DamageType.THORNS;
-    }
-
     public Ainz()
     {
         super(ID, BASE_COST, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0,4);
+        Initialize(0,0, AinzPower.CHOICES);
 
         SetHealing(true);
         SetSynergy(Synergies.Overlord);
@@ -48,14 +36,14 @@ public class Ainz extends AnimatorCard
         {
             this.updateCost(-1);
 
-            GameActionsHelper.GainRandomStat(1);
+            GameActionsHelper2.GainRandomStat(1);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new AinzPower(p, magicNumber), 1);
+        GameActionsHelper2.StackPower(new AinzPower(p, 1));
         EffectHistory.TryActivateLimited(Ainz.ID);
     }
 
@@ -66,6 +54,19 @@ public class Ainz extends AnimatorCard
         {
             upgradeBaseCost(6);
         }
+    }
+
+    // Dynamic Effect Card:
+
+    private AinzEffect effect = null;
+
+    public Ainz(AinzEffect effect, String description)
+    {
+        super(staticCardData.get(ID), ID + "Alt", Resources_Animator.GetCardImage(ID + "Alt"),
+                0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
+
+        this.effect = effect;
+        this.cardText.OverrideDescription(description, "-", true);
     }
 
     public void setUpgraded(boolean upgrade)

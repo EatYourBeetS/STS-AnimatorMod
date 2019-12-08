@@ -6,9 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.animator.AnimatorAction;
-import eatyourbeets.actions.common.ShuffleRandomGoblinAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.actions._legacy.common.ShuffleRandomGoblinAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -67,7 +66,7 @@ public class GoblinSlayer extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActionsHelper.AddToBottom(new GoblinSlayerAction());
     }
 
@@ -80,7 +79,7 @@ public class GoblinSlayer extends AnimatorCard
         }
     }
 
-    protected class GoblinSlayerAction extends AnimatorAction
+    protected class GoblinSlayerAction extends AbstractGameAction
     {
         @Override
         public void update()

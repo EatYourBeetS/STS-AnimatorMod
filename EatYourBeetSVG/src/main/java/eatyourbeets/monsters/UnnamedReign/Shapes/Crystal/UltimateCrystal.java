@@ -1,22 +1,21 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.badlogic.gdx.math.MathUtils;
+import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
-import com.megacrit.cardcrawl.powers.WraithFormPower;
-import eatyourbeets.actions.common.MoveMonsterAction;
+import com.megacrit.cardcrawl.powers.*;
+import eatyourbeets.actions._legacy.common.MoveMonsterAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
 import eatyourbeets.resources.Resources_Common;
 import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions.common.SummonMonsterAction;
-import eatyourbeets.actions.common.WaitRealtimeAction;
+import eatyourbeets.actions._legacy.common.SummonMonsterAction;
+import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.Crystallize;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
@@ -46,9 +45,9 @@ public class UltimateCrystal extends Crystal
 
         movesetMode = Mode.Sequential;
 
-        moveset.AddSpecial(new Move_AttackMultiple(6, 32));
-
         boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
+
+        moveset.AddSpecial(new Move_AttackMultiple(6, asc4 ? 32 : 24));
 
         int crystallize = asc4 ? 3 : 2;
         int block = asc4 ? 18 : 11;
@@ -65,6 +64,27 @@ public class UltimateCrystal extends Crystal
             moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), crystallize));
             moveset.AddNormal(new Move_GainStrengthAndArtifactAll(3, 2));
             moveset.AddNormal(new Move_UltimateCrystalAttack(1, block));
+        }
+    }
+
+    private int currentStrength = -1;
+
+    @Override
+    public void applyPowers()
+    {
+        super.applyPowers();
+
+        int strength = GameUtilities.GetPowerAmount(this, StrengthPower.POWER_ID);
+        if (strength != currentStrength)
+        {
+            currentStrength = strength;
+
+            float scale = data.scale * (1 - (0.7f * (Math.min(100, strength) / 100f)));
+            loadAnimation(data.atlasUrl, data.jsonUrl, scale);
+
+            AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
+            e.setTimeScale(0.5f);
+            e.setTime(e.getEndTime() * MathUtils.random());
         }
     }
 
@@ -129,6 +149,7 @@ public class UltimateCrystal extends Crystal
             this.currentHealth = original.currentHealth;
             this.maxHealth = original.maxHealth;
             this.healthBarUpdatedEvent();
+            this.applyPowers();
         }
     }
 

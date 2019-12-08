@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class TukaLunaMarceau extends AnimatorCard
 {
@@ -34,10 +34,10 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         if (p.currentBlock <= 0)
         {
-            GameActionsHelper.DrawCard(p, 1);
+            GameActionsHelper2.Draw(1);
         }
 
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper2.GainBlock(this.block);
     }
 
     @Override

@@ -7,16 +7,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.utilities.Field;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.Map;
 
 public class TipHelperPatches
 {
-    //private static Field<Boolean> RenderedTipThisFrame = JavaUtilities.GetPrivateField("renderedTipThisFrame", TipHelper.class);
-    private static Field<Boolean> IsCard = JavaUtilities.GetPrivateField("isCard", TipHelper.class);
-    private static Field<AbstractCard> Card = JavaUtilities.GetPrivateField("card", TipHelper.class);
+    //private static FieldInfo<Boolean> RenderedTipThisFrame = JavaUtilities.GetPrivateField("renderedTipThisFrame", TipHelper.class);
+    private static FieldInfo<Boolean> IsCard = JavaUtilities.GetPrivateField("isCard", TipHelper.class);
+    private static FieldInfo<AbstractCard> Card = JavaUtilities.GetPrivateField("card", TipHelper.class);
 
     @SpirePatch(clz= TipHelper.class, method="renderBox")
     public static class TipHelperPatches_renderTipForCard
@@ -44,7 +44,7 @@ public class TipHelperPatches
 //    public static class TipHelperPatches_renderTipForCard
 //    {
 //        @SpirePrefixPatch
-//        public static void Method(AbstractCard c, SpriteBatch sb, ArrayList<String> keywords)
+//        public static void MethodInfo(AbstractCard c, SpriteBatch sb, ArrayList<String> keywords)
 //        {
 //            if (!RenderedTipThisFrame.Get(null))
 //            {

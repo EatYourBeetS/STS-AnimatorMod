@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.WaitRealtimeAction;
+import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;

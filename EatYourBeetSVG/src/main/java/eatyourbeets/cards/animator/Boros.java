@@ -1,13 +1,12 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.BorosPower;
+import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Boros extends AnimatorCard
 {
@@ -27,14 +26,14 @@ public class Boros extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActionsHelper.GainForce(secondaryValue);
-        GameActionsHelper.GainTemporaryHP(AbstractDungeon.player, magicNumber);
+        GameActionsHelper2.GainForce(secondaryValue);
+        GameActionsHelper2.GainTemporaryHP(magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new BorosPower(p));
+        GameActionsHelper2.ApplyPower(p, p, new BorosPower(p));
     }
 
     @Override

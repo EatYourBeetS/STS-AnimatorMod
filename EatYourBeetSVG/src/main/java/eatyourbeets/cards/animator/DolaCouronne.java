@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -30,19 +30,17 @@ public class DolaCouronne extends AnimatorCard
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            applyPowers();
-
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.GainBlock(p, this.magicNumber);
-            GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
+            GameActionsHelper2.GainBlock(this.magicNumber);
+            GameActionsHelper2.GainArtifact(1);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainBlock(p, this.block);
-        GameActionsHelper.Discard(1, false);
+        GameActionsHelper2.GainBlock(this.block);
+        GameActionsHelper2.DiscardFromHand(name, 1, false)
+        .SetOptions(false, false, false);
     }
 
     @Override

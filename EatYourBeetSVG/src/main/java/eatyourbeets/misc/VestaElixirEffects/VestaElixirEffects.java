@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.actions.common.ChooseFromPileAction;
+import eatyourbeets.actions._legacy.common.ChooseFromPileAction;
 import eatyourbeets.cards.animator.Vesta;
 import eatyourbeets.cards.animator.Vesta_Elixir;
 import eatyourbeets.utilities.GameActionsHelper;

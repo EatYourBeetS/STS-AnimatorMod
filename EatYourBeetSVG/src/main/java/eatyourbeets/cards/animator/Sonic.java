@@ -8,7 +8,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class Sonic extends AnimatorCard implements MartialArtist
 {
@@ -45,7 +45,7 @@ public class Sonic extends AnimatorCard implements MartialArtist
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainBlock(p, BLOCK_ON_SYNERGY);
+            GameActionsHelper2.GainBlock(BLOCK_ON_SYNERGY);
             GameActionsHelper.ApplyPower(p, p, new BlurPower(p, 1), 1);
         }
     }

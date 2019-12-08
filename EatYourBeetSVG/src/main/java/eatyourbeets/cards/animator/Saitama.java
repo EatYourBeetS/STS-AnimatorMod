@@ -14,11 +14,10 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.JavaUtilities;
@@ -82,7 +81,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 1:
             {
                 // Draw !M! Cards. NL Gain !SV! Agility.
-                GameActionsHelper.DrawCard(p, magicNumber);
+                GameActionsHelper2.Draw(magicNumber);
                 GameActionsHelper.GainAgility(secondaryValue);
 
                 break;
@@ -100,7 +99,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             {
                 // Gain !M! Force. Gain !B! Block.
                 GameActionsHelper.GainForce(magicNumber);
-                GameActionsHelper.GainBlock(p, block);
+                GameActionsHelper2.GainBlock(block);
 
                 break;
             }
@@ -255,7 +254,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
         this.upgradeBaseCost(stage);
     }
 
-    private class ProgressPhaseAction extends AnimatorAction
+    private class ProgressPhaseAction extends AbstractGameAction
     {
         private final Saitama saitama;
 

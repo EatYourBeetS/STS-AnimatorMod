@@ -609,7 +609,7 @@
 	},
 	"animator:Kuroyukihime":
 	{
-		"DESCRIPTION": "Discard !M! cards to NL add #yBlack #yLotus NL to your hand. NL Exhaust.",
+		"DESCRIPTION": "Discard !M! cards to NL add #yBlack #yLotus NL to your hand, NL then Exhaust.",
 		"EXTENDED_DESCRIPTION": ["Black Lotus", "A special 1-cost #yAttack which deals damage to ALL enemies and grants #yBlock and #yBlur."],
 		"NAME": "Kuroyukihime"
 	},

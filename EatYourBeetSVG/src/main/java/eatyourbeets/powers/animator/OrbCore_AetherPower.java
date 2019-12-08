@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.OrbCore_Aether;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class OrbCore_AetherPower extends OrbCore_AbstractPower
 {
@@ -25,7 +25,7 @@ public class OrbCore_AetherPower extends OrbCore_AbstractPower
     {
         if (p.hand.size() < BaseMod.MAX_HAND_SIZE)
         {
-            GameActionsHelper.DrawCard(p, value);
+            GameActionsHelper2.Draw(value);
             if ((p.drawPile.size() + p.discardPile.size()) > 0)
             {
                 GameActionsHelper.Discard(1, false);

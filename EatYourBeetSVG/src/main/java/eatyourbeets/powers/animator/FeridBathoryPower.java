@@ -1,5 +1,6 @@
 package eatyourbeets.powers.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -7,12 +8,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import eatyourbeets.actions.animator.AnimatorAction;
 import eatyourbeets.cards.animator.FeridBathory;
 import eatyourbeets.effects.Hemokinesis2Effect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 
 public class FeridBathoryPower extends AnimatorPower
 {
@@ -51,7 +51,7 @@ public class FeridBathoryPower extends AnimatorPower
         }
     }
 
-    private class FeridAction extends AnimatorAction
+    private class FeridAction extends AbstractGameAction
     {
         private final FeridBathoryPower power;
 

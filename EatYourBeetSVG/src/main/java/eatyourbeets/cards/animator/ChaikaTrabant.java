@@ -9,12 +9,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.*;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.WeightedList;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
@@ -39,20 +36,17 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         super.triggerOnManualDiscard();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.DamageAllEnemies(p, DamageInfo.createDamageMatrix(this.magicNumber, false), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+        GameActionsHelper2.DealDamageToAll(DamageInfo.createDamageMatrix(this.magicNumber, false),
+        damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY).SetOptions(true, false);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        //GameActionsHelper.GainBlock(p, this.block);
         m.useFastShakeAnimation(0.5F);
 
         ChaikaTrabant other = (ChaikaTrabant)makeStatEquivalentCopy();
-
         other.target = m;
-
         PlayerStatistics.onStartOfTurnPostDraw.Subscribe(other);
     }
 
@@ -84,7 +78,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         if (target == null || target.isDeadOrEscaped())
         {
-            target = JavaUtilities.GetRandomElement(GameUtilities.GetCurrentEnemies(true));
+            target = GameUtilities.GetRandomEnemy(true);
         }
 
         AbstractPlayer p = AbstractDungeon.player;
@@ -94,13 +88,14 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         this.applyPowers();
         this.calculateCardDamage(target);
 
-        GameActionsHelper.DamageTargetPiercing(p, target, this, AbstractGameAction.AttackEffect.FIRE).bypassBlock = false;
+        GameActionsHelper2.DealDamage(this, target, AbstractGameAction.AttackEffect.FIRE)
+            .SetOptions(true, false);
 
         WeightedList<AbstractPower> debuffs = GetRandomDebuffs(p, target);
         for (int i = 0; i < secondaryValue; i++)
         {
             AbstractPower debuff = debuffs.Retrieve(AbstractDungeon.cardRandomRng);
-            GameActionsHelper.ApplyPower(p, target, debuff, debuff.amount);
+            GameActionsHelper2.ApplyPower(p, target, debuff, debuff.amount);
         }
     }
 }

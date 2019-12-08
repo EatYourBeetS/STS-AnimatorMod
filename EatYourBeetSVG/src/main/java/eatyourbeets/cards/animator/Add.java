@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
@@ -10,13 +9,12 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.common.ChooseFromAnyPileAction;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.ChooseFromPileAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.OrbCore_AbstractPower;
+import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
@@ -38,11 +36,12 @@ public class Add extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new ChooseFromAnyPileAction(1, this::OnCardChosen, this, ExhaustAction.TEXT[0], p.hand, p.drawPile, p.discardPile));
+        GameActionsHelper2.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
+        .AddCallback(this::OnCardChosen);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.AddToBottom(new DoubleEnergyAction());
+            GameActionsHelper2.AddToBottom(new DoubleEnergyAction());
         }
     }
 
@@ -55,12 +54,13 @@ public class Add extends AnimatorCard
         }
     }
 
-    private void OnCardChosen(Object state, ArrayList<AbstractCard> cards)
+    private void OnCardChosen(ArrayList<AbstractCard> cards)
     {
-        if (state == this && cards != null && cards.size() == 1)
+        if (cards != null && cards.size() > 0)
         {
             AbstractCard c = cards.get(0);
             AbstractPlayer p = AbstractDungeon.player;
+
             CardGroup cardGroup = null;
             if (p.hand.contains(c))
             {
@@ -77,20 +77,17 @@ public class Add extends AnimatorCard
 
             if (cardGroup != null)
             {
-                GameActionsHelper.ExhaustCard(c, cardGroup);
-
-                CardGroup cores = OrbCore_AbstractPower.CreateCoresGroup(true);
-                GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false,
-                        cores, this::OrbChosen, cardGroup, "", true));
+                GameActionsHelper.AddToBottom(OrbCore.SelectCoreAction(name, 1)
+                .AddCallback(cardGroup, this::OrbChosen));
             }
         }
     }
 
     private void OrbChosen(Object state, ArrayList<AbstractCard> chosen)
     {
-        if (state instanceof CardGroup && chosen != null && chosen.size() == 1)
+        CardGroup cardGroup = JavaUtilities.SafeCast(state, CardGroup.class);
+        if (cardGroup != null && chosen != null && chosen.size() == 1)
         {
-            CardGroup cardGroup = (CardGroup) state;
             switch (cardGroup.type)
             {
                 case DRAW_PILE:

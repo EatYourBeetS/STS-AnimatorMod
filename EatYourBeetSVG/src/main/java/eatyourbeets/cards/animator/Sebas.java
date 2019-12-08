@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Sebas extends AnimatorCard
@@ -39,7 +39,7 @@ public class Sebas extends AnimatorCard
         {
             if (GameUtilities.IsAttacking(m1.intent))
             {
-                GameActionsHelper.GainBlock(p, block);
+                GameActionsHelper2.GainBlock(block);
                 GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, magicNumber), magicNumber);
             }
         }

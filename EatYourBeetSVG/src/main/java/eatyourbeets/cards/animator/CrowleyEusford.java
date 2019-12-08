@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -20,12 +20,11 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
 
     public CrowleyEusford()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(18, 0, 5);
+        Initialize(18, 0, 4);
 
-        this.tags.add(CardTags.HEALING);
-
+        SetHealing(true);
         SetExhaust(true);
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -83,8 +82,8 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new HealAction(p, p, magicNumber));
-        GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActionsHelper2.Heal(magicNumber);
+        GameActionsHelper2.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override
@@ -92,7 +91,8 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
     {
         if (TryUpgrade())
         {
-            upgradeDamage(6);
+            upgradeDamage(3);
+            upgradeMagicNumber(1);
         }
     }
 

@@ -2,8 +2,8 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.TetDiscardAction;
-import eatyourbeets.actions.animator.TetRecoverAction;
+import eatyourbeets.actions._legacy.animator.TetDiscardAction;
+import eatyourbeets.actions._legacy.animator.TetRecoverAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;

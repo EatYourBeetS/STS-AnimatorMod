@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_Fate extends Defend
@@ -47,9 +47,7 @@ public class Defend_Fate extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        //int blockBonus = this.magicNumber * PlayerStatistics.GetCurrentEnemies(true).size();
-
-        GameActionsHelper.GainBlock(p, this.block);
+        GameActionsHelper2.GainBlock(this.block);
     }
 
     @Override

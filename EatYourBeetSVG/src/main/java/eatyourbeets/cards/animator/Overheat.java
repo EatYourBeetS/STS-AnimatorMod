@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard_Status;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Overheat extends AnimatorCard_Status
@@ -31,7 +31,7 @@ public class Overheat extends AnimatorCard_Status
     {
         if (!this.dontTriggerOnUseCard)
         {
-            GameActionsHelper.DrawCard(p, 2);
+            GameActionsHelper2.Draw(2);
             GameActionsHelper.DamageTarget(p, p, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
 
             for (AbstractCard c : GameUtilities.GetAllCopies(this))

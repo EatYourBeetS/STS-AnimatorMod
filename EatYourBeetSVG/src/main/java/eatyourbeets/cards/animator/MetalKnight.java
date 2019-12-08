@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
@@ -44,7 +44,7 @@ public class MetalKnight extends AnimatorCard_Boost
     {
         GameActionsHelper.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
         GameActionsHelper.AddToBottom(new WaitAction(0.8F));
-        GameActionsHelper.DamageTarget(p, m, this, AbstractGameAction.AttackEffect.NONE);
+        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         GameActionsHelper.ChannelOrb(new Plasma(), true);
 
         if (ProgressBoost())

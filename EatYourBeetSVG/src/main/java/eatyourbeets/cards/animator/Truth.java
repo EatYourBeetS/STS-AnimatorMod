@@ -16,8 +16,8 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions.common.ChooseFromPileAction;
+import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.actions._legacy.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 
@@ -47,7 +47,7 @@ public class Truth extends AnimatorCard_UltraRare
 
         GameActionsHelper.ApplyPower(p, p, new FocusPower(p, amount), amount);
         GameActionsHelper.GainEnergy(amount + 1);
-        GameActionsHelper.DrawCard(p, amount + 2);
+        GameActionsHelper2.Draw(amount + 2);
         GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, amount + 3), amount + 3);
 
         int count = 0;

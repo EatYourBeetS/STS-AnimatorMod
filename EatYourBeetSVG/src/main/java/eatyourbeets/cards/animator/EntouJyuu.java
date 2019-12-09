@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.metadata.Hidden;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.powers.animator.FlamingWeaponPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;

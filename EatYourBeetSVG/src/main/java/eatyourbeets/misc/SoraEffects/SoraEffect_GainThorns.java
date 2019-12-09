@@ -2,6 +2,7 @@ package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.ThornsPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class SoraEffect_GainThorns extends SoraEffect
@@ -15,6 +16,6 @@ public class SoraEffect_GainThorns extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper_Legacy.ApplyPower(player, player, new ThornsPower(player, sora.magicNumber), sora.magicNumber);
+        GameActions.Bottom.GainThorns(sora.magicNumber);
     }
 }

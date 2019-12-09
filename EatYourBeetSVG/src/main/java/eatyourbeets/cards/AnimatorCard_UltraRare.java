@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.cards.animator.*;
-import eatyourbeets.interfaces.metadata.Hidden;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.RenderHelpers;
 import patches.AbstractEnums;
 

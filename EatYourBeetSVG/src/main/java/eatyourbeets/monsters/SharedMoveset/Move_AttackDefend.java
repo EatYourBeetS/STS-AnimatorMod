@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 
@@ -27,7 +28,7 @@ public class Move_AttackDefend extends AbstractMove
     {
         owner.useFastAttackAnimation();
         damageInfo.applyPowers(owner, target);
-        GameActionsHelper_Legacy.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        GameActionsHelper_Legacy.GainBlock(owner, blockAmount);
+        GameActions.Bottom.Add(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        GameActions.Bottom.GainBlock(owner, blockAmount);
     }
 }

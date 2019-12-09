@@ -1,4 +1,4 @@
-package eatyourbeets.actions.special;
+package eatyourbeets.actions.animator;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -97,7 +97,7 @@ public class DolaRikuAction extends EYBAction
             AbstractCard card = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 
             card.modifyCostForCombat(-1);
-            GameActions.Bottom.MakeCardInHand(card, false, false);
+            GameActions.Bottom.MakeCardInHand(card);
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }

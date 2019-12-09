@@ -32,7 +32,7 @@
 //import eatyourbeets.actions.pileSelection.SelectFromPile;
 //import eatyourbeets.actions.powers.ApplyPowerSilently;
 //import eatyourbeets.actions.powers.ReduceStrength;
-//import eatyourbeets.actions.special.CreateThrowingKnives;
+//import eatyourbeets.actions.animator.CreateThrowingKnives;
 //import eatyourbeets.actions.utility.CallbackAction;
 //import eatyourbeets.actions.utility.SequentialAction;
 //import eatyourbeets.actions.utility.WaitRealtimeAction;

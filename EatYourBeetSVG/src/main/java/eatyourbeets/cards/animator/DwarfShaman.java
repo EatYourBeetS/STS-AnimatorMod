@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.metadata.Spellcaster;
+import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.utilities.GameActions;
 

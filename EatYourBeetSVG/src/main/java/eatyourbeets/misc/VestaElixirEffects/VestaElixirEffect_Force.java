@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.Vesta_Elixir;
 import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class VestaElixirEffect_Force extends VestaElixirEffect
@@ -16,6 +17,6 @@ public class VestaElixirEffect_Force extends VestaElixirEffect
     @Override
     public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
     {
-        GameActionsHelper_Legacy.ApplyPower(player, player, new ForcePower(player, amount), amount);
+        GameActions.Bottom.GainForce(amount);
     }
 }

@@ -42,8 +42,8 @@ public class Move_Cripple extends AbstractMove
     public void ExecuteInternal(AbstractPlayer target)
     {
         GameActions.Bottom.GainBlock(owner, BLOCK_AMOUNT);
-        GameActions.Bottom.ApplyPower(owner, target, new WeakPower(target, WEAK_AMOUNT, true), WEAK_AMOUNT);
-        GameActions.Bottom.ApplyPower(owner, target, new VulnerablePower(target, VULNERABLE_AMOUNT, true), VULNERABLE_AMOUNT);
-        GameActions.Bottom.ApplyPower(owner, target, new FrailPower(target, FRAIL_AMOUNT, true), FRAIL_AMOUNT);
+        GameActions.Bottom.ApplyWeak(owner, target, WEAK_AMOUNT);
+        GameActions.Bottom.ApplyVulnerable(owner, target, VULNERABLE_AMOUNT);
+        GameActions.Bottom.ApplyFrail(owner, target, FRAIL_AMOUNT);
     }
 }

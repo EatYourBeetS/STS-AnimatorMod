@@ -1,14 +1,11 @@
 package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
-import eatyourbeets.actions._legacy.animator.AinzAction;
+import eatyourbeets.actions.animator.AinzAction;
 
 public class AinzPower extends AnimatorPower
 {
@@ -41,7 +38,7 @@ public class AinzPower extends AnimatorPower
 
         for(int i = 0; i < this.amount; i++)
         {
-            GameActionsHelper_Legacy.AddToBottom(new AinzAction(CHOICES));
+            GameActions.Bottom.Add(new AinzAction(CHOICES));
         }
 
         this.flash();

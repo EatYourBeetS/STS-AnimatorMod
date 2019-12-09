@@ -1,8 +1,7 @@
 package eatyourbeets.misc.SoraEffects;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class SoraEffect_GainTemporaryHP extends SoraEffect
 {
@@ -15,6 +14,6 @@ public class SoraEffect_GainTemporaryHP extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper_Legacy.AddToBottom(new AddTemporaryHPAction(player, player, sora.magicNumber));
+        GameActions.Bottom.GainTemporaryHP(sora.magicNumber);
     }
 }

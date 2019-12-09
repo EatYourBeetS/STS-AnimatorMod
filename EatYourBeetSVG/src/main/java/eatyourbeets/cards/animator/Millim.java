@@ -29,8 +29,8 @@ public class Millim extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActions.Bottom.ApplyBurning(m, p, magicNumber);
-        GameActions.Bottom.ApplyPoison(m, p, magicNumber);
+        GameActions.Bottom.ApplyBurning(p, m, magicNumber);
+        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
         if (HasActiveSynergy())
         {

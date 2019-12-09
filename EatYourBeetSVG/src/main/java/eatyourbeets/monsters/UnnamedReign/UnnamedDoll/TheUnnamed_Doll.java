@@ -43,10 +43,10 @@ public class TheUnnamed_Doll extends AnimatorMonster
         ritualAndArtifactAll = (Move_GainRitualAndArtifactAll)
                 moveset.AddSpecial(new Move_GainRitualAndArtifactAll(2, 2), 1);
 
-        boolean asc4 = GameUtilities.GetAscensionLevel() >= 4;
+        boolean asc18 = GameUtilities.GetAscensionLevel() >= 18;
 
-        int debuffAmount = asc4 ? 2 : 1;
-        int tempThorns = asc4 ? 3 : 2;
+        int debuffAmount = asc18 ? 2 : 1;
+        int tempThorns = asc18 ? 3 : 2;
 
         moveset.AddNormal(new Move_ShieldAll(16));
         moveset.AddNormal(new Move_GainTempThornsAndBlockAll(tempThorns, 9));

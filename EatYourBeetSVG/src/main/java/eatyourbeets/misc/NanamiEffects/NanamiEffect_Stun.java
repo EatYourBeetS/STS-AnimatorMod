@@ -16,7 +16,7 @@ public class NanamiEffect_Stun extends NanamiEffect
         int damage = GetDamage(nanami);
         if (damage > 0)
         {
-            GameActionsHelper_Legacy.DamageTarget(p, m, damage, nanami.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(p, m, damage, nanami.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
             GameUtilities.UsePenNib();
         }
 

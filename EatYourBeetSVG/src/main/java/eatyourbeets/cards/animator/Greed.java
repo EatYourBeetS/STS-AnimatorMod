@@ -1,17 +1,16 @@
 package eatyourbeets.cards.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MalleablePower;
-import com.megacrit.cardcrawl.vfx.GainPennyEffect;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
+import eatyourbeets.utilities.GameActions;
 
-public class Greed extends AnimatorCard implements StartupCard
+public class Greed extends AnimatorCard implements OnAddedToDeckSubscriber
 {
     public static final String ID = Register(Greed.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -19,9 +18,15 @@ public class Greed extends AnimatorCard implements StartupCard
     {
         super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,2, 2, 8);
+        Initialize(0,2, 2, 30);
 
         SetSynergy(Synergies.FullmetalAlchemist);
+    }
+
+    @Override
+    public void OnAddedToDeck()
+    {
+        AbstractDungeon.player.gainGold(secondaryValue);
     }
 
     @Override
@@ -51,20 +56,5 @@ public class Greed extends AnimatorCard implements StartupCard
         {
             upgradeBaseCost(3);
         }
-    }
-
-    @Override
-    public boolean atBattleStartPreDraw()
-    {
-        AbstractPlayer p = AbstractDungeon.player;
-
-        for (int i = 0; i < this.secondaryValue; ++i)
-        {
-            AbstractDungeon.effectList.add(new GainPennyEffect(p.hb.cX, p.hb.cY + (p.hb.height / 2)));
-        }
-
-        p.gainGold(this.secondaryValue);
-
-        return true;
     }
 }

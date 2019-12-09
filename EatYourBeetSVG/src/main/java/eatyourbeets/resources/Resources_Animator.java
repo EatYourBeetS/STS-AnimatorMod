@@ -123,6 +123,7 @@ public class Resources_Animator extends AbstractResources
         BaseMod.addRelicToCustomPool(new TheEruzaStone(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new TheWolleyCore(), AbstractEnums.Cards.THE_ANIMATOR);
         BaseMod.addRelicToCustomPool(new AncientMedallion(), AbstractEnums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(new Readme(), AbstractEnums.Cards.THE_ANIMATOR);
     }
 
     @Override

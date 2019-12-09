@@ -24,6 +24,8 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
     protected BiConsumer<AbstractCreature, Boolean> onDamageEffect;
     protected boolean bypassBlock;
     protected boolean bypassThorns;
+    protected boolean isFast;
+    protected boolean muteSfx;
 
     public DealDamageToAll(AbstractCreature source, int[] amount, DamageInfo.DamageType damageType, AttackEffect attackEffect)
     {
@@ -56,10 +58,18 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         return this;
     }
 
+    public DealDamageToAll SetOptions2(boolean superFast, boolean muteSfx)
+    {
+        this.isFast = superFast;
+        this.muteSfx = muteSfx;
+
+        return this;
+    }
+
     @Override
     protected void FirstUpdate()
     {
-        boolean mute = false;
+        boolean mute = muteSfx;
 
         int i = 0;
         for (AbstractMonster enemy : AbstractDungeon.getCurrRoom().monsters.monsters)
@@ -121,7 +131,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
                 GameActionsHelperBase.ClearPostCombatActions();
             }
 
-            if (!Settings.FAST_MODE)
+            if (!isFast && !Settings.FAST_MODE)
             {
                 GameActions.Top.Wait(0.1f);
             }

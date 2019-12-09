@@ -1,7 +1,9 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset;
 
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.powers.animator.EarthenThornsPower;
@@ -27,8 +29,8 @@ public class Move_GainTempThornsAndBlockAll extends AbstractMove
     {
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper_Legacy.ApplyPower(owner, m, new EarthenThornsPower(m, thorns), thorns);
-            GameActionsHelper_Legacy.GainBlock(m, block);
+            GameActions.Bottom.ApplyPower(owner, m, new EarthenThornsPower(m, thorns), thorns);
+            GameActions.Bottom.Add(new GainBlockAction(owner, m, block));
         }
     }
 }

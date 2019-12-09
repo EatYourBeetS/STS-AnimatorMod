@@ -18,22 +18,22 @@ public class Shimakaze extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(3,3, 3);
+        Initialize(3, 3, 3);
 
         SetSynergy(Synergies.Kancolle);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.Draw(this.magicNumber);
-        GameActions.Bottom.MakeCardInDrawPile(new Dazed(),false,false);
+        GameActions.Bottom.MakeCardInDrawPile(new Dazed());
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {

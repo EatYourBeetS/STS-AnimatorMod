@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.interfaces.metadata.Hidden;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 import patches.AbstractEnums;
 

@@ -3,6 +3,7 @@ package eatyourbeets.misc.NanamiEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.animator.Nanami;
 
@@ -12,7 +13,7 @@ public class NanamiEffect_Sleep extends NanamiEffect
     {
         int poison = GetPoison(nanami);
 
-        GameActionsHelper_Legacy.ApplyPower(p, m, new PoisonPower(m, p, poison), poison);
+        GameActions.Bottom.ApplyPoison(p, m, poison);
     }
 
     public static String UpdateDescription(Nanami nanami)

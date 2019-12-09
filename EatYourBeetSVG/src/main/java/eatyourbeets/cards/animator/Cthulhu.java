@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator;
 
 import eatyourbeets.cards.AnimatorCard_UltraRare;
-import eatyourbeets.interfaces.metadata.Hidden;
+import eatyourbeets.interfaces.markers.Hidden;
 
 public abstract class Cthulhu extends AnimatorCard_UltraRare implements Hidden
 {

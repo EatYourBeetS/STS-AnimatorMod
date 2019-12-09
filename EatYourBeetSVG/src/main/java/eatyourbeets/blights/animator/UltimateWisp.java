@@ -5,6 +5,7 @@ import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnShuffleSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscriber, OnShuffleSubscriber
@@ -29,7 +30,8 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
     @Override
     public void OnShuffle(boolean triggerRelics)
     {
-        GameActionsHelper_Legacy.MakeCardInDrawPile(new VoidCard(), initialAmount, false);
+        GameActions.Bottom.MakeCardInDrawPile(new VoidCard());
+
         this.flash();
     }
 

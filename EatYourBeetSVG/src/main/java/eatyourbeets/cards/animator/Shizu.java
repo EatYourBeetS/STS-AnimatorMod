@@ -30,7 +30,7 @@ public class Shizu extends AnimatorCard
     {
         GameActions.Bottom.StackPower(new FlamingWeaponPower(p, 1));
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActions.Bottom.MakeCardInDiscardPile(new Burn(), false, false);
+        GameActions.Bottom.MakeCardInDiscardPile(new Burn());
     }
 
     @Override

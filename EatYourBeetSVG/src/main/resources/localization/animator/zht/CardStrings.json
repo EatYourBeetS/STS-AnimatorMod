@@ -466,7 +466,7 @@
 	},
 	"animator:Greed":
 	{
-		"DESCRIPTION": "獲得 !M! 層 多層護甲 。 NL 獲得 !M! 層 金屬化 。 NL 獲得 !M! 層 柔韌 。 || 每場戰鬥開始時， NL 獲得 !SV! 金幣 。 NL 每擁有 100 金幣 ， NL 減少這張牌 1 點消耗 。",
+		"DESCRIPTION": "獲得 !M! 層 多層護甲 。 NL 獲得 !M! 層 金屬化 。 NL 獲得 !M! 層 柔韌 。 || 當你把這張牌加入牌組時， NL 獲得 !SV! 金幣 。 NL 每擁有 100 金幣 ， NL 減少這張牌 1 點消耗 。",
 		"NAME": "貪婪"
 	},
 	"animator:GuildGirl":

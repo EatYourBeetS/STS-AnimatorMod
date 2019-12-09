@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator;
 
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -28,7 +29,7 @@ public class LizardPriest extends AnimatorCard
         if (m != null)
         {
             GameActions.Bottom.Add(new RemoveAllBlockAction(m, p));
-            GameActions.Bottom.GainBlock(this.magicNumber);
+            GameActions.Bottom.Add(new GainBlockAction(m, p, this.magicNumber, true));
         }
 
         GameActions.Bottom.GainBlock(this.block);

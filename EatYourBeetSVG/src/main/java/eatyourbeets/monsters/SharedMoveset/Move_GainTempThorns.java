@@ -2,6 +2,7 @@ package eatyourbeets.monsters.SharedMoveset;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.powers.animator.EarthenThornsPower;
@@ -22,6 +23,6 @@ public class Move_GainTempThorns extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActionsHelper_Legacy.ApplyPower(owner, owner, new EarthenThornsPower(owner, amount), amount);
+        GameActions.Bottom.StackPower(new EarthenThornsPower(owner, amount));
     }
 }

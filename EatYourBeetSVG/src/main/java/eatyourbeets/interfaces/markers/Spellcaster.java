@@ -1,4 +1,4 @@
-package eatyourbeets.interfaces.metadata;
+package eatyourbeets.interfaces.markers;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.utilities.GameUtilities;

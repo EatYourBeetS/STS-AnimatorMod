@@ -2,13 +2,11 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.metadata.MartialArtist;
+import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class Shichika extends AnimatorCard implements MartialArtist
 {
@@ -41,7 +39,7 @@ public class Shichika extends AnimatorCard implements MartialArtist
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainForce(magicNumber);
-        GameActions.Bottom.MakeCardInHand(new ShichikaKyotouryuu(), false, false);
+        GameActions.Bottom.MakeCardInHand(new ShichikaKyotouryuu());
 
         if (HasActiveSynergy())
         {

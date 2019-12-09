@@ -75,7 +75,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     {
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.MakeCardInDrawPile(new TanyaDegurechaff_Type95(), false, false);
+            GameActions.Bottom.MakeCardInDrawPile(new TanyaDegurechaff_Type95());
 
             return true;
         }

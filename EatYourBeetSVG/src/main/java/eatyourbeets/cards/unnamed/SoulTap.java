@@ -21,9 +21,9 @@ public class SoulTap extends UnnamedCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper_Legacy.AddToBottom(new DecreaseMaxHpAction(p, 2));
-        GameActionsHelper_Legacy.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
-        GameActions.Bottom.Draw(secondaryValue);
+//        GameActionsHelper_Legacy.AddToBottom(new DecreaseMaxHpAction(p, 2));
+//        GameActionsHelper_Legacy.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
+//        GameActions.Bottom.Draw(secondaryValue);
     }
 
     @Override

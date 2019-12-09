@@ -4,12 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions._legacy.common.ChooseFromPileAction;
 import eatyourbeets.cards.animator.Vesta;
 import eatyourbeets.cards.animator.Vesta_Elixir;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
-import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class VestaElixirEffects
         Random rng = AbstractDungeon.cardRandomRng;
         if (rng == null)
         {
-            JavaUtilities.Logger.warn("[VestaElixirEffects.ctor] cardRandomRNG was null");
+            GameUtilities.GetLogger(getClass()).warn("cardRandomRNG was null");
             rng = new Random();
         }
 
@@ -55,10 +55,10 @@ public class VestaElixirEffects
 
         cards.add(new Vesta_Elixir());
 
-        effects.ChooseNextEffect(effects, cards);
+        effects.ChooseNextEffect(cards);
     }
 
-    private void ChooseNextEffect(Object state, ArrayList<AbstractCard> cards)
+    private void ChooseNextEffect(ArrayList<AbstractCard> cards)
     {
         currentElixir = JavaUtilities.SafeCast(cards.get(0), Vesta_Elixir.class);
         if (currentElixir == null)
@@ -105,8 +105,10 @@ public class VestaElixirEffects
             group.addToTop(other);
         }
 
-        GameActionsHelper_Legacy.AddToBottom(new ChooseFromPileAction(1, false, group, this::ChooseNextEffect,
-                                                                 this, "", true));
+        GameActions.Top.SelectFromPile(vesta.name, 1, group)
+        .SetMessage(CardRewardScreen.TEXT[1])
+        .SetOptions(false, false)
+        .AddCallback(this::ChooseNextEffect);
     }
 
     private static RandomizedList<VestaElixirEffect> GenerateEffectPool()

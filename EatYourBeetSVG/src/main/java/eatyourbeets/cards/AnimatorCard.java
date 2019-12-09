@@ -2,8 +2,8 @@ package eatyourbeets.cards;
 
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.interfaces.metadata.Spellcaster;
+import eatyourbeets.interfaces.markers.MartialArtist;
+import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Images;
 import eatyourbeets.utilities.JavaUtilities;

@@ -3,10 +3,10 @@ package eatyourbeets.blights.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions._legacy.animator.KillCharacterAction;
+import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.effects.BlightAboveCreatureEffect;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class Doomed extends AnimatorBlight
 {
@@ -32,7 +32,7 @@ public class Doomed extends AnimatorBlight
         AbstractPlayer p = AbstractDungeon.player;
         if (counter <= 1)
         {
-            GameActionsHelper_Legacy.AddToBottom(new KillCharacterAction(p, p));
+            GameActions.Bottom.Add(new KillCharacterAction(p, p));
         }
         else
         {

@@ -13,6 +13,7 @@ public class Noise extends UnnamedCard
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.NONE);
 
         Initialize(6,0);
+
         SetEcho(true);
     }
 

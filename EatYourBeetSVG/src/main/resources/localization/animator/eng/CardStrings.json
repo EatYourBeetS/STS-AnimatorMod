@@ -466,7 +466,7 @@
 	},
 	"animator:Greed":
 	{
-		"DESCRIPTION": "Gain !M! Plated_Armor. NL Gain !M! Metallicize. NL Gain !M! Malleable. || At the start of each NL combat, gain !SV! #yGold[]. NL Costs 1 less for every NL 100 #yGold[] you have.",
+		"DESCRIPTION": "Gain !M! Plated_Armor. NL Gain !M! Metallicize. NL Gain !M! Malleable. || Costs 1 less for every NL 100 #yGold[] you have. NL When you add this NL card to your deck, NL gain !SV! #yGold[].",
 		"NAME": "Greed"
 	},
 	"animator:GuildGirl":

@@ -51,7 +51,7 @@ public class Yuuichirou extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.MakeCardInDiscardPile(new Asuramaru(), false, false);
+        GameActions.Bottom.MakeCardInDiscardPile(new Asuramaru());
 
         AbstractDungeon.player.discardPile.addToTop(new Wound());
         AbstractDungeon.player.discardPile.addToTop(new Wound());

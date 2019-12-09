@@ -49,25 +49,25 @@ public class Move_SummonEnemy extends AbstractMove
 
         if (summon.id.equals(TheUnnamed_Doll.ID))
         {
-            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[1], 0.5f, 2f));
+            GameActions.Bottom.Add(new TalkAction(owner, cultist.data.strings.DIALOG[1], 0.5f, 2f));
             GameActions.Bottom.WaitRealtime(2f);
-            GameActionsHelper_Legacy.AddToBottom(new SummonMonsterAction(summon, true));
+            GameActions.Bottom.Add(new SummonMonsterAction(summon, true));
             return;
         }
 
         if (summon.id.equals(ShelledParasite.ID))
         {
-            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[4], 3f, 3f));
+            GameActions.Bottom.Add(new TalkAction(owner, cultist.data.strings.DIALOG[4], 3f, 3f));
         }
         else if (summon.id.equals(GremlinWarrior.ID))
         {
-            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[3], 3f, 3f));
+            GameActions.Bottom.Add(new TalkAction(owner, cultist.data.strings.DIALOG[3], 3f, 3f));
         }
         else
         {
-            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[2].replace("@", summon.name), 3f, 3f));
+            GameActions.Bottom.Add(new TalkAction(owner, cultist.data.strings.DIALOG[2].replace("@", summon.name), 3f, 3f));
         }
 
-        GameActionsHelper_Legacy.AddToBottom(new SummonMonsterAction(summon, false));
+        GameActions.Bottom.Add(new SummonMonsterAction(summon, false));
     }
 }

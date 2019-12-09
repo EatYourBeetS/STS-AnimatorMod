@@ -38,14 +38,14 @@ public class Move_ShuffleCard extends AbstractMove
         if (!Settings.FAST_MODE)
         {
             GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.5F);
-            GameActionsHelper_Legacy.AddToBottom(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.2F));
+            GameActions.Bottom.Add(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.2F));
         }
         else
         {
             GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F);
-            GameActionsHelper_Legacy.AddToBottom(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.15F));
+            GameActions.Bottom.Add(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.15F));
         }
 
-        GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInDiscardAction(this.card, this.amount));
+        GameActions.Bottom.Add(new MakeTempCardInDiscardAction(this.card, this.amount));
     }
 }

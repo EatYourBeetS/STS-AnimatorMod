@@ -34,7 +34,7 @@ import eatyourbeets.actions.pileSelection.FetchFromPile;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.actions.powers.ApplyPowerSilently;
 import eatyourbeets.actions.powers.ReduceStrength;
-import eatyourbeets.actions.special.CreateThrowingKnives;
+import eatyourbeets.actions.animator.CreateThrowingKnives;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
@@ -117,6 +117,11 @@ public final class GameActions
         return Add(new ApplyPowerSilently(target, source, power, stacks));
     }
 
+    public ApplyPowerAction ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new FrailPower(target, amount, !source.isPlayer));
+    }
+
     public ApplyPowerAction ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new VulnerablePower(target, amount, !source.isPlayer));
@@ -169,7 +174,8 @@ public final class GameActions
 
     public CycleCards Cycle(int amount, String sourceName)
     {
-        return Add(new CycleCards(sourceName, amount, false));
+        return (CycleCards)Add(new CycleCards(sourceName, amount, false)
+                .SetOptions(true, true, true));
     }
 
     public DealDamage DealDamage(AbstractCreature source, AbstractCreature target, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
@@ -383,17 +389,17 @@ public final class GameActions
         return Add(new MakeTempCard(card, group));
     }
 
-    public MakeTempCard MakeCardInDiscardPile(AbstractCard card, boolean upgraded, boolean makeCopy)
+    public MakeTempCard MakeCardInDiscardPile(AbstractCard card)
     {
         return MakeCard(card, AbstractDungeon.player.discardPile);
     }
 
-    public MakeTempCard MakeCardInDrawPile(AbstractCard card, boolean upgraded, boolean makeCopy)
+    public MakeTempCard MakeCardInDrawPile(AbstractCard card)
     {
         return MakeCard(card, AbstractDungeon.player.drawPile);
     }
 
-    public MakeTempCard MakeCardInHand(AbstractCard card, boolean upgraded, boolean makeCopy)
+    public MakeTempCard MakeCardInHand(AbstractCard card)
     {
         return MakeCard(card, AbstractDungeon.player.hand);
     }

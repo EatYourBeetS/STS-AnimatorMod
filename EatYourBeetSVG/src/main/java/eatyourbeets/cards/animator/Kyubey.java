@@ -73,7 +73,7 @@ public class Kyubey extends AnimatorCard implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        GameActions.Bottom.MakeCardInDiscardPile(GetRandomCurse(), false, false);
+        GameActions.Bottom.MakeCardInDiscardPile(GetRandomCurse());
 
         return true;
     }

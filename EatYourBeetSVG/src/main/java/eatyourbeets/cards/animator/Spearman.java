@@ -39,7 +39,7 @@ public class Spearman extends AnimatorCard
         });
 
         GameActions.Bottom.GainAgility(magicNumber);
-        GameActions.Bottom.MakeCardInHand(new Wound(), false, false);
+        GameActions.Bottom.MakeCardInHand(new Wound());
     }
 
     @Override

@@ -1,12 +1,10 @@
 package eatyourbeets.cards.unnamed;
 
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
-import eatyourbeets.actions._legacy.common.DieAction;
+import eatyourbeets.actions.special.DieAction;
 import eatyourbeets.actions._legacy.common.IncreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.utilities.GameActions;
@@ -41,17 +39,17 @@ public class Reaper extends UnnamedCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
-        {
-            if (m1.currentHealth < secondaryValue)
-            {
-                GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
-                GameActions.Bottom.VFX(new CollectorCurseEffect(m1.hb.cX, m1.hb.cY), 1.0F);
-
-                GameActionsHelper_Legacy.AddToBottom(new DieAction(m));
-                GameActionsHelper_Legacy.AddToBottom(new IncreaseMaxHpAction(p, magicNumber, true));
-            }
-        }
+//        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
+//        {
+//            if (m1.currentHealth < secondaryValue)
+//            {
+//                GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+//                GameActions.Bottom.VFX(new CollectorCurseEffect(m1.hb.cX, m1.hb.cY), 1.0F);
+//
+//                GameActionsHelper_Legacy.AddToBottom(new DieAction(m));
+//                GameActionsHelper_Legacy.AddToBottom(new IncreaseMaxHpAction(p, magicNumber, true));
+//            }
+//        }
     }
 
     @Override

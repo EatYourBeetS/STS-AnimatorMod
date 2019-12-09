@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.interfaces.metadata.MartialArtist;
+import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
@@ -75,7 +75,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
                 if (threeInARow)
                 {
                     EffectHistory.TryActivateLimited(cardID);
-                    GameActions.Bottom.MakeCardInDrawPile(new EntouJyuu(), upgraded, false);
+                    GameActions.Bottom.MakeCardInDrawPile(new EntouJyuu()).SetOptions(upgraded, false);
                 }
             }
         }

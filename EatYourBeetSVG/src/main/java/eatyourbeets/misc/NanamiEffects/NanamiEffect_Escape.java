@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PenNibPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.animator.Nanami;
 
@@ -17,14 +18,15 @@ public class NanamiEffect_Escape extends NanamiEffect
         int damage = GetDamage(nanami);
         if (damage > 0)
         {
-            GameActionsHelper_Legacy.DamageTarget(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            GameActions.Bottom.DealDamage(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+
             if (p.hasPower(PenNibPower.POWER_ID))
             {
-                GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
+                GameActions.Bottom.ReducePower(p, PenNibPower.POWER_ID, 1);
             }
         }
 
-        GameActionsHelper_Legacy.ApplyPower(p, m, new StunMonsterPower(m, 1), 1);
+        GameActions.Bottom.ApplyPower(p, m, new StunMonsterPower(m, 1), 1);
     }
 
     public static String UpdateDescription(Nanami nanami)

@@ -11,7 +11,7 @@ public class NanamiEffect_Attack_Defend extends NanamiEffect
     public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
     {
         GameActions.Bottom.GainBlock(GetBlock(nanami));
-        GameActionsHelper_Legacy.DamageTarget(p, m, GetDamage(nanami), nanami.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(p, m, GetDamage(nanami), nanami.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
     }
 
     public static String UpdateDescription(Nanami nanami)

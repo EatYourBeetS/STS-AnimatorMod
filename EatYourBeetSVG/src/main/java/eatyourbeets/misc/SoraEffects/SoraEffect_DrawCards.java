@@ -1,6 +1,7 @@
 package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class SoraEffect_DrawCards extends SoraEffect
@@ -14,6 +15,6 @@ public class SoraEffect_DrawCards extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper_Legacy.DrawCard(player, sora.magicNumber);
+        GameActions.Bottom.Draw(sora.magicNumber);
     }
 }

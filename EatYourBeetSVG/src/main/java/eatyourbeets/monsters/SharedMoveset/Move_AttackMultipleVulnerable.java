@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 
@@ -33,9 +34,9 @@ public class Move_AttackMultipleVulnerable extends AbstractMove
 
         for (int i = 0 ; i < times; i++)
         {
-            GameActionsHelper_Legacy.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+            GameActions.Bottom.Add(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         }
-        
-        GameActionsHelper_Legacy.ApplyPower(owner, target, new VulnerablePower(target, debuffAmount, true), debuffAmount);
+
+        GameActions.Bottom.ApplyVulnerable(owner, target, debuffAmount);
     }
 }

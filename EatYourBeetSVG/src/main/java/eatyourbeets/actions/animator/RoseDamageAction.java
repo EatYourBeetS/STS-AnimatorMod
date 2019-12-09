@@ -1,32 +1,17 @@
-package eatyourbeets.actions.special;
+package eatyourbeets.actions.animator;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.actions._legacy.common.PiercingDamageAction;
 import eatyourbeets.actions.damage.DealDamage;
-import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.cards.animator.QuestionMark;
 import eatyourbeets.cards.animator.Rose;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
-
-import java.util.ArrayList;
 
 public class RoseDamageAction extends EYBAction
 {

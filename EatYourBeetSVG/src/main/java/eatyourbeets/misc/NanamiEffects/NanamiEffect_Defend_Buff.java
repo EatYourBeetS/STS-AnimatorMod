@@ -15,7 +15,7 @@ public class NanamiEffect_Defend_Buff extends NanamiEffect
         int damage = GetDamage(nanami);
         if (damage > 0)
         {
-            GameActionsHelper_Legacy.DamageTarget(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            GameActions.Bottom.DealDamage(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
             GameUtilities.UsePenNib();
         }
 

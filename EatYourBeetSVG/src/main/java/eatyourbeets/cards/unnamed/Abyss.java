@@ -24,8 +24,8 @@ public class Abyss extends UnnamedCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper_Legacy.AddToBottom(new LoseHPAction(p, p, magicNumber));
-        GameActionsHelper_Legacy.AddToBottom(new FetchAction(PlayerStatistics.Void, 1));
+        //GameActionsHelper_Legacy.AddToBottom(new LoseHPAction(p, p, magicNumber));
+        //GameActionsHelper_Legacy.AddToBottom(new FetchAction(PlayerStatistics.Void, 1));
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.monsters.AbstractMove;
@@ -76,7 +77,7 @@ public class Move_MultiSlash extends AbstractMove
             int difference = previousHealth - p.currentHealth;
             if (difference > 0)
             {
-                GameActionsHelper_Legacy.AddToBottom(new HealAction(owner, owner, difference));
+                GameActions.Bottom.Add(new HealAction(owner, owner, difference));
             }
 
             Attack(p);

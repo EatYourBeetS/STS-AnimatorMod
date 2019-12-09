@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect;
 import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class Move_UltimateCrystalAttack extends AbstractMove
@@ -33,15 +34,17 @@ public class Move_UltimateCrystalAttack extends AbstractMove
         if (this.damageInfo.output < 30)
         {
             owner.useFastAttackAnimation();
-            GameActionsHelper_Legacy.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.SMASH));
+
+            GameActions.Bottom.Add(new DamageAction(target, this.damageInfo, AbstractGameAction.AttackEffect.SMASH));
         }
         else
         {
             owner.useSlowAttackAnimation();
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new ViceCrushEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.5F));
-            AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+
+            GameActions.Bottom.VFX(new ViceCrushEffect(target.hb.cX, target.hb.cY), 0.5F);
+            GameActions.Bottom.Add(new DamageAction(target, this.damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         }
 
-        GameActionsHelper_Legacy.GainBlock(owner, blockAmount);
+        GameActions.Bottom.GainBlock(owner, blockAmount);
     }
 }

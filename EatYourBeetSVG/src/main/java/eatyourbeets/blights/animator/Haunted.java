@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.cards.animator.TheHaunt;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class Haunted extends AnimatorBlight
@@ -49,15 +50,15 @@ public class Haunted extends AnimatorBlight
         if (counter >= 10)
         {
             this.flash();
-            GameActionsHelper_Legacy.ApplyPower(p, p, new VulnerablePower(p, 1, false), 1);
+            GameActions.Bottom.ApplyVulnerable(p, p, 1);
         }
         if (counter >= 20)
         {
-            GameActionsHelper_Legacy.ApplyPower(p, p, new WeakPower(p, 2, false), 2);
+            GameActions.Bottom.ApplyWeak(p, p, 1);
         }
         if (counter >= 30)
         {
-            GameActionsHelper_Legacy.ApplyPower(p, p, new FrailPower(p, 2, false), 2);
+            GameActions.Bottom.StackPower(p, new FrailPower(p, 2, false));
         }
     }
 }

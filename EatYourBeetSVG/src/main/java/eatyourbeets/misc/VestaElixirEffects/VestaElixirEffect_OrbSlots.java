@@ -1,10 +1,9 @@
 package eatyourbeets.misc.VestaElixirEffects;
 
-import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.Vesta_Elixir;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_OrbSlots extends VestaElixirEffect
 {
@@ -16,6 +15,6 @@ public class VestaElixirEffect_OrbSlots extends VestaElixirEffect
     @Override
     public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
     {
-        GameActionsHelper_Legacy.AddToBottom(new IncreaseMaxOrbAction(amount));
+        GameActions.Bottom.GainOrbSlots(amount);
     }
 }

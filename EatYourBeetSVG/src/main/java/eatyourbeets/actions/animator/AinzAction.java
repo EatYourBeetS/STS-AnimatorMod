@@ -1,4 +1,4 @@
-package eatyourbeets.actions._legacy.animator;
+package eatyourbeets.actions.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -13,6 +13,7 @@ import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
 
+//Todo: Improve this
 public class AinzAction extends EYBAction
 {
     private final WeightedList<AinzEffect> effectList = new WeightedList<>();
@@ -43,6 +44,7 @@ public class AinzAction extends EYBAction
         {
             if (e != null)
             {
+                e.SetUpgraded(false);
                 e.ainz.applyPowers();
                 e.ainz.initializeDescription();
 

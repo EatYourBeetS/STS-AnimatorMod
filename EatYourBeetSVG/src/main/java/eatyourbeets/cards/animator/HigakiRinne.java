@@ -66,12 +66,12 @@ public class HigakiRinne extends AnimatorCard
         if (n < 3)
         {
             GameActions.Bottom.Wait(0.5f);
-            GameActions.Bottom.MakeCardInHand(this, false, true);
+            GameActions.Bottom.MakeCardInHand(makeStatEquivalentCopy());
         }
         else if (n < 12)
         {
             GameActions.Bottom.Wait(0.5f);
-            GameActions.Bottom.MakeCardInHand(new Shiv(), false, false);
+            GameActions.Bottom.MakeCardInHand(new Shiv());
         }
         else if (n < 38)
         {
@@ -103,19 +103,19 @@ public class HigakiRinne extends AnimatorCard
         int n = AbstractDungeon.cardRandomRng.random(100);
         if (n < 20)
         {
-            GameActions.Bottom.MakeCardInHand(new Shiv(), false, false);
+            GameActions.Bottom.MakeCardInHand(new Shiv());
         }
         else if (n < 40)
         {
-            GameActions.Bottom.MakeCardInHand(new Madness(), false, false);
+            GameActions.Bottom.MakeCardInHand(new Madness());
         }
         else if (n < 60)
         {
-            GameActions.Bottom.MakeCardInHand(new Slimed(), false, false);
+            GameActions.Bottom.MakeCardInHand(new Slimed());
         }
         else if (n < 64)
         {
-            GameActions.Bottom.MakeCardInHand(this, false, true);
+            GameActions.Bottom.MakeCardInHand(makeStatEquivalentCopy());
         }
     }
 

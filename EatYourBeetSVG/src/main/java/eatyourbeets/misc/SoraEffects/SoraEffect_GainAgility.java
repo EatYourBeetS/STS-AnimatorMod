@@ -2,6 +2,7 @@ package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class SoraEffect_GainAgility extends SoraEffect
@@ -15,6 +16,6 @@ public class SoraEffect_GainAgility extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper_Legacy.ApplyPower(player, player, new AgilityPower(player, sora.magicNumber), sora.magicNumber);
+        GameActions.Bottom.GainAgility(sora.magicNumber);
     }
 }

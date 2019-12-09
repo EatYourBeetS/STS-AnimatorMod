@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
-import eatyourbeets.actions._legacy.animator.KillCharacterAction;
+import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class GenericFadingPower extends AbstractPower implements CloneablePowerInterface

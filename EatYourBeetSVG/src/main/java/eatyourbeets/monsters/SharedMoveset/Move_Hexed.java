@@ -3,8 +3,10 @@ package eatyourbeets.monsters.SharedMoveset;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.HexPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Move_Hexed extends AbstractMove
 {
@@ -22,6 +24,6 @@ public class Move_Hexed extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActionsHelper_Legacy.ApplyPower(owner, target, new HexPower(target, amount), amount);
+        GameActions.Bottom.ApplyPower(owner, target, new HexPower(target, amount), amount);
     }
 }

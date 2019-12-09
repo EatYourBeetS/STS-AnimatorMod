@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.special.QuestionMarkAction;
+import eatyourbeets.actions.animator.QuestionMarkAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscriber
 {
@@ -39,7 +38,7 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.MakeCardInHand(new HigakiRinne(), false, false);
+        GameActions.Bottom.MakeCardInHand(new HigakiRinne());
     }
 
     @Override

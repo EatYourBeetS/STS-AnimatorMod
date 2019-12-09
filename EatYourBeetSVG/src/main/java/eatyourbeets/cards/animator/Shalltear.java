@@ -55,7 +55,11 @@ public class Shalltear extends AnimatorCard
             }
 
             GameActions.Bottom.Add(new LoseHPAction(enemy, p, damage));
-            GameActions.Bottom.StealStrength(enemy, 1, false);
+
+            if (HasActiveSynergy())
+            {
+                GameActions.Bottom.StealStrength(enemy, 1, false);
+            }
         }
 
         GameActions.Bottom.GainTemporaryHP(magicNumber);

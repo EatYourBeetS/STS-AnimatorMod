@@ -20,9 +20,23 @@ public class Readme extends AnimatorRelic
     private final String header;
     private final String content;
 
+    public Readme()
+    {
+        super(ID, ID, RelicTier.DEPRECATED, LandingSound.FLAT);
+
+        key = "TheAnimator-Readme:<ERROR>";
+        header = "<ERROR>";
+        content = "<ERROR>";
+
+        if (AbstractDungeon.effectsQueue != null)
+        {
+            AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, this));
+        }
+    }
+
     public Readme(String key, String header, String content)
     {
-        super(ID, ID, RelicTier.STARTER, LandingSound.FLAT);
+        super(ID, ID, RelicTier.DEPRECATED, LandingSound.FLAT);
 
         this.key = key;
         this.header = header;
@@ -72,6 +86,17 @@ public class Readme extends AnimatorRelic
 
         beginLongPulse();
         flash();
+    }
+
+    @Override
+    public void atBattleStart()
+    {
+        super.atBattleStart();
+
+        if (AbstractDungeon.getCurrMapNode().y > 2)
+        {
+            AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, this));
+        }
     }
 
     @Override

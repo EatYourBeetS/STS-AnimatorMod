@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.special.ShikizakiKikiUpgradeAction;
+import eatyourbeets.actions.animator.ShikizakiKikiUpgradeAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;

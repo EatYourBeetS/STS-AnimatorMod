@@ -34,9 +34,9 @@ public class Move_AttackMultipleFrail extends AbstractMove
 
         for (int i = 0 ; i < times; i++)
         {
-            GameActionsHelper_Legacy.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+            GameActions.Bottom.Add(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         }
         
-        GameActions.Bottom.ApplyPower(owner, target, new FrailPower(target, debuffAmount, true), debuffAmount);
+        GameActions.Bottom.ApplyFrail(owner, target, debuffAmount);
     }
 }

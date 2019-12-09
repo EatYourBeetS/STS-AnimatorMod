@@ -69,7 +69,7 @@ public class Saber extends AnimatorCard_Cooldown
             this.tags.add(AbstractEnums.CardTags.PURGE);
 
             GameActions.Bottom.Purge(uuid);
-            GameActions.Bottom.MakeCardInHand(new Excalibur(), false, false);
+            GameActions.Bottom.MakeCardInHand(new Excalibur());
         }
     }
 }

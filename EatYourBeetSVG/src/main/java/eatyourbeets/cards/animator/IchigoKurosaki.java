@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.metadata.MartialArtist;
+import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -56,7 +56,7 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
         {
             if (GameUtilities.GetStrength() >= secondaryValue)
             {
-                GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai(), false, false);
+                GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
             }
         });
     }

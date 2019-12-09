@@ -85,7 +85,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         {
             AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this.makeStatEquivalentCopy()));
 
-            GameActions.Bottom.MakeCardInHand(elixir, false, false);
+            GameActions.Bottom.MakeCardInHand(elixir);
 
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
         }

@@ -17,12 +17,13 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.JavaUtilities;
 
-public class Saitama extends AnimatorCard implements OnCallbackSubscriber
+public class Saitama extends AnimatorCard
 {
     public static final String ID = Register(Saitama.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -73,7 +74,11 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
         {
             case 0:
             {
-                // Do Nothing
+                // Do Nothing / Motivate 1
+                if (upgraded)
+                {
+                    GameActions.Bottom.Motivate();
+                }
 
                 break;
             }
@@ -81,8 +86,8 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 1:
             {
                 // Draw !M! Cards. NL Gain !SV! Agility.
-                GameActionsHelper2.Draw(magicNumber);
-                GameActionsHelper.GainAgility(secondaryValue);
+                GameActions.Bottom.Draw(magicNumber);
+                GameActions.Bottom.GainAgility(secondaryValue);
 
                 break;
             }
@@ -90,7 +95,7 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 2:
             {
                 // Prevent the next time you would lose HP
-                GameActionsHelper.ApplyPower(p, p, new BufferPower(p, 1), 1);
+                GameActions.Bottom.StackPower(new BufferPower(p, 1));
 
                 break;
             }
@@ -98,8 +103,8 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 3:
             {
                 // Gain !M! Force. Gain !B! Block.
-                GameActionsHelper.GainForce(magicNumber);
-                GameActionsHelper2.GainBlock(block);
+                GameActions.Bottom.GainForce(magicNumber);
+                GameActions.Bottom.GainBlock(block);
 
                 break;
             }
@@ -109,10 +114,9 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
                 // Deal !D! damage !M! times.
                 for (int i = 1; i < this.magicNumber; i++)
                 {
-                    GameActionsHelper.AddToDefault(new PummelDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
+                    GameActions.Bottom.Add(new PummelDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
                 }
-
-                GameActionsHelper.AddToDefault(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
                 break;
             }
@@ -120,31 +124,28 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
             case 5:
             {
                 // Remove Intangible. Deal !D! damage. Stun The Enemy
-                GameActionsHelper.AddToDefault(new RemoveSpecificPowerAction(m, p, IntangiblePower.POWER_ID));
-                GameActionsHelper.AddToDefault(new RemoveSpecificPowerAction(m, p, IntangiblePlayerPower.POWER_ID));
+                GameActions.Bottom.RemovePower(p, m, IntangiblePower.POWER_ID);
+                GameActions.Bottom.RemovePower(p, m, IntangiblePlayerPower.POWER_ID);
+                GameActions.Bottom.RemovePower(p, m, InvinciblePower.POWER_ID);
 
-//                GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.SMASH);
+                GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F));
+                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetOptions(true, true);
+                GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
-                GameActionsHelper.AddToDefault(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
-                GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
-                GameActionsHelper.AddToDefault(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-
-                GameActionsHelper.ApplyPowerSilently(p, m, new StunMonsterPower(m, 1), 1);
+                GameActions.Bottom.ApplyPowerSilently(p, m, new StunMonsterPower(m, 1), 1);
 
                 break;
             }
         }
 
-        GameActionsHelper.DelayedAction(this);
-    }
-
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        if (state == this && action != null)
+        GameActions.Bottom.ModifyAllCombatInstances(uuid, c ->
         {
-            GameActionsHelper.AddToBottom(new ProgressPhaseAction(this));
-        }
+            if (c.misc < 5)
+            {
+                c.misc += 1;
+                c.applyPowers();
+            }
+        });
     }
 
     @Override
@@ -252,27 +253,5 @@ public class Saitama extends AnimatorCard implements OnCallbackSubscriber
         }
 
         this.upgradeBaseCost(stage);
-    }
-
-    private class ProgressPhaseAction extends AbstractGameAction
-    {
-        private final Saitama saitama;
-
-        private ProgressPhaseAction(Saitama saitama)
-        {
-            this.saitama = saitama;
-        }
-
-        @Override
-        public void update()
-        {
-            if (saitama.misc < 5)
-            {
-                saitama.misc += 1;
-                saitama.applyPowers();
-            }
-
-            this.isDone = true;
-        }
     }
 }

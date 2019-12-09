@@ -3,16 +3,14 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.animator.SoraAction;
-import eatyourbeets.actions._legacy.common.DrawSpecificCardAction;
+import eatyourbeets.actions.special.SoraAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.misc.SoraEffects.SoraEffect;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
 import patches.AbstractEnums;
 
 public class Sora extends AnimatorCard
@@ -51,13 +49,14 @@ public class Sora extends AnimatorCard
         {
             if (Shiro.ID.equals(c.cardID))
             {
-                GameActionsHelper.AddToTop(new DrawSpecificCardAction(c));
+                GameActions.Top.MoveCard(c, p.hand, p.drawPile, true);
+
                 break;
             }
         }
 
-        GameActionsHelper.AddToTop(new SoraAction(AbstractDungeon.player, magicNumber));
-        GameActionsHelper.AddToTop(new WaitAction(0.4f));
+        GameActions.Bottom.Add(new WaitAction(0.4f));
+        GameActions.Bottom.Add(new SoraAction(name, magicNumber));
     }
 
     @Override

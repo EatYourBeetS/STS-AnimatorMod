@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.interfaces.metadata.Hidden;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import patches.AbstractEnums;
 
 public class Respite extends AnimatorCard implements Hidden
@@ -34,7 +34,7 @@ public class Respite extends AnimatorCard implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.GainTemporaryHP(p, magicNumber);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
 
         int a = (int)Math.ceil(Math.random() * 3);
         int b = (int)Math.ceil(Math.random() * 3);

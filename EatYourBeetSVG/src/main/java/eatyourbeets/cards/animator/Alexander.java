@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Alexander extends AnimatorCard
 {
@@ -28,15 +28,15 @@ public class Alexander extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper2.DealDamageToAll(DamageInfo.createDamageMatrix(this.magicNumber, false),
+        GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(this.magicNumber, false),
         damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY).SetOptions(true,false);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActionsHelper2.GainForce(1);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.GainForce(1);
     }
 
     @Override

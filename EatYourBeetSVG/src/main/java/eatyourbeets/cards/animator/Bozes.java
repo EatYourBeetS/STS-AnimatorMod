@@ -7,7 +7,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.BozesPower;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Bozes extends AnimatorCard
 {
@@ -26,9 +26,9 @@ public class Bozes extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActionsHelper2.Motivate(magicNumber);
-        GameActionsHelper2.StackPower(new BozesPower(p, this.secondaryValue));
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActions.Bottom.Motivate(magicNumber);
+        GameActions.Bottom.StackPower(new BozesPower(p, this.secondaryValue));
     }
 
     @Override

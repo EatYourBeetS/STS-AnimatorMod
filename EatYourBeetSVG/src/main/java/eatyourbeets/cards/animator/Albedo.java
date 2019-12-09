@@ -8,7 +8,7 @@ import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Albedo extends AnimatorCard
 {
@@ -26,8 +26,8 @@ public class Albedo extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActionsHelper2.StackPower(new EnchantedArmorPower(p, damage));
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.StackPower(new EnchantedArmorPower(p, damage));
 
         if (EffectHistory.HasActivatedLimited(Ainz.ID))
         {

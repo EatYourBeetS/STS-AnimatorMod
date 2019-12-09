@@ -3,7 +3,7 @@ package eatyourbeets.monsters.SharedMoveset;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -33,8 +33,8 @@ public class Move_GainStrengthAndBlockAll extends AbstractMove
 
         for (AbstractMonster m : enemies)
         {
-            GameActionsHelper.ApplyPower(owner, m, new StrengthPower(m, strength), strength, isFast);
-            GameActionsHelper.GainBlock(m, block, isFast);
+            GameActionsHelper_Legacy.ApplyPower(owner, m, new StrengthPower(m, strength), strength, isFast);
+            GameActionsHelper_Legacy.GainBlock(m, block, isFast);
         }
     }
 }

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 
 public class Defend_FullmetalAlchemist extends Defend
@@ -39,18 +39,18 @@ public class Defend_FullmetalAlchemist extends Defend
 
         if (ProgressCooldown())
         {
-            GameActionsHelper2.ChannelOrb(new Frost(), true);
+            GameActions.Bottom.ChannelOrb(new Frost(), true);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
 
         if (ProgressCooldown())
         {
-            GameActionsHelper2.ChannelOrb(new Frost(), true);
+            GameActions.Bottom.ChannelOrb(new Frost(), true);
         }
     }
 

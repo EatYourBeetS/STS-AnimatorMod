@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
@@ -63,7 +63,7 @@ public class StephanieAction extends AbstractGameAction
                 return;
             }
 
-            GameActionsHelper.AddToTop(new FetchAction(player.drawPile, selectedCard::HasSynergy, cardDraw, this::OnFetch));
+            GameActionsHelper_Legacy.AddToTop(new FetchAction(player.drawPile, selectedCard::HasSynergy, cardDraw, this::OnFetch));
         }
 
         this.tickDuration();

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions._legacy.common.TransformIntoSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
@@ -47,14 +47,16 @@ public class Vanir extends AnimatorCard_Boost
         CardGroup drawPile = AbstractDungeon.player.drawPile;
         if (drawPile.size() > 0)
         {
-            GameActionsHelper.AddToBottom(new TransformIntoSpecificCardAction(this, drawPile, drawPile, 1));
+            //TODO: Improve this
+            GameActions.Bottom.Add(new TransformIntoSpecificCardAction(this, drawPile, drawPile, 1));
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
+
         ProgressBoost();
     }
 

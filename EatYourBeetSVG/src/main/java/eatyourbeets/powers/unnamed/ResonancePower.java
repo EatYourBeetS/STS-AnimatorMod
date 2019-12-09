@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.UnnamedPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class ResonancePower extends UnnamedPower
 {
@@ -43,7 +43,7 @@ public class ResonancePower extends UnnamedPower
     {
         super.atEndOfTurn(isPlayer);
 
-        GameActionsHelper.AddToBottom(new ReducePowerAction(this.owner, this.owner, this, 1));
+        GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(this.owner, this.owner, this, 1));
     }
 
     @Override

@@ -12,7 +12,8 @@ import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
 import eatyourbeets.interfaces.metadata.Spellcaster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -44,7 +45,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.ChannelOrb(new Lightning(), true);
+        GameActions.Bottom.ChannelOrb(new Lightning(), true);
 
         this.resetAttributes();
     }
@@ -94,14 +95,14 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE"));
+        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
 
         for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.AddToBottom(new VFXAction(new LightningEffect(m1.drawX, m1.drawY)));
+            GameActions.Bottom.VFX(new LightningEffect(m1.drawX, m1.drawY));
         }
 
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
     }
 
     @Override

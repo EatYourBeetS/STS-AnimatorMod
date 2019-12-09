@@ -3,9 +3,8 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard_Status;
 import eatyourbeets.cards.Synergies;
 
@@ -26,7 +25,7 @@ public class GoblinSoldier extends AnimatorCard_Status
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
-        GameActionsHelper.DrawCard(AbstractDungeon.player, 1);
+        GameActions.Bottom.Draw(1);
     }
 
     @Override
@@ -34,7 +33,7 @@ public class GoblinSoldier extends AnimatorCard_Status
     {
         if (this.dontTriggerOnUseCard)
         {
-            GameActionsHelper.DamageTarget(p, p, this.magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+            GameActions.Bottom.DealDamage(p, p, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         }
     }
 }

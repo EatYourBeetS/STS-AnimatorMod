@@ -1,28 +1,26 @@
 package eatyourbeets.cards.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.BloodVial;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions._legacy.animator.KrulTepesAction;
-import eatyourbeets.actions._legacy.common.OnTargetDeadAction;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
-import eatyourbeets.relics.animator.ExquisiteBloodVial;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
+import eatyourbeets.relics.animator.ExquisiteBloodVial;
+import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -48,11 +46,20 @@ public class KrulTepes extends AnimatorCard
     {
         if (m != null)
         {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
-            DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn));
-            AbstractDungeon.actionManager.addToBottom(new OnTargetDeadAction(m, damageAction, new KrulTepesAction(m, this)));
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+            .SetDamageEffect(e -> AbstractDungeon.effectList.add(new BiteEffect(e.hb.cX, e.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy())))
+            .AddCallback(enemy ->
+            {
+                AbstractRoom room = AbstractDungeon.getCurrRoom();
+                if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
+                    && GameUtilities.TriggerOnKill(enemy, false)
+                    && EffectHistory.TryActivateLimited(cardID))
+                {
+                    ObtainReward();
+                }
+            });
 
-            GameActionsHelper.ApplyPower(p, m, new WeakPower(m, this.magicNumber, false), this.magicNumber);
+            GameActions.Bottom.ApplyWeak(p, m, magicNumber);
         }
     }
 
@@ -65,19 +72,19 @@ public class KrulTepes extends AnimatorCard
         }
     }
 
-    public boolean CanGetReward()
-    {
-        AbstractRoom room = AbstractDungeon.getCurrRoom();
-        for (RewardItem r : room.rewards)
-        {
-            if (r.relic != null && r.relic.relicId.equals(relicReward.relicId))
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
+//    public boolean CanGetReward()
+//    {
+//        AbstractRoom room = AbstractDungeon.getCurrRoom();
+//        for (RewardItem r : room.rewards)
+//        {
+//            if (r.relic != null && r.relic.relicId.equals(relicReward.relicId))
+//            {
+//                return false;
+//            }
+//        }
+//
+//        return true;
+//    }
 
     public void ObtainReward()
     {

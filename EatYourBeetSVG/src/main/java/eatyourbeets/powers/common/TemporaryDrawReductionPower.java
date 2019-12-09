@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawReductionPower;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class TemporaryDrawReductionPower extends DrawReductionPower implements CloneablePowerInterface
 {
@@ -22,7 +22,7 @@ public class TemporaryDrawReductionPower extends DrawReductionPower implements C
     {
         super.atStartOfTurnPostDraw();
 
-        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
+        GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
     }
 
     @Override

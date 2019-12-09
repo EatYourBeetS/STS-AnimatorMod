@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,7 +7,7 @@ import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
 {
@@ -40,7 +39,7 @@ public class Aqua extends AnimatorCard
 
         if (upgraded && transformed)
         {
-            GameActionsHelper2.GainTemporaryHP(secondaryValue);
+            GameActions.Bottom.GainTemporaryHP(secondaryValue);
         }
     }
 
@@ -51,7 +50,7 @@ public class Aqua extends AnimatorCard
 
         if (upgraded && transformed)
         {
-            GameActionsHelper2.GainTemporaryHP(secondaryValue);
+            GameActions.Bottom.GainTemporaryHP(secondaryValue);
         }
     }
 
@@ -60,13 +59,13 @@ public class Aqua extends AnimatorCard
     {
         if (!transformed)
         {
-            GameActionsHelper2.Heal(magicNumber);
-            GameActionsHelper2.Draw(1);
-            GameActionsHelper2.Callback(new WaitAction(0.1f), __ -> SetTransformed(true));
+            GameActions.Bottom.Heal(magicNumber);
+            GameActions.Bottom.Draw(1);
+            GameActions.Bottom.Callback(__ -> SetTransformed(true));
         }
         else
         {
-            GameActionsHelper2.VFX(new RainbowCardEffect());
+            GameActions.Bottom.VFX(new RainbowCardEffect());
         }
     }
 

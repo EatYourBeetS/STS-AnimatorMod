@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -19,17 +19,17 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
     protected boolean showEffect;
     protected boolean random;
 
-    public MoveCards(CardGroup sourcePile, CardGroup targetPile)
+    public MoveCards(CardGroup targetPile, CardGroup sourcePile)
     {
         this(targetPile, sourcePile, -1, false, false);
     }
 
-    public MoveCards(CardGroup sourcePile, CardGroup targetPile, int amount)
+    public MoveCards(CardGroup targetPile, CardGroup sourcePile, int amount)
     {
         this(targetPile, sourcePile, amount, false, false);
     }
 
-    public MoveCards(CardGroup sourcePile, CardGroup targetPile, int amount, boolean showEffect, boolean random)
+    public MoveCards(CardGroup targetPile, CardGroup sourcePile, int amount, boolean showEffect, boolean random)
     {
         super(ActionType.CARD_MANIPULATION);
 
@@ -72,7 +72,7 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
             for (int i = 0; i < max; i++)
             {
                 selectedCards.add(temp.Retrieve(AbstractDungeon.cardRandomRng));
-                GameActionsHelper2.AddToTop(new MoveCard(card, targetPile, sourcePile, showEffect));
+                GameActions.Top.MoveCard(card, targetPile, sourcePile, showEffect);
             }
 
             Complete(selectedCards);
@@ -96,8 +96,10 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 
             for (int i = max-1; i >= 0; i--)
             {
-                selectedCards.add(temp.get(i));
-                GameActionsHelper2.AddToTop(new MoveCard(card, targetPile, sourcePile, showEffect));
+                card = temp.get(i);
+
+                selectedCards.add(card);
+                GameActions.Top.MoveCard(card, targetPile, sourcePile, showEffect);
             }
 
             Complete(selectedCards);

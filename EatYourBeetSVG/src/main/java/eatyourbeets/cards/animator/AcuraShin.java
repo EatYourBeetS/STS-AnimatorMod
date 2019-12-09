@@ -7,7 +7,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.PoisonAffinityPower;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class AcuraShin extends AnimatorCard
 {
@@ -25,10 +25,10 @@ public class AcuraShin extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.ApplyPoison(p, m, magicNumber);
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetOptions(true, true);
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetOptions(true, true);
-        GameActionsHelper2.StackPower(new PoisonAffinityPower(p, 1));
+        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetOptions(true, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetOptions(true, true);
+        GameActions.Bottom.StackPower(new PoisonAffinityPower(p, 1));
     }
 
     @Override

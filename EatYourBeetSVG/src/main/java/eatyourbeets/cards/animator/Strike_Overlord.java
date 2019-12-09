@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 
 public class Strike_Overlord extends Strike
 {
@@ -23,8 +23,8 @@ public class Strike_Overlord extends Strike
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, this.magicNumber));
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseDamage += magicNumber);
     }
 
     @Override

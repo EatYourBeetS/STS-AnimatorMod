@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.actions._legacy.common.ModifyCostAction;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -30,7 +31,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
 
         if (cost > 0)
         {
-            GameActionsHelper.AddToBottom(new ReduceCostAction(this.uuid, 1));
+            GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.modifyCostForCombat(-1));
         }
     }
 
@@ -41,15 +42,19 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
 
         if (cost > 0)
         {
-            GameActionsHelper.AddToBottom(new ReduceCostAction(this.uuid, 1));
+            GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.modifyCostForCombat(-1));
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ChannelOrb(new Plasma(), true);
-        GameActionsHelper.AddToBottom(new ModifyCostAction(this.uuid, 4));
+        GameActions.Bottom.ChannelOrb(new Plasma(), true);
+        GameActions.Bottom.ModifyAllCombatInstances(uuid, c ->
+        {
+            c.isCostModified = c.isCostModifiedForTurn = false;
+            c.cost = c.costForTurn = 4;
+        });
     }
 
     @Override

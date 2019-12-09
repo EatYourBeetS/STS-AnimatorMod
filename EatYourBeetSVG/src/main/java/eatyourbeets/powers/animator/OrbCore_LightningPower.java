@@ -11,7 +11,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.animator.OrbCore_Lightning;
 
 import java.util.ArrayList;
@@ -34,15 +35,15 @@ public class OrbCore_LightningPower extends OrbCore_AbstractPower
     {
         int[] multiDamage = DamageInfo.createDamageMatrix(value, true);
 
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE"));
+        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
         ArrayList<AbstractMonster> enemies = AbstractDungeon.getCurrRoom().monsters.monsters;
         for(int i = 0; i < enemies.size(); ++i)
         {
             AbstractMonster enemy = enemies.get(i);
             if (!enemy.isDeadOrEscaped())
             {
-                GameActionsHelper.AddToBottom(new VFXAction(new LightningEffect(enemy.drawX, enemy.drawY)));
-                GameActionsHelper.AddToBottom(new DamageAction(enemy, new DamageInfo(p, multiDamage[i], DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE, true));
+                GameActions.Bottom.VFX(new LightningEffect(enemy.drawX, enemy.drawY));
+                GameActionsHelper_Legacy.AddToBottom(new DamageAction(enemy, new DamageInfo(p, multiDamage[i], DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE, true));
             }
         }
     }

@@ -1,26 +1,16 @@
 package eatyourbeets.cards.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.common.ChooseFromAnyPileAction;
-import eatyourbeets.actions.basic.MoveCard;
+import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.interfaces.OnCallbackSubscriber;
+import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
-import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.utilities.GameActions;
 
-import java.util.ArrayList;
-
-public class Genos extends AnimatorCard implements OnCallbackSubscriber
+public class Genos extends AnimatorCard
 {
     public static final String ID = Register(Genos.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -36,13 +26,22 @@ public class Genos extends AnimatorCard implements OnCallbackSubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, this.magicNumber), this.magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, secondaryValue), secondaryValue);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.ApplyBurning(p, m, magicNumber);
+        GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
 
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper.DelayedAction(this);
+            GameActions.Bottom.FetchFromPile(name, 1, p.drawPile, p.discardPile)
+            .SetOptions(false, true)
+            .SetFilter(c -> c.costForTurn >= 3)
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    cards.get(0).retain = true;
+                }
+            });
         }
     }
 
@@ -52,42 +51,6 @@ public class Genos extends AnimatorCard implements OnCallbackSubscriber
         if (TryUpgrade())
         {
             upgradeDamage(3);
-        }
-    }
-
-    private CardGroup GetHighCost(CardGroup source)
-    {
-        CardGroup result = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        for (AbstractCard c : source.group)
-        {
-            if (c.costForTurn >= 3)
-            {
-                result.group.add(c);
-            }
-        }
-
-        return result;
-    }
-
-    private void OnCardSelected(Object state, ArrayList<AbstractCard> cards)
-    {
-        if (state == this && cards != null && cards.size() > 0)
-        {
-            AbstractCard card = cards.get(0);
-            card.retain = true;
-            GameActionsHelper.AddToBottom(new MoveCard(card, AbstractDungeon.player.hand, true));
-        }
-    }
-
-
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        if (state == this && action != null)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.AddToBottom(new ChooseFromAnyPileAction(1, this::OnCardSelected, this,
-                    FetchAction.TEXT[0], GetHighCost(p.drawPile), GetHighCost(p.discardPile)));
         }
     }
 }

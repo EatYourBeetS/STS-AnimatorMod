@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions._legacy.common.DrawSpecificCardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -84,12 +85,13 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
         {
             if (Sora.ID.equals(c.cardID))
             {
-                GameActionsHelper.AddToTop(new DrawSpecificCardAction(c));
+                GameActions.Top.MoveCard(c, p.hand, p.drawPile, true);
+
                 break;
             }
         }
 
-        GameActionsHelper.ApplyPower(p, p, new ShiroPower(p), 1);
+        GameActions.Bottom.StackPower(new ShiroPower(p, 1));
     }
 
     @Override

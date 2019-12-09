@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class BiyorigoPower extends AnimatorPower
 {
@@ -26,7 +26,7 @@ public class BiyorigoPower extends AnimatorPower
 
         if (owner == target && DexterityPower.POWER_ID.equals(power.ID))
         {
-            GameActionsHelper.GainForce(amount);
+            GameActions.Bottom.GainForce(amount);
             this.flashWithoutSound();
         }
     }

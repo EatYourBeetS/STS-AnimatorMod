@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class DrawAndUpgradeCardAction extends AbstractGameAction
 {
@@ -42,8 +42,8 @@ public class DrawAndUpgradeCardAction extends AbstractGameAction
                 c.flash();
 
                 //AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(c.target_x, c.target_y));
-                GameActionsHelper.AddToTop(new RefreshHandLayoutAction());
-                GameActionsHelper.AddToTop(new DrawSpecificCardAction(c));
+                GameActionsHelper_Legacy.AddToTop(new RefreshHandLayoutAction());
+                GameActionsHelper_Legacy.AddToTop(new DrawSpecificCardAction(c));
 
                 if (count == 0)
                 {
@@ -54,12 +54,12 @@ public class DrawAndUpgradeCardAction extends AbstractGameAction
 
         if (drawPile.size() < count && player.discardPile.size() > 0)
         {
-            GameActionsHelper.AddToTop(new DrawAndUpgradeCardAction(player, count));
-            GameActionsHelper.AddToTop(new EmptyDeckShuffleAction());
+            GameActionsHelper_Legacy.AddToTop(new DrawAndUpgradeCardAction(player, count));
+            GameActionsHelper_Legacy.AddToTop(new EmptyDeckShuffleAction());
         }
         else if (count > 0)
         {
-            GameActionsHelper.AddToTop(new DrawCardAction(AbstractDungeon.player, count, false));
+            GameActionsHelper_Legacy.AddToTop(new DrawCardAction(AbstractDungeon.player, count, false));
         }
     }
 }

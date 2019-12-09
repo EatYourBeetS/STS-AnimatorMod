@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.Nanami;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -15,14 +15,14 @@ public class NanamiEffect_Defend_Buff extends NanamiEffect
         int damage = GetDamage(nanami);
         if (damage > 0)
         {
-            GameActionsHelper.DamageTarget(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            GameActionsHelper_Legacy.DamageTarget(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
             GameUtilities.UsePenNib();
         }
 
         int strength = GetStrength(nanami);
         if (strength > 0)
         {
-            GameActionsHelper.GainForce(strength);
+            GameActions.Bottom.GainForce(strength);
         }
     }
 

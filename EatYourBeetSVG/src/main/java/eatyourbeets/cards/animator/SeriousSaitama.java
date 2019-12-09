@@ -4,8 +4,10 @@ import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -23,20 +25,18 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
 
         Initialize(0, 0);
 
-        this.tags.add(AbstractEnums.CardTags.PURGE);
-
+        SetPurge(true);
         SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
-        for (AbstractMonster m1 : enemies)
+        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
-            if (!m1.hasPower(StunMonsterPower.POWER_ID))
+            if (!enemy.hasPower(StunMonsterPower.POWER_ID))
             {
-                GameActionsHelper.ApplyPower(p, m1, new StunMonsterPower(m1, 1), 1);
+                GameActions.Bottom.ApplyPower(p, enemy, new StunMonsterPower(enemy, 1), 1);
             }
         }
 
@@ -51,6 +51,11 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
             amount += 1;
         }
 
+        if (p.hasRelic(ChemicalX.ID))
+        {
+            amount += ChemicalX.BOOST;
+        }
+
         if (!this.freeToPlayOnce)
         {
             p.energy.use(EnergyPanel.totalCount);
@@ -58,7 +63,7 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
 
         if (amount > 0)
         {
-            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, amount), amount);
+            GameActions.Bottom.GainStrength(amount);
         }
     }
 

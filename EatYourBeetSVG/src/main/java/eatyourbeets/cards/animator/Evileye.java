@@ -2,15 +2,14 @@ package eatyourbeets.cards.animator;
 
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
-import eatyourbeets.actions._legacy.common.VariableDiscardAction;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -40,13 +39,24 @@ public class Evileye extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.Draw(magicNumber);
-        GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, this, this::OnDiscard, true));
+        GameActions.Bottom.Draw(magicNumber);
+        GameActions.Bottom.Reload(name, cards ->
+        {
+            ArrayList<AbstractOrb> orbs = AbstractDungeon.player.orbs;
+            if (orbs.size() > 0)
+            {
+                for (int i = 0; i < cards.size(); i++)
+                {
+                    orbs.get(0).onStartOfTurn();
+                    orbs.get(0).onEndOfTurn();
+                }
+            }
+        });
 
         if (HasActiveSynergy() && EffectHistory.TryActivateLimited(this.cardID))
         {
-            GameActionsHelper2.GainIntellect(2);
-            GameActionsHelper.AddToBottom(new IncreaseMaxOrbAction(1));
+            GameActions.Bottom.GainIntellect(2);
+            GameActionsHelper_Legacy.AddToBottom(new IncreaseMaxOrbAction(1));
         }
     }
 
@@ -56,24 +66,6 @@ public class Evileye extends AnimatorCard implements Spellcaster
         if (TryUpgrade())
         {
             upgradeBaseCost(1);
-        }
-    }
-
-    private void OnDiscard(Object state, ArrayList<AbstractCard> discarded)
-    {
-        if (state == null || discarded == null)
-        {
-            return;
-        }
-
-        AbstractPlayer p = AbstractDungeon.player;
-        if (p.orbs.size() > 0)
-        {
-            for (int i = 0; i < discarded.size(); i++)
-            {
-                p.orbs.get(0).onStartOfTurn();
-                p.orbs.get(0).onEndOfTurn();
-            }
         }
     }
 }

@@ -2,14 +2,8 @@ package eatyourbeets.cards.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
@@ -24,10 +18,9 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions._legacy.animator.HigakiRinneAction;
-import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.HigakiRinnePower;
@@ -42,7 +35,7 @@ public class HigakiRinne extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
 
-        Initialize(0,0,2);
+        Initialize(0, 0, 2);
 
         SetSynergy(Synergies.Katanagatari, true);
     }
@@ -72,23 +65,25 @@ public class HigakiRinne extends AnimatorCard
         int n = AbstractDungeon.cardRandomRng.random(100);
         if (n < 3)
         {
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.6f));
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy()));
+            GameActions.Bottom.Wait(0.5f);
+            GameActions.Bottom.MakeCardInHand(this, false, true);
         }
         else if (n < 12)
         {
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.6f));
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Shiv()));
+            GameActions.Bottom.Wait(0.5f);
+            GameActions.Bottom.MakeCardInHand(new Shiv(), false, false);
         }
         else if (n < 38)
         {
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.8f));
-            AbstractDungeon.actionManager.addToBottom(new DiscardSpecificCardAction(this, AbstractDungeon.player.hand));
-            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, 1));
+            AbstractPlayer p = AbstractDungeon.player;
+
+            GameActions.Top.Wait(0.5f);
+            GameActions.Top.Draw(1);
+            GameActions.Top.MoveCard(this, p.discardPile, p.hand, true);
         }
         else if (n < 45)
         {
-            AbstractDungeon.actionManager.addToBottom(new SFXAction(JavaUtilities.GetRandomElement(sounds)));
+            GameActions.Bottom.SFX(JavaUtilities.GetRandomElement(sounds));
         }
         else if (n < 55)
         {
@@ -108,29 +103,29 @@ public class HigakiRinne extends AnimatorCard
         int n = AbstractDungeon.cardRandomRng.random(100);
         if (n < 20)
         {
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Shiv()));
+            GameActions.Bottom.MakeCardInHand(new Shiv(), false, false);
         }
         else if (n < 40)
         {
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Madness()));
+            GameActions.Bottom.MakeCardInHand(new Madness(), false, false);
         }
         else if (n < 60)
         {
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Slimed()));
+            GameActions.Bottom.MakeCardInHand(new Slimed(), false, false);
         }
         else if (n < 64)
         {
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy()));
+            GameActions.Bottom.MakeCardInHand(this, false, true);
         }
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (this.type == CardType.POWER)
         {
             int stacks = upgraded ? 2 : 1;
-            GameActionsHelper.ApplyPower(p, p, new HigakiRinnePower(p, this, stacks), stacks);
+            GameActions.Bottom.StackPower(new HigakiRinnePower(p, this, stacks));
         }
         else if (this.type == CardType.ATTACK)
         {
@@ -140,14 +135,14 @@ public class HigakiRinne extends AnimatorCard
         {
             for (int i = 0; i < this.magicNumber; i++)
             {
-                AbstractDungeon.actionManager.addToBottom(new WaitAction(0.2f));
-                GameActionsHelper.AddToBottom(new HigakiRinneAction(this));
+                GameActions.Bottom.Wait(0.2f);
+                GameActions.Bottom.Add(new HigakiRinneAction(this));
             }
         }
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {
@@ -167,29 +162,33 @@ public class HigakiRinne extends AnimatorCard
             {
                 int damage = rng.random(1);
                 DamageInfo info = new DamageInfo(p, damage, DamageInfo.DamageType.THORNS);
-                GameActionsHelper.AddToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.POISON, true));
+                GameActions.Bottom.Add(new DamageAction(m, info, AbstractGameAction.AttackEffect.POISON, true));
             }
         }
         else if (n < 10)
         {
             int d = upgraded ? 20 : 15;
 
-            GameActionsHelper.AddToBottom(new WaitAction(0.35f));
-            GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.RED)));
-            GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5f));
-            GameActionsHelper.AddToBottom(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
-            GameActionsHelper.DamageTarget(p, m, 1, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
-            GameActionsHelper.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
-            GameActionsHelper.AddToBottom(new WaitRealtimeAction(0.8f));
-            GameActionsHelper.DamageTarget(p, m, rng.random(10, d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
+            GameActions.Bottom.Wait(0.35f);
+            GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
+            GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
+            GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F));
+
+            GameActions.Bottom.DealDamage(p, m, 1, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+
+            GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
+            GameActions.Bottom.WaitRealtime(0.6f);
+
+            GameActions.Bottom.DealDamage(p, m, rng.random(10, d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
         }
         else
         {
             int d = upgraded ? 8 : 6;
 
-            GameActionsHelper.DamageTarget(p, m, rng.random(2,d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
-            GameActionsHelper.DamageTarget(p, m, rng.random(2,d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
-            GameActionsHelper.AddToBottom(new SFXAction(JavaUtilities.GetRandomElement(sounds)));
+            GameActions.Bottom.DealDamage(p, m, rng.random(2, d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
+            GameActions.Bottom.DealDamage(p, m, rng.random(2, d), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON);
+
+            GameActions.Bottom.SFX(JavaUtilities.GetRandomElement(sounds));
         }
     }
 

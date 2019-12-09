@@ -4,7 +4,8 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class WornHelmet extends AnimatorRelic
@@ -30,8 +31,8 @@ public class WornHelmet extends AnimatorRelic
     {
         this.flash();
 
-        GameActionsHelper.AddToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-        GameActionsHelper.GainBlock(AbstractDungeon.player, BLOCK_AMOUNT1);
+        GameActionsHelper_Legacy.AddToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        GameActions.Bottom.GainBlock(BLOCK_AMOUNT1);
         this.counter = 0;
     }
 
@@ -68,7 +69,7 @@ public class WornHelmet extends AnimatorRelic
 
         if (block > 0)
         {
-            GameActionsHelper.GainBlock(AbstractDungeon.player, block);
+            GameActions.Bottom.GainBlock(block);
         }
     }
 }

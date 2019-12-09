@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class GrowthPotion extends AbstractPotion
@@ -26,9 +26,9 @@ public class GrowthPotion extends AbstractPotion
 
     public void use(AbstractCreature target)
     {
-        GameActionsHelper.GainForce(potency);
-        GameActionsHelper2.GainIntellect(potency);
-        GameActionsHelper.GainAgility(potency);
+        GameActions.Bottom.GainForce(potency);
+        GameActions.Bottom.GainIntellect(potency);
+        GameActions.Bottom.GainAgility(potency);
     }
 
     public AbstractPotion makeCopy()

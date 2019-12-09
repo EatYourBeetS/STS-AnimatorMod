@@ -2,13 +2,13 @@ package eatyourbeets.actions.basic;
 
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.*;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
@@ -82,7 +82,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         if (this.sourcePile == player.exhaustPile)
         {
-            card.unfadeOut();
+            GameActions.Bottom.Callback(card, (card, __) -> ((AbstractCard)card).unfadeOut());
         }
 
         if (this.targetPile == player.hand && player.hand.size() >= BaseMod.MAX_HAND_SIZE)
@@ -124,8 +124,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
                     case EXHAUST_PILE:
                     {
-                        //AbstractDungeon.effectList.add(new ExhaustCardEffect(card));
-                        GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(card, sourcePile));
+                        GameActions.Top.Exhaust(card, sourcePile);
                         break;
                     }
 

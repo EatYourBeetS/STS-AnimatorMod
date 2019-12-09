@@ -2,7 +2,7 @@ package eatyourbeets.monsters.SharedMoveset;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -24,7 +24,7 @@ public class Move_ShieldAll extends AbstractMove
     {
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.GainBlock(m, blockAmount);
+            GameActionsHelper_Legacy.GainBlock(m, blockAmount);
         }
     }
 }

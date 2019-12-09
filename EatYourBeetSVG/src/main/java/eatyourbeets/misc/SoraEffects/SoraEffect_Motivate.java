@@ -1,7 +1,7 @@
 package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class SoraEffect_Motivate extends SoraEffect
 {
@@ -14,8 +14,8 @@ public class SoraEffect_Motivate extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper.Motivate(1, 1);
-//        GameActionsHelper.AddToBottom(new RandomCostReduction(sora.magicNumber, false));
-//        GameActionsHelper.AddToBottom(new RandomCostReduction(sora.magicNumber, false));
+        GameActionsHelper_Legacy.Motivate(1, 1);
+//        GameActionsHelper_Legacy.AddToBottom(new RandomCostReduction(sora.magicNumber, false));
+//        GameActionsHelper_Legacy.AddToBottom(new RandomCostReduction(sora.magicNumber, false));
     }
 }

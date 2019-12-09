@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class VitalityPower extends AnimatorPower
 {
@@ -25,7 +25,7 @@ public class VitalityPower extends AnimatorPower
         {
             this.flash();
             TempHPField.tempHp.set(owner, TempHPField.tempHp.get(owner) + this.amount);
-            //GameActionsHelper.GainTemporaryHP(owner, owner, amount);
+            //GameActions.Bottom.GainTemporaryHP(owner, owner, amount);
         }
 
         return damageAmount;
@@ -33,6 +33,6 @@ public class VitalityPower extends AnimatorPower
 
     public void atStartOfTurn()
     {
-        GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+        GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
     }
 }

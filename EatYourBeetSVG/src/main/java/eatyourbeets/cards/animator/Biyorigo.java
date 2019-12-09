@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.BiyorigoPower;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Biyorigo extends AnimatorCard
 {
@@ -23,8 +23,8 @@ public class Biyorigo extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.GainArtifact(magicNumber);
-        GameActionsHelper2.StackPower(new BiyorigoPower(p, 1));
+        GameActions.Bottom.GainArtifact(magicNumber);
+        GameActions.Bottom.StackPower(new BiyorigoPower(p, 1));
     }
 
     @Override

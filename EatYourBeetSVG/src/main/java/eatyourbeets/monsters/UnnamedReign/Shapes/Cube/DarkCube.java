@@ -1,6 +1,7 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.SharedMoveset.Move_Attack;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_Defend;
@@ -44,6 +45,6 @@ public class DarkCube extends Cube
                 break;
         }
 
-        GameActionsHelper.ApplyPower(this, this, new DarkCubePower(this, amount), amount);
+        GameActions.Bottom.ApplyPower(this, this, new DarkCubePower(this, amount), amount);
     }
 }

@@ -4,7 +4,7 @@ import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Defend extends UnnamedCard
 {
@@ -22,7 +22,7 @@ public class Defend extends UnnamedCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
     }
 
     @Override

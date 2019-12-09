@@ -15,7 +15,8 @@ import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
@@ -79,7 +80,8 @@ public class Kira extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, m, new StrengthPower(m, this.magicNumber), this.magicNumber);
+        GameActions.Bottom.ApplyPower(p, m, new StrengthPower(m, magicNumber), magicNumber);
+
         updateCountdown(m);
 
         if (m.type == AbstractMonster.EnemyType.BOSS)
@@ -87,15 +89,16 @@ public class Kira extends AnimatorCard
             CardCrawlGame.music.silenceBGMInstantly();
             CardCrawlGame.music.silenceTempBgmInstantly();
 
-            GameActionsHelper.AddToBottom(new SFXAction("ANIMATOR_KIRA_POWER"));
+            GameActions.Bottom.SFX("ANIMATOR_KIRA_POWER");
             AbstractDungeon.effectsQueue.add(new CallbackEffect(new WaitRealtimeAction(9f),
-                    (state, action) -> CardCrawlGame.music.unsilenceBGM(), this));
+                    this, (state, action) -> CardCrawlGame.music.unsilenceBGM()));
         }
         else
         {
-            GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
+            GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
         }
-        GameActionsHelper.AddToBottom(new VFXAction(new CollectorCurseEffect(m.hb.cX, m.hb.cY), 2.0F));
+
+        GameActions.Bottom.VFX(new CollectorCurseEffect(m.hb.cX, m.hb.cY), 2.0F);
 
         AbstractPower fading = m.getPower(FadingPower.POWER_ID);
         if (fading != null)

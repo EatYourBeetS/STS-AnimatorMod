@@ -1,7 +1,6 @@
 package eatyourbeets.actions.damage;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,7 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelperBase;
 
 import java.util.function.Consumer;
 
@@ -125,12 +125,12 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {
-                GameActionsHelper2.ClearPostCombatActions();
+                GameActionsHelperBase.ClearPostCombatActions();
             }
 
             if (!this.skipWait && !Settings.FAST_MODE)
             {
-                GameActionsHelper2.AddToTop(new WaitAction(0.1F));
+                GameActions.Top.Wait(0.1f);
             }
 
             Complete(target);
@@ -147,8 +147,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
                 this.goldAmount = this.target.gold;
             }
 
-            AbstractCreature var10000 = this.target;
-            var10000.gold -= this.goldAmount;
+            target.gold -= this.goldAmount;
 
             for (int i = 0; i < this.goldAmount; ++i)
             {

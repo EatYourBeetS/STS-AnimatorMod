@@ -1,12 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard_Status;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.powers.common.SelfDamagePower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Overheat extends AnimatorCard_Status
@@ -31,14 +30,16 @@ public class Overheat extends AnimatorCard_Status
     {
         if (!this.dontTriggerOnUseCard)
         {
-            GameActionsHelper2.Draw(2);
-            GameActionsHelper.DamageTarget(p, p, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
-
-            for (AbstractCard c : GameUtilities.GetAllCopies(this))
+            GameActions.Bottom.Draw(2);
+            GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
+            GameActions.Bottom.Callback(__ ->
             {
-                c.baseMagicNumber += 1;
-                c.applyPowers();
-            }
+                for (AbstractCard c : GameUtilities.GetAllCopies(this))
+                {
+                    c.baseMagicNumber += 1;
+                    c.applyPowers();
+                }
+            });
         }
     }
 }

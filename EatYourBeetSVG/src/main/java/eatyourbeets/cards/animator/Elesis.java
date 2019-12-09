@@ -3,11 +3,10 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.common.ImprovedModifyDamageAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Elesis extends AnimatorCard
 {
@@ -28,7 +27,7 @@ public class Elesis extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActionsHelper2.ModifyAllCombatInstances(uuid, c ->
+        GameActions.Bottom.ModifyAllCombatInstances(uuid, c ->
         {
             c.baseDamage += secondaryValue;
             c.applyPowers();
@@ -40,15 +39,15 @@ public class Elesis extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper2.ModifyAllCombatInstances(uuid, c -> c.baseDamage += secondaryValue);
+        GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseDamage += secondaryValue);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActionsHelper2.GainForce(magicNumber);
-        GameActionsHelper2.GainAgility(magicNumber);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.GainForce(magicNumber);
+        GameActions.Bottom.GainAgility(magicNumber);
     }
 
     @Override

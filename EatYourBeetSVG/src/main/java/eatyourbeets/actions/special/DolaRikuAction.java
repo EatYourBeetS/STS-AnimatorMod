@@ -1,4 +1,4 @@
-package eatyourbeets.actions._legacy.animator;
+package eatyourbeets.actions.special;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,7 +9,8 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.DolaRiku;
 import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -96,7 +97,7 @@ public class DolaRikuAction extends EYBAction
             AbstractCard card = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 
             card.modifyCostForCombat(-1);
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(card));
+            GameActions.Bottom.MakeCardInHand(card, false, false);
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }

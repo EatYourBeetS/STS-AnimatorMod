@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions._legacy.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
@@ -45,10 +45,10 @@ public class Truth extends AnimatorCard_UltraRare
     {
         int amount = 1;
 
-        GameActionsHelper.ApplyPower(p, p, new FocusPower(p, amount), amount);
-        GameActionsHelper.GainEnergy(amount + 1);
-        GameActionsHelper2.Draw(amount + 2);
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, amount + 3), amount + 3);
+        GameActions.Bottom.GainFocus(amount);
+        GameActions.Bottom.GainEnergy(amount + 1);
+        GameActions.Bottom.Draw(amount + 2);
+        GameActions.Bottom.GainStrength(amount + 3);
 
         int count = 0;
         ArrayList<String> orbs = new ArrayList<>();
@@ -63,7 +63,7 @@ public class Truth extends AnimatorCard_UltraRare
 
         if (count >= 3)
         {
-            GameActionsHelper.AddToBottom(new RemoveAllOrbsAction());
+            GameActions.Bottom.Add(new RemoveAllOrbsAction());
         }
         else
         {
@@ -85,8 +85,10 @@ public class Truth extends AnimatorCard_UltraRare
         CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
-            if (!c.cardID.equals(Wound.ID) && !c.cardID.equals(Necronomicurse.ID) && !c.cardID.equals(AscendersBane.ID)
-                    && !SoulboundField.soulbound.get(c) && !c.cardID.equals(this.cardID))
+            if (!c.cardID.equals(Wound.ID) && !c.cardID.equals(this.cardID)
+                && !c.cardID.equals(Necronomicurse.ID)
+                && !c.cardID.equals(AscendersBane.ID)
+                && !SoulboundField.soulbound.get(c))
             {
                 temp.group.add(c);
             }
@@ -94,18 +96,15 @@ public class Truth extends AnimatorCard_UltraRare
 
         if (temp.size() > 0)
         {
-            GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, temp, this::OnCardSelected, this, TEXT[5] + Wound.NAME));
-        }
-    }
-
-    private void OnCardSelected(Object state, ArrayList<AbstractCard> cards)
-    {
-        if (state == this && cards != null && cards.size() == 1)
-        {
-            AbstractCard card = cards.get(0);
-            AbstractPlayer p = AbstractDungeon.player;
-            p.masterDeck.removeCard(card);
-            p.masterDeck.addToTop(new Wound());
+            GameActions.Bottom.SelectFromPile(name, 1, temp)
+            .SetOptions(false, false)
+            .SetMessage(TEXT[5] + Wound.NAME)
+            .AddCallback(cards ->
+            {
+                AbstractCard card = cards.get(0);
+                AbstractDungeon.player.masterDeck.removeCard(card);
+                AbstractDungeon.player.masterDeck.addToTop(new Wound());
+            });
         }
     }
 }

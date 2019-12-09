@@ -17,7 +17,7 @@ public class CallbackEffect extends AbstractGameEffect
         this(action, null, null);
     }
 
-    public CallbackEffect(AbstractGameAction action, BiConsumer<Object, AbstractGameAction> onCompletion, Object state)
+    public CallbackEffect(AbstractGameAction action, Object state, BiConsumer<Object, AbstractGameAction> onCompletion)
     {
         this.action = action;
         this.onCompletion = onCompletion;

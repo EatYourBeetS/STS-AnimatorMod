@@ -1,10 +1,9 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FrailPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard_Status;
 import eatyourbeets.cards.Synergies;
 
@@ -25,7 +24,7 @@ public class GoblinShaman extends AnimatorCard_Status
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
-        GameActionsHelper.DrawCard(AbstractDungeon.player, 1);
+        GameActions.Bottom.Draw(1);
     }
 
     @Override
@@ -33,7 +32,7 @@ public class GoblinShaman extends AnimatorCard_Status
     {
         if (this.dontTriggerOnUseCard)
         {
-            GameActionsHelper.ApplyPower(p, p, new FrailPower(p,1, false),1);
+            GameActions.Bottom.StackPower(new FrailPower(p, 1, false));
         }
     }
 }

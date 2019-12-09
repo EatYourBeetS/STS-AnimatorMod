@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.StSLib;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,7 +15,7 @@ import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnLoseHpSubscriber;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleStartSubscriber
@@ -91,7 +90,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new HealAction(p, p, magicNumber));
+        GameActions.Bottom.Heal(magicNumber);
     }
 
     @Override

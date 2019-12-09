@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions._legacy.common.DrawSpecificCardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -29,15 +29,15 @@ public class Raven extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
         if (GameUtilities.IsAttacking(m.intent))
         {
-            GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
+            GameActions.Bottom.ApplyWeak(p, m, 1);
         }
         else
         {
-            GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 1, false), 1);
+            GameActions.Bottom.ApplyVulnerable(p, m, 1);
         }
 
         if (p.drawPile.size() > 0)
@@ -55,7 +55,7 @@ public class Raven extends AnimatorCard
 
             if (selected != null)
             {
-                GameActionsHelper.AddToTop(new DrawSpecificCardAction(selected));
+                GameActions.Top.MoveCard(selected, p.hand, p.drawPile, true);
             }
         }
     }

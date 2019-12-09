@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class SupportDamageAction extends AbstractGameAction
                 {
                     if (GameUtilities.GetCurrentEnemies(true).size() > 0)
                     {
-                        GameActionsHelper.AddToTop(new SupportDamageAction(info, attackEffect, bestTarget));
+                        GameActionsHelper_Legacy.AddToTop(new SupportDamageAction(info, attackEffect, bestTarget));
                     }
 
                     this.isDone = true;

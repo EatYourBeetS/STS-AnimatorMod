@@ -9,7 +9,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Azekura extends AnimatorCard implements MartialArtist
 {
@@ -37,19 +37,19 @@ public class Azekura extends AnimatorCard implements MartialArtist
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper2.StackPower(new PlatedArmorPower(AbstractDungeon.player, secondaryValue));
+        GameActions.Bottom.StackPower(new PlatedArmorPower(AbstractDungeon.player, secondaryValue));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.GainBlock(this.block);
-        GameActionsHelper2.GainBlock(this.block);
-        GameActionsHelper2.StackPower(new EarthenThornsPower(p, magicNumber));
+        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.StackPower(new EarthenThornsPower(p, magicNumber));
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper2.StackPower(new PlatedArmorPower(p, secondaryValue));
+            GameActions.Bottom.StackPower(new PlatedArmorPower(p, secondaryValue));
         }
     }
 

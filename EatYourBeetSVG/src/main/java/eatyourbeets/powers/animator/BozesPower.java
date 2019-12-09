@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
@@ -34,7 +34,7 @@ public class BozesPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 
     @Override
@@ -47,8 +47,8 @@ public class BozesPower extends AnimatorPower
         {
             if (amount > 0)
             {
-                GameActionsHelper.ApplyPower(owner, owner, new SupportDamagePower(owner, amount), amount);
-                //GameActionsHelper.GainBlock(owner, amount);
+                GameActionsHelper_Legacy.ApplyPower(owner, owner, new SupportDamagePower(owner, amount), amount);
+                //GameActions.Bottom.GainBlock(owner, amount);
 
                 this.flash();
             }

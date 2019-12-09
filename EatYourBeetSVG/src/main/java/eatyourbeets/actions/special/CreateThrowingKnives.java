@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
 import eatyourbeets.cards.animator.ThrowingKnife;
+import eatyourbeets.utilities.GameActions;
 
 public class CreateThrowingKnives extends EYBAction
 {
@@ -31,14 +33,8 @@ public class CreateThrowingKnives extends EYBAction
         int max = Math.min(amount, BaseMod.MAX_HAND_SIZE - player.hand.size());
         for (int i = 0; i < max; i++)
         {
-            AbstractCard card = ThrowingKnife.GetRandomCard();
-
-            if (upgraded)
-            {
-                card.upgrade();
-            }
-
-            AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(card));
+            GameActions.Top.MakeCard(ThrowingKnife.GetRandomCard(), player.hand)
+            .SetOptions(upgraded, false);
         }
 
         Complete();

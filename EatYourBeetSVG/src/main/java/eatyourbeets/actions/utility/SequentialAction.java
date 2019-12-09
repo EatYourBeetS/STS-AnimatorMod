@@ -2,7 +2,7 @@ package eatyourbeets.actions.utility;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
 
 public class SequentialAction extends EYBAction
 {
@@ -24,7 +24,7 @@ public class SequentialAction extends EYBAction
     {
         if (updateAction())
         {
-            GameActionsHelper.AddToTop(action2);
+            GameActions.Top.Add(action2);
 
             this.isDone = true;
         }

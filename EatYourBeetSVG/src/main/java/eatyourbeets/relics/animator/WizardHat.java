@@ -13,7 +13,8 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -50,7 +51,7 @@ public class WizardHat extends AnimatorRelic
         super.atBattleStart();
 
         this.counter = 1;
-        GameActionsHelper2.GainIntellect(INTELLECT_AMOUNT);
+        GameActions.Bottom.GainIntellect(INTELLECT_AMOUNT);
     }
 
     @Override
@@ -65,23 +66,24 @@ public class WizardHat extends AnimatorRelic
             {
                 setCounter(counter - 1);
 
-                GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.1F));
-                GameActionsHelper.AddToBottom(new WaitAction(0.35f));
-                GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.2F));
-                GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
-                GameActionsHelper.AddToBottom(new WaitAction(0.35f));
-                GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.3F));
-                GameActionsHelper.AddToBottom(new WaitAction(0.35f));
-                GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.RED)));
-                GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5f));
+                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.1F);
+                GameActions.Bottom.Wait(0.35f);
+                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.2F);
+                GameActions.Bottom.VFX(new BorderFlashEffect(Color.ORANGE));
+                GameActions.Bottom.Wait(0.35f);
+                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.3F);
+                GameActions.Bottom.Wait(0.35f);
+                GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
+                GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
+
                 for (AbstractCreature m1 : GameUtilities.GetCurrentEnemies(true))
                 {
-                    GameActionsHelper.AddToBottom(new VFXAction(new FlameBarrierEffect(m1.hb_x, m1.hb_y)));
-                    GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(m1.hb_x, m1.hb_y)));
+                    GameActions.Bottom.VFX((new FlameBarrierEffect(m1.hb_x, m1.hb_y)));
+                    GameActions.Bottom.VFX((new ExplosionSmallEffect(m1.hb_x, m1.hb_y)));
                 }
 
                 int[] multiDamage = DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true);
-                GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+                GameActionsHelper_Legacy.DamageAllEnemies(AbstractDungeon.player, multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
             }
         }
     }

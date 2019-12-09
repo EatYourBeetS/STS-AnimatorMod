@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.animator.OrbCore_Dark;
 
 public class OrbCore_DarkPower extends OrbCore_AbstractPower
@@ -28,8 +28,8 @@ public class OrbCore_DarkPower extends OrbCore_AbstractPower
     {
         if (p.hand.size() < BaseMod.MAX_HAND_SIZE)
         {
-            GameActionsHelper.AddToBottom(new ApplyPowerToRandomEnemyAction(p, new VulnerablePower(null, value, false), value));
-            GameActionsHelper.AddToBottom(new ApplyPowerToRandomEnemyAction(p, new WeakPower(null, value, false), value));
+            GameActionsHelper_Legacy.AddToBottom(new ApplyPowerToRandomEnemyAction(p, new VulnerablePower(null, value, false), value));
+            GameActionsHelper_Legacy.AddToBottom(new ApplyPowerToRandomEnemyAction(p, new WeakPower(null, value, false), value));
         }
     }
 }

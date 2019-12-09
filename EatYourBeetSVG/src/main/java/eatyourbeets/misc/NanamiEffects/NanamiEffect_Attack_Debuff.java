@@ -3,7 +3,7 @@ package eatyourbeets.misc.NanamiEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.Nanami;
 
 public class NanamiEffect_Attack_Debuff extends NanamiEffect
@@ -13,10 +13,10 @@ public class NanamiEffect_Attack_Debuff extends NanamiEffect
         int block = GetBlock(nanami);
         if (block > 0)
         {
-            GameActionsHelper2.GainBlock(block);
+            GameActions.Bottom.GainBlock(block);
         }
 
-        GameActionsHelper.ApplyPower(p, m, new WeakPower(m, GetWeak(nanami), false), GetWeak(nanami));
+        GameActions.Bottom.ApplyWeak(p, m, GetWeak(nanami));
     }
 
     public static String UpdateDescription(Nanami nanami)

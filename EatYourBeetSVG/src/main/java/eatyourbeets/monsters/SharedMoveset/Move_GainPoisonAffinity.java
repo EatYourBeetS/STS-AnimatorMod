@@ -2,7 +2,8 @@ package eatyourbeets.monsters.SharedMoveset;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.powers.animator.PoisonAffinityPower;
 
@@ -22,6 +23,6 @@ public class Move_GainPoisonAffinity extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActionsHelper.ApplyPower(owner, owner, new PoisonAffinityPower(owner, amount), amount);
+        GameActions.Bottom.ApplyPower(owner, owner, new PoisonAffinityPower(owner, amount), amount);
     }
 }

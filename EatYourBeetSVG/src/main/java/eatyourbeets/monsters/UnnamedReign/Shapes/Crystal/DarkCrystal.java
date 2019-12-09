@@ -2,7 +2,8 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import eatyourbeets.cards.animator.Crystallize;
 import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackWeak;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
@@ -50,6 +51,6 @@ public class DarkCrystal extends Crystal
                 break;
         }
 
-        GameActionsHelper.ApplyPower(this, this, new DarkCrystalPower(this, amount), amount);
+        GameActions.Bottom.ApplyPower(this, this, new DarkCrystalPower(this, amount), amount);
     }
 }

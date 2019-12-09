@@ -11,7 +11,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.actions._legacy.common.DrawSpecificCardAction;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.interfaces.OnBlockBrokenSubscriber;
@@ -34,7 +35,7 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
     {
         super.onInitialApplication();
 
-        GameActionsHelper.AddToTop(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
+        GameActionsHelper_Legacy.AddToTop(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
         PlayerStatistics.onBlockBroken.Subscribe(this);
     }
 
@@ -54,12 +55,12 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
                     AbstractCard card = randomAttacks.Retrieve(AbstractDungeon.cardRandomRng);
                     if (card != null)
                     {
-                        GameActionsHelper.AddToBottom(new DrawSpecificCardAction(card));
+                        GameActionsHelper_Legacy.AddToBottom(new DrawSpecificCardAction(card));
                     }
                 }
             }
 
-            GameActionsHelper.GainEnergy(amount);
+            GameActions.Bottom.GainEnergy(amount);
 
             flash();
         }

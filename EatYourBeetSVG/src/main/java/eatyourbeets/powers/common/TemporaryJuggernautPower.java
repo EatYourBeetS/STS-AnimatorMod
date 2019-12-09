@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.JuggernautPower;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class TemporaryJuggernautPower extends JuggernautPower implements CloneablePowerInterface
 {
@@ -22,7 +22,7 @@ public class TemporaryJuggernautPower extends JuggernautPower implements Cloneab
     {
         super.atEndOfTurn(isPlayer);
 
-        GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+        GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
     }
 
     @Override

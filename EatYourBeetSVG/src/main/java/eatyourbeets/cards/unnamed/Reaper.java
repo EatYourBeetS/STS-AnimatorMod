@@ -9,7 +9,8 @@ import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.actions._legacy.common.DieAction;
 import eatyourbeets.actions._legacy.common.IncreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Reaper extends UnnamedCard
@@ -44,11 +45,11 @@ public class Reaper extends UnnamedCard
         {
             if (m1.currentHealth < secondaryValue)
             {
-                GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
-                GameActionsHelper.AddToBottom(new VFXAction(new CollectorCurseEffect(m1.hb.cX, m1.hb.cY), 1.0F));
+                GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+                GameActions.Bottom.VFX(new CollectorCurseEffect(m1.hb.cX, m1.hb.cY), 1.0F);
 
-                GameActionsHelper.AddToBottom(new DieAction(m));
-                GameActionsHelper.AddToBottom(new IncreaseMaxHpAction(p, magicNumber, true));
+                GameActionsHelper_Legacy.AddToBottom(new DieAction(m));
+                GameActionsHelper_Legacy.AddToBottom(new IncreaseMaxHpAction(p, magicNumber, true));
             }
         }
     }

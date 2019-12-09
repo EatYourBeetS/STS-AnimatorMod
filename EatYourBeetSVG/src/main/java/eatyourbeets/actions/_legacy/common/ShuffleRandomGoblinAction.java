@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.animator.GoblinChampion;
 import eatyourbeets.cards.animator.GoblinKing;
@@ -30,7 +30,7 @@ public class ShuffleRandomGoblinAction extends AbstractGameAction
         {
             for (int i = 0; i < count; i++)
             {
-                GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(GetRandomGoblin(AbstractDungeon.cardRandomRng), 1, true, true, false));
+                GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInDrawPileAction(GetRandomGoblin(AbstractDungeon.cardRandomRng), 1, true, true, false));
             }
         }
 

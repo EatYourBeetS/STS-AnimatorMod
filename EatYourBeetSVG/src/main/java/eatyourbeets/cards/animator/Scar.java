@@ -1,17 +1,16 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.animator.ScarAction;
+import eatyourbeets.actions.special.ScarAction;
 import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
 
 public class Scar extends AnimatorCard
 {
@@ -30,15 +29,16 @@ public class Scar extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToTop(new RefreshHandLayoutAction());
-        GameActionsHelper.AddToTop(new ExhaustAction(p, p, 1, true));
+        GameActions.Top.Add(new RefreshHandLayoutAction());
+        GameActions.Top.ExhaustFromHand(name, 1, true);
 
-        CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F);
-        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F))
+        .SetOptions(true, true);
 
         if (p.masterDeck.size() >= secondaryValue && EffectHistory.TryActivateLimited(cardID))
         {
-            GameActionsHelper.AddToBottom(new ScarAction(p));
+            GameActions.Bottom.Add(new ScarAction(p));
         }
     }
 

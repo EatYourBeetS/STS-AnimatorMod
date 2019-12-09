@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.actions._legacy.animator.HigakiRinneAction;
 import eatyourbeets.cards.animator.HigakiRinne;
 
@@ -79,7 +79,7 @@ public class Rinne extends AnimatorRelic// implements OnEquipUnnamedReignRelicSu
         counter += 1 + (value % 7);
         if (counter % 21 == RINNE_DOES)
         {
-            GameActionsHelper.AddToBottom(new HigakiRinneAction(RINNE_ITSELF));
+            GameActionsHelper_Legacy.AddToBottom(new HigakiRinneAction(RINNE_ITSELF));
         }
     }
 }

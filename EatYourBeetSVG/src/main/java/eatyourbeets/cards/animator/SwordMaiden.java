@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions._legacy.common.RemoveRightmostDebuffAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class SwordMaiden extends AnimatorCard implements StartupCard
 {
@@ -27,8 +27,8 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToBottom(new RemoveRightmostDebuffAction(p));
-        GameActionsHelper.GainTemporaryHP(p, p, this.magicNumber);
+        GameActions.Bottom.Add(new RemoveRightmostDebuffAction(p));
+        GameActions.Bottom.GainTemporaryHP(this.magicNumber);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
     {
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActionsHelper.GainRandomStat(2);
+            GameActions.Bottom.GainRandomStat(2);
 
             return true;
         }

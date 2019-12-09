@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.animator.OrbCore_Frost;
 
 public class OrbCore_FrostPower extends OrbCore_AbstractPower
@@ -23,7 +23,7 @@ public class OrbCore_FrostPower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, value), value);
+        GameActionsHelper_Legacy.ApplyPower(p, p, new PlatedArmorPower(p, value), value);
     }
 }
 

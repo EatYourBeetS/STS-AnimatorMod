@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.LoseDexterityPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.monsters.AbstractMove;
@@ -33,7 +33,7 @@ public class Move_AttackFrailAndDexLoss extends AbstractMove
     {
         owner.useFastAttackAnimation();
         damageInfo.applyPowers(owner, target);
-        GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.FIRE));
+        GameActionsHelper_Legacy.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.FIRE));
 
         if (!usedOnce)
         {
@@ -46,11 +46,11 @@ public class Move_AttackFrailAndDexLoss extends AbstractMove
 
             if (dex > 0)
             {
-                GameActionsHelper.ApplyPower(owner, target, new DexterityPower(target, -debuffAmount), -debuffAmount);
+                GameActionsHelper_Legacy.ApplyPower(owner, target, new DexterityPower(target, -debuffAmount), -debuffAmount);
                 usedOnce = true;
             }
         }
 
-        GameActionsHelper.ApplyPower(owner, target, new FrailPower(target, debuffAmount, true), debuffAmount);
+        GameActionsHelper_Legacy.ApplyPower(owner, target, new FrailPower(target, debuffAmount, true), debuffAmount);
     }
 }

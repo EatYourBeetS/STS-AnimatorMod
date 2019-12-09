@@ -11,7 +11,8 @@ import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.GeassPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Lelouch extends AnimatorCard
@@ -33,28 +34,17 @@ public class Lelouch extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToTop(new RefreshHandLayoutAction());
-        GameActionsHelper.AddToTop(new ExhaustAction(p, p, magicNumber, true));
+        GameActions.Top.Add(new RefreshHandLayoutAction());
+        GameActions.Top.ExhaustFromHand(name, magicNumber, true);
 
-//        RandomizedList<AbstractCard> cards = new RandomizedList<>(p.hand.group);
-//        cards.Remove(this);
-//        for (int i = 0; i < magicNumber; i++)
-//        {
-//            AbstractCard toExhaust = cards.Retrieve(AbstractDungeon.cardRandomRng);
-//            if (toExhaust != null)
-//            {
-//                GameActionsHelper.ExhaustCard(toExhaust, p.hand);
-//            }
-//        }
+        GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
+        GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
 
-        GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.RED)));
-        GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
-
-        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
-            if (!m1.hasPower(GeassPower.POWER_ID))
+            if (!enemy.hasPower(GeassPower.POWER_ID))
             {
-                GameActionsHelper.ApplyPower(p, m1, new GeassPower(m1), 1);
+                GameActions.Bottom.ApplyPower(p, enemy, new GeassPower(enemy));
             }
         }
     }

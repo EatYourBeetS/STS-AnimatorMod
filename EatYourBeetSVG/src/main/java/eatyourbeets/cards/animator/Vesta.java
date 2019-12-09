@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffects;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -29,10 +30,9 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
 
         Initialize(0,0, 3);
 
-        this.exhaust = true;
-
         AddExtendedDescription();
 
+        SetExhaust(true);
         SetSynergy(Synergies.TenSura);
     }
 
@@ -85,7 +85,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         {
             AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this.makeStatEquivalentCopy()));
 
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(elixir));
+            GameActions.Bottom.MakeCardInHand(elixir, false, false);
 
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
         }

@@ -1,13 +1,13 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Sebas extends AnimatorCard
@@ -29,18 +29,18 @@ public class Sebas extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.GainTemporaryHP(AbstractDungeon.player, secondaryValue);
+        GameActions.Bottom.GainTemporaryHP(secondaryValue);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
-            if (GameUtilities.IsAttacking(m1.intent))
+            if (GameUtilities.IsAttacking(enemy.intent))
             {
-                GameActionsHelper2.GainBlock(block);
-                GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, magicNumber), magicNumber);
+                GameActions.Bottom.GainBlock(block);
+                GameActions.Bottom.GainThorns(magicNumber);
             }
         }
     }

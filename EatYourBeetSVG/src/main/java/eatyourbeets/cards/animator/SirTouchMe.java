@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.JuggernautPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 
@@ -28,9 +28,9 @@ public class SirTouchMe extends AnimatorCard_UltraRare implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActionsHelper.ApplyPower(p, p, new JuggernautPower(p, this.magicNumber), this.magicNumber);
-        GameActionsHelper2.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.StackPower(new JuggernautPower(p, this.magicNumber));
     }
 
     @Override
@@ -47,8 +47,7 @@ public class SirTouchMe extends AnimatorCard_UltraRare implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, secondaryValue), secondaryValue);
+        GameActions.Bottom.GainPlatedArmor(secondaryValue);
 
         return true;
     }

@@ -6,8 +6,7 @@ import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.powers.NoDrawPower;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.actions.utility.SequentialAction;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 import java.util.function.Predicate;
@@ -71,10 +70,10 @@ public class DrawCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
         {
             if (shuffleIfEmpty && !player.discardPile.isEmpty())
             {
-                GameActionsHelper2.AddToTop(new SequentialAction(
+                GameActions.Top.Sequential(
                     new DrawCards(this, amount),
                     new EmptyDeckShuffleAction()
-                ));
+                );
 
                 Complete(); // Do not trigger callback
             }
@@ -116,10 +115,10 @@ public class DrawCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 
             cards.add(player.drawPile.getTopCard());
 
-            GameActionsHelper2.AddToTop(new SequentialAction(
-                    new DrawCardAction(source, 1, false),
-                    new DrawCards(this, amount - 1)
-            ));
+            GameActions.Top.Sequential(
+                new DrawCardAction(source, 1, false),
+                new DrawCards(this, amount - 1)
+            );
 
             Complete(); // Do not trigger callback
         }

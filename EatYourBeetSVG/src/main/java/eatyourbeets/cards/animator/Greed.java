@@ -5,11 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MalleablePower;
-import com.megacrit.cardcrawl.powers.MetallicizePower;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -41,9 +39,9 @@ public class Greed extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, magicNumber), magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, magicNumber), magicNumber);
-        GameActionsHelper.ApplyPower(p, p, new MalleablePower(p, magicNumber), magicNumber);
+        GameActions.Bottom.GainPlatedArmor(magicNumber);
+        GameActions.Bottom.GainMetallicize(magicNumber);
+        GameActions.Bottom.StackPower(new MalleablePower(p, magicNumber));
     }
 
     @Override

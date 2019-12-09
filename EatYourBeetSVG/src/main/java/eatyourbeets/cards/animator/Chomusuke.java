@@ -7,7 +7,7 @@ import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Chomusuke extends AnimatorCard_UltraRare
 {
@@ -30,8 +30,8 @@ public class Chomusuke extends AnimatorCard_UltraRare
         if (EffectHistory.TryActivateSemiLimited(cardID))
         {
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper2.MoveCard(this, p.hand, p.exhaustPile, true);
-            GameActionsHelper2.GainEnergy(2);
+            GameActions.Top.GainEnergy(2);
+            GameActions.Top.MoveCard(this, p.hand, p.exhaustPile, true);
         }
     }
 

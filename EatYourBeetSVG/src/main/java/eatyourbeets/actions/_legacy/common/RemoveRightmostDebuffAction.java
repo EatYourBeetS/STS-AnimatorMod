@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class RemoveRightmostDebuffAction extends AbstractGameAction
 {
@@ -20,7 +20,7 @@ public class RemoveRightmostDebuffAction extends AbstractGameAction
             AbstractPower power = target.powers.get(i);
             if (power.type == AbstractPower.PowerType.DEBUFF)
             {
-                GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(target, target, power));
+                GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(target, target, power));
                 break;
             }
         }

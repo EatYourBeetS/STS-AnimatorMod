@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 
 public class Move_GuardedAttack extends AbstractMove
@@ -34,7 +34,7 @@ public class Move_GuardedAttack extends AbstractMove
     public void ExecuteInternal(AbstractPlayer target)
     {
         damageInfo.applyPowers(owner, target);
-        GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        GameActionsHelper.GainBlock(owner, BLOCK_AMOUNT);
+        GameActionsHelper_Legacy.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        GameActionsHelper_Legacy.GainBlock(owner, BLOCK_AMOUNT);
     }
 }

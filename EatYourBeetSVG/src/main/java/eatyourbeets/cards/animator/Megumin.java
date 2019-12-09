@@ -18,7 +18,8 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -47,31 +48,29 @@ public class Megumin extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.1F));
-        GameActionsHelper.AddToBottom(new WaitAction(0.35f));
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.2F));
-        GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
-        GameActionsHelper.AddToBottom(new WaitAction(0.35f));
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.3F));
-        GameActionsHelper.AddToBottom(new WaitAction(0.35f));
-        GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.RED)));
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5f));
+        GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.1F);
+        GameActions.Bottom.Wait(0.35f);
+        GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.2F);
+        GameActions.Bottom.VFX(new BorderFlashEffect(Color.ORANGE));
+        GameActions.Bottom.Wait(0.35f);
+        GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.3F);
+        GameActions.Bottom.Wait(0.35f);
+        GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
+        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
+
         for (AbstractCreature m1 : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.AddToBottom(new VFXAction(new FlameBarrierEffect(m1.hb_x, m1.hb_y)));
-            GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(m1.hb_x, m1.hb_y)));
+            GameActions.Bottom.VFX(new FlameBarrierEffect(m1.hb_x, m1.hb_y));
+            GameActions.Bottom.VFX(new ExplosionSmallEffect(m1.hb_x, m1.hb_y));
         }
-        GameActionsHelper.AddToBottom(new DamageAllEnemiesAction(p, multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
+
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
 
         if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
             for (AbstractCard c : GameUtilities.GetAllInstances(this))
             {
-                Megumin megumin = JavaUtilities.SafeCast(c, Megumin.class);
-                if (megumin != null)
-                {
-                    megumin.upgrade();
-                }
+                c.upgrade();
             }
         }
     }

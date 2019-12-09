@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.PridePower;
@@ -30,15 +31,14 @@ public class Pride extends AnimatorCard
     {
         for (int i = 0; i < this.magicNumber; i++)
         {
-            GameActionsHelper.ChannelOrb(new Dark(), true);
+            GameActions.Bottom.ChannelOrb(new Dark(), true);
         }
 
-        GameActionsHelper.ApplyPower(p, m, new ConstrictedPower(m, p, this.secondaryValue), this.secondaryValue);
+        GameActions.Bottom.ApplyPower(p, m, new ConstrictedPower(m, p, this.secondaryValue), this.secondaryValue);
 
         if (!p.hasPower(PridePower.POWER_ID))
         {
-            GameActionsHelper.ApplyPower(p, p, new PridePower(p));
-            //GameActionsHelper.AddToBottom(new MovePowerLeftAction(p, PridePower.POWER_ID));
+            GameActions.Bottom.ApplyPower(p, p, new PridePower(p));
         }
     }
 

@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FlameBarrierPower;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Fire;
@@ -31,25 +32,25 @@ public class RoyMustang extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        //GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
 
         int max = p.orbs.size();
         int i = 0;
 
-        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
             if (i < max)
             {
-                GameActionsHelper.ChannelOrb(new Fire(), true);
+                GameActions.Bottom.ChannelOrb(new Fire(), true);
             }
+
             i += 1;
         }
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.AddToBottom(new VFXAction(p, new FlameBarrierEffect(p.hb.cX, p.hb.cY), 0.5F));
-            GameActionsHelper.ApplyPower(p, p, new FlameBarrierPower(p, this.magicNumber), this.magicNumber);
+            GameActions.Bottom.VFX(new FlameBarrierEffect(p.hb.cX, p.hb.cY), 0.5F);
+            GameActions.Bottom.StackPower(new FlameBarrierPower(p, this.magicNumber));
         }
     }
 

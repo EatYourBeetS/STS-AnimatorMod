@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.actions._legacy.common.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
@@ -32,13 +33,13 @@ public class TheUnnamed_Cultist_BEHOLD extends TheUnnamed_Cultist
         AbstractDungeon.scene.fadeOutAmbiance();
         CardCrawlGame.music.silenceBGM();
 
-        GameActionsHelper.AddToBottom(new WaitRealtimeAction(1f));
-        GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[0], 0.5f, 2f));
-        GameActionsHelper.AddToBottom(new WaitRealtimeAction(2f));
-        GameActionsHelper.AddToBottom(new EscapeAction(this));
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.1f));
-        GameActionsHelper.AddToBottom(new VFXAction(new BorderLongFlashEffect(Color.valueOf("3d0066"))));
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_DARK_EVOKE", 0.1f));
-        GameActionsHelper.AddToBottom(new SummonMonsterAction(new UltimateCrystal(), false));
+        GameActions.Bottom.WaitRealtime(1f);
+        GameActions.Bottom.Add(new TalkAction(this, data.strings.DIALOG[0], 0.5f, 2f));
+        GameActions.Bottom.WaitRealtime(2f);
+        GameActions.Bottom.Add(new EscapeAction(this));
+        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.1f);
+        GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.valueOf("3d0066")));
+        GameActions.Bottom.SFX("ORB_DARK_EVOKE", 0.1f);
+        GameActions.Bottom.Add(new SummonMonsterAction(new UltimateCrystal(), false));
     }
 }

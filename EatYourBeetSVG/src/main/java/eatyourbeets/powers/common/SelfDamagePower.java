@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.powers.CommonPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
 {
@@ -33,8 +33,8 @@ public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        GameActionsHelper.DamageTarget(null, owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+        GameActionsHelper_Legacy.DamageTarget(null, owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
 
         playApplyPowerSfx();
         flashWithoutSound();

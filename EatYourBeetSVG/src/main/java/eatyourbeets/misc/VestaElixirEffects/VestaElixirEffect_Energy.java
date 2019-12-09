@@ -2,7 +2,7 @@ package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.Vesta_Elixir;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_Energy extends VestaElixirEffect
 {
@@ -14,6 +14,6 @@ public class VestaElixirEffect_Energy extends VestaElixirEffect
     @Override
     public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
     {
-        GameActionsHelper.GainEnergy(amount);
+        GameActions.Bottom.GainEnergy(amount);
     }
 }

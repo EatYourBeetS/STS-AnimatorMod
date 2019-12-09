@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -44,7 +45,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
         AbstractGameAction.AttackEffect attackEffect;
         if (this.damage >= 15)
         {
-            GameActionsHelper.VFX(new ClashEffect(m.hb.cX, m.hb.cY), 0.1F);
+            GameActions.Bottom.VFX(new ClashEffect(m.hb.cX, m.hb.cY), 0.1F);
             attackEffect = AbstractGameAction.AttackEffect.NONE;
         }
         else
@@ -52,8 +53,8 @@ public class Lancer extends AnimatorCard implements MartialArtist
             attackEffect = AbstractGameAction.AttackEffect.SLASH_VERTICAL;
         }
 
-        GameActionsHelper.DamageTargetPiercing(p, m, this, attackEffect);
-        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, magicNumber, false), magicNumber);
+        GameActions.Bottom.DealDamage(this, m, attackEffect).SetOptions(true, true);
+        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
     }
 
     @Override
@@ -61,7 +62,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
     {
         if (TryUpgrade())
         {          
-            upgradeDamage(2);
+            upgradeDamage(3);
         }
     }
 }

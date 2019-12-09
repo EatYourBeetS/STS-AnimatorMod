@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.actions._legacy.common.ExhaustFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -29,14 +30,17 @@ public class Mikaela extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-
-        if (p.discardPile.size() > 0)
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.ExhaustFromPile(name, 1, p.discardPile)
+        .SetOptions(false, false)
+        .AddCallback(cards ->
         {
-            GameActionsHelper.AddToBottom(new ExhaustFromPileAction(1, false, p.discardPile, false, m, this::OnExhaust));
-        }
-
-        GameActionsHelper.GainTemporaryHP(p, magicNumber);
+            if (cards.size() > 0 && GameUtilities.IsCurseOrStatus(cards.get(0)))
+            {
+                GameActions.Bottom.GainForce(secondaryValue);
+            }
+        });
     }
 
     @Override
@@ -46,18 +50,6 @@ public class Mikaela extends AnimatorCard
         {
             upgradeDamage(2);
             upgradeMagicNumber(1);
-        }
-    }
-
-    private void OnExhaust(Object state, ArrayList<AbstractCard> exhausted)
-    {
-        if (state != null && exhausted != null && exhausted.size() > 0)
-        {
-            AbstractCard card = exhausted.get(0);
-            if (card != null && GameUtilities.IsCurseOrStatus(card))
-            {
-                GameActionsHelper.GainForce(secondaryValue);
-            }
         }
     }
 }

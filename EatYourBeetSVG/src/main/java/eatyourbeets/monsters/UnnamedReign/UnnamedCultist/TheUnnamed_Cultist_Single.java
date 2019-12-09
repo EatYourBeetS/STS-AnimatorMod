@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.monsters.exordium.Sentry;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
@@ -47,8 +47,8 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
     {
         super.usePreBattleAction();
 
-        GameActionsHelper.ApplyPower(this, this, new TheUnnamedCultistPower(this, 15), 15);
-        GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[10], 1f, 3f));
+        GameActionsHelper_Legacy.ApplyPower(this, this, new TheUnnamedCultistPower(this, 15), 15);
+        GameActionsHelper_Legacy.AddToBottom(new TalkAction(this, data.strings.DIALOG[10], 1f, 3f));
     }
 
     @Override

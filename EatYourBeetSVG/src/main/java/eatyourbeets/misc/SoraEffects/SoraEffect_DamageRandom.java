@@ -3,7 +3,7 @@ package eatyourbeets.misc.SoraEffects;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class SoraEffect_DamageRandom extends SoraEffect
@@ -21,7 +21,7 @@ public class SoraEffect_DamageRandom extends SoraEffect
     {
         for (int i = 0; i < sora.magicNumber; i++)
         {
-            GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(player, sora.damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
+            GameActionsHelper_Legacy.DamageRandomEnemyWhichActuallyWorks(player, sora.damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH);
         }
         GameUtilities.UsePenNib();
     }

@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Defend_GoblinSlayer extends Defend
 {
@@ -22,7 +22,7 @@ public class Defend_GoblinSlayer extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
     }
 
     @Override

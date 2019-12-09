@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -40,11 +40,11 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
 
         if (upgraded)
         {
-            GameActionsHelper2.Draw(1);
+            GameActions.Bottom.Draw(1);
         }
     }
 
@@ -62,7 +62,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         {
             if (turns <= 0)
             {
-                GameActionsHelper.AddToBottom(new MoveCard(this, p.drawPile, p.exhaustPile, true));
+                GameActions.Bottom.MoveCard(this, p.drawPile, p.exhaustPile, true);
                 PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
             }
             else

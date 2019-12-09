@@ -709,7 +709,7 @@
 	},
 	"animator:Mitsurugi":
 	{
-		"DESCRIPTION": "如果敌人的 NL 意图是攻击， NL 造成 !D! 点伤害 和  获得 !M! 点 武力。 || 被 消耗 ： NL 获得 !SV! 格挡 。",
+		"DESCRIPTION": "如果敌人的 NL 意图是攻击， NL 造成 !D! 点伤害并获得 !M! 点 武力。 || 被 消耗 ： NL 获得 !SV! 格挡 。",
 		"EXTENDED_DESCRIPTION": ["来敌不敢妄动。"],
 		"NAME": "御剑响夜"
 	},
@@ -857,11 +857,11 @@
 		"DESCRIPTION": " || 每当打出 NL 这张牌时， NL 本场战斗增加 NL 其耗能并 NL 改变效果。",
 		"EXTENDED_DESCRIPTION": ["抽 !M! 张牌 。 NL 获得 !SV! 层 机敏 。", "阻止下一次 NL 你受到的 NL 生命损伤。", "获得 !B! 点 格挡 。 NL 获得 !M! 点 武力 。", "造成 !D! 点伤害 !M! 次 。", "移除 无实体 。 NL 造成 !D! 点伤害。 NL 给予一层 眩晕 。"],
 		"NAME": "埼玉",
-		"UPGRADE_DESCRIPTION": "固有 。 || 每当打出这张牌时，本场战斗增加其耗能并改变效果。"
+		"UPGRADE_DESCRIPTION": "激励 1 。 || 每当打出这张牌时，本场战斗增加其耗能并改变效果。"
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "造成 !D! 点 穿刺 伤害。 消耗一张随机手牌。 消耗。 || 昙现 。 如果你的牌组中有不少于 !SV! 张牌，永久 升级 1 张随机牌。",
+		"DESCRIPTION": "造成 !D! 点 穿刺 伤害。 消耗 一张随机手牌。 消耗。 || 昙现 。 如果你的牌组中有不少于 !SV! 张牌，永久 升级 1 张随机牌。",
 		"NAME": "斯卡"
 	},
 	"animator:Sebas":
@@ -887,7 +887,7 @@
 	},
 	"animator:ShichikaKyotouryuu":
 	{
-		"DESCRIPTION": "武师 。 NL 造成 !D! 点 NL 伤害 !M! 次 。 消耗 。",
+		"DESCRIPTION": "武师 。 NL 造成 !D! 点 NL 伤害 !M! 次 。 消耗 。 || 同调 ： 获得 1 点 武力 。",
 		"NAME": "虚刀流"
 	},
 	"animator:Shigure":
@@ -897,7 +897,7 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "At the start of each turn, add 1 of !M! random #yAttacks[] to your hand, gain Force equal to its cost. || Limited. NL Choose a card NL in your hand NL and Upgrade it NL permanently.",
+		"DESCRIPTION": "每回合开始时，从 !M! 张随机 #y攻击牌[] 中选择一张加入手牌，获得其能耗相同的 武力 。 || 昙现 。 NL 选择一张手牌并将其永久 升级 。",
 		"NAME": "四季崎 记纪"
 	},
 	"animator:Shimakaze":
@@ -938,7 +938,7 @@
 	},
 	"animator:Sloth":
 	{
-		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。 NL 下一回合 ， NL 少 抽 1 张牌 。 || 昙现 。 被 消耗 ： NL 获得 !SV! 点 武力 。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。 NL 下一回合 ， NL 少抽 1 张牌 。 || 昙现 。 被 消耗 ： NL 获得 !SV! 点 武力 。",
 		"NAME": "懒惰"
 	},
 	"animator:Sonic":
@@ -958,7 +958,7 @@
 	},
 	"animator:Spearman":
 	{
-		"DESCRIPTION": "造成 !D! 点 NL 穿刺 伤害。 NL 获得 1 张 伤口 。 || 有限 。 NL 如果你比目标 NL 的力量更高， 激励 1 。",
+		"DESCRIPTION": "获得 1 点 机敏。 造成 !D! 点 NL 穿刺 伤害。 NL 获得 1 张 伤口 。 || 昙现 。 NL 如果杀死了敌人， 激励 1 。",
 		"NAME": "长枪手"
 	},
 	"animator:Strike":

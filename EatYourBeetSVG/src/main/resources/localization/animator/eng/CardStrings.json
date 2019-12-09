@@ -206,7 +206,7 @@
 	},
 	"animator:Defend_AccelWorld":
 	{
-		"DESCRIPTION": "Gain !B! Block. || When Discarded, NL gain !M! Block.",
+		"DESCRIPTION": "Gain !B! Block. NL When Discarded, NL gain !M! Block.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Elsword":
@@ -271,7 +271,7 @@
 	},
 	"animator:Defend_OwariNoSeraph":
 	{
-		"DESCRIPTION": "Gain !B! Block. || When Exhausted, NL apply !M! Weak NL to ALL enemies.",
+		"DESCRIPTION": "Gain !B! Block. NL When Exhausted, NL apply !M! Weak NL to ALL enemies.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_TenSura":
@@ -376,9 +376,9 @@
 	},
 	"animator:Eve":
 	{
-		"DESCRIPTION": "Play 1 Orb_Core. NL Gain !M! Orb Slot. || Limited. NL When you Synergize, NL deal 1 damage to an NL enemy and increase NL this damage by 1.",
+		"DESCRIPTION": "Play 1 Orb_Core. NL Gain !M! Orb Slot. || When you Synergize, NL deal 1 damage to an NL enemy and increase NL this damage by 1. NL Does not Stack.",
 		"NAME": "Eve",
-		"UPGRADE_DESCRIPTION": "Play 1 Orb_Core. NL Gain !SV! Metallicize. NL Gain !M! Orb Slot. || Limited. NL When you Synergize, NL deal 1 damage to an NL enemy and increase NL this damage by 1."
+		"UPGRADE_DESCRIPTION": "Play 1 Orb_Core. NL Gain !SV! Metallicize. NL Gain !M! Orb Slot. || When you Synergize, NL deal 1 damage to an NL enemy and increase NL this damage by 1. NL Does not Stack."
 	},
 	"animator:Evileye":
 	{
@@ -857,7 +857,7 @@
 		"DESCRIPTION": " || Whenever this card is played, increase its cost and change its effect for this combat.",
 		"EXTENDED_DESCRIPTION": ["Draw !M! cards. NL Gain !SV! Agility.", "Prevent the next NL time you would NL lose HP.", "Gain !M! Force. NL Gain !B! Block.", "Deal !D! damage NL !M! times.", "Remove Intangible. NL Deal !D! damage. NL Stun the enemy."],
 		"NAME": "Saitama",
-		"UPGRADE_DESCRIPTION": "Innate. || Whenever this card is played, increase its cost and change its effect for this combat."
+		"UPGRADE_DESCRIPTION": "Motivate 1. || Whenever this card is played, increase its cost and change its effect for this combat."
 	},
 	"animator:Scar":
 	{
@@ -887,7 +887,7 @@
 	},
 	"animator:ShichikaKyotouryuu":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Deal !D! damage NL !M! times. Exhaust.",
+		"DESCRIPTION": "Martial_Artist. NL Deal !D! damage NL !M! times. Exhaust. || On Synergy, NL gain 1 Force.",
 		"NAME": "Kyotouryuu"
 	},
 	"animator:Shigure":
@@ -958,7 +958,7 @@
 	},
 	"animator:Spearman":
 	{
-		"DESCRIPTION": "Deal !D! Piercing NL damage. Add 1 NL Wound to your NL hand. || Semi-Limited. NL If you have more NL Strength than the NL enemy, Motivate 1.",
+		"DESCRIPTION": "Deal !D! Piercing NL damage. Gain !M! NL Agility. Add a Wound NL into your hand. || Limited. NL If this card NL kills an enemy, NL Motivate 2.",
 		"NAME": "'Spearman'"
 	},
 	"animator:Strike":
@@ -969,7 +969,7 @@
 	},
 	"animator:Strike_AccelWorld":
 	{
-		"DESCRIPTION": "Deal !D! damage. || When Discarded, NL Deal !M! damage NL to a random enemy.",
+		"DESCRIPTION": "Deal !D! damage. NL When Discarded, NL Deal !M! damage NL to a random enemy.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Elsword":
@@ -1034,7 +1034,7 @@
 	},
 	"animator:Strike_OwariNoSeraph":
 	{
-		"DESCRIPTION": "Deal !D! damage. || When Exhausted, apply !M! Vulnerable NL to ALL enemies.",
+		"DESCRIPTION": "Deal !D! damage. NL When Exhausted, apply !M! Vulnerable NL to ALL enemies.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_TenSura":

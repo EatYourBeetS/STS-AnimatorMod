@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Shuna extends AnimatorCard
 {
@@ -15,7 +15,7 @@ public class Shuna extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,3, 2);
+        Initialize(0,2, 2);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -25,18 +25,18 @@ public class Shuna extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActionsHelper.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.Draw(1);
-        GameActionsHelper2.GainBlock(block);
+        GameActions.Bottom.Draw(1);
+        GameActions.Bottom.GainBlock(block);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainTemporaryHP(p, magicNumber);
+            GameActions.Bottom.GainTemporaryHP(magicNumber);
         }
     }
 

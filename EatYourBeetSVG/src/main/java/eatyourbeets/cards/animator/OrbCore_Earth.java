@@ -3,10 +3,9 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.powers.animator.OrbCore_EarthPower;
-import eatyourbeets.utilities.GameActionsHelper2;
 
 public class OrbCore_Earth extends OrbCore
 {
@@ -28,9 +27,9 @@ public class OrbCore_Earth extends OrbCore
     {
         for (int i = 0; i < secondaryValue; i++)
         {
-            GameActionsHelper.ChannelOrb(new Earth(), true);
+            GameActions.Bottom.ChannelOrb(new Earth(), true);
         }
 
-        GameActionsHelper2.StackPower(new OrbCore_EarthPower(p, 1));
+        GameActions.Bottom.StackPower(new OrbCore_EarthPower(p, 1));
     }
 }

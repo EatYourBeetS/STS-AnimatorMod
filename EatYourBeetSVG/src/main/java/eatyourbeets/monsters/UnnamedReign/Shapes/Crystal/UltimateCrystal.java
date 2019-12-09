@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.actions._legacy.common.MoveMonsterAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
 import eatyourbeets.resources.Resources_Common;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions._legacy.common.SummonMonsterAction;
@@ -110,11 +110,11 @@ public class UltimateCrystal extends Crystal
 
         if (original == null)
         {
-            GameActionsHelper.ApplyPower(this, this, new UltimateCrystalPower(this, 6), 6);
-            GameActionsHelper.ApplyPower(this, this, new AntiArtifactSlowPower(this, 1), 1);
+            GameActionsHelper_Legacy.ApplyPower(this, this, new UltimateCrystalPower(this, 6), 6);
+            GameActionsHelper_Legacy.ApplyPower(this, this, new AntiArtifactSlowPower(this, 1), 1);
 
             AbstractDungeon.effectList.add(new CallbackEffect(new WaitRealtimeAction(15),
-                    (state, action)-> CardCrawlGame.music.unsilenceBGM(), this));
+                    this, (state, action)-> CardCrawlGame.music.unsilenceBGM()));
 
             CardCrawlGame.sound.play(Resources_Common.Audio_TheUltimateCrystal, true);
             //CardCrawlGame.music.playTempBgmInstantly(AnimatorResources_Audio.TheUltimateCrystal, false);
@@ -175,7 +175,7 @@ public class UltimateCrystal extends Crystal
         copy.drawX = this.drawX - 30;
         copy.drawY = this.drawY;
 
-        GameActionsHelper.AddToBottom(new SummonMonsterAction(copy, false));
-        GameActionsHelper.AddToBottom(new MoveMonsterAction(copy, targetX, targetY, 1.5f));
+        GameActionsHelper_Legacy.AddToBottom(new SummonMonsterAction(copy, false));
+        GameActionsHelper_Legacy.AddToBottom(new MoveMonsterAction(copy, targetX, targetY, 1.5f));
     }
 }

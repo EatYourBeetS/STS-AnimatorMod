@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -29,23 +30,24 @@ public class Shinoa extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        for (AbstractMonster m2 : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.ApplyPower(p, m2, new WeakPower(m2, this.magicNumber, false), this.magicNumber);
+            GameActions.Bottom.ApplyWeak(AbstractDungeon.player, enemy, magicNumber);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.GainBlock(this.block);
-        for (AbstractMonster m2 : GameUtilities.GetCurrentEnemies(true))
+        GameActions.Bottom.GainBlock(this.block);
+
+        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.ApplyPower(p, m2, new VulnerablePower(m2, this.magicNumber, false), this.magicNumber);
+            GameActions.Bottom.ApplyVulnerable(AbstractDungeon.player, enemy, magicNumber);
+
             if (HasActiveSynergy())
             {
-                GameActionsHelper.ApplyPower(p, m2, new WeakPower(m2, this.magicNumber, false), this.magicNumber);
+                GameActions.Bottom.ApplyWeak(AbstractDungeon.player, enemy, magicNumber);
             }
         }
     }

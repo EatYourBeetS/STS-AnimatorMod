@@ -1,24 +1,14 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.OnCallbackSubscriber;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 
-import java.util.ArrayList;
-
-public class Priestess extends AnimatorCard implements OnCallbackSubscriber
+public class Priestess extends AnimatorCard
 {
     public static final String ID = Register(Priestess.class.getSimpleName(), EYBCardBadge.Synergy);
 
@@ -51,20 +41,23 @@ public class Priestess extends AnimatorCard implements OnCallbackSubscriber
     {
         if (upgraded)
         {
-            GameActionsHelper.ApplyPowerToAllEnemies(p, (m1) -> new WeakPower(m1, secondaryValue, false), secondaryValue);
+            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+            {
+                GameActions.Bottom.ApplyWeak(p, enemy, secondaryValue);
+            }
         }
         else if (m != null)
         {
-            GameActionsHelper.ApplyPower(p, m, new WeakPower(m, secondaryValue, false), secondaryValue);
+            GameActions.Bottom.ApplyWeak(p, m, secondaryValue);
         }
 
-        GameActionsHelper.GainTemporaryHP(p, magicNumber);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
-            GameActionsHelper.DelayedAction(this);
-            GameActionsHelper.ResetOrder();
+            GameActions.Top.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
+            .SetOptions(true, true)
+            .SetFilter(GameUtilities::IsCurseOrStatus);
         }
     }
 
@@ -73,45 +66,7 @@ public class Priestess extends AnimatorCard implements OnCallbackSubscriber
     {
         if (TryUpgrade())
         {
-            //upgradeMagicNumber(1);
             this.target = CardTarget.ALL;
-        }
-    }
-
-    private boolean TryExhaust(CardGroup source)
-    {
-        ArrayList<AbstractCard> cards = new ArrayList<>();
-        for (AbstractCard c : source.group)
-        {
-            if (GameUtilities.IsCurseOrStatus(c))
-            {
-                cards.add(c);
-            }
-        }
-
-        if (cards.size() > 0)
-        {
-            GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(JavaUtilities.GetRandomElement(cards), source));
-
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        if (state == this && action != null)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-            if (!TryExhaust(p.drawPile))
-            {
-                if (!TryExhaust(p.hand))
-                {
-                    TryExhaust(p.discardPile);
-                }
-            }
         }
     }
 }

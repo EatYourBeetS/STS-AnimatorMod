@@ -1,12 +1,14 @@
 package eatyourbeets.powers.common;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class TemporaryArtifactPower extends ArtifactPower implements CloneablePowerInterface
@@ -14,17 +16,18 @@ public class TemporaryArtifactPower extends ArtifactPower implements CloneablePo
     private int permanent;
     private int temporary;
 
-    public static void Apply(AbstractCreature owner, AbstractCreature source, int amount)
+    public static ApplyPowerAction Apply(AbstractCreature owner, AbstractCreature source, int amount)
     {
         ArtifactPower artifact = GameUtilities.GetPower(owner, ArtifactPower.POWER_ID);
         if (artifact != null && !(artifact instanceof TemporaryArtifactPower))
         {
-            GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, source, artifact));
-            GameActionsHelper.ApplyPower(source, owner, new TemporaryArtifactPower(owner, 1, artifact.amount), 1);
+            GameActions.Bottom.Add(new RemoveSpecificPowerAction(owner, source, artifact));
+
+            return GameActions.Bottom.ApplyPower(source, owner, new TemporaryArtifactPower(owner, 1, artifact.amount), 1);
         }
         else
         {
-            GameActionsHelper.ApplyPower(source, owner, new TemporaryArtifactPower(source, 1, 0), 1);
+            return GameActions.Bottom.ApplyPower(source, owner, new TemporaryArtifactPower(source, 1, 0), 1);
         }
     }
 
@@ -94,7 +97,7 @@ public class TemporaryArtifactPower extends ArtifactPower implements CloneablePo
 
         if (temporary > 0)
         {
-            GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, temporary));
+            GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(owner, owner, this, temporary));
         }
     }
 

@@ -2,7 +2,7 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 
@@ -24,7 +24,7 @@ public class AinzEffect_ApplyBurning extends AinzEffect
     {
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper2.ApplyBurning(p, m, ainz.magicNumber);
+            GameActions.Bottom.ApplyBurning(p, m, ainz.magicNumber);
         }
     }
 }

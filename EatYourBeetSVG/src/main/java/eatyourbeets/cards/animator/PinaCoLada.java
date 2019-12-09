@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.PinaCoLadaPower;
@@ -27,10 +27,10 @@ public class PinaCoLada extends AnimatorCard
     {
         if (upgraded)
         {
-            GameActionsHelper2.GainBlock(this.block);
+            GameActions.Bottom.GainBlock(this.block);
         }
 
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new PinaCoLadaPower(p, 1), 1));
+        GameActions.Bottom.StackPower(new PinaCoLadaPower(p, 1));
     }
 
     @Override

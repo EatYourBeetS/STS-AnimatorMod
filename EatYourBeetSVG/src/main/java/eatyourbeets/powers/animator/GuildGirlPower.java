@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.animator.GuildGirl;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.interfaces.OnEnemyDyingSubscriber;
@@ -57,7 +57,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     {
         super.atStartOfTurnPostDraw();
 
-        GameActionsHelper.AddToBottom(new GuildGirlAction(this.amount));
+        GameActionsHelper_Legacy.AddToBottom(new GuildGirlAction(this.amount));
     }
 
     @Override
@@ -91,7 +91,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
         @Override
         public void update()
         {
-            GameActionsHelper.CycleCardAction(this.amount, name);
+            GameActionsHelper_Legacy.CycleCardAction(this.amount, name);
 
             isDone = true;
         }

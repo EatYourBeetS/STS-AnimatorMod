@@ -14,7 +14,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.LaserBeam2Effect;
@@ -32,9 +33,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
     {
         super(ID, 0, CardType.SKILL, CardTarget.ENEMY);
 
-        Initialize(0, 0, 300);
-
-        this.baseSecondaryValue = this.secondaryValue = GetBaseCooldown();
+        Initialize(0, 0, 300, GetBaseCooldown());
 
         if (GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen)
         {
@@ -76,7 +75,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
 
         if (ProgressCooldown())
         {
-            OnCooldownCompleted(AbstractDungeon.player, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true));
+            OnCooldownCompleted(AbstractDungeon.player, GameUtilities.GetRandomEnemy(true));
         }
     }
 
@@ -120,14 +119,14 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
 
         if (m.hasPower(IntangiblePower.POWER_ID))
         {
-            GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(m, m, IntangiblePower.POWER_ID));
+            GameActions.Bottom.RemovePower(m, m, IntangiblePower.POWER_ID);
         }
 
-        GameActionsHelper.AddToBottom(new VFXAction(new LaserBeam2Effect(p.hb.cX, p.hb.cY), 0.1F));
-        GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05F, 0.05F), m.hb.cY + MathUtils.random(-0.05F, 0.05F)), 0.1F));
-        GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05F, 0.05F), m.hb.cY + MathUtils.random(-0.05F, 0.05F)), 0.1F));
-        GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05F, 0.05F), m.hb.cY + MathUtils.random(-0.05F, 0.05F)), 0.1F));
-        GameActionsHelper.DamageTarget(p, m, this.magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.VFX(new LaserBeam2Effect(p.hb.cX, p.hb.cY), 0.1F);
+        GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05F, 0.05F), m.hb.cY + MathUtils.random(-0.05F, 0.05F)), 0.1F);
+        GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05F, 0.05F), m.hb.cY + MathUtils.random(-0.05F, 0.05F)), 0.1F);
+        GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05F, 0.05F), m.hb.cY + MathUtils.random(-0.05F, 0.05F)), 0.1F);
+        GameActions.Bottom.DealDamage(p, m, this.magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
     }
 
     protected boolean ProgressCooldown()

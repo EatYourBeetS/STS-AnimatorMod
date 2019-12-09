@@ -1,18 +1,13 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.common.VariableDiscardAction;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.common.SelfDamagePower;
-import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper2;
-
-import java.util.ArrayList;
+import eatyourbeets.utilities.GameActions;
 
 public class Demiurge extends AnimatorCard
 {
@@ -32,8 +27,8 @@ public class Demiurge extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper2.GainEnergy(1);
-        GameActionsHelper2.Cycle(1, name);
+        GameActions.Bottom.GainEnergy(1);
+        GameActions.Bottom.Cycle(1, name);
     }
 
     @Override
@@ -41,7 +36,7 @@ public class Demiurge extends AnimatorCard
     {
         if (upgraded)
         {
-            GameActionsHelper2.DiscardFromHand(name, 1, false)
+            GameActions.Bottom.DiscardFromHand(name, 1, false)
             .SetOptions(true, true, true)
             .AddCallback(cards -> ExecuteEffect(cards.isEmpty()));
         }
@@ -59,11 +54,11 @@ public class Demiurge extends AnimatorCard
 
     private void ExecuteEffect(boolean takeDamage)
     {
-        GameActionsHelper2.GainEnergy(1);
+        GameActions.Bottom.GainEnergy(1);
 
         if (takeDamage)
         {
-            GameActionsHelper2.StackPower(new SelfDamagePower(AbstractDungeon.player, magicNumber));
+            GameActions.Bottom.StackPower(new SelfDamagePower(AbstractDungeon.player, magicNumber));
         }
     }
 }

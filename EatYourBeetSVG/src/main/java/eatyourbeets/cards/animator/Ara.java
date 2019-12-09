@@ -6,10 +6,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Ara extends AnimatorCard implements MartialArtist
@@ -35,17 +34,17 @@ public class Ara extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        GameActionsHelper2.DealDamage(this, m,  AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper2.Draw(GameUtilities.GetDebuffsCount(m.powers));
-        GameActionsHelper2.DiscardFromHand(name, 1, false)
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealDamage(this, m,  AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.Draw(GameUtilities.GetDebuffsCount(m.powers));
+        GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .AddCallback(cards ->
         {
             if (cards.get(0).type.equals(CardType.POWER) && EffectHistory.TryActivateSemiLimited(cardID))
             {
-                GameActionsHelper.GainAgility(1);
-                GameActionsHelper.GainForce(2);
+                GameActions.Bottom.GainAgility(1);
+                GameActions.Bottom.GainForce(2);
             }
         });
     }

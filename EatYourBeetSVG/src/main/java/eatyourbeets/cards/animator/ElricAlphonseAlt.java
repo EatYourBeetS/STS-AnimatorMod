@@ -1,13 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Hidden;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -28,12 +26,12 @@ public class ElricAlphonseAlt extends AnimatorCard implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.ChannelOrb(new Lightning(), true);
-        GameActionsHelper2.GainPlatedArmor(this.magicNumber);
+        GameActions.Bottom.ChannelOrb(new Lightning(), true);
+        GameActions.Bottom.GainPlatedArmor(this.magicNumber);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper2.GainOrbSlots(1);
+            GameActions.Bottom.GainOrbSlots(1);
         }
     }
 

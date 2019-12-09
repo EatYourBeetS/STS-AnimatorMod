@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AdrenalineEffect;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.interfaces.metadata.Hidden;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class DarknessAdrenaline extends AnimatorCard implements Hidden
 {
@@ -23,9 +23,9 @@ public class DarknessAdrenaline extends AnimatorCard implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.VFX(new AdrenalineEffect(), 0.15F);
-        GameActionsHelper2.GainEnergy(magicNumber);
-        GameActionsHelper2.Draw(2);
+        GameActions.Bottom.VFX(new AdrenalineEffect(), 0.15F);
+        GameActions.Bottom.GainEnergy(magicNumber);
+        GameActions.Bottom.Draw(2);
     }
 
     @Override

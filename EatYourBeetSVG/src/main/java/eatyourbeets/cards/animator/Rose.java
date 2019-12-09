@@ -1,25 +1,14 @@
 package eatyourbeets.cards.animator;
 
-import basemod.BaseMod;
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
-import eatyourbeets.actions._legacy.common.PiercingDamageAction;
-import eatyourbeets.actions._legacy.common.VariableDiscardAction;
+import eatyourbeets.actions.special.RoseDamageAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class Rose extends AnimatorCard_UltraRare
 {
@@ -29,94 +18,31 @@ public class Rose extends AnimatorCard_UltraRare
     {
         super(ID, 3, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(6,0, 2, 40);
+        Initialize(7, 0, 2, 40);
 
         SetSynergy(Synergies.Elsword);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.Draw(this.magicNumber);
-        GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, m, this::OnDiscard));
+        GameActions.Bottom.Draw(this.magicNumber);
+        GameActions.Bottom.Reload(name, m, (enemy, cards) ->
+        {
+            AbstractMonster monster = JavaUtilities.SafeCast(enemy, AbstractMonster.class);
+            if (cards.size() > 0 && monster != null && !GameUtilities.IsDeadOrEscaped(monster))
+            {
+                GameActions.Bottom.Add(new RoseDamageAction(monster, this, cards.size(), damage));
+            }
+        });
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {
-            upgradeDamage(3);
-        }
-    }
-
-    private void OnDiscard(Object state, ArrayList<AbstractCard> cards)
-    {
-        if (state != null && cards != null)
-        {
-            AbstractMonster m = (AbstractMonster) state;
-
-            GameActionsHelper.AddToBottom(new RoseDamageAction(m, this, cards.size(), this.damage));
-        }
-    }
-
-    private class RoseDamageAction extends AbstractGameAction
-    {
-        private final int damage;
-        private final int times;
-        private final AbstractPlayer p;
-        private final Rose rose;
-        private final AbstractMonster enemy;
-
-        private AbstractGameAction action;
-
-        private RoseDamageAction(AbstractMonster enemy, Rose rose, int times, int damage)
-        {
-            this.damage = damage;
-            this.enemy = enemy;
-            this.rose = rose;
-            this.p = AbstractDungeon.player;
-            this.times = times;
-        }
-
-        @Override
-        public void update()
-        {
-            if (action != null)
-            {
-                action.update();
-
-                if (action.isDone)
-                {
-                    if (enemy.currentHealth <= 0 || enemy.isDeadOrEscaped() || enemy.isDying)
-                    {
-                        int[] damageMatrix = DamageInfo.createDamageMatrix(rose.secondaryValue, true);
-
-                        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
-                        {
-                            Explosion(m.hb);
-                        }
-
-                        GameActionsHelper.DamageAllEnemies(p, damageMatrix, DamageInfo.DamageType.THORNS, AttackEffect.NONE);
-                    }
-                    else  if (times > 1)
-                    {
-                        GameActionsHelper.AddToBottom(new RoseDamageAction(enemy, rose, times - 1, damage));
-                    }
-
-                    this.isDone = true;
-                }
-            }
-            else
-            {
-                Explosion(enemy.hb);
-                action = new PiercingDamageAction(enemy, new DamageInfo(p, damage, rose.damageTypeForTurn), true);
-            }
-        }
-
-        private void Explosion(Hitbox hb)
-        {
-            GameActionsHelper.AddToTop(new VFXAction(new ExplosionSmallEffect(hb.cX + MathUtils.random(-0.05F, 0.05F), hb.cY + MathUtils.random(-0.05F, 0.05F)), 0.1F));
+            upgradeMagicNumber(1);
         }
     }
 }

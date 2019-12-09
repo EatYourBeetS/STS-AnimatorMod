@@ -10,10 +10,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -36,12 +36,12 @@ public class Add extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
+        GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
         .AddCallback(this::OnCardChosen);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper2.AddToBottom(new DoubleEnergyAction());
+            GameActions.Bottom.Add(new DoubleEnergyAction());
         }
     }
 
@@ -77,7 +77,7 @@ public class Add extends AnimatorCard
 
             if (cardGroup != null)
             {
-                GameActionsHelper.AddToBottom(OrbCore.SelectCoreAction(name, 1)
+                GameActionsHelper_Legacy.AddToBottom(OrbCore.SelectCoreAction(name, 1)
                 .AddCallback(cardGroup, this::OrbChosen));
             }
         }
@@ -91,15 +91,15 @@ public class Add extends AnimatorCard
             switch (cardGroup.type)
             {
                 case DRAW_PILE:
-                    GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(chosen.get(0), 1, true, true));
+                    GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInDrawPileAction(chosen.get(0), 1, true, true));
                     break;
 
                 case HAND:
-                    GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(chosen.get(0), 1));
+                    GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInHandAction(chosen.get(0), 1));
                     break;
 
                 case DISCARD_PILE:
-                    GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(chosen.get(0), 1));
+                    GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInDiscardAction(chosen.get(0), 1));
                     break;
 
                 case MASTER_DECK:

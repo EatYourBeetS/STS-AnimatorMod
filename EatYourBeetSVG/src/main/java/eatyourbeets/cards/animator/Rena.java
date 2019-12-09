@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BlurPower;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -27,19 +27,18 @@ public class Rena extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        AbstractPlayer p =  AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new BlurPower(p, this.secondaryValue), this.secondaryValue);
+        GameActions.Bottom.GainBlur(secondaryValue);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.GainBlock(this.block);
-        GameActionsHelper.MakeCardInHand(ThrowingKnife.GetRandomCard(), 1, false);
+        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.CreateThrowingKnives(1);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.ApplyPower(p, p, new BlurPower(p, this.secondaryValue), this.secondaryValue);
+            GameActions.Bottom.GainBlur(secondaryValue);
         }
     }
 

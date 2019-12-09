@@ -2,19 +2,19 @@ package eatyourbeets.misc.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.Nanami;
 
 public class NanamiEffect_Unknown extends NanamiEffect
 {
     public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
     {
-        GameActionsHelper.GainEnergy(1);
+        GameActions.Bottom.GainEnergy(1);
 
         int temporaryHP = GetTempHP(nanami);
         if (temporaryHP > 0)
         {
-            GameActionsHelper.GainTemporaryHP(p, p, temporaryHP);
+            GameActions.Bottom.GainTemporaryHP(temporaryHP);
         }
     }
 

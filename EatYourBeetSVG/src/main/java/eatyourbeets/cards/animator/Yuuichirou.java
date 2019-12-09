@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -42,8 +42,8 @@ public class Yuuichirou extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper2.Draw(1);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.Draw(1);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Yuuichirou extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.MakeCardInDiscardPile(new Asuramaru(), 1, false);
+        GameActions.Bottom.MakeCardInDiscardPile(new Asuramaru(), false, false);
 
         AbstractDungeon.player.discardPile.addToTop(new Wound());
         AbstractDungeon.player.discardPile.addToTop(new Wound());

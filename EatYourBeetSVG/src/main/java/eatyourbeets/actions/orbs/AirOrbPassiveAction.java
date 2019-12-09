@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.orbs.Aether;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -29,7 +29,7 @@ public class AirOrbPassiveAction extends AbstractGameAction
     {
         AbstractPlayer p = AbstractDungeon.player;
 
-        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
 
         ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
         Collections.reverse(enemies);
@@ -39,14 +39,14 @@ public class AirOrbPassiveAction extends AbstractGameAction
             int actualDamage = AbstractOrb.applyLockOn(m, wind.passiveAmount);
             if (actualDamage > 0)
             {
-                GameActionsHelper.DamageTargetPiercing(p, m, actualDamage, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HORIZONTAL);
+                GameActionsHelper_Legacy.DamageTargetPiercing(p, m, actualDamage, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HORIZONTAL);
             }
         }
 
-        GameActionsHelper.SFX("ATTACK_WHIRLWIND");
-        GameActionsHelper.VFX(new WhirlwindEffect(), 0);
+        GameActionsHelper_Legacy.SFX("ATTACK_WHIRLWIND");
+        GameActionsHelper_Legacy.VFX(new WhirlwindEffect(), 0);
 
-        GameActionsHelper.ResetOrder();
+        GameActionsHelper_Legacy.ResetOrder();
 
         this.isDone = true;
     }

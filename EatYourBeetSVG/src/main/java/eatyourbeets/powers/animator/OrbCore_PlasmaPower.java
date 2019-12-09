@@ -3,7 +3,7 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.OrbCore_Plasma;
 
 public class OrbCore_PlasmaPower extends OrbCore_AbstractPower
@@ -22,7 +22,7 @@ public class OrbCore_PlasmaPower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActionsHelper.GainTemporaryHP(p, p, value);
+        GameActions.Bottom.GainTemporaryHP(value);
     }
 }
 

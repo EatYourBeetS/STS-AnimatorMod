@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class Buoy extends AnimatorRelic implements OnCallbackSubscriber
@@ -81,14 +82,14 @@ public class Buoy extends AnimatorRelic implements OnCallbackSubscriber
 
         if (AbstractDungeon.player.currentHealth < counter)
         {
-            GameActionsHelper.GainBlock(AbstractDungeon.player, BLOCK_AMOUNT);
+            GameActions.Bottom.GainBlock(BLOCK_AMOUNT);
             this.flash();
         }
     }
 
     private void UpdateThreshold()
     {
-        GameActionsHelper.DelayedAction(this);
+        GameActionsHelper_Legacy.DelayedAction(this);
     }
 
     @Override

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainTempThornsAndBlockAll;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
@@ -59,9 +59,9 @@ public class TheUnnamed_Doll extends AnimatorMonster
     {
         super.init();
 
-        GameActionsHelper.ApplyPower(this, this, new CursedStabsPower(this));
-        GameActionsHelper.ApplyPower(this, this, new UnnamedDollPower(this));
-        GameActionsHelper.GainBlock(this, 26 + (int)(GameUtilities.GetActualAscensionLevel() * 0.66f));
+        GameActionsHelper_Legacy.ApplyPower(this, this, new CursedStabsPower(this));
+        GameActionsHelper_Legacy.ApplyPower(this, this, new UnnamedDollPower(this));
+        GameActionsHelper_Legacy.GainBlock(this, 26 + (int)(GameUtilities.GetActualAscensionLevel() * 0.66f));
     }
 
     @Override

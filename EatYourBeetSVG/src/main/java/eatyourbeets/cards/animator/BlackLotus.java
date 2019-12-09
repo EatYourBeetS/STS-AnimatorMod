@@ -8,7 +8,7 @@ import eatyourbeets.interfaces.metadata.Hidden;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.ColoredSweepingBeamEffect;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class BlackLotus extends AnimatorCard implements Hidden
 {
@@ -28,11 +28,11 @@ public class BlackLotus extends AnimatorCard implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.GainBlock(this.block);
-        GameActionsHelper2.SFX("ATTACK_DEFECT_BEAM");
-        GameActionsHelper2.VFX(new ColoredSweepingBeamEffect(p.hb.cX, p.hb.cY, p.flipHorizontal, Color.valueOf("3d0066")), 0.3F);
-        GameActionsHelper2.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
-        GameActionsHelper2.GainBlur(this.magicNumber);
+        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.SFX("ATTACK_DEFECT_BEAM");
+        GameActions.Bottom.VFX(new ColoredSweepingBeamEffect(p.hb.cX, p.hb.cY, p.flipHorizontal, Color.valueOf("3d0066")), 0.3F);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.GainBlur(this.magicNumber);
     }
 
     @Override

@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.relics.animator.EngravedStaff;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ForcePower extends CommonPower
@@ -27,7 +28,7 @@ public class ForcePower extends CommonPower
     {
         super.onInitialApplication();
 
-        GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, amount), amount);
+        GameActions.Bottom.GainStrength(amount);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class ForcePower extends CommonPower
     {
         super.stackPower(stackAmount);
 
-        GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, stackAmount), stackAmount);
+        GameActions.Bottom.GainStrength(stackAmount);
     }
 
     @Override
@@ -50,9 +51,9 @@ public class ForcePower extends CommonPower
 
         if (GameUtilities.GetStrength() > 0)
         {
-            GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, StrengthPower.POWER_ID, 1));
+            GameActions.Bottom.ReducePower(owner, StrengthPower.POWER_ID, 1);
         }
 
-        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
+        GameActions.Bottom.ReducePower(this, 1);
     }
 }

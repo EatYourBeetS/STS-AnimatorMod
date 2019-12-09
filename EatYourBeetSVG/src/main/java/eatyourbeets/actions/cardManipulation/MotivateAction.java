@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.interfaces.*;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
 public class MotivateAction extends EYBAction
@@ -82,7 +82,7 @@ public class MotivateAction extends EYBAction
     {
         if (AbstractDungeon.player.hand.contains(card) && firstTimePerTurn)
         {
-            GameActionsHelper2.ModifyAllCombatInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
+            GameActions.Bottom.ModifyAllCombatInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
         }
 
         firstTimePerTurn = false;
@@ -95,7 +95,7 @@ public class MotivateAction extends EYBAction
 
         if (AbstractDungeon.player.hand.contains(card))
         {
-            GameActionsHelper2.ModifyAllCombatInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
+            GameActions.Bottom.ModifyAllCombatInstances(card.uuid, c -> c.setCostForTurn(c.costForTurn - amount));
 
             firstTimePerTurn = false;
         }

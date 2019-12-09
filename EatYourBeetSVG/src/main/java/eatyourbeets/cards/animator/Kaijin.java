@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.KaijinPower;
@@ -34,7 +34,7 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new KaijinPower(p, this.magicNumber), this.magicNumber);
+        GameActions.Bottom.StackPower(new KaijinPower(p, magicNumber));
     }
 
     @Override
@@ -49,30 +49,28 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
     @Override
     public void OnAddedToDeck()
     {
-        AbstractDungeon.effectsQueue.add(new CallbackEffect(new WaitAction(0.1f), this::OnCompletion, this));
-    }
-
-    private void OnCompletion(Object state, AbstractGameAction action)
-    {
-        if (state == this && action != null)
+        AbstractDungeon.effectsQueue.add(new CallbackEffect(new WaitAction(0.1f), this, (state, action) ->
         {
-            RandomizedList<AbstractCard> upgradableCards = new RandomizedList<>();
-            for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+            if (state == this && action != null)
             {
-                if (CardRarity.BASIC.equals(c.rarity) && c.canUpgrade())
+                RandomizedList<AbstractCard> upgradableCards = new RandomizedList<>();
+                for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
                 {
-                    upgradableCards.Add(c);
+                    if (CardRarity.BASIC.equals(c.rarity) && c.canUpgrade())
+                    {
+                        upgradableCards.Add(c);
+                    }
+                }
+
+                if (upgradableCards.Count() > 0)
+                {
+                    AbstractCard card = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
+                    card.upgrade();
+                    AbstractDungeon.player.bottledCardUpgradeCheck(card);
+                    AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+                    AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
                 }
             }
-
-            if (upgradableCards.Count() > 0)
-            {
-                AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
-                card1.upgrade();
-                AbstractDungeon.player.bottledCardUpgradeCheck(card1);
-                AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
-                AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-            }
-        }
+        }));
     }
 }

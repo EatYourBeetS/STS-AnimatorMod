@@ -11,7 +11,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 
 public class Move_ShuffleCard extends AbstractMove
@@ -32,19 +33,19 @@ public class Move_ShuffleCard extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActionsHelper.AddToBottom(new SFXAction("THUNDERCLAP"));
+        GameActions.Bottom.SFX("THUNDERCLAP");
 
         if (!Settings.FAST_MODE)
         {
-            GameActionsHelper.AddToBottom(new VFXAction(owner, new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.5F));
-            GameActionsHelper.AddToBottom(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.2F));
+            GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.5F);
+            GameActionsHelper_Legacy.AddToBottom(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.2F));
         }
         else
         {
-            GameActionsHelper.AddToBottom(new VFXAction(owner, new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F));
-            GameActionsHelper.AddToBottom(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.15F));
+            GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F);
+            GameActionsHelper_Legacy.AddToBottom(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.15F));
         }
 
-        GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(this.card, this.amount));
+        GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInDiscardAction(this.card, this.amount));
     }
 }

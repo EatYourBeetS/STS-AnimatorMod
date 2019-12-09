@@ -4,7 +4,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class ThrowingKnife_0 extends ThrowingKnife
 {
@@ -20,6 +21,6 @@ public class ThrowingKnife_0 extends ThrowingKnife
     @Override
     protected void AddSecondaryEffect(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, m, new WeakPower(m, this.magicNumber, false), this.magicNumber);
+        GameActions.Top.ApplyWeak(p, m, this.magicNumber);
     }
 }

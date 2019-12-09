@@ -11,9 +11,10 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
-public class MaesHughes extends AnimatorCard implements OnCallbackSubscriber
+public class MaesHughes extends AnimatorCard
 {
     public static final String ID = Register(MaesHughes.class.getSimpleName(), EYBCardBadge.Exhaust);
 
@@ -31,15 +32,27 @@ public class MaesHughes extends AnimatorCard implements OnCallbackSubscriber
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.DelayedAction(this);
+        GameActions.Bottom.Callback(__ ->
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            if (!DrawRoyMustang(p.drawPile))
+            {
+                if (!DrawRoyMustang(p.discardPile))
+                {
+                    if (!DrawRoyMustang(p.exhaustPile))
+                    {
+                        DrawRoyMustang(p.hand);
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        int cardDraw = Math.floorDiv(p.drawPile.size(), magicNumber);
-        GameActionsHelper2.Draw(cardDraw);
-        GameActionsHelper.Motivate(1, 1);
+        GameActions.Bottom.Draw(Math.floorDiv(p.drawPile.size(), magicNumber));
+        GameActions.Bottom.Motivate();
     }
 
     @Override
@@ -51,22 +64,6 @@ public class MaesHughes extends AnimatorCard implements OnCallbackSubscriber
         }
     }
 
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        AbstractPlayer p = AbstractDungeon.player;
-        if (!DrawRoyMustang(p.drawPile))
-        {
-            if (!DrawRoyMustang(p.discardPile))
-            {
-                if (!DrawRoyMustang(p.exhaustPile))
-                {
-                    DrawRoyMustang(p.hand);
-                }
-            }
-        }
-    }
-
     private boolean DrawRoyMustang(CardGroup group)
     {
         for (AbstractCard c : group.group)
@@ -75,7 +72,7 @@ public class MaesHughes extends AnimatorCard implements OnCallbackSubscriber
             {
                 if (group.type != CardGroup.CardGroupType.HAND)
                 {
-                    GameActionsHelper.AddToTop(new MoveCard(c, AbstractDungeon.player.hand, group, true));
+                    GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, group, true);
                 }
 
                 c.modifyCostForTurn(-1);

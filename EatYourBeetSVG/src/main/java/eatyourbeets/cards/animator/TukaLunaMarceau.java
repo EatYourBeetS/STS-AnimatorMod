@@ -1,12 +1,11 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class TukaLunaMarceau extends AnimatorCard
 {
@@ -26,7 +25,7 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.GainBlock(AbstractDungeon.player, magicNumber);
+        GameActions.Bottom.GainBlock(magicNumber);
     }
 
     @Override
@@ -34,10 +33,10 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         if (p.currentBlock <= 0)
         {
-            GameActionsHelper2.Draw(1);
+            GameActions.Bottom.Draw(1);
         }
 
-        GameActionsHelper2.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,7 +8,7 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Emilia extends AnimatorCard
 {
@@ -29,8 +28,17 @@ public class Emilia extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ChannelOrb(new Frost(), true);
-        GameActionsHelper.AddToBottom(new EmiliaAction());
+        GameActions.Bottom.ChannelOrb(new Frost(), true);
+        GameActions.Bottom.Callback(__ ->
+        {
+            for (AbstractOrb orb : AbstractDungeon.player.orbs)
+            {
+                if (orb != null && Frost.ORB_ID.equals(orb.ID))
+                {
+                    GameActions.Bottom.ChannelOrb(new Lightning(), true);
+                }
+            }
+        });
     }
 
     @Override
@@ -39,23 +47,6 @@ public class Emilia extends AnimatorCard
         if (TryUpgrade())
         {
             SetExhaust(false);
-        }
-    }
-
-    private class EmiliaAction extends AbstractGameAction
-    {
-        @Override
-        public void update()
-        {
-            for (AbstractOrb orb : AbstractDungeon.player.orbs)
-            {
-                if (orb != null && Frost.ORB_ID.equals(orb.ID))
-                {
-                    GameActionsHelper.ChannelOrb(new Lightning(), true);
-                }
-            }
-
-            this.isDone = true;
         }
     }
 }

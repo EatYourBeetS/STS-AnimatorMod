@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -30,15 +31,15 @@ public class Kuribayashi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-        GameActionsHelper.DamageTarget(p, m, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.SFX("ATTACK_FIRE");
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
 
-        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, magicNumber, false), magicNumber);
-        GameActionsHelper.ApplyPower(p, m, new ChokePower(m, this.secondaryValue), this.secondaryValue);
+        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
+        GameActions.Bottom.ApplyPower(p, m, new ChokePower(m, secondaryValue), secondaryValue);
 
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameUtilities.LoseTemporaryStrength(p, m, STRENGTH_DOWN);
+            GameActions.Bottom.ReduceStrength(m, STRENGTH_DOWN, true);
         }
     }
 

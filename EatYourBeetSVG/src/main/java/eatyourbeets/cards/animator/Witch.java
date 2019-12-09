@@ -10,7 +10,8 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Witch extends AnimatorCard implements Spellcaster, StartupCard
@@ -37,11 +38,11 @@ public class Witch extends AnimatorCard implements Spellcaster, StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
 
-        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.ApplyPower(p, m1, new BurningPower(m1, p, this.magicNumber), this.magicNumber);
+            GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
         }
     }
 
@@ -60,7 +61,8 @@ public class Witch extends AnimatorCard implements Spellcaster, StartupCard
     {
         if (AbstractDungeon.currMapNode != null && AbstractDungeon.currMapNode.room != null && AbstractDungeon.currMapNode.room.eliteTrigger)
         {
-            GameActionsHelper.AddToBottom(new ObtainPotionAction(AbstractDungeon.returnRandomPotion(false)));
+            GameActions.Bottom.Add(new ObtainPotionAction(AbstractDungeon.returnRandomPotion(false)));
+
             return true;
         }
 

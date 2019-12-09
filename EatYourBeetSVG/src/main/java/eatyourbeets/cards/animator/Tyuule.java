@@ -10,7 +10,8 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -37,7 +38,7 @@ public class Tyuule extends AnimatorCard
             AbstractPower poison = m.getPower(PoisonPower.POWER_ID);
             if (poison != null)
             {
-                GameActionsHelper.AddToBottom(new PoisonLoseHpAction(m, AbstractDungeon.player, poison.amount, AbstractGameAction.AttackEffect.POISON));
+                GameActions.Bottom.Add(new PoisonLoseHpAction(m, AbstractDungeon.player, poison.amount, AbstractGameAction.AttackEffect.POISON));
             }
         }
     }
@@ -45,10 +46,10 @@ public class Tyuule extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
+        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.ApplyPower(p, m1, new PoisonPower(m1, p, this.magicNumber), this.magicNumber);
-            GameActionsHelper.ApplyPower(p, m1, new VulnerablePower(m1, 1, false), 1);
+            GameActions.Bottom.ApplyPoison(p, enemy, this.magicNumber);
+            GameActions.Bottom.ApplyVulnerable(p, enemy, 1);
         }
     }
 

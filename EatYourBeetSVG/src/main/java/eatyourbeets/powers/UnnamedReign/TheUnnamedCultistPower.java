@@ -1,10 +1,9 @@
 package eatyourbeets.powers.UnnamedReign;
 
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamedCultistPower extends AnimatorPower
@@ -33,11 +32,12 @@ public class TheUnnamedCultistPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, owner, EnchantedArmorPower.POWER_ID));
+        GameActions.Bottom.RemovePower(owner, owner, EnchantedArmorPower.POWER_ID);
+
         int count = GameUtilities.GetCurrentEnemies(true).size() - 1;
         if (count > 0)
         {
-            GameActionsHelper.ApplyPowerSilently(owner, owner, new EnchantedArmorPower(owner, amount * count), amount * count);
+            GameActions.Bottom.ApplyPowerSilently(owner, owner, new EnchantedArmorPower(owner, amount * count), amount * count);
         }
     }
 }

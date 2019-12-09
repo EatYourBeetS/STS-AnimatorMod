@@ -13,7 +13,7 @@ import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.common.TemporaryArtifactPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
@@ -40,8 +40,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
 
         if (EffectHistory.TryActivateSemiLimited(cardID))
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            TemporaryArtifactPower.Apply(p, p, 1);
+            GameActions.Bottom.GainTemporaryArtifact(1);
         }
     }
 
@@ -70,11 +69,11 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
             AbstractOrb orb = orbs.Retrieve(AbstractDungeon.cardRandomRng);
             if (orb != null)
             {
-                GameActionsHelper.ChannelOrb(orb, true);
+                GameActions.Bottom.ChannelOrb(orb, true);
             }
         }
 
-        GameActionsHelper2.GainBlock(block);
+        GameActions.Bottom.GainBlock(block);
     }
 
     @Override

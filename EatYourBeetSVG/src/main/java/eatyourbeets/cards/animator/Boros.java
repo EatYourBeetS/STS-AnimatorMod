@@ -6,7 +6,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.BorosPower;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Boros extends AnimatorCard
 {
@@ -26,14 +26,14 @@ public class Boros extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActionsHelper2.GainForce(secondaryValue);
-        GameActionsHelper2.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.GainForce(secondaryValue);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.ApplyPower(p, p, new BorosPower(p));
+        GameActions.Bottom.ApplyPower(p, p, new BorosPower(p));
     }
 
     @Override

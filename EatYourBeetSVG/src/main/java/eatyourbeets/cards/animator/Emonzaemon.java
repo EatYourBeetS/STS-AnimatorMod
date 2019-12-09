@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -9,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -53,10 +52,10 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
-        GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.SFX("ATTACK_FIRE");
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetOptions(true, true);
+        GameActions.Bottom.SFX("ATTACK_FIRE");
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetOptions(true, true);
 
         if (!EffectHistory.HasActivatedLimited(cardID))
         {
@@ -75,8 +74,8 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
 
                 if (threeInARow)
                 {
-                    GameActionsHelper.MakeCardInDrawPile(new EntouJyuu(), 1, upgraded);
                     EffectHistory.TryActivateLimited(cardID);
+                    GameActions.Bottom.MakeCardInDrawPile(new EntouJyuu(), upgraded, false);
                 }
             }
         }

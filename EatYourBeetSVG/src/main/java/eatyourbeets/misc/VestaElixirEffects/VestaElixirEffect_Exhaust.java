@@ -3,7 +3,7 @@ package eatyourbeets.misc.VestaElixirEffects;
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.Vesta_Elixir;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class VestaElixirEffect_Exhaust extends VestaElixirEffect
@@ -22,7 +22,7 @@ public class VestaElixirEffect_Exhaust extends VestaElixirEffect
     {
         if (GameUtilities.GetOtherCardsInHand(elixir).size() >= amount)
         {
-            GameActionsHelper.AddToBottom(new ExhaustAction(player, player, amount, false, false, false));
+            GameActionsHelper_Legacy.AddToBottom(new ExhaustAction(player, player, amount, false, false, false));
             linkedEffect.EnqueueAction(elixir, player);
         }
     }

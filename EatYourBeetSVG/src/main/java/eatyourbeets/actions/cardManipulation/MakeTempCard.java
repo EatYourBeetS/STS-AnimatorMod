@@ -1,7 +1,9 @@
 package eatyourbeets.actions.cardManipulation;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 import eatyourbeets.actions.EYBActionWithCallback;
@@ -69,7 +71,18 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
             case HAND:
             {
-                AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(actualCard));
+                if (player.hand.size() >= BaseMod.MAX_HAND_SIZE)
+                {
+                    player.createHandIsFullDialog();
+                    AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(actualCard));
+                }
+                else
+                {
+                    AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(actualCard,
+                    (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
+                    (float) Settings.HEIGHT / 2.0F));
+                }
+
                 break;
             }
 

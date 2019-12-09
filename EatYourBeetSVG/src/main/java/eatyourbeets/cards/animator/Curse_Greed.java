@@ -5,8 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.RandomCostReduction;
 import eatyourbeets.cards.AnimatorCard_Curse;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Curse_Greed extends AnimatorCard_Curse
 {
@@ -26,7 +25,7 @@ public class Curse_Greed extends AnimatorCard_Curse
     {
         super.triggerWhenDrawn();
 
-        GameActionsHelper2.AddToBottom(new RandomCostReduction(1, false));
+        GameActions.Bottom.Add(new RandomCostReduction(1, false));
         this.flash();
     }
 

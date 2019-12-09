@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class TheWolleyCore extends UnnamedReignRelic
@@ -39,7 +39,7 @@ public class TheWolleyCore extends UnnamedReignRelic
     {
         super.atTurnStart();
 
-        GameActionsHelper.DrawCard(AbstractDungeon.player, CARD_DRAW);
+        GameActionsHelper_Legacy.DrawCard(AbstractDungeon.player, CARD_DRAW);
     }
 
     @Override
@@ -49,18 +49,18 @@ public class TheWolleyCore extends UnnamedReignRelic
 
         AbstractPlayer p = AbstractDungeon.player;
 
-        GameActionsHelper.SFX("ATTACK_HEAVY");
+        GameActionsHelper_Legacy.SFX("ATTACK_HEAVY");
         if (Settings.FAST_MODE)
         {
-            GameActionsHelper.VFX(new CleaveEffect());
+            GameActionsHelper_Legacy.VFX(new CleaveEffect());
         }
         else
         {
-            GameActionsHelper.VFX(new CleaveEffect(), 0.2f);
+            GameActionsHelper_Legacy.VFX(new CleaveEffect(), 0.2f);
         }
 
-        GameActionsHelper.AddToBottom(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE, true));
-        GameActionsHelper.AddToBottom(new GainBlockAction(p, p, BLOCK_AMOUNT, true));
+        GameActionsHelper_Legacy.AddToBottom(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE, true));
+        GameActionsHelper_Legacy.AddToBottom(new GainBlockAction(p, p, BLOCK_AMOUNT, true));
     }
 
     @Override

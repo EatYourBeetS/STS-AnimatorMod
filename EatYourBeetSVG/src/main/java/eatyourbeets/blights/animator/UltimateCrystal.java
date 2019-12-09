@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 import java.util.ArrayList;
 
@@ -26,23 +27,19 @@ public class UltimateCrystal extends AnimatorBlight
     {
         super.atBattleStart();
 
-        String message = Resources_Animator_Strings.Actions.TEXT[6] + " (" + this.name + ")";
-        GameActionsHelper.ChooseFromHand(initialAmount, false, this::OnCompletion, this, message);
-
-        this.flash();
-    }
-
-    private void OnCompletion(Object state, ArrayList<AbstractCard> cards)
-    {
-        if (state == this && cards != null)
+        GameActions.Bottom.SelectFromHand(name, initialAmount, false)
+        .SetMessage(Resources_Animator_Strings.Actions.TEXT[6])
+        .AddCallback(cards ->
         {
             AbstractPlayer p = AbstractDungeon.player;
             for (AbstractCard c : cards)
             {
-                GameActionsHelper.MoveCard(c, p.drawPile, p.hand, true);
+                GameActions.Top.MoveCard(c, p.drawPile, p.hand, true);
             }
 
-            GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
-        }
+            GameActions.Bottom.Add(new RefreshHandLayoutAction());
+        });
+
+        this.flash();
     }
 }

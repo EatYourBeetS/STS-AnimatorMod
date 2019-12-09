@@ -282,7 +282,7 @@
 	},
 	"animator:ShikizakiKikiPower":
 	{
-		"DESCRIPTIONS": ["At the start of your turn, choose and Obtain #b", " #yAttack(s). Gain #yForce equal to their cost."],
+		"DESCRIPTIONS": ["每回合開始時，從 #b", " 張隨機 #y攻擊牌 中選擇一張加入手牌，獲得其能耗相同的 #y武力 。"],
 		"NAME": "四季崎 記紀"
 	},
 	"animator:ShiroPower":

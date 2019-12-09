@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.ChlammyZellPower;
@@ -25,9 +25,9 @@ public class ChlammyZell extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.Draw(1);
-        GameActionsHelper2.GainIntellect(secondaryValue);
-        GameActionsHelper2.StackPower(new ChlammyZellPower(p, this.magicNumber));
+        GameActions.Bottom.Draw(1);
+        GameActions.Bottom.GainIntellect(secondaryValue);
+        GameActions.Bottom.StackPower(new ChlammyZellPower(p, this.magicNumber));
     }
 
     @Override

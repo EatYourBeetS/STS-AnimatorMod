@@ -5,8 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Fire;
 
@@ -28,15 +27,15 @@ public class Elsword extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.ChannelOrb(new Fire(), false);
+        GameActions.Bottom.ChannelOrb(new Fire(), false);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, magicNumber), magicNumber);
-        GameActionsHelper.CycleCardAction(secondaryValue, name);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.ApplyBurning(p, m, magicNumber);
+        GameActions.Bottom.Cycle(secondaryValue, name);
     }
 
     @Override

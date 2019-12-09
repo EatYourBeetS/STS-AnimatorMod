@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.basic.MoveCard;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class MoveRandomCardAction extends AbstractGameAction
 {
@@ -34,18 +34,18 @@ public class MoveRandomCardAction extends AbstractGameAction
         {
             if (source.type == CardGroup.CardGroupType.DRAW_PILE && AbstractDungeon.player.discardPile.size() > 0)
             {
-                GameActionsHelper.AddToTop(new EmptyDeckShuffleAction());
-                GameActionsHelper.AddToTop(new MoveRandomCardAction(destination, source, amount, showEffect));
+                GameActionsHelper_Legacy.AddToTop(new EmptyDeckShuffleAction());
+                GameActionsHelper_Legacy.AddToTop(new MoveRandomCardAction(destination, source, amount, showEffect));
             }
         }
         else
         {
             AbstractCard card = source.getRandomCard(AbstractDungeon.cardRandomRng);
-            GameActionsHelper.AddToTop(new MoveCard(card, destination, source, showEffect));
+            GameActionsHelper_Legacy.AddToTop(new MoveCard(card, destination, source, showEffect));
 
             if (amount > 1)
             {
-                GameActionsHelper.AddToBottom(new MoveRandomCardAction(destination, source, amount -1, showEffect));
+                GameActionsHelper_Legacy.AddToBottom(new MoveRandomCardAction(destination, source, amount -1, showEffect));
             }
         }
 

@@ -13,7 +13,8 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.actions._legacy.common.DecreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.effects.CataclysmEffect;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -35,15 +36,15 @@ public class Devastation extends UnnamedCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToBottom(new DecreaseMaxHpAction(p, secondaryValue));
+        GameActionsHelper_Legacy.AddToBottom(new DecreaseMaxHpAction(p, secondaryValue));
 
         ArrayList<AbstractMonster> characters = GameUtilities.GetCurrentEnemies(true);
 
-        GameActionsHelper.AddToBottom(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
-        GameActionsHelper.AddToBottom(new WaitAction(0.35f));
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_PASSIVE", 0.2F));
-        GameActionsHelper.AddToBottom(new VFXAction(new BorderLongFlashEffect(Color.RED)));
-        //GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.5f));
+        GameActions.Bottom.VFX(new BorderFlashEffect(Color.ORANGE));
+        GameActions.Bottom.Wait(0.35f);
+        GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.2F);
+        GameActions.Bottom.VFX((new BorderLongFlashEffect(Color.RED)));
+        //GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f));
         for (int i = 0; i < magicNumber; i++)
         {
             RandomizedList<AbstractMonster> enemies = new RandomizedList<>(characters);
@@ -56,8 +57,8 @@ public class Devastation extends UnnamedCard
                 float x = c.hb.cX + AbstractDungeon.cardRandomRng.random(-width, width);
                 float y = c.hb.cY + AbstractDungeon.cardRandomRng.random(-height, height);
 
-                GameActionsHelper.VFX(new CataclysmEffect(x, y));
-                GameActionsHelper.DamageTarget(p, c, this, AbstractGameAction.AttackEffect.NONE, true);
+                GameActionsHelper_Legacy.VFX(new CataclysmEffect(x, y));
+                GameActionsHelper_Legacy.DamageTarget(p, c, this, AbstractGameAction.AttackEffect.NONE, true);
             }
         }
     }

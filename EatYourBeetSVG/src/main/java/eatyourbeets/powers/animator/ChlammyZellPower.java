@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class ChlammyZellPower extends AnimatorPower
 {
@@ -48,8 +48,8 @@ public class ChlammyZellPower extends AnimatorPower
             lastType = usedCard.type;
 
             int[] damage = DamageInfo.createDamageMatrix(amount, true);
-            GameActionsHelper.DamageAllEnemies(owner, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-            GameActionsHelper.CycleCardAction(1, name);
+            GameActionsHelper_Legacy.DamageAllEnemies(owner, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+            GameActionsHelper_Legacy.CycleCardAction(1, name);
             updateDescription();
         }
     }

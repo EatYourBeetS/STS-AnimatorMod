@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.actions._legacy.common.SupportDamageAction;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class SupportDamagePower extends AnimatorPower
 {
@@ -28,6 +28,6 @@ public class SupportDamagePower extends AnimatorPower
 
         DamageInfo info = new DamageInfo(owner, amount, DamageInfo.DamageType.NORMAL);
         SupportDamageAction action = new SupportDamageAction(info, AbstractGameAction.AttackEffect.NONE);
-        GameActionsHelper.AddToBottom(action);
+        GameActionsHelper_Legacy.AddToBottom(action);
     }
 }

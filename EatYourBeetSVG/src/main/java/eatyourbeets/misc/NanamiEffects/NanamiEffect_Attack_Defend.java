@@ -3,15 +3,15 @@ package eatyourbeets.misc.NanamiEffects;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.Nanami;
 
 public class NanamiEffect_Attack_Defend extends NanamiEffect
 {
     public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
     {
-        GameActionsHelper2.GainBlock(GetBlock(nanami));
-        GameActionsHelper.DamageTarget(p, m, GetDamage(nanami), nanami.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.GainBlock(GetBlock(nanami));
+        GameActionsHelper_Legacy.DamageTarget(p, m, GetDamage(nanami), nanami.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
     }
 
     public static String UpdateDescription(Nanami nanami)

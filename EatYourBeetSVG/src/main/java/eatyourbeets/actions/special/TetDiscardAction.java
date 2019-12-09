@@ -1,4 +1,4 @@
-package eatyourbeets.actions._legacy.animator;
+package eatyourbeets.actions.special;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;

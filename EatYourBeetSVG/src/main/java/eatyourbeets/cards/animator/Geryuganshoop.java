@@ -5,13 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions._legacy.common.ChooseAnyNumberFromPileAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -32,10 +30,11 @@ public class Geryuganshoop extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        String message = JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[0], magicNumber);
-
-        GameActionsHelper.CycleCardAction(this.secondaryValue, name);
-        GameActionsHelper.AddToBottom(new ChooseAnyNumberFromPileAction(magicNumber, p.exhaustPile, this::OnCardChosen, this, message, true));
+        GameActions.Bottom.Cycle(secondaryValue, name);
+        GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
+        .SetMessage(JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[0], magicNumber))
+        .SetOptions(false, true)
+        .AddCallback(this::OnCardChosen);
     }
 
     @Override
@@ -48,11 +47,11 @@ public class Geryuganshoop extends AnimatorCard
         }
     }
 
-    private void OnCardChosen(Object state, ArrayList<AbstractCard> cards)
+    private void OnCardChosen(ArrayList<AbstractCard> cards)
     {
         boolean limited = EffectHistory.HasActivatedLimited(this.cardID);
 
-        if (state == this && cards != null && cards.size() > 0)
+        if (cards != null && cards.size() > 0)
         {
             AbstractPlayer p = AbstractDungeon.player;
             for (AbstractCard card : cards)
@@ -60,7 +59,7 @@ public class Geryuganshoop extends AnimatorCard
                 if (!limited && (card.cardID.equals(Boros.ID) || card.cardID.startsWith(Melzalgald.ID)))
                 {
                     EffectHistory.TryActivateLimited(this.cardID);
-                    GameActionsHelper.AddToBottom(new MoveCard(card, p.hand, p.exhaustPile, true));
+                    GameActions.Top.MoveCard(card, p.hand, p.exhaustPile, true);
                 }
                 else
                 {
@@ -69,7 +68,7 @@ public class Geryuganshoop extends AnimatorCard
                 }
             }
 
-            GameActionsHelper.GainEnergy(cards.size());
+            GameActions.Bottom.GainEnergy(cards.size());
         }
     }
 }

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ElectroPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class TemporaryElectroPower extends ElectroPower implements CloneablePowerInterface
 {
@@ -36,7 +36,7 @@ public class TemporaryElectroPower extends ElectroPower implements CloneablePowe
 
         if (!permanent)
         {
-            GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+            GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
         }
     }
 

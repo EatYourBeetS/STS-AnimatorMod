@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.JavaUtilities;
@@ -30,7 +30,7 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
     {
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
         {
-            GameActionsHelper.AddToTop(new RelicAboveCreatureAction(m, this));
+            GameActionsHelper_Legacy.AddToTop(new RelicAboveCreatureAction(m, this));
 
             int bonusHealth = 6;
             if (PlayerStatistics.SaveData.EnteredUnnamedReign)

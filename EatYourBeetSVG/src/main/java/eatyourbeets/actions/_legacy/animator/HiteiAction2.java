@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.RandomizedList;
 
 public class HiteiAction2 extends AbstractGameAction
@@ -75,7 +75,7 @@ public class HiteiAction2 extends AbstractGameAction
 
             if (group != null)
             {
-                GameActionsHelper.AddToTop(new ExhaustSpecificCardAction(card, group));
+                GameActionsHelper_Legacy.AddToTop(new ExhaustSpecificCardAction(card, group));
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();

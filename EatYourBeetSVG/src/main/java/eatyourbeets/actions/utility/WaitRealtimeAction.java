@@ -13,9 +13,9 @@ public class WaitRealtimeAction extends EYBAction
     {
         super(ActionType.WAIT, duration);
 
-        Initialize(1);
-
         this.realtimeDuration = duration;
+
+        Initialize(1);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class WaitRealtimeAction extends EYBAction
         }
         else if (Instant.now().isAfter(targetTime))
         {
-            this.isDone = true;
+            Complete();
         }
     }
 }

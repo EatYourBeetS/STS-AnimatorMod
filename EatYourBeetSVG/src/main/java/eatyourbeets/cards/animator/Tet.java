@@ -2,13 +2,13 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.animator.TetDiscardAction;
-import eatyourbeets.actions._legacy.animator.TetRecoverAction;
+import eatyourbeets.actions.special.TetDiscardAction;
+import eatyourbeets.actions.special.TetRecoverAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
 
 public class Tet extends AnimatorCard
 {
@@ -37,12 +37,13 @@ public class Tet extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new TetDiscardAction(magicNumber));
-        GameActionsHelper.AddToBottom(new TetRecoverAction(magicNumber));
+        // TODO: Simplify This
+        GameActions.Bottom.Add(new TetDiscardAction(magicNumber));
+        GameActions.Bottom.Add(new TetRecoverAction(magicNumber));
 
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper.GainEnergy(1);
+            GameActions.Bottom.GainEnergy(1);
         }
     }
 

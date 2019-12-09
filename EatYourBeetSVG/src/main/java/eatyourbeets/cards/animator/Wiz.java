@@ -8,7 +8,8 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class Wiz extends AnimatorCard
 {
@@ -26,18 +27,15 @@ public class Wiz extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (p.hand.size() > 0)
-        {
-            GameActionsHelper.AddToBottom(new ExhaustAction(p, p, 1, false));
-            GameActionsHelper.AddToBottom(new WizAction(p));
-        }
+        GameActions.Bottom.ExhaustFromHand(name, 1, false);
+        GameActions.Bottom.FetchFromPile(name, 1, p.exhaustPile)
+        .SetOptions(false, false)
+        .SetFilter(c -> !c.cardID.equals(Wiz.ID));
 
-        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
+        if (!(HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID)))
         {
-            return;
+            GameActionsHelper_Legacy.PurgeCard(this);
         }
-
-        GameActionsHelper.PurgeCard(this);
     }
 
     @Override

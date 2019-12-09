@@ -20,7 +20,8 @@ import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 import patches.RelicObtainedPatches;
 
@@ -130,7 +131,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
                 }
             }
 
-            effect.Enqueue(new CallbackEffect(GameActionsHelper.Wait(0.1f), UnnamedReignRelic::RemoveSpecialRelics, null));
+            effect.Enqueue(new CallbackEffect(GameActions.Bottom.Wait(0.1f), null, UnnamedReignRelic::RemoveSpecialRelics));
 
             AbstractRelic.relicPage = 0;
             AbstractDungeon.player.reorganizeRelics();

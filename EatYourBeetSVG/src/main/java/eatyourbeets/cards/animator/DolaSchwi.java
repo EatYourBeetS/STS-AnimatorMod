@@ -2,8 +2,6 @@ package eatyourbeets.cards.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
@@ -11,9 +9,8 @@ import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.Synergies;
 
@@ -33,7 +30,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.StackPower(p, new LockOnPower(m, this.magicNumber));
+        GameActions.Bottom.StackPower(p, new LockOnPower(m, this.magicNumber));
 
         if (ProgressCooldown())
         {
@@ -42,7 +39,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper2.ChannelOrb(new Lightning(), true);
+            GameActions.Bottom.ChannelOrb(new Lightning(), true);
         }
     }
 
@@ -76,10 +73,10 @@ public class DolaSchwi extends AnimatorCard_Cooldown
 
         this.calculateCardDamage(m);
 
-        GameActionsHelper2.SFX("ATTACK_MAGIC_BEAM_SHORT", 0.5F);
-        GameActionsHelper2.VFX(new BorderFlashEffect(Color.SKY));
-        GameActionsHelper2.SFX("ATTACK_HEAVY");
-        GameActionsHelper2.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.1F);
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.SFX("ATTACK_MAGIC_BEAM_SHORT", 0.5F);
+        GameActions.Bottom.VFX(new BorderFlashEffect(Color.SKY));
+        GameActions.Bottom.SFX("ATTACK_HEAVY");
+        GameActions.Bottom.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.1F);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
     }
 }

@@ -13,13 +13,14 @@ import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.interfaces.metadata.Hidden;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 import patches.AbstractEnums;
 
-public abstract class ThrowingKnife extends AnimatorCard implements Hidden, OnCallbackSubscriber
+public abstract class ThrowingKnife extends AnimatorCard implements Hidden
 {
     public static final String ID = Register(ThrowingKnife.class.getSimpleName());
 
@@ -42,9 +43,9 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden, OnCa
             subTypes.Add(new ThrowingKnife_2());
         }
 
-        if (AbstractDungeon.cardRng != null)
+        if (AbstractDungeon.cardRandomRng != null)
         {
-            return subTypes.Retrieve(AbstractDungeon.cardRng, false).makeCopy();
+            return subTypes.Retrieve(AbstractDungeon.cardRandomRng, false).makeCopy();
         }
         else
         {
@@ -57,19 +58,14 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden, OnCa
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper.DelayedAction(this);
-    }
-
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        if (state == this)
+        GameActions.Bottom.Callback(__ ->
         {
             AbstractDungeon.player.discardPile.removeCard(this);
             this.freeToPlayOnce = true;
             this.purgeOnUse = true;
             this.applyPowers();
             this.use(AbstractDungeon.player, null);
-        }
+        });
     }
 
     @Override
@@ -82,17 +78,15 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden, OnCa
 
         if (m != null)
         {
-            GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
-            {
-                AddSecondaryEffect(p, m);
+            AddSecondaryEffect(p, m);
 
-                GameActionsHelper.AddToDefault(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), true));
-                if (m.hb != null)
-                {
-                    GameActionsHelper.AddToDefault(new VFXAction(new ThrowDaggerEffect(m.hb.cX, m.hb.cY)));
-                }
+            GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+            .SetOptions2(true, false, 0);
+
+            if (m.hb != null)
+            {
+                GameActions.Top.VFX(new ThrowDaggerEffect(m.hb.cX, m.hb.cY));
             }
-            GameActionsHelper.ResetOrder();
         }
     }
 

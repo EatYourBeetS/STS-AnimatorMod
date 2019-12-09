@@ -3,7 +3,7 @@ package eatyourbeets.misc.VestaElixirEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
 import eatyourbeets.cards.animator.Vesta_Elixir;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class VestaElixirEffect_Metallicize extends VestaElixirEffect
 {
@@ -15,6 +15,6 @@ public class VestaElixirEffect_Metallicize extends VestaElixirEffect
     @Override
     public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
     {
-        GameActionsHelper.ApplyPower(player, player, new MetallicizePower(player, amount), amount);
+        GameActionsHelper_Legacy.ApplyPower(player, player, new MetallicizePower(player, amount), amount);
     }
 }

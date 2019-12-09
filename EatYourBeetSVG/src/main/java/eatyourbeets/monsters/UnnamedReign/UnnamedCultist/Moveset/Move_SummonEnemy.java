@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.actions._legacy.common.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.monsters.AbstractMove;
@@ -48,25 +49,25 @@ public class Move_SummonEnemy extends AbstractMove
 
         if (summon.id.equals(TheUnnamed_Doll.ID))
         {
-            GameActionsHelper.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[1], 0.5f, 2f));
-            GameActionsHelper.AddToBottom(new WaitRealtimeAction(2f));
-            GameActionsHelper.AddToBottom(new SummonMonsterAction(summon, true));
+            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[1], 0.5f, 2f));
+            GameActions.Bottom.WaitRealtime(2f);
+            GameActionsHelper_Legacy.AddToBottom(new SummonMonsterAction(summon, true));
             return;
         }
 
         if (summon.id.equals(ShelledParasite.ID))
         {
-            GameActionsHelper.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[4], 3f, 3f));
+            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[4], 3f, 3f));
         }
         else if (summon.id.equals(GremlinWarrior.ID))
         {
-            GameActionsHelper.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[3], 3f, 3f));
+            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[3], 3f, 3f));
         }
         else
         {
-            GameActionsHelper.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[2].replace("@", summon.name), 3f, 3f));
+            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, cultist.data.strings.DIALOG[2].replace("@", summon.name), 3f, 3f));
         }
 
-        GameActionsHelper.AddToBottom(new SummonMonsterAction(summon, false));
+        GameActionsHelper_Legacy.AddToBottom(new SummonMonsterAction(summon, false));
     }
 }

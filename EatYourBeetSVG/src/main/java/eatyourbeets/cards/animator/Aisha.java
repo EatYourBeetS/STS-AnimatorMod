@@ -12,7 +12,7 @@ import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.SmallLaser2Effect;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Aisha extends AnimatorCard implements Spellcaster
 {
@@ -39,7 +39,7 @@ public class Aisha extends AnimatorCard implements Spellcaster
         int max = p.filledOrbCount();
         for (int i = 0; i < max; i++)
         {
-            GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
             .SetOptions2(true, false, 0)
             .SetDamageEffect(enemy -> AbstractDungeon.effectsQueue.add(new SmallLaser2Effect(p.hb.cX, p.hb.cY,
                 enemy.hb.cX + MathUtils.random(-0.05F, 0.05F),
@@ -50,7 +50,7 @@ public class Aisha extends AnimatorCard implements Spellcaster
         {
             if (p.filledOrbCount() == p.orbs.size())
             {
-                GameActionsHelper2.GainOrbSlots(1);
+                GameActions.Bottom.GainOrbSlots(1);
                 EffectHistory.TryActivateLimited(cardID);
             }
         }

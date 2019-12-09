@@ -36,7 +36,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper2.DealDamageToAll(DamageInfo.createDamageMatrix(this.magicNumber, false),
+        GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(this.magicNumber, false),
         damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY).SetOptions(true, false);
     }
 
@@ -88,14 +88,14 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         this.applyPowers();
         this.calculateCardDamage(target);
 
-        GameActionsHelper2.DealDamage(this, target, AbstractGameAction.AttackEffect.FIRE)
+        GameActions.Bottom.DealDamage(this, target, AbstractGameAction.AttackEffect.FIRE)
             .SetOptions(true, false);
 
         WeightedList<AbstractPower> debuffs = GetRandomDebuffs(p, target);
         for (int i = 0; i < secondaryValue; i++)
         {
             AbstractPower debuff = debuffs.Retrieve(AbstractDungeon.cardRandomRng);
-            GameActionsHelper2.ApplyPower(p, target, debuff, debuff.amount);
+            GameActions.Bottom.ApplyPower(p, target, debuff, debuff.amount);
         }
     }
 }

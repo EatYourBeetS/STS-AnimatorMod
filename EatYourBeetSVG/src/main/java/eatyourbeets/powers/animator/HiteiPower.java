@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions._legacy.animator.HiteiAction2;
 
@@ -49,13 +49,13 @@ public class HiteiPower extends AnimatorPower
 
         for (int i = 0; i < unupgradedStacks; i++)
         {
-            GameActionsHelper.AddToBottom(new HiteiAction2(2));
+            GameActionsHelper_Legacy.AddToBottom(new HiteiAction2(2));
             //GainRandomBuff(p);
         }
 
         for (int i = 0; i < upgradeStack; i++)
         {
-            GameActionsHelper.AddToBottom(new HiteiAction2(3));
+            GameActionsHelper_Legacy.AddToBottom(new HiteiAction2(3));
             //GainRandomBuff(p);
         }
 
@@ -80,47 +80,47 @@ public class HiteiPower extends AnimatorPower
 //        int roll = AbstractDungeon.cardRandomRng.random(38);
 //        if (roll <= 4)
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new StrengthPower(p, 1), 1);
 //        }
 //        else if (roll <= 8)
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new DexterityPower(p, 1), 1);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new DexterityPower(p, 1), 1);
 //        }
 //        else if (roll <= 12)
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new FocusPower(p, 1), 1);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new FocusPower(p, 1), 1);
 //        }
 //        else if (roll <= 16)
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new ArtifactPower(p, 1), 1);
 //        }
 //        else if (roll <= 20)
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new BlurPower(p, 1), 1);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new BlurPower(p, 1), 1);
 //        }
 //        else if (roll <= 24)
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new ThornsPower(p, 2), 2);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new ThornsPower(p, 2), 2);
 //        }
 //        else if (roll <= 28)
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, 2), 2);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new PlatedArmorPower(p, 2), 2);
 //        }
 //        else if (roll <= 32)
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new DrawCardNextTurnPower(p, 1), 1);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new DrawCardNextTurnPower(p, 1), 1);
 //        }
 //        else if (roll <= 36)
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new EnergizedPower(p, 1), 1);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new EnergizedPower(p, 1), 1);
 //        }
 //        else if (roll <= 37)
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new IntangiblePlayerPower(p, 1), 1);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new IntangiblePlayerPower(p, 1), 1);
 //        }
 //        else
 //        {
-//            GameActionsHelper.ApplyPower(p, p, new BufferPower(p, 1), 1);
+//            GameActionsHelper_Legacy.ApplyPower(p, p, new BufferPower(p, 1), 1);
 //        }
 //    }
 }

@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 
 public class Move_Bite extends AbstractMove
@@ -45,8 +45,8 @@ public class Move_Bite extends AbstractMove
     {
         damageInfo.applyPowers(owner, target);
         AbstractDungeon.actionManager.addToBottom(new VFXAction(new BiteEffect(target.hb.cX, target.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
-        GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.NONE));
-        GameActionsHelper.ApplyPower(owner, target, new WeakPower(target, WEAK_AMOUNT, true), WEAK_AMOUNT);
-        GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, STRENGTH_AMOUNT), STRENGTH_AMOUNT);
+        GameActionsHelper_Legacy.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.NONE));
+        GameActionsHelper_Legacy.ApplyPower(owner, target, new WeakPower(target, WEAK_AMOUNT, true), WEAK_AMOUNT);
+        GameActionsHelper_Legacy.ApplyPower(owner, owner, new StrengthPower(owner, STRENGTH_AMOUNT), STRENGTH_AMOUNT);
     }
 }

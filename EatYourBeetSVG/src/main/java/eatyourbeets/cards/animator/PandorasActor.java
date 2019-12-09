@@ -10,9 +10,9 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.OnCallbackSubscriber;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 
-public class PandorasActor extends AnimatorCard implements StartupCard, OnCallbackSubscriber
+public class PandorasActor extends AnimatorCard implements StartupCard
 {
     public static final String ID = Register(PandorasActor.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -28,7 +28,7 @@ public class PandorasActor extends AnimatorCard implements StartupCard, OnCallba
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
     }
 
     @Override
@@ -43,19 +43,16 @@ public class PandorasActor extends AnimatorCard implements StartupCard, OnCallba
     @Override
     public boolean atBattleStartPreDraw()
     {
-        GameActionsHelper.DelayedAction(this);
+        GameActions.Bottom.Callback(__ ->
+        {
+            AbstractCard copy = this.makeStatEquivalentCopy();
+            copy.applyPowers();
+            copy.use(AbstractDungeon.player, null);
+            copy.purgeOnUse = true;
+            copy.freeToPlayOnce = true;
+            AnimatorCard.SetLastCardPlayed(copy);
+        });
 
         return true;
-    }
-
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        AbstractCard copy = this.makeStatEquivalentCopy();
-        copy.applyPowers();
-        copy.use(AbstractDungeon.player, null);
-        copy.purgeOnUse = true;
-        copy.freeToPlayOnce = true;
-        AnimatorCard.SetLastCardPlayed(copy);
     }
 }

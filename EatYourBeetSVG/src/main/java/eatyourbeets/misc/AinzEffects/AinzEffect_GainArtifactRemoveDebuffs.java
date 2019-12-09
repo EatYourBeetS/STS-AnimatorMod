@@ -2,7 +2,7 @@ package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 
 public class AinzEffect_GainArtifactRemoveDebuffs extends AinzEffect
@@ -21,7 +21,7 @@ public class AinzEffect_GainArtifactRemoveDebuffs extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
-        GameActionsHelper2.AddToBottom(new RemoveDebuffsAction(p));
-        GameActionsHelper2.GainArtifact(ainz.magicNumber);
+        GameActions.Bottom.Add(new RemoveDebuffsAction(p));
+        GameActions.Bottom.GainArtifact(ainz.magicNumber);
     }
 }

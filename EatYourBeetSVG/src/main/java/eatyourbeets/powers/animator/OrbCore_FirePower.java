@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.animator.OrbCore_Fire;
 
 public class OrbCore_FirePower extends OrbCore_AbstractPower
@@ -23,11 +23,11 @@ public class OrbCore_FirePower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
 
-        GameActionsHelper.ApplyPowerToAllEnemies(p, this::CreateBurning, value);
+        GameActionsHelper_Legacy.ApplyPowerToAllEnemies(p, this::CreateBurning, value);
 
-        GameActionsHelper.ResetOrder();
+        GameActionsHelper_Legacy.ResetOrder();
     }
 
     protected BurningPower CreateBurning(AbstractCreature m)

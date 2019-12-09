@@ -2,11 +2,10 @@ package eatyourbeets.potions;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class FalseLifePotion extends AbstractPotion
@@ -27,7 +26,7 @@ public class FalseLifePotion extends AbstractPotion
 
     public void use(AbstractCreature target)
     {
-        GameActionsHelper.GainTemporaryHP(AbstractDungeon.player, AbstractDungeon.player, this.potency);
+        GameActions.Bottom.GainTemporaryHP(this.potency);
     }
 
     public AbstractPotion makeCopy()

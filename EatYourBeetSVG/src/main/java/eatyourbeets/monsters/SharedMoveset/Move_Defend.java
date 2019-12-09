@@ -2,7 +2,7 @@ package eatyourbeets.monsters.SharedMoveset;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 
 public class Move_Defend extends AbstractMove
@@ -21,6 +21,6 @@ public class Move_Defend extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActionsHelper.GainBlock(owner, blockAmount);
+        GameActionsHelper_Legacy.GainBlock(owner, blockAmount);
     }
 }

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Defend_OnePunchMan extends Defend
 {
@@ -24,11 +24,11 @@ public class Defend_OnePunchMan extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActionsHelper2.StackPower(new EnergizedBluePower(p, 1));
+            GameActions.Bottom.StackPower(new EnergizedBluePower(p, 1));
         }
     }
 

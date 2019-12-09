@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -17,7 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.relics.animator.Readme;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
@@ -101,26 +100,25 @@ public class Gilgamesh extends AnimatorCard
     {
         if (timesUpgraded >= 8)
         {
-            //GameActionsHelper.SFX("ORB_LIGHTNING_EVOKE", 0.1f);
-            GameActionsHelper.VFX(new BorderLongFlashEffect(Color.GOLD));
-            GameActionsHelper.SFX("ORB_DARK_EVOKE", 0.1f);
-
-            GameActionsHelper.SFX("ATTACK_WHIRLWIND");
-            GameActionsHelper.VFX(new WhirlwindEffect(), 0.0F);
+            //GameActionsHelper_Legacy.SFX("ORB_LIGHTNING_EVOKE", 0.1f);
+            GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.GOLD));
+            GameActions.Bottom.SFX("ORB_DARK_EVOKE", 0.1f);
+            GameActions.Bottom.SFX("ATTACK_WHIRLWIND");
+            GameActions.Bottom.VFX(new WhirlwindEffect(), 0.0F);
 
             for (int i = 0; i < this.magicNumber; i++)
             {
-                GameActionsHelper.SFX("ATTACK_HEAVY");
-                GameActionsHelper.AddToBottom(new VFXAction(p, new CleaveEffect(), 0.0F));
-                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
-                GameActionsHelper.VFX(new IronWaveEffect(p.hb.cX, p.hb.cY, m.hb.cX), 0.1F);
+                GameActions.Bottom.SFX("ATTACK_HEAVY");
+                GameActions.Bottom.VFX(new CleaveEffect());
+                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.VFX(new IronWaveEffect(p.hb.cX, p.hb.cY, m.hb.cX), 0.1F);
             }
         }
         else
         {
             for (int i = 0; i < this.magicNumber; i++)
             {
-                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
             }
         }
     }

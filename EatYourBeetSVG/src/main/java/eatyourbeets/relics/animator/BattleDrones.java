@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions._legacy.animator.EveDamageAction;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
@@ -38,8 +38,8 @@ public class BattleDrones extends AnimatorRelic
         if (card != null && card.HasActiveSynergy())
         {
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.AddToBottom(new GainBlockAction(p, p, BLOCK_AMOUNT, true));
-            GameActionsHelper.AddToBottom(new EveDamageAction(p, DAMAGE_AMOUNT));
+            GameActionsHelper_Legacy.AddToBottom(new GainBlockAction(p, p, BLOCK_AMOUNT, true));
+            GameActionsHelper_Legacy.AddToBottom(new EveDamageAction(p, DAMAGE_AMOUNT));
 
             this.flash();
         }

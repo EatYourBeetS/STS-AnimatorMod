@@ -6,7 +6,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.ArcherPower;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Archer extends AnimatorCard
@@ -25,13 +25,13 @@ public class Archer extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.StackPower(new ArcherPower(p, this.magicNumber));
+        GameActions.Bottom.StackPower(new ArcherPower(p, this.magicNumber));
 
         if (HasActiveSynergy())
         {
             for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
             {
-                GameActionsHelper2.ApplyVulnerable(p, m, 1);
+                GameActions.Bottom.ApplyVulnerable(p, m, 1);
             }
         }
     }

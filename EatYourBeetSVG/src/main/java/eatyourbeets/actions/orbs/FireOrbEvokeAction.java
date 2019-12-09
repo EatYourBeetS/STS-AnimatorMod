@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -26,7 +26,7 @@ public class FireOrbEvokeAction extends AbstractGameAction
         {
             for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
             {
-                GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, this.amount), this.amount);
+                GameActionsHelper_Legacy.ApplyPower(p, m, new BurningPower(m, p, this.amount), this.amount);
             }
         }
 

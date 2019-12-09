@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.powers.common.TemporaryArtifactPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelperBase;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class HarukoHaruhara extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        TemporaryArtifactPower.Apply(p, p, 1);
+        GameActions.Bottom.GainTemporaryArtifact(1);
 
         ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
 
@@ -50,7 +50,7 @@ public class HarukoHaruhara extends AnimatorCard
 
         card.applyPowers();
 
-        GameActionsHelper.PlayCard(card, m);
+        GameActionsHelperBase.PlayCard(card, m);
     }
 
     @Override

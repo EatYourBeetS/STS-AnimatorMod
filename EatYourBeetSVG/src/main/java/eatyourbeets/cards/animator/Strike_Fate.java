@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Strike_Fate extends Strike
 {
@@ -22,7 +22,7 @@ public class Strike_Fate extends Strike
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
         int cards = p.hand.size();
         if (p.hand.contains(this))
@@ -32,7 +32,7 @@ public class Strike_Fate extends Strike
 
         if (cards < 3)
         {
-            GameActionsHelper.GainEnergy(1);
+            GameActions.Bottom.GainEnergy(1);
         }
     }
 

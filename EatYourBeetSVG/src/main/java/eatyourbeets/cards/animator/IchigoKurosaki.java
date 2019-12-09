@@ -1,17 +1,15 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class IchigoKurosaki extends AnimatorCard implements MartialArtist, OnCallbackSubscriber
+public class IchigoKurosaki extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(IchigoKurosaki.class.getSimpleName(), EYBCardBadge.Exhaust);
 
@@ -54,14 +52,20 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist, OnCal
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.DelayedAction(this);
+        GameActions.Bottom.Callback(__ ->
+        {
+            if (GameUtilities.GetStrength() >= secondaryValue)
+            {
+                GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai(), false, false);
+            }
+        });
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.GainForce(magicNumber);
-        GameActionsHelper.GainAgility(1);
+        GameActions.Bottom.GainForce(magicNumber);
+        GameActions.Bottom.GainAgility(1);
     }
 
     @Override
@@ -70,18 +74,6 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist, OnCal
         if (TryUpgrade())
         {
             upgradeMagicNumber(1);
-        }
-    }
-
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        if (state == this && action != null)
-        {
-            if (GameUtilities.GetStrength() >= secondaryValue)
-            {
-                GameActionsHelper.MakeCardInDrawPile(new IchigoBankai(), 1, false);
-            }
         }
     }
 }

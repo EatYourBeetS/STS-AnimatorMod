@@ -1,21 +1,18 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.basic.MoveCard;
-import eatyourbeets.actions._legacy.common.PlayCardFromPileAction;
+import eatyourbeets.actions.cardManipulation.PlayCardFromPile;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.interfaces.OnCallbackSubscriber;
 import eatyourbeets.powers.common.SelfDamagePower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
 
-public class Illya extends AnimatorCard implements OnCallbackSubscriber
+public class Illya extends AnimatorCard
 {
     public static final String ID = Register(Illya.class.getSimpleName(), EYBCardBadge.Exhaust);
 
@@ -33,14 +30,47 @@ public class Illya extends AnimatorCard implements OnCallbackSubscriber
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.DelayedAction(this);
+        GameActions.Bottom.Callback(__ ->
+        {
+            AbstractPlayer p = AbstractDungeon.player;
+            if (!DrawBerserker(p.drawPile))
+            {
+                if (!DrawBerserker(p.discardPile))
+                {
+                    if (!DrawBerserker(p.exhaustPile))
+                    {
+                        DrawBerserker(p.hand);
+                    }
+                }
+            }
+
+            GameActions.Bottom.GainEnergy(1);
+        });
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new IllyaAction(m));
-        GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, magicNumber), magicNumber);
+        AbstractCard bestCard = null;
+        int maxDamage = Integer.MIN_VALUE;
+        for (AbstractCard c : p.drawPile.group)
+        {
+            if (c.type == CardType.ATTACK && c.cardPlayable(m))
+            {
+                c.calculateCardDamage(m);
+                if (c.damage > maxDamage)
+                {
+                    maxDamage = c.damage;
+                    bestCard = c;
+                }
+            }
+        }
+
+        if (bestCard != null)
+        {
+            GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
+            GameActions.Top.Add(new PlayCardFromPile(bestCard, p.drawPile, false, false, m));
+        }
     }
 
     @Override
@@ -52,24 +82,6 @@ public class Illya extends AnimatorCard implements OnCallbackSubscriber
         }
     }
 
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        AbstractPlayer p = AbstractDungeon.player;
-        if (!DrawBerserker(p.drawPile))
-        {
-            if (!DrawBerserker(p.discardPile))
-            {
-                if (!DrawBerserker(p.exhaustPile))
-                {
-                    DrawBerserker(p.hand);
-                }
-            }
-        }
-
-        GameActionsHelper.GainEnergy(1);
-    }
-
     private boolean DrawBerserker(CardGroup group)
     {
         for (AbstractCard c : group.group)
@@ -78,7 +90,7 @@ public class Illya extends AnimatorCard implements OnCallbackSubscriber
             {
                 if (group.type != CardGroup.CardGroupType.HAND)
                 {
-                    GameActionsHelper.AddToTop(new MoveCard(c, AbstractDungeon.player.hand, group, true));
+                    GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, group, true);
                 }
 
                 return true;
@@ -86,42 +98,5 @@ public class Illya extends AnimatorCard implements OnCallbackSubscriber
         }
 
         return false;
-    }
-
-    private class IllyaAction extends AbstractGameAction
-    {
-        private final AbstractMonster target;
-
-        private IllyaAction(AbstractMonster target)
-        {
-            this.target = target;
-        }
-
-        @Override
-        public void update()
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-            AbstractCard bestCard = null;
-            int maxDamage = Integer.MIN_VALUE;
-            for (AbstractCard c : p.drawPile.group)
-            {
-                if (c.type == CardType.ATTACK && c.cardPlayable(target))
-                {
-                    c.calculateCardDamage(target);
-                    if (c.damage > maxDamage)
-                    {
-                        maxDamage = c.damage;
-                        bestCard = c;
-                    }
-                }
-            }
-
-            if (bestCard != null)
-            {
-                GameActionsHelper.AddToTop(new PlayCardFromPileAction(bestCard, p.drawPile, false, false, target));
-            }
-
-            this.isDone = true;
-        }
     }
 }

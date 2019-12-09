@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class OnTargetBlockBreakAction extends AbstractGameAction
 {
@@ -37,7 +37,7 @@ public class OnTargetBlockBreakAction extends AbstractGameAction
             {
                 if (initialBlock > 0 && target.currentBlock <= 0)
                 {
-                    GameActionsHelper.AddToTop(action);
+                    GameActionsHelper_Legacy.AddToTop(action);
                 }
             }
             else

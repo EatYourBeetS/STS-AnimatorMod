@@ -1,29 +1,23 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.interfaces.OnStartOfTurnSubscriber;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.actions.special.QuestionMarkAction;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.interfaces.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
-
-import java.util.ArrayList;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscriber
 {
     public static final String ID = Register(QuestionMark.class.getSimpleName(), EYBCardBadge.Drawn);
 
-    private static ArrayList<AnimatorCard> cardPool;
-    private AnimatorCard copy = null;
+    public AnimatorCard copy = null;
 
     public QuestionMark()
     {
@@ -35,9 +29,17 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
     }
 
     @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        GameActions.Bottom.Add(new QuestionMarkAction(this));
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new HigakiRinne()));
+        GameActions.Bottom.MakeCardInHand(new HigakiRinne(), false, false);
     }
 
     @Override
@@ -60,14 +62,6 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
         }
     }
 
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActionsHelper.AddToBottom(new QuestionMarkAction(this));
-    }
-
     private boolean transformBack(CardGroup group)
     {
         int index = group.group.indexOf(copy);
@@ -88,74 +82,5 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
         }
 
         return false;
-    }
-
-    private static AnimatorCard GetRandomCard()
-    {
-        if (cardPool == null)
-        {
-            cardPool = new ArrayList<>();
-            for (AbstractCard c : CardLibrary.getAllCards())
-            {
-                if (c.type != CardType.CURSE && c.type != CardType.STATUS)
-                {
-                    if (c instanceof AnimatorCard &&
-                            !(c instanceof QuestionMark) &&
-                            !c.tags.contains(CardTags.HEALING) &&
-                            c.rarity != CardRarity.BASIC)
-                    {
-                        cardPool.add((AnimatorCard) c);
-                    }
-                }
-            }
-        }
-
-        return (AnimatorCard) JavaUtilities.GetRandomElement(cardPool).makeCopy();
-    }
-
-    private class QuestionMarkAction extends AbstractGameAction
-    {
-        private final QuestionMark instance;
-
-        public QuestionMarkAction(QuestionMark instance)
-        {
-            this.instance = instance;
-        }
-
-        @Override
-        public void update()
-        {
-            this.isDone = true;
-
-            AbstractPlayer p = AbstractDungeon.player;
-            int index = p.hand.group.indexOf(instance);
-
-            instance.copy = GetRandomCard();
-
-            AnimatorCard copy = instance.copy;
-            if (copy != null && index >= 0)
-            {
-                //copy.originalName = instance.originalName;
-                //copy.name = instance.name;
-                //copy.rarity = instance.rarity;
-                copy.SetSynergy(Synergies.ANY, true);
-
-                if (instance.upgraded)
-                {
-                    copy.upgrade();
-                }
-
-                copy.current_x = instance.current_x;
-                copy.current_y = instance.current_y;
-                copy.target_x = instance.target_x;
-                copy.target_y = instance.target_y;
-
-                p.hand.group.remove(index);
-                p.hand.group.add(index, copy);
-                p.hand.glowCheck();
-
-                PlayerStatistics.onStartOfTurn.Subscribe(instance);
-            }
-        }
     }
 }

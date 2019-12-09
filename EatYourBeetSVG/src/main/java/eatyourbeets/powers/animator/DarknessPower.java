@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.DarknessAdrenaline;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class DarknessPower extends AnimatorPower
 {
@@ -22,12 +22,12 @@ public class DarknessPower extends AnimatorPower
     @Override
     public int onLoseHp(int damageAmount)
     {
-        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
 
-        GameActionsHelper.AddToDefault(new ReducePowerAction(owner, owner, this, 1));
-        GameActionsHelper.MakeCardInDrawPile(new DarknessAdrenaline(), 1, false);
+        GameActionsHelper_Legacy.AddToDefault(new ReducePowerAction(owner, owner, this, 1));
+        GameActionsHelper_Legacy.MakeCardInDrawPile(new DarknessAdrenaline(), 1, false);
 
-        GameActionsHelper.ResetOrder();
+        GameActionsHelper_Legacy.ResetOrder();
 
         return super.onLoseHp(damageAmount);
     }

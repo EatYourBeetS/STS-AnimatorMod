@@ -7,7 +7,7 @@ import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Earth;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard implements Spellcaster
 {
@@ -36,14 +36,14 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
     {
         if (secondaryValue > 0)
         {
-            GameActionsHelper2.GainOrbSlots(secondaryValue);
+            GameActions.Bottom.GainOrbSlots(secondaryValue);
         }
 
-        GameActionsHelper2.GainIntellect(magicNumber);
+        GameActions.Bottom.GainIntellect(magicNumber);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper2.ChannelOrb(new Earth(), true);
+            GameActions.Bottom.ChannelOrb(new Earth(), true);
         }
     }
 

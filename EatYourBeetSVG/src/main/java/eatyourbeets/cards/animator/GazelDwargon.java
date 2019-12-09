@@ -2,9 +2,8 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.GazelDwargonPower;
@@ -25,12 +24,12 @@ public class GazelDwargon extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new GazelDwargonPower(p));
-        GameActionsHelper.ApplyPower(p, p, new PlatedArmorPower(p, magicNumber), magicNumber);
+        GameActions.Bottom.ApplyPower(p, p, new GazelDwargonPower(p));
+        GameActions.Bottom.GainPlatedArmor(magicNumber);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.Motivate(1);
+            GameActions.Bottom.Motivate();
         }
     }
 

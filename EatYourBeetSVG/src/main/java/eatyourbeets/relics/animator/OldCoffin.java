@@ -9,7 +9,8 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.powers.animator.BurningPower;
@@ -52,30 +53,29 @@ public class OldCoffin extends AnimatorRelic
             AbstractMonster m = JavaUtilities.GetRandomElement(GameUtilities.GetCurrentEnemies(true));
             if (m != null)
             {
+                GameActions.Top.Add(new RelicAboveCreatureAction(m, this));
+
                 AbstractPlayer p = AbstractDungeon.player;
-
-                GameActionsHelper.AddToTop(new RelicAboveCreatureAction(m, this));
-
                 int n = AbstractDungeon.cardRandomRng.random(12);
                 if (n < 4)
                 {
-                    GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
+                    GameActions.Bottom.ApplyWeak(p, m, 1);
                 }
                 else if (n < 8)
                 {
-                    GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 1, false), 1);
+                    GameActions.Bottom.ApplyVulnerable(p, m, 1);
                 }
                 else if (n <= 10)
                 {
-                    GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, 3), 3);
+                    GameActions.Bottom.ApplyPoison(p, m, 3);
                 }
                 else if (n <= 11)
                 {
-                    GameActionsHelper.ApplyPower(p, m, new BurningPower(m, p, 3), 3);
+                    GameActions.Bottom.ApplyBurning(p, m, 3);
                 }
                 else
                 {
-                    GameActionsHelper.ApplyPower(p, m, new ConstrictedPower(m, p, 2), 2);
+                    GameActions.Bottom.ApplyConstricted(p, m, 2);
                 }
             }
         }

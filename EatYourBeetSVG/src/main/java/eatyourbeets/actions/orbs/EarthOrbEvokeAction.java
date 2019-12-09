@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -48,7 +48,7 @@ public class EarthOrbEvokeAction extends AbstractGameAction
 
             if (step > 0)
             {
-                GameActionsHelper.AddToTop(new EarthDamageAction(step));
+                GameActionsHelper_Legacy.AddToTop(new EarthDamageAction(step));
 
                 damageDealt += step;
             }
@@ -101,7 +101,7 @@ public class EarthOrbEvokeAction extends AbstractGameAction
                         break;
                 }
 
-                GameActionsHelper.AddToTop(new DamageAction(m, new DamageInfo(p, actualDamage, DamageInfo.DamageType.THORNS), effect, true));
+                GameActionsHelper_Legacy.AddToTop(new DamageAction(m, new DamageInfo(p, actualDamage, DamageInfo.DamageType.THORNS), effect, true));
             }
 
             this.isDone = true;

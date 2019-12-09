@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.basic.MoveCard;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class UrushiharaLazyAction extends AbstractGameAction
 {
@@ -27,9 +27,9 @@ public class UrushiharaLazyAction extends AbstractGameAction
         if (p.discardPile.size() > 0 && p.hand.contains(target))
         {
             AbstractCard replacement = p.discardPile.getRandomCard(true);
-            GameActionsHelper.AddToTop(new MoveCard(replacement, p.hand, p.discardPile, false));
-            GameActionsHelper.AddToTop(new DiscardSpecificCardAction(target, p.hand));
-            GameActionsHelper.AddToTop(new WaitAction(0.5f));
+            GameActionsHelper_Legacy.AddToTop(new MoveCard(replacement, p.hand, p.discardPile, false));
+            GameActionsHelper_Legacy.AddToTop(new DiscardSpecificCardAction(target, p.hand));
+            GameActionsHelper_Legacy.AddToTop(new WaitAction(0.5f));
         }
 
         this.isDone = true;

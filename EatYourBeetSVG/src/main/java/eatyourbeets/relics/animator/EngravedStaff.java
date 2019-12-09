@@ -35,7 +35,7 @@ public class EngravedStaff extends AnimatorRelic
         super.onEquip();
 
         EffectHistory.TryActivateLimited(relicId);
-        AbstractDungeon.effectsQueue.add(new CallbackEffect(new WaitAction(0.1f), this::OnCompletion, this));
+        AbstractDungeon.effectsQueue.add(new CallbackEffect(new WaitAction(0.1f), this, this::OnCompletion));
     }
 
     private void OnCompletion(Object state, AbstractGameAction action)

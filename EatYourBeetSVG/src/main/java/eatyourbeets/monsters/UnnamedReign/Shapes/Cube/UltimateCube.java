@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleFrail;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleVulnerable;
@@ -69,7 +69,7 @@ public class UltimateCube extends Cube
     {
         super.usePreBattleAction();
 
-        GameActionsHelper.ApplyPower(this, this, new UltimateCubePower(this, 12));
-        GameActionsHelper.ApplyPower(this, this, new ArtifactPower(this, 3),3);
+        GameActionsHelper_Legacy.ApplyPower(this, this, new UltimateCubePower(this, 12));
+        GameActionsHelper_Legacy.ApplyPower(this, this, new ArtifactPower(this, 3),3);
     }
 }

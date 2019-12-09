@@ -4,10 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.RandomizedList;
 
-public class RandomCostReduction extends EYBAction
+public class RandomCostReduction extends EYBActionWithCallback<AbstractCard>
 {
     private final boolean permanent;
 
@@ -40,26 +40,41 @@ public class RandomCostReduction extends EYBAction
 
         if (betterPossible.Count() > 0)
         {
-            ModifyCost(betterPossible.Retrieve(AbstractDungeon.cardRng));
+            card = betterPossible.Retrieve(AbstractDungeon.cardRng);
         }
         else if (possible.Count() > 0)
         {
-            ModifyCost(possible.Retrieve(AbstractDungeon.cardRng));
-        }
-    }
-
-    private void ModifyCost(AbstractCard c)
-    {
-        if (permanent)
-        {
-            c.updateCost(Math.max(0, c.cost - amount));
+            card = possible.Retrieve(AbstractDungeon.cardRng);
         }
         else
         {
-            c.setCostForTurn(Math.max(0, c.costForTurn - amount));
+            card = null;
         }
 
-        c.superFlash(Color.GOLD.cpy());
+        if (card != null)
+        {
+            if (permanent)
+            {
+                card.updateCost(Math.max(0, card.cost + amount));
+            }
+            else
+            {
+                card.setCostForTurn(Math.max(0, card.costForTurn + amount));
+            }
+
+            card.superFlash(Color.GOLD.cpy());
+        }
+    }
+
+    @Override
+    protected void UpdateInternal()
+    {
+        tickDuration();
+
+        if (isDone && card != null)
+        {
+            Complete(card);
+        }
     }
 }
 

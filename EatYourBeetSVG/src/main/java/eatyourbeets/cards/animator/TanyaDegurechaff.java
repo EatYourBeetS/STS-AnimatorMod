@@ -6,12 +6,14 @@ import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
@@ -45,20 +47,18 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
 
-        int discarded = 0;
-        for (AbstractCard card : p.hand.getSkills().group)
+        GameActions.Bottom.DiscardFromHand(name, 999, true)
+        .SetFilter(c -> c.type == CardType.SKILL)
+        .AddCallback(m, (enemy, cards) ->
         {
-            GameActionsHelper.AddToBottom(new DiscardSpecificCardAction(card, p.hand));
-            discarded += 1;
-        }
-
-        for (int i = 0; i < discarded; i++)
-        {
-            GameActionsHelper.AddToBottom(new SFXAction("ATTACK_FIRE"));
-            GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
-        }
+            for (int i = 0; i < cards.size(); i++)
+            {
+                GameActions.Bottom.SFX("ATTACK_FIRE");
+                GameActions.Bottom.DealDamage(this, (AbstractCreature) enemy, AbstractGameAction.AttackEffect.NONE);
+            }
+        });
     }
 
     @Override
@@ -75,7 +75,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     {
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActionsHelper.MakeCardInDrawPile(new TanyaDegurechaff_Type95(), 1, false);
+            GameActions.Bottom.MakeCardInDrawPile(new TanyaDegurechaff_Type95(), false, false);
 
             return true;
         }

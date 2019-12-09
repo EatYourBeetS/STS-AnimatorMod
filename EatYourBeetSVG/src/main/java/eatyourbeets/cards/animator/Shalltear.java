@@ -10,7 +10,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.effects.Hemokinesis2Effect;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -47,25 +47,18 @@ public class Shalltear extends AnimatorCard
         this.damage = info.output;
         //
 
-        for (AbstractMonster m1 : enemies)
+        for (AbstractMonster enemy : enemies)
         {
-            //GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m1.hb.cX, m1.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
-
             if (enemies.size() <= 4)
             {
-                GameActionsHelper.VFX(new Hemokinesis2Effect(m1.hb.cX, m1.hb.cY, p.hb.cX, p.hb.cY), 0.1f);
+                GameActions.Bottom.VFX(new Hemokinesis2Effect(enemy.hb.cX, enemy.hb.cY, p.hb.cX, p.hb.cY), 0.1f);
             }
 
-            GameActionsHelper.AddToBottom(new LoseHPAction(m1, p, damage));
-
-            if (HasActiveSynergy() && GameUtilities.UseArtifact(m1))
-            {
-                GameActionsHelper.ApplyPower(p, m1, new StrengthPower(m1, -1), -1);
-                GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, 1), 1);
-            }
+            GameActions.Bottom.Add(new LoseHPAction(enemy, p, damage));
+            GameActions.Bottom.StealStrength(enemy, 1, false);
         }
 
-        GameActionsHelper.GainTemporaryHP(p, magicNumber);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
     }
 
     @Override

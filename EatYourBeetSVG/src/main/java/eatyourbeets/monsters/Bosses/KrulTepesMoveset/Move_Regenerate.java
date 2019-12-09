@@ -3,7 +3,7 @@ package eatyourbeets.monsters.Bosses.KrulTepesMoveset;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 
 public class Move_Regenerate extends AbstractMove
@@ -43,8 +43,8 @@ public class Move_Regenerate extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActionsHelper.GainBlock(owner, BLOCK_AMOUNT);
-        GameActionsHelper.ApplyPower(owner, owner, new RegenPower(owner, REGEN_AMOUNT), REGEN_AMOUNT);
-        GameActionsHelper.ApplyPower(owner, owner, new ThornsPower(owner, THORNS_AMOUNT), THORNS_AMOUNT);
+        GameActionsHelper_Legacy.GainBlock(owner, BLOCK_AMOUNT);
+        GameActionsHelper_Legacy.ApplyPower(owner, owner, new RegenPower(owner, REGEN_AMOUNT), REGEN_AMOUNT);
+        GameActionsHelper_Legacy.ApplyPower(owner, owner, new ThornsPower(owner, THORNS_AMOUNT), THORNS_AMOUNT);
     }
 }

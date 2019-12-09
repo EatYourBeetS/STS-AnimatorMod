@@ -1,7 +1,7 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 
 public class AinzEffect_GainIntellect extends AinzEffect
@@ -20,6 +20,6 @@ public class AinzEffect_GainIntellect extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
-        GameActionsHelper2.GainIntellect(ainz.magicNumber);
+        GameActions.Bottom.GainIntellect(ainz.magicNumber);
     }
 }

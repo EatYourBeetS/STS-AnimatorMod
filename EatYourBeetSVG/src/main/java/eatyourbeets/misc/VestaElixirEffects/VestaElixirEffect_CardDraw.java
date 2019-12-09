@@ -2,7 +2,7 @@ package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.Vesta_Elixir;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class VestaElixirEffect_CardDraw extends VestaElixirEffect
 {
@@ -14,6 +14,6 @@ public class VestaElixirEffect_CardDraw extends VestaElixirEffect
     @Override
     public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
     {
-        GameActionsHelper.DrawCard(player, amount);
+        GameActionsHelper_Legacy.DrawCard(player, amount);
     }
 }

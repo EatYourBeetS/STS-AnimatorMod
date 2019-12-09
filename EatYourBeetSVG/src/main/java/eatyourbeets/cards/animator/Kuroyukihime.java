@@ -1,15 +1,12 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.OnCallbackSubscriber;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActions;
 
-public class Kuroyukihime extends AnimatorCard implements OnCallbackSubscriber
+public class Kuroyukihime extends AnimatorCard
 {
     public static final String ID = Register(Kuroyukihime.class.getSimpleName());
 
@@ -30,7 +27,13 @@ public class Kuroyukihime extends AnimatorCard implements OnCallbackSubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.DelayedAction(this);
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
+        .SetOptions(false, false, false)
+        .AddCallback(__ ->
+        {
+            GameActions.Bottom.MakeCardInHand(new BlackLotus(), false, false);
+            GameActions.Bottom.Exhaust(this);
+        });
     }
 
     @Override
@@ -39,20 +42,6 @@ public class Kuroyukihime extends AnimatorCard implements OnCallbackSubscriber
         if (TryUpgrade())
         {
             upgradeBaseCost(0);
-        }
-    }
-
-    @Override
-    public void OnCallback(Object state, AbstractGameAction action)
-    {
-        if (state == this && action != null)
-        {
-            if (GameUtilities.GetOtherCardsInHand(this).size() >= this.magicNumber)
-            {
-                GameActionsHelper.Discard(this.magicNumber, false);
-                GameActionsHelper.MakeCardInHand(new BlackLotus(), 1, false);
-                GameActionsHelper.ExhaustCard(this);
-            }
         }
     }
 }

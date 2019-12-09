@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.animator.GurenAction;
+import eatyourbeets.actions.special.GurenAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
@@ -12,11 +12,13 @@ import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
 
 public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
 {
     public static final String ID = Register(Guren.class.getSimpleName(), EYBCardBadge.Special);
+
+    private boolean alreadyPlayed = false;
 
     public Guren()
     {
@@ -29,24 +31,15 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
     }
 
     @Override
-    public void didDiscard()
-    {
-        super.didDiscard();
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActionsHelper.AddToTop(new GurenAction(m, this.magicNumber));
+            GameActions.Top.Add(new GurenAction(m));
         }
 
-        if (EffectHistory.TryActivateSemiLimited(this.cardID))
-        {
-            PlayerStatistics.onPhaseChanged.Subscribe(this);
-            //GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, amount), amount);
-        }
+        alreadyPlayed = true;
+        PlayerStatistics.onPhaseChanged.Subscribe(this);
     }
 
     @Override
@@ -63,14 +56,23 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
     {
         if (phase == GameActionManager.Phase.WAITING_ON_USER)
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            int amount = p.exhaustPile.size();
-            if (amount > 0)
+            if (EffectHistory.TryActivateSemiLimited(this.cardID))
             {
-                GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, amount), amount);
+                AbstractPlayer p = AbstractDungeon.player;
+                int amount = p.exhaustPile.size();
+                if (amount > 0)
+                {
+                    GameActions.Bottom.StackPower(new SupportDamagePower(p, amount));
+                }
             }
 
+            alreadyPlayed = false;
             PlayerStatistics.onPhaseChanged.Unsubscribe(this);
         }
+    }
+
+    public boolean CanAutoPlay(GurenAction gurenAction)
+    {
+        return !alreadyPlayed;
     }
 }

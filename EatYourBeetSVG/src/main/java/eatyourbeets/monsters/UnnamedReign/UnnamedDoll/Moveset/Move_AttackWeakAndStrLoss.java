@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.monsters.AbstractMove;
@@ -33,7 +33,7 @@ public class Move_AttackWeakAndStrLoss extends AbstractMove
     {
         owner.useFastAttackAnimation();
         damageInfo.applyPowers(owner, target);
-        GameActionsHelper.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.FIRE));
+        GameActionsHelper_Legacy.AddToBottom(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.FIRE));
 
         if (!usedOnce)
         {
@@ -46,11 +46,11 @@ public class Move_AttackWeakAndStrLoss extends AbstractMove
 
             if (str > 0)
             {
-                GameActionsHelper.ApplyPower(owner, target, new StrengthPower(target, -debuffAmount), -debuffAmount);
+                GameActionsHelper_Legacy.ApplyPower(owner, target, new StrengthPower(target, -debuffAmount), -debuffAmount);
                 usedOnce = true;
             }
         }
 
-        GameActionsHelper.ApplyPower(owner, target, new WeakPower(target, debuffAmount, true), debuffAmount);
+        GameActionsHelper_Legacy.ApplyPower(owner, target, new WeakPower(target, debuffAmount, true), debuffAmount);
     }
 }

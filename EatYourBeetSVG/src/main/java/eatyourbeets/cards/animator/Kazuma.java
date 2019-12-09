@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class Kazuma extends AnimatorCard
 {
@@ -25,12 +26,13 @@ public class Kazuma extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.GainBlock(this.block);
-        GameActionsHelper.CycleCardAction(1, name);
+        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.Cycle(1, name);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.DamageRandomEnemy(p, this.magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+            GameActions.Bottom.DealDamageToRandomEnemy(magicNumber, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
+            .SetOptions(true, false);
         }
     }
 

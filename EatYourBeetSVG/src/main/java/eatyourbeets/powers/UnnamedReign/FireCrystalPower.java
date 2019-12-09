@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameUtilities;
@@ -41,8 +41,8 @@ public class FireCrystalPower extends AnimatorPower
             {
                 if (c != owner)
                 {
-                    GameActionsHelper.ApplyPowerSilently(null, c, new BurningPower(c, null, amount), amount);
-                    GameActionsHelper.ApplyPower(null, c, new StrengthPower(c, amount), amount);
+                    GameActionsHelper_Legacy.ApplyPowerSilently(null, c, new BurningPower(c, null, amount), amount);
+                    GameActionsHelper_Legacy.ApplyPower(null, c, new StrengthPower(c, amount), amount);
                 }
             }
 

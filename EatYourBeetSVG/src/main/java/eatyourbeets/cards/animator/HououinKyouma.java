@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import patches.AbstractEnums;
@@ -49,11 +50,6 @@ public class HououinKyouma extends AnimatorCard
                 if (canAdd)
                 {
                     AbstractCard copy = c.makeStatEquivalentCopy();
-//                    if (upgraded)
-//                    {
-//                        copy.setCostForTurn(copy.costForTurn - 1);
-//                    }
-
                     copy.retain = true;
                     group.addToTop(copy);
                 }
@@ -62,7 +58,8 @@ public class HououinKyouma extends AnimatorCard
 
         if (group.size() > 0)
         {
-            GameActionsHelper.AddToBottom(new FetchAction(group, 1));
+            GameActions.Bottom.FetchFromPile(name, 1, group)
+            .SetOptions(false, false);
         }
     }
 

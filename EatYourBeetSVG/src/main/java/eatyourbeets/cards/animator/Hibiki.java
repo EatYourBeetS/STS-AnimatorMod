@@ -3,10 +3,9 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions._legacy.common.ModifyMagicNumberAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class Hibiki extends AnimatorCard
 {
@@ -26,10 +25,10 @@ public class Hibiki extends AnimatorCard
     {
         for (int i = 0; i < this.magicNumber; i++)
         {
-            GameActionsHelper.DamageRandomEnemyWhichActuallyWorks(p, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         }
 
-        GameActionsHelper.AddToBottom(new ModifyMagicNumberAction(this.uuid, secondaryValue));
+        GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseMagicNumber += secondaryValue);
     }
 
     @Override

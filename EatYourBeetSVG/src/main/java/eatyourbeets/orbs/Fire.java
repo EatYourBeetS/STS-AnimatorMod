@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.actions.orbs.FireOrbEvokeAction;
 import eatyourbeets.actions.orbs.FireOrbPassiveAction;
 import eatyourbeets.utilities.GameUtilities;
@@ -52,12 +52,12 @@ public class Fire extends AnimatorOrb
 
     public void onEvoke()
     {
-        GameActionsHelper.AddToTop(new FireOrbEvokeAction(evokeAmount));
+        GameActionsHelper_Legacy.AddToTop(new FireOrbEvokeAction(evokeAmount));
     }
 
     public void onEndOfTurn()
     {
-        GameActionsHelper.AddToBottom(new FireOrbPassiveAction(this));
+        GameActionsHelper_Legacy.AddToBottom(new FireOrbPassiveAction(this));
     }
 
     public void triggerEvokeAnimation()

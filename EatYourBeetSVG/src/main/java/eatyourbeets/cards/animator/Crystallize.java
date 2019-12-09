@@ -1,13 +1,9 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.MetallicizePower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard_Status;
 
 public class Crystallize extends AnimatorCard_Status
@@ -34,10 +30,10 @@ public class Crystallize extends AnimatorCard_Status
     {
         if (!this.dontTriggerOnUseCard)
         {
-            GameActionsHelper2.SFX("ORB_FROST_Evoke", 0.2F);
-            GameActionsHelper2.LoseHP(secondaryValue/2, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-            GameActionsHelper2.GainMetallicize(this.magicNumber);
-            GameActionsHelper2.LoseHP(secondaryValue/2, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+            GameActions.Bottom.SFX("ORB_FROST_Evoke", 0.2F);
+            GameActions.Bottom.LoseHP(secondaryValue/2, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+            GameActions.Bottom.GainMetallicize(this.magicNumber);
+            GameActions.Bottom.LoseHP(secondaryValue/2, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         }
     }
 }

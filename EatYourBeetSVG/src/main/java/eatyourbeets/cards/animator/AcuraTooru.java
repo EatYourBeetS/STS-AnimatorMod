@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class AcuraTooru extends AnimatorCard
 {
@@ -26,19 +26,19 @@ public class AcuraTooru extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActionsHelper2.GainBlock(magicNumber);
+        GameActions.Bottom.GainBlock(magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper2.CreateThrowingKnives(secondaryValue);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.CreateThrowingKnives(secondaryValue);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper2.GainBlock(magicNumber);
+            GameActions.Bottom.GainBlock(magicNumber);
         }
     }
 

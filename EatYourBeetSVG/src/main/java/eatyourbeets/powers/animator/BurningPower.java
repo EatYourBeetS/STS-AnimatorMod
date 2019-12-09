@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class BurningPower extends AnimatorPower implements HealthBarRenderPower
 {
@@ -63,8 +63,8 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead())
         {
             this.flashWithoutSound();
-            GameActionsHelper.DamageTarget(this.source, this.owner, getHealthBarAmount(), DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.FIRE);
-            GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
+            GameActionsHelper_Legacy.DamageTarget(this.source, this.owner, getHealthBarAmount(), DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.FIRE);
+            GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
         }
     }
 

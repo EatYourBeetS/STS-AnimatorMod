@@ -9,7 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -72,14 +73,14 @@ public class IzunaHatsuse extends AnimatorCard
     {
         if (transformed)
         {
-            GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-            GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-            GameActionsHelper.AddToBottom(new HealAction(p, p, this.magicNumber));
+            GameActions.Bottom.Heal(this.magicNumber);
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
         else
         {
-            GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
-            GameActionsHelper2.GainBlock(this.block);
+            GameActions.Bottom.ApplyWeak(p, m,1);
+            GameActions.Bottom.GainBlock(this.block);
         }
     }
 

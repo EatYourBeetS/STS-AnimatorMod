@@ -3,7 +3,7 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedHat;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackFrail;
@@ -63,15 +63,15 @@ public class TheUnnamed_Hat extends AnimatorMonster
     {
         super.usePreBattleAction();
 
-        GameActionsHelper.ApplyPower(this, this, new TheUnnamedHatPower(this, 2), 2);
+        GameActionsHelper_Legacy.ApplyPower(this, this, new TheUnnamedHatPower(this, 2), 2);
 
         if (first)
         {
-            GameActionsHelper.GainBlock(this, 33);
+            GameActionsHelper_Legacy.GainBlock(this, 33);
         }
 
-        GameActionsHelper.ApplyPower(this, this, new ArtifactPower(this, 3), 3);
-        GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[0]));
+        GameActionsHelper_Legacy.ApplyPower(this, this, new ArtifactPower(this, 3), 3);
+        GameActionsHelper_Legacy.AddToBottom(new TalkAction(this, data.strings.DIALOG[0]));
     }
 
     @Override

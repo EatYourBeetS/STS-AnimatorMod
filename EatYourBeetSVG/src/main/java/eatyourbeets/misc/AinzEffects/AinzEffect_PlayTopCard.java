@@ -3,7 +3,7 @@ package eatyourbeets.misc.AinzEffects;
 import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 
@@ -40,7 +40,7 @@ public class AinzEffect_PlayTopCard extends AinzEffect
 
         for (int i = 0; i < ainz.magicNumber; i++)
         {
-            GameActionsHelper2.AddToBottom(new PlayTopCardAction(target, false));
+            GameActions.Bottom.Add(new PlayTopCardAction(target, false));
         }
     }
 }

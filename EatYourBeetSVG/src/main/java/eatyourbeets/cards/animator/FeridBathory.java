@@ -6,7 +6,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.FeridBathoryPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class FeridBathory extends AnimatorCard
 {
@@ -24,7 +24,7 @@ public class FeridBathory extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new FeridBathoryPower(p, magicNumber), magicNumber);
+        GameActions.Bottom.StackPower(new FeridBathoryPower(p, magicNumber));
     }
 
     @Override

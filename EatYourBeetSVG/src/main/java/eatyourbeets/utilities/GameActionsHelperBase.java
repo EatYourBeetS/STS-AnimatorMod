@@ -15,6 +15,9 @@ import org.apache.logging.log4j.Logger;
 @SuppressWarnings("UnusedReturnValue")
 public class GameActionsHelperBase
 {
+    public static final GameActions Top = new GameActions(Order.Top);
+    public static final GameActions Bottom = new GameActions(Order.Bottom);
+
     public enum Order
     {
         Top,
@@ -23,7 +26,7 @@ public class GameActionsHelperBase
         NextCombat
     }
 
-    protected static Logger logger = GameUtilities.GetLogger(GameActionsHelperBase.class);
+    protected static final Logger logger = GameUtilities.GetLogger(GameActionsHelperBase.class);
     protected static Order actionOrder = Order.Bottom;
 
     public static void ClearPostCombatActions()
@@ -75,19 +78,25 @@ public class GameActionsHelperBase
         return action;
     }
 
-    public static void AddToTurnStart(AbstractGameAction action)
+    public static <T extends AbstractGameAction> T AddToTurnStart(T action)
     {
         AbstractDungeon.actionManager.addToTurnStart(action);
+
+        return action;
     }
 
-    public static void AddToTop(AbstractGameAction action)
+    public static <T extends AbstractGameAction> T AddToTop(T action)
     {
         AbstractDungeon.actionManager.addToTop(action);
+
+        return action;
     }
 
-    public static void AddToBottom(AbstractGameAction action)
+    public static <T extends AbstractGameAction> T AddToBottom(T action)
     {
         AbstractDungeon.actionManager.addToBottom(action);
+
+        return action;
     }
 
     public static void PlayCard(AbstractCard card, AbstractMonster m)
@@ -98,6 +107,7 @@ public class GameActionsHelperBase
         }
 
         AbstractDungeon.player.limbo.group.add(card);
+
         card.current_y = -200.0F * Settings.scale;
         card.target_x = (float) Settings.WIDTH / 2.0F + 200.0F * Settings.scale;
         card.target_y = (float) Settings.HEIGHT / 2.0F;
@@ -105,25 +115,28 @@ public class GameActionsHelperBase
         card.lighten(false);
         card.drawScale = 0.12F;
         card.targetDrawScale = 0.75F;
+
         if (!card.canUse(AbstractDungeon.player, m))
         {
-            AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
-            AbstractDungeon.actionManager.addToTop(new DiscardSpecificCardAction(card, AbstractDungeon.player.limbo));
-            AbstractDungeon.actionManager.addToTop(new WaitAction(0.4F));
+            AddToTop(new UnlimboAction(card));
+            AddToTop(new DiscardSpecificCardAction(card, AbstractDungeon.player.limbo));
+            AddToTop(new WaitAction(0.4F));
         }
         else
         {
             card.applyPowers();
             card.freeToPlayOnce = true;
-            AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, m));
-            AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
+
+            AddToTop(new QueueCardAction(card, m));
+            AddToTop(new UnlimboAction(card));
+
             if (!Settings.FAST_MODE)
             {
-                AbstractDungeon.actionManager.addToTop(new WaitAction(Settings.ACTION_DUR_MED));
+                AddToTop(new WaitAction(Settings.ACTION_DUR_MED));
             }
             else
             {
-                AbstractDungeon.actionManager.addToTop(new WaitAction(Settings.ACTION_DUR_FASTER));
+                AddToTop(new WaitAction(Settings.ACTION_DUR_FASTER));
             }
         }
     }

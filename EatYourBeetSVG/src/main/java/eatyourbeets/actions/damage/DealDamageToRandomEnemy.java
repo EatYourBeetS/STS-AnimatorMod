@@ -1,16 +1,13 @@
 package eatyourbeets.actions.damage;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.GameActionsHelper2;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.*;
 
 import java.util.function.Consumer;
 
@@ -85,7 +82,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         {
             if (GameUtilities.GetCurrentEnemies(true).size() > 0)
             {
-                GameActionsHelper.AddToTop(new DealDamageToRandomEnemy(this));
+                GameActions.Top.Add(new DealDamageToRandomEnemy(this));
             }
 
             Complete();
@@ -131,12 +128,12 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {
-                GameActionsHelper2.ClearPostCombatActions();
+                GameActionsHelperBase.ClearPostCombatActions();
             }
 
             if (!Settings.FAST_MODE && !skipWait)
             {
-                GameActionsHelper2.AddToTop(new WaitAction(0.1f));
+                GameActions.Top.Wait(0.1f);
             }
 
             Complete(target);

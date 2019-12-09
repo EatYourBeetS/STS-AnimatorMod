@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
@@ -39,9 +40,9 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
     {
         super.usePreBattleAction();
 
-        GameActionsHelper.ApplyPower(this, this, new TheUnnamedCultistPower(this, 12), 12);
-        GameActionsHelper.AddToBottom(new WaitRealtimeAction(0.2f));
-        GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[5], 1f, 2.5f));
+        GameActions.Bottom.ApplyPower(this, this, new TheUnnamedCultistPower(this, 12), 12);
+        GameActions.Bottom.WaitRealtime(0.2f);
+        GameActionsHelper_Legacy.AddToBottom(new TalkAction(this, data.strings.DIALOG[5], 1f, 2.5f));
     }
 
     @Override
@@ -53,7 +54,7 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
         {
             if (m.hasPower(MinionPower.POWER_ID))
             {
-                GameActionsHelper.AddToBottom(new EscapeAction(m));
+                GameActionsHelper_Legacy.AddToBottom(new EscapeAction(m));
             }
         }
     }

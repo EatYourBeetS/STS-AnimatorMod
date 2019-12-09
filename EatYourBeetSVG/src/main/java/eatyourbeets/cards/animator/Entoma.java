@@ -2,23 +2,19 @@ package eatyourbeets.cards.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions._legacy.animator.EntomaAction;
-import eatyourbeets.actions._legacy.common.OnTargetDeadAction;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Entoma extends AnimatorCard
 {
@@ -31,7 +27,7 @@ public class Entoma extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(ORIGINAL_DAMAGE,0,ORIGINAL_MAGIC_NUMBER);
+        Initialize(ORIGINAL_DAMAGE, 0, ORIGINAL_MAGIC_NUMBER);
 
         AddExtendedDescription();
 
@@ -42,15 +38,21 @@ public class Entoma extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (m == null)
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        .SetDamageEffect(e -> AbstractDungeon.effectList.add(new BiteEffect(e.hb.cX, e.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy())))
+        .AddCallback(enemy ->
         {
-            return;
-        }
+            if (GameUtilities.TriggerOnKill(enemy, true) && EffectHistory.TryActivateLimited(cardID))
+            {
+                AbstractDungeon.player.increaseMaxHp(2, false);
+                for (AbstractCard c : GameUtilities.GetAllInstances(this))
+                {
+                    c.upgrade();
+                }
+            }
+        });
 
-        GameActionsHelper.AddToBottom(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F));
-        DamageAction damageAction = new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        GameActionsHelper.AddToBottom(new OnTargetDeadAction(m, damageAction, new EntomaAction(this)));
-        GameActionsHelper.AddToBottom(new ApplyPowerAction(m, p, new PoisonPower(m, p, this.magicNumber), this.magicNumber));
+        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class Entoma extends AnimatorCard
 
         if (PlayerStatistics.getTurnCount() > 0 && this.baseDamage > 0)
         {
-            GameActionsHelper.AddToBottom(new ModifyDamageAction(this.uuid, -1));
+            GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - 1));
         }
     }
 

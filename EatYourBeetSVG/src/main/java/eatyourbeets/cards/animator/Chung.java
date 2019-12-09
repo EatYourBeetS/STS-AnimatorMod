@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Chung extends AnimatorCard
 {
@@ -26,7 +26,7 @@ public class Chung extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper2.ChannelOrb(new Frost(), true);
+        GameActions.Bottom.ChannelOrb(new Frost(), true);
     }
 
     @Override
@@ -34,10 +34,10 @@ public class Chung extends AnimatorCard
     {
         if (this.block > 0)
         {
-            GameActionsHelper2.GainBlock(this.block);
+            GameActions.Bottom.GainBlock(this.block);
         }
 
-        GameActionsHelper2.ModifyAllCombatInstances(uuid, c -> c.baseBlock = Math.max(0, c.baseBlock - c.magicNumber));
+        GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseBlock = Math.max(0, c.baseBlock - c.magicNumber));
     }
 
     @Override

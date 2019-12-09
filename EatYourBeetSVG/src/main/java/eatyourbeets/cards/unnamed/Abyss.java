@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class Abyss extends UnnamedCard
 {
@@ -24,8 +24,8 @@ public class Abyss extends UnnamedCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToBottom(new LoseHPAction(p, p, magicNumber));
-        GameActionsHelper.AddToBottom(new FetchAction(PlayerStatistics.Void, 1));
+        GameActionsHelper_Legacy.AddToBottom(new LoseHPAction(p, p, magicNumber));
+        GameActionsHelper_Legacy.AddToBottom(new FetchAction(PlayerStatistics.Void, 1));
     }
 
     @Override

@@ -3,8 +3,7 @@ package eatyourbeets.actions.pileSelection;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import eatyourbeets.actions.basic.MoveCard;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
@@ -20,7 +19,7 @@ public class DiscardFromPile extends SelectFromPile
     {
         for (AbstractCard card : result)
         {
-            GameActionsHelper2.AddToTop(new MoveCard(card, player.discardPile, true));
+            GameActions.Top.MoveCard(card, player.discardPile, true);
         }
 
         super.Complete(result);

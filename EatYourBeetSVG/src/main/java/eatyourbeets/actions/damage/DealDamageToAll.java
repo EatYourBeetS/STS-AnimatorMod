@@ -1,7 +1,6 @@
 package eatyourbeets.actions.damage;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -10,7 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelperBase;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -25,15 +25,17 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
     protected boolean bypassBlock;
     protected boolean bypassThorns;
 
-    public DealDamageToAll(AbstractCreature source, int[] amount, DamageInfo.DamageType type, AttackEffect effect)
+    public DealDamageToAll(AbstractCreature source, int[] amount, DamageInfo.DamageType damageType, AttackEffect attackEffect)
     {
-        this(source, amount, type, effect, false);
+        this(source, amount, damageType, attackEffect, false);
     }
 
-    public DealDamageToAll(AbstractCreature source, int[] amount, DamageInfo.DamageType type, AttackEffect effect, boolean isFast)
+    public DealDamageToAll(AbstractCreature source, int[] amount, DamageInfo.DamageType damageType, AttackEffect attackEffect, boolean isFast)
     {
         super(ActionType.DAMAGE, isFast ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST);
 
+        this.attackEffect = attackEffect;
+        this.damageType = damageType;
         this.damage = amount;
 
         Initialize(source, null, amount[0]);
@@ -108,7 +110,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
                         enemy.tint.changeColor(Color.WHITE.cpy());
                     }
 
-                    DamageHelper.DealDamage(target, new DamageInfo(this.source, this.damage[i], this.damageType), bypassBlock, bypassThorns);
+                    DamageHelper.DealDamage(enemy, new DamageInfo(this.source, this.damage[i], this.damageType), bypassBlock, bypassThorns);
                 }
 
                 i += 1;
@@ -116,12 +118,12 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {
-                GameActionsHelper2.ClearPostCombatActions();
+                GameActionsHelperBase.ClearPostCombatActions();
             }
 
             if (!Settings.FAST_MODE)
             {
-                GameActionsHelper2.AddToTop(new WaitAction(0.1f));
+                GameActions.Top.Wait(0.1f);
             }
 
             Complete(targets);

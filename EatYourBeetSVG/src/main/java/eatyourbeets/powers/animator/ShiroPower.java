@@ -2,16 +2,17 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class ShiroPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(ShiroPower.class.getSimpleName());
 
-    public ShiroPower(AbstractCreature owner)
+    public ShiroPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
-        this.amount = 1;
+
+        this.amount = amount;
 
         updateDescription();
     }
@@ -21,6 +22,6 @@ public class ShiroPower extends AnimatorPower
     {
         super.atStartOfTurn();
 
-        GameActionsHelper.GainEnergy(amount);
+        GameActions.Bottom.GainEnergy(amount);
     }
 }

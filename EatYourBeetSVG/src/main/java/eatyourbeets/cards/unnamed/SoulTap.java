@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.actions._legacy.common.DecreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 
 public class SoulTap extends UnnamedCard
 {
@@ -21,9 +21,9 @@ public class SoulTap extends UnnamedCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.AddToBottom(new DecreaseMaxHpAction(p, 2));
-        GameActionsHelper.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
-        GameActionsHelper2.Draw(secondaryValue);
+        GameActionsHelper_Legacy.AddToBottom(new DecreaseMaxHpAction(p, 2));
+        GameActionsHelper_Legacy.ApplyPower(p, p, new StrengthPower(p, magicNumber), magicNumber);
+        GameActions.Bottom.Draw(secondaryValue);
     }
 
     @Override

@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 
 public class Move_Cripple extends AbstractMove
@@ -40,9 +41,9 @@ public class Move_Cripple extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActionsHelper.GainBlock(owner, BLOCK_AMOUNT);
-        GameActionsHelper.ApplyPower(owner, target, new WeakPower(target, WEAK_AMOUNT, true), WEAK_AMOUNT);
-        GameActionsHelper.ApplyPower(owner, target, new VulnerablePower(target, VULNERABLE_AMOUNT, true), VULNERABLE_AMOUNT);
-        GameActionsHelper.ApplyPower(owner, target, new FrailPower(target, FRAIL_AMOUNT, true), FRAIL_AMOUNT);
+        GameActions.Bottom.GainBlock(owner, BLOCK_AMOUNT);
+        GameActions.Bottom.ApplyPower(owner, target, new WeakPower(target, WEAK_AMOUNT, true), WEAK_AMOUNT);
+        GameActions.Bottom.ApplyPower(owner, target, new VulnerablePower(target, VULNERABLE_AMOUNT, true), VULNERABLE_AMOUNT);
+        GameActions.Bottom.ApplyPower(owner, target, new FrailPower(target, FRAIL_AMOUNT, true), FRAIL_AMOUNT);
     }
 }

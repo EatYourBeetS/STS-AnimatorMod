@@ -3,12 +3,14 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
+import com.megacrit.cardcrawl.powers.ElectroPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.common.TemporaryElectroPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class NarberalGamma extends AnimatorCard
 {
@@ -26,16 +28,16 @@ public class NarberalGamma extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ChannelOrb(new Lightning(), true);
+        GameActions.Bottom.ChannelOrb(new Lightning(), true);
 
         if (upgraded)
         {
-            GameActionsHelper2.Draw(1);
+            GameActions.Bottom.Draw(1);
         }
 
-        if (EffectHistory.TryActivateSemiLimited(this.cardID))
+        if (EffectHistory.TryActivateSemiLimited(this.cardID) && !p.hasPower(ElectroPower.POWER_ID))
         {
-            GameActionsHelper.ApplyPower(p, p, new TemporaryElectroPower(p));
+            GameActions.Bottom.ApplyPower(p, p, new TemporaryElectroPower(p));
         }
     }
 

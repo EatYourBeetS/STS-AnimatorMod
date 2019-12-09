@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -33,19 +34,20 @@ public class YaoHaDucy extends AnimatorCard
         if (EffectHistory.TryActivateLimited(cardID))
         {
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, secondaryValue), secondaryValue);
-            GameActionsHelper.GainAgility(1);
+
+            GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
+            GameActions.Bottom.GainAgility(1);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
 
         if (GameUtilities.IsAttacking(m.intent))
         {
-            GameUtilities.LoseTemporaryStrength(p, m, magicNumber);
+            GameActions.Bottom.ReduceStrength(m, magicNumber, true);
         }
     }
 

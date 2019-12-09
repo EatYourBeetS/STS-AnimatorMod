@@ -14,7 +14,8 @@ import com.megacrit.cardcrawl.relics.BloodVial;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.monsters.Bosses.KrulTepes;
@@ -73,13 +74,13 @@ public class ExquisiteBloodVial extends AnimatorRelic
         AbstractPlayer p = AbstractDungeon.player;
         if (truePotential)
         {
-            GameActionsHelper.ApplyPower(p, p, new RegenPower(p, regenAmount), regenAmount);
+            GameActions.Bottom.ApplyPower(p, p, new RegenPower(p, regenAmount), regenAmount);
             p.increaseMaxHp(maxHPAmount, true);
         }
         else
         {
-            GameActionsHelper.AddToTop(new RelicAboveCreatureAction(p, this));
-            GameActionsHelper.AddToTop(new HealAction(p, p, HEAL_AMOUNT));
+            GameActions.Top.Add(new RelicAboveCreatureAction(p, this));
+            GameActions.Top.Heal(HEAL_AMOUNT);
         }
 
         this.flash();

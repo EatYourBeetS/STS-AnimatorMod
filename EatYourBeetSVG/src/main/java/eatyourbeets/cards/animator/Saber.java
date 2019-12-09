@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard_Cooldown;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import patches.AbstractEnums;
 
 public class Saber extends AnimatorCard_Cooldown
@@ -31,7 +31,7 @@ public class Saber extends AnimatorCard_Cooldown
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
         int progress = 1;
         if (HasActiveSynergy())
@@ -67,7 +67,9 @@ public class Saber extends AnimatorCard_Cooldown
         if (!purgeOnUse)
         {
             this.tags.add(AbstractEnums.CardTags.PURGE);
-            GameActionsHelper.MakeCardInHand(new Excalibur(), 1, false);
+
+            GameActions.Bottom.Purge(uuid);
+            GameActions.Bottom.MakeCardInHand(new Excalibur(), false, false);
         }
     }
 }

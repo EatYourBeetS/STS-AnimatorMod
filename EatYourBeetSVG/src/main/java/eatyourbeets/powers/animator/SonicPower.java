@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.cards.animator.ThrowingKnife;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class SonicPower extends AnimatorPower
 {
@@ -26,8 +26,8 @@ public class SonicPower extends AnimatorPower
     {
         super.atStartOfTurnPostDraw();
 
-        GameActionsHelper.ApplyPower(owner, owner, new DexterityPower(owner, 1), 1);
-        GameActionsHelper.MakeCardInHand(ThrowingKnife.GetRandomCard(), 1, false);
-        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
+        GameActionsHelper_Legacy.ApplyPower(owner, owner, new DexterityPower(owner, 1), 1);
+        GameActionsHelper_Legacy.MakeCardInHand(ThrowingKnife.GetRandomCard(), 1, false);
+        GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
     }
 }

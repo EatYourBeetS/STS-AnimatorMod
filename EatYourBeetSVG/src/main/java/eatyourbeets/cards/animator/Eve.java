@@ -4,15 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.MetallicizePower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.EvePower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper2;
-
-import java.util.ArrayList;
+import eatyourbeets.utilities.GameActions;
 
 public class Eve extends AnimatorCard
 {
@@ -30,32 +27,30 @@ public class Eve extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.AddToBottom(OrbCore.SelectCoreAction(name, 1)
-        .AddCallback(this::OrbChosen));
-
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActionsHelper2.StackPower(new EvePower(p, 1, 1));
+            GameActions.Bottom.StackPower(new EvePower(p, 1, 1));
         }
 
-        GameActionsHelper2.GainOrbSlots(magicNumber);
+        GameActions.Bottom.GainOrbSlots(magicNumber);
 
         if (secondaryValue > 0)
         {
-            GameActionsHelper2.StackPower(new MetallicizePower(p, secondaryValue));
+            GameActions.Bottom.GainMetallicize(secondaryValue);
         }
-    }
 
-    private void OrbChosen(ArrayList<AbstractCard> chosen)
-    {
-        if (chosen != null && chosen.size() > 0)
+        GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
+        .AddCallback(orbCores ->
         {
-            for (AbstractCard c : chosen)
+            if (orbCores != null && orbCores.size() > 0)
             {
-                c.applyPowers();
-                c.use(AbstractDungeon.player, null);
+                for (AbstractCard c : orbCores)
+                {
+                    c.applyPowers();
+                    c.use(AbstractDungeon.player, null);
+                }
             }
-        }
+        }));
     }
 
     @Override

@@ -2,7 +2,7 @@ package eatyourbeets.relics.animator;
 
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class AlchemistGlove extends AnimatorRelic
 {
@@ -18,6 +18,6 @@ public class AlchemistGlove extends AnimatorRelic
     {
         super.atBattleStart();
 
-        GameActionsHelper.ChannelOrb(new Fire(), false);
+        GameActions.Bottom.ChannelOrb(new Fire(), false);
     }
 }

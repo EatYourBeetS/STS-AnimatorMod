@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions._legacy.common.ShuffleRandomGoblinAction;
 import eatyourbeets.cards.AnimatorCard_Status;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class GoblinChampion extends AnimatorCard_Status
 {
@@ -25,7 +25,7 @@ public class GoblinChampion extends AnimatorCard_Status
     {
         if (this.dontTriggerOnUseCard)
         {
-            AbstractDungeon.actionManager.addToBottom(new ShuffleRandomGoblinAction(1));
+            GameActions.Bottom.Add(new ShuffleRandomGoblinAction(1));
         }
     }
 }

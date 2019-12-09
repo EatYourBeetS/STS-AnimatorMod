@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.actions._legacy.common.ChooseFromPileAction;
 import eatyourbeets.cards.animator.Vesta;
 import eatyourbeets.cards.animator.Vesta_Elixir;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -105,7 +105,7 @@ public class VestaElixirEffects
             group.addToTop(other);
         }
 
-        GameActionsHelper.AddToBottom(new ChooseFromPileAction(1, false, group, this::ChooseNextEffect,
+        GameActionsHelper_Legacy.AddToBottom(new ChooseFromPileAction(1, false, group, this::ChooseNextEffect,
                                                                  this, "", true));
     }
 

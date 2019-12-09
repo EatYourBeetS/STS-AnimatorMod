@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.relics.animator.EngravedStaff;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class AgilityPower extends CommonPower
@@ -27,7 +28,7 @@ public class AgilityPower extends CommonPower
     {
         super.onInitialApplication();
 
-        GameActionsHelper.ApplyPower(owner, owner, new DexterityPower(owner, amount), amount);
+        GameActions.Bottom.GainDexterity(amount);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class AgilityPower extends CommonPower
     {
         super.stackPower(stackAmount);
 
-        GameActionsHelper.ApplyPower(owner, owner, new DexterityPower(owner, stackAmount), stackAmount);
+        GameActions.Bottom.GainDexterity(stackAmount);
     }
 
     @Override
@@ -50,9 +51,9 @@ public class AgilityPower extends CommonPower
 
         if (GameUtilities.GetDexterity() > 0)
         {
-            GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, DexterityPower.POWER_ID, 1));
+            GameActions.Bottom.ReducePower(owner, DexterityPower.POWER_ID, 1);
         }
 
-        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
+        GameActions.Bottom.ReducePower(this, 1);
     }
 }

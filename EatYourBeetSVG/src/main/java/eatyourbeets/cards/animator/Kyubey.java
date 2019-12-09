@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.curses.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class Kyubey extends AnimatorCard implements StartupCard
 {
     public static final String ID = Register(Kyubey.class.getSimpleName(), EYBCardBadge.Special);
+
+    private static ArrayList<AbstractCard> curses;
 
     public Kyubey()
     {
@@ -31,8 +33,8 @@ public class Kyubey extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.Draw(this.magicNumber);
-        GameActionsHelper.GainEnergy(this.magicNumber);
+        GameActions.Bottom.Draw(this.magicNumber);
+        GameActions.Bottom.GainEnergy(this.magicNumber);
     }
 
     @Override
@@ -44,7 +46,6 @@ public class Kyubey extends AnimatorCard implements StartupCard
         }
     }
 
-    private ArrayList<AbstractCard> curses;
     private AbstractCard GetRandomCurse()
     {
         if (curses == null)
@@ -72,7 +73,7 @@ public class Kyubey extends AnimatorCard implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(GetRandomCurse(), 1));
+        GameActions.Bottom.MakeCardInDiscardPile(GetRandomCurse(), false, false);
 
         return true;
     }

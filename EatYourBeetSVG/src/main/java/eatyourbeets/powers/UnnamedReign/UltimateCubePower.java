@@ -13,7 +13,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.powers.AnimatorPower;
 
@@ -98,12 +99,12 @@ public class UltimateCubePower extends AnimatorPower
         {
             float x = owner.hb.cX + AbstractDungeon.cardRandomRng.random(-40, 40);
             float y = owner.hb.cY + AbstractDungeon.cardRandomRng.random(-40, 40);
-            GameActionsHelper.AddToBottom(new WaitAction(0.3f));
-            GameActionsHelper.AddToBottom(new VFXAction(new ExplosionSmallEffect(x, y), 0F));
-            GameActionsHelper.DamageTarget(owner, p, damageStep, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.Wait(0.3f);
+            GameActions.Bottom.VFX(new ExplosionSmallEffect(x, y), 0F);
+            GameActionsHelper_Legacy.DamageTarget(owner, p, damageStep, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
         }
 
-        GameActionsHelper.AddToBottom(new SuicideAction((AbstractMonster)this.owner));
+        GameActionsHelper_Legacy.AddToBottom(new SuicideAction((AbstractMonster)this.owner));
     }
 
     private void GainRandomBuff(AbstractCreature c)
@@ -133,27 +134,27 @@ public class UltimateCubePower extends AnimatorPower
 
     private void BuffHealing(AbstractCreature c)
     {
-        GameActionsHelper.ApplyPower(c, c, new HealingCubePower(c, 8), 8);
+         GameActions.Bottom.ApplyPower(c, c, new HealingCubePower(c, 8), 8);
     }
 
     private void BuffFire(AbstractCreature c)
     {
-        GameActionsHelper.ApplyPower(c, c, new FireCubePower(c, 3), 3);
+         GameActions.Bottom.ApplyPower(c, c, new FireCubePower(c, 3), 3);
     }
 
     private void BuffFrost(AbstractCreature c)
     {
-        GameActionsHelper.ApplyPower(c, c, new FrostCubePower(c, 6), 6);
+         GameActions.Bottom.ApplyPower(c, c, new FrostCubePower(c, 6), 6);
     }
 
     private void BuffDark(AbstractCreature c)
     {
-        GameActionsHelper.ApplyPower(c, c, new DarkCubePower(c, 3), 3);
+         GameActions.Bottom.ApplyPower(c, c, new DarkCubePower(c, 3), 3);
     }
 
     private void BuffLightning(AbstractCreature c)
     {
-        GameActionsHelper.ApplyPower(c, c, new LightningCubePower(c, 4), 4);
+         GameActions.Bottom.ApplyPower(c, c, new LightningCubePower(c, 4), 4);
     }
 
     @Override

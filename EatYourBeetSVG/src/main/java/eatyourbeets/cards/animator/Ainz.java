@@ -9,7 +9,7 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.misc.AinzEffects.AinzEffect;
 import eatyourbeets.powers.animator.AinzPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import patches.AbstractEnums;
 
 public class Ainz extends AnimatorCard
@@ -36,14 +36,14 @@ public class Ainz extends AnimatorCard
         {
             this.updateCost(-1);
 
-            GameActionsHelper2.GainRandomStat(1);
+            GameActions.Bottom.GainRandomStat(1);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.StackPower(new AinzPower(p, 1));
+        GameActions.Bottom.StackPower(new AinzPower(p, 1));
         EffectHistory.TryActivateLimited(Ainz.ID);
     }
 

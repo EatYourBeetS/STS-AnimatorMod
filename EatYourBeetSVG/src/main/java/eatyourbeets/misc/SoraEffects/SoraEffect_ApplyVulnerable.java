@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class SoraEffect_ApplyVulnerable extends SoraEffect
 {
@@ -21,7 +21,7 @@ public class SoraEffect_ApplyVulnerable extends SoraEffect
         {
             if (!m.isDead && !m.isDying)
             {
-                GameActionsHelper.ApplyPower(player, m, new VulnerablePower(m, sora.magicNumber, false), sora.magicNumber);
+                GameActionsHelper_Legacy.ApplyPower(player, m, new VulnerablePower(m, sora.magicNumber, false), sora.magicNumber);
             }
         }
     }

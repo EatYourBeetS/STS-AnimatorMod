@@ -1,18 +1,16 @@
 package eatyourbeets.cards.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.actions._legacy.common.PlayCardFromPileAction;
+import eatyourbeets.actions.cardManipulation.PlayCardFromPile;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.utilities.GameActions;
 
 public class HiiragiTenri extends AnimatorCard_UltraRare
 {
@@ -20,7 +18,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
 
     public HiiragiTenri()
     {
-        super(ID, 4, CardType.SKILL, CardTarget.SELF);
+        super(ID, 4, CardType.SKILL, CardTarget.ENEMY);
 
         Initialize(0,0, 20);
 
@@ -35,20 +33,21 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
         if (EffectHistory.TryActivateLimited(cardID))
         {
             AbstractPlayer p = AbstractDungeon.player;
-            GameActionsHelper.AddToBottom(new MoveCardsAction(p.drawPile, p.exhaustPile, Integer.MAX_VALUE));
+            GameActions.Bottom.MoveCards(p.drawPile, p.exhaustPile);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.GainTemporaryHP(p, p, this.magicNumber);
+        GameActions.Bottom.GainTemporaryHP(this.magicNumber);
 
         for (AbstractCard c : p.discardPile.group)
         {
-            GameActionsHelper.AddToTop(new PlayCardFromPileAction(c, p.discardPile, true, false));
+            GameActions.Top.Add(new PlayCardFromPile(c, p.discardPile, true, false, m));
         }
-        GameActionsHelper.AddToTop(new VFXAction(new OfferingEffect(), 0.1F));
+
+        GameActions.Top.VFX(new OfferingEffect(), 0.1F);
     }
 
     @Override

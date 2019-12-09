@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.UnnamedCard;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class MoveToVoidAction extends AbstractGameAction
@@ -40,7 +40,7 @@ public class MoveToVoidAction extends AbstractGameAction
 
         if (repeat > 0)
         {
-            GameActionsHelper.AddToBottom(new MoveToVoidAction(card, repeat - 1));
+            GameActionsHelper_Legacy.AddToBottom(new MoveToVoidAction(card, repeat - 1));
         }
         else
         {

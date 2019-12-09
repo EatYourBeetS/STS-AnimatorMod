@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.actions._legacy.animator.AinzAction;
 
 public class AinzPower extends AnimatorPower
@@ -28,9 +29,9 @@ public class AinzPower extends AnimatorPower
     {
         super.onInitialApplication();
 
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE", 0.1f));
-        GameActionsHelper.AddToTop(new VFXAction(new BorderLongFlashEffect(Color.valueOf("3d0066"))));
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_DARK_EVOKE", 0.1f));
+        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.1f);
+        GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.valueOf("3d0066")));
+        GameActions.Bottom.SFX("ORB_DARK_EVOKE", 0.1f);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class AinzPower extends AnimatorPower
 
         for(int i = 0; i < this.amount; i++)
         {
-            GameActionsHelper.AddToBottom(new AinzAction(CHOICES));
+            GameActionsHelper_Legacy.AddToBottom(new AinzAction(CHOICES));
         }
 
         this.flash();

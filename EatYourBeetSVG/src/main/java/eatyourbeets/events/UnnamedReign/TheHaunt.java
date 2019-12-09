@@ -54,7 +54,7 @@ public class TheHaunt extends AnimatorEvent
             if (buttonPressed == CHOICE_TAKE_GOLD)
             {
                 AbstractDungeon.effectList.add(new RainingGoldEffect(600));
-                AbstractDungeon.effectList.add(new CallbackEffect(new WaitAction(3f), this::OnCompletion, this));
+                AbstractDungeon.effectList.add(new CallbackEffect(new WaitAction(3f), this, this::OnCompletion));
 
                 this.imageEventText.clearAllDialogs();
                 this.imageEventText.updateBodyText("");

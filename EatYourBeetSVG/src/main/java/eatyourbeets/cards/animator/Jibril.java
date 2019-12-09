@@ -7,9 +7,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Jibril extends AnimatorCard implements Spellcaster
 {
@@ -38,14 +40,14 @@ public class Jibril extends AnimatorCard implements Spellcaster
 
         if (EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper.AddToBottom(new TriggerPassiveAction(1));
+            GameActions.Bottom.Add(new TriggerPassiveAction(1));
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.DamageAllEnemies(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
     }
 
     @Override

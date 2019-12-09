@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -38,12 +38,13 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
         Urushihara other = (Urushihara) makeStatEquivalentCopy();
 
         other.lazyCounter = AbstractDungeon.cardRandomRng.random(3);
+
         if (!upgraded)
         {
             other.lazyCounter += 1;
         }
 
-        GameActionsHelper.ChannelOrb(new Dark(), true);
+        GameActions.Bottom.ChannelOrb(new Dark(), true);
 
         PlayerStatistics.onStartOfTurnPostDraw.Subscribe(other);
     }
@@ -64,11 +65,14 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
         else
         {
             applyPowers();
+
             AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this));
-            GameActionsHelper.DamageAllEnemies(AbstractDungeon.player, this.multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+
+            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE)
+            .SetOptions(true, false);
+            GameUtilities.UsePenNib();
 
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
-            GameUtilities.UsePenNib();
         }
     }
 }

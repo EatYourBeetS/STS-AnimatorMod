@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class DiscardTopCardsAction extends AbstractGameAction
 {
@@ -25,7 +25,7 @@ public class DiscardTopCardsAction extends AbstractGameAction
 
         for (int i = 1; i <= max; i++)
         {
-            GameActionsHelper.AddToBottom(new DiscardSpecificCardAction(group.group.get(size - i), group));
+            GameActionsHelper_Legacy.AddToBottom(new DiscardSpecificCardAction(group.group.get(size - i), group));
         }
 
         this.isDone = true;

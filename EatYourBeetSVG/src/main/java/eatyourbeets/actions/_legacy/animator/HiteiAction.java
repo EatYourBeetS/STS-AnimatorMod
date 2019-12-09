@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.actions._legacy.common.DrawSpecificCardAction;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.RandomizedList;
 
 public class HiteiAction extends AbstractGameAction
@@ -60,7 +60,7 @@ public class HiteiAction extends AbstractGameAction
         {
             AbstractCard card = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 
-            GameActionsHelper.ExhaustCard(card);
+            GameActionsHelper_Legacy.ExhaustCard(card);
 
             for (AbstractCard c : cardGroup.group)
             {
@@ -71,7 +71,7 @@ public class HiteiAction extends AbstractGameAction
                         player.discardPile.removeCard(c);
                         player.drawPile.addToTop(c);
                     }
-                    GameActionsHelper.AddToBottom(new DrawSpecificCardAction(c));
+                    GameActionsHelper_Legacy.AddToBottom(new DrawSpecificCardAction(c));
                     c.setCostForTurn(0);
 
                     break;

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class DexterityTrainingPower extends AnimatorPower
 {
@@ -25,7 +25,7 @@ public class DexterityTrainingPower extends AnimatorPower
     {
         super.atStartOfTurnPostDraw();
 
-        GameActionsHelper.ApplyPower(owner, owner, new DexterityPower(owner, 1), 1);
-        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
+        GameActionsHelper_Legacy.ApplyPower(owner, owner, new DexterityPower(owner, 1), 1);
+        GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
     }
 }

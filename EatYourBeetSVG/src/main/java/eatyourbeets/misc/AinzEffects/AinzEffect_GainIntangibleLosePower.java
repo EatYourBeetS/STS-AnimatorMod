@@ -3,7 +3,7 @@ package eatyourbeets.misc.AinzEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import eatyourbeets.powers.animator.AinzPower;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class AinzEffect_GainIntangibleLosePower extends AinzEffect
 {
@@ -21,7 +21,7 @@ public class AinzEffect_GainIntangibleLosePower extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer p)
     {
-        GameActionsHelper2.StackPower(new IntangiblePlayerPower(p, ainz.magicNumber));
-        GameActionsHelper2.ReducePower(p, AinzPower.POWER_ID, 1);
+        GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, ainz.magicNumber));
+        GameActions.Bottom.ReducePower(p, AinzPower.POWER_ID, 1);
     }
 }

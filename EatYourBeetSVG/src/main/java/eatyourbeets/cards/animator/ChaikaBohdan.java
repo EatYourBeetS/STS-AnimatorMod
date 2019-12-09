@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,11 +9,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.OnAttackSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 {
@@ -62,7 +59,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
 
         int handSize = p.hand.size();
         if (p.hand.contains(this))
@@ -72,7 +69,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 
         if (handSize <= 0)
         {
-            GameActionsHelper2.Draw(magicNumber);
+            GameActions.Bottom.Draw(magicNumber);
         }
 
         AddDamageBonus(-bonusDamage);

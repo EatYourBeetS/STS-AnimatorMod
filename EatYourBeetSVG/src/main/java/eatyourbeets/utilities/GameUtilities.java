@@ -35,41 +35,41 @@ public class GameUtilities
 
     public static void ApplyTemporaryDexterity(AbstractCreature source, AbstractCreature target, int amount)
     {
-        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
 
         if (UseArtifact(target))
         {
-            GameActionsHelper.ApplyPowerSilently(source, target, new LoseDexterityPower(target, amount), amount);
+            GameActionsHelper_Legacy.ApplyPowerSilently(source, target, new LoseDexterityPower(target, amount), amount);
         }
 
-        GameActionsHelper.ApplyPower(source, target, new DexterityPower(target, amount), amount);
-        GameActionsHelper.ResetOrder();
+        GameActionsHelper_Legacy.ApplyPower(source, target, new DexterityPower(target, amount), amount);
+        GameActionsHelper_Legacy.ResetOrder();
     }
 
     public static void ApplyTemporaryFocus(AbstractCreature source, AbstractCreature target, int amount)
     {
-        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
 
         if (UseArtifact(target))
         {
-            GameActionsHelper.ApplyPowerSilently(source, target, new TemporaryBiasPower(target, amount), amount);
+            GameActionsHelper_Legacy.ApplyPowerSilently(source, target, new TemporaryBiasPower(target, amount), amount);
         }
 
-        GameActionsHelper.ApplyPower(source, target, new FocusPower(target, amount), amount);
-        GameActionsHelper.ResetOrder();
+        GameActionsHelper_Legacy.ApplyPower(source, target, new FocusPower(target, amount), amount);
+        GameActionsHelper_Legacy.ResetOrder();
     }
 
     public static void GainTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
     {
-        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
 
         if (UseArtifact(target))
         {
-            GameActionsHelper.ApplyPowerSilently(source, target, new LoseStrengthPower(target, amount), amount);
+            GameActionsHelper_Legacy.ApplyPowerSilently(source, target, new LoseStrengthPower(target, amount), amount);
         }
 
-        GameActionsHelper.ApplyPower(source, target, new StrengthPower(target, amount), amount);
-        GameActionsHelper.ResetOrder();
+        GameActionsHelper_Legacy.ApplyPower(source, target, new StrengthPower(target, amount), amount);
+        GameActionsHelper_Legacy.ResetOrder();
     }
 
     public static int GetActualAscensionLevel()
@@ -475,20 +475,25 @@ public class GameUtilities
 
     public static boolean IsDeadOrEscaped(AbstractCreature target)
     {
-        return target == null || target.isDeadOrEscaped() || target.currentHealth <= 0;
+        return target.isDeadOrEscaped() || target.currentHealth <= 0;
     }
 
     public static void LoseTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
     {
-        GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
 
         if (UseArtifact(target))
         {
-            GameActionsHelper.ApplyPower(source, target, new StrengthPower(target, -amount), -amount);
-            GameActionsHelper.ApplyPowerSilently(source, target, new GainStrengthPower(target, amount), amount);
+            GameActionsHelper_Legacy.ApplyPower(source, target, new StrengthPower(target, -amount), -amount);
+            GameActionsHelper_Legacy.ApplyPowerSilently(source, target, new GainStrengthPower(target, amount), amount);
         }
 
-        GameActionsHelper.ResetOrder();
+        GameActionsHelper_Legacy.ResetOrder();
+    }
+
+    public static boolean TriggerOnKill(AbstractCreature enemy, boolean includeMinions)
+    {
+        return IsDeadOrEscaped(enemy) && !enemy.hasPower(RegrowPower.POWER_ID) && (includeMinions || !enemy.hasPower(MinionPower.POWER_ID));
     }
 
     public static void UnlockAllKeys()
@@ -540,7 +545,7 @@ public class GameUtilities
         AbstractPlayer p = AbstractDungeon.player;
         if (p.hasPower(PenNibPower.POWER_ID))
         {
-            GameActionsHelper.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
+            GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
         }
     }
 }

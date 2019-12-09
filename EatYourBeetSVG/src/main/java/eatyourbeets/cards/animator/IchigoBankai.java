@@ -14,7 +14,8 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.Hidden;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
 {
@@ -35,7 +36,7 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
         int effect = EnergyPanel.totalCount;
-        if (this.energyOnUse != -1)
+        if (this.energyOnUse > 0)
         {
             effect = this.energyOnUse;
         }
@@ -51,6 +52,11 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        if (this.energyOnUse < EnergyPanel.totalCount)
+        {
+            this.energyOnUse = EnergyPanel.totalCount;
+        }
+
         if (!this.freeToPlayOnce)
         {
             p.energy.use(EnergyPanel.totalCount);
@@ -58,9 +64,9 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
 
         if (damage > 0)
         {
-            GameActionsHelper.AddToTop(new VFXAction(new BorderLongFlashEffect(Color.LIGHT_GRAY)));
-            GameActionsHelper.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.LIGHT_GRAY, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.75F);
-            GameActionsHelper.DamageAllEnemies(p, multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY, false);
+            GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.LIGHT_GRAY));
+            GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.LIGHT_GRAY, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.75F);
+            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).SetOptions(true, true);
         }
     }
 

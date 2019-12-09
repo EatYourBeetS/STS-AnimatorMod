@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class EntouJyuuPower extends AnimatorPower
@@ -71,11 +71,11 @@ public class EntouJyuuPower extends AnimatorPower
         {
             if (usedCard.type == AbstractCard.CardType.ATTACK)
             {
-                //GameActionsHelper.AddToBottom(new ModifyDamageAction(card.uuid, this.damageBonus));
-                GameActionsHelper.DrawCard(owner, 1);
+                //GameActionsHelper_Legacy.AddToBottom(new ModifyDamageAction(card.uuid, this.damageBonus));
+                GameActionsHelper_Legacy.DrawCard(owner, 1);
                 for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
                 {
-                    GameActionsHelper.ApplyPower(owner, m1, new BurningPower(m1, owner, 1), 1);
+                    GameActionsHelper_Legacy.ApplyPower(owner, m1, new BurningPower(m1, owner, 1), 1);
                 }
 
                 this.flash();

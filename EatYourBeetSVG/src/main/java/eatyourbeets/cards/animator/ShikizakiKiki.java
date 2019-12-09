@@ -2,13 +2,13 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.animator.ShikizakiKikiUpgradeAction;
+import eatyourbeets.actions.special.ShikizakiKikiUpgradeAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.ShikizakiKikiPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
 
 public class ShikizakiKiki extends AnimatorCard_UltraRare
 {
@@ -29,11 +29,11 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ApplyPower(p, p, new ShikizakiKikiPower(p, upgraded), 1);
+        GameActions.Bottom.StackPower(new ShikizakiKikiPower(p, upgraded));
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActionsHelper.AddToBottom(new ShikizakiKikiUpgradeAction());
+            GameActions.Bottom.Add(new ShikizakiKikiUpgradeAction());
         }
     }
 

@@ -44,7 +44,7 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        //GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(new HigakiRinne()));
+        //GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInHandAction(new HigakiRinne()));
     }
 
     @Override
@@ -62,6 +62,7 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
 //        }
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean transform(CardGroup group, AbstractCard card)
     {
         int index = group.group.indexOf(copy);
@@ -127,10 +128,5 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
                 }
             }
         }
-    }
-
-    public void ShutUpJava()
-    {
-        transform(AbstractDungeon.player.limbo, null);
     }
 }

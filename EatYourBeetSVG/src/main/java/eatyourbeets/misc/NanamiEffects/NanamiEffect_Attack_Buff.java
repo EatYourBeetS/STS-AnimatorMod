@@ -2,7 +2,7 @@ package eatyourbeets.misc.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.Nanami;
 
 public class NanamiEffect_Attack_Buff extends NanamiEffect
@@ -12,13 +12,13 @@ public class NanamiEffect_Attack_Buff extends NanamiEffect
         int block = GetBlock(nanami);
         if (block > 0)
         {
-            GameActionsHelper2.GainBlock(block);
+            GameActions.Bottom.GainBlock(block);
         }
 
         int strength = GetStrength(nanami);
         if (strength > 0)
         {
-            GameActionsHelper.GainForce(strength);
+            GameActions.Bottom.GainForce(strength);
         }
     }
 

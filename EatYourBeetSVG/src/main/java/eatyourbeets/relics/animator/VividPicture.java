@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
@@ -53,8 +54,8 @@ public class VividPicture extends AnimatorRelic
         AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
         if (active && card != null && card.HasActiveSynergy())
         {
-            GameActionsHelper.DrawCard(AbstractDungeon.player, 1);
-            GameActionsHelper.GainEnergy(1);
+            GameActionsHelper_Legacy.DrawCard(AbstractDungeon.player, 1);
+            GameActions.Bottom.GainEnergy(1);
             active = false;
             this.flash();
         }

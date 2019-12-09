@@ -12,7 +12,7 @@ import eatyourbeets.cards.animator.FeridBathory;
 import eatyourbeets.effects.Hemokinesis2Effect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 
 public class FeridBathoryPower extends AnimatorPower
 {
@@ -35,7 +35,7 @@ public class FeridBathoryPower extends AnimatorPower
     {
         super.onExhaust(card);
 
-        GameActionsHelper.AddToBottom(new FeridAction(this));
+        GameActionsHelper_Legacy.AddToBottom(new FeridAction(this));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class FeridBathoryPower extends AnimatorPower
 
         if (AbstractDungeon.player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && EffectHistory.TryActivateLimited(FeridBathory.ID))
         {
-            GameActionsHelper.ApplyPower(owner, owner, new StrengthPower(owner, STRENGTH_GAIN), STRENGTH_GAIN);
+            GameActionsHelper_Legacy.ApplyPower(owner, owner, new StrengthPower(owner, STRENGTH_GAIN), STRENGTH_GAIN);
 
             AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(new FeridBathory()));
         }
@@ -67,9 +67,9 @@ public class FeridBathoryPower extends AnimatorPower
             AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             if (target != null)
             {
-                GameActionsHelper.VFX(new Hemokinesis2Effect(target.hb.cX, target.hb.cY, owner.hb.cX, owner.hb.cY), 0.2f);
-                GameActionsHelper.DamageTarget(owner, target, amount, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE);
-                GameActionsHelper.GainTemporaryHP(owner, owner, amount);
+                GameActionsHelper_Legacy.VFX(new Hemokinesis2Effect(target.hb.cX, target.hb.cY, owner.hb.cX, owner.hb.cY), 0.2f);
+                GameActionsHelper_Legacy.DamageTarget(owner, target, amount, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE);
+                GameActions.Bottom.GainTemporaryHP(amount);
 
                 power.flash();
             }

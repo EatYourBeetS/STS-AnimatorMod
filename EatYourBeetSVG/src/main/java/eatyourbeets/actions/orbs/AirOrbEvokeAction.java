@@ -2,7 +2,7 @@ package eatyourbeets.actions.orbs;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.orbs.Aether;
 
 public class AirOrbEvokeAction extends AbstractGameAction
@@ -18,7 +18,7 @@ public class AirOrbEvokeAction extends AbstractGameAction
 
     public void update()
     {
-        GameActionsHelper.DrawCard(AbstractDungeon.player, wind.evokeAmount);
+        GameActionsHelper_Legacy.DrawCard(AbstractDungeon.player, wind.evokeAmount);
 
         this.isDone = true;
     }

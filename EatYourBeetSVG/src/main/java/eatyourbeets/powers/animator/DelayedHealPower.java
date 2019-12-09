@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class DelayedHealPower extends AnimatorPower
 {
@@ -23,7 +23,7 @@ public class DelayedHealPower extends AnimatorPower
     {
         super.atStartOfTurnPostDraw();
 
-        GameActionsHelper.AddToBottom(new HealAction(owner, owner, amount));
-        GameActionsHelper.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+        GameActionsHelper_Legacy.AddToBottom(new HealAction(owner, owner, amount));
+        GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
     }
 }

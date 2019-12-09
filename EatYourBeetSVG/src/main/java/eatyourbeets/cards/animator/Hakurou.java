@@ -1,13 +1,12 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -35,21 +34,22 @@ public class Hakurou extends AnimatorCard implements MartialArtist
     {
         super.triggerWhenDrawn();
 
-        GameActionsHelper.GainAgility(1);
+        GameActions.Bottom.GainAgility(1);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.AddToBottom(new VFXAction(new DieDieDieEffect()));
+        GameActions.Bottom.VFX(new DieDieDieEffect());
+
         for (int i = 0; i < this.magicNumber; i++)
         {
-            GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         }
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper.GainAgility(1);
+            GameActions.Bottom.GainAgility(1);
         }
     }
 

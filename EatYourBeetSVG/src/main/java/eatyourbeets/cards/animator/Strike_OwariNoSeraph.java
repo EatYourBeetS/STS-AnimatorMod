@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Strike_OwariNoSeraph extends Strike
@@ -28,18 +29,17 @@ public class Strike_OwariNoSeraph extends Strike
     {
         super.triggerOnExhaust();
 
-
         AbstractPlayer p = AbstractDungeon.player;
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, this.magicNumber, false), this.magicNumber);
+            GameActions.Bottom.ApplyVulnerable(p, m, this.magicNumber);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
     }
 
     @Override

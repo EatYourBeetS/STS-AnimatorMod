@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class CycleCardAction extends AbstractGameAction
 {
@@ -43,7 +43,7 @@ public class CycleCardAction extends AbstractGameAction
                 }
 
                 AbstractDungeon.handCardSelectScreen.open(discardMessage, this.amount, true,true);
-                GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
+                GameActionsHelper_Legacy.AddToBottom(new RefreshHandLayoutAction());
                 this.tickDuration();
             }
 
@@ -63,7 +63,7 @@ public class CycleCardAction extends AbstractGameAction
             }
             if (discarded > 0)
             {
-                GameActionsHelper.AddToTop(new DrawCardAction(player, discarded));
+                GameActionsHelper_Legacy.AddToTop(new DrawCardAction(player, discarded));
             }
 
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;

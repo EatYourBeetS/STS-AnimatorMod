@@ -1,14 +1,12 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BlurPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Sonic extends AnimatorCard implements MartialArtist
 {
@@ -36,17 +34,13 @@ public class Sonic extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.GainAgility(secondaryValue);
-
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(ThrowingKnife.GetRandomCard()));
-        }
+        GameActions.Bottom.GainAgility(secondaryValue);
+        GameActions.Bottom.CreateThrowingKnives(magicNumber);
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper2.GainBlock(BLOCK_ON_SYNERGY);
-            GameActionsHelper.ApplyPower(p, p, new BlurPower(p, 1), 1);
+            GameActions.Bottom.GainBlock(BLOCK_ON_SYNERGY);
+            GameActions.Bottom.GainBlur(1);
         }
     }
 

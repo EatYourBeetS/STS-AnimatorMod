@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameUtilities;
@@ -38,17 +38,17 @@ public class FireOrbPassiveAction extends AbstractGameAction
 
         if (enemy != null)
         {
-            GameActionsHelper.SetOrder(GameActionsHelper.Order.Top);
+            GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
 
-            GameActionsHelper.ApplyPower(p, enemy, new BurningPower(enemy, p, Fire.BURNING_AMOUNT), Fire.BURNING_AMOUNT);
+            GameActionsHelper_Legacy.ApplyPower(p, enemy, new BurningPower(enemy, p, Fire.BURNING_AMOUNT), Fire.BURNING_AMOUNT);
 
             int actualDamage = AbstractOrb.applyLockOn(enemy, fire.passiveAmount);
             if (actualDamage > 0)
             {
-                GameActionsHelper.DamageTarget(p, enemy, actualDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+                GameActionsHelper_Legacy.DamageTarget(p, enemy, actualDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
             }
 
-            GameActionsHelper.ResetOrder();
+            GameActionsHelper_Legacy.ResetOrder();
         }
 
         this.isDone = true;

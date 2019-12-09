@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions._legacy.common.DrawSpecificCardAction;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 
 public class Strike_OnePunchMan extends Strike
 {
@@ -24,13 +24,13 @@ public class Strike_OnePunchMan extends Strike
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
         for (AbstractCard c : p.drawPile.getAttacks().group)
         {
             if (c.tags.contains(CardTags.STRIKE))
             {
-                GameActionsHelper.AddToBottom(new DrawSpecificCardAction(c));
+                GameActions.Top.MoveCard(c, p.hand, p.drawPile, true);
                 return;
             }
         }

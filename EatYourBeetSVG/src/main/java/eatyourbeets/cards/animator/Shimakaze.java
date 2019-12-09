@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -25,10 +26,10 @@ public class Shimakaze extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActionsHelper2.GainBlock(this.block);
-        GameActionsHelper2.Draw(this.magicNumber);
-        GameActionsHelper.AddToBottom(new MakeTempCardInDrawPileAction(new Dazed(), 1, true, true));
+        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.Draw(this.magicNumber);
+        GameActions.Bottom.MakeCardInDrawPile(new Dazed(),false,false);
     }
 
     @Override
@@ -41,21 +42,4 @@ public class Shimakaze extends AnimatorCard
             upgradeBlock(1);
         }
     }
-
-//    private void OnCardDrawn(Object context, ArrayList<AbstractCard> cards)
-//    {
-//        AbstractMonster m = JavaUtilities.SafeCast(context, AbstractMonster.class);
-//
-//        if (m != null && cards.size() > 0)
-//        {
-//            AbstractPlayer p = AbstractDungeon.player;
-//            for (AbstractCard c : cards)
-//            {
-//                if (c.type == CardType.ATTACK)
-//                {
-//                    GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-//                }
-//            }
-//        }
-//    }
 }

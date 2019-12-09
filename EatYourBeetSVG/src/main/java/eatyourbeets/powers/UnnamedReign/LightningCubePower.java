@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -49,8 +50,8 @@ public class LightningCubePower extends AnimatorPower
             target = AbstractDungeon.player;
         }
 
-        GameActionsHelper.AddToBottom(new SFXAction("ORB_LIGHTNING_EVOKE"));
-        GameActionsHelper.AddToBottom(new VFXAction(new LightningEffect(target.drawX, target.drawY)));
-        GameActionsHelper.DamageTargetPiercing(owner, target, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
+        GameActions.Bottom.VFX(new LightningEffect(target.drawX, target.drawY));
+        GameActionsHelper_Legacy.DamageTargetPiercing(owner, target, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
     }
 }

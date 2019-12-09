@@ -4,9 +4,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.powers.animator.OrbCore_PlasmaPower;
-import eatyourbeets.utilities.GameActionsHelper2;
 
 public class OrbCore_Plasma extends OrbCore
 {
@@ -28,9 +27,9 @@ public class OrbCore_Plasma extends OrbCore
     {
         for (int i = 0; i < secondaryValue; i++)
         {
-            GameActionsHelper.ChannelOrb(new Plasma(), true);
+            GameActions.Bottom.ChannelOrb(new Plasma(), true);
         }
 
-        GameActionsHelper2.StackPower(new OrbCore_PlasmaPower(p, 1));
+        GameActions.Bottom.StackPower(new OrbCore_PlasmaPower(p, 1));
     }
 }

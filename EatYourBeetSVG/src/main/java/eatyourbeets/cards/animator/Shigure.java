@@ -7,7 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
@@ -30,25 +31,21 @@ public class Shigure extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GainSupportDamage(AbstractDungeon.player, this.secondaryValue);
+        GameActions.Bottom.StackPower(new SupportDamagePower(AbstractDungeon.player, secondaryValue));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, m, new PoisonPower(m, p, magicNumber), magicNumber);
-        GameActionsHelper.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F);
-        GameActionsHelper.DamageTargetPiercing(p, m, this, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        .SetDamageEffect(enemy -> new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()))
+        .SetOptions(true, true);
 
         if (HasActiveSynergy())
         {
-            GainSupportDamage(p, this.secondaryValue);
+            GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         }
-    }
-
-    private void GainSupportDamage(AbstractPlayer p, int amount)
-    {
-        GameActionsHelper.ApplyPower(p, p, new SupportDamagePower(p, amount), amount);
     }
 
     @Override

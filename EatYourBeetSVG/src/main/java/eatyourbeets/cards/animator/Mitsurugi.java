@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsurugi extends AnimatorCard
@@ -20,7 +20,7 @@ public class Mitsurugi extends AnimatorCard
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(6, 0, 1, 4);
+        Initialize(7, 0, 1, 4);
 
         SetSynergy(Synergies.Konosuba);
     }
@@ -53,7 +53,7 @@ public class Mitsurugi extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.GainBlock(secondaryValue);
+        GameActions.Bottom.GainBlock(secondaryValue);
     }
 
     @Override
@@ -61,8 +61,8 @@ public class Mitsurugi extends AnimatorCard
     {
         if (GameUtilities.IsAttacking(m.intent))
         {
-            GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-            GameActionsHelper.GainForce(magicNumber);
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+            GameActions.Bottom.GainForce(magicNumber);
         }
     }
 
@@ -86,10 +86,4 @@ public class Mitsurugi extends AnimatorCard
             cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
         }
     }
-//
-//    private boolean CanDealDamage(AbstractMonster m)
-//    {
-//        return (m.intent == AbstractMonster.Intent.ATTACK_DEBUFF || m.intent == AbstractMonster.Intent.ATTACK_BUFF ||
-//                m.intent == AbstractMonster.Intent.ATTACK_DEFEND || m.intent == AbstractMonster.Intent.ATTACK);
-//    }
 }

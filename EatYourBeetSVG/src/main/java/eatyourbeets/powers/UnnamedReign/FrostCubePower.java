@@ -2,7 +2,7 @@ package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -35,11 +35,11 @@ public class FrostCubePower extends AnimatorPower
 
         if (owner.isPlayer)
         {
-            GameActionsHelper.ApplyPower(owner, owner, new PlatedArmorPower(owner, amount), amount);
+            GameActionsHelper_Legacy.ApplyPower(owner, owner, new PlatedArmorPower(owner, amount), amount);
         }
         else for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper.ApplyPower(null, m, new PlatedArmorPower(m, amount), amount);
+            GameActionsHelper_Legacy.ApplyPower(null, m, new PlatedArmorPower(m, amount), amount);
         }
     }
 }

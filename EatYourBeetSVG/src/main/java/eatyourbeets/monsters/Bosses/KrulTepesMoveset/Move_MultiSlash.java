@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.monsters.AbstractMove;
 
@@ -61,7 +61,7 @@ public class Move_MultiSlash extends AbstractMove
     {
         if (timesCounter > 0)
         {
-            GameActionsHelper.Callback(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.SLASH_HEAVY), this::OnDamage, target.currentHealth);
+            GameActionsHelper_Legacy.Callback(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.SLASH_HEAVY), this::OnDamage, target.currentHealth);
             timesCounter -= 1;
         }
     }
@@ -76,7 +76,7 @@ public class Move_MultiSlash extends AbstractMove
             int difference = previousHealth - p.currentHealth;
             if (difference > 0)
             {
-                GameActionsHelper.AddToBottom(new HealAction(owner, owner, difference));
+                GameActionsHelper_Legacy.AddToBottom(new HealAction(owner, owner, difference));
             }
 
             Attack(p);

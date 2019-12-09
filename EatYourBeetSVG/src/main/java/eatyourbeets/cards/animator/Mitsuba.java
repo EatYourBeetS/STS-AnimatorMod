@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -27,7 +28,7 @@ public class Mitsuba extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActionsHelper.DrawCard(AbstractDungeon.player, this.magicNumber);
+        GameActions.Bottom.Draw(magicNumber);
     }
 
     @Override
@@ -35,10 +36,10 @@ public class Mitsuba extends AnimatorCard
     {
         if (m.currentHealth > p.currentHealth)
         {
-            GameActionsHelper2.GainBlock(this.block);
+            GameActions.Bottom.GainBlock(this.block);
         }
 
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override

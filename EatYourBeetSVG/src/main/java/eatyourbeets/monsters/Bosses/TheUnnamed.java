@@ -28,7 +28,7 @@ import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.InfinitePower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.scenes.TheUnnamedReignScene;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -130,7 +130,7 @@ public class TheUnnamed extends AnimatorMonster
 
         if (AbstractDungeon.player.maxHealth > 400)
         {
-            GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[1], 4, 4));
+            GameActionsHelper_Legacy.AddToBottom(new TalkAction(this, data.strings.DIALOG[1], 4, 4));
             moveFading.fadingTurns = 3;
             moveFading.ExecuteInternal(AbstractDungeon.player);
         }
@@ -142,7 +142,7 @@ public class TheUnnamed extends AnimatorMonster
             CardCrawlGame.music.updateVolume();
         }
 
-        GameActionsHelper.ApplyPower(this, this, infinitePower);
+        GameActionsHelper_Legacy.ApplyPower(this, this, infinitePower);
     }
 
     @Override
@@ -161,7 +161,7 @@ public class TheUnnamed extends AnimatorMonster
     {
         if (!hasPower(InfinitePower.POWER_ID))
         {
-            GameActionsHelper.ApplyPowerSilently(this, this, infinitePower, 0);
+            GameActionsHelper_Legacy.ApplyPowerSilently(this, this, infinitePower, 0);
         }
 
         if (infinitePower.phase2 && moveFading.CanUse(previousMove))
@@ -226,7 +226,7 @@ public class TheUnnamed extends AnimatorMonster
 
         infinitePower.phase2 = true;
 
-        GameActionsHelper.VFX(new BorderLongFlashEffect(Color.BLACK, false));
+        GameActionsHelper_Legacy.VFX(new BorderLongFlashEffect(Color.BLACK, false));
         CardCrawlGame.music.silenceTempBgmInstantly();
         CardCrawlGame.music.silenceBGMInstantly();
         AbstractDungeon.scene.fadeInAmbiance();
@@ -240,11 +240,11 @@ public class TheUnnamed extends AnimatorMonster
             int plated = (minions >= 2) ? 24 : 18;
             int angry = (minions >= 3) ? 6 : 4;
 
-            GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[0], 3, 3));
-            GameActionsHelper.ApplyPower(this, this, new RegenPower(this, regen), regen);
-            GameActionsHelper.ApplyPower(this, this, new AngryPower(this, angry), angry);
-            GameActionsHelper.ApplyPower(this, this, new PlatedArmorPower(this, plated), plated);
-            GameActionsHelper.ApplyPower(this, this, new EarthenThornsPower(this, 6), 6);
+            GameActionsHelper_Legacy.AddToBottom(new TalkAction(this, data.strings.DIALOG[0], 3, 3));
+            GameActionsHelper_Legacy.ApplyPower(this, this, new RegenPower(this, regen), regen);
+            GameActionsHelper_Legacy.ApplyPower(this, this, new AngryPower(this, angry), angry);
+            GameActionsHelper_Legacy.ApplyPower(this, this, new PlatedArmorPower(this, plated), plated);
+            GameActionsHelper_Legacy.ApplyPower(this, this, new EarthenThornsPower(this, 6), 6);
 
 //            moveFading.SetMove();
 //            this.createIntent();
@@ -271,7 +271,7 @@ public class TheUnnamed extends AnimatorMonster
         if (!deathNoteMessage)
         {
             deathNoteMessage = true;
-            GameActionsHelper.AddToBottom(new TalkAction(this, data.strings.DIALOG[2], 3, 3));
+            GameActionsHelper_Legacy.AddToBottom(new TalkAction(this, data.strings.DIALOG[2], 3, 3));
         }
     }
 
@@ -282,7 +282,7 @@ public class TheUnnamed extends AnimatorMonster
         {
             if (m.hasPower(MinionPower.POWER_ID))
             {
-                GameActionsHelper.AddToBottom(new EscapeAction(m));
+                GameActionsHelper_Legacy.AddToBottom(new EscapeAction(m));
                 removed += 1;
             }
         }

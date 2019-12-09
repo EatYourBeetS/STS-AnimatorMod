@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
@@ -30,19 +30,19 @@ public class Berserker extends AnimatorCard
     {
         if (m != null)
         {
-            GameActionsHelper2.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F));
-            GameActionsHelper2.AddToBottom(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-            GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY)
+            GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F));
+            GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
+            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY)
             .AddCallback(m.currentBlock, (initialBlock, target) ->
             {
                 if (GameUtilities.IsDeadOrEscaped(target) || ((int)initialBlock > 0 && target.currentBlock <= 0))
                 {
-                    GameActionsHelper2.GainBlock(this.secondaryValue);
+                    GameActions.Bottom.GainBlock(this.secondaryValue);
                 }
             });
         }
 
-        GameActionsHelper2.GainForce(magicNumber);
+        GameActions.Bottom.GainForce(magicNumber);
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderPower
 {
@@ -60,8 +60,8 @@ public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderP
     public void atStartOfTurn()
     {
         this.flashWithoutSound();
-        GameActionsHelper.DamageTarget(source, owner, this.amount, DamageInfo.DamageType.HP_LOSS, AttackEffect.POISON);
-        GameActionsHelper.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
+        GameActionsHelper_Legacy.DamageTarget(source, owner, this.amount, DamageInfo.DamageType.HP_LOSS, AttackEffect.POISON);
+        GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
     }
 
     @Override

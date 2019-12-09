@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.SharedMoveset.Move_Attack;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleFrail;
 import eatyourbeets.monsters.SharedMoveset.Move_Defend;
@@ -44,6 +44,6 @@ public class HealingCube extends Cube
                 break;
         }
 
-        GameActionsHelper.ApplyPower(this, this, new HealingCubePower(this, amount), amount);
+        GameActionsHelper_Legacy.ApplyPower(this, this, new HealingCubePower(this, amount), amount);
     }
 }

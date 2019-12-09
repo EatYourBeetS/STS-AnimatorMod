@@ -8,7 +8,7 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Benimaru extends AnimatorCard
@@ -29,14 +29,14 @@ public class Benimaru extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.ChannelOrb(new Fire(), true);
-        GameActionsHelper2.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.ChannelOrb(new Fire(), true);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
 
         for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
         {
             if (m1.hasPower(BurningPower.POWER_ID))
             {
-                GameActionsHelper2.GainTemporaryHP(magicNumber);
+                GameActions.Bottom.GainTemporaryHP(magicNumber);
             }
         }
     }

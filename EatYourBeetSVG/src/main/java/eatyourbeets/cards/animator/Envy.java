@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.EnvyPower;
@@ -25,12 +25,12 @@ public class Envy extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.ApplyPower(p, p, new EnvyPower(p, 1), 1);
+        GameActions.Bottom.StackPower(new EnvyPower(p, 1));
 
         int tempHP = Math.floorDiv(p.maxHealth - p.currentHealth, 5);
         if (tempHP > 0)
         {
-            GameActionsHelper.GainTemporaryHP(p, tempHP);
+            GameActions.Bottom.GainTemporaryHP(tempHP);
         }
     }
 

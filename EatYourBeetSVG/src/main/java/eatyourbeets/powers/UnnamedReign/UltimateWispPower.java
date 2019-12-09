@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
@@ -79,7 +79,7 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     {
         if (target != owner && damageAmount > 0 && info.type != DamageInfo.DamageType.THORNS)
         {
-            GameActionsHelper.MakeCardInDiscardPile(new Burn(), 1, false);
+            GameActionsHelper_Legacy.MakeCardInDiscardPile(new Burn(), 1, false);
         }
     }
 

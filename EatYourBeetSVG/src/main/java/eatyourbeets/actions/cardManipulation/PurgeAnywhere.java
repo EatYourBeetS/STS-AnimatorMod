@@ -1,45 +1,45 @@
-package eatyourbeets.actions._legacy.common;
+package eatyourbeets.actions.cardManipulation;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.actions.EYBAction;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class PurgeAnywhereAction extends AbstractGameAction
+public class PurgeAnywhere extends EYBAction
 {
-    private final int repeat;
-    private final AbstractCard card;
-    private final UUID uuid;
+    protected UUID uuid;
 
-    public PurgeAnywhereAction(AbstractCard card)
+    public PurgeAnywhere(AbstractCard card)
     {
         this(card, null, 3);
     }
 
-    public PurgeAnywhereAction(UUID uuid)
+    public PurgeAnywhere(UUID uuid)
     {
         this(null, uuid, 3);
     }
 
-    public PurgeAnywhereAction(AbstractCard card, UUID uuid, int repeat)
+    public PurgeAnywhere(AbstractCard card, UUID uuid, int repeat)
     {
+        super(ActionType.CARD_MANIPULATION);
+
+        this.uuid = uuid;
         this.card = card;
         if (this.card != null)
         {
             this.card.tags.add(AbstractEnums.CardTags.PURGING);
         }
-        this.uuid = uuid;
-        this.actionType = ActionType.EXHAUST;
-        this.duration = Settings.ACTION_DUR_MED;
-        this.repeat = repeat;
+
+        Initialize(repeat);
     }
 
     public void update()
@@ -68,12 +68,12 @@ public class PurgeAnywhereAction extends AbstractGameAction
             RemoveAll(PlayerStatistics.Void);
         }
 
-        this.isDone = true;
-
-        if (repeat > 0)
+        if (amount > 0)
         {
-            GameActionsHelper.AddToBottom(new PurgeAnywhereAction(card, uuid, repeat - 1));
+            GameActions.Bottom.Add(new PurgeAnywhere(card, uuid, amount - 1));
         }
+
+        Complete();
     }
 
     private void RemoveAll(CardGroup group)

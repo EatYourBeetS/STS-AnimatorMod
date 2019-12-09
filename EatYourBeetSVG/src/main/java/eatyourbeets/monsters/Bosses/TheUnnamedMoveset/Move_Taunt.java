@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
@@ -28,7 +28,7 @@ public class Move_Taunt extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActionsHelper.AddToBottom(new TalkAction(owner, GetLine()));
+        GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, GetLine()));
     }
 
     private String GetLine()

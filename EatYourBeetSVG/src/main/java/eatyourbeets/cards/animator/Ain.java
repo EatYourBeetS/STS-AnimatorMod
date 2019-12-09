@@ -11,7 +11,7 @@ import eatyourbeets.interfaces.metadata.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 public class Ain extends AnimatorCard implements Spellcaster
 {
@@ -34,7 +34,7 @@ public class Ain extends AnimatorCard implements Spellcaster
 
         if (EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper2.GainIntellect(secondaryValue);
+            GameActions.Bottom.GainIntellect(secondaryValue);
         }
     }
 
@@ -47,16 +47,16 @@ public class Ain extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), Settings.FAST_MODE ? 0.25f : 1.0F);
+        GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), Settings.FAST_MODE ? 0.25f : 1.0F);
 
         for (int i = 0; i < this.magicNumber; i++)
         {
-            GameActionsHelper2.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         }
 
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActionsHelper2.GainIntellect(secondaryValue);
+            GameActions.Bottom.GainIntellect(secondaryValue);
         }
     }
 

@@ -3,7 +3,7 @@ package eatyourbeets.misc.AinzEffects;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 
@@ -25,7 +25,7 @@ public class AinzEffect_DamageAll extends AinzEffect
     {
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActionsHelper2.DealDamage(ainz, m, AbstractGameAction.AttackEffect.FIRE)
+            GameActions.Bottom.DealDamage(ainz, m, AbstractGameAction.AttackEffect.FIRE)
             .SetOptions(true, false);
         }
         GameUtilities.UsePenNib();

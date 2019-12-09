@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Unnamed;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -65,7 +66,7 @@ public abstract class UnnamedCard extends EYBCard
 
         if (isVoidbound)
         {
-            GameActionsHelper.MoveToVoid(this);
+            GameActionsHelper_Legacy.MoveToVoid(this);
         }
     }
 
@@ -127,7 +128,7 @@ public abstract class UnnamedCard extends EYBCard
     {
         if (!enteredVoid)
         {
-            GameActionsHelper.AddToBottom(new SFXAction("ANIMATOR_MEGUMIN_CHARGE", 0.1F));
+            GameActions.Bottom.SFX("ANIMATOR_MEGUMIN_CHARGE", 0.1F);
             enteredVoid = true;
         }
     }

@@ -10,7 +10,8 @@ import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.metadata.MartialArtist;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
@@ -39,7 +40,29 @@ public class Souei extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper.Callback(new ApplyPowerAction(m, p, new PoisonPower(m, p, this.magicNumber), this.magicNumber), this::OnCompletion1, this);
+        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        GameActions.Bottom.Callback(__ ->
+        {
+            AbstractPlayer player = AbstractDungeon.player;
+            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+            {
+                PoisonPower poison = (PoisonPower)enemy.getPower(PoisonPower.POWER_ID);
+                if (poison != null)
+                {
+                    GameActions.Top.Callback(new PoisonLoseHpAction(enemy, player, poison.amount, AbstractGameAction.AttackEffect.POISON))
+                    .AddCallback(GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID), (intangible, action)->
+                    {
+                        if (GameUtilities.TriggerOnKill(action.target, true))
+                        {
+                            if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == (int)intangible)
+                            {
+                                GameActions.Top.StackPower(new IntangiblePlayerPower(AbstractDungeon.player, 1));
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @Override
@@ -48,47 +71,6 @@ public class Souei extends AnimatorCard implements MartialArtist
         if (TryUpgrade())
         {
             upgradeMagicNumber(2);
-        }
-    }
-
-    private int GetIntangible()
-    {
-        IntangiblePlayerPower intangiblePlayerPower = (IntangiblePlayerPower) AbstractDungeon.player.getPower(IntangiblePlayerPower.POWER_ID);
-        if (intangiblePlayerPower != null)
-        {
-            return intangiblePlayerPower.amount;
-        }
-
-        return 0;
-    }
-
-    protected void OnCompletion1(Object state, AbstractGameAction action)
-    {
-        int currentIntangible = GetIntangible();
-        AbstractPlayer p = AbstractDungeon.player;
-
-        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
-        {
-            PoisonPower poisonPower = (PoisonPower)m1.getPower(PoisonPower.POWER_ID);
-            if (poisonPower != null)
-            {
-                PoisonLoseHpAction poisonLoseHpAction = new PoisonLoseHpAction(m1, p, poisonPower.amount, AbstractGameAction.AttackEffect.POISON);
-                GameActionsHelper.Callback(poisonLoseHpAction, this::OnCompletion2, currentIntangible);
-            }
-        }
-    }
-
-    protected void OnCompletion2(Object state, AbstractGameAction action)
-    {
-        if (action.target.isDying || action.target.isDead || action.target.currentHealth <= 0)
-        {
-            int startingIntangible = (int)state;
-            AbstractPlayer p = AbstractDungeon.player;
-            IntangiblePlayerPower intangiblePlayerPower = (IntangiblePlayerPower) p.getPower(IntangiblePlayerPower.POWER_ID);
-            if (intangiblePlayerPower == null || intangiblePlayerPower.amount == startingIntangible)
-            {
-                GameActionsHelper.AddToTop(new ApplyPowerAction(p, p, new IntangiblePlayerPower(p, 1), 1));
-            }
         }
     }
 }

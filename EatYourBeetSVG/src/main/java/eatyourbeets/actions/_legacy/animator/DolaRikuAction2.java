@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.actions._legacy.common.ChooseFromPileAction;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -111,7 +111,7 @@ public class DolaRikuAction2 extends AbstractGameAction
                 cardGroup.group.add(sameRarity.Retrieve(AbstractDungeon.cardRandomRng));
             }
 
-            GameActionsHelper.AddToTop(new ChooseFromPileAction(1, false, cardGroup, DolaRikuAction2::OnCardChosen, this, discoveryMessage));
+            GameActionsHelper_Legacy.AddToTop(new ChooseFromPileAction(1, false, cardGroup, DolaRikuAction2::OnCardChosen, this, discoveryMessage));
 
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
 
@@ -127,7 +127,7 @@ public class DolaRikuAction2 extends AbstractGameAction
         {
             AbstractCard card = cards.get(0);
             card.modifyCostForCombat(-1);
-            GameActionsHelper.AddToBottom(new MakeTempCardInHandAction(card));
+            GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInHandAction(card));
         }
     }
 }

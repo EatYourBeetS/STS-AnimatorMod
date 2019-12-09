@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameActions;
 import patches.AbstractEnums;
 
 public class TakanashiRikka extends AnimatorCard
@@ -40,7 +41,8 @@ public class TakanashiRikka extends AnimatorCard
 
             copy.baseDamage = magicNumber;
             copy.tags.add(AbstractEnums.CardTags.PURGE);
-            AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(copy));
+
+            GameActions.Top.MakeCardInHand(copy, false, false);
         }
     }
 

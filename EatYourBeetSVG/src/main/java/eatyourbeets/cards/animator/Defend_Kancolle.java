@@ -6,8 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActions;
 
 public class Defend_Kancolle extends Defend
 {
@@ -26,7 +25,7 @@ public class Defend_Kancolle extends Defend
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(this.block);
 
         // TODO: Could be an action
 

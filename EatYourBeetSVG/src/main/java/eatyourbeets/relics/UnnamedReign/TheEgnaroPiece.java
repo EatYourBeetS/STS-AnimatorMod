@@ -1,8 +1,7 @@
 package eatyourbeets.relics.UnnamedReign;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class TheEgnaroPiece extends UnnamedReignRelic
@@ -43,7 +42,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     {
         super.atTurnStart();
 
-        GameActionsHelper.DrawCard(AbstractDungeon.player, 1);
+        GameActions.Bottom.Draw(1);
     }
 
     @Override
@@ -51,8 +50,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     {
         super.onPlayerEndTurn();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.GainTemporaryHP(p, p, this.counter);
+        GameActions.Bottom.GainTemporaryHP(this.counter);
         this.counter += 1;
         this.flash();
     }

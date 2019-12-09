@@ -9,21 +9,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.MetallicizePower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
-import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
-import eatyourbeets.actions._legacy.common.ChooseFromPileAction;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
 
 public class Fredrika extends AnimatorCard
 {
@@ -113,9 +106,16 @@ public class Fredrika extends AnimatorCard
                 cardGroup.addToTop(other);
             }
 
-            ChooseFromPileAction action = new ChooseFromPileAction(1, false, cardGroup, this::OnCardSelected, this, CardRewardScreen.TEXT[1], true);
+            GameActions.Bottom.SelectFromPile(name, 1, cardGroup)
+            .SetOptions(false, false)
+            .SetMessage(CardRewardScreen.TEXT[1])
+            .AddCallback(cards ->
+            {
+                this.ChangeForm(((Fredrika)cards.get(0)).currentForm);
 
-            GameActionsHelper.AddToBottom(action);
+                GameActions.Top.MoveCard(this, AbstractDungeon.player.hand, null, true);
+                GameActions.Bottom.Add(new RefreshHandLayoutAction());
+            });
         }
     }
 
@@ -126,32 +126,32 @@ public class Fredrika extends AnimatorCard
         {
             case FORM_DEFAULT:
             {
-                GameActionsHelper2.GainBlock(block);
+                GameActions.Bottom.GainBlock(block);
 
                 break;
             }
 
             case FORM_CAT:
             {
-                GameActionsHelper2.GainBlock(block);
+                GameActions.Bottom.GainBlock(block);
 
                 break;
             }
 
             case FORM_DOMINICA:
             {
-                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-                GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, 1, false), 1);
-                GameActionsHelper.ApplyPower(p, m, new WeakPower(m, 1, false), 1);
+                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                GameActions.Bottom.ApplyVulnerable(p, m, 1);
+                GameActions.Bottom.ApplyWeak(p, m, 1);
 
                 break;
             }
 
             case FORM_DRAGOON:
             {
-                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-                GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-                GameActionsHelper.ApplyPower(p, p, new MetallicizePower(p, 2), 2);
+                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                GameActions.Bottom.GainMetallicize(2);
 
                 break;
             }
@@ -177,21 +177,6 @@ public class Fredrika extends AnimatorCard
         other.ChangeForm(this.currentForm);
 
         return other;
-    }
-
-    private void OnCardSelected(Object state, ArrayList<AbstractCard> cards)
-    {
-        if (state == this && cards != null && cards.size() == 1)
-        {
-            Fredrika selected = (Fredrika) cards.get(0);
-
-            this.ChangeForm(selected.currentForm);
-
-            AbstractPlayer p = AbstractDungeon.player;
-
-            GameActionsHelper.AddToBottom(new MoveCard(this, p.hand));
-            GameActionsHelper.AddToBottom(new RefreshHandLayoutAction());
-        }
     }
 
     private void ChangeForm(int formID)

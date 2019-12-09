@@ -3,8 +3,7 @@ package eatyourbeets.actions.pileSelection;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import eatyourbeets.actions.basic.MoveCard;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
@@ -20,7 +19,7 @@ public class FetchFromPile extends SelectFromPile
     {
         for (AbstractCard card : result)
         {
-            GameActionsHelper2.AddToTop(new MoveCard(card, player.hand, true));
+            GameActions.Top.MoveCard(card, player.hand,true);
         }
 
         super.Complete(result);

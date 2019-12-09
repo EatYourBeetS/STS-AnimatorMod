@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.actions._legacy.common.VariableDiscardAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
-import eatyourbeets.utilities.GameActionsHelper2;
 
 import java.util.ArrayList;
 
@@ -30,8 +31,21 @@ public class LimeBell extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.GainBlock(this.block);
-        GameActionsHelper.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, this, this::OnDiscard));
+        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.Reload(name, cards ->
+        {
+            ArrayList<AbstractOrb> orbs = AbstractDungeon.player.orbs;
+            if (orbs.size() > 0)
+            {
+                for (int i = 0; i < cards.size(); i++)
+                {
+                    orbs.get(0).onStartOfTurn();
+                    orbs.get(0).onEndOfTurn();
+                }
+            }
+        });
+
+        GameActionsHelper_Legacy.AddToBottom(new VariableDiscardAction(this, p, BaseMod.MAX_HAND_SIZE, this, this::OnDiscard));
     }
 
     @Override
@@ -49,7 +63,7 @@ public class LimeBell extends AnimatorCard
         {
             AbstractPlayer p = AbstractDungeon.player;
             int amount = discarded.size() * this.magicNumber;
-            GameActionsHelper.GainTemporaryHP(p, amount);
+            GameActions.Bottom.GainTemporaryHP(amount);
         }
     }
 }

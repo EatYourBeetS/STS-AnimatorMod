@@ -2,21 +2,16 @@ package eatyourbeets.cards.animator;
 
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper2;
-import eatyourbeets.utilities.GameActionsHelper;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Earth;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ElricEdward extends AnimatorCard
@@ -49,23 +44,23 @@ public class ElricEdward extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        GameActionsHelper2.Cycle(1, name).AddCallback(cards ->
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.Cycle(1, name).AddCallback(cards ->
         {
             if (cards.size() > 0)
             {
                 switch (cards.get(0).type)
                 {
                     case ATTACK:
-                        GameActionsHelper.ChannelOrb(new Lightning(), true);
+                        GameActions.Bottom.ChannelOrb(new Lightning(), true);
                         break;
 
                     case SKILL:
-                        GameActionsHelper.ChannelOrb(new Frost(), true);
+                        GameActions.Bottom.ChannelOrb(new Frost(), true);
                         break;
 
                     case POWER:
-                        GameActionsHelper.ChannelOrb(new Earth(), true);
+                        GameActions.Bottom.ChannelOrb(new Earth(), true);
                         break;
                 }
             }

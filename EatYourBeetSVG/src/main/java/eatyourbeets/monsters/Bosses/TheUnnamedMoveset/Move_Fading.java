@@ -10,7 +10,8 @@ import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.actions._legacy.animator.PlayTempBgmAction;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.animator.Respite;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.monsters.AbstractMove;
 
 public class Move_Fading extends AbstractMove
@@ -39,9 +40,9 @@ public class Move_Fading extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActionsHelper.AddToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
-        GameActionsHelper.AddToBottom(new VFXAction(new CollectorCurseEffect(target.hb.cX, target.hb.cY), 2.0F));
-        GameActionsHelper.Callback(new WaitAction(0.1f),
+        GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+        GameActions.Bottom.VFX(new CollectorCurseEffect(target.hb.cX, target.hb.cY), 2.0F);
+        GameActionsHelper_Legacy.Callback(new WaitAction(0.1f),
                 (state, action) -> AbstractDungeon.getCurrRoom().spawnBlightAndObtain(owner.hb.cX, owner.hb.cY, new Doomed(fadingTurns)), this);
 
 //        GenericFadingPower fading = (GenericFadingPower) target.getPower(GenericFadingPower.POWER_ID);
@@ -66,7 +67,7 @@ public class Move_Fading extends AbstractMove
 
         if (firstTime)
         {
-            GameActionsHelper.AddToBottom(new PlayTempBgmAction("MINDBLOOM", 1));
+            GameActionsHelper_Legacy.AddToBottom(new PlayTempBgmAction("MINDBLOOM", 1));
 
             target.drawPile.addToTop(new Respite());
 

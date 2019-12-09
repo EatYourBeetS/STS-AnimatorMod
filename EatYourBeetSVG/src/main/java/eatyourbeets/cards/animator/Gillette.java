@@ -2,16 +2,14 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Gillette extends AnimatorCard
 {
@@ -31,15 +29,17 @@ public class Gillette extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.ApplyPowerToAllEnemies(p, this::CreatePower, this.magicNumber);
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        {
+            GameActions.Bottom.ApplyWeak(AbstractDungeon.player, m, magicNumber);
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper2.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActionsHelper.ApplyPower(p, p, new EnergizedPower(p, 1), 1);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.StackPower(new EnergizedPower(p, 1));
     }
 
     @Override
@@ -49,10 +49,5 @@ public class Gillette extends AnimatorCard
         {
             upgradeDamage(3);
         }
-    }
-
-    private AbstractPower CreatePower(AbstractCreature m)
-    {
-        return new WeakPower(m, this.magicNumber, false);
     }
 }

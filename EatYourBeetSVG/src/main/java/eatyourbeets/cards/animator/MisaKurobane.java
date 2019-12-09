@@ -1,12 +1,11 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.orbs.Fire;
+import eatyourbeets.utilities.GameActions;
 
 public class MisaKurobane extends AnimatorCard
 {
@@ -24,16 +23,16 @@ public class MisaKurobane extends AnimatorCard
 
         if (InitializingPreview())
         {
-            cardData.InitializePreview(new Yusarin(), true);
+            cardData.InitializePreview(new Yusarin(), false);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActionsHelper.ChannelOrb(new Fire(), true);
-        GameActionsHelper2.Draw(this.magicNumber);
-        GameActionsHelper.AddToBottom(new MakeTempCardInDiscardAction(new Yusarin(), 1));
+        GameActions.Bottom.ChannelOrb(new Fire(), true);
+        GameActions.Bottom.Draw(this.magicNumber);
+        GameActions.Bottom.MakeCardInDiscardPile(new Yusarin(), false, false);
     }
 
     @Override

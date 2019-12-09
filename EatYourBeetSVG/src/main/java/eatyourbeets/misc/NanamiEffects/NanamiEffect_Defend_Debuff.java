@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.animator.Nanami;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -16,13 +17,13 @@ public class NanamiEffect_Defend_Debuff extends NanamiEffect
         int damage = GetDamage(nanami);
         if (damage > 0)
         {
-            GameActionsHelper.DamageTarget(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            GameActionsHelper_Legacy.DamageTarget(p, m, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
             GameUtilities.UsePenNib();
         }
 
         int vulnerable = GetVulnerable(nanami);
 
-        GameActionsHelper.ApplyPower(p, m, new VulnerablePower(m, vulnerable, false), vulnerable);
+        GameActions.Bottom.ApplyVulnerable(p, m, vulnerable);
     }
 
     public static String UpdateDescription(Nanami nanami)

@@ -1,7 +1,7 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActions;
 
 
 public class AinzEffect_GainEnergy extends AinzEffect
@@ -20,6 +20,6 @@ public class AinzEffect_GainEnergy extends AinzEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActionsHelper2.GainEnergy(ainz.magicNumber);
+        GameActions.Bottom.GainEnergy(ainz.magicNumber);
     }
 }

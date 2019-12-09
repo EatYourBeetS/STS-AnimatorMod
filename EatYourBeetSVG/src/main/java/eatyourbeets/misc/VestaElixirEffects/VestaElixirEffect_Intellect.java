@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.Vesta_Elixir;
 import eatyourbeets.powers.common.IntellectPower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class VestaElixirEffect_Intellect extends VestaElixirEffect
 {
@@ -16,6 +16,6 @@ public class VestaElixirEffect_Intellect extends VestaElixirEffect
     @Override
     public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
     {
-        GameActionsHelper.ApplyPower(player, player, new IntellectPower(player, amount), amount);
+        GameActionsHelper_Legacy.ApplyPower(player, player, new IntellectPower(player, amount), amount);
     }
 }

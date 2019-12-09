@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.powers.common.SelfDamagePower;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
+import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class UltimateCube extends AnimatorBlight
 {
@@ -23,7 +23,7 @@ public class UltimateCube extends AnimatorBlight
         super.atBattleStart();
 
         AbstractPlayer p = AbstractDungeon.player;
-        GameActionsHelper.ApplyPower(p, p, new SelfDamagePower(p, initialAmount), initialAmount);
+        GameActionsHelper_Legacy.ApplyPower(p, p, new SelfDamagePower(p, initialAmount), initialAmount);
         this.flash();
     }
 }

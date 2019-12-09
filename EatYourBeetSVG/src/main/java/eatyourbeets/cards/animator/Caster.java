@@ -6,13 +6,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.interfaces.metadata.Spellcaster;
-import eatyourbeets.utilities.GameActionsHelper; import eatyourbeets.utilities.GameActionsHelper2;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActions;
 
 public class Caster extends AnimatorCard implements Spellcaster
 {
@@ -46,7 +44,7 @@ public class Caster extends AnimatorCard implements Spellcaster
         {
             if (orb != null && Dark.ORB_ID.equals(orb.ID))
             {
-                GameActionsHelper2.AddToBottom(new EvokeSpecificOrbAction(orb));
+                GameActions.Bottom.Add(new EvokeSpecificOrbAction(orb));
             }
         }
     }
@@ -54,8 +52,8 @@ public class Caster extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActionsHelper2.ChannelOrb(new Dark(), true);
-        GameActionsHelper2.StealStrength(m, magicNumber, true);
+        GameActions.Bottom.ChannelOrb(new Dark(), true);
+        GameActions.Bottom.StealStrength(m, magicNumber, true);
     }
 
     @Override

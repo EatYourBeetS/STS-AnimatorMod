@@ -6,7 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import eatyourbeets.cards.UnnamedCard;
+import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;

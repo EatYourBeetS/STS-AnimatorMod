@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.cards.animator.DolaRiku;
+import eatyourbeets.cards.animator.series.NoGameNoLife.DolaRiku;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;

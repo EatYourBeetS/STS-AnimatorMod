@@ -73,7 +73,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
         if (filter != null)
         {
             cardSource = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            for (AbstractCard card : cardSource.group)
+            for (AbstractCard card : player.hand.group)
             {
                 if (filter.test(card))
                 {
@@ -112,10 +112,13 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
         {
             RandomizedList<AbstractCard> list = new RandomizedList<>();
             list.AddAll(cardSource.group);
-            for (int i = 0; i < amount; i++)
+
+            int max = Math.min(amount, list.Count());
+            for (int i = 0; i < max; i++)
             {
                 selectedCards.add(list.Retrieve(AbstractDungeon.cardRandomRng));
             }
+
             Complete(selectedCards);
             return;
         }

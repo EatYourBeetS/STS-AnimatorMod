@@ -13,19 +13,24 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractResources implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber,
-                                                   EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
-                                                   AddAudioSubscriber
+public abstract class AbstractResources
+implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber,
+           EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
+           AddAudioSubscriber
 {
+    protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets/cards/");
     protected static final HashMap<String, Map<String, String>> dynamicKeywords = new HashMap<>();
     protected static final HashMap<String, Keyword> keywords = new HashMap<>();
     protected static final HashMap<String, Texture> textures = new HashMap<>();
@@ -199,29 +204,29 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
 
     protected static void LoadCustomCards(String character)
     {
-        // Do NOT localize this, it is used to load every card's ID
-        String jsonString = Gdx.files.internal("localization/" + character +"/eng/CardStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
-        Map<String, CardStrings> map = new Gson().fromJson(jsonString, new TypeToken<HashMap<String, CardStrings>>()
-        {
-        }.getType());
+        final String prefix = "eatyourbeets.cards." + character;
 
-        for (String s : map.keySet())
+        for (String s : cardClassNames)
         {
-            try
+            if (s.startsWith(prefix))
             {
-                logger.info("Adding: " + s);
-                LoadCard(Class.forName("eatyourbeets.cards."+ character + "." + s.replace(character + ":", "")));
-            }
-            catch( ClassNotFoundException e )
-            {
-                logger.warn("Class not found : " + s);
+                try
+                {
+                    logger.info("Adding: " + s);
+
+                    LoadCard(Class.forName(s));
+                }
+                catch (ClassNotFoundException e)
+                {
+                    logger.warn("Class not found : " + s);
+                }
             }
         }
     }
 
     protected static void LoadCard(Class<?> cardClass)
     {
-        if (Hidden.class.isAssignableFrom(cardClass))
+        if (Hidden.class.isAssignableFrom(cardClass) || Modifier.isAbstract(cardClass.getModifiers()))
         {
             return;
         }
@@ -252,7 +257,7 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
     @SuppressWarnings("unchecked") // I miss C# ...
     protected static void LoadCustomPowers(String character)
     {
-        String jsonString = Gdx.files.internal("localization/" + character +"/eng/PowerStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        String jsonString = Gdx.files.internal("localization/" + character + "/eng/PowerStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
         Map<String, CardStrings> map = new Gson().fromJson(jsonString, new TypeToken<HashMap<String, CardStrings>>()
         {
         }.getType());
@@ -262,11 +267,11 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
             try
             {
                 logger.info("Adding: " + powerID);
-                Class<? extends AbstractPower> powerClass = (Class<? extends AbstractPower>) Class.forName("eatyourbeets.powers."+ character + "." + powerID.replace(character + ":", ""));
+                Class<? extends AbstractPower> powerClass = (Class<? extends AbstractPower>) Class.forName("eatyourbeets.powers." + character + "." + powerID.replace(character + ":", ""));
 
                 BaseMod.addPower(powerClass, powerID);
             }
-            catch( ClassNotFoundException e )
+            catch (ClassNotFoundException e)
             {
                 logger.warn("Class not found : " + powerID);
             }
@@ -278,7 +283,9 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
         String json = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
 
         Gson gson = new Gson();
-        Type typeToken = new TypeToken<Map<String, Keyword>>() {}.getType();
+        Type typeToken = new TypeToken<Map<String, Keyword>>()
+        {
+        }.getType();
         Map<String, Keyword> keywords = gson.fromJson(json, typeToken);
 
         for (Map.Entry<String, Keyword> pair : keywords.entrySet())
@@ -300,7 +307,9 @@ public abstract class AbstractResources implements EditCharactersSubscriber, Edi
         String json = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
 
         Gson gson = new Gson();
-        Type typeToken = new TypeToken<Map<String, Map<String, String>>>() {}.getType();
+        Type typeToken = new TypeToken<Map<String, Map<String, String>>>()
+        {
+        }.getType();
         Map<String, Map<String, String>> keywords = gson.fromJson(json, typeToken);
 
         for (Map.Entry<String, Map<String, String>> pair : keywords.entrySet())

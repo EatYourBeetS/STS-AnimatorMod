@@ -1,8 +1,13 @@
 package eatyourbeets.characters.Loadouts;
 
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.*;
+import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.basic.Defend_TenSura;
+import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.basic.Strike_TenSura;
+import eatyourbeets.cards.animator.series.TenseiSlime.Benimaru;
+import eatyourbeets.cards.animator.series.TenseiSlime.Shuna;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 
 import java.util.ArrayList;

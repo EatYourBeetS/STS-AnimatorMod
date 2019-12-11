@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.OrbCore_Chaos;
+import eatyourbeets.cards.animator.special.OrbCore_Chaos;
 
 public class OrbCore_ChaosPower extends OrbCore_AbstractPower
 {

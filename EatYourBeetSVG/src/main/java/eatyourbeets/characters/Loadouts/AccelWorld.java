@@ -2,9 +2,14 @@ package eatyourbeets.characters.Loadouts;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.*;
+import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.basic.Defend_AccelWorld;
+import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.basic.Strike_AccelWorld;
+import eatyourbeets.cards.animator.colorless.Kuroyukihime;
+import eatyourbeets.cards.animator.colorless.LimeBell;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.characters.AnimatorMetrics;
 

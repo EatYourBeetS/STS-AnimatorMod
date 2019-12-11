@@ -2,7 +2,7 @@ package eatyourbeets.actions.animator;
 
 import basemod.BaseMod;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.cards.animator.ThrowingKnife;
+import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.utilities.GameActions;
 
 public class CreateThrowingKnives extends EYBAction

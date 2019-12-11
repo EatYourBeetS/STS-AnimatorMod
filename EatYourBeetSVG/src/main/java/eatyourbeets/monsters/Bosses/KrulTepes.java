@@ -72,9 +72,9 @@ public class KrulTepes extends AnimatorMonster
         GameActions.Bottom.StackPower(new ArtifactPower(this, 2));
 
         AbstractPlayer p = AbstractDungeon.player;
-        p.drawPile.group.removeIf(c -> c instanceof eatyourbeets.cards.animator.KrulTepes);
-        p.discardPile.group.removeIf(c -> c instanceof eatyourbeets.cards.animator.KrulTepes);
-        p.hand.group.removeIf(c -> c instanceof eatyourbeets.cards.animator.KrulTepes);
+        p.drawPile.group.removeIf(c -> c instanceof eatyourbeets.cards.animator.series.OwariNoSeraph.KrulTepes);
+        p.discardPile.group.removeIf(c -> c instanceof eatyourbeets.cards.animator.series.OwariNoSeraph.KrulTepes);
+        p.hand.group.removeIf(c -> c instanceof eatyourbeets.cards.animator.series.OwariNoSeraph.KrulTepes);
 
         AbstractDungeon.getCurrMapNode().room.playBGM("BOSS_BOTTOM");
     }

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard;
 
 import java.util.ArrayList;
 

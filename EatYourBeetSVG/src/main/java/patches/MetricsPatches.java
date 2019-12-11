@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.metrics.Metrics;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.characters.AnimatorCharacterSelect;
 import eatyourbeets.powers.PlayerStatistics;
 

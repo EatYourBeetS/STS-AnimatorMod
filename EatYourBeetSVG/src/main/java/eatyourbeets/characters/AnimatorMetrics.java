@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
-import eatyourbeets.cards.Synergies;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.JavaUtilities;
 import patches.AbstractEnums;
 

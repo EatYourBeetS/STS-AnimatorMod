@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
-import eatyourbeets.cards.CardSeriesComparator;
+import eatyourbeets.cards.base.CardSeriesComparator;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;

@@ -6,8 +6,12 @@ import com.megacrit.cardcrawl.random.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.FileInputStream;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.function.Predicate;
+import java.util.jar.JarEntry;
+import java.util.jar.JarInputStream;
 
 public class JavaUtilities
 {
@@ -92,5 +96,39 @@ public class JavaUtilities
         }
 
         return format;
+    }
+
+    public static ArrayList<String> GetClassNamesFromJarFile(String prefix)
+    {
+        ArrayList<String> result = new ArrayList<>();
+
+        try
+        {
+            String path = JavaUtilities.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            JarInputStream jarFile = new JarInputStream(new FileInputStream(path));
+
+            while (true)
+            {
+                JarEntry entry = jarFile.getNextJarEntry();
+                if (entry == null)
+                {
+                    break;
+                }
+
+                String name = entry.getName();
+                if (name.startsWith(prefix) && name.endsWith(".class") && name.indexOf('$', 20) == -1)
+                {
+                    String className = entry.getName().replaceAll("/", "\\.");
+                    String myClass = className.substring(0, className.lastIndexOf('.'));
+                    result.add(myClass);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }

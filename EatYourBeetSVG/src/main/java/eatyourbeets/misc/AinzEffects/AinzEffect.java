@@ -1,7 +1,7 @@
 package eatyourbeets.misc.AinzEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.cards.animator.Ainz;
+import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.resources.Resources_Animator_Strings;
 
 public abstract class AinzEffect

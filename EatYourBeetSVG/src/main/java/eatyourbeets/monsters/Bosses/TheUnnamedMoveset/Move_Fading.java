@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.actions.special.PlayTempBgmAction;
 import eatyourbeets.blights.animator.Doomed;
-import eatyourbeets.cards.animator.Respite;
+import eatyourbeets.cards.animator.special.Respite;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.AbstractMove;
 

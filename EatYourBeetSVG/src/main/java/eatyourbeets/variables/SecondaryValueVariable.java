@@ -2,7 +2,7 @@ package eatyourbeets.variables;
 
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import eatyourbeets.cards.EYBCard;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class SecondaryValueVariable extends DynamicVariable

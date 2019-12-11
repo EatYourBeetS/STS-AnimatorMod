@@ -2,7 +2,7 @@ package eatyourbeets.cards.unnamed;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.UnnamedCard;
+import eatyourbeets.cards.base.UnnamedCard;
 
 public class Banshee extends UnnamedCard
 {

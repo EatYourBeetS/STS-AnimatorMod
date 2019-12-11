@@ -11,9 +11,9 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.cards.Synergy;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

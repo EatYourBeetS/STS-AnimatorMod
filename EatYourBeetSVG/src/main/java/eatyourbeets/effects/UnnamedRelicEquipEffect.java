@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.cards.animator.HigakiRinne;
+import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
 import eatyourbeets.utilities.GameUtilities;

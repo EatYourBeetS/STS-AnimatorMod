@@ -6,11 +6,11 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardGlowBorder;
-import eatyourbeets.cards.EYBCard;
-import eatyourbeets.cards.UnnamedCard;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard;
 
 @SpirePatch(clz= CardGlowBorder.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class})
 public class CardGlowBorderPatch

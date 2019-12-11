@@ -19,7 +19,7 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.resources.Resources_Animator_Images;
-import eatyourbeets.cards.animator.Strike;
+import eatyourbeets.cards.animator.basic.Strike;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;

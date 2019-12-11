@@ -1,7 +1,7 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.Crystallize;
+import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrength;
 import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;

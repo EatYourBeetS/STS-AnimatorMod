@@ -1,8 +1,13 @@
 package eatyourbeets.characters.Loadouts;
 
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.*;
+import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.basic.Defend_Katanagatari;
+import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.basic.Strike_Katanagatari;
+import eatyourbeets.cards.animator.series.Katanagatari.Azekura;
+import eatyourbeets.cards.animator.series.Katanagatari.Emonzaemon;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 
 import java.util.ArrayList;

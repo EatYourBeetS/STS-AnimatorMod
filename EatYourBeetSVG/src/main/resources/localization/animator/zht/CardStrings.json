@@ -97,7 +97,7 @@
 	},
 	"animator:Biyorigo":
 	{
-		"DESCRIPTION": "獲得 !M! 層 人工製品 。 NL 每獲得一次 敏捷 ， NL 則獲得 1 點 武力 。",
+		"DESCRIPTION": "獲得 !M! 層 人工製品 。 NL 每獲得一次 敏捷 ， NL 則獲得 !SV! 點 武力 。",
 		"NAME": "微刀釵"
 	},
 	"animator:BlackLotus":

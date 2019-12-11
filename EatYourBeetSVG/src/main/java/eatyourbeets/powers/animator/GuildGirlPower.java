@@ -9,7 +9,7 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.GuildGirl;
+import eatyourbeets.cards.animator.series.GoblinSlayer.GuildGirl;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.interfaces.OnEnemyDyingSubscriber;
 import eatyourbeets.utilities.GameUtilities;

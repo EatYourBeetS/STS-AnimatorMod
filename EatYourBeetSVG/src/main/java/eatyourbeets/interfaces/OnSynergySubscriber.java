@@ -1,6 +1,6 @@
 package eatyourbeets.interfaces;
 
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard;
 
 public interface OnSynergySubscriber
 {

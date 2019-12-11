@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.animator.HigakiRinneAction;
-import eatyourbeets.cards.animator.HigakiRinne;
+import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 
 public class HigakiRinnePower extends AnimatorPower
 {

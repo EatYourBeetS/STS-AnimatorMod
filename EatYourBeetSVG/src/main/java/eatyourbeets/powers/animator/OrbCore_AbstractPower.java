@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard;
 
 public abstract class OrbCore_AbstractPower extends AnimatorPower
 {

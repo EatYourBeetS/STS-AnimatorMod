@@ -97,7 +97,7 @@
 	},
 	"animator:Biyorigo":
 	{
-		"DESCRIPTION": "获得 !M! 层 人工制品 。 NL 每获得一次 敏捷 ， NL 则获得 1 点 武力 。",
+		"DESCRIPTION": "获得 !M! 层 人工制品 。 NL 每获得一次 敏捷 ， NL 则获得 !SV! 点 武力 。",
 		"NAME": "微刀钗"
 	},
 	"animator:BlackLotus":

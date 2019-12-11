@@ -55,12 +55,20 @@ import java.util.function.Consumer;
 @SuppressWarnings("UnusedReturnValue")
 public final class GameActions
 {
-    public static final GameActions Top = new GameActions(GameActionsHelper.Order.Top);
-    public static final GameActions Bottom = new GameActions(GameActionsHelper.Order.Bottom);
+    public enum Order
+    {
+        Top,
+        Bottom,
+        TurnStart,
+        NextCombat
+    }
 
-    protected GameActionsHelper.Order actionOrder;
+    public static final GameActions Top = new GameActions(Order.Top);
+    public static final GameActions Bottom = new GameActions(Order.Bottom);
 
-    protected GameActions(GameActionsHelper.Order order)
+    protected Order actionOrder;
+
+    protected GameActions(Order order)
     {
         actionOrder = order;
     }

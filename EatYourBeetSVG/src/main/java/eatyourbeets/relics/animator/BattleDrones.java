@@ -9,7 +9,7 @@ import eatyourbeets.actions.animator.EveDamageAction;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard;
 
 public class BattleDrones extends AnimatorRelic
 {

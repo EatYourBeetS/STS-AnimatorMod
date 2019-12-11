@@ -1,8 +1,13 @@
 package eatyourbeets.characters.Loadouts;
 
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.*;
+import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.basic.Defend_OnePunchMan;
+import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.basic.Strike_OnePunchMan;
+import eatyourbeets.cards.animator.series.OnePunchMan.Genos;
+import eatyourbeets.cards.animator.series.OnePunchMan.MumenRider;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 
 import java.util.ArrayList;

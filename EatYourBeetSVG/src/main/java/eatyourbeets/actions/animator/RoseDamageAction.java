@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.damage.DealDamage;
-import eatyourbeets.cards.animator.Rose;
+import eatyourbeets.cards.animator.ultrarare.Rose;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 

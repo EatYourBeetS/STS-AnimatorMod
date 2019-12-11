@@ -4,7 +4,7 @@ import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.cards.animator.OrbCore_Aether;
+import eatyourbeets.cards.animator.special.OrbCore_Aether;
 import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_AetherPower extends OrbCore_AbstractPower

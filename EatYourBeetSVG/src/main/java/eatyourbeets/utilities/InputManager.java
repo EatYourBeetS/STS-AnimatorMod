@@ -3,7 +3,7 @@ package eatyourbeets.utilities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.cards.EYBCardText;
+import eatyourbeets.cards.base.EYBCardText;
 
 public class InputManager
 {

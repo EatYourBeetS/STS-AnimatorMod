@@ -5,11 +5,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.AnimatorCard;
-import eatyourbeets.cards.animator.GoblinChampion;
-import eatyourbeets.cards.animator.GoblinKing;
-import eatyourbeets.cards.animator.GoblinShaman;
-import eatyourbeets.cards.animator.GoblinSoldier;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.animator.status.GoblinChampion;
+import eatyourbeets.cards.animator.status.GoblinKing;
+import eatyourbeets.cards.animator.status.GoblinShaman;
+import eatyourbeets.cards.animator.status.GoblinSoldier;
 
 // TODO: this
 public class ShuffleRandomGoblinAction extends AbstractGameAction

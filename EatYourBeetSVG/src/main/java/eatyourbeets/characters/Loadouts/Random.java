@@ -3,8 +3,8 @@ package eatyourbeets.characters.Loadouts;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.cards.Synergy;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.characters.AnimatorTrophies;
 

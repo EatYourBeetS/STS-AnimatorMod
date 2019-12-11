@@ -1,8 +1,13 @@
 package eatyourbeets.characters.Loadouts;
 
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.cards.Synergy;
-import eatyourbeets.cards.animator.*;
+import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.basic.Defend_Fate;
+import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.basic.Strike_Fate;
+import eatyourbeets.cards.animator.series.Fate.Alexander;
+import eatyourbeets.cards.animator.series.Fate.Caster;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 
 import java.util.ArrayList;

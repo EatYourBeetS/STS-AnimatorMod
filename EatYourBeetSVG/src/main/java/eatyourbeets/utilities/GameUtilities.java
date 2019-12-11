@@ -29,7 +29,6 @@ import java.util.Iterator;
 public class GameUtilities
 {
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
-    private static final Logger Logger = LogManager.getLogger(GameUtilities.class.getName());
 
     public static int GetActualAscensionLevel()
     {

@@ -1,7 +1,7 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.cards.animator.DarknessAdrenaline;
+import eatyourbeets.cards.animator.special.DarknessAdrenaline;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 

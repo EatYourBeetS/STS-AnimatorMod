@@ -70,13 +70,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     @Override
     protected void FirstUpdate()
     {
-        if (this.shouldCancelAction() && this.info.type != DamageInfo.DamageType.THORNS)
-        {
-            Complete();
-            return;
-        }
-
-        if (this.info.type != DamageInfo.DamageType.THORNS && (this.info.owner.isDying || this.info.owner.halfDead))
+        if (this.info.type != DamageInfo.DamageType.THORNS && (this.shouldCancelAction() || this.info.owner.isDying || this.info.owner.halfDead))
         {
             Complete();
             return;
@@ -100,7 +94,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     @Override
     protected void UpdateInternal()
     {
-        if (this.shouldCancelAction() && this.info.type != DamageInfo.DamageType.THORNS)
+        if (this.info.type != DamageInfo.DamageType.THORNS && this.shouldCancelAction())
         {
             Complete();
             return;
@@ -160,7 +154,6 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
                     AbstractDungeon.effectList.add(new GainPennyEffect(this.source, this.target.hb.cX, this.target.hb.cY, this.source.hb.cX, this.source.hb.cY, false));
                 }
             }
-
         }
     }
 }

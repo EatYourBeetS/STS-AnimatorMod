@@ -23,7 +23,7 @@ import eatyourbeets.interfaces.*;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.ui.Void;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard;
 import patches.CardGlowBorderPatch;
 
 import java.util.ArrayList;

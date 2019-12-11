@@ -3,7 +3,7 @@ package eatyourbeets.cards.unnamed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.UnnamedCard;
+import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Reaper extends UnnamedCard

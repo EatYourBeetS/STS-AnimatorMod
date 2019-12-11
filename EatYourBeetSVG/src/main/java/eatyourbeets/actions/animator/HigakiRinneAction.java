@@ -20,7 +20,7 @@ import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.animator.HigakiRinne;
+import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.effects.ShuffleEnemiesEffect;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.MarkOfPoisonPower;

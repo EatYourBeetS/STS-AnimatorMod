@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.rewards.RewardSave;
 import eatyourbeets.dungeons.CustomAbstractDungeon;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.Synergies;
-import eatyourbeets.cards.Synergy;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;

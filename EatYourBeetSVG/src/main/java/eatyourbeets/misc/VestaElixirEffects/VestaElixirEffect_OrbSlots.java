@@ -2,7 +2,7 @@ package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.cards.animator.Vesta_Elixir;
+import eatyourbeets.cards.animator.special.Vesta_Elixir;
 import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_OrbSlots extends VestaElixirEffect

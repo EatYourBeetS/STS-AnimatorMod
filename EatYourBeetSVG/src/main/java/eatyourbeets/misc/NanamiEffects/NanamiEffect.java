@@ -1,6 +1,6 @@
 package eatyourbeets.misc.NanamiEffects;
 
-import eatyourbeets.cards.animator.Nanami;
+import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 
 public abstract class NanamiEffect
 {

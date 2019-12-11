@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.OrbCore_Fire;
+import eatyourbeets.cards.animator.special.OrbCore_Fire;
 import eatyourbeets.utilities.GameUtilities;
 
 public class OrbCore_FirePower extends OrbCore_AbstractPower

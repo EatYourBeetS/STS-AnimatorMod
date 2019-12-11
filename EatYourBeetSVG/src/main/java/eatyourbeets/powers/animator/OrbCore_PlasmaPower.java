@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.OrbCore_Plasma;
+import eatyourbeets.cards.animator.special.OrbCore_Plasma;
 
 public class OrbCore_PlasmaPower extends OrbCore_AbstractPower
 {

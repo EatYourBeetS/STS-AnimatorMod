@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.OrbCore_Lightning;
+import eatyourbeets.cards.animator.special.OrbCore_Lightning;
 
 import java.util.ArrayList;
 

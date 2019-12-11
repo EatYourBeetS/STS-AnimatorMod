@@ -3,7 +3,7 @@ package eatyourbeets.cards.unnamed;
 import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.UnnamedCard;
+import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend extends UnnamedCard

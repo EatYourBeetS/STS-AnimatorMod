@@ -97,7 +97,7 @@
 	},
 	"animator:Biyorigo":
 	{
-		"DESCRIPTION": "Gain !M! Artifact. NL Whenever you gain NL 1 or more Dexterity, NL also gain 1 Force.",
+		"DESCRIPTION": "Gain !M! Artifact. NL Whenever you gain NL 1 or more Dexterity, NL also gain !SV! Force.",
 		"NAME": "Biyorigo"
 	},
 	"animator:BlackLotus":

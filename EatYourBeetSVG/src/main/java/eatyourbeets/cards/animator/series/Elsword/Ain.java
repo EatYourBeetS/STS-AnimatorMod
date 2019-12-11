@@ -1,0 +1,71 @@
+package eatyourbeets.cards.animator.series.Elsword;
+
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.BlizzardEffect;
+import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
+
+public class Ain extends AnimatorCard implements Spellcaster
+{
+    public static final String ID = Register(Ain.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Discard);
+
+    public Ain()
+    {
+        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
+
+        Initialize(1, 0, 3, 1);
+
+        SetMultiDamage(true);
+        SetSynergy(Synergies.Elsword);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        if (EffectHistory.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.GainIntellect(secondaryValue);
+        }
+    }
+
+    @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
+
+        for (int i = 0; i < this.magicNumber; i++)
+        {
+            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
+            .SetOptions2(true, false);
+        }
+
+        if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.GainIntellect(secondaryValue);
+        }
+    }
+
+    @Override
+    public void upgrade()
+    {
+        if (TryUpgrade())
+        {
+            upgradeMagicNumber(1);
+        }
+    }
+}

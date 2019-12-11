@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import eatyourbeets.cards.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 
 public class CardLibraryPatches
 {

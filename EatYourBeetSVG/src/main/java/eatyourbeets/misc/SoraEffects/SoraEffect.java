@@ -1,7 +1,7 @@
 package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.cards.animator.Sora;
+import eatyourbeets.cards.animator.series.NoGameNoLife.Sora;
 import eatyourbeets.resources.Resources_Animator_Strings;
 
 public abstract class SoraEffect

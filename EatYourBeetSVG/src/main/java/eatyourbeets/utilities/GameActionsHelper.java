@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.powers.common.TemporaryBiasPower;
-import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("UnusedReturnValue")
 public class GameActionsHelper
@@ -46,16 +45,6 @@ public class GameActionsHelper
 
         GameActions.Top.ApplyPower(source, target, new StrengthPower(target, amount), amount);
     }
-
-    public enum Order
-    {
-        Top,
-        Bottom,
-        TurnStart,
-        NextCombat
-    }
-
-    protected static final Logger logger = GameUtilities.GetLogger(GameActionsHelper.class);
 
     public static void ClearPostCombatActions()
     {

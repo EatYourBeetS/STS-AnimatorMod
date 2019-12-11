@@ -3,9 +3,10 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.OrbCore_Fire;
+import eatyourbeets.utilities.GameUtilities;
 
 public class OrbCore_FirePower extends OrbCore_AbstractPower
 {
@@ -23,37 +24,9 @@ public class OrbCore_FirePower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
-        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
-
-        GameActionsHelper_Legacy.ApplyPowerToAllEnemies(p, this::CreateBurning, value);
-
-        GameActionsHelper_Legacy.ResetOrder();
-    }
-
-    protected BurningPower CreateBurning(AbstractCreature m)
-    {
-        return new BurningPower(m, AbstractDungeon.player, value);
+        for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
+        {
+            GameActions.Bottom.ApplyBurning(p, m, value);
+        }
     }
 }
-
-//            AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-//            if (target != null)
-//            {
-//                AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.5F));
-//                AbstractDungeon.actionManager.addToBottom(new VFXAction(new BorderFlashEffect(Color.SKY)));
-//
-//                if (Settings.FAST_MODE)
-//                {
-//                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffect(target.hb.cX, target.hb.cY, owner.hb.cX, owner.hb.cY), 0.1F));
-//                }
-//                else
-//                {
-//                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffect(target.hb.cX, target.hb.cY, owner.hb.cX, owner.hb.cY), 0.3F));
-//                }
-//
-//                AbstractDungeon.actionManager.addToBottom(new DamageAction(target, new DamageInfo(owner, this.amount, DamageInfo.DamageType.THORNS)));
-//
-//                this.flash();
-//                this.amount += growth;
-//                updateDescription();
-//            }

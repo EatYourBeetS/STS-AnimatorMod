@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.monsters.AbstractMove;
 
@@ -62,25 +61,25 @@ public class Move_MultiSlash extends AbstractMove
     {
         if (timesCounter > 0)
         {
-            GameActionsHelper_Legacy.Callback(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.SLASH_HEAVY), this::OnDamage, target.currentHealth);
-            timesCounter -= 1;
-        }
-    }
-
-    private void OnDamage(Object state, AbstractGameAction action)
-    {
-        Integer previousHealth = JavaUtilities.SafeCast(state, Integer.class);
-        if (previousHealth != null)
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-
-            int difference = previousHealth - p.currentHealth;
-            if (difference > 0)
+            AbstractGameAction.AttackEffect attackEffect = AbstractGameAction.AttackEffect.SLASH_HEAVY;
+            GameActions.Bottom.Callback(new DamageAction(target, damageInfo, attackEffect), target.currentHealth, (state, __) ->
             {
-                GameActions.Bottom.Add(new HealAction(owner, owner, difference));
-            }
+                Integer previousHealth = JavaUtilities.SafeCast(state, Integer.class);
+                if (previousHealth != null)
+                {
+                    AbstractPlayer p = AbstractDungeon.player;
 
-            Attack(p);
+                    int difference = previousHealth - p.currentHealth;
+                    if (difference > 0)
+                    {
+                        GameActions.Bottom.Add(new HealAction(owner, owner, difference));
+                    }
+
+                    Attack(p);
+                }
+            });
+
+            timesCounter -= 1;
         }
     }
 }

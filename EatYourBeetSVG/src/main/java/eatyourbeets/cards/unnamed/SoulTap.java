@@ -2,10 +2,7 @@ package eatyourbeets.cards.unnamed;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.actions._legacy.common.DecreaseMaxHpAction;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
 
 public class SoulTap extends UnnamedCard
 {

@@ -1,6 +1,5 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
@@ -9,7 +8,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.GuildGirl;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.interfaces.OnEnemyDyingSubscriber;
@@ -57,7 +56,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     {
         super.atStartOfTurnPostDraw();
 
-        GameActionsHelper_Legacy.AddToBottom(new GuildGirlAction(this.amount));
+        GameActions.Bottom.Callback(__ -> GameActions.Bottom.Cycle(amount, name));
     }
 
     @Override
@@ -78,22 +77,6 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
         if (room != null && room.rewardAllowed && goldReward > 0)
         {
             room.rewards.add(0, new SpecialGoldReward(rewardName, goldReward));
-        }
-    }
-
-    private class GuildGirlAction extends AbstractGameAction
-    {
-        public GuildGirlAction(int amount)
-        {
-            this.amount = amount;
-        }
-
-        @Override
-        public void update()
-        {
-            GameActionsHelper_Legacy.CycleCardAction(this.amount, name);
-
-            isDone = true;
         }
     }
 }

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class ExhaustAnywhere extends EYBAction
 {
@@ -21,19 +21,19 @@ public class ExhaustAnywhere extends EYBAction
         AbstractPlayer p = AbstractDungeon.player;
         if (p.limbo.contains(card))
         {
-            GameActionsHelper_Legacy.ExhaustCard(card, p.limbo);
+            GameActions.Bottom.Exhaust(card, p.limbo);
         }
         else if (p.discardPile.contains(card))
         {
-            GameActionsHelper_Legacy.ExhaustCard(card, p.discardPile);
+            GameActions.Bottom.Exhaust(card, p.discardPile);
         }
         else if (p.drawPile.contains(card))
         {
-            GameActionsHelper_Legacy.ExhaustCard(card, p.drawPile);
+            GameActions.Bottom.Exhaust(card, p.drawPile);
         }
         else
         {
-            GameActionsHelper_Legacy.ExhaustCard(card, p.hand);
+            GameActions.Bottom.Exhaust(card, p.hand);
         }
 
         Complete();

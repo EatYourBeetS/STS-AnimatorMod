@@ -65,7 +65,7 @@ public class SoraAction extends EYBAction
             }
         }
 
-        AbstractDungeon.gridSelectScreen.open(group, 1, false, CreateMessage());
+        AbstractDungeon.gridSelectScreen.open(group, 1, CreateMessage(), false, false, false, false);
     }
 
     @Override

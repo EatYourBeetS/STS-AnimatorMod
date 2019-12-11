@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.effects.Hemokinesis2Effect;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class UnnamedDollPower extends AnimatorPower
@@ -26,36 +26,7 @@ public class UnnamedDollPower extends AnimatorPower
     {
         String[] text = powerStrings.DESCRIPTIONS;
         this.description = text[3] + STRENGTH + text[4];
-
-//        if (amount > 0)
-//        {
-//            this.description = text[0] + amount + text[1] + hpGain + text[2] + text[3] + STRENGTH + text[4];
-//        }
-//        else
-//        {
-//            this.description = text[3] + STRENGTH + text[4];
-//        }
     }
-
-//    @Override
-//    public void onAfterUseCard(AbstractCard card, UseCardAction action)
-//    {
-//        super.onAfterUseCard(card, action);
-//
-//        if (action.target != owner && amount > 0)
-//        {
-//            owner.increaseMaxHp(hpGain, true);
-//        }
-//    }
-//
-//    @Override
-//    public void atStartOfTurn()
-//    {
-//        super.atStartOfTurn();
-//
-//        amount -= 1;
-//        updateDescription();
-//    }
 
     @Override
     public void onDeath()
@@ -64,8 +35,8 @@ public class UnnamedDollPower extends AnimatorPower
         {
             for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
             {
-                GameActionsHelper_Legacy.VFX(new Hemokinesis2Effect(owner.hb.cX, owner.hb.cY, c.hb.cX, c.hb.cY), 0.35f);
-                GameActionsHelper_Legacy.ApplyPower(null, c, new StrengthPower(c, STRENGTH), STRENGTH);
+                GameActions.Bottom.VFX(new Hemokinesis2Effect(owner.hb.cX, owner.hb.cY, c.hb.cX, c.hb.cY), 0.35f);
+                GameActions.Bottom.StackPower(null, new StrengthPower(c, STRENGTH));
             }
         }
     }

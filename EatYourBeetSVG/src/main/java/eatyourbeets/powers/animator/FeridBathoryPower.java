@@ -5,14 +5,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.animator.FeridBathory;
 import eatyourbeets.effects.Hemokinesis2Effect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActions;
 
 public class FeridBathoryPower extends AnimatorPower
 {
@@ -35,7 +33,9 @@ public class FeridBathoryPower extends AnimatorPower
     {
         super.onExhaust(card);
 
-        GameActionsHelper_Legacy.AddToBottom(new FeridAction(this));
+        GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE)
+        .SetDamageEffect(enemy -> AbstractDungeon.effectList.add(new Hemokinesis2Effect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY)));
+        GameActions.Bottom.GainTemporaryHP(amount);
     }
 
     @Override
@@ -45,36 +45,9 @@ public class FeridBathoryPower extends AnimatorPower
 
         if (AbstractDungeon.player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && EffectHistory.TryActivateLimited(FeridBathory.ID))
         {
-            GameActionsHelper_Legacy.ApplyPower(owner, owner, new StrengthPower(owner, STRENGTH_GAIN), STRENGTH_GAIN);
-
             AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(new FeridBathory()));
-        }
-    }
 
-    private class FeridAction extends AbstractGameAction
-    {
-        private final FeridBathoryPower power;
-
-        public FeridAction(FeridBathoryPower power)
-        {
-            this.power = power;
-            this.amount = power.amount;
-        }
-
-        @Override
-        public void update()
-        {
-            AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-            if (target != null)
-            {
-                GameActionsHelper_Legacy.VFX(new Hemokinesis2Effect(target.hb.cX, target.hb.cY, owner.hb.cX, owner.hb.cY), 0.2f);
-                GameActionsHelper_Legacy.DamageTarget(owner, target, amount, DamageInfo.DamageType.HP_LOSS, AttackEffect.NONE);
-                GameActions.Bottom.GainTemporaryHP(amount);
-
-                power.flash();
-            }
-
-            this.isDone = true;
+            GameActions.Bottom.GainStrength(STRENGTH_GAIN);
         }
     }
 }

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.utilities.GameActions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -90,5 +91,15 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
                 }
             }
         }
+    }
+
+    public void LosePower()
+    {
+        GameActions.Bottom.RemovePower(owner, owner, this);
+    }
+
+    public void ReducePower(int value)
+    {
+        GameActions.Bottom.ReducePower(this, value);
     }
 }

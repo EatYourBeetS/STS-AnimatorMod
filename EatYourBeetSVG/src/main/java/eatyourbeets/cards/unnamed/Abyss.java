@@ -1,12 +1,8 @@
 package eatyourbeets.cards.unnamed;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.UnnamedCard;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class Abyss extends UnnamedCard
 {

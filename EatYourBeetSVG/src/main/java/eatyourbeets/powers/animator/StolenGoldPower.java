@@ -65,6 +65,7 @@ public class StolenGoldPower extends AnimatorPower
             {
                 AbstractDungeon.effectList.add(new GainPennyEffect(this.owner.hb.cX, this.owner.hb.cY));
             }
+
             AbstractDungeon.player.gainGold(goldGain);
         }
     }
@@ -85,10 +86,12 @@ public class StolenGoldPower extends AnimatorPower
         if (goldGain > 0)
         {
             CardCrawlGame.sound.play("GOLD_JINGLE");
+
             for(int i = 0; i < goldGain; ++i)
             {
                 AbstractDungeon.effectList.add(new GainPennyEffect(this.owner.hb.cX, this.owner.hb.cY));
             }
+
             AbstractDungeon.player.gainGold(goldGain);
         }
     }

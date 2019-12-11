@@ -3,13 +3,10 @@ package eatyourbeets.blights.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
+import eatyourbeets.actions.basic.RefreshHandLayoutAction;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.resources.Resources_Animator_Strings;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
-
-import java.util.ArrayList;
 
 public class UltimateCrystal extends AnimatorBlight
 {

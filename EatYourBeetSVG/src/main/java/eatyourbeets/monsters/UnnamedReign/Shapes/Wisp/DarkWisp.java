@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.SharedMoveset.Move_Attack;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifact;
@@ -44,6 +44,6 @@ public class DarkWisp extends Wisp
                 break;
         }
 
-        GameActionsHelper_Legacy.ApplyPower(this, this, new DarkWispPower(this, amount), amount);
+        GameActions.Bottom.ApplyPower(this, this, new DarkWispPower(this, amount), amount);
     }
 }

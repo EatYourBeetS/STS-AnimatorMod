@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.ShikizakiKiki;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -93,21 +93,19 @@ public class ShikizakiKikiPower extends AnimatorPower
 
         AddRandomAttacks(amount, group.group);
 
-        GameActionsHelper_Legacy.ChooseFromPile(1, false, group, this::OnSelection, 1,
-                CardRewardScreen.TEXT[1] + " (" + name + ")", true);
-    }
-
-    public void OnSelection(Object state, ArrayList<AbstractCard> cards)
-    {
-        if (state.equals(1) && cards != null && cards.size() > 0)
+        GameActions.Bottom.SelectFromPile(name, 1, group)
+        .SetOptions(false, false)
+        .SetMessage(CardRewardScreen.TEXT[1])
+        .AddCallback(cards ->
         {
             AbstractCard c = cards.get(0);
             if (c.cost > 0)
             {
                 GameActions.Bottom.GainForce(c.cost);
             }
-            GameActionsHelper_Legacy.MakeCardInHand(c, 1, false);
-        }
+
+            GameActions.Bottom.MakeCardInHand(c);
+        });
     }
 
     private static void AddRandomAttacks(int amount, ArrayList<AbstractCard> group)

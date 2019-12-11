@@ -1,12 +1,10 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
 
 public class EarthenThornsPower extends AnimatorPower
 {
@@ -32,7 +30,9 @@ public class EarthenThornsPower extends AnimatorPower
         if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != this.owner)
         {
             this.flash();
-            AbstractDungeon.actionManager.addToTop(new DamageAction(info.owner, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
+
+            GameActions.Top.DealDamage(owner, info.owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
+            .SetOptions2(true, false, 0);
         }
 
         return damageAmount;
@@ -40,6 +40,6 @@ public class EarthenThornsPower extends AnimatorPower
 
     public void atStartOfTurn()
     {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+        LosePower();
     }
 }

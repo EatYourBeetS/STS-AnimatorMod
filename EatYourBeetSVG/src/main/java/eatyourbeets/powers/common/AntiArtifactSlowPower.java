@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class AntiArtifactSlowPower extends AbstractPower implements CloneablePowerInterface
 {
@@ -46,7 +46,7 @@ public class AntiArtifactSlowPower extends AbstractPower implements CloneablePow
 
     public void onAfterUseCard(AbstractCard card, UseCardAction action)
     {
-        GameActionsHelper_Legacy.ApplyPowerSilently(owner, owner, new AntiArtifactSlowPower(owner, 1), 1);
+        GameActions.Bottom.ApplyPowerSilently(owner, owner, new AntiArtifactSlowPower(owner, 1), 1);
     }
 
     public float atDamageReceive(float damage, DamageInfo.DamageType type)

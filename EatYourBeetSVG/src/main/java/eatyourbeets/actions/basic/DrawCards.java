@@ -16,12 +16,13 @@ public class DrawCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
     protected final ArrayList<AbstractCard> cards = new ArrayList<>();
     protected Predicate<AbstractCard> filter;
     protected boolean canDrawUnfiltered;
-    protected boolean shuffleIfEmpty;
+    protected boolean shuffleIfEmpty = true;
 
     protected DrawCards(DrawCards other, int amount)
     {
-        this(amount, other.shuffleIfEmpty);
+        this(amount);
 
+        shuffleIfEmpty = other.shuffleIfEmpty;
         filter = other.filter;
         canDrawUnfiltered = other.canDrawUnfiltered;
         callbacks.addAll(other.callbacks);
@@ -30,14 +31,7 @@ public class DrawCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 
     public DrawCards(int amount)
     {
-        this(amount, true);
-    }
-
-    public DrawCards(int amount, boolean shuffleIfEmpty)
-    {
         super(ActionType.DRAW);
-
-        this.shuffleIfEmpty = shuffleIfEmpty;
 
         Initialize(amount);
     }
@@ -46,6 +40,13 @@ public class DrawCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
     {
         this.filter = filter;
         this.canDrawUnfiltered = canDrawUnfiltered;
+
+        return this;
+    }
+
+    public DrawCards SetOptions(boolean shuffleIfEmpty)
+    {
+        this.shuffleIfEmpty = shuffleIfEmpty;
 
         return this;
     }

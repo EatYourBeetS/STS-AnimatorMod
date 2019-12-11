@@ -1,7 +1,6 @@
 package eatyourbeets.powers.common;
 
 import basemod.interfaces.CloneablePowerInterface;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,7 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
 import eatyourbeets.actions.special.KillCharacterAction;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class GenericFadingPower extends AbstractPower implements CloneablePowerInterface
 {
@@ -72,11 +71,11 @@ public class GenericFadingPower extends AbstractPower implements CloneablePowerI
 
         if (this.amount == 1 && !this.owner.isDying)
         {
-            GameActionsHelper_Legacy.AddToBottom(new KillCharacterAction(owner, owner));
+            GameActions.Bottom.Add(new KillCharacterAction(owner, owner));
         }
         else
         {
-            AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            GameActions.Bottom.ReducePower(this, 1);
             this.updateDescription();
         }
     }

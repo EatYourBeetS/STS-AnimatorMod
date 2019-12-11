@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelperBase;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class HarukoHaruhara extends AnimatorCard
 
         card.applyPowers();
 
-        GameActionsHelperBase.PlayCard(card, m);
+        GameActionsHelper.PlayCard(card, m);
     }
 
     @Override

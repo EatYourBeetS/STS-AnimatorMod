@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
@@ -18,11 +18,11 @@ import patches.CardGlowBorderPatch;
 
 public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPostDrawSubscriber, OnBattleStartSubscriber
 {
-    private boolean shouldExhaust = false;
+    public static final String POWER_ID = CreateFullID(UltimateWispPower.class.getSimpleName());
 
     private static final Color RED = Color.RED.cpy();
 
-    public static final String POWER_ID = CreateFullID(UltimateWispPower.class.getSimpleName());
+    private boolean shouldExhaust = false;
 
     public UltimateWispPower(AbstractCreature owner)
     {
@@ -79,7 +79,7 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     {
         if (target != owner && damageAmount > 0 && info.type != DamageInfo.DamageType.THORNS)
         {
-            GameActionsHelper_Legacy.MakeCardInDiscardPile(new Burn(), 1, false);
+            GameActions.Bottom.MakeCardInDiscardPile(new Burn());
         }
     }
 

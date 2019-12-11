@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrength;
 import eatyourbeets.monsters.SharedMoveset.Move_GainThorns;
@@ -44,6 +44,6 @@ public class HealingCrystal extends Crystal
                 break;
         }
 
-        GameActionsHelper_Legacy.ApplyPower(this, this, new HealingCrystalPower(this, amount), amount);
+        GameActions.Bottom.ApplyPower(this, this, new HealingCrystalPower(this, amount), amount);
     }
 }

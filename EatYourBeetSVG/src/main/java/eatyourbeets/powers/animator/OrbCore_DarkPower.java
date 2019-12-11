@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.OrbCore_Dark;
 
 public class OrbCore_DarkPower extends OrbCore_AbstractPower
@@ -28,30 +28,8 @@ public class OrbCore_DarkPower extends OrbCore_AbstractPower
     {
         if (p.hand.size() < BaseMod.MAX_HAND_SIZE)
         {
-            GameActionsHelper_Legacy.AddToBottom(new ApplyPowerToRandomEnemyAction(p, new VulnerablePower(null, value, false), value));
-            GameActionsHelper_Legacy.AddToBottom(new ApplyPowerToRandomEnemyAction(p, new WeakPower(null, value, false), value));
+            GameActions.Bottom.Add(new ApplyPowerToRandomEnemyAction(p, new VulnerablePower(null, value, false), value));
+            GameActions.Bottom.Add(new ApplyPowerToRandomEnemyAction(p, new WeakPower(null, value, false), value));
         }
     }
 }
-
-//            AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-//            if (target != null)
-//            {
-//                AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.5F));
-//                AbstractDungeon.actionManager.addToBottom(new VFXAction(new BorderFlashEffect(Color.SKY)));
-//
-//                if (Settings.FAST_MODE)
-//                {
-//                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffect(target.hb.cX, target.hb.cY, owner.hb.cX, owner.hb.cY), 0.1F));
-//                }
-//                else
-//                {
-//                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffect(target.hb.cX, target.hb.cY, owner.hb.cX, owner.hb.cY), 0.3F));
-//                }
-//
-//                AbstractDungeon.actionManager.addToBottom(new DamageAction(target, new DamageInfo(owner, this.amount, DamageInfo.DamageType.THORNS)));
-//
-//                this.flash();
-//                this.amount += growth;
-//                updateDescription();
-//            }

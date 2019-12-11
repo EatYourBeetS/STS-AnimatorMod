@@ -53,6 +53,6 @@ public class IntellectPower extends CommonPower
             GameActions.Bottom.ReducePower(owner, FocusPower.POWER_ID, 1);
         }
 
-        GameActions.Bottom.ReducePower(this, 1);
+        ReducePower(1);
     }
 }

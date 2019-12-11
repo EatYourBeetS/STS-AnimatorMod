@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.KrulTepesMoveset.*;
 import eatyourbeets.monsters.AbstractMonsterData;
@@ -68,8 +68,8 @@ public class KrulTepes extends AnimatorMonster
     {
         super.usePreBattleAction();
 
-        GameActionsHelper_Legacy.ApplyPower(this, this, new IntangiblePlayerPower(this, 1), 1);
-        GameActionsHelper_Legacy.ApplyPower(this, this, new ArtifactPower(this, 2), 2);
+        GameActions.Bottom.StackPower(new IntangiblePlayerPower(this, 1));
+        GameActions.Bottom.StackPower(new ArtifactPower(this, 2));
 
         AbstractPlayer p = AbstractDungeon.player;
         p.drawPile.group.removeIf(c -> c instanceof eatyourbeets.cards.animator.KrulTepes);

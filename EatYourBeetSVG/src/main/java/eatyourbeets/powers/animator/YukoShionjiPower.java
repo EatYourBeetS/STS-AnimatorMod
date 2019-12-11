@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class YukoShionjiPower extends AnimatorPower
 {
@@ -96,13 +96,13 @@ public class YukoShionjiPower extends AnimatorPower
                 card.drawScale = 0.70f;
                 if (leftClicks > 0 && InputHelper.justReleasedClickLeft)
                 {
-                    GameActionsHelper_Legacy.DrawCard(p,1);
+                    GameActions.Bottom.Draw(1);
                     leftClicks -= 1;
                     updateDescription();
                 }
                 else if (rightClicks > 0 && InputHelper.justReleasedClickRight)
                 {
-                    GameActionsHelper_Legacy.AddToBottom(new DiscardSpecificCardAction(card, p.drawPile));
+                    GameActions.Bottom.Add(new DiscardSpecificCardAction(card, p.drawPile));
                     rightClicks -= 1;
                     updateDescription();
                 }

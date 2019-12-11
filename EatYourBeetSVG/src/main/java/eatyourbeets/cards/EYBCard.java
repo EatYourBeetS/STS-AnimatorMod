@@ -365,6 +365,21 @@ public abstract class EYBCard extends CustomCard
         }
     }
 
+    public void SetPiercing(boolean value)
+    {
+        if (value)
+        {
+            if (!tags.contains(AbstractEnums.CardTags.PIERCING))
+            {
+                tags.add(AbstractEnums.CardTags.PIERCING);
+            }
+        }
+        else
+        {
+            tags.remove(AbstractEnums.CardTags.PIERCING);
+        }
+    }
+
     public void SetHealing(boolean value)
     {
         if (value)

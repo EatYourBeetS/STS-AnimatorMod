@@ -10,13 +10,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
-import eatyourbeets.actions._legacy.animator.EndPlayerTurnAction;
+import eatyourbeets.actions.special.EndPlayerTurnAction;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.blights.common.CustomTimeMaze;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.animator.*;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.powers.AnimatorPower;
@@ -96,7 +95,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         if (doomed != null && doomed.counter <= 2 && !linesUsed.contains(34))
         {
             linesUsed.add(34);
-            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, dialog[34], 2f, 2f));
+            GameActions.Bottom.Talk(owner, dialog[34], 2f, 2f);
             GameActions.Bottom.WaitRealtime(1f);
         }
 
@@ -147,7 +146,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
                 {
                     if (owner.isPlayer != source.isPlayer && power.type == PowerType.DEBUFF)
                     {
-                        GameActionsHelper_Legacy.ApplyPower(owner, owner, new RegenPower(owner, stacks), stacks);
+                        GameActions.Bottom.StackPower(new RegenPower(owner, stacks));
                     }
                 }
                 else if (source != owner && target == source)
@@ -172,7 +171,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
                         if (amount > 0)
                         {
                             maxStrengthThisTurn -= amount;
-                            GameActionsHelper_Legacy.ApplyPowerSilently(owner, owner, new GainStrengthPower(owner, amount), amount);
+                            GameActions.Bottom.ApplyPowerSilently(owner, owner, new GainStrengthPower(owner, amount), amount);
                         }
                     }
                 }
@@ -188,8 +187,9 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
                     {
                         if (!gainedIntangible)
                         {
-                            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, dialog[33], 2f, 2f));
+                            GameActions.Bottom.Talk(owner, dialog[33], 2f, 2f);
                             GameActions.Bottom.WaitRealtime(2.5f);
+
                             gainedIntangible = true;
                         }
 
@@ -231,7 +231,8 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         {
             if (!timeMaze.isObtained)
             {
-                GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, dialog[3], 4, 4));
+                GameActions.Bottom.Talk(owner, dialog[3], 4, 4);
+
                 AbstractDungeon.effectsQueue.add(new PowerIconShowEffect(this));
 
                 timeMaze.counter = cardsPlayed;
@@ -239,7 +240,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
             }
             else
             {
-                GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, dialog[22], 4, 4));
+                GameActions.Bottom.Talk(owner, dialog[22], 4, 4);
             }
         }
 //        else
@@ -251,9 +252,9 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 //                int totalSize = (p.drawPile.size() + p.discardPile.size() + p.hand.size());
 //                if (totalSize < 10 && PlayerStatistics.getCardsDrawnThisTurn() > (totalSize + 2))
 //                {
-//                    GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, dialog[31], 2f, 2f));
+//                    GameActions.Bottom.Talk(owner, dialog[31], 2f, 2f));
 //                    GameActions.Bottom.WaitRealtime(2.5f));
-//                    GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, dialog[32], 2f, 2f));
+//                    GameActions.Bottom.Talk(owner, dialog[32], 2f, 2f));
 //                    GameActions.Bottom.WaitRealtime(2.5f));
 //                    GameActionsHelper_Legacy.SFX("NECRONOMICON");
 //                    GameActionsHelper_Legacy.MakeCardInDrawPile(new Necronomicurse(), 4, false);
@@ -334,7 +335,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
     {
         if (!linesUsed.contains(line) && owner.currentHealth > 500 && !phase2)
         {
-            GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, dialog[line], duration, duration));
+            GameActions.Bottom.Talk(owner, dialog[line], duration, duration);
 
             linesUsed.add(line);
         }
@@ -360,32 +361,32 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
         if (stunCounter <= 0)
         {
-            GameActionsHelper_Legacy.AddToTop(new TalkAction(owner, dialog[23], 4, 4));
+            GameActions.Top.Add(new TalkAction(owner, dialog[23], 4, 4));
             stunCounter = 1;
         }
         else if (stunCounter == 1)
         {
-            GameActionsHelper_Legacy.AddToTop(new TalkAction(owner, dialog[24], 4, 4));
+            GameActions.Top.Add(new TalkAction(owner, dialog[24], 4, 4));
             stunCounter = 2;
         }
         else if (stunCounter == 2)
         {
-            GameActionsHelper_Legacy.AddToTop(new EndPlayerTurnAction());
-            GameActionsHelper_Legacy.AddToTop(new TalkAction(owner, dialog[25], 4, 4));
+            GameActions.Top.Add(new EndPlayerTurnAction());
+            GameActions.Top.Add(new TalkAction(owner, dialog[25], 4, 4));
 
             stunCounter = 3;
         }
         else if (stunCounter == 3)
         {
-            GameActionsHelper_Legacy.AddToTop(new EndPlayerTurnAction());
-            GameActionsHelper_Legacy.AddToTop(new TalkAction(owner, dialog[26], 3, 3));
+            GameActions.Top.Add(new EndPlayerTurnAction());
+            GameActions.Top.Add(new TalkAction(owner, dialog[26], 3, 3));
 
             stunCounter = 4;
         }
         else
         {
-            GameActionsHelper_Legacy.AddToTop(new KillCharacterAction(owner, AbstractDungeon.player));
-            GameActionsHelper_Legacy.AddToTop(new TalkAction(owner, dialog[27], 3, 3));
+            GameActions.Top.Add(new KillCharacterAction(owner, AbstractDungeon.player));
+            GameActions.Top.Add(new TalkAction(owner, dialog[27], 3, 3));
         }
     }
 }

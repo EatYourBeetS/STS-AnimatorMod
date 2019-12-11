@@ -2,33 +2,24 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.actions._legacy.animator.EveDamageAction;
+import eatyourbeets.actions.animator.EveDamageAction;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.AnimatorCard;
 
 public class EvePower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(EvePower.class.getSimpleName());
+    public static final int GROWTH_AMOUNT = 1;
 
-    public int growth;
-
-    public EvePower(AbstractCreature owner, int initialDamage, int growth)
+    public EvePower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
-        this.amount = initialDamage;
-        this.growth = growth;
+
+        this.amount = amount;
 
         updateDescription();
-    }
-
-    @Override
-    public void stackPower(int stackAmount)
-    {
-        super.stackPower(stackAmount);
-
-        this.growth += stackAmount;
     }
 
     @Override
@@ -39,7 +30,7 @@ public class EvePower extends AnimatorPower
         AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasActiveSynergy())
         {
-            GameActionsHelper_Legacy.AddToBottom(new EveDamageAction(this));
+            GameActions.Bottom.Add(new EveDamageAction(this));
         }
     }
 }

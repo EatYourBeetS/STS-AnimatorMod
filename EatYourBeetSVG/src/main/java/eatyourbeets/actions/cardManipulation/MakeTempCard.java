@@ -1,12 +1,14 @@
 package eatyourbeets.actions.cardManipulation;
 
 import basemod.BaseMod;
+import com.megacrit.cardcrawl.actions.unique.AddCardToDeckAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.utilities.GameActions;
 
 public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 {
@@ -15,10 +17,23 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
     protected boolean makeCopy;
     protected boolean randomSpot;
     protected boolean toBottom;
+    protected float cardX = -1;
+    protected float cardY = -1;
 
     public MakeTempCard(AbstractCard card, CardGroup group)
     {
+        this(null, card, group);
+    }
+
+    public MakeTempCard(AbstractCard sourceCard, AbstractCard card, CardGroup group)
+    {
         super(ActionType.CARD_MANIPULATION);
+
+        if (sourceCard != null)
+        {
+            this.cardX = sourceCard.current_x;
+            this.cardY = sourceCard.current_y;
+        }
 
         this.card = card;
         this.cardGroup = group;
@@ -65,7 +80,9 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         {
             case DRAW_PILE:
             {
-                AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(actualCard, true, false));
+                AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(actualCard,
+                (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F, true, false));
+
                 break;
             }
 
@@ -79,8 +96,8 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 else
                 {
                     AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(actualCard,
-                    (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
-                    (float) Settings.HEIGHT / 2.0F));
+                            (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
+                            (float) Settings.HEIGHT / 2.0F));
                 }
 
                 break;
@@ -89,6 +106,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             case DISCARD_PILE:
             {
                 AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(actualCard));
+
                 break;
             }
 
@@ -100,6 +118,11 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             }
 
             case MASTER_DECK:
+            {
+                GameActions.Bottom.Add(new AddCardToDeckAction(actualCard));
+                break;
+            }
+
             case CARD_POOL:
             case UNSPECIFIED:
                 return;

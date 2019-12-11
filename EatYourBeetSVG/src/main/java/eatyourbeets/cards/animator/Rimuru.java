@@ -44,7 +44,7 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        //GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInHandAction(new HigakiRinne()));
+        //GameActions.Bottom.MakeCardInHand(new HigakiRinne()));
     }
 
     @Override

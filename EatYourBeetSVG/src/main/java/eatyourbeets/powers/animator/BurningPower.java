@@ -3,7 +3,6 @@ package eatyourbeets.powers.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,14 +11,14 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class BurningPower extends AnimatorPower implements HealthBarRenderPower
 {
     public static final String POWER_ID = CreateFullID(BurningPower.class.getSimpleName());
-    private final AbstractCreature source;
+    public static final float ATTACK_MULTIPLIER = 4;
 
-    private static final float ATTACK_MULTIPLIER = 4;
+    private final AbstractCreature source;
 
     public BurningPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
@@ -63,8 +62,9 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead())
         {
             this.flashWithoutSound();
-            GameActionsHelper_Legacy.DamageTarget(this.source, this.owner, getHealthBarAmount(), DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.FIRE);
-            GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
+
+            GameActions.Bottom.DealDamage(source, owner, getHealthBarAmount(), DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.FIRE);
+            ReducePower(1);
         }
     }
 

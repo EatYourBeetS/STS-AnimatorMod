@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.basic.MoveCards;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.actions._legacy.common.ShuffleRandomGoblinAction;
+import eatyourbeets.actions.animator.ShuffleRandomGoblinAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.PlayerStatistics;

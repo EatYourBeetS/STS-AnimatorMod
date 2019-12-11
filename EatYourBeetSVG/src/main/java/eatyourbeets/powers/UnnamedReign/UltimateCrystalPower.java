@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
 import eatyourbeets.powers.AnimatorPower;
 
@@ -70,7 +70,7 @@ public class UltimateCrystalPower extends AnimatorPower
     {
         super.onAfterUseCard(card, action);
 
-        GameActionsHelper_Legacy.ApplyPower(owner, owner, new StrengthPower(owner, STRENGTH_GAIN), STRENGTH_GAIN);
+        GameActions.Bottom.StackPower(owner, new StrengthPower(owner, STRENGTH_GAIN));
     }
 
     @Override

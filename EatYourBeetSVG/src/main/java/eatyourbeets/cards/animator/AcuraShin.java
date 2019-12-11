@@ -19,6 +19,7 @@ public class AcuraShin extends AnimatorCard
 
         Initialize(2,0, 3);
 
+        SetPiercing(true);
         SetSynergy(Synergies.Chaika);
     }
 

@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
@@ -47,6 +47,6 @@ public class LightningWisp extends Wisp
                 break;
         }
 
-        GameActionsHelper_Legacy.ApplyPower(this, this, new LightningWispPower(this, amount), amount);
+        GameActions.Bottom.ApplyPower(this, this, new LightningWispPower(this, amount), amount);
     }
 }

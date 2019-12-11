@@ -8,13 +8,13 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
-import eatyourbeets.actions._legacy.common.MoveMonsterAction;
+import eatyourbeets.actions.monsters.MoveMonsterAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
 import eatyourbeets.resources.Resources_Common;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions._legacy.common.SummonMonsterAction;
+import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.Crystallize;
 import eatyourbeets.effects.CallbackEffect;
@@ -110,8 +110,8 @@ public class UltimateCrystal extends Crystal
 
         if (original == null)
         {
-            GameActionsHelper_Legacy.ApplyPower(this, this, new UltimateCrystalPower(this, 6), 6);
-            GameActionsHelper_Legacy.ApplyPower(this, this, new AntiArtifactSlowPower(this, 1), 1);
+            GameActions.Bottom.ApplyPower(this, this, new UltimateCrystalPower(this, 6), 6);
+            GameActions.Bottom.ApplyPower(this, this, new AntiArtifactSlowPower(this, 1), 1);
 
             AbstractDungeon.effectList.add(new CallbackEffect(new WaitRealtimeAction(15),
                     this, (state, action)-> CardCrawlGame.music.unsilenceBGM()));
@@ -175,7 +175,7 @@ public class UltimateCrystal extends Crystal
         copy.drawX = this.drawX - 30;
         copy.drawY = this.drawY;
 
-        GameActionsHelper_Legacy.AddToBottom(new SummonMonsterAction(copy, false));
-        GameActionsHelper_Legacy.AddToBottom(new MoveMonsterAction(copy, targetX, targetY, 1.5f));
+        GameActions.Bottom.Add(new SummonMonsterAction(copy, false));
+        GameActions.Bottom.Add(new MoveMonsterAction(copy, targetX, targetY, 1.5f));
     }
 }

@@ -2,8 +2,8 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
-import eatyourbeets.actions._legacy.animator.HigakiRinneAction;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.animator.HigakiRinne;
 
 public class HigakiRinnePower extends AnimatorPower
@@ -35,7 +35,7 @@ public class HigakiRinnePower extends AnimatorPower
 
         for (int i = 0; i < this.amount; i++)
         {
-            GameActionsHelper_Legacy.AddToBottom(new HigakiRinneAction(higakiRinne));
+            GameActions.Bottom.Add(new HigakiRinneAction(higakiRinne));
         }
 
         this.flash();

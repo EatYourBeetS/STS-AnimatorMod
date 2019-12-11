@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class TheEruzaStone extends UnnamedReignRelic
 {
@@ -29,7 +29,7 @@ public class TheEruzaStone extends UnnamedReignRelic
 
         if (c.type == AbstractCard.CardType.POWER)
         {
-            GameActionsHelper_Legacy.DrawCard(AbstractDungeon.player, 1);
+            GameActions.Bottom.Draw(1);
             this.flash();
         }
     }

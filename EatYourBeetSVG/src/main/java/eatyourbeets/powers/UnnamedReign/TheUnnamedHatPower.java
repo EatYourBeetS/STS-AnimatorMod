@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EntanglePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -52,7 +51,7 @@ public class TheUnnamedHatPower extends AnimatorPower
         {
             if (m.currentHealth < m.maxHealth)
             {
-                m.heal(amount);
+                GameActions.Bottom.Heal(owner, m, amount).SetOptions(false);
             }
         }
     }

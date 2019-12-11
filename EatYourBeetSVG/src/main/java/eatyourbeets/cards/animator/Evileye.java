@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,7 +7,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -55,7 +54,7 @@ public class Evileye extends AnimatorCard implements Spellcaster
         if (HasActiveSynergy() && EffectHistory.TryActivateLimited(this.cardID))
         {
             GameActions.Bottom.GainIntellect(2);
-            GameActionsHelper_Legacy.AddToBottom(new IncreaseMaxOrbAction(1));
+            GameActions.Bottom.GainOrbSlots(1);
         }
     }
 

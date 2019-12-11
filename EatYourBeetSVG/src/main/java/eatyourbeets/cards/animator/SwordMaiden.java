@@ -2,12 +2,13 @@ package eatyourbeets.cards.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.common.RemoveRightmostDebuffAction;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.ui.EffectHistory;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.AnimatorCard;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class SwordMaiden extends AnimatorCard implements StartupCard
@@ -27,8 +28,20 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Add(new RemoveRightmostDebuffAction(p));
         GameActions.Bottom.GainTemporaryHP(this.magicNumber);
+        GameActions.Bottom.Callback(__ ->
+        {
+            AbstractPlayer player = AbstractDungeon.player;
+            for (int i = player.powers.size() - 1; i >= 0; i--)
+            {
+                AbstractPower power = player.powers.get(i);
+                if (power.type == AbstractPower.PowerType.DEBUFF)
+                {
+                    GameActions.Bottom.RemovePower(player, player, power);
+                    break;
+                }
+            }
+        });
     }
 
     @Override

@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
-import eatyourbeets.actions._legacy.animator.PlayTempBgmAction;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.actions.special.PlayTempBgmAction;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class SpecificMonsterPatches
         {
             if (stateName.equals("OPEN") && !lagavulin.isDying)
             {
-                GameActionsHelper_Legacy.AddToBottom(new PlayTempBgmAction("ELITE"));
+                GameActions.Bottom.Add(new PlayTempBgmAction("ELITE"));
             }
         }
     }

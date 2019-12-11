@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.unique.DiscoveryAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.OrbCore_Chaos;
 
 public class OrbCore_ChaosPower extends OrbCore_AbstractPower
@@ -26,7 +26,7 @@ public class OrbCore_ChaosPower extends OrbCore_AbstractPower
     {
         if (p.hand.size() < BaseMod.MAX_HAND_SIZE)
         {
-            GameActionsHelper_Legacy.AddToBottom(new DiscoveryAction());
+            GameActions.Bottom.Add(new DiscoveryAction());
         }
     }
 }

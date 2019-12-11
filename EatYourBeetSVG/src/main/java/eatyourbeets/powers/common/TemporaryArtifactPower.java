@@ -2,13 +2,11 @@ package eatyourbeets.powers.common;
 
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class TemporaryArtifactPower extends ArtifactPower implements CloneablePowerInterface
@@ -97,7 +95,7 @@ public class TemporaryArtifactPower extends ArtifactPower implements CloneablePo
 
         if (temporary > 0)
         {
-            GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(owner, owner, this, temporary));
+            GameActions.Bottom.ReducePower(this, temporary);
         }
     }
 

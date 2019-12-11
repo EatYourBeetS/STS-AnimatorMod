@@ -1,11 +1,10 @@
 package eatyourbeets.powers.UnnamedReign;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.Pain;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class CursedStabsPower extends AnimatorPower
 {
@@ -35,7 +34,7 @@ public class CursedStabsPower extends AnimatorPower
         {
             if (usesThisTurn > 0)
             {
-                GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInDrawPileAction(new Pain(), 1, true, true));
+                GameActions.Bottom.MakeCardInDrawPile(new Pain());
 
                 usesThisTurn -= 1;
             }

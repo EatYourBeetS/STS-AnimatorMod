@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackFrail;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackWeak;
@@ -44,6 +44,6 @@ public class LightningCube extends Cube
                 break;
         }
 
-        GameActionsHelper_Legacy.ApplyPower(this, this, new LightningCubePower(this, amount), amount);
+        GameActions.Bottom.ApplyPower(this, this, new LightningCubePower(this, amount), amount);
     }
 }

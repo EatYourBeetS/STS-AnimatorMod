@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.ScarAction;
-import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
+import eatyourbeets.actions.basic.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
@@ -22,6 +22,7 @@ public class Scar extends AnimatorCard
 
         Initialize(12,0, 0, 30);
 
+        SetPiercing(true);
         SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }

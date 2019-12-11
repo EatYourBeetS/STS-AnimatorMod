@@ -24,6 +24,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
 
         Initialize(4,0);
 
+        SetPiercing(true);
         SetSynergy(Synergies.Katanagatari);
 
         if (InitializingPreview())
@@ -75,7 +76,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
                 if (threeInARow)
                 {
                     EffectHistory.TryActivateLimited(cardID);
-                    GameActions.Bottom.MakeCardInDrawPile(new EntouJyuu()).SetOptions(upgraded, false);
+                    GameActions.Bottom.MakeCardInDrawPile(this, new EntouJyuu()).SetOptions(upgraded, false);
                 }
             }
         }

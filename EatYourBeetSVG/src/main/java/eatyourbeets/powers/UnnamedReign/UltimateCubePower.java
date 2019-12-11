@@ -3,9 +3,7 @@ package eatyourbeets.powers.UnnamedReign;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -14,7 +12,6 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.powers.AnimatorPower;
 
@@ -99,12 +96,13 @@ public class UltimateCubePower extends AnimatorPower
         {
             float x = owner.hb.cX + AbstractDungeon.cardRandomRng.random(-40, 40);
             float y = owner.hb.cY + AbstractDungeon.cardRandomRng.random(-40, 40);
+
             GameActions.Bottom.Wait(0.3f);
             GameActions.Bottom.VFX(new ExplosionSmallEffect(x, y), 0F);
-            GameActionsHelper_Legacy.DamageTarget(owner, p, damageStep, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(owner, p, damageStep, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
         }
 
-        GameActionsHelper_Legacy.AddToBottom(new SuicideAction((AbstractMonster)this.owner));
+        GameActions.Bottom.Add(new SuicideAction((AbstractMonster)this.owner));
     }
 
     private void GainRandomBuff(AbstractCreature c)
@@ -134,7 +132,7 @@ public class UltimateCubePower extends AnimatorPower
 
     private void BuffHealing(AbstractCreature c)
     {
-         GameActions.Bottom.ApplyPower(c, c, new HealingCubePower(c, 8), 8);
+         GameActions.Bottom.ApplyPower(c, c, new HealingCubePower(c, 9), 9);
     }
 
     private void BuffFire(AbstractCreature c)

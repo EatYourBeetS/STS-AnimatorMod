@@ -1,13 +1,12 @@
 package eatyourbeets.powers.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -46,10 +45,10 @@ public class GeassPower extends AnimatorPower
         {
             if (!monster.hasPower(StunMonsterPower.POWER_ID))
             {
-                GameActionsHelper_Legacy.ApplyPower(owner, owner, new StunMonsterPower(monster));
+                GameActions.Bottom.ApplyPower(owner, owner, new StunMonsterPower(monster));
             }
 
-            GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+            LosePower();
         }
     }
 
@@ -58,6 +57,6 @@ public class GeassPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+        LosePower();
     }
 }

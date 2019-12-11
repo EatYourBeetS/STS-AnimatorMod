@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class Strike_Katanagatari extends Strike
 {
@@ -16,6 +15,8 @@ public class Strike_Katanagatari extends Strike
         super(ID, 1, CardTarget.ENEMY);
 
         Initialize(7, 0);
+
+        SetPiercing(true);
         SetSynergy(Synergies.Katanagatari);
     }
 

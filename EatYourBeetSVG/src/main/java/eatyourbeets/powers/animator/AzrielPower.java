@@ -3,7 +3,7 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class AzrielPower extends AnimatorPower
 {
@@ -12,6 +12,7 @@ public class AzrielPower extends AnimatorPower
     public AzrielPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
+
         this.amount = amount;
 
         updateDescription();
@@ -23,7 +24,8 @@ public class AzrielPower extends AnimatorPower
             source == this.owner && !target.hasPower(ArtifactPower.POWER_ID))
         {
             this.flash();
-            GameActionsHelper_Legacy.ApplyPower(owner, owner, new StrengthPower(owner, amount), amount);
+
+            GameActions.Bottom.StackPower(new StrengthPower(owner, amount));
         }
     }
 }

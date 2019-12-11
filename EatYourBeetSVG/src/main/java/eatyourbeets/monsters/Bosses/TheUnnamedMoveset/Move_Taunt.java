@@ -1,10 +1,9 @@
 package eatyourbeets.monsters.Bosses.TheUnnamedMoveset;
 
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
@@ -28,7 +27,7 @@ public class Move_Taunt extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActionsHelper_Legacy.AddToBottom(new TalkAction(owner, GetLine()));
+        GameActions.Bottom.Talk(owner, GetLine());
     }
 
     private String GetLine()

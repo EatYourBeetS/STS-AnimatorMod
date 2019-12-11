@@ -63,6 +63,9 @@ public class AbstractEnums
         //public static AbstractCard.CardTags UNOBTAINABLE;
 
         @SpireEnum
+        public static AbstractCard.CardTags PIERCING;
+
+        @SpireEnum
         public static AbstractCard.CardTags UNIQUE;
 
         @SpireEnum

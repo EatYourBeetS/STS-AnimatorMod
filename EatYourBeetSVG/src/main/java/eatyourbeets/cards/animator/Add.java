@@ -1,8 +1,5 @@
 package eatyourbeets.cards.animator;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.defect.DoubleEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -11,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.JavaUtilities;
@@ -77,7 +73,7 @@ public class Add extends AnimatorCard
 
             if (cardGroup != null)
             {
-                GameActionsHelper_Legacy.AddToBottom(OrbCore.SelectCoreAction(name, 1)
+                GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
                 .AddCallback(cardGroup, this::OrbChosen));
             }
         }
@@ -91,15 +87,15 @@ public class Add extends AnimatorCard
             switch (cardGroup.type)
             {
                 case DRAW_PILE:
-                    GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInDrawPileAction(chosen.get(0), 1, true, true));
+                    GameActions.Bottom.MakeCardInDrawPile(chosen.get(0));
                     break;
 
                 case HAND:
-                    GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInHandAction(chosen.get(0), 1));
+                    GameActions.Bottom.MakeCardInHand(chosen.get(0));
                     break;
 
                 case DISCARD_PILE:
-                    GameActionsHelper_Legacy.AddToBottom(new MakeTempCardInDiscardAction(chosen.get(0), 1));
+                    GameActions.Bottom.MakeCardInDiscardPile(chosen.get(0));
                     break;
 
                 case MASTER_DECK:

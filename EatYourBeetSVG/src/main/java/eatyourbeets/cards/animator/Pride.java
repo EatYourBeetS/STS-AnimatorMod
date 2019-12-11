@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.PridePower;

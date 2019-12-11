@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class CursedBlade extends AnimatorRelic
@@ -37,7 +37,7 @@ public class CursedBlade extends AnimatorRelic
     {
         if (info.type == DamageInfo.DamageType.NORMAL && damageAmount > AbstractDungeon.player.currentBlock)
         {
-            GameActionsHelper_Legacy.MakeCardInHand(new Wound(), 1, false);
+            GameActions.Bottom.MakeCardInHand(new Wound());
         }
 
         return super.onAttacked(info, damageAmount);

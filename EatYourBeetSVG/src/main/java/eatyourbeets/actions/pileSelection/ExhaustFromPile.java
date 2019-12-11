@@ -26,13 +26,8 @@ public class ExhaustFromPile extends SelectFromPile
     }
 
     @Override
-    protected String CreateMessage()
+    public String CreateMessage()
     {
-        if (message == null)
-        {
-            message = ExhaustAction.TEXT[0];
-        }
-
-        return super.CreateMessage();
+        return super.CreateMessageInternal(ExhaustAction.TEXT[0]);
     }
 }

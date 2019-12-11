@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.InputManager;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -69,9 +71,10 @@ public class CerealBox extends AnimatorRelic
         super.atTurnStartPostDraw();
 
         AbstractPlayer p = AbstractDungeon.player;
-        if (counter > 0 && (p.currentHealth / (float)p.maxHealth) < 0.25f)
+        if (counter > 0 && GameUtilities.GetHealthPercentage(p) < 0.25f)
         {
-            AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            GameActions.Bottom.Add(new RelicAboveCreatureAction(p, this));
+
             this.beginLongPulse();
         }
         else

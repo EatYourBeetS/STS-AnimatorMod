@@ -1,12 +1,11 @@
 package eatyourbeets.powers.common;
 
 import basemod.interfaces.CloneablePowerInterface;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EnvenomPower;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class TemporaryEnvenomPower extends EnvenomPower implements CloneablePowerInterface
 {
@@ -22,7 +21,7 @@ public class TemporaryEnvenomPower extends EnvenomPower implements CloneablePowe
     {
         super.atEndOfTurn(isPlayer);
 
-        GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+        GameActions.Bottom.RemovePower(owner, owner, this);
     }
 
     @Override

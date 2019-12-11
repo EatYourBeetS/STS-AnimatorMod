@@ -1,13 +1,9 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
 
 public class MarkOfPoisonPower extends AnimatorPower
 {
@@ -29,7 +25,7 @@ public class MarkOfPoisonPower extends AnimatorPower
     {
         if (info.type != DamageInfo.DamageType.THORNS && damageAmount > 0)
         {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner, source, new PoisonPower(owner, source, this.amount), this.amount, AbstractGameAction.AttackEffect.POISON));
+            GameActions.Bottom.ApplyPoison(source, owner, amount);
         }
 
         return super.onAttacked(info, damageAmount);
@@ -38,7 +34,7 @@ public class MarkOfPoisonPower extends AnimatorPower
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(owner, source, this));
+        GameActions.Bottom.RemovePower(source, owner, this);
 
         super.atEndOfTurn(isPlayer);
     }

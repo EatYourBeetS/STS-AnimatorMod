@@ -1,8 +1,6 @@
 package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,8 +10,6 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
-import eatyourbeets.actions._legacy.common.DrawSpecificCardAction;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.interfaces.OnBlockBrokenSubscriber;
 
@@ -35,7 +31,8 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
     {
         super.onInitialApplication();
 
-        GameActionsHelper_Legacy.AddToTop(new VFXAction(new BorderFlashEffect(Color.ORANGE)));
+        GameActions.Top.VFX(new BorderFlashEffect(Color.ORANGE));
+
         PlayerStatistics.onBlockBroken.Subscribe(this);
     }
 
@@ -55,7 +52,8 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
                     AbstractCard card = randomAttacks.Retrieve(AbstractDungeon.cardRandomRng);
                     if (card != null)
                     {
-                        GameActionsHelper_Legacy.AddToBottom(new DrawSpecificCardAction(card));
+                        GameActions.Bottom.Draw(1).SetOptions(true)
+                        .SetFilter(c -> c.type == AbstractCard.CardType.ATTACK, false);
                     }
                 }
             }
@@ -69,7 +67,7 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+        LosePower();
 
         super.atEndOfTurn(isPlayer);
     }

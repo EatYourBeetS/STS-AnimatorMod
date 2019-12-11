@@ -12,14 +12,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.powers.FocusPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
-import eatyourbeets.actions._legacy.common.ChooseFromPileAction;
 import eatyourbeets.cards.AnimatorCard_UltraRare;
+import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
+import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,5 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedCultist;
 
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.beyond.OrbWalker;
@@ -8,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.monsters.exordium.Sentry;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
@@ -47,8 +46,8 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
     {
         super.usePreBattleAction();
 
-        GameActionsHelper_Legacy.ApplyPower(this, this, new TheUnnamedCultistPower(this, 15), 15);
-        GameActionsHelper_Legacy.AddToBottom(new TalkAction(this, data.strings.DIALOG[10], 1f, 3f));
+        GameActions.Bottom.StackPower(new TheUnnamedCultistPower(this, 15));
+        GameActions.Bottom.Talk(this, data.strings.DIALOG[10], 1f, 3f);
     }
 
     @Override

@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.common.ShuffleRandomGoblinAction;
+import eatyourbeets.actions.animator.ShuffleRandomGoblinAction;
 import eatyourbeets.cards.AnimatorCard_Status;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameActions;

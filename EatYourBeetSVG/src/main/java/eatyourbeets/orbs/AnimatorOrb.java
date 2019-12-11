@@ -21,7 +21,7 @@ public abstract class AnimatorOrb extends AbstractOrb
 
     public AnimatorOrb(String id)
     {
-        orbStrings = Resources_Animator.GetOrbStrings(id);
+        this.orbStrings = Resources_Animator.GetOrbStrings(id);
         this.ID = id;
         this.name = orbStrings.NAME;
     }

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -57,7 +57,7 @@ public class HallowedScabbard extends AnimatorRelic
             if (!used && counter >= DAMAGE_THRESHOLD)
             {
                 AbstractPlayer p = AbstractDungeon.player;
-                GameActionsHelper_Legacy.ApplyPower(p, p, new RegenPower(p, REGENERATION), REGENERATION);
+                GameActions.Bottom.StackPower(new RegenPower(p, REGENERATION));
                 GameActions.Bottom.GainForce(FORCE);
                 used = true;
                 this.flash();

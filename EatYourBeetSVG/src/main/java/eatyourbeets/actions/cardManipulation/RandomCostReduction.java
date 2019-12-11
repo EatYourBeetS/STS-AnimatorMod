@@ -55,11 +55,11 @@ public class RandomCostReduction extends EYBActionWithCallback<AbstractCard>
         {
             if (permanent)
             {
-                card.updateCost(Math.max(0, card.cost + amount));
+                card.updateCost(Math.max(0, card.cost - amount));
             }
             else
             {
-                card.setCostForTurn(Math.max(0, card.costForTurn + amount));
+                card.setCostForTurn(Math.max(0, card.costForTurn - amount));
             }
 
             card.superFlash(Color.GOLD.cpy());

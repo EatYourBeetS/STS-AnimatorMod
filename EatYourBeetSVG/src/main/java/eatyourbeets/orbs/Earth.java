@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.PlayerStatistics;
@@ -28,6 +27,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     public static Texture imgRight;
     public static Texture imgLeft;
     public static Texture imgMid;
+
     private final boolean hFlip1;
     private final boolean hFlip2;
 
@@ -90,7 +90,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
         if (turns <= 0)
         {
-            GameActionsHelper_Legacy.AddToTop(new EvokeSpecificOrbAction(this));
+            GameActions.Top.Add(new EvokeSpecificOrbAction(this));
 
             evoked = true;
         }

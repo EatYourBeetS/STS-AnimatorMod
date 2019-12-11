@@ -2,6 +2,7 @@ package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class HealingWispPower extends AnimatorPower
@@ -32,7 +33,7 @@ public class HealingWispPower extends AnimatorPower
 
         for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
         {
-            c.heal(amount, true);
+            GameActions.Bottom.Heal(null, c, amount);
         }
     }
 }

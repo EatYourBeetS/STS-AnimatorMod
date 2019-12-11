@@ -8,9 +8,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
-import eatyourbeets.actions.orbs.AirOrbEvokeAction;
-import eatyourbeets.actions.orbs.AirOrbPassiveAction;
+import eatyourbeets.actions.orbs.AetherOrbEvokeAction;
+import eatyourbeets.actions.orbs.AetherOrbPassiveAction;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Aether extends AnimatorOrb
@@ -50,12 +49,12 @@ public class Aether extends AnimatorOrb
 
     public void onEvoke()
     {
-        GameActions.Top.Add(new AirOrbEvokeAction(this));
+        GameActions.Top.Add(new AetherOrbEvokeAction(this.evokeAmount));
     }
 
     public void onEndOfTurn()
     {
-        GameActions.Bottom.Add(new AirOrbPassiveAction(this));
+        GameActions.Bottom.Add(new AetherOrbPassiveAction(this.passiveAmount));
     }
 
     public void triggerEvokeAnimation()

@@ -1,7 +1,7 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 
 import eatyourbeets.cards.animator.Crystallize;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
@@ -48,6 +48,6 @@ public class FireCrystal extends Crystal
                 break;
         }
 
-        GameActionsHelper_Legacy.ApplyPower(this, this, new FireCrystalPower(this, amount), amount);
+        GameActions.Bottom.ApplyPower(this, this, new FireCrystalPower(this, amount), amount);
     }
 }

@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifact;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
@@ -42,6 +42,6 @@ public class HealingWisp extends Wisp
                 break;
         }
 
-        GameActionsHelper_Legacy.ApplyPower(this, this, new HealingWispPower(this, amount), amount);
+        GameActions.Bottom.ApplyPower(this, this, new HealingWispPower(this, amount), amount);
     }
 }

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelperBase;
+import eatyourbeets.utilities.GameActionsHelper;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -128,7 +128,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {
-                GameActionsHelperBase.ClearPostCombatActions();
+                GameActionsHelper.ClearPostCombatActions();
             }
 
             if (!isFast && !Settings.FAST_MODE)

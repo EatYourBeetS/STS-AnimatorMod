@@ -1,13 +1,11 @@
 package eatyourbeets.powers.common;
 
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.relics.animator.EngravedStaff;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ForcePower extends CommonPower
@@ -54,6 +52,6 @@ public class ForcePower extends CommonPower
             GameActions.Bottom.ReducePower(owner, StrengthPower.POWER_ID, 1);
         }
 
-        GameActions.Bottom.ReducePower(this, 1);
+        ReducePower(1);
     }
 }

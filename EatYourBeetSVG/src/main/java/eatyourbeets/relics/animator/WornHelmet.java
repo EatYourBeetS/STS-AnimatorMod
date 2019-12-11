@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class WornHelmet extends AnimatorRelic
@@ -31,7 +30,7 @@ public class WornHelmet extends AnimatorRelic
     {
         this.flash();
 
-        GameActionsHelper_Legacy.AddToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        GameActions.Bottom.Add(new RelicAboveCreatureAction(AbstractDungeon.player, this));
         GameActions.Bottom.GainBlock(BLOCK_AMOUNT1);
         this.counter = 0;
     }

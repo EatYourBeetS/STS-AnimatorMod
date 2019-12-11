@@ -3,7 +3,7 @@ package eatyourbeets.monsters;
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -61,7 +61,7 @@ public abstract class AnimatorMonster extends CustomMonster
     {
         ExecuteNextMove();
 
-        GameActionsHelper_Legacy.AddToBottom(new RollMoveAction(this));
+        GameActions.Bottom.Add(new RollMoveAction(this));
     }
 
     protected void SetNextMove(int roll, int historySize, Byte previousMove)

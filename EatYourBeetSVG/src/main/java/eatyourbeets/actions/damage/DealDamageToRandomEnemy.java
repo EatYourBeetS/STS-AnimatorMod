@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.*;
@@ -16,6 +17,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean skipWait;
+    protected boolean isOrb;
 
     protected final DamageInfo info;
     protected Consumer<AbstractCreature> onDamageEffect;
@@ -24,6 +26,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     {
         this(other.info, other.attackEffect);
 
+        this.isOrb = other.isOrb;
         this.skipWait = other.skipWait;
         this.bypassBlock = other.bypassBlock;
         this.bypassThorns = other.bypassThorns;
@@ -56,9 +59,10 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         return this;
     }
 
-    public DealDamageToRandomEnemy SetOptions2(boolean superFast)
+    public DealDamageToRandomEnemy SetOptions2(boolean superFast, boolean isOrb)
     {
         this.skipWait = superFast;
+        this.isOrb = isOrb;
 
         return this;
     }
@@ -124,11 +128,17 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
             }
 
             this.info.applyPowers(this.info.owner, target);
+
+            if (isOrb)
+            {
+                this.info.output = AbstractOrb.applyLockOn(target, this.info.output);
+            }
+
             DamageHelper.DealDamage(target, info, bypassBlock, bypassThorns);
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {
-                GameActionsHelperBase.ClearPostCombatActions();
+                GameActionsHelper.ClearPostCombatActions();
             }
 
             if (!Settings.FAST_MODE && !skipWait)

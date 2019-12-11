@@ -3,12 +3,9 @@ package eatyourbeets.blights.animator;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.cards.animator.TheHaunt;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class Haunted extends AnimatorBlight
 {

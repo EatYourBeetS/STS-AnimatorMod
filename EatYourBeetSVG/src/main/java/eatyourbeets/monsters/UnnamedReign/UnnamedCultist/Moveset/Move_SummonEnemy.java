@@ -1,14 +1,11 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset;
 
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
-import eatyourbeets.actions._legacy.common.SummonMonsterAction;
-import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.monsters.AbstractMove;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
@@ -49,7 +46,7 @@ public class Move_SummonEnemy extends AbstractMove
 
         if (summon.id.equals(TheUnnamed_Doll.ID))
         {
-            GameActions.Bottom.Add(new TalkAction(owner, cultist.data.strings.DIALOG[1], 0.5f, 2f));
+            GameActions.Bottom.Talk(owner, cultist.data.strings.DIALOG[1], 0.5f, 2f);
             GameActions.Bottom.WaitRealtime(2f);
             GameActions.Bottom.Add(new SummonMonsterAction(summon, true));
             return;
@@ -57,15 +54,15 @@ public class Move_SummonEnemy extends AbstractMove
 
         if (summon.id.equals(ShelledParasite.ID))
         {
-            GameActions.Bottom.Add(new TalkAction(owner, cultist.data.strings.DIALOG[4], 3f, 3f));
+            GameActions.Bottom.Talk(owner, cultist.data.strings.DIALOG[4], 3f, 3f);
         }
         else if (summon.id.equals(GremlinWarrior.ID))
         {
-            GameActions.Bottom.Add(new TalkAction(owner, cultist.data.strings.DIALOG[3], 3f, 3f));
+            GameActions.Bottom.Talk(owner, cultist.data.strings.DIALOG[3], 3f, 3f);
         }
         else
         {
-            GameActions.Bottom.Add(new TalkAction(owner, cultist.data.strings.DIALOG[2].replace("@", summon.name), 3f, 3f));
+            GameActions.Bottom.Talk(owner, cultist.data.strings.DIALOG[2].replace("@", summon.name), 3f, 3f);
         }
 
         GameActions.Bottom.Add(new SummonMonsterAction(summon, false));

@@ -2,6 +2,7 @@ package eatyourbeets.utilities;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
@@ -25,6 +26,7 @@ import eatyourbeets.actions.cardManipulation.MotivateAction;
 import eatyourbeets.actions.damage.DealDamage;
 import eatyourbeets.actions.damage.DealDamageToAll;
 import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
+import eatyourbeets.actions.handSelection.CycleCards;
 import eatyourbeets.actions.handSelection.DiscardFromHand;
 import eatyourbeets.actions.handSelection.ExhaustFromHand;
 import eatyourbeets.actions.handSelection.SelectFromHand;
@@ -53,12 +55,12 @@ import java.util.function.Consumer;
 @SuppressWarnings("UnusedReturnValue")
 public final class GameActions
 {
-    public static final GameActions Top = new GameActions(GameActionsHelperBase.Order.Top);
-    public static final GameActions Bottom = new GameActions(GameActionsHelperBase.Order.Bottom);
+    public static final GameActions Top = new GameActions(GameActionsHelper.Order.Top);
+    public static final GameActions Bottom = new GameActions(GameActionsHelper.Order.Bottom);
 
-    protected GameActionsHelperBase.Order actionOrder;
+    protected GameActionsHelper.Order actionOrder;
 
-    protected GameActions(GameActionsHelperBase.Order order)
+    protected GameActions(GameActionsHelper.Order order)
     {
         actionOrder = order;
     }
@@ -97,6 +99,11 @@ public final class GameActions
         return StackPower(source, new ConstrictedPower(target, source, amount));
     }
 
+    public ApplyPowerAction ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new FrailPower(target, amount, !source.isPlayer));
+    }
+
     public ApplyPowerAction ApplyPoison(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new PoisonPower(target, source, amount));
@@ -115,11 +122,6 @@ public final class GameActions
     public ApplyPowerSilently ApplyPowerSilently(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
     {
         return Add(new ApplyPowerSilently(target, source, power, stacks));
-    }
-
-    public ApplyPowerAction ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        return StackPower(source, new FrailPower(target, amount, !source.isPlayer));
     }
 
     public ApplyPowerAction ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)
@@ -174,7 +176,7 @@ public final class GameActions
 
     public CycleCards Cycle(int amount, String sourceName)
     {
-        return (CycleCards)Add(new CycleCards(sourceName, amount, false)
+        return (CycleCards) Add(new CycleCards(sourceName, amount, false)
                 .SetOptions(true, true, true));
     }
 
@@ -226,16 +228,6 @@ public final class GameActions
     public DrawCards Draw(int amount)
     {
         return Add(new DrawCards(amount));
-    }
-
-    public PurgeAnywhere Purge(UUID uuid)
-    {
-        return Add(new PurgeAnywhere(uuid));
-    }
-
-    public PurgeAnywhere Purge(AbstractCard card)
-    {
-        return Add(new PurgeAnywhere(card));
     }
 
     public ExhaustAnywhere Exhaust(AbstractCard card)
@@ -374,14 +366,24 @@ public final class GameActions
         return StackPower(new ThornsPower(AbstractDungeon.player, amount));
     }
 
-    public HealAction Heal(int amount)
+    public HealFaster Heal(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return Add(new HealAction(AbstractDungeon.player, AbstractDungeon.player, amount));
+        return Add(new HealFaster(target, source, amount));
+    }
+
+    public HealFaster Heal(int amount)
+    {
+        return Add(new HealFaster(AbstractDungeon.player, AbstractDungeon.player, amount));
     }
 
     public LoseHPAction LoseHP(int amount, AbstractGameAction.AttackEffect effect)
     {
         return Add(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, amount, effect));
+    }
+
+    public MakeTempCard MakeCard(AbstractCard sourceCard, AbstractCard card, CardGroup group)
+    {
+        return Add(new MakeTempCard(sourceCard, card, group));
     }
 
     public MakeTempCard MakeCard(AbstractCard card, CardGroup group)
@@ -394,9 +396,19 @@ public final class GameActions
         return MakeCard(card, AbstractDungeon.player.discardPile);
     }
 
+    public MakeTempCard MakeCardInDiscardPile(AbstractCard sourceCard, AbstractCard card)
+    {
+        return MakeCard(sourceCard, card, AbstractDungeon.player.discardPile);
+    }
+
     public MakeTempCard MakeCardInDrawPile(AbstractCard card)
     {
         return MakeCard(card, AbstractDungeon.player.drawPile);
+    }
+
+    public MakeTempCard MakeCardInDrawPile(AbstractCard sourceCard, AbstractCard card)
+    {
+        return MakeCard(sourceCard, card, AbstractDungeon.player.drawPile);
     }
 
     public MakeTempCard MakeCardInHand(AbstractCard card)
@@ -456,6 +468,16 @@ public final class GameActions
         return Add(new MoveCards(destination, source, amount, true, true));
     }
 
+    public PurgeAnywhere Purge(UUID uuid)
+    {
+        return Add(new PurgeAnywhere(uuid));
+    }
+
+    public PurgeAnywhere Purge(AbstractCard card)
+    {
+        return Add(new PurgeAnywhere(card));
+    }
+
     public ReducePowerAction ReducePower(AbstractCreature source, String powerID, int amount)
     {
         return Add(new ReducePowerAction(source, source, powerID, amount));
@@ -473,16 +495,16 @@ public final class GameActions
 
     public DiscardFromHand Reload(String sourceName, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onReload)
     {
-        return (DiscardFromHand)Add(new DiscardFromHand(sourceName, 999, false)
-        .SetOptions(true, true, true)
-        .AddCallback(state, onReload));
+        return (DiscardFromHand) Add(new DiscardFromHand(sourceName, 999, false)
+                .SetOptions(true, true, true)
+                .AddCallback(state, onReload));
     }
 
     public DiscardFromHand Reload(String sourceName, Consumer<ArrayList<AbstractCard>> onReload)
     {
-        return (DiscardFromHand)Add(new DiscardFromHand(sourceName, 999, false)
-        .SetOptions(true, true, true)
-        .AddCallback(onReload));
+        return (DiscardFromHand) Add(new DiscardFromHand(sourceName, 999, false)
+                .SetOptions(true, true, true)
+                .AddCallback(onReload));
     }
 
     public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractCreature target, AbstractPower power)
@@ -533,6 +555,16 @@ public final class GameActions
     public ReduceStrength StealStrength(AbstractCreature target, int amount, boolean temporary)
     {
         return ReduceStrength(target, amount, temporary).SetOptions(true);
+    }
+
+    public TalkAction Talk(AbstractCreature source, String text)
+    {
+        return Add(new TalkAction(source, text));
+    }
+
+    public TalkAction Talk(AbstractCreature source, String text, float duration, float bubbleDuration)
+    {
+        return Add(new TalkAction(source, text, duration, bubbleDuration));
     }
 
     public VFXAction VFX(AbstractGameEffect effect)

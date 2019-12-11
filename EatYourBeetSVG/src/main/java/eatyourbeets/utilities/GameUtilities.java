@@ -1,7 +1,6 @@
 package eatyourbeets.utilities;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -19,7 +18,6 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.orbs.Aether;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
-import eatyourbeets.powers.common.TemporaryBiasPower;
 import eatyourbeets.powers.unnamed.ResonancePower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,45 +30,6 @@ public class GameUtilities
 {
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
     private static final Logger Logger = LogManager.getLogger(GameUtilities.class.getName());
-
-    public static void ApplyTemporaryDexterity(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
-
-        if (UseArtifact(target))
-        {
-            GameActionsHelper_Legacy.ApplyPowerSilently(source, target, new LoseDexterityPower(target, amount), amount);
-        }
-
-        GameActionsHelper_Legacy.ApplyPower(source, target, new DexterityPower(target, amount), amount);
-        GameActionsHelper_Legacy.ResetOrder();
-    }
-
-    public static void ApplyTemporaryFocus(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
-
-        if (UseArtifact(target))
-        {
-            GameActionsHelper_Legacy.ApplyPowerSilently(source, target, new TemporaryBiasPower(target, amount), amount);
-        }
-
-        GameActionsHelper_Legacy.ApplyPower(source, target, new FocusPower(target, amount), amount);
-        GameActionsHelper_Legacy.ResetOrder();
-    }
-
-    public static void GainTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
-
-        if (UseArtifact(target))
-        {
-            GameActionsHelper_Legacy.ApplyPowerSilently(source, target, new LoseStrengthPower(target, amount), amount);
-        }
-
-        GameActionsHelper_Legacy.ApplyPower(source, target, new StrengthPower(target, amount), amount);
-        GameActionsHelper_Legacy.ResetOrder();
-    }
 
     public static int GetActualAscensionLevel()
     {
@@ -478,19 +437,6 @@ public class GameUtilities
         return target.isDeadOrEscaped() || target.currentHealth <= 0;
     }
 
-    public static void LoseTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        GameActionsHelper_Legacy.SetOrder(GameActionsHelper_Legacy.Order.Top);
-
-        if (UseArtifact(target))
-        {
-            GameActionsHelper_Legacy.ApplyPower(source, target, new StrengthPower(target, -amount), -amount);
-            GameActionsHelper_Legacy.ApplyPowerSilently(source, target, new GainStrengthPower(target, amount), amount);
-        }
-
-        GameActionsHelper_Legacy.ResetOrder();
-    }
-
     public static boolean TriggerOnKill(AbstractCreature enemy, boolean includeMinions)
     {
         return IsDeadOrEscaped(enemy) && !enemy.hasPower(RegrowPower.POWER_ID) && (includeMinions || !enemy.hasPower(MinionPower.POWER_ID));
@@ -545,7 +491,7 @@ public class GameUtilities
         AbstractPlayer p = AbstractDungeon.player;
         if (p.hasPower(PenNibPower.POWER_ID))
         {
-            GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(p, p, PenNibPower.POWER_ID, 1));
+            GameActions.Bottom.ReducePower(p, PenNibPower.POWER_ID, 1);
         }
     }
 }

@@ -3,12 +3,11 @@ package eatyourbeets.powers.common;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.powers.CommonPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
 {
@@ -33,8 +32,9 @@ public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        GameActionsHelper_Legacy.DamageTarget(null, owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(owner, owner, this));
+        GameActions.Bottom.DealDamage(null, owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+
+        LosePower();
 
         playApplyPowerSfx();
         flashWithoutSound();

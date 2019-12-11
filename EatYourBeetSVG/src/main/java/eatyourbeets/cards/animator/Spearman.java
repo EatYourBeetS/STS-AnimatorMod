@@ -8,7 +8,6 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,6 +21,7 @@ public class Spearman extends AnimatorCard
 
         Initialize(9, 0, 1);
 
+        SetPiercing(true);
         SetSynergy(Synergies.GoblinSlayer);
     }
 

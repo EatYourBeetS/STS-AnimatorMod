@@ -26,13 +26,8 @@ public class DiscardFromPile extends SelectFromPile
     }
 
     @Override
-    protected String CreateMessage()
+    public String CreateMessage()
     {
-        if (message == null)
-        {
-            message = DiscardAction.TEXT[0];
-        }
-
-        return super.CreateMessage();
+        return super.CreateMessageInternal(DiscardAction.TEXT[0]);
     }
 }

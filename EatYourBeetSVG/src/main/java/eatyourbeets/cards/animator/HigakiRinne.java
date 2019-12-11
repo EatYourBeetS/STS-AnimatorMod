@@ -20,7 +20,7 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions._legacy.animator.HigakiRinneAction;
+import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.HigakiRinnePower;
@@ -79,7 +79,7 @@ public class HigakiRinne extends AnimatorCard
 
             GameActions.Top.Wait(0.5f);
             GameActions.Top.Draw(1);
-            GameActions.Top.MoveCard(this, p.discardPile, p.hand, true);
+            GameActions.Top.MoveCard(this, p.discardPile, p.hand, false);
         }
         else if (n < 45)
         {

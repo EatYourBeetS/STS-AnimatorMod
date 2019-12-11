@@ -4,13 +4,12 @@ import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions._legacy.common.RefreshHandLayoutAction;
+import eatyourbeets.actions.basic.RefreshHandLayoutAction;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class HiiragiShinya extends AnimatorCard
 {
@@ -40,13 +39,13 @@ public class HiiragiShinya extends AnimatorCard
                 AbstractCard c = cards.get(0);
                 c.setCostForTurn(c.costForTurn + 1);
                 c.retain = true;
-                GameActionsHelper_Legacy.AddToBottom(new RefreshHandLayoutAction());
+                GameActions.Bottom.Add(new RefreshHandLayoutAction());
             }
         });
 
         if (HasActiveSynergy())
         {
-            GameActionsHelper_Legacy.ApplyPower(p, p, new SupportDamagePower(p, magicNumber), magicNumber);
+            GameActions.Bottom.StackPower(new SupportDamagePower(p, magicNumber));
         }
     }
 

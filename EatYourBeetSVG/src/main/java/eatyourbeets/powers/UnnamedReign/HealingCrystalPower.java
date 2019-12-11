@@ -1,8 +1,7 @@
 package eatyourbeets.powers.UnnamedReign;
 
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class HealingCrystalPower extends AbstractCrystalPower
 {
@@ -16,6 +15,6 @@ public class HealingCrystalPower extends AbstractCrystalPower
     @Override
     protected void Activate(AbstractCreature target)
     {
-        GameActionsHelper_Legacy.AddToBottom(new HealAction(target, null, amount));
+        GameActions.Bottom.Heal(null, target, amount);
     }
 }

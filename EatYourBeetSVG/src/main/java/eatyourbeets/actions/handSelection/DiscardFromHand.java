@@ -34,10 +34,8 @@ public class DiscardFromHand extends SelectFromHand
     }
 
     @Override
-    protected String CreateMessage()
+    public String CreateMessage()
     {
-        message = DiscardAction.TEXT[0];
-
-        return super.CreateMessage();
+        return super.CreateMessageInternal(DiscardAction.TEXT[0]);
     }
 }

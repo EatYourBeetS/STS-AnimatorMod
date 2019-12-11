@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
-import eatyourbeets.utilities.GameActionsHelper_Legacy; import eatyourbeets.utilities.GameActions;
-import eatyourbeets.actions._legacy.common.TransformIntoSpecificCardAction;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.actions.animator.VanirAction;
 import eatyourbeets.cards.AnimatorCard_Boost;
 import eatyourbeets.cards.Synergies;
 
@@ -48,7 +48,7 @@ public class Vanir extends AnimatorCard_Boost
         if (drawPile.size() > 0)
         {
             //TODO: Improve this
-            GameActions.Bottom.Add(new TransformIntoSpecificCardAction(this, drawPile, drawPile, 1));
+            GameActions.Bottom.Add(new VanirAction(this, drawPile, drawPile, 1));
         }
     }
 

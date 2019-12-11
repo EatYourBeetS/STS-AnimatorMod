@@ -2,8 +2,6 @@ package eatyourbeets.actions.handSelection;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.RandomizedList;
@@ -146,10 +144,13 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
 
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
             AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
-
-            Complete(selectedCards);
         }
 
         tickDuration();
+        
+        if (isDone)
+        {
+            Complete(selectedCards);
+        }
     }
 }

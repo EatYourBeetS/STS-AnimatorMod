@@ -8,7 +8,6 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.utilities.GameUtilities;

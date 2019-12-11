@@ -1,14 +1,13 @@
 package eatyourbeets.powers.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -56,7 +55,7 @@ public class PridePower extends AnimatorPower
     @Override
     public void atStartOfTurn()
     {
-        GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        LosePower();
 
         super.atStartOfTurn();
     }
@@ -66,16 +65,6 @@ public class PridePower extends AnimatorPower
         int max = Integer.MIN_VALUE;
 
         Dark best = darkOrbs.get(0);
-//        Dark best = null;
-//
-//        for (Dark dark : darkOrbs)
-//        {
-//            if (dark.evokeAmount > max)
-//            {
-//                max = dark.evokeAmount;
-//                best = dark;
-//            }
-//        }
 
         if (best != null)
         {
@@ -88,7 +77,7 @@ public class PridePower extends AnimatorPower
             {
                 darkOrbs.remove(best);
                 best.evokeAmount = 0;
-                GameActionsHelper_Legacy.AddToTop(new EvokeSpecificOrbAction(best));
+                GameActions.Top.Add(new EvokeSpecificOrbAction(best));
             }
 
             if (damage > 0 && darkOrbs.size() > 0)

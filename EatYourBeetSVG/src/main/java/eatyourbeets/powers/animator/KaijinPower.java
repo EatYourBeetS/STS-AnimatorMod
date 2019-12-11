@@ -1,10 +1,11 @@
 package eatyourbeets.powers.animator;
 
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions._legacy.animator.KaijinAction;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class KaijinPower extends AnimatorPower
 {
@@ -26,7 +27,30 @@ public class KaijinPower extends AnimatorPower
 
         if (isPlayer && !AbstractDungeon.player.hand.isEmpty())
         {
-            GameActionsHelper_Legacy.AddToBottom(new KaijinAction(owner, amount));
+            GameActions.Bottom.SelectFromHand(name, 1, false)
+            .SetOptions(true, true, true)
+            .SetMessage(RetainCardsAction.TEXT[0])
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    AbstractCard c = cards.get(0);
+                    if (!c.isEthereal)
+                    {
+                        c.retain = true;
+                    }
+
+                    if (c.baseBlock > 0)
+                    {
+                        c.baseBlock += amount;
+                    }
+
+                    if (c.baseDamage > 0)
+                    {
+                        c.baseDamage += amount;
+                    }
+                }
+            });
         }
     }
 }

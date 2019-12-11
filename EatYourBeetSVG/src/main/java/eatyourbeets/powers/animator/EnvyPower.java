@@ -21,13 +21,13 @@ public class EnvyPower extends AnimatorPower
     public void atStartOfTurn()
     {
         super.atStartOfTurn();
-        AnimatorCard.SynergyReserves = amount;
+        AnimatorCard.FutureSynergies = amount;
     }
 
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
         super.atEndOfTurn(isPlayer);
-        AnimatorCard.SynergyReserves = 0;
+        AnimatorCard.FutureSynergies = 0;
     }
 }

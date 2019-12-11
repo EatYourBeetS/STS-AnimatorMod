@@ -8,7 +8,6 @@ import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.EvePower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Eve extends AnimatorCard
@@ -27,9 +26,9 @@ public class Eve extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (EffectHistory.TryActivateLimited(cardID))
+        if (!p.hasPower(EvePower.POWER_ID))
         {
-            GameActions.Bottom.StackPower(new EvePower(p, 1, 1));
+            GameActions.Bottom.StackPower(new EvePower(p, 1));
         }
 
         GameActions.Bottom.GainOrbSlots(magicNumber);

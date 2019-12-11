@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.actions._legacy.common.ChooseFromPileAction;
 import eatyourbeets.cards.animator.Vesta;
 import eatyourbeets.cards.animator.Vesta_Elixir;
-import eatyourbeets.resources.Resources_Animator_Strings;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 

@@ -1,13 +1,12 @@
 package eatyourbeets.powers.common;
 
 import basemod.interfaces.CloneablePowerInterface;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import eatyourbeets.utilities.GameActions;
 
 public class PlayerFlightPower extends AbstractPower implements CloneablePowerInterface
 {
@@ -61,7 +60,7 @@ public class PlayerFlightPower extends AbstractPower implements CloneablePowerIn
         if (info.owner != null && info.type != DamageInfo.DamageType.HP_LOSS && info.type != DamageInfo.DamageType.THORNS && damageAmount > 0 && willLive)
         {
             this.flash();
-            AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this, 1));
+            GameActions.Bottom.ReducePower(this, 1);
         }
 
         return damageAmount;

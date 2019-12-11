@@ -2,7 +2,6 @@ package eatyourbeets.monsters.Bosses;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -28,7 +27,7 @@ import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.InfinitePower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.scenes.TheUnnamedReignScene;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -130,7 +129,7 @@ public class TheUnnamed extends AnimatorMonster
 
         if (AbstractDungeon.player.maxHealth > 400)
         {
-            GameActionsHelper_Legacy.AddToBottom(new TalkAction(this, data.strings.DIALOG[1], 4, 4));
+            GameActions.Bottom.Talk(this, data.strings.DIALOG[1], 4, 4);
             moveFading.fadingTurns = 3;
             moveFading.ExecuteInternal(AbstractDungeon.player);
         }
@@ -142,7 +141,7 @@ public class TheUnnamed extends AnimatorMonster
             CardCrawlGame.music.updateVolume();
         }
 
-        GameActionsHelper_Legacy.ApplyPower(this, this, infinitePower);
+        GameActions.Bottom.ApplyPower(this, this, infinitePower);
     }
 
     @Override
@@ -161,7 +160,7 @@ public class TheUnnamed extends AnimatorMonster
     {
         if (!hasPower(InfinitePower.POWER_ID))
         {
-            GameActionsHelper_Legacy.ApplyPowerSilently(this, this, infinitePower, 0);
+            GameActions.Bottom.ApplyPowerSilently(this, this, infinitePower, 0);
         }
 
         if (infinitePower.phase2 && moveFading.CanUse(previousMove))
@@ -226,7 +225,7 @@ public class TheUnnamed extends AnimatorMonster
 
         infinitePower.phase2 = true;
 
-        GameActionsHelper_Legacy.VFX(new BorderLongFlashEffect(Color.BLACK, false));
+        GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.BLACK, false));
         CardCrawlGame.music.silenceTempBgmInstantly();
         CardCrawlGame.music.silenceBGMInstantly();
         AbstractDungeon.scene.fadeInAmbiance();
@@ -240,11 +239,11 @@ public class TheUnnamed extends AnimatorMonster
             int plated = (minions >= 2) ? 24 : 18;
             int angry = (minions >= 3) ? 6 : 4;
 
-            GameActionsHelper_Legacy.AddToBottom(new TalkAction(this, data.strings.DIALOG[0], 3, 3));
-            GameActionsHelper_Legacy.ApplyPower(this, this, new RegenPower(this, regen), regen);
-            GameActionsHelper_Legacy.ApplyPower(this, this, new AngryPower(this, angry), angry);
-            GameActionsHelper_Legacy.ApplyPower(this, this, new PlatedArmorPower(this, plated), plated);
-            GameActionsHelper_Legacy.ApplyPower(this, this, new EarthenThornsPower(this, 6), 6);
+            GameActions.Bottom.Talk(this, data.strings.DIALOG[0], 3, 3);
+            GameActions.Bottom.StackPower(new RegenPower(this, regen));
+            GameActions.Bottom.StackPower(new AngryPower(this, angry));
+            GameActions.Bottom.StackPower(new PlatedArmorPower(this, plated));
+            GameActions.Bottom.StackPower(new EarthenThornsPower(this, 6));
 
 //            moveFading.SetMove();
 //            this.createIntent();
@@ -271,7 +270,7 @@ public class TheUnnamed extends AnimatorMonster
         if (!deathNoteMessage)
         {
             deathNoteMessage = true;
-            GameActionsHelper_Legacy.AddToBottom(new TalkAction(this, data.strings.DIALOG[2], 3, 3));
+            GameActions.Bottom.Talk(this, data.strings.DIALOG[2], 3, 3);
         }
     }
 
@@ -282,7 +281,7 @@ public class TheUnnamed extends AnimatorMonster
         {
             if (m.hasPower(MinionPower.POWER_ID))
             {
-                GameActionsHelper_Legacy.AddToBottom(new EscapeAction(m));
+                GameActions.Bottom.Add(new EscapeAction(m));
                 removed += 1;
             }
         }

@@ -1,11 +1,8 @@
 package eatyourbeets.powers.unnamed;
 
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.actions._legacy.common.IncreaseMaxHpAction;
 import eatyourbeets.powers.UnnamedPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class UnnamedDollPlayerPower extends UnnamedPower
 {
@@ -43,7 +40,7 @@ public class UnnamedDollPlayerPower extends UnnamedPower
     {
         super.atEndOfTurn(isPlayer);
 
-        GameActionsHelper_Legacy.AddToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        LosePower();
     }
 
     @Override
@@ -54,7 +51,7 @@ public class UnnamedDollPlayerPower extends UnnamedPower
         int amount = Math.min(20 - maxHPGainedThisTurn, this.amount);
         if (amount > 0)
         {
-            GameActionsHelper_Legacy.AddToBottom(new IncreaseMaxHpAction(owner, amount, true));
+            //GameActions.Bottom.Add(new IncreaseMaxHpAction(owner, amount, true));
 
             maxHPGainedThisTurn += amount;
 

@@ -1,13 +1,11 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class ChlammyZellPower extends AnimatorPower
 {
@@ -33,7 +31,7 @@ public class ChlammyZellPower extends AnimatorPower
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        LosePower();
 
         super.atEndOfTurn(isPlayer);
     }
@@ -48,8 +46,10 @@ public class ChlammyZellPower extends AnimatorPower
             lastType = usedCard.type;
 
             int[] damage = DamageInfo.createDamageMatrix(amount, true);
-            GameActionsHelper_Legacy.DamageAllEnemies(owner, damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-            GameActionsHelper_Legacy.CycleCardAction(1, name);
+
+            GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+            GameActions.Bottom.Cycle(1, name);
+
             updateDescription();
         }
     }

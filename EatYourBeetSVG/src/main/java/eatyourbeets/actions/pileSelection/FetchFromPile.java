@@ -26,13 +26,8 @@ public class FetchFromPile extends SelectFromPile
     }
 
     @Override
-    protected String CreateMessage()
+    public String CreateMessage()
     {
-        if (message == null)
-        {
-            message = FetchAction.TEXT[0];
-        }
-
-        return super.CreateMessage();
+        return super.CreateMessageInternal(FetchAction.TEXT[0]);
     }
 }

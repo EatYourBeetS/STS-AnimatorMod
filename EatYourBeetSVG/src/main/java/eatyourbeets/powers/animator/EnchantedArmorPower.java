@@ -17,6 +17,7 @@ public class EnchantedArmorPower extends AnimatorPower
     public EnchantedArmorPower(AbstractCreature owner, int resistance, boolean reactive)
     {
         super(owner, POWER_ID);
+
         this.amount = resistance;
         this.reactive = reactive;
 
@@ -90,7 +91,6 @@ public class EnchantedArmorPower extends AnimatorPower
 
     @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
-    //public int onAttacked(DamageInfo info, int damageAmount)
     {
         if (reactive)
         {
@@ -115,7 +115,6 @@ public class EnchantedArmorPower extends AnimatorPower
             }
         }
 
-        //return super.onAttacked(info, damageAmount);
         return super.onAttackedToChangeDamage(info, damageAmount);
     }
 

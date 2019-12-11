@@ -21,6 +21,7 @@ public class ItamiYouji extends AnimatorCard
 
         Initialize(2,0,4, 1);
 
+        SetPiercing(true);
         SetSynergy(Synergies.Gate);
     }
 

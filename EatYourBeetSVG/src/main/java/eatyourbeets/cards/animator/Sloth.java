@@ -9,7 +9,6 @@ import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.powers.common.TemporaryDrawReductionPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 

@@ -58,11 +58,11 @@ public abstract class EYBAction extends AbstractGameAction
         this.name = name;
     }
 
-    protected String CreateMessage()
+    protected String CreateMessageInternal(String defaultMessage)
     {
         if (message == null)
         {
-            message = "";
+            message = defaultMessage;
         }
 
         if (name != null && !name.equals(""))
@@ -71,6 +71,11 @@ public abstract class EYBAction extends AbstractGameAction
         }
 
         return message;
+    }
+
+    public String CreateMessage()
+    {
+        return CreateMessageInternal("");
     }
 
     @Override

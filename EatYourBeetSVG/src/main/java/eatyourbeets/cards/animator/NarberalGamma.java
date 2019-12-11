@@ -10,7 +10,6 @@ import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.common.TemporaryElectroPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 
 public class NarberalGamma extends AnimatorCard
 {

@@ -3,7 +3,8 @@ package patches;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.actions.unnamed.MoveToVoidAction;
+import eatyourbeets.utilities.GameActions;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 
@@ -32,7 +33,7 @@ public class UseCardActionPatches
 
             if (!shouldPurge && card.tags.contains(AbstractEnums.CardTags.VOIDBOUND))
             {
-                GameActionsHelper_Legacy.MoveToVoid(card);
+                GameActions.Bottom.Add(new MoveToVoidAction(card));
                 shouldPurge = true;
             }
 

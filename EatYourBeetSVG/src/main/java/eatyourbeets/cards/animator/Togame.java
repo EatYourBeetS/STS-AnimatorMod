@@ -30,9 +30,14 @@ public class Togame extends AnimatorCard
         .SetOptions(true, true, true)
         .AddCallback(cards ->
         {
-            if (cards.size() > 0 && GameUtilities.IsCurseOrStatus(cards.get(0)) && EffectHistory.TryActivateSemiLimited(cardID))
+            if (cards.size() > 0)
             {
-                GameActions.Bottom.Motivate();
+                GameActions.Bottom.Draw(1);
+
+                if (GameUtilities.IsCurseOrStatus(cards.get(0)) && EffectHistory.TryActivateSemiLimited(cardID))
+                {
+                    GameActions.Bottom.Motivate();
+                }
             }
         });
     }

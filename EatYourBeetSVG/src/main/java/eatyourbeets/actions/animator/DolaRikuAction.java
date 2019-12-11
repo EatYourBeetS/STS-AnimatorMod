@@ -1,6 +1,5 @@
 package eatyourbeets.actions.animator;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,7 +9,6 @@ import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.DolaRiku;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -106,10 +104,8 @@ public class DolaRikuAction extends EYBAction
     }
 
     @Override
-    protected String CreateMessage()
+    public String CreateMessage()
     {
-        message = CardRewardScreen.TEXT[1];
-
-        return super.CreateMessage();
+        return super.CreateMessageInternal(CardRewardScreen.TEXT[1]);
     }
 }

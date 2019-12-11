@@ -1,17 +1,12 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedCultist;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
-import eatyourbeets.actions._legacy.common.SummonMonsterAction;
-import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
 import eatyourbeets.monsters.SharedMoveset.Move_Talk;
 
@@ -34,7 +29,7 @@ public class TheUnnamed_Cultist_BEHOLD extends TheUnnamed_Cultist
         CardCrawlGame.music.silenceBGM();
 
         GameActions.Bottom.WaitRealtime(1f);
-        GameActions.Bottom.Add(new TalkAction(this, data.strings.DIALOG[0], 0.5f, 2f));
+        GameActions.Bottom.Talk(this, data.strings.DIALOG[0], 0.5f, 2f);
         GameActions.Bottom.WaitRealtime(2f);
         GameActions.Bottom.Add(new EscapeAction(this));
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.1f);

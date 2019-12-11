@@ -55,6 +55,12 @@ public class GridCardSelectScreenPatch
         }
         else
         {
+            if (cardGroups.size() == 1)
+            {
+                Field_targetGroup.Set(selectScreen, cardGroups.get(0));
+                Clear();
+            }
+
             enabled = false;
         }
     }

@@ -1,6 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
@@ -31,6 +31,6 @@ public class UltimateWisp extends Wisp
     {
         super.usePreBattleAction();
 
-        GameActionsHelper_Legacy.ApplyPower(this, this, new UltimateWispPower(this));
+        GameActions.Bottom.ApplyPower(this, this, new UltimateWispPower(this));
     }
 }

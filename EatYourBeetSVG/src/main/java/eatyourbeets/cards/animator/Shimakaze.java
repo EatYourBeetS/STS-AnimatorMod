@@ -1,12 +1,10 @@
 package eatyourbeets.cards.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 
@@ -29,7 +27,7 @@ public class Shimakaze extends AnimatorCard
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.Draw(this.magicNumber);
-        GameActions.Bottom.MakeCardInDrawPile(new Dazed());
+        GameActions.Bottom.MakeCardInDrawPile(this, new Dazed());
     }
 
     @Override

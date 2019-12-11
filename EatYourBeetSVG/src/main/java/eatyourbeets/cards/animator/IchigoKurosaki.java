@@ -56,7 +56,7 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
         {
             if (GameUtilities.GetStrength() >= secondaryValue)
             {
-                GameActions.Bottom.MakeCardInDrawPile(new IchigoBankai());
+                GameActions.Bottom.MakeCardInDrawPile(this, new IchigoBankai());
             }
         });
     }

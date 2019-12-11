@@ -3,13 +3,12 @@ package eatyourbeets.powers.common;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderPower
 {
@@ -28,6 +27,7 @@ public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderP
         this.owner = owner;
         this.source = source;
         this.amount = poisonAmt;
+
         if (this.amount >= 9999)
         {
             this.amount = 9999;
@@ -60,8 +60,9 @@ public class PoisonPlayerPower extends AbstractPower implements HealthBarRenderP
     public void atStartOfTurn()
     {
         this.flashWithoutSound();
-        GameActionsHelper_Legacy.DamageTarget(source, owner, this.amount, DamageInfo.DamageType.HP_LOSS, AttackEffect.POISON);
-        GameActionsHelper_Legacy.AddToBottom(new ReducePowerAction(owner, owner, this, 1));
+
+        GameActions.Bottom.DealDamage(source, owner, this.amount, DamageInfo.DamageType.HP_LOSS, AttackEffect.POISON);
+        GameActions.Bottom.ReducePower(this, 1);
     }
 
     @Override

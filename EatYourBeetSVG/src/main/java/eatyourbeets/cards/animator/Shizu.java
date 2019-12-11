@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
 import eatyourbeets.cards.AnimatorCard;
 import eatyourbeets.cards.Synergies;
 import eatyourbeets.powers.animator.FlamingWeaponPower;
@@ -30,7 +29,7 @@ public class Shizu extends AnimatorCard
     {
         GameActions.Bottom.StackPower(new FlamingWeaponPower(p, 1));
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActions.Bottom.MakeCardInDiscardPile(new Burn());
+        GameActions.Bottom.MakeCardInDiscardPile(this, new Burn());
     }
 
     @Override

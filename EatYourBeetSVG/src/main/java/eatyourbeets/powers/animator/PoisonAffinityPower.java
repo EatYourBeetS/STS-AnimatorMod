@@ -29,10 +29,12 @@ public class PoisonAffinityPower extends AnimatorPower
             if (power.ID.equals(PoisonPower.POWER_ID))
             {
                 ApplyPowerAction applyPowerAction = JavaUtilities.SafeCast(AbstractDungeon.actionManager.currentAction, ApplyPowerAction.class);
+
                 if (applyPowerAction != null)
                 {
                     applyPowerAction.amount += this.amount;
                 }
+
                 power.amount += this.amount;
             }
         }

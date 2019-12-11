@@ -19,7 +19,7 @@ public abstract class AnimatorCard extends EYBCard
 {
     protected static final Logger logger = LogManager.getLogger(AnimatorCard.class.getName());
 
-    public static int SynergyReserves;
+    public static int FutureSynergies;
     public static int SynergiesActivatedThisTurn;
 
     private static AnimatorCard previousCard = null;
@@ -37,9 +37,9 @@ public abstract class AnimatorCard extends EYBCard
 
     public static void SetLastCardPlayed(AbstractCard card)
     {
-        if (SynergyReserves > 0)
+        if (FutureSynergies > 0)
         {
-            SynergyReserves -= 1;
+            FutureSynergies -= 1;
         }
 
         if (card == null)
@@ -91,7 +91,7 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasActiveSynergy()
     {
-        if (SynergyReserves > 0)
+        if (FutureSynergies > 0)
         {
             return true;
         }

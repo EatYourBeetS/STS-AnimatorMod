@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class FlamingWeaponPower extends AnimatorPower
 {
@@ -30,8 +30,8 @@ public class FlamingWeaponPower extends AnimatorPower
         if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL)
         {
             this.flash();
-            ApplyPowerAction action = new ApplyPowerAction(target, owner, new BurningPower(target, owner, amount), this.amount, true);
-            GameActionsHelper_Legacy.AddToBottom(action);
+
+            GameActions.Bottom.Add(new ApplyPowerAction(target, owner, new BurningPower(target, owner, amount), this.amount, true));
         }
     }
 }

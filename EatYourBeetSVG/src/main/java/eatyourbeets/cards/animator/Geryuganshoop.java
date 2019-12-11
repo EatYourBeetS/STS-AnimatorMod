@@ -30,11 +30,11 @@ public class Geryuganshoop extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Cycle(secondaryValue, name);
-        GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
+        GameActions.Bottom.Cycle(secondaryValue, name)
+        .AddCallback(__ -> GameActions.Bottom.SelectFromPile(name, magicNumber, AbstractDungeon.player.exhaustPile)
         .SetMessage(JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[0], magicNumber))
         .SetOptions(false, true)
-        .AddCallback(this::OnCardChosen);
+        .AddCallback(this::OnCardChosen));
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Geryuganshoop extends AnimatorCard
                 if (!limited && (card.cardID.equals(Boros.ID) || card.cardID.startsWith(Melzalgald.ID)))
                 {
                     EffectHistory.TryActivateLimited(this.cardID);
-                    GameActions.Top.MoveCard(card, p.hand, p.exhaustPile, true);
+                    GameActions.Bottom.MoveCard(card, p.hand, p.exhaustPile, true);
                 }
                 else
                 {

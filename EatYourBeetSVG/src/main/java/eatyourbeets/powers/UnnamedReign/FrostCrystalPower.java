@@ -2,7 +2,7 @@ package eatyourbeets.powers.UnnamedReign;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
+import eatyourbeets.utilities.GameActions;
 
 public class FrostCrystalPower extends AbstractCrystalPower
 {
@@ -16,6 +16,6 @@ public class FrostCrystalPower extends AbstractCrystalPower
     @Override
     protected void Activate(AbstractCreature target)
     {
-        GameActionsHelper_Legacy.ApplyPower(null, target, new PlatedArmorPower(target, amount), amount);
+        GameActions.Bottom.StackPower(null, new PlatedArmorPower(target, amount));
     }
 }

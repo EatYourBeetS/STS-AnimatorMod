@@ -1,35 +1,30 @@
 package eatyourbeets.actions.orbs;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActionsHelper_Legacy;
-import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.actions.EYBAction;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class FireOrbEvokeAction extends AbstractGameAction
+public class FireOrbEvokeAction extends EYBAction
 {
-    private final AbstractPlayer p;
-
-    public FireOrbEvokeAction(int orbDamage)
+    public FireOrbEvokeAction(int burning)
     {
-        this.p = AbstractDungeon.player;
-        this.actionType = ActionType.DAMAGE;
-        this.duration = 0.1F;
-        this.amount = orbDamage;
+        super(ActionType.DEBUFF);
+
+        Initialize(burning);
     }
 
-    public void update()
+    @Override
+    protected void FirstUpdate()
     {
         if (this.amount > 0)
         {
             for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
             {
-                GameActionsHelper_Legacy.ApplyPower(p, m, new BurningPower(m, p, this.amount), this.amount);
+                GameActions.Bottom.ApplyBurning(source, m, amount);
             }
         }
 
-        this.isDone = true;
+        Complete();
     }
 }

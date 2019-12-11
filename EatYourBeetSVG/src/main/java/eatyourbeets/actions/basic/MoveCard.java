@@ -98,12 +98,22 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
                 {
                     case HAND:
                     {
-                        card.untip();
-                        card.unhover();
-                        card.lighten(true);
+                        if (sourcePile.type == CardGroup.CardGroupType.DRAW_PILE)
+                        {
+                            sourcePile.removeCard(card);
+                            sourcePile.addToTop(card);
+                            AbstractDungeon.player.draw(1);
+                        }
+                        else
+                        {
+                            card.untip();
+                            card.unhover();
+                            card.lighten(true);
 
-                        this.sourcePile.removeCard(card);
-                        AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(card));
+                            this.sourcePile.removeCard(card);
+                            AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(card));
+                        }
+
                         break;
                     }
 

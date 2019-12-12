@@ -14,11 +14,18 @@ import eatyourbeets.monsters.AbstractMove;
 
 public class Move_ShuffleDazed extends AbstractMove
 {
+    private final boolean skipAnimation;
     private final int amount;
 
     public Move_ShuffleDazed(int amount)
     {
+        this(amount, false);
+    }
+
+    public Move_ShuffleDazed(int amount, boolean skipAnimation)
+    {
         this.amount = amount;
+        this.skipAnimation = skipAnimation;
     }
 
     public void SetMove()
@@ -30,15 +37,18 @@ public class Move_ShuffleDazed extends AbstractMove
     {
         GameActions.Bottom.SFX("THUNDERCLAP");
 
-        if (!Settings.FAST_MODE)
+        if (!skipAnimation)
         {
-            GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.5F);
-            GameActions.Bottom.Add(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.2F));
-        }
-        else
-        {
-            GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F);
-            GameActions.Bottom.Add(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.15F));
+            if (!Settings.FAST_MODE)
+            {
+                GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.5F);
+                GameActions.Bottom.Add(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.2F));
+            }
+            else
+            {
+                GameActions.Bottom.VFX(new ShockWaveEffect(owner.hb.cX, owner.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F);
+                GameActions.Bottom.Add(new FastShakeAction(AbstractDungeon.player, 0.6F, 0.15F));
+            }
         }
 
         GameActions.Bottom.Add(new MakeTempCardInDiscardAction(new Dazed(), this.amount));

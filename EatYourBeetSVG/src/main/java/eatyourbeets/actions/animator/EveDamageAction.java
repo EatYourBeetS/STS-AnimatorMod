@@ -14,24 +14,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class EveDamageAction extends EYBAction
 {
-    private final EvePower power;
-
     public EveDamageAction(AbstractCreature owner, int amount)
     {
         super(ActionType.DAMAGE);
 
-        this.power = null;
-
         Initialize(owner, null, amount);
-    }
-
-    public EveDamageAction(EvePower power)
-    {
-        super(ActionType.DAMAGE);
-
-        this.power = power;
-
-        Initialize(power.owner, null, amount);
     }
 
     @Override
@@ -53,13 +40,6 @@ public class EveDamageAction extends EYBAction
             }
 
             GameActions.Bottom.DealDamage(source, target, amount, DamageInfo.DamageType.THORNS, AttackEffect.NONE);
-
-            if (power != null)
-            {
-                power.flash();
-                power.amount += EvePower.GROWTH_AMOUNT;
-                power.updateDescription();
-            }
         }
 
         Complete();

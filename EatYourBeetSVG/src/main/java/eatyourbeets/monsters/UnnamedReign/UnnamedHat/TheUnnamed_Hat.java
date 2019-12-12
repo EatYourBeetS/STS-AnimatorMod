@@ -53,7 +53,7 @@ public class TheUnnamed_Hat extends AnimatorMonster
             moveset.AddNormal(new Move_GainStrengthAndBlock(3, 9));
         }
 
-        moveset.AddNormal(new Move_ShuffleDazed(1));
+        moveset.AddNormal(new Move_ShuffleDazed(1, true));
         moveset.AddNormal(new Move_AttackFrail(4, 1));
     }
 

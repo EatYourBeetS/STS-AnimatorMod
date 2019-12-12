@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
+// TODO: Improve this
 public class TemporaryArtifactPower extends ArtifactPower implements CloneablePowerInterface
 {
     private int permanent;

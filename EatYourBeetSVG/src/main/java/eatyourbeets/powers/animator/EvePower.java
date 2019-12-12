@@ -30,7 +30,11 @@ public class EvePower extends AnimatorPower
         AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasActiveSynergy())
         {
-            GameActions.Bottom.Add(new EveDamageAction(this));
+            GameActions.Bottom.Add(new EveDamageAction(owner, amount));
+
+            this.flash();
+            this.stackPower(EvePower.GROWTH_AMOUNT);
+            this.updateDescription();
         }
     }
 }

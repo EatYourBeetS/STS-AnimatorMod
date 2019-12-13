@@ -25,7 +25,7 @@ public class Move_GainArtifactAll extends AbstractMove
     {
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActions.Bottom.ApplyPower(owner, m, new ArtifactPower(m, buffAmount), buffAmount);
+            GameActions.Bottom.StackPower(owner, new ArtifactPower(m, buffAmount));
         }
     }
 }

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Move_Regenerate extends AbstractMove
 {
@@ -31,9 +32,7 @@ public class Move_Regenerate extends AbstractMove
     @Override
     public boolean CanUse(Byte previousMove)
     {
-        AbstractPower power = owner.getPower(RegenPower.POWER_ID);
-
-        return power == null || power.amount < 20;
+        return super.CanUse(previousMove) && GameUtilities.GetPowerAmount(owner, RegenPower.POWER_ID) < 20;
     }
 
     public void SetMove()

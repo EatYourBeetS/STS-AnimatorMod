@@ -95,7 +95,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         this.target.damageFlash = true;
         this.target.damageFlashFrames = 4;
-        AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
+        GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
 
         if (onDamageEffect != null)
         {
@@ -138,7 +138,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {
-                GameActionsHelper.ClearPostCombatActions();
+                GameUtilities.ClearPostCombatActions();
             }
 
             if (!Settings.FAST_MODE && !skipWait)

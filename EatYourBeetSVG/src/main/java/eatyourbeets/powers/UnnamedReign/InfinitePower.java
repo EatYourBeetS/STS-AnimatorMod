@@ -102,7 +102,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         }
 
         AbstractBlight doomed = AbstractDungeon.player.getBlight(Doomed.ID);
-        if (doomed != null && doomed.counter <= 2 && !linesUsed.contains(34))
+        if (doomed != null && doomed.counter <= 1 && !linesUsed.contains(34))
         {
             linesUsed.add(34);
             GameActions.Bottom.Talk(owner, dialog[34], 2f, 2f);

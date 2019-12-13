@@ -28,6 +28,7 @@ import eatyourbeets.powers.UnnamedReign.InfinitePower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.scenes.TheUnnamedReignScene;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -58,13 +59,13 @@ public class TheUnnamed extends AnimatorMonster
         {
             poisonScaling = 4;
             singleAttackDamage = 34;
-            multiAttackDamage = 8;
+            multiAttackDamage = 6;
         }
         else
         {
             poisonScaling = 3;
             singleAttackDamage = 26;
-            multiAttackDamage = 7;
+            multiAttackDamage = 6;
         }
 
         moveFading = (Move_Fading)
@@ -89,7 +90,7 @@ public class TheUnnamed extends AnimatorMonster
         {
             AbstractDungeon.getCurrRoom().cannotLose = true;
 
-            AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
+            GameEffects.List.Add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
                     1.2f, data.strings.DIALOG[28], this.isPlayer));
 
             ChangeOverlayColor(new Color(1f, 1f, 1f, 0.3f));
@@ -117,7 +118,7 @@ public class TheUnnamed extends AnimatorMonster
             return;
         }
 
-        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
+        GameEffects.List.Add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY,
                 3f, data.strings.DIALOG[30], this.isPlayer));
 
         //AbstractDungeon.aiRng.setCounter(AbstractDungeon.aiRng.counter + MathUtils.random(100));

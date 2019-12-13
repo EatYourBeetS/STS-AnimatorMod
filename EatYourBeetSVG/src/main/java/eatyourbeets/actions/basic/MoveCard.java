@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
@@ -111,7 +112,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
                             card.lighten(true);
 
                             this.sourcePile.removeCard(card);
-                            AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(card));
+                            GameEffects.List.Add(new ShowCardAndAddToHandEffect(card));
                         }
 
                         break;
@@ -120,7 +121,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
                     case DISCARD_PILE:
                     {
                         this.sourcePile.removeCard(card);
-                        AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(card));
+                        GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(card));
 
                         if (sourcePile.type != CardGroup.CardGroupType.EXHAUST_PILE)
                         {

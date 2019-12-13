@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.RegrowPower;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameEffects;
 
 public class StolenGoldPower extends AnimatorPower
 {
@@ -63,7 +64,7 @@ public class StolenGoldPower extends AnimatorPower
             CardCrawlGame.sound.play("GOLD_JINGLE");
             for(int i = 0; i < goldGain; ++i)
             {
-                AbstractDungeon.effectList.add(new GainPennyEffect(this.owner.hb.cX, this.owner.hb.cY));
+                GameEffects.List.Add(new GainPennyEffect(this.owner.hb.cX, this.owner.hb.cY));
             }
 
             AbstractDungeon.player.gainGold(goldGain);
@@ -89,7 +90,7 @@ public class StolenGoldPower extends AnimatorPower
 
             for(int i = 0; i < goldGain; ++i)
             {
-                AbstractDungeon.effectList.add(new GainPennyEffect(this.owner.hb.cX, this.owner.hb.cY));
+                GameEffects.List.Add(new GainPennyEffect(this.owner.hb.cX, this.owner.hb.cY));
             }
 
             AbstractDungeon.player.gainGold(goldGain);

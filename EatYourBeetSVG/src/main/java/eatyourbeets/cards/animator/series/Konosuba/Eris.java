@@ -16,6 +16,7 @@ import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnLoseHpSubscriber;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleStartSubscriber
@@ -76,7 +77,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
                     temp.upgrade();
                 }
 
-                AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(temp));
+                GameEffects.List.Add(new ShowCardBrieflyEffect(temp));
                 PlayerStatistics.onLoseHp.Unsubscribe(this);
                 EffectHistory.TryActivateLimited(cardID);
 

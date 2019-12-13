@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.utilities.GameEffects;
 
 public class EndPlayerTurnAction extends EYBAction
 {
@@ -32,7 +33,7 @@ public class EndPlayerTurnAction extends EYBAction
 
         for (AbstractCard c : AbstractDungeon.player.limbo.group)
         {
-            AbstractDungeon.effectList.add(new ExhaustCardEffect(c));
+            GameEffects.List.Add(new ExhaustCardEffect(c));
         }
 
         AbstractDungeon.player.limbo.group.clear();

@@ -15,8 +15,8 @@ public class Move_UltimateCrystalAttack extends AbstractMove
 
     public Move_UltimateCrystalAttack(int damage, int block)
     {
-        this.blockAmount = block + GetBonus(block, 0.25f);
-        this.damageInfo = new DamageInfo(owner, damage + GetBonus(damage, 0.25f));
+        this.blockAmount = block + CalculateAscensionBonus(block, 0.25f);
+        this.damageInfo = new DamageInfo(owner, damage + CalculateAscensionBonus(damage, 0.25f));
     }
 
     public void SetMove()

@@ -1,5 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
+import eatyourbeets.monsters.Moveset;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
@@ -19,7 +20,7 @@ public class UltimateWisp extends Wisp
 
         boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
 
-        movesetMode = Mode.Sequential;
+        moveset.mode = Moveset.Mode.Sequential;
         moveset.AddNormal(new Move_AttackMultiple( 8,3));
         moveset.AddNormal(new Move_GainStrengthAndArtifactAll( 3, 1));
         moveset.AddNormal(new Move_AttackMultipleFrail(2,8, 2));

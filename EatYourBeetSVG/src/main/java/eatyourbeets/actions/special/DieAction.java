@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.vfx.combat.DeckPoofEffect;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -34,8 +35,8 @@ public class DieAction extends EYBAction
                 if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
                 {
                     AbstractDungeon.actionManager.cleanCardQueue();
-                    AbstractDungeon.effectList.add(new DeckPoofEffect(64.0F * Settings.scale, 64.0F * Settings.scale, true));
-                    AbstractDungeon.effectList.add(new DeckPoofEffect((float) Settings.WIDTH - 64.0F * Settings.scale, 64.0F * Settings.scale, false));
+                    GameEffects.List.Add(new DeckPoofEffect(64.0F * Settings.scale, 64.0F * Settings.scale, true));
+                    GameEffects.List.Add(new DeckPoofEffect((float) Settings.WIDTH - 64.0F * Settings.scale, 64.0F * Settings.scale, false));
                     AbstractDungeon.overlayMenu.hideCombatPanels();
                 }
             }

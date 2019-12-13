@@ -22,6 +22,6 @@ public class Move_Hexed extends AbstractMove
 
     public void ExecuteInternal(AbstractPlayer target)
     {
-        GameActions.Bottom.ApplyPower(owner, target, new HexPower(target, amount), amount);
+        GameActions.Bottom.StackPower(owner, new HexPower(target, amount));
     }
 }

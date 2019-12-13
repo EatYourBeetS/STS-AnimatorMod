@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 import eatyourbeets.resources.Resources_Common;
+import eatyourbeets.utilities.GameEffects;
 
 public class TheAbandonedCabin extends AnimatorEvent
 {
@@ -114,7 +115,7 @@ public class TheAbandonedCabin extends AnimatorEvent
         if (button == 0)
         {
             CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05F);
-            AbstractDungeon.effectList.add(new BorderLongFlashEffect(Color.RED));
+            GameEffects.List.Add(new BorderLongFlashEffect(Color.RED));
             AbstractDungeon.player.damage(new DamageInfo(null, HP_TRADE_2));
             medallions += 1;
 

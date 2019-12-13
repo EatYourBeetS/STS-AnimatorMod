@@ -8,7 +8,6 @@ import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
-import patches.AbstractEnums;
 
 public class Respite extends AnimatorCard implements Hidden
 {
@@ -20,7 +19,7 @@ public class Respite extends AnimatorCard implements Hidden
 
         Initialize(0, 0, 6);
 
-        this.tags.add(AbstractEnums.CardTags.PURGE);
+        SetPurge(true);
     }
 
     @Override

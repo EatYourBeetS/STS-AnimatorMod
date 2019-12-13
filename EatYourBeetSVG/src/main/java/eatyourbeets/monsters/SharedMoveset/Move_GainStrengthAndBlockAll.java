@@ -34,7 +34,7 @@ public class Move_GainStrengthAndBlockAll extends AbstractMove
 
         for (AbstractMonster m : enemies)
         {
-            GameActions.Bottom.ApplyPower(owner, m, new StrengthPower(m, strength), strength);
+            GameActions.Bottom.StackPower(owner, new StrengthPower(m, strength));
             GameActions.Bottom.Add(new GainBlockAction(m, owner, block, isFast));
         }
     }

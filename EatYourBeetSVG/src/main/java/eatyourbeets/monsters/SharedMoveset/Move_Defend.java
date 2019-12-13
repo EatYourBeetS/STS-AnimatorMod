@@ -11,7 +11,7 @@ public class Move_Defend extends AbstractMove
 
     public Move_Defend(int blockAmount)
     {
-        this.blockAmount = blockAmount + GetBonus(blockAmount, 0.2f);
+        this.blockAmount = blockAmount + CalculateAscensionBonus(blockAmount, 0.2f);
     }
 
     public void SetMove()

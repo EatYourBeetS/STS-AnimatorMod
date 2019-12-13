@@ -9,9 +9,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.actions.monsters.MoveMonsterAction;
+import eatyourbeets.monsters.Moveset;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
 import eatyourbeets.resources.Resources_Common;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
@@ -43,7 +45,7 @@ public class UltimateCrystal extends Crystal
     {
         super(MonsterElement.Ultimate, MonsterTier.Ultimate, x, y);
 
-        movesetMode = Mode.Sequential;
+        moveset.mode = Moveset.Mode.Sequential;
 
         boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
 
@@ -113,7 +115,7 @@ public class UltimateCrystal extends Crystal
             GameActions.Bottom.ApplyPower(this, this, new UltimateCrystalPower(this, 6), 6);
             GameActions.Bottom.ApplyPower(this, this, new AntiArtifactSlowPower(this, 1), 1);
 
-            AbstractDungeon.effectList.add(new CallbackEffect(new WaitRealtimeAction(15),
+            GameEffects.List.Add(new CallbackEffect(new WaitRealtimeAction(15),
                     this, (state, action)-> CardCrawlGame.music.unsilenceBGM()));
 
             CardCrawlGame.sound.play(Resources_Common.Audio_TheUltimateCrystal, true);

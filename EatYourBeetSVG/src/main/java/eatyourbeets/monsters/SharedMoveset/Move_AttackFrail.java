@@ -15,7 +15,7 @@ public class Move_AttackFrail extends AbstractMove
     public Move_AttackFrail(int damageAmount, int debuffAmount)
     {
         this.debuffAmount = debuffAmount;
-        damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.25f));
+        damageInfo = new DamageInfo(owner, damageAmount + CalculateAscensionBonus(damageAmount, 0.25f));
     }
 
     public void SetMove()

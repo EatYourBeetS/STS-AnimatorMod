@@ -3,9 +3,9 @@ package eatyourbeets.actions.basic;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.utilities.GameEffects;
 
 public class GainBlock extends EYBActionWithCallback<AbstractCreature>
 {
@@ -28,7 +28,7 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
     {
         if (!this.target.isDying && !this.target.isDead)
         {
-            AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SHIELD));
+            GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SHIELD));
 
             this.target.addBlock(this.amount);
 

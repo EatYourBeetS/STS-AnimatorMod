@@ -25,7 +25,7 @@ public class Move_GainTempThornsAll extends AbstractMove
     {
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActions.Bottom.ApplyPower(owner, m, new EarthenThornsPower(m, buffAmount), buffAmount);
+            GameActions.Bottom.StackPower(owner, new EarthenThornsPower(m, buffAmount));
         }
     }
 }

@@ -15,7 +15,7 @@ public class FireOrbPassiveAction extends EYBAction
     {
         super(ActionType.DEBUFF);
 
-        Initialize(amount);
+        Initialize(damage);
     }
 
     @Override

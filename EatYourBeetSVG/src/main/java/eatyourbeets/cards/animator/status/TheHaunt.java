@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.blights.animator.Haunted;
 import eatyourbeets.cards.base.AnimatorCard_Status;
 import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.utilities.GameEffects;
 
 public class TheHaunt extends AnimatorCard_Status implements Hidden
 {
@@ -51,7 +52,7 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
     {
         for(int i = 0; i < this.magicNumber; ++i)
         {
-            AbstractDungeon.effectList.add(new GainPennyEffect(p.hb.cX, p.hb.cY + (p.hb.height / 2)));
+            GameEffects.List.Add(new GainPennyEffect(p.hb.cX, p.hb.cY + (p.hb.height / 2)));
         }
 
         p.gainGold(magicNumber);

@@ -192,7 +192,7 @@ public class ApplyPowerSilently extends AbstractGameAction
 //                    return;
 //                }
 
-                //AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
+                //GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
                 boolean hasBuffAlready = false;
                 Iterator var6 = this.target.powers.iterator();
 
@@ -221,16 +221,16 @@ public class ApplyPowerSilently extends AbstractGameAction
 //                                    {
 //                                        if (this.powerToApply.type == AbstractPower.PowerType.BUFF)
 //                                        {
-//                                            AbstractDungeon.effectList.add(new PowerBuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name));
+//                                            GameEffects.List.Add(new PowerBuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name));
 //                                        }
 //                                        else
 //                                        {
-//                                            AbstractDungeon.effectList.add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name));
+//                                            GameEffects.List.Add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name));
 //                                        }
 //                                    }
 //                                    else
 //                                    {
-//                                        AbstractDungeon.effectList.add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name + TEXT[3]));
+//                                        GameEffects.List.Add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name + TEXT[3]));
 //                                    }
 
                                     AbstractDungeon.onModifyPower();
@@ -270,26 +270,26 @@ public class ApplyPowerSilently extends AbstractGameAction
 
 //                    if ((p instanceof StrengthPower || p instanceof DexterityPower) && this.amount <= 0)
 //                    {
-//                        AbstractDungeon.effectList.add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name + TEXT[3]));
+//                        GameEffects.List.Add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name + TEXT[3]));
 //                    }
 //                    else if (this.amount > 0)
 //                    {
 //                        if (p.type != AbstractPower.PowerType.BUFF && !(p instanceof StrengthPower) && !(p instanceof DexterityPower))
 //                        {
-//                            AbstractDungeon.effectList.add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, "+" + this.amount + " " + this.powerToApply.name));
+//                            GameEffects.List.Add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, "+" + this.amount + " " + this.powerToApply.name));
 //                        }
 //                        else
 //                        {
-//                            AbstractDungeon.effectList.add(new PowerBuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, "+" + this.amount + " " + this.powerToApply.name));
+//                            GameEffects.List.Add(new PowerBuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, "+" + this.amount + " " + this.powerToApply.name));
 //                        }
 //                    }
 //                    else if (p.type == AbstractPower.PowerType.BUFF)
 //                    {
-//                        AbstractDungeon.effectList.add(new PowerBuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name + TEXT[3]));
+//                        GameEffects.List.Add(new PowerBuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name + TEXT[3]));
 //                    }
 //                    else
 //                    {
-//                        AbstractDungeon.effectList.add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name + TEXT[3]));
+//                        GameEffects.List.Add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name + TEXT[3]));
 //                    }
 
                     p.updateDescription();

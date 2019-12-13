@@ -1,19 +1,32 @@
 package eatyourbeets.monsters;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Moveset
 {
-    private final AbstractMonster owner;
-    private byte counter = 0;
-    private final HashMap<Byte, AbstractMove> moves = new HashMap<>();
+    public enum Mode
+    {
+        Random,
+        Sequential
+    }
 
     public final ArrayList<AbstractMove> special = new ArrayList<>();
     public final ArrayList<AbstractMove> rotation = new ArrayList<>();
+    public final ArrayList<AbstractMove> sequence = new ArrayList<>();
+    public Mode mode = Mode.Random;
+    public int currentIndex = 0;
+
+    private final AbstractMonster owner;
+    private final HashMap<Byte, AbstractMove> moves = new HashMap<>();
+    private byte counter = 0;
 
     public Moveset(AbstractMonster owner)
     {
@@ -22,12 +35,12 @@ public class Moveset
 
     public AbstractMove AddSpecial(AbstractMove move)
     {
-        return AddSpecial(move, 999);
+        return AddSpecial(move, -1);
     }
 
     public AbstractMove AddNormal(AbstractMove move)
     {
-        return AddNormal(move, 999);
+        return AddNormal(move, -1);
     }
 
     public AbstractMove AddSpecial(AbstractMove move, int uses)
@@ -71,5 +84,36 @@ public class Moveset
         }
 
         return null;
+    }
+
+    public AbstractMove GetNextMove(int roll, Byte previousMove)
+    {
+        if (sequence.isEmpty())
+        {
+            if (mode == Mode.Random)
+            {
+                Random rng = new Random((long) roll);
+                RandomizedList<AbstractMove> temp = new RandomizedList<>();
+                temp.AddAll(rotation);
+
+                while (temp.Count() > 0)
+                {
+                    sequence.add(temp.Retrieve(rng));
+                }
+            }
+            else
+            {
+                sequence.addAll(rotation);
+            }
+        }
+
+        AbstractMove move = sequence.remove(0);
+
+        if (!move.CanUse(previousMove))
+        {
+            return GetNextMove(roll, previousMove);
+        }
+
+        return move;
     }
 }

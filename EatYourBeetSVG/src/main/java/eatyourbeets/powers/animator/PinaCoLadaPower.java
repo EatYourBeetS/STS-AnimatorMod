@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 
 public class PinaCoLadaPower extends AnimatorPower
 {
@@ -51,7 +51,7 @@ public class PinaCoLadaPower extends AnimatorPower
                 m = (AbstractMonster) action.target;
             }
 
-            GameActionsHelper.PlayCopy(card, m, true);
+            GameUtilities.PlayCopy(card, m, true);
         }
     }
 }

@@ -16,7 +16,7 @@ public class Move_AttackStrength extends AbstractMove
     public Move_AttackStrength(int damageAmount, int buffAmount)
     {
         this.buffAmount = buffAmount;
-        damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.25f));
+        damageInfo = new DamageInfo(owner, damageAmount + CalculateAscensionBonus(damageAmount, 0.25f));
     }
 
     public void SetMove()

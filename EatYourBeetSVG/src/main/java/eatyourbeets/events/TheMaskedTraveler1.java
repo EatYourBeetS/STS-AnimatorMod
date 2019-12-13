@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 import patches.AbstractEnums;
@@ -77,7 +78,7 @@ public class TheMaskedTraveler1 extends AnimatorEvent
         if (button == 0) // SELL
         {
             AbstractDungeon.player.masterDeck.removeCard(toReplace);
-            AbstractDungeon.effectList.add(new RainingGoldEffect(SELLING_PRICE));
+            GameEffects.List.Add(new RainingGoldEffect(SELLING_PRICE));
             AbstractDungeon.player.gainGold(SELLING_PRICE);
 
             ProgressPhase();
@@ -154,7 +155,7 @@ public class TheMaskedTraveler1 extends AnimatorEvent
             replacement.upgrade();
         }
 
-        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+        GameEffects.List.Add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
     }
 
     private static void SetupCards()

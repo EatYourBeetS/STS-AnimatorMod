@@ -17,15 +17,15 @@ public class Move_Cripple extends AbstractMove
         if (ascensionLevel >= 8)
         {
             FRAIL_AMOUNT = 2;
+            VULNERABLE_AMOUNT = 2;
             WEAK_AMOUNT = 3;
-            VULNERABLE_AMOUNT = 3;
             BLOCK_AMOUNT = 19;
         }
         else
         {
             FRAIL_AMOUNT = 2;
-            WEAK_AMOUNT = 2;
             VULNERABLE_AMOUNT = 2;
+            WEAK_AMOUNT = 2;
             BLOCK_AMOUNT = 16;
         }
     }

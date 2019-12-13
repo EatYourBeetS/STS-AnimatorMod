@@ -29,7 +29,7 @@ public class Move_GainTempThornsAndBlockAll extends AbstractMove
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
             GameActions.Bottom.ApplyPower(owner, m, new EarthenThornsPower(m, thorns), thorns);
-            GameActions.Bottom.Add(new GainBlockAction(owner, m, block));
+            GameActions.Bottom.Add(new GainBlockAction(m, owner, block));
         }
     }
 }

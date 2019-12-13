@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.monsters.AbstractMove;
 
@@ -20,16 +21,8 @@ public class Move_MultiSlash extends AbstractMove
 
     public Move_MultiSlash()
     {
-        if (ascensionLevel >= 6)
-        {
-            damageInfo = new DamageInfo(owner, 2);
-            TIMES = 4;
-        }
-        else
-        {
-            damageInfo = new DamageInfo(owner, 3);
-            TIMES = 4;
-        }
+        damageInfo = new DamageInfo(owner, 3);
+        TIMES = 4;
     }
 
     @Override
@@ -37,9 +30,7 @@ public class Move_MultiSlash extends AbstractMove
     {
         if (super.CanUse(previousMove))
         {
-            StrengthPower strength = JavaUtilities.SafeCast(owner.getPower(StrengthPower.POWER_ID), StrengthPower.class);
-
-            return strength != null && strength.amount > 3;
+            return GameUtilities.GetPowerAmount(owner, StrengthPower.POWER_ID) >= 3;
         }
 
         return false;

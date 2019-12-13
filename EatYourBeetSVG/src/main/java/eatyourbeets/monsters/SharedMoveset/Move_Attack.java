@@ -12,7 +12,7 @@ public class Move_Attack extends AbstractMove
 {
     public Move_Attack(int amount)
     {
-        this.damageInfo = new DamageInfo(owner, amount + GetBonus(amount, 0.25f));
+        this.damageInfo = new DamageInfo(owner, amount + CalculateAscensionBonus(amount, 0.25f));
     }
 
     public void SetMove()

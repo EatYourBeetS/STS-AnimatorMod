@@ -11,7 +11,7 @@ public class DiscardFromPile extends SelectFromPile
 {
     public DiscardFromPile(String sourceName, int amount, CardGroup... groups)
     {
-        super(ActionType.EXHAUST, sourceName, amount, groups);
+        super(ActionType.DISCARD, sourceName, amount, groups);
     }
 
     @Override

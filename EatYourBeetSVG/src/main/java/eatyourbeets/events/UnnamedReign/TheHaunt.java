@@ -11,6 +11,7 @@ import eatyourbeets.blights.animator.Haunted;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.resources.Resources_Common;
+import eatyourbeets.utilities.GameEffects;
 
 public class TheHaunt extends AnimatorEvent
 {
@@ -53,8 +54,8 @@ public class TheHaunt extends AnimatorEvent
         {
             if (buttonPressed == CHOICE_TAKE_GOLD)
             {
-                AbstractDungeon.effectList.add(new RainingGoldEffect(600));
-                AbstractDungeon.effectList.add(new CallbackEffect(new WaitAction(3f), this, this::OnCompletion));
+                GameEffects.List.Add(new RainingGoldEffect(600));
+                GameEffects.List.Add(new CallbackEffect(new WaitAction(3f), this, this::OnCompletion));
 
                 this.imageEventText.clearAllDialogs();
                 this.imageEventText.updateBodyText("");

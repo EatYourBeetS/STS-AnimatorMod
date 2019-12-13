@@ -47,12 +47,19 @@ public class TheUnnamedHatPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
+        int healAmount = 0;
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            if (m.currentHealth < m.maxHealth)
+            TheUnnamedHatPower power = GameUtilities.GetPower(m, TheUnnamedHatPower.class);
+            if (power != null)
             {
-                GameActions.Bottom.Heal(owner, m, amount).SetOptions(false);
+                healAmount += power.amount;
             }
+        }
+
+        if (healAmount > 0 && owner.currentHealth < owner.maxHealth)
+        {
+            GameActions.Bottom.Heal(owner, owner, healAmount);
         }
     }
 }

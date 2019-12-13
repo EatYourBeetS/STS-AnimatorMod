@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -42,7 +42,7 @@ public class Zero extends AnimatorCard implements Spellcaster
                 Spellcaster.ApplyScaling(this, 6);
                 for (int i = 0; i < magicNumber; i++)
                 {
-                    GameActionsHelper.PlayCopy(this, m, false);
+                    GameUtilities.PlayCopy(this, m, false);
                 }
             }
         }

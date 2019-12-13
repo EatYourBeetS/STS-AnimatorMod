@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.city.Byrd;
 import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.monsters.exordium.Sentry;
+import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndBlockAll;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -37,7 +38,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
         int platedArmor = asc4 ? 5 : 4;
 
         moveset.AddNormal(new Move_GainPlatedArmorAll(platedArmor));
-        moveset.AddNormal(new Move_GainStrengthAll(strengthGain));
+        moveset.AddNormal(new Move_GainStrengthAndBlockAll(strengthGain, 8));
         moveset.AddNormal(new Move_AttackDefend(12, 12));
     }
 

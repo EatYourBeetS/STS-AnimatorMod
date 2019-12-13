@@ -4,7 +4,7 @@ import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,11 +12,6 @@ import java.util.ArrayList;
 
 public abstract class AnimatorMonster extends CustomMonster
 {
-    public enum Mode
-    {
-        Random,
-        Sequential
-    }
 
     protected static final Logger logger = LogManager.getLogger(AnimatorMonster.class.getName());
 
@@ -27,7 +22,6 @@ public abstract class AnimatorMonster extends CustomMonster
 
     public final Moveset moveset = new Moveset(this);
     public final AbstractMonsterData data;
-    public Mode movesetMode = Mode.Random;
 
     public AnimatorMonster(AbstractMonsterData data, EnemyType type)
     {
@@ -48,11 +42,12 @@ public abstract class AnimatorMonster extends CustomMonster
         AbstractMove move = moveset.GetMove(nextMove);
         if (move != null)
         {
+
             moveset.GetMove(nextMove).Execute(AbstractDungeon.player);
         }
         else
         {
-            JavaUtilities.Logger.warn(this.getClass().getSimpleName() + ", The move was not present in the moveset: " + nextMove);
+            GameUtilities.GetLogger(getClass()).warn("The move was not present in the moveset: " + nextMove);
         }
     }
 
@@ -66,24 +61,36 @@ public abstract class AnimatorMonster extends CustomMonster
 
     protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        if (movesetMode == Mode.Sequential)
-        {
-            int count = moveset.rotation.size();
-            moveset.rotation.get(historySize % count).SetMove();
-        }
-        else
-        {
-            ArrayList<AbstractMove> moves = new ArrayList<>();
-            for (AbstractMove move : moveset.rotation)
-            {
-                if (move.CanUse(previousMove))
-                {
-                    moves.add(move);
-                }
-            }
+        moveset.GetNextMove(roll, previousMove).SetMove();
 
-            moves.get(roll % moves.size()).SetMove();
-        }
+//        if (moveset.mode == Moveset.Mode.Sequential)
+//        {
+//            int count = moveset.rotation.size();
+//
+//            AbstractMove move = moveset.rotation.get(historySize % count);
+//
+//            while (!move.CanUse(previousMove))
+//            {
+//                moveHistory.add(previousMove);
+//                historySize += 1;
+//                move = moveset.rotation.get(historySize % count);
+//            }
+//
+//            move.SetMove();
+//        }
+//        else
+//        {
+//            ArrayList<AbstractMove> moves = new ArrayList<>();
+//            for (AbstractMove move : moveset.rotation)
+//            {
+//                if (move.CanUse(previousMove))
+//                {
+//                    moves.add(move);
+//                }
+//            }
+//
+//            moves.get(roll % moves.size()).SetMove();
+//        }
     }
 
     @Override

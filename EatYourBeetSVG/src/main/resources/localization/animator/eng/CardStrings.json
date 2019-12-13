@@ -1034,7 +1034,7 @@
 	},
 	"animator:Strike_OwariNoSeraph":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL When Exhausted, apply !M! Vulnerable NL to ALL enemies.",
+		"DESCRIPTION": "Deal !D! damage. NL When Exhausted, NL apply !M! Vulnerable NL to ALL enemies.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_TenSura":

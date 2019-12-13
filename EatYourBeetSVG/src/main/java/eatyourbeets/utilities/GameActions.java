@@ -55,18 +55,12 @@ import java.util.function.Consumer;
 @SuppressWarnings("UnusedReturnValue")
 public final class GameActions
 {
-    public enum Order
-    {
-        Top,
-        Bottom,
-        TurnStart,
-        NextCombat
-    }
-
     public static final GameActions Top = new GameActions(Order.Top);
     public static final GameActions Bottom = new GameActions(Order.Bottom);
+    public static final GameActions TurnStart = new GameActions(Order.TurnStart);
+    public static final GameActions NextCombat = new GameActions(Order.NextCombat);
 
-    protected Order actionOrder;
+    protected final Order actionOrder;
 
     protected GameActions(Order order)
     {
@@ -593,5 +587,13 @@ public final class GameActions
     public WaitRealtimeAction WaitRealtime(float duration)
     {
         return Add(new WaitRealtimeAction(duration));
+    }
+
+    public enum Order
+    {
+        Top,
+        Bottom,
+        TurnStart,
+        NextCombat
     }
 }

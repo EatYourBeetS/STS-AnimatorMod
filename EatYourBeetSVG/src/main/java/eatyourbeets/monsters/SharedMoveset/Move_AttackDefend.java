@@ -14,8 +14,8 @@ public class Move_AttackDefend extends AbstractMove
 
     public Move_AttackDefend(int damageAmount, int blockAmount)
     {
-        this.damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.25f));
-        this.blockAmount = blockAmount + GetBonus(blockAmount, 0.25f);
+        this.damageInfo = new DamageInfo(owner, damageAmount + CalculateAscensionBonus(damageAmount, 0.25f));
+        this.blockAmount = blockAmount + CalculateAscensionBonus(blockAmount, 0.25f);
     }
 
     public void SetMove()

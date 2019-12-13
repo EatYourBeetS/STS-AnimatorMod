@@ -21,6 +21,7 @@ import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import patches.RelicObtainedPatches;
 
@@ -61,20 +62,19 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
             DevConsole.visible = false;
             DevConsole.commandPos = -1;
             DevConsole.currentText = "";
-            //DevConsole.enabled = false;
-            //Settings.isDebug = false;
+            DevConsole.infiniteEnergy = false;
         }
     }
 
     private void DisableConsole()
     {
-        //Gdx.input.setInputProcessor((InputProcessor) ReflectionHacks.getPrivate(null, DevConsole.class, "otherInputProcessor"));
         if (DevConsole.visible)
         {
             InputHelper.regainInputFocus();
             DevConsole.visible = false;
         }
 
+        DevConsole.infiniteEnergy = false;
         DevConsole.enabled = false;
         DevConsole.commandPos = -1;
         DevConsole.currentText = "";
@@ -139,7 +139,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
             effect.Enqueue(new UnnamedRelicEquipEffect(goldBonus));
 
-            AbstractDungeon.effectList.add(effect);
+            GameEffects.List.Add(effect);
         }
         else if (!(relic instanceof OnEquipUnnamedReignRelicSubscriber) && relic.tier != RelicTier.STARTER)
         {

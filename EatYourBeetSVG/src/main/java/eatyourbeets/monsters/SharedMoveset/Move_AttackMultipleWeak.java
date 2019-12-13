@@ -15,7 +15,7 @@ public class Move_AttackMultipleWeak extends AbstractMove
 
     public Move_AttackMultipleWeak(int damageAmount, int times, int debuffAmount)
     {
-        this.damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.2f));
+        this.damageInfo = new DamageInfo(owner, damageAmount + CalculateAscensionBonus(damageAmount, 0.2f));
         this.times = times;
         this.debuffAmount = debuffAmount;
     }

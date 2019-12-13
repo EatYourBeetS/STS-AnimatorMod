@@ -11,6 +11,7 @@ import eatyourbeets.effects.Hemokinesis2Effect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class FeridBathoryPower extends AnimatorPower
 {
@@ -34,7 +35,7 @@ public class FeridBathoryPower extends AnimatorPower
         super.onExhaust(card);
 
         GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(enemy -> AbstractDungeon.effectList.add(new Hemokinesis2Effect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY)));
+        .SetDamageEffect(enemy -> GameEffects.List.Add(new Hemokinesis2Effect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY)));
         GameActions.Bottom.GainTemporaryHP(amount);
     }
 

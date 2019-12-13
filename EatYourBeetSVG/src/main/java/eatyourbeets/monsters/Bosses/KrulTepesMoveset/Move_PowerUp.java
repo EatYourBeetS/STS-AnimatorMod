@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.AbstractMove;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Move_PowerUp extends AbstractMove
 {
@@ -13,16 +14,14 @@ public class Move_PowerUp extends AbstractMove
 
     public Move_PowerUp()
     {
-        if (ascensionLevel >= 8)
-        {
-            STRENGTH_AMOUNT = 4;
-            ARTIFACT_AMOUNT = 1;
-        }
-        else
-        {
-            STRENGTH_AMOUNT = 3;
-            ARTIFACT_AMOUNT = 1;
-        }
+        STRENGTH_AMOUNT = 3;
+        ARTIFACT_AMOUNT = 1;
+    }
+
+    @Override
+    public boolean CanUse(Byte previousMove)
+    {
+        return super.CanUse(previousMove) && GameUtilities.GetPowerAmount(owner, StrengthPower.POWER_ID) <= 9;
     }
 
     public void SetMove()

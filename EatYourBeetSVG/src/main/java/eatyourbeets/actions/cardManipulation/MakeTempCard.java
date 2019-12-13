@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.actions.unique.AddCardToDeckAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 {
@@ -80,7 +80,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         {
             case DRAW_PILE:
             {
-                AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(actualCard,
+                GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
                 (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F, true, false));
 
                 break;
@@ -91,11 +91,11 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 if (player.hand.size() >= BaseMod.MAX_HAND_SIZE)
                 {
                     player.createHandIsFullDialog();
-                    AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(actualCard));
+                    GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(actualCard));
                 }
                 else
                 {
-                    AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(actualCard,
+                    GameEffects.List.Add(new ShowCardAndAddToHandEffect(actualCard,
                             (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
                             (float) Settings.HEIGHT / 2.0F));
                 }
@@ -105,14 +105,14 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
             case DISCARD_PILE:
             {
-                AbstractDungeon.effectList.add(new ShowCardAndAddToDiscardEffect(actualCard));
+                GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(actualCard));
 
                 break;
             }
 
             case EXHAUST_PILE:
             {
-                AbstractDungeon.effectList.add(new ExhaustCardEffect(actualCard));
+                GameEffects.List.Add(new ExhaustCardEffect(actualCard));
                 player.exhaustPile.addToTop(actualCard);
                 break;
             }

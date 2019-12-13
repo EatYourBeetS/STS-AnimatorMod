@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
+import eatyourbeets.monsters.Moveset;
 import eatyourbeets.resources.Resources_Animator;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.AnimatorMonster;
@@ -24,13 +25,14 @@ public class KrulTepes extends AnimatorMonster
     {
         super(new Data(ID), EnemyType.BOSS);
 
-        moveset.AddSpecial(new Move_Regenerate());
+        moveset.mode = Moveset.Mode.Sequential;
 
+        moveset.AddNormal(new Move_Regenerate());
         moveset.AddNormal(new Move_Bite());
-        moveset.AddNormal(new Move_GuardedAttack());
-        moveset.AddNormal(new Move_MultiSlash( ));
         moveset.AddNormal(new Move_PowerUp());
         moveset.AddNormal(new Move_Cripple());
+        moveset.AddNormal(new Move_MultiSlash());
+        moveset.AddNormal(new Move_GuardedAttack());
     }
 
     @Override
@@ -77,22 +79,6 @@ public class KrulTepes extends AnimatorMonster
         p.hand.group.removeIf(c -> c instanceof eatyourbeets.cards.animator.series.OwariNoSeraph.KrulTepes);
 
         AbstractDungeon.getCurrMapNode().room.playBGM("BOSS_BOTTOM");
-    }
-
-    @Override
-    protected void SetNextMove(int roll, int historySize, Byte previousMove)
-    {
-        if (historySize % 3 == 0)
-        {
-            Move_Regenerate move = moveset.GetMove(Move_Regenerate.class);
-            if (move.CanUse(previousMove))
-            {
-                move.SetMove();
-                return;
-            }
-        }
-
-        super.SetNextMove(roll, historySize, previousMove);
     }
 
     protected static class Data extends AbstractMonsterData

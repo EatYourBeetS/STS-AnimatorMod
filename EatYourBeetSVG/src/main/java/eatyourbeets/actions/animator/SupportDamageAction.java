@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class SupportDamageAction extends AbstractGameAction
 
                 this.target.damageFlash = true;
                 this.target.damageFlashFrames = 4;
-                AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
+                GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
             }
 
             this.tickDuration();
@@ -87,11 +88,11 @@ public class SupportDamageAction extends AbstractGameAction
 
                 if (this.info.output < 10)
                 {
-                    AbstractDungeon.effectList.add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()));
+                    GameEffects.List.Add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()));
                 }
                 else
                 {
-                    AbstractDungeon.effectList.add(new DieDieDieEffect());
+                    GameEffects.List.Add(new DieDieDieEffect());
                 }
 
                 //this.info.type = DamageInfo.DamageType.THORNS;

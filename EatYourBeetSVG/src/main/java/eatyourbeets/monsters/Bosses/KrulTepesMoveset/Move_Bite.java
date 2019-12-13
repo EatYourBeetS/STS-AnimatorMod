@@ -14,21 +14,18 @@ import eatyourbeets.monsters.AbstractMove;
 
 public class Move_Bite extends AbstractMove
 {
-    private final int STRENGTH_AMOUNT;
     private final int WEAK_AMOUNT;
 
     public Move_Bite()
     {
         if (ascensionLevel >= 6)
         {
-            damageInfo = new DamageInfo(owner, 26);
-            STRENGTH_AMOUNT = 2;
+            damageInfo = new DamageInfo(owner, 24);
             WEAK_AMOUNT = 2;
         }
         else
         {
             damageInfo = new DamageInfo(owner, 28);
-            STRENGTH_AMOUNT = 3;
             WEAK_AMOUNT = 2;
         }
     }
@@ -44,6 +41,5 @@ public class Move_Bite extends AbstractMove
         GameActions.Bottom.VFX(new BiteEffect(target.hb.cX, target.hb.cY - 40.0F * Settings.scale, Color.SCARLET.cpy()), 0.3F);
         GameActions.Bottom.Add(new DamageAction(target, damageInfo, AbstractGameAction.AttackEffect.NONE));
         GameActions.Bottom.ApplyWeak(owner, target, WEAK_AMOUNT);
-        GameActions.Bottom.StackPower(new StrengthPower(owner, STRENGTH_AMOUNT));
     }
 }

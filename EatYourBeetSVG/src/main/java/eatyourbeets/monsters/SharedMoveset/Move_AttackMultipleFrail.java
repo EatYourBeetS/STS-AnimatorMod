@@ -15,7 +15,7 @@ public class Move_AttackMultipleFrail extends AbstractMove
 
     public Move_AttackMultipleFrail(int damageAmount, int times, int debuffAmount)
     {
-        this.damageInfo = new DamageInfo(owner, damageAmount + GetBonus(damageAmount, 0.2f));
+        this.damageInfo = new DamageInfo(owner, damageAmount + CalculateAscensionBonus(damageAmount, 0.2f));
         this.times = times;
         this.debuffAmount = debuffAmount;
     }

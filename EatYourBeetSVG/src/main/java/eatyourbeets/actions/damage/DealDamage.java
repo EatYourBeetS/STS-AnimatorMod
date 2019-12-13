@@ -10,7 +10,8 @@ import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.function.Consumer;
 
@@ -78,7 +79,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
         this.target.damageFlash = true;
         this.target.damageFlashFrames = 4;
-        AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, this.muteSfx));
+        GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, this.muteSfx));
 
         if (onDamageEffect != null)
         {
@@ -119,7 +120,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {
-                GameActionsHelper.ClearPostCombatActions();
+                GameUtilities.ClearPostCombatActions();
             }
 
             if (!this.skipWait && !Settings.FAST_MODE)
@@ -147,11 +148,11 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
             {
                 if (this.source.isPlayer)
                 {
-                    AbstractDungeon.effectList.add(new GainPennyEffect(this.target.hb.cX, this.target.hb.cY));
+                    GameEffects.List.Add(new GainPennyEffect(this.target.hb.cX, this.target.hb.cY));
                 }
                 else
                 {
-                    AbstractDungeon.effectList.add(new GainPennyEffect(this.source, this.target.hb.cX, this.target.hb.cY, this.source.hb.cX, this.source.hb.cY, false));
+                    GameEffects.List.Add(new GainPennyEffect(this.source, this.target.hb.cX, this.target.hb.cY, this.source.hb.cX, this.source.hb.cY, false));
                 }
             }
         }

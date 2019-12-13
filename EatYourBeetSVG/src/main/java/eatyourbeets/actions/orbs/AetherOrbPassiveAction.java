@@ -31,7 +31,8 @@ public class AetherOrbPassiveAction extends EYBAction
             int actualDamage = AbstractOrb.applyLockOn(m, amount);
             if (actualDamage > 0)
             {
-                GameActions.Top.DealDamage(player, m, actualDamage, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HORIZONTAL);
+                GameActions.Top.DealDamage(player, m, actualDamage, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HORIZONTAL)
+                .SetOptions(true, true);
             }
         }
 

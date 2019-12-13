@@ -25,7 +25,7 @@ public class Move_GainRegenerationAll extends AbstractMove
     {
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActions.Bottom.ApplyPower(owner, m, new RegenPower(m, buffAmount), buffAmount);
+            GameActions.Bottom.StackPower(owner, new RegenPower(m, buffAmount));
         }
     }
 }

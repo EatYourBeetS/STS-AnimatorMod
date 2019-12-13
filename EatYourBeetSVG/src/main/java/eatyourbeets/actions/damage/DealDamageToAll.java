@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameActionsHelper;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -82,7 +82,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
                 }
                 else
                 {
-                    AbstractDungeon.effectList.add(new FlashAtkImgEffect(enemy.hb.cX, enemy.hb.cY, this.attackEffect, mute));
+                    GameEffects.List.Add(new FlashAtkImgEffect(enemy.hb.cX, enemy.hb.cY, this.attackEffect, mute));
                 }
 
                 mute = true;
@@ -128,7 +128,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {
-                GameActionsHelper.ClearPostCombatActions();
+                GameUtilities.ClearPostCombatActions();
             }
 
             if (!isFast && !Settings.FAST_MODE)

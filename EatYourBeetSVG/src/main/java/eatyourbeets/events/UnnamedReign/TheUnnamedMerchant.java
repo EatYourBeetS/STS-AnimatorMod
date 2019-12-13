@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
@@ -93,7 +94,7 @@ public class TheUnnamedMerchant extends AnimatorEvent
             if (medallion != null)
             {
                 medallion.setCounter(medallion.counter - 1);
-                AbstractDungeon.effectList.add(new RainingGoldEffect(sellingPrice));
+                GameEffects.List.Add(new RainingGoldEffect(sellingPrice));
                 p.gainGold(sellingPrice);
             }
 

@@ -11,7 +11,7 @@ public class FetchFromPile extends SelectFromPile
 {
     public FetchFromPile(String sourceName, int amount, CardGroup... groups)
     {
-        super(ActionType.EXHAUST, sourceName, amount, groups);
+        super(ActionType.DRAW, sourceName, amount, groups);
     }
 
     @Override

@@ -10,6 +10,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.utilities.GameEffects;
 
 public class Shigure extends AnimatorCard
 {
@@ -38,7 +39,7 @@ public class Shigure extends AnimatorCard
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(enemy -> new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()))
+        .SetDamageEffect(enemy -> GameEffects.List.Add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx())))
         .SetOptions(true, true);
 
         if (HasActiveSynergy())

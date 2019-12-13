@@ -31,7 +31,7 @@ public abstract class AbstractMove
         this.ascensionLevel = GameUtilities.GetAscensionLevel();
     }
 
-    public int GetBonus(int base, float percentage)
+    public int CalculateAscensionBonus(int base, float percentage)
     {
        return Math.round(base * percentage * (ascensionLevel / 20f));
     }
@@ -42,12 +42,16 @@ public abstract class AbstractMove
 
     public void Execute(AbstractPlayer target)
     {
-        uses -= 1;
+        if (uses > 0)
+        {
+            uses -= 1;
+        }
+
         ExecuteInternal(target);
     }
 
     public boolean CanUse(Byte previousMove)
     {
-        return !disabled && previousMove != id && uses > 0;
+        return !disabled && previousMove != id && uses != 0;
     }
 }

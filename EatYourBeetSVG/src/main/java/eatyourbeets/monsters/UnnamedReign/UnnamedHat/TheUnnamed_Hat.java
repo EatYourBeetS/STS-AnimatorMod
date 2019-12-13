@@ -63,14 +63,17 @@ public class TheUnnamed_Hat extends AnimatorMonster
         super.usePreBattleAction();
 
         GameActions.Bottom.StackPower(new TheUnnamedHatPower(this, 2));
+        GameActions.Bottom.StackPower(new ArtifactPower(this, 3));
 
         if (first)
         {
             GameActions.Bottom.GainBlock(this, 33);
+            GameActions.Bottom.Talk(this, data.strings.DIALOG[0], 2, 2);
         }
-
-        GameActions.Bottom.StackPower(new ArtifactPower(this, 3));
-        GameActions.Bottom.Talk(this, data.strings.DIALOG[0]);
+        else
+        {
+            GameActions.Bottom.Talk(this, data.strings.DIALOG[0], 1, 1);
+        }
     }
 
     @Override

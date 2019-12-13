@@ -18,7 +18,7 @@ import java.util.function.BiConsumer;
 
 public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCreature>>
 {
-    public int[] damage;
+    public final int[] damage;
 
     protected final ArrayList<AbstractCreature> targets = new ArrayList<>();
     protected BiConsumer<AbstractCreature, Boolean> onDamageEffect;

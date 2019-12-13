@@ -13,7 +13,7 @@ import patches.EnergyPanelPatches;
 
 public class Void extends CardGroup implements OnStartOfTurnPostDrawSubscriber
 {
-    private VoidEnergyOrb energyOrb = new VoidEnergyOrb(this);
+    private final VoidEnergyOrb energyOrb = new VoidEnergyOrb(this);
 
     public Void()
     {

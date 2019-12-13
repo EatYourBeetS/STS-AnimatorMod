@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class ColoredSweepingBeamEffect extends AbstractGameEffect
 {
     private final float sX;

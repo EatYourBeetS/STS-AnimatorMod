@@ -15,7 +15,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 @SpirePatch(clz= CardGlowBorder.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class})
 public class CardGlowBorderPatch
 {
-    private static FieldInfo<Color> colorField = JavaUtilities.GetPrivateField("color", AbstractGameEffect.class);
+    private static final FieldInfo<Color> colorField = JavaUtilities.GetPrivateField("color", AbstractGameEffect.class);
 
     public static Color overrideColor;
 

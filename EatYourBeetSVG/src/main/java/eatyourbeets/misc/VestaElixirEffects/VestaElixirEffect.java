@@ -8,9 +8,9 @@ import eatyourbeets.utilities.JavaUtilities;
 public abstract class VestaElixirEffect
 {
     private final static String[] TEXT = AnimatorResources.GetCardStrings(Vesta_Elixir.ID).EXTENDED_DESCRIPTION;
-    private final String rawDescription;
 
-    public int amount;
+    public final int amount;
+    public final String rawDescription;
 
     protected VestaElixirEffect(int descriptionIndex, int amount)
     {

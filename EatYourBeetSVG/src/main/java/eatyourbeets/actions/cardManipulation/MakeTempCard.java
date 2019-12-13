@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 {
-    protected CardGroup cardGroup;
+    protected final CardGroup cardGroup;
     protected boolean upgrade;
     protected boolean makeCopy;
     protected boolean randomSpot;

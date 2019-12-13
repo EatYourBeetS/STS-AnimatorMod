@@ -9,10 +9,10 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class Hemokinesis2Effect extends AbstractGameEffect
 {
-    private float x;
-    private float y;
-    private float tX;
-    private float tY;
+    private final float x;
+    private final float y;
+    private final float tX;
+    private final float tY;
 
     public Hemokinesis2Effect(float x, float y, float targetX, float targetY)
     {

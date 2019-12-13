@@ -14,8 +14,8 @@ public class AnimatorBlight extends AbstractBlight
 {
     protected static final Logger logger = LogManager.getLogger(AnimatorRelic.class.getName());
 
-    protected BlightStrings strings;
-    protected int initialAmount;
+    protected final BlightStrings strings;
+    protected final int initialAmount;
 
     public static String CreateFullID(String id)
     {

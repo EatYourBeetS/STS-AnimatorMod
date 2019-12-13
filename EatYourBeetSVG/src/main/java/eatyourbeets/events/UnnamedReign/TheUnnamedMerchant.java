@@ -9,6 +9,7 @@ import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class TheUnnamedMerchant extends AnimatorEvent
 {
     public static final String ID = CreateFullID(TheUnnamedMerchant.class.getSimpleName());

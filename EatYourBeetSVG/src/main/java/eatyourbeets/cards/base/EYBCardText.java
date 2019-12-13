@@ -10,23 +10,21 @@ public class EYBCardText
 {
     public static boolean Toggled;
     public static boolean ToggledOnce;
-    public static int Index;
-
-    protected String overrideDescription;
-    protected String overrideSecondaryDescription;
-
+    public static int NewIndex;
     public boolean canUpdate;
     public int index;
 
-    protected String[] descriptions;
-    protected String[] upgradedDescriptions;
+    protected final String[] descriptions;
+    protected final String[] upgradedDescriptions;
+    protected String overrideDescription;
+    protected String overrideSecondaryDescription;
 
     private final EYBCard card;
 
     public EYBCardText(EYBCard card, CardStrings cardStrings)
     {
         this.card = card;
-        this.index = Index;
+        this.index = NewIndex;
         this.descriptions = ConvertColorCode(cardStrings.DESCRIPTION).split(Pattern.quote(" || "));
         this.canUpdate = true;
 
@@ -48,9 +46,9 @@ public class EYBCardText
 
     public void Update(boolean forceUpdate)
     {
-        if (forceUpdate || this.index != Index)
+        if (forceUpdate || this.index != NewIndex)
         {
-            this.index = Index;
+            this.index = NewIndex;
 
             if (index == 0 && overrideDescription != null)
             {

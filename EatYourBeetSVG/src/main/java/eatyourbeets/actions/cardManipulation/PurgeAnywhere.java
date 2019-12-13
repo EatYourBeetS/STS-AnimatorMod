@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class PurgeAnywhere extends EYBAction
 {
-    protected UUID uuid;
+    protected final UUID uuid;
 
     public PurgeAnywhere(AbstractCard card)
     {

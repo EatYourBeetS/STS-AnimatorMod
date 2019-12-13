@@ -21,8 +21,8 @@ public class GridCardSelectScreenPatch
     private static final FieldInfo<Integer> Field_prevDeckSize = JavaUtilities.GetPrivateField("prevDeckSize", GridCardSelectScreen.class);
     private static final FieldInfo<Float> Field_scrollUpperBound = JavaUtilities.GetPrivateField("scrollUpperBound", GridCardSelectScreen.class);
 
-    private static CardGroup mergedGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-    private static ArrayList<CardGroup> cardGroups = new ArrayList<>();
+    private static final CardGroup mergedGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    private static final ArrayList<CardGroup> cardGroups = new ArrayList<>();
     private static boolean enabled = false;
 
     public static void Clear()

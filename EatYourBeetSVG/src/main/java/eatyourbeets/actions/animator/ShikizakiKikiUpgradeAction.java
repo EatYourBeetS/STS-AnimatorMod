@@ -13,13 +13,14 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
+// TODO: Improve this
 public class ShikizakiKikiUpgradeAction extends AbstractGameAction
 {
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
+
     private AbstractPlayer p;
-    private ArrayList<AbstractCard> cannotUpgrade = new ArrayList<>();
+    private final ArrayList<AbstractCard> cannotUpgrade = new ArrayList<>();
 
     public ShikizakiKikiUpgradeAction()
     {

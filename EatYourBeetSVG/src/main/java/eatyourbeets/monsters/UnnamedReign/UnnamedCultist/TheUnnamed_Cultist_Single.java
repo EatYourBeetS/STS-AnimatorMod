@@ -13,7 +13,6 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_GainPlatedArmorAll;
-import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAll;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.Moveset.Move_SummonEnemy;
 import eatyourbeets.powers.UnnamedReign.TheUnnamedCultistPower;
 

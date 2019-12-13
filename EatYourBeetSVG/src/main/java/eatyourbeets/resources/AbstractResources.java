@@ -323,6 +323,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     protected void InitializeInternal()
     {
+
     }
 
     protected void InitializeColor()

@@ -13,8 +13,8 @@ public abstract class EYBAction extends AbstractGameAction
 {
     protected static final Logger logger = LogManager.getLogger(EYBAction.class.getName());
 
-    protected AbstractCard card;
     protected AbstractPlayer player;
+    protected AbstractCard card;
     protected String message;
     protected String name;
 

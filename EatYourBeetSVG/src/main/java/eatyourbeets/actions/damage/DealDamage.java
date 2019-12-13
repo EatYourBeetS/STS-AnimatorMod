@@ -17,14 +17,14 @@ import java.util.function.Consumer;
 
 public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 {
+    protected final DamageInfo info;
+
+    protected Consumer<AbstractCreature> onDamageEffect;
     protected boolean bypassBlock;
     protected boolean bypassThorns;
-
-    protected DamageInfo info;
-    protected Consumer<AbstractCreature> onDamageEffect;
-    protected int goldAmount;
     protected boolean skipWait;
     protected boolean muteSfx;
+    protected int goldAmount;
 
     public DealDamage(AbstractCreature target, DamageInfo info)
     {

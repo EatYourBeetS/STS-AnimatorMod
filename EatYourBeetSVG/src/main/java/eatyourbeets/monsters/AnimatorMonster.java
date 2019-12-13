@@ -9,8 +9,6 @@ import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-
 public abstract class AnimatorMonster extends CustomMonster
 {
     protected static final Logger logger = LogManager.getLogger(AnimatorMonster.class.getName());

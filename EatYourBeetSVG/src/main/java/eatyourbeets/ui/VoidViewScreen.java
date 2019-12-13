@@ -263,6 +263,7 @@ public class VoidViewScreen implements ScrollBarListener
         this.prevDeckSize = this.voidCopy.size();
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     private void resetScrolling()
     {
         if (this.currentDiffY < this.scrollLowerBound)

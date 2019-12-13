@@ -5,6 +5,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.RandomizedList;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class TheDomVedeloper1 extends AnimatorEvent
 {
     public static final String ID = CreateFullID(TheDomVedeloper1.class.getSimpleName());

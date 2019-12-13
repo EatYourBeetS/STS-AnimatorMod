@@ -56,9 +56,9 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     public static final GameEvent<OnCostRefreshSubscriber> onCostRefresh = new GameEvent<>();
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
 
+    public static final Void Void = new Void();
     public static boolean LoadingPlayerSave;
     public static SaveData SaveData = new SaveData();
-    public static Void Void = new Void();
 
     private static final EffectHistory effectHistory = new EffectHistory();
     private static GameActionManager.Phase currentPhase;

@@ -8,7 +8,7 @@ import patches.MusicMasterPatch;
 
 public class PlayTempBgmAction extends EYBAction
 {
-    private WaitRealtimeAction wait;
+    private final WaitRealtimeAction wait;
     private final String key;
 
     public PlayTempBgmAction(String key)

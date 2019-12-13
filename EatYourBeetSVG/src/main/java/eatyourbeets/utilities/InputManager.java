@@ -71,20 +71,20 @@ public class InputManager
         }
         else if (EYBCardText.ToggledOnce)
         {
-            EYBCardText.Index = 1;
+            EYBCardText.NewIndex = 1;
             EYBCardText.ToggledOnce = false;
         }
         else if (EYBCardText.Toggled)
         {
-            EYBCardText.Index = 1;
+            EYBCardText.NewIndex = 1;
         }
         else if (RightClick.IsPressed())
         {
-            EYBCardText.Index = 1;
+            EYBCardText.NewIndex = 1;
         }
         else
         {
-            EYBCardText.Index = 0;
+            EYBCardText.NewIndex = 0;
         }
     }
 

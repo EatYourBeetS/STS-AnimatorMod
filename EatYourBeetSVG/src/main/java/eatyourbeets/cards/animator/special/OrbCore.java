@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public abstract class OrbCore extends AnimatorCard implements Hidden
 {
-    public static String SelectionMessage = "Select an Orb Core"; // TODO: Localize this
+    public static final String SelectionMessage = "Select an Orb Core"; // TODO: Localize this
 
     private static final ArrayList<AbstractCard> cores = new ArrayList<>();
     private static final RandomizedList<AbstractCard> cores0 = new RandomizedList<>();

@@ -17,10 +17,10 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 public class MaskedTravelerUpgradeSameCardEffect extends AbstractGameEffect
 {
     private static final float DUR = 1.5F;
-    private boolean openedPanel = false;
     private final Color screenColor;
     private final String message;
-    private int upgrades;
+    private final int upgrades;
+    private boolean openedPanel = false;
 
     public MaskedTravelerUpgradeSameCardEffect(int upgrades)
     {

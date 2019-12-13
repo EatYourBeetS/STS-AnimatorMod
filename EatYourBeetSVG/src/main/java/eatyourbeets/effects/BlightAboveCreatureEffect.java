@@ -21,11 +21,11 @@ public class BlightAboveCreatureEffect extends AbstractGameEffect
     private static final float TARGET_OFFSET_Y;
     private static final float LERP_RATE = 5.0F;
     private static final int W = 128;
+    private final Color outlineColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
+    private final Color shineColor = new Color(1.0F, 1.0F, 1.0F, 0.0F);
+    private float offsetY;
     private float x;
     private float y;
-    private float offsetY;
-    private Color outlineColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
-    private Color shineColor = new Color(1.0F, 1.0F, 1.0F, 0.0F);
 
     public BlightAboveCreatureEffect(float x, float y, AbstractBlight blight)
     {

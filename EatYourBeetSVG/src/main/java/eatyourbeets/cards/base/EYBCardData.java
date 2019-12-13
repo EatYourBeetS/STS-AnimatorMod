@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 
 public class EYBCardData
 {
-    public CardStrings strings;
-    public EYBCardBadge[] badges;
+    public final CardStrings strings;
+    public final EYBCardBadge[] badges;
     public AbstractCard defaultPreview;
     public AbstractCard upgradedPreview;
     public boolean previewInitialized;

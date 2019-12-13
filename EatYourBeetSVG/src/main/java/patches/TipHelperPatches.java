@@ -15,8 +15,8 @@ import java.util.Map;
 public class TipHelperPatches
 {
     //private static FieldInfo<Boolean> RenderedTipThisFrame = JavaUtilities.GetPrivateField("renderedTipThisFrame", TipHelper.class);
-    private static FieldInfo<Boolean> IsCard = JavaUtilities.GetPrivateField("isCard", TipHelper.class);
-    private static FieldInfo<AbstractCard> Card = JavaUtilities.GetPrivateField("card", TipHelper.class);
+    private static final FieldInfo<Boolean> IsCard = JavaUtilities.GetPrivateField("isCard", TipHelper.class);
+    private static final FieldInfo<AbstractCard> Card = JavaUtilities.GetPrivateField("card", TipHelper.class);
 
     @SpirePatch(clz= TipHelper.class, method="renderBox")
     public static class TipHelperPatches_renderTipForCard

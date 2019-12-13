@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class SmallLaser2Effect extends AbstractGameEffect
 {
     private final float sX;

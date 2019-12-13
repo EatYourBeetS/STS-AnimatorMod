@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.monsters.Moveset;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.KrulTepesMoveset.*;
@@ -88,7 +88,7 @@ public class KrulTepes extends AnimatorMonster
             super(id);
 
             maxHealth = AbstractDungeon.ascensionLevel >= 6 ? 377 : 344;
-            imgUrl = Resources_Animator.GetMonsterImage(ID);
+            imgUrl = AnimatorResources.GetMonsterImage(ID);
 
             SetHB(0,0,200,280);
         }

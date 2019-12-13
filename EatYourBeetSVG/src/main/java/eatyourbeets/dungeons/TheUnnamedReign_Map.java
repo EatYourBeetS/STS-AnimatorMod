@@ -266,7 +266,7 @@ public class TheUnnamedReign_Map
 
     private static void ConnectRooms(MapRoomNode src, MapRoomNode dst)
     {
-        src.addEdge(new MapEdge(src.x, src.y, src.offsetX, src.offsetY, dst.x, dst.y, dst.offsetX, dst.offsetY, false));
+        ConnectRooms(src, dst, false);
     }
 
     private static void ConnectRooms(MapRoomNode src, MapRoomNode dst, boolean isBoss)

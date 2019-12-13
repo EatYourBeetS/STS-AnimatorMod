@@ -34,11 +34,11 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     protected static final HashMap<String, Map<String, String>> dynamicKeywords = new HashMap<>();
     protected static final HashMap<String, Keyword> keywords = new HashMap<>();
     protected static final HashMap<String, Texture> textures = new HashMap<>();
-    protected static final Logger logger = LogManager.getLogger(Resources_Animator.class.getName());
+    protected static final Logger logger = LogManager.getLogger(AnimatorResources.class.getName());
 
-    protected static Resources_Common commonResources;
-    protected static Resources_Unnamed unnamedResources;
-    protected static Resources_Animator animatorResources;
+    protected static EYBResources commonResources;
+    protected static UnnamedResources unnamedResources;
+    protected static AnimatorResources animatorResources;
 
     public static Texture GetTexture(String path)
     {
@@ -130,14 +130,14 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     public static String GetRewardImage(String rewardID)
     {
-        return "images/ui/rewards/" + rewardID + ".png";
+        return "images/ui/rewards/" + rewardID.replace(":", "/") + ".png";
     }
 
     public static void Initialize()
     {
-        commonResources = Initialize(commonResources, new Resources_Common());
-        animatorResources = Initialize(animatorResources, new Resources_Animator());
-        //unnamedResources = Initialize(unnamedResources, new Resources_Unnamed());
+        commonResources = Initialize(commonResources, new EYBResources());
+        animatorResources = Initialize(animatorResources, new AnimatorResources());
+        //unnamedResources = Initialize(unnamedResources, new UnnamedResources());
     }
 
     private static <T extends AbstractResources> T Initialize(AbstractResources existing, T resources)

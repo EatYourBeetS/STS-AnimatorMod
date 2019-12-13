@@ -8,12 +8,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
-import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.utilities.JavaUtilities;
 
+// TODO: Replace this with Actions + Callback
 public class TetDiscardAction extends AbstractGameAction
 {
-    private static final String[] TEXT = Resources_Animator_Strings.TetAction.TEXT;
+    private static final String[] TEXT = AnimatorResources_Strings.TetAction.TEXT;
 
     public TetDiscardAction(int num)
     {

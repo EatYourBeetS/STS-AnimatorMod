@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.special;
 
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.markers.Hidden;
 
@@ -11,7 +11,7 @@ public abstract class MelzalgaldAlt extends AnimatorCard implements Hidden
 
     public MelzalgaldAlt(String id)
     {
-        super(staticCardData.get(id), id, Resources_Animator.GetCardImage(id), 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF_AND_ENEMY);
+        super(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF_AND_ENEMY);
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan, true);

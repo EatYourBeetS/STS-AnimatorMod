@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.UnnamedCard;
-import eatyourbeets.resources.Resources_Animator_Images;
-import eatyourbeets.resources.Resources_Unnamed_Images;
+import eatyourbeets.resources.AnimatorResources_Images;
+import eatyourbeets.resources.UnnamedResources_Images;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -53,16 +53,16 @@ public class SingleCardViewPopupPatches
                     switch (card.type)
                     {
                         case ATTACK:
-                            tmpImg = Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL_L;
+                            tmpImg = AnimatorResources_Images.CARD_FRAME_ATTACK_SPECIAL_L;
                             break;
 
                         case POWER:
-                            tmpImg = Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL_L;
+                            tmpImg = AnimatorResources_Images.CARD_FRAME_POWER_SPECIAL_L;
                             break;
 
                         case SKILL:
                         default:
-                            tmpImg = Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL_L;
+                            tmpImg = AnimatorResources_Images.CARD_FRAME_SKILL_SPECIAL_L;
                             break;
                     }
 
@@ -99,17 +99,17 @@ public class SingleCardViewPopupPatches
             {
                 case ATTACK:
                     tmpImg = ImageMaster.CARD_ATTACK_BG_GRAY_L;
-                    //tmpImg = Resources_Animator.CARD_BG_ATTACK_L;
+                    //tmpImg = AnimatorResources.CARD_BG_ATTACK_L;
                     break;
 
                 case POWER:
                     tmpImg = ImageMaster.CARD_POWER_BG_GRAY_L;
-                    //tmpImg = Resources_Animator.CARD_BG_POWER_L;
+                    //tmpImg = AnimatorResources.CARD_BG_POWER_L;
                     break;
 
                 default:
                     tmpImg = ImageMaster.CARD_SKILL_BG_GRAY_L;
-                    //tmpImg = Resources_Animator.CARD_BG_SKILL_L;
+                    //tmpImg = AnimatorResources.CARD_BG_SKILL_L;
                     break;
             }
 
@@ -131,8 +131,8 @@ public class SingleCardViewPopupPatches
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderCost")
     public static class SingleCardViewPopup_RenderCost
     {
-        private static final Texture Animator_OrbB = new Texture(Resources_Animator_Images.ORB_B_PNG);
-        private static final TextureAtlas.AtlasRegion Unnamed_Orb2B = Resources_Unnamed_Images.ORB_2_ATLAS.findRegion(Resources_Unnamed_Images.ORB_2B_PNG);
+        private static final Texture Animator_OrbB = new Texture(AnimatorResources_Images.ORB_B_PNG);
+        private static final TextureAtlas.AtlasRegion Unnamed_Orb2B = UnnamedResources_Images.ORB_2_ATLAS.findRegion(UnnamedResources_Images.ORB_2B_PNG);
 
         @SpirePrefixPatch
         public static SpireReturn Method(SingleCardViewPopup __instance, SpriteBatch sb)

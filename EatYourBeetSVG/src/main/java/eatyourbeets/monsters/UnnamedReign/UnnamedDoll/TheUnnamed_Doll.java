@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.WraithFormPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.Moveset.Move_GainTempThornsAndBlockAll;
 import eatyourbeets.utilities.GameActions;
@@ -123,17 +124,13 @@ public class TheUnnamed_Doll extends AnimatorMonster
         {
             ritualAndArtifactAll.SetMove();
         }
+        else if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) >= 2 && !AbstractDungeon.player.hasPower(WraithFormPower.POWER_ID))
+        {
+            moveset.GetMove(Move_AttackMultiple.class).SetMove();
+        }
         else
         {
-            AbstractPower power = AbstractDungeon.player.getPower(IntangiblePlayerPower.POWER_ID);
-            if (power != null && power.amount > 1)
-            {
-                moveset.GetMove(Move_AttackMultiple.class).SetMove();
-            }
-            else
-            {
-                super.SetNextMove(roll, historySize, previousMove);
-            }
+            super.SetNextMove(roll, historySize, previousMove);
         }
     }
 

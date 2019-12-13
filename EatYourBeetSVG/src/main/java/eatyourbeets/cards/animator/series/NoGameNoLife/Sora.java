@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.SoraEffects.SoraEffect;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import patches.AbstractEnums;
 
@@ -21,7 +21,7 @@ public class Sora extends AnimatorCard
 
     public Sora(SoraEffect effect, String name, String description)
     {
-        super(staticCardData.get(ID), ID + "Alt", Resources_Animator.GetCardImage(ID + "Alt"),
+        super(staticCardData.get(ID), ID + "Alt", AnimatorResources.GetCardImage(ID + "Alt"),
                 0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
 
         this.name = name;

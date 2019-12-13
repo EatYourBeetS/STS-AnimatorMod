@@ -10,9 +10,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.actions.basic.RefreshHandLayoutAction;
+import eatyourbeets.actions.handSelection.RefreshHandLayout;
 import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -114,7 +114,7 @@ public class Fredrika extends AnimatorCard
                 this.ChangeForm(((Fredrika)cards.get(0)).currentForm);
 
                 GameActions.Top.MoveCard(this, AbstractDungeon.player.hand, null, true);
-                GameActions.Bottom.Add(new RefreshHandLayoutAction());
+                GameActions.Bottom.Add(new RefreshHandLayout());
             });
         }
     }
@@ -192,7 +192,7 @@ public class Fredrika extends AnimatorCard
         {
             case FORM_DEFAULT:
             {
-                this.loadCardImage(Resources_Animator.GetCardImage(ID));
+                this.loadCardImage(AnimatorResources.GetCardImage(ID));
                 this.cardText.OverrideDescription(null, true);
                 this.type = CardType.SKILL;
                 this.target = CardTarget.SELF;
@@ -203,7 +203,7 @@ public class Fredrika extends AnimatorCard
 
             case FORM_CAT:
             {
-                this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Cat"));
+                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Cat"));
                 this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
                 this.type = CardType.SKILL;
                 this.target = CardTarget.NONE;
@@ -214,7 +214,7 @@ public class Fredrika extends AnimatorCard
 
             case FORM_DRAGOON:
             {
-                this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Dragoon"));
+                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Dragoon"));
                 this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[1], true);
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
@@ -225,7 +225,7 @@ public class Fredrika extends AnimatorCard
 
             case FORM_DOMINICA:
             {
-                this.loadCardImage(Resources_Animator.GetCardImage(ID + "_Dominica"));
+                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Dominica"));
                 this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[2], true);
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;

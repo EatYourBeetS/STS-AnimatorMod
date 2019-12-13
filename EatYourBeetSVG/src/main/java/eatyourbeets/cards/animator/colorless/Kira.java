@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.effects.CallbackEffect;
 import eatyourbeets.powers.common.GenericFadingPower;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -22,7 +22,7 @@ import eatyourbeets.utilities.JavaUtilities;
 public class Kira extends AnimatorCard
 {
     public static final String ID = Register(Kira.class.getSimpleName());
-    public static final String[] DESCRIPTIONS = Resources_Animator.GetCardStrings(ID).EXTENDED_DESCRIPTION;
+    public static final String[] DESCRIPTIONS = AnimatorResources.GetCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private int countdown;
     private AbstractMonster lastTargetEnemy = null;

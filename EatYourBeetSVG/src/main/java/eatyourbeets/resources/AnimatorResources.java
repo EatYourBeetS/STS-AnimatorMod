@@ -15,9 +15,14 @@ import patches.AbstractEnums;
 
 import java.io.File;
 
-public class Resources_Animator extends AbstractResources
+public class AnimatorResources extends AbstractResources
 {
     private static String languagePath = null;
+
+    public static String CreateID(String suffix)
+    {
+        return "animator:" + suffix;
+    }
 
     private static void LoadLanguagePath()
     {
@@ -59,16 +64,16 @@ public class Resources_Animator extends AbstractResources
     {
         Color color = CardHelper.getColor(210, 147, 106);
         BaseMod.addColor(AbstractEnums.Cards.THE_ANIMATOR, color, color, color, color, color, color, color,
-                Resources_Animator_Images.ATTACK_PNG,  Resources_Animator_Images.SKILL_PNG ,    Resources_Animator_Images.POWER_PNG ,
-                Resources_Animator_Images.ORB_A_PNG ,  Resources_Animator_Images.ATTACK_P_PNG , Resources_Animator_Images.SKILL_P_PNG ,
-                Resources_Animator_Images.POWER_P_PNG, Resources_Animator_Images.ORB_B_PNG ,    Resources_Animator_Images.ORB_C_PNG);
+        AnimatorResources_Images.ATTACK_PNG,  AnimatorResources_Images.SKILL_PNG ,    AnimatorResources_Images.POWER_PNG ,
+        AnimatorResources_Images.ORB_A_PNG ,  AnimatorResources_Images.ATTACK_P_PNG , AnimatorResources_Images.SKILL_P_PNG ,
+        AnimatorResources_Images.POWER_P_PNG, AnimatorResources_Images.ORB_B_PNG ,    AnimatorResources_Images.ORB_C_PNG);
     }
 
     @Override
     protected void InitializeCharacter()
     {
         AnimatorCharacter animatorCharacter = new AnimatorCharacter(AnimatorCharacter.NAME, AbstractEnums.Characters.THE_ANIMATOR);
-        BaseMod.addCharacter(animatorCharacter, Resources_Animator_Images.CHAR_BUTTON_PNG, Resources_Animator_Images.CHAR_PORTRAIT_JPG, AbstractEnums.Characters.THE_ANIMATOR);
+        BaseMod.addCharacter(animatorCharacter, AnimatorResources_Images.CHAR_BUTTON_PNG, AnimatorResources_Images.CHAR_PORTRAIT_JPG, AbstractEnums.Characters.THE_ANIMATOR);
     }
 
     @Override

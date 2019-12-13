@@ -1,12 +1,12 @@
-package eatyourbeets.actions.basic;
+package eatyourbeets.actions.handSelection;
 
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBAction;
 
-public class RefreshHandLayoutAction extends EYBAction
+public class RefreshHandLayout extends EYBAction
 {
-    public RefreshHandLayoutAction()
+    public RefreshHandLayout()
     {
         super(ActionType.SPECIAL);
     }

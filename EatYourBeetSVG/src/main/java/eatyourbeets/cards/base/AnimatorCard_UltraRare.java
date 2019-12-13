@@ -6,7 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.ultrarare.*;
-import eatyourbeets.resources.Resources_Animator_Images;
+import eatyourbeets.resources.AnimatorResources_Images;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.RenderHelpers;
 import patches.AbstractEnums;
@@ -31,7 +31,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
         // Do not use SetUnique()
         tags.add(AbstractEnums.CardTags.UNIQUE);
 
-        setOrbTexture(Resources_Animator_Images.ORB_A_PNG, Resources_Animator_Images.ORB_B_PNG);
+        setOrbTexture(AnimatorResources_Images.ORB_A_PNG, AnimatorResources_Images.ORB_B_PNG);
     }
 
     private static HashMap<String, AnimatorCard_UltraRare> Cards = null;

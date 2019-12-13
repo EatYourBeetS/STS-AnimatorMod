@@ -4,7 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.basic.RefreshHandLayoutAction;
+import eatyourbeets.actions.handSelection.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
@@ -39,7 +39,7 @@ public class HiiragiShinya extends AnimatorCard
                 AbstractCard c = cards.get(0);
                 c.setCostForTurn(c.costForTurn + 1);
                 c.retain = true;
-                GameActions.Bottom.Add(new RefreshHandLayoutAction());
+                GameActions.Bottom.Add(new RefreshHandLayout());
             }
         });
 

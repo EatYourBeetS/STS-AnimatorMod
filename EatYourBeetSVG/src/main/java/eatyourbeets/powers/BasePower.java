@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +24,7 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
     {
         this.owner = owner;
         this.ID = id;
-        this.img = new Texture(Resources_Animator.GetPowerImage(ID));
+        this.img = new Texture(AnimatorResources.GetPowerImage(ID));
 
         powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
 

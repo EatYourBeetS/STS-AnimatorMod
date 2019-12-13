@@ -13,9 +13,14 @@ import patches.AbstractEnums;
 
 import java.io.File;
 
-public class Resources_Unnamed extends AbstractResources
+public class UnnamedResources extends AbstractResources
 {
     private static String languagePath = null;
+
+    public static String CreateID(String suffix)
+    {
+        return "unnamed:" + suffix;
+    }
 
     private static void LoadLanguagePath()
     {
@@ -42,16 +47,16 @@ public class Resources_Unnamed extends AbstractResources
         Color color = CardHelper.getColor(60, 77, 106);
 
         BaseMod.addColor(AbstractEnums.Cards.THE_UNNAMED, color, color, color, color, color, color, color,
-                Resources_Unnamed_Images.ATTACK_PNG,  Resources_Unnamed_Images.SKILL_PNG ,    Resources_Unnamed_Images.POWER_PNG ,
-                Resources_Unnamed_Images.ORB_1A_PNG,  Resources_Unnamed_Images.ATTACK_P_PNG , Resources_Unnamed_Images.SKILL_P_PNG ,
-                Resources_Unnamed_Images.POWER_P_PNG, Resources_Unnamed_Images.ORB_1B_PNG,    Resources_Unnamed_Images.ORB_1C_PNG);
+                UnnamedResources_Images.ATTACK_PNG,  UnnamedResources_Images.SKILL_PNG ,    UnnamedResources_Images.POWER_PNG ,
+                UnnamedResources_Images.ORB_1A_PNG,  UnnamedResources_Images.ATTACK_P_PNG , UnnamedResources_Images.SKILL_P_PNG ,
+                UnnamedResources_Images.POWER_P_PNG, UnnamedResources_Images.ORB_1B_PNG,    UnnamedResources_Images.ORB_1C_PNG);
     }
 
     @Override
     protected void InitializeCharacter()
     {
         UnnamedCharacter unnamedCharacter = new UnnamedCharacter(UnnamedCharacter.NAME, AbstractEnums.Characters.THE_UNNAMED);
-        BaseMod.addCharacter(unnamedCharacter, Resources_Unnamed_Images.CHAR_BUTTON_PNG, Resources_Unnamed_Images.CHAR_PORTRAIT_JPG, AbstractEnums.Characters.THE_UNNAMED);
+        BaseMod.addCharacter(unnamedCharacter, UnnamedResources_Images.CHAR_BUTTON_PNG, UnnamedResources_Images.CHAR_PORTRAIT_JPG, AbstractEnums.Characters.THE_UNNAMED);
     }
 
     @Override

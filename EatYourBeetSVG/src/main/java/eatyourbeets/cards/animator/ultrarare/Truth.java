@@ -15,14 +15,14 @@ import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
 public class Truth extends AnimatorCard_UltraRare
 {
-    private static final String[] TEXT = Resources_Animator_Strings.Actions.TEXT;
+    private static final String[] TEXT = AnimatorResources_Strings.Actions.TEXT;
 
     public static final String ID = Register(Truth.class.getSimpleName(), EYBCardBadge.Special);
 

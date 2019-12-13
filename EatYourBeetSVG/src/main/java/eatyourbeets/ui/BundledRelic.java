@@ -14,7 +14,7 @@ import eatyourbeets.effects.ObtainRelicEffect;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 import eatyourbeets.relics.animator.CursedGlyph;
-import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -25,7 +25,7 @@ public class BundledRelic
     public final String cardID;
     public AbstractCard card;
 
-    private static final String[] text = Resources_Animator_Strings.Rewards.TEXT;
+    private static final String[] text = AnimatorResources_Strings.Rewards.TEXT;
 
     private final AbstractRelic.RelicTier relicTier;
     private final String relicID;

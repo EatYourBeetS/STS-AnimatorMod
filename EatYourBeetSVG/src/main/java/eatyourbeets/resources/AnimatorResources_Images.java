@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import java.util.HashMap;
 
-public class Resources_Animator_Images
+public class AnimatorResources_Images
 {
     private static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
 

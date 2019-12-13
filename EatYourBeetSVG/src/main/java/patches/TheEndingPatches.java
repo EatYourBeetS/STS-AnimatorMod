@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.events.TheMaskedTraveler2;
-import eatyourbeets.resources.Resources_Common;
+import eatyourbeets.resources.EYBResources;
 import eatyourbeets.room.AnimatorCustomEventRoom;
 
 public class TheEndingPatches
@@ -27,7 +27,7 @@ public class TheEndingPatches
                 MapRoomNode node = __instance.getMap().get(1).get(5);
 
                 node.room = new AnimatorCustomEventRoom(TheMaskedTraveler2::new);
-                node.room.setMapImg(Resources_Common.Map_Act5Entrance, Resources_Common.Map_Act5EntranceOutline);
+                node.room.setMapImg(EYBResources.Map_Act5Entrance, EYBResources.Map_Act5EntranceOutline);
 
                 connectNode(rest, node);
                 connectNode(node, shop);

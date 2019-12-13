@@ -3,7 +3,6 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,7 +10,7 @@ import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.actions.monsters.MoveMonsterAction;
 import eatyourbeets.monsters.Moveset;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
-import eatyourbeets.resources.Resources_Common;
+import eatyourbeets.resources.EYBResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -93,9 +92,7 @@ public class UltimateCrystal extends Crystal
     @Override
     protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        AbstractPlayer p = AbstractDungeon.player;
-        AbstractPower power = p.getPower(IntangiblePlayerPower.POWER_ID);
-        if (power != null && power.amount > 1 && !p.hasPower(WraithFormPower.POWER_ID))
+        if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) >= 2 && !AbstractDungeon.player.hasPower(WraithFormPower.POWER_ID))
         {
             moveset.GetMove(Move_AttackMultiple.class).SetMove();
         }
@@ -118,7 +115,7 @@ public class UltimateCrystal extends Crystal
             GameEffects.List.Add(new CallbackEffect(new WaitRealtimeAction(15),
                     this, (state, action)-> CardCrawlGame.music.unsilenceBGM()));
 
-            CardCrawlGame.sound.play(Resources_Common.Audio_TheUltimateCrystal, true);
+            CardCrawlGame.sound.play(EYBResources.Audio_TheUltimateCrystal, true);
             //CardCrawlGame.music.playTempBgmInstantly(AnimatorResources_Audio.TheUltimateCrystal, false);
         }
         else

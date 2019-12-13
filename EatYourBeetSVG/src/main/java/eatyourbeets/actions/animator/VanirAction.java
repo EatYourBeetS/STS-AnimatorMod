@@ -7,14 +7,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
-import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.resources.AnimatorResources_Strings;
 
 import java.util.ArrayList;
 
-// TODO: this
+// TODO: Replace this with Actions + Callback
 public class VanirAction extends AbstractGameAction
 {
-    private static final String[] TEXT = Resources_Animator_Strings.Actions.TEXT;
+    private static final String[] TEXT = AnimatorResources_Strings.Actions.TEXT;
 
     private final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
     private final CardGroup destination;

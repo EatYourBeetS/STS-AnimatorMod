@@ -2,7 +2,7 @@ package eatyourbeets.characters;
 
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
@@ -18,7 +18,7 @@ public class AnimatorCharacterSelect
     private static int index = 0;
     private static final ArrayList<AnimatorCustomLoadout> customLoadouts = new ArrayList<>();
 
-    protected static final String[] uiText = Resources_Animator_Strings.CharacterSelect.TEXT;
+    protected static final String[] uiText = AnimatorResources_Strings.CharacterSelect.TEXT;
 
     public static AnimatorCustomLoadout GetSelectedLoadout(boolean startingGame)
     {

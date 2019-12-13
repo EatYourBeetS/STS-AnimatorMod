@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.resources.Resources_Animator_Images;
-import eatyourbeets.resources.Resources_Common_Strings;
+import eatyourbeets.resources.AnimatorResources_Images;
+import eatyourbeets.resources.EYBResources_Strings;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 import patches.AbstractEnums;
@@ -144,7 +144,7 @@ public abstract class EYBCard extends CustomCard
                 return;
 
             case SPECIAL:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, Resources_Animator_Images.CARD_FRAME_ATTACK_SPECIAL, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, AnimatorResources_Images.CARD_FRAME_ATTACK_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
@@ -168,7 +168,7 @@ public abstract class EYBCard extends CustomCard
                 return;
 
             case SPECIAL:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, Resources_Animator_Images.CARD_FRAME_SKILL_SPECIAL, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, AnimatorResources_Images.CARD_FRAME_SKILL_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
@@ -192,7 +192,7 @@ public abstract class EYBCard extends CustomCard
                 break;
 
             case SPECIAL:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, Resources_Animator_Images.CARD_FRAME_POWER_SPECIAL, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, AnimatorResources_Images.CARD_FRAME_POWER_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
@@ -479,7 +479,7 @@ public abstract class EYBCard extends CustomCard
                     if (mY < (y + 76 * scale) && mY > (y + 16 * scale))
                     {
                         TipHelper.renderGenericTip(1300.0f * Settings.scale, 900.0f * Settings.scale,
-                                                    badge.description, Resources_Common_Strings.CardBadges.TEXT[0]);
+                                                    badge.description, EYBResources_Strings.CardBadges.TEXT[0]);
                     }
                 }
 

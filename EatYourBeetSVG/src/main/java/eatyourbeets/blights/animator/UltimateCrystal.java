@@ -3,9 +3,9 @@ package eatyourbeets.blights.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions.basic.RefreshHandLayoutAction;
+import eatyourbeets.actions.handSelection.RefreshHandLayout;
 import eatyourbeets.blights.AnimatorBlight;
-import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.utilities.GameActions;
 
 public class UltimateCrystal extends AnimatorBlight
@@ -25,7 +25,7 @@ public class UltimateCrystal extends AnimatorBlight
         super.atBattleStart();
 
         GameActions.Bottom.SelectFromHand(name, initialAmount, false)
-        .SetMessage(Resources_Animator_Strings.Actions.TEXT[6])
+        .SetMessage(AnimatorResources_Strings.Actions.TEXT[6])
         .AddCallback(cards ->
         {
             AbstractPlayer p = AbstractDungeon.player;
@@ -34,7 +34,7 @@ public class UltimateCrystal extends AnimatorBlight
                 GameActions.Top.MoveCard(c, p.drawPile, p.hand, true);
             }
 
-            GameActions.Bottom.Add(new RefreshHandLayoutAction());
+            GameActions.Bottom.Add(new RefreshHandLayout());
         });
 
         this.flash();

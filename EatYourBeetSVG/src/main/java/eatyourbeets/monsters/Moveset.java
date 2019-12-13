@@ -1,14 +1,12 @@
 package eatyourbeets.monsters;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.Random;
 
 public class Moveset
 {
@@ -90,20 +88,11 @@ public class Moveset
     {
         if (sequence.isEmpty())
         {
+            sequence.addAll(rotation);
+
             if (mode == Mode.Random)
             {
-                Random rng = new Random((long) roll);
-                RandomizedList<AbstractMove> temp = new RandomizedList<>();
-                temp.AddAll(rotation);
-
-                while (temp.Count() > 0)
-                {
-                    sequence.add(temp.Retrieve(rng));
-                }
-            }
-            else
-            {
-                sequence.addAll(rotation);
+                Collections.shuffle(sequence, new Random((long) roll));
             }
         }
 

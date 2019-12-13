@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.unnamed.MoveToVoidAction;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.Resources_Unnamed;
+import eatyourbeets.resources.UnnamedResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
@@ -32,14 +32,14 @@ public abstract class UnnamedCard extends EYBCard
 
     private static String GetCardImage(String cardID)
     {
-        String path = Resources_Unnamed.GetCardImage(cardID);
+        String path = UnnamedResources.GetCardImage(cardID);
         if (Gdx.files.internal(path).exists())
         {
             return path;
         }
         else
         {
-            return Resources_Unnamed.GetCardImage("unnamed:Placeholder");
+            return UnnamedResources.GetCardImage("unnamed:Placeholder");
         }
     }
 

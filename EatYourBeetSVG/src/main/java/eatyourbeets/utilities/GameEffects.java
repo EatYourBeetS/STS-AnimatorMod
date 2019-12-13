@@ -11,16 +11,16 @@ public final class GameEffects
     public final static GameEffects TopLevelList = new GameEffects(Type.TopLevelList);
     public final static GameEffects TopLevelQueue = new GameEffects(Type.TopLevelQueue);
 
-    protected final Type type;
+    protected final Type effectType;
 
-    protected GameEffects(Type type)
+    protected GameEffects(Type effectType)
     {
-        this.type = type;
+        this.effectType = effectType;
     }
 
     public <T extends AbstractGameEffect> T Add(T effect)
     {
-        switch (type)
+        switch (effectType)
         {
             case List:
                 AbstractDungeon.effectList.add(effect);

@@ -8,12 +8,12 @@ import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.effects.RemoveRelicEffect;
 import eatyourbeets.effects.SpawnRelicEffect;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.resources.Resources_Animator_Strings;
+import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.utilities.InputManager;
 
 public class Readme extends AnimatorRelic
 {
-    private static final String[] TEXT = Resources_Animator_Strings.Tips.TEXT;
+    private static final String[] TEXT = AnimatorResources_Strings.Tips.TEXT;
     public static final String ID = CreateFullID(Readme.class.getSimpleName());
 
     private final String key;

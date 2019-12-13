@@ -182,7 +182,7 @@ public class ApplyPowerSilently extends AbstractGameAction
                     return;
                 }
 
-//                if (this.target.hasPower("Artifact") && this.powerToApply.type == AbstractPower.PowerType.DEBUFF)
+//                if (this.target.hasPower("Artifact") && this.powerToApply.effectType == AbstractPower.PowerType.DEBUFF)
 //                {
 //                    AbstractDungeon.actionManager.addToTop(new TextAboveCreatureAction(this.target, TEXT[0]));
 //                    this.duration -= Gdx.graphics.getDeltaTime();
@@ -206,7 +206,7 @@ public class ApplyPowerSilently extends AbstractGameAction
                         {
                             if (!var6.hasNext())
                             {
-//                                if (this.powerToApply.type == AbstractPower.PowerType.DEBUFF)
+//                                if (this.powerToApply.effectType == AbstractPower.PowerType.DEBUFF)
 //                                {
 //                                    this.target.useFastShakeAnimation(0.5F);
 //                                }
@@ -219,7 +219,7 @@ public class ApplyPowerSilently extends AbstractGameAction
                                     this.powerToApply.flash();
 //                                    if (this.amount >= 0 || !this.powerToApply.ID.equals("Strength") && !this.powerToApply.ID.equals("Dexterity") && !this.powerToApply.ID.equals("Focus"))
 //                                    {
-//                                        if (this.powerToApply.type == AbstractPower.PowerType.BUFF)
+//                                        if (this.powerToApply.effectType == AbstractPower.PowerType.BUFF)
 //                                        {
 //                                            GameEffects.List.Add(new PowerBuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name));
 //                                        }
@@ -274,7 +274,7 @@ public class ApplyPowerSilently extends AbstractGameAction
 //                    }
 //                    else if (this.amount > 0)
 //                    {
-//                        if (p.type != AbstractPower.PowerType.BUFF && !(p instanceof StrengthPower) && !(p instanceof DexterityPower))
+//                        if (p.effectType != AbstractPower.PowerType.BUFF && !(p instanceof StrengthPower) && !(p instanceof DexterityPower))
 //                        {
 //                            GameEffects.List.Add(new PowerDebuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, "+" + this.amount + " " + this.powerToApply.name));
 //                        }
@@ -283,7 +283,7 @@ public class ApplyPowerSilently extends AbstractGameAction
 //                            GameEffects.List.Add(new PowerBuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, "+" + this.amount + " " + this.powerToApply.name));
 //                        }
 //                    }
-//                    else if (p.type == AbstractPower.PowerType.BUFF)
+//                    else if (p.effectType == AbstractPower.PowerType.BUFF)
 //                    {
 //                        GameEffects.List.Add(new PowerBuffEffect(this.target.hb.cX - this.target.animX, this.target.hb.cY + this.target.hb.height / 2.0F, this.powerToApply.name + TEXT[3]));
 //                    }

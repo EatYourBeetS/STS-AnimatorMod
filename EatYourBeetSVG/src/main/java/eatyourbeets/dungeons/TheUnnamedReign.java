@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EmptyRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
@@ -34,7 +35,7 @@ public class TheUnnamedReign extends AbstractDungeon
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
     public static final String NAME;
-    public static final String ID = "animator:TheUnnamedReign";
+    public static final String ID = AnimatorResources.CreateID("TheUnnamedReign");
 
     protected ArrayList<String> MONSTER_LIST_WHICH_ACTUALLY_WORKS;
 
@@ -94,7 +95,6 @@ public class TheUnnamedReign extends AbstractDungeon
         mapRng = new Random(Settings.seed + (long) (saveFile.act_num * 200));
 
         GenerateMap();
-
 
 //        MapRoomNode victoryNode = new MapRoomNode(3, map.size());
 //        victoryNode.room = new TrueVictoryRoom();
@@ -267,7 +267,6 @@ public class TheUnnamedReign extends AbstractDungeon
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(14, eliteEnemies.Retrieve(mapRng)); // mo2
     }
 
-
     protected void generateMonsters()
     {
         generateWeakEnemies(0);
@@ -302,7 +301,6 @@ public class TheUnnamedReign extends AbstractDungeon
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CUBE);
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CRYSTAL);
     }
-
 
     static
     {

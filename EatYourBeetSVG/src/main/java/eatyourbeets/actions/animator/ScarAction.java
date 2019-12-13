@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import eatyourbeets.actions.basic.RefreshHandLayoutAction;
+import eatyourbeets.actions.handSelection.RefreshHandLayout;
 import eatyourbeets.utilities.GameActions;
 
 public class ScarAction extends AbstractGameAction
@@ -45,7 +45,7 @@ public class ScarAction extends AbstractGameAction
             }
         }
 
-        GameActions.Bottom.Add(new RefreshHandLayoutAction());
+        GameActions.Bottom.Add(new RefreshHandLayout());
 
         this.isDone = true;
     }

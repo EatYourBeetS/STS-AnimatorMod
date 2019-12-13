@@ -3,7 +3,7 @@ package eatyourbeets.resources;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
-public class Resources_Unnamed_Images
+public class UnnamedResources_Images
 {
     public static final String ATTACK_PNG = "images/cardui/unnamed/512/bg_attack_canvas.png";
     public static final String SKILL_PNG = "images/cardui/unnamed/512/bg_skill_canvas.png";
@@ -58,9 +58,9 @@ public class Resources_Unnamed_Images
     public static final Texture CARD_FRAME_SKILL_SPECIAL_L  = new Texture("images/cardui/unnamed/1024/frame_skill_special.png");
     public static final Texture CARD_FRAME_POWER_SPECIAL_L  = new Texture("images/cardui/unnamed/1024/frame_power_special.png");
 
-    public static final Texture ORB_2A = Resources_Unnamed.GetTexture(ORB_2A_PNG);
-    public static final Texture ORB_2B = Resources_Unnamed.GetTexture(ORB_2B_PNG);
-    public static final Texture ORB_2C = Resources_Unnamed.GetTexture(ORB_2C_PNG);
+    public static final Texture ORB_2A = UnnamedResources.GetTexture(ORB_2A_PNG);
+    public static final Texture ORB_2B = UnnamedResources.GetTexture(ORB_2B_PNG);
+    public static final Texture ORB_2C = UnnamedResources.GetTexture(ORB_2C_PNG);
 
     public static final TextureAtlas ORB_2_ATLAS = new TextureAtlas();
 

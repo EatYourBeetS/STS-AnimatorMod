@@ -1,10 +1,7 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes;
 
 import eatyourbeets.monsters.AnimatorMonster;
-import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterData_Shape;
-import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
-import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
-import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.resources.AnimatorResources;
 
 public abstract class UnnamedShape extends AnimatorMonster
 {
@@ -12,7 +9,7 @@ public abstract class UnnamedShape extends AnimatorMonster
 
     public static String CreateFullID(MonsterShape shape, MonsterElement element, MonsterTier tier)
     {
-        return "animator:" + element + "_" + shape + "_" +  tier.GetId();
+        return AnimatorResources.CreateID(element + "_" + shape + "_" +  tier.GetId());
     }
 
     public UnnamedShape(MonsterShape shape, MonsterElement element, MonsterTier tier, float x, float y)

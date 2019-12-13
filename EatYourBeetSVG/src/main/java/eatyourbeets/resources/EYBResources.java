@@ -27,9 +27,14 @@ import patches.AbstractEnums;
 
 import java.io.File;
 
-public class Resources_Common extends AbstractResources
+public class EYBResources extends AbstractResources
 {
     private static String languagePath = null;
+
+    public static String CreateCommonID(String suffix)
+    {
+        return "EYB:" + suffix;
+    }
 
     private static void LoadLanguagePath()
     {

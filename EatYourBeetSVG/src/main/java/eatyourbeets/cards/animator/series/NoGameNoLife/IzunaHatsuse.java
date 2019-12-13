@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -100,14 +100,14 @@ public class IzunaHatsuse extends AnimatorCard
 
             if (transformed)
             {
-                this.loadCardImage(Resources_Animator.GetCardImage(ID + "Alt"));
+                this.loadCardImage(AnimatorResources.GetCardImage(ID + "Alt"));
                 this.type = CardType.ATTACK;
 
                 cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
             }
             else
             {
-                this.loadCardImage(Resources_Animator.GetCardImage(ID));
+                this.loadCardImage(AnimatorResources.GetCardImage(ID));
                 this.type = CardType.SKILL;
 
                 cardText.OverrideDescription(null, true);

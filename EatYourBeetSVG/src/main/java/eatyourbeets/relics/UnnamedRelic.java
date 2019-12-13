@@ -4,7 +4,7 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.AnimatorResources;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
@@ -22,7 +22,7 @@ public abstract class UnnamedRelic extends CustomRelic
 
     public UnnamedRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
     {
-        super(id, new Texture(Resources_Animator.GetRelicImage(imageID)), tier, sfx);
+        super(id, new Texture(AnimatorResources.GetRelicImage(imageID)), tier, sfx);
     }
 
     public UnnamedRelic(String id, RelicTier tier, LandingSound sfx)

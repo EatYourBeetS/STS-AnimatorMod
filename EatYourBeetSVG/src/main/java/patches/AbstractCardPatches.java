@@ -11,14 +11,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.Resources_Unnamed_Images;
+import eatyourbeets.resources.UnnamedResources_Images;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class AbstractCardPatches
 {
     private static FieldInfo<Boolean> DarkenField = JavaUtilities.GetPrivateField("darken", AbstractCard.class);
-    private static TextureAtlas.AtlasRegion Orb2A = Resources_Unnamed_Images.ORB_2_ATLAS.findRegion(Resources_Unnamed_Images.ORB_2A_PNG);
+    private static TextureAtlas.AtlasRegion Orb2A = UnnamedResources_Images.ORB_2_ATLAS.findRegion(UnnamedResources_Images.ORB_2A_PNG);
 
     @SpirePatch(clz=AbstractCard.class, method="renderEnergy")
     public static class AbstractCardPatches_renderEnergy

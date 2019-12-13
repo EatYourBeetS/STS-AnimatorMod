@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.localization.BlightStrings;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +19,7 @@ public class AnimatorBlight extends AbstractBlight
 
     public static String CreateFullID(String id)
     {
-        return "animator:" + id;
+        return AnimatorResources.CreateID(id);
     }
 
     public AnimatorBlight(String id)

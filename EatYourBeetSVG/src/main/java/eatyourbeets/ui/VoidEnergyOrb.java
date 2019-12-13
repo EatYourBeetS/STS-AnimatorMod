@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.Resources_Unnamed;
-import eatyourbeets.resources.Resources_Unnamed_Strings;
+import eatyourbeets.resources.UnnamedResources;
+import eatyourbeets.resources.UnnamedResources_Strings;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,11 +25,11 @@ public class VoidEnergyOrb
 {
     public static final Logger logger = LogManager.getLogger(TextureLoader.class.getName());
 
-    private static final Texture Orb_BG = Resources_Unnamed.GetTexture("images/characters/unnamed/energy2/Orb_BG.png");
-    private static final Texture Orb_FG = Resources_Unnamed.GetTexture("images/characters/unnamed/energy2/Orb_FG.png");
-    private static final Texture Orb_VFX1 = Resources_Unnamed.GetTexture("images/characters/unnamed/energy2/Orb_VFX1.png");
-    private static final Texture Orb_VFX2 = Resources_Unnamed.GetTexture("images/characters/unnamed/energy2/Orb_VFX2.png");
-    private static final UIStrings uiStrings = Resources_Unnamed_Strings.EnergyPanel;
+    private static final Texture Orb_BG = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_BG.png");
+    private static final Texture Orb_FG = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_FG.png");
+    private static final Texture Orb_VFX1 = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_VFX1.png");
+    private static final Texture Orb_VFX2 = UnnamedResources.GetTexture("images/characters/unnamed/energy2/Orb_VFX2.png");
+    private static final UIStrings uiStrings = UnnamedResources_Strings.EnergyPanel;
 
     private final Hitbox hb = new Hitbox(128.0F * Settings.scale, 248.0F * Settings.scale, 147.2F * Settings.scale, 147.2F * Settings.scale);
     private final Void source;

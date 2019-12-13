@@ -3,13 +3,13 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedCultist;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.AbstractMonsterData;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameUtilities;
 
 public abstract class TheUnnamed_Cultist extends AnimatorMonster
 {
     public static final String ID = CreateFullID(TheUnnamed_Cultist.class.getSimpleName());
-    public static final MonsterStrings STRINGS = Resources_Animator.GetMonsterStrings(ID);
+    public static final MonsterStrings STRINGS = AnimatorResources.GetMonsterStrings(ID);
 
     public TheUnnamed_Cultist(float x, float y)
     {

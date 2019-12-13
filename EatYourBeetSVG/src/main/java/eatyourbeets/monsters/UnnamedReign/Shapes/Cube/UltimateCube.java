@@ -53,9 +53,7 @@ public class UltimateCube extends Cube
     @Override
     protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
-        AbstractPlayer p = AbstractDungeon.player;
-        AbstractPower power = p.getPower(IntangiblePlayerPower.POWER_ID);
-        if (power != null && power.amount > 1 && !p.hasPower(WraithFormPower.POWER_ID))
+        if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) >= 2 && !AbstractDungeon.player.hasPower(WraithFormPower.POWER_ID))
         {
             moveset.GetMove(Move_AttackMultiple.class).SetMove();
         }

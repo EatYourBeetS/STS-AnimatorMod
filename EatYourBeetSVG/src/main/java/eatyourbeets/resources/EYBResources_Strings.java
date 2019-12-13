@@ -2,7 +2,7 @@ package eatyourbeets.resources;
 
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-public class Resources_Common_Strings
+public class EYBResources_Strings
 {
     private static final String Prefix = "EYB:";
 

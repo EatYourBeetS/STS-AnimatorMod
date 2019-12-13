@@ -2,12 +2,12 @@ package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
-import eatyourbeets.resources.Resources_Animator;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.JavaUtilities;
 
 public abstract class VestaElixirEffect
 {
-    private final static String[] TEXT = Resources_Animator.GetCardStrings(Vesta_Elixir.ID).EXTENDED_DESCRIPTION;
+    private final static String[] TEXT = AnimatorResources.GetCardStrings(Vesta_Elixir.ID).EXTENDED_DESCRIPTION;
     private final String rawDescription;
 
     public int amount;

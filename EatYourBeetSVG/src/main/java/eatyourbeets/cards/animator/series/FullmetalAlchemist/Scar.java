@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.ScarAction;
-import eatyourbeets.actions.basic.RefreshHandLayoutAction;
+import eatyourbeets.actions.handSelection.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
@@ -30,7 +30,7 @@ public class Scar extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActions.Top.Add(new RefreshHandLayoutAction());
+        GameActions.Top.Add(new RefreshHandLayout());
         GameActions.Top.ExhaustFromHand(name, 1, true);
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)

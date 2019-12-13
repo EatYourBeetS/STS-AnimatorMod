@@ -3,6 +3,7 @@ package eatyourbeets.monsters;
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
@@ -12,12 +13,11 @@ import java.util.ArrayList;
 
 public abstract class AnimatorMonster extends CustomMonster
 {
-
     protected static final Logger logger = LogManager.getLogger(AnimatorMonster.class.getName());
 
     public static String CreateFullID(String id)
     {
-        return "animator:" + id;
+        return AnimatorResources.CreateID(id);
     }
 
     public final Moveset moveset = new Moveset(this);
@@ -62,35 +62,6 @@ public abstract class AnimatorMonster extends CustomMonster
     protected void SetNextMove(int roll, int historySize, Byte previousMove)
     {
         moveset.GetNextMove(roll, previousMove).SetMove();
-
-//        if (moveset.mode == Moveset.Mode.Sequential)
-//        {
-//            int count = moveset.rotation.size();
-//
-//            AbstractMove move = moveset.rotation.get(historySize % count);
-//
-//            while (!move.CanUse(previousMove))
-//            {
-//                moveHistory.add(previousMove);
-//                historySize += 1;
-//                move = moveset.rotation.get(historySize % count);
-//            }
-//
-//            move.SetMove();
-//        }
-//        else
-//        {
-//            ArrayList<AbstractMove> moves = new ArrayList<>();
-//            for (AbstractMove move : moveset.rotation)
-//            {
-//                if (move.CanUse(previousMove))
-//                {
-//                    moves.add(move);
-//                }
-//            }
-//
-//            moves.get(roll % moves.size()).SetMove();
-//        }
     }
 
     @Override

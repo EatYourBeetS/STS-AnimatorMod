@@ -20,15 +20,15 @@ import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.cards.unnamed.Defend;
 import eatyourbeets.cards.unnamed.Strike;
 import eatyourbeets.relics.unnamed.InfinitePower;
-import eatyourbeets.resources.Resources_Unnamed;
-import eatyourbeets.resources.Resources_Unnamed_Images;
+import eatyourbeets.resources.UnnamedResources;
+import eatyourbeets.resources.UnnamedResources_Images;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
 public class UnnamedCharacter extends CustomPlayer
 {
-    public static final CharacterStrings characterStrings = Resources_Unnamed.GetCharacterStrings("Unnamed");
+    public static final CharacterStrings characterStrings = UnnamedResources.GetCharacterStrings("Unnamed");
     public static final Color MAIN_COLOR = CardHelper.getColor(210, 147, 106);
     public static final String[] NAMES = characterStrings.NAMES;
     public static final String[] TEXT = characterStrings.TEXT;
@@ -36,9 +36,9 @@ public class UnnamedCharacter extends CustomPlayer
 
     public UnnamedCharacter(String name, PlayerClass playerClass)
     {
-        super(name, playerClass, Resources_Unnamed_Images.ORB_TEXTURES, Resources_Unnamed_Images.ORB_VFX_PNG, (String) null, null);
+        super(name, playerClass, UnnamedResources_Images.ORB_TEXTURES, UnnamedResources_Images.ORB_VFX_PNG, (String) null, null);
 
-        initializeClass(null, Resources_Unnamed_Images.SHOULDER2_PNG, Resources_Unnamed_Images.SHOULDER1_PNG, Resources_Unnamed_Images.CORPSE_PNG,
+        initializeClass(null, UnnamedResources_Images.SHOULDER2_PNG, UnnamedResources_Images.SHOULDER1_PNG, UnnamedResources_Images.CORPSE_PNG,
                 getLoadout(), 0.0F, -20.0F, 240.0F, 260.0F, new EnergyManager(3));
 
         reloadAnimation();
@@ -46,7 +46,7 @@ public class UnnamedCharacter extends CustomPlayer
 
     public void reloadAnimation()
     {
-        this.loadAnimation(Resources_Unnamed_Images.SKELETON_ATLAS, Resources_Unnamed_Images.SKELETON_JSON, 1.0f);
+        this.loadAnimation(UnnamedResources_Images.SKELETON_ATLAS, UnnamedResources_Images.SKELETON_JSON, 1.0f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         this.stateData.setMix("Hit", "Idle", 0.1F);
         e.setTimeScale(0.9F);

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.resources.Resources_Common_Strings;
+import eatyourbeets.resources.EYBResources_Strings;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBCardBadge
@@ -30,8 +30,8 @@ public class EYBCardBadge
 
     private EYBCardBadge(int id, String texturePath)
     {
-        this.name = Resources_Common_Strings.CardBadges.EXTRA_TEXT[id];
-        this.description = Resources_Common_Strings.CardBadges.TEXT[id + 1];
+        this.name = EYBResources_Strings.CardBadges.EXTRA_TEXT[id];
+        this.description = EYBResources_Strings.CardBadges.TEXT[id + 1];
         this.texture = AbstractResources.GetTexture(texturePath);
         this.id = id;
     }

@@ -4,8 +4,8 @@ import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.interfaces.markers.Spellcaster;
-import eatyourbeets.resources.Resources_Animator;
-import eatyourbeets.resources.Resources_Animator_Images;
+import eatyourbeets.resources.AnimatorResources;
+import eatyourbeets.resources.AnimatorResources_Images;
 import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +32,7 @@ public abstract class AnimatorCard extends EYBCard
 
     protected static String Register(String cardID, EYBCardBadge... badges)
     {
-        return RegisterCard("animator:" + cardID, badges);
+        return RegisterCard(AnimatorResources.CreateID(cardID), badges);
     }
 
     public static void SetLastCardPlayed(AbstractCard card)
@@ -67,12 +67,12 @@ public abstract class AnimatorCard extends EYBCard
 
     protected AnimatorCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
-        this(staticCardData.get(id), id, Resources_Animator.GetCardImage(id), cost, type, AbstractEnums.Cards.THE_ANIMATOR, rarity, target);
+        this(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), cost, type, AbstractEnums.Cards.THE_ANIMATOR, rarity, target);
     }
 
     protected AnimatorCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        this(staticCardData.get(id), id, Resources_Animator.GetCardImage(id), cost, type, color, rarity, target);
+        this(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), cost, type, color, rarity, target);
     }
 
     protected AnimatorCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
@@ -81,11 +81,11 @@ public abstract class AnimatorCard extends EYBCard
 
         if (this instanceof AnimatorCard_UltraRare)
         {
-            setBannerTexture(Resources_Animator_Images.BANNER_SPECIAL2_PNG, Resources_Animator_Images.BANNER_SPECIAL2_P_PNG);
+            setBannerTexture(AnimatorResources_Images.BANNER_SPECIAL2_PNG, AnimatorResources_Images.BANNER_SPECIAL2_P_PNG);
         }
         else if (rarity == CardRarity.SPECIAL)
         {
-            setBannerTexture(Resources_Animator_Images.BANNER_SPECIAL_PNG, Resources_Animator_Images.BANNER_SPECIAL_P_PNG);
+            setBannerTexture(AnimatorResources_Images.BANNER_SPECIAL_PNG, AnimatorResources_Images.BANNER_SPECIAL_P_PNG);
         }
     }
 

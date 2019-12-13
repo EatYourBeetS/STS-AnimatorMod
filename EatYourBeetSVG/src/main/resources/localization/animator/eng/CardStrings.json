@@ -737,6 +737,11 @@
 		"DESCRIPTION": "Cooldown !SV! : NL Deal 300 damage. || Whenever you Exhaust or discard a card, reduce this card's Cooldown by 1.",
 		"NAME": "Niva Lada"
 	},
+	"animator:NononJakuzure":
+	{
+		"DESCRIPTION": "Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1.",
+		"NAME": "Nonon Jakuzure"
+	},
 	"animator:OrbCore_Aether":
 	{
 		"DESCRIPTION": "Channel !SV! Aether. || On your second NL Synergy each turn, NL draw !M! cards, then NL discard 1 card.",

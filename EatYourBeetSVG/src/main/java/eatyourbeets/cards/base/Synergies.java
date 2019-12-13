@@ -51,6 +51,7 @@ public class Synergies
     public final static Synergy CallOfCthulhu = CreateSynergy(34);
     public final static Synergy Chuunibyou = CreateSynergy(35);
     public final static Synergy FLCL = CreateSynergy(36);
+    public final static Synergy KillLaKill = CreateSynergy(37);
 
     private static Synergy CreateSynergy(int id)
     {

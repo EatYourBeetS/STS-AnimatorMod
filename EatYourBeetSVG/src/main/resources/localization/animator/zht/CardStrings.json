@@ -737,6 +737,11 @@
 		"DESCRIPTION": "冷卻 !SV! : NL 造成 300 點傷害 。 || 每當你丟棄 NL 或 消耗 牌時， NL 減少這張牌 NL 1 層 冷卻 。",
 		"NAME": "妮娃·萊妲"
 	},
+	"animator:NononJakuzure":
+	{
+		"DESCRIPTION": "Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1.",
+		"NAME": "Nonon Jakuzure"
+	},
 	"animator:OrbCore_Aether":
 	{
 		"DESCRIPTION": "生成 !SV! 個 NL 凌風 充能球 。 || 每回合第二次 NL 同調 時， NL 抽 !M! 張牌 ， NL 然後丟棄 1 張牌 。",

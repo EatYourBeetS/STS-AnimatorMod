@@ -27,7 +27,7 @@ public class Shimakaze extends AnimatorCard
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.Draw(this.magicNumber);
-        GameActions.Bottom.MakeCardInDrawPile(this, new Dazed());
+        GameActions.Bottom.MakeCardInDrawPile(new Dazed());
     }
 
     @Override

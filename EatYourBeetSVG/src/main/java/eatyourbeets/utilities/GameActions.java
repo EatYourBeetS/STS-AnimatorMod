@@ -383,11 +383,6 @@ public final class GameActions
         return Add(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, amount, effect));
     }
 
-    public MakeTempCard MakeCard(AbstractCard sourceCard, AbstractCard card, CardGroup group)
-    {
-        return Add(new MakeTempCard(sourceCard, card, group));
-    }
-
     public MakeTempCard MakeCard(AbstractCard card, CardGroup group)
     {
         return Add(new MakeTempCard(card, group));
@@ -398,19 +393,9 @@ public final class GameActions
         return MakeCard(card, AbstractDungeon.player.discardPile);
     }
 
-    public MakeTempCard MakeCardInDiscardPile(AbstractCard sourceCard, AbstractCard card)
-    {
-        return MakeCard(sourceCard, card, AbstractDungeon.player.discardPile);
-    }
-
     public MakeTempCard MakeCardInDrawPile(AbstractCard card)
     {
         return MakeCard(card, AbstractDungeon.player.drawPile);
-    }
-
-    public MakeTempCard MakeCardInDrawPile(AbstractCard sourceCard, AbstractCard card)
-    {
-        return MakeCard(sourceCard, card, AbstractDungeon.player.drawPile);
     }
 
     public MakeTempCard MakeCardInHand(AbstractCard card)

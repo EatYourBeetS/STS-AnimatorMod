@@ -1,6 +1,5 @@
 package eatyourbeets.ui;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -27,7 +26,6 @@ public class CardRewardScreenPatch
 {
     public static final Logger logger = LogManager.getLogger(CardRewardScreenPatch.class.getName());
 
-    private static final Texture rightClickImage = new Texture("images/ui/rewards/RightClick.png");
     private static final ArrayList<BanCardButton> buttons = new ArrayList<>();
     private static BundledRelicContainer rewardBundle;
     private static PurgingStone_Cards purgingStone;

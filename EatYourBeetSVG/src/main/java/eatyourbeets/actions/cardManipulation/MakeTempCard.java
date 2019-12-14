@@ -1,6 +1,7 @@
 package eatyourbeets.actions.cardManipulation;
 
 import basemod.BaseMod;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.unique.AddCardToDeckAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -15,25 +16,12 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
     protected final CardGroup cardGroup;
     protected boolean upgrade;
     protected boolean makeCopy;
-    protected boolean randomSpot;
-    protected boolean toBottom;
-    protected float cardX = -1;
-    protected float cardY = -1;
+    protected boolean randomSpot = true;
+    protected boolean toBottom = false;
 
     public MakeTempCard(AbstractCard card, CardGroup group)
     {
-        this(null, card, group);
-    }
-
-    public MakeTempCard(AbstractCard sourceCard, AbstractCard card, CardGroup group)
-    {
         super(ActionType.CARD_MANIPULATION);
-
-        if (sourceCard != null)
-        {
-            this.cardX = sourceCard.current_x;
-            this.cardY = sourceCard.current_y;
-        }
 
         this.card = card;
         this.cardGroup = group;
@@ -81,7 +69,8 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             case DRAW_PILE:
             {
                 GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
-                (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F, true, false));
+                (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
+                (float) Settings.HEIGHT / 2.0F, randomSpot, true, toBottom));
 
                 break;
             }
@@ -95,9 +84,10 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
                 }
                 else
                 {
+                    // If you don't specify x and y it won't play the card obtain sfx
                     GameEffects.List.Add(new ShowCardAndAddToHandEffect(actualCard,
-                            (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
-                            (float) Settings.HEIGHT / 2.0F));
+                    (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
+                    (float) Settings.HEIGHT / 2.0F));
                 }
 
                 break;
@@ -119,6 +109,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
             case MASTER_DECK:
             {
+                // Not actually a temp card in this case, so this action might need a different name
                 GameActions.Bottom.Add(new AddCardToDeckAction(actualCard));
                 break;
             }

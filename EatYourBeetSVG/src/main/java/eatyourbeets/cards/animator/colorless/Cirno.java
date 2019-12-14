@@ -1,62 +1,53 @@
 package eatyourbeets.cards.animator.colorless;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.powers.IntangiblePower;
-import eatyourbeets.cards.base.AnimatorCard_Cooldown;
+import com.megacrit.cardcrawl.vfx.combat.BlizzardEffect;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
-public class Cirno extends AnimatorCard_Cooldown
+public class Cirno extends AnimatorCard
 {
-    public static final String ID = Register(Cirno.class.getSimpleName());
+    public static final String ID = Register(Cirno.class.getSimpleName(), EYBCardBadge.Exhaust);
 
     public Cirno()
     {
-        super(ID, 1, AbstractCard.CardType.SKILL, AbstractCard.CardColor.COLORLESS, CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
+        super(ID, 1, CardType.ATTACK, AbstractCard.CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0,5);
+        Initialize(6,0);
+        SetMultiDamage(true);
         SetSynergy(Synergies.TouhouProject);
+        SetEthereal(true);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
-        if(EffectHistory.TryActivateLimited(this.cardID)){
-            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
-            {
-                GameActions.Top.StackPower(new IntangiblePower(enemy, 1));
-            }
-        }
-        if (ProgressCooldown())
-        {
-            OnCooldownCompleted(p, m);
-        }
+        GameActions.Bottom.VFX(new BlizzardEffect(1, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.ChannelOrb(new Frost(), true);
     }
-
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+        GameActions.Bottom.ChannelOrb(new Frost(), true);
+    }
     @Override
     public void upgrade()
     {
         if (TryUpgrade())
         {
-            upgradeBlock(3);
+            upgradeDamage(3);
         }
     }
 
-    @Override
-    protected int GetBaseCooldown() {
-        return 1;
-    }
 
-    @Override
-    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m) {
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
-    }
 }
 

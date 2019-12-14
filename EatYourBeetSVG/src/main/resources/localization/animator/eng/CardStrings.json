@@ -154,7 +154,7 @@
 	},
 	"animator:Cirno":
 {
-	"DESCRIPTION": "Gain !B! Block. NL Cooldown !SV! : NL #yChannel[] 2 Frost. || Limited. NL Enemies gain Intangible until you end your next turn.",
+	"DESCRIPTION": "Ethereal. NL Channel 1 Frost. NL Deal !D! damage to ALL enemies. || When Exhausted, NL Channel 1 Frost.",
 	"NAME": "Cirno"
 },
 	"animator:Cocytus":

@@ -4,13 +4,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class TewiInaba extends AnimatorCard
     {
-        public static final String ID = Register(TewiInaba.class.getSimpleName());
+        public static final String ID = Register(TewiInaba.class.getSimpleName(), EYBCardBadge.Special);
 
     public TewiInaba()
         {

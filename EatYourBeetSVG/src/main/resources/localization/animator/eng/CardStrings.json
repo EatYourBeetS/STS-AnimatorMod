@@ -152,6 +152,11 @@
 		"DESCRIPTION": "Gain !B! Block. NL Decrease this NL card's Block by NL !M! this combat. || When Exhausted, NL Channel 1 Frost.",
 		"NAME": "Chung"
 	},
+	"animator:Cirno":
+{
+	"DESCRIPTION": "Gain !B! Block. NL Cooldown !SV! : NL #yChannel[] 2 Frost. || Limited. NL Enemies gain Intangible until you end your next turn.",
+	"NAME": "Cirno"
+},
 	"animator:Cocytus":
 	{                                                        
 		"DESCRIPTION": "Deal !D! damage. NL Gain 1 Force. NL Strength affects this NL card !M! times. || On Synergy, NL randomly gain 1 NL Plated_Armor or NL 1 Thorns.",
@@ -1079,6 +1084,11 @@
 		"DESCRIPTION": "Discard up to 2 cards from your draw pile. Move 2 cards from your discard pile to your draw pile. || Semi-Limited. NL On Synergy, NL gain [E].",
 		"NAME": "Tet",
 		"UPGRADE_DESCRIPTION": "Retain. Discard up to 2 cards from your draw pile. Move 2 cards from your discard pile to your draw pile. || Semi-Limited. NL On Synergy, NL gain [E]."
+	},
+	"animator:TewiInaba":
+	{
+		"DESCRIPTION": "Draw !M! cards. NL Exhaust. || Limited. NL If you have at least 200 gold, this card won't Exhaust.",
+		"NAME": "Tewi Inaba"
 	},
 	"animator:TheHaunt":
 	{

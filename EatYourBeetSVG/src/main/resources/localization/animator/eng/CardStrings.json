@@ -1087,7 +1087,7 @@
 	},
 	"animator:TewiInaba":
 	{
-		"DESCRIPTION": "Draw !M! cards. NL Exhaust. || Limited. NL If you have at least 200 gold, this card won't Exhaust.",
+		"DESCRIPTION": "Discard 1 random card. NL Draw !M! cards. NL Exhaust. || Limited. NL If your next Orb is Earth, Evoke it and #yChannel[] it again.",
 		"NAME": "Tewi Inaba"
 	},
 	"animator:TheHaunt":

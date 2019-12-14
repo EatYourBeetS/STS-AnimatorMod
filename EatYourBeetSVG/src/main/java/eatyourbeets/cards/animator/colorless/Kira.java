@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.FadingPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
-import eatyourbeets.effects.CallbackEffect;
+import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameActions;

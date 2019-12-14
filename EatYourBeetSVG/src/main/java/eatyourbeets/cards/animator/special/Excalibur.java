@@ -27,7 +27,6 @@ public class Excalibur extends AnimatorCard implements Hidden
         SetRetain(true);
         SetExhaust(true);
         SetMultiDamage(true);
-
         SetSynergy(Synergies.Fate);
     }
 

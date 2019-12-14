@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.rooms.RestRoom;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.effects.RemoveRelicEffect;
+import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.monsters.Bosses.KrulTepes;
 import patches.RelicObtainedPatches;
 

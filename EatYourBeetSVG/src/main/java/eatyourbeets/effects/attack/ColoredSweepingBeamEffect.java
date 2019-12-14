@@ -1,4 +1,4 @@
-package eatyourbeets.effects;//
+package eatyourbeets.effects.attack;//
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
 //

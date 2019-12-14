@@ -1,4 +1,4 @@
-package eatyourbeets.effects;
+package eatyourbeets.effects.special;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;

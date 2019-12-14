@@ -18,7 +18,7 @@ import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.status.Crystallize;
-import eatyourbeets.effects.CallbackEffect;
+import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifactAll;
 import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;

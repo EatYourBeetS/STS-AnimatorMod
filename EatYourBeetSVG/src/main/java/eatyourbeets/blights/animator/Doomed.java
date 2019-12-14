@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.blights.AnimatorBlight;
-import eatyourbeets.effects.BlightAboveCreatureEffect;
+import eatyourbeets.effects.combatOnly.BlightAboveCreatureEffect;
 import eatyourbeets.utilities.GameActions;
 
 public class Doomed extends AnimatorBlight

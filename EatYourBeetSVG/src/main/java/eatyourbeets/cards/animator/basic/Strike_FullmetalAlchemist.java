@@ -18,9 +18,7 @@ public class Strike_FullmetalAlchemist extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(5,0);
-
-        this.baseSecondaryValue = this.secondaryValue = GetBaseCooldown();
+        Initialize(5,0, 0, GetBaseCooldown());
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }

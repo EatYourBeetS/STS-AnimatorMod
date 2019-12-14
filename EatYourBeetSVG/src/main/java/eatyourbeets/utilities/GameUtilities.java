@@ -24,8 +24,6 @@ import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.common.TemporaryBiasPower;
 import eatyourbeets.powers.unnamed.ResonancePower;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -245,11 +243,6 @@ public class GameUtilities
     public static float GetHealthPercentage(AbstractCreature creature)
     {
         return creature.currentHealth / (float)creature.maxHealth;
-    }
-
-    public static Logger GetLogger(Class c)
-    {
-        return LogManager.getLogger(c.getName());
     }
 
     public static AbstractCard GetMasterDeckInstance(AbstractCard card)

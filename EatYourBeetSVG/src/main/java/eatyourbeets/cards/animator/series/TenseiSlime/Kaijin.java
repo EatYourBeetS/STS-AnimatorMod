@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.effects.CallbackEffect;
+import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;

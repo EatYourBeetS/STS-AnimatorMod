@@ -37,6 +37,7 @@ import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.actions.powers.ApplyPowerSilently;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
+import eatyourbeets.actions.special.GainGold;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
@@ -300,6 +301,11 @@ public final class GameActions
     public ApplyPowerAction GainForce(int amount)
     {
         return StackPower(new ForcePower(AbstractDungeon.player, amount));
+    }
+
+    public GainGold GainGold(int amount)
+    {
+        return Add(new GainGold(amount, true));
     }
 
     public ApplyPowerAction GainIntellect(int amount)

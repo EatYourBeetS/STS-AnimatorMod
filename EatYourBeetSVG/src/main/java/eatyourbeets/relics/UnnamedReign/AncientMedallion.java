@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.dungeons.TheUnnamedReign;
-import eatyourbeets.effects.RemoveRelicEffect;
+import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.relics.AnimatorRelic;

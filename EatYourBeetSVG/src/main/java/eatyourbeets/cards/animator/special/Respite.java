@@ -8,6 +8,7 @@ import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Respite extends AnimatorCard implements Hidden
 {
@@ -17,7 +18,7 @@ public class Respite extends AnimatorCard implements Hidden
     {
         super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
-        Initialize(0, 0, 6);
+        Initialize(0, 0, 6 + (GameUtilities.GetAscensionLevel() / 2));
 
         SetPurge(true);
     }
@@ -27,7 +28,7 @@ public class Respite extends AnimatorCard implements Hidden
     {
         super.triggerOnEndOfTurnForPlayingCard();
 
-        this.retain = true;
+        SetRetain(true);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class Respite extends AnimatorCard implements Hidden
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(3);
+            upgradeMagicNumber(magicNumber / 2);
         }
     }
 }

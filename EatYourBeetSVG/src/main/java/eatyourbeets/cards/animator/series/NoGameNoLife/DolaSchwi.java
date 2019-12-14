@@ -48,7 +48,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(-1);
+            UpgradeCooldown(-1);
         }
     }
 

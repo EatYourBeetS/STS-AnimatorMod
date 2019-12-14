@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCharacter;
-import eatyourbeets.effects.HideCardEffect;
+import eatyourbeets.effects.card.HideCardEffect;
 import eatyourbeets.relics.animator.PurgingStone_Cards;
 import eatyourbeets.ui.buttons.BanCardButton;
 import eatyourbeets.utilities.GameUtilities;

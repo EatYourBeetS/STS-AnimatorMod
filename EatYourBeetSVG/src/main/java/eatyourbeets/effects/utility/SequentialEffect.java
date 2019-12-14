@@ -1,18 +1,20 @@
-package eatyourbeets.effects;
+package eatyourbeets.effects.utility;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.effects.EYBEffect;
 
 import java.util.ArrayDeque;
 
-public class SequentialEffect extends AbstractGameEffect
+public class SequentialEffect extends EYBEffect
 {
-    private AbstractGameEffect current;
     private final ArrayDeque<AbstractGameEffect> effects;
+    private AbstractGameEffect current;
 
     public SequentialEffect()
     {
-        this.duration = 1f;
+        super(1);
+
         effects = new ArrayDeque<>();
     }
 
@@ -21,6 +23,7 @@ public class SequentialEffect extends AbstractGameEffect
         effects.add(effect);
     }
 
+    @Override
     public void update()
     {
         if (UpdateCurrent())
@@ -31,22 +34,18 @@ public class SequentialEffect extends AbstractGameEffect
             }
             else
             {
-                this.isDone = true;
+                Complete();
             }
         }
     }
 
+    @Override
     public void render(SpriteBatch sb)
     {
         if (current != null)
         {
             current.render(sb);
         }
-    }
-
-    public void dispose()
-    {
-
     }
 
     private boolean UpdateCurrent()

@@ -3,7 +3,7 @@ package eatyourbeets.powers.UnnamedReign;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.effects.Hemokinesis2Effect;
+import eatyourbeets.effects.attack.Hemokinesis2Effect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;

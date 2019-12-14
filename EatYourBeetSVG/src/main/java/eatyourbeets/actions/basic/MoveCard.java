@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
 {
@@ -70,7 +70,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         if (sourcePile == null)
         {
-            GameUtilities.GetLogger(getClass()).warn("Source was null, at common.MoveCard");
+            JavaUtilities.GetLogger(getClass()).warn("Source was null, at common.MoveCard");
             Complete();
             return;
         }

@@ -6,13 +6,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public abstract class EYBAction extends AbstractGameAction
 {
-    protected static final Logger logger = LogManager.getLogger(EYBAction.class.getName());
-
     protected AbstractPlayer player;
     protected AbstractCard card;
     protected String message;

@@ -1,29 +1,26 @@
-package eatyourbeets.effects;
+package eatyourbeets.effects.player;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
-public class SpawnRelicEffect extends AbstractGameEffect
+public class ObtainRelicEffect extends AbstractGameEffect
 {
     private final AbstractRelic relic;
-    private final float x;
-    private final float y;
 
-    public SpawnRelicEffect(AbstractRelic relic, float x, float y)
+    public ObtainRelicEffect(AbstractRelic relic)
     {
-        this.duration = this.startingDuration = 1f;
         this.relic = relic;
-        this.x = x;
-        this.y = y;
+        this.duration = this.startingDuration = 1f;
     }
 
     public void update()
     {
         if (!this.isDone)
         {
-            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(x, y, relic);
+            relic.instantObtain();
+            CardCrawlGame.metricData.addRelicObtainData(relic);
         }
 
         this.isDone = true;

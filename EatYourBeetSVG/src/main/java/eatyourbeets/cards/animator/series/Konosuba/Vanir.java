@@ -7,11 +7,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.Astrolabe;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.actions.animator.VanirAction;
 import eatyourbeets.cards.base.AnimatorCard_Boost;
 import eatyourbeets.cards.base.Synergies;
 

@@ -15,7 +15,7 @@ import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.effects.LaserBeam2Effect;
+import eatyourbeets.effects.attack.LaserBeam2Effect;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.interfaces.OnAfterCardExhaustedSubscriber;

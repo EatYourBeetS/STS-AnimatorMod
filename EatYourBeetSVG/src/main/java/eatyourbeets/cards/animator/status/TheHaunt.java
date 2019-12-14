@@ -4,10 +4,10 @@ import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.blights.animator.Haunted;
 import eatyourbeets.cards.base.AnimatorCard_Status;
 import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class TheHaunt extends AnimatorCard_Status implements Hidden
@@ -50,12 +50,7 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for(int i = 0; i < this.magicNumber; ++i)
-        {
-            GameEffects.List.Add(new GainPennyEffect(p.hb.cX, p.hb.cY + (p.hb.height / 2)));
-        }
-
-        p.gainGold(magicNumber);
+        GameActions.Bottom.GainGold(magicNumber);
 
         Haunted blight = GetBlight();
         if (blight != null)

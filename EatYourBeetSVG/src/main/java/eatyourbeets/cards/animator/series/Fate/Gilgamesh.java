@@ -109,9 +109,9 @@ public class Gilgamesh extends AnimatorCard
             for (int i = 0; i < this.magicNumber; i++)
             {
                 GameActions.Bottom.SFX("ATTACK_HEAVY");
-                GameActions.Bottom.VFX(new CleaveEffect());
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
                 GameActions.Bottom.VFX(new IronWaveEffect(p.hb.cX, p.hb.cY, m.hb.cX), 0.1F);
+                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.VFX(new CleaveEffect());
             }
         }
         else

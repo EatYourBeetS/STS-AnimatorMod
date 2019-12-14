@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.series.TenseiSlime.Vesta;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -30,7 +29,7 @@ public class VestaElixirEffects
         Random rng = AbstractDungeon.cardRandomRng;
         if (rng == null)
         {
-            GameUtilities.GetLogger(getClass()).warn("cardRandomRNG was null");
+            JavaUtilities.GetLogger(getClass()).warn("cardRandomRNG was null");
             rng = new Random();
         }
 

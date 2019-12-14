@@ -1,4 +1,4 @@
-package eatyourbeets.effects;
+package eatyourbeets.effects.card;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

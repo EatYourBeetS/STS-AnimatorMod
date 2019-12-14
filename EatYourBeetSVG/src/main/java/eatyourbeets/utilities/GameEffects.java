@@ -2,6 +2,7 @@ package eatyourbeets.utilities;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.actions.special.GainGold;
 
 // TODO: Other effects
 public final class GameEffects

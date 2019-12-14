@@ -130,4 +130,14 @@ public class JavaUtilities
 
         return result;
     }
+
+    public static Logger GetLogger(Class c)
+    {
+        return LogManager.getLogger(c.getName());
+    }
+
+    public static Logger GetLogger(Object instance)
+    {
+        return GetLogger(instance.getClass());
+    }
 }

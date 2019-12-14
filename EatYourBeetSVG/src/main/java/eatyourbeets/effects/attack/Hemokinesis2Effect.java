@@ -1,4 +1,4 @@
-package eatyourbeets.effects;
+package eatyourbeets.effects.attack;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

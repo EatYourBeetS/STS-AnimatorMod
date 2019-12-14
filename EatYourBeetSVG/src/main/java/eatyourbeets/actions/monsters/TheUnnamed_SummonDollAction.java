@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class TheUnnamed_SummonDollAction extends AbstractGameAction
 {
@@ -38,7 +38,7 @@ public class TheUnnamed_SummonDollAction extends AbstractGameAction
         int slot = this.identifySlot(theUnnamed.minions);
         if (slot == -1)
         {
-            GameUtilities.GetLogger(getClass()).info("INCORRECTLY ATTEMPTED TO CHANNEL GREMLIN.");
+            JavaUtilities.GetLogger(getClass()).info("INCORRECTLY ATTEMPTED TO CHANNEL GREMLIN.");
         }
         else
         {

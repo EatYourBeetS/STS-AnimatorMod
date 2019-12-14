@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.effects.SmallLaser2Effect;
+import eatyourbeets.effects.attack.SmallLaser2Effect;
 import eatyourbeets.utilities.GameActions;
 
 public class Aisha extends AnimatorCard implements Spellcaster

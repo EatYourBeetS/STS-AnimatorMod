@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -27,16 +26,9 @@ public class Defend_Kancolle extends Defend
     {
         GameActions.Bottom.GainBlock(this.block);
 
-        // TODO: Could be an action
-
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            for(int i = 0; i < this.magicNumber; ++i)
-            {
-                GameEffects.List.Add(new GainPennyEffect(p.hb.cX, p.hb.cY + (p.hb.height / 2)));
-            }
-
-            p.gainGold(this.magicNumber);
+            GameActions.Bottom.GainGold(magicNumber);
         }
     }
 

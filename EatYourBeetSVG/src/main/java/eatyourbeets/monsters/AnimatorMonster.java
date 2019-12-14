@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -45,7 +45,7 @@ public abstract class AnimatorMonster extends CustomMonster
         }
         else
         {
-            GameUtilities.GetLogger(getClass()).warn("The move was not present in the moveset: " + nextMove);
+            JavaUtilities.GetLogger(getClass()).warn("The move was not present in the moveset: " + nextMove);
         }
     }
 

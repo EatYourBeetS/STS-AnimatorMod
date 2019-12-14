@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.effects.ColoredSweepingBeamEffect;
+import eatyourbeets.effects.attack.ColoredSweepingBeamEffect;
 import eatyourbeets.utilities.GameActions;
 
 public class BlackLotus extends AnimatorCard implements Hidden

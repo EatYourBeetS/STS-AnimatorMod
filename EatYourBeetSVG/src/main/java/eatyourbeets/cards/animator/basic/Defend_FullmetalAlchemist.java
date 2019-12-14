@@ -17,9 +17,7 @@ public class Defend_FullmetalAlchemist extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 4);
-
-        this.baseSecondaryValue = this.secondaryValue = GetBaseCooldown();
+        Initialize(0, 4, 0, GetBaseCooldown());
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }

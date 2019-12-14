@@ -39,7 +39,7 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
 
         if (ProgressCooldown())
         {
-            OnCooldownCompleted(AbstractDungeon.player, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true));
+            OnCooldownCompleted(AbstractDungeon.player, GameUtilities.GetRandomEnemy(true));
         }
     }
 

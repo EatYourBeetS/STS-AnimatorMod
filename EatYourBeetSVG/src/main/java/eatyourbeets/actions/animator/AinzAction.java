@@ -9,6 +9,7 @@ import eatyourbeets.actions.EYBAction;
 import eatyourbeets.misc.AinzEffects.*;
 import eatyourbeets.powers.animator.AinzPower;
 import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class AinzAction extends EYBAction
 
         if (group.isEmpty())
         {
-            logger.warn("No AinzEffect found in the effect pool");
+            JavaUtilities.GetLogger(this).warn("No AinzEffect found in the effect pool");
             Complete(); // Should never happen
         }
         else

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.ultrarare.Hero;
-import eatyourbeets.effects.ObtainRelicEffect;
+import eatyourbeets.effects.player.ObtainRelicEffect;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 import eatyourbeets.relics.animator.CursedGlyph;

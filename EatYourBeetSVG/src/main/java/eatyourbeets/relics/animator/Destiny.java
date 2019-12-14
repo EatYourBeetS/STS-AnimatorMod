@@ -2,7 +2,7 @@ package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import eatyourbeets.effects.RemoveRelicEffect;
+import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
 

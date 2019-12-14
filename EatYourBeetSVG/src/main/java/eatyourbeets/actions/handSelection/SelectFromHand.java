@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -125,7 +126,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
 
         if (filter != null)
         {
-            logger.error("Card filtering does not yet work with non-random hand selection.");
+            JavaUtilities.GetLogger(this).error("Card filtering does not yet work with non-random hand selection.");
             Complete();
         }
         else

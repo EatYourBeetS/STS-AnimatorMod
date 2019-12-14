@@ -45,7 +45,7 @@ public class ElricEdward extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        GameActions.Bottom.Cycle(1, name).AddCallback(cards ->
+        GameActions.Bottom.Cycle(name, 1).AddCallback(cards ->
         {
             if (cards.size() > 0)
             {

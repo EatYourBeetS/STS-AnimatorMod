@@ -28,7 +28,7 @@ public class Demiurge extends AnimatorCard
         super.triggerOnExhaust();
 
         GameActions.Bottom.GainEnergy(1);
-        GameActions.Bottom.Cycle(1, name);
+        GameActions.Bottom.Cycle(name, 1);
     }
 
     @Override

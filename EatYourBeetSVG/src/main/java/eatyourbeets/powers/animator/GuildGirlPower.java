@@ -56,7 +56,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     {
         super.atStartOfTurnPostDraw();
 
-        GameActions.Bottom.Callback(__ -> GameActions.Bottom.Cycle(amount, name));
+        GameActions.Bottom.Callback(__ -> GameActions.Bottom.Cycle(name, amount));
     }
 
     @Override

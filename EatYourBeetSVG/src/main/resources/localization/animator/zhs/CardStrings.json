@@ -744,7 +744,7 @@
 	},
 	"animator:NononJakuzure":
 	{
-		"DESCRIPTION": "Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1.",
+		"DESCRIPTION": "循环 !SV! 张牌。 Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1.",
 		"NAME": "Nonon Jakuzure"
 	},
 	"animator:OrbCore_Aether":
@@ -1202,8 +1202,8 @@
 	},
 	"animator:Zero":
 	{
-		"DESCRIPTION": "法师 。 NL 从你的抽牌堆 NL 中打出一张 NL 随机 技能牌 。 NL 消耗 。",
+		"DESCRIPTION": "法师 6。 NL 从你的抽牌堆 NL 中打出一张 NL 随机 技能牌 。 NL 消耗 。",
 		"NAME": "零",
-		"UPGRADE_DESCRIPTION": "法师 。 NL 从你的抽牌堆 NL 中打出一张 NL 随机 技能牌 。"
+		"UPGRADE_DESCRIPTION": "法师 6。 NL 从你的抽牌堆 NL 中打出一张 NL 随机 技能牌 。"
 	}
 }

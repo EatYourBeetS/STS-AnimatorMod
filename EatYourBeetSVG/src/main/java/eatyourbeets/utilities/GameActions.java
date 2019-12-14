@@ -177,7 +177,7 @@ public final class GameActions
         return Add(new CreateThrowingKnives(amount));
     }
 
-    public CycleCards Cycle(int amount, String sourceName)
+    public CycleCards Cycle(String sourceName, int amount)
     {
         return (CycleCards) Add(new CycleCards(sourceName, amount, false)
                 .SetOptions(true, true, true));

@@ -25,7 +25,7 @@ public class Kazuma extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Bottom.GainBlock(this.block);
-        GameActions.Bottom.Cycle(1, name);
+        GameActions.Bottom.Cycle(name, 1);
 
         if (HasActiveSynergy())
         {

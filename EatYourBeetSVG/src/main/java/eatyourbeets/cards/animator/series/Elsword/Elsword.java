@@ -35,7 +35,7 @@ public class Elsword extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.ApplyBurning(p, m, magicNumber);
-        GameActions.Bottom.Cycle(secondaryValue, name);
+        GameActions.Bottom.Cycle(name, secondaryValue);
     }
 
     @Override

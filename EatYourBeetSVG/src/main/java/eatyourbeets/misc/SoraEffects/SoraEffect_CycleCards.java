@@ -14,6 +14,6 @@ public class SoraEffect_CycleCards extends SoraEffect
     @Override
     public void EnqueueAction(AbstractPlayer player)
     {
-        GameActions.Bottom.Cycle(sora.magicNumber, sora.name);
+        GameActions.Bottom.Cycle(sora.name, sora.magicNumber);
     }
 }

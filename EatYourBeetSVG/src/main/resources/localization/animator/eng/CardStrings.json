@@ -744,8 +744,9 @@
 	},
 	"animator:NononJakuzure":
 	{
-		"DESCRIPTION": "Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1.",
-		"NAME": "Nonon Jakuzure"
+		"DESCRIPTION": "Cycle !SV! card. NL Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1.",
+		"NAME": "Nonon Jakuzure",
+		"UPGRADE_DESCRIPTION": "Cycle !SV! cards. NL Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1."
 	},
 	"animator:OrbCore_Aether":
 	{
@@ -1087,7 +1088,7 @@
 	},
 	"animator:TewiInaba":
 	{
-		"DESCRIPTION": "Discard 1 NL card randomly. NL Draw !M! cards. NL Exhaust. || On Synergy, Evoke your first Earth Orb and #yChannel[] 1 Earth.",
+		"DESCRIPTION": "Discard 1 NL card randomly. NL Draw !M! cards. NL Exhaust. || On Synergy, NL Evoke your first NL Earth Orb and NL #yChannel[] 1 Earth.",
 		"NAME": "Tewi Inaba"
 	},
 	"animator:TheHaunt":
@@ -1202,8 +1203,8 @@
 	},
 	"animator:Zero":
 	{
-		"DESCRIPTION": "Spellcaster. NL Play a random #ySkill NL from your draw pile. NL Exhaust.",
+		"DESCRIPTION": "Spellcaster 6. NL Play a random #ySkill NL from your draw pile. NL Exhaust.",
 		"NAME": "Zero",
-		"UPGRADE_DESCRIPTION": "Spellcaster. NL Play a random #ySkill NL from your draw pile."
+		"UPGRADE_DESCRIPTION": "Spellcaster 6. NL Play a random #ySkill NL from your draw pile."
 	}
 }

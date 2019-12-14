@@ -1,14 +1,24 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
+import com.megacrit.cardcrawl.actions.common.DiscardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.TetDiscardAction;
-import eatyourbeets.actions.animator.TetRecoverAction;
+import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.actions.handSelection.DiscardFromHand;
+import eatyourbeets.actions.pileSelection.DiscardFromPile;
+import eatyourbeets.actions.pileSelection.SelectFromPile;
+import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
+
+import java.util.ArrayList;
 
 public class Tet extends AnimatorCard
 {
@@ -18,7 +28,7 @@ public class Tet extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.NONE);
 
-        Initialize(0,0,2);
+        Initialize(0, 0, 2);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -35,11 +45,9 @@ public class Tet extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        // TODO: Simplify This
-        GameActions.Bottom.Add(new TetDiscardAction(magicNumber));
-        GameActions.Bottom.Add(new TetRecoverAction(magicNumber));
+        DiscardFromDrawPile().AddCallback(this::ShuffleFromDiscardPile);
 
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
@@ -48,11 +56,39 @@ public class Tet extends AnimatorCard
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {
             SetRetain(true);
         }
+    }
+
+    private EYBActionWithCallback<ArrayList<AbstractCard>> DiscardFromDrawPile()
+    {
+        return GameActions.Bottom.SelectFromPile(name, magicNumber, AbstractDungeon.player.drawPile)
+        .SetMessage(JavaUtilities.Format(AnimatorResources_Strings.GridSelection.TEXT[0], magicNumber))
+        .SetOptions(false, true)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard card : cards)
+            {
+                GameActions.Top.MoveCard(card, AbstractDungeon.player.discardPile, false);
+            }
+        });
+    }
+
+    private void ShuffleFromDiscardPile(ArrayList<AbstractCard> __)
+    {
+        GameActions.Bottom.SelectFromPile(name, magicNumber, AbstractDungeon.player.discardPile)
+        .SetMessage(JavaUtilities.Format(AnimatorResources_Strings.GridSelection.TEXT[1], magicNumber))
+        .SetOptions(false, true)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard card : cards)
+            {
+                GameActions.Top.MoveCard(card, AbstractDungeon.player.drawPile, false);
+            }
+        });
     }
 }

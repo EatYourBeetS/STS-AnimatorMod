@@ -110,8 +110,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
                             card.untip();
                             card.unhover();
                             card.lighten(true);
-
-                            this.sourcePile.removeCard(card);
+                            sourcePile.removeCard(card);
                             GameEffects.List.Add(new ShowCardAndAddToHandEffect(card));
                         }
 
@@ -120,7 +119,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
                     case DISCARD_PILE:
                     {
-                        this.sourcePile.removeCard(card);
+                        sourcePile.removeCard(card);
                         GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(card));
 
                         if (sourcePile.type != CardGroup.CardGroupType.EXHAUST_PILE)

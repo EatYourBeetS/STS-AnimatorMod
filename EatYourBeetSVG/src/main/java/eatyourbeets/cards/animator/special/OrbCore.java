@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.markers.Hidden;
@@ -13,8 +14,6 @@ import java.util.ArrayList;
 
 public abstract class OrbCore extends AnimatorCard implements Hidden
 {
-    public static final String SelectionMessage = "Select an Orb Core"; // TODO: Localize this
-
     private static final ArrayList<AbstractCard> cores = new ArrayList<>();
     private static final RandomizedList<AbstractCard> cores0 = new RandomizedList<>();
     private static final RandomizedList<AbstractCard> cores1 = new RandomizedList<>();
@@ -39,7 +38,8 @@ public abstract class OrbCore extends AnimatorCard implements Hidden
 
     public static SelectFromPile SelectCoreAction(String sourceName, int amount)
     {
-        return new SelectFromPile(sourceName, amount, OrbCore.CreateCoresGroup(true)).SetMessage(SelectionMessage);
+        return new SelectFromPile(sourceName, amount, OrbCore.CreateCoresGroup(true))
+                .SetMessage(CardRewardScreen.TEXT[1]);
     }
 
     public static CardGroup CreateCoresGroup(boolean anyCost)

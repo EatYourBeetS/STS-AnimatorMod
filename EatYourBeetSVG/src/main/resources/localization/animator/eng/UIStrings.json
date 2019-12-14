@@ -61,6 +61,26 @@
 		]
 	},
 
+	"animator:HandSelection":
+	{
+		"TEXT":
+		[
+			"move to your draw pile.",
+			"Fetch Cards with the same Synergy."
+		]
+	},
+	
+	"animator:GridSelection":
+	{
+		"TEXT":
+		[
+			"Discard up to {0} card(s).",
+			"Shuffle {0} card(s) into your Draw Pile.",
+			"Transform into a {0}"
+		]
+	},
+
+
 	"animator:Actions":
 	{
 		"TEXT":

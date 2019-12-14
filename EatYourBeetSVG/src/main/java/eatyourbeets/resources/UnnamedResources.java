@@ -95,10 +95,10 @@ public class UnnamedResources extends AbstractResources
         super.PostInitialize();
 
         //TODO: Remove this
-        for (AbstractCard card : CardLibrary.getAllCards())
-        {
-            UnlockTracker.markCardAsSeen(card.cardID);
-        }
+//        for (AbstractCard card : CardLibrary.getAllCards())
+//        {
+//            UnlockTracker.markCardAsSeen(card.cardID);
+//        }
         //
     }
 }

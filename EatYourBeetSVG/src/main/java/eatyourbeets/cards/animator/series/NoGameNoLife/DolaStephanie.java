@@ -1,11 +1,14 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.orbs.Earth;
 import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -27,7 +30,7 @@ public class DolaStephanie extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Bottom.SelectFromHand(name, 1, false)
-        .SetMessage(AnimatorResources_Strings.Actions.TEXT[0])
+        .SetMessage(AnimatorResources_Strings.HandSelection.TEXT[1])
         .SetOptions(false, false, false)
         .AddCallback(cards ->
         {

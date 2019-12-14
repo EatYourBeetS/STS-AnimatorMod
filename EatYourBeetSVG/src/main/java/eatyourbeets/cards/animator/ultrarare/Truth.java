@@ -17,14 +17,14 @@ import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
 public class Truth extends AnimatorCard_UltraRare
 {
-    private static final String[] TEXT = AnimatorResources_Strings.Actions.TEXT;
-
     public static final String ID = Register(Truth.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String DECK_SELECTION_TEXT = JavaUtilities.Format(AnimatorResources_Strings.GridSelection.TEXT[1], Wound.NAME);
 
     public Truth()
     {
@@ -95,7 +95,7 @@ public class Truth extends AnimatorCard_UltraRare
         {
             GameActions.Bottom.SelectFromPile(name, 1, temp)
             .SetOptions(false, false)
-            .SetMessage(TEXT[5] + Wound.NAME)
+            .SetMessage(DECK_SELECTION_TEXT)
             .AddCallback(cards ->
             {
                 AbstractCard card = cards.get(0);

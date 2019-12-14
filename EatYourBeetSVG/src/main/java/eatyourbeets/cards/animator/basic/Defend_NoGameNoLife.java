@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -26,15 +27,10 @@ public class Defend_NoGameNoLife extends Defend
     {
         GameActions.Bottom.GainBlock(this.block);
 
-        ArrayList<AbstractCard> cards = p.hand.group;
-
-        // TODO: Should be an action
-
-        //noinspection ForLoopReplaceableByForEach
-        for (int i = 0; i < cards.size(); i++)
+        for (int i = 0; i < p.hand.size(); i++)
         {
-            AbstractCard card = cards.get(i);
-            if (card != this && card.type != CardType.CURSE && card.type != CardType.STATUS && !card.retain)
+            AbstractCard card = p.hand.group.get(i);
+            if (card != this && !GameUtilities.IsCurseOrStatus(card) && !card.retain)
             {
                 card.retain = true;
                 card.flash();

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.ScarAction;
+import eatyourbeets.actions.animator.ScarUpgradeAction;
 import eatyourbeets.actions.handSelection.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
@@ -39,7 +39,7 @@ public class Scar extends AnimatorCard
 
         if (p.masterDeck.size() >= secondaryValue && EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.Add(new ScarAction(p));
+            GameActions.Bottom.Add(new ScarUpgradeAction());
         }
     }
 

@@ -7,10 +7,11 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.OnSynergySubscriber;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 
-public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
+public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber, Hidden
 {
     public static final String ID = Register(NononJakuzure.class.getSimpleName(), EYBCardBadge.Special);
 

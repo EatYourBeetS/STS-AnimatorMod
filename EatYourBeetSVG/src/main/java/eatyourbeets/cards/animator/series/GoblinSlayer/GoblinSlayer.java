@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.basic.MoveCards;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.actions.animator.ShuffleRandomGoblinAction;
+import eatyourbeets.actions.animator.CreateRandomGoblins;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
@@ -45,7 +45,7 @@ public class GoblinSlayer extends AnimatorCard
                 goblins += 1;
             }
 
-            GameActions.Bottom.Add(new ShuffleRandomGoblinAction(goblins));
+            GameActions.Bottom.Add(new CreateRandomGoblins(goblins));
         }
     }
 

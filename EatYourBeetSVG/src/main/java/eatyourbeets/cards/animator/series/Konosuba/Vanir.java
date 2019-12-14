@@ -1,15 +1,21 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Astrolabe;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.animator.VanirAction;
 import eatyourbeets.cards.base.AnimatorCard_Boost;
 import eatyourbeets.cards.base.Synergies;
+
+import java.util.ArrayList;
 
 public class Vanir extends AnimatorCard_Boost
 {
@@ -47,8 +53,34 @@ public class Vanir extends AnimatorCard_Boost
         CardGroup drawPile = AbstractDungeon.player.drawPile;
         if (drawPile.size() > 0)
         {
-            //TODO: Improve this
-            GameActions.Bottom.Add(new VanirAction(this, drawPile, drawPile, 1));
+            GameActions.Bottom.SelectFromPile(name, 1, AbstractDungeon.player.drawPile)
+            .SetOptions(false, true)
+            .SetMessage(Transmogrifier.OPTIONS[2])
+            .AddCallback(cards ->
+            {
+               if (cards.size() > 0)
+               {
+                   ArrayList<AbstractCard> temp = AbstractDungeon.player.drawPile.group;
+
+                   AbstractCard card = cards.get(0);
+                   for (int i = 0; i < temp.size(); i++)
+                   {
+                       if (temp.get(i) == card)
+                       {
+                           AbstractCard vanir = makeStatEquivalentCopy();
+                           if (upgraded)
+                           {
+                               vanir.upgrade();
+                           }
+
+                           temp.remove(i);
+                           temp.add(i, vanir);
+
+                           return;
+                       }
+                   }
+               }
+            });
         }
     }
 

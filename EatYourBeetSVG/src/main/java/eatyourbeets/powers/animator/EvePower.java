@@ -1,10 +1,16 @@
 package eatyourbeets.powers.animator;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.actions.animator.EveDamageAction;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
 
@@ -30,7 +36,13 @@ public class EvePower extends AnimatorPower
         AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasActiveSynergy())
         {
-            GameActions.Bottom.Add(new EveDamageAction(owner, amount));
+            GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
+            .SetDamageEffect(enemy ->
+            {
+                CardCrawlGame.sound.play("ATTACK_MAGIC_BEAM_SHORT");
+                GameEffects.List.Add(new SmallLaserEffect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY));
+                GameEffects.List.Add(new BorderFlashEffect(Color.SKY));
+            });
 
             this.flash();
             this.stackPower(EvePower.GROWTH_AMOUNT);

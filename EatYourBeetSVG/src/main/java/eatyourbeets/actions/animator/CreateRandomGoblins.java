@@ -1,40 +1,33 @@
 package eatyourbeets.actions.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.status.GoblinChampion;
 import eatyourbeets.cards.animator.status.GoblinKing;
 import eatyourbeets.cards.animator.status.GoblinShaman;
 import eatyourbeets.cards.animator.status.GoblinSoldier;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.utilities.GameActions;
 
-// TODO: this
-public class ShuffleRandomGoblinAction extends AbstractGameAction
+public class CreateRandomGoblins extends EYBAction
 {
-    private final int count;
-
-    public ShuffleRandomGoblinAction(int count)
+    public CreateRandomGoblins(int amount)
     {
-        this.count = count;
-        this.target = AbstractDungeon.player;
-        this.duration = Settings.ACTION_DUR_FAST;
-        this.actionType = ActionType.SHUFFLE;
+        super(ActionType.CARD_MANIPULATION);
+
+        Initialize(amount);
     }
 
-    public void update()
+    @Override
+    protected void FirstUpdate()
     {
-        if (this.duration == Settings.ACTION_DUR_FAST)
+        for (int i = 0; i < amount; i++)
         {
-            for (int i = 0; i < count; i++)
-            {
-                GameActions.Bottom.MakeCardInDrawPile(GetRandomGoblin(AbstractDungeon.cardRandomRng));
-            }
+            GameActions.Bottom.MakeCardInDrawPile(GetRandomGoblin(AbstractDungeon.cardRandomRng));
         }
 
-        this.tickDuration();
+        Complete();
     }
 
     private AnimatorCard GetRandomGoblin(Random rng)

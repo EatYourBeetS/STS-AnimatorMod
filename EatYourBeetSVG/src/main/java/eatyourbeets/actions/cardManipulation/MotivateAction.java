@@ -53,8 +53,12 @@ public class MotivateAction extends EYBAction
 
         if (card != null)
         {
+            if (card.costForTurn > 0)
+            {
+                card.superFlash(Color.GOLD.cpy());
+            }
+
             card.modifyCostForTurn(-amount);
-            card.superFlash(Color.GOLD.cpy());
 
             PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
             PlayerStatistics.onEndOfTurn.Subscribe(this);

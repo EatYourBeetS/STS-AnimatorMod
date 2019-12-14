@@ -3,6 +3,7 @@ package eatyourbeets.actions.pileSelection;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.FrozenEye;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
 import eatyourbeets.utilities.RandomizedList;
@@ -85,6 +86,12 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
+                if (temp.type == CardGroup.CardGroupType.DRAW_PILE && !player.hasRelic(FrozenEye.ID))
+                {
+                    temp.sortAlphabetically(true);
+                    temp.sortByRarityPlusStatusCardType(true);
+                }
+
                 GridCardSelectScreenPatch.AddGroup(temp);
             }
         }

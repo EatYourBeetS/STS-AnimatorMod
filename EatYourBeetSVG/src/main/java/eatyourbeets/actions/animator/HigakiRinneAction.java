@@ -16,8 +16,10 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
@@ -27,18 +29,18 @@ import eatyourbeets.powers.animator.MarkOfPoisonPower;
 
 import java.util.ArrayList;
 
-//TODO: this
-public class HigakiRinneAction extends AbstractGameAction
+public class HigakiRinneAction extends EYBAction
 {
     private final HigakiRinne higakiRinne;
     private int roll;
 
     public HigakiRinneAction(HigakiRinne higakiRinne)
     {
+        super(ActionType.SPECIAL, Settings.ACTION_DUR_XFAST);
+
         this.higakiRinne = higakiRinne;
-        this.setValues(AbstractDungeon.player, AbstractDungeon.player, this.amount);
-        this.duration = Settings.ACTION_DUR_FAST;
-        this.actionType = ActionType.SPECIAL;
+
+        Initialize(1);
     }
 
     private boolean tryActivate(int chances)
@@ -48,7 +50,8 @@ public class HigakiRinneAction extends AbstractGameAction
         return roll <= 0;
     }
 
-    public void update()
+    @Override
+    protected void FirstUpdate()
     {
         roll = AbstractDungeon.cardRandomRng.random(188);
         
@@ -57,7 +60,7 @@ public class HigakiRinneAction extends AbstractGameAction
         {
             GameActions.Bottom.SelectFromPile(higakiRinne.name, 1, p.hand)
             .SetOptions(false, false)
-            .SetMessage("...");
+            .SetMessage("???");
         }
         else if (tryActivate(6)) // 6
         {
@@ -91,7 +94,7 @@ public class HigakiRinneAction extends AbstractGameAction
         }
         else if (tryActivate(6)) // 46
         {
-            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             GameActions.Bottom.Add(new BouncingFlaskAction(m, 2, 2));
         }
         else if (tryActivate(6)) // 52
@@ -116,7 +119,7 @@ public class HigakiRinneAction extends AbstractGameAction
         }
         else if (tryActivate(8)) // 82
         {
-            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
                 GameActions.Bottom.ApplyVulnerable(p, m, 1);
@@ -124,7 +127,7 @@ public class HigakiRinneAction extends AbstractGameAction
         }
         else if (tryActivate(8)) // 90
         {
-            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
                 GameActions.Bottom.ApplyWeak(p, m, 1);
@@ -206,7 +209,7 @@ public class HigakiRinneAction extends AbstractGameAction
         }
         else if (tryActivate(3)) // 163
         {
-            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
                 GameActions.Bottom.ApplyConstricted(p, m, 3);
@@ -214,7 +217,7 @@ public class HigakiRinneAction extends AbstractGameAction
         }
         else if (tryActivate(3)) // 166
         {
-            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
                 GameActions.Bottom.ApplyBurning(p, m, 3);
@@ -230,7 +233,7 @@ public class HigakiRinneAction extends AbstractGameAction
         }
         else if (tryActivate(3)) // 175
         {
-            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
                 GameActions.Bottom.ApplyPower(p, m, new MarkOfPoisonPower(m, p, 2), 2);
@@ -253,7 +256,7 @@ public class HigakiRinneAction extends AbstractGameAction
                 if (effect instanceof ShuffleEnemiesEffect)
                 {
                     GameActions.Bottom.StackPower(new EnchantedArmorPower(p, 1));
-                    this.isDone = true;
+                    Complete();
                     return;
                 }
             }
@@ -263,15 +266,13 @@ public class HigakiRinneAction extends AbstractGameAction
                 if (effect instanceof ShuffleEnemiesEffect)
                 {
                     GameActions.Bottom.StackPower(new EnchantedArmorPower(p, 1));
-                    this.isDone = true;
+                    Complete();
                     return;
                 }
             }
 
-            AbstractDungeon.effectsQueue.add(new ShuffleEnemiesEffect());
+            GameEffects.Queue.Add(new ShuffleEnemiesEffect());
         }
-
-        this.isDone = true;
     }
 
     public static void PlayRandomSound()

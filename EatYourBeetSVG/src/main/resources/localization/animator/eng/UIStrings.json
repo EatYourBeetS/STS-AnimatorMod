@@ -81,30 +81,6 @@
 		]
 	},
 
-
-	"animator:Actions":
-	{
-		"TEXT":
-		[
-			"fetch Cards with the same synergy.",
-			"discard and draw that many cards.",
-			"activate this card's effect that many times.",
-			"reduce its cost for this combat.",
-			"Draw # card/s.",
-			"Transform into ",
-			"move to your draw pile."
-		]
-	},
-
-	"animator:TetAction":
-	{
-		"TEXT":
-		[
-			"Move up to {0} card/s to your Discard Pile.",
-			"Shuffle {0} card/s into your Draw Pile."
-		]
-	},
-
 	"animator:TheUnnamedReign":
 	{
 		"TEXT": 

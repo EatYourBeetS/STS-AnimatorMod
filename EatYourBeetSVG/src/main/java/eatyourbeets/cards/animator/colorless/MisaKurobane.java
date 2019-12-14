@@ -33,15 +33,20 @@ public class MisaKurobane extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrb(new Fire(), true);
         GameActions.Bottom.Draw(this.magicNumber);
-        GameActions.Bottom.MakeCardInDiscardPile(new Yusarin());
+
+        if (upgraded)
+        {
+            GameActions.Bottom.MakeCardInDrawPile(new Yusarin());
+        }
+        else
+        {
+            GameActions.Bottom.MakeCardInDiscardPile(new Yusarin());
+        }
     }
 
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
+        TryUpgrade();
     }
 }

@@ -153,12 +153,12 @@
 		"NAME": "Chung"
 	},
 	"animator:Cirno":
-{
-	"DESCRIPTION": "Ethereal. NL Channel 1 Frost. NL Deal !D! damage to ALL enemies. || When Exhausted, NL Channel 1 Frost.",
-	"NAME": "Cirno"
-},
+	{
+		"DESCRIPTION": "Ethereal. NL Channel 1 Frost. NL Deal !D! damage NL to ALL enemies. || When Exhausted, NL Channel 1 Frost.",
+		"NAME": "Cirno"
+	},
 	"animator:Cocytus":
-	{                                                        
+	{
 		"DESCRIPTION": "Deal !D! damage. NL Gain 1 Force. NL Strength affects this NL card !M! times. || On Synergy, NL randomly gain 1 NL Plated_Armor or NL 1 Thorns.",
 		"NAME": "Cocytus"
 	},
@@ -705,7 +705,7 @@
 	{
 		"DESCRIPTION": "Channel 1 Fire. NL Draw !M! card. NL Add #yYusarin to your discard pile. Exhaust.",
 		"NAME": "Misa Kurobane",
-		"UPGRADE_DESCRIPTION": "Channel 1 Fire. NL Draw !M! cards. NL Add #yYusarin to your discard pile. Exhaust."
+		"UPGRADE_DESCRIPTION": "Channel 1 Fire. NL Draw !M! card. NL Add #yYusarin to your draw pile. Exhaust."
 	},
 	"animator:Mitsuba":
 	{
@@ -1087,7 +1087,7 @@
 	},
 	"animator:TewiInaba":
 	{
-		"DESCRIPTION": "Discard 1 random card. NL Draw !M! cards. NL Exhaust. || Limited. NL If your next Orb is Earth, Evoke it and #yChannel[] it again.",
+		"DESCRIPTION": "Discard 1 NL card randomly. NL Draw !M! cards. NL Exhaust. || On Synergy, Evoke your first Earth Orb and #yChannel[] 1 Earth.",
 		"NAME": "Tewi Inaba"
 	},
 	"animator:TheHaunt":

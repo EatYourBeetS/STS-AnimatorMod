@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
@@ -12,37 +13,45 @@ import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class TewiInaba extends AnimatorCard
-    {
-        public static final String ID = Register(TewiInaba.class.getSimpleName(), EYBCardBadge.Special);
+{
+    public static final String ID = Register(TewiInaba.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public TewiInaba()
+    {
+        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
+
+        Initialize(0, 0, 2);
+
+        SetExhaust(true);
+        SetSynergy(Synergies.TouhouProject);
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActions.Top.DiscardFromHand(this.name, 1, true);
+        GameActions.Bottom.Draw(this.magicNumber);
+
+        if (HasActiveSynergy())
         {
-            super(ID, 0, AbstractCard.CardType.SKILL, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.SELF);
-
-            Initialize(0,0,2);
-            SetSynergy(Synergies.TouhouProject);
-            SetExhaust(true);
-        }
-
-        @Override
-        public void use(AbstractPlayer p, AbstractMonster m)
-        {
-
-            GameActions.Top.DiscardFromHand(this.name,1,true);
-            GameActions.Bottom.Draw(this.magicNumber);
-            if (!p.orbs.isEmpty() && Earth.ORB_ID.equals(p.orbs.get(0).ID) && EffectHistory.TryActivateLimited(cardID))
+            for (AbstractOrb orb : p.orbs)
             {
-                GameActions.Bottom.Add(new EvokeSpecificOrbAction(p.orbs.get(0)));
-                GameActions.Bottom.ChannelOrb(new Earth(), true);
-            }
-        }
-
-        @Override
-        public void upgrade()
-        {
-            if (TryUpgrade())
-            {
-                upgradeMagicNumber(1);
+                if (Earth.ORB_ID.equals(orb.ID))
+                {
+                    GameActions.Bottom.Add(new EvokeSpecificOrbAction(orb));
+                    GameActions.Bottom.ChannelOrb(new Earth(), true);
+                    return;
+                }
             }
         }
     }
+
+    @Override
+    public void upgrade()
+    {
+        if (TryUpgrade())
+        {
+            upgradeMagicNumber(1);
+        }
+    }
+}

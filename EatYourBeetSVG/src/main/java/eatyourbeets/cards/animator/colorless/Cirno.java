@@ -18,27 +18,31 @@ public class Cirno extends AnimatorCard
 
     public Cirno()
     {
-        super(ID, 1, CardType.ATTACK, AbstractCard.CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ALL);
+        super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(6,0);
+        Initialize(4, 0);
+
+        SetEthereal(true);
         SetMultiDamage(true);
         SetSynergy(Synergies.TouhouProject);
-        SetEthereal(true);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        GameActions.Bottom.ChannelOrb(new Frost(), true);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.VFX(new BlizzardEffect(1, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetOptions2(true, false);
         GameActions.Bottom.ChannelOrb(new Frost(), true);
     }
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
-    }
+
     @Override
     public void upgrade()
     {
@@ -47,7 +51,5 @@ public class Cirno extends AnimatorCard
             upgradeDamage(3);
         }
     }
-
-
 }
 

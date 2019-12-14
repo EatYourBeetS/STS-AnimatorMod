@@ -152,6 +152,11 @@
 		"DESCRIPTION": "獲得 !B! 點 格擋 。 NL 本場戰鬥中降低這張牌 NL 的 格擋 !M! 點。 || 被 消耗 ： NL 生成 1 個 冰霜 充能球。",
 		"NAME": "澄"
 	},
+	"animator:Cirno":
+	{
+		"DESCRIPTION": "虛無 。 NL 生成 !M! 個 冰霜 充能球。 NL 對所有敵人 NL 造成 !D! 點傷害。 || 被 消耗 ： NL 生成 !M! 個 冰霜 充能球。",
+		"NAME": "Cirno"
+	},
 	"animator:Cocytus":
 	{
 		"DESCRIPTION": "造成 !D! 點 傷害。 NL 獲得 1 點 武力 。 NL 力量 在這張牌中發揮 !M! 倍效果。 ||  NL 隨機獲得 1 NL 層 多層護甲 NL 或者 1 層 荊棘 。",
@@ -1079,6 +1084,11 @@
 		"DESCRIPTION": "最多選擇抽牌堆 NL 中的 2 張牌丟棄。 NL 將棄牌堆中的 2 張牌 NL 移入抽牌堆。 || 有限 。 NL 同調 ： NL 獲得 [E] 。",
 		"NAME": "特圖",
 		"UPGRADE_DESCRIPTION": "保留。 NL 最多選擇抽牌堆 NL 中的 2 張牌丟棄。 NL 將棄牌堆中的 2 張牌 NL 移入抽牌堆。 || 有限 。 NL 同調 ： NL 獲得 [E] 。"
+	},
+	"animator:TewiInaba":
+	{
+		"DESCRIPTION": "隨機丟棄 1 張牌 。 NL 抽 !M! 張牌。 NL 消耗。 || 同調 時， 激發你的第一個 大地 充能球 並 生成 1 個 大地 充能球 。",
+		"NAME": "Tewi Inaba"
 	},
 	"animator:TheHaunt":
 	{

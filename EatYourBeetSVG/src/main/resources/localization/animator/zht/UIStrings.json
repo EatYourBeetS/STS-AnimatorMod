@@ -41,7 +41,8 @@
 			"克蘇魯的呼喚",
 			"中二病也要談戀愛！",
 			"特別的她",
-			"Kill la Kill"
+			"Kill la Kill",
+			"Touhou Project"
 		],
 		"EXTRA_TEXT":
 		[
@@ -61,26 +62,22 @@
 		]
 	},
 
-	"animator:Actions":
+	"animator:HandSelection":
 	{
 		"TEXT":
 		[
-			"抽取同系列的牌。",
-			"丟棄並抽同樣數量的牌。",
-			"觸發同樣次數的效果。",
-			"在本場戰鬥中減少耗能。",
-			"抽取 # 張牌。",
-			"變化 ",
-			"移動到你的抽牌堆。"
+			"移動到你的抽牌堆。",
+			"抽取同系列的牌。"
 		]
 	},
-
-	"animator:TetAction":
+	
+	"animator:GridSelection":
 	{
 		"TEXT":
 		[
 			"丟棄 {0} 張牌到你的棄牌堆。",
-			"加入 {0} 張牌到你的抽牌堆。"
+			"加入 {0} 張牌到你的抽牌堆。",
+			"Transform into a {0}"
 		]
 	},
 

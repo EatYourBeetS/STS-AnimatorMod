@@ -43,7 +43,7 @@
 	},
 	"animator:Alexander":
 	{
-		"DESCRIPTION": "对所有敌人 NL 造成 !D! 点伤害。 NL 获得 1 点 武力 。 || 被 消耗  : NL 对所有敌人 NL 造成 !M! 点伤害。",
+		"DESCRIPTION": "对所有敌人 NL 造成 !D! 点伤害。 NL 获得 1 点 武力 。 || 被 消耗 : NL 对所有敌人 NL 造成 !M! 点伤害。",
 		"NAME": "亚历山大大帝"
 	},
 	"animator:Aqua":
@@ -151,6 +151,11 @@
 	{
 		"DESCRIPTION": "获得 !B! 点 格挡 。 NL 本场战斗中降低这张牌 NL 的 格挡 !M! 点。 || 被 消耗 ： NL 生成 1 个 冰霜 充能球。",
 		"NAME": "澄"
+	},
+	"animator:Cirno":
+	{
+		"DESCRIPTION": "虚无 。 NL 生成 !M! 个 冰霜 充能球。 NL 对所有敌人 NL 造成 !D! 点伤害。 || 被 消耗 ： NL 生成 !M! 个 冰霜 充能球。",
+		"NAME": "Cirno"
 	},
 	"animator:Cocytus":
 	{
@@ -1079,6 +1084,11 @@
 		"DESCRIPTION": "最多选择抽牌堆 NL 中的 2 张牌丢弃。 NL 将弃牌堆中的 2 张牌 NL 移入抽牌堆。 || 有限 。 NL 同调 ： NL 获得 [E] 。",
 		"NAME": "特图",
 		"UPGRADE_DESCRIPTION": "保留。 NL 最多选择抽牌堆 NL 中的 2 张牌丢弃。 NL 将弃牌堆中的 2 张牌 NL 移入抽牌堆。 || 有限 。 NL 同调 ： NL 获得 [E] 。"
+	},
+	"animator:TewiInaba":
+	{
+		"DESCRIPTION": "随机丢弃 1 张牌 。 NL 抽 !M! 张牌。 NL 消耗。 || 同调 时， 激发你的第一个 大地 充能球 并 生成 1 个 大地 充能球 。",
+		"NAME": "Tewi Inaba"
 	},
 	"animator:TheHaunt":
 	{

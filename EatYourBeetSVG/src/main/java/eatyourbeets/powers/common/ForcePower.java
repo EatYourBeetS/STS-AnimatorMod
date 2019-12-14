@@ -11,6 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class ForcePower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(ForcePower.class.getSimpleName());
+    public boolean preserveOnce = false;
 
     public ForcePower(AbstractCreature owner, int amount)
     {
@@ -41,6 +42,13 @@ public class ForcePower extends CommonPower
     public void atStartOfTurn()
     {
         super.atStartOfTurn();
+
+        if (preserveOnce)
+        {
+            preserveOnce = false;
+
+            return;
+        }
 
         if (amount <= 2 && EffectHistory.HasActivatedLimited(EngravedStaff.ID))
         {

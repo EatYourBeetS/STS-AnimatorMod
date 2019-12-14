@@ -11,6 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class IntellectPower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(IntellectPower.class.getSimpleName());
+    public boolean preserveOnce = false;
 
     public IntellectPower(AbstractCreature owner, int amount)
     {
@@ -41,7 +42,14 @@ public class IntellectPower extends CommonPower
     @Override
     public void atStartOfTurn()
     {
-        super.atStartOfTurnPostDraw();
+        super.atStartOfTurn();
+
+        if (preserveOnce)
+        {
+            preserveOnce = false;
+
+            return;
+        }
 
         if (amount <= 2 && EffectHistory.HasActivatedLimited(EngravedStaff.ID))
         {

@@ -11,6 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class AgilityPower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(AgilityPower.class.getSimpleName());
+    public boolean preserveOnce = false;
 
     public AgilityPower(AbstractCreature owner, int amount)
     {
@@ -40,7 +41,14 @@ public class AgilityPower extends CommonPower
     @Override
     public void atStartOfTurn()
     {
-        super.atStartOfTurnPostDraw();
+        super.atStartOfTurn();
+
+        if (preserveOnce)
+        {
+            preserveOnce = false;
+
+            return;
+        }
 
         if (amount <= 2 && EffectHistory.HasActivatedLimited(EngravedStaff.ID))
         {

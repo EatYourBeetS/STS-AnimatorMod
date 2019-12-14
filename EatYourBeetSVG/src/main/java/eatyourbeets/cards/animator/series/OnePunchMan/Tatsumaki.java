@@ -1,13 +1,16 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.Aether;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Tatsumaki extends AnimatorCard
@@ -35,14 +38,23 @@ public class Tatsumaki extends AnimatorCard
             GameActions.Bottom.GainEnergy(2);
             GameActions.Bottom.Draw(2);
         }
+
+        if (upgraded)
+        {
+            GameActions.Bottom.Callback(__ ->
+            {
+                IntellectPower intellect = GameUtilities.GetPower(AbstractDungeon.player, IntellectPower.class);
+                if (intellect != null)
+                {
+                    intellect.preserveOnce = true;
+                }
+            });
+        }
     }
 
     @Override
     public void upgrade()
     {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
+        TryUpgrade();
     }
 }

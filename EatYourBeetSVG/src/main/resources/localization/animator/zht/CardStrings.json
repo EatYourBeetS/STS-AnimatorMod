@@ -1071,7 +1071,8 @@
 	"animator:Tatsumaki":
 	{
 		"DESCRIPTION": "生成 1 個 NL 凌風 充能球 。 NL 獲得 !M! 點 智力 。 || 曇現 。 NL 如果你有 3 個 NL 以上不同的充能球， NL 抽 2 張牌。 NL 獲得 [E] [E] 。",
-		"NAME": "龍捲"
+		"NAME": "龍捲",
+		"UPGRADE_DESCRIPTION": "生成 1 個 NL 凌風 充能球 。 NL 獲得 !M! 點 智力 。 在下一回合中不會失去 智力 。 || 曇現 。 NL 如果你有 3 個 NL 以上不同的充能球， NL 抽 2 張牌。 NL 獲得 [E] [E] 。"
 	},
 	"animator:Tet":
 	{

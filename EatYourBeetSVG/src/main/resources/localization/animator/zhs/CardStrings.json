@@ -1071,7 +1071,8 @@
 	"animator:Tatsumaki":
 	{
 		"DESCRIPTION": "生成 1 个 NL 凌风 充能球 。 NL 获得 !M! 点 智力 。 || 昙现 。 NL 如果你有 3 个 NL 以上不同的充能球， NL 抽 2 张牌。 NL 获得 [E] [E] 。",
-		"NAME": "龙卷"
+		"NAME": "龙卷",
+		"UPGRADE_DESCRIPTION": "生成 1 个 NL 凌风 充能球 。 NL 获得 !M! 点 智力 。 在下一回合中不会失去 智力 。 || 昙现 。 NL 如果你有 3 个 NL 以上不同的充能球， NL 抽 2 张牌。 NL 获得 [E] [E] 。"
 	},
 	"animator:Tet":
 	{

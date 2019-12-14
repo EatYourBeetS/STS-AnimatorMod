@@ -52,6 +52,10 @@ public class RandomCardUpgrade extends EYBActionWithCallback<AbstractCard>
             card.upgrade();
             card.flash();
         }
+        else
+        {
+            Complete();
+        }
     }
 
     @Override

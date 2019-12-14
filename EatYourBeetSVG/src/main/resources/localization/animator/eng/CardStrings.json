@@ -1071,7 +1071,8 @@
 	"animator:Tatsumaki":
 	{
 		"DESCRIPTION": "Channel 1 Aether. NL Gain !M! Intellect. || Limited. If you have NL 3 or more unique NL Orbs, draw 2 cards NL and gain [E] [E].",
-		"NAME": "Tatsumaki"
+		"NAME": "Tatsumaki",
+		"UPGRADE_DESCRIPTION": "Channel 1 Aether. NL Gain !M! Intellect. NL Lose no Intellect NL next turn. || Limited. If you have NL 3 or more unique NL Orbs, draw 2 cards NL and gain [E] [E]."
 	},
 	"animator:Tet":
 	{

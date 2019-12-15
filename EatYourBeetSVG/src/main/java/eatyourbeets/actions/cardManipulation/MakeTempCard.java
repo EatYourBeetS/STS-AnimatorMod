@@ -51,7 +51,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
         if (makeCopy)
         {
-            actualCard = card.makeCopy();
+            actualCard = card.makeStatEquivalentCopy();
         }
         else
         {

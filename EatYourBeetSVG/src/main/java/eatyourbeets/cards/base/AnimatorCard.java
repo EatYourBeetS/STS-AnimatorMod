@@ -19,9 +19,10 @@ public abstract class AnimatorCard extends EYBCard
 {
     protected static final Logger logger = LogManager.getLogger(AnimatorCard.class.getName());
 
-    public static int FutureSynergies;
+    public static int PreemptiveSynergies;
     public static int SynergiesActivatedThisTurn;
 
+    @SuppressWarnings("FieldCanBeLocal")
     private static AnimatorCard previousCard = null;
     private static AnimatorCard lastCardPlayed = null;
 
@@ -37,9 +38,9 @@ public abstract class AnimatorCard extends EYBCard
 
     public static void SetLastCardPlayed(AbstractCard card)
     {
-        if (FutureSynergies > 0)
+        if (PreemptiveSynergies > 0)
         {
-            FutureSynergies -= 1;
+            PreemptiveSynergies -= 1;
         }
 
         if (card == null)
@@ -91,14 +92,14 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasActiveSynergy()
     {
-        if (FutureSynergies > 0)
+        if (PreemptiveSynergies > 0)
         {
             return true;
         }
-        else if (this == lastCardPlayed)
-        {
-            return previousCard != null && previousCard.HasSynergy(this);
-        }
+//        else if (this == lastCardPlayed)
+//        {
+//            return previousCard != null && previousCard.HasSynergy(this);
+//        }
         else
         {
             return lastCardPlayed != null && lastCardPlayed.HasSynergy(this);

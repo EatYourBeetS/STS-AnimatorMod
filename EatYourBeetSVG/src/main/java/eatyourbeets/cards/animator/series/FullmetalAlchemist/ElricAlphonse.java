@@ -45,7 +45,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.MakeCardInDiscardPile(new ElricAlphonseAlt()).SetOptions(true, false);
+        GameActions.Bottom.MakeCardInDiscardPile(new ElricAlphonseAlt()).SetOptions(upgraded, false);
     }
 
     @Override

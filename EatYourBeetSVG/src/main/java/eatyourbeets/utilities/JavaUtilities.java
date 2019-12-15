@@ -71,7 +71,7 @@ public class JavaUtilities
         return new FieldInfo<>(field);
     }
 
-    public static <T> ArrayList<T> Where(ArrayList<T> list, Predicate<T> predicate)
+    public static <T> ArrayList<T> Filter(ArrayList<T> list, Predicate<T> predicate)
     {
         ArrayList<T> res = new ArrayList<>();
         for (T t : list)

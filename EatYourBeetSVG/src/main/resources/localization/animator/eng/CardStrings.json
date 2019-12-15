@@ -660,6 +660,12 @@
 		"DESCRIPTION": "Draw 1 card NL for every !M! cards NL in your draw pile. NL Motivate 1. || When Exhausted, NL draw #yRoy #yMustang NL from any pile, it costs NL 1 less this turn.",
 		"NAME": "Maes Hughes"
 	},
+	"animator:MamizouFutatsuiwa":
+	{
+		"DESCRIPTION": "Shapeshifter. NL Gain !M! Temporary_HP. NL Select a card to become Shapeshifter this combat. NL Exhaust. || Semi-Limited. NL Fetch a card with Shapeshifter from anywhere.",
+		"EXTENDED_DESCRIPTION": ["become a Shapeshifter."],
+		"NAME": "Mamizou Futatsuiwa"
+	},
 	"animator:Megumin":
 	{
 		"DESCRIPTION": "Spellcaster. #yUnique[]. NL Deal !D! damage NL to ALL Enemies. NL Exhaust. || Limited. NL On Synergy, NL Upgrade this card NL permanently.",

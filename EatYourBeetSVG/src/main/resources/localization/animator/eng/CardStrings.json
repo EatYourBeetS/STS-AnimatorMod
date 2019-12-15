@@ -662,8 +662,8 @@
 	},
 	"animator:MamizouFutatsuiwa":
 	{
-		"DESCRIPTION": "Shapeshifter. NL Gain !M! Temporary_HP. NL Select a card to become Shapeshifter this combat. NL Exhaust. || Semi-Limited. NL Fetch a card with Shapeshifter from anywhere.",
-		"EXTENDED_DESCRIPTION": ["become a Shapeshifter."],
+		"DESCRIPTION": "Shapeshifter. NL Gain !M! Temp._HP. NL Give Shapeshifter to NL a card in your hand. NL Exhaust. || Limited. When NL Discarded, add a NL random Shapeshifter NL to your hand.",
+		"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
 		"NAME": "Mamizou Futatsuiwa"
 	},
 	"animator:Megumin":

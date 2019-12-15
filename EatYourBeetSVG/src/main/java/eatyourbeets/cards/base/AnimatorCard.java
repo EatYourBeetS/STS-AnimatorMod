@@ -138,4 +138,13 @@ public abstract class AnimatorCard extends EYBCard
         this.synergy = synergy;
         this.anySynergy = shapeshifter;
     }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
+    {
+        AnimatorCard copy = (AnimatorCard) super.makeStatEquivalentCopy();
+        copy.synergy = synergy;
+        copy.anySynergy = anySynergy;
+        return copy;
+    }
 }

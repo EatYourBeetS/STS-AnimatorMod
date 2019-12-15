@@ -660,6 +660,12 @@
 		"DESCRIPTION": "抽牌堆中 NL 每有 !M! 张牌， NL 抽一张牌。 NL 激励 1 。 || 被 消耗 ： NL 取出 1 张 NL 罗伊·马斯坦古 。 NL 它的耗能本回合减少 1 点。",
 		"NAME": "马斯·休斯"
 	},
+	"animator:MamizouFutatsuiwa":
+	{
+		"DESCRIPTION": "Shapeshifter. NL Gain !M! Temp._HP. NL Give Shapeshifter to NL a card in your hand. NL Exhaust. || Limited. When NL Discarded, add a NL random Shapeshifter NL to your hand.",
+		"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
+		"NAME": "Mamizou Futatsuiwa"
+	},
 	"animator:Megumin":
 	{
 		"DESCRIPTION": "法师 。 #y独一[] 。 NL 对所有敌人造成 !D! 点伤害。 NL 消耗 。 || 昙现 。 NL 同调 : NL 永久 升级 。",

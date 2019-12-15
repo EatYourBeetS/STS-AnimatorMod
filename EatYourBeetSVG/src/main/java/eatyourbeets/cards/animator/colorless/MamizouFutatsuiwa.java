@@ -10,40 +10,62 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 public class MamizouFutatsuiwa extends AnimatorCard
 {
-    public static final String ID = Register(MamizouFutatsuiwa.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(MamizouFutatsuiwa.class.getSimpleName(), EYBCardBadge.Discard);
+
+    private static final RandomizedList<AnimatorCard> shapeshifterPool = new RandomizedList<>();
 
     public MamizouFutatsuiwa()
     {
         super(ID, 1, CardType.SKILL, AbstractCard.CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0,2);
-        SetSynergy(Synergies.TouhouProject, true);
+        Initialize(0, 0, 2);
+
         SetExhaust(true);
+        SetSynergy(Synergies.TouhouProject, true);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        if (EffectHistory.TryActivateLimited(cardID))
+        {
+            if (shapeshifterPool.Count() == 0)
+            {
+                shapeshifterPool.AddAll(JavaUtilities.Where(Synergies.GetAnimatorCards(), c -> c.anySynergy));
+                shapeshifterPool.AddAll(JavaUtilities.Where(Synergies.GetColorlessCards(), c -> c.anySynergy));
+            }
+
+            AnimatorCard shapeshifter = shapeshifterPool.Retrieve(AbstractDungeon.cardRandomRng, false);
+            if (shapeshifter != null)
+            {
+                GameActions.Bottom.MakeCardInHand(shapeshifter.makeCopy());
+            }
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainTemporaryHP(this.magicNumber);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.SelectFromHand(name, 1, false)
-                .SetMessage(JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[0]))
-                .AddCallback(cards ->
-                {
-                    AnimatorCard card = JavaUtilities.SafeCast(cards.get(0), AnimatorCard.class);
-                    if (card == null)
-                    {
-                        return;
-                    }
-                    card.SetSynergy(Synergies.ANY,true);
-                });
-        if(EffectHistory.TryActivateSemiLimited(cardID)) {
-            GameActions.Top.FetchFromPile(name, 1, AbstractDungeon.player.drawPile, AbstractDungeon.player.discardPile)
-                    .SetOptions(false, false)
-                    .SetFilter(c -> c instanceof AnimatorCard && (((AnimatorCard) c).anySynergy));
-        }
+        .SetOptions(false, false, false)
+        .SetMessage(cardData.strings.EXTENDED_DESCRIPTION[0])
+        .SetFilter(c -> c instanceof AnimatorCard && !(((AnimatorCard) c).anySynergy))
+        .AddCallback(cards ->
+        {
+            AnimatorCard card = JavaUtilities.SafeCast(cards.get(0), AnimatorCard.class);
+            if (card != null)
+            {
+                card.SetSynergy(Synergies.ANY, true);
+                card.flash();
+            }
+        });
     }
 
     @Override
@@ -51,7 +73,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(3);
+            upgradeMagicNumber(2);
         }
     }
 }

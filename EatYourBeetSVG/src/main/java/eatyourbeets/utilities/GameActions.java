@@ -383,9 +383,9 @@ public final class GameActions
         return TemporaryArtifactPower.Apply(AbstractDungeon.player, AbstractDungeon.player, amount);
     }
 
-    public AddTemporaryHPAction GainTemporaryHP(int amount)
+    public GainTemporaryHP GainTemporaryHP(int amount)
     {
-        return Add(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, amount));
+        return Add(new GainTemporaryHP(AbstractDungeon.player, AbstractDungeon.player, amount));
     }
 
     public ApplyPower GainTemporaryThorns(int amount)

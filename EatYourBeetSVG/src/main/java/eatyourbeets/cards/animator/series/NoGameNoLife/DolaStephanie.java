@@ -27,19 +27,18 @@ public class DolaStephanie extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Bottom.SelectFromHand(name, 1, false)
-        .SetMessage(AnimatorResources_Strings.HandSelection.TEXT[1])
         .SetOptions(false, false, false)
+        .SetMessage(AnimatorResources_Strings.HandSelection.TEXT[1])
+        .SetFilter(c -> c instanceof AnimatorCard)
         .AddCallback(cards ->
         {
             AnimatorCard card = JavaUtilities.SafeCast(cards.get(0), AnimatorCard.class);
-            if (card == null)
+            if (card != null)
             {
-                return;
+                GameActions.Top.FetchFromPile(name, 1, AbstractDungeon.player.drawPile)
+                .SetOptions(false, false)
+                .SetFilter(card::HasSynergy);
             }
-
-            GameActions.Top.FetchFromPile(name, 1, AbstractDungeon.player.drawPile)
-            .SetOptions(false, false)
-            .SetFilter(card::HasSynergy);
         });
     }
 

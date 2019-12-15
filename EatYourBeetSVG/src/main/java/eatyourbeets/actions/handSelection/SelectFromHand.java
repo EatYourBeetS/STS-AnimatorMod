@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 
 public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard>>
 {
+    protected final ArrayList<AbstractCard> excluded = new ArrayList<>();
     protected final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
     protected Predicate<AbstractCard> filter;
     protected boolean isRandom;
@@ -80,15 +81,27 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
                 {
                     cardSource.addToTop(card);
                 }
+                else
+                {
+                    excluded.add(card);
+                }
             }
-        }
-        else if (forUpgrade)
-        {
-            cardSource = player.hand.getUpgradableCards();
         }
         else
         {
             cardSource = player.hand;
+        }
+
+        if (forUpgrade)
+        {
+            for (AbstractCard card : cardSource.group)
+            {
+                if (!card.canUpgrade())
+                {
+                    cardSource.removeCard(card);
+                    excluded.add(card);
+                }
+            }
         }
 
         int size = cardSource.size();
@@ -124,15 +137,13 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
             return;
         }
 
-        if (filter != null)
+        if (cardSource.type == CardGroup.CardGroupType.UNSPECIFIED)
         {
-            JavaUtilities.GetLogger(this).error("Card filtering does not yet work with non-random hand selection.");
-            Complete();
+            player.hand.group.clear();
+            player.hand.group.addAll(cardSource.group);
         }
-        else
-        {
-            AbstractDungeon.handCardSelectScreen.open(CreateMessage(), amount, anyNumber, canPickZero, forTransform, forUpgrade, upTo);
-        }
+
+        AbstractDungeon.handCardSelectScreen.open(CreateMessage(), amount, anyNumber, canPickZero, forTransform, forUpgrade, upTo);
     }
 
     @Override
@@ -156,5 +167,15 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
         {
             Complete(selectedCards);
         }
+    }
+
+    @Override
+    protected void Complete()
+    {
+        super.Complete();
+
+        player.hand.group.addAll(excluded);
+        player.hand.refreshHandLayout();
+        excluded.clear();
     }
 }

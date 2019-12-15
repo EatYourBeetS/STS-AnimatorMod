@@ -56,6 +56,9 @@ public class MotivateAction extends EYBAction
             if (card.costForTurn > 0)
             {
                 card.superFlash(Color.GOLD.cpy());
+            }
+            else
+            {
                 Complete();
             }
 

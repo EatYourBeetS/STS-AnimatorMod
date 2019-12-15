@@ -705,7 +705,7 @@
 	{
 		"DESCRIPTION": "生成 1 个 NL 火焰 充能球。 NL 抽 !M! 张牌。 NL 添加 1 张 NL 西森柚咲 NL 到弃牌堆。 NL 消耗 。",
 		"NAME": "黑羽美砂",
-		"UPGRADE_DESCRIPTION": "生成 1 个 NL 火焰 充能球。 NL 抽 !M! 张牌。 NL 添加 1 张 NL 西森柚咲 NL 到弃牌堆。 NL 消耗 。"
+		"UPGRADE_DESCRIPTION": "生成 1 个 NL 火焰 充能球。 NL 抽 !M! 张牌。 NL 添加 1 张 NL 西森柚咲 NL 加入抽牌堆。。 NL 消耗 。"
 	},
 	"animator:Mitsuba":
 	{

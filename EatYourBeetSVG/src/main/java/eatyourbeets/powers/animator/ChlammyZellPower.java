@@ -31,7 +31,7 @@ public class ChlammyZellPower extends AnimatorPower
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        LosePower();
+        RemovePower();
 
         super.atEndOfTurn(isPlayer);
     }

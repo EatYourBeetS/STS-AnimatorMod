@@ -55,7 +55,7 @@ public class PridePower extends AnimatorPower
     @Override
     public void atStartOfTurn()
     {
-        LosePower();
+        RemovePower();
 
         super.atStartOfTurn();
     }

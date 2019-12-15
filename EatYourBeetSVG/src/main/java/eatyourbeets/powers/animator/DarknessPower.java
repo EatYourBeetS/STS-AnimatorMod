@@ -21,7 +21,7 @@ public class DarknessPower extends AnimatorPower
     @Override
     public int onLoseHp(int damageAmount)
     {
-        ReducePower(1);
+        GameActions.Top.ReducePower(this, 1);
         GameActions.Bottom.MakeCardInDrawPile(new DarknessAdrenaline());
 
         return super.onLoseHp(damageAmount);

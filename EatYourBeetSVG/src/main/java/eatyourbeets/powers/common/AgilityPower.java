@@ -27,7 +27,7 @@ public class AgilityPower extends CommonPower
     {
         super.onInitialApplication();
 
-        GameActions.Bottom.GainDexterity(amount);
+        GameActions.Top.GainDexterity(amount);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class AgilityPower extends CommonPower
     {
         super.stackPower(stackAmount);
 
-        GameActions.Bottom.GainDexterity(stackAmount);
+        GameActions.Top.GainDexterity(stackAmount);
     }
 
     @Override
@@ -60,6 +60,6 @@ public class AgilityPower extends CommonPower
             GameActions.Bottom.ReducePower(owner, DexterityPower.POWER_ID, 1);
         }
 
-        ReducePower(1);
+        GameActions.Bottom.ReducePower(this, 1);
     }
 }

@@ -33,7 +33,7 @@ public class BozesPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        LosePower();
+        RemovePower();
     }
 
     @Override

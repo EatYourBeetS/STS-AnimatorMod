@@ -67,7 +67,7 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        LosePower();
+        RemovePower();
 
         super.atEndOfTurn(isPlayer);
     }

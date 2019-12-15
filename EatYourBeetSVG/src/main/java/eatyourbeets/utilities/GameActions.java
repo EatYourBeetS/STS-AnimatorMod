@@ -2,6 +2,7 @@ package eatyourbeets.utilities;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -34,7 +35,7 @@ import eatyourbeets.actions.pileSelection.DiscardFromPile;
 import eatyourbeets.actions.pileSelection.ExhaustFromPile;
 import eatyourbeets.actions.pileSelection.FetchFromPile;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
-import eatyourbeets.actions.powers.ApplyPowerSilently;
+import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
 import eatyourbeets.actions.special.GainGold;
@@ -60,6 +61,7 @@ public final class GameActions
     public static final GameActions Bottom = new GameActions(Order.Bottom);
     public static final GameActions TurnStart = new GameActions(Order.TurnStart);
     public static final GameActions NextCombat = new GameActions(Order.NextCombat);
+    public static final GameActions Instant = new GameActions(Order.Instant);
 
     protected final Order actionOrder;
 
@@ -73,66 +75,88 @@ public final class GameActions
         switch (actionOrder)
         {
             case Top:
+            {
                 AbstractDungeon.actionManager.addToTop(action);
                 break;
+            }
 
             case Bottom:
+            {
                 AbstractDungeon.actionManager.addToBottom(action);
                 break;
+            }
 
             case TurnStart:
+            {
                 AbstractDungeon.actionManager.addToTurnStart(action);
                 break;
+            }
 
             case NextCombat:
+            {
                 AbstractDungeon.actionManager.addToNextCombat(action);
                 break;
+            }
+
+            case Instant:
+            {
+                AbstractGameAction current = AbstractDungeon.actionManager.currentAction;
+                if (current != null)
+                {
+                    AbstractDungeon.actionManager.addToTop(current);
+                }
+
+                AbstractDungeon.actionManager.currentAction = action;
+                AbstractDungeon.actionManager.phase = GameActionManager.Phase.EXECUTING_ACTIONS;
+
+                break;
+            }
         }
 
         return action;
     }
 
-    public ApplyPowerAction ApplyBurning(AbstractCreature source, AbstractCreature target, int amount)
+    public ApplyPower ApplyBurning(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new BurningPower(target, source, amount));
     }
 
-    public ApplyPowerAction ApplyConstricted(AbstractCreature source, AbstractCreature target, int amount)
+    public ApplyPower ApplyConstricted(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new ConstrictedPower(target, source, amount));
     }
 
-    public ApplyPowerAction ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
+    public ApplyPower ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new FrailPower(target, amount, !source.isPlayer));
     }
 
-    public ApplyPowerAction ApplyPoison(AbstractCreature source, AbstractCreature target, int amount)
+    public ApplyPower ApplyPoison(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new PoisonPower(target, source, amount));
     }
 
-    public ApplyPowerAction ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
+    public ApplyPower ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
     {
-        return Add(new ApplyPowerAction(target, source, power));
+        return Add(new ApplyPower(source, target, power));
     }
 
-    public ApplyPowerAction ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
+    public ApplyPower ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
     {
-        return Add(new ApplyPowerAction(target, source, power, stacks));
+        return Add(new ApplyPower(source, target, power, stacks));
     }
 
-    public ApplyPowerSilently ApplyPowerSilently(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
+    public ApplyPower ApplyPowerSilently(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
     {
-        return Add(new ApplyPowerSilently(target, source, power, stacks));
+        return Add(new ApplyPower(source, target, power, stacks)).SetOptions(false, true);
     }
 
-    public ApplyPowerAction ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)
+    public ApplyPower ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new VulnerablePower(target, amount, !source.isPlayer));
     }
 
-    public ApplyPowerAction ApplyWeak(AbstractCreature source, AbstractCreature target, int amount)
+    public ApplyPower ApplyWeak(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new WeakPower(target, amount, !source.isPlayer));
     }
@@ -258,12 +282,12 @@ public final class GameActions
         return Add(new FetchFromPile(sourceName, amount, groups));
     }
 
-    public ApplyPowerAction GainAgility(int amount)
+    public ApplyPower GainAgility(int amount)
     {
         return StackPower(new AgilityPower(AbstractDungeon.player, amount));
     }
 
-    public ApplyPowerAction GainArtifact(int amount)
+    public ApplyPower GainArtifact(int amount)
     {
         return StackPower(new ArtifactPower(AbstractDungeon.player, amount));
     }
@@ -278,12 +302,12 @@ public final class GameActions
         return Add(new GainBlock(AbstractDungeon.player, AbstractDungeon.player, amount));
     }
 
-    public ApplyPowerAction GainBlur(int amount)
+    public ApplyPower GainBlur(int amount)
     {
         return StackPower(new BlurPower(AbstractDungeon.player, amount));
     }
 
-    public ApplyPowerAction GainDexterity(int amount)
+    public ApplyPower GainDexterity(int amount)
     {
         return StackPower(new DexterityPower(AbstractDungeon.player, amount));
     }
@@ -293,12 +317,12 @@ public final class GameActions
         return Add(new GainEnergyAction(amount));
     }
 
-    public ApplyPowerAction GainFocus(int amount)
+    public ApplyPower GainFocus(int amount)
     {
         return StackPower(new FocusPower(AbstractDungeon.player, amount));
     }
 
-    public ApplyPowerAction GainForce(int amount)
+    public ApplyPower GainForce(int amount)
     {
         return StackPower(new ForcePower(AbstractDungeon.player, amount));
     }
@@ -308,12 +332,12 @@ public final class GameActions
         return Add(new GainGold(amount, true));
     }
 
-    public ApplyPowerAction GainIntellect(int amount)
+    public ApplyPower GainIntellect(int amount)
     {
         return StackPower(new IntellectPower(AbstractDungeon.player, amount));
     }
 
-    public ApplyPowerAction GainMetallicize(int amount)
+    public ApplyPower GainMetallicize(int amount)
     {
         return StackPower(new MetallicizePower(AbstractDungeon.player, amount));
     }
@@ -323,12 +347,12 @@ public final class GameActions
         return Add(new IncreaseMaxOrbAction(slots));
     }
 
-    public ApplyPowerAction GainPlatedArmor(int amount)
+    public ApplyPower GainPlatedArmor(int amount)
     {
         return StackPower(new PlatedArmorPower(AbstractDungeon.player, amount));
     }
 
-    public ApplyPowerAction GainRandomStat(int amount)
+    public ApplyPower GainRandomStat(int amount)
     {
         int roll = AbstractDungeon.cardRandomRng.random(2);
         switch (roll)
@@ -349,12 +373,12 @@ public final class GameActions
         }
     }
 
-    public ApplyPowerAction GainStrength(int amount)
+    public ApplyPower GainStrength(int amount)
     {
         return StackPower(new StrengthPower(AbstractDungeon.player, amount));
     }
 
-    public ApplyPowerAction GainTemporaryArtifact(int amount)
+    public ApplyPower GainTemporaryArtifact(int amount)
     {
         return TemporaryArtifactPower.Apply(AbstractDungeon.player, AbstractDungeon.player, amount);
     }
@@ -364,12 +388,12 @@ public final class GameActions
         return Add(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, amount));
     }
 
-    public ApplyPowerAction GainTemporaryThorns(int amount)
+    public ApplyPower GainTemporaryThorns(int amount)
     {
         return StackPower(new EarthenThornsPower(AbstractDungeon.player, amount));
     }
 
-    public ApplyPowerAction GainThorns(int amount)
+    public ApplyPower GainThorns(int amount)
     {
         return StackPower(new ThornsPower(AbstractDungeon.player, amount));
     }
@@ -535,12 +559,12 @@ public final class GameActions
         return Add(new SequentialAction(action, action2));
     }
 
-    public ApplyPowerAction StackPower(AbstractCreature source, AbstractPower power)
+    public ApplyPower StackPower(AbstractCreature source, AbstractPower power)
     {
-        return Add(new ApplyPowerAction(power.owner, source, power, power.amount));
+        return Add(new ApplyPower(source, power.owner, power, power.amount));
     }
 
-    public ApplyPowerAction StackPower(AbstractPower power)
+    public ApplyPower StackPower(AbstractPower power)
     {
         return StackPower(power.owner, power);
     }
@@ -585,6 +609,7 @@ public final class GameActions
         Top,
         Bottom,
         TurnStart,
-        NextCombat
+        NextCombat,
+        Instant
     }
 }

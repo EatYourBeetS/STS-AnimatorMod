@@ -8,7 +8,6 @@ import eatyourbeets.blights.animator.Haunted;
 import eatyourbeets.cards.base.AnimatorCard_Status;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 
 public class TheHaunt extends AnimatorCard_Status implements Hidden
 {

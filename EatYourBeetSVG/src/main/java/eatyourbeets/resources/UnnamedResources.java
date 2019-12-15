@@ -2,11 +2,8 @@ package eatyourbeets.resources;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.characters.UnnamedCharacter;
 import eatyourbeets.relics.unnamed.InfinitePower;
 import patches.AbstractEnums;

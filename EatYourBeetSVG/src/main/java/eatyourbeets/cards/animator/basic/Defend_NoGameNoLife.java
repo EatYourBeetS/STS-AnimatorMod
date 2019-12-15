@@ -7,8 +7,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-import java.util.ArrayList;
-
 public class Defend_NoGameNoLife extends Defend
 {
     public static final String ID = Register(Defend_NoGameNoLife.class.getSimpleName());

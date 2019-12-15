@@ -23,6 +23,6 @@ public class DelayedHealPower extends AnimatorPower
         super.atStartOfTurnPostDraw();
 
         GameActions.Bottom.Add(new HealAction(owner, owner, amount));
-        LosePower();
+        RemovePower();
     }
 }

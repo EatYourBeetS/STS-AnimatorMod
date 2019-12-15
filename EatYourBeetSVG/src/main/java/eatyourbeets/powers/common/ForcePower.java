@@ -27,7 +27,7 @@ public class ForcePower extends CommonPower
     {
         super.onInitialApplication();
 
-        GameActions.Bottom.GainStrength(amount);
+        GameActions.Top.GainStrength(amount);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ForcePower extends CommonPower
     {
         super.stackPower(stackAmount);
 
-        GameActions.Bottom.GainStrength(stackAmount);
+        GameActions.Top.GainStrength(stackAmount);
     }
 
     @Override
@@ -60,6 +60,6 @@ public class ForcePower extends CommonPower
             GameActions.Bottom.ReducePower(owner, StrengthPower.POWER_ID, 1);
         }
 
-        ReducePower(1);
+        GameActions.Bottom.ReducePower(this, 1);
     }
 }

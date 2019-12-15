@@ -39,7 +39,7 @@ public class ArcherPower extends AnimatorPower
 
                     GameActions.Bottom.VFX(new ThrowDaggerEffect(x, y));
                     GameActions.Bottom.DealDamage(owner, m, this.amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
-                    .SetOptions2(true, true, 0);
+                    .SetOptions2(true, true);
                 }
             }
 

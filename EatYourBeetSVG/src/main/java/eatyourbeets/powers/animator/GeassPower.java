@@ -48,7 +48,7 @@ public class GeassPower extends AnimatorPower
                 GameActions.Bottom.ApplyPower(owner, owner, new StunMonsterPower(monster));
             }
 
-            LosePower();
+            RemovePower();
         }
     }
 
@@ -57,6 +57,6 @@ public class GeassPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        LosePower();
+        RemovePower();
     }
 }

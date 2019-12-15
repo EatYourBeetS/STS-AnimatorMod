@@ -24,6 +24,6 @@ public class DexterityTrainingPower extends AnimatorPower
         super.atStartOfTurnPostDraw();
 
         GameActions.Bottom.GainDexterity(1);
-        ReducePower(1);
+        GameActions.Bottom.ReducePower(this, 1);
     }
 }

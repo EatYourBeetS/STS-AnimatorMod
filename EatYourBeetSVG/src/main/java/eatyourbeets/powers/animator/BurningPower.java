@@ -64,7 +64,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
             this.flashWithoutSound();
 
             GameActions.Bottom.DealDamage(source, owner, getHealthBarAmount(), DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.FIRE);
-            ReducePower(1);
+            GameActions.Bottom.ReducePower(this, 1);
         }
     }
 

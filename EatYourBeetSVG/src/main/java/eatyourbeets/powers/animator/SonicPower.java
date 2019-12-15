@@ -26,6 +26,6 @@ public class SonicPower extends AnimatorPower
         GameActions.Bottom.GainDexterity(1);
         GameActions.Bottom.CreateThrowingKnives(1);
 
-        ReducePower(1);
+        GameActions.Bottom.ReducePower(this, 1);
     }
 }

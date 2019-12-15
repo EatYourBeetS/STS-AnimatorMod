@@ -41,7 +41,7 @@ public class HandSizePower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        LosePower();
+        RemovePower();
     }
 
     @Override

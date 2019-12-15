@@ -34,7 +34,7 @@ public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
     {
         GameActions.Bottom.DealDamage(null, owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
 
-        LosePower();
+        RemovePower();
 
         playApplyPowerSfx();
         flashWithoutSound();

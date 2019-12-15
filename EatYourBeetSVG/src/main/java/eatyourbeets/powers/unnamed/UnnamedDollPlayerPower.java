@@ -40,7 +40,7 @@ public class UnnamedDollPlayerPower extends UnnamedPower
     {
         super.atEndOfTurn(isPlayer);
 
-        LosePower();
+        RemovePower();
     }
 
     @Override

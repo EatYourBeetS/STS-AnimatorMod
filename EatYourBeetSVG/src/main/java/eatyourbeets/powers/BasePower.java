@@ -93,13 +93,8 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
         }
     }
 
-    public void LosePower()
+    public void RemovePower()
     {
         GameActions.Bottom.RemovePower(owner, owner, this);
-    }
-
-    public void ReducePower(int value)
-    {
-        GameActions.Bottom.ReducePower(this, value);
     }
 }

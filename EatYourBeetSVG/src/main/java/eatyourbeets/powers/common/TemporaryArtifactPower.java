@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
+import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -15,7 +16,7 @@ public class TemporaryArtifactPower extends ArtifactPower implements CloneablePo
     private int permanent;
     private int temporary;
 
-    public static ApplyPowerAction Apply(AbstractCreature owner, AbstractCreature source, int amount)
+    public static ApplyPower Apply(AbstractCreature owner, AbstractCreature source, int amount)
     {
         ArtifactPower artifact = GameUtilities.GetPower(owner, ArtifactPower.POWER_ID);
         if (artifact != null && !(artifact instanceof TemporaryArtifactPower))

@@ -28,7 +28,7 @@ public class IntellectPower extends CommonPower
     {
         super.onInitialApplication();
 
-        GameActions.Bottom.GainFocus(amount);
+        GameActions.Top.GainFocus(amount);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class IntellectPower extends CommonPower
     {
         super.stackPower(stackAmount);
 
-        GameActions.Bottom.GainFocus(stackAmount);
+        GameActions.Top.GainFocus(stackAmount);
     }
 
     @Override
@@ -61,6 +61,6 @@ public class IntellectPower extends CommonPower
             GameActions.Bottom.ReducePower(owner, FocusPower.POWER_ID, 1);
         }
 
-        ReducePower(1);
+        GameActions.Bottom.ReducePower(this, 1);
     }
 }

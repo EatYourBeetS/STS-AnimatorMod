@@ -14,7 +14,3 @@ buildNumber.properties
 **/java/eatyourbeets/hidden/
 *.psd
 *.jar
-EatYourBeetSVG/eatyourbeetsvg.iml
-EatYourBeetSVG/pom.xml
-EatYourBeetSVG/STS.iml
-EatYourBeetSVG/EatYourBeetSVG-STSMOD.iml

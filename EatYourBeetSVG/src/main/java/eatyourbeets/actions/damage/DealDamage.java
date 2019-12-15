@@ -3,12 +3,11 @@ package eatyourbeets.actions.damage;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.powers.animator.StolenGoldPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -59,11 +58,17 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         return this;
     }
 
-    public DealDamage SetOptions2(boolean superFast, boolean muteSfx, int stealGoldAmount)
+    public DealDamage SetOptions2(boolean superFast, boolean muteSfx)
     {
         this.skipWait = superFast;
         this.muteSfx = muteSfx;
-        this.goldAmount = stealGoldAmount;
+
+        return this;
+    }
+
+    public DealDamage StealGold(int goldAmount)
+    {
+        this.goldAmount = goldAmount;
 
         return this;
     }
@@ -86,9 +91,9 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
             onDamageEffect.accept(target);
         }
 
-        if (this.goldAmount != 0)
+        if (this.goldAmount > 0)
         {
-            this.stealGold();
+            GameActions.Instant.StackPower(source, new StolenGoldPower(target, goldAmount));
         }
     }
 
@@ -129,32 +134,6 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
             }
 
             Complete(target);
-        }
-    }
-
-    private void stealGold()
-    {
-        if (this.target.gold != 0)
-        {
-            CardCrawlGame.sound.play("GOLD_JINGLE");
-            if (this.target.gold < this.goldAmount)
-            {
-                this.goldAmount = this.target.gold;
-            }
-
-            target.gold -= this.goldAmount;
-
-            for (int i = 0; i < this.goldAmount; ++i)
-            {
-                if (this.source.isPlayer)
-                {
-                    GameEffects.List.Add(new GainPennyEffect(this.target.hb.cX, this.target.hb.cY));
-                }
-                else
-                {
-                    GameEffects.List.Add(new GainPennyEffect(this.source, this.target.hb.cX, this.target.hb.cY, this.source.hb.cX, this.source.hb.cY, false));
-                }
-            }
         }
     }
 }

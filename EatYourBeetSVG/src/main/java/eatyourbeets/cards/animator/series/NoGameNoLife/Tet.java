@@ -1,15 +1,10 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
-import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.actions.handSelection.DiscardFromHand;
-import eatyourbeets.actions.pileSelection.DiscardFromPile;
-import eatyourbeets.actions.pileSelection.SelectFromPile;
-import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;

@@ -13,8 +13,6 @@ public class AnimatorResources_Strings
     public static final UIStrings SpecialEffects = AbstractResources.GetUIStrings(Prefix + "SpecialEffects");
     public static final UIStrings CardSelect = AbstractResources.GetUIStrings(Prefix + "CardSelect");
     public static final UIStrings Trophies = AbstractResources.GetUIStrings(Prefix + "Trophies");
-
-    // Todo: Merge these 2
     public static final UIStrings HandSelection = AbstractResources.GetUIStrings(Prefix + "HandSelection");
     public static final UIStrings GridSelection = AbstractResources.GetUIStrings(Prefix + "GridSelection");
 }

@@ -3,7 +3,6 @@ package eatyourbeets.actions.special;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.GameEffects;
 
 public class GainGold extends EYBAction

@@ -31,6 +31,6 @@ public class VitalityPower extends AnimatorPower
 
     public void atStartOfTurn()
     {
-        LosePower();
+        RemovePower();
     }
 }

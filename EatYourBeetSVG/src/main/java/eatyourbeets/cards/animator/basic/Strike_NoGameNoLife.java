@@ -8,8 +8,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-import java.util.ArrayList;
-
 public class Strike_NoGameNoLife extends Strike
 {
     public static final String ID = Register(Strike_NoGameNoLife.class.getSimpleName());

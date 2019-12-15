@@ -32,7 +32,7 @@ public class EarthenThornsPower extends AnimatorPower
             this.flash();
 
             GameActions.Top.DealDamage(owner, info.owner, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
-            .SetOptions2(true, false, 0);
+            .SetOptions2(true, false);
         }
 
         return damageAmount;
@@ -40,6 +40,6 @@ public class EarthenThornsPower extends AnimatorPower
 
     public void atStartOfTurn()
     {
-        LosePower();
+        RemovePower();
     }
 }

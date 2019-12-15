@@ -76,7 +76,7 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
             AddSecondaryEffect(p, m);
 
             GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-            .SetOptions2(true, false, 0);
+            .SetOptions2(true, false);
 
             if (m.hb != null)
             {

@@ -3,6 +3,7 @@ package eatyourbeets.powers.unnamed;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.UnnamedPower;
+import eatyourbeets.utilities.GameActions;
 
 public class ResonancePower extends UnnamedPower
 {
@@ -41,7 +42,7 @@ public class ResonancePower extends UnnamedPower
     {
         super.atEndOfTurn(isPlayer);
 
-        ReducePower(1);
+        GameActions.Bottom.ReducePower(this, 1);
     }
 
     @Override

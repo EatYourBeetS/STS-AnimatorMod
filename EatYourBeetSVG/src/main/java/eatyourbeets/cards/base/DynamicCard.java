@@ -54,34 +54,10 @@ public class DynamicCard extends AnimatorCard
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        DynamicCard copy = new DynamicCard(builder);
+        DynamicCard copy = (DynamicCard) super.makeStatEquivalentCopy();
 
-        for (int i = 0; i < this.timesUpgraded; ++i)
-        {
-            copy.upgrade();
-        }
-
-        copy.onUpgrade = this.onUpgrade;
         copy.onUse = this.onUse;
-        copy.name = this.name;
-        copy.target = this.target;
-        copy.upgraded = this.upgraded;
-        copy.timesUpgraded = this.timesUpgraded;
-        copy.baseDamage = this.baseDamage;
-        copy.baseBlock = this.baseBlock;
-        copy.baseMagicNumber = this.baseMagicNumber;
-        copy.baseSecondaryValue = this.secondaryValue;
-        copy.cost = this.cost;
-        copy.costForTurn = this.costForTurn;
-        copy.isCostModified = this.isCostModified;
-        copy.isCostModifiedForTurn = this.isCostModifiedForTurn;
-        copy.inBottleLightning = this.inBottleLightning;
-        copy.inBottleFlame = this.inBottleFlame;
-        copy.inBottleTornado = this.inBottleTornado;
-        copy.isSeen = this.isSeen;
-        copy.isLocked = this.isLocked;
-        copy.misc = this.misc;
-        copy.freeToPlayOnce = this.freeToPlayOnce;
+        copy.onUpgrade = this.onUpgrade;
 
         return copy;
     }

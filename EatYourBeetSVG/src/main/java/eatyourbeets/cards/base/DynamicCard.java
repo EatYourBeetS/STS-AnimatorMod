@@ -2,7 +2,6 @@ package eatyourbeets.cards.base;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.util.TriConsumer;
 
@@ -10,21 +9,23 @@ import java.util.function.Consumer;
 
 public class DynamicCard extends AnimatorCard
 {
-    protected DynamicCardBuilder builder;
+    protected final DynamicCardBuilder builder;
 
     public Consumer<AbstractCard> onUpgrade;
     public TriConsumer<AbstractCard, AbstractPlayer, AbstractMonster> onUse;
 
     public DynamicCard(DynamicCardBuilder builder)
     {
-        this(builder.id, builder.cardStrings, builder.imagePath, builder.cost, builder.cardType, builder.cardColor, builder.cardRarity, builder.cardTarget, builder.cardBadges);
+        super(new EYBCardData(builder.cardBadges, builder.cardStrings), builder.id, builder.imagePath,
+            builder.cost, builder.cardType, builder.cardColor, builder.cardRarity, builder.cardTarget);
+
+        Initialize(builder.damage, builder.block, builder.magicNumber, builder.secondaryValue);
 
         this.builder = builder;
-    }
+        this.onUse = builder.onUse;
+        this.onUpgrade = builder.onUpgrade;
 
-    private DynamicCard(String id, CardStrings strings, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target, EYBCardBadge... badges)
-    {
-        super(new EYBCardData(badges, strings), id, imagePath, cost, type, color, rarity, target);
+        SetSynergy(builder.synergy, builder.isShapeshifter);
     }
 
     @Override
@@ -49,16 +50,5 @@ public class DynamicCard extends AnimatorCard
     public AbstractCard makeCopy()
     {
         return new DynamicCard(builder);
-    }
-
-    @Override
-    public AbstractCard makeStatEquivalentCopy()
-    {
-        DynamicCard copy = (DynamicCard) super.makeStatEquivalentCopy();
-
-        copy.onUse = this.onUse;
-        copy.onUpgrade = this.onUpgrade;
-
-        return copy;
     }
 }

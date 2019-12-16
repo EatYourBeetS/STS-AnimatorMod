@@ -28,6 +28,8 @@ public class DynamicCardBuilder
     public EYBCardBadge[] cardBadges;
     public Consumer<AbstractCard> onUpgrade;
     public TriConsumer<AbstractCard, AbstractPlayer, AbstractMonster> onUse;
+    public boolean isShapeshifter;
+    public Synergy synergy;
 
     public DynamicCardBuilder(String id)
     {
@@ -51,13 +53,7 @@ public class DynamicCardBuilder
             SetImage(AnimatorResources.GetCardImage(id));
         }
 
-        DynamicCard card = new DynamicCard(id, cardStrings, imagePath, cost, cardType, cardColor, cardRarity, cardTarget, cardBadges);
-
-        card.Initialize(damage, block, magicNumber, secondaryValue);
-        card.onUpgrade = onUpgrade;
-        card.onUse = onUse;
-
-        return card;
+        return new DynamicCard(this);
     }
 
     public DynamicCardBuilder SetProperties(int cost, AbstractCard.CardType type, AbstractCard.CardColor color, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target)

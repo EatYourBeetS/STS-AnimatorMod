@@ -33,7 +33,7 @@
 	},
 	"animator:Aisha":
 	{
-		"DESCRIPTION": "法师 。 NL 每有一个充能球， NL 造成 !D! 点伤害 。 || 昙现 。 NL 如果没有充能球栏位， NL 获得 1 个充能球栏位。",
+		"DESCRIPTION": "法师 。 NL 每有一个充能球， NL 造成 !D! 点伤害 。 || 昙现 。 NL 如果没有充能球字段， NL 获得 1 个充能球字段。",
 		"NAME": "爱莎‧蓝塔"
 	},
 	"animator:Albedo":
@@ -67,7 +67,7 @@
 	{
 		"DESCRIPTION": "法师 6 。 NL 获得 !M! 点 智力 。 NL 消耗 。 || 同调 时，NL 生成 1 个 大地 充能球。",
 		"NAME": "阿尔蓓吉欧",
-		"UPGRADE_DESCRIPTION": "法师 6 。 NL 获得 !M! 点 智力 。 NL 获得 !SV! 个充能球栏位。 NL 消耗 。 || 同调 时， NL 生成 1 个 大地 充能球。"
+		"UPGRADE_DESCRIPTION": "法师 6 。 NL 获得 !M! 点 智力 。 NL 获得 !SV! 个充能球字段。 NL 消耗 。 || 同调 时， NL 生成 1 个 大地 充能球。"
 	},
 	"animator:Asuramaru":
 	{
@@ -155,7 +155,7 @@
 	"animator:Cirno":
 	{
 		"DESCRIPTION": "虚无 。 NL 生成 !M! 个 冰霜 充能球。 NL 对所有敌人 NL 造成 !D! 点伤害。 || 被 消耗 ： NL 生成 !M! 个 冰霜 充能球。",
-		"NAME": "Cirno"
+		"NAME": "琪露诺"
 	},
 	"animator:Cocytus":
 	{
@@ -328,7 +328,7 @@
 	},
 	"animator:ElricAlphonseAlt":
 	{
-		"DESCRIPTION": "生成 1 个 闪电 充能球 。NL 获得 !M! 层 多层护甲 。 NL 消耗 。 || 同调 : 获得 NL 1 个 充能球栏位 。",
+		"DESCRIPTION": "生成 1 个 闪电 充能球 。NL 获得 !M! 层 多层护甲 。 NL 消耗 。 || 同调 : 获得 NL 1 个 充能球字段 。",
 		"NAME": "阿尔冯斯护甲"
 	},
 	"animator:ElricEdward":
@@ -339,7 +339,7 @@
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 点燃 。。 NL 循环 !SV! 张牌。 || 被丢弃：如果你 NL 有 1 个空栏位， NL 生成 1 个 火焰 充能球 。",
+		"DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 点燃 。。 NL 循环 !SV! 张牌。 || 被丢弃：如果你 NL 有 1 个空字段， NL 生成 1 个 火焰 充能球 。",
 		"NAME": "艾索德"
 	},
 	"animator:Emilia":
@@ -381,13 +381,13 @@
 	},
 	"animator:Eve":
 	{
-		"DESCRIPTION": "打出 1 张 充能球核心 。 NL 获得 !M! 个 充能球栏位。 || 昙现 。 NL 当你 同调 时： NL 对一名敌人 NL 造成 1 点伤害 NL 并提高 1 点伤害。",
+		"DESCRIPTION": "打出 1 张 充能球核心 。 NL 获得 !M! 个 充能球字段。 || 昙现 。 NL 当你 同调 时： NL 对一名敌人 NL 造成 1 点伤害 NL 并提高 1 点伤害。",
 		"NAME": "伊芙",
-		"UPGRADE_DESCRIPTION": "打出 1 张 充能球核心 。 NL 获得 !SV! 层 金属化 。 NL 获得 !M! 个 充能球栏位。 || 昙现 。 NL 当你 同调 时： NL 对一名敌人 NL 造成 1 点伤害 NL 并提高 1 点伤害。"
+		"UPGRADE_DESCRIPTION": "打出 1 张 充能球核心 。 NL 获得 !SV! 层 金属化 。 NL 获得 !M! 个 充能球字段。 || 昙现 。 NL 当你 同调 时： NL 对一名敌人 NL 造成 1 点伤害 NL 并提高 1 点伤害。"
 	},
 	"animator:Evileye":
 	{
-		"DESCRIPTION": "法师 3 。 NL 抽 !M! 张牌。 NL 重装填 ： 触发 NL 最右边充能球 NL 的被动效果 。 || 昙现 。 NL 同调 ： NL 获得 2 点 智力 NL 1 个充能球栏位。",
+		"DESCRIPTION": "法师 3 。 NL 抽 !M! 张牌。 NL 重装填 ： 触发 NL 最右边充能球 NL 的被动效果 。 || 昙现 。 NL 同调 ： NL 获得 2 点 智力 NL 1 个充能球字段。",
 		"NAME": "邪眼"
 	},
 	"animator:Excalibur":
@@ -662,9 +662,9 @@
 	},
 	"animator:MamizouFutatsuiwa":
 	{
-		"DESCRIPTION": "Shapeshifter. NL Gain !M! Temp._HP. NL Give Shapeshifter to NL a card in your hand. NL Exhaust. || Limited. When NL Discarded, add a NL random Shapeshifter NL to your hand.",
-		"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
-		"NAME": "Mamizou Futatsuiwa"
+		"DESCRIPTION": "穿越者 。 NL 获得 !M! 临时生命 。 NL 将手牌中随机一张牌变为 穿越者 。 NL 消耗 。 || 昙现 。 被丢弃：将一张随机 穿越者 加入你的手牌。",
+		"EXTENDED_DESCRIPTION": ["变为一名穿越者。"],
+		"NAME": "二岩猯藏"
 	},
 	"animator:Megumin":
 	{
@@ -750,8 +750,8 @@
 	},
 	"animator:NononJakuzure":
 	{
-		"DESCRIPTION": "循环 !SV! 张牌。 Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1.",
-		"NAME": "Nonon Jakuzure"
+		"DESCRIPTION": "循环 !SV! 张牌。 激励 !M! 。 NL 消耗 。 || 当在手牌时 同调 ， NL 将这张牌的 激励 提高 1 。",
+		"NAME": "蛇崩乃音"
 	},
 	"animator:OrbCore_Aether":
 	{
@@ -1093,8 +1093,8 @@
 	},
 	"animator:TewiInaba":
 	{
-		"DESCRIPTION": "随机丢弃 1 张牌 。 NL 抽 !M! 张牌。 NL 消耗。 || 同调 时， 激发你的第一个 大地 充能球 并 生成 1 个 大地 充能球 。",
-		"NAME": "Tewi Inaba"
+		"DESCRIPTION": "获得 !B! 点 格挡 。 激发 你最右侧的充能球 。 如果是 大地 充能球， 抽 !M! 张牌。 || 有限 。 被丢弃， 触发 最右边充能球 的被动效果 。",
+		"NAME": "因幡帝"
 	},
 	"animator:TheHaunt":
 	{
@@ -1162,7 +1162,7 @@
 	"animator:Vesta_Elixir":
 	{
 		"DESCRIPTION": "",
-		"EXTENDED_DESCRIPTION": ["完成时间减少 1 轮。", "抽 {0} 张牌。", "获得 {0} 层 智力 。", "获得 {0} 层 武力 。", "获得 {0} 层 机敏 。", "获得 {0} 充能球栏位。", "获得 {0} 点 临时生命 。", "获得 {0} 层 金属化 。", "获得 {0} 能量 。", "消耗 {0} 张牌 :", "丢弃 {0} 张牌 :", "抹除 。"],
+		"EXTENDED_DESCRIPTION": ["完成时间减少 1 轮。", "抽 {0} 张牌。", "获得 {0} 层 智力 。", "获得 {0} 层 武力 。", "获得 {0} 层 机敏 。", "获得 {0} 充能球字段。", "获得 {0} 点 临时生命 。", "获得 {0} 层 金属化 。", "获得 {0} 能量 。", "消耗 {0} 张牌 :", "丢弃 {0} 张牌 :", "抹除 。"],
 		"NAME": "灵药"
 	},
 	"animator:Viivi":

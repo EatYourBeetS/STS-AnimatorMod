@@ -43,7 +43,7 @@
 	},
 	"animator:Alexander":
 	{
-		"DESCRIPTION": "對所有敵人 NL 造成 !D! 點傷害。 NL 獲得 1 點 武力 。 || 被 消耗  : NL 對所有敵人 NL 造成 !M! 點傷害。",
+		"DESCRIPTION": "對所有敵人 NL 造成 !D! 點傷害。 NL 獲得 1 點 武力 。 || 被 消耗 : NL 對所有敵人 NL 造成 !M! 點傷害。",
 		"NAME": "亞歷山大大帝"
 	},
 	"animator:Aqua":
@@ -155,7 +155,7 @@
 	"animator:Cirno":
 	{
 		"DESCRIPTION": "虛無 。 NL 生成 !M! 個 冰霜 充能球。 NL 對所有敵人 NL 造成 !D! 點傷害。 || 被 消耗 ： NL 生成 !M! 個 冰霜 充能球。",
-		"NAME": "Cirno"
+		"NAME": "琪露諾"
 	},
 	"animator:Cocytus":
 	{
@@ -662,9 +662,9 @@
 	},
 	"animator:MamizouFutatsuiwa":
 	{
-		"DESCRIPTION": "Shapeshifter. NL Gain !M! Temp._HP. NL Give Shapeshifter to NL a card in your hand. NL Exhaust. || Limited. When NL Discarded, add a NL random Shapeshifter NL to your hand.",
-		"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
-		"NAME": "Mamizou Futatsuiwa"
+		"DESCRIPTION": "穿越者 。 NL 獲得 !M! 臨時生命 。 NL 將手牌中隨機一張牌變為 穿越者 。 NL 消耗 。 || 曇現 。 被丟棄：將一張隨機 穿越者 加入你的手牌。",
+		"EXTENDED_DESCRIPTION": ["變為一名穿越者。"],
+		"NAME": "二岩猯藏"
 	},
 	"animator:Megumin":
 	{
@@ -711,7 +711,7 @@
 	{
 		"DESCRIPTION": "生成 1 個 NL 火焰 充能球。 NL 抽 !M! 張牌。 NL 添加 1 張 NL 西森柚咲 NL 到棄牌堆。 NL 消耗 。",
 		"NAME": "黑羽美砂",
-		"UPGRADE_DESCRIPTION": "生成 1 個 NL 火焰 充能球。 NL 抽 !M! 張牌。 NL 添加 1 張 NL 西森柚咲 NL 加入抽牌堆。 NL 消耗 。"
+		"UPGRADE_DESCRIPTION": "生成 1 個 NL 火焰 充能球。 NL 抽 !M! 張牌。 NL 添加 1 張 NL 西森柚咲 NL 加入抽牌堆。。 NL 消耗 。"
 	},
 	"animator:Mitsuba":
 	{
@@ -750,8 +750,8 @@
 	},
 	"animator:NononJakuzure":
 	{
-		"DESCRIPTION": "循環 !SV! 張牌。 Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1.",
-		"NAME": "Nonon Jakuzure"
+		"DESCRIPTION": "循環 !SV! 張牌。 激勵 !M! 。 NL 消耗 。 || 當在手牌時 同調 ， NL 將這張牌的 激勵 提高 1 。",
+		"NAME": "蛇崩乃音"
 	},
 	"animator:OrbCore_Aether":
 	{
@@ -1093,8 +1093,8 @@
 	},
 	"animator:TewiInaba":
 	{
-		"DESCRIPTION": "隨機丟棄 1 張牌 。 NL 抽 !M! 張牌。 NL 消耗。 || 同調 時， 激發你的第一個 大地 充能球 並 生成 1 個 大地 充能球 。",
-		"NAME": "Tewi Inaba"
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 激發 你最右側的充能球 。 如果是 大地 充能球， 抽 !M! 張牌。 || 有限 。 被丟棄， 觸發 最右邊充能球 的被動效果 。",
+		"NAME": "因幡帝"
 	},
 	"animator:TheHaunt":
 	{

@@ -1094,9 +1094,8 @@
 	},
 	"animator:TewiInaba":
 	{
-		"DESCRIPTION": "Evoke your next Orb. NL If it was Earth, draw !M! card. || Semi-Limited. NL When Discarded, trigger the passive ability of your next Orb.",
-		"NAME": "Tewi Inaba",
-		"UPGRADE_DESCRIPTION": "Evoke your next Orb. NL If it was Earth, draw !M! cards. || Semi-Limited. NL When Discarded, trigger the passive ability of your next Orb."
+		"DESCRIPTION": "Gain !B! Block. NL Evoke your next NL Orb. If it was Earth, NL draw !M! cards. || Semi-Limited. NL When Discarded, NL trigger the passive NL ability of your NL next Orb.",
+		"NAME": "Tewi Inaba"
 	},
 	"animator:TheHaunt":
 	{

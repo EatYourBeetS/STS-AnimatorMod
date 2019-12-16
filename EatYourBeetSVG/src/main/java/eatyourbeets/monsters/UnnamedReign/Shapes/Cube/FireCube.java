@@ -14,7 +14,7 @@ public class FireCube extends Cube
     {
         super(MonsterElement.Fire, tier, x, y);
 
-        moveset.AddNormal(new Move_AttackMultiple(tier.Add(2, 1), 3));
+        moveset.AddNormal(new Move_AttackMultiple(tier.Add(2, 2), 2));
         moveset.AddNormal(new Move_Defend(tier.Add(4, 3)));
         moveset.AddNormal(new Move_GainRegeneration(tier.Add(3, 2)));
     }
@@ -40,7 +40,7 @@ public class FireCube extends Cube
                 break;
 
             case Ultimate:
-                amount = 3;
+                amount = 4;
                 break;
         }
 

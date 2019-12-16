@@ -38,7 +38,7 @@ public class TheUnnamedHatPower extends AnimatorPower
         AbstractPlayer p = AbstractDungeon.player;
         if (!p.hasPower(EntanglePower.POWER_ID))
         {
-            GameActions.Bottom.ApplyPower(null, p, new EntanglePower(p));
+            GameActions.Bottom.ApplyPower(null, p, new EntanglePower(p), 1);
         }
     }
 

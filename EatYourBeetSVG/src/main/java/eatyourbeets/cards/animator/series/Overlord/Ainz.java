@@ -2,15 +2,12 @@ package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.misc.AinzEffects.AinzEffect;
 import eatyourbeets.powers.animator.AinzPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import patches.AbstractEnums;
 
 public class Ainz extends AnimatorCard
 {
@@ -53,45 +50,6 @@ public class Ainz extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBaseCost(6);
-        }
-    }
-
-    // Dynamic Effect Card:
-
-    private AinzEffect effect = null;
-
-    public Ainz(AinzEffect effect, String description)
-    {
-        super(staticCardData.get(ID), ID + "Alt", AnimatorResources.GetCardImage(ID + "Alt"),
-                0, CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, CardRarity.RARE, CardTarget.ALL);
-
-        this.effect = effect;
-        this.cardText.OverrideDescription(description, "-", true);
-    }
-
-    public void setUpgraded(boolean upgrade)
-    {
-        if (this.effect == null)
-        {
-            return;
-        }
-
-        if (upgrade)
-        {
-            if (!this.upgraded)
-            {
-                upgradeName();
-            }
-        }
-        else
-        {
-            if (this.upgraded)
-            {
-                --this.timesUpgraded;
-                this.upgraded = false;
-                this.name = this.name.replace("+", "");
-                this.initializeTitle();
-            }
         }
     }
 }

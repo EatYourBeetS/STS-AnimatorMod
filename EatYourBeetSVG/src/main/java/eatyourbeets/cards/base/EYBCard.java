@@ -33,7 +33,7 @@ public abstract class EYBCard extends CustomCard
     private boolean lastHovered = false;
     private boolean hoveredInHand = false;
 
-    protected final EYBCardText cardText;
+    protected EYBCardText cardText;
     protected EYBCardData cardData;
     protected boolean useDynamicTooltip;
 

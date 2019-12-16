@@ -73,7 +73,7 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
             group.group.remove(index);
             group.group.add(index, newCopy);
 
-            if (this.upgraded)
+            if (this.upgraded || copy.retain)
             {
                 newCopy.retain = true;
             }

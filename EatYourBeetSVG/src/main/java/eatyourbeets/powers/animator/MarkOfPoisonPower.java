@@ -34,7 +34,7 @@ public class MarkOfPoisonPower extends AnimatorPower
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        GameActions.Bottom.RemovePower(source, owner, this);
+        GameActions.Bottom.RemovePower(owner, owner, this);
 
         super.atEndOfTurn(isPlayer);
     }

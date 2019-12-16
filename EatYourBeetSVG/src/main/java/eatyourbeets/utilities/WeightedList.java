@@ -28,6 +28,16 @@ public class WeightedList<T>
         items = new ArrayList<>();
     }
 
+    public WeightedList(WeightedList<T> copy)
+    {
+        this();
+
+        for (Item item : copy.items)
+        {
+            Add(item.object, item.weight);
+        }
+    }
+
     public int Count()
     {
         return items.size();

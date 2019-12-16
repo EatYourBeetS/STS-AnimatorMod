@@ -56,6 +56,11 @@ public class Konayuki extends AnimatorCard
     {
         if (GameUtilities.GetStrength(p) >= 10)
         {
+            if (m == null)
+            {
+                m = GameUtilities.GetRandomEnemy(true);
+            }
+
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         }
         else

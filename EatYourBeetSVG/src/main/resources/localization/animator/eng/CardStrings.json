@@ -1094,8 +1094,9 @@
 	},
 	"animator:TewiInaba":
 	{
-		"DESCRIPTION": "Discard 1 NL card randomly. NL Draw !M! cards. NL Exhaust. || On Synergy, NL Evoke your first NL Earth Orb and NL #yChannel[] 1 Earth.",
-		"NAME": "Tewi Inaba"
+		"DESCRIPTION": "Evoke your next Orb. NL If it was Earth, draw !M! card. || Semi-Limited. NL When Discarded, trigger the passive ability of your next Orb.",
+		"NAME": "Tewi Inaba",
+		"UPGRADE_DESCRIPTION": "Evoke your next Orb. NL If it was Earth, draw !M! cards. || Semi-Limited. NL When Discarded, trigger the passive ability of your next Orb."
 	},
 	"animator:TheHaunt":
 	{

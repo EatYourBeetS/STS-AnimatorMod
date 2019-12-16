@@ -1,46 +1,47 @@
 package eatyourbeets.cards.animator.colorless;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.defect.TriggerPassiveAction;
+import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.Earth;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class TewiInaba extends AnimatorCard
 {
-    public static final String ID = Register(TewiInaba.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(TewiInaba.class.getSimpleName(), EYBCardBadge.Discard);
 
     public TewiInaba()
     {
-        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 1);
 
-        SetExhaust(true);
         SetSynergy(Synergies.TouhouProject);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Top.DiscardFromHand(this.name, 1, true);
-        GameActions.Bottom.Draw(this.magicNumber);
-
-        if (HasActiveSynergy())
+        GameActions.Bottom.Add(new EvokeOrbAction(1));
+        if (!p.orbs.isEmpty() && Earth.ORB_ID.equals(p.orbs.get(0).ID))
         {
-            for (AbstractOrb orb : p.orbs)
-            {
-                if (Earth.ORB_ID.equals(orb.ID))
-                {
-                    GameActions.Bottom.Add(new EvokeSpecificOrbAction(orb));
-                    GameActions.Bottom.ChannelOrb(new Earth(), true);
-                    return;
-                }
-            }
+            GameActions.Bottom.Draw(this.magicNumber);
+        }
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        if (EffectHistory.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.Add(new TriggerPassiveAction(1));
         }
     }
 

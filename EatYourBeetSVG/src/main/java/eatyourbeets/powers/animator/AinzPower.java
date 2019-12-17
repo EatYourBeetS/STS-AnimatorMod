@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.DynamicCard;
 import eatyourbeets.cards.base.DynamicCardBuilder;
 import eatyourbeets.powers.AnimatorPower;
@@ -142,7 +143,7 @@ public class AinzPower extends AnimatorPower
             }
         }
 
-        public DynamicCardBuilder Generate(TriConsumer<AbstractCard, AbstractPlayer, AbstractMonster> onUseAction)
+        public DynamicCardBuilder Generate(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
             DynamicCardBuilder builder = new DynamicCardBuilder(Ainz.ID + "Alt");
 

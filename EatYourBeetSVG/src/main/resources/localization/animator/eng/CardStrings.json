@@ -797,6 +797,12 @@
 		"DESCRIPTION": "Shapeshifter. NL Gain !B! Block. || At the start NL of combat, play NL this card.",
 		"NAME": "Pandora's Actor"
 	},
+	"animator:Patchouli":
+	{
+		"DESCRIPTION": "Spellcaster 5. NL Channel 1 Random Orb. NL Gain !SV! Intellect. || Limited. Choose between two custom effects.",
+		"EXTENDED_DESCRIPTION": ["Sun", "Shuffle a Fire Orb_Core on your discard pile. NL Apply 5 burning to ALL enemies." , "Moon", "Shuffle a Frost Orb_Core on your discard pile. NL Gain 2 Metallicize."],
+		"NAME": "Patchouli"
+	},
 	"animator:PinaCoLada":
 	{
 		"DESCRIPTION": "The first #y0-Cost card you play each turn is played twice.",

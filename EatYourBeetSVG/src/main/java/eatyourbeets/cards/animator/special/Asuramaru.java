@@ -17,7 +17,7 @@ public class Asuramaru extends AnimatorCard implements Hidden
     {
         super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        Initialize(9,0,2);
+        Initialize(12,0,2);
 
         SetExhaust(true);
         SetSynergy(Synergies.OwariNoSeraph);
@@ -37,7 +37,7 @@ public class Asuramaru extends AnimatorCard implements Hidden
     {
         if (TryUpgrade())
         {
-            upgradeDamage(9);
+            upgradeDamage(6);
         }
     }
 }

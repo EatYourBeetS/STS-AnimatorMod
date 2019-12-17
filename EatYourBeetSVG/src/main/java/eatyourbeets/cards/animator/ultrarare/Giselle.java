@@ -2,8 +2,14 @@ package eatyourbeets.cards.animator.ultrarare;
 
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
+import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.utilities.GameActions;
@@ -20,7 +26,7 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
     {
         super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(26,0);
+        Initialize(22,0, 4);
 
         SetSynergy(Synergies.Gate);
     }
@@ -28,21 +34,24 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F));
+        GameActions.Bottom.VFX(new FlameBarrierEffect(m.hb.cX, m.hb.cY), 0.5F);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
-        BurningPower burning = GameUtilities.GetPower(m, BurningPower.POWER_ID);
-        if (burning != null)
+        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
-            int amount = burning.amount * (upgraded ? 2 : 1);
-
-            GameActions.Bottom.ApplyBurning(p, m, amount);
+            GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
         }
     }
 
     @Override
     public void upgrade()
     {
-        TryUpgrade();
+        if (TryUpgrade())
+        {
+            upgradeDamage(6);
+        }
     }
 
     @Override

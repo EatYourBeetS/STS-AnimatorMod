@@ -7,13 +7,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.interfaces.OnStartOfTurnSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Tyuule extends AnimatorCard
+public class Tyuule extends AnimatorCard implements OnStartOfTurnSubscriber
 {
     public static final String ID = Register(Tyuule.class.getSimpleName(), EYBCardBadge.Exhaust);
 
@@ -44,11 +47,7 @@ public class Tyuule extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
-        {
-            GameActions.Bottom.ApplyPoison(p, enemy, this.magicNumber);
-            GameActions.Bottom.ApplyVulnerable(p, enemy, 1);
-        }
+        PlayerStatistics.onStartOfTurn.Subscribe((Tyuule)makeStatEquivalentCopy());
     }
 
     @Override
@@ -58,5 +57,20 @@ public class Tyuule extends AnimatorCard
         {
             upgradeMagicNumber(1);
         }
+    }
+
+    @Override
+    public void OnStartOfTurn()
+    {
+        AbstractPlayer p = AbstractDungeon.player;
+        AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this));
+
+        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+        {
+            GameActions.Bottom.ApplyPoison(p, enemy, this.magicNumber);
+            GameActions.Bottom.ApplyVulnerable(p, enemy, 1);
+        }
+
+        PlayerStatistics.onStartOfTurn.Unsubscribe(this);
     }
 }

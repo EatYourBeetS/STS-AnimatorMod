@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
@@ -9,10 +10,11 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Albedo extends AnimatorCard
 {
-    public static final String ID = Register(Albedo.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Albedo.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public Albedo()
     {
@@ -29,9 +31,9 @@ public class Albedo extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.StackPower(new EnchantedArmorPower(p, damage));
 
-        if (EffectHistory.HasActivatedLimited(Ainz.ID))
+        if (HasActiveSynergy())
         {
-            SetLoyal(true);
+            GameActions.Bottom.GainTemporaryArtifact(1);
         }
     }
 

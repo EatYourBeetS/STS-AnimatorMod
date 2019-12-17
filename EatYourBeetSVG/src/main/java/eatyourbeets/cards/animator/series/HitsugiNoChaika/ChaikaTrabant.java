@@ -66,7 +66,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         result.Add(new VulnerablePower(m, 1, false), 4);
         result.Add(new PoisonPower(m, p, 3), 3);
         result.Add(new ConstrictedPower(m, p, 2), 3);
-        result.Add(new BurningPower(m, p, 3), 2);
+        result.Add(new BurningPower(p, m, 3), 2);
         result.Add(new StrengthPower(m, -1), 2);
         result.Add(new StunMonsterPower(m, 1), 1);
 

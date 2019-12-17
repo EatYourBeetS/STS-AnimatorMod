@@ -20,7 +20,7 @@ public class Witch extends AnimatorCard implements Spellcaster, StartupCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0, 9,2);
+        Initialize(0, 10,2);
 
         SetSynergy(Synergies.GoblinSlayer);
     }

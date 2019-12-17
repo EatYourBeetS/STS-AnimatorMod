@@ -38,7 +38,7 @@
 	},
 	"animator:Albedo":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Gain that much NL Enchanted_Armor. || If you played NL #yAinz[] #yOoal[] #yGown[] NL this combat, this NL card is Loyal.",
+		"DESCRIPTION": "Deal !D! Damage. NL Gain that much NL Enchanted_Armor. || On Synergy, NL gain 1 Temporary NL Artifact.",
 		"NAME": "Albedo"
 	},
 	"animator:Alexander":
@@ -434,9 +434,8 @@
 	},
 	"animator:Giselle":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Double the enemy's NL Burning amount. || At the start NL of each combat, NL Channel 1 Fire.",
-		"NAME": "Giselle",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Triple the enemy's NL Burning amount. || At the start NL of each combat, NL Channel 1 Fire."
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning NL to ALL enemies. || At the start NL of each combat, NL Channel 1 Fire.",
+		"NAME": "Giselle"
 	},
 	"animator:Gluttony":
 	{
@@ -845,7 +844,7 @@
 	},
 	"animator:RinTohsaka":
 	{
-		"DESCRIPTION": "Spellcaster 6. NL Channel !M! random NL Orb(s) you do not NL already have. Gain NL !B! Block. Exhaust. || Semi-Limited. NL When drawn, Gain NL 1 Temporary Artifact.",
+		"DESCRIPTION": "Spellcaster 6. NL Channel !M! random NL Orb(s) you do not NL already have. Gain NL !B! Block. Exhaust. || Semi-Limited. NL When drawn, gain NL 1 Temporary Artifact.",
 		"NAME": "Rin Tohsaka"
 	},
 	"animator:RoryMercury":
@@ -1061,9 +1060,9 @@
 	},
 	"animator:SwordMaiden":
 	{
-		"DESCRIPTION": "Gain !M! Temp._HP. NL Remove your NL rightmost Debuff. NL Exhaust. || Limited. NL At the start of NL combat, randomly NL gain 2 Intellect, NL Agility, or Force.",
+		"DESCRIPTION": "Gain !M! Temp._HP. NL Remove your NL rightmost Debuff. NL Exhaust. || Limited. NL At the start of NL combat, randomly NL gain 2 Intellect, NL Force or Agility.",
 		"NAME": "'Sword Maiden'",
-		"UPGRADE_DESCRIPTION": "Gain !M! Temp._HP. NL Remove your NL rightmost Debuff. || Limited. NL At the start of NL combat, randomly NL gain 2 Intellect, NL Agility, or Force."
+		"UPGRADE_DESCRIPTION": "Gain !M! Temp._HP. NL Remove your NL rightmost Debuff. || Limited. NL At the start of NL combat, randomly NL gain 2 Intellect, NL Force or Agility."
 	},
 	"animator:TakanashiRikka":
 	{
@@ -1135,7 +1134,7 @@
 	},
 	"animator:Tyuule":
 	{
-		"DESCRIPTION": "Apply !M! Poison NL and 1 Vulnerable NL to ALL enemies. || When Exhausted, NL trigger the Poison NL of ALL enemies.",
+		"DESCRIPTION": "Next turn, NL apply !M! Poison NL and 1 Vulnerable NL to ALL enemies. || When Exhausted, NL trigger the Poison NL of ALL enemies.",
 		"NAME": "Tyuule"
 	},
 	"animator:Urushihara":

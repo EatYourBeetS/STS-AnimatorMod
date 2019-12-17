@@ -1,6 +1,5 @@
 package eatyourbeets.utilities;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -118,7 +117,7 @@ public final class GameActions
 
     public ApplyPower ApplyBurning(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new BurningPower(target, source, amount));
+        return StackPower(source, new BurningPower(source, target, amount));
     }
 
     public ApplyPower ApplyConstricted(AbstractCreature source, AbstractCreature target, int amount)

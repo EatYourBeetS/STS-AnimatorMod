@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.combat.PowerDebuffEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.Collections;
 
@@ -26,13 +27,14 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
 
     protected AbstractPower callbackResult;
     protected AbstractPower powerToApply;
+    protected boolean chooseRandomTarget;
     protected boolean ignoreArtifact;
     protected boolean showEffect;
     protected boolean faster;
 
     public ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
     {
-        this(target, source, power, power.amount);
+        this(source, target, power, power.amount);
     }
 
     public ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power, int amount)
@@ -84,9 +86,22 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         return this;
     }
 
+    public ApplyPower ChooseRandomTarget(boolean value)
+    {
+        this.chooseRandomTarget = value;
+
+        return this;
+    }
+
     @Override
     protected void FirstUpdate()
     {
+        if (chooseRandomTarget)
+        {
+            target = GameUtilities.GetRandomEnemy(true);
+            powerToApply.owner = target;
+        }
+
         if (shouldCancelAction() || HardCodedStuff_NoDraw())
         {
             Complete();

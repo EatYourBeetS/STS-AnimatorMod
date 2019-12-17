@@ -20,7 +20,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
 
     private final AbstractCreature source;
 
-    public BurningPower(AbstractCreature owner, AbstractCreature source, int amount)
+    public BurningPower(AbstractCreature source, AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
@@ -113,6 +113,6 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
     @Override
     public AbstractPower makeCopy()
     {
-        return new BurningPower(owner, source, amount);
+        return new BurningPower(source, owner, amount);
     }
 }

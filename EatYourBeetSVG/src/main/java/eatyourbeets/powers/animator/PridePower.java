@@ -64,20 +64,20 @@ public class PridePower extends AnimatorPower
     {
         int max = Integer.MIN_VALUE;
 
-        Dark best = darkOrbs.get(0);
+        Dark next = darkOrbs.get(0);
 
-        if (best != null)
+        if (next != null)
         {
             float temp = damage;
 
-            damage -= best.evokeAmount;
-            best.evokeAmount -= temp;
+            damage -= next.evokeAmount;
+            next.evokeAmount -= temp;
 
-            if (best.evokeAmount <= 0)
+            if (next.evokeAmount <= 0)
             {
-                darkOrbs.remove(best);
-                best.evokeAmount = 0;
-                GameActions.Top.Add(new EvokeSpecificOrbAction(best));
+                darkOrbs.remove(next);
+                next.evokeAmount = 0;
+                GameActions.Top.Add(new EvokeSpecificOrbAction(next));
             }
 
             if (damage > 0 && darkOrbs.size() > 0)

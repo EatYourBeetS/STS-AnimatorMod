@@ -2,15 +2,19 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.vfx.combat.BlizzardEffect;
+import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Ain extends AnimatorCard implements Spellcaster
 {
@@ -46,7 +50,18 @@ public class Ain extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
+        //GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
+        GameActions.Bottom.Callback(__ ->
+        {
+            MonsterGroup monsters = AbstractDungeon.getMonsters();
+            int frostCount = monsters.monsters.size() + magicNumber + 5;
+
+            CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25F - (float)frostCount / 200.0F);
+            for (int i = 0; i < frostCount; i++)
+            {
+                GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));
+            }
+        });
 
         for (int i = 0; i < this.magicNumber; i++)
         {

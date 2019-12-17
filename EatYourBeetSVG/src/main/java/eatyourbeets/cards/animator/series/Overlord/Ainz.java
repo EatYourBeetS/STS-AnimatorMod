@@ -41,7 +41,6 @@ public class Ainz extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Bottom.StackPower(new AinzPower(p, 1));
-        EffectHistory.TryActivateLimited(Ainz.ID);
     }
 
     @Override

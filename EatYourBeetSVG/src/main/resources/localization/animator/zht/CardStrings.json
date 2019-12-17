@@ -38,7 +38,7 @@
 	},
 	"animator:Albedo":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害。 NL 獲得等同於傷害值的 NL 魔法盔甲 。 || 如果本場戰鬥中 NL 打出過 安茲·烏爾·恭 ， NL 此牌獲得 忠誠 。",
+		"DESCRIPTION": "造成 !D! 點傷害。 NL 獲得等同於傷害值的 NL 魔法盔甲 。 || 同調 時， 獲得 NL 1 點 臨時 人工製品 。",
 		"NAME": "雅兒貝德"
 	},
 	"animator:Alexander":
@@ -127,7 +127,7 @@
 	},
 	"animator:ChaikaTrabant":
 	{
-		"DESCRIPTION": "下一回合，造成 !D! 點傷害並給予 !SV! 個隨機 負面效果 。 || 被丟棄 : 對所有敵人 NL 造成 !M! 點傷害。",
+		"DESCRIPTION": "下一回合， 造成 !D! 點傷害並給予 !SV! 個隨機 負面效果 。 || 被丟棄 : 對所有敵人 NL 造成 !M! 點傷害。",
 		"NAME": "嘉依卡·托勒龐特"
 	},
 	"animator:ChlammyZell":
@@ -1134,7 +1134,7 @@
 	},
 	"animator:Tyuule":
 	{
-		"DESCRIPTION": "給予所有敵人 NL !M! 層 中毒 和 NL 1 層 易傷 。 || 被 消耗 ： NL 觸發所有敵人 NL 的中毒效果。",
+		"DESCRIPTION": "下一回合， 給予所有敵人 NL !M! 層 中毒 和 NL 1 層 易傷 。 || 被 消耗 ： NL 觸發所有敵人 NL 的中毒效果。",
 		"NAME": "蒂尤蕾"
 	},
 	"animator:Urushihara":

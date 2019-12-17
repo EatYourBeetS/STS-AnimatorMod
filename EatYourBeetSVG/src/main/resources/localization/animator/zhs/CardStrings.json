@@ -38,7 +38,7 @@
 	},
 	"animator:Albedo":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害。 NL 获得等同于伤害值的 NL 魔法盔甲 。 || 如果本场战斗中 NL 打出过 安兹·乌尔·恭 ， NL 此牌获得 忠诚 。",
+		"DESCRIPTION": "造成 !D! 点伤害。 NL 获得等同于伤害值的 NL 魔法盔甲 。 || 同调 时， 获得 NL 1 点 临时 人工制品 。",
 		"NAME": "雅儿贝德"
 	},
 	"animator:Alexander":
@@ -127,7 +127,7 @@
 	},
 	"animator:ChaikaTrabant":
 	{
-		"DESCRIPTION": "下一回合，造成 !D! 点伤害并给予 !SV! 个随机 负面效果 。 || 被丢弃 : 对所有敌人 NL 造成 !M! 点伤害。",
+		"DESCRIPTION": "下一回合， 造成 !D! 点伤害并给予 !SV! 个随机 负面效果 。 || 被丢弃 : 对所有敌人 NL 造成 !M! 点伤害。",
 		"NAME": "嘉依卡·托勒庞特"
 	},
 	"animator:ChlammyZell":
@@ -1134,7 +1134,7 @@
 	},
 	"animator:Tyuule":
 	{
-		"DESCRIPTION": "给予所有敌人 NL !M! 层 中毒 和 NL 1 层 易伤 。 || 被 消耗 ： NL 触发所有敌人 NL 的中毒效果。",
+		"DESCRIPTION": "下一回合， 给予所有敌人 NL !M! 层 中毒 和 NL 1 层 易伤 。 || 被 消耗 ： NL 触发所有敌人 NL 的中毒效果。",
 		"NAME": "蒂尤蕾"
 	},
 	"animator:Urushihara":

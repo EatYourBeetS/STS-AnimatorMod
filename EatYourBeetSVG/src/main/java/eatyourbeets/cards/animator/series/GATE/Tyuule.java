@@ -14,6 +14,7 @@ import eatyourbeets.interfaces.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Tyuule extends AnimatorCard implements OnStartOfTurnSubscriber
@@ -62,9 +63,9 @@ public class Tyuule extends AnimatorCard implements OnStartOfTurnSubscriber
     @Override
     public void OnStartOfTurn()
     {
-        AbstractPlayer p = AbstractDungeon.player;
-        AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this));
+        GameEffects.Queue.ShowCardBriefly(this);
 
+        AbstractPlayer p = AbstractDungeon.player;
         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
             GameActions.Bottom.ApplyPoison(p, enemy, this.magicNumber);

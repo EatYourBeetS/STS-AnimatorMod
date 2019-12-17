@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
@@ -65,7 +66,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
         {
             applyPowers();
 
-            AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this));
+            GameEffects.Queue.ShowCardBriefly(this);
 
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE)
             .SetOptions(true, false);

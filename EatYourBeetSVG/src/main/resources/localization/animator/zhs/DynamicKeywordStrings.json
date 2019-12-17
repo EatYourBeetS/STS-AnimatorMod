@@ -24,11 +24,12 @@
 		"animator:Arpeggio"	    : "每 #b6 点 #y集中 ， NL 获得 #b1 点额外 #y智力 。",
 		"animator:Caster"       : "每 #b2 点 #y集中 ， NL 偷窃 #b1 点额外 #y力量 。",
 		"animator:DwarfShaman"  : "每点 #y集中 ， NL 造成 #b2 点额外伤害。",
+		"animator:Emilia"       : "每 #b6 点 #y集中 ， NL 生成 #b1 个额外 #y冰霜 充能球。",
 		"animator:Evileye"      : "每 #b3 点 #y集中 ， NL 额外抽 #b1 张牌。",
 		"animator:Jibril"       : "每点 #y集中 ， NL 造成 #b1 点额外伤害。",
 		"animator:LeleiLaLalena": "每 #b6 点 #y集中 ， NL 生成 #b1 个额外 #y冰霜 充能球。",
 		"animator:Megumin"      : "每点 #y集中 ， NL 造成 #b4 点额外伤害。",
-		"animator:RinTohsaka"   : "每 #b6 点 #y集中 ， NL 生成 #b1 个额外充能球。",
+		"animator:RinTohsaka"   : "每 #b6 点 #y集中 ， NL 获得 #b1 点 格挡 。",
 		"animator:Witch"        : "每 #b2 点 #y集中 ， NL 获得 #b1 层额外 #y点燃 。",
 		"animator:YunYun"       : "每点 #y集中 ， NL 造成 #b1 点额外伤害。",
 		"animator:Zero"         : "每 #b6 点 #y集中 ， NL 再打出 #b1 次这张牌。"

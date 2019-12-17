@@ -344,9 +344,8 @@
 	},
 	"animator:Emilia":
 	{
-		"DESCRIPTION": "Channel 1 Frost. NL Channel 1 Lightning NL for each Frost Orb NL you have. Exhaust.",
-		"NAME": "Emilia",
-		"UPGRADE_DESCRIPTION": "Channel 1 Frost. NL Channel 1 Lightning NL for each Frost Orb NL you have."
+		"DESCRIPTION": "Spellcaster 6. NL Channel !M! Frost. NL Exhaust. || Next turn, NL Channel 1 Lightning NL for each Frost NL Orb you have.",
+		"NAME": "Emilia"
 	},
 	"animator:EmiyaShirou":
 	{
@@ -844,7 +843,7 @@
 	},
 	"animator:RinTohsaka":
 	{
-		"DESCRIPTION": "Spellcaster 6. NL Channel !M! random NL Orb(s) you do not NL already have. Gain NL !B! Block. Exhaust. || Semi-Limited. NL When drawn, gain NL 1 Temporary Artifact.",
+		"DESCRIPTION": "Spellcaster. NL Gain !B! Block. NL Channel a copy of NL your first Orb. NL Exhaust. || Semi-Limited. NL When drawn, gain NL 1 Temporary Artifact.",
 		"NAME": "Rin Tohsaka"
 	},
 	"animator:RoryMercury":

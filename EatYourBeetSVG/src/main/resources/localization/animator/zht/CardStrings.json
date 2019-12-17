@@ -339,14 +339,13 @@
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害。 NL 給予 !M! 層 點燃 。。 NL 循環 !SV! 張牌。 || 被丟棄：如果你 NL 有 1 個空欄位， NL 生成 1 個 火焰 充能球 。",
+		"DESCRIPTION": "造成 !D! 點傷害。 NL 給予 !M! 層 點燃 。 NL 循環 !SV! 張牌。 || 被丟棄：如果你 NL 有 1 個空欄位， NL 生成 1 個 火焰 充能球 。",
 		"NAME": "艾索德"
 	},
 	"animator:Emilia":
 	{
-		"DESCRIPTION": "生成 1 個 冰霜 充能球 。 NL 每有一個 冰霜 充能球， NL 生成 1 個 閃電 充能球 。 NL 消耗 。",
-		"NAME": "愛蜜莉雅",
-		"UPGRADE_DESCRIPTION": "生成 1 個 冰霜 充能球 。 NL 每有一個 冰霜 充能球， NL 生成 1 個 閃電 充能球 。"
+		"DESCRIPTION": "法師 2 。 生成 !M! 個 冰霜 充能球 。 消耗 。 || 下一回合， 每有一個 冰霜 充能球， NL 生成 1 個 閃電 充能球 。",
+		"NAME": "愛蜜莉雅"
 	},
 	"animator:EmiyaShirou":
 	{
@@ -844,7 +843,7 @@
 	},
 	"animator:RinTohsaka":
 	{
-		"DESCRIPTION": "法師 6 。 NL 生成 !M! 個你還沒有的隨機充能球 。 獲得 !B! 點 格擋 。 消耗 。 || 有限 。 被抽到： 獲得 NL 1 點 臨時 人工製品 。",
+		"DESCRIPTION": "法師 。 獲得 !B! 點 格擋 。 生成 您的第一筆充能球的副本。消耗 。 || 有限 。 被抽到： 獲得 NL 1 點 臨時 人工製品 。",
 		"NAME": "遠坂凜"
 	},
 	"animator:RoryMercury":

@@ -1,7 +1,10 @@
 package eatyourbeets.utilities;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.cards.animator.colorless.Emilia;
 
 // TODO: Other effects
 public final class GameEffects
@@ -40,6 +43,11 @@ public final class GameEffects
         }
 
         return effect;
+    }
+
+    public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card)
+    {
+        return Add(new ShowCardBrieflyEffect(card));
     }
 
     public enum Type

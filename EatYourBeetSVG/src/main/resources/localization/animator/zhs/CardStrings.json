@@ -344,9 +344,8 @@
 	},
 	"animator:Emilia":
 	{
-		"DESCRIPTION": "生成 1 个 冰霜 充能球 。 NL 每有一个 冰霜 充能球， NL 生成 1 个 闪电 充能球 。 NL 消耗 。",
-		"NAME": "爱蜜莉雅",
-		"UPGRADE_DESCRIPTION": "生成 1 个 冰霜 充能球 。 NL 每有一个 冰霜 充能球， NL 生成 1 个 闪电 充能球 。"
+		"DESCRIPTION": "法师 2 。 生成 !M! 个 冰霜 充能球 。 消耗 。 || 下一回合， 每有一个 冰霜 充能球， NL 生成 1 个 闪电 充能球 。",
+		"NAME": "爱蜜莉雅"
 	},
 	"animator:EmiyaShirou":
 	{
@@ -844,7 +843,7 @@
 	},
 	"animator:RinTohsaka":
 	{
-		"DESCRIPTION": "法师 6 。 NL 生成 !M! 个你还没有的随机充能球 。 获得 !B! 点 格挡 。 消耗 。 || 有限 。 被抽到： 获得 NL 1 点 临时 人工制品 。",
+		"DESCRIPTION": "法师 。 获得 !B! 点 格挡 。 生成 您的第一笔充能球的副本。 消耗 。 || 有限 。 被抽到： 获得 NL 1 点 临时 人工制品 。",
 		"NAME": "远坂凛"
 	},
 	"animator:RoryMercury":

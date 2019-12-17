@@ -1,9 +1,12 @@
 package eatyourbeets.cards.animator.series.Fate;
 
+import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
@@ -25,7 +28,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,3, 1);
+        Initialize(0,2, 1);
 
         SetEvokeOrbCount(1);
         SetExhaust(true);
@@ -43,33 +46,39 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
         }
     }
 
-    @Override
-    public void applyPowers()
+    @SpireOverride
+    protected void applyPowersToBlock()
     {
-        super.applyPowers();
+        float tmp = (float) this.baseBlock;
 
-        Spellcaster.ApplyScaling(this, 6);
+        tmp += Spellcaster.GetScaling();
+
+        for (AbstractPower p : AbstractDungeon.player.powers)
+        {
+            tmp = p.modifyBlock(tmp);
+        }
+
+        if (tmp < 0.0F)
+        {
+            tmp = 0.0F;
+        }
+
+        this.block = MathUtils.floor(tmp);
+        this.isBlockModified = this.block != this.baseBlock;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        WeightedList<AbstractOrb> orbs = new WeightedList<>();
-        TryAddOrb(new Lightning (), 7, orbs, p.orbs);
-        TryAddOrb(new Frost(), 7, orbs, p.orbs);
-        TryAddOrb(new Earth(), 6, orbs, p.orbs);
-        TryAddOrb(new Fire(), 6, orbs, p.orbs);
-        TryAddOrb(new Dark(), 4, orbs, p.orbs);
-        TryAddOrb(new Aether(), 4, orbs, p.orbs);
-        TryAddOrb(new Plasma(), 2, orbs, p.orbs);
-
-        for (int i = 0; i < magicNumber; i++)
+        if (p.orbs.size() > 0)
         {
-            AbstractOrb orb = orbs.Retrieve(AbstractDungeon.cardRandomRng);
-            if (orb != null)
-            {
-                GameActions.Bottom.ChannelOrb(orb, true);
-            }
+            AbstractOrb orb = p.orbs.get(0);
+            AbstractOrb copy = orb.makeCopy();
+
+            copy.evokeAmount = orb.evokeAmount;
+            copy.passiveAmount = orb.passiveAmount;
+
+            GameActions.Bottom.ChannelOrb(copy, true);
         }
 
         GameActions.Bottom.GainBlock(block);

@@ -25,7 +25,6 @@ public class UltimateCube extends Cube
     {
         super(MonsterElement.Ultimate, MonsterTier.Ultimate, 0, 0);
 
-
         moveset.mode = Moveset.Mode.Sequential;
 
         boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;

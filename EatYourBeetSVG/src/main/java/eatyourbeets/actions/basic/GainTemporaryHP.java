@@ -1,14 +1,11 @@
 package eatyourbeets.actions.basic;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import com.megacrit.cardcrawl.vfx.combat.HealEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.utilities.GameEffects;
 
 public class GainTemporaryHP extends EYBActionWithCallback<AbstractCreature>
 {

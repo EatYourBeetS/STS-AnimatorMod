@@ -36,9 +36,9 @@ public class DialogRelicButton extends LargeDialogOptionButton
         if (this.hb.hovered)
         {
             TipHelper.queuePowerTips(
-                    this.hb.x + this.hb.width * 0.5f,
-                    this.hb.y + this.hb.height * 3f,
-                    relicPreview.tips);
+            this.hb.x + this.hb.width * 0.5f,
+            this.hb.y + this.hb.height * 3f,
+            relicPreview.tips);
         }
     }
 }

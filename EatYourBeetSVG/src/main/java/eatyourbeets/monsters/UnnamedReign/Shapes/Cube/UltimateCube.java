@@ -28,23 +28,16 @@ public class UltimateCube extends Cube
         moveset.mode = Moveset.Mode.Sequential;
 
         boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
+        boolean asc18 = GameUtilities.GetActualAscensionLevel() >= 18;
 
         moveset.AddSpecial(new Move_AttackMultiple(6, asc4 ? 32 : 24));
 
-        int debuffsAmount = asc4 ? 3 : 2;
-        int damageAmount = asc4 ? 5 : 4;
+        int debuffsAmount = asc18 ? 3 : 2;
+        int damageAmount = asc4 ? 6 : 4;
 
         moveset.AddNormal(new Move_AttackMultipleWeak(damageAmount, 2, debuffsAmount));
         moveset.AddNormal(new Move_AttackMultipleVulnerable(damageAmount, 2, debuffsAmount));
-
-        if (asc4)
-        {
-            moveset.AddNormal(new Move_AttackMultipleFrail(3, 3, debuffsAmount));
-        }
-        else
-        {
-            moveset.AddNormal(new Move_AttackMultipleFrail(damageAmount, 2, debuffsAmount));
-        }
+        moveset.AddNormal(new Move_AttackMultipleFrail(damageAmount, 2, debuffsAmount));
     }
 
     @Override

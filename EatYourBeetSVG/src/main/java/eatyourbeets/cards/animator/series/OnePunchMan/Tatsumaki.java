@@ -40,14 +40,7 @@ public class Tatsumaki extends AnimatorCard
 
         if (upgraded)
         {
-            GameActions.Bottom.Callback(__ ->
-            {
-                IntellectPower intellect = GameUtilities.GetPower(AbstractDungeon.player, IntellectPower.class);
-                if (intellect != null)
-                {
-                    intellect.preserveOnce = true;
-                }
-            });
+            GameUtilities.PreserveIntellect();
         }
     }
 

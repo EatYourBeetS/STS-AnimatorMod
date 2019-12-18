@@ -332,7 +332,7 @@
 	},
 	"animator:UltimateCubePower":
 	{
-		"DESCRIPTIONS": ["At the end of each turn, gains #b", " random Buff. NL NL Explodes after #b", " turns, dealing #b", " damage (hits 10 times)."],
+		"DESCRIPTIONS": ["At the end of each turn, gains #b", " random Buff. NL NL Explodes after #b", " turns, dealing #b", " damage. NL (hits multiple times)"],
 		"NAME": "Ultimate Cube"
 	},
 	"animator:UltimateWispPower":

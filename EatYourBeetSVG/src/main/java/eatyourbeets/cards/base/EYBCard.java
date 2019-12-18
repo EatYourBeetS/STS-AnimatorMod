@@ -254,22 +254,22 @@ public abstract class EYBCard extends CustomCard
         }
     }
 
-    protected void Initialize(int baseDamage, int baseBlock)
+    protected void Initialize(int damage, int block)
     {
-        Initialize(baseDamage, baseBlock, -1, 0);
+        Initialize(damage, block, -1, 0);
     }
 
-    protected void Initialize(int baseDamage, int baseBlock, int baseMagicNumber)
+    protected void Initialize(int damage, int block, int magicNumber)
     {
-        Initialize(baseDamage, baseBlock, baseMagicNumber, 0);
+        Initialize(damage, block, magicNumber, 0);
     }
 
-    protected void Initialize(int baseDamage, int baseBlock, int baseMagicNumber, int baseSecondaryValue)
+    protected void Initialize(int damage, int block, int magicNumber, int secondaryValue)
     {
-        this.baseDamage = baseDamage;
-        this.baseBlock = baseBlock;
-        this.baseMagicNumber = this.magicNumber = baseMagicNumber;
-        this.baseSecondaryValue = this.secondaryValue = baseSecondaryValue;
+        this.baseDamage = damage;
+        this.baseBlock = block;
+        this.baseMagicNumber = this.magicNumber = magicNumber;
+        this.baseSecondaryValue = this.secondaryValue = secondaryValue;
     }
 
     protected Boolean TryUpgrade()
@@ -612,4 +612,80 @@ public abstract class EYBCard extends CustomCard
         this.secondaryValue = this.baseSecondaryValue;
         this.upgradedSecondaryValue = true;
     }
+
+
+//    protected int damageUpgrade;
+//    protected int magicNumberUpgrade;
+//    protected int secondaryValueUpgrade;
+//    protected int blockUpgrade;
+//    protected int costUpgrade;
+//
+//    @Override
+//    public void upgrade()
+//    {
+//        if (TryUpgrade())
+//        {
+//            if (damageUpgrade > 0)
+//            {
+//                upgradeDamage(damageUpgrade);
+//            }
+//            if (blockUpgrade > 0)
+//            {
+//                upgradeBlock(blockUpgrade);
+//            }
+//            if (secondaryValueUpgrade > 0)
+//            {
+//                upgradeSecondaryValue(secondaryValueUpgrade);
+//            }
+//            if (magicNumberUpgrade > 0)
+//            {
+//                upgradeMagicNumber(magicNumberUpgrade);
+//            }
+//            if (costUpgrade > 0)
+//            {
+//                upgradeBaseCost(cost + costUpgrade);
+//            }
+//
+//            OnUpgrade();
+//        }
+//    }
+//
+//    protected void SetDamage(int baseValue, int valueUpgrade)
+//    {
+//        baseDamage = damage = baseValue;
+//        damageUpgrade = valueUpgrade;
+//    }
+//
+//    protected void SetBlock(int baseValue, int valueUpgrade)
+//    {
+//        baseBlock = baseValue;
+//        blockUpgrade = valueUpgrade;
+//    }
+//
+//    protected void SetMagicNumber(int baseValue)
+//    {
+//        SetMagicNumber(baseValue, 0);
+//    }
+//
+//    protected void SetMagicNumber(int baseValue, int valueUpgrade)
+//    {
+//        baseMagicNumber = magicNumber = baseValue;
+//        magicNumberUpgrade = valueUpgrade;
+//    }
+//
+//    protected void SetSecondaryValue(int baseValue, int valueUpgrade)
+//    {
+//        baseSecondaryValue = secondaryValue = baseValue;
+//        secondaryValueUpgrade = valueUpgrade;
+//    }
+//
+//    protected void SetCost(int valueUpgrade)
+//    {
+//        costUpgrade = valueUpgrade;
+//    }
+//
+//    protected void OnUpgrade()
+//    {
+//
+//    }
 }

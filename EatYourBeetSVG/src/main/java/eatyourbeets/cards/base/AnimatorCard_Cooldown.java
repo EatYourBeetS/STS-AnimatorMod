@@ -21,15 +21,15 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
     }
 
     @Override
-    protected void Initialize(int baseDamage, int baseBlock)
+    protected void Initialize(int damage, int block)
     {
-        super.Initialize(baseDamage, baseBlock, -1, GetBaseCooldown());
+        super.Initialize(damage, block, -1, GetBaseCooldown());
     }
 
     @Override
-    protected void Initialize(int baseDamage, int baseBlock, int baseMagicNumber)
+    protected void Initialize(int damage, int block, int magicNumber)
     {
-        super.Initialize(baseDamage, baseBlock, baseMagicNumber, GetBaseCooldown());
+        super.Initialize(damage, block, magicNumber, GetBaseCooldown());
     }
 
     @Override

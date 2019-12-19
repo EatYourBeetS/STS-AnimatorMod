@@ -4,6 +4,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.effects.utility.CallbackEffect;
 
 // TODO: Other effects
 public final class GameEffects
@@ -47,6 +49,16 @@ public final class GameEffects
     public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card)
     {
         return Add(new ShowCardBrieflyEffect(card));
+    }
+
+    public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card, float x, float y)
+    {
+        return Add(new ShowCardBrieflyEffect(card, x, y));
+    }
+
+    public CallbackEffect WaitRealtime(float duration)
+    {
+        return Add(new CallbackEffect(new WaitRealtimeAction(duration)));
     }
 
     public enum Type

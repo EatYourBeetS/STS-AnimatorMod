@@ -10,7 +10,7 @@ public class CallbackEffect extends EYBEffectWithCallback<AbstractGameAction>
 {
     private final AbstractGameAction action;
 
-    protected CallbackEffect(AbstractGameAction action)
+    public CallbackEffect(AbstractGameAction action)
     {
         super(1);
 

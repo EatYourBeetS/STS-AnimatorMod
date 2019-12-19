@@ -4,6 +4,7 @@ import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
@@ -70,7 +71,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         if (sourcePile == null)
         {
-            JavaUtilities.GetLogger(getClass()).warn("Source was null, at common.MoveCard");
+            JavaUtilities.GetLogger(getClass()).warn("Source was null");
             Complete();
             return;
         }
@@ -134,6 +135,10 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
                     case EXHAUST_PILE:
                     {
+                        float targetX = (float)Settings.WIDTH * 0.35F;
+                        float targetY = (float)Settings.HEIGHT * 0.5F;
+
+                        GameEffects.List.ShowCardBriefly(card, targetX, targetY);
                         GameActions.Top.Exhaust(card, sourcePile);
                         break;
                     }
@@ -150,7 +155,16 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             {
                 MoveCardInternal();
             }
+        }
+    }
 
+    @Override
+    protected void UpdateInternal()
+    {
+        this.tickDuration();
+
+        if (this.isDone)
+        {
             Complete(card);
         }
     }
@@ -190,7 +204,10 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             card.targetDrawScale = 0.75F;
             card.current_x = CardGroup.DRAW_PILE_X;
             card.current_y = CardGroup.DRAW_PILE_Y;
+        }
 
+        if (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.HAND)
+        {
             AbstractDungeon.player.hand.refreshHandLayout();
             AbstractDungeon.player.hand.applyPowers();
             AbstractDungeon.player.hand.glowCheck();

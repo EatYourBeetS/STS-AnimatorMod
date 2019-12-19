@@ -7,10 +7,13 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.basic.MoveCard;
+import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.effects.utility.SequentialEffect;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Gluttony extends AnimatorCard
 {
@@ -57,8 +60,12 @@ public class Gluttony extends AnimatorCard
                 AbstractCard card = p.drawPile.getNCardFromTop(i);
                 card.target_x = Settings.WIDTH * (0.3f + (i * 0.02f));
                 card.target_y = Settings.HEIGHT * (0.4f + (i * 0.02f));
-                GameActions.Top.Add(new WaitAction(0.15f));
-                GameActions.Top.Add(new MoveCard(card, p.exhaustPile, p.drawPile, true));
+                GameActions.Top.MoveCard(card, p.exhaustPile, p.drawPile, false);
+                GameActions.Top.Callback(new WaitRealtimeAction(0.25f), card, (state, __) ->
+                {
+                    AbstractCard c = (AbstractCard)state;
+                    GameEffects.List.ShowCardBriefly(c, c.target_x, c.target_y);
+                });
             }
 
             GameActions.Bottom.Heal(magicNumber);

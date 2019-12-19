@@ -39,10 +39,8 @@ public class Guy extends AnimatorCard
                 for (int i = 0; i < max; i++)
                 {
                     AbstractCard card = player.drawPile.getNCardFromTop(i);
-                    card.target_x = Settings.WIDTH * (0.3f + (i * 0.02f));
-                    card.target_y = Settings.HEIGHT * (0.4f + (i * 0.02f));
-                    GameActions.Top.MoveCard(card, player.discardPile, player.drawPile, true);
-                    GameActions.Top.Wait(0.2f);
+                    GameActions.Top.WaitRealtime(0.25f);
+                    GameActions.Top.MoveCard(card,  player.discardPile, player.drawPile,true);
                 }
             });
         }

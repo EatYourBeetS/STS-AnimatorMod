@@ -14,7 +14,7 @@
 	},
 	"Cooldown":
 	{
-		"DESCRIPTION": "Whenever you play or discard a card, reduce its #yCooldown by 1. If the #yCooldown is at 0, activate its effect instead.",
+		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by 1. If the #yCooldown is at 0, activate its effect instead.",
 		"NAMES": ["cooldown"],
 		"PROPER_NAME": "Cooldown"
 	},

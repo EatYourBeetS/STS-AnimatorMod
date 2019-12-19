@@ -43,8 +43,9 @@
 	},
 	"animator:Alexander":
 	{
-		"DESCRIPTION": "对所有敌人 NL 造成 !D! 点伤害。 NL 获得 1 点 武力 。 || 被 消耗 : NL 对所有敌人 NL 造成 !M! 点伤害。",
-		"NAME": "亚历山大大帝"
+		"DESCRIPTION": "对所有敌人 NL 造成 !D! 点伤害。 NL 获得 1 点 武力 。 || 被 消耗 : NL 打出这张牌。",
+		"NAME": "亚历山大大帝",
+		"UPGRADE_DESCRIPTION": "对所有敌人 NL 造成 !D! 点伤害。 NL 获得 1 点 武力 。 在下一回合中不会失去 武力 。 || 被 消耗 : NL 打出这张牌。"
 	},
 	"animator:Aqua":
 	{
@@ -1144,7 +1145,7 @@
 	},
 	"animator:Vanir":
 	{
-		"DESCRIPTION": "穿越者 。 NL 造成 !D! 点伤害。 NL 仓促 !SV! : 造成 NL !M! 额外伤害。 || 被 消耗 ： NL 选择抽牌堆 NL 的 1 张牌变为 NL 本牌的复制。",
+		"DESCRIPTION": "穿越者 。 NL 造成 !D! 点伤害。 NL 本场战斗中降低这张牌 NL 的 伤害 !M! 点。 || 被 消耗 ： NL 选择抽牌堆 NL 的 1 张牌变为 NL 本牌的复制。",
 		"NAME": "巴尼尔"
 	},
 	"animator:Veldora":

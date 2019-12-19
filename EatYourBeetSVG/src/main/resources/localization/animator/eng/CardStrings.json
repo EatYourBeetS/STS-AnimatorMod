@@ -43,8 +43,9 @@
 	},
 	"animator:Alexander":
 	{
-		"DESCRIPTION": "Deal !D! damage NL to ALL enemies. NL Gain 1 Force. || When Exhausted, NL Deal !M! damage NL to ALL enemies.",
-		"NAME": "Alexander"
+		"DESCRIPTION": "Deal !D! damage NL to ALL enemies. NL Gain 1 Force. || When Exhausted, NL play this card.",
+		"NAME": "Alexander",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage NL to ALL enemies. NL Gain 1 Force. Lose NL no Force next turn. || When Exhausted, NL play this card."
 	},
 	"animator:Aqua":
 	{
@@ -1150,7 +1151,7 @@
 	},
 	"animator:Vanir":
 	{
-		"DESCRIPTION": "Shapeshifter. NL Deal !D! Damage. NL Boost !SV! : Deal !M! additional damage. || When Exhausted, NL choose a card in your draw pile and turn it into a new copy of this card.",
+		"DESCRIPTION": "Shapeshifter. NL Deal !D! Damage. NL Decrease this card's NL damage by !M! this NL combat. || When Exhausted, NL choose a card in your draw pile and turn it into a new copy of this card.",
 		"NAME": "Vanir"
 	},
 	"animator:Veldora":

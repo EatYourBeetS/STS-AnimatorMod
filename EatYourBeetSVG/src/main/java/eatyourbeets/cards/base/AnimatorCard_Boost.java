@@ -18,15 +18,15 @@ public abstract class AnimatorCard_Boost extends AnimatorCard
     }
 
     @Override
-    protected void Initialize(int baseDamage, int baseBlock)
+    protected void Initialize(int damage, int block)
     {
-        super.Initialize(baseDamage, baseBlock, -1, GetBaseBoost());
+        super.Initialize(damage, block, -1, GetBaseBoost());
     }
 
     @Override
-    protected void Initialize(int baseDamage, int baseBlock, int baseMagicNumber)
+    protected void Initialize(int damage, int block, int magicNumber)
     {
-        super.Initialize(baseDamage, baseBlock, baseMagicNumber, GetBaseBoost());
+        super.Initialize(damage, block, magicNumber, GetBaseBoost());
     }
 
     protected void ResetBoost()

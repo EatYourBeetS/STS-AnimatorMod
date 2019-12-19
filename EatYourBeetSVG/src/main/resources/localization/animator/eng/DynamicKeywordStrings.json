@@ -29,7 +29,7 @@
 		"animator:Jibril"       : "For every point of #yFocus, NL deal #b1 additional damage.",
 		"animator:LeleiLaLalena": "Every #b6 points of #yFocus, NL #yChannel #b1 additional #yFrost.",
 		"animator:Megumin"      : "For every point of #yFocus, NL deal #b4 additional damage.",
-		"animator:RinTohsaka"   : "Every #b6 points of #yFocus, NL gain #b1 additional #yBlock.",
+		"animator:RinTohsaka"   : "For every point of #yFocus, NL gain #b1 additional #yBlock.",
 		"animator:Witch"        : "Every #b2 points of #yFocus, NL apply #b1 additional #yBurning.",
 		"animator:YunYun"       : "For every point of #yFocus, NL deal #b1 additional damage.",
 		"animator:Zero"         : "Every #b6 points of #yFocus, NL play this card #b1 additional time.",

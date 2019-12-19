@@ -7,14 +7,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_Boost;
+import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
-public class Vanir extends AnimatorCard_Boost
+public class Vanir extends AnimatorCard
 {
     public static final String ID = Register(Vanir.class.getSimpleName(), EYBCardBadge.Exhaust);
 
@@ -22,24 +23,9 @@ public class Vanir extends AnimatorCard_Boost
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(6,0,6);
-        
-        AddExtendedDescription();
+        Initialize(11,0,3);
 
         SetSynergy(Synergies.Konosuba, true);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        if (GetCurrentBoost() > 0)
-        {
-            return super.calculateModifiedCardDamage(player, mo, tmp + magicNumber);
-        }
-        else
-        {
-            return super.calculateModifiedCardDamage(player, mo, tmp);
-        }
     }
 
     @Override
@@ -47,46 +33,42 @@ public class Vanir extends AnimatorCard_Boost
     {
         super.triggerOnExhaust();
 
-        CardGroup drawPile = AbstractDungeon.player.drawPile;
-        if (drawPile.size() > 0)
+        GameActions.Bottom.SelectFromPile(name, 1, AbstractDungeon.player.drawPile)
+        .SetOptions(false, true)
+        .SetMessage(Transmogrifier.OPTIONS[2])
+        .AddCallback(cards ->
         {
-            GameActions.Bottom.SelectFromPile(name, 1, AbstractDungeon.player.drawPile)
-            .SetOptions(false, true)
-            .SetMessage(Transmogrifier.OPTIONS[2])
-            .AddCallback(cards ->
+            if (cards.size() > 0)
             {
-               if (cards.size() > 0)
-               {
-                   ArrayList<AbstractCard> temp = AbstractDungeon.player.drawPile.group;
+                ArrayList<AbstractCard> temp = AbstractDungeon.player.drawPile.group;
 
-                   AbstractCard card = cards.get(0);
-                   for (int i = 0; i < temp.size(); i++)
-                   {
-                       if (temp.get(i) == card)
-                       {
-                           AbstractCard vanir = makeStatEquivalentCopy();
-                           if (upgraded)
-                           {
-                               vanir.upgrade();
-                           }
+                AbstractCard card = cards.get(0);
+                for (int i = 0; i < temp.size(); i++)
+                {
+                    if (temp.get(i) == card)
+                    {
+                        AbstractCard vanir = makeCopy();
 
-                           temp.remove(i);
-                           temp.add(i, vanir);
+                        if (upgraded)
+                        {
+                            vanir.upgrade();
+                        }
 
-                           return;
-                       }
-                   }
-               }
-            });
-        }
+                        temp.remove(i);
+                        temp.add(i, vanir);
+
+                        return;
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
-
-        ProgressBoost();
+        GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - c.magicNumber));
     }
 
     @Override
@@ -94,14 +76,7 @@ public class Vanir extends AnimatorCard_Boost
     {
         if (TryUpgrade())
         {
-            upgradeDamage(2);
-            upgradeMagicNumber(2);
+            upgradeDamage(3);
         }
-    }
-
-    @Override
-    protected int GetBaseBoost()
-    {
-        return 1;
     }
 }

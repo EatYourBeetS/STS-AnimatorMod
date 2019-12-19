@@ -327,7 +327,7 @@
 	},
 	"animator:UltimateCubePower":
 	{
-		"DESCRIPTIONS": ["每回合结束时，得到 #b", " 种随机增益。 NL NL #b", " 个回合过后爆炸，造成 #b", " 点伤害。"],
+		"DESCRIPTIONS": ["每回合结束时，得到 #b", " 种随机增益。 NL NL #b", " 个回合过后爆炸，造成 #b", " 点伤害。 （此效果击中多次）"],
 		"NAME": "终极之方"
 	},
 	"animator:UltimateWispPower":

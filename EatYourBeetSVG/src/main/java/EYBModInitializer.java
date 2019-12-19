@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.characters.AnimatorMetrics;
+import eatyourbeets.console.CommandsManager;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.PurgingStone_Cards;
 import eatyourbeets.resources.AbstractResources;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
                                            PostEnergyRechargeSubscriber, PostDrawSubscriber, StartGameSubscriber,
                                            StartActSubscriber, MaxHPChangeSubscriber, PostDeathSubscriber,
-                                           PreStartGameSubscriber, PreUpdateSubscriber, PostUpdateSubscriber
+                                           PreStartGameSubscriber, PreUpdateSubscriber, PostUpdateSubscriber, PostInitializeSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
 
@@ -66,6 +67,12 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     {
         // Ensure PlayerStatistics is always active at turn start
         PlayerStatistics.EnsurePowerIsApplied();
+    }
+
+    @Override
+    public void receivePostInitialize()
+    {
+        CommandsManager.RegisterCommands();
     }
 
     @Override // false = skips monster turn

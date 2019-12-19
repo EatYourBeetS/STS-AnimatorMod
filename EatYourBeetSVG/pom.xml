@@ -20,7 +20,7 @@
         <dependency>
             <groupId>basemod</groupId>
             <artifactId>basemod</artifactId>
-            <version>5.14.0</version>
+            <version>5.15.1</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/BaseMod.jar</systemPath>
         </dependency>

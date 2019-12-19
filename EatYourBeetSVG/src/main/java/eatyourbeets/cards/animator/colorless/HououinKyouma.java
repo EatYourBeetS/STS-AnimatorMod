@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -30,13 +31,13 @@ public class HououinKyouma extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisCombat)
         {
             if (!c.cardID.equals(this.cardID))
             {
                 boolean canAdd = true;
-                for (AbstractCard c2 : group.group)
+                for (AbstractCard c2 : choices.group)
                 {
                     if (c.cardID.equals(c2.cardID) && c.timesUpgraded == c2.timesUpgraded)
                     {
@@ -49,15 +50,17 @@ public class HououinKyouma extends AnimatorCard
                 {
                     AbstractCard copy = c.makeStatEquivalentCopy();
                     copy.retain = true;
-                    group.addToTop(copy);
+                    choices.addToTop(copy);
                 }
             }
         }
 
-        if (group.size() > 0)
+        if (choices.size() > 0)
         {
-            GameActions.Bottom.FetchFromPile(name, 1, group)
-            .SetOptions(false, false);
+            GameActions.Bottom.SelectFromPile(name, 1, choices)
+            .SetOptions(false, false)
+            .SetMessage(CardRewardScreen.TEXT[1])
+            .AddCallback(cards -> GameActions.Bottom.MakeCardInHand(cards.get(0)));
         }
     }
 

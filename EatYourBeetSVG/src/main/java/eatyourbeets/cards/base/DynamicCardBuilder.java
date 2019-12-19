@@ -20,14 +20,20 @@ public class DynamicCardBuilder
     public int magicNumber;
     public int secondaryValue;
 
-    public AbstractCard.CardTarget cardTarget;
-    public AbstractCard.CardRarity cardRarity;
-    public AbstractCard.CardColor cardColor;
-    public AbstractCard.CardType cardType;
+    public int upgradedCost = -2;
+    public int upgradedDamage;
+    public int upgradedBlock;
+    public int upgradedMagicNumber;
+    public int upgradedSecondaryValue;
+
+    public AbstractCard.CardTarget cardTarget = AbstractCard.CardTarget.NONE;
+    public AbstractCard.CardRarity cardRarity = AbstractCard.CardRarity.BASIC;
+    public AbstractCard.CardColor cardColor = AbstractCard.CardColor.COLORLESS;
+    public AbstractCard.CardType cardType = AbstractCard.CardType.SKILL;
     public CardStrings cardStrings;
     public EYBCardBadge[] cardBadges;
-    public Consumer<AbstractCard> onUpgrade;
-    public TriConsumer<AbstractCard, AbstractPlayer, AbstractMonster> onUse;
+    public Consumer<AnimatorCard> onUpgrade;
+    public TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
     public boolean isShapeshifter;
     public Synergy synergy;
 
@@ -58,7 +64,7 @@ public class DynamicCardBuilder
 
     public DynamicCardBuilder SetProperties(int cost, AbstractCard.CardType type, AbstractCard.CardColor color, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target)
     {
-        this.cost = cost;
+        this.upgradedCost = this.cost = cost;
         this.cardType = type;
         this.cardColor = color;
         this.cardRarity = rarity;
@@ -74,10 +80,10 @@ public class DynamicCardBuilder
 
     public DynamicCardBuilder SetNumbers(int damage, int block, int magicNumber, int secondaryValue)
     {
-        this.damage = damage;
-        this.block = block;
-        this.magicNumber = magicNumber;
-        this.secondaryValue = secondaryValue;
+        this.upgradedDamage = this.damage = damage;
+        this.upgradedBlock = this.block = block;
+        this.upgradedMagicNumber = this.magicNumber = magicNumber;
+        this.upgradedSecondaryValue = this.secondaryValue = secondaryValue;
 
         return this;
     }
@@ -117,16 +123,24 @@ public class DynamicCardBuilder
         return this;
     }
 
-    public DynamicCardBuilder SetOnUpgrade(Consumer<AbstractCard> onUpgrade)
+    public DynamicCardBuilder SetOnUpgrade(Consumer<AnimatorCard> onUpgrade)
     {
         this.onUpgrade = onUpgrade;
 
         return this;
     }
 
-    public DynamicCardBuilder SetOnUse(TriConsumer<AbstractCard, AbstractPlayer, AbstractMonster> onUseAction)
+    public DynamicCardBuilder SetOnUse(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
     {
         this.onUse = onUseAction;
+
+        return this;
+    }
+
+    public DynamicCardBuilder SetSynergy(Synergy synergy, boolean isShapeshifter)
+    {
+        this.synergy = synergy;
+        this.isShapeshifter = isShapeshifter;
 
         return this;
     }

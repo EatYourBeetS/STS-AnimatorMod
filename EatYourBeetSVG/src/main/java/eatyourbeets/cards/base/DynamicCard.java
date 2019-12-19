@@ -11,8 +11,8 @@ public class DynamicCard extends AnimatorCard
 {
     protected final DynamicCardBuilder builder;
 
-    public Consumer<AbstractCard> onUpgrade;
-    public TriConsumer<AbstractCard, AbstractPlayer, AbstractMonster> onUse;
+    public Consumer<AnimatorCard> onUpgrade;
+    public TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
 
     public DynamicCard(DynamicCardBuilder builder)
     {
@@ -43,6 +43,14 @@ public class DynamicCard extends AnimatorCard
         if (onUpgrade != null)
         {
             onUpgrade.accept(this);
+        }
+        else if (TryUpgrade())
+        {
+            upgradeBlock(builder.upgradedBlock - builder.block);
+            upgradeMagicNumber(builder.upgradedMagicNumber - builder.magicNumber);
+            upgradeDamage(builder.upgradedDamage - builder.damage);
+            upgradeBaseCost(builder.upgradedCost);
+            upgradeSecondaryValue(builder.upgradedSecondaryValue - builder.secondaryValue);
         }
     }
 

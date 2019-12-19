@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.actions.monsters.MoveMonsterAction;
 import eatyourbeets.monsters.Moveset;
+import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
 import eatyourbeets.resources.EYBResources;
 import eatyourbeets.utilities.GameActions;
@@ -19,9 +20,6 @@ import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.effects.utility.CallbackEffect;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifactAll;
-import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
@@ -56,14 +54,14 @@ public class UltimateCrystal extends Crystal
         this.original = original;
         if (original == null)
         {
-            moveset.AddNormal(new Move_GainStrengthAndArtifactAll(3, 2));
+            moveset.AddNormal(new Move_GainStrengthAndArtifact(3, 2));
             moveset.AddNormal(new Move_UltimateCrystalAttack(1, block));
             moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), crystallize));
         }
         else
         {
             moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), crystallize));
-            moveset.AddNormal(new Move_GainStrengthAndArtifactAll(3, 2));
+            moveset.AddNormal(new Move_GainStrengthAndArtifact(3, 2));
             moveset.AddNormal(new Move_UltimateCrystalAttack(1, block));
         }
     }
@@ -116,7 +114,6 @@ public class UltimateCrystal extends Crystal
                     this, (state, action)-> CardCrawlGame.music.unsilenceBGM()));
 
             CardCrawlGame.sound.play(EYBResources.Audio_TheUltimateCrystal, true);
-            //CardCrawlGame.music.playTempBgmInstantly(AnimatorResources_Audio.TheUltimateCrystal, false);
         }
         else
         {

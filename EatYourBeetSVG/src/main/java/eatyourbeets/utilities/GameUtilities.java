@@ -22,6 +22,9 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.orbs.Aether;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.powers.common.TemporaryBiasPower;
 import eatyourbeets.powers.unnamed.ResonancePower;
 
@@ -604,5 +607,41 @@ public class GameUtilities
         AbstractDungeon.actionManager.cardQueue.add(item);
 
         return item;
+    }
+
+    public static void PreserveForce()
+    {
+        GameActions.Bottom.Callback(__ ->
+        {
+            ForcePower power = GameUtilities.GetPower(AbstractDungeon.player, ForcePower.class);
+            if (power != null)
+            {
+                power.preserveOnce = true;
+            }
+        });
+    }
+
+    public static void PreserveIntellect()
+    {
+        GameActions.Bottom.Callback(__ ->
+        {
+            IntellectPower power = GameUtilities.GetPower(AbstractDungeon.player, IntellectPower.class);
+            if (power != null)
+            {
+                power.preserveOnce = true;
+            }
+        });
+    }
+
+    public static void PreserveAgility()
+    {
+        GameActions.Bottom.Callback(__ ->
+        {
+            AgilityPower power = GameUtilities.GetPower(AbstractDungeon.player, AgilityPower.class);
+            if (power != null)
+            {
+                power.preserveOnce = true;
+            }
+        });
     }
 }

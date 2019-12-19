@@ -141,10 +141,13 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             GridCardSelectScreenPatch.Clear();
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             AbstractDungeon.player.hand.group.addAll(fakeHandGroup.group);
-
-            Complete(selectedCards);
         }
 
         tickDuration();
+
+        if (isDone)
+        {
+            Complete(selectedCards);
+        }
     }
 }

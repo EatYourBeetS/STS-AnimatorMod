@@ -258,9 +258,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     protected static void LoadCustomPowers(String character)
     {
         String jsonString = Gdx.files.internal("localization/" + character + "/eng/PowerStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
-        Map<String, CardStrings> map = new Gson().fromJson(jsonString, new TypeToken<HashMap<String, CardStrings>>()
-        {
-        }.getType());
+        Map<String, PowerStrings> map = new Gson().fromJson(jsonString, new TypeToken<HashMap<String, PowerStrings>>(){}.getType());
 
         for (String powerID : map.keySet())
         {

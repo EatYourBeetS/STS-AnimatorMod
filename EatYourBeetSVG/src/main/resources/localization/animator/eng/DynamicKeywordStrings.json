@@ -32,6 +32,7 @@
 		"animator:RinTohsaka"   : "For every point of #yFocus, NL gain #b1 additional #yBlock.",
 		"animator:Witch"        : "Every #b2 points of #yFocus, NL apply #b1 additional #yBurning.",
 		"animator:YunYun"       : "For every point of #yFocus, NL deal #b1 additional damage.",
-		"animator:Zero"         : "Every #b6 points of #yFocus, NL play this card #b1 additional time."
+		"animator:Zero"         : "Every #b6 points of #yFocus, NL play this card #b1 additional time.",
+		"animator:Patchouli"    : "Every #b5 points of #yFocus, NL #yChannel #b1 additional random Orb."
 	}
 }

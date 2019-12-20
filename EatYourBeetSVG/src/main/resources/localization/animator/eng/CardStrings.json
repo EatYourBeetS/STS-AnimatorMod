@@ -800,8 +800,7 @@
 	},
 	"animator:Patchouli":
 	{
-		"DESCRIPTION": "Spellcaster 5. NL Channel 1 Random Orb. NL Gain !SV! Intellect. || Limited. Choose between two custom effects.",
-		"EXTENDED_DESCRIPTION": ["Sun", "Shuffle a Fire Orb_Core on your discard pile. NL Apply 5 burning to ALL enemies." , "Moon", "Shuffle a Frost Orb_Core on your discard pile. NL Gain 2 Metallicize."],
+		"DESCRIPTION": "Spellcaster. Deal !D! NL damage to a random NL enemy for each NL unique Orb Channeled NL this combat ( !M! ). || Limited. At the start NL of combat, add a NL random Orb_Core to your discard pile.",
 		"NAME": "Patchouli"
 	},
 	"animator:PinaCoLada":

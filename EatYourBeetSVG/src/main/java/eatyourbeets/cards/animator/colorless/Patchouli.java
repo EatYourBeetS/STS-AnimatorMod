@@ -1,34 +1,45 @@
 package eatyourbeets.cards.animator.colorless;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.cards.animator.special.OrbCore_Fire;
-import eatyourbeets.cards.animator.special.OrbCore_Frost;
-import eatyourbeets.cards.base.*;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.vfx.FireBurstParticleEffect;
+import com.megacrit.cardcrawl.vfx.combat.*;
+import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
+import eatyourbeets.cards.animator.special.OrbCore;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
-public class Patchouli extends AnimatorCard implements Spellcaster
+import java.util.ArrayList;
+import java.util.HashSet;
+
+public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
 {
-    public static final String ID = Register(Patchouli.class.getSimpleName(), EYBCardBadge.Special);
+    private int cachedOrbAmount;
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    public static final String ID = Register(Patchouli.class.getSimpleName(), EYBCardBadge.Special);
 
     public Patchouli()
     {
-        super(ID, 2, AbstractCard.CardType.SKILL, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.SELF);
+        super(ID, 3, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0, 0, 1, 1);
+        Initialize(11, 0, 0, 2);
 
-        SetEvokeOrbCount(magicNumber);
         SetSynergy(Synergies.TouhouProject);
     }
 
@@ -37,29 +48,47 @@ public class Patchouli extends AnimatorCard implements Spellcaster
     {
         super.applyPowers();
 
-        Spellcaster.ApplyScaling(this, 5);
+        ArrayList<AbstractOrb> orbs = AbstractDungeon.actionManager.orbsChanneledThisCombat;
+        if (cachedOrbAmount != orbs.size())
+        {
+            HashSet<String> uniqueOrbs = new HashSet<>();
+            for (AbstractOrb orb : orbs)
+            {
+                uniqueOrbs.add(orb.ID);
+            }
+
+            magicNumber = uniqueOrbs.size();
+            isMagicNumberModified = (magicNumber != baseMagicNumber);
+            cachedOrbAmount = orbs.size();
+        }
+    }
+
+    @Override
+    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    {
+        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < magicNumber; i++)
+        if (magicNumber > 0)
         {
-            GameActions.Bottom.ChannelRandomOrb(true);
-        }
+            RandomizedList<Action> actions = new RandomizedList<>();
 
-        GameActions.Bottom.GainIntellect(secondaryValue);
+            for (int i = 0; i < magicNumber; i++)
+            {
+                if (actions.Count() == 0)
+                {
+                    actions.Add(this::Aether);
+                    actions.Add(this::Fire);
+                    actions.Add(this::Frost);
+                    actions.Add(this::Lightning);
+                }
 
-        if (EffectHistory.TryActivateLimited(this.cardID))
-        {
-            CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            choices.group.add(CreateSun().Build());
-            choices.group.add(CreateMoon().Build());
-
-            GameActions.Bottom.SelectFromPile(name, 1, choices)
-            .SetMessage(CardRewardScreen.TEXT[1])
-            .SetOptions(false, false)
-            .AddCallback(m, (enemy, cards) -> cards.get(0).use(AbstractDungeon.player, (AbstractMonster) enemy));
+                actions.Retrieve(AbstractDungeon.cardRandomRng).Execute();
+                GameActions.Bottom.WaitRealtime(0.2f);
+            }
         }
     }
 
@@ -68,37 +97,74 @@ public class Patchouli extends AnimatorCard implements Spellcaster
     {
         if (TryUpgrade())
         {
-            upgradeSecondaryValue(1);
-            SetEvokeOrbCount(magicNumber);
+            upgradeDamage(3);
         }
     }
 
-    private DynamicCardBuilder CreateSun()
+    private void Lightning()
     {
-        return new DynamicCardBuilder(cardID + "_Sun")
-        .SetProperties(-2, CardType.SKILL, color, rarity, target)
-        .SetNumbers(0, 0, 5)
-        .SetText(cardStrings.EXTENDED_DESCRIPTION[0], cardStrings.EXTENDED_DESCRIPTION[1], null)
-        .SetOnUse((card, player, enemy) ->
+        CreateDamageAction().SetDamageEffect(e ->
         {
-            GameActions.Bottom.MakeCardInDiscardPile(new OrbCore_Fire());
-            for (AbstractMonster monster : GameUtilities.GetCurrentEnemies(true))
+            CardCrawlGame.sound.play("ORB_LIGHTNING_EVOKE", 0.2f);
+            GameEffects.Queue.Add(new LightningEffect(e.drawX, e.drawY));
+        });
+    }
+
+    private void Frost()
+    {
+        CreateDamageAction().SetDamageEffect(e ->
+        {
+            MonsterGroup monsters = AbstractDungeon.getMonsters();
+            int frostCount = monsters.monsters.size() + 5;
+
+            CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25F - (float)frostCount / 200.0F);
+            for (int f = 0; f < frostCount; f++)
             {
-                GameActions.Bottom.ApplyBurning(player, monster, card.magicNumber);
+                GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));
             }
         });
     }
 
-    private DynamicCardBuilder CreateMoon()
+    private void Aether()
     {
-        return new DynamicCardBuilder(cardID + "_Moon")
-        .SetProperties(-2, CardType.SKILL, color, rarity, target)
-        .SetNumbers(0, 0, 2)
-        .SetText(cardStrings.EXTENDED_DESCRIPTION[2], cardStrings.EXTENDED_DESCRIPTION[3], null)
-        .SetOnUse((card, player, enemy) ->
+        CreateDamageAction().SetDamageEffect(__ ->
         {
-            GameActions.Bottom.MakeCardInDiscardPile(new OrbCore_Frost());
-            GameActions.Bottom.GainMetallicize(card.magicNumber);
+            CardCrawlGame.sound.play("ATTACK_WHIRLWIND", 0.2f);
+            GameEffects.Queue.Add(new WhirlwindEffect());
         });
+    }
+
+    private void Fire()
+    {
+        CreateDamageAction().SetDamageEffect(e ->
+        {
+            CardCrawlGame.sound.play("ATTACK_FIRE", 0.2f);
+            GameEffects.Queue.Add(new FireballEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, e.hb.cX, e.hb.cY));
+        });
+    }
+
+    private DealDamageToRandomEnemy CreateDamageAction()
+    {
+        return GameActions.Bottom.DealDamageToRandomEnemy(baseDamage + Spellcaster.GetScaling(),
+        damageTypeForTurn, AbstractGameAction.AttackEffect.NONE).SetOptions2(true, false);
+    }
+
+    @Override
+    public boolean atBattleStartPreDraw()
+    {
+        if (EffectHistory.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.Wait(0.3f);
+            GameActions.Bottom.MakeCardInDiscardPile(JavaUtilities.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private interface Action
+    {
+        void Execute();
     }
 }

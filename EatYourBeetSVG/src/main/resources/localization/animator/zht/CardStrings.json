@@ -798,6 +798,11 @@
 		"DESCRIPTION": "穿越者 。 NL 獲得 !B! 點 格擋 。 || 本場戰鬥開始時， NL 打出這張牌。",
 		"NAME": "潘多拉·亞克特"
 	},
+	"animator:Patchouli":
+	{
+		"DESCRIPTION": "Spellcaster. Deal !D! damage to a random enemy for each unique Orb Channeled this combat ( !M! ). || Limited. At the start of combat, add a random Orb_Core to your discard pile.",
+		"NAME": "Patchouli"
+	},
 	"animator:PinaCoLada":
 	{
 		"DESCRIPTION": "每回合打出的 NL 第一張0能耗牌 NL 打出兩次。",

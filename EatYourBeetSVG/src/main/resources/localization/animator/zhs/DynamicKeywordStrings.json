@@ -29,6 +29,7 @@
 		"animator:Jibril"       : "每点 #y集中 ， NL 造成 #b1 点额外伤害。",
 		"animator:LeleiLaLalena": "每 #b6 点 #y集中 ， NL 生成 #b1 个额外 #y冰霜 充能球。",
 		"animator:Megumin"      : "每点 #y集中 ， NL 造成 #b4 点额外伤害。",
+		"animator:Patchouli"    : "每点 #y集中 ， NL 造成 #b1 点额外伤害。",
 		"animator:RinTohsaka"   : "每点 #y集中 ， NL 获得 #b1 点 格挡 。",
 		"animator:Witch"        : "每 #b2 点 #y集中 ， NL 获得 #b1 层额外 #y点燃 。",
 		"animator:YunYun"       : "每点 #y集中 ， NL 造成 #b1 点额外伤害。",

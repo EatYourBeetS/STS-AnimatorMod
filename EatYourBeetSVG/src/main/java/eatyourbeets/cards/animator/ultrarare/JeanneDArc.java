@@ -31,7 +31,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
 
         if (HasActiveSynergy())
         {
-            GameActions.Top.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
+            GameActions.Top.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile).ShowEffect(true)
             .SetOptions(true, true)
             .SetFilter(GameUtilities::IsCurseOrStatus);
         }

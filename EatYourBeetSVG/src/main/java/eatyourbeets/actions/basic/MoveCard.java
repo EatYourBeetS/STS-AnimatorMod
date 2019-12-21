@@ -4,20 +4,28 @@ import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GenericCallback;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
 {
-    protected boolean showEffect;
+    public static float DEFAULT_CARD_X_LEFT = (float)Settings.WIDTH * 0.35F;
+    public static float DEFAULT_CARD_X_RIGHT = (float)Settings.WIDTH * 0.65F;
+    public static float DEFAULT_CARD_Y = (float)Settings.HEIGHT * 0.5F;
+
     protected CardGroup targetPile;
     protected CardGroup sourcePile;
+    protected boolean showEffect;
+    protected Float card_X;
+    protected Float card_Y;
 
     public MoveCard(AbstractCard card, CardGroup targetPile)
     {
@@ -43,7 +51,32 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         this.targetPile = targetPile;
         this.showEffect = showEffect;
 
+        if (showEffect)
+        {
+            this.duration = this.startDuration = Settings.ACTION_DUR_MED;
+
+            if (card.current_x < Settings.WIDTH/2f)
+            {
+                SetCardPosition(DEFAULT_CARD_X_LEFT, DEFAULT_CARD_Y);
+            }
+            else
+            {
+                SetCardPosition(DEFAULT_CARD_X_RIGHT, DEFAULT_CARD_Y);
+            }
+        }
+
         Initialize(1);
+    }
+
+    public MoveCard SetCardPosition(float x, float y)
+    {
+        this.duration = this.startDuration = Settings.ACTION_DUR_MED;
+
+        showEffect = true;
+        card_X = x;
+        card_Y = y;
+
+        return this;
     }
 
     @Override
@@ -55,7 +88,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             {
                 sourcePile = player.hand;
             }
-            if (player.drawPile.contains(card))
+            else if (player.drawPile.contains(card))
             {
                 sourcePile = player.drawPile;
             }
@@ -67,13 +100,12 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             {
                 sourcePile = player.exhaustPile;
             }
-        }
-
-        if (sourcePile == null)
-        {
-            JavaUtilities.GetLogger(getClass()).warn("Source was null");
-            Complete();
-            return;
+            else
+            {
+                JavaUtilities.GetLogger(getClass()).warn("Could not find card source.");
+                Complete();
+                return;
+            }
         }
 
         if ((sourcePile == targetPile) || !sourcePile.contains(card))
@@ -87,74 +119,29 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             GameActions.Bottom.Callback(card, (card, __) -> ((AbstractCard)card).unfadeOut());
         }
 
-        if (this.targetPile == player.hand && player.hand.size() >= BaseMod.MAX_HAND_SIZE)
+        switch (targetPile.type)
         {
-            this.sourcePile.moveToDiscardPile(card);
-            this.player.createHandIsFullDialog();
-        }
-        else
-        {
-            if (showEffect)
-            {
-                switch (targetPile.type)
-                {
-                    case HAND:
-                    {
-                        if (sourcePile.type == CardGroup.CardGroupType.DRAW_PILE)
-                        {
-                            sourcePile.removeCard(card);
-                            sourcePile.addToTop(card);
-                            AbstractDungeon.player.draw(1);
-                        }
-                        else
-                        {
-                            card.untip();
-                            card.unhover();
-                            card.lighten(true);
-                            sourcePile.removeCard(card);
-                            GameEffects.List.Add(new ShowCardAndAddToHandEffect(card));
-                        }
+            case DRAW_PILE:
+                MoveToDrawPile();
+                break;
 
-                        break;
-                    }
+            case HAND:
+                MoveToHand();
+                break;
 
-                    case DISCARD_PILE:
-                    {
-                        sourcePile.removeCard(card);
-                        GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(card));
+            case DISCARD_PILE:
+                MoveToDiscardPile();
+                break;
 
-                        if (sourcePile.type != CardGroup.CardGroupType.EXHAUST_PILE)
-                        {
-                            AbstractDungeon.player.onCardDrawOrDiscard();
-                            card.triggerOnManualDiscard();
-                            GameActionManager.incrementDiscard(false);
-                        }
+            case EXHAUST_PILE:
+                MoveToExhaustPile();
+                break;
 
-                        break;
-                    }
-
-                    case EXHAUST_PILE:
-                    {
-                        float targetX = (float)Settings.WIDTH * 0.35F;
-                        float targetY = (float)Settings.HEIGHT * 0.5F;
-
-                        GameEffects.List.ShowCardBriefly(card, targetX, targetY);
-                        GameActions.Top.Exhaust(card, sourcePile);
-                        break;
-                    }
-
-                    case DRAW_PILE:
-                    default:
-                    {
-                        MoveCardInternal();
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                MoveCardInternal();
-            }
+            case MASTER_DECK:
+            case CARD_POOL:
+            case UNSPECIFIED:
+                MoveToSpecial();
+                break;
         }
     }
 
@@ -163,54 +150,142 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     {
         this.tickDuration();
 
+        if (showEffect)
+        {
+            card.update();
+        }
+
         if (this.isDone)
         {
             Complete(card);
+
+            if (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.HAND)
+            {
+                player.hand.refreshHandLayout();
+                player.hand.applyPowers();
+                player.hand.glowCheck();
+            }
         }
     }
 
-    private void MoveCardInternal()
+    protected void MoveToDiscardPile()
     {
-        if (targetPile.type == CardGroup.CardGroupType.HAND)
+        if (showEffect)
         {
-            this.sourcePile.moveToHand(card, sourcePile);
+            card.target_x = card_X;
+            card.target_y = card_Y;
+            card.targetAngle = 0;
+            card.update();
 
+            callbacks.add(0, new GenericCallback<>(this::MoveToDiscardPile));
+        }
+        else
+        {
+            MoveToDiscardPile(card);
+        }
+    }
+
+    protected void MoveToDiscardPile(AbstractCard card)
+    {
+        sourcePile.moveToDiscardPile(card);
+
+        if (sourcePile.type != CardGroup.CardGroupType.EXHAUST_PILE)
+        {
+            AbstractDungeon.player.onCardDrawOrDiscard();
+            card.triggerOnManualDiscard();
+            GameActionManager.incrementDiscard(false);
+        }
+    }
+
+    protected void MoveToDrawPile()
+    {
+        if (showEffect)
+        {
+            card.target_x = card_X;
+            card.target_y = card_Y;
+            card.targetAngle = 0;
+            card.update();
+
+            callbacks.add(0, new GenericCallback<>(this::MoveToDrawPile));
+        }
+        else
+        {
+            MoveToDrawPile(card);
+        }
+    }
+
+    protected void MoveToDrawPile(AbstractCard card)
+    {
+        sourcePile.moveToDeck(card, true);
+    }
+
+    protected void MoveToExhaustPile()
+    {
+        if (showEffect)
+        {
+            card.target_x = card_X;
+            card.target_y = card_Y;
+            card.targetAngle = 0;
+            card.update();
+
+            callbacks.add(0, new GenericCallback<>(this::MoveToExhaustPile));
+        }
+        else
+        {
+            MoveToExhaustPile(card);
+        }
+    }
+
+    protected void MoveToExhaustPile(AbstractCard card)
+    {
+        sourcePile.moveToExhaustPile(card);
+        CardCrawlGame.dungeon.checkForPactAchievement();
+        card.exhaustOnUseOnce = false;
+        card.freeToPlayOnce = false;
+    }
+
+    protected void MoveToHand()
+    {
+        if (player.hand.size() >= BaseMod.MAX_HAND_SIZE)
+        {
+            sourcePile.moveToDiscardPile(card);
+            player.createHandIsFullDialog();
+        }
+        else if (!showEffect)
+        {
+            sourcePile.moveToHand(card, sourcePile);
             card.triggerWhenDrawn();
         }
-        else if (targetPile.type == CardGroup.CardGroupType.EXHAUST_PILE)
+        else if (sourcePile.type == CardGroup.CardGroupType.DRAW_PILE)
         {
-            this.sourcePile.moveToExhaustPile(card);
-        }
-        else if (targetPile.type == CardGroup.CardGroupType.DISCARD_PILE)
-        {
-            this.sourcePile.moveToDiscardPile(card);
-
-            if (sourcePile.type != CardGroup.CardGroupType.EXHAUST_PILE)
-            {
-                card.triggerOnManualDiscard();
-            }
-        }
-        else if (targetPile.type == CardGroup.CardGroupType.DRAW_PILE)
-        {
-            this.sourcePile.moveToDeck(card, true);
+            sourcePile.removeCard(card);
+            sourcePile.addToTop(card);
+            AbstractDungeon.player.draw(1);
         }
         else
         {
             card.untip();
             card.unhover();
             card.lighten(true);
-            card.setAngle(0.0F);
-            card.drawScale = 0.12F;
-            card.targetDrawScale = 0.75F;
-            card.current_x = CardGroup.DRAW_PILE_X;
-            card.current_y = CardGroup.DRAW_PILE_Y;
+            sourcePile.removeCard(card);
+            GameEffects.List.Add(new ShowCardAndAddToHandEffect(card));
         }
 
-        if (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.HAND)
-        {
-            AbstractDungeon.player.hand.refreshHandLayout();
-            AbstractDungeon.player.hand.applyPowers();
-            AbstractDungeon.player.hand.glowCheck();
-        }
+        GameActions.Bottom.Add(new RefreshHandLayout());
+    }
+
+    protected void MoveToSpecial()
+    {
+        card.untip();
+        card.unhover();
+        card.lighten(true);
+        card.setAngle(0.0F);
+        card.drawScale = 0.12F;
+        card.targetDrawScale = 0.75F;
+        card.current_x = CardGroup.DRAW_PILE_X;
+        card.current_y = CardGroup.DRAW_PILE_Y;
+
+        sourcePile.removeCard(card);
+        targetPile.addToTop(card);
     }
 }

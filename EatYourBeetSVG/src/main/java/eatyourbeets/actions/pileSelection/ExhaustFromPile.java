@@ -3,26 +3,50 @@ package eatyourbeets.actions.pileSelection;
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
 public class ExhaustFromPile extends SelectFromPile
 {
+    protected boolean showEffect = false;
+
     public ExhaustFromPile(String sourceName, int amount, CardGroup... groups)
     {
         super(ActionType.EXHAUST, sourceName, amount, groups);
     }
 
+    public ExhaustFromPile ShowEffect(boolean showEffect)
+    {
+        this.showEffect = showEffect;
+
+        return this;
+    }
+
     @Override
     protected void Complete(ArrayList<AbstractCard> result)
     {
+        ArrayList<MoveCard> actions = new ArrayList<>();
         for (AbstractCard card : result)
         {
-            GameActions.Top.MoveCard(card, player.exhaustPile, true);
+            MoveCard action = new MoveCard(card, player.exhaustPile, showEffect);
+            if (showEffect)
+            {
+                GameActions.Top.Add(action);
+            }
+            else
+            {
+                actions.add(action);
+            }
         }
 
         super.Complete(result);
+
+        for (MoveCard action : actions)
+        {
+            action.update(); // only once
+        }
     }
 
     @Override

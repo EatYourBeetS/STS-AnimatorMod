@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.actions.handSelection.RefreshHandLayout;
+import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 

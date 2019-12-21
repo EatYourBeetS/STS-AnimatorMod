@@ -1,19 +1,14 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.basic.MoveCard;
-import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.effects.utility.SequentialEffect;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 
 public class Gluttony extends AnimatorCard
 {
@@ -55,17 +50,15 @@ public class Gluttony extends AnimatorCard
     {
         if (p.drawPile.size() >= magicNumber)
         {
-            for (int i = 0; i < magicNumber; i++)
+            for (int i = magicNumber-1; i >= 0; i--)
             {
                 AbstractCard card = p.drawPile.getNCardFromTop(i);
-                card.target_x = Settings.WIDTH * (0.3f + (i * 0.02f));
-                card.target_y = Settings.HEIGHT * (0.4f + (i * 0.02f));
-                GameActions.Top.MoveCard(card, p.exhaustPile, p.drawPile, false);
-                GameActions.Top.Callback(new WaitRealtimeAction(0.25f), card, (state, __) ->
-                {
-                    AbstractCard c = (AbstractCard)state;
-                    GameEffects.List.ShowCardBriefly(c, c.target_x, c.target_y);
-                });
+                float target_x = Settings.WIDTH * (0.3f + (i * 0.02f));
+                float target_y = Settings.HEIGHT * (0.4f + (i * 0.02f));
+
+                GameActions.Top.Exhaust(card, p.drawPile)
+                .SetCardPosition(target_x, target_y);
+                GameActions.Top.WaitRealtime(0.2f);
             }
 
             GameActions.Bottom.Heal(magicNumber);

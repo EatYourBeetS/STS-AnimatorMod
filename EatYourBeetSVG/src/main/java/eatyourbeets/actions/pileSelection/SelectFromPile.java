@@ -2,6 +2,7 @@ package eatyourbeets.actions.pileSelection;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 import eatyourbeets.actions.EYBActionWithCallback;
@@ -138,9 +139,9 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         {
             selectedCards.addAll(AbstractDungeon.gridSelectScreen.selectedCards);
 
-            GridCardSelectScreenPatch.Clear();
+            player.hand.group.addAll(fakeHandGroup.group);
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            AbstractDungeon.player.hand.group.addAll(fakeHandGroup.group);
+            GridCardSelectScreenPatch.Clear();
         }
 
         tickDuration();

@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import eatyourbeets.actions.handSelection.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.GeassPower;
@@ -30,9 +29,7 @@ public class Lelouch extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Top.Add(new RefreshHandLayout());
-        GameActions.Top.ExhaustFromHand(name, magicNumber, true)
-        .SetOptions(false, true, true);
+        GameActions.Top.ExhaustFromHand(name, magicNumber, true).ShowEffect(true);
 
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
         GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");

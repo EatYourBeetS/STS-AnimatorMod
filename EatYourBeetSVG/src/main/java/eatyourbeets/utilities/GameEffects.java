@@ -1,11 +1,16 @@
 package eatyourbeets.utilities;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.effects.utility.CallbackEffect;
+import eatyourbeets.effects.utility.CallbackEffect2;
+
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 // TODO: Other effects
 public final class GameEffects
@@ -59,6 +64,36 @@ public final class GameEffects
     public CallbackEffect WaitRealtime(float duration)
     {
         return Add(new CallbackEffect(new WaitRealtimeAction(duration)));
+    }
+
+    public CallbackEffect2 Callback(AbstractGameEffect effect)
+    {
+        return Add(new CallbackEffect2(effect));
+    }
+
+    public CallbackEffect2 Callback(AbstractGameEffect effect, Consumer<AbstractGameEffect> onCompletion)
+    {
+        return Add(new CallbackEffect2(effect, onCompletion));
+    }
+
+    public CallbackEffect2 Callback(AbstractGameEffect effect, Object state, BiConsumer<Object, AbstractGameEffect> onCompletion)
+    {
+        return Add(new CallbackEffect2(effect, state, onCompletion));
+    }
+
+    public CallbackEffect Callback(AbstractGameAction action)
+    {
+        return Add(new CallbackEffect(action));
+    }
+
+    public CallbackEffect Callback(AbstractGameAction action, Consumer<AbstractGameAction> onCompletion)
+    {
+        return Add(new CallbackEffect(action, onCompletion));
+    }
+
+    public CallbackEffect Callback(AbstractGameAction action, Object state, BiConsumer<Object, AbstractGameAction> onCompletion)
+    {
+        return Add(new CallbackEffect(action, state, onCompletion));
     }
 
     public enum Type

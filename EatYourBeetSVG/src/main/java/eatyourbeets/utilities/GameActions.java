@@ -17,7 +17,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.actions.cardManipulation.ExhaustAnywhere;
 import eatyourbeets.actions.cardManipulation.PurgeAnywhere;
 import eatyourbeets.actions.basic.*;
 import eatyourbeets.actions.cardManipulation.MakeTempCard;
@@ -236,9 +235,9 @@ public final class GameActions
         return Add(new DealDamageToRandomEnemy(new DamageInfo(AbstractDungeon.player, card.baseDamage, card.damageTypeForTurn), effect));
     }
 
-    public DiscardSpecificCardAction Discard(AbstractCard card, CardGroup group)
+    public MoveCard Discard(AbstractCard card, CardGroup group)
     {
-        return Add(new DiscardSpecificCardAction(card, group));
+        return Add(new MoveCard(card, AbstractDungeon.player.discardPile, group));
     }
 
     public DiscardFromHand DiscardFromHand(String sourceName, int amount, boolean isRandom)
@@ -256,14 +255,14 @@ public final class GameActions
         return Add(new DrawCards(amount));
     }
 
-    public ExhaustAnywhere Exhaust(AbstractCard card)
+    public MoveCard Exhaust(AbstractCard card)
     {
-        return Add(new ExhaustAnywhere(card));
+        return Add(new MoveCard(card, AbstractDungeon.player.exhaustPile));
     }
 
-    public ExhaustSpecificCardAction Exhaust(AbstractCard card, CardGroup group)
+    public MoveCard Exhaust(AbstractCard card, CardGroup group)
     {
-        return Add(new ExhaustSpecificCardAction(card, group));
+        return Add(new MoveCard(card, AbstractDungeon.player.exhaustPile, group));
     }
 
     public ExhaustFromHand ExhaustFromHand(String sourceName, int amount, boolean isRandom)

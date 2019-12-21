@@ -2,7 +2,7 @@ package eatyourbeets.misc.SoraEffects;
 
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.actions.handSelection.RefreshHandLayout;
+import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.utilities.GameActions;
 
 public class SoraEffect_UpgradeCard extends SoraEffect

@@ -66,11 +66,11 @@ public class GoblinSlayer extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Top.Add(new MoveCards(p.exhaustPile, p.discardPile)
-                .SetFilter(GameUtilities::IsCurseOrStatus));
+        .SetFilter(GameUtilities::IsCurseOrStatus));
         GameActions.Top.Add(new MoveCards(p.exhaustPile, p.hand)
-                .SetFilter(GameUtilities::IsCurseOrStatus));
+        .SetFilter(GameUtilities::IsCurseOrStatus));
+        GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
     }
 
     @Override

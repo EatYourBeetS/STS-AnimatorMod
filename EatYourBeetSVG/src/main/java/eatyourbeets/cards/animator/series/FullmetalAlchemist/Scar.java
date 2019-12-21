@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.ScarUpgradeAction;
-import eatyourbeets.actions.handSelection.RefreshHandLayout;
+import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
@@ -31,7 +31,7 @@ public class Scar extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Top.Add(new RefreshHandLayout());
-        GameActions.Top.ExhaustFromHand(name, 1, true);
+        GameActions.Top.ExhaustFromHand(name, 1, true).ShowEffect(true);
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F))

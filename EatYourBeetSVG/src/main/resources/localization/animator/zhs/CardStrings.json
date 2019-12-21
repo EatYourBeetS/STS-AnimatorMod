@@ -800,8 +800,8 @@
 	},
 	"animator:Patchouli":
 	{
-		"DESCRIPTION": "Spellcaster. Deal !D! damage to a random enemy for each unique Orb Channeled this combat ( !M! ). || Limited. At the start of combat, add a random Orb_Core to your discard pile.",
-		"NAME": "Patchouli"
+		"DESCRIPTION": "法师 。本场战斗每生成过不同的充能球，对随机一名敌人造成 !D! 点伤害（ !M! ）。 || 昙现 。在战斗开始时，将一张随机 充能球核心 加入你的弃牌堆。",
+		"NAME": "帕秋莉"
 	},
 	"animator:PinaCoLada":
 	{

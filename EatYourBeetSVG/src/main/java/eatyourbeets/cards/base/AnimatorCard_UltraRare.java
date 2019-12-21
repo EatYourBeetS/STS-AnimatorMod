@@ -78,18 +78,21 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     @SpireOverride
     protected void renderAttackBg(SpriteBatch sb, float x, float y)
     {
+        RENDER_COLOR.a = this.transparency;
         RenderHelpers.RenderOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_ATTACK_BG_GRAY, x, y);
     }
 
     @SpireOverride
     protected void renderSkillBg(SpriteBatch sb, float x, float y)
     {
+        RENDER_COLOR.a = this.transparency;
         RenderHelpers.RenderOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_SKILL_BG_GRAY, x, y);
     }
 
     @SpireOverride
     protected void renderPowerBg(SpriteBatch sb, float x, float y)
     {
+        RENDER_COLOR.a = this.transparency;
         RenderHelpers.RenderOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_POWER_BG_GRAY, x, y);
     }
 }

@@ -1,23 +1,26 @@
 package eatyourbeets.actions.handSelection;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.actions.basic.MoveCard;
+import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
 public class DiscardFromHand extends SelectFromHand
 {
-    protected boolean endOfTurn;
+    protected boolean showEffect = false;
 
     public DiscardFromHand(String sourceName, int amount, boolean isRandom)
     {
-        this(sourceName, amount, isRandom, false);
+        super(ActionType.DISCARD, sourceName, amount, isRandom);
     }
 
-    public DiscardFromHand(String sourceName, int amount, boolean isRandom, boolean endOfTurn)
+    public DiscardFromHand ShowEffect(boolean showEffect)
     {
-        super(ActionType.DISCARD, sourceName, amount, isRandom);
+        this.showEffect = showEffect;
+
+        return this;
     }
 
     @Override
@@ -25,9 +28,15 @@ public class DiscardFromHand extends SelectFromHand
     {
         for (AbstractCard card : result)
         {
-            player.hand.moveToDiscardPile(card);
-            card.triggerOnManualDiscard();
-            GameActionManager.incrementDiscard(this.endOfTurn);
+            MoveCard action = new MoveCard(card, player.discardPile, showEffect);
+            if (showEffect)
+            {
+                GameActions.Top.Add(action);
+            }
+            else
+            {
+                action.update(); // only once
+            }
         }
 
         super.Complete(result);

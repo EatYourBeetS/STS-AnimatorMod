@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Guy extends AnimatorCard
 {
@@ -36,11 +37,17 @@ public class Guy extends AnimatorCard
             {
                 AbstractPlayer player = AbstractDungeon.player;
                 int max = Math.min(player.drawPile.size(), secondaryValue);
-                for (int i = 0; i < max; i++)
+                for (int i = secondaryValue-1; i >= 0; i--)
                 {
                     AbstractCard card = player.drawPile.getNCardFromTop(i);
-                    GameActions.Top.WaitRealtime(0.25f);
-                    GameActions.Top.MoveCard(card,  player.discardPile, player.drawPile,true);
+                    float target_x = Settings.WIDTH * (0.35f + (i * 0.05f));
+                    float target_y = Settings.HEIGHT * (0.45f + (i * 0.05f));
+
+                    //GameEffects.Queue.ShowCardBriefly(card.makeStatEquivalentCopy(), target_x, target_y);
+
+                    GameActions.Top.Discard(card, player.drawPile)
+                    .SetCardPosition(target_x, target_y);
+                    GameActions.Top.WaitRealtime(0.15f);
                 }
             });
         }

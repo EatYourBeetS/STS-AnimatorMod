@@ -135,6 +135,8 @@ public abstract class EYBCard extends CustomCard
     @SpireOverride
     protected void renderAttackPortrait(SpriteBatch sb, float x, float y)
     {
+        FRAME_COLOR.a = this.transparency;
+
         switch (this.rarity)
         {
             case BASIC:
@@ -159,6 +161,8 @@ public abstract class EYBCard extends CustomCard
     @SpireOverride
     protected void renderSkillPortrait(SpriteBatch sb, float x, float y)
     {
+        FRAME_COLOR.a = this.transparency;
+
         switch (this.rarity)
         {
             case BASIC:
@@ -183,6 +187,8 @@ public abstract class EYBCard extends CustomCard
     @SpireOverride
     protected void renderPowerPortrait(SpriteBatch sb, float x, float y)
     {
+        FRAME_COLOR.a = this.transparency;
+
         switch (this.rarity)
         {
             case BASIC:

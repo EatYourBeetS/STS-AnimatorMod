@@ -3,7 +3,7 @@ package eatyourbeets.blights.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions.handSelection.RefreshHandLayout;
+import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.utilities.GameActions;
@@ -31,7 +31,7 @@ public class UltimateCrystal extends AnimatorBlight
             AbstractPlayer p = AbstractDungeon.player;
             for (AbstractCard c : cards)
             {
-                GameActions.Top.MoveCard(c, p.drawPile, p.hand, true);
+                GameActions.Top.MoveCard(c, p.drawPile, p.hand, false);
             }
 
             GameActions.Bottom.Add(new RefreshHandLayout());

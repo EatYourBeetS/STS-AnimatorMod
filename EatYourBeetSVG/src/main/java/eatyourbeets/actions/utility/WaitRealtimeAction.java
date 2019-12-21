@@ -2,8 +2,6 @@ package eatyourbeets.actions.utility;
 
 import eatyourbeets.actions.EYBAction;
 
-import java.time.Instant;
-
 public class WaitRealtimeAction extends EYBAction
 {
     public WaitRealtimeAction(float duration)

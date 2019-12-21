@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.ScarUpgradeAction;
-import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;

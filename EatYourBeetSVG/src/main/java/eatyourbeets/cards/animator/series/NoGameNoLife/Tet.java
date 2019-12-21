@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
@@ -12,8 +11,6 @@ import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
-
-import java.util.ArrayList;
 
 public class Tet extends AnimatorCard
 {

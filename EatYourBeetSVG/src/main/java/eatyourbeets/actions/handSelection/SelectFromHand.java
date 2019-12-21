@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -174,7 +175,8 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
         super.Complete();
 
         player.hand.group.addAll(excluded);
-        player.hand.refreshHandLayout();
         excluded.clear();
+
+        GameUtilities.RefreshHandLayout();
     }
 }

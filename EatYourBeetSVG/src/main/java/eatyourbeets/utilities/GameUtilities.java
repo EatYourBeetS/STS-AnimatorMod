@@ -1,11 +1,13 @@
 package eatyourbeets.utilities;
 
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.QueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -19,9 +21,11 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
 import eatyourbeets.orbs.Aether;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
@@ -644,4 +648,25 @@ public class GameUtilities
             }
         });
     }
+
+    public static void RefreshHandLayout()
+    {
+        PlayerStatistics.onPhaseChanged.Subscribe(HandLayoutRefresher);
+    }
+
+    private final static OnPhaseChangedSubscriber HandLayoutRefresher = new OnPhaseChangedSubscriber()
+    {
+        @Override
+        public void OnPhaseChanged(GameActionManager.Phase phase)
+        {
+            if (phase == GameActionManager.Phase.WAITING_ON_USER)
+            {
+                CardGroup hand = AbstractDungeon.player.hand;
+                hand.refreshHandLayout();
+                hand.applyPowers();
+                hand.glowCheck();
+                PlayerStatistics.onPhaseChanged.Unsubscribe(this);
+            }
+        }
+    };
 }

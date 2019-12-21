@@ -30,8 +30,8 @@ public class Chomusuke extends AnimatorCard_UltraRare
         if (EffectHistory.TryActivateSemiLimited(cardID))
         {
             AbstractPlayer p = AbstractDungeon.player;
-            GameActions.Top.GainEnergy(2);
-            GameActions.Top.MoveCard(this, p.hand, p.exhaustPile)
+            GameActions.Bottom.GainEnergy(2);
+            GameActions.Bottom.MoveCard(this, p.hand, p.exhaustPile)
             .ShowEffect(true, true);
         }
     }

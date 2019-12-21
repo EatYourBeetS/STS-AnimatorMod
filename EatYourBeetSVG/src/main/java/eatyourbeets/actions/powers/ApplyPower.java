@@ -56,6 +56,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     {
         super(ActionType.POWER, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FASTER);
 
+        showEffect = true;
         powerToApply = power;
         attackEffect = effect;
         faster = isFast;

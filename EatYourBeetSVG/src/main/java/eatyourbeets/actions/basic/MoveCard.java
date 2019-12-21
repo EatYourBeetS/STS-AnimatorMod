@@ -13,10 +13,7 @@ import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.effects.card.RenderCardEffect;
 import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GenericCallback;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.*;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
 {
@@ -120,6 +117,14 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         if (this.sourcePile.type == CardGroup.CardGroupType.EXHAUST_PILE)
         {
             GameActions.Bottom.Callback(card, (card, __) -> ((AbstractCard)card).unfadeOut());
+
+            card.current_x = CardGroup.DISCARD_PILE_X;
+            card.current_y = CardGroup.DISCARD_PILE_Y + Settings.scale * 30f;
+
+            if (showEffect)
+            {
+                GameEffects.List.Add(new RenderCardEffect(card, duration, isRealtime));
+            }
         }
         else if (this.sourcePile.type == CardGroup.CardGroupType.DRAW_PILE)
         {
@@ -201,7 +206,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
             if (targetPile.type == CardGroup.CardGroupType.HAND || (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.HAND))
             {
-                PlayerStatistics.onPhaseChanged.Subscribe(HandLayoutRefresher);
+                GameUtilities.RefreshHandLayout();
             }
         }
     }
@@ -275,48 +280,52 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
     protected void MoveToHand()
     {
+        if (showEffect)
+        {
+            ShowCard();
+
+            callbacks.add(0, new GenericCallback<>(this::MoveToHand));
+        }
+        else
+        {
+            MoveToHand(card);
+        }
+    }
+
+    protected void MoveToHand(AbstractCard card)
+    {
         if (player.hand.size() >= BaseMod.MAX_HAND_SIZE)
         {
             sourcePile.moveToDiscardPile(card);
             player.createHandIsFullDialog();
         }
-        else if (!showEffect)
+        else
         {
             sourcePile.moveToHand(card, sourcePile);
             card.triggerWhenDrawn();
         }
-        else if (sourcePile.type == CardGroup.CardGroupType.DRAW_PILE)
-        {
-            sourcePile.removeCard(card);
-            sourcePile.addToTop(card);
-            AbstractDungeon.player.draw(1);
-        }
-        else
-        {
-            card.untip();
-            card.unhover();
-            card.lighten(true);
-            sourcePile.removeCard(card);
-            GameEffects.List.Add(new ShowCardAndAddToHandEffect(card));
-        }
-
-        GameActions.Bottom.Add(new RefreshHandLayout());
     }
 
     protected void MoveToPile()
+    {
+        if (showEffect)
+        {
+            ShowCard();
+
+            callbacks.add(0, new GenericCallback<>(this::MoveToPile));
+        }
+        else
+        {
+            MoveToPile(card);
+        }
+    }
+
+    protected void MoveToPile(AbstractCard card)
     {
         card.untip();
         card.unhover();
         card.unfadeOut();
         card.targetAngle = 0;
-
-        if (showEffect)
-        {
-            card.target_x = card_X;
-            card.target_y = card_Y;
-            UpdateCard();
-        }
-
         sourcePile.removeCard(card);
         targetPile.addToTop(card);
     }
@@ -346,23 +355,8 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         card.target_x = card_X;
         card.target_y = card_Y;
+        card.targetAngle = 0;
         card.hoverTimer = 0.5f;
         card.update();
     }
-
-    protected final static OnPhaseChangedSubscriber HandLayoutRefresher = new OnPhaseChangedSubscriber()
-    {
-        @Override
-        public void OnPhaseChanged(GameActionManager.Phase phase)
-        {
-            if (phase == GameActionManager.Phase.WAITING_ON_USER)
-            {
-                CardGroup hand = AbstractDungeon.player.hand;
-                hand.refreshHandLayout();
-                hand.applyPowers();
-                hand.glowCheck();
-                PlayerStatistics.onPhaseChanged.Unsubscribe(this);
-            }
-        }
-    };
 }

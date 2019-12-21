@@ -29,7 +29,7 @@ public class Wiz extends AnimatorCard
         .SetOptions(false, false, true)
         .AddCallback(__ ->
         { //
-            GameActions.Bottom.SelectFromPile(name, 1, AbstractDungeon.player.exhaustPile)
+            GameActions.Top.SelectFromPile(name, 1, AbstractDungeon.player.exhaustPile)
             .SetOptions(false, false)
             .SetFilter(c -> !c.cardID.equals(Wiz.ID))
             .AddCallback(cards ->

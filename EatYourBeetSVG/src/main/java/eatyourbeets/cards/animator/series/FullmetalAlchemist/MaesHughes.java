@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class MaesHughes extends AnimatorCard
 {
@@ -68,10 +69,11 @@ public class MaesHughes extends AnimatorCard
             {
                 if (group.type != CardGroup.CardGroupType.HAND)
                 {
-                    GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, group, true);
+                    GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
+                    GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, group)
+                    .ShowEffect(true, true)
+                    .AddCallback(card -> card.modifyCostForTurn(-1));
                 }
-
-                c.modifyCostForTurn(-1);
 
                 return true;
             }

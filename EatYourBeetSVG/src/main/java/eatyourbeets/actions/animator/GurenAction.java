@@ -77,14 +77,12 @@ public class GurenAction extends EYBAction
         if (GameUtilities.IsCurseOrStatus(card))
         {
             GameActions.Top.Add(new UnlimboAction(card));
-            GameActions.Top.Exhaust(card, AbstractDungeon.player.limbo);
-            GameActions.Top.WaitRealtime(0.4F);
+            GameActions.Top.Exhaust(card, AbstractDungeon.player.limbo).SetRealtime(true);
         }
         else if (skip || !card.canUse(AbstractDungeon.player, (AbstractMonster) this.target))
         {
             GameActions.Top.Add(new UnlimboAction(card));
-            GameActions.Top.Discard(card, AbstractDungeon.player.limbo);
-            GameActions.Top.WaitRealtime(0.4F);
+            GameActions.Top.Discard(card, AbstractDungeon.player.limbo).SetRealtime(true);
         }
         else
         {

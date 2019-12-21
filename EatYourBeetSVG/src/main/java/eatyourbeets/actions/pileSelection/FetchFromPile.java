@@ -19,7 +19,7 @@ public class FetchFromPile extends SelectFromPile
     {
         for (AbstractCard card : result)
         {
-            GameActions.Top.MoveCard(card, player.hand,true);
+            GameActions.Top.MoveCard(card, player.hand);
         }
 
         super.Complete(result);

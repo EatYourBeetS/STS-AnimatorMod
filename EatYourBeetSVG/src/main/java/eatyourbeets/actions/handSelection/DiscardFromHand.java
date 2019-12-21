@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class DiscardFromHand extends SelectFromHand
 {
+    protected boolean realtime = false;
     protected boolean showEffect = false;
 
     public DiscardFromHand(String sourceName, int amount, boolean isRandom)
@@ -16,9 +17,10 @@ public class DiscardFromHand extends SelectFromHand
         super(ActionType.DISCARD, sourceName, amount, isRandom);
     }
 
-    public DiscardFromHand ShowEffect(boolean showEffect)
+    public DiscardFromHand ShowEffect(boolean showEffect, boolean realtime)
     {
         this.showEffect = showEffect;
+        this.realtime = realtime;
 
         return this;
     }
@@ -28,10 +30,10 @@ public class DiscardFromHand extends SelectFromHand
     {
         for (AbstractCard card : result)
         {
-            MoveCard action = new MoveCard(card, player.discardPile, showEffect);
+            MoveCard action = new MoveCard(card, player.discardPile);
             if (showEffect)
             {
-                GameActions.Top.Add(action);
+                GameActions.Top.Add(action).ShowEffect(showEffect, realtime);
             }
             else
             {

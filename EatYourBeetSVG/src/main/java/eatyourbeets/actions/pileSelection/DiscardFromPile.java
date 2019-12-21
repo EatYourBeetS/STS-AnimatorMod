@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class DiscardFromPile extends SelectFromPile
 {
+    protected boolean realtime = false;
     protected boolean showEffect = false;
 
     public DiscardFromPile(String sourceName, int amount, CardGroup... groups)
@@ -17,9 +18,10 @@ public class DiscardFromPile extends SelectFromPile
         super(ActionType.DISCARD, sourceName, amount, groups);
     }
 
-    public DiscardFromPile ShowEffect(boolean showEffect)
+    public DiscardFromPile ShowEffect(boolean showEffect, boolean isRealtime)
     {
         this.showEffect = showEffect;
+        this.realtime = isRealtime;
 
         return this;
     }
@@ -30,10 +32,10 @@ public class DiscardFromPile extends SelectFromPile
         ArrayList<MoveCard> actions = new ArrayList<>();
         for (AbstractCard card : result)
         {
-            MoveCard action = new MoveCard(card, player.discardPile, showEffect);
+            MoveCard action = new MoveCard(card, player.discardPile);
             if (showEffect)
             {
-                GameActions.Top.Add(action);
+                GameActions.Top.Add(action).ShowEffect(showEffect, realtime);
             }
             else
             {

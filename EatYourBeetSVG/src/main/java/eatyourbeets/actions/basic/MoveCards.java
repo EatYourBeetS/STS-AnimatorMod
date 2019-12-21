@@ -17,28 +17,39 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
     protected CardGroup targetPile;
     protected CardGroup sourcePile;
     protected boolean showEffect;
+    protected boolean realtime;
+    protected boolean fromTop;
     protected boolean random;
 
     public MoveCards(CardGroup targetPile, CardGroup sourcePile)
     {
-        this(targetPile, sourcePile, -1, false, false);
+        this(targetPile, sourcePile, -1);
     }
 
     public MoveCards(CardGroup targetPile, CardGroup sourcePile, int amount)
-    {
-        this(targetPile, sourcePile, amount, false, false);
-    }
-
-    public MoveCards(CardGroup targetPile, CardGroup sourcePile, int amount, boolean showEffect, boolean random)
     {
         super(ActionType.CARD_MANIPULATION);
 
         this.sourcePile = sourcePile;
         this.targetPile = targetPile;
-        this.showEffect = showEffect;
-        this.random = random;
 
         Initialize(amount);
+    }
+
+    public MoveCards ShowEffect(boolean showEffect, boolean isRealtime)
+    {
+        this.showEffect = showEffect;
+        this.realtime = isRealtime;
+
+        return this;
+    }
+
+    public MoveCards SetOptions(boolean random, boolean fromTop)
+    {
+        this.random = random;
+        this.fromTop = fromTop;
+
+        return this;
     }
 
     public MoveCards SetFilter(Predicate<AbstractCard> filter)
@@ -71,8 +82,7 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 
             for (int i = 0; i < max; i++)
             {
-                selectedCards.add(temp.Retrieve(AbstractDungeon.cardRandomRng));
-                GameActions.Top.MoveCard(card, targetPile, sourcePile, showEffect);
+                MoveCard(temp.Retrieve(AbstractDungeon.cardRandomRng));
             }
 
             Complete(selectedCards);
@@ -94,15 +104,26 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
                 max = temp.size();
             }
 
-            for (int i = max-1; i >= 0; i--)
+            for (int i = 0; i < max; i++)
             {
-                card = temp.get(i);
-
-                selectedCards.add(card);
-                GameActions.Top.MoveCard(card, targetPile, sourcePile, showEffect);
+                if (fromTop)
+                {
+                    MoveCard(temp.get((temp.size() - max) + i));
+                }
+                else
+                {
+                    MoveCard(temp.get(i));
+                }
             }
 
             Complete(selectedCards);
         }
+    }
+
+    private void MoveCard(AbstractCard card)
+    {
+        selectedCards.add(card);
+        GameActions.Top.MoveCard(card, targetPile, sourcePile)
+        .ShowEffect(showEffect, realtime);
     }
 }

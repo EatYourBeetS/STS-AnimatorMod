@@ -83,7 +83,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
         {
             if (Sora.ID.equals(c.cardID))
             {
-                GameActions.Top.MoveCard(c, p.hand, p.drawPile, true);
+                GameActions.Top.MoveCard(c, p.hand, p.drawPile);
 
                 break;
             }

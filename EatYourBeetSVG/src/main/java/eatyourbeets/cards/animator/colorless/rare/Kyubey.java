@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.colorless;
+package eatyourbeets.cards.animator.colorless.rare;
 
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;

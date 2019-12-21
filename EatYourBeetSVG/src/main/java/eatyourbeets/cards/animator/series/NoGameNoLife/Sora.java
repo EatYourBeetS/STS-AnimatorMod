@@ -49,8 +49,7 @@ public class Sora extends AnimatorCard
         {
             if (Shiro.ID.equals(c.cardID))
             {
-                GameActions.Top.MoveCard(c, p.hand, p.drawPile, true);
-
+                GameActions.Top.MoveCard(c, p.hand, p.drawPile);
                 break;
             }
         }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class ExhaustFromHand extends SelectFromHand
 {
+    protected boolean realtime = false;
     protected boolean showEffect = false;
 
     public ExhaustFromHand(String sourceName, int amount, boolean isRandom)
@@ -16,9 +17,10 @@ public class ExhaustFromHand extends SelectFromHand
         super(ActionType.EXHAUST, sourceName, amount, isRandom);
     }
 
-    public ExhaustFromHand ShowEffect(boolean showEffect)
+    public ExhaustFromHand ShowEffect(boolean showEffect, boolean realtime)
     {
         this.showEffect = showEffect;
+        this.realtime = realtime;
 
         return this;
     }
@@ -28,10 +30,10 @@ public class ExhaustFromHand extends SelectFromHand
     {
         for (AbstractCard card : result)
         {
-            MoveCard action = new MoveCard(card, player.exhaustPile, showEffect);
+            MoveCard action = new MoveCard(card, player.exhaustPile);
             if (showEffect)
             {
-                GameActions.Top.Add(action);
+                GameActions.Top.Add(action).ShowEffect(showEffect, realtime);
             }
             else
             {

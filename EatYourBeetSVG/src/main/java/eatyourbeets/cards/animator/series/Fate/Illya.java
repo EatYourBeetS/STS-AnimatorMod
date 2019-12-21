@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Illya extends AnimatorCard
 {
@@ -43,8 +44,6 @@ public class Illya extends AnimatorCard
                     }
                 }
             }
-
-            GameActions.Bottom.GainEnergy(1);
         });
     }
 
@@ -90,8 +89,12 @@ public class Illya extends AnimatorCard
             {
                 if (group.type != CardGroup.CardGroupType.HAND)
                 {
-                    GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, group, true);
+                    GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
+                    GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, group)
+                    .ShowEffect(true, true);
                 }
+
+                GameActions.Bottom.GainEnergy(1);
 
                 return true;
             }

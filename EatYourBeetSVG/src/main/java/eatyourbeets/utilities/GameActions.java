@@ -463,14 +463,14 @@ public final class GameActions
         return actions;
     }
 
-    public MoveCard MoveCard(AbstractCard card, CardGroup destination, boolean showEffect)
+    public MoveCard MoveCard(AbstractCard card, CardGroup destination)
     {
-        return Add(new MoveCard(card, destination, showEffect));
+        return Add(new MoveCard(card, destination));
     }
 
-    public MoveCard MoveCard(AbstractCard card, CardGroup destination, CardGroup source, boolean showEffect)
+    public MoveCard MoveCard(AbstractCard card, CardGroup destination, CardGroup source)
     {
-        return Add(new MoveCard(card, destination, source, showEffect));
+        return Add(new MoveCard(card, destination, source));
     }
 
     public MoveCards MoveCards(CardGroup destination, CardGroup source)
@@ -480,7 +480,7 @@ public final class GameActions
 
     public MoveCards MoveCards(CardGroup destination, CardGroup source, int amount)
     {
-        return Add(new MoveCards(destination, source, amount, true, true));
+        return Add(new MoveCards(destination, source, amount));
     }
 
     public PurgeAnywhere Purge(UUID uuid)

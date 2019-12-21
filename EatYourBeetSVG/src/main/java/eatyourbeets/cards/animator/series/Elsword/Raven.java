@@ -52,7 +52,8 @@ public class Raven extends AnimatorCard
 
             if (selected != null)
             {
-                GameActions.Top.MoveCard(selected, p.hand, p.drawPile, true);
+                GameActions.Top.MoveCard(selected, p.hand, p.drawPile)
+                .ShowEffect(true, false);
             }
         }
     }

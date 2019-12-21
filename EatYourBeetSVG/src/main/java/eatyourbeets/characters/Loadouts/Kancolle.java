@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Defend_Kancolle;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_Kancolle;
-import eatyourbeets.cards.animator.colorless.Shimakaze;
+import eatyourbeets.cards.animator.colorless.uncommon.Shimakaze;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;

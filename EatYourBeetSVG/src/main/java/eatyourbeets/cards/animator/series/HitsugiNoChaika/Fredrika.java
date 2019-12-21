@@ -114,9 +114,10 @@ public class Fredrika extends AnimatorCard
             {
                 this.ChangeForm(((Fredrika)cards.get(0)).currentForm);
 
-                CardCrawlGame.sound.play("CARD_OBTAIN");
-                GameActions.Top.MoveCard(this, AbstractDungeon.player.hand, true);
+                //CardCrawlGame.sound.play("CARD_OBTAIN");
                 GameActions.Bottom.Add(new RefreshHandLayout());
+                GameActions.Top.MoveCard(this, AbstractDungeon.player.hand)
+                .ShowEffect(true, false);
             });
         }
     }

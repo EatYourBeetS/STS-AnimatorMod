@@ -10,6 +10,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.actions.special.RefreshHandLayout;
+import eatyourbeets.effects.card.RenderCardEffect;
+import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GenericCallback;
@@ -29,52 +32,45 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
     public MoveCard(AbstractCard card, CardGroup targetPile)
     {
-        this(card, targetPile, null, true);
-    }
-
-    public MoveCard(AbstractCard card, CardGroup targetPile, boolean showEffect)
-    {
-        this(card, targetPile, null, showEffect);
+        this(card, targetPile, null);
     }
 
     public MoveCard(AbstractCard card, CardGroup targetPile, CardGroup sourcePile)
-    {
-        this(card, targetPile, sourcePile, true);
-    }
-
-    public MoveCard(AbstractCard card, CardGroup targetPile, CardGroup sourcePile, boolean showEffect)
     {
         super(ActionType.CARD_MANIPULATION);
 
         this.card = card;
         this.sourcePile = sourcePile;
         this.targetPile = targetPile;
-        this.showEffect = showEffect;
-
-        if (showEffect)
-        {
-            this.duration = this.startDuration = Settings.ACTION_DUR_MED;
-
-            if (card.current_x < Settings.WIDTH/2f)
-            {
-                SetCardPosition(DEFAULT_CARD_X_LEFT, DEFAULT_CARD_Y);
-            }
-            else
-            {
-                SetCardPosition(DEFAULT_CARD_X_RIGHT, DEFAULT_CARD_Y);
-            }
-        }
 
         Initialize(1);
     }
 
     public MoveCard SetCardPosition(float x, float y)
     {
-        this.duration = this.startDuration = Settings.ACTION_DUR_MED;
-
-        showEffect = true;
         card_X = x;
         card_Y = y;
+
+        return this;
+    }
+
+    public MoveCard ShowEffect(boolean showEffect, boolean isRealtime)
+    {
+        float duration = showEffect ? Settings.ACTION_DUR_MED : Settings.ACTION_DUR_FAST;
+
+        if (Settings.FAST_MODE)
+        {
+            duration *= 0.7f;
+        }
+
+        return ShowEffect(showEffect, isRealtime, duration);
+    }
+
+    public MoveCard ShowEffect(boolean showEffect, boolean isRealtime, float duration)
+    {
+        SetDuration(duration, isRealtime);
+
+        this.showEffect = showEffect;
 
         return this;
     }
@@ -108,15 +104,59 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             }
         }
 
-        if ((sourcePile == targetPile) || !sourcePile.contains(card))
+        if (sourcePile == targetPile)
         {
             Complete();
             return;
         }
 
-        if (this.sourcePile == player.exhaustPile)
+        if (!sourcePile.contains(card))
+        {
+            JavaUtilities.GetLogger(getClass()).warn("Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
+            Complete();
+            return;
+        }
+
+        if (this.sourcePile.type == CardGroup.CardGroupType.EXHAUST_PILE)
         {
             GameActions.Bottom.Callback(card, (card, __) -> ((AbstractCard)card).unfadeOut());
+        }
+        else if (this.sourcePile.type == CardGroup.CardGroupType.DRAW_PILE)
+        {
+            card.current_x = CardGroup.DRAW_PILE_X;
+            card.current_y = CardGroup.DRAW_PILE_Y;
+
+            if (showEffect)
+            {
+                GameEffects.List.Add(new RenderCardEffect(card, duration, isRealtime));
+            }
+        }
+        else if (this.sourcePile.type == CardGroup.CardGroupType.DISCARD_PILE)
+        {
+            card.current_x = CardGroup.DISCARD_PILE_X;
+            card.current_y = CardGroup.DISCARD_PILE_Y;
+
+            if (showEffect)
+            {
+                GameEffects.List.Add(new RenderCardEffect(card, duration, isRealtime));
+            }
+        }
+
+        if (showEffect && card_X == null)
+        {
+            if (card.current_x < Settings.WIDTH/2f)
+            {
+                card_X = DEFAULT_CARD_X_LEFT;
+            }
+            else
+            {
+                card_X = DEFAULT_CARD_X_RIGHT;
+            }
+
+            if (card_Y == null)
+            {
+                card_Y = DEFAULT_CARD_Y;
+            }
         }
 
         switch (targetPile.type)
@@ -140,7 +180,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             case MASTER_DECK:
             case CARD_POOL:
             case UNSPECIFIED:
-                MoveToSpecial();
+                MoveToPile();
                 break;
         }
     }
@@ -152,18 +192,16 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         if (showEffect)
         {
-            card.update();
+            UpdateCard();
         }
 
         if (this.isDone)
         {
             Complete(card);
 
-            if (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.HAND)
+            if (targetPile.type == CardGroup.CardGroupType.HAND || (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.HAND))
             {
-                player.hand.refreshHandLayout();
-                player.hand.applyPowers();
-                player.hand.glowCheck();
+                PlayerStatistics.onPhaseChanged.Subscribe(HandLayoutRefresher);
             }
         }
     }
@@ -172,10 +210,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     {
         if (showEffect)
         {
-            card.target_x = card_X;
-            card.target_y = card_Y;
-            card.targetAngle = 0;
-            card.update();
+            ShowCard();
 
             callbacks.add(0, new GenericCallback<>(this::MoveToDiscardPile));
         }
@@ -201,10 +236,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     {
         if (showEffect)
         {
-            card.target_x = card_X;
-            card.target_y = card_Y;
-            card.targetAngle = 0;
-            card.update();
+            ShowCard();
 
             callbacks.add(0, new GenericCallback<>(this::MoveToDrawPile));
         }
@@ -223,10 +255,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     {
         if (showEffect)
         {
-            card.target_x = card_X;
-            card.target_y = card_Y;
-            card.targetAngle = 0;
-            card.update();
+            ShowCard();
 
             callbacks.add(0, new GenericCallback<>(this::MoveToExhaustPile));
         }
@@ -274,18 +303,66 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         GameActions.Bottom.Add(new RefreshHandLayout());
     }
 
-    protected void MoveToSpecial()
+    protected void MoveToPile()
     {
         card.untip();
         card.unhover();
-        card.lighten(true);
-        card.setAngle(0.0F);
-        card.drawScale = 0.12F;
-        card.targetDrawScale = 0.75F;
-        card.current_x = CardGroup.DRAW_PILE_X;
-        card.current_y = CardGroup.DRAW_PILE_Y;
+        card.unfadeOut();
+        card.targetAngle = 0;
+
+        if (showEffect)
+        {
+            card.target_x = card_X;
+            card.target_y = card_Y;
+            UpdateCard();
+        }
 
         sourcePile.removeCard(card);
         targetPile.addToTop(card);
     }
+
+    protected void ShowCard()
+    {
+        if (card.drawScale < 0.3f)
+        {
+            card.targetDrawScale = 0.75f;
+        }
+
+        card.untip();
+        card.unhover();
+        card.unfadeOut();
+        card.target_x = card_X;
+        card.target_y = card_Y;
+        card.targetAngle = 0;
+        UpdateCard();
+    }
+
+    protected void UpdateCard()
+    {
+        if (player.hoveredCard == card)
+        {
+            player.releaseCard();
+        }
+
+        card.target_x = card_X;
+        card.target_y = card_Y;
+        card.hoverTimer = 0.5f;
+        card.update();
+    }
+
+    protected final static OnPhaseChangedSubscriber HandLayoutRefresher = new OnPhaseChangedSubscriber()
+    {
+        @Override
+        public void OnPhaseChanged(GameActionManager.Phase phase)
+        {
+            if (phase == GameActionManager.Phase.WAITING_ON_USER)
+            {
+                CardGroup hand = AbstractDungeon.player.hand;
+                hand.refreshHandLayout();
+                hand.applyPowers();
+                hand.glowCheck();
+                PlayerStatistics.onPhaseChanged.Unsubscribe(this);
+            }
+        }
+    };
 }

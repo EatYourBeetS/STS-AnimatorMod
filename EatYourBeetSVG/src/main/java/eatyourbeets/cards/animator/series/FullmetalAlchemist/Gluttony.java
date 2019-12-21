@@ -50,16 +50,9 @@ public class Gluttony extends AnimatorCard
     {
         if (p.drawPile.size() >= magicNumber)
         {
-            for (int i = magicNumber-1; i >= 0; i--)
-            {
-                AbstractCard card = p.drawPile.getNCardFromTop(i);
-                float target_x = Settings.WIDTH * (0.3f + (i * 0.02f));
-                float target_y = Settings.HEIGHT * (0.4f + (i * 0.02f));
-
-                GameActions.Top.Exhaust(card, p.drawPile)
-                .SetCardPosition(target_x, target_y);
-                GameActions.Top.WaitRealtime(0.2f);
-            }
+            GameActions.Top.MoveCards(p.exhaustPile, p.drawPile, magicNumber)
+            .ShowEffect(true, true)
+            .SetOptions(false, true);
 
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.GainForce(magicNumber);

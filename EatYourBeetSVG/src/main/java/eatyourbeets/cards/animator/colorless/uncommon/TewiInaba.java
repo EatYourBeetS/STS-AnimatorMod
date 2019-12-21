@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.colorless;
+package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.TriggerPassiveAction;
 import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;

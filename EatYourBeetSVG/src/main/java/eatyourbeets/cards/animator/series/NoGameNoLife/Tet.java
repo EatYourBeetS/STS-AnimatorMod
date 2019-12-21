@@ -69,7 +69,7 @@ public class Tet extends AnimatorCard
         {
             for (AbstractCard card : cards)
             {
-                GameActions.Top.MoveCard(card, AbstractDungeon.player.discardPile, false);
+                GameActions.Top.MoveCard(card, AbstractDungeon.player.discardPile);
             }
         });
     }
@@ -83,7 +83,7 @@ public class Tet extends AnimatorCard
         {
             for (AbstractCard card : cards)
             {
-                GameActions.Top.MoveCard(card, AbstractDungeon.player.drawPile, false);
+                GameActions.Top.MoveCard(card, AbstractDungeon.player.drawPile);
             }
         });
     }

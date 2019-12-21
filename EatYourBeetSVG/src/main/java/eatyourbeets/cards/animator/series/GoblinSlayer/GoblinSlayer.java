@@ -1,10 +1,11 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.basic.MoveCards;
+import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.animator.CreateRandomGoblins;
@@ -60,16 +61,15 @@ public class GoblinSlayer extends AnimatorCard
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (AbstractDungeon.player.exhaustPile.size() * 3));
+        return super.calculateModifiedCardDamage(player, mo, tmp + (player.exhaustPile.size() * 3));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActions.Top.Add(new MoveCards(p.exhaustPile, p.discardPile)
-        .SetFilter(GameUtilities::IsCurseOrStatus));
-        GameActions.Top.Add(new MoveCards(p.exhaustPile, p.hand)
-        .SetFilter(GameUtilities::IsCurseOrStatus));
+        MoveCards(p.discardPile, p.exhaustPile);
+        MoveCards(p.hand, p.exhaustPile);
+
         GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
     }
 
@@ -79,6 +79,21 @@ public class GoblinSlayer extends AnimatorCard
         if (TryUpgrade())
         {
             upgradeBaseCost(1);
+        }
+    }
+
+    private void MoveCards(CardGroup source, CardGroup destination)
+    {
+        float duration = 0.3f;
+
+        for (AbstractCard card : source.group)
+        {
+            if (GameUtilities.IsCurseOrStatus(card))
+            {
+                GameActions.Top.MoveCard(card, destination, source)
+                .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
+                .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ package eatyourbeets.console;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import eatyourbeets.cards.animator.colorless.QuestionMark;
+import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.DynamicCard;
 import eatyourbeets.cards.base.DynamicCardBuilder;

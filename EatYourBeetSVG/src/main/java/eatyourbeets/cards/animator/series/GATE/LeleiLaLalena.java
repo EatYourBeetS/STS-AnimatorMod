@@ -48,7 +48,8 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
             GameActions.Bottom.ApplyWeak(p, m, 1);
         }
 
-        GameActions.Bottom.DiscardFromHand(name, 1, !upgraded).ShowEffect(!upgraded)
+        GameActions.Bottom.DiscardFromHand(name, 1, !upgraded)
+        .ShowEffect(!upgraded, !upgraded)
         .SetOptions(false, false, false)
         .AddCallback(__ ->
         {

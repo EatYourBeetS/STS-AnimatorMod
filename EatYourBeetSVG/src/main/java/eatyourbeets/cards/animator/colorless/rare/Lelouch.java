@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.colorless;
+package eatyourbeets.cards.animator.colorless.rare;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -29,7 +29,8 @@ public class Lelouch extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Top.ExhaustFromHand(name, magicNumber, true).ShowEffect(true);
+        GameActions.Top.ExhaustFromHand(name, magicNumber, true).ShowEffect(true, true)
+        .SetOptions(true, true, true);
 
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
         GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");

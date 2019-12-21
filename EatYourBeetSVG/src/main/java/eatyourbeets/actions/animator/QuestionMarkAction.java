@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.animator.colorless.QuestionMark;
+import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.JavaUtilities;
 

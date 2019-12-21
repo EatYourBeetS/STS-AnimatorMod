@@ -37,7 +37,8 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.MoveCard(this, AbstractDungeon.player.hand, true);
+            GameActions.Bottom.MoveCard(this, AbstractDungeon.player.hand)
+            .ShowEffect(true, true);
             GameActions.Bottom.GainAgility(magicNumber);
         }
     }

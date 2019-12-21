@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class ExhaustFromPile extends SelectFromPile
 {
+    protected boolean realtime = false;
     protected boolean showEffect = false;
 
     public ExhaustFromPile(String sourceName, int amount, CardGroup... groups)
@@ -17,9 +18,10 @@ public class ExhaustFromPile extends SelectFromPile
         super(ActionType.EXHAUST, sourceName, amount, groups);
     }
 
-    public ExhaustFromPile ShowEffect(boolean showEffect)
+    public ExhaustFromPile ShowEffect(boolean showEffect, boolean isRealtime)
     {
         this.showEffect = showEffect;
+        this.realtime = isRealtime;
 
         return this;
     }
@@ -30,10 +32,10 @@ public class ExhaustFromPile extends SelectFromPile
         ArrayList<MoveCard> actions = new ArrayList<>();
         for (AbstractCard card : result)
         {
-            MoveCard action = new MoveCard(card, player.exhaustPile, showEffect);
+            MoveCard action = new MoveCard(card, player.exhaustPile);
             if (showEffect)
             {
-                GameActions.Top.Add(action);
+                GameActions.Top.Add(action).ShowEffect(showEffect, realtime);
             }
             else
             {

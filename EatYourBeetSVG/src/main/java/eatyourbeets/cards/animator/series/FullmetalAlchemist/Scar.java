@@ -30,8 +30,8 @@ public class Scar extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        GameActions.Top.Add(new RefreshHandLayout());
-        GameActions.Top.ExhaustFromHand(name, 1, true).ShowEffect(true);
+        GameActions.Top.ExhaustFromHand(name, 1, true)
+        .ShowEffect(true, true);
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F))

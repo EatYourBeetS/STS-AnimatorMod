@@ -41,34 +41,36 @@ public class JavaUtilities
 
     public static MethodInfo GetPrivateMethod(String methodName, Class<?> type, Class<?>... parameterTypes)
     {
-        java.lang.reflect.Method method = null;
         try
         {
-            method = type.getDeclaredMethod(methodName, parameterTypes);
+            java.lang.reflect.Method method = type.getDeclaredMethod(methodName, parameterTypes);
             method.setAccessible(true);
+
+            return new MethodInfo(method);
         }
         catch (NoSuchMethodException e)
         {
             e.printStackTrace();
-        }
 
-        return new MethodInfo(method);
+            return null;
+        }
     }
 
     public static <T> FieldInfo<T> GetPrivateField(String fieldName, Class<?> type)
     {
-        java.lang.reflect.Field field = null;
         try
         {
-            field = type.getDeclaredField(fieldName);
+            java.lang.reflect.Field field = type.getDeclaredField(fieldName);
             field.setAccessible(true);
+
+            return new FieldInfo<>(field);
         }
         catch (NoSuchFieldException e)
         {
             e.printStackTrace();
-        }
 
-        return new FieldInfo<>(field);
+            return null;
+        }
     }
 
     public static <T> ArrayList<T> Filter(ArrayList<T> list, Predicate<T> predicate)

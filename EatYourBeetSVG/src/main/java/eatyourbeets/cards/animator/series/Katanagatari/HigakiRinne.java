@@ -78,7 +78,7 @@ public class HigakiRinne extends AnimatorCard
             AbstractPlayer p = AbstractDungeon.player;
 
             GameActions.Top.Draw(1);
-            GameActions.Top.MoveCard(this, p.discardPile, p.hand, false);
+            GameActions.Top.MoveCard(this, p.discardPile, p.hand);
             GameActions.Top.WaitRealtime(0.3f);
         }
         else if (n < 45)

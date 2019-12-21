@@ -33,23 +33,9 @@ public class Guy extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActions.Bottom.Callback(__ ->
-            {
-                AbstractPlayer player = AbstractDungeon.player;
-                int max = Math.min(player.drawPile.size(), secondaryValue);
-                for (int i = secondaryValue-1; i >= 0; i--)
-                {
-                    AbstractCard card = player.drawPile.getNCardFromTop(i);
-                    float target_x = Settings.WIDTH * (0.35f + (i * 0.05f));
-                    float target_y = Settings.HEIGHT * (0.45f + (i * 0.05f));
-
-                    //GameEffects.Queue.ShowCardBriefly(card.makeStatEquivalentCopy(), target_x, target_y);
-
-                    GameActions.Top.Discard(card, player.drawPile)
-                    .SetCardPosition(target_x, target_y);
-                    GameActions.Top.WaitRealtime(0.15f);
-                }
-            });
+            GameActions.Bottom.MoveCards(p.discardPile, p.drawPile, secondaryValue)
+            .ShowEffect(true, true)
+            .SetOptions(false, true);
         }
     }
 

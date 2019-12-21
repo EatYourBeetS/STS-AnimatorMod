@@ -124,7 +124,8 @@ public final class Examples extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Top.MoveCard(cards.get(0), AbstractDungeon.player.drawPile, true);
+                GameActions.Top.MoveCard(cards.get(0), AbstractDungeon.player.drawPile)
+                .ShowEffect(false, false);
             }
         });
 

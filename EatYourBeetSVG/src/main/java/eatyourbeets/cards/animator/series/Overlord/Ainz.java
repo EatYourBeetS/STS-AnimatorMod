@@ -47,7 +47,13 @@ public class Ainz extends AnimatorCard
     {
         if (TryUpgrade())
         {
+            int previousCost = cost;
+            int previousCostForTurn = costForTurn;
+
             upgradeBaseCost(6);
+
+            cost = Math.max(0, previousCost - 1);
+            costForTurn = Math.max(0, previousCostForTurn - 1);
         }
     }
 }

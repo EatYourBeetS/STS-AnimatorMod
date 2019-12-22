@@ -301,6 +301,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         }
         else
         {
+            CardCrawlGame.sound.play("CARD_OBTAIN");
             sourcePile.moveToHand(card, sourcePile);
             card.triggerWhenDrawn();
         }

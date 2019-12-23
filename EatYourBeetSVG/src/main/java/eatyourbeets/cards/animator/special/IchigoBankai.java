@@ -14,6 +14,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
 {
@@ -50,15 +51,7 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (this.energyOnUse < EnergyPanel.totalCount)
-        {
-            this.energyOnUse = EnergyPanel.totalCount;
-        }
-
-        if (!this.freeToPlayOnce)
-        {
-            p.energy.use(EnergyPanel.totalCount);
-        }
+        GameUtilities.UseEnergyXCost(this);
 
         if (damage > 0)
         {

@@ -27,38 +27,22 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        int amount = GameUtilities.UseEnergyXCost(this);
+        if (upgraded)
+        {
+            amount += 1;
+        }
+        if (amount > 0)
+        {
+            GameActions.Bottom.GainStrength(amount);
+        }
+
         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
             if (!enemy.hasPower(StunMonsterPower.POWER_ID))
             {
                 GameActions.Bottom.ApplyPower(p, enemy, new StunMonsterPower(enemy, 1), 1);
             }
-        }
-
-        if (this.energyOnUse < EnergyPanel.totalCount)
-        {
-            this.energyOnUse = EnergyPanel.totalCount;
-        }
-
-        int amount = energyOnUse;
-        if (upgraded)
-        {
-            amount += 1;
-        }
-
-        if (p.hasRelic(ChemicalX.ID))
-        {
-            amount += ChemicalX.BOOST;
-        }
-
-        if (!this.freeToPlayOnce)
-        {
-            p.energy.use(EnergyPanel.totalCount);
-        }
-
-        if (amount > 0)
-        {
-            GameActions.Bottom.GainStrength(amount);
         }
     }
 

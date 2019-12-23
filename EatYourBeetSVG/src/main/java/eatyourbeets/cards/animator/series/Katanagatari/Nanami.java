@@ -10,6 +10,7 @@ import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.NanamiEffects.*;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Nanami extends AnimatorCard
 {
@@ -61,12 +62,7 @@ public class Nanami extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        this.energyOnUse = EnergyPanel.totalCount;
-        if (p.hasRelic(ChemicalX.ID))
-        {
-            // This should be illegal
-            this.energyOnUse += ChemicalX.BOOST;
-        }
+        GameUtilities.UseEnergyXCost(this);
 
         switch (m.intent)
         {
@@ -135,11 +131,6 @@ public class Nanami extends AnimatorCard
             default:
                 NanamiEffect_Magic.Execute(p, m, this);
                 break;
-        }
-
-        if (!this.freeToPlayOnce)
-        {
-            p.energy.use(EnergyPanel.totalCount);
         }
     }
 

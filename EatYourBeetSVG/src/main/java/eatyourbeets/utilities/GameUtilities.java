@@ -19,8 +19,11 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.ultrarare.SeriousSaitama;
 import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
 import eatyourbeets.orbs.Aether;
 import eatyourbeets.orbs.Earth;
@@ -652,6 +655,25 @@ public class GameUtilities
     public static void RefreshHandLayout()
     {
         PlayerStatistics.onPhaseChanged.Subscribe(HandLayoutRefresher);
+    }
+
+    public static int UseEnergyXCost(AbstractCard card)
+    {
+        int amount = card.energyOnUse = EnergyPanel.getCurrentEnergy();
+
+        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
+        {
+            amount += ChemicalX.BOOST;
+        }
+
+        if (!card.freeToPlayOnce && !card.ignoreEnergyOnUse)
+        {
+            EnergyPanel.useEnergy(card.energyOnUse);
+        }
+
+        RefreshHandLayout();
+
+        return amount;
     }
 
     private final static OnPhaseChangedSubscriber HandLayoutRefresher = new OnPhaseChangedSubscriber()

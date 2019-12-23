@@ -55,7 +55,7 @@ public class Tyuule extends AnimatorCard implements OnStartOfTurnSubscriber
     {
         if (TryUpgrade())
         {
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(2);
         }
     }
 

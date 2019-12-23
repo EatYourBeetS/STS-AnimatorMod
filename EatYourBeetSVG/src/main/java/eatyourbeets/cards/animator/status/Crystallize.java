@@ -14,9 +14,9 @@ public class Crystallize extends AnimatorCard_Status
     {
         super(ID, 1, CardRarity.UNCOMMON, CardTarget.NONE);
 
-        this.exhaust = true;
+        Initialize(0, 0, 4, 3);
 
-        Initialize(0, 0, 4, 6);
+        SetExhaust(true);
     }
 
     @Override
@@ -31,9 +31,9 @@ public class Crystallize extends AnimatorCard_Status
         if (!this.dontTriggerOnUseCard)
         {
             GameActions.Bottom.SFX("ORB_FROST_Evoke", 0.2F);
-            GameActions.Bottom.LoseHP(secondaryValue/2, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+            GameActions.Bottom.LoseHP(secondaryValue, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
             GameActions.Bottom.GainMetallicize(this.magicNumber);
-            GameActions.Bottom.LoseHP(secondaryValue/2, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+            GameActions.Bottom.LoseHP(secondaryValue, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         }
     }
 }

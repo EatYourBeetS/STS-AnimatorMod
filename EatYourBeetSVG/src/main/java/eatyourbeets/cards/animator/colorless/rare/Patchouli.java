@@ -142,7 +142,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
     private DealDamageToRandomEnemy CreateDamageAction()
     {
         return GameActions.Bottom.DealDamageToRandomEnemy(baseDamage + Spellcaster.GetScaling(),
-        damageTypeForTurn, AbstractGameAction.AttackEffect.NONE).SetOptions2(true, false);
+        damageTypeForTurn, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
     }
 
     @Override

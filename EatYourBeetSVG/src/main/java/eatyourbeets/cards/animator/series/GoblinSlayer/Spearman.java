@@ -29,7 +29,7 @@ public class Spearman extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL)
-        .SetOptions(true, true)
+        .SetPiercing(true, true)
         .AddCallback(enemy ->
         {
             if (GameUtilities.TriggerOnKill(enemy, true) && EffectHistory.TryActivateLimited(cardID))

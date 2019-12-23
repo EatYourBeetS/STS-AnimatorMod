@@ -32,7 +32,7 @@ public class AetherOrbPassiveAction extends EYBAction
             if (actualDamage > 0)
             {
                 GameActions.Top.DealDamage(player, m, actualDamage, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HORIZONTAL)
-                .SetOptions(true, true);
+                .SetPiercing(true, true);
             }
         }
 

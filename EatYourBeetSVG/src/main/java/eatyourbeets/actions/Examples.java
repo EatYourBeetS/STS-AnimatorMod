@@ -64,8 +64,8 @@ public final class Examples extends AnimatorCard
 
         // Deal Damage also has Options and Callbacks:
         GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE)
-        .SetOptions(true, true)
-        .SetOptions2(false, false)
+        .SetPiercing(true, true)
+        .SetOptions(false, false)
         .SetDamageEffect(enemy -> GameEffects.List.Add(new BiteEffect(enemy.hb_x, enemy.hb_y)))
         .AddCallback(enemy ->
         {

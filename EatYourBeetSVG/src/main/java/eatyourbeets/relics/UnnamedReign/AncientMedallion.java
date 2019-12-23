@@ -13,17 +13,19 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
+import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.JavaUtilities;
 import patches.AbstractEnums;
-import patches.RelicObtainedPatches;
 
-public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber
+public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber, OnRelicObtainedSubscriber
 {
     public static final String ID = CreateFullID(AncientMedallion.class.getSimpleName());
 
     private static final int HEAL_AMOUNT = 4;
+    private static final int MULTI_UPGRADE = 2;
 
     private int equipCounter;
     private boolean event;
@@ -127,24 +129,19 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         this.flash();
     }
 
-    public static void OnRelicReceived(AbstractRelic relic, RelicObtainedPatches.Trigger trigger)
+    public void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
-        if (trigger == RelicObtainedPatches.Trigger.Equip && relic instanceof AncientMedallion)
+        if (trigger == OnRelicObtainedSubscriber.Trigger.Equip && relic instanceof AncientMedallion)
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            AncientMedallion ancientMedallion = (AncientMedallion) p.getRelic(AncientMedallion.ID);
-            if (ancientMedallion != null)
+            if (this != relic)
             {
-                if (ancientMedallion != relic)
-                {
-                    int equipCounter = ((AncientMedallion) relic).equipCounter;
-                    AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(ancientMedallion, relic, equipCounter));
-                    ancientMedallion.equipCounter = equipCounter;
-                    ancientMedallion.flash();
-                }
-
-                ancientMedallion.onManualEquip();
+                int equipCounter = ((AncientMedallion) relic).equipCounter;
+                AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, relic, equipCounter));
+                this.equipCounter = equipCounter;
+                this.flash();
             }
+
+            this.onManualEquip();
         }
     }
 
@@ -239,23 +236,20 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         {
             AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 
-            AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-
-            if (c.canUpgrade())
+            for (int i = 0; i < MULTI_UPGRADE; i++)
             {
-                c.upgrade();
-            }
-
-            if (c.canUpgrade())
-            {
-                c.upgrade();
+                if (c.canUpgrade())
+                {
+                    c.upgrade();
+                }
             }
 
             AbstractDungeon.player.bottledCardUpgradeCheck(c);
-            AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
-
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             awaitingInput = false;
+
+            GameEffects.Queue.Add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            GameEffects.Queue.ShowCardBriefly(c.makeStatEquivalentCopy());
 
             return true;
         }

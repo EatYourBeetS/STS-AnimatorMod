@@ -39,7 +39,7 @@ public class LightningWispPower extends AnimatorPower
             GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
             GameActions.Bottom.VFX(new LightningEffect(c.drawX, c.drawY));
             GameActions.Bottom.DealDamage(owner, c, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
-                    .SetOptions(true, true);
+                    .SetPiercing(true, true);
         }
     }
 }

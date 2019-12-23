@@ -15,17 +15,18 @@ import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.animator.Readme;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
-import patches.RelicObtainedPatches;
+import eatyourbeets.utilities.GameEffects;
 import patches.StoreRelicPatch;
 
 import java.util.ArrayList;
 
-public class Gilgamesh extends AnimatorCard
+public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 {
     public static final String ID = Register(Gilgamesh.class.getSimpleName(), EYBCardBadge.Special);
     public static final int GOLD_REWARD = 25;
@@ -36,13 +37,13 @@ public class Gilgamesh extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(3,0, 3, GOLD_REWARD);
+        Initialize(3, 0, 3, GOLD_REWARD);
 
         SetUnique(true);
         SetSynergy(Synergies.Fate);
     }
 
-    public static void OnRelicReceived(AbstractRelic relic, RelicObtainedPatches.Trigger trigger)
+    public void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
         if (lastRelicObtained != relic)
         {
@@ -69,6 +70,8 @@ public class Gilgamesh extends AnimatorCard
             ArrayList<AbstractCard> deck = player.masterDeck.group;
             if (deck != null && deck.size() > 0)
             {
+                float pos_x = (float) Settings.WIDTH / 4.0F;
+                float pos_y = (float) Settings.HEIGHT / 2.0F;
                 boolean effectPlayed = false;
                 for (AbstractCard c : deck)
                 {
@@ -76,12 +79,14 @@ public class Gilgamesh extends AnimatorCard
                     {
                         c.upgrade();
                         AbstractDungeon.player.bottledCardUpgradeCheck(c);
+
                         if (!effectPlayed)
                         {
                             effectPlayed = true;
-                            AbstractDungeon.effectsQueue.add(new UpgradeShineEffect((float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
-                            AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy(), (float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
+                            GameEffects.Queue.Add(new UpgradeShineEffect(pos_x, pos_y));
+                            GameEffects.Queue.ShowCardBriefly(c.makeStatEquivalentCopy(), pos_x, pos_y);
                         }
+
                         AbstractDungeon.player.gainGold(Gilgamesh.GOLD_REWARD);
                     }
                 }
@@ -96,7 +101,7 @@ public class Gilgamesh extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (timesUpgraded >= 8)
         {

@@ -40,7 +40,7 @@ public class Shigure extends AnimatorCard
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(enemy -> GameEffects.List.Add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx())))
-        .SetOptions(true, true);
+        .SetPiercing(true, true);
 
         if (HasActiveSynergy())
         {

@@ -6,27 +6,20 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.metrics.MetricData;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.select.BossRelicSelectScreen;
-import eatyourbeets.cards.animator.series.Fate.Gilgamesh;
-import eatyourbeets.relics.animator.ExquisiteBloodVial;
+import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.UnnamedReign.AncientMedallion;
 import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
 
 public class RelicObtainedPatches
 {
-    public enum Trigger
+    private static void OnRelicObtain(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
-        Equip,
-        Obtain,
-        BossChest,
-        MetricData
-    }
-
-    private static void OnRelicObtain(AbstractRelic relic, Trigger trigger)
-    {
-        Gilgamesh.OnRelicReceived(relic, trigger);
-        ExquisiteBloodVial.OnRelicReceived(relic, trigger);
-        AncientMedallion.OnRelicReceived(relic, trigger);
-        UnnamedReignRelic.OnRelicReceived(relic, trigger);
+        PlayerStatistics.OnRelicObtained(relic, trigger);
+        //Gilgamesh.OnRelicReceived(relic, trigger);
+        //ExquisiteBloodVial.OnRelicReceived(relic, trigger);
+        //AncientMedallion.OnRelicObtained(relic, trigger);
+        UnnamedReignRelic.OnRelicObtained(relic, trigger);
     }
 
     @SpirePatch(clz = AbstractRelic.class, method = "onEquip")
@@ -35,7 +28,7 @@ public class RelicObtainedPatches
         @SpirePostfixPatch
         public static void Postfix(AbstractRelic relic)
         {
-            OnRelicObtain(relic, Trigger.Equip);
+            OnRelicObtain(relic, OnRelicObtainedSubscriber.Trigger.Equip);
         }
     }
 
@@ -45,7 +38,7 @@ public class RelicObtainedPatches
         @SpirePrefixPatch
         public static void Prefix(BossRelicSelectScreen __instance, AbstractRelic relic)
         {
-            OnRelicObtain(relic, Trigger.Obtain);
+            OnRelicObtain(relic, OnRelicObtainedSubscriber.Trigger.Obtain);
         }
     }
 
@@ -55,7 +48,7 @@ public class RelicObtainedPatches
         @SpirePostfixPatch
         public static void Postfix(AbstractRelic relic)
         {
-            OnRelicObtain(relic, Trigger.Obtain);
+            OnRelicObtain(relic, OnRelicObtainedSubscriber.Trigger.Obtain);
         }
     }
 
@@ -65,7 +58,7 @@ public class RelicObtainedPatches
         @SpirePrefixPatch
         public static void Prefix(MetricData __instance, AbstractRelic relic)
         {
-            OnRelicObtain(relic, Trigger.MetricData);
+            OnRelicObtain(relic, OnRelicObtainedSubscriber.Trigger.MetricData);
         }
     }
 }

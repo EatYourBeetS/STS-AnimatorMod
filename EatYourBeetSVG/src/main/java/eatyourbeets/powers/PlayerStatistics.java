@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.interfaces.*;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.ui.Void;
@@ -171,6 +172,25 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         for (OnShuffleSubscriber s : onShuffle.GetSubscribers())
         {
             s.OnShuffle(triggerRelics);
+        }
+    }
+
+    public static void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
+    {
+        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+        {
+            if (c instanceof OnRelicObtainedSubscriber)
+            {
+                ((OnRelicObtainedSubscriber)c).OnRelicObtained(relic, trigger);
+            }
+        }
+
+        for (AbstractRelic r : AbstractDungeon.player.relics)
+        {
+            if (r instanceof OnRelicObtainedSubscriber)
+            {
+                ((OnRelicObtainedSubscriber)r).OnRelicObtained(relic, trigger);
+            }
         }
     }
 

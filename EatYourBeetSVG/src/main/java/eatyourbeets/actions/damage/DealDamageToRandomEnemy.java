@@ -51,7 +51,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         return this;
     }
 
-    public DealDamageToRandomEnemy SetOptions(boolean bypassThorns, boolean bypassBlock)
+    public DealDamageToRandomEnemy SetPiercing(boolean bypassThorns, boolean bypassBlock)
     {
         this.bypassBlock = bypassBlock;
         this.bypassThorns = bypassThorns;
@@ -59,7 +59,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         return this;
     }
 
-    public DealDamageToRandomEnemy SetOptions2(boolean superFast, boolean isOrb)
+    public DealDamageToRandomEnemy SetOptions(boolean superFast, boolean isOrb)
     {
         this.skipWait = superFast;
         this.isOrb = isOrb;

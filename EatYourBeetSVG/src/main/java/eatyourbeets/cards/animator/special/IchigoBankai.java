@@ -64,7 +64,7 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
         {
             GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.LIGHT_GRAY));
             GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.LIGHT_GRAY, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.75F);
-            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).SetOptions(true, true);
+            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).SetPiercing(true, true);
         }
     }
 

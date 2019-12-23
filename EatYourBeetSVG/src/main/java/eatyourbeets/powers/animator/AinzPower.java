@@ -232,7 +232,7 @@ public class AinzPower extends AnimatorPower
                         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
                         {
                             GameActions.Bottom.DealDamage(c, enemy, AbstractGameAction.AttackEffect.FIRE)
-                                    .SetOptions(true, false);
+                                    .SetPiercing(true, false);
                         }
                         GameUtilities.UsePenNib();
                     });

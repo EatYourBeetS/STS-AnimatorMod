@@ -50,6 +50,6 @@ public class LightningCubePower extends AnimatorPower
         GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
         GameActions.Bottom.VFX(new LightningEffect(target.drawX, target.drawY));
         GameActions.Bottom.DealDamage(owner, target, amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
-        .SetOptions(true, true);
+        .SetPiercing(true, true);
     }
 }

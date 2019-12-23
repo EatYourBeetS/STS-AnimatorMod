@@ -46,7 +46,7 @@ public class Layla extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT).SetOptions(true, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT).SetPiercing(true, true);
         GameActions.Bottom.Reload(name, cards ->
         {
             if (cards.size() > 0)

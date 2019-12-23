@@ -40,7 +40,7 @@ public class Aisha extends AnimatorCard implements Spellcaster
         for (int i = 0; i < max; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
-            .SetOptions2(true, false)
+            .SetOptions(true, false)
             .SetDamageEffect(enemy -> AbstractDungeon.effectsQueue.add(new SmallLaser2Effect
             (AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY,
             enemy.hb.cX + MathUtils.random(-0.05F, 0.05F),

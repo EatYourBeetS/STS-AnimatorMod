@@ -37,7 +37,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         super.triggerOnManualDiscard();
 
         GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(this.magicNumber, false),
-        damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE).SetOptions(true, false);
+        damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE).SetPiercing(true, false);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         this.calculateCardDamage(target);
 
         GameActions.Bottom.DealDamage(this, target, AbstractGameAction.AttackEffect.FIRE)
-            .SetOptions(true, false);
+            .SetPiercing(true, false);
 
         WeightedList<AbstractPower> debuffs = GetRandomDebuffs(p, target);
         for (int i = 0; i < secondaryValue; i++)

@@ -31,7 +31,7 @@ public class EarthOrbEvokeAction extends EYBAction
             for (int i = 0; i < DAMAGE_TICKS; i++)
             {
                 GameActions.Top.DealDamageToRandomEnemy(amount, damageType, rng.randomBoolean() ? AttackEffect.SMASH : AttackEffect.BLUNT_LIGHT)
-                .SetOptions2(true, true);
+                .SetOptions(true, true);
             }
         }
 

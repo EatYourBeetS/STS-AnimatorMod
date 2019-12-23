@@ -50,7 +50,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         return this;
     }
 
-    public DealDamage SetOptions(boolean bypassThorns, boolean bypassBlock)
+    public DealDamage SetPiercing(boolean bypassThorns, boolean bypassBlock)
     {
         this.bypassBlock = bypassBlock;
         this.bypassThorns = bypassThorns;
@@ -58,7 +58,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         return this;
     }
 
-    public DealDamage SetOptions2(boolean superFast, boolean muteSfx)
+    public DealDamage SetOptions(boolean superFast, boolean muteSfx)
     {
         this.skipWait = superFast;
         this.muteSfx = muteSfx;

@@ -176,7 +176,7 @@
 	},
 	"animator:Crystallize":
 	{
-		"DESCRIPTION": "失去 !SV! 生命。 NL 获得 !M! 层 金属化 。 消耗 。",
+		"DESCRIPTION": "失去 !SV! 生命 两次。 NL 获得 !M! 层 金属化 。 消耗 。",
 		"NAME": "晶体化"
 	},
 	"animator:Cthulhu":

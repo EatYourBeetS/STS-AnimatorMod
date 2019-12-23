@@ -30,7 +30,7 @@ public class Kazuma extends AnimatorCard
         if (HasActiveSynergy())
         {
             GameActions.Bottom.DealDamageToRandomEnemy(magicNumber, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
-            .SetOptions(true, false);
+            .SetPiercing(true, false);
         }
     }
 

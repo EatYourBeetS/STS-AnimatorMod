@@ -44,7 +44,7 @@ public class ItamiYouji extends AnimatorCard
             {
                 GameActions.Bottom.SFX("ATTACK_FIRE");
                 GameActions.Bottom.DealDamage(this, (AbstractCreature) enemy, AbstractGameAction.AttackEffect.NONE)
-                .SetOptions(true, true);
+                .SetPiercing(true, true);
             }
         });
     }

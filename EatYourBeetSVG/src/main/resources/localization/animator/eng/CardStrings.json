@@ -176,7 +176,7 @@
 	},
 	"animator:Crystallize":
 	{
-		"DESCRIPTION": "Lose !SV! HP. NL Gain !M! Metallicize. NL Exhaust.",
+		"DESCRIPTION": "Lose !SV! HP twice. NL Gain !M! Metallicize. NL Exhaust.",
 		"NAME": "Crystallize"
 	},
 	"animator:Cthulhu":

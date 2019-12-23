@@ -52,7 +52,7 @@ public class Cirno extends AnimatorCard
         });
 
         GameActions.Bottom.ChannelOrb(new Frost(), true);
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetOptions2(true, false);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetOptions(true, false);
     }
 
     @Override

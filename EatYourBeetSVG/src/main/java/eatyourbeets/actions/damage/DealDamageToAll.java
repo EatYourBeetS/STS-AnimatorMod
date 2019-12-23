@@ -50,7 +50,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         return this;
     }
 
-    public DealDamageToAll SetOptions(boolean bypassThorns, boolean bypassBlock)
+    public DealDamageToAll SetPiercing(boolean bypassThorns, boolean bypassBlock)
     {
         this.bypassBlock = bypassBlock;
         this.bypassThorns = bypassThorns;
@@ -58,7 +58,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         return this;
     }
 
-    public DealDamageToAll SetOptions2(boolean superFast, boolean muteSfx)
+    public DealDamageToAll SetOptions(boolean superFast, boolean muteSfx)
     {
         this.isFast = superFast;
         this.muteSfx = muteSfx;

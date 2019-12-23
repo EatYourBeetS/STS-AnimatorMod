@@ -98,7 +98,7 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
         super.update();
 
         if (HitboxRightClick.rightClicked.get(this.hb) && !GameUtilities.InBattle() &&
-                AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID && bannedCards.size() > 0)
+            AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID && bannedCards.size() > 0)
         {
             CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 

@@ -16,6 +16,7 @@ import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.effects.utility.SequentialEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
 import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
+import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
@@ -23,7 +24,6 @@ import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
-import patches.RelicObtainedPatches;
 
 import java.util.ArrayList;
 
@@ -107,9 +107,9 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
     protected abstract void OnManualEquip();
 
-    public static void OnRelicReceived(AbstractRelic relic, RelicObtainedPatches.Trigger trigger)
+    public static void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
-        if (trigger != RelicObtainedPatches.Trigger.Equip)
+        if (trigger != OnRelicObtainedSubscriber.Trigger.Equip)
         {
             return;
         }

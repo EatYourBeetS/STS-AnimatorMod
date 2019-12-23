@@ -36,7 +36,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         return this;
     }
 
-    public MakeTempCard SetOptions2(boolean randomSpot, boolean toBottom)
+    public MakeTempCard SetDestination(boolean randomSpot, boolean toBottom)
     {
         this.randomSpot = randomSpot;
         this.toBottom = toBottom;

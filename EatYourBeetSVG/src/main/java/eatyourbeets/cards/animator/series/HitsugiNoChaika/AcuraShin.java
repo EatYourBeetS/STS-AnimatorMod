@@ -27,8 +27,8 @@ public class AcuraShin extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetOptions(true, true);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetOptions(true, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetPiercing(true, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetPiercing(true, true);
         GameActions.Bottom.StackPower(new PoisonAffinityPower(p, 1));
     }
 

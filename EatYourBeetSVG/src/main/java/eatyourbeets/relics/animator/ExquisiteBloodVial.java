@@ -12,14 +12,15 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.BloodVial;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
+import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.monsters.Bosses.KrulTepes;
-import patches.RelicObtainedPatches;
 
-public class ExquisiteBloodVial extends AnimatorRelic
+public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtainedSubscriber
 {
     private static final int HEAL_AMOUNT = 2;
 
@@ -35,22 +36,11 @@ public class ExquisiteBloodVial extends AnimatorRelic
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
     }
 
-    public static void OnRelicReceived(AbstractRelic relic, RelicObtainedPatches.Trigger trigger)
+    public void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
-        if (trigger == RelicObtainedPatches.Trigger.Equip && relic instanceof BloodVial)
+        if (trigger == OnRelicObtainedSubscriber.Trigger.Equip && relic instanceof BloodVial && truePotential)
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            ExquisiteBloodVial exquisiteBloodVial = (ExquisiteBloodVial) p.getRelic(ExquisiteBloodVial.ID);
-            if (exquisiteBloodVial != null && exquisiteBloodVial.truePotential)
-            {
-                AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(exquisiteBloodVial, relic, 1));
-
-//                AbstractDungeon.player.relics.remove(relic);
-//                exquisiteBloodVial.IncreaseCounter();
-                exquisiteBloodVial.flash();
-                //AbstractDungeon.player.reorganizeRelics();
-                //AbstractDungeon.topPanel.adjustRelicHbs();
-            }
+            GameEffects.Queue.Add(new RemoveRelicEffect(this, relic, 1));
         }
     }
 

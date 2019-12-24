@@ -544,6 +544,8 @@ public class GameUtilities
 
     public static void PlayCard(AbstractCard card, AbstractMonster m, boolean purge, boolean exhaust)
     {
+        RefreshHandLayout();
+
         AbstractDungeon.getCurrRoom().souls.remove(card);
         AbstractDungeon.player.limbo.group.add(card);
 
@@ -594,6 +596,8 @@ public class GameUtilities
 
     public static CardQueueItem PlayCopy(AbstractCard source, AbstractMonster m, boolean applyPowers)
     {
+        RefreshHandLayout();
+
         AbstractCard temp = source.makeSameInstanceOf();
         AbstractDungeon.player.limbo.addToBottom(temp);
         temp.current_x = source.current_x;

@@ -34,7 +34,7 @@ public class Random extends AnimatorCustomLoadout
         return null;
     }
 
-    public void OnTrueVictory(AnimatorCustomLoadout currentLoadout, int ascensionLevel)
+    public void OnVictory(AnimatorCustomLoadout currentLoadout, int ascensionLevel)
     {
         JavaUtilities.Logger.error("The random Loadout cannot reward trophies!");
     }

@@ -330,7 +330,7 @@ public abstract class AnimatorCustomLoadout
         }
     }
 
-    public void OnTrueVictory(AnimatorCustomLoadout currentLoadout, int ascensionLevel)
+    public void OnVictory(AnimatorCustomLoadout currentLoadout, int ascensionLevel)
     {
         if (trophies == null)
         {

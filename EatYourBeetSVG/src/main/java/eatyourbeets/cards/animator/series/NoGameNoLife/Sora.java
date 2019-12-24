@@ -45,14 +45,8 @@ public class Sora extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractCard c : p.drawPile.group)
-        {
-            if (Shiro.ID.equals(c.cardID))
-            {
-                GameActions.Top.MoveCard(c, p.hand, p.drawPile);
-                break;
-            }
-        }
+        GameActions.Top.Draw(1)
+        .SetFilter(c -> Shiro.ID.equals(c.cardID), false);
 
         GameActions.Bottom.Add(new WaitAction(0.4f));
         GameActions.Bottom.Add(new SoraAction(name, magicNumber));

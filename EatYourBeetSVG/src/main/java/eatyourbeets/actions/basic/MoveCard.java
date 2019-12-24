@@ -123,7 +123,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
             if (showEffect)
             {
-                GameEffects.List.Add(new RenderCardEffect(card, duration, isRealtime));
+                GameEffects.TopLevelList.Add(new RenderCardEffect(card, duration, isRealtime));
             }
         }
         else if (this.sourcePile.type == CardGroup.CardGroupType.DRAW_PILE)
@@ -133,7 +133,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
             if (showEffect)
             {
-                GameEffects.List.Add(new RenderCardEffect(card, duration, isRealtime));
+                GameEffects.TopLevelList.Add(new RenderCardEffect(card, duration, isRealtime));
             }
         }
         else if (this.sourcePile.type == CardGroup.CardGroupType.DISCARD_PILE)
@@ -143,7 +143,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
             if (showEffect)
             {
-                GameEffects.List.Add(new RenderCardEffect(card, duration, isRealtime));
+                GameEffects.TopLevelList.Add(new RenderCardEffect(card, duration, isRealtime));
             }
         }
 

@@ -79,15 +79,8 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        for (AbstractCard c : p.drawPile.group)
-        {
-            if (Sora.ID.equals(c.cardID))
-            {
-                GameActions.Top.MoveCard(c, p.hand, p.drawPile);
-
-                break;
-            }
-        }
+        GameActions.Top.Draw(1)
+        .SetFilter(c -> Sora.ID.equals(c.cardID), false);
 
         GameActions.Bottom.StackPower(new ShiroPower(p, 1));
     }

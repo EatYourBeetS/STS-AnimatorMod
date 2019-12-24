@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -52,8 +53,7 @@ public class Raven extends AnimatorCard
 
             if (selected != null)
             {
-                GameActions.Top.MoveCard(selected, p.hand, p.drawPile)
-                .ShowEffect(true, false);
+                GameActions.Top.Draw(selected);
             }
         }
     }

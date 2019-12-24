@@ -104,31 +104,26 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
         int hp = 100;
         if (info != null)
         {
-            hp = info.maxHp;
-        }
+            float startingHP = info.maxHp;
+            if (startingHP > 71)
+            {
+                startingHP = Math.max(71, startingHP * 0.95f);
+            }
+            else
+            {
+                startingHP = Math.min(71, startingHP * 1.05f);
+            }
 
-        if (hp <= 60)
-        {
-            hp = 80;
+            if (GameUtilities.GetActualAscensionLevel() >= 14)
+            {
+                hp = (int)Math.ceil(Math.min(999, startingHP * 1.3f));
+            }
+            else
+            {
+                hp = (int)Math.ceil(Math.min(999, startingHP * 1.4f));
+            }
         }
-        else if (hp <= 100)
-        {
-            hp = 100;
-        }
-        else if (hp <= 120)
-        {
-            hp = 120;
-        }
-        else if (hp < 999)
-        {
-            hp = 150;
-        }
-
-        if (hp < 999 && GameUtilities.GetActualAscensionLevel() >= 14)
-        {
-            hp = (int)Math.ceil(hp * 0.9);
-        }
-
+        
         return hp;
     }
 

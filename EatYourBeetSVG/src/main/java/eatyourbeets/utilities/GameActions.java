@@ -237,7 +237,7 @@ public final class GameActions
 
     public MoveCard Discard(AbstractCard card, CardGroup group)
     {
-        return Add(new MoveCard(card, AbstractDungeon.player.discardPile, group));
+        return MoveCard(card, AbstractDungeon.player.discardPile, group);
     }
 
     public DiscardFromHand DiscardFromHand(String sourceName, int amount, boolean isRandom)
@@ -255,14 +255,24 @@ public final class GameActions
         return Add(new DrawCards(amount));
     }
 
+    public MoveCard Draw(AbstractCard card)
+    {
+        final float cardX = CardGroup.DRAW_PILE_X * 1.5f;
+        final float cardY = CardGroup.DRAW_PILE_Y * 2f;
+
+        return MoveCard(card, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile)
+        .SetCardPosition(cardX, cardY)
+        .ShowEffect(true, false);
+    }
+
     public MoveCard Exhaust(AbstractCard card)
     {
-        return Add(new MoveCard(card, AbstractDungeon.player.exhaustPile));
+        return MoveCard(card, AbstractDungeon.player.exhaustPile);
     }
 
     public MoveCard Exhaust(AbstractCard card, CardGroup group)
     {
-        return Add(new MoveCard(card, AbstractDungeon.player.exhaustPile, group));
+        return MoveCard(card, AbstractDungeon.player.exhaustPile, group);
     }
 
     public ExhaustFromHand ExhaustFromHand(String sourceName, int amount, boolean isRandom)

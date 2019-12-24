@@ -30,9 +30,10 @@ public class DolaRikuAction extends EYBAction
         boolean status = card.type == AbstractCard.CardType.STATUS;
         boolean curse = card.type == AbstractCard.CardType.CURSE;
         boolean special = card.rarity == AbstractCard.CardRarity.SPECIAL;
+        boolean colorless = card.color == AbstractCard.CardColor.COLORLESS;
 
         AbstractCard.CardColor mainColor;
-        if (card.color == AbstractCard.CardColor.COLORLESS)
+        if (colorless)
         {
             mainColor = player.getCardColor();
         }
@@ -43,35 +44,36 @@ public class DolaRikuAction extends EYBAction
 
         RandomizedList<AbstractCard> sameRarity = new RandomizedList<>();
         ArrayList<AbstractCard> allCards = CardLibrary.getAllCards();
-        for (AbstractCard c : allCards)
+        for (AbstractCard temp : allCards)
         {
-            if (c.color == AbstractCard.CardColor.COLORLESS || c.color == AbstractCard.CardColor.CURSE || c.color == mainColor)
+            if (temp.cardID.equals(card.cardID) || temp.tags.contains(AbstractCard.CardTags.HEALING))
             {
-                if (!c.cardID.equals(card.cardID) && !c.tags.contains(AbstractCard.CardTags.HEALING))
+                continue;
+            }
+
+            if (temp.type == AbstractCard.CardType.CURSE)
+            {
+                if (curse)
                 {
-                    if (c.type == AbstractCard.CardType.CURSE)
-                    {
-                        if (curse)
-                        {
-                            sameRarity.Add(c.makeCopy());
-                        }
-                    }
-                    else if (c.type == AbstractCard.CardType.STATUS)
-                    {
-                        if (status)
-                        {
-                            sameRarity.Add(c.makeCopy());
-                        }
-                    }
-                    else if (special || c.rarity == card.rarity)
-                    {
-                        AbstractCard toAdd = c.makeCopy();
-                        if (card.upgraded && toAdd.canUpgrade())
-                        {
-                            toAdd.upgrade();
-                        }
-                        sameRarity.Add(toAdd);
-                    }
+                    sameRarity.Add(temp);
+                }
+            }
+            else if (temp.type == AbstractCard.CardType.STATUS)
+            {
+                if (status)
+                {
+                    sameRarity.Add(temp);
+                }
+            }
+            else if (special)
+            {
+                sameRarity.Add(temp);
+            }
+            else if (temp.rarity == card.rarity)
+            {
+                if (temp.color == mainColor || temp.color == AbstractCard.CardColor.COLORLESS)
+                {
+                    sameRarity.Add(temp);
                 }
             }
         }
@@ -81,7 +83,12 @@ public class DolaRikuAction extends EYBAction
         int max = Math.min(amount, sameRarity.Count());
         for (int i = 0; i < max; i++)
         {
-            cardGroup.group.add(sameRarity.Retrieve(AbstractDungeon.cardRandomRng));
+            AbstractCard toAdd = sameRarity.Retrieve(AbstractDungeon.cardRandomRng).makeCopy();
+            if (card.upgraded && toAdd.canUpgrade())
+            {
+                toAdd.upgrade();
+            }
+            cardGroup.group.add(toAdd);
         }
 
         AbstractDungeon.gridSelectScreen.open(cardGroup, 1, CreateMessage(), false);

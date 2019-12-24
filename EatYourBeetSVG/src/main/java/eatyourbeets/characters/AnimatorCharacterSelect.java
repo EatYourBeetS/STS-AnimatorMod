@@ -54,22 +54,22 @@ public class AnimatorCharacterSelect
         }
     }
 
-    public static void NextLoadout()
+    public static void OnVictory(int ascensionLevel)
     {
-        index += 1;
-        if (index >= customLoadouts.size())
+        if (ascensionLevel < 0) // Ascension reborn mod adds negative ascension levels
         {
-            index = 0;
+            return;
         }
-    }
 
-    public static void PreviousLoadout()
-    {
-        index -= 1;
-        if (index < 0)
+        for (AnimatorCustomLoadout loadout : customLoadouts)
         {
-            index = customLoadouts.size() - 1;
+            if (!(loadout instanceof Random))
+            {
+                loadout.OnVictory(GetSelectedLoadout(false), ascensionLevel);
+            }
         }
+
+        AnimatorMetrics.SaveTrophies(true);
     }
 
     public static void OnTrueVictory(int ascensionLevel)
@@ -89,15 +89,25 @@ public class AnimatorCharacterSelect
             AnimatorCustomLoadout.specialTrophies.trophy1 += 1 + Math.floorDiv(ascensionLevel, 4);
         }
 
-        for (AnimatorCustomLoadout loadout : customLoadouts)
-        {
-            if (!(loadout instanceof Random))
-            {
-                loadout.OnTrueVictory(GetSelectedLoadout(false), ascensionLevel);
-            }
-        }
-
         AnimatorMetrics.SaveTrophies(true);
+    }
+
+    public static void NextLoadout()
+    {
+        index += 1;
+        if (index >= customLoadouts.size())
+        {
+            index = 0;
+        }
+    }
+
+    public static void PreviousLoadout()
+    {
+        index -= 1;
+        if (index < 0)
+        {
+            index = customLoadouts.size() - 1;
+        }
     }
 
     private static void AddLoadout(AnimatorCustomLoadout loadout, int level, String description)

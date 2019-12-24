@@ -461,7 +461,7 @@ public abstract class EYBCard extends CustomCard
 
     protected void RenderBadges(SpriteBatch sb, boolean isCardPopup, boolean isLibrary)
     {
-        if (cardData.badges.length == 0 || this.isFlipped || this.isLocked)
+        if (cardData.badges.length == 0 || this.isFlipped || this.isLocked || transparency <= 0)
         {
             return;
         }
@@ -561,47 +561,49 @@ public abstract class EYBCard extends CustomCard
     protected void RenderHeader(SpriteBatch sb, boolean isCardPopup)
     {
         String text = GetHeaderText();
-        if (text != null && !this.isFlipped && !this.isLocked)
+        if (text == null || this.isFlipped || this.isLocked || transparency <= 0)
         {
-            float xPos, yPos, offsetY;
-            BitmapFont font;
-            if (isCardPopup)
-            {
-                font = FontHelper.SCP_cardTitleFont_small;
-                xPos = (float) Settings.WIDTH / 2.0F + (10 * Settings.scale);
-                yPos = (float) Settings.HEIGHT / 2.0F + ((338.0F + 55) * Settings.scale);
-                offsetY = 0;
-            }
-            else
-            {
-                font = FontHelper.cardTitleFont_small;
-                xPos = current_x;
-                yPos = current_y;
-                offsetY = 400.0F * Settings.scale * this.drawScale / 2.0F;
-            }
-
-            BitmapFont.BitmapFontData fontData = font.getData();
-            float originalScale = fontData.scaleX;
-            float scaleMulti = 0.8f;
-
-            int length = text.length();
-            if (length > 20)
-            {
-                scaleMulti -= 0.02f * (length - 20);
-                if (scaleMulti < 0.5f)
-                {
-                    scaleMulti = 0.5f;
-                }
-            }
-
-            fontData.setScale(scaleMulti * (isCardPopup ? 1 : this.drawScale));
-
-            FontHelper.renderRotatedText(sb, font, text,
-                    xPos, yPos, 0.0F, offsetY,
-                    this.angle, true, GetHeaderColor());
-
-            fontData.setScale(originalScale);
+            return;
         }
+
+        float xPos, yPos, offsetY;
+        BitmapFont font;
+        if (isCardPopup)
+        {
+            font = FontHelper.SCP_cardTitleFont_small;
+            xPos = (float) Settings.WIDTH / 2.0F + (10 * Settings.scale);
+            yPos = (float) Settings.HEIGHT / 2.0F + ((338.0F + 55) * Settings.scale);
+            offsetY = 0;
+        }
+        else
+        {
+            font = FontHelper.cardTitleFont_small;
+            xPos = current_x;
+            yPos = current_y;
+            offsetY = 400.0F * Settings.scale * this.drawScale / 2.0F;
+        }
+
+        BitmapFont.BitmapFontData fontData = font.getData();
+        float originalScale = fontData.scaleX;
+        float scaleMulti = 0.8f;
+
+        int length = text.length();
+        if (length > 20)
+        {
+            scaleMulti -= 0.02f * (length - 20);
+            if (scaleMulti < 0.5f)
+            {
+                scaleMulti = 0.5f;
+            }
+        }
+
+        fontData.setScale(scaleMulti * (isCardPopup ? 1 : this.drawScale));
+
+        FontHelper.renderRotatedText(sb, font, text,
+                xPos, yPos, 0.0F, offsetY,
+                this.angle, true, GetHeaderColor());
+
+        fontData.setScale(originalScale);
     }
 
     protected void UpdateCardText()

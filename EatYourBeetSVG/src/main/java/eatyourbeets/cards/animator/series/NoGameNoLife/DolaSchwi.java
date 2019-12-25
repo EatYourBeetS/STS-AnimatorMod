@@ -22,13 +22,13 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(12,0,2);
+        Initialize(12, 0, 2);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(p, new LockOnPower(m, this.magicNumber));
 
@@ -44,7 +44,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     }
 
     @Override
-    public void upgrade() 
+    public void upgrade()
     {
         if (TryUpgrade())
         {

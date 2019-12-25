@@ -17,7 +17,7 @@ public class Elsword extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(11,0, 4, 1);
+        Initialize(12,0, 4, 1);
 
         SetSynergy(Synergies.Elsword);
     }

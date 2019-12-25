@@ -550,12 +550,14 @@ public class GameUtilities
         AbstractDungeon.player.limbo.group.add(card);
 
         card.freeToPlayOnce = true;
-        card.current_y = -200.0F * Settings.scale;
-        card.target_x = (float) Settings.WIDTH / 2.0F + 200.0F * Settings.scale;
+//        card.current_x = (float) Settings.WIDTH / 2.0F;
+//        card.current_y = (float) Settings.HEIGHT / 2.0F;
+        card.target_x = (float) Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
         card.target_y = (float) Settings.HEIGHT / 2.0F;
         card.targetAngle = 0.0F;
-        card.lighten(false);
-        card.drawScale = 0.12F;
+        card.unfadeOut();
+        card.lighten(true);
+        card.drawScale = 0.5F;
         card.targetDrawScale = 0.75F;
 
         if (!card.canUse(AbstractDungeon.player, m))

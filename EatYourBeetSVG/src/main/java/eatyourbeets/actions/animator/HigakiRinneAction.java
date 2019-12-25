@@ -60,7 +60,49 @@ public class HigakiRinneAction extends EYBAction
         {
             GameActions.Bottom.SelectFromPile(higakiRinne.name, 1, p.hand)
             .SetOptions(false, false)
-            .SetMessage("???");
+            .SetMessage("???")
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    AbstractMonster m = GameUtilities.GetRandomEnemy(true);
+
+                    switch (cards.get(0).type)
+                    {
+                        case ATTACK:
+                            if (m != null)
+                            {
+                                GameActions.Bottom.ApplyVulnerable(player, m, 1);
+                            }
+                            break;
+
+                        case SKILL:
+                            if (m != null)
+                            {
+                                GameActions.Bottom.ApplyWeak(player, m, 1);
+                            }
+                            break;
+
+                        case POWER:
+                            GameActions.Bottom.GainRandomStat(2);
+                            break;
+
+                        case STATUS:
+                            if (m != null)
+                            {
+                                GameActions.Bottom.ApplyBurning(player, m, 3);
+                            }
+                            break;
+
+                        case CURSE:
+                            if (m != null)
+                            {
+                                GameActions.Bottom.ApplyConstricted(player, m, 3);
+                            }
+                            break;
+                    }
+                }
+            });
         }
         else if (tryActivate(6)) // 6
         {

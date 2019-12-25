@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.Fate;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,13 +10,17 @@ import eatyourbeets.actions.cardManipulation.PlayCardFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.misc.DrawPileCardPreview;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import patches.AbstractEnums;
 
 public class Illya extends AnimatorCard
 {
     public static final String ID = Register(Illya.class.getSimpleName(), EYBCardBadge.Exhaust);
+
+    private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Illya::FindBestCard);
 
     public Illya()
     {
@@ -24,6 +29,30 @@ public class Illya extends AnimatorCard
         Initialize(0,0, 6, 8);
 
         SetSynergy(Synergies.Fate);
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo)
+    {
+        super.calculateCardDamage(mo);
+
+        drawPileCardPreview.SetCurrentTarget(mo);
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+
+        drawPileCardPreview.Update();
+    }
+
+    @Override
+    public void render(SpriteBatch sb)
+    {
+        super.render(sb);
+
+        drawPileCardPreview.Render(sb);
     }
 
     @Override
@@ -50,25 +79,11 @@ public class Illya extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractCard bestCard = null;
-        int maxDamage = Integer.MIN_VALUE;
-        for (AbstractCard c : p.drawPile.group)
+        AbstractCard card = FindBestCard(m);
+        if (card != null)
         {
-            if (c.type == CardType.ATTACK && c.cardPlayable(m))
-            {
-                c.calculateCardDamage(m);
-                if (c.damage > maxDamage)
-                {
-                    maxDamage = c.damage;
-                    bestCard = c;
-                }
-            }
-        }
-
-        if (bestCard != null)
-        {
+            GameActions.Top.Add(new PlayCardFromPile(card, p.drawPile, false, false, m));
             GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
-            GameActions.Top.Add(new PlayCardFromPile(bestCard, p.drawPile, false, false, m));
         }
     }
 
@@ -101,5 +116,27 @@ public class Illya extends AnimatorCard
         }
 
         return false;
+    }
+
+    private static AbstractCard FindBestCard(AbstractMonster target)
+    {
+        AbstractPlayer player = AbstractDungeon.player;
+        AbstractCard bestCard = null;
+        int maxDamage = Integer.MIN_VALUE;
+        for (AbstractCard c : player.drawPile.group)
+        {
+            if (c.type == CardType.ATTACK && c.cardPlayable(target) && !c.tags.contains(AbstractEnums.CardTags.TEMPORARY))
+            {
+                c.calculateCardDamage(target);
+                if (c.damage > maxDamage)
+                {
+                    maxDamage = c.damage;
+                    bestCard = c;
+                }
+                c.resetAttributes();
+            }
+        }
+
+        return bestCard;
     }
 }

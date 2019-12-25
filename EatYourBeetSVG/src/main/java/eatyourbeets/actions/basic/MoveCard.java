@@ -17,9 +17,9 @@ import eatyourbeets.utilities.*;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
 {
-    public static float DEFAULT_CARD_X_LEFT = (float)Settings.WIDTH * 0.35F;
-    public static float DEFAULT_CARD_X_RIGHT = (float)Settings.WIDTH * 0.65F;
-    public static float DEFAULT_CARD_Y = (float)Settings.HEIGHT * 0.5F;
+    public static float DEFAULT_CARD_X_LEFT = (float) Settings.WIDTH * 0.35F;
+    public static float DEFAULT_CARD_X_RIGHT = (float) Settings.WIDTH * 0.65F;
+    public static float DEFAULT_CARD_Y = (float) Settings.HEIGHT * 0.5F;
 
     protected CardGroup targetPile;
     protected CardGroup sourcePile;
@@ -116,7 +116,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         if (this.sourcePile.type == CardGroup.CardGroupType.EXHAUST_PILE)
         {
-            GameActions.Bottom.Callback(card, (card, __) -> ((AbstractCard)card).unfadeOut());
+            GameActions.Bottom.Callback(card, (card, __) -> ((AbstractCard) card).unfadeOut());
 
             card.current_x = CardGroup.DISCARD_PILE_X;
             card.current_y = CardGroup.DISCARD_PILE_Y + Settings.scale * 30f;
@@ -149,7 +149,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         if (showEffect && card_X == null)
         {
-            if (card.current_x < Settings.WIDTH/2f)
+            if (card.current_x < Settings.WIDTH / 2f)
             {
                 card_X = DEFAULT_CARD_X_LEFT;
             }

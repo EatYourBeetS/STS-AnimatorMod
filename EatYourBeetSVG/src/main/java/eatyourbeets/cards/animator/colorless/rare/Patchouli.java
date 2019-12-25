@@ -14,6 +14,7 @@ import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.csharp.Action;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -82,7 +83,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
                     actions.Add(this::Lightning);
                 }
 
-                actions.Retrieve(AbstractDungeon.cardRandomRng).Execute();
+                actions.Retrieve(AbstractDungeon.cardRandomRng).Invoke();
                 GameActions.Bottom.WaitRealtime(0.2f);
             }
         }
@@ -157,10 +158,5 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
         }
 
         return false;
-    }
-
-    private interface Action
-    {
-        void Execute();
     }
 }

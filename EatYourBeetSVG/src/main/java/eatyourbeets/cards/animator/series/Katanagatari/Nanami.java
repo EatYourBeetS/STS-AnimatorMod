@@ -17,8 +17,9 @@ public class Nanami extends AnimatorCard
     public static final String ID = Register(Nanami.class.getSimpleName());
     public static final String[] DESCRIPTIONS = AnimatorResources.GetCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    private AbstractMonster lastTarget = null;
-    private AbstractMonster target = null;
+    // TODO: Create a dedicated class for this
+    private AbstractMonster _lastTarget = null;
+    private AbstractMonster _target = null;
 
     public Nanami()
     {
@@ -32,6 +33,7 @@ public class Nanami extends AnimatorCard
         SetSynergy(Synergies.Katanagatari);
     }
 
+
     @Override
     public void calculateCardDamage(AbstractMonster mo)
     {
@@ -41,7 +43,7 @@ public class Nanami extends AnimatorCard
         target_x = Settings.WIDTH * 0.4f;
         target_y = Settings.HEIGHT * 0.4f;
 
-        target = mo;
+        _target = mo;
     }
 
     @Override
@@ -49,14 +51,14 @@ public class Nanami extends AnimatorCard
     {
         super.update();
 
-        if (lastTarget != target)
+        if (_lastTarget != _target)
         {
-            updateCurrentEffect(target);
+            updateCurrentEffect(_target);
 
-            lastTarget = target;
+            _lastTarget = _target;
         }
 
-        target = null;
+        _target = null;
     }
 
     @Override

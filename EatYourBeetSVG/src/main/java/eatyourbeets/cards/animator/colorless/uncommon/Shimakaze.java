@@ -17,6 +17,7 @@ public class Shimakaze extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
         Initialize(3, 3, 3);
+        SetUpgrade(1, 1, 1);
 
         SetSynergy(Synergies.Kancolle);
     }
@@ -28,16 +29,5 @@ public class Shimakaze extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.Draw(this.magicNumber);
         GameActions.Bottom.MakeCardInDrawPile(new Dazed());
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-            upgradeDamage(1);
-            upgradeBlock(1);
-        }
     }
 }

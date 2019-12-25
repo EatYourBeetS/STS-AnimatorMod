@@ -19,7 +19,8 @@ public class MaesHughes extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0,6, 3);
+        Initialize(0, 0, 6);
+        SetUpgrade(0, 0, -1);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -46,19 +47,10 @@ public class MaesHughes extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Draw(Math.floorDiv(p.drawPile.size(), magicNumber));
         GameActions.Bottom.Motivate();
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(-1);
-        }
     }
 
     private boolean DrawRoyMustang(CardGroup group)

@@ -12,11 +12,13 @@ public class ChlammyZell extends AnimatorCard
 {
     public static final String ID = Register(ChlammyZell.class.getSimpleName(), EYBCardBadge.Special);
 
+    // TODO: Redesign this card
     public ChlammyZell()
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
         Initialize(0, 0, 4, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.NoGameNoLife);
@@ -28,14 +30,5 @@ public class ChlammyZell extends AnimatorCard
         GameActions.Bottom.Draw(1);
         GameActions.Bottom.GainIntellect(secondaryValue);
         GameActions.Bottom.StackPower(new ChlammyZellPower(p, this.magicNumber));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeSecondaryValue(1);
-        }
     }
 }

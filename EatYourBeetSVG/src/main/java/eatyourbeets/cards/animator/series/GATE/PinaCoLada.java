@@ -15,28 +15,20 @@ public class PinaCoLada extends AnimatorCard
     {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0,1);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 8, 0);
 
         SetSynergy(Synergies.Gate);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (upgraded)
+        if (block > 0)
         {
             GameActions.Bottom.GainBlock(this.block);
         }
 
         GameActions.Bottom.StackPower(new PinaCoLadaPower(p, 1));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(8);
-        }
     }
 }

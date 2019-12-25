@@ -14,7 +14,9 @@ public class Strike_HitsugiNoChaika extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(5,0,2);
+        Initialize(5, 0, 2);
+        SetUpgrade(3, 0);
+
         SetSynergy(Synergies.Chaika);
     }
 
@@ -23,14 +25,5 @@ public class Strike_HitsugiNoChaika extends Strike
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }

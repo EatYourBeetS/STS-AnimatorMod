@@ -19,6 +19,7 @@ public class LizardPriest extends AnimatorCard
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
         Initialize(0, 8, 1, 2);
+        SetUpgrade(0, 3, 0, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -37,15 +38,6 @@ public class LizardPriest extends AnimatorCard
         if (HasActiveSynergy())
         {
             GameActions.Bottom.StackPower(new TemporaryRetainPower(p, secondaryValue));
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
         }
     }
 }

@@ -39,10 +39,4 @@ public class NarberalGamma extends AnimatorCard
             GameActions.Bottom.ApplyPower(p, p, new TemporaryElectroPower(p));
         }
     }
-
-    @Override
-    public void upgrade()
-    {
-        TryUpgrade();
-    }
 }

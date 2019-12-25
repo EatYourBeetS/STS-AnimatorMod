@@ -18,6 +18,7 @@ public class AcuraAkari extends AnimatorCard
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 0, 2, 2);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -32,15 +33,6 @@ public class AcuraAkari extends AnimatorCard
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(0);
         }
     }
 }

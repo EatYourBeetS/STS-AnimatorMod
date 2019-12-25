@@ -14,22 +14,15 @@ public class Defend_HitsugiNoChaika extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5);
+        SetUpgrade(0, 3);
+
         SetSynergy(Synergies.Chaika);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.Cycle(name, 1);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
-        }
     }
 }

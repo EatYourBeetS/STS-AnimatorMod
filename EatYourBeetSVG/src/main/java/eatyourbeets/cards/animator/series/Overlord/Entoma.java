@@ -21,19 +21,27 @@ public class Entoma extends AnimatorCard
 {
     public static final String ID = Register(Entoma.class.getSimpleName(), EYBCardBadge.Special);
 
-    private static final int ORIGINAL_DAMAGE = 6;
-    private static final int ORIGINAL_MAGIC_NUMBER = 3;
-
     public Entoma()
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(ORIGINAL_DAMAGE, 0, ORIGINAL_MAGIC_NUMBER);
+        Initialize(6, 0, 3);
+        SetUpgrade(1, 0, 0);
 
         AddExtendedDescription();
 
-        SetUnique(true);
+        SetUnique(true, true);
         SetSynergy(Synergies.Overlord);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        if (timesUpgraded % 3 == 0)
+        {
+            upgradeMagicNumber(1);
+        }
+        this.upgradedMagicNumber = true;
     }
 
     @Override
@@ -65,29 +73,5 @@ public class Entoma extends AnimatorCard
         {
             GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - 1));
         }
-    }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return true;
-    }
-
-    @Override
-    public void upgrade()
-    {
-        this.timesUpgraded += 1;
-
-        this.upgradeDamage(1);
-
-        if (timesUpgraded % 3 == 0)
-        {
-            upgradeMagicNumber(1);
-        }
-        this.upgradedMagicNumber = true;
-
-        this.upgraded = true;
-        this.name = cardData.strings.NAME + "+" + this.timesUpgraded;
-        this.initializeTitle();
     }
 }

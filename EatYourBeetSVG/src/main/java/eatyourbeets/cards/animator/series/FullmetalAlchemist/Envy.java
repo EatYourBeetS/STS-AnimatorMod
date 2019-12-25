@@ -16,14 +16,20 @@ public class Envy extends AnimatorCard
     {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0, 0);
 
         SetEthereal(true);
         SetSynergy(Synergies.FullmetalAlchemist, true);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(new EnvyPower(p, 1));
 
@@ -31,15 +37,6 @@ public class Envy extends AnimatorCard
         if (tempHP > 0)
         {
             GameActions.Bottom.GainTemporaryHP(tempHP);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            SetEthereal(false);
         }
     }
 }

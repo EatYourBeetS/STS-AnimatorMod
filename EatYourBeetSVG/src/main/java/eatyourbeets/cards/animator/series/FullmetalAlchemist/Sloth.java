@@ -21,6 +21,7 @@ public class Sloth extends AnimatorCard
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(12, 12, 0, 3);
+        SetUpgrade(3, 3);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -43,15 +44,5 @@ public class Sloth extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, 1));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-            upgradeBlock(3);
-        }
     }
 }

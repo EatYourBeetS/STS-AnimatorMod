@@ -20,7 +20,8 @@ public class Shigure extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(4,0, 3, 2);
+        Initialize(4, 0, 3, 2);
+        SetUpgrade(2, 0, 1, 0);
 
         SetPiercing(true);
         SetSynergy(Synergies.OwariNoSeraph);
@@ -35,7 +36,7 @@ public class Shigure extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
@@ -45,16 +46,6 @@ public class Shigure extends AnimatorCard
         if (HasActiveSynergy())
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
         }
     }
 }

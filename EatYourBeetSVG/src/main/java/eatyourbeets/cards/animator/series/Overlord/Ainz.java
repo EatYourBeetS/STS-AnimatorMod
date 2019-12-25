@@ -17,7 +17,8 @@ public class Ainz extends AnimatorCard
     {
         super(ID, BASE_COST, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0, AinzPower.CHOICES);
+        Initialize(0, 0, AinzPower.CHOICES);
+        SetCostUpgrade(-1);
 
         SetHealing(true);
         SetSynergy(Synergies.Overlord);
@@ -37,23 +38,8 @@ public class Ainz extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(new AinzPower(p, 1));
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            int previousCost = cost;
-            int previousCostForTurn = costForTurn;
-
-            upgradeBaseCost(6);
-
-            cost = Math.max(0, previousCost - 1);
-            costForTurn = Math.max(0, previousCostForTurn - 1);
-        }
     }
 }

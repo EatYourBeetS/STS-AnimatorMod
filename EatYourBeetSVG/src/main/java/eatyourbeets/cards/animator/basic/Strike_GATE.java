@@ -15,7 +15,8 @@ public class Strike_GATE extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(5,0);
+        Initialize(5, 0);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Gate);
     }
@@ -25,14 +26,5 @@ public class Strike_GATE extends Strike
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 1));
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }

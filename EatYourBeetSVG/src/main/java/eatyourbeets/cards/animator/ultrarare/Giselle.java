@@ -23,13 +23,14 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
     {
         super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(22,0, 4);
+        Initialize(22, 0, 4);
+        SetUpgrade(6, 0, 0);
 
         SetSynergy(Synergies.Gate);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F));
         GameActions.Bottom.VFX(new FlameBarrierEffect(m.hb.cX, m.hb.cY), 0.5F);
@@ -39,15 +40,6 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
             GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(6);
         }
     }
 

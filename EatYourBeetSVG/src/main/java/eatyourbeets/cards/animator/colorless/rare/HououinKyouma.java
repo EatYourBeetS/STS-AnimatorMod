@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
-import patches.AbstractEnums;
 
 public class HououinKyouma extends AnimatorCard
 {
@@ -20,11 +19,11 @@ public class HououinKyouma extends AnimatorCard
         super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0, 0);
-
-        this.tags.add(AbstractEnums.CardTags.PURGE);
+        SetCostUpgrade(-1);
 
         AddExtendedDescription();
 
+        SetPurge(true);
         SetSynergy(Synergies.SteinsGate);
     }
 
@@ -61,15 +60,6 @@ public class HououinKyouma extends AnimatorCard
             .SetOptions(false, false)
             .SetMessage(CardRewardScreen.TEXT[1])
             .AddCallback(cards -> GameActions.Bottom.MakeCardInHand(cards.get(0)));
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(1);
         }
     }
 }

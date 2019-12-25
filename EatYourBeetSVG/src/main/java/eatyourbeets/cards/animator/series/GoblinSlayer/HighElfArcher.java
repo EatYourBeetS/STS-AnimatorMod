@@ -18,9 +18,16 @@ public class HighElfArcher extends AnimatorCard_Boost
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
         Initialize(3, 0);
+        SetUpgrade(2, 0);
 
         SetPiercing(true);
         SetSynergy(Synergies.GoblinSlayer);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        upgradeBoost(1);
     }
 
     @Override
@@ -44,16 +51,6 @@ public class HighElfArcher extends AnimatorCard_Boost
         if (agility > 0)
         {
             GameActions.Bottom.GainAgility(agility);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(2);
-            upgradeBoost(1);
         }
     }
 

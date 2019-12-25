@@ -16,6 +16,7 @@ public class Kuroyukihime extends AnimatorCard
         super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 0, 2);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.AccelWorld);
 
@@ -35,14 +36,5 @@ public class Kuroyukihime extends AnimatorCard
             GameActions.Bottom.MakeCardInHand(new BlackLotus());
             GameActions.Bottom.Exhaust(this);
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(0);
-        }
     }
 }

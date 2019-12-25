@@ -18,7 +18,8 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0, 2);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetEthereal(true);
         SetSynergy(Synergies.FullmetalAlchemist);
@@ -49,20 +50,11 @@ public class ElricAlphonse extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (GameUtilities.GetPowerAmount(p, IntellectPower.POWER_ID) <= magicNumber)
         {
             GameActions.Bottom.GainIntellect(1);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
         }
     }
 }

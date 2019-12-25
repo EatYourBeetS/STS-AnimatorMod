@@ -25,7 +25,8 @@ public class Nanami extends AnimatorCard
     {
         super(ID, -1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(5,4, 3);
+        Initialize(5, 4, 3);
+        SetUpgrade(1, 1, 1);
 
         AddExtendedDescription();
 
@@ -62,9 +63,9 @@ public class Nanami extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameUtilities.UseEnergyXCost(this);
+        this.energyOnUse = GameUtilities.UseEnergyXCost(this);
 
         switch (m.intent)
         {
@@ -133,17 +134,6 @@ public class Nanami extends AnimatorCard
             default:
                 NanamiEffect_Magic.Execute(p, m, this);
                 break;
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(1);
-            upgradeBlock(1);
-            upgradeMagicNumber(1);
         }
     }
 

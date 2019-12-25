@@ -16,6 +16,7 @@ public class Hibiki extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.ALL_ENEMY);
 
         Initialize(2, 0, 3, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetSynergy(Synergies.Kancolle);
     }
@@ -29,14 +30,5 @@ public class Hibiki extends AnimatorCard
         }
 
         GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseMagicNumber += secondaryValue);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeSecondaryValue(1);
-        }
     }
 }

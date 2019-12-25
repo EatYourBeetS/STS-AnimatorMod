@@ -16,7 +16,8 @@ public class Strike_NoGameNoLife extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6,0);
+        Initialize(6, 0);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -35,15 +36,6 @@ public class Strike_NoGameNoLife extends Strike
                 card.flash();
                 return;
             }
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
         }
     }
 }

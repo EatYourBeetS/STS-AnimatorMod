@@ -7,14 +7,12 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.series.Fate.Illya;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import patches.AbstractEnums;
 
 public class Raven extends AnimatorCard
 {
@@ -27,6 +25,7 @@ public class Raven extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(5, 0, 1);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -73,15 +72,6 @@ public class Raven extends AnimatorCard
         if (card != null)
         {
             GameActions.Top.Draw(card);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
         }
     }
 

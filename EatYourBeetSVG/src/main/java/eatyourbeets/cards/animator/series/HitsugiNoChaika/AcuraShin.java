@@ -17,8 +17,9 @@ public class AcuraShin extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(2,0, 3);
+        Initialize(3,2,2);
 
+        SetCostUpgrade(-1);
         SetPiercing(true);
         SetSynergy(Synergies.Chaika);
     }
@@ -30,14 +31,5 @@ public class AcuraShin extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetPiercing(true, true);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetPiercing(true, true);
         GameActions.Bottom.StackPower(new PoisonAffinityPower(p, 1));
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(2);
-        }
     }
 }

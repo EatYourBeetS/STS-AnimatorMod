@@ -21,6 +21,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
         super(ID, 2, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
         Initialize(4, 7);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.YoujoSenki);
 
@@ -29,17 +30,6 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
             cardData.InitializePreview(new TanyaDegurechaff_Type95(), false);
         }
     }
-
-//    @Override
-//    public List<TooltipInfo> getCustomTooltips()
-//    {
-//        if (cardText.index == 1)
-//        {
-//            return super.getCustomTooltips();
-//        }
-//
-//        return null;
-//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
@@ -56,15 +46,6 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
                 GameActions.Bottom.DealDamage(this, (AbstractCreature) enemy, AbstractGameAction.AttackEffect.NONE);
             }
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 
     @Override

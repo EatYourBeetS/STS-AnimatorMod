@@ -18,6 +18,7 @@ public class Togame extends AnimatorCard
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -40,14 +41,5 @@ public class Togame extends AnimatorCard
                 }
             }
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
     }
 }

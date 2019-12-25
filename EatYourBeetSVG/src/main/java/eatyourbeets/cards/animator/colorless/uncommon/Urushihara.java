@@ -49,12 +49,6 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     }
 
     @Override
-    public void upgrade()
-    {
-        TryUpgrade();
-    }
-
-    @Override
     public void OnStartOfTurnPostDraw()
     {
         if (lazyCounter > 0)

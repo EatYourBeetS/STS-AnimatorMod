@@ -22,7 +22,8 @@ public class GoblinSlayer extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(7,0);
+        Initialize(7, 0);
+        SetCostUpgrade(-1);
 
         SetRetain(true);
         SetSynergy(Synergies.GoblinSlayer);
@@ -65,21 +66,12 @@ public class GoblinSlayer extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         MoveCards(p.discardPile, p.exhaustPile);
         MoveCards(p.hand, p.exhaustPile);
 
         GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(1);
-        }
     }
 
     private void MoveCards(CardGroup source, CardGroup destination)
@@ -91,8 +83,8 @@ public class GoblinSlayer extends AnimatorCard
             if (GameUtilities.IsCurseOrStatus(card))
             {
                 GameActions.Top.MoveCard(card, destination, source)
-                .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
-                .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
+                        .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
+                        .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
             }
         }
     }

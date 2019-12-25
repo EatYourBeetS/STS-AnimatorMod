@@ -26,11 +26,22 @@ public class Megumin extends AnimatorCard implements Spellcaster
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
         Initialize(12, 0);
+        SetUpgrade( 2, 0);
 
+        SetUnique(true, true);
         SetMultiDamage(true);
         SetExhaust(true);
-        SetUnique(true);
+
         SetSynergy(Synergies.Konosuba);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        if (timesUpgraded % 2 == 0)
+        {
+            upgradeDamage(1);
+        }
     }
 
     @Override
@@ -67,23 +78,5 @@ public class Megumin extends AnimatorCard implements Spellcaster
                 c.upgrade();
             }
         }
-    }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return true;
-    }
-
-    @Override
-    public void upgrade()
-    {
-        this.timesUpgraded += 1;
-
-        upgradeDamage(timesUpgraded % 2 == 0 ? 3 : 2);
-
-        this.upgraded = true;
-        this.name = cardData.strings.NAME + "+" + this.timesUpgraded;
-        this.initializeTitle();
     }
 }

@@ -15,7 +15,8 @@ public class Strike_OnePunchMan extends Strike
     {
         super(ID, 1, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(6,0, 1);
+        Initialize(6, 0, 1);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -32,15 +33,6 @@ public class Strike_OnePunchMan extends Strike
                 GameActions.Top.MoveCard(c, p.hand, p.drawPile);
                 return;
             }
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
         }
     }
 }

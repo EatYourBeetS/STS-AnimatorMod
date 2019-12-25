@@ -35,7 +35,8 @@ public class KrulTepes extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(14,0, 2);
+        Initialize(14, 0, 2);
+        SetUpgrade(4, 0, 0);
 
         AddExtendedDescription();
 
@@ -43,7 +44,7 @@ public class KrulTepes extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (m != null)
         {
@@ -64,47 +65,24 @@ public class KrulTepes extends AnimatorCard
         }
     }
 
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {          
-            upgradeDamage(4);
-        }
-    }
-
-//    public boolean CanGetReward()
-//    {
-//        AbstractRoom room = AbstractDungeon.getCurrRoom();
-//        for (RewardItem r : room.rewards)
-//        {
-//            if (r.relic != null && r.relic.relicId.equals(relicReward.relicId))
-//            {
-//                return false;
-//            }
-//        }
-//
-//        return true;
-//    }
-
     public void ObtainReward()
     {
-        int ownedRelics = 0;
+        int totalRelics = 0;
         ArrayList<AbstractRelic> relics = AbstractDungeon.player.relics;
         for (AbstractRelic relic : relics)
         {
             if (relic.relicId.equals(relicReward.relicId))
             {
-                ownedRelics += 1;
+                totalRelics += 1;
             }
             else if (relic.relicId.equals(ExquisiteBloodVial.ID))
             {
-                ownedRelics = -1;
+                totalRelics = -1;
                 break;
             }
         }
 
-        if (ownedRelics > 3 && (ownedRelics >= 5 || AbstractDungeon.cardRandomRng.randomBoolean()))
+        if (totalRelics >= 5)
         {
             AbstractDungeon.getCurrRoom().addRelicToRewards(new ExquisiteBloodVial());
         }

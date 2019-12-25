@@ -13,24 +13,16 @@ public class Defend_Konosuba extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 4, 2);
+        Initialize(0, 3, 2);
+        SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Konosuba);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
-        }
     }
 }

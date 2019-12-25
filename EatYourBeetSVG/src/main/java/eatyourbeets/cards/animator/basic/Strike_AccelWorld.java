@@ -16,7 +16,8 @@ public class Strike_AccelWorld extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6,0, 4);
+        Initialize(6, 0, 4);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.AccelWorld);
     }
@@ -30,17 +31,8 @@ public class Strike_AccelWorld extends Strike
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }

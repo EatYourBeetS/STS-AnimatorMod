@@ -22,6 +22,7 @@ public class Demiurge extends AnimatorCard
         SetSynergy(Synergies.Overlord);
     }
 
+    // TODO: Limited/Semi-Limited
     @Override
     public void triggerOnExhaust()
     {
@@ -44,12 +45,6 @@ public class Demiurge extends AnimatorCard
         {
             ExecuteEffect(true);
         }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        TryUpgrade();
     }
 
     private void ExecuteEffect(boolean takeDamage)

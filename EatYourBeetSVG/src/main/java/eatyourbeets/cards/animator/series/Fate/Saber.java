@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.AnimatorCard_Cooldown;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import patches.AbstractEnums;
 
 public class Saber extends AnimatorCard_Cooldown
 {
@@ -18,7 +17,8 @@ public class Saber extends AnimatorCard_Cooldown
     {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(9,0,0);
+        Initialize(9, 0, 0);
+        SetUpgrade(2, 0, 0);
 
         SetLoyal(true);
         SetSynergy(Synergies.Fate);
@@ -30,7 +30,13 @@ public class Saber extends AnimatorCard_Cooldown
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    protected void OnUpgrade()
+    {
+        SetInnate(true);
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
@@ -47,16 +53,6 @@ public class Saber extends AnimatorCard_Cooldown
     }
 
     @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(2);
-            SetInnate(true);
-        }
-    }
-
-    @Override
     protected int GetBaseCooldown()
     {
         return 8;
@@ -65,12 +61,7 @@ public class Saber extends AnimatorCard_Cooldown
     @Override
     protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
     {
-        if (!purgeOnUse)
-        {
-            this.tags.add(AbstractEnums.CardTags.PURGE);
-
-            GameActions.Bottom.Purge(uuid);
-            GameActions.Bottom.MakeCardInHand(new Excalibur());
-        }
+        GameActions.Bottom.Purge(uuid);
+        GameActions.Bottom.MakeCardInHand(new Excalibur());
     }
 }

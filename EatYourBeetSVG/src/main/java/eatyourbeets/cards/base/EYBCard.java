@@ -35,7 +35,12 @@ public abstract class EYBCard extends CustomCard
 
     protected EYBCardText cardText;
     protected EYBCardData cardData;
-    protected boolean useDynamicTooltip;
+    protected boolean isMultiUpgrade;
+    protected int damageUpgrade;
+    protected int magicNumberUpgrade;
+    protected int secondaryValueUpgrade;
+    protected int blockUpgrade;
+    protected int costUpgrade;
 
     public boolean isSecondaryValueModified = false;
     public boolean upgradedSecondaryValue = false;
@@ -47,7 +52,7 @@ public abstract class EYBCard extends CustomCard
         return staticCardData.get(cardID);
     }
 
-    protected static String RegisterCard(String cardID, EYBCardBadge[] badges)
+    public static String RegisterCard(String cardID, EYBCardBadge[] badges)
     {
         staticCardData.put(cardID, new EYBCardData(badges, AbstractResources.GetCardStrings(cardID)));
 
@@ -260,179 +265,6 @@ public abstract class EYBCard extends CustomCard
         }
     }
 
-    protected void Initialize(int damage, int block)
-    {
-        Initialize(damage, block, -1, 0);
-    }
-
-    protected void Initialize(int damage, int block, int magicNumber)
-    {
-        Initialize(damage, block, magicNumber, 0);
-    }
-
-    protected void Initialize(int damage, int block, int magicNumber, int secondaryValue)
-    {
-        this.baseDamage = damage;
-        this.baseBlock = block;
-        this.baseMagicNumber = this.magicNumber = magicNumber;
-        this.baseSecondaryValue = this.secondaryValue = secondaryValue;
-    }
-
-    protected Boolean TryUpgrade()
-    {
-        return TryUpgrade(true);
-    }
-
-    protected Boolean TryUpgrade(boolean updateDescription)
-    {
-        if (!this.upgraded)
-        {
-            upgradeName();
-
-            if (updateDescription)
-            {
-                cardText.ForceRefresh();
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    protected void AddExtendedDescription()
-    {
-        AddExtendedDescription(0, 1);
-    }
-
-    protected void AddExtendedDescription(Object param)
-    {
-        String[] info = this.cardData.strings.EXTENDED_DESCRIPTION;
-        AddTooltip(new TooltipInfo(info[0], info[1] + param + info[2]));
-    }
-
-    protected void AddExtendedDescription(int headerIndex, int contentIndex)
-    {
-        String[] info = this.cardData.strings.EXTENDED_DESCRIPTION;
-        if (info != null && info.length >= 2 && info[headerIndex].length() > 0)
-        {
-            AddTooltip(new TooltipInfo(info[headerIndex], info[contentIndex]));
-        }
-    }
-
-    protected void AddTooltip(TooltipInfo tooltip)
-    {
-        customTooltips.add(tooltip);
-    }
-
-    public void SetMultiDamage(boolean value)
-    {
-        this.isMultiDamage = value;
-    }
-
-    public void SetRetain(boolean value)
-    {
-        this.retain = value;
-    }
-
-    public void SetInnate(boolean value)
-    {
-        this.isInnate = value;
-    }
-
-    public void SetExhaust(boolean value)
-    {
-        this.exhaust = value;
-    }
-
-    public void SetEthereal(boolean value)
-    {
-        this.isEthereal = value;
-    }
-
-    public void SetEvokeOrbCount(int count)
-    {
-        this.showEvokeValue = count > 0;
-        this.showEvokeOrbCount = count;
-    }
-
-    public void SetLoyal(boolean value)
-    {
-        if (value)
-        {
-            if (!tags.contains(AbstractEnums.CardTags.LOYAL))
-            {
-                tags.add(AbstractEnums.CardTags.LOYAL);
-            }
-        }
-        else
-        {
-            tags.remove(AbstractEnums.CardTags.LOYAL);
-        }
-    }
-
-    public void SetPiercing(boolean value)
-    {
-        if (value)
-        {
-            if (!tags.contains(AbstractEnums.CardTags.PIERCING))
-            {
-                tags.add(AbstractEnums.CardTags.PIERCING);
-            }
-        }
-        else
-        {
-            tags.remove(AbstractEnums.CardTags.PIERCING);
-        }
-    }
-
-    public void SetHealing(boolean value)
-    {
-        if (value)
-        {
-            if (!tags.contains(CardTags.HEALING))
-            {
-                tags.add(CardTags.HEALING);
-            }
-        }
-        else
-        {
-            tags.remove(CardTags.HEALING);
-        }
-    }
-
-    public void SetPurge(boolean value)
-    {
-        if (value)
-        {
-            if (!tags.contains(AbstractEnums.CardTags.PURGE))
-            {
-                tags.add(AbstractEnums.CardTags.PURGE);
-            }
-        }
-        else
-        {
-            tags.remove(AbstractEnums.CardTags.PURGE);
-        }
-    }
-
-    public void SetUnique(boolean value)
-    {
-        if (value)
-        {
-            if (!tags.contains(AbstractEnums.CardTags.UNIQUE))
-            {
-                tags.add(AbstractEnums.CardTags.UNIQUE);
-                Keyword unique = AbstractResources.GetKeyword("~Unique");
-                AddTooltip(new TooltipInfo(unique.PROPER_NAME, unique.DESCRIPTION));
-            }
-        }
-        else
-        {
-            tags.remove(AbstractEnums.CardTags.UNIQUE);
-        }
-    }
-
     protected Color GetHeaderColor()
     {
         return Settings.CREAM_COLOR.cpy();
@@ -485,7 +317,7 @@ public abstract class EYBCard extends CustomCard
                     if (mY < (y + 76 * scale) && mY > (y + 16 * scale))
                     {
                         TipHelper.renderGenericTip(1300.0f * Settings.scale, 900.0f * Settings.scale,
-                                                    badge.description, EYBResources_Strings.CardBadges.TEXT[0]);
+                                badge.description, EYBResources_Strings.CardBadges.TEXT[0]);
                     }
                 }
 
@@ -621,79 +453,263 @@ public abstract class EYBCard extends CustomCard
         this.upgradedSecondaryValue = true;
     }
 
+    protected void AddExtendedDescription()
+    {
+        AddExtendedDescription(0, 1);
+    }
 
-//    protected int damageUpgrade;
-//    protected int magicNumberUpgrade;
-//    protected int secondaryValueUpgrade;
-//    protected int blockUpgrade;
-//    protected int costUpgrade;
-//
-//    @Override
-//    public void upgrade()
-//    {
-//        if (TryUpgrade())
-//        {
-//            if (damageUpgrade > 0)
-//            {
-//                upgradeDamage(damageUpgrade);
-//            }
-//            if (blockUpgrade > 0)
-//            {
-//                upgradeBlock(blockUpgrade);
-//            }
-//            if (secondaryValueUpgrade > 0)
-//            {
-//                upgradeSecondaryValue(secondaryValueUpgrade);
-//            }
-//            if (magicNumberUpgrade > 0)
-//            {
-//                upgradeMagicNumber(magicNumberUpgrade);
-//            }
-//            if (costUpgrade > 0)
-//            {
-//                upgradeBaseCost(cost + costUpgrade);
-//            }
-//
-//            OnUpgrade();
-//        }
-//    }
-//
-//    protected void SetDamage(int baseValue, int valueUpgrade)
-//    {
-//        baseDamage = damage = baseValue;
-//        damageUpgrade = valueUpgrade;
-//    }
-//
-//    protected void SetBlock(int baseValue, int valueUpgrade)
-//    {
-//        baseBlock = baseValue;
-//        blockUpgrade = valueUpgrade;
-//    }
-//
-//    protected void SetMagicNumber(int baseValue)
-//    {
-//        SetMagicNumber(baseValue, 0);
-//    }
-//
-//    protected void SetMagicNumber(int baseValue, int valueUpgrade)
-//    {
-//        baseMagicNumber = magicNumber = baseValue;
-//        magicNumberUpgrade = valueUpgrade;
-//    }
-//
-//    protected void SetSecondaryValue(int baseValue, int valueUpgrade)
-//    {
-//        baseSecondaryValue = secondaryValue = baseValue;
-//        secondaryValueUpgrade = valueUpgrade;
-//    }
-//
-//    protected void SetCost(int valueUpgrade)
-//    {
-//        costUpgrade = valueUpgrade;
-//    }
-//
-//    protected void OnUpgrade()
-//    {
-//
-//    }
+    protected void AddExtendedDescription(Object param)
+    {
+        String[] info = this.cardData.strings.EXTENDED_DESCRIPTION;
+        AddTooltip(new TooltipInfo(info[0], info[1] + param + info[2]));
+    }
+
+    protected void AddExtendedDescription(int headerIndex, int contentIndex)
+    {
+        String[] info = this.cardData.strings.EXTENDED_DESCRIPTION;
+        if (info != null && info.length >= 2 && info[headerIndex].length() > 0)
+        {
+            AddTooltip(new TooltipInfo(info[headerIndex], info[contentIndex]));
+        }
+    }
+
+    protected void AddTooltip(TooltipInfo tooltip)
+    {
+        customTooltips.add(tooltip);
+    }
+
+    public void SetMultiDamage(boolean value)
+    {
+        this.isMultiDamage = value;
+    }
+
+    public void SetRetain(boolean value)
+    {
+        this.retain = value;
+    }
+
+    public void SetInnate(boolean value)
+    {
+        this.isInnate = value;
+    }
+
+    public void SetExhaust(boolean value)
+    {
+        this.exhaust = value;
+    }
+
+    public void SetEthereal(boolean value)
+    {
+        this.isEthereal = value;
+    }
+
+    public void SetEvokeOrbCount(int count)
+    {
+        this.showEvokeValue = count > 0;
+        this.showEvokeOrbCount = count;
+    }
+
+    public void SetLoyal(boolean value)
+    {
+        if (value)
+        {
+            if (!tags.contains(AbstractEnums.CardTags.LOYAL))
+            {
+                tags.add(AbstractEnums.CardTags.LOYAL);
+            }
+        }
+        else
+        {
+            tags.remove(AbstractEnums.CardTags.LOYAL);
+        }
+    }
+
+    public void SetPiercing(boolean value)
+    {
+        if (value)
+        {
+            if (!tags.contains(AbstractEnums.CardTags.PIERCING))
+            {
+                tags.add(AbstractEnums.CardTags.PIERCING);
+            }
+        }
+        else
+        {
+            tags.remove(AbstractEnums.CardTags.PIERCING);
+        }
+    }
+
+    public void SetHealing(boolean value)
+    {
+        if (value)
+        {
+            if (!tags.contains(CardTags.HEALING))
+            {
+                tags.add(CardTags.HEALING);
+            }
+        }
+        else
+        {
+            tags.remove(CardTags.HEALING);
+        }
+    }
+
+    public void SetPurge(boolean value)
+    {
+        if (value)
+        {
+            if (!tags.contains(AbstractEnums.CardTags.PURGE))
+            {
+                tags.add(AbstractEnums.CardTags.PURGE);
+            }
+        }
+        else
+        {
+            tags.remove(AbstractEnums.CardTags.PURGE);
+        }
+    }
+
+    public void SetUnique(boolean value, boolean multiUpgrade)
+    {
+        isMultiUpgrade = multiUpgrade;
+
+        if (value)
+        {
+            if (!tags.contains(AbstractEnums.CardTags.UNIQUE))
+            {
+                tags.add(AbstractEnums.CardTags.UNIQUE);
+                Keyword unique = AbstractResources.GetKeyword("~Unique");
+                AddTooltip(new TooltipInfo(unique.PROPER_NAME, unique.DESCRIPTION));
+            }
+        }
+        else
+        {
+            tags.remove(AbstractEnums.CardTags.UNIQUE);
+        }
+    }
+
+    protected boolean TryUpgrade()
+    {
+        return TryUpgrade(true);
+    }
+
+    protected boolean TryUpgrade(boolean updateDescription)
+    {
+        if (this.canUpgrade())
+        {
+            this.timesUpgraded += 1;
+            this.upgraded = true;
+
+            if (isMultiUpgrade)
+            {
+                this.name = cardData.strings.NAME + "+" + this.timesUpgraded;
+            }
+            else
+            {
+                this.name = cardData.strings.NAME + "+";
+            }
+
+            initializeTitle();
+
+            if (updateDescription)
+            {
+                cardText.ForceRefresh();
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean canUpgrade()
+    {
+        return !upgraded || isMultiUpgrade;
+    }
+
+    @Override
+    public void upgrade()
+    {
+        if (TryUpgrade())
+        {
+            if (damageUpgrade != 0)
+            {
+                upgradeDamage(damageUpgrade);
+            }
+
+            if (blockUpgrade != 0)
+            {
+                upgradeBlock(blockUpgrade);
+            }
+
+            if (secondaryValueUpgrade != 0)
+            {
+                upgradeSecondaryValue(secondaryValueUpgrade);
+            }
+
+            if (magicNumberUpgrade != 0)
+            {
+                upgradeMagicNumber(magicNumberUpgrade);
+            }
+
+            if (costUpgrade != 0)
+            {
+                int previousCost = cost;
+                int previousCostForTurn = costForTurn;
+
+                this.cost = Math.max(0, previousCost + costUpgrade);
+                this.costForTurn = Math.max(0, previousCostForTurn + costUpgrade);
+                this.upgradedCost = true;
+            }
+
+            OnUpgrade();
+        }
+    }
+
+    protected void Initialize(int damage, int block)
+    {
+        Initialize(damage, block, -1, 0);
+    }
+
+    protected void Initialize(int damage, int block, int magicNumber)
+    {
+        Initialize(damage, block, magicNumber, 0);
+    }
+
+    protected void Initialize(int damage, int block, int magicNumber, int secondaryValue)
+    {
+        this.baseDamage = damage;
+        this.baseBlock = block;
+        this.baseMagicNumber = this.magicNumber = magicNumber;
+        this.baseSecondaryValue = this.secondaryValue = secondaryValue;
+    }
+
+    protected void SetUpgrade(int damage, int block)
+    {
+        SetUpgrade(damage, block, 0, 0);
+    }
+
+    protected void SetUpgrade(int damage, int block, int magicNumber)
+    {
+        SetUpgrade(damage, block, magicNumber, 0);
+    }
+
+    protected void SetUpgrade(int damage, int block, int magicNumber, int secondaryValue)
+    {
+        this.damageUpgrade = damage;
+        this.blockUpgrade = block;
+        this.magicNumberUpgrade = magicNumber;
+        this.secondaryValueUpgrade = secondaryValue;
+    }
+
+    protected void SetCostUpgrade(int value)
+    {
+        this.costUpgrade = value;
+    }
+
+    protected void OnUpgrade()
+    {
+
+    }
 }

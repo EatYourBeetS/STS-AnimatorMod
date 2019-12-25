@@ -15,6 +15,7 @@ public class Yusarin extends AnimatorCard
         super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0, 0, 1, 1);
+        SetUpgrade(0, 0, 1, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.Charlotte);
@@ -25,14 +26,5 @@ public class Yusarin extends AnimatorCard
     {
         GameActions.Bottom.Motivate();
         GameActions.Bottom.Draw(this.magicNumber);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
     }
 }

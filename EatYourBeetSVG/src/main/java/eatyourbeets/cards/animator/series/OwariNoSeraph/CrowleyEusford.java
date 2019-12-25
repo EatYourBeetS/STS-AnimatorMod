@@ -22,6 +22,7 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
         Initialize(18, 0, 4);
+        SetUpgrade( 3, 0, 1);
 
         SetHealing(true);
         SetExhaust(true);
@@ -63,7 +64,7 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        CrowleyEusford copy = (CrowleyEusford)super.makeStatEquivalentCopy();
+        CrowleyEusford copy = (CrowleyEusford) super.makeStatEquivalentCopy();
 
         copy.costModifier = this.costModifier;
 
@@ -79,20 +80,10 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Heal(magicNumber);
         GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-            upgradeMagicNumber(1);
-        }
     }
 
     @Override

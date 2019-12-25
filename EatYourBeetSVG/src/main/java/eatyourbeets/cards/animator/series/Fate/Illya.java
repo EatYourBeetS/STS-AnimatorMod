@@ -26,7 +26,8 @@ public class Illya extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(0,0, 6, 8);
+        Initialize(0, 0, 6);
+        SetUpgrade(0, 0, -2);
 
         SetSynergy(Synergies.Fate);
     }
@@ -77,22 +78,13 @@ public class Illya extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         AbstractCard card = FindBestCard(m);
         if (card != null)
         {
             GameActions.Top.Add(new PlayCardFromPile(card, p.drawPile, false, false, m));
             GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(-2);
         }
     }
 

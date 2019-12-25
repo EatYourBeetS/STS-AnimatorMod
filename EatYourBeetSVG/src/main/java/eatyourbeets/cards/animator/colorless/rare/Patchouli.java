@@ -36,6 +36,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
         super(ID, 3, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(11, 0, 0, 2);
+        SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.TouhouProject);
     }
@@ -89,15 +90,6 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
         }
     }
 
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
-    }
-
     private void Lightning()
     {
         CreateDamageAction().SetDamageEffect(e ->
@@ -114,7 +106,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
             MonsterGroup monsters = AbstractDungeon.getMonsters();
             int frostCount = monsters.monsters.size() + 5;
 
-            CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25F - (float)frostCount / 200.0F);
+            CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25F - (float) frostCount / 200.0F);
             for (int f = 0; f < frostCount; f++)
             {
                 GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));

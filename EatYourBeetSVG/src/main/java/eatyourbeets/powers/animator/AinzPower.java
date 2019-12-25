@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.DynamicCard;
-import eatyourbeets.cards.base.DynamicCardBuilder;
+import eatyourbeets.cards.base.AnimatorCardBuilder;
+import eatyourbeets.cards.base.AnimatorCard_Dynamic;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.resources.AnimatorResources_Strings;
@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class AinzPower extends AnimatorPower
 {
-    private final static WeightedList<DynamicCardBuilder> effectList = new WeightedList<>();
+    private final static WeightedList<AnimatorCardBuilder> effectList = new WeightedList<>();
 
     public static final String POWER_ID = CreateFullID(AinzPower.class.getSimpleName());
     public static final int CHOICES = 4;
@@ -74,16 +74,16 @@ public class AinzPower extends AnimatorPower
             AinzEffect.GenerateAllEffects(effectList);
         }
 
-        WeightedList<DynamicCardBuilder> temp = new WeightedList<>(effectList);
-        ArrayList<DynamicCard> currentEffects = new ArrayList<>();
+        WeightedList<AnimatorCardBuilder> temp = new WeightedList<>(effectList);
+        ArrayList<AnimatorCard_Dynamic> currentEffects = new ArrayList<>();
 
-        for (int i = 0; i < CHOICES ; i++)
+        for (int i = 0; i < CHOICES; i++)
         {
             currentEffects.add(temp.Retrieve(AbstractDungeon.cardRandomRng).Build());
         }
 
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        for (DynamicCard card : currentEffects)
+        for (AnimatorCard_Dynamic card : currentEffects)
         {
             if (card != null)
             {
@@ -135,7 +135,7 @@ public class AinzPower extends AnimatorPower
             this.number = number;
         }
 
-        public static void GenerateAllEffects(WeightedList<DynamicCardBuilder> list)
+        public static void GenerateAllEffects(WeightedList<AnimatorCardBuilder> list)
         {
             for (AinzEffect effect : AinzEffect.class.getEnumConstants())
             {
@@ -143,20 +143,20 @@ public class AinzPower extends AnimatorPower
             }
         }
 
-        public DynamicCardBuilder Generate(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
+        public AnimatorCardBuilder Generate(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
-            DynamicCardBuilder builder = new DynamicCardBuilder(Ainz.ID + "Alt");
+            AnimatorCardBuilder builder = new AnimatorCardBuilder(Ainz.ID + "Alt");
 
             builder.SetText(CARD_STRINGS.NAME, CARD_TEXT[index], "");
-            builder.SetProperties(-2, AbstractCard.CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
-            builder.SetNumbers(number, number, number);
+            builder.SetProperties(AbstractCard.CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
+            builder.SetNumbers(number, number, number, number);
             builder.SetOnUse(onUseAction);
 
             return builder;
         }
 
         @SuppressWarnings("CodeBlock2Expr")
-        protected static DynamicCardBuilder GenerateEffect(AinzEffect effect)
+        protected static AnimatorCardBuilder GenerateEffect(AinzEffect effect)
         {
             switch (effect)
             {
@@ -232,7 +232,7 @@ public class AinzPower extends AnimatorPower
                         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
                         {
                             GameActions.Bottom.DealDamage(c, enemy, AbstractGameAction.AttackEffect.FIRE)
-                                    .SetPiercing(true, false);
+                            .SetPiercing(true, false);
                         }
                         GameUtilities.UsePenNib();
                     });

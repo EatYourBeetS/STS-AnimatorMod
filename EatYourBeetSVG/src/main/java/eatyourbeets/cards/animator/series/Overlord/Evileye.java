@@ -22,6 +22,7 @@ public class Evileye extends AnimatorCard implements Spellcaster
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0,0, 1);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -55,15 +56,6 @@ public class Evileye extends AnimatorCard implements Spellcaster
         {
             GameActions.Bottom.GainIntellect(2);
             GameActions.Bottom.GainOrbSlots(1);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(1);
         }
     }
 }

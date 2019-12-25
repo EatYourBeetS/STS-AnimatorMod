@@ -23,6 +23,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
         super(ID, 1, CardType.SKILL, AbstractCard.CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 2);
 
         SetExhaust(true);
         SetSynergy(Synergies.TouhouProject, true);
@@ -66,14 +67,5 @@ public class MamizouFutatsuiwa extends AnimatorCard
                 card.flash();
             }
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(2);
-        }
     }
 }

@@ -16,13 +16,14 @@ public class Hitei extends AnimatorCard
     {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0,2);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Katanagatari);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(new HiteiPower(p, upgraded));
 
@@ -31,15 +32,6 @@ public class Hitei extends AnimatorCard
             GameActions.Bottom.GainAgility(2);
             GameActions.Bottom.GainForce(2);
             GameActions.Bottom.GainIntellect(2);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
         }
     }
 }

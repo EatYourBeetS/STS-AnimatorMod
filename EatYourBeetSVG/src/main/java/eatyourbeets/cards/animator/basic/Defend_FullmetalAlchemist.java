@@ -18,6 +18,7 @@ public class Defend_FullmetalAlchemist extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 4, 0, GetBaseCooldown());
+        SetUpgrade(0, 3);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -42,22 +43,13 @@ public class Defend_FullmetalAlchemist extends Defend
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
 
         if (ProgressCooldown())
         {
             GameActions.Bottom.ChannelOrb(new Frost(), true);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
         }
     }
 
@@ -83,7 +75,7 @@ public class Defend_FullmetalAlchemist extends Defend
 
         for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
         {
-            AnimatorCard card = (AnimatorCard)c;
+            AnimatorCard card = (AnimatorCard) c;
             card.baseSecondaryValue = card.secondaryValue = newValue;
             //card.applyPowers();
         }

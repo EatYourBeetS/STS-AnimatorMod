@@ -23,6 +23,12 @@ public class Chomusuke extends AnimatorCard_UltraRare
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetInnate(true);
+    }
+
+    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
@@ -48,14 +54,5 @@ public class Chomusuke extends AnimatorCard_UltraRare
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            SetInnate(true);
-        }
     }
 }

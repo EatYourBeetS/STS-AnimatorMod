@@ -15,23 +15,15 @@ public class Defend_Katanagatari extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5, 2);
+        SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Katanagatari);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.StackPower(new EarthenThornsPower(p, this.magicNumber));
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
-        }
     }
 }

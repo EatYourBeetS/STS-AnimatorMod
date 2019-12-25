@@ -14,6 +14,7 @@ public class Defend_GATE extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 6);
+        SetUpgrade(0, 3);
 
         SetRetain(true);
         SetSynergy(Synergies.Gate);
@@ -28,17 +29,8 @@ public class Defend_GATE extends Defend
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
-        }
     }
 }

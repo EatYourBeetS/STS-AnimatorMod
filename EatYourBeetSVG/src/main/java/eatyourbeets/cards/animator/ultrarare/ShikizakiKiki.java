@@ -22,6 +22,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
         super(ID, 3, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0, BASE_POWER_AMOUNT);
+        SetUpgrade(0, 0, UPGRADED_POWER_AMOUNT - BASE_POWER_AMOUNT);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -34,15 +35,6 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
         if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.Add(new ShikizakiKikiUpgradeAction());
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(UPGRADED_POWER_AMOUNT - BASE_POWER_AMOUNT);
         }
     }
 }

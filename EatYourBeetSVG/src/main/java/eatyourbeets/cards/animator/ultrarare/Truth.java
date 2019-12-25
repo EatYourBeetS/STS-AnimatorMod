@@ -31,8 +31,7 @@ public class Truth extends AnimatorCard_UltraRare
         super(ID, 1, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0);
-
-        AddExtendedDescription();
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -68,24 +67,15 @@ public class Truth extends AnimatorCard_UltraRare
         }
     }
 
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(0);
-        }
-    }
-
     private void AddWound(AbstractPlayer p)
     {
         CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
             if (!c.cardID.equals(Wound.ID) && !c.cardID.equals(this.cardID)
-                && !c.cardID.equals(Necronomicurse.ID)
-                && !c.cardID.equals(AscendersBane.ID)
-                && !SoulboundField.soulbound.get(c))
+                    && !c.cardID.equals(Necronomicurse.ID)
+                    && !c.cardID.equals(AscendersBane.ID)
+                    && !SoulboundField.soulbound.get(c))
             {
                 temp.group.add(c);
             }
@@ -94,14 +84,14 @@ public class Truth extends AnimatorCard_UltraRare
         if (temp.size() > 0)
         {
             GameActions.Bottom.SelectFromPile(name, 1, temp)
-            .SetOptions(false, false)
-            .SetMessage(DECK_SELECTION_TEXT)
-            .AddCallback(cards ->
-            {
-                AbstractCard card = cards.get(0);
-                AbstractDungeon.player.masterDeck.removeCard(card);
-                AbstractDungeon.player.masterDeck.addToTop(new Wound());
-            });
+                    .SetOptions(false, false)
+                    .SetMessage(DECK_SELECTION_TEXT)
+                    .AddCallback(cards ->
+                    {
+                        AbstractCard card = cards.get(0);
+                        AbstractDungeon.player.masterDeck.removeCard(card);
+                        AbstractDungeon.player.masterDeck.addToTop(new Wound());
+                    });
         }
     }
 }

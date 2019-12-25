@@ -28,6 +28,12 @@ public class DolaSchwi extends AnimatorCard_Cooldown
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        UpgradeCooldown(-1);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(p, new LockOnPower(m, this.magicNumber));
@@ -40,15 +46,6 @@ public class DolaSchwi extends AnimatorCard_Cooldown
         if (HasActiveSynergy())
         {
             GameActions.Bottom.ChannelOrb(new Lightning(), true);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            UpgradeCooldown(-1);
         }
     }
 

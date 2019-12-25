@@ -14,7 +14,8 @@ public class Strike_GoblinSlayer extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(8,0);
+        Initialize(8, 0);
+        SetUpgrade(3, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.GoblinSlayer);
@@ -24,14 +25,5 @@ public class Strike_GoblinSlayer extends Strike
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }

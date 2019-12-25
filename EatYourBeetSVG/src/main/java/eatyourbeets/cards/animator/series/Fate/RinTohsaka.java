@@ -13,9 +13,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.WeightedList;
-
-import java.util.ArrayList;
 
 public class RinTohsaka extends AnimatorCard implements Spellcaster
 {
@@ -25,7 +22,8 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,2, 1);
+        Initialize(0, 2, 1);
+        SetUpgrade(0, 4, 0);
 
         SetEvokeOrbCount(1);
         SetExhaust(true);
@@ -65,7 +63,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (p.orbs.size() > 0)
         {
@@ -79,27 +77,5 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
         }
 
         GameActions.Bottom.GainBlock(block);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(4);
-        }
-    }
-
-    private void TryAddOrb(AbstractOrb orb, int weight, WeightedList<AbstractOrb> orbs, ArrayList<AbstractOrb> exclusion)
-    {
-        for (AbstractOrb exclude : exclusion)
-        {
-            if (exclude != null && orb.ID.equals(exclude.ID))
-            {
-                return;
-            }
-        }
-
-        orbs.Add(orb, weight);
     }
 }

@@ -13,7 +13,8 @@ public class MelzalgaldAlt_1 extends MelzalgaldAlt
     {
         super(ID);
 
-        Initialize(7,0, 2);
+        Initialize(7, 0, 2);
+        SetUpgrade(0, 0, 1);
     }
 
     @Override
@@ -21,14 +22,5 @@ public class MelzalgaldAlt_1 extends MelzalgaldAlt
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.GainForce(magicNumber);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
     }
 }

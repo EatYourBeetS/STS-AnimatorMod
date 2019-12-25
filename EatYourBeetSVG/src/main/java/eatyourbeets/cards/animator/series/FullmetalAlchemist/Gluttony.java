@@ -16,7 +16,8 @@ public class Gluttony extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 4, 16);
+        Initialize(0, 0, 4, 16);
+        SetCostUpgrade(-1);
 
         SetHealing(true);
         SetExhaust(true);
@@ -44,7 +45,7 @@ public class Gluttony extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (p.drawPile.size() >= magicNumber)
         {
@@ -54,15 +55,6 @@ public class Gluttony extends AnimatorCard
 
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.GainForce(magicNumber);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(1);
         }
     }
 }

@@ -16,7 +16,8 @@ public class Elesis extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(4,0, 3, 8);
+        Initialize(4, 0, 3, 8);
+        SetUpgrade(6, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.Elsword);
@@ -43,19 +44,10 @@ public class Elesis extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.GainForce(magicNumber);
         GameActions.Bottom.GainAgility(magicNumber);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(6);
-        }
     }
 }

@@ -18,7 +18,8 @@ public class Darkness extends AnimatorCard
     {
         super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,2,2);
+        Initialize(0, 2, 2);
+        SetUpgrade(0, 1, 1);
 
         SetSynergy(Synergies.Konosuba);
 
@@ -29,20 +30,10 @@ public class Darkness extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new PlatedArmorPower(p, this.magicNumber));
         GameActions.Bottom.StackPower(new DarknessPower(p, 1));
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(1);
-            upgradeMagicNumber(1);
-        }
     }
 }

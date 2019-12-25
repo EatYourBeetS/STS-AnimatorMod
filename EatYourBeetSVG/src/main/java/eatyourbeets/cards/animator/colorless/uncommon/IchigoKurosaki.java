@@ -19,6 +19,7 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
         super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 0, 1, 5);
+        SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.Bleach);
@@ -28,17 +29,6 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
             cardData.InitializePreview(new IchigoBankai(), false);
         }
     }
-
-//    @Override
-//    public List<TooltipInfo> getCustomTooltips()
-//    {
-//        if (cardText.index == 1)
-//        {
-//            return super.getCustomTooltips();
-//        }
-//
-//        return null;
-//    }
 
     @Override
     public void applyPowers()
@@ -67,14 +57,5 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
     {
         GameActions.Bottom.GainForce(magicNumber);
         GameActions.Bottom.GainAgility(1);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
     }
 }

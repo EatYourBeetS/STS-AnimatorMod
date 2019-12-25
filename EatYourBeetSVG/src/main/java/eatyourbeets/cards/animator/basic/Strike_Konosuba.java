@@ -14,7 +14,8 @@ public class Strike_Konosuba extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6,2);
+        Initialize(6, 2);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Konosuba);
     }
@@ -24,14 +25,5 @@ public class Strike_Konosuba extends Strike
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }

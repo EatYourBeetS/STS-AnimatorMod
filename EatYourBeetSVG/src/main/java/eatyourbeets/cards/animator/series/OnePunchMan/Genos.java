@@ -19,6 +19,7 @@ public class Genos extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
         Initialize(9, 0, 4, 4);
+        SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -42,15 +43,6 @@ public class Genos extends AnimatorCard
                     cards.get(0).retain = true;
                 }
             });
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
         }
     }
 }

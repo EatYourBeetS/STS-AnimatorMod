@@ -14,7 +14,8 @@ public class Strike_Overlord extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(5,0, 3);
+        Initialize(5, 0, 3);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -24,15 +25,5 @@ public class Strike_Overlord extends Strike
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseDamage += magicNumber);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-            //upgradeMagicNumber(1);
-        }
     }
 }

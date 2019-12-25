@@ -22,7 +22,8 @@ public class Geryuganshoop extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0,2, 2);
+        Initialize(0, 0, 2, 2);
+        SetUpgrade(0, 0, 1, 1);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -32,19 +33,9 @@ public class Geryuganshoop extends AnimatorCard
     {
         GameActions.Bottom.Cycle(name, secondaryValue)
         .AddCallback(__ -> GameActions.Bottom.SelectFromPile(name, magicNumber, AbstractDungeon.player.exhaustPile)
-                            .SetMessage(JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[0], magicNumber))
-                            .SetOptions(false, true)
-                            .AddCallback(this::OnCardChosen));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeSecondaryValue(1);
-            upgradeMagicNumber(1);
-        }
+                           .SetMessage(JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[0], magicNumber))
+                           .SetOptions(false, true)
+                           .AddCallback(this::OnCardChosen));
     }
 
     private void OnCardChosen(ArrayList<AbstractCard> cards)
@@ -60,7 +51,7 @@ public class Geryuganshoop extends AnimatorCard
                 {
                     EffectHistory.TryActivateLimited(this.cardID);
                     GameActions.Bottom.MoveCard(card, p.hand, p.exhaustPile)
-                    .ShowEffect(true, false);
+                            .ShowEffect(true, false);
                 }
                 else
                 {

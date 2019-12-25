@@ -48,12 +48,6 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     }
 
     @Override
-    public void upgrade()
-    {
-        TryUpgrade();
-    }
-
-    @Override
     public void OnStartOfTurnPostDraw()
     {
         AbstractPlayer p = AbstractDungeon.player;

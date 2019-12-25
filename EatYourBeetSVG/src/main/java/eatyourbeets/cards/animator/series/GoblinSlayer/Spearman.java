@@ -20,6 +20,7 @@ public class Spearman extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(9, 0, 1);
+        SetUpgrade(4, 0);
 
         SetPiercing(true);
         SetSynergy(Synergies.GoblinSlayer);
@@ -40,14 +41,5 @@ public class Spearman extends AnimatorCard
 
         GameActions.Bottom.GainAgility(magicNumber);
         GameActions.Bottom.MakeCardInHand(new Wound());
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(4);
-        }
     }
 }

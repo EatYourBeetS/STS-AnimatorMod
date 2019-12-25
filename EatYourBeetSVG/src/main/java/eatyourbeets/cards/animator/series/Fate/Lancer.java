@@ -19,7 +19,8 @@ public class Lancer extends AnimatorCard implements MartialArtist
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(6,0, 1);
+        Initialize(6, 0, 1);
+        SetUpgrade(3, 0, 0);
 
         SetPiercing(true);
         SetSynergy(Synergies.Fate);
@@ -39,7 +40,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         AbstractGameAction.AttackEffect attackEffect;
         if (this.damage >= 15)
@@ -54,14 +55,5 @@ public class Lancer extends AnimatorCard implements MartialArtist
 
         GameActions.Bottom.DealDamage(this, m, attackEffect).SetPiercing(true, true);
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {          
-            upgradeDamage(3);
-        }
     }
 }

@@ -4,16 +4,17 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.*;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
-public class MotivateAction extends EYBAction
+public class MotivateAction extends EYBActionWithCallback<AbstractCard>
         implements OnAfterCardPlayedSubscriber, OnStartOfTurnPostDrawSubscriber,
                    OnEndOfTurnSubscriber, OnAfterCardDrawnSubscriber, OnCostRefreshSubscriber
 {
+    protected boolean motivateZeroCost = true;
     protected boolean firstTimePerTurn = false;
     protected AbstractCard card;
 
@@ -22,6 +23,13 @@ public class MotivateAction extends EYBAction
         super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_FASTER);
 
         Initialize(amount);
+    }
+
+    public MotivateAction MotivateZeroCost(boolean value)
+    {
+        this.motivateZeroCost = value;
+
+        return this;
     }
 
     @Override
@@ -46,7 +54,7 @@ public class MotivateAction extends EYBAction
         {
             this.card = betterPossible.Retrieve(AbstractDungeon.cardRng);
         }
-        else if (possible.Count() > 0)
+        else if (motivateZeroCost && possible.Count() > 0)
         {
             this.card = possible.Retrieve(AbstractDungeon.cardRng);
         }
@@ -59,7 +67,7 @@ public class MotivateAction extends EYBAction
             }
             else
             {
-                Complete();
+                Complete(card);
             }
 
             card.modifyCostForTurn(-amount);
@@ -69,6 +77,21 @@ public class MotivateAction extends EYBAction
             PlayerStatistics.onAfterCardPlayed.Subscribe(this);
             PlayerStatistics.onAfterCardDrawn.Subscribe(this);
             PlayerStatistics.onCostRefresh.Subscribe(this);
+        }
+        else
+        {
+            Complete(null);
+        }
+    }
+
+    @Override
+    protected void UpdateInternal()
+    {
+        tickDuration();
+
+        if (isDone)
+        {
+            Complete(card);
         }
     }
 

@@ -17,25 +17,22 @@ public class Azriel extends AnimatorCard_UltraRare
     {
         super(ID, 3, CardType.POWER, CardTarget.SELF);
 
-        Initialize(0,0, 1);
+        Initialize(0, 0, 1);
 
         SetEthereal(true);
         SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    protected void OnUpgrade()
     {
-        GameActions.Bottom.StackPower(new PlayerFlightPower(p, 2));
-        GameActions.Bottom.StackPower(new AzrielPower(p, this.magicNumber));
+        SetEthereal(false);
     }
 
     @Override
-    public void upgrade() 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (TryUpgrade())
-        {
-            SetEthereal(false);
-        }
+        GameActions.Bottom.StackPower(new PlayerFlightPower(p, 2));
+        GameActions.Bottom.StackPower(new AzrielPower(p, this.magicNumber));
     }
 }

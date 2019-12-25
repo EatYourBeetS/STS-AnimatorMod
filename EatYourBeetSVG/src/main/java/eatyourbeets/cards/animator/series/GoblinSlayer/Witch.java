@@ -21,6 +21,7 @@ public class Witch extends AnimatorCard implements Spellcaster, StartupCard
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
         Initialize(0, 10,2);
+        SetUpgrade(0, 3, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -41,16 +42,6 @@ public class Witch extends AnimatorCard implements Spellcaster, StartupCard
         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
             GameActions.Bottom.ApplyBurning(p, enemy, magicNumber);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
-            upgradeMagicNumber(1);
         }
     }
 

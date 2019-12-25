@@ -16,8 +16,9 @@ public class DarknessAdrenaline extends AnimatorCard implements Hidden
         super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
-        this.exhaust = true;
+        SetExhaust(true);
     }
 
     @Override
@@ -26,14 +27,5 @@ public class DarknessAdrenaline extends AnimatorCard implements Hidden
         GameActions.Bottom.VFX(new AdrenalineEffect(), 0.15F);
         GameActions.Bottom.GainEnergy(magicNumber);
         GameActions.Bottom.Draw(2);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
     }
 }

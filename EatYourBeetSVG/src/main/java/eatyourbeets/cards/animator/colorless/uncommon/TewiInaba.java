@@ -20,6 +20,7 @@ public class TewiInaba extends AnimatorCard
         super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 2, 2);
+        SetUpgrade(0, 2, 0);
 
         SetSynergy(Synergies.TouhouProject);
     }
@@ -44,15 +45,6 @@ public class TewiInaba extends AnimatorCard
         if (!p.orbs.isEmpty() && Earth.ORB_ID.equals(p.orbs.get(0).ID))
         {
             GameActions.Bottom.Draw(this.magicNumber);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(2);
         }
     }
 }

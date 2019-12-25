@@ -26,6 +26,12 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainTemporaryHP(this.magicNumber);
@@ -42,15 +48,6 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
                 }
             }
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            SetExhaust(false);
-        }
     }
 
     @Override

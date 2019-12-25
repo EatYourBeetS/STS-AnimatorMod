@@ -16,7 +16,8 @@ public class Sebas extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,7, 2, 3);
+        Initialize(0, 7, 2, 3);
+        SetUpgrade(0, 4, 0, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.Overlord);
@@ -31,7 +32,7 @@ public class Sebas extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
@@ -40,15 +41,6 @@ public class Sebas extends AnimatorCard
                 GameActions.Bottom.GainBlock(block);
                 GameActions.Bottom.GainThorns(magicNumber);
             }
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(4);
         }
     }
 }

@@ -52,10 +52,4 @@ public class HarukoHaruhara extends AnimatorCard
 
         GameUtilities.PlayCard(card, m);
     }
-
-    @Override
-    public void upgrade()
-    {
-        TryUpgrade();
-    }
 }

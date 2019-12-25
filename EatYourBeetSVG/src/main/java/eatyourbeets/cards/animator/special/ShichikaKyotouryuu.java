@@ -21,6 +21,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
         super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
 
         Initialize(1, 0, 4);
+        SetUpgrade(1, 0, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
@@ -36,7 +37,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.VFX(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale,
-                                    AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F);
+        AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F);
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
@@ -49,20 +50,11 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.VFX(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale,
-                                    AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F);
+        AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F);
 
         if (HasActiveSynergy())
         {
             GameActions.Bottom.GainForce(1);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(1);
         }
     }
 }

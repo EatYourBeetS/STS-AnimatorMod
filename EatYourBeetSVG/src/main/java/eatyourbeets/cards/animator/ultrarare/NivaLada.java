@@ -22,7 +22,8 @@ import eatyourbeets.interfaces.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.utilities.GameUtilities;
 
-public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSubscriber, OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
+public class NivaLada extends AnimatorCard_UltraRare
+        implements OnBattleStartSubscriber, OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
 {
     public static final String ID = Register(NivaLada.class.getSimpleName(), EYBCardBadge.Special);
 
@@ -31,6 +32,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
         super(ID, 0, CardType.SKILL, CardTarget.ENEMY);
 
         Initialize(0, 0, 300, GetBaseCooldown());
+        SetUpgrade(0, 0, 0, -2);
 
         if (GameUtilities.InBattle() && !CardCrawlGame.isPopupOpen)
         {
@@ -93,15 +95,6 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
         }
     }
 
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeSecondaryValue(-2);
-        }
-    }
-
     protected int GetBaseCooldown()
     {
         return upgraded ? 16 : 18;
@@ -143,7 +136,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSub
 
         for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
         {
-            NivaLada card = (NivaLada)c;
+            NivaLada card = (NivaLada) c;
             card.baseSecondaryValue = card.secondaryValue = newValue;
             //card.applyPowers();
         }

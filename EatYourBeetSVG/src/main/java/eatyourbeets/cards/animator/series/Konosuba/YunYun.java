@@ -26,6 +26,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
         Initialize(9, 0);
+        SetUpgrade(4, 0);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Konosuba);
@@ -74,7 +75,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        YunYun copy = (YunYun)super.makeStatEquivalentCopy();
+        YunYun copy = (YunYun) super.makeStatEquivalentCopy();
 
         copy.costModifier = this.costModifier;
 
@@ -100,15 +101,6 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
         }
 
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(4);
-        }
     }
 
     @Override

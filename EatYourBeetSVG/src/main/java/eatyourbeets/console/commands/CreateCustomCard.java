@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.cards.base.DynamicCard;
+import eatyourbeets.cards.base.AnimatorCard_Dynamic;
 import eatyourbeets.console.DynamicCardData;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
@@ -45,8 +45,8 @@ public class CreateCustomCard extends ConsoleCommand
         DynamicCardData data = cardPool.get(key);
         try
         {
-            DynamicCard card = data.GenerateCard(key, cardPool);
-            DynamicCard upgraded = (DynamicCard)card.makeCopy();
+            AnimatorCard_Dynamic card = data.GenerateCard(key, cardPool);
+            AnimatorCard_Dynamic upgraded = (AnimatorCard_Dynamic)card.makeCopy();
 
             upgraded.upgrade();
 

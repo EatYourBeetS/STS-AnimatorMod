@@ -15,11 +15,12 @@ public class Aqua extends AnimatorCard
 
     public static final String ID = Register(Aqua.class.getSimpleName());
 
-    public Aqua() 
+    public Aqua()
     {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 2, 3);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 1, 0);
 
         SetHealing(true);
         SetSynergy(Synergies.Konosuba);
@@ -30,6 +31,12 @@ public class Aqua extends AnimatorCard
             copy.SetTransformed(true);
             cardData.InitializePreview(copy, true);
         }
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetTransformed(transformed);
     }
 
     @Override
@@ -55,7 +62,7 @@ public class Aqua extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (!transformed)
         {
@@ -66,16 +73,6 @@ public class Aqua extends AnimatorCard
         else
         {
             GameActions.Bottom.VFX(new RainbowCardEffect());
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade(false))
-        {
-            upgradeMagicNumber(1);
-            SetTransformed(transformed);
         }
     }
 

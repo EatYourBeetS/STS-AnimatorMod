@@ -22,7 +22,8 @@ public class Souei extends AnimatorCard implements MartialArtist
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(0,0, 6);
+        Initialize(0, 0, 6);
+        SetUpgrade(0, 0, 2);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -36,7 +37,7 @@ public class Souei extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
         GameActions.Bottom.Callback(__ ->
@@ -44,15 +45,15 @@ public class Souei extends AnimatorCard implements MartialArtist
             AbstractPlayer player = AbstractDungeon.player;
             for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
             {
-                PoisonPower poison = (PoisonPower)enemy.getPower(PoisonPower.POWER_ID);
+                PoisonPower poison = (PoisonPower) enemy.getPower(PoisonPower.POWER_ID);
                 if (poison != null)
                 {
                     GameActions.Top.Callback(new PoisonLoseHpAction(enemy, player, poison.amount, AbstractGameAction.AttackEffect.POISON))
-                    .AddCallback(GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID), (intangible, action)->
+                    .AddCallback(GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID), (intangible, action) ->
                     {
                         if (GameUtilities.TriggerOnKill(action.target, true))
                         {
-                            if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == (int)intangible)
+                            if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == (int) intangible)
                             {
                                 GameActions.Top.StackPower(new IntangiblePlayerPower(AbstractDungeon.player, 1));
                             }
@@ -61,14 +62,5 @@ public class Souei extends AnimatorCard implements MartialArtist
                 }
             }
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(2);
-        }
     }
 }

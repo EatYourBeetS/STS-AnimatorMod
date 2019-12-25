@@ -15,13 +15,14 @@ public class Guy extends AnimatorCard
     {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0, 1, 2);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Chaika);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Draw(this.magicNumber);
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
@@ -32,15 +33,6 @@ public class Guy extends AnimatorCard
             GameActions.Bottom.MoveCards(p.discardPile, p.drawPile, secondaryValue)
             .ShowEffect(true, true)
             .SetOptions(false, true);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
         }
     }
 }

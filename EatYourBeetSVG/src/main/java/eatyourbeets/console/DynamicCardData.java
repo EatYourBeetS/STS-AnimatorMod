@@ -4,10 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.DynamicCard;
-import eatyourbeets.cards.base.DynamicCardBuilder;
-import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -28,9 +25,9 @@ public class DynamicCardData
     public Integer[] Cost;
     public String[] Descriptions;
 
-    public DynamicCard GenerateCard(String key, Map<String, DynamicCardData> cardPool)
+    public AnimatorCard_Dynamic GenerateCard(String key, Map<String, DynamicCardData> cardPool)
     {
-        DynamicCardBuilder builder = new DynamicCardBuilder(key);
+        AnimatorCardBuilder builder = new AnimatorCardBuilder(key);
 
         builder.SetText("", "", "");
 
@@ -56,7 +53,7 @@ public class DynamicCardData
         return builder.Build();
     }
 
-    private static void Fill(DynamicCardData data, DynamicCardBuilder builder)
+    private static void Fill(DynamicCardData data, AnimatorCardBuilder builder)
     {
         if (data.Name != null)
         {
@@ -100,7 +97,7 @@ public class DynamicCardData
         }
         if (intPair.t2 != null)
         {
-            builder.upgradedDamage = intPair.t2;
+            builder.damageUpgrade = intPair.t2;
         }
 
         intPair = new ArrayPair<>(data.M);
@@ -110,7 +107,7 @@ public class DynamicCardData
         }
         if (intPair.t2 != null)
         {
-            builder.upgradedMagicNumber = intPair.t2;
+            builder.magicNumberUpgrade = intPair.t2;
         }
 
         intPair = new ArrayPair<>(data.B);
@@ -120,7 +117,7 @@ public class DynamicCardData
         }
         if (intPair.t2 != null)
         {
-            builder.upgradedBlock = intPair.t2;
+            builder.blockUpgrade = intPair.t2;
         }
 
         intPair = new ArrayPair<>(data.SV);
@@ -130,7 +127,7 @@ public class DynamicCardData
         }
         if (intPair.t2 != null)
         {
-            builder.upgradedSecondaryValue = intPair.t2;
+            builder.secondaryValueUpgrade = intPair.t2;
         }
 
         intPair = new ArrayPair<>(data.Cost);
@@ -140,11 +137,11 @@ public class DynamicCardData
         }
         if (intPair.t2 != null)
         {
-            builder.upgradedCost = intPair.t2;
+            builder.costUpgrade = intPair.t2;
         }
     }
 
-    private static void Fill(AbstractCard card, DynamicCardBuilder builder)
+    private static void Fill(AbstractCard card, AnimatorCardBuilder builder)
     {
         if (card == null)
         {
@@ -170,7 +167,7 @@ public class DynamicCardData
 
         data.Cost = new Integer[2];
         data.Cost[0] = card.cost;
-        data.Cost[1] = upgraded.cost;
+        data.Cost[1] = upgraded.cost - data.Cost[0];
 
         data.Descriptions = new String[2];
         data.Descriptions[0] = card.rawDescription;
@@ -182,21 +179,21 @@ public class DynamicCardData
 
         data.D = new Integer[2];
         data.D[0] = card.baseDamage;
-        data.D[1] = upgraded.baseDamage;
+        data.D[1] = upgraded.baseDamage - data.D[0];
 
         data.M = new Integer[2];
         data.M[0] = card.baseMagicNumber;
-        data.M[1] = upgraded.baseMagicNumber;
+        data.M[1] = upgraded.baseMagicNumber - data.M[0];
 
         data.B = new Integer[2];
         data.B[0] = card.baseBlock;
-        data.B[1] = upgraded.baseBlock;
+        data.B[1] = upgraded.baseBlock - data.B[0];
 
         data.SV = new Integer[2];
         if (card instanceof EYBCard)
         {
             data.SV[0] = ((EYBCard)card).baseSecondaryValue;
-            data.SV[1] = ((EYBCard)upgraded).baseSecondaryValue;
+            data.SV[1] = ((EYBCard)upgraded).baseSecondaryValue - data.SV[0];
         }
         else
         {

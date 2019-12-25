@@ -31,6 +31,12 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         for (int i = 0; i < magicNumber; i++)
@@ -40,15 +46,6 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
 
         alreadyPlayed = true;
         PlayerStatistics.onPhaseChanged.Subscribe(this);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            SetExhaust(false);
-        }
     }
 
     @Override

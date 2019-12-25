@@ -41,10 +41,4 @@ public class Tatsumaki extends AnimatorCard
             GameUtilities.PreserveIntellect();
         }
     }
-
-    @Override
-    public void upgrade()
-    {
-        TryUpgrade();
-    }
 }

@@ -20,6 +20,7 @@ public class MetalKnight extends AnimatorCard_Boost
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
         Initialize(12, 0, 3);
+        SetUpgrade(2, 0, 1);
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.OnePunchMan);
@@ -48,16 +49,6 @@ public class MetalKnight extends AnimatorCard_Boost
         if (ProgressBoost())
         {
             GameActions.Bottom.GainMetallicize(magicNumber);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
         }
     }
 

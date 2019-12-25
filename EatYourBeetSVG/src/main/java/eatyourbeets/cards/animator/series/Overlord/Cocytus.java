@@ -18,7 +18,8 @@ public class Cocytus extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,0, 2);
+        Initialize(8, 0, 2);
+        SetUpgrade(2, 0, 1);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -30,7 +31,7 @@ public class Cocytus extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.GainForce(1);
@@ -45,16 +46,6 @@ public class Cocytus extends AnimatorCard
             {
                 GameActions.Bottom.GainPlatedArmor(1);
             }
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {          
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
         }
     }
 }

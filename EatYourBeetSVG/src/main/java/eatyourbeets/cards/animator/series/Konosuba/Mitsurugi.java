@@ -13,6 +13,7 @@ public class Mitsurugi extends AnimatorCard
 {
     public static final String ID = Register(Mitsurugi.class.getSimpleName(), EYBCardBadge.Exhaust);
 
+    // TODO: use a class for this and for Nanami
     private AbstractMonster lastTargetEnemy = null;
     private AbstractMonster targetEnemy = null;
 
@@ -21,6 +22,7 @@ public class Mitsurugi extends AnimatorCard
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(7, 0, 1, 4);
+        SetUpgrade(4, 0, 0, 0);
 
         SetSynergy(Synergies.Konosuba);
     }
@@ -63,15 +65,6 @@ public class Mitsurugi extends AnimatorCard
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
             GameActions.Bottom.GainForce(magicNumber);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(4);
         }
     }
 

@@ -19,15 +19,22 @@ public class Add extends AnimatorCard
 {
     public static final String ID = Register(Add.class.getSimpleName(), EYBCardBadge.Synergy);
 
+    // TODO: Redesign this card
     public Add()
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 12);
+        Initialize(0,0);
 
         SetExhaust(true);
         SetEthereal(true);
         SetSynergy(Synergies.Elsword);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override
@@ -39,15 +46,6 @@ public class Add extends AnimatorCard
         if (HasActiveSynergy())
         {
             GameActions.Bottom.Add(new DoubleEnergyAction());
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            SetEthereal(false);
         }
     }
 

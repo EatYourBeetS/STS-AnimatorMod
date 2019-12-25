@@ -20,7 +20,8 @@ public class Ara extends AnimatorCard implements MartialArtist
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(3,0);
+        Initialize(3, 0);
+        SetUpgrade(2, 0);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -32,10 +33,10 @@ public class Ara extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        GameActions.Bottom.DealDamage(this, m,  AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.Draw(GameUtilities.GetDebuffsCount(m.powers));
         GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(false, false, false)
@@ -47,14 +48,5 @@ public class Ara extends AnimatorCard implements MartialArtist
                 GameActions.Bottom.GainForce(2);
             }
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(2);
-        }
     }
 }

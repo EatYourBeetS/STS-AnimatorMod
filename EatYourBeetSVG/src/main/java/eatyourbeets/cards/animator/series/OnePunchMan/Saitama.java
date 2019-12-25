@@ -143,15 +143,6 @@ public class Saitama extends AnimatorCard
         });
     }
 
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            this.isInnate = true;
-        }
-    }
-
     private void SetEffect(int stage)
     {
         switch (stage)

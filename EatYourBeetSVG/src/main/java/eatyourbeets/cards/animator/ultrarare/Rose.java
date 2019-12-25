@@ -19,6 +19,7 @@ public class Rose extends AnimatorCard_UltraRare
         super(ID, 3, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(7, 0, 2, 40);
+        SetUpgrade(0, 0, 1, 0);
 
         SetPiercing(true);
         SetSynergy(Synergies.Elsword);
@@ -36,14 +37,5 @@ public class Rose extends AnimatorCard_UltraRare
                 GameActions.Bottom.Add(new RoseDamageAction(monster, this, cards.size(), damage));
             }
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
     }
 }

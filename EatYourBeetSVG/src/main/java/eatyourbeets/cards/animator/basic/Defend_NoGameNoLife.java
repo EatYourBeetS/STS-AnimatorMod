@@ -16,12 +16,13 @@ public class Defend_NoGameNoLife extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5);
+        SetUpgrade(0, 3);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
 
@@ -34,15 +35,6 @@ public class Defend_NoGameNoLife extends Defend
                 card.flash();
                 return;
             }
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
         }
     }
 }

@@ -27,7 +27,8 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 3);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 0, -1);
 
         AddExtendedDescription();
 
@@ -36,18 +37,9 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        VestaElixirEffects.BeginCreateElixir((Vesta)this.makeStatEquivalentCopy());
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(-1);
-        }
+        VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy());
     }
 
     public void ResearchElixir(Vesta_Elixir elixir)
@@ -82,7 +74,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         }
         else
         {
-            AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this.makeStatEquivalentCopy()));
+            AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this));
 
             GameActions.Bottom.MakeCardInHand(elixir);
 

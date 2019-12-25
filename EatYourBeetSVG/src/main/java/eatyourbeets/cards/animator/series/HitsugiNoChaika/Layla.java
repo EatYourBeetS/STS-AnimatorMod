@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.actions.unique.BouncingFlaskAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
@@ -23,6 +22,7 @@ public class Layla extends AnimatorCard
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
         Initialize(7, 0, 2, 2);
+        SetUpgrade(0, 0, 1, 0);
 
         SetPiercing(true);
         SetSynergy(Synergies.Chaika);
@@ -31,16 +31,7 @@ public class Layla extends AnimatorCard
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        int debuffs = 0;
-        if (mo != null) for (AbstractPower power : mo.powers)
-        {
-            if (power.type == AbstractPower.PowerType.DEBUFF)
-            {
-                debuffs += 1;
-            }
-        }
-
-        return super.calculateModifiedCardDamage(player, mo, tmp + (debuffs * secondaryValue));
+        return super.calculateModifiedCardDamage(player, mo, tmp + (GameUtilities.GetDebuffsCount(mo) * secondaryValue));
     }
 
     @Override
@@ -62,14 +53,5 @@ public class Layla extends AnimatorCard
                 GameActions.Bottom.Add(new BouncingFlaskAction(enemy, this.magicNumber, cards.size()));
             }
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
     }
 }

@@ -20,13 +20,14 @@ public class Kuribayashi extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(8,0,1, 2);
+        Initialize(8, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 2);
 
         SetSynergy(Synergies.Gate);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.SFX("ATTACK_FIRE");
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
@@ -37,16 +38,6 @@ public class Kuribayashi extends AnimatorCard
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.ReduceStrength(m, STRENGTH_DOWN, true);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-            upgradeSecondaryValue(2);
         }
     }
 }

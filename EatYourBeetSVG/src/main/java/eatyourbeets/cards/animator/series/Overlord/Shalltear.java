@@ -22,7 +22,8 @@ public class Shalltear extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(6,0, 3);
+        Initialize(6, 0, 3);
+        SetUpgrade(3, 0, 1);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -62,15 +63,5 @@ public class Shalltear extends AnimatorCard
         }
 
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {          
-            upgradeDamage(3);
-            upgradeMagicNumber(1);
-        }
     }
 }

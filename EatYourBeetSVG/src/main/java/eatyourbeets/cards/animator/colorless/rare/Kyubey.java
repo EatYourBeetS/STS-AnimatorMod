@@ -26,6 +26,7 @@ public class Kyubey extends AnimatorCard implements StartupCard
         super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0, 0, 2);
+        SetCostUpgrade(-1);
 
         SetExhaust(true);
         SetSynergy(Synergies.MadokaMagica);
@@ -36,15 +37,6 @@ public class Kyubey extends AnimatorCard implements StartupCard
     {
         GameActions.Bottom.Draw(this.magicNumber);
         GameActions.Bottom.GainEnergy(this.magicNumber);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(0);
-        }
     }
 
     private AbstractCard GetRandomCurse()

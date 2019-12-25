@@ -28,29 +28,21 @@ public class Strike extends AnimatorCard
         this.tags.add(AbstractEnums.CardTags.IMPROVED_STRIKE);
     }
 
-    public Strike() 
+    public Strike()
     {
         super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
 
-        Initialize(6,0);
+        Initialize(6, 0);
+        SetUpgrade(3, 0);
 
         this.tags.add(BaseModCardTags.BASIC_STRIKE);
         this.tags.add(AbstractCard.CardTags.STRIKE);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 
     @Override

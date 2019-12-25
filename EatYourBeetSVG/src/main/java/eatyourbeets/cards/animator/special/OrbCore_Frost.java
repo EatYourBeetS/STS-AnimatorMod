@@ -17,13 +17,13 @@ public class OrbCore_Frost extends OrbCore
     {
         super(ID, 0);
 
-        Initialize(0,0, VALUE,2);
+        Initialize(0, 0, VALUE, 2);
 
         SetEvokeOrbCount(secondaryValue);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         for (int i = 0; i < secondaryValue; i++)
         {

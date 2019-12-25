@@ -17,7 +17,7 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
     {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0,0, 1);
+        Initialize(0, 0, 1);
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.Gate);
@@ -41,7 +41,7 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (HasActiveSynergy() && m != null)
         {
@@ -58,11 +58,5 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
                 GameActions.Bottom.ChannelOrb(new Frost(), true);
             }
         });
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        TryUpgrade();
     }
 }

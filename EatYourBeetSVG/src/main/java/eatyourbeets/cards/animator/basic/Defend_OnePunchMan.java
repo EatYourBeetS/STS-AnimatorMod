@@ -16,28 +16,20 @@ public class Defend_OnePunchMan extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5);
+        SetUpgrade(0, 3);
 
         SetHealing(true);
         SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.StackPower(new EnergizedBluePower(p, 1));
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
         }
     }
 }

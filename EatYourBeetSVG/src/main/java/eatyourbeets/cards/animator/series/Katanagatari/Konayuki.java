@@ -19,7 +19,8 @@ public class Konayuki extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(30,0, 3);
+        Initialize(33, 0, 3);
+        SetUpgrade(11, 0, 1);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -52,7 +53,7 @@ public class Konayuki extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (GameUtilities.GetStrength(p) >= 10)
         {
@@ -66,16 +67,6 @@ public class Konayuki extends AnimatorCard
         else
         {
             GameActions.Bottom.GainForce(magicNumber);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {          
-            upgradeDamage(10);
-            upgradeMagicNumber(1);
         }
     }
 }

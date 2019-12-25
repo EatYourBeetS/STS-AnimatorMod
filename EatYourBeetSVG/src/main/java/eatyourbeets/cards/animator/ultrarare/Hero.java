@@ -17,23 +17,15 @@ public class Hero extends AnimatorCard_UltraRare
         super(ID, 1, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(8, 0, 2);
+        SetUpgrade(4, 0, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.Draw(this.magicNumber);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(4);
-        }
     }
 }

@@ -26,6 +26,12 @@ public class Zero extends AnimatorCard implements Spellcaster
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         AbstractCard skill = JavaUtilities.GetRandomElement(p.drawPile.getSkills().group);
@@ -45,15 +51,6 @@ public class Zero extends AnimatorCard implements Spellcaster
                     GameUtilities.PlayCopy(this, m, false);
                 }
             }
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            SetExhaust(false);
         }
     }
 }

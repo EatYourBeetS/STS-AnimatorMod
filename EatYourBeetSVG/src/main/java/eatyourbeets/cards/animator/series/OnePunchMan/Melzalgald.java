@@ -38,10 +38,4 @@ public class Melzalgald extends AnimatorCard
         GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_2()).SetOptions(upgraded, false);
         GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_3()).SetOptions(upgraded, false);
     }
-
-    @Override
-    public void upgrade()
-    {
-        TryUpgrade();
-    }
 }

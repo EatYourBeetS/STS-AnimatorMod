@@ -43,12 +43,6 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
     }
 
     @Override
-    public void upgrade()
-    {
-        TryUpgrade();
-    }
-
-    @Override
     public void OnStartOfTurn()
     {
         AbstractPlayer p = AbstractDungeon.player;

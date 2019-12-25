@@ -20,7 +20,8 @@ public class Caster extends AnimatorCard implements Spellcaster
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(0,0, 2);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.Fate);
@@ -50,18 +51,9 @@ public class Caster extends AnimatorCard implements Spellcaster
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ChannelOrb(new Dark(), true);
         GameActions.Bottom.StealStrength(m, magicNumber, true);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
     }
 }

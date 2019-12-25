@@ -12,14 +12,15 @@ public class TakanashiRikka extends AnimatorCard
 {
     public static final String ID = Register(TakanashiRikka.class.getSimpleName());
 
+    // TODO: Different upgrade
     public TakanashiRikka()
     {
         super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0, 0, 0);
+        SetUpgrade(0, 0, 2);
 
-        this.exhaust = true;
-
+        SetExhaust(true);
         SetSynergy(Synergies.Chuunibyou);
     }
 
@@ -41,15 +42,6 @@ public class TakanashiRikka extends AnimatorCard
             copy.tags.add(AbstractEnums.CardTags.PURGE);
 
             GameActions.Top.MakeCardInHand(copy);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(2);
         }
     }
 }

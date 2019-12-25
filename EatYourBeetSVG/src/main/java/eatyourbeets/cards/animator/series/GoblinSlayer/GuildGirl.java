@@ -17,6 +17,7 @@ public class GuildGirl extends AnimatorCard
         super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
 
         Initialize(0,0, 4);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -25,14 +26,5 @@ public class GuildGirl extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Bottom.StackPower(new GuildGirlPower(p, 1, magicNumber));
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(0);
-        }
     }
 }

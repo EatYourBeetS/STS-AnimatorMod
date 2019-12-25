@@ -18,7 +18,8 @@ public class Greed extends AnimatorCard implements OnAddedToDeckSubscriber
     {
         super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,2, 2, 30);
+        Initialize(0, 2, 2, 30);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -42,19 +43,10 @@ public class Greed extends AnimatorCard implements OnAddedToDeckSubscriber
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainPlatedArmor(magicNumber);
         GameActions.Bottom.GainMetallicize(magicNumber);
         GameActions.Bottom.StackPower(new MalleablePower(p, magicNumber));
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(3);
-        }
     }
 }

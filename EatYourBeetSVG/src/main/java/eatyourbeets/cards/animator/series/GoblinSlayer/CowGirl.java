@@ -53,10 +53,4 @@ public class CowGirl extends AnimatorCard
         .SetOptions(false, false)
         .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(c)));
     }
-
-    @Override
-    public void upgrade()
-    {
-        TryUpgrade();
-    }
 }

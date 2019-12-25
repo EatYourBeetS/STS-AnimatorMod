@@ -18,7 +18,8 @@ public class SirTouchMe extends AnimatorCard_UltraRare implements StartupCard
     {
         super(ID, 2, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(4,4,4, 3);
+        Initialize(4, 4, 4, 3);
+        SetUpgrade(2, 2, 2, 0);
 
         SetSynergy(Synergies.Overlord);
     }
@@ -29,17 +30,6 @@ public class SirTouchMe extends AnimatorCard_UltraRare implements StartupCard
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.StackPower(new JuggernautPower(p, this.magicNumber));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(2);
-            upgradeDamage(2);
-            upgradeBlock(2);
-        }
     }
 
     @Override

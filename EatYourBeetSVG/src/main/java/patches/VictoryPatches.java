@@ -3,8 +3,6 @@ package patches;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.*;
-import com.megacrit.cardcrawl.events.beyond.SpireHeart;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
 import com.megacrit.cardcrawl.screens.VictoryScreen;
 import eatyourbeets.characters.AnimatorCharacterSelect;

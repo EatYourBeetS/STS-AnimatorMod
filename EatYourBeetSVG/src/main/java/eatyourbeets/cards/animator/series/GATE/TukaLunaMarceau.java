@@ -16,6 +16,7 @@ public class TukaLunaMarceau extends AnimatorCard
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
         Initialize(0, 2, 3);
+        SetUpgrade(0, 2, 0);
 
         SetSynergy(Synergies.Gate);
     }
@@ -37,14 +38,5 @@ public class TukaLunaMarceau extends AnimatorCard
         }
 
         GameActions.Bottom.GainBlock(this.block);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(2);
-        }
     }
 }

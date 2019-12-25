@@ -15,7 +15,7 @@ public class GoblinKing extends AnimatorCard_Status
     {
         super(ID, 1, CardRarity.RARE, CardTarget.NONE);
 
-        Initialize(0,0);
+        Initialize(0, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
     }

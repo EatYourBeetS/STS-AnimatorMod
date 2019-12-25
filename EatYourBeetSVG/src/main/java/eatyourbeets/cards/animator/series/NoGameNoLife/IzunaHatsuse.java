@@ -23,6 +23,7 @@ public class IzunaHatsuse extends AnimatorCard
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
         Initialize(4, 2, 4);
+        SetUpgrade(2, 2, 2);
 
         SetTransformed(false);
         SetSynergy(Synergies.NoGameNoLife);
@@ -35,17 +36,6 @@ public class IzunaHatsuse extends AnimatorCard
             cardData.InitializePreview(copy, true);
         }
     }
-
-//    @Override
-//    public List<TooltipInfo> getCustomTooltips()
-//    {
-//        if (cardText.index == 1)
-//        {
-//            return super.getCustomTooltips();
-//        }
-//
-//        return null;
-//    }
 
     @Override
     public void applyPowers()
@@ -76,19 +66,8 @@ public class IzunaHatsuse extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.ApplyWeak(p, m,1);
+            GameActions.Bottom.ApplyWeak(p, m, 1);
             GameActions.Bottom.GainBlock(this.block);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(2);
-            upgradeDamage(2);
-            upgradeBlock(2);
         }
     }
 

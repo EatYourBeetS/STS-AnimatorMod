@@ -23,7 +23,8 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(5,0,3, 2);
+        Initialize(5, 0, 3, 2);
+        SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -57,7 +58,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
 
@@ -73,15 +74,6 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
         }
 
         AddDamageBonus(-bonusDamage);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 
     private void AddDamageBonus(int amount)

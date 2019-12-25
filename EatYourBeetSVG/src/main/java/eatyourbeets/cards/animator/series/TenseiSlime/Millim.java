@@ -16,14 +16,15 @@ public class Millim extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(6,0, 2);
+        Initialize(6, 0, 2);
+        SetUpgrade(1, 0, 1);
 
-        SetUnique(true);
+        SetUnique(true, true);
         SetSynergy(Synergies.TenSura);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.ApplyBurning(p, m, magicNumber);
@@ -33,25 +34,5 @@ public class Millim extends AnimatorCard
         {
             GameActions.Bottom.Draw(2);
         }
-    }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return true;
-    }
-
-    @Override
-    public void upgrade()
-    {
-        this.timesUpgraded += 1;
-
-        upgradeDamage(1);
-        upgradeMagicNumber(1);
-
-        //upgradeBlock(1);
-        this.upgraded = true;
-        this.name = cardData.strings.NAME + "+" + this.timesUpgraded;
-        this.initializeTitle();
     }
 }

@@ -23,7 +23,8 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(4,0);
+        Initialize(4, 0);
+        SetUpgrade(2, 0);
 
         SetPiercing(true);
         SetSynergy(Synergies.Katanagatari);
@@ -34,17 +35,6 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
         }
     }
 
-//    @Override
-//    public List<TooltipInfo> getCustomTooltips()
-//    {
-//        if (cardText.index == 1)
-//        {
-//            return super.getCustomTooltips();
-//        }
-//
-//        return null;
-//    }
-
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
@@ -52,7 +42,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.SFX("ATTACK_FIRE");
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetPiercing(true, true);
@@ -80,15 +70,6 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
                     GameActions.Bottom.MakeCardInDrawPile(new EntouJyuu()).SetOptions(upgraded, false);
                 }
             }
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(2);
         }
     }
 }

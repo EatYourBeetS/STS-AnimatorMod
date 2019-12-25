@@ -19,6 +19,7 @@ public class PandorasActor extends AnimatorCard implements StartupCard
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
         Initialize(0, 5);
+        SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Overlord, true);
     }
@@ -27,15 +28,6 @@ public class PandorasActor extends AnimatorCard implements StartupCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
-        }
     }
 
     @Override

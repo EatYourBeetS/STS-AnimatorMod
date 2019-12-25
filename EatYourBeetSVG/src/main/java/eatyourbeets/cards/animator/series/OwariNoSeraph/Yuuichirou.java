@@ -19,7 +19,8 @@ public class Yuuichirou extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(8,0);
+        Initialize(8, 0);
+        SetUpgrade(4, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
 
@@ -29,19 +30,8 @@ public class Yuuichirou extends AnimatorCard
         }
     }
 
-//    @Override
-//    public List<TooltipInfo> getCustomTooltips()
-//    {
-//        if (cardText.index == 1)
-//        {
-//            return super.getCustomTooltips();
-//        }
-//
-//        return null;
-//    }
-
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.Draw(1);
@@ -56,14 +46,5 @@ public class Yuuichirou extends AnimatorCard
 
         AbstractDungeon.player.discardPile.addToTop(new Wound());
         AbstractDungeon.player.discardPile.addToTop(new Wound());
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {          
-            upgradeDamage(4);
-        }
     }
 }

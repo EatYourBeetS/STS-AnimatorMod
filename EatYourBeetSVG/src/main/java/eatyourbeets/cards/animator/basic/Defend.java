@@ -25,28 +25,20 @@ public class Defend extends AnimatorCard
         this.tags.add(AbstractEnums.CardTags.IMPROVED_DEFEND);
     }
 
-    public Defend() 
+    public Defend()
     {
         super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
 
         Initialize(0, 5);
+        SetUpgrade(0, 3);
 
         this.tags.add(BaseModCardTags.BASIC_DEFEND);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
-        }
     }
 
     @Override

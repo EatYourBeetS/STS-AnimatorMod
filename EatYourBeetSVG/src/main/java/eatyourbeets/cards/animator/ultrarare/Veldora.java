@@ -20,6 +20,7 @@ public class Veldora extends AnimatorCard_UltraRare
         super(ID, 4, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 2, 2);
+        SetUpgrade(0, 0, 1, 1);
 
         showEvokeValue = true;
 
@@ -40,7 +41,7 @@ public class Veldora extends AnimatorCard_UltraRare
     {
         GameActions.Bottom.GainIntellect(secondaryValue);
 
-        int orbCount =  p.filledOrbCount();
+        int orbCount = p.filledOrbCount();
         for (int i = 0; i < this.magicNumber - 1; i++)
         {
             for (AbstractOrb orb : p.orbs)
@@ -49,8 +50,8 @@ public class Veldora extends AnimatorCard_UltraRare
                 {
                     GameActions.Bottom.Callback(orb, (orb_, __) ->
                     {
-                        ((AbstractOrb)orb_).triggerEvokeAnimation();
-                        ((AbstractOrb)orb_).onEvoke();
+                        ((AbstractOrb) orb_).triggerEvokeAnimation();
+                        ((AbstractOrb) orb_).onEvoke();
                     });
                 }
             }
@@ -58,15 +59,5 @@ public class Veldora extends AnimatorCard_UltraRare
 
         GameActions.Bottom.Add(new AnimateOrbAction(orbCount));
         GameActions.Bottom.Add(new EvokeOrbAction(orbCount));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeSecondaryValue(1);
-            upgradeMagicNumber(1);
-        }
     }
 }

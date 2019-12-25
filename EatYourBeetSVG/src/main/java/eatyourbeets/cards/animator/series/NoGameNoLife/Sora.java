@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.SoraAction;
@@ -17,6 +16,7 @@ public class Sora extends AnimatorCard
 {
     public static final String ID = Register(Sora.class.getSimpleName(), EYBCardBadge.Special);
 
+    // TODO: Use DynamicCardBuilder
     public final SoraEffect effect;
 
     public Sora(SoraEffect effect, String name, String description)
@@ -34,7 +34,8 @@ public class Sora extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
 
-        Initialize(0,0, 2);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         this.effect = null;
 
@@ -50,15 +51,6 @@ public class Sora extends AnimatorCard
 
         GameActions.Bottom.Add(new WaitAction(0.4f));
         GameActions.Bottom.Add(new SoraAction(name, magicNumber));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
     }
 
     @Override

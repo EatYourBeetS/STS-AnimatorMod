@@ -19,7 +19,8 @@ public class Jibril extends AnimatorCard implements Spellcaster
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(10,0);
+        Initialize(10, 0);
+        SetUpgrade( 4, 0);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.NoGameNoLife);
@@ -43,17 +44,8 @@ public class Jibril extends AnimatorCard implements Spellcaster
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(4);
-        }
     }
 }

@@ -19,7 +19,8 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(2,0,2);
+        Initialize(2, 0, 2);
+        SetUpgrade(3, 0, 0);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -44,17 +45,8 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }

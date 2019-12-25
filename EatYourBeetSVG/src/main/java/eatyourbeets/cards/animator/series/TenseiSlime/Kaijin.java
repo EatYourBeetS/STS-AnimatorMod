@@ -25,24 +25,16 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
     {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0, 1);
+        Initialize(0, 0, 1);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.TenSura);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(new KaijinPower(p, magicNumber));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(0);
-        }
     }
 
     @Override

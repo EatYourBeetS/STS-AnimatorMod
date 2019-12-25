@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public abstract class EYBEffect extends AbstractGameEffect
 {
-    protected boolean isRealtime = false;
+    protected boolean isRealtime;
     protected final AbstractPlayer player;
     protected int amount;
 

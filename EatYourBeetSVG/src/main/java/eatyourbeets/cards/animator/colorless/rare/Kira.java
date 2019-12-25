@@ -33,6 +33,7 @@ public class Kira extends AnimatorCard
         super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
 
         Initialize(0, 0, 2);
+        SetUpgrade(0, 0, -1);
 
         AddExtendedDescription();
 
@@ -88,7 +89,7 @@ public class Kira extends AnimatorCard
 
             GameActions.Bottom.SFX("ANIMATOR_KIRA_POWER");
             AbstractDungeon.effectsQueue.add(new CallbackEffect(new WaitRealtimeAction(9f),
-                    this, (state, action) -> CardCrawlGame.music.unsilenceBGM()));
+            this, (state, action) -> CardCrawlGame.music.unsilenceBGM()));
         }
         else
         {
@@ -116,15 +117,6 @@ public class Kira extends AnimatorCard
         }
     }
 
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(-1);
-        }
-    }
-
     private void updateCurrentEffect(AbstractMonster monster)
     {
         if (monster == null)
@@ -134,7 +126,7 @@ public class Kira extends AnimatorCard
         else if (monster instanceof TheUnnamed)
         {
             cardText.OverrideDescription(null, true);
-            ((TheUnnamed)monster).TriedUsingDeathNote();
+            ((TheUnnamed) monster).TriedUsingDeathNote();
         }
         else
         {

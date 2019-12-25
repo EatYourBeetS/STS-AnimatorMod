@@ -17,6 +17,7 @@ public class FeridBathory extends AnimatorCard
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0,0, 2, FeridBathoryPower.STRENGTH_GAIN);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -25,14 +26,5 @@ public class FeridBathory extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Bottom.StackPower(new FeridBathoryPower(p, magicNumber));
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(1);
-        }
     }
 }

@@ -9,14 +9,14 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.interfaces.OnStartOfTurnSubscriber;
+import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Tyuule extends AnimatorCard implements OnStartOfTurnSubscriber
+public class Tyuule extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ID = Register(Tyuule.class.getSimpleName(), EYBCardBadge.Exhaust);
 
@@ -25,6 +25,7 @@ public class Tyuule extends AnimatorCard implements OnStartOfTurnSubscriber
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
         Initialize(0, 0, 3);
+        SetUpgrade(0, 0, 2);
 
         SetSynergy(Synergies.Gate);
     }
@@ -47,20 +48,11 @@ public class Tyuule extends AnimatorCard implements OnStartOfTurnSubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        PlayerStatistics.onStartOfTurn.Subscribe((Tyuule)makeStatEquivalentCopy());
+        PlayerStatistics.onStartOfTurnPostDraw.Subscribe((Tyuule)makeStatEquivalentCopy());
     }
 
     @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(2);
-        }
-    }
-
-    @Override
-    public void OnStartOfTurn()
+    public void OnStartOfTurnPostDraw()
     {
         GameEffects.Queue.ShowCardBriefly(this);
 
@@ -71,6 +63,6 @@ public class Tyuule extends AnimatorCard implements OnStartOfTurnSubscriber
             GameActions.Bottom.ApplyVulnerable(p, enemy, 1);
         }
 
-        PlayerStatistics.onStartOfTurn.Unsubscribe(this);
+        PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
     }
 }

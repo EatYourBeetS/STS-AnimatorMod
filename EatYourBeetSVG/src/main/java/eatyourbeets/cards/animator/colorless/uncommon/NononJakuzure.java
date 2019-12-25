@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,6 +20,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
         super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 0, 1, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.KillLaKill);
@@ -53,16 +55,30 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Cycle(name, secondaryValue);
-        GameActions.Bottom.Motivate(magicNumber);
+        GameActions.Bottom.Cycle(name, secondaryValue)
+        .AddCallback(__ ->
+        { //
+            GameActions.Top.Motivate()
+            .MotivateZeroCost(false)
+            .AddCallback(magicNumber, this::OnMotivate);
+        });
     }
 
-    @Override
-    public void upgrade()
+    private void OnMotivate(Object state, AbstractCard card)
     {
-        if (TryUpgrade())
+        int remaining = (Integer) state;
+        if (remaining > 1)
         {
-            upgradeSecondaryValue(1);
+            if (card != null)
+            {
+                GameActions.Top.Motivate()
+                .MotivateZeroCost(false)
+                .AddCallback(remaining-1, this::OnMotivate);
+            }
+            else
+            {
+                GameActions.Bottom.Motivate(remaining);
+            }
         }
     }
 }

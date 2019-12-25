@@ -17,7 +17,8 @@ public class Shinoa extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
-        Initialize(0,6, 1);
+        Initialize(0, 6, 1);
+        SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -34,7 +35,7 @@ public class Shinoa extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
 
@@ -46,15 +47,6 @@ public class Shinoa extends AnimatorCard
             {
                 GameActions.Bottom.ApplyWeak(AbstractDungeon.player, enemy, magicNumber);
             }
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
         }
     }
 }

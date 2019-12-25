@@ -15,13 +15,13 @@ public class GoblinChampion extends AnimatorCard_Status
     {
         super(ID, 1, CardRarity.UNCOMMON, CardTarget.NONE);
 
-        Initialize(0,0);
+        Initialize(0, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (this.dontTriggerOnUseCard)
         {

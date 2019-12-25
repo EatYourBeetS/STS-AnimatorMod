@@ -22,6 +22,7 @@ public class Cirno extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ALL);
 
         Initialize(4, 0);
+        SetUpgrade(3, 0);
 
         SetEthereal(true);
         SetMultiDamage(true);
@@ -39,7 +40,6 @@ public class Cirno extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        //GameActions.Bottom.VFX(new BlizzardEffect(1, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.4f);
         GameActions.Bottom.Callback(__ ->
         {
             MonsterGroup monsters = AbstractDungeon.getMonsters();
@@ -53,15 +53,6 @@ public class Cirno extends AnimatorCard
 
         GameActions.Bottom.ChannelOrb(new Frost(), true);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetOptions(true, false);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }
 

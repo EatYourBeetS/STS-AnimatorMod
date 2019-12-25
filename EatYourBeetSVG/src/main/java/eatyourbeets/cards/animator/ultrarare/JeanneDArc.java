@@ -18,13 +18,14 @@ public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
     {
         super(ID, 1, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(12,4, 8);
+        Initialize(12, 4, 8);
+        SetUpgrade(4, 0, 0);
 
         SetSynergy(Synergies.Fate);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.GainBlock(block);
@@ -35,15 +36,6 @@ public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
             .ShowEffect(true, true)
             .SetOptions(true, true)
             .SetFilter(GameUtilities::IsCurseOrStatus);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(4);
         }
     }
 

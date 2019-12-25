@@ -16,13 +16,14 @@ public class DolaRiku extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,0,2);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(false, false, false)
@@ -32,15 +33,6 @@ public class DolaRiku extends AnimatorCard
         {
             GameActions.Top.Draw(1)
             .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(c), false);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
         }
     }
 }

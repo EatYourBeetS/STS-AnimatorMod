@@ -24,6 +24,7 @@ public class Ain extends AnimatorCard implements Spellcaster
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
 
         Initialize(1, 0, 3, 1);
+        SetUpgrade(0, 0, 1, 0);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Elsword);
@@ -71,15 +72,6 @@ public class Ain extends AnimatorCard implements Spellcaster
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainIntellect(secondaryValue);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
         }
     }
 }

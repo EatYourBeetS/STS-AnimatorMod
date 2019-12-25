@@ -18,7 +18,8 @@ public class Hakurou extends AnimatorCard implements MartialArtist
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(1,0, 3);
+        Initialize(1, 0, 3);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -38,7 +39,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.VFX(new DieDieDieEffect());
 
@@ -50,15 +51,6 @@ public class Hakurou extends AnimatorCard implements MartialArtist
         if (HasActiveSynergy())
         {
             GameActions.Bottom.GainAgility(1);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
         }
     }
 }

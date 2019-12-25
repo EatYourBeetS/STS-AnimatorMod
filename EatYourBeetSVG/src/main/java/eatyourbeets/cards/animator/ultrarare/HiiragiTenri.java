@@ -20,7 +20,8 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     {
         super(ID, 4, CardType.SKILL, CardTarget.ENEMY);
 
-        Initialize(0,0, 20);
+        Initialize(0, 0, 20);
+        SetUpgrade(0, 0, 10);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -38,7 +39,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainTemporaryHP(this.magicNumber);
 
@@ -48,14 +49,5 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
         }
 
         GameActions.Top.VFX(new OfferingEffect(), 0.1F);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(10);
-        }
     }
 }

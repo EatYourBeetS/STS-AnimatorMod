@@ -20,6 +20,7 @@ public class Gillette extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(7, 0, 1);
+        SetUpgrade(3, 0, 0);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -40,14 +41,5 @@ public class Gillette extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.StackPower(new EnergizedPower(p, 1));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }

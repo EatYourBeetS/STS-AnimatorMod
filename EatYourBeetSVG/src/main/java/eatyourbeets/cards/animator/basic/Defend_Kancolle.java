@@ -15,6 +15,7 @@ public class Defend_Kancolle extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5, 5);
+        SetUpgrade(0, 3);
 
         SetHealing(true);
         SetSynergy(Synergies.Kancolle);
@@ -28,15 +29,6 @@ public class Defend_Kancolle extends Defend
         if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.GainGold(magicNumber);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
         }
     }
 }

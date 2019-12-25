@@ -21,7 +21,8 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     {
         super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0, 0);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -61,7 +62,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        Shiro copy = (Shiro)super.makeStatEquivalentCopy();
+        Shiro copy = (Shiro) super.makeStatEquivalentCopy();
 
         copy.costModifier = this.costModifier;
 
@@ -77,21 +78,12 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Top.Draw(1)
         .SetFilter(c -> Sora.ID.equals(c.cardID), false);
 
         GameActions.Bottom.StackPower(new ShiroPower(p, 1));
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(3);
-        }
     }
 
     @Override

@@ -15,6 +15,7 @@ public class Defend_AccelWorld extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5, 3);
+        SetUpgrade(0, 3);
 
         SetSynergy(Synergies.AccelWorld);
     }
@@ -28,17 +29,8 @@ public class Defend_AccelWorld extends Defend
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
-        }
     }
 }

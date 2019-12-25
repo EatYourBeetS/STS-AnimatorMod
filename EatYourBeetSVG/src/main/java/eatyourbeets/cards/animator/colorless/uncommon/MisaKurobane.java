@@ -43,10 +43,4 @@ public class MisaKurobane extends AnimatorCard
             GameActions.Bottom.MakeCardInDiscardPile(new Yusarin());
         }
     }
-
-    @Override
-    public void upgrade()
-    {
-        TryUpgrade();
-    }
 }

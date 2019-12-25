@@ -16,6 +16,7 @@ public class Strike_Kancolle extends Strike
         super(ID, 1, CardTarget.ENEMY);
 
         Initialize(6, 0, 5);
+        SetUpgrade(3, 0);
 
         SetHealing(true);
         SetSynergy(Synergies.Kancolle);
@@ -29,15 +30,6 @@ public class Strike_Kancolle extends Strike
         if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.GainGold(magicNumber);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
         }
     }
 }

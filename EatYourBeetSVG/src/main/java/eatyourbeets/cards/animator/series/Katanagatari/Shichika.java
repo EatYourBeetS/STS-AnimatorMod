@@ -18,6 +18,7 @@ public class Shichika extends AnimatorCard implements MartialArtist
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
@@ -46,15 +47,6 @@ public class Shichika extends AnimatorCard implements MartialArtist
         {
             GameActions.Bottom.GainAgility(1);
             GameActions.Bottom.GainThorns(2);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
         }
     }
 }

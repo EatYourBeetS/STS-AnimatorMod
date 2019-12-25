@@ -64,7 +64,7 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (m == null || m.isDeadOrEscaped())
         {
@@ -76,21 +76,12 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
             AddSecondaryEffect(p, m);
 
             GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-            .SetOptions(true, false);
+                    .SetOptions(true, false);
 
             if (m.hb != null)
             {
                 GameActions.Top.VFX(new ThrowDaggerEffect(m.hb.cX, m.hb.cY));
             }
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
         }
     }
 

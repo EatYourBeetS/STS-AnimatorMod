@@ -18,7 +18,8 @@ public class Viivi extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(3,0, 3);
+        Initialize(3, 0, 3);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -38,15 +39,6 @@ public class Viivi extends AnimatorCard
         {
             GameActions.Bottom.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F);
             GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
         }
     }
 }

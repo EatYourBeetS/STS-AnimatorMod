@@ -17,6 +17,7 @@ public class Boros extends AnimatorCard
         super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0, 0, 2, 1);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -34,14 +35,5 @@ public class Boros extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ApplyPower(p, p, new BorosPower(p));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(3);
-        }
     }
 }

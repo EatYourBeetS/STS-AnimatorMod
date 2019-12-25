@@ -26,6 +26,12 @@ public class Tet extends AnimatorCard
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
+    }
+
+    @Override
     public void triggerOnEndOfTurnForPlayingCard()
     {
         super.triggerOnEndOfTurnForPlayingCard();
@@ -45,15 +51,6 @@ public class Tet extends AnimatorCard
         if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainEnergy(1);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            SetRetain(true);
         }
     }
 

@@ -19,6 +19,7 @@ public class Respite extends AnimatorCard implements Hidden
         super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0, 0, 6 + (GameUtilities.GetAscensionLevel() / 2));
+        SetUpgrade(0, 0, magicNumber / 2);
 
         SetPurge(true);
     }
@@ -36,8 +37,8 @@ public class Respite extends AnimatorCard implements Hidden
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        int a = (int)Math.ceil(Math.random() * 3);
-        int b = (int)Math.ceil(Math.random() * 3);
+        int a = (int) Math.ceil(Math.random() * 3);
+        int b = (int) Math.ceil(Math.random() * 3);
 
         CardCrawlGame.sound.play("SLEEP_" + a + "-" + b);
 
@@ -47,15 +48,6 @@ public class Respite extends AnimatorCard implements Hidden
             doomed.setCounter(doomed.counter + 1);
             doomed.updateDescription();
             doomed.flash();
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(magicNumber / 2);
         }
     }
 }

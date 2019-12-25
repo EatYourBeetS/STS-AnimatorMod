@@ -15,6 +15,7 @@ public class Strike_Fate extends Strike
         super(ID, 1, CardTarget.ENEMY);
 
         Initialize(6, 0);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Fate);
     }
@@ -33,15 +34,6 @@ public class Strike_Fate extends Strike
         if (cards < 3)
         {
             GameActions.Bottom.GainEnergy(1);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
         }
     }
 }

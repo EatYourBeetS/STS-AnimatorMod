@@ -16,13 +16,14 @@ public class Kazuma extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,6, 4);
+        Initialize(0, 6, 4);
+        SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.Konosuba);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.Cycle(name, 1);
@@ -31,15 +32,6 @@ public class Kazuma extends AnimatorCard
         {
             GameActions.Bottom.DealDamageToRandomEnemy(magicNumber, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
             .SetPiercing(true, false);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
         }
     }
 }

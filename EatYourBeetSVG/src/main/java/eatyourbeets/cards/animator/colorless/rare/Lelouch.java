@@ -19,6 +19,7 @@ public class Lelouch extends AnimatorCard
         super(ID, 3, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.ALL_ENEMY);
 
         Initialize(0, 0, 3);
+        SetCostUpgrade(-1);
 
         AddExtendedDescription();
 
@@ -41,15 +42,6 @@ public class Lelouch extends AnimatorCard
             {
                 GameActions.Bottom.ApplyPower(p, enemy, new GeassPower(enemy));
             }
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(2);
         }
     }
 }

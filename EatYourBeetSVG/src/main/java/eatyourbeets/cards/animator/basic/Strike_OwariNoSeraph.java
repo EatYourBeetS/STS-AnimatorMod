@@ -17,7 +17,8 @@ public class Strike_OwariNoSeraph extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6,0, 1);
+        Initialize(6, 0, 1);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -38,14 +39,5 @@ public class Strike_OwariNoSeraph extends Strike
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }

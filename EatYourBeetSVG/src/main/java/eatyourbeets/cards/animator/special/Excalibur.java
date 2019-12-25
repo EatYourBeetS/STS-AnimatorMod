@@ -22,7 +22,8 @@ public class Excalibur extends AnimatorCard implements Hidden
     {
         super(ID, 3, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
 
-        Initialize(80,0);
+        Initialize(80, 0);
+        SetUpgrade(19, 0);
 
         SetRetain(true);
         SetExhaust(true);
@@ -50,14 +51,5 @@ public class Excalibur extends AnimatorCard implements Hidden
         }
 
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(20);
-        }
     }
 }

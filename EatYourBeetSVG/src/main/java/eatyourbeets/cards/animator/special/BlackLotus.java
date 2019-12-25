@@ -19,9 +19,9 @@ public class BlackLotus extends AnimatorCard implements Hidden
         super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ALL);
 
         Initialize(7, 5, 1);
+        SetUpgrade(0, 0, 1);
 
-        this.isMultiDamage = true;
-
+        SetMultiDamage(true);
         SetSynergy(Synergies.AccelWorld);
     }
 
@@ -33,14 +33,5 @@ public class BlackLotus extends AnimatorCard implements Hidden
         GameActions.Bottom.VFX(new ColoredSweepingBeamEffect(p.hb.cX, p.hb.cY, p.flipHorizontal, Color.valueOf("3d0066")), 0.3F);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.GainBlur(this.magicNumber);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-        }
     }
 }

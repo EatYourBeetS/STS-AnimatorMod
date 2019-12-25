@@ -20,13 +20,14 @@ public class Berserker extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(26,0, 2, 12);
+        Initialize(26, 0, 2, 12);
+        SetUpgrade( 7, 0);
 
         SetSynergy(Synergies.Fate);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (m != null)
         {
@@ -35,7 +36,7 @@ public class Berserker extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY)
             .AddCallback(m.currentBlock, (initialBlock, target) ->
             {
-                if (GameUtilities.IsDeadOrEscaped(target) || ((int)initialBlock > 0 && target.currentBlock <= 0))
+                if (GameUtilities.IsDeadOrEscaped(target) || ((int) initialBlock > 0 && target.currentBlock <= 0))
                 {
                     GameActions.Bottom.GainBlock(this.secondaryValue);
                 }
@@ -43,14 +44,5 @@ public class Berserker extends AnimatorCard
         }
 
         GameActions.Bottom.GainForce(magicNumber);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {          
-            upgradeDamage(6);
-        }
     }
 }

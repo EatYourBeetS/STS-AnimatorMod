@@ -34,7 +34,7 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
             goldBonus = Math.max(0, Math.min(999, 15 + goldBonus * 3));
         }
 
-        Initialize(0,0, goldBonus);
+        Initialize(0, 0, goldBonus);
 
         this.isEthereal = true;
         this.exhaust = true;

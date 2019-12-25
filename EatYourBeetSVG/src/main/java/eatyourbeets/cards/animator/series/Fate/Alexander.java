@@ -42,10 +42,4 @@ public class Alexander extends AnimatorCard
             GameUtilities.PreserveForce();
         }
     }
-
-    @Override
-    public void upgrade() 
-    {
-        TryUpgrade();
-    }
 }

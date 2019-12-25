@@ -17,6 +17,8 @@ public class Defend_OwariNoSeraph extends Defend
         super(ID, 1, CardTarget.SELF);
 
         Initialize(0, 5, 1);
+        SetUpgrade(0, 3);
+
         SetSynergy(Synergies.OwariNoSeraph);
     }
 
@@ -33,17 +35,8 @@ public class Defend_OwariNoSeraph extends Defend
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
-        }
     }
 }

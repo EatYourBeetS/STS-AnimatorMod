@@ -23,7 +23,6 @@ import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.animator.ultrarare.SeriousSaitama;
 import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
 import eatyourbeets.orbs.Aether;
 import eatyourbeets.orbs.Earth;
@@ -201,6 +200,16 @@ public class GameUtilities
         {
             return mapNode.getRoom();
         }
+    }
+
+    public static int GetDebuffsCount(AbstractCreature creature)
+    {
+        if (creature == null || creature.powers == null)
+        {
+            return 0;
+        }
+
+        return GetDebuffsCount(creature.powers);
     }
 
     public static int GetDebuffsCount(ArrayList<AbstractPower> powers)

@@ -23,6 +23,7 @@ public class ElricEdward extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(4, 0, 1);
+        SetUpgrade(4, 0, 0);
 
         AddExtendedDescription();
 
@@ -65,14 +66,5 @@ public class ElricEdward extends AnimatorCard
                 }
             }
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(4);
-        }
     }
 }

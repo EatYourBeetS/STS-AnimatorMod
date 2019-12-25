@@ -3,8 +3,6 @@ package eatyourbeets.cards.animator.ultrarare;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.ChemicalX;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
@@ -44,11 +42,5 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
                 GameActions.Bottom.ApplyPower(p, enemy, new StunMonsterPower(enemy, 1), 1);
             }
         }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        TryUpgrade();
     }
 }

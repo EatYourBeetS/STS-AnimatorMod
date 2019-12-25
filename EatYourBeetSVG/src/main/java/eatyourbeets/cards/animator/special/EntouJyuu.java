@@ -17,6 +17,7 @@ public class EntouJyuu extends AnimatorCard implements Hidden
         super(ID, 1, CardType.POWER, CardRarity.SPECIAL, CardTarget.SELF);
 
         Initialize(0, 0, 2);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -26,14 +27,5 @@ public class EntouJyuu extends AnimatorCard implements Hidden
     {
         GameActions.Bottom.GainAgility(magicNumber);
         GameActions.Bottom.StackPower(new FlamingWeaponPower(p, 1));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(0);
-        }
     }
 }

@@ -23,6 +23,7 @@ public class Aisha extends AnimatorCard implements Spellcaster
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
         Initialize(2, 0, 1);
+        SetUpgrade(2, 0, 0);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -54,15 +55,6 @@ public class Aisha extends AnimatorCard implements Spellcaster
                 GameActions.Bottom.GainOrbSlots(1);
                 EffectHistory.TryActivateLimited(cardID);
             }
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(2);
         }
     }
 }

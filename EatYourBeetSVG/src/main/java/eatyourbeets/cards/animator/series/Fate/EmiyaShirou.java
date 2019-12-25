@@ -18,13 +18,14 @@ public class EmiyaShirou extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
 
-        Initialize(0,5, 2);
+        Initialize(0, 5, 2);
+        SetUpgrade(0, 1, 1);
 
         SetSynergy(Synergies.Fate);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
 
@@ -46,16 +47,6 @@ public class EmiyaShirou extends AnimatorCard
         if (fullyUpgraded)
         {
             GameActions.Bottom.Draw(2);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade(false))
-        {
-            upgradeBlock(1);
-            upgradeMagicNumber(1);
         }
     }
 }

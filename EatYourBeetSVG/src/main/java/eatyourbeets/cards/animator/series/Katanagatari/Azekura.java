@@ -19,7 +19,8 @@ public class Azekura extends AnimatorCard implements MartialArtist
     {
         super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,6,2, 2);
+        Initialize(0, 6, 2, 2);
+        SetUpgrade(0, 1, 2, 0);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -41,7 +42,7 @@ public class Azekura extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.GainBlock(this.block);
@@ -50,16 +51,6 @@ public class Azekura extends AnimatorCard implements MartialArtist
         if (HasActiveSynergy())
         {
             GameActions.Bottom.StackPower(new PlatedArmorPower(p, secondaryValue));
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(1);
-            upgradeMagicNumber(2);
         }
     }
 }

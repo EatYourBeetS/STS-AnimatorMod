@@ -34,6 +34,7 @@ public class Fredrika extends AnimatorCard
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(9, 2, 2);
+        SetUpgrade(2, 2, 0);
 
         if (InitializingPreview())
         {
@@ -111,7 +112,7 @@ public class Fredrika extends AnimatorCard
             .SetMessage(CardRewardScreen.TEXT[1])
             .AddCallback(cards ->
             {
-                this.ChangeForm(((Fredrika)cards.get(0)).currentForm);
+                this.ChangeForm(((Fredrika) cards.get(0)).currentForm);
 
                 GameActions.Bottom.Add(new RefreshHandLayout());
                 GameActions.Top.MoveCard(this, AbstractDungeon.player.hand);
@@ -155,17 +156,6 @@ public class Fredrika extends AnimatorCard
 
                 break;
             }
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            //upgradeMagicNumber(1);
-            upgradeBlock(2);
-            upgradeDamage(2);
         }
     }
 

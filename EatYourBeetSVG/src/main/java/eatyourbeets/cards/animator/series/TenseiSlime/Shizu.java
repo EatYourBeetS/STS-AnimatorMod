@@ -25,19 +25,16 @@ public class Shizu extends AnimatorCard
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
         GameActions.Bottom.StackPower(new FlamingWeaponPower(p, 1));
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.MakeCardInDiscardPile(new Burn());
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            SetExhaust(false);
-        }
     }
 }

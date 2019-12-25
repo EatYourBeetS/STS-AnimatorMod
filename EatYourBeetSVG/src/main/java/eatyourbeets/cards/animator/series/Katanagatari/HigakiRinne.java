@@ -36,6 +36,7 @@ public class HigakiRinne extends AnimatorCard
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
 
         Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Katanagatari, true);
     }
@@ -138,15 +139,6 @@ public class HigakiRinne extends AnimatorCard
                 GameActions.Bottom.Wait(0.2f);
                 GameActions.Bottom.Add(new HigakiRinneAction(this));
             }
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
         }
     }
 

@@ -19,14 +19,15 @@ public class ItamiYouji extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
 
-        Initialize(2,0,4, 1);
+        Initialize(2, 0, 4, 1);
+        SetUpgrade(2, 0);
 
         SetPiercing(true);
         SetSynergy(Synergies.Gate);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (HasActiveSynergy())
         {
@@ -44,17 +45,8 @@ public class ItamiYouji extends AnimatorCard
             {
                 GameActions.Bottom.SFX("ATTACK_FIRE");
                 GameActions.Bottom.DealDamage(this, (AbstractCreature) enemy, AbstractGameAction.AttackEffect.NONE)
-                .SetPiercing(true, true);
+                        .SetPiercing(true, true);
             }
         });
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(2);
-        }
     }
 }

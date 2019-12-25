@@ -17,6 +17,7 @@ public class Chung extends AnimatorCard
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
 
         Initialize(0, 11, 3);
+        SetUpgrade(0, 2, -1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -38,15 +39,5 @@ public class Chung extends AnimatorCard
         }
 
         GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseBlock = Math.max(0, c.baseBlock - c.magicNumber));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(2);
-            upgradeMagicNumber(-1);
-        }
     }
 }

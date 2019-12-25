@@ -17,7 +17,8 @@ public class Chris extends AnimatorCard
     {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(4,0, 4);
+        Initialize(4, 0, 4);
+        SetUpgrade(2, 0, 2);
 
         AddExtendedDescription();
 
@@ -34,18 +35,8 @@ public class Chris extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL).StealGold(magicNumber);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(2);
-            upgradeMagicNumber(2);
-        }
     }
 }

@@ -19,13 +19,14 @@ public class HiiragiShinya extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,4, 2);
+        Initialize(0, 4, 2);
+        SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
 
@@ -46,15 +47,6 @@ public class HiiragiShinya extends AnimatorCard
         if (HasActiveSynergy())
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, magicNumber));
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(3);
         }
     }
 }

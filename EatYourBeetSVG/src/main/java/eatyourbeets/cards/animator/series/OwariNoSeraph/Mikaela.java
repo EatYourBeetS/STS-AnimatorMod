@@ -17,13 +17,14 @@ public class Mikaela extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(7,0, 2, 2);
+        Initialize(7, 0, 2, 2);
+        SetUpgrade(2, 0, 1, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
@@ -36,15 +37,5 @@ public class Mikaela extends AnimatorCard
                 GameActions.Bottom.GainForce(secondaryValue);
             }
         });
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
-        }
     }
 }

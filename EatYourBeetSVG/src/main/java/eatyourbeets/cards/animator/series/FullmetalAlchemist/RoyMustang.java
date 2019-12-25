@@ -20,7 +20,8 @@ public class RoyMustang extends AnimatorCard
     {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(6,0, 4);
+        Initialize(7, 0, 4);
+        SetUpgrade(4, 0, 0);
 
         SetEvokeOrbCount(1);
         SetMultiDamage(true);
@@ -28,7 +29,7 @@ public class RoyMustang extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
 
@@ -49,15 +50,6 @@ public class RoyMustang extends AnimatorCard
         {
             GameActions.Bottom.VFX(new FlameBarrierEffect(p.hb.cX, p.hb.cY), 0.5F);
             GameActions.Bottom.StackPower(new FlameBarrierPower(p, this.magicNumber));
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(4);
         }
     }
 }

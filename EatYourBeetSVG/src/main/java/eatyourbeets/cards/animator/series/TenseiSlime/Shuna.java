@@ -15,7 +15,8 @@ public class Shuna extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(0,2, 2);
+        Initialize(0, 2, 2);
+        SetUpgrade(0, 2, 0);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -37,15 +38,6 @@ public class Shuna extends AnimatorCard
         if (HasActiveSynergy())
         {
             GameActions.Bottom.GainTemporaryHP(magicNumber);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(2);
         }
     }
 }

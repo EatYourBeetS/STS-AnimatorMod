@@ -19,10 +19,17 @@ public class Pride extends AnimatorCard
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
         Initialize(0,0, 1, 3);
+        SetUpgrade(0, 0, 1);
 
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist, true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEvokeOrbCount(magicNumber);
     }
 
     @Override
@@ -38,16 +45,6 @@ public class Pride extends AnimatorCard
         if (!p.hasPower(PridePower.POWER_ID))
         {
             GameActions.Bottom.ApplyPower(p, p, new PridePower(p));
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(1);
-            SetEvokeOrbCount(magicNumber);
         }
     }
 }

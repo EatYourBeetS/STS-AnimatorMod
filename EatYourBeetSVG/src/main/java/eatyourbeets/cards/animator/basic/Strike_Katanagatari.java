@@ -15,6 +15,7 @@ public class Strike_Katanagatari extends Strike
         super(ID, 1, CardTarget.ENEMY);
 
         Initialize(7, 0);
+        SetUpgrade(3, 0);
 
         SetPiercing(true);
         SetSynergy(Synergies.Katanagatari);
@@ -24,14 +25,5 @@ public class Strike_Katanagatari extends Strike
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT).SetPiercing(true, true);
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }

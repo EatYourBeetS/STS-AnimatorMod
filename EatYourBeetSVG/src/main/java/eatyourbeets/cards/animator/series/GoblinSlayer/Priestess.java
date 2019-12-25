@@ -22,6 +22,12 @@ public class Priestess extends AnimatorCard
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        target = CardTarget.ALL;
+    }
+
+    @Override
     public void applyPowers()
     {
         super.applyPowers();
@@ -59,15 +65,6 @@ public class Priestess extends AnimatorCard
             .ShowEffect(true, true)
             .SetOptions(true, true)
             .SetFilter(GameUtilities::IsCurseOrStatus);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            this.target = CardTarget.ALL;
         }
     }
 }

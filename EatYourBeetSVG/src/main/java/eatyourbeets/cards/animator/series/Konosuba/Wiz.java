@@ -17,7 +17,8 @@ public class Wiz extends AnimatorCard
     {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0, 0);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.Konosuba);
     }
@@ -30,29 +31,20 @@ public class Wiz extends AnimatorCard
         .AddCallback(__ ->
         { //
             GameActions.Top.SelectFromPile(name, 1, AbstractDungeon.player.exhaustPile)
-            .SetOptions(false, false)
-            .SetFilter(c -> !c.cardID.equals(Wiz.ID))
-            .AddCallback(cards ->
-            {
-                if (cards.size() > 0)
-                {
-                    GameActions.Bottom.MakeCardInHand(cards.get(0).makeStatEquivalentCopy());
-                }
-            });
+                    .SetOptions(false, false)
+                    .SetFilter(c -> !c.cardID.equals(Wiz.ID))
+                    .AddCallback(cards ->
+                    {
+                        if (cards.size() > 0)
+                        {
+                            GameActions.Bottom.MakeCardInHand(cards.get(0).makeStatEquivalentCopy());
+                        }
+                    });
         });
 
         if (!(HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID)))
         {
             GameActions.Bottom.Purge(this);
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeBaseCost(0);
         }
     }
 }

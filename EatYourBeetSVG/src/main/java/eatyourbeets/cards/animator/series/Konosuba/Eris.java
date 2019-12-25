@@ -32,7 +32,8 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(0,0, 3);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 0, 3);
 
         SetExhaust(true);
         SetHealing(true);
@@ -53,61 +54,54 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
     @Override
     public int OnLoseHp(int damageAmount)
     {
-        if (!EffectHistory.HasActivatedLimited(cardID))
+        if (EffectHistory.HasActivatedLimited(cardID))
         {
-            AbstractPlayer player = AbstractDungeon.player;
-            if (InPlayerDeck() && damageAmount > 0 && player.currentHealth <= damageAmount)
+            PlayerStatistics.onLoseHp.Unsubscribe(this);
+            return damageAmount;
+        }
+
+        AbstractPlayer player = AbstractDungeon.player;
+        if (damageAmount > 0 && player.currentHealth <= damageAmount && CanRevive())
+        {
+            AbstractCard c = StSLib.getMasterDeckEquivalent(this);
+            if (c != null)
             {
-                AbstractCard c = StSLib.getMasterDeckEquivalent(this);
-                if (c != null)
-                {
-                    player.masterDeck.removeCard(c);
-                }
-                for (AbstractCard card : GetAllInBattleInstances.get(this.uuid))
-                {
-                    player.discardPile.removeCard(card);
-                    player.drawPile.removeCard(card);
-                    player.hand.removeCard(card);
-                    player.hand.refreshHandLayout();
-                }
-
-                Eris temp = new Eris(false);
-                if (upgraded)
-                {
-                    temp.upgrade();
-                }
-
-                GameEffects.List.Add(new ShowCardBrieflyEffect(temp));
-                PlayerStatistics.onLoseHp.Unsubscribe(this);
-                EffectHistory.TryActivateLimited(cardID);
-
-                return 0;
+                player.masterDeck.removeCard(c);
             }
+            for (AbstractCard card : GetAllInBattleInstances.get(this.uuid))
+            {
+                player.discardPile.removeCard(card);
+                player.drawPile.removeCard(card);
+                player.hand.removeCard(card);
+                player.hand.refreshHandLayout();
+            }
+
+            Eris temp = new Eris(false);
+            if (upgraded)
+            {
+                temp.upgrade();
+            }
+
+            GameEffects.List.Add(new ShowCardBrieflyEffect(temp));
+            PlayerStatistics.onLoseHp.Unsubscribe(this);
+            EffectHistory.TryActivateLimited(cardID);
+            return 0;
         }
 
         return damageAmount;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Heal(magicNumber);
     }
 
-    @Override
-    public void upgrade() 
+    private boolean CanRevive()
     {
-        if (TryUpgrade())
-        {
-            upgradeMagicNumber(3);
-        }
-    }
-
-    private boolean InPlayerDeck()
-    {
-        AbstractPlayer player = AbstractDungeon.player;
         if (GameUtilities.InBattle())
         {
+            AbstractPlayer player = AbstractDungeon.player;
             return player.hand.contains(this) || player.drawPile.contains(this) || player.discardPile.contains(this);
         }
 

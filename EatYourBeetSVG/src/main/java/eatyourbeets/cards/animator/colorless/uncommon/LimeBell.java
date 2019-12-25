@@ -15,6 +15,7 @@ public class LimeBell extends AnimatorCard
         super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
         Initialize(0, 7, 2);
+        SetUpgrade(0, 4, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.AccelWorld);
@@ -25,14 +26,5 @@ public class LimeBell extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.Reload(name, cards -> GameActions.Bottom.GainTemporaryHP(cards.size() * magicNumber));
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeBlock(4);
-        }
     }
 }

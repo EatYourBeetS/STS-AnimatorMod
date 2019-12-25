@@ -21,6 +21,7 @@ public class YaoHaDucy extends AnimatorCard
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(3, 0, 2, 2);
+        SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.Gate);
     }
@@ -47,15 +48,6 @@ public class YaoHaDucy extends AnimatorCard
         if (GameUtilities.IsAttacking(m.intent))
         {
             GameActions.Bottom.ReduceStrength(m, magicNumber, true);
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
         }
     }
 }

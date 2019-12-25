@@ -18,7 +18,8 @@ public class Strike_FullmetalAlchemist extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(5,0, 0, GetBaseCooldown());
+        Initialize(5, 0, 0, GetBaseCooldown());
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -53,15 +54,6 @@ public class Strike_FullmetalAlchemist extends Strike
         }
     }
 
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
-    }
-
     private int GetBaseCooldown()
     {
         return 1;
@@ -84,7 +76,7 @@ public class Strike_FullmetalAlchemist extends Strike
 
         for (AbstractCard c : GetAllInBattleInstances.get(this.uuid))
         {
-            AnimatorCard card = (AnimatorCard)c;
+            AnimatorCard card = (AnimatorCard) c;
             card.baseSecondaryValue = card.secondaryValue = newValue;
             //card.applyPowers();
         }

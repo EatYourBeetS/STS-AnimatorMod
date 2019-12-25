@@ -16,7 +16,8 @@ public class Mitsuba extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(9,6, 2);
+        Initialize(9, 6, 2);
+        SetUpgrade(3, 1, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }
@@ -30,7 +31,7 @@ public class Mitsuba extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (m.currentHealth > p.currentHealth)
         {
@@ -38,15 +39,5 @@ public class Mitsuba extends AnimatorCard
         }
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {          
-            upgradeDamage(3);
-            upgradeBlock(1);
-        }
     }
 }

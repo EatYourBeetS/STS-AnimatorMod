@@ -20,6 +20,7 @@ public class Benimaru extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
 
         Initialize(3, 0, 2);
+        SetUpgrade(3, 0, 0);
 
         SetEvokeOrbCount(1);
         SetMultiDamage(true);
@@ -27,7 +28,7 @@ public class Benimaru extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ChannelOrb(new Fire(), true);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
@@ -38,15 +39,6 @@ public class Benimaru extends AnimatorCard
             {
                 GameActions.Bottom.GainTemporaryHP(magicNumber);
             }
-        }
-    }
-
-    @Override
-    public void upgrade()
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
         }
     }
 }

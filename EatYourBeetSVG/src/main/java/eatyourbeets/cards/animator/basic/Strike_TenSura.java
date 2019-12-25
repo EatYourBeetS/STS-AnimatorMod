@@ -14,7 +14,8 @@ public class Strike_TenSura extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6,0, 1);
+        Initialize(6, 0, 1);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -24,14 +25,5 @@ public class Strike_TenSura extends Strike
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.GainTemporaryHP(this.magicNumber);
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(3);
-        }
     }
 }

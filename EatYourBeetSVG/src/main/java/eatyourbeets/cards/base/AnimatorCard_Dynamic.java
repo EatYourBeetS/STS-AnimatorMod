@@ -7,25 +7,35 @@ import org.apache.logging.log4j.util.TriConsumer;
 
 import java.util.function.Consumer;
 
-public class DynamicCard extends AnimatorCard
+public class AnimatorCard_Dynamic extends AnimatorCard
 {
-    protected final DynamicCardBuilder builder;
+    protected final AnimatorCardBuilder builder;
 
     public Consumer<AnimatorCard> onUpgrade;
     public TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
 
-    public DynamicCard(DynamicCardBuilder builder)
+    public AnimatorCard_Dynamic(AnimatorCardBuilder builder)
     {
         super(new EYBCardData(builder.cardBadges, builder.cardStrings), builder.id, builder.imagePath,
             builder.cost, builder.cardType, builder.cardColor, builder.cardRarity, builder.cardTarget);
 
         Initialize(builder.damage, builder.block, builder.magicNumber, builder.secondaryValue);
+        SetUpgrade(builder.damageUpgrade, builder.blockUpgrade, builder.magicNumberUpgrade, builder.secondaryValueUpgrade);
 
         this.builder = builder;
         this.onUse = builder.onUse;
         this.onUpgrade = builder.onUpgrade;
 
         SetSynergy(builder.synergy, builder.isShapeshifter);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        if (onUpgrade != null)
+        {
+            onUpgrade.accept(this);
+        }
     }
 
     @Override
@@ -38,25 +48,8 @@ public class DynamicCard extends AnimatorCard
     }
 
     @Override
-    public void upgrade()
-    {
-        if (onUpgrade != null)
-        {
-            onUpgrade.accept(this);
-        }
-        else if (TryUpgrade())
-        {
-            upgradeBlock(builder.upgradedBlock - builder.block);
-            upgradeMagicNumber(builder.upgradedMagicNumber - builder.magicNumber);
-            upgradeDamage(builder.upgradedDamage - builder.damage);
-            upgradeBaseCost(builder.upgradedCost);
-            upgradeSecondaryValue(builder.upgradedSecondaryValue - builder.secondaryValue);
-        }
-    }
-
-    @Override
     public AbstractCard makeCopy()
     {
-        return new DynamicCard(builder);
+        return new AnimatorCard_Dynamic(builder);
     }
 }

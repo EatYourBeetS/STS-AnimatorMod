@@ -19,7 +19,8 @@ public class Scar extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
-        Initialize(12,0, 0, 30);
+        Initialize(12, 0, 0, 30);
+        SetUpgrade(4, 0);
 
         SetPiercing(true);
         SetExhaust(true);
@@ -27,7 +28,7 @@ public class Scar extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Top.ExhaustFromHand(name, 1, true)
         .ShowEffect(true, true);
@@ -39,15 +40,6 @@ public class Scar extends AnimatorCard
         if (p.masterDeck.size() >= secondaryValue && EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.Add(new ScarUpgradeAction());
-        }
-    }
-
-    @Override
-    public void upgrade() 
-    {
-        if (TryUpgrade())
-        {
-            upgradeDamage(4);
         }
     }
 }

@@ -15,7 +15,7 @@ public class GoblinShaman extends AnimatorCard_Status
     {
         super(ID, 1, CardRarity.COMMON, CardTarget.NONE);
 
-        Initialize(0,0);
+        Initialize(0, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -28,7 +28,7 @@ public class GoblinShaman extends AnimatorCard_Status
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (this.dontTriggerOnUseCard)
         {

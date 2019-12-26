@@ -5,11 +5,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import eatyourbeets.utilities.JavaUtilities;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 
 public class EffectHistory
 {
+    private static final Logger logger = JavaUtilities.GetLogger(EffectHistory.class);
+
     public static final HashSet<String> limitedEffects = new HashSet<>();
     public static final HashSet<String> semiLimitedEffects = new HashSet<>();
 
@@ -30,6 +34,8 @@ public class EffectHistory
 
     public static boolean TryActivateLimited(String effectID)
     {
+        logger.info("Limited: " + effectID);
+
         return limitedEffects.add(effectID);
     }
 
@@ -40,6 +46,8 @@ public class EffectHistory
 
     public static boolean TryActivateSemiLimited(String effectID)
     {
+        logger.info("SemiLimited: " + effectID);
+
         return semiLimitedEffects.add(effectID);
     }
 

@@ -20,7 +20,7 @@ public class Eve extends AnimatorCard
         super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0, 0, 1, 0);
-        SetUpgrade(0, 0, 0, 1);
+        SetUpgrade(0, 0, 0, 2);
 
         SetSynergy(Synergies.Elsword);
     }

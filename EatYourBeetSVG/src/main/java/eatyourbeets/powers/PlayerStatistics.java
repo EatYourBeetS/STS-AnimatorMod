@@ -56,6 +56,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
     public static final GameEvent<OnCostRefreshSubscriber> onCostRefresh = new GameEvent<>();
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
+    public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
 
     public static final Void Void = new Void();
     public static boolean LoadingPlayerSave;
@@ -73,11 +74,18 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     protected PlayerStatistics()
     {
         super(null, POWER_ID);
+
+        this.priority = Integer.MIN_VALUE;
     }
 
     private static void ClearStats()
     {
         logger.info("Clearing Player Stats");
+
+        for (OnStatsClearedSubscriber s : onStatsCleared.GetSubscribers())
+        {
+            s.OnStatsCleared();
+        }
 
         CardGlowBorderPatch.overrideColor = null;
         AnimatorCard.SetLastCardPlayed(null);
@@ -110,6 +118,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         onStartOfTurn.Clear();
         onStartOfTurnPostDraw.Clear();
         onPhaseChanged.Clear();
+        onStatsCleared.Clear();
 
         Void.Initialize(true);
     }

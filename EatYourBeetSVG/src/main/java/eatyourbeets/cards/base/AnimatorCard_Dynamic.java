@@ -21,6 +21,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
 
         Initialize(builder.damage, builder.block, builder.magicNumber, builder.secondaryValue);
         SetUpgrade(builder.damageUpgrade, builder.blockUpgrade, builder.magicNumberUpgrade, builder.secondaryValueUpgrade);
+        SetCostUpgrade(builder.costUpgrade);
 
         this.builder = builder;
         this.onUse = builder.onUse;

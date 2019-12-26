@@ -16,7 +16,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public String imagePath;
 
     public int secondaryValue;
-    public int costUpgrade = -2;
+    public int costUpgrade;
     public int damageUpgrade;
     public int blockUpgrade;
     public int magicNumberUpgrade;

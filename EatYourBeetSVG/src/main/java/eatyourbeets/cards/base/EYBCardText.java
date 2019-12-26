@@ -36,7 +36,22 @@ public class EYBCardText
 
         if (StringUtils.isNotEmpty(cardStrings.UPGRADE_DESCRIPTION))
         {
-            this.upgradedDescriptions = ConvertColorCode(cardStrings.UPGRADE_DESCRIPTION).split(Pattern.quote(" || "));
+            String[] temp = ConvertColorCode(cardStrings.UPGRADE_DESCRIPTION).split(Pattern.quote(" || "));
+            this.upgradedDescriptions = new String[2];
+            this.upgradedDescriptions[0] = temp[0];
+
+            if (temp.length > 1)
+            {
+                this.upgradedDescriptions[1] = temp[1];
+            }
+            else if (descriptions.length > 1)
+            {
+                this.upgradedDescriptions[1] = descriptions[1];
+            }
+            else
+            {
+                this.upgradedDescriptions[1] = "-";
+            }
         }
         else
         {

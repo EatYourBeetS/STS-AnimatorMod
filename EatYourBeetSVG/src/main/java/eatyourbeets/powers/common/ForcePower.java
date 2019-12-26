@@ -2,64 +2,35 @@ package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.powers.CommonPower;
-import eatyourbeets.relics.animator.EngravedStaff;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class ForcePower extends CommonPower
+public class ForcePower extends PlayerAttributePower
 {
     public static final String POWER_ID = CreateFullID(ForcePower.class.getSimpleName());
-    public boolean preserveOnce = false;
 
     public ForcePower(AbstractCreature owner, int amount)
     {
-        super(owner, POWER_ID);
+        super(POWER_ID, owner, amount);
+    }
 
-        this.amount = amount;
-
-        updateDescription();
+    public static void PreserveOnce()
+    {
+        preservedPowers.Subscribe(POWER_ID);
     }
 
     @Override
-    public void onInitialApplication()
+    protected void GainPower(int amount)
     {
-        super.onInitialApplication();
-
         GameActions.Top.GainStrength(amount);
     }
 
     @Override
-    public void stackPower(int stackAmount)
+    protected void ReducePower(int amount)
     {
-        super.stackPower(stackAmount);
-
-        GameActions.Top.GainStrength(stackAmount);
-    }
-
-    @Override
-    public void atStartOfTurn()
-    {
-        super.atStartOfTurn();
-
-        if (preserveOnce)
-        {
-            preserveOnce = false;
-
-            return;
-        }
-
-        if (amount <= 2 && EffectHistory.HasActivatedLimited(EngravedStaff.ID))
-        {
-            return;
-        }
-
         if (GameUtilities.GetStrength() > 0)
         {
             GameActions.Bottom.ReducePower(owner, StrengthPower.POWER_ID, 1);
         }
-
-        GameActions.Bottom.ReducePower(this, 1);
     }
 }

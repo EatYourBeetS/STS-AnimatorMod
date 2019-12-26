@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.relics.ToxicEgg2;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCharacter;
@@ -77,6 +78,7 @@ public class CardRewardScreenPatch
 
     public static void OnClose(CardRewardScreen screen)
     {
+        EYBCardBadge.Close();
         rewardBundle = null;
         buttons.clear();
         canBan = false;

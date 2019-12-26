@@ -1,16 +1,20 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import com.megacrit.cardcrawl.actions.defect.DoubleEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.cards.animator.special.OrbCore;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCardBuilder;
+import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -19,33 +23,37 @@ public class Add extends AnimatorCard
 {
     public static final String ID = Register(Add.class.getSimpleName(), EYBCardBadge.Synergy);
 
-    // TODO: Redesign this card
     public Add()
     {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0,0);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 1, 0);
 
         SetExhaust(true);
-        SetEthereal(true);
         SetSynergy(Synergies.Elsword);
-    }
 
-    @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
-    }
-
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-        GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
-        .AddCallback(this::OnCardChosen);
-
-        if (HasActiveSynergy())
+        if (InitializingPreview())
         {
-            GameActions.Bottom.Add(new DoubleEnergyAction());
+            cardData.InitializePreview(new Crystallize(), false);
+        }
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActions.Bottom.StackPower(new EnergizedBluePower(p, 2));
+        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
+
+        for (int i = 0; i < secondaryValue; i++)
+        {
+            GameActions.Bottom.MakeCardInDrawPile(new Crystallize());
+        }
+
+        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
+            .AddCallback(this::OnCardChosen);
         }
     }
 

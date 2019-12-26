@@ -18,7 +18,7 @@ public class Rose extends AnimatorCard_UltraRare
     {
         super(ID, 3, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(7, 0, 2, 40);
+        Initialize(8, 0, 2, 40);
         SetUpgrade(0, 0, 1, 0);
 
         SetPiercing(true);

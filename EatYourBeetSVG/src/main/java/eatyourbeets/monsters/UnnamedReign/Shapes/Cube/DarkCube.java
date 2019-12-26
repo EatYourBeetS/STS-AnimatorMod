@@ -1,5 +1,6 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
+import eatyourbeets.monsters.SharedMoveset.Move_GainTempThorns;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.SharedMoveset.Move_Attack;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
@@ -14,9 +15,9 @@ public class DarkCube extends Cube
     {
         super(MonsterElement.Dark, tier, x, y);
 
-        moveset.AddNormal(new Move_Attack(tier.Add(3,4)));
-        moveset.AddNormal(new Move_Defend(tier.Add(3,4)));
-        moveset.AddNormal(new Move_AttackDefend(tier.Add(3,3), tier.Add(3, 2)));
+        moveset.AddNormal(new Move_Defend(tier.Add(3,3)));
+        moveset.AddNormal(new Move_GainTempThorns(tier.Add(3,3)));
+        moveset.AddNormal(new Move_AttackDefend(tier.Add(3,3), tier.Add(3, 3)));
     }
 
     @Override

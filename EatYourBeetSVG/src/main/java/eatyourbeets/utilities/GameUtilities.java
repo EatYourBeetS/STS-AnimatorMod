@@ -28,10 +28,7 @@ import eatyourbeets.orbs.Aether;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.IntellectPower;
-import eatyourbeets.powers.common.TemporaryBiasPower;
+import eatyourbeets.powers.common.*;
 import eatyourbeets.powers.unnamed.ResonancePower;
 
 import java.util.ArrayList;
@@ -631,47 +628,6 @@ public class GameUtilities
         return item;
     }
 
-    public static void PreserveForce()
-    {
-        GameActions.Bottom.Callback(__ ->
-        {
-            ForcePower power = GameUtilities.GetPower(AbstractDungeon.player, ForcePower.class);
-            if (power != null)
-            {
-                power.preserveOnce = true;
-            }
-        });
-    }
-
-    public static void PreserveIntellect()
-    {
-        GameActions.Bottom.Callback(__ ->
-        {
-            IntellectPower power = GameUtilities.GetPower(AbstractDungeon.player, IntellectPower.class);
-            if (power != null)
-            {
-                power.preserveOnce = true;
-            }
-        });
-    }
-
-    public static void PreserveAgility()
-    {
-        GameActions.Bottom.Callback(__ ->
-        {
-            AgilityPower power = GameUtilities.GetPower(AbstractDungeon.player, AgilityPower.class);
-            if (power != null)
-            {
-                power.preserveOnce = true;
-            }
-        });
-    }
-
-    public static void RefreshHandLayout()
-    {
-        PlayerStatistics.onPhaseChanged.Subscribe(HandLayoutRefresher);
-    }
-
     public static int UseEnergyXCost(AbstractCard card)
     {
         int amount = card.energyOnUse = EnergyPanel.getCurrentEnergy();
@@ -691,19 +647,19 @@ public class GameUtilities
         return amount;
     }
 
-    private final static OnPhaseChangedSubscriber HandLayoutRefresher = new OnPhaseChangedSubscriber()
+    public static void RefreshHandLayout()
     {
-        @Override
-        public void OnPhaseChanged(GameActionManager.Phase phase)
+        PlayerStatistics.onPhaseChanged.SubscribeOnce(handLayoutRefresher);
+    }
+
+    private final static OnPhaseChangedSubscriber handLayoutRefresher = phase ->
+    {
+        if (phase == GameActionManager.Phase.WAITING_ON_USER)
         {
-            if (phase == GameActionManager.Phase.WAITING_ON_USER)
-            {
-                CardGroup hand = AbstractDungeon.player.hand;
-                hand.refreshHandLayout();
-                hand.applyPowers();
-                hand.glowCheck();
-                PlayerStatistics.onPhaseChanged.Unsubscribe(this);
-            }
+            CardGroup hand = AbstractDungeon.player.hand;
+            hand.refreshHandLayout();
+            hand.applyPowers();
+            hand.glowCheck();
         }
     };
 }

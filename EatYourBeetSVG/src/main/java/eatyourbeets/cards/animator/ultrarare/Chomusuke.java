@@ -25,7 +25,7 @@ public class Chomusuke extends AnimatorCard_UltraRare
     @Override
     protected void OnUpgrade()
     {
-        SetInnate(true);
+        SetRetain(true);
     }
 
     @Override
@@ -47,12 +47,15 @@ public class Chomusuke extends AnimatorCard_UltraRare
     {
         super.triggerOnEndOfTurnForPlayingCard();
 
-        SetRetain(true);
+        if (upgraded)
+        {
+            SetRetain(true);
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-
+        GameActions.Bottom.Draw(1);
     }
 }

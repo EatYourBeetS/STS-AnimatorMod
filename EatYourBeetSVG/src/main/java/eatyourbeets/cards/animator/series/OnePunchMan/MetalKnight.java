@@ -6,12 +6,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_Boost;
 import eatyourbeets.cards.base.Synergies;
 
-public class MetalKnight extends AnimatorCard_Boost
+public class MetalKnight extends AnimatorCard
 {
     public static final String ID = Register(MetalKnight.class.getSimpleName(), EYBCardBadge.Discard);
 
@@ -20,7 +21,7 @@ public class MetalKnight extends AnimatorCard_Boost
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
         Initialize(12, 0, 3);
-        SetUpgrade(2, 0, 1);
+        SetUpgrade(4, 0, 0);
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.OnePunchMan);
@@ -46,15 +47,10 @@ public class MetalKnight extends AnimatorCard_Boost
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.ChannelOrb(new Plasma(), true);
 
-        if (ProgressBoost())
+        if (magicNumber > 0)
         {
             GameActions.Bottom.GainMetallicize(magicNumber);
+            GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseMagicNumber = Math.max(0, c.baseMagicNumber - 1));
         }
-    }
-
-    @Override
-    protected int GetBaseBoost()
-    {
-        return 1;
     }
 }

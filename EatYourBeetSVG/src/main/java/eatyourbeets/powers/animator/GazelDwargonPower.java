@@ -11,11 +11,11 @@ public class GazelDwargonPower extends AnimatorPower
 
     private boolean handlePlayerBlock = false;
 
-    public GazelDwargonPower(AbstractPlayer owner)
+    public GazelDwargonPower(AbstractPlayer owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = -1;
+        this.amount = amount;
 
         updateDescription();
     }
@@ -41,7 +41,13 @@ public class GazelDwargonPower extends AnimatorPower
         if (handlePlayerBlock)
         {
             this.ID = POWER_ID;
-            owner.loseBlock(owner.currentBlock / 2, true);
+
+            //owner.loseBlock(owner.currentBlock / 2, true);
+            int temp = Math.max(0, owner.currentBlock - amount);
+            if (temp > 0)
+            {
+                owner.loseBlock(temp, true);
+            }
         }
     }
 }

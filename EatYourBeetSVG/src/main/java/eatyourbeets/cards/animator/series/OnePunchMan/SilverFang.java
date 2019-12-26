@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.MartialArtist;
+import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -17,8 +18,8 @@ public class SilverFang extends AnimatorCard implements MartialArtist
     {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(8, 8);
-        SetUpgrade(3, 3);
+        Initialize(12, 0, 1);
+        SetUpgrade(4, 0, 0);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -32,12 +33,13 @@ public class SilverFang extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+
+        AgilityPower.PreserveOnce();
 
         if (HasActiveSynergy())
         {
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.GainAgility(magicNumber);
         }
     }
 }

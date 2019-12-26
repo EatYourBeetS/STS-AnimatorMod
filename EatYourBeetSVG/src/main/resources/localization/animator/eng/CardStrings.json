@@ -17,9 +17,8 @@
 	},
 	"animator:Add":
 	{
-		"DESCRIPTION": "Ethereal. NL Exhaust 1 card NL anywhere. Replace it NL with an Orb_Core. NL Exhaust. || On Synergy, NL double your NL Energy.",
-		"NAME": "Add",
-		"UPGRADE_DESCRIPTION": "Exhaust 1 card anywhere. Replace it with an Orb_Core. Exhaust. || On Synergy, NL double your NL Energy."
+		"DESCRIPTION": "Add 3 #yCrystallize[] to your draw pile. Next turn, draw !M! cards and gain [E] [E]. Exhaust. || Limited. On Synergy, NL Exhaust a card anywhere, replace it with an Orb_Core.",
+		"NAME": "Add"
 	},
 	"animator:Ain":
 	{
@@ -133,14 +132,15 @@
 	},
 	"animator:ChlammyZell":
 	{
-		"DESCRIPTION": "Draw 1 card. NL Gain !SV! Intellect. NL Exhaust. || When you play NL alternating card types NL this turn, Cycle 1 card NL and deal !M! damage to NL ALL enemies.",
-		"NAME": "Kurami"
+		"DESCRIPTION": "Draw 2 cards. NL Next turn, draw !M! NL additional card. NL Exhaust. || When you play NL alternating card types NL this turn, Cycle 1 card NL and deal !SV! damage to NL ALL enemies.",
+		"NAME": "Kurami",
+		"UPGRADE_DESCRIPTION": "Draw 2 cards. NL Next turn, draw !M! NL additional cards. NL Exhaust."
 	},
 	"animator:Chomusuke":
 	{
-		"DESCRIPTION": "Retain. || Semi-Limited. NL When Exhausted, NL return this card NL to your hand and NL gain [E] [E]",
+		"DESCRIPTION": "Draw 1 card. || Semi-Limited. NL When Exhausted, NL return this card NL to your hand and NL gain [E] [E]",
 		"NAME": "Chomusuke",
-		"UPGRADE_DESCRIPTION": "Innate. NL Retain. || Semi-Limited. NL When Exhausted, NL return this card NL to your hand and NL gain [E] [E]"
+		"UPGRADE_DESCRIPTION": "Retain. NL Draw 1 card."
 	},
 	"animator:Chris":
 	{
@@ -287,9 +287,9 @@
 	},
 	"animator:Demiurge":
 	{
-		"DESCRIPTION": "Gain [E]. NL Take !M! damage at NL the end of turn. || When Exhausted, NL Cycle 1 card and NL gain 1 Energy.",
+		"DESCRIPTION": "Gain [E]. NL Take !M! damage at NL the end of turn. || Limited. NL When Exhausted, NL Cycle 1 card and NL gain 1 Energy.",
 		"NAME": "Demiurge",
-		"UPGRADE_DESCRIPTION": "Gain [E]. NL Discard 1 card or NL take !M! damage at NL the end of turn. || When Exhausted, NL Cycle 1 card and NL gain 1 Energy."
+		"UPGRADE_DESCRIPTION": "Gain [E]. NL Discard 1 card or NL take !M! damage at NL the end of turn."
 	},
 	"animator:DolaCouronne":
 	{
@@ -340,7 +340,7 @@
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning. NL Cycle !SV! card(s). || When Discarded, NL if you have an NL empty Orb Slot, NL Channel 1 Fire.",
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning. NL Cycle !SV! card(s). || When Discarded, NL Channel 1 Fire.",
 		"NAME": "Elsword"
 	},
 	"animator:Emilia":
@@ -408,7 +408,7 @@
 	},
 	"animator:GazelDwargon":
 	{
-		"DESCRIPTION": "Gain !M! Plated_Armor. NL Maintain half your Block at the start of each turn. || On Synergy, NL Motivate 1.",
+		"DESCRIPTION": "At the start of each NL turn, maintain up to !M! NL Block, multiplied by X.",
 		"NAME": "Gazel Dwargon"
 	},
 	"animator:Genos":
@@ -516,11 +516,11 @@
 	{
 		"DESCRIPTION": "Shapeshifter. NL Behaves erratically... || On Synergy, or when Drawn, Discarded or Exhausted, this card behaves erratically.",
 		"NAME": "Higaki Rinne",
-		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Behaves very erratically... || On Synergy, or when Drawn, Discarded or Exhausted, this card behaves erratically."
+		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Behaves very erratically..."
 	},
 	"animator:HighElfArcher":
 	{
-		"DESCRIPTION": "Deal !D! Piercing NL damage. Boost !SV!: NL Gain 1 Agility. || Limited. NL On Synergy, NL draw 1 card and NL gain 1 Agility.",
+		"DESCRIPTION": "Deal !D! Piercing NL damage. If you have NL !M! or less Agility, NL gain 1 Agility. || Limited. NL On Synergy, NL draw 1 card and NL gain 1 Agility.",
 		"NAME": "'High Elf Archer'"
 	},
 	"animator:HiiragiShinya":
@@ -582,7 +582,7 @@
 	},
 	"animator:Kaijin":
 	{
-		"DESCRIPTION": "At the end of each NL turn, Retain 1 card NL and increase its NL damage and Block NL by !M! this combat. || When you add this card to your deck, permanently Upgrade a random Basic card.",
+		"DESCRIPTION": "At the end of each NL turn, Retain 1 card, NL then increase its NL damage and Block NL by !M! this combat. || When you add this card to your deck, permanently Upgrade a random Basic card.",
 		"NAME": "Kaijin"
 	},
 	"animator:Kazuma":
@@ -693,7 +693,7 @@
 	},
 	"animator:MetalKnight":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Channel 1 Plasma. NL Boost !SV! : Gain !M! Metallicize. || When Discarded, NL gain 2 Block for NL each of your Orbs.",
+		"DESCRIPTION": "Deal !D! Damage. NL Channel 1 Plasma. NL Gain !M! Metallicize, NL then reduce this NL number by 1. || When Discarded, NL gain 2 Block for NL each of your Orbs.",
 		"NAME": "Metal Knight"
 	},
 	"animator:Mikaela":
@@ -703,7 +703,7 @@
 	},
 	"animator:Millim":
 	{
-		"DESCRIPTION": "#yUnique. NL Deal !D! damage. NL Apply !M! Burning. NL Apply !M! Poison. || On Synergy, NL draw 2 cards.",
+		"DESCRIPTION": "#yUnique. NL Deal !D! damage. NL Apply !M! Burning. NL Apply !M! Poison. || On Synergy, NL draw 2 additional NL cards next turn.",
 		"NAME": "Millim"
 	},
 	"animator:MisaKurobane":
@@ -949,7 +949,7 @@
 	},
 	"animator:SilverFang":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Deal !D! Damage. NL Gain !B! Block. || On Synergy, NL gain 1 Agility.",
+		"DESCRIPTION": "Martial_Artist. NL Deal !D! Damage. NL Lose no Agility NL next turn. || On Synergy, NL gain !M! Agility.",
 		"NAME": "Silver Fang"
 	},
 	"animator:SirTouchMe":

@@ -23,7 +23,7 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
     {
         super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(22, 0, 4);
+        Initialize(24, 0, 4);
         SetUpgrade(6, 0, 0);
 
         SetSynergy(Synergies.Gate);

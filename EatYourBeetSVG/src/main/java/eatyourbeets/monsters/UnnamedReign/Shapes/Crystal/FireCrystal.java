@@ -19,7 +19,7 @@ public class FireCrystal extends Crystal
         int debuffAmount = asc4 ? 2 : 1;
 
         moveset.AddNormal(new Move_Attack( tier.Add(10,4)));
-        moveset.AddNormal(new Move_AttackWeak( tier.Add(6,3),debuffAmount));
+        moveset.AddNormal(new Move_AttackWeak( tier.Add(6,3), debuffAmount));
         moveset.AddNormal(new Move_ShuffleCard(new Crystallize(), 3));
     }
 

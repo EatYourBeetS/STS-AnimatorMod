@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.TenseiSlime;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -32,7 +33,7 @@ public class Millim extends AnimatorCard
 
         if (HasActiveSynergy())
         {
-            GameActions.Bottom.Draw(2);
+            GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 2));
         }
     }
 }

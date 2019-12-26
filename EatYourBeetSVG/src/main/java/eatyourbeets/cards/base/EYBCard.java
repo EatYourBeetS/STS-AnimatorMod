@@ -11,18 +11,26 @@ import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.AnimatorResources_Images;
 import eatyourbeets.resources.EYBResources_Strings;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 import patches.AbstractEnums;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public abstract class EYBCard extends CustomCard
 {
@@ -36,11 +44,11 @@ public abstract class EYBCard extends CustomCard
     protected EYBCardText cardText;
     protected EYBCardData cardData;
     protected boolean isMultiUpgrade;
-    protected int damageUpgrade;
-    protected int magicNumberUpgrade;
-    protected int secondaryValueUpgrade;
-    protected int blockUpgrade;
-    protected int costUpgrade;
+    protected int upgrade_damage;
+    protected int upgrade_magicNumber;
+    protected int upgrade_secondaryValue;
+    protected int upgrade_block;
+    protected int upgrade_cost;
 
     public boolean isSecondaryValueModified = false;
     public boolean upgradedSecondaryValue = false;
@@ -218,37 +226,59 @@ public abstract class EYBCard extends CustomCard
     @Override
     public void render(SpriteBatch sb)
     {
-        UpdateCardText();
-        super.render(sb);
-        RenderHeader(sb, false);
-        RenderBadges(sb, false, false);
-        RenderCardPreview(sb, false);
+        if (!Settings.hideCards)
+        {
+            if (EYBCardBadge.ShouldRenderUpgrade(this))
+            {
+                EYBCard copy = (EYBCard) this.makeCopy();
+                copy.current_x = this.current_x;
+                copy.current_y = this.current_y;
+                copy.drawScale = this.drawScale;
+                copy.upgrade();
+                copy.displayUpgrades();
+                copy.renderAsPreview(sb);
+                return;
+            }
+
+            boolean isLibrary = AbstractDungeon.player == null && SingleCardViewPopup.isViewingUpgrade;
+
+            UpdateCardText();
+            super.render(sb);
+            RenderHeader(sb, false);
+            RenderBadges(sb, false, isLibrary);
+            RenderCardPreview(sb, false);
+        }
     }
 
     public void renderAsPreview(SpriteBatch sb)
     {
-        UpdateCardText();
-        super.render(sb);
-        RenderHeader(sb, false);
-        RenderBadges(sb, false, true);
+        if (!Settings.hideCards)
+        {
+            UpdateCardText();
+            super.render(sb);
+            RenderHeader(sb, false);
+            RenderBadges(sb, false, true);
+        }
     }
 
     @Override
     public void renderInLibrary(SpriteBatch sb)
     {
-        UpdateCardText();
-        super.renderInLibrary(sb);
-        RenderHeader(sb, false);
-        RenderBadges(sb, false, true);
-        RenderCardPreview(sb, false);
-    }
-
-    @Override
-    public void triggerWhenCopied()
-    {
-        // this is only used by ShowCardAndAddToHandEffect
-        super.triggerWhenCopied();
-        triggerWhenDrawn();
+        if (this.isOnScreen())
+        {
+            if (SingleCardViewPopup.isViewingUpgrade && this.isSeen && !this.isLocked)
+            {
+                super.renderInLibrary(sb);
+            }
+            else
+            {
+                UpdateCardText();
+                super.renderInLibrary(sb);
+                RenderHeader(sb, false);
+                RenderBadges(sb, false, true);
+                RenderCardPreview(sb, false);
+            }
+        }
     }
 
     public void renderInSingleCardPopup(SpriteBatch sb, boolean preRender)
@@ -263,6 +293,19 @@ public abstract class EYBCard extends CustomCard
             RenderBadges(sb, true, false);
             RenderCardPreview(sb, true);
         }
+    }
+
+    @Override
+    public void triggerWhenCopied()
+    {
+        // this is only used by ShowCardAndAddToHandEffect
+        super.triggerWhenCopied();
+        triggerWhenDrawn();
+    }
+
+    public boolean isOnScreen()
+    {
+        return this.current_y >= -200.0F * Settings.scale && this.current_y <= (float)Settings.HEIGHT + 200.0F * Settings.scale;
     }
 
     protected Color GetHeaderColor()
@@ -327,8 +370,8 @@ public abstract class EYBCard extends CustomCard
         else
         {
             scale = this.drawScale * Settings.scale;
-//            x = 110;
-//            y = 160;
+//            x = -160;
+//            y = 88;
 
             if (isLibrary || (AbstractDungeon.isScreenUp && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.HAND_SELECT))
             {
@@ -633,33 +676,33 @@ public abstract class EYBCard extends CustomCard
     {
         if (TryUpgrade())
         {
-            if (damageUpgrade != 0)
+            if (upgrade_damage != 0)
             {
-                upgradeDamage(damageUpgrade);
+                upgradeDamage(upgrade_damage);
             }
 
-            if (blockUpgrade != 0)
+            if (upgrade_block != 0)
             {
-                upgradeBlock(blockUpgrade);
+                upgradeBlock(upgrade_block);
             }
 
-            if (secondaryValueUpgrade != 0)
+            if (upgrade_secondaryValue != 0)
             {
-                upgradeSecondaryValue(secondaryValueUpgrade);
+                upgradeSecondaryValue(upgrade_secondaryValue);
             }
 
-            if (magicNumberUpgrade != 0)
+            if (upgrade_magicNumber != 0)
             {
-                upgradeMagicNumber(magicNumberUpgrade);
+                upgradeMagicNumber(upgrade_magicNumber);
             }
 
-            if (costUpgrade != 0)
+            if (upgrade_cost != 0)
             {
                 int previousCost = cost;
                 int previousCostForTurn = costForTurn;
 
-                this.cost = Math.max(0, previousCost + costUpgrade);
-                this.costForTurn = Math.max(0, previousCostForTurn + costUpgrade);
+                this.cost = Math.max(0, previousCost + upgrade_cost);
+                this.costForTurn = Math.max(0, previousCostForTurn + upgrade_cost);
                 this.upgradedCost = true;
             }
 
@@ -697,15 +740,15 @@ public abstract class EYBCard extends CustomCard
 
     protected void SetUpgrade(int damage, int block, int magicNumber, int secondaryValue)
     {
-        this.damageUpgrade = damage;
-        this.blockUpgrade = block;
-        this.magicNumberUpgrade = magicNumber;
-        this.secondaryValueUpgrade = secondaryValue;
+        this.upgrade_damage = damage;
+        this.upgrade_block = block;
+        this.upgrade_magicNumber = magicNumber;
+        this.upgrade_secondaryValue = secondaryValue;
     }
 
     protected void SetCostUpgrade(int value)
     {
-        this.costUpgrade = value;
+        this.upgrade_cost = value;
     }
 
     protected void OnUpgrade()

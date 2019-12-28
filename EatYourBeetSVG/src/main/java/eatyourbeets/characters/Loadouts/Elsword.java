@@ -19,7 +19,7 @@ public class Elsword extends AnimatorCustomLoadout
         Synergy s = Synergies.Elsword;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

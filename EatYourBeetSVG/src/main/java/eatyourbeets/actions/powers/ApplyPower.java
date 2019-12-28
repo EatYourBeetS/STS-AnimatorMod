@@ -29,7 +29,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     protected AbstractPower powerToApply;
     protected boolean chooseRandomTarget;
     protected boolean ignoreArtifact;
-    protected boolean showEffect;
+    protected boolean showEffect = true;
     protected boolean faster;
 
     public ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
@@ -56,7 +56,6 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     {
         super(ActionType.POWER, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FASTER);
 
-        showEffect = true;
         powerToApply = power;
         attackEffect = effect;
         faster = isFast;
@@ -79,10 +78,17 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         }
     }
 
-    public ApplyPower SetOptions(boolean showEffect, boolean ignoreArtifact)
+    public ApplyPower IgnoreArtifact(boolean ignoreArtifact)
+    {
+        this.ignoreArtifact = ignoreArtifact;
+
+        return this;
+    }
+
+    public ApplyPower ShowEffect(boolean showEffect, boolean isFast)
     {
         this.showEffect = showEffect;
-        this.ignoreArtifact = ignoreArtifact;
+        this.faster = isFast;
 
         return this;
     }

@@ -124,9 +124,9 @@ public class AinzPower extends AnimatorPower
         private static final CardStrings CARD_STRINGS = AnimatorResources.GetCardStrings(Ainz.ID);
         private static final String[] CARD_TEXT = AnimatorResources_Strings.SpecialEffects.TEXT;
 
-        private int index;
-        private int weight;
-        private int number;
+        private final int index;
+        private final int weight;
+        private final int number;
 
         AinzEffect(int index, int weight, int number)
         {

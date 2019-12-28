@@ -19,7 +19,7 @@ public class OwariNoSeraph extends AnimatorCustomLoadout
         Synergy s = Synergies.OwariNoSeraph;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

@@ -11,8 +11,8 @@ public class AnimatorCard_Dynamic extends AnimatorCard
 {
     protected final AnimatorCardBuilder builder;
 
-    public Consumer<AnimatorCard> onUpgrade;
-    public TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
+    public final Consumer<AnimatorCard> onUpgrade;
+    public final TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
 
     public AnimatorCard_Dynamic(AnimatorCardBuilder builder)
     {

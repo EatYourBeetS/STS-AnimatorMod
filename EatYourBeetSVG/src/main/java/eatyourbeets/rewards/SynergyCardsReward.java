@@ -32,7 +32,7 @@ public class SynergyCardsReward extends AnimatorReward
         }
         else
         {
-            return "#y" + synergy.NAME.replace(" ", " #y");
+            return "#y" + synergy.Name.replace(" ", " #y");
         }
     }
 
@@ -51,7 +51,7 @@ public class SynergyCardsReward extends AnimatorReward
 
         if (this.hb.hovered)
         {
-            TipHelper.renderGenericTip(360.0F * Settings.scale, (float) InputHelper.mY, synergy.NAME,
+            TipHelper.renderGenericTip(360.0F * Settings.scale, (float) InputHelper.mY, synergy.Name,
                     AnimatorResources_Strings.Rewards.TEXT[0]);
         }
     }

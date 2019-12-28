@@ -143,7 +143,7 @@ public final class GameActions
 
     public ApplyPower ApplyPowerSilently(AbstractCreature source, AbstractCreature target, AbstractPower power, int stacks)
     {
-        return Add(new ApplyPower(source, target, power, stacks)).SetOptions(false, true);
+        return Add(new ApplyPower(source, target, power, stacks)).IgnoreArtifact(true).ShowEffect(false, true);
     }
 
     public ApplyPower ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)

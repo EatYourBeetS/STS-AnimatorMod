@@ -2,13 +2,13 @@ package eatyourbeets.cards.base;
 
 public final class Synergy
 {
+    public final String Name;
     public final int ID;
-    public final String NAME;
 
     public Synergy(int id, String name)
     {
-        ID = id;
-        NAME = name;
+        this.ID = id;
+        this.Name = name;
     }
 
     public boolean Equals(Synergy other)

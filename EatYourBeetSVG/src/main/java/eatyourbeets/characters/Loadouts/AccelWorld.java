@@ -23,7 +23,7 @@ public class AccelWorld extends AnimatorCustomLoadout
 
         //this.MaxHP = 71;
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class TenSura extends AnimatorCustomLoadout
         Synergy s = Synergies.TenSura;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class NoGameNoLife extends AnimatorCustomLoadout
         Synergy s = Synergies.NoGameNoLife;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

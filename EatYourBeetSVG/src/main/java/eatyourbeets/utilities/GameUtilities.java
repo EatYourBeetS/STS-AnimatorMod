@@ -57,7 +57,6 @@ public class GameUtilities
         {
             for (AbstractMonster m : room.monsters.monsters)
             {
-                //logger.info("ENEMY: " + m.name + ", DeadOrEscaped: " + m.isDeadOrEscaped() + ", Dying: " + m.isDying);
                 if (!aliveOnly || (!m.isDeadOrEscaped() && !m.isDying))
                 {
                     characters.add(m);
@@ -175,7 +174,6 @@ public class GameUtilities
         {
             for (AbstractMonster m : room.monsters.monsters)
             {
-                //logger.info("ENEMY: " + m.name + ", DeadOrEscaped: " + m.isDeadOrEscaped() + ", Dying: " + m.isDying);
                 if (!aliveOnly || (!m.isDeadOrEscaped() && m.currentHealth >0))
                 {
                     monsters.add(m);

@@ -19,7 +19,7 @@ public class Katanagatari extends AnimatorCustomLoadout
         Synergy s = Synergies.Katanagatari;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

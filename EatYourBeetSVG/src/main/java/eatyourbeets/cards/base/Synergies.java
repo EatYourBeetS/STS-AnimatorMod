@@ -89,7 +89,7 @@ public class Synergies
         {
             if (c instanceof AnimatorCard)
             {
-                result.add((AnimatorCard)c);
+                result.add((AnimatorCard) c);
             }
         }
 
@@ -181,7 +181,7 @@ public class Synergies
         AnimatorCard other = JavaUtilities.SafeCast(abstractCard, AnimatorCard.class);
         if (other != null && other.synergy != null && card.synergy != null)
         {
-            return  (card instanceof Spellcaster && other instanceof Spellcaster) ||
+            return (card instanceof Spellcaster && other instanceof Spellcaster) ||
                     (card instanceof MartialArtist && other instanceof MartialArtist) ||
                     (card.anySynergy || other.anySynergy) || card.synergy.equals(other.synergy);
         }

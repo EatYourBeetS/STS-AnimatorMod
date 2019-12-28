@@ -19,7 +19,7 @@ public class Overlord extends AnimatorCustomLoadout
         Synergy s = Synergies.Overlord;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

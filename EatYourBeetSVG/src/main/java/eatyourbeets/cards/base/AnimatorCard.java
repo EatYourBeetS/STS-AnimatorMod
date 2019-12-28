@@ -26,7 +26,7 @@ public abstract class AnimatorCard extends EYBCard
     {
         if (synergy != null)
         {
-            return synergy.NAME;
+            return synergy.Name;
         }
 
         return null;

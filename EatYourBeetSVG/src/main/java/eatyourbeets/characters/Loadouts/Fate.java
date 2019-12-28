@@ -19,7 +19,7 @@ public class Fate extends AnimatorCustomLoadout
         Synergy s = Synergies.Fate;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

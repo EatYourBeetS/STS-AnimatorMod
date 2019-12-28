@@ -159,7 +159,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
                 }
             }
 
-            logger.info(s.NAME + " : " + weight);
+            logger.info(s.Name + " : " + weight);
             list.Add(s, weight);
 //            }
         }

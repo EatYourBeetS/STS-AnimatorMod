@@ -12,9 +12,6 @@ import java.util.function.Consumer;
 
 public class AnimatorCardBuilder extends DynamicCardBuilder
 {
-    public String id;
-    public String imagePath;
-
     public int secondaryValue;
     public int costUpgrade;
     public int damageUpgrade;

@@ -10,12 +10,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public abstract class EYBAction extends AbstractGameAction
 {
-    protected int ticks;
-    protected boolean isRealtime;
-    protected AbstractPlayer player;
+    protected final AbstractPlayer player;
     protected AbstractCard card;
     protected String message;
     protected String name;
+    protected boolean isRealtime;
+    protected int ticks;
 
     public EYBAction(ActionType type)
     {

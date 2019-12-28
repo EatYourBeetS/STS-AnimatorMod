@@ -16,7 +16,7 @@ public class CardSeriesComparator implements Comparator<AbstractCard>
         ThanksJava a1 = CalculateValue(c1);
         ThanksJava a2 = CalculateValue(c2);
 
-        return (a1.rank - a2.rank) + (a1.synergy.NAME.compareTo(a2.synergy.NAME));
+        return (a1.rank - a2.rank) + (a1.synergy.Name.compareTo(a2.synergy.Name));
     }
 
     private ThanksJava CalculateValue(AbstractCard c1)

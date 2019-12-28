@@ -72,7 +72,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
             {
                 StringJoiner java = new StringJoiner(" ");
                 java.add("- ");
-                for (String s : bannedSynergy.NAME.split(" "))
+                for (String s : bannedSynergy.Name.split(" "))
                 {
                     java.add("#r" + s);
                 }
@@ -310,7 +310,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
             }
         }
 
-        logger.info("Banned " + synergy.NAME + " " + banCount + ", " + srcBanCount);
+        logger.info("Banned " + synergy.Name + " " + banCount + ", " + srcBanCount);
     }
 
     public void UpdateBannedCards()

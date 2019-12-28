@@ -19,7 +19,7 @@ public class FullmetalAlchemist extends AnimatorCustomLoadout
         Synergy s = Synergies.FullmetalAlchemist;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

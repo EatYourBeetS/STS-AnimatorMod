@@ -25,7 +25,7 @@ public class Kancolle extends AnimatorCustomLoadout
         Synergy s = Synergies.Kancolle;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
         this.StartingGold = 249;
     }
 

@@ -19,7 +19,7 @@ public class Chaika extends AnimatorCustomLoadout
         Synergy s = Synergies.Chaika;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

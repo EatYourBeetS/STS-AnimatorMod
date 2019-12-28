@@ -19,7 +19,7 @@ public class OnePunchMan extends AnimatorCustomLoadout
         Synergy s = Synergies.OnePunchMan;
 
         this.ID = s.ID;
-        this.Name = s.NAME;
+        this.Name = s.Name;
     }
 
     @Override

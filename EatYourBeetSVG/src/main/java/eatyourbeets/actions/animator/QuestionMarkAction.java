@@ -38,7 +38,7 @@ public class QuestionMarkAction extends EYBAction
 
         if (copy != null && index >= 0)
         {
-            //copy.name = questionMark.name;
+            //copy.Name = questionMark.Name;
             //copy.rarity = questionMark.rarity;
             //copy.originalName = questionMark.originalName;
             copy.SetSynergy(Synergies.ANY, true);

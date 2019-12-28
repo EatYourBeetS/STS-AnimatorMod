@@ -17,14 +17,20 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.*;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.ui.Void;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.base.AnimatorCard;
 import patches.CardGlowBorderPatch;
 
 import java.util.ArrayList;
@@ -75,7 +81,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     {
         super(null, POWER_ID);
 
-        this.priority = Integer.MIN_VALUE;
+        this.priority = -3000; //it was Integer.MIN_VALUE but it actually breaks the comparator, nice
     }
 
     private static void ClearStats()
@@ -359,38 +365,29 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     {
         super.onApplyPower(power, target, source);
 
-        switch (power.ID)
+        if (ForcePower.POWER_ID.equals(power.ID))
         {
-            case "EYB:ForcePower"://ForcePower.POWER_ID:
-            {
-                power.priority = -2100;
-                break;
-            }
-            case StrengthPower.POWER_ID:
-            {
-                power.priority = -2099;
-                break;
-            }
-            case "EYB:AgilityPower"://AgilityPower.POWER_ID:
-            {
-                power.priority = -2098;
-                break;
-            }
-            case DexterityPower.POWER_ID:
-            {
-                power.priority = -2097;
-                break;
-            }
-            case "EYB:IntellectPower"://IntellectPower.POWER_ID:
-            {
-                power.priority = -2096;
-                break;
-            }
-            case FocusPower.POWER_ID:
-            {
-                power.priority = -2096;
-                break;
-            }
+            power.priority = -2100;
+        }
+        else if (StrengthPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2099;
+        }
+        else if (AgilityPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2098;
+        }
+        else if (DexterityPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2097;
+        }
+        else if (IntellectPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2096;
+        }
+        else if (FocusPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2095;
         }
 
         for (OnApplyPowerSubscriber p : onApplyPower.GetSubscribers())

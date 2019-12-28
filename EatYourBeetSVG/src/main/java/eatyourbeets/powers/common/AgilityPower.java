@@ -30,7 +30,7 @@ public class AgilityPower extends PlayerAttributePower
     {
         if (GameUtilities.GetDexterity() > 0)
         {
-            GameActions.Bottom.ReducePower(owner, DexterityPower.POWER_ID, 1);
+            GameActions.Top.ReducePower(owner, DexterityPower.POWER_ID, 1);
         }
     }
 }

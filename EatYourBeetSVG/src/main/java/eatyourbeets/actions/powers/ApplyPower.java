@@ -145,7 +145,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
 
         for (AbstractPower power : target.powers)
         {
-            // ApplyPowerActions also uses 'while(p.ID.equals(NightmarePower.POWER_ID));', no idea what that should accomplish
+            // ApplyPowerActions also uses 'while(p.ID.equals(NightmarePower.POWER_ID));', no idea what that's supposed to do
             if (power.ID.equals(powerToApply.ID))
             {
                 StackPower(power);

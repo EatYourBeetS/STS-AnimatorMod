@@ -12,7 +12,7 @@ public class FieldInfo<T>
         }
         catch (IllegalAccessException e)
         {
-            e.printStackTrace();
+            JavaUtilities.ThrowAndShutdown(e, getClass());
         }
     }
 
@@ -25,7 +25,7 @@ public class FieldInfo<T>
         }
         catch (IllegalAccessException e)
         {
-            e.printStackTrace();
+            JavaUtilities.ThrowAndShutdown(e, getClass());
         }
 
         return null;

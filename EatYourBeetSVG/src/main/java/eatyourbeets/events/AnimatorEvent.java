@@ -143,7 +143,6 @@ public abstract class AnimatorEvent extends AbstractImageEvent
         {
             optionList.add(new DialogRelicButton(slot, text, false, relic));
         }
-
     }
 
     protected static class PhaseHandler

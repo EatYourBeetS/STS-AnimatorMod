@@ -84,6 +84,9 @@ public abstract class PlayerAttributePower extends CommonPower
         public void OnStatsCleared()
         {
             clear();
+
+            PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
+            PlayerStatistics.onStatsCleared.Unsubscribe(this);
         }
 
         @Override

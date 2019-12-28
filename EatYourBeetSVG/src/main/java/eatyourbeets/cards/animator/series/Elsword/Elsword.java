@@ -28,7 +28,7 @@ public class Elsword extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.ChannelOrb(new Fire(), false);
+        GameActions.Bottom.ChannelOrb(new Fire(), true);
     }
 
     @Override

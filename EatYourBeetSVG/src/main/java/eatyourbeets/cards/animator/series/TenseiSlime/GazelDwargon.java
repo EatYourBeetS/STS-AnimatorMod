@@ -16,7 +16,7 @@ public class GazelDwargon extends AnimatorCard
     {
         super(ID, -1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 4);
+        Initialize(0, 0, 3);
         SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.TenSura);
@@ -25,10 +25,15 @@ public class GazelDwargon extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int stacks = GameUtilities.UseEnergyXCost(this) * magicNumber;
+        int stacks = GameUtilities.UseEnergyXCost(this);
+        int plated = upgraded ? stacks + 1 : stacks;
+        if (plated > 0)
+        {
+            GameActions.Bottom.GainPlatedArmor(plated);
+        }
         if (stacks > 0)
         {
-            GameActions.Bottom.StackPower(new GazelDwargonPower(p, stacks));
+            GameActions.Bottom.StackPower(new GazelDwargonPower(p, stacks * magicNumber));
         }
     }
 }

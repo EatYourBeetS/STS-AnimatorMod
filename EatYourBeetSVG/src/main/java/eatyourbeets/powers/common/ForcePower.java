@@ -30,7 +30,7 @@ public class ForcePower extends PlayerAttributePower
     {
         if (GameUtilities.GetStrength() > 0)
         {
-            GameActions.Bottom.ReducePower(owner, StrengthPower.POWER_ID, 1);
+            GameActions.Top.ReducePower(owner, StrengthPower.POWER_ID, 1);
         }
     }
 }

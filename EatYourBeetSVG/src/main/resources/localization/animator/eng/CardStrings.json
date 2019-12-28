@@ -17,7 +17,7 @@
 	},
 	"animator:Add":
 	{
-		"DESCRIPTION": "Add 3 #yCrystallize[] to your draw pile. Next turn, draw !M! cards and gain [E] [E]. Exhaust. || Limited. On Synergy, NL Exhaust a card anywhere, replace it with an Orb_Core.",
+		"DESCRIPTION": "Add 3 #yCrystallize[] to NL your draw pile. Next NL turn, draw !M! cards NL and gain [E] [E]. NL Exhaust. || On Synergy, NL Exhaust a card anywhere, replace it with an Orb_Core.",
 		"NAME": "Add"
 	},
 	"animator:Ain":
@@ -132,7 +132,7 @@
 	},
 	"animator:ChlammyZell":
 	{
-		"DESCRIPTION": "Draw 2 cards. NL Next turn, draw !M! NL additional card. NL Exhaust. || When you play NL alternating card types NL this turn, Cycle 1 card NL and deal !SV! damage to NL ALL enemies.",
+		"DESCRIPTION": "Draw 2 cards. NL Next turn, draw !M! NL additional card. NL Exhaust. || Whenever you play NL alternating card types NL this turn, Cycle 1 card NL and deal !SV! damage to NL ALL enemies.",
 		"NAME": "Kurami",
 		"UPGRADE_DESCRIPTION": "Draw 2 cards. NL Next turn, draw !M! NL additional cards. NL Exhaust."
 	},
@@ -408,8 +408,9 @@
 	},
 	"animator:GazelDwargon":
 	{
-		"DESCRIPTION": "At the start of each NL turn, maintain up to !M! NL Block, multiplied by X.",
-		"NAME": "Gazel Dwargon"
+		"DESCRIPTION": "Gain X Plat._Armor. NL At the start of each NL turn, maintain up to !M! NL Block, multiplied by X.",
+		"NAME": "Gazel Dwargon",
+		"UPGRADE_DESCRIPTION": "Gain X+1 Plat._Armor. NL At the start of each NL turn, maintain up to !M! NL Block, multiplied by X."
 	},
 	"animator:Genos":
 	{
@@ -1098,8 +1099,9 @@
 	},
 	"animator:TewiInaba":
 	{
-		"DESCRIPTION": "Gain !B! Block. NL Evoke your next NL Orb. If it was Earth, NL draw !M! cards. || Semi-Limited. NL When Discarded, NL trigger the passive NL ability of your NL next Orb.",
-		"NAME": "Tewi Inaba"
+		"DESCRIPTION": "Evoke your next NL Orb to draw !M! NL cards. Add 1 Dazed to NL your draw pile. || If you Evoked NL an Earth Orb, NL gain !SV! Block.",
+		"NAME": "Tewi Inaba",
+		"UPGRADE_DESCRIPTION": "Evoke your next Orb to draw !M! cards. Add 1 Dazed to your draw pile. || If you Evoked NL an Earth Orb, NL gain !SV! Block."
 	},
 	"animator:TheHaunt":
 	{
@@ -1187,12 +1189,12 @@
 	},
 	"animator:YaoHaDucy":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If the enemy is NL attacking, it loses NL !M! Strength this turn. || Limited. NL When Discarded, NL gain 1 Agility and !SV! NL Support_Damage.",
+		"DESCRIPTION": "Deal !D! damage. NL If the enemy is NL attacking, it loses NL !M! Strength this turn. || On Synergy, NL if you have any NL Support_Damage, NL increase it by !SV!.",
 		"NAME": "Yao Ha Ducy"
 	},
 	"animator:YunYun":
 	{
-		"DESCRIPTION": "Spellcaster. NL Deal !D! damage to ALL enemies. Costs 1 more for each other #yAttack in your hand. || When Exhausted, NL Channel 1 Lightning.",
+		"DESCRIPTION": "Spellcaster. NL Deal !D! damage to ALL enemies. Costs 1 more for each other #yAttack in your hand. || Semi-Limited. NL If you have 3 or NL more Lightning Orbs, NL gain 1 Intellect.",
 		"NAME": "YunYun"
 	},
 	"animator:Yusarin":

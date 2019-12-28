@@ -135,7 +135,7 @@
 	"Plated Armor":
 	{
 		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving unblocked damage.",
-		"NAMES": ["plated armor", "plated_armor"],
+		"NAMES": ["plated armor", "plated_armor", "plat. armor", "plat._armor"],
 		"PROPER_NAME": "Plated Armor"
 	},
 	"Rebound":

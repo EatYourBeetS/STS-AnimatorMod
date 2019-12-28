@@ -30,7 +30,7 @@ public class IntellectPower extends PlayerAttributePower
     {
         if (GameUtilities.GetFocus() > 0)
         {
-            GameActions.Bottom.ReducePower(owner, FocusPower.POWER_ID, 1);
+            GameActions.Top.ReducePower(owner, FocusPower.POWER_ID, 1);
         }
     }
 }

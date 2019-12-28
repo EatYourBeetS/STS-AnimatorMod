@@ -111,7 +111,7 @@
 	"Support Damage":
 	{
 		"DESCRIPTION": "Deal damage to the enemy with the lowest HP at the end of each turn. Affected by damage modifiers.",
-		"NAMES": ["support damage", "support_damage"],
+		"NAMES": ["support damage", "support_damage", "supp. damage", "supp._damage"],
 		"PROPER_NAME": "Support Damage"
 	},
 	"Synergy":

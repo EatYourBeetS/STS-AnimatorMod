@@ -1,5 +1,9 @@
 package eatyourbeets.utilities;
 
+import basemod.BaseMod;
+import com.badlogic.gdx.Gdx;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.ExceptionHandler;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.random.Random;
@@ -39,6 +43,18 @@ public class JavaUtilities
         return null;
     }
 
+    @SuppressWarnings({"ResultOfMethodCallIgnored", "ConstantConditions"})
+    public static void ThrowAndShutdown(Exception exception, Class type)
+    {
+//        ExceptionHandler.handleException(exception, JavaUtilities.GetLogger(CardCrawlGame.class));
+//        LogManager.shutdown();
+//        Gdx.app.exit();
+
+        Object thePreviousLinesDidNotWork = null;
+        exception.printStackTrace();
+        thePreviousLinesDidNotWork.toString();
+    }
+
     public static MethodInfo GetPrivateMethod(String methodName, Class<?> type, Class<?>... parameterTypes)
     {
         try
@@ -50,9 +66,9 @@ public class JavaUtilities
         }
         catch (NoSuchMethodException e)
         {
-            e.printStackTrace();
+            ThrowAndShutdown(e, JavaUtilities.class);
 
-            return null;
+            return new MethodInfo(null);
         }
     }
 
@@ -67,9 +83,9 @@ public class JavaUtilities
         }
         catch (NoSuchFieldException e)
         {
-            e.printStackTrace();
+            ThrowAndShutdown(e, JavaUtilities.class);
 
-            return null;
+            return new FieldInfo<>(null);
         }
     }
 

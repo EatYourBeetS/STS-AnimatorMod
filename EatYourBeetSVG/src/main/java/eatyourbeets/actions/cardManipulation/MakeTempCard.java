@@ -15,8 +15,9 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
     protected final CardGroup cardGroup;
     protected boolean upgrade;
     protected boolean makeCopy;
+    protected boolean cancelIfFull;
     protected boolean randomSpot = true;
-    protected boolean toBottom = false;
+    protected boolean toBottom;
 
     public MakeTempCard(AbstractCard card, CardGroup group)
     {
@@ -26,6 +27,13 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         this.cardGroup = group;
 
         Initialize(1);
+    }
+
+    public MakeTempCard CancelIfFull(boolean cancelIfFull)
+    {
+        this.cancelIfFull = cancelIfFull;
+
+        return this;
     }
 
     public MakeTempCard SetOptions(boolean upgrade, boolean makeCopy)
@@ -78,6 +86,12 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             {
                 if (player.hand.size() >= BaseMod.MAX_HAND_SIZE)
                 {
+                    if (cancelIfFull)
+                    {
+                        Complete();
+                        return;
+                    }
+
                     player.createHandIsFullDialog();
                     GameEffects.List.Add(new ShowCardAndAddToDiscardEffect(actualCard));
                 }

@@ -14,30 +14,16 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YaoHaDucy extends AnimatorCard
 {
-    public static final String ID = Register(YaoHaDucy.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(YaoHaDucy.class.getSimpleName(), EYBCardBadge.Synergy);
 
     public YaoHaDucy()
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(3, 0, 2, 2);
-        SetUpgrade(3, 0, 0, 0);
+        Initialize(3, 0, 2, 1);
+        SetUpgrade(2, 0, 0, 0);
 
         SetSynergy(Synergies.Gate);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        if (EffectHistory.TryActivateLimited(cardID))
-        {
-            AbstractPlayer p = AbstractDungeon.player;
-
-            GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
-            GameActions.Bottom.GainAgility(1);
-        }
     }
 
     @Override
@@ -48,6 +34,11 @@ public class YaoHaDucy extends AnimatorCard
         if (GameUtilities.IsAttacking(m.intent))
         {
             GameActions.Bottom.ReduceStrength(m, magicNumber, true);
+        }
+
+        if (HasActiveSynergy() && GameUtilities.GetPowerAmount(p, SupportDamagePower.POWER_ID) > 0)
+        {
+            GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         }
     }
 }

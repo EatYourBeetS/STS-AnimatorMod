@@ -158,8 +158,9 @@ public class EYBCardText
                         break;
 
                     default:
-                        JavaUtilities.Logger.warn("Wrong Color Code for " + card.cardID);
+                        JavaUtilities.Logger.warn("Unknown Color Code for " + card.cardID + " (#" + string.charAt(i+1) + ")");
                         sb.append(character);
+                        break;
                 }
             }
             else

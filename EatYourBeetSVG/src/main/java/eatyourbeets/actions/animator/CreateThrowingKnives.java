@@ -30,7 +30,8 @@ public class CreateThrowingKnives extends EYBAction
         for (int i = 0; i < max; i++)
         {
             GameActions.Top.MakeCard(ThrowingKnife.GetRandomCard(), player.hand)
-            .SetOptions(upgraded, false);
+            .SetOptions(upgraded, false)
+            .CancelIfFull(true);
         }
 
         Complete();

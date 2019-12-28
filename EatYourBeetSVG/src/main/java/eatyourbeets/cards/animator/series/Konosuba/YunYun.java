@@ -5,11 +5,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
 import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -17,7 +19,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSubscriber
 {
-    public static final String ID = Register(YunYun.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(YunYun.class.getSimpleName(), EYBCardBadge.Special);
 
     private int costModifier = 0;
 
@@ -25,7 +27,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
 
-        Initialize(9, 0);
+        Initialize(8, 0);
         SetUpgrade(4, 0);
 
         SetMultiDamage(true);
@@ -36,16 +38,6 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
         return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.ChannelOrb(new Lightning(), true);
-
-        this.resetAttributes();
     }
 
     @Override
@@ -101,6 +93,24 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
         }
 
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
+
+        if (!EffectHistory.HasActivatedSemiLimited(cardID))
+        {
+            int lightning = 0;
+            for (AbstractOrb orb : AbstractDungeon.player.orbs)
+            {
+                if (Lightning.ORB_ID.equals(orb.ID))
+                {
+                    lightning += 1;
+                }
+            }
+
+            if (lightning >= 3)
+            {
+                GameActions.Bottom.GainIntellect(1);
+                EffectHistory.TryActivateSemiLimited(cardID);
+            }
+        }
     }
 
     @Override

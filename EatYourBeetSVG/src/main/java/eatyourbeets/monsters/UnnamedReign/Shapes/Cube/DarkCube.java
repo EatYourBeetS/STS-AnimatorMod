@@ -2,7 +2,6 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Cube;
 
 import eatyourbeets.monsters.SharedMoveset.Move_GainTempThorns;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset.Move_Attack;
 import eatyourbeets.monsters.SharedMoveset.Move_AttackDefend;
 import eatyourbeets.monsters.SharedMoveset.Move_Defend;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;

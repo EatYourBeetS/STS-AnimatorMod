@@ -14,7 +14,7 @@ public class MethodInfo
         }
         catch (InvocationTargetException | IllegalAccessException e)
         {
-            e.printStackTrace();
+            JavaUtilities.ThrowAndShutdown(e, getClass());
         }
     }
 

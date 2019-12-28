@@ -142,7 +142,7 @@
 	},
 	"animator:GazelDwargonPower":
 	{
-		"DESCRIPTIONS": ["回合開始時保留一半的 #y格擋 。"],
+		"DESCRIPTIONS": ["在每回合开始时， 保留 #b", " 件 #y格挡 。"],
 		"NAME": "矮人王"
 	},
 	"animator:GeassPower":

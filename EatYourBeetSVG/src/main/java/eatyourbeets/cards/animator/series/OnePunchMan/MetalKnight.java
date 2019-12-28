@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard_Boost;
 import eatyourbeets.cards.base.Synergies;
 
 public class MetalKnight extends AnimatorCard
@@ -20,8 +19,8 @@ public class MetalKnight extends AnimatorCard
     {
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(12, 0, 3);
-        SetUpgrade(4, 0, 0);
+        Initialize(11, 0, 3);
+        SetUpgrade(3, 0, 0);
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.OnePunchMan);

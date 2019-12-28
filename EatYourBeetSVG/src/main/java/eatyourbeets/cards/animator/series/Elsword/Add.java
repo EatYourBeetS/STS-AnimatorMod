@@ -10,10 +10,8 @@ import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCardBuilder;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -50,7 +48,7 @@ public class Add extends AnimatorCard
             GameActions.Bottom.MakeCardInDrawPile(new Crystallize());
         }
 
-        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
+        if (HasActiveSynergy())
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
             .AddCallback(this::OnCardChosen);

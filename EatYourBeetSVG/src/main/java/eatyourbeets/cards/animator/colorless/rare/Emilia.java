@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, Spellcaster
 {
-    public static final String ID = Register(Emilia.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Emilia.class, EYBCardBadge.Special);
 
     public Emilia()
     {

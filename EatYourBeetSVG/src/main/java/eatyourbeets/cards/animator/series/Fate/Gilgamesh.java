@@ -26,7 +26,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 {
     private static AbstractRelic lastRelicObtained = null;
 
-    public static final String ID = Register(Gilgamesh.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Gilgamesh.class, EYBCardBadge.Special);
     public static final int GOLD_REWARD = 25;
 
     public Gilgamesh()

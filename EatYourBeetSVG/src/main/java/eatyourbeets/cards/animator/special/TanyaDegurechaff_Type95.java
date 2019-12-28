@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff_Type95 extends AnimatorCard
 {
-    public static final String ID = Register(TanyaDegurechaff_Type95.class.getSimpleName(), EYBCardBadge.Drawn, EYBCardBadge.Discard);
+    public static final String ID = Register(TanyaDegurechaff_Type95.class, EYBCardBadge.Drawn, EYBCardBadge.Discard);
 
     public TanyaDegurechaff_Type95()
     {

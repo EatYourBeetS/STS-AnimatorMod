@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.UnnamedCard;
 
 public class Shine extends UnnamedCard
 {
-    public static final String ID = Register(Shine.class.getSimpleName());
+    public static final String ID = Register(Shine.class);
 
     public Shine()
     {

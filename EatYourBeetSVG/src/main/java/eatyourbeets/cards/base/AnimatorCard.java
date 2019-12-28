@@ -2,57 +2,23 @@ package eatyourbeets.cards.base;
 
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.resources.AnimatorResources_Images;
-import eatyourbeets.utilities.JavaUtilities;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class AnimatorCard extends EYBCard
 {
-    protected static final Logger logger = LogManager.getLogger(AnimatorCard.class.getName());
-
-    public static int PreemptiveSynergies;
-    public static int SynergiesActivatedThisTurn;
-
-    @SuppressWarnings("FieldCanBeLocal")
-    private static AnimatorCard previousCard = null;
-    private static AnimatorCard lastCardPlayed = null;
-
     private final List<TooltipInfo> customTooltips = new ArrayList<>();
-    private Synergy synergy;
 
+    public Synergy synergy;
     public boolean anySynergy;
 
-    protected static String Register(String cardID, EYBCardBadge... badges)
+    protected static String Register(Class<? extends AnimatorCard> type, EYBCardBadge... badges)
     {
-        return RegisterCard(AnimatorResources.CreateID(cardID), badges);
-    }
-
-    public static void SetLastCardPlayed(AbstractCard card)
-    {
-        if (PreemptiveSynergies > 0)
-        {
-            PreemptiveSynergies -= 1;
-        }
-
-        if (card == null)
-        {
-            previousCard = null;
-            lastCardPlayed = null;
-        }
-        else
-        {
-            previousCard = lastCardPlayed;
-            lastCardPlayed = JavaUtilities.SafeCast(card, AnimatorCard.class);
-        }
+        return RegisterCard(type, AnimatorResources.CreateID(type.getSimpleName()), badges);
     }
 
     @Override
@@ -90,43 +56,14 @@ public abstract class AnimatorCard extends EYBCard
         }
     }
 
-    public boolean HasActiveSynergy()
+    public boolean HasSynergy()
     {
-        if (PreemptiveSynergies > 0)
-        {
-            return true;
-        }
-//        else if (this == lastCardPlayed)
-//        {
-//            return previousCard != null && previousCard.HasSynergy(this);
-//        }
-        else
-        {
-            return lastCardPlayed != null && lastCardPlayed.HasSynergy(this);
-        }
+        return Synergies.WouldSynergize(this);
     }
 
     public boolean HasSynergy(AbstractCard other)
     {
-        AnimatorCard card = JavaUtilities.SafeCast(other, AnimatorCard.class);
-        if (card != null && card.synergy != null && this.synergy != null)
-        {
-            return  (this instanceof Spellcaster && other instanceof Spellcaster) ||
-                    (this instanceof MartialArtist && other instanceof MartialArtist) ||
-                    (this.anySynergy || card.anySynergy) || HasExactSynergy(card.synergy);
-        }
-
-        return false;
-    }
-
-    public boolean HasExactSynergy(Synergy synergy)
-    {
-        return Objects.equals(this.synergy, synergy);
-    }
-
-    public Synergy GetSynergy()
-    {
-        return synergy;
+        return Synergies.WouldSynergize(this, other);
     }
 
     public void SetSynergy(Synergy synergy)

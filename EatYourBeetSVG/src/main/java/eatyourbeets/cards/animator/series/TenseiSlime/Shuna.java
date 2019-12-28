@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shuna extends AnimatorCard
 {
-    public static final String ID = Register(Shuna.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Drawn);
+    public static final String ID = Register(Shuna.class, EYBCardBadge.Synergy, EYBCardBadge.Drawn);
 
     public Shuna()
     {
@@ -35,7 +35,7 @@ public class Shuna extends AnimatorCard
         GameActions.Bottom.Draw(1);
         GameActions.Bottom.GainBlock(block);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainTemporaryHP(magicNumber);
         }

@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Guy extends AnimatorCard
 {
-    public static final String ID = Register(Guy.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Guy.class, EYBCardBadge.Synergy);
 
     public Guy()
     {
@@ -28,7 +28,7 @@ public class Guy extends AnimatorCard
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(false, false, true);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.MoveCards(p.discardPile, p.drawPile, secondaryValue)
             .ShowEffect(true, true)

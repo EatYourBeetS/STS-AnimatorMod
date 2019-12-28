@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class EntouJyuu extends AnimatorCard implements Hidden
 {
-    public static final String ID = Register(EntouJyuu.class.getSimpleName());
+    public static final String ID = Register(EntouJyuu.class);
 
     public EntouJyuu()
     {

@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Curse_Greed extends AnimatorCard_Curse
 {
-    public static final String ID = Register(Curse_Greed.class.getSimpleName());
+    public static final String ID = Register(Curse_Greed.class);
 
     public Curse_Greed()
     {

@@ -86,7 +86,7 @@ public class Kancolle extends AnimatorCustomLoadout
             AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
             if (card != null && card.color == AbstractEnums.Cards.THE_ANIMATOR)
             {
-                Synergy synergy = card.GetSynergy();
+                Synergy synergy = card.synergy;
                 if (synergy != null)
                 {
                     if (!synergies.contains(synergy.ID))

@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.UnnamedCard;
 
 public class Noise extends UnnamedCard
 {
-    public static final String ID = Register(Noise.class.getSimpleName());
+    public static final String ID = Register(Noise.class);
 
     public Noise()
     {

@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Strike_AccelWorld extends Strike
 {
-    public static final String ID = Register(Strike_AccelWorld.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(Strike_AccelWorld.class, EYBCardBadge.Discard);
 
     public Strike_AccelWorld()
     {

@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Strike_Konosuba extends Strike
 {
-    public static final String ID = Register(Strike_Konosuba.class.getSimpleName());
+    public static final String ID = Register(Strike_Konosuba.class);
 
     public Strike_Konosuba()
     {

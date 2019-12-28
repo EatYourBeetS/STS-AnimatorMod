@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Raven extends AnimatorCard
 {
-    public static final String ID = Register(Raven.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Raven.class, EYBCardBadge.Special);
 
     private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Raven::FindBestCard);
 

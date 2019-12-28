@@ -1,12 +1,13 @@
 package eatyourbeets.utilities;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class MethodInfo
 {
-    private final java.lang.reflect.Method method;
+    private final Method method;
 
-    public void Invoke(Object instance, Object... args)
+    public void Invoke(Object instance, Object... args) throws RuntimeException
     {
         try
         {
@@ -14,11 +15,11 @@ public class MethodInfo
         }
         catch (InvocationTargetException | IllegalAccessException e)
         {
-            JavaUtilities.ThrowAndShutdown(e, getClass());
+            throw new RuntimeException(e);
         }
     }
 
-    public MethodInfo(java.lang.reflect.Method method)
+    public MethodInfo(Method method)
     {
         this.method = method;
     }

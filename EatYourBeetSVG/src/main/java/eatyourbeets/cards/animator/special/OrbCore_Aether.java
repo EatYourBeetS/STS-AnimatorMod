@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Aether extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Aether.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(OrbCore_Aether.class, EYBCardBadge.Special);
 
     public static final int VALUE = 3;
 

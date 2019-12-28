@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_HitsugiNoChaika extends Defend
 {
-    public static final String ID = Register(Defend_HitsugiNoChaika.class.getSimpleName());
+    public static final String ID = Register(Defend_HitsugiNoChaika.class);
 
     public Defend_HitsugiNoChaika()
     {

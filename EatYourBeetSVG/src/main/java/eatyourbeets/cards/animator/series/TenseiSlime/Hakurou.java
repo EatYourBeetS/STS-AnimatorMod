@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Hakurou extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Hakurou.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Drawn);
+    public static final String ID = Register(Hakurou.class, EYBCardBadge.Synergy, EYBCardBadge.Drawn);
 
     public Hakurou()
     {
@@ -48,7 +48,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         }
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainAgility(1);
         }

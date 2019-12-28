@@ -19,7 +19,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSubscriber
 {
-    public static final String ID = Register(YunYun.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(YunYun.class, EYBCardBadge.Special);
 
     private int costModifier = 0;
 

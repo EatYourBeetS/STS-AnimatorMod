@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Tatsumaki extends AnimatorCard
 {
-    public static final String ID = Register(Tatsumaki.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Tatsumaki.class, EYBCardBadge.Special);
 
     public Tatsumaki()
     {

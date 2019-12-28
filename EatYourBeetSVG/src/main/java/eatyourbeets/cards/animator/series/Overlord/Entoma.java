@@ -19,7 +19,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Entoma extends AnimatorCard
 {
-    public static final String ID = Register(Entoma.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Entoma.class, EYBCardBadge.Special);
 
     public Entoma()
     {

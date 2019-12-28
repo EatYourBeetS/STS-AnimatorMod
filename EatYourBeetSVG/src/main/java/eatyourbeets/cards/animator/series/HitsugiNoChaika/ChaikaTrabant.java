@@ -18,7 +18,7 @@ import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 
 public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register(ChaikaTrabant.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(ChaikaTrabant.class, EYBCardBadge.Discard);
 
     private AbstractMonster target;
 

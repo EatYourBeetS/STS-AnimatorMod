@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Archer extends AnimatorCard
 {
-    public static final String ID = Register(Archer.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Archer.class, EYBCardBadge.Synergy);
 
     public Archer()
     {
@@ -28,7 +28,7 @@ public class Archer extends AnimatorCard
     {
         GameActions.Bottom.StackPower(new ArcherPower(p, this.magicNumber));
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
             {

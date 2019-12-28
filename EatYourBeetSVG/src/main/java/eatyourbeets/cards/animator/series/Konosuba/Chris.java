@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Chris extends AnimatorCard
 {
-    public static final String ID = Register(Chris.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(Chris.class, EYBCardBadge.Discard);
 
     public Chris()
     {

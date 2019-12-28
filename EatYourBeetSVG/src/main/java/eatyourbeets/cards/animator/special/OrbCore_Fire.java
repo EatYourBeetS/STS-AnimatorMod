@@ -9,7 +9,7 @@ import eatyourbeets.powers.animator.OrbCore_FirePower;
 
 public class OrbCore_Fire extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Fire.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(OrbCore_Fire.class, EYBCardBadge.Special);
 
     public static final int VALUE = 3;
 

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Emonzaemon extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Emonzaemon.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Emonzaemon.class, EYBCardBadge.Special);
 
     public Emonzaemon()
     {

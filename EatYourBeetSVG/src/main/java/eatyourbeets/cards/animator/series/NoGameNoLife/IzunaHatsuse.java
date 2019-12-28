@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IzunaHatsuse extends AnimatorCard
 {
-    public static final String ID = Register(IzunaHatsuse.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(IzunaHatsuse.class, EYBCardBadge.Special);
 
     private boolean transformed;
 

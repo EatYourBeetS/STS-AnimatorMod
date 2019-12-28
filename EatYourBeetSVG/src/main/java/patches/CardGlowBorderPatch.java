@@ -38,7 +38,7 @@ public class CardGlowBorderPatch
         EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
         if (c != null)
         {
-            if (c instanceof AnimatorCard && ((AnimatorCard)c).HasActiveSynergy())
+            if (c instanceof AnimatorCard && ((AnimatorCard)c).HasSynergy())
             {
                 Color color = colorField.Get(__instance);
                 if (color != null)

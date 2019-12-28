@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Azriel extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Azriel.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Azriel.class, EYBCardBadge.Special);
 
     public Azriel()
     {

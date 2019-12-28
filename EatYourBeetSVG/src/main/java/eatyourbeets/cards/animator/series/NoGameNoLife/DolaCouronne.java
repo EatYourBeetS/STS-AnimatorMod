@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class DolaCouronne extends AnimatorCard
 {
-    public static final String ID = Register(DolaCouronne.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(DolaCouronne.class, EYBCardBadge.Exhaust);
 
     public DolaCouronne()
     {

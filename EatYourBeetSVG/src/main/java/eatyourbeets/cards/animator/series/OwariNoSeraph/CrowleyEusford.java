@@ -13,7 +13,7 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscriber
 {
-    public static final String ID = Register(CrowleyEusford.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(CrowleyEusford.class, EYBCardBadge.Special);
 
     private int costModifier = 0;
 

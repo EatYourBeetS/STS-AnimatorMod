@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Wiz extends AnimatorCard
 {
-    public static final String ID = Register(Wiz.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Wiz.class, EYBCardBadge.Synergy);
 
     public Wiz()
     {
@@ -42,7 +42,7 @@ public class Wiz extends AnimatorCard
                     });
         });
 
-        if (!(HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID)))
+        if (!(HasSynergy() && EffectHistory.TryActivateLimited(cardID)))
         {
             GameActions.Bottom.Purge(this);
         }

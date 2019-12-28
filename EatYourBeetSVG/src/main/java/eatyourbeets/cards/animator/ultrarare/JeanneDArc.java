@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register(JeanneDArc.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(JeanneDArc.class, EYBCardBadge.Special);
 
     public JeanneDArc()
     {
@@ -30,7 +30,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.GainBlock(block);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Top.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
             .ShowEffect(true, true)

@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class MetalKnight extends AnimatorCard
 {
-    public static final String ID = Register(MetalKnight.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(MetalKnight.class, EYBCardBadge.Discard);
 
     public MetalKnight()
     {

@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Yuuichirou extends AnimatorCard
 {
-    public static final String ID = Register(Yuuichirou.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(Yuuichirou.class, EYBCardBadge.Exhaust);
 
     public Yuuichirou()
     {

@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_AccelWorld extends Defend
 {
-    public static final String ID = Register(Defend_AccelWorld.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(Defend_AccelWorld.class, EYBCardBadge.Discard);
 
     public Defend_AccelWorld()
     {

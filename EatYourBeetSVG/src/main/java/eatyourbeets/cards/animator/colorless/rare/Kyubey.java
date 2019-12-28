@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Kyubey extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(Kyubey.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Kyubey.class, EYBCardBadge.Special);
 
     private static ArrayList<AbstractCard> curses;
 

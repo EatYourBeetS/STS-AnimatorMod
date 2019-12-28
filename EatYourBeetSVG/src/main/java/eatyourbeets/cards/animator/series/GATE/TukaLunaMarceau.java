@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TukaLunaMarceau extends AnimatorCard
 {
-    public static final String ID = Register(TukaLunaMarceau.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(TukaLunaMarceau.class, EYBCardBadge.Discard);
 
     public TukaLunaMarceau()
     {

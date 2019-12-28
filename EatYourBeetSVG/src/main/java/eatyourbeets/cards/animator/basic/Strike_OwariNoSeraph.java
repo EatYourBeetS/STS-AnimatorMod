@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Strike_OwariNoSeraph extends Strike
 {
-    public static final String ID = Register(Strike_OwariNoSeraph.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(Strike_OwariNoSeraph.class, EYBCardBadge.Exhaust);
 
     public Strike_OwariNoSeraph()
     {

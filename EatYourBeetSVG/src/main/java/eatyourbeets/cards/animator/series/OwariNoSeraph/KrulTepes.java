@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class KrulTepes extends AnimatorCard
 {
-    public static final String ID = Register(KrulTepes.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(KrulTepes.class, EYBCardBadge.Special);
 
     private static final AbstractRelic relicReward = new BloodVial();
 

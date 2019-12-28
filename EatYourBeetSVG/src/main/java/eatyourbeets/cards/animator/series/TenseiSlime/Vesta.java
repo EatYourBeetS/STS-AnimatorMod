@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register(Vesta.class.getSimpleName());
+    public static final String ID = Register(Vesta.class);
 
     private int timer;
     private Vesta_Elixir elixir;

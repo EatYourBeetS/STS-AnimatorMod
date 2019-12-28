@@ -1,72 +1,53 @@
 package eatyourbeets.powers.common;
 
 import basemod.interfaces.CloneablePowerInterface;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
-// TODO: Improve this
-public class TemporaryArtifactPower extends ArtifactPower implements CloneablePowerInterface
+public class TemporaryArtifactPower extends AbstractPower implements CloneablePowerInterface
 {
-    private int permanent;
-    private int temporary;
+    public static final String POWER_ID = "TemporaryArtifact";
+    private static final PowerStrings powerStrings;
+    public static final String NAME;
+    public static final String[] DESCRIPTIONS;
 
-    public static ApplyPower Apply(AbstractCreature owner, AbstractCreature source, int amount)
+    public TemporaryArtifactPower(AbstractCreature owner, int amount)
     {
-        ArtifactPower artifact = GameUtilities.GetPower(owner, ArtifactPower.POWER_ID);
-        if (artifact != null && !(artifact instanceof TemporaryArtifactPower))
-        {
-            GameActions.Bottom.Add(new RemoveSpecificPowerAction(owner, source, artifact));
+        this.name = "Temporary " + NAME;
+        this.ID = POWER_ID;
+        this.owner = owner;
+        this.amount = amount;
+        this.updateDescription();
+        this.loadRegion("artifact");
+        this.type = PowerType.BUFF;
+        this.priority = 0;
+    }
 
-            return GameActions.Bottom.ApplyPower(source, owner, new TemporaryArtifactPower(owner, 1, artifact.amount), 1);
+    public void updateDescription()
+    {
+        if (this.amount == 1)
+        {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
         }
         else
         {
-            return GameActions.Bottom.ApplyPower(source, owner, new TemporaryArtifactPower(source, 1, 0), 1);
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
         }
-    }
-
-    public TemporaryArtifactPower(AbstractCreature owner, int temporary, int permanent)
-    {
-        super(owner, temporary + permanent);
-
-        this.temporary = temporary;
-        this.permanent = permanent;
     }
 
     @Override
-    public void stackPower(int stackAmount)
+    public void onSpecificTrigger()
     {
-        // done on onApplyPower()
-    }
+        super.onSpecificTrigger();
 
-    @Override
-    public void reducePower(int reduceAmount)
-    {
-        super.reducePower(reduceAmount);
-
-        if (amount > 0)
-        {
-            if (reduceAmount > temporary)
-            {
-                reduceAmount -= temporary;
-                temporary = 0;
-                permanent -= reduceAmount;
-            }
-            else
-            {
-                temporary -= reduceAmount;
-            }
-        }
-        else
-        {
-            permanent = 0;
-            temporary = 0;
-        }
+        this.ID = POWER_ID;
+        GameActions.Top.ReducePower(this, 1);
     }
 
     @Override
@@ -74,19 +55,22 @@ public class TemporaryArtifactPower extends ArtifactPower implements CloneablePo
     {
         super.onApplyPower(power, target, source);
 
-        if (target == owner && power instanceof ArtifactPower)
+        if (power.type == PowerType.DEBUFF && owner == target)
         {
-            if (power instanceof TemporaryArtifactPower)
-            {
-                temporary += power.amount;
-            }
-            else
-            {
-                permanent += power.amount;
-            }
-
-            super.stackPower(power.amount);
+            this.ID = ArtifactPower.POWER_ID;
         }
+        else
+        {
+            this.ID = POWER_ID;
+        }
+    }
+
+    @Override
+    public void renderIcons(SpriteBatch sb, float x, float y, Color c)
+    {
+        Color overrideColor = Color.ORANGE.cpy();
+        overrideColor.a = c.a;
+        super.renderIcons(sb, x, y, overrideColor);
     }
 
     @Override
@@ -94,15 +78,19 @@ public class TemporaryArtifactPower extends ArtifactPower implements CloneablePo
     {
         super.atStartOfTurn();
 
-        if (temporary > 0)
-        {
-            GameActions.Bottom.ReducePower(this, temporary);
-        }
+        GameActions.Bottom.RemovePower(owner, owner, this);
     }
 
     @Override
     public AbstractPower makeCopy()
     {
-        return new TemporaryArtifactPower(owner, temporary, permanent);
+        return new TemporaryArtifactPower(owner, amount);
+    }
+
+    static
+    {
+        powerStrings = CardCrawlGame.languagePack.getPowerStrings(ArtifactPower.POWER_ID);
+        NAME = powerStrings.NAME;
+        DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     }
 }

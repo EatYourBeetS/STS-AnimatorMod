@@ -19,7 +19,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
 {
-    public static final String ID = Register(Kaijin.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Kaijin.class, EYBCardBadge.Special);
 
     public Kaijin()
     {

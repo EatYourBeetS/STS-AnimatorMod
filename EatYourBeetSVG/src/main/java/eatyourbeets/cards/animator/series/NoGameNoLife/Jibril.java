@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Jibril extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Jibril.class.getSimpleName(), EYBCardBadge.Drawn);
+    public static final String ID = Register(Jibril.class, EYBCardBadge.Drawn);
 
     public Jibril()
     {

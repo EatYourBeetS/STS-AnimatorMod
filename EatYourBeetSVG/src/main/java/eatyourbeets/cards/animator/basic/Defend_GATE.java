@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_GATE extends Defend
 {
-    public static final String ID = Register(Defend_GATE.class.getSimpleName());
+    public static final String ID = Register(Defend_GATE.class);
 
     public Defend_GATE()
     {

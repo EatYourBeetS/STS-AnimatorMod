@@ -10,7 +10,7 @@ import eatyourbeets.utilities.*;
 
 public class DolaRiku extends AnimatorCard
 {
-    public static final String ID = Register(DolaRiku.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(DolaRiku.class, EYBCardBadge.Synergy);
 
     public DolaRiku()
     {
@@ -29,7 +29,7 @@ public class DolaRiku extends AnimatorCard
         .SetOptions(false, false, false)
         .AddCallback(cards -> GameActions.Bottom.Add(new DolaRikuAction(cards.get(0), magicNumber)));
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Top.Draw(1)
             .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsCurseOrStatus(c), false);

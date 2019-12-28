@@ -198,15 +198,16 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
         {
             Class<?> c = Class.forName("riskOfSpire.patches.ForUsableRelics.UsableRelicSlot");
             FieldInfo<SpireField> field = JavaUtilities.GetPrivateField("usableRelic", c);
-            if (field != null)
+            SpireField<?> f = field.Get(null);
+            if (f != null)
             {
-                SpireField<?> f = field.Get(null);
-                if (f != null)
-                {
-                    f.set(AbstractDungeon.player, null);
-                }
+                f.set(AbstractDungeon.player, null);
             }
         }
         catch (ClassNotFoundException ignored) { }
+        catch (RuntimeException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

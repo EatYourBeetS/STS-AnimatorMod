@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsurugi extends AnimatorCard
 {
-    public static final String ID = Register(Mitsurugi.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(Mitsurugi.class, EYBCardBadge.Exhaust);
 
     // TODO: use a class for this and for Nanami
     private AbstractMonster lastTargetEnemy = null;

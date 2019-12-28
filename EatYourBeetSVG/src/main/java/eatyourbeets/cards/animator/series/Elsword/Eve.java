@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Eve extends AnimatorCard
 {
-    public static final String ID = Register(Eve.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Eve.class, EYBCardBadge.Special);
 
     public Eve()
     {

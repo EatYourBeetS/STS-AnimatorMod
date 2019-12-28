@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Kazuma extends AnimatorCard
 {
-    public static final String ID = Register(Kazuma.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Kazuma.class, EYBCardBadge.Synergy);
 
     public Kazuma()
     {
@@ -28,7 +28,7 @@ public class Kazuma extends AnimatorCard
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.Cycle(name, 1);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.DealDamageToRandomEnemy(magicNumber, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
             .SetPiercing(true, false);

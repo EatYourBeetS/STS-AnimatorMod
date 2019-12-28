@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
      public SetGameSpeed()
      {
-         this.requiresPlayer = true;
          this.minExtraTokens = 1;
          this.maxExtraTokens = 1;
          this.simpleCheck = true;
@@ -28,12 +27,13 @@ import java.util.ArrayList;
          try
          {
              Class<?> c = Class.forName("skrelpoid.superfastmode.SuperFastMode");
+
              isDeltaMultiplied = JavaUtilities.GetPrivateField("isDeltaMultiplied", c);
              deltaMultiplier = JavaUtilities.GetPrivateField("deltaMultiplier", c);
 
-             return (isDeltaMultiplied != null && deltaMultiplier != null);
+             return true;
          }
-         catch (ClassNotFoundException e)
+         catch (RuntimeException | ClassNotFoundException e)
          {
              e.printStackTrace();
          }

@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class MisaKurobane extends AnimatorCard
 {
-    public static final String ID = Register(MisaKurobane.class.getSimpleName());
+    public static final String ID = Register(MisaKurobane.class);
 
     public MisaKurobane()
     {

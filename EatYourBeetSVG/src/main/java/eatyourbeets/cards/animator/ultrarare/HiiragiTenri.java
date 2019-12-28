@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HiiragiTenri extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(HiiragiTenri.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(HiiragiTenri.class, EYBCardBadge.Exhaust);
 
     public HiiragiTenri()
     {

@@ -117,7 +117,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
 
     private void AddUses(int uses)
     {
-        int max = (Synergies.Count() - 5);
+        int max = 5;
         int banned = bannedSynergies.size();
 
         counter += uses;
@@ -155,7 +155,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
         AnimatorCard animatorCard = JavaUtilities.SafeCast(card, AnimatorCard.class);
         if (animatorCard != null)
         {
-            return IsBanned(animatorCard.GetSynergy());
+            return IsBanned(animatorCard.synergy);
         }
 
         return false;
@@ -188,7 +188,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
             AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
             if (c != null)
             {
-                Synergy s = c.GetSynergy();
+                Synergy s = c.synergy;
                 if (s != null && !s.Equals(Synergies.Kancolle) && !s.Equals(Synergies.HatarakuMaouSama))
                 {
                     return !bannedSynergies.contains(s);
@@ -204,7 +204,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
         AnimatorCard animatorCard = JavaUtilities.SafeCast(card, AnimatorCard.class);
         if (animatorCard != null)
         {
-            Synergy synergy = animatorCard.GetSynergy();
+            Synergy synergy = animatorCard.synergy;
             if (synergy != null)
             {
                 RemoveSynergy(synergy);

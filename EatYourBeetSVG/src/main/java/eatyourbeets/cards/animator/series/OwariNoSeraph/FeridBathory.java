@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class FeridBathory extends AnimatorCard
 {
-    public static final String ID = Register(FeridBathory.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(FeridBathory.class, EYBCardBadge.Special);
 
     public FeridBathory()
     {

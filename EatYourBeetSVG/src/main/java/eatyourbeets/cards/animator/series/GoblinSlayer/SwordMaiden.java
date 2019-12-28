@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class SwordMaiden extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(SwordMaiden.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(SwordMaiden.class, EYBCardBadge.Special);
 
     public SwordMaiden()
     {

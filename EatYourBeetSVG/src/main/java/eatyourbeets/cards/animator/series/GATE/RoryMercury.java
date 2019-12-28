@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class RoryMercury extends AnimatorCard
 {
-    public static final String ID = Register(RoryMercury.class.getSimpleName(), EYBCardBadge.Drawn);
+    public static final String ID = Register(RoryMercury.class, EYBCardBadge.Drawn);
 
     public RoryMercury()
     {

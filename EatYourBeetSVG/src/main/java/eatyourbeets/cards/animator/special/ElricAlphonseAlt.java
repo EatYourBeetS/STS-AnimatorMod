@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class ElricAlphonseAlt extends AnimatorCard implements Hidden
 {
-    public static final String ID = Register(ElricAlphonseAlt.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(ElricAlphonseAlt.class, EYBCardBadge.Synergy);
 
     public ElricAlphonseAlt()
     {
@@ -30,7 +30,7 @@ public class ElricAlphonseAlt extends AnimatorCard implements Hidden
         GameActions.Bottom.ChannelOrb(new Lightning(), true);
         GameActions.Bottom.GainPlatedArmor(this.magicNumber);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainOrbSlots(1);
         }

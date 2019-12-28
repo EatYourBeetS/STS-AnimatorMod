@@ -44,7 +44,7 @@ public class CardLibraryPatches
                 String series = key.replace("animator:ur:", "").toLowerCase();
                 for (AnimatorCard_UltraRare card : AnimatorCard_UltraRare.GetCards().values())
                 {
-                    if (card.GetSynergy().NAME.toLowerCase().equals(series) && AnimatorCard_UltraRare.IsSeen(card.cardID))
+                    if (card.synergy.NAME.toLowerCase().equals(series) && AnimatorCard_UltraRare.IsSeen(card.cardID))
                     {
                         return SpireReturn.Return(card.makeCopy());
                     }

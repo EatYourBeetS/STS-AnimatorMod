@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shichika extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Shichika.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Shichika.class, EYBCardBadge.Synergy);
 
     public Shichika()
     {
@@ -43,7 +43,7 @@ public class Shichika extends AnimatorCard implements MartialArtist
         GameActions.Bottom.GainForce(magicNumber);
         GameActions.Bottom.MakeCardInHand(new ShichikaKyotouryuu());
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainAgility(1);
             GameActions.Bottom.GainThorns(2);

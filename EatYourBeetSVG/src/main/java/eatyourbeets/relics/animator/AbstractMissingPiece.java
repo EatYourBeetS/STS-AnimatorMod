@@ -179,7 +179,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         Synergy synergy = null;
         if (c != null)
         {
-            synergy = c.GetSynergy();
+            synergy = c.synergy;
         }
 
         return synergy != null ? synergy : Synergies.ANY;

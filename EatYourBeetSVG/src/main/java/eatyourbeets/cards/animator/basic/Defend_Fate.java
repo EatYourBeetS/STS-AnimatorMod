@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_Fate extends Defend
 {
-    public static final String ID = Register(Defend_Fate.class.getSimpleName());
+    public static final String ID = Register(Defend_Fate.class);
 
     public Defend_Fate()
     {

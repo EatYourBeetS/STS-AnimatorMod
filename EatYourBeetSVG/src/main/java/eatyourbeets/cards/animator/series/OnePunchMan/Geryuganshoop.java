@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Geryuganshoop extends AnimatorCard
 {
-    public static final String ID = Register(Geryuganshoop.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Geryuganshoop.class, EYBCardBadge.Special);
 
     public Geryuganshoop()
     {

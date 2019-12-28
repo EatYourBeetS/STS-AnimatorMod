@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Curse_Nutcracker extends AnimatorCard_Curse
 {
-    public static final String ID = Register(Curse_Nutcracker.class.getSimpleName());
+    public static final String ID = Register(Curse_Nutcracker.class);
 
     public Curse_Nutcracker()
     {

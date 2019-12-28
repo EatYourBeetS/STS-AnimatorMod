@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Boros extends AnimatorCard
 {
-    public static final String ID = Register(Boros.class.getSimpleName(), EYBCardBadge.Drawn);
+    public static final String ID = Register(Boros.class, EYBCardBadge.Drawn);
 
     public Boros()
     {

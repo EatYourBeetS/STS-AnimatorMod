@@ -11,7 +11,7 @@ import eatyourbeets.orbs.Fire;
 
 public class Elsword extends AnimatorCard
 {
-    public static final String ID = Register(Elsword.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(Elsword.class, EYBCardBadge.Discard);
 
     public Elsword()
     {

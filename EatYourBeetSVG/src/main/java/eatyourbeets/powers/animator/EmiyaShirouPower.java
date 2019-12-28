@@ -52,7 +52,7 @@ public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubs
                     AbstractCard card = randomAttacks.Retrieve(AbstractDungeon.cardRandomRng);
                     if (card != null)
                     {
-                        GameActions.Bottom.Draw(1).SetOptions(true)
+                        GameActions.Bottom.Draw(1).ShuffleIfEmpty(true)
                         .SetFilter(c -> c.type == AbstractCard.CardType.ATTACK, false);
                     }
                 }

@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AcuraTooru extends AnimatorCard
 {
-    public static final String ID = Register(AcuraTooru.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Discard);
+    public static final String ID = Register(AcuraTooru.class, EYBCardBadge.Synergy, EYBCardBadge.Discard);
 
     public AcuraTooru()
     {
@@ -37,7 +37,7 @@ public class AcuraTooru extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.CreateThrowingKnives(secondaryValue);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainBlock(magicNumber);
         }

@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Shinoa extends AnimatorCard
 {
-    public static final String ID = Register(Shinoa.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Shinoa.class, EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
 
     public Shinoa()
     {
@@ -43,7 +43,7 @@ public class Shinoa extends AnimatorCard
         {
             GameActions.Bottom.ApplyVulnerable(AbstractDungeon.player, enemy, magicNumber);
 
-            if (HasActiveSynergy())
+            if (HasSynergy())
             {
                 GameActions.Bottom.ApplyWeak(AbstractDungeon.player, enemy, magicNumber);
             }

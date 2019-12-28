@@ -20,7 +20,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Saitama extends AnimatorCard
 {
-    public static final String ID = Register(Saitama.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Saitama.class, EYBCardBadge.Special);
 
     private int stage;
 

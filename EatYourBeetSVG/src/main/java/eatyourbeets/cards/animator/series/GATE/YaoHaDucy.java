@@ -2,11 +2,9 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.powers.animator.SupportDamagePower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -14,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YaoHaDucy extends AnimatorCard
 {
-    public static final String ID = Register(YaoHaDucy.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(YaoHaDucy.class, EYBCardBadge.Synergy);
 
     public YaoHaDucy()
     {
@@ -36,7 +34,7 @@ public class YaoHaDucy extends AnimatorCard
             GameActions.Bottom.ReduceStrength(m, magicNumber, true);
         }
 
-        if (HasActiveSynergy() && GameUtilities.GetPowerAmount(p, SupportDamagePower.POWER_ID) > 0)
+        if (HasSynergy() && GameUtilities.GetPowerAmount(p, SupportDamagePower.POWER_ID) > 0)
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         }

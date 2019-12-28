@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Vesta_Elixir extends AnimatorCard implements Hidden
 {
-    public static final String ID = Register(Vesta_Elixir.class.getSimpleName());
+    public static final String ID = Register(Vesta_Elixir.class);
 
     public final ArrayList<VestaElixirEffect> effects = new ArrayList<>();
 

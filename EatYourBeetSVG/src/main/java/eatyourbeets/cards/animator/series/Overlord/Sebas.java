@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Sebas extends AnimatorCard
 {
-    public static final String ID = Register(Sebas.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(Sebas.class, EYBCardBadge.Discard);
 
     public Sebas()
     {

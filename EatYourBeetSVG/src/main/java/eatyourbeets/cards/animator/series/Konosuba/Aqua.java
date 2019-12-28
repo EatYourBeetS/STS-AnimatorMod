@@ -13,7 +13,7 @@ public class Aqua extends AnimatorCard
 {
     private boolean transformed = false;
 
-    public static final String ID = Register(Aqua.class.getSimpleName());
+    public static final String ID = Register(Aqua.class);
 
     public Aqua()
     {

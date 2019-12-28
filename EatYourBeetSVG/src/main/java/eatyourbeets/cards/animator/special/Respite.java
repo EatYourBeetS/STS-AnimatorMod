@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Respite extends AnimatorCard implements Hidden
 {
-    public static final String ID = Register(Respite.class.getSimpleName());
+    public static final String ID = Register(Respite.class);
 
     public Respite()
     {

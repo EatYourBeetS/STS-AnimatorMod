@@ -352,7 +352,7 @@ public abstract class AnimatorCustomLoadout
             AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
             if (card != null)
             {
-                Synergy synergy = card.GetSynergy();
+                Synergy synergy = card.synergy;
                 if (synergy != null && synergy.ID == ID)
                 {
                     synergyCount += 1;

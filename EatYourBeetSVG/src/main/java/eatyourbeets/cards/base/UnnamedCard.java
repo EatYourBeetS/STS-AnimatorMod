@@ -25,9 +25,9 @@ public abstract class UnnamedCard extends EYBCard
     public boolean enteredVoid = false;
     public int masteryCost = -2;
 
-    protected static String Register(String cardID, EYBCardBadge... badges)
+    protected static String Register(Class<? extends UnnamedCard> type, EYBCardBadge... badges)
     {
-        return RegisterCard("unnamed:" + cardID, badges);
+        return RegisterCard(type,"unnamed:" + type.getSimpleName(), badges);
     }
 
     private static String GetCardImage(String cardID)

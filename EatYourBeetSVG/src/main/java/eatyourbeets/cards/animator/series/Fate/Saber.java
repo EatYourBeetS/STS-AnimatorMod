@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Saber extends AnimatorCard_Cooldown
 {
-    public static final String ID = Register(Saber.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Saber.class, EYBCardBadge.Synergy);
 
     public Saber()
     {
@@ -41,7 +41,7 @@ public class Saber extends AnimatorCard_Cooldown
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
         int progress = 1;
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             progress += 2;
         }

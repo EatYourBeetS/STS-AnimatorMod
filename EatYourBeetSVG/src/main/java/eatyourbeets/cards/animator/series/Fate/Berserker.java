@@ -14,7 +14,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Berserker extends AnimatorCard
 {
-    public static final String ID = Register(Berserker.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Berserker.class, EYBCardBadge.Special);
 
     public Berserker()
     {

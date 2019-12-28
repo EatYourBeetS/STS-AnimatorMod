@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_OwariNoSeraph extends Defend
 {
-    public static final String ID = Register(Defend_OwariNoSeraph.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(Defend_OwariNoSeraph.class, EYBCardBadge.Exhaust);
 
     public Defend_OwariNoSeraph()
     {

@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Strike_Fate extends Strike
 {
-    public static final String ID = Register(Strike_Fate.class.getSimpleName());
+    public static final String ID = Register(Strike_Fate.class);
 
     public Strike_Fate()
     {

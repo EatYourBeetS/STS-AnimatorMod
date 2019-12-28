@@ -21,7 +21,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Kira extends AnimatorCard
 {
-    public static final String ID = Register(Kira.class.getSimpleName());
+    public static final String ID = Register(Kira.class);
     public static final String[] DESCRIPTIONS = AnimatorResources.GetCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private int countdown;

@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Mikaela extends AnimatorCard
 {
-    public static final String ID = Register(Mikaela.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Mikaela.class, EYBCardBadge.Special);
 
     public Mikaela()
     {

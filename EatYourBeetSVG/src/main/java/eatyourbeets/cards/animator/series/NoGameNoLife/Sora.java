@@ -14,7 +14,7 @@ import patches.AbstractEnums;
 
 public class Sora extends AnimatorCard
 {
-    public static final String ID = Register(Sora.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Sora.class, EYBCardBadge.Special);
 
     // TODO: Use DynamicCardBuilder
     public final SoraEffect effect;
@@ -47,6 +47,7 @@ public class Sora extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Top.Draw(1)
+        .ShuffleIfEmpty(false)
         .SetFilter(c -> Shiro.ID.equals(c.cardID), false);
 
         GameActions.Bottom.Add(new WaitAction(0.4f));

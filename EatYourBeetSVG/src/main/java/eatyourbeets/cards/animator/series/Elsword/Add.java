@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class Add extends AnimatorCard
 {
-    public static final String ID = Register(Add.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Add.class, EYBCardBadge.Synergy);
 
     public Add()
     {
@@ -48,7 +48,7 @@ public class Add extends AnimatorCard
             GameActions.Bottom.MakeCardInDrawPile(new Crystallize());
         }
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
             .AddCallback(this::OnCardChosen);

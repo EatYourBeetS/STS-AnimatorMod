@@ -10,7 +10,7 @@ import patches.AbstractEnums;
 
 public class TakanashiRikka extends AnimatorCard
 {
-    public static final String ID = Register(TakanashiRikka.class.getSimpleName());
+    public static final String ID = Register(TakanashiRikka.class);
 
     // TODO: Different upgrade
     public TakanashiRikka()

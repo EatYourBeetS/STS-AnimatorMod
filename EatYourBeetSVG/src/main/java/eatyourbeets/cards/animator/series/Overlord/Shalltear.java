@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Shalltear extends AnimatorCard
 {
-    public static final String ID = Register(Shalltear.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Shalltear.class, EYBCardBadge.Synergy);
 
     public Shalltear()
     {
@@ -56,7 +56,7 @@ public class Shalltear extends AnimatorCard
 
             GameActions.Bottom.Add(new LoseHPAction(enemy, p, damage));
 
-            if (HasActiveSynergy())
+            if (HasSynergy())
             {
                 GameActions.Bottom.StealStrength(enemy, 1, false);
             }

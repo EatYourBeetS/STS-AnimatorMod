@@ -14,7 +14,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, Hidden
 {
-    public static final String ID = Register(ShichikaKyotouryuu.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(ShichikaKyotouryuu.class, EYBCardBadge.Synergy);
 
     public ShichikaKyotouryuu()
     {
@@ -52,7 +52,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
         GameActions.Bottom.VFX(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale,
         AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainForce(1);
         }

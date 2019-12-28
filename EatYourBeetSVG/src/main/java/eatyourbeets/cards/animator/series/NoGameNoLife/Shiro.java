@@ -13,7 +13,7 @@ import eatyourbeets.powers.animator.ShiroPower;
 
 public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
 {
-    public static final String ID = Register(Shiro.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Shiro.class, EYBCardBadge.Special);
 
     private int costModifier = 0;
 
@@ -81,6 +81,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Top.Draw(1)
+        .ShuffleIfEmpty(false)
         .SetFilter(c -> Sora.ID.equals(c.cardID), false);
 
         GameActions.Bottom.StackPower(new ShiroPower(p, 1));

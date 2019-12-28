@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Lelouch extends AnimatorCard
 {
-    public static final String ID = Register(Lelouch.class.getSimpleName());
+    public static final String ID = Register(Lelouch.class);
 
     public Lelouch()
     {

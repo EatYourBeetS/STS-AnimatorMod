@@ -11,7 +11,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class DolaStephanie extends AnimatorCard
 {
-    public static final String ID = Register(DolaStephanie.class.getSimpleName());
+    public static final String ID = Register(DolaStephanie.class);
 
     public DolaStephanie()
     {

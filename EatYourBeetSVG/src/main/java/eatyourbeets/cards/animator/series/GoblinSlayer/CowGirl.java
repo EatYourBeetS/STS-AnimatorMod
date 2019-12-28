@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class CowGirl extends AnimatorCard
 {
-    public static final String ID = Register(CowGirl.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(CowGirl.class, EYBCardBadge.Discard);
 
     public CowGirl()
     {

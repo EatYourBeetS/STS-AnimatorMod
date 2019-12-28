@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ElricEdward extends AnimatorCard
 {
-    public static final String ID = Register(ElricEdward.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(ElricEdward.class, EYBCardBadge.Special);
 
     public ElricEdward()
     {

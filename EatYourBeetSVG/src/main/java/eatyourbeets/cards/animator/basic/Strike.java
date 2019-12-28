@@ -14,7 +14,7 @@ import patches.AbstractEnums;
 
 public class Strike extends AnimatorCard
 {
-    public static final String ID = Register(Strike.class.getSimpleName());
+    public static final String ID = Register(Strike.class);
 
     public Strike(String id, int cost, CardTarget target)
     {

@@ -44,7 +44,7 @@ public class DrawCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
         return this;
     }
 
-    public DrawCards SetOptions(boolean shuffleIfEmpty)
+    public DrawCards ShuffleIfEmpty(boolean shuffleIfEmpty)
     {
         this.shuffleIfEmpty = shuffleIfEmpty;
 

@@ -10,7 +10,7 @@ import eatyourbeets.powers.animator.GuildGirlPower;
 
 public class GuildGirl extends AnimatorCard
 {
-    public static final String ID = Register(GuildGirl.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(GuildGirl.class, EYBCardBadge.Special);
 
     public GuildGirl()
     {

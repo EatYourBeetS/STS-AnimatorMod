@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.UnnamedCard;
 
 public class Devastation extends UnnamedCard
 {
-    public static final String ID = Register(Devastation.class.getSimpleName());
+    public static final String ID = Register(Devastation.class);
 
     public Devastation()
     {

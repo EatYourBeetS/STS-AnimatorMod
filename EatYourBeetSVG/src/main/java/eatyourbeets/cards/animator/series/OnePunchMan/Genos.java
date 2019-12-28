@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Genos extends AnimatorCard
 {
-    public static final String ID = Register(Genos.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Genos.class, EYBCardBadge.Synergy);
 
     public Genos()
     {
@@ -31,7 +31,7 @@ public class Genos extends AnimatorCard
         GameActions.Bottom.ApplyBurning(p, m, magicNumber);
         GameActions.Bottom.StackPower(new SelfDamagePower(p, secondaryValue));
 
-        if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.FetchFromPile(name, 1, p.drawPile, p.discardPile)
             .SetOptions(false, true)

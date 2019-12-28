@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class GazelDwargon extends AnimatorCard
 {
-    public static final String ID = Register(GazelDwargon.class.getSimpleName());
+    public static final String ID = Register(GazelDwargon.class);
 
     public GazelDwargon()
     {

@@ -41,7 +41,7 @@ public class BattleDrones extends AnimatorRelic
         super.onPlayCard(c, m);
 
         AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-        if (card != null && card.HasActiveSynergy())
+        if (card != null && card.HasSynergy())
         {
             AbstractPlayer p = AbstractDungeon.player;
             GameActions.Bottom.Add(new GainBlockAction(p, p, BLOCK_AMOUNT, true));

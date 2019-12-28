@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class MelzalgaldAlt_2 extends MelzalgaldAlt
 {
-    public static final String ID = Register(MelzalgaldAlt_2.class.getSimpleName());
+    public static final String ID = Register(MelzalgaldAlt_2.class);
 
     public MelzalgaldAlt_2()
     {

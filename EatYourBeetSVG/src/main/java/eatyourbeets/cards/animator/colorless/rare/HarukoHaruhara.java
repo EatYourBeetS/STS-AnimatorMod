@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class HarukoHaruhara extends AnimatorCard
 {
-    public static final String ID = Register(HarukoHaruhara.class.getSimpleName());
+    public static final String ID = Register(HarukoHaruhara.class);
 
     public HarukoHaruhara()
     {

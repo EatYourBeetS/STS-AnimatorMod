@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Lancer extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Lancer.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Lancer.class, EYBCardBadge.Special);
 
     public Lancer()
     {

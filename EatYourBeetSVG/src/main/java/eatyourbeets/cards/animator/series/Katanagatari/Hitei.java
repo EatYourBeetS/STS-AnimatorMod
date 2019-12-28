@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Hitei extends AnimatorCard
 {
-    public static final String ID = Register(Hitei.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Hitei.class, EYBCardBadge.Synergy);
 
     public Hitei()
     {
@@ -27,7 +27,7 @@ public class Hitei extends AnimatorCard
     {
         GameActions.Bottom.StackPower(new HiteiPower(p, upgraded));
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainAgility(2);
             GameActions.Bottom.GainForce(2);

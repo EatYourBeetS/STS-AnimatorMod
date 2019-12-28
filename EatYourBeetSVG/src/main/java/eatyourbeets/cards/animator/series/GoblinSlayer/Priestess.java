@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Priestess extends AnimatorCard
 {
-    public static final String ID = Register(Priestess.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Priestess.class, EYBCardBadge.Synergy);
 
     public Priestess()
     {
@@ -59,7 +59,7 @@ public class Priestess extends AnimatorCard
 
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Top.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
             .ShowEffect(true, true)

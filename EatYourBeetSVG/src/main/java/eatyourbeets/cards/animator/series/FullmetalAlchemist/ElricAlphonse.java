@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
-    public static final String ID = Register(ElricAlphonse.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(ElricAlphonse.class, EYBCardBadge.Exhaust);
 
     public ElricAlphonse()
     {

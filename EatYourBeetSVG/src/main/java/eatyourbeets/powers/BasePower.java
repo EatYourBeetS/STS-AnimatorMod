@@ -1,6 +1,7 @@
 package eatyourbeets.powers;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,7 +25,12 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
     {
         this.owner = owner;
         this.ID = id;
-        this.img = new Texture(AnimatorResources.GetPowerImage(ID));
+
+        String imagePath = AnimatorResources.GetPowerImage(ID);
+        if (Gdx.files.internal(imagePath).exists())
+        {
+            this.img = new Texture(imagePath);
+        }
 
         powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
 

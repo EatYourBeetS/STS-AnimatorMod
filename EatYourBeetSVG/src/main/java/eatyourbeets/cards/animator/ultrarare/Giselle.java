@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Giselle extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register(Giselle.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Giselle.class, EYBCardBadge.Special);
 
     public Giselle()
     {

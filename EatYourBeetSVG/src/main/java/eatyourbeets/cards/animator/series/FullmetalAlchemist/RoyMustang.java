@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class RoyMustang extends AnimatorCard
 {
-    public static final String ID = Register(RoyMustang.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(RoyMustang.class, EYBCardBadge.Synergy);
 
     public RoyMustang()
     {
@@ -46,7 +46,7 @@ public class RoyMustang extends AnimatorCard
             i += 1;
         }
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.VFX(new FlameBarrierEffect(p.hb.cX, p.hb.cY), 0.5F);
             GameActions.Bottom.StackPower(new FlameBarrierPower(p, this.magicNumber));

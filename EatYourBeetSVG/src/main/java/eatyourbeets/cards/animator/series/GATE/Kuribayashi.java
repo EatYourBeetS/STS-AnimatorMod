@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Kuribayashi extends AnimatorCard
 {
-    public static final String ID = Register(Kuribayashi.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Kuribayashi.class, EYBCardBadge.Synergy);
 
     private static final int STRENGTH_DOWN = 4;
 
@@ -35,7 +35,7 @@ public class Kuribayashi extends AnimatorCard
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
         GameActions.Bottom.ApplyPower(p, m, new ChokePower(m, secondaryValue), secondaryValue);
 
-        if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.ReduceStrength(m, STRENGTH_DOWN, true);
         }

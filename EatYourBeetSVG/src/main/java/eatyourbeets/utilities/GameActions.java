@@ -42,10 +42,7 @@ import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.IntellectPower;
-import eatyourbeets.powers.common.TemporaryArtifactPower;
+import eatyourbeets.powers.common.*;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -388,7 +385,7 @@ public final class GameActions
 
     public ApplyPower GainTemporaryArtifact(int amount)
     {
-        return TemporaryArtifactPower.Apply(AbstractDungeon.player, AbstractDungeon.player, amount);
+        return StackPower(new TemporaryArtifactPower(AbstractDungeon.player, amount));
     }
 
     public GainTemporaryHP GainTemporaryHP(int amount)

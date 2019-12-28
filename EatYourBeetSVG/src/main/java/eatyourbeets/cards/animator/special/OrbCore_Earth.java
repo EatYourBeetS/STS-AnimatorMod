@@ -10,7 +10,7 @@ import eatyourbeets.powers.animator.OrbCore_EarthPower;
 
 public class OrbCore_Earth extends OrbCore implements Hidden
 {
-    public static final String ID = Register(OrbCore_Earth.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(OrbCore_Earth.class, EYBCardBadge.Special);
 
     public static final int VALUE = 3;
 

@@ -24,7 +24,6 @@ import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 import patches.AbstractEnums;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,9 +57,9 @@ public abstract class EYBCard extends CustomCard
         return staticCardData.get(cardID);
     }
 
-    public static String RegisterCard(String cardID, EYBCardBadge[] badges)
+    public static String RegisterCard(Class<? extends EYBCard> type, String cardID, EYBCardBadge[] badges)
     {
-        staticCardData.put(cardID, new EYBCardData(badges, AbstractResources.GetCardStrings(cardID)));
+        staticCardData.put(cardID, new EYBCardData(type, badges, AbstractResources.GetCardStrings(cardID)));
 
         return cardID;
     }
@@ -88,35 +87,22 @@ public abstract class EYBCard extends CustomCard
     @Override
     public AbstractCard makeCopy()
     {
-        try
-        {
-            return getClass().getConstructor().newInstance();
-        }
-        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
-        {
-            e.printStackTrace();
-        }
-
-        return null;
+        return cardData.CreateNewInstance();
     }
 
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        AbstractCard result = super.makeStatEquivalentCopy();
+        EYBCard copy = (EYBCard) super.makeStatEquivalentCopy();
 
-        EYBCard copy = JavaUtilities.SafeCast(result, EYBCard.class);
-        if (copy != null)
-        {
-            copy.magicNumber = this.magicNumber;
-            copy.isMagicNumberModified = this.isMagicNumberModified;
+        copy.magicNumber = this.magicNumber;
+        copy.isMagicNumberModified = this.isMagicNumberModified;
 
-            copy.secondaryValue = this.secondaryValue;
-            copy.baseSecondaryValue = this.baseSecondaryValue;
-            copy.isSecondaryValueModified = this.isSecondaryValueModified;
-        }
+        copy.secondaryValue = this.secondaryValue;
+        copy.baseSecondaryValue = this.baseSecondaryValue;
+        copy.isSecondaryValueModified = this.isSecondaryValueModified;
 
-        return result;
+        return copy;
     }
 
     @Override

@@ -229,11 +229,8 @@ public class AinzPower extends AnimatorPower
                 {
                     return effect.Generate((c, p, m) ->
                     {
-                        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
-                        {
-                            GameActions.Bottom.DealDamage(c, enemy, AbstractGameAction.AttackEffect.FIRE)
-                            .SetPiercing(true, false);
-                        }
+                        GameActions.Bottom.DealDamageToAll(c, AbstractGameAction.AttackEffect.FIRE)
+                        .SetPiercing(true, false);
                         GameUtilities.UsePenNib();
                     });
                 }

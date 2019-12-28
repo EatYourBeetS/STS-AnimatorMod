@@ -29,7 +29,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
 {
     private int cachedOrbAmount;
 
-    public static final String ID = Register(Patchouli.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Patchouli.class, EYBCardBadge.Special);
 
     public Patchouli()
     {

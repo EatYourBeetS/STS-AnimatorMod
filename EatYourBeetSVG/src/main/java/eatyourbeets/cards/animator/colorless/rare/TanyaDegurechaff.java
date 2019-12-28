@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(TanyaDegurechaff.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(TanyaDegurechaff.class, EYBCardBadge.Special);
 
     public TanyaDegurechaff()
     {

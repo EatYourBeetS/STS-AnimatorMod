@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Demiurge extends AnimatorCard
 {
-    public static final String ID = Register(Demiurge.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(Demiurge.class, EYBCardBadge.Exhaust);
 
     public Demiurge()
     {

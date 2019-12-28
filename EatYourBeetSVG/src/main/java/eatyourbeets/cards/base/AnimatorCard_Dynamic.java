@@ -16,7 +16,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
 
     public AnimatorCard_Dynamic(AnimatorCardBuilder builder)
     {
-        super(new EYBCardData(builder.cardBadges, builder.cardStrings), builder.id, builder.imagePath,
+        super(new EYBCardData(AnimatorCard_Dynamic.class, builder.cardBadges, builder.cardStrings), builder.id, builder.imagePath,
             builder.cost, builder.cardType, builder.cardColor, builder.cardRarity, builder.cardTarget);
 
         Initialize(builder.damage, builder.block, builder.magicNumber, builder.secondaryValue);
@@ -26,6 +26,8 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         this.builder = builder;
         this.onUse = builder.onUse;
         this.onUpgrade = builder.onUpgrade;
+        this.isMultiDamage = builder.isMultiDamage;
+        this.tags.addAll(builder.tags);
 
         SetSynergy(builder.synergy, builder.isShapeshifter);
     }

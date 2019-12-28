@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ThrowingKnife_1 extends ThrowingKnife
 {
-    public static final String ID = Register(ThrowingKnife_1.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(ThrowingKnife_1.class, EYBCardBadge.Discard);
 
     public ThrowingKnife_1()
     {

@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Shigure extends AnimatorCard
 {
-    public static final String ID = Register(Shigure.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Shigure.class, EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
 
     public Shigure()
     {
@@ -43,7 +43,7 @@ public class Shigure extends AnimatorCard
         .SetDamageEffect(enemy -> GameEffects.List.Add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx())))
         .SetPiercing(true, true);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         }

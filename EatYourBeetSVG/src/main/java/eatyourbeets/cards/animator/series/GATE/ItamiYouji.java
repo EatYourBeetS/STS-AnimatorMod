@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class ItamiYouji extends AnimatorCard
 {
-    public static final String ID = Register(ItamiYouji.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(ItamiYouji.class, EYBCardBadge.Synergy);
 
     public ItamiYouji()
     {
@@ -29,7 +29,7 @@ public class ItamiYouji extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             int supportDamage = secondaryValue * GameUtilities.GetCurrentEnemies(true).size();
             if (supportDamage > 0)

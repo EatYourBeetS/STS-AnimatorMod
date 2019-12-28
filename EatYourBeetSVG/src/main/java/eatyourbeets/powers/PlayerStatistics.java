@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.*;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
@@ -94,7 +95,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         }
 
         CardGlowBorderPatch.overrideColor = null;
-        AnimatorCard.SetLastCardPlayed(null);
+        Synergies.SetLastCardPlayed(null);
         turnDamageMultiplier = 0;
         turnCount = 0;
         cardsDrawnThisTurn = 0;
@@ -402,7 +403,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         super.onAfterUseCard(card, action);
 
         AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
-        if (c != null && c.HasActiveSynergy())
+        if (c != null && c.HasSynergy())
         {
             synergiesThisTurn += 1;
 
@@ -412,7 +413,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
             }
         }
 
-        AnimatorCard.SetLastCardPlayed(card);
+        Synergies.SetLastCardPlayed(card);
     }
 
     @Override
@@ -473,7 +474,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
 
         turnCount += 1;
 
-        AnimatorCard.SetLastCardPlayed(null);
+        Synergies.SetLastCardPlayed(null);
     }
 
     public void OnAfterDraw(AbstractCard abstractCard)

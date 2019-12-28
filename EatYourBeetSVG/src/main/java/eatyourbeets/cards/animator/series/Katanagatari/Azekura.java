@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Azekura extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Azekura.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Azekura.class, EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
 
     public Azekura()
     {
@@ -48,7 +48,7 @@ public class Azekura extends AnimatorCard implements MartialArtist
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.StackPower(new EarthenThornsPower(p, magicNumber));
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.StackPower(new PlatedArmorPower(p, secondaryValue));
         }

@@ -88,7 +88,7 @@ public final class Examples extends AnimatorCard
 
         // You can add options, filters, and callbacks:
         GameActions.Bottom.Draw(magicNumber)
-        .SetOptions(true)
+        .ShuffleIfEmpty(true)
         .SetFilter(c -> !GameUtilities.IsCurseOrStatus(c), false)
         .AddCallback(m, (enemy, cards) ->
         {

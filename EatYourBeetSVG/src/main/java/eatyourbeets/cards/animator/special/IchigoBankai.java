@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
 {
-    public static final String ID = Register(IchigoBankai.class.getSimpleName());
+    public static final String ID = Register(IchigoBankai.class);
 
     public IchigoBankai()
     {

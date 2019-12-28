@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Viivi extends AnimatorCard
 {
-    public static final String ID = Register(Viivi.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(Viivi.class, EYBCardBadge.Discard);
 
     public Viivi()
     {

@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.UnnamedCard;
 
 public class Reactor extends UnnamedCard
 {
-    public static final String ID = Register(Reactor.class.getSimpleName());
+    public static final String ID = Register(Reactor.class);
 
     public Reactor()
     {

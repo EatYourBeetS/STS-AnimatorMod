@@ -14,7 +14,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Tet extends AnimatorCard
 {
-    public static final String ID = Register(Tet.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Tet.class, EYBCardBadge.Synergy);
 
     public Tet()
     {
@@ -48,7 +48,7 @@ public class Tet extends AnimatorCard
         DiscardFromDrawPile();
         ShuffleFromDiscardPile();
 
-        if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainEnergy(1);
         }

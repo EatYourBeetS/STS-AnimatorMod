@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class PandorasActor extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(PandorasActor.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(PandorasActor.class, EYBCardBadge.Special);
 
     public PandorasActor()
     {
@@ -40,7 +40,7 @@ public class PandorasActor extends AnimatorCard implements StartupCard
             copy.use(AbstractDungeon.player, null);
             copy.purgeOnUse = true;
             copy.freeToPlayOnce = true;
-            AnimatorCard.SetLastCardPlayed(copy);
+            Synergies.SetLastCardPlayed(copy);
         });
 
         return true;

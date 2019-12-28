@@ -7,7 +7,7 @@ import eatyourbeets.interfaces.markers.Hidden;
 
 public abstract class MelzalgaldAlt extends AnimatorCard implements Hidden
 {
-    public static final String ID = Register(MelzalgaldAlt.class.getSimpleName());
+    public static final String ID = Register(MelzalgaldAlt.class);
 
     public MelzalgaldAlt(String id)
     {

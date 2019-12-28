@@ -34,7 +34,7 @@ public class EvePower extends AnimatorPower
         super.onAfterCardPlayed(usedCard);
 
         AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
-        if (card != null && card.HasActiveSynergy())
+        if (card != null && card.HasSynergy())
         {
             GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
             .SetDamageEffect(enemy ->

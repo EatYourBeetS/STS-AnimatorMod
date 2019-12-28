@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.UnnamedCard;
 
 public class Time extends UnnamedCard
 {
-    public static final String ID = Register(Time.class.getSimpleName());
+    public static final String ID = Register(Time.class);
 
     public Time()
     {

@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class SilverFang extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(SilverFang.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(SilverFang.class, EYBCardBadge.Synergy);
 
     public SilverFang()
     {
@@ -37,7 +37,7 @@ public class SilverFang extends AnimatorCard implements MartialArtist
 
         AgilityPower.PreserveOnce();
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainAgility(magicNumber);
         }

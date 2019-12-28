@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Biyorigo extends AnimatorCard
 {
-    public static final String ID = Register(Biyorigo.class.getSimpleName());
+    public static final String ID = Register(Biyorigo.class);
 
     public Biyorigo()
     {

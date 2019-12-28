@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Millim extends AnimatorCard
 {
-    public static final String ID = Register(Millim.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Millim.class, EYBCardBadge.Synergy);
 
     public Millim()
     {
@@ -31,7 +31,7 @@ public class Millim extends AnimatorCard
         GameActions.Bottom.ApplyBurning(p, m, magicNumber);
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 2));
         }

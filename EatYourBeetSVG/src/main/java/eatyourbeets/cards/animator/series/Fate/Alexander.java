@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Alexander extends AnimatorCard
 {
-    public static final String ID = Register(Alexander.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(Alexander.class, EYBCardBadge.Exhaust);
 
     public Alexander()
     {

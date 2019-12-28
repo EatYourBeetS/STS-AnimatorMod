@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Veldora extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Veldora.class.getSimpleName(), EYBCardBadge.Drawn);
+    public static final String ID = Register(Veldora.class, EYBCardBadge.Drawn);
 
     public Veldora()
     {

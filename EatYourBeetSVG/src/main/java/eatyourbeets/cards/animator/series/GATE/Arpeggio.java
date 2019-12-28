@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Arpeggio.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Arpeggio.class, EYBCardBadge.Synergy);
 
     public Arpeggio()
     {
@@ -42,7 +42,7 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
 
         GameActions.Bottom.GainIntellect(magicNumber);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.ChannelOrb(new Earth(), true);
         }

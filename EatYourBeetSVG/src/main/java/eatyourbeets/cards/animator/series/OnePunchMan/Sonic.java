@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Sonic extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Sonic.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Sonic.class, EYBCardBadge.Synergy);
 
     private static final int BLOCK_ON_SYNERGY = 3;
 
@@ -38,7 +38,7 @@ public class Sonic extends AnimatorCard implements MartialArtist
         GameActions.Bottom.GainAgility(secondaryValue);
         GameActions.Bottom.CreateThrowingKnives(magicNumber);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainBlock(BLOCK_ON_SYNERGY);
             GameActions.Bottom.GainBlur(1);

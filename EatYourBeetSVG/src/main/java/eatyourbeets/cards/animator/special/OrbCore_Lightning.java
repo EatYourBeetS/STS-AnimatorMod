@@ -9,7 +9,7 @@ import eatyourbeets.powers.animator.OrbCore_LightningPower;
 
 public class OrbCore_Lightning extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Lightning.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(OrbCore_Lightning.class, EYBCardBadge.Special);
 
     public static final int VALUE = 9;
 

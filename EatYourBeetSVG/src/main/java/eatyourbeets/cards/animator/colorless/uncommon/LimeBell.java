@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class LimeBell extends AnimatorCard
 {
-    public static final String ID = Register(LimeBell.class.getSimpleName());
+    public static final String ID = Register(LimeBell.class);
 
     public LimeBell()
     {

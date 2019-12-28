@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Zero extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Zero.class.getSimpleName());
+    public static final String ID = Register(Zero.class);
 
     public Zero()
     {

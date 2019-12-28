@@ -3,6 +3,8 @@ package eatyourbeets.cards.base;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import eatyourbeets.interfaces.markers.MartialArtist;
+import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -13,6 +15,11 @@ public class Synergies
 {
     private final static UIStrings uiStrings = AnimatorResources_Strings.Synergies;
     private final static HashMap<Integer, Synergy> All = new HashMap<>();
+
+    @SuppressWarnings("FieldCanBeLocal")
+    private static AnimatorCard previousCard = null;
+    private static AnimatorCard lastCardPlayed = null;
+    private static int PreemptiveSynergies;
 
     public final static Synergy ANY = CreateSynergy(0);
     public final static Synergy Elsword = CreateSynergy(1);
@@ -65,19 +72,14 @@ public class Synergies
         return s;
     }
 
-    public static UIStrings GetUIStrings()
+    public static String GetSeriesString()
     {
-        return uiStrings;
+        return uiStrings.EXTRA_TEXT[0];
     }
 
     public static Synergy GetByID(int id)
     {
         return All.get(id);
-    }
-
-    public static int Count()
-    {
-        return All.size() - 1;
     }
 
     public static ArrayList<AnimatorCard> GetColorlessCards()
@@ -131,10 +133,64 @@ public class Synergies
         for (AbstractCard c : source)
         {
             AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-            if (card != null && (synergy.Equals(card.GetSynergy()) || synergy.Equals(Synergies.ANY)))
+            if (card != null && (synergy.Equals(card.synergy) || synergy.Equals(Synergies.ANY)))
             {
                 destination.add(card);
             }
         }
+    }
+
+    public static void SetLastCardPlayed(AbstractCard card)
+    {
+        if (card == null)
+        {
+            previousCard = null;
+            lastCardPlayed = null;
+            PreemptiveSynergies = 0;
+        }
+        else
+        {
+            if (PreemptiveSynergies > 0)
+            {
+                PreemptiveSynergies -= 1;
+            }
+
+            previousCard = lastCardPlayed;
+            lastCardPlayed = JavaUtilities.SafeCast(card, AnimatorCard.class);
+        }
+    }
+
+    public static boolean WouldSynergize(AbstractCard card)
+    {
+        if (PreemptiveSynergies > 0)
+        {
+            return true;
+        }
+//      else if (this == lastCardPlayed)
+//      {
+//          return previousCard != null && previousCard.HasSynergy(this);
+//      }
+        else
+        {
+            return lastCardPlayed != null && lastCardPlayed.HasSynergy(card);
+        }
+    }
+
+    public static boolean WouldSynergize(AnimatorCard card, AbstractCard abstractCard)
+    {
+        AnimatorCard other = JavaUtilities.SafeCast(abstractCard, AnimatorCard.class);
+        if (other != null && other.synergy != null && card.synergy != null)
+        {
+            return  (card instanceof Spellcaster && other instanceof Spellcaster) ||
+                    (card instanceof MartialArtist && other instanceof MartialArtist) ||
+                    (card.anySynergy || other.anySynergy) || card.synergy.equals(other.synergy);
+        }
+
+        return false;
+    }
+
+    public static void AddPreemptiveSynergies(int amount)
+    {
+        PreemptiveSynergies += amount;
     }
 }

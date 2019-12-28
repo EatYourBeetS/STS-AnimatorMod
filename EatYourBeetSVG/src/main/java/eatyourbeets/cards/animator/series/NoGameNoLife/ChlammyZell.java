@@ -11,7 +11,7 @@ import eatyourbeets.powers.animator.ChlammyZellPower;
 
 public class ChlammyZell extends AnimatorCard
 {
-    public static final String ID = Register(ChlammyZell.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(ChlammyZell.class, EYBCardBadge.Special);
 
     public ChlammyZell()
     {

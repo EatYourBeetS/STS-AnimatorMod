@@ -37,7 +37,7 @@ public class CardSeriesComparator implements Comparator<AbstractCard>
             return thanksJava;
         }
 
-        Synergy synergy = card.GetSynergy();
+        Synergy synergy = card.synergy;
         if (synergy == null)
         {
             thanksJava.rank = 2;

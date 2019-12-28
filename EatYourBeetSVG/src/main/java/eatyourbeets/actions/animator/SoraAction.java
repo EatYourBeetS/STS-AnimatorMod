@@ -1,44 +1,48 @@
 package eatyourbeets.actions.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.misc.SoraEffects.*;
+import eatyourbeets.actions.special.RefreshHandLayout;
+import eatyourbeets.cards.animator.series.NoGameNoLife.Sora;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCardBuilder;
+import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
+import org.apache.logging.log4j.util.TriConsumer;
+import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
 public class SoraAction extends EYBAction
 {
-    private static final ArrayList<SoraEffect> attackPool = new ArrayList<>();
-    private static final ArrayList<SoraEffect> defendPool = new ArrayList<>();
-    private static final ArrayList<SoraEffect> preparePool = new ArrayList<>();
+    private static final ArrayList<AnimatorCardBuilder> attackPool = new ArrayList<>();
+    private static final ArrayList<AnimatorCardBuilder> defendPool = new ArrayList<>();
+    private static final ArrayList<AnimatorCardBuilder> preparePool = new ArrayList<>();
 
-    private final RandomizedList<SoraEffect> attackList = new RandomizedList<>();
-    private final RandomizedList<SoraEffect> defendList = new RandomizedList<>();
-    private final RandomizedList<SoraEffect> prepareList = new RandomizedList<>();
-    private final ArrayList<SoraEffect> currentEffects = new ArrayList<>();
-
-    protected SoraAction(SoraAction copy, int times)
-    {
-        super(ActionType.SPECIAL);
-
-        message = CardRewardScreen.TEXT[1];
-
-        InitializeRandomLists(copy);
-        Initialize(times, copy.name);
-    }
+    private final RandomizedList<AnimatorCardBuilder> attackList = new RandomizedList<>();
+    private final RandomizedList<AnimatorCardBuilder> defendList = new RandomizedList<>();
+    private final RandomizedList<AnimatorCardBuilder> prepareList = new RandomizedList<>();
+    private final ArrayList<AnimatorCardBuilder> currentEffects = new ArrayList<>();
 
     public SoraAction(String sourceName, int times)
     {
+        this(sourceName, null, times);
+    }
+
+    protected SoraAction(String sourceName, SoraAction copy, int times)
+    {
         super(ActionType.SPECIAL);
 
-        message = CardRewardScreen.TEXT[1];
-
-        InitializeRandomLists(null);
+        InitializeRandomLists(copy);
         Initialize(times, sourceName);
     }
 
@@ -53,47 +57,29 @@ public class SoraAction extends EYBAction
         currentEffects.add(prepareList.Retrieve(AbstractDungeon.cardRandomRng));
 
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-
-        for (SoraEffect e : currentEffects)
+        for (AnimatorCardBuilder e : currentEffects)
         {
-            if (e != null)
+            AnimatorCard card = e.Build();
+            card.applyPowers();
+            card.calculateCardDamage(null);
+            group.addToTop(card);
+        }
+
+        GameActions.Top.SelectFromPile(name, 1, group)
+        .SetOptions(false, false)
+        .SetMessage(CardRewardScreen.TEXT[1])
+        .AddCallback(cards ->
+        {
+            AbstractCard card = cards.get(0);
+            card.applyPowers();
+            card.calculateCardDamage(null);
+            card.use(AbstractDungeon.player, null);
+
+            if (amount > 1)
             {
-                e.sora.applyPowers();
-                e.sora.initializeDescription();
-
-                group.addToTop(e.sora);
+                GameActions.Top.Add(new SoraAction(name, this, amount - 1));
             }
-        }
-
-        AbstractDungeon.gridSelectScreen.open(group, 1, CreateMessage(), false, false, false, false);
-    }
-
-    @Override
-    protected void UpdateInternal()
-    {
-        if (AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
-        {
-            AbstractCard card = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-            card.untip();
-            card.unhover();
-
-            for (SoraEffect e : currentEffects)
-            {
-                if (e.sora == card)
-                {
-                    e.EnqueueAction(AbstractDungeon.player);
-                }
-            }
-
-            AbstractDungeon.gridSelectScreen.selectedCards.clear();
-        }
-
-        this.tickDuration();
-
-        if (isDone && amount > 1)
-        {
-            GameActions.Top.Add(new SoraAction(this, amount -1));
-        }
+        });
     }
 
     private void InitializeRandomLists(SoraAction copy)
@@ -123,20 +109,196 @@ public class SoraAction extends EYBAction
 
     static
     {
-        //attackPool.add(new SoraEffect_GainThorns       (9 , 0));
-        attackPool.add(new SoraEffect_DamageRandom     (4 , 0));
-        attackPool.add(new SoraEffect_DamageAll        (5 , 0));
-        attackPool.add(new SoraEffect_GainForce        (7 , 0));
-        attackPool.add(new SoraEffect_ApplyVulnerable  (12, 0));
+        SoraEffect.GenerateAllEffects();
+    }
 
-        defendPool.add(new SoraEffect_GainBlock        (6 , 1));
-        defendPool.add(new SoraEffect_GainAgility      (8 , 1));
-        defendPool.add(new SoraEffect_ApplyWeak        (11, 1));
-        defendPool.add(new SoraEffect_GainTemporaryHP  (15, 1));
+    private enum SoraEffect
+    {
+        DamageRandomTwice(0, 4, 5),
+        DamageAll(0, 5, 6),
+        GainForce(0, 7, 2),
+        ApplyVulnerable(0, 12, 2),
 
-        preparePool.add(new SoraEffect_UpgradeCard     (3 , 2));
-        preparePool.add(new SoraEffect_Motivate        (10, 2));
-        preparePool.add(new SoraEffect_CycleCards      (13, 2));
-        preparePool.add(new SoraEffect_DrawCards       (14, 2));
+        GainBlock(1, 6, 7),
+        GainAgility(1, 8, 2),
+        ApplyWeak(1, 11, 2),
+        GainTemporaryHP(1, 15, 5),
+
+        UpgradeAll(2, 3, 0),
+        Motivate(2, 10, 1),
+        DrawCards(2, 13, 2),
+        CycleCards(2, 14, 3);
+
+        private static final String[] CARD_TEXT = AnimatorResources_Strings.SpecialEffects.TEXT;
+
+        private int descriptionIndex;
+        private int nameIndex;
+        private int number;
+
+        SoraEffect(int nameIndex, int descriptionIndex, int number)
+        {
+            this.descriptionIndex = descriptionIndex;
+            this.nameIndex = nameIndex;
+            this.number = number;
+        }
+
+        public static void GenerateAllEffects()
+        {
+            for (SoraEffect effect : SoraEffect.class.getEnumConstants())
+            {
+                if (effect.nameIndex == 0)
+                {
+                    attackPool.add(GenerateEffect(effect));
+                }
+                else if (effect.nameIndex == 1)
+                {
+                    defendPool.add(GenerateEffect(effect));
+                }
+                else
+                {
+                    preparePool.add(GenerateEffect(effect));
+                }
+            }
+        }
+
+        @SuppressWarnings("CodeBlock2Expr")
+        protected static AnimatorCardBuilder GenerateEffect(SoraEffect effect)
+        {
+            switch (effect)
+            {
+                case GainTemporaryHP:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        GameActions.Bottom.GainTemporaryHP(c.magicNumber);
+                    });
+                }
+
+                case ApplyWeak:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+                        {
+                            GameActions.Bottom.ApplyWeak(p, enemy, c.magicNumber);
+                        }
+                    });
+                }
+
+                case ApplyVulnerable:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+                        {
+                            GameActions.Bottom.ApplyVulnerable(p, enemy, c.magicNumber);
+                        }
+                    });
+                }
+
+                case DrawCards:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        GameActions.Bottom.Draw(c.magicNumber);
+                    });
+                }
+
+                case CycleCards:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        GameActions.Bottom.Cycle(c.name, c.magicNumber);
+                    });
+                }
+
+                case DamageAll:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        GameActions.Bottom.DealDamageToAll(c, AttackEffect.SMASH)
+                        .SetPiercing(true, false);
+                        GameUtilities.UsePenNib();
+                    });
+                }
+
+                case UpgradeAll:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        GameActions.Bottom.Add(new ArmamentsAction(true));
+                        GameActions.Bottom.Add(new RefreshHandLayout());
+                    });
+                }
+
+                case Motivate:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        GameActions.Bottom.Motivate(c.magicNumber);
+                    });
+                }
+
+                case GainAgility:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        GameActions.Bottom.GainAgility(c.magicNumber);
+                    });
+                }
+
+                case GainForce:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        GameActions.Bottom.GainForce(c.magicNumber);
+                    });
+                }
+
+                case GainBlock:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        GameActions.Bottom.GainBlock(c.block);
+                    });
+                }
+
+                case DamageRandomTwice:
+                {
+                    return effect.GenerateInternal((c, p, m) ->
+                    {
+                        for (int i = 0; i < 2; i++)
+                        {
+                            GameActions.Bottom.DealDamageToRandomEnemy(c, AbstractGameAction.AttackEffect.SMASH)
+                            .SetPiercing(true, false);
+                        }
+                        GameUtilities.UsePenNib();
+                    });
+                }
+            }
+
+            return null;
+        }
+
+        protected AnimatorCardBuilder GenerateInternal(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
+        {
+            AnimatorCardBuilder builder = new AnimatorCardBuilder(Sora.ID + "Alt");
+
+            builder.SetText(CARD_TEXT[nameIndex], CARD_TEXT[descriptionIndex], "");
+            builder.SetProperties(AbstractCard.CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
+            builder.SetNumbers(number, number, number, number);
+            builder.SetOnUse(onUseAction);
+
+            if (this == SoraEffect.DamageAll)
+            {
+                builder.isMultiDamage = true;
+            }
+            else if (this == SoraEffect.DamageRandomTwice)
+            {
+                builder.magicNumber = 2;
+            }
+
+            return builder;
+        }
     }
 }

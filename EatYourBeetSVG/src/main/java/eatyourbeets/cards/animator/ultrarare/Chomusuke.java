@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Chomusuke extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Chomusuke.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(Chomusuke.class, EYBCardBadge.Exhaust);
 
     public Chomusuke()
     {

@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class ZankiKiguchi extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(ZankiKiguchi.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(ZankiKiguchi.class, EYBCardBadge.Exhaust);
 
     public ZankiKiguchi()
     {

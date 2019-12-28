@@ -17,7 +17,7 @@ import patches.AbstractEnums;
 
 public abstract class ThrowingKnife extends AnimatorCard implements Hidden
 {
-    public static final String ID = Register(ThrowingKnife.class.getSimpleName());
+    public static final String ID = Register(ThrowingKnife.class);
 
     private static RandomizedList<ThrowingKnife> subTypes = null;
 

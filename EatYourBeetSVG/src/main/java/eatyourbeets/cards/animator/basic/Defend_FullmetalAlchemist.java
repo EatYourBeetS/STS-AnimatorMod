@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 
 public class Defend_FullmetalAlchemist extends Defend
 {
-    public static final String ID = Register(Defend_FullmetalAlchemist.class.getSimpleName());
+    public static final String ID = Register(Defend_FullmetalAlchemist.class);
 
     public Defend_FullmetalAlchemist()
     {

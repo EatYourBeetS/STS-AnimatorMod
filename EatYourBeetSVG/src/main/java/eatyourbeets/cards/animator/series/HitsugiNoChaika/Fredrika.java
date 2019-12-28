@@ -20,7 +20,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Fredrika extends AnimatorCard
 {
-    public static final String ID = Register(Fredrika.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(Fredrika.class, EYBCardBadge.Discard);
 
     private static final int FORM_DEFAULT = 0;
     private static final int FORM_CAT = 1;

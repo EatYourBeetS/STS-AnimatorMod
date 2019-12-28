@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class Truth extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Truth.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Truth.class, EYBCardBadge.Special);
     public static final String DECK_SELECTION_TEXT = JavaUtilities.Format(AnimatorResources_Strings.GridSelection.TEXT[2], Wound.NAME);
 
     public Truth()

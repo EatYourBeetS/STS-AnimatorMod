@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Darkness extends AnimatorCard
 {
-    public static final String ID = Register(Darkness.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Darkness.class, EYBCardBadge.Special);
 
     public Darkness()
     {

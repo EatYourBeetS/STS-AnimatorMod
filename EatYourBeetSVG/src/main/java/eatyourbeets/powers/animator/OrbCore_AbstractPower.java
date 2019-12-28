@@ -77,7 +77,7 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
         super.onAfterCardPlayed(usedCard);
 
         AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
-        if (card != null && card.HasActiveSynergy())
+        if (card != null && card.HasSynergy())
         {
             if (firstSynergy)
             {

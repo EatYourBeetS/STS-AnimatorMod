@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(LeleiLaLalena.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(LeleiLaLalena.class, EYBCardBadge.Synergy);
 
     public LeleiLaLalena()
     {
@@ -30,7 +30,7 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 
         Spellcaster.ApplyScaling(this, 6);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             target = CardTarget.SELF_AND_ENEMY;
         }
@@ -43,7 +43,7 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (HasActiveSynergy() && m != null)
+        if (HasSynergy() && m != null)
         {
             GameActions.Bottom.ApplyWeak(p, m, 1);
         }

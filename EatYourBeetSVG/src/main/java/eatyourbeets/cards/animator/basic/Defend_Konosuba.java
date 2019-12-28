@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_Konosuba extends Defend
 {
-    public static final String ID = Register(Defend_Konosuba.class.getSimpleName());
+    public static final String ID = Register(Defend_Konosuba.class);
 
     public Defend_Konosuba()
     {

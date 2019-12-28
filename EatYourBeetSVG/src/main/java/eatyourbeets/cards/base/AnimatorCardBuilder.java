@@ -98,6 +98,26 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
+    public AnimatorCardBuilder SetTags(AbstractCard.CardTags... tags)
+    {
+        for (AbstractCard.CardTags t : tags)
+        {
+            if (!this.tags.contains(t))
+            {
+                this.tags.add(t);
+            }
+        }
+
+        return this;
+    }
+
+    public AnimatorCardBuilder SetMultiDamage(boolean multiDamage)
+    {
+        this.isMultiDamage = multiDamage;
+
+        return this;
+    }
+
     public AnimatorCardBuilder SetImage(String imagePath)
     {
         this.imagePath = imagePath;

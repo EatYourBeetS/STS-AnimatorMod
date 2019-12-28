@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Mitsuba extends AnimatorCard
 {
-    public static final String ID = Register(Mitsuba.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(Mitsuba.class, EYBCardBadge.Exhaust);
 
     public Mitsuba()
     {

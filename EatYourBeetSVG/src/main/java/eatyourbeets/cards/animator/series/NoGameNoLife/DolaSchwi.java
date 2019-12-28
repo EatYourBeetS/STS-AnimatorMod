@@ -16,7 +16,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class DolaSchwi extends AnimatorCard_Cooldown
 {
-    public static final String ID = Register(DolaSchwi.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(DolaSchwi.class, EYBCardBadge.Synergy);
 
     public DolaSchwi()
     {
@@ -43,7 +43,7 @@ public class DolaSchwi extends AnimatorCard_Cooldown
             OnCooldownCompleted(p, m);
         }
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.ChannelOrb(new Lightning(), true);
         }

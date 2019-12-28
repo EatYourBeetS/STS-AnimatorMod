@@ -12,7 +12,7 @@ import eatyourbeets.powers.animator.FlamingWeaponPower;
 
 public class Shizu extends AnimatorCard
 {
-    public static final String ID = Register(Shizu.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Shizu.class, EYBCardBadge.Special);
 
     public Shizu()
     {

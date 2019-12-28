@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HiiragiShinya extends AnimatorCard
 {
-    public static final String ID = Register(HiiragiShinya.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(HiiragiShinya.class, EYBCardBadge.Synergy);
 
     public HiiragiShinya()
     {
@@ -44,7 +44,7 @@ public class HiiragiShinya extends AnimatorCard
             }
         });
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, magicNumber));
         }

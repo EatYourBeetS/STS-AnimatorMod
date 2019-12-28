@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoKurosaki extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(IchigoKurosaki.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(IchigoKurosaki.class, EYBCardBadge.Exhaust);
 
     public IchigoKurosaki()
     {

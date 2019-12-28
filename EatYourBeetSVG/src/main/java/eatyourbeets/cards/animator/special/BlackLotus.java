@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class BlackLotus extends AnimatorCard implements Hidden
 {
-    public static final String ID = Register(BlackLotus.class.getSimpleName());
+    public static final String ID = Register(BlackLotus.class);
 
     public BlackLotus()
     {

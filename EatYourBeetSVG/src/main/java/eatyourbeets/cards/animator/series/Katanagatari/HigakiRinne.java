@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class HigakiRinne extends AnimatorCard
 {
-    public static final String ID = Register(HigakiRinne.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Drawn, EYBCardBadge.Discard, EYBCardBadge.Exhaust);
+    public static final String ID = Register(HigakiRinne.class, EYBCardBadge.Synergy, EYBCardBadge.Drawn, EYBCardBadge.Discard, EYBCardBadge.Exhaust);
 
     public HigakiRinne()
     {

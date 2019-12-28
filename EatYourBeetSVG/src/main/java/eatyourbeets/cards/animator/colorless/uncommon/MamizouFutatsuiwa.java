@@ -14,7 +14,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class MamizouFutatsuiwa extends AnimatorCard
 {
-    public static final String ID = Register(MamizouFutatsuiwa.class.getSimpleName(), EYBCardBadge.Discard);
+    public static final String ID = Register(MamizouFutatsuiwa.class, EYBCardBadge.Discard);
 
     private static final RandomizedList<AnimatorCard> shapeshifterPool = new RandomizedList<>();
 

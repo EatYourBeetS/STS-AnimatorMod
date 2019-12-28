@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ShikizakiKiki extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(ShikizakiKiki.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(ShikizakiKiki.class, EYBCardBadge.Special);
 
     public static final int BASE_POWER_AMOUNT = 3;
     public static final int UPGRADED_POWER_AMOUNT = 4;

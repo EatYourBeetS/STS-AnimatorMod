@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Evileye extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Evileye.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Evileye.class, EYBCardBadge.Synergy);
 
     public Evileye()
     {
@@ -52,7 +52,7 @@ public class Evileye extends AnimatorCard implements Spellcaster
             }
         });
 
-        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(this.cardID))
+        if (HasSynergy() && EffectHistory.TryActivateLimited(this.cardID))
         {
             GameActions.Bottom.GainIntellect(2);
             GameActions.Bottom.GainOrbSlots(1);

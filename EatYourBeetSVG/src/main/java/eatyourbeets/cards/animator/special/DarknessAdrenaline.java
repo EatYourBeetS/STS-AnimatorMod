@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DarknessAdrenaline extends AnimatorCard implements Hidden
 {
-    public static final String ID = Register(DarknessAdrenaline.class.getSimpleName());
+    public static final String ID = Register(DarknessAdrenaline.class);
 
     public DarknessAdrenaline()
     {

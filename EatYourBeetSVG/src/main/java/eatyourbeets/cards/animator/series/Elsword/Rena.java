@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Rena extends AnimatorCard
 {
-    public static final String ID = Register(Rena.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Discard);
+    public static final String ID = Register(Rena.class, EYBCardBadge.Synergy, EYBCardBadge.Discard);
 
     public Rena()
     {
@@ -35,7 +35,7 @@ public class Rena extends AnimatorCard
         GameActions.Bottom.GainBlock(this.block);
         GameActions.Bottom.CreateThrowingKnives(1);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainBlur(secondaryValue);
         }

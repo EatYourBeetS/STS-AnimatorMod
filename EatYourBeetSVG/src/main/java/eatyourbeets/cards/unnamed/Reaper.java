@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Reaper extends UnnamedCard
 {
-    public static final String ID = Register(Reaper.class.getSimpleName());
+    public static final String ID = Register(Reaper.class);
 
     public Reaper()
     {

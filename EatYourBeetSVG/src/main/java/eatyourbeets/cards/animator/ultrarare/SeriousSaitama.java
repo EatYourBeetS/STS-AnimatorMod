@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SeriousSaitama extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(SeriousSaitama.class.getSimpleName());
+    public static final String ID = Register(SeriousSaitama.class);
 
     public SeriousSaitama()
     {

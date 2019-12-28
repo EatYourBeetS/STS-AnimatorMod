@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class LizardPriest extends AnimatorCard
 {
-    public static final String ID = Register(LizardPriest.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(LizardPriest.class, EYBCardBadge.Synergy);
 
     public LizardPriest()
     {
@@ -35,7 +35,7 @@ public class LizardPriest extends AnimatorCard
 
         GameActions.Bottom.GainBlock(this.block);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.StackPower(new TemporaryRetainPower(p, secondaryValue));
         }

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Cocytus extends AnimatorCard
 {
-    public static final String ID = Register(Cocytus.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Cocytus.class, EYBCardBadge.Synergy);
 
     public Cocytus()
     {
@@ -36,7 +36,7 @@ public class Cocytus extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.GainForce(1);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             if (AbstractDungeon.cardRandomRng.randomBoolean())
             {

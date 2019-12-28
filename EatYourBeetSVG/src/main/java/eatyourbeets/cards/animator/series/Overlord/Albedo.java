@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Albedo extends AnimatorCard
 {
-    public static final String ID = Register(Albedo.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Albedo.class, EYBCardBadge.Synergy);
 
     public Albedo()
     {
@@ -29,7 +29,7 @@ public class Albedo extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.StackPower(new EnchantedArmorPower(p, damage));
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Bottom.GainTemporaryArtifact(1);
         }

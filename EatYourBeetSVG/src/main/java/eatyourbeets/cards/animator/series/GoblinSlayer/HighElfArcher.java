@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class HighElfArcher extends AnimatorCard
 {
-    public static final String ID = Register(HighElfArcher.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(HighElfArcher.class, EYBCardBadge.Synergy);
 
     public HighElfArcher()
     {
@@ -37,7 +37,7 @@ public class HighElfArcher extends AnimatorCard
         {
             agility += 1;
         }
-        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
+        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
             agility += 1;
             GameActions.Bottom.Draw(1);

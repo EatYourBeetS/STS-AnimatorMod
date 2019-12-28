@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AcuraAkari extends AnimatorCard
 {
-    public static final String ID = Register(AcuraAkari.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(AcuraAkari.class, EYBCardBadge.Synergy);
 
     public AcuraAkari()
     {
@@ -30,7 +30,7 @@ public class AcuraAkari extends AnimatorCard
         .SetOptions(false, false, false)
         .AddCallback(__ -> GameActions.Bottom.CreateThrowingKnives(magicNumber));
 
-        if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }

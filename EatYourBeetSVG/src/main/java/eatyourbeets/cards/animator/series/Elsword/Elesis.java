@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Elesis extends AnimatorCard
 {
-    public static final String ID = Register(Elesis.class.getSimpleName(), EYBCardBadge.Drawn, EYBCardBadge.Discard);
+    public static final String ID = Register(Elesis.class, EYBCardBadge.Drawn, EYBCardBadge.Discard);
 
     public Elesis()
     {

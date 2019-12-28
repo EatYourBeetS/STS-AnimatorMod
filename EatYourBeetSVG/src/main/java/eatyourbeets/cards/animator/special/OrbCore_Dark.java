@@ -9,7 +9,7 @@ import eatyourbeets.powers.animator.OrbCore_DarkPower;
 
 public class OrbCore_Dark extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Dark.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(OrbCore_Dark.class, EYBCardBadge.Special);
 
     public static final int VALUE = 1;
 

@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.UnnamedCard;
 
 public class Banshee extends UnnamedCard
 {
-    public static final String ID = Register(Banshee.class.getSimpleName());
+    public static final String ID = Register(Banshee.class);
 
     public Banshee()
     {

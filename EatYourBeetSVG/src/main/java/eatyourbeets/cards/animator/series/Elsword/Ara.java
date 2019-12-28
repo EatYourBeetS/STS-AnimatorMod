@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Ara extends AnimatorCard implements MartialArtist
 {
     public static final EYBCardBadge[] BADGES = {EYBCardBadge.Discard};
-    public static final String ID = Register(Ara.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Ara.class, EYBCardBadge.Special);
 
     public Ara()
     {

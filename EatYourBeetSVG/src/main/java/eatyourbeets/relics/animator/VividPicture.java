@@ -51,7 +51,7 @@ public class VividPicture extends AnimatorRelic
         super.onPlayCard(c, m);
 
         AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-        if (active && card != null && card.HasActiveSynergy())
+        if (active && card != null && card.HasSynergy())
         {
             GameActions.Bottom.Draw(1);
             GameActions.Bottom.GainEnergy(1);

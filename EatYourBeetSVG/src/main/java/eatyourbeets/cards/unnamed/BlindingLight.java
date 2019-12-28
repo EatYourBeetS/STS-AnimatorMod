@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.UnnamedCard;
 
 public class BlindingLight extends UnnamedCard
 {
-    public static final String ID = Register(BlindingLight.class.getSimpleName());
+    public static final String ID = Register(BlindingLight.class);
 
     public BlindingLight()
     {

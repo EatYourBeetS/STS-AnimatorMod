@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.UnnamedCard;
 
 public class Strike extends UnnamedCard
 {
-    public static final String ID = Register(Strike.class.getSimpleName());
+    public static final String ID = Register(Strike.class);
 
     public Strike()
     {

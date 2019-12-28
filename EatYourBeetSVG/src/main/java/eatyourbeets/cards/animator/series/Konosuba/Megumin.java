@@ -19,7 +19,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Megumin extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Megumin.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(Megumin.class, EYBCardBadge.Synergy);
 
     public Megumin()
     {
@@ -71,7 +71,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
 
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
 
-        if (HasActiveSynergy() && EffectHistory.TryActivateLimited(cardID))
+        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
             for (AbstractCard c : GameUtilities.GetAllInstances(this))
             {

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DwarfShaman extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(DwarfShaman.class.getSimpleName(), EYBCardBadge.Synergy);
+    public static final String ID = Register(DwarfShaman.class, EYBCardBadge.Synergy);
 
     public DwarfShaman()
     {
@@ -38,7 +38,7 @@ public class DwarfShaman extends AnimatorCard implements Spellcaster
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.ChannelOrb(new Earth(), true);
 
-        if (HasActiveSynergy())
+        if (HasSynergy())
         {
             GameActions.Top.Draw(1)
             .SetFilter(AbstractCard::canUpgrade, true)

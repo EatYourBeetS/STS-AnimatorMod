@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Nanami extends AnimatorCard
 {
-    public static final String ID = Register(Nanami.class.getSimpleName());
+    public static final String ID = Register(Nanami.class);
     public static final String[] DESCRIPTIONS = AnimatorResources.GetCardStrings(ID).EXTENDED_DESCRIPTION;
 
     // TODO: Create a dedicated class for this

@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
+import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
@@ -60,7 +61,7 @@ public class HigakiRinneAction extends EYBAction
         {
             GameActions.Bottom.SelectFromPile(higakiRinne.name, 1, p.hand)
             .SetOptions(false, false)
-            .SetMessage("???")
+            .SetMessage(CardRewardScreen.TEXT[1])
             .AddCallback(cards ->
             {
                 if (cards.size() > 0)

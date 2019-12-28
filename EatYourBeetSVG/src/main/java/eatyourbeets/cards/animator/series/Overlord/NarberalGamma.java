@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class NarberalGamma extends AnimatorCard
 {
-    public static final String ID = Register(NarberalGamma.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(NarberalGamma.class, EYBCardBadge.Special);
 
     public NarberalGamma()
     {

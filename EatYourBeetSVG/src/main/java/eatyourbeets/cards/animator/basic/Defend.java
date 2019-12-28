@@ -12,7 +12,7 @@ import patches.AbstractEnums;
 
 public class Defend extends AnimatorCard
 {
-    public static final String ID = Register(Defend.class.getSimpleName());
+    public static final String ID = Register(Defend.class);
 
     public Defend(String id, int cost, CardTarget target)
     {

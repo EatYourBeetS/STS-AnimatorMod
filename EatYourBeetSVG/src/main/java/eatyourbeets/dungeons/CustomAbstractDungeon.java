@@ -250,7 +250,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
         {
             if (c instanceof AnimatorCard_UltraRare)
             {
-                if (synergy.ID == ((AnimatorCard_UltraRare) c).GetSynergy().ID)
+                if (synergy.ID == ((AnimatorCard_UltraRare) c).synergy.ID)
                 {
                     return; // No duplicates
                 }

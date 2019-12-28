@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Gluttony extends AnimatorCard
 {
-    public static final String ID = Register(Gluttony.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Gluttony.class, EYBCardBadge.Special);
 
     public Gluttony()
     {

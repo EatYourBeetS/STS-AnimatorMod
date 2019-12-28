@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -17,7 +18,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Ain extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Ain.class.getSimpleName(), EYBCardBadge.Synergy, EYBCardBadge.Discard);
+    public static final String ID = Register(Ain.class, EYBCardBadge.Synergy, EYBCardBadge.Discard);
 
     public Ain()
     {
@@ -69,7 +70,7 @@ public class Ain extends AnimatorCard implements Spellcaster
             .SetOptions(true, false);
         }
 
-        if (HasActiveSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainIntellect(secondaryValue);
         }

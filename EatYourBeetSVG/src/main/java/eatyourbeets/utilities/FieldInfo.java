@@ -1,10 +1,12 @@
 package eatyourbeets.utilities;
 
+import java.lang.reflect.Field;
+
 public class FieldInfo<T>
 {
-    private final java.lang.reflect.Field field;
+    private final Field field;
 
-    public void Set(Object instance, T value)
+    public void Set(Object instance, T value) throws RuntimeException
     {
         try
         {
@@ -12,12 +14,12 @@ public class FieldInfo<T>
         }
         catch (IllegalAccessException e)
         {
-            JavaUtilities.ThrowAndShutdown(e, getClass());
+            throw new RuntimeException(e);
         }
     }
 
     @SuppressWarnings("unchecked")
-    public T Get(Object instance)
+    public T Get(Object instance) throws RuntimeException
     {
         try
         {
@@ -25,13 +27,11 @@ public class FieldInfo<T>
         }
         catch (IllegalAccessException e)
         {
-            JavaUtilities.ThrowAndShutdown(e, getClass());
+            throw new RuntimeException(e);
         }
-
-        return null;
     }
 
-    public FieldInfo(java.lang.reflect.Field field)
+    public FieldInfo(Field field)
     {
         this.field = field;
     }

@@ -111,7 +111,7 @@ public class RacePiece extends AnimatorRelic
         for (AbstractCard c : p.masterDeck.group)
         {
             AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-            if (card != null && card.GetSynergy() != null && card.color != AbstractCard.CardColor.COLORLESS)
+            if (card != null && card.synergy != null && card.color != AbstractCard.CardColor.COLORLESS)
             {
                 group.addToTop(card);
             }
@@ -209,7 +209,7 @@ public class RacePiece extends AnimatorRelic
             AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
             if (card != null)
             {
-                synergy = card.GetSynergy();
+                synergy = card.synergy;
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();

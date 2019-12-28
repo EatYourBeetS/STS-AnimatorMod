@@ -1,9 +1,5 @@
 package eatyourbeets.utilities;
 
-import basemod.BaseMod;
-import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.ExceptionHandler;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.random.Random;
@@ -43,19 +39,7 @@ public class JavaUtilities
         return null;
     }
 
-    @SuppressWarnings({"ResultOfMethodCallIgnored", "ConstantConditions"})
-    public static void ThrowAndShutdown(Exception exception, Class type)
-    {
-//        ExceptionHandler.handleException(exception, JavaUtilities.GetLogger(CardCrawlGame.class));
-//        LogManager.shutdown();
-//        Gdx.app.exit();
-
-        Object thePreviousLinesDidNotWork = null;
-        exception.printStackTrace();
-        thePreviousLinesDidNotWork.toString();
-    }
-
-    public static MethodInfo GetPrivateMethod(String methodName, Class<?> type, Class<?>... parameterTypes)
+    public static MethodInfo GetPrivateMethod(String methodName, Class<?> type, Class<?>... parameterTypes) throws RuntimeException
     {
         try
         {
@@ -66,13 +50,11 @@ public class JavaUtilities
         }
         catch (NoSuchMethodException e)
         {
-            ThrowAndShutdown(e, JavaUtilities.class);
-
-            return new MethodInfo(null);
+            throw new RuntimeException(e);
         }
     }
 
-    public static <T> FieldInfo<T> GetPrivateField(String fieldName, Class<?> type)
+    public static <T> FieldInfo<T> GetPrivateField(String fieldName, Class<?> type) throws RuntimeException
     {
         try
         {
@@ -83,9 +65,7 @@ public class JavaUtilities
         }
         catch (NoSuchFieldException e)
         {
-            ThrowAndShutdown(e, JavaUtilities.class);
-
-            return new FieldInfo<>(null);
+            throw new RuntimeException(e);
         }
     }
 

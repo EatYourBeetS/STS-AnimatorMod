@@ -18,7 +18,7 @@ import patches.AbstractEnums;
 
 public class Illya extends AnimatorCard
 {
-    public static final String ID = Register(Illya.class.getSimpleName(), EYBCardBadge.Exhaust);
+    public static final String ID = Register(Illya.class, EYBCardBadge.Exhaust);
 
     private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Illya::FindBestCard);
 

@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Bozes extends AnimatorCard
 {
-    public static final String ID = Register(Bozes.class.getSimpleName(), EYBCardBadge.Special);
+    public static final String ID = Register(Bozes.class, EYBCardBadge.Special);
 
     public Bozes()
     {

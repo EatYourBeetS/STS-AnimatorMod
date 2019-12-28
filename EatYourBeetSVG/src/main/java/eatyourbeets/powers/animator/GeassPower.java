@@ -31,7 +31,15 @@ public class GeassPower extends AnimatorPower
 
         if (power.type == PowerType.DEBUFF && owner == source && (owner.isPlayer != target.isPlayer))
         {
-            target.powers.add(0, new ArtifactPower(target, 1));
+            ArtifactPower artifact = GameUtilities.GetPower(owner, ArtifactPower.POWER_ID);
+            if (artifact != null)
+            {
+                artifact.amount += 1;
+            }
+            else
+            {
+                target.powers.add(0, new ArtifactPower(target, 1));
+            }
         }
     }
 

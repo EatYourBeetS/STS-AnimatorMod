@@ -51,16 +51,19 @@ public class DolaRikuAction extends EYBAction
                 continue;
             }
 
-            if (curse)
+            if (temp.type == AbstractCard.CardType.CURSE)
             {
-                if (temp.type == AbstractCard.CardType.CURSE)
+                if (curse)
                 {
                     sameRarity.Add(temp);
                 }
             }
-            else if (status && temp.type == AbstractCard.CardType.STATUS)
+            else if (temp.type == AbstractCard.CardType.STATUS)
             {
-                sameRarity.Add(temp);
+                if (status)
+                {
+                    sameRarity.Add(temp);
+                }
             }
             else if (special || temp.rarity == card.rarity)
             {

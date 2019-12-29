@@ -47,6 +47,7 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
     {
         secondaryValue += amount;
         baseSecondaryValue = secondaryValue;
+        upgradedSecondaryValue = true;
 
         if (secondaryValue < 0)
         {

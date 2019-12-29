@@ -112,8 +112,6 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         if (this.sourcePile.type == CardGroup.CardGroupType.EXHAUST_PILE)
         {
-            GameActions.Bottom.Callback(card, (card, __) -> ((AbstractCard) card).unfadeOut());
-
             card.current_x = CardGroup.DISCARD_PILE_X;
             card.current_y = CardGroup.DISCARD_PILE_Y + Settings.scale * 30f;
 
@@ -203,6 +201,11 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             if (targetPile.type == CardGroup.CardGroupType.HAND || (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.HAND))
             {
                 GameUtilities.RefreshHandLayout();
+            }
+
+            if (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.EXHAUST_PILE)
+            {
+                card.unfadeOut();
             }
         }
     }

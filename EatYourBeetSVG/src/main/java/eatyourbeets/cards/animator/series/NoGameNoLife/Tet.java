@@ -45,8 +45,8 @@ public class Tet extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        DiscardFromDrawPile();
         ShuffleFromDiscardPile();
+        DiscardFromDrawPile();
 
         if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
@@ -56,7 +56,7 @@ public class Tet extends AnimatorCard
 
     private void DiscardFromDrawPile()
     {
-        GameActions.Bottom.SelectFromPile(name, magicNumber, AbstractDungeon.player.drawPile)
+        GameActions.Top.SelectFromPile(name, magicNumber, AbstractDungeon.player.drawPile)
         .SetMessage(JavaUtilities.Format(AnimatorResources_Strings.GridSelection.TEXT[0], magicNumber))
         .SetOptions(false, true)
         .AddCallback(cards ->
@@ -70,7 +70,7 @@ public class Tet extends AnimatorCard
 
     private void ShuffleFromDiscardPile()
     {
-        GameActions.Bottom.SelectFromPile(name, magicNumber, AbstractDungeon.player.discardPile)
+        GameActions.Top.SelectFromPile(name, magicNumber, AbstractDungeon.player.discardPile)
         .SetMessage(JavaUtilities.Format(AnimatorResources_Strings.GridSelection.TEXT[1], magicNumber))
         .SetOptions(false, true)
         .AddCallback(cards ->

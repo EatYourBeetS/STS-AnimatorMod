@@ -85,6 +85,12 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         this.priority = -3000; //it was Integer.MIN_VALUE but it actually breaks the comparator, nice
     }
 
+    @Override
+    public AbstractPower makeCopy()
+    {
+        return null;
+    }
+
     private static void ClearStats()
     {
         logger.info("Clearing Player Stats");

@@ -2,14 +2,13 @@ package eatyourbeets.cards.animator.series.Katanagatari;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.NanamiEffects.*;
+import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Nanami extends AnimatorCard
@@ -147,7 +146,7 @@ public class Nanami extends AnimatorCard
         }
 
         this.energyOnUse = EnergyPanel.totalCount;
-        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
+        if (player.hasRelic(ChemicalX.ID))
         {
             this.energyOnUse += ChemicalX.BOOST;
         }

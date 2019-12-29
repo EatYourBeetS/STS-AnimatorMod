@@ -3,13 +3,12 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
 public class IzunaHatsuse extends AnimatorCard
@@ -42,7 +41,7 @@ public class IzunaHatsuse extends AnimatorCard
     {
         super.applyPowers();
 
-        SetTransformed(GameUtilities.GetHealthPercentage(AbstractDungeon.player) < 0.25f);
+        SetTransformed(GameUtilities.GetHealthPercentage(player) < 0.25f);
     }
 
     @Override

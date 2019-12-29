@@ -1,18 +1,17 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffects;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
 
@@ -74,8 +73,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         }
         else
         {
-            AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this));
-
+            GameEffects.Queue.ShowCardBriefly(this);
             GameActions.Bottom.MakeCardInHand(elixir);
 
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);

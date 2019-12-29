@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -31,9 +32,10 @@ import java.util.Map;
 
 public abstract class EYBCard extends CustomCard
 {
-    protected final static Map<String, EYBCardData> staticCardData = new HashMap<>();
+    protected static final Color FRAME_COLOR = Color.WHITE.cpy();
+    protected static final Map<String, EYBCardData> staticCardData = new HashMap<>();
+    protected static AbstractPlayer player = null;
 
-    private final static Color FRAME_COLOR = Color.WHITE.cpy();
     private final List<TooltipInfo> customTooltips = new ArrayList<>();
     private boolean lastHovered = false;
     private boolean hoveredInHand = false;
@@ -51,6 +53,11 @@ public abstract class EYBCard extends CustomCard
     public boolean upgradedSecondaryValue = false;
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
+
+    public static void RefreshPlayer()
+    {
+        player = AbstractDungeon.player;
+    }
 
     public static EYBCardData GetCardData(String cardID)
     {

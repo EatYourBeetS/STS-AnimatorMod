@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.*;
 import eatyourbeets.powers.common.AgilityPower;
@@ -94,6 +95,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     private static void ClearStats()
     {
         logger.info("Clearing Player Stats");
+        EYBCard.RefreshPlayer();
 
         for (OnStatsClearedSubscriber s : onStatsCleared.GetSubscribers())
         {
@@ -133,7 +135,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         onPhaseChanged.Clear();
         onStatsCleared.Clear();
 
-        Void.Initialize(true);
+        //Void.Initialize(true);
     }
 
     public static void EnsurePowerIsApplied()

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -38,6 +39,13 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     public SelectFromPile SetMessage(String message)
     {
         this.message = message;
+
+        return this;
+    }
+
+    public SelectFromPile SetMessage(String format, Object... args)
+    {
+        this.message = JavaUtilities.Format(format, args);
 
         return this;
     }

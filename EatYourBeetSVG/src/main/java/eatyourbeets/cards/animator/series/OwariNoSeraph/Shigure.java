@@ -32,7 +32,7 @@ public class Shigure extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.StackPower(new SupportDamagePower(AbstractDungeon.player, secondaryValue));
+        GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
     }
 
     @Override

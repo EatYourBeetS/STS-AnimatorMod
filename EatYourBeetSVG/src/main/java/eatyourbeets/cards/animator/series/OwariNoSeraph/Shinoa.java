@@ -1,12 +1,11 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Shinoa extends AnimatorCard
@@ -30,7 +29,7 @@ public class Shinoa extends AnimatorCard
 
         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActions.Bottom.ApplyWeak(AbstractDungeon.player, enemy, magicNumber);
+            GameActions.Bottom.ApplyWeak(player, enemy, magicNumber);
         }
     }
 
@@ -41,11 +40,11 @@ public class Shinoa extends AnimatorCard
 
         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
         {
-            GameActions.Bottom.ApplyVulnerable(AbstractDungeon.player, enemy, magicNumber);
+            GameActions.Bottom.ApplyVulnerable(player, enemy, magicNumber);
 
             if (HasSynergy())
             {
-                GameActions.Bottom.ApplyWeak(AbstractDungeon.player, enemy, magicNumber);
+                GameActions.Bottom.ApplyWeak(player, enemy, magicNumber);
             }
         }
     }

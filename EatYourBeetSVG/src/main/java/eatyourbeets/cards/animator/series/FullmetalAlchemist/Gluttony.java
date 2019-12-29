@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
@@ -29,10 +28,9 @@ public class Gluttony extends AnimatorCard
     {
         boolean playable = super.cardPlayable(m);
 
-        AbstractPlayer p = AbstractDungeon.player;
         if (playable)
         {
-            int total = p.drawPile.size() + p.discardPile.size() + p.hand.size();
+            int total = player.drawPile.size() + player.discardPile.size() + player.hand.size();
             if (total < secondaryValue)
             {
                 cantUseMessage = cardData.strings.EXTENDED_DESCRIPTION[0];
@@ -41,7 +39,7 @@ public class Gluttony extends AnimatorCard
             }
         }
 
-        return playable && (p.drawPile.size() >= magicNumber);
+        return playable && (player.drawPile.size() >= magicNumber);
     }
 
     @Override

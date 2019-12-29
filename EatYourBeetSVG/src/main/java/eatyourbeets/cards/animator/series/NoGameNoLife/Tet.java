@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
@@ -10,7 +9,6 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.AnimatorResources_Strings;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class Tet extends AnimatorCard
 {
@@ -56,28 +54,28 @@ public class Tet extends AnimatorCard
 
     private void DiscardFromDrawPile()
     {
-        GameActions.Top.SelectFromPile(name, magicNumber, AbstractDungeon.player.drawPile)
-        .SetMessage(JavaUtilities.Format(AnimatorResources_Strings.GridSelection.TEXT[0], magicNumber))
+        GameActions.Top.SelectFromPile(name, magicNumber, player.drawPile)
+        .SetMessage(AnimatorResources_Strings.GridSelection.TEXT[0], magicNumber)
         .SetOptions(false, true)
         .AddCallback(cards ->
         {
             for (AbstractCard card : cards)
             {
-                GameActions.Top.MoveCard(card, AbstractDungeon.player.discardPile);
+                GameActions.Top.MoveCard(card, player.discardPile);
             }
         });
     }
 
     private void ShuffleFromDiscardPile()
     {
-        GameActions.Top.SelectFromPile(name, magicNumber, AbstractDungeon.player.discardPile)
-        .SetMessage(JavaUtilities.Format(AnimatorResources_Strings.GridSelection.TEXT[1], magicNumber))
+        GameActions.Top.SelectFromPile(name, magicNumber, player.discardPile)
+        .SetMessage(AnimatorResources_Strings.GridSelection.TEXT[1], magicNumber)
         .SetOptions(false, true)
         .AddCallback(cards ->
         {
             for (AbstractCard card : cards)
             {
-                GameActions.Top.MoveCard(card, AbstractDungeon.player.drawPile);
+                GameActions.Top.MoveCard(card, player.drawPile);
             }
         });
     }

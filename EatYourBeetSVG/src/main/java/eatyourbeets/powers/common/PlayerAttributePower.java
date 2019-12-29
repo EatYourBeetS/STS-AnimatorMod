@@ -3,12 +3,10 @@ package eatyourbeets.powers.common;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.interfaces.OnStatsClearedSubscriber;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.interfaces.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.relics.animator.EngravedStaff;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.HashSet;
@@ -48,18 +46,11 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.atStartOfTurn();
 
-        if (preservedPowers.contains(ID))
+        if (!preservedPowers.contains(ID))
         {
-            return;
+            ReducePower(1);
+            GameActions.Bottom.ReducePower(this, 1);
         }
-
-        if (amount <= 2 && EffectHistory.HasActivatedLimited(EngravedStaff.ID))
-        {
-            return;
-        }
-
-        ReducePower(1);
-        GameActions.Bottom.ReducePower(this, 1);
     }
 
     @Override

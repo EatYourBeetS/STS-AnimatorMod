@@ -298,7 +298,7 @@
 	},
 	"animator:DolaRiku":
 	{
-		"DESCRIPTION": "Exhaust a card in your NL hand, choose and NL obtain 1 of !M! cards of NL the same rarity, NL it costs 1 less. || On Synergy, draw NL a #y0-Cost[] card.",
+		"DESCRIPTION": "Exhaust a card in your NL hand, choose and NL obtain 1 of !M! cards of NL the same rarity, NL it costs 1 less. || Semi-Limited. NL On Synergy, draw NL a #y0-Cost[] card.",
 		"NAME": "Riku"
 	},
 	"animator:DolaSchwi":
@@ -499,9 +499,8 @@
 	},
 	"animator:HarukoHaruhara":
 	{
-		"DESCRIPTION": "Gain 1 Temporary NL Artifact. Play a NL random card from NL any class.",
-		"NAME": "Haruko Haruhara",
-		"UPGRADE_DESCRIPTION": "Gain 1 Temporary NL Artifact. Play a NL random Upgraded NL card from any NL class."
+		"DESCRIPTION": "Discard a random NL card, then play a NL random card from NL your hand.",
+		"NAME": "Haruko Haruhara"
 	},
 	"animator:Hero":
 	{
@@ -538,6 +537,11 @@
 	{
 		"DESCRIPTION": "At the start of each turn, Exhaust 1 of !M! random cards in your draw or discard pile. || On Synergy, NL gain 2 Intellect, NL gain 2 Agility, NL gain 2 Force.",
 		"NAME": "Hitei"
+	},
+	"animator:HolyGrail":
+	{
+		"DESCRIPTION": "Innate. Retain. NL Refill your Energy. NL Draw !M! cards. NL Lose !SV! Max HP. NL Exhaust. || If you end the NL combat with this NL card in your hand, NL gain 2 Max HP.",
+		"NAME": "The Grail"
 	},
 	"animator:HououinKyouma":
 	{
@@ -1194,7 +1198,7 @@
 	},
 	"animator:YunYun":
 	{
-		"DESCRIPTION": "Spellcaster. NL Deal !D! damage to ALL enemies. Costs 1 more for each other #yAttack in your hand. || Semi-Limited. NL If you have 3 or NL more Lightning Orbs, NL gain 1 Intellect.",
+		"DESCRIPTION": "Spellcaster. NL Deal !D! damage to ALL enemies. Costs 1 more for each other #yAttack in your hand. || At the start of NL each Elite combat, NL Channel 1 Lightning.",
 		"NAME": "YunYun"
 	},
 	"animator:Yusarin":

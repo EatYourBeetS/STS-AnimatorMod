@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.resources.AnimatorResources;
+import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import patches.AbstractEnums;
@@ -54,5 +55,10 @@ public abstract class AnimatorRelic extends CustomRelic
     public boolean canSpawn()
     {
         return AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR;
+    }
+
+    protected String FormatDescription(Object... args)
+    {
+        return JavaUtilities.Format(DESCRIPTIONS[0], args);
     }
 }

@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.events.TheDomVedeloper1;
 import eatyourbeets.events.TheMaskedTraveler1;
 import eatyourbeets.potions.FalseLifePotion;
-import eatyourbeets.relics.UnnamedReign.AncientMedallion;
-import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
+import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
+import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.utilities.GameUtilities;
 
 public class AbstractDungeonPatches

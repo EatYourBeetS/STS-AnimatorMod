@@ -404,9 +404,9 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
     }
 
     @Override
-    public void onAfterUseCard(AbstractCard card, UseCardAction action)
+    public void onPlayCard(AbstractCard card, AbstractMonster m)
     {
-        super.onAfterUseCard(card, action);
+        super.onPlayCard(card, m);
 
         AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
         if (c != null && c.HasSynergy())
@@ -418,6 +418,12 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
                 s.OnSynergy(c);
             }
         }
+    }
+
+    @Override
+    public void onAfterUseCard(AbstractCard card, UseCardAction action)
+    {
+        super.onAfterUseCard(card, action);
 
         Synergies.SetLastCardPlayed(card);
     }

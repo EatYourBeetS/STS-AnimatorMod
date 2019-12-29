@@ -4,42 +4,69 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
-public class PlayCardFromPile extends EYBAction
+public class PlayCardFromPile extends EYBActionWithCallback<AbstractMonster>
 {
-    private final CardGroup group;
-    private final boolean exhaust;
-    private final boolean purge;
+    private CardGroup sourcePile;
+    private boolean exhaust;
+    private boolean purge;
 
-    public PlayCardFromPile(AbstractCard card, CardGroup group, boolean exhausts, boolean purge, AbstractMonster target)
+    public PlayCardFromPile(AbstractCard card, CardGroup sourcePile)
+    {
+        this(card, sourcePile, null);
+    }
+
+    public PlayCardFromPile(AbstractCard card, CardGroup sourcePile, AbstractMonster target)
     {
         super(ActionType.WAIT, Settings.ACTION_DUR_FAST);
 
         this.card = card;
-        this.group = group;
-        this.exhaust = exhausts;
-        this.purge = purge;
+        this.sourcePile = sourcePile;
 
         Initialize(player, target, 1);
     }
 
-    public PlayCardFromPile(AbstractCard card, CardGroup group, boolean exhausts, boolean purge)
+    public PlayCardFromPile SetExhaust(boolean exhaust)
     {
-        this(card, group, exhausts, purge, null);
+        this.exhaust = exhaust;
+        this.purge = false;
+
+        return this;
+    }
+
+    public PlayCardFromPile SetPurge(boolean purge)
+    {
+        this.exhaust = false;
+        this.purge = purge;
+
+        return this;
     }
 
     @Override
     protected void FirstUpdate()
     {
-        if (group.size() == 0 || !group.contains(card))
+        if (sourcePile == null)
+        {
+            sourcePile = GameUtilities.FindCardGroup(card, false);
+
+            if (sourcePile == null)
+            {
+                JavaUtilities.GetLogger(getClass()).warn("Could not find card source.");
+                Complete();
+                return;
+            }
+        }
+
+        if (sourcePile.size() == 0 || !sourcePile.contains(card))
         {
             Complete();
         }
         else
         {
-            group.removeCard(card);
+            sourcePile.removeCard(card);
 
             if (target == null)
             {
@@ -47,6 +74,17 @@ public class PlayCardFromPile extends EYBAction
             }
 
             GameUtilities.PlayCard(card, (AbstractMonster) target, purge, exhaust);
+        }
+    }
+
+    @Override
+    protected void UpdateInternal()
+    {
+        super.UpdateInternal();
+
+        if (isDone)
+        {
+            Complete((AbstractMonster) target);
         }
     }
 }

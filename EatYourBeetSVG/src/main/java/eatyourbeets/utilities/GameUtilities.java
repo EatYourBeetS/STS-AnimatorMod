@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
@@ -448,6 +449,22 @@ public class GameUtilities
         return target.isDeadOrEscaped() || target.currentHealth <= 0;
     }
 
+    public static boolean IsBossRoom()
+    {
+        return GetCurrentRoom() instanceof MonsterRoomBoss;
+    }
+
+    public static boolean IsEliteRoom()
+    {
+        AbstractRoom room = GetCurrentRoom();
+        if (room != null)
+        {
+            return room.eliteTrigger;
+        }
+
+        return false;
+    }
+
     public static boolean TriggerOnKill(AbstractCreature enemy, boolean includeMinions)
     {
         return IsDeadOrEscaped(enemy) && !enemy.hasPower(RegrowPower.POWER_ID) && (includeMinions || !enemy.hasPower(MinionPower.POWER_ID));
@@ -539,11 +556,6 @@ public class GameUtilities
     public static void ClearPostCombatActions()
     {
         AbstractDungeon.actionManager.clearPostCombatActions();
-    }
-
-    public static void PlayCard(AbstractCard card, AbstractMonster m)
-    {
-        PlayCard(card, m, false, false);
     }
 
     public static void PlayCard(AbstractCard card, AbstractMonster m, boolean purge, boolean exhaust)
@@ -660,4 +672,33 @@ public class GameUtilities
             hand.glowCheck();
         }
     };
+
+    public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
+    {
+        AbstractPlayer player = AbstractDungeon.player;
+        if (player.hand.contains(card))
+        {
+            return player.hand;
+        }
+        else if (player.drawPile.contains(card))
+        {
+            return player.drawPile;
+        }
+        else if (player.discardPile.contains(card))
+        {
+            return player.discardPile;
+        }
+        else if (player.exhaustPile.contains(card))
+        {
+            return player.exhaustPile;
+        }
+        else if (includeLimbo && player.limbo.contains(card))
+        {
+            return player.limbo;
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

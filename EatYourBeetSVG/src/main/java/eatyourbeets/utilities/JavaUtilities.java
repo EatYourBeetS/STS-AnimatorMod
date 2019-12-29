@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
@@ -16,6 +18,7 @@ public class JavaUtilities
 {
     public static final Logger Logger = LogManager.getLogger(JavaUtilities.class.getName());
 
+    private static final ArrayList<String> classNames = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
     public static <T> T SafeCast(Object o, Class<T> type)
@@ -97,33 +100,41 @@ public class JavaUtilities
 
     public static ArrayList<String> GetClassNamesFromJarFile(String prefix)
     {
-        ArrayList<String> result = new ArrayList<>();
-
-        try
+        if (classNames.size() == 0)
         {
-            String path = JavaUtilities.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-            JarInputStream jarFile = new JarInputStream(new FileInputStream(path));
-
-            while (true)
+            try
             {
-                JarEntry entry = jarFile.getNextJarEntry();
-                if (entry == null)
-                {
-                    break;
-                }
+                String path = JavaUtilities.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+                JarInputStream jarFile = new JarInputStream(new FileInputStream(path));
 
-                String name = entry.getName();
-                if (name.startsWith(prefix) && name.endsWith(".class") && name.indexOf('$', 20) == -1)
+                while (true)
                 {
-                    String className = entry.getName().replaceAll("/", "\\.");
-                    String myClass = className.substring(0, className.lastIndexOf('.'));
-                    result.add(myClass);
+                    JarEntry entry = jarFile.getNextJarEntry();
+                    if (entry == null)
+                    {
+                        break;
+                    }
+
+                    String name = entry.getName();
+                    if (name.endsWith(".class") && name.indexOf('$') == -1)
+                    {
+                        classNames.add(name.replaceAll("/", "\\."));
+                    }
                 }
             }
+            catch (IOException | URISyntaxException e)
+            {
+                throw new RuntimeException(e);
+            }
         }
-        catch (Exception e)
+
+        ArrayList<String> result = new ArrayList<>();
+        for (String entry : classNames)
         {
-            e.printStackTrace();
+            if (entry.startsWith(prefix))
+            {
+                result.add(entry.substring(0, entry.lastIndexOf('.')));
+            }
         }
 
         return result;

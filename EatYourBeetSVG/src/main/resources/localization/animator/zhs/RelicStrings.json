@@ -50,7 +50,7 @@
 	},
 	"animator:EngravedStaff":
 	{
-		"DESCRIPTIONS": ["拾起时， #y升级 1张随机 #y稀有 牌。 你的 #y武力 ， #y机敏 和 #y智力 不会低于 #b2 。"],
+		"DESCRIPTIONS": ["回合开始时， 随机 获得 #b{0} 点 智力 、 NL 武力 或者 机敏 。"],
 		"FLAVOR": "公会最宝贵的财产之一。",
 		"NAME": "铭文法杖"
 	},
@@ -75,6 +75,12 @@
 		"DESCRIPTIONS": ["回合开始时， 每有一个敌人有 #y易伤 则获得 #b{0} 点 #y武力 。"],
 		"FLAVOR": "统治死亡即统治生命，死即生之巅峰。崇敬生命，拥抱死亡。",
 		"NAME": "重戟"
+	},
+	"animator:HolyGrailRelic":
+	{
+		"DESCRIPTIONS": ["At the start of each combat, add #yThe #yGrail to your hand."],
+		"FLAVOR": "'Reaching Akasha'. There is no greater purpose than this to us Tohsaka.",
+		"NAME": "Ancient Chalice"
 	},
 	"animator:Hoodie":
 	{

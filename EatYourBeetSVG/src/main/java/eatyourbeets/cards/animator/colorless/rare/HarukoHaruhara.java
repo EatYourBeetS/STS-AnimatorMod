@@ -2,13 +2,13 @@ package eatyourbeets.cards.animator.colorless.rare;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
@@ -18,9 +18,10 @@ public class HarukoHaruhara extends AnimatorCard
 
     public HarukoHaruhara()
     {
-        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
+        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.ENEMY);
 
         Initialize(0, 0);
+        SetCostUpgrade(-1);
 
         SetSynergy(Synergies.FLCL);
     }
@@ -28,28 +29,44 @@ public class HarukoHaruhara extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainTemporaryArtifact(1);
+        GameActions.Top.DiscardFromHand(name, 1, true)
+        .AddCallback(m, this::PlayRandomCard);
+    }
 
-        ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
+    private void PlayRandomCard(Object target, ArrayList<AbstractCard> __)
+    {
+        AbstractPlayer p = AbstractDungeon.player;
 
-        String key;
-        AbstractCard card;
-        do
+        RandomizedList<AbstractCard> playable = new RandomizedList<>();
+        RandomizedList<AbstractCard> unplayable = new RandomizedList<>();
+        for (AbstractCard card : p.hand.group)
         {
-            key = JavaUtilities.GetRandomElement(keys);
-            card = CardLibrary.cards.get(key);
+            if (card != this)
+            {
+                if (GameUtilities.IsCurseOrStatus(card))
+                {
+                    unplayable.Add(card);
+                }
+                else
+                {
+                    playable.Add(card);
+                }
+            }
         }
-        while (card.tags.contains(AbstractCard.CardTags.HEALING));
 
-        card = card.makeCopy();
-
-        if (upgraded)
+        AbstractCard card = null;
+        if (playable.Count() > 0)
         {
-            card.upgrade();
+            card = playable.Retrieve(AbstractDungeon.cardRandomRng);
+        }
+        else if (unplayable.Count() > 0)
+        {
+            card = unplayable.Retrieve(AbstractDungeon.cardRandomRng);
         }
 
-        card.applyPowers();
-
-        GameUtilities.PlayCard(card, m);
+        if (card != null)
+        {
+            GameActions.Bottom.PlayCard(card, p.hand, (AbstractMonster) target);
+        }
     }
 }

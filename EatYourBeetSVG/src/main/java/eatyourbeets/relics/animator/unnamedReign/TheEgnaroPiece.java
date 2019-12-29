@@ -1,4 +1,4 @@
-package eatyourbeets.relics.UnnamedReign;
+package eatyourbeets.relics.animator.unnamedReign;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.utilities.GameActions;

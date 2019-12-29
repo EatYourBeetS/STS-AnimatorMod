@@ -1,19 +1,17 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.interfaces.OnSynergySubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
 
-public class LivingPicture extends AnimatorRelic
+public class LivingPicture extends AnimatorRelic implements OnSynergySubscriber
 {
     public static final String ID = CreateFullID(LivingPicture.class.getSimpleName());
 
     private Boolean hasShownTip1 = null;
-    private Boolean active = true;
 
     public LivingPicture()
     {
@@ -36,20 +34,14 @@ public class LivingPicture extends AnimatorRelic
     public void atTurnStart()
     {
         super.atTurnStart();
-        active = true;
+
+        PlayerStatistics.onSynergy.SubscribeOnce(this);
     }
 
     @Override
-    public void onPlayCard(AbstractCard c, AbstractMonster m)
+    public void OnSynergy(AnimatorCard card)
     {
-        super.onPlayCard(c, m);
-
-        AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-        if (active && card != null && card.HasSynergy())
-        {
-            GameActions.Bottom.Draw(1);
-            active = false;
-            this.flash();
-        }
+        GameActions.Bottom.Draw(1);
+        this.flash();
     }
 }

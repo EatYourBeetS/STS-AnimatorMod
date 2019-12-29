@@ -73,23 +73,9 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     {
         if (sourcePile == null)
         {
-            if (player.hand.contains(card))
-            {
-                sourcePile = player.hand;
-            }
-            else if (player.drawPile.contains(card))
-            {
-                sourcePile = player.drawPile;
-            }
-            else if (player.discardPile.contains(card))
-            {
-                sourcePile = player.discardPile;
-            }
-            else if (player.exhaustPile.contains(card))
-            {
-                sourcePile = player.exhaustPile;
-            }
-            else
+            sourcePile = GameUtilities.FindCardGroup(card, false);
+
+            if (sourcePile == null)
             {
                 JavaUtilities.GetLogger(getClass()).warn("Could not find card source.");
                 Complete();

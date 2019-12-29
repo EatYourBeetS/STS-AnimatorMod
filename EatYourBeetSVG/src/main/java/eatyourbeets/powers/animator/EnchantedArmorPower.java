@@ -96,9 +96,9 @@ public class EnchantedArmorPower extends AnimatorPower
         {
             if (info.type == DamageInfo.DamageType.HP_LOSS || info.type == DamageInfo.DamageType.THORNS)
             {
-                float percentage = CalculatePercentage(this.amount + damageAmount);
+                float percentage = CalculatePercentage(this.amount + (damageAmount/2));
 
-                damageAmount = Math.round( (float) damageAmount * percentage);
+                damageAmount = (int)Math.ceil( (float) damageAmount * percentage);
                 info.output = damageAmount;
             }
             else if (info.owner != null)

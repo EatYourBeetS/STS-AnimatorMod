@@ -50,7 +50,7 @@
 	},
 	"animator:EngravedStaff":
 	{
-		"DESCRIPTIONS": ["Upon pickup, #yUpgrade a random #yRare card. Your #yForce, #yAgility and #yIntellect cannot decrease below #b2."],
+		"DESCRIPTIONS": ["At the start of each turn, randomly gain #b{0} #yForce, #yAgility, or #yIntellect"],
 		"FLAVOR": "One of the most treasured possessions of the Guild.",
 		"NAME": "Engraved Staff"
 	},
@@ -75,6 +75,12 @@
 		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yForce for each enemy with #yVulnerable."],
 		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
 		"NAME": "Heavy Halberd"
+	},
+	"animator:HolyGrailRelic":
+	{
+		"DESCRIPTIONS": ["At the start of each combat, add #yThe #yGrail to your hand."],
+		"FLAVOR": "'Reaching Akasha'. There is no greater purpose than this to us Tohsaka.",
+		"NAME": "Ancient Chalice"
 	},
 	"animator:Hoodie":
 	{

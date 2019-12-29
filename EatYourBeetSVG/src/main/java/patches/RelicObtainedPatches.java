@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.select.BossRelicSelectScreen;
 import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
+import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 
 public class RelicObtainedPatches
 {

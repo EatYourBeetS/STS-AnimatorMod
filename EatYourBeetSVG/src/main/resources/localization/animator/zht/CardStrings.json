@@ -297,7 +297,7 @@
 	},
 	"animator:DolaRiku":
 	{
-		"DESCRIPTION": "消耗 一張手牌 NL 從 !M! 張牌中選擇 NL 並獲得相同 NL 稀有度的 1 張牌， NL 它的耗能減少 1 點。 || 同調 ： 抽 1 張 NL 0耗能 牌。",
+		"DESCRIPTION": "消耗 一張手牌 NL 從 !M! 張牌中選擇 NL 並獲得相同 NL 稀有度的 1 張牌， NL 它的耗能減少 1 點。 || 有限 。 同調 ： 抽 1 張 NL 0耗能 牌。",
 		"NAME": "里克"
 	},
 	"animator:DolaSchwi":
@@ -499,9 +499,8 @@
 	},
 	"animator:HarukoHaruhara":
 	{
-		"DESCRIPTION": "獲得 1 層 NL 臨時 人工製品 。 NL 打出 1 張 NL 隨機角色牌。",
-		"NAME": "春原晴子",
-		"UPGRADE_DESCRIPTION": "獲得 1 層 NL 臨時 人工製品 。 NL 打出 1 張 NL 升級版隨機角色牌。"
+		"DESCRIPTION": "隨機丟棄 1 張牌。 隨機打出手牌部的1張牌。",
+		"NAME": "春原晴子"
 	},
 	"animator:Hero":
 	{
@@ -538,6 +537,11 @@
 	{
 		"DESCRIPTION": "每回合開始時， NL 從抽牌堆或棄牌堆 NL 的隨機 !M! 張牌中 NL 選擇 1 張 消耗 。 || 同調 ： NL 獲得 2 點 集中， NL 機敏 和 武力 。",
 		"NAME": "否定姬"
+	},
+	"animator:HolyGrail":
+	{
+		"DESCRIPTION": "Innate. Retain. NL Refill your Energy. NL Draw !M! cards. NL Lose !SV! Max HP. NL Exhaust. || If you end the NL combat with this NL card in your hand, NL gain 2 Max HP.",
+		"NAME": "The Grail"
 	},
 	"animator:HououinKyouma":
 	{
@@ -1192,7 +1196,7 @@
 	},
 	"animator:YunYun":
 	{
-		"DESCRIPTION": "法師 。 NL 對所有敵人 NL 造成 !D! 點傷害。 NL 手中每有 1 張 NL 其他的 攻擊牌， NL 增加 1 點耗能。 || 有限 。 如果您有3個或更多 閃電 充能球，獲得 1 層 智力。",
+		"DESCRIPTION": "法師 。 NL 對所有敵人 NL 造成 !D! 點傷害。 NL 手中每有 1 張 NL 其他的 攻擊牌， NL 增加 1 點耗能。 || 每場精英戰 NL 開始時， 生成 1 個 NL 閃電 充能球 。",
 		"NAME": "芸芸"
 	},
 	"animator:Yusarin":

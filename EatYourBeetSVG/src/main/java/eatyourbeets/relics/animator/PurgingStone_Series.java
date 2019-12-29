@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringJoiner;
 
-public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<String>
+public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<String>, Hidden
 {
     public static final String ID = CreateFullID(PurgingStone_Series.class.getSimpleName());
 

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
+import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.utilities.JavaUtilities;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;

@@ -14,14 +14,12 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.actions.cardManipulation.PurgeAnywhere;
+import eatyourbeets.actions.cardManipulation.*;
 import eatyourbeets.actions.basic.*;
-import eatyourbeets.actions.cardManipulation.MakeTempCard;
-import eatyourbeets.actions.cardManipulation.ModifyAllCombatInstances;
-import eatyourbeets.actions.cardManipulation.MotivateAction;
 import eatyourbeets.actions.damage.DealDamage;
 import eatyourbeets.actions.damage.DealDamageToAll;
 import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
@@ -250,6 +248,11 @@ public final class GameActions
     public DrawCards Draw(int amount)
     {
         return Add(new DrawCards(amount));
+    }
+
+    public PlayCardFromPile PlayCard(AbstractCard card, CardGroup group, AbstractMonster target)
+    {
+        return Add(new PlayCardFromPile(card, group, target));
     }
 
     public MoveCard Draw(AbstractCard card)

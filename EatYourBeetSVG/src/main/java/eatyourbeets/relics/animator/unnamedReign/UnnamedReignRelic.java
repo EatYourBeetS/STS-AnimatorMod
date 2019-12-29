@@ -1,4 +1,4 @@
-package eatyourbeets.relics.UnnamedReign;
+package eatyourbeets.relics.animator.unnamedReign;
 
 import basemod.DevConsole;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;

@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
-import eatyourbeets.actions.cardManipulation.PlayCardFromPile;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
@@ -45,7 +44,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
 
         for (AbstractCard c : p.discardPile.group)
         {
-            GameActions.Top.Add(new PlayCardFromPile(c, p.discardPile, true, false, m));
+            GameActions.Top.PlayCard(c, p.discardPile, m).SetExhaust(true);
         }
 
         GameActions.Top.VFX(new OfferingEffect(), 0.1F);

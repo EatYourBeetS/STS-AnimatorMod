@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.cardManipulation.PlayCardFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
@@ -83,7 +82,7 @@ public class Illya extends AnimatorCard
         AbstractCard card = FindBestCard(m);
         if (card != null)
         {
-            GameActions.Top.Add(new PlayCardFromPile(card, p.drawPile, false, false, m));
+            GameActions.Top.PlayCard(card, p.drawPile, m);
             GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
         }
     }

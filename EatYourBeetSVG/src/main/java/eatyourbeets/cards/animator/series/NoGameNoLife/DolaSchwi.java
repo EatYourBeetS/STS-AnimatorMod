@@ -14,6 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.cards.base.AnimatorCard_Cooldown;
 import eatyourbeets.cards.base.Synergies;
 
+// TODO: Consider inverting channel lightning with apply lock-on
 public class DolaSchwi extends AnimatorCard_Cooldown
 {
     public static final String ID = Register(DolaSchwi.class, EYBCardBadge.Synergy);

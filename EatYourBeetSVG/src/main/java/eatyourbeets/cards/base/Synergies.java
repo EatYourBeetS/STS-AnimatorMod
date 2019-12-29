@@ -19,7 +19,7 @@ public class Synergies
     @SuppressWarnings("FieldCanBeLocal")
     private static AnimatorCard previousCard = null;
     private static AnimatorCard lastCardPlayed = null;
-    private static int PreemptiveSynergies;
+    private static int preemptiveSynergies;
 
     public final static Synergy ANY = CreateSynergy(0);
     public final static Synergy Elsword = CreateSynergy(1);
@@ -146,13 +146,13 @@ public class Synergies
         {
             previousCard = null;
             lastCardPlayed = null;
-            PreemptiveSynergies = 0;
+            preemptiveSynergies = 0;
         }
         else
         {
-            if (PreemptiveSynergies > 0)
+            if (preemptiveSynergies > 0)
             {
-                PreemptiveSynergies -= 1;
+                preemptiveSynergies -= 1;
             }
 
             previousCard = lastCardPlayed;
@@ -160,37 +160,31 @@ public class Synergies
         }
     }
 
-    public static boolean WouldSynergize(AbstractCard card)
+    public static boolean WouldSynergize(AnimatorCard card)
     {
-        if (PreemptiveSynergies > 0)
-        {
-            return true;
-        }
-//      else if (this == lastCardPlayed)
-//      {
-//          return previousCard != null && previousCard.HasSynergy(this);
-//      }
-        else
-        {
-            return lastCardPlayed != null && lastCardPlayed.HasSynergy(card);
-        }
+        return WouldSynergize(card, lastCardPlayed);
     }
 
     public static boolean WouldSynergize(AnimatorCard card, AbstractCard abstractCard)
     {
-        AnimatorCard other = JavaUtilities.SafeCast(abstractCard, AnimatorCard.class);
+        return WouldSynergize(card, JavaUtilities.SafeCast(abstractCard, AnimatorCard.class));
+    }
+
+    public static boolean WouldSynergize(AnimatorCard card, AnimatorCard other)
+    {
         if (other != null && other.synergy != null && card.synergy != null)
         {
             return (card instanceof Spellcaster && other instanceof Spellcaster) ||
                     (card instanceof MartialArtist && other instanceof MartialArtist) ||
-                    (card.anySynergy || other.anySynergy) || card.synergy.equals(other.synergy);
+                    (card.anySynergy || other.anySynergy) ||
+                    (card.synergy.equals(other.synergy));
         }
 
         return false;
     }
 
-    public static void AddPreemptiveSynergies(int amount)
+    public static int AddPreemptiveSynergies(int amount)
     {
-        PreemptiveSynergies += amount;
+        return preemptiveSynergies += amount;
     }
 }

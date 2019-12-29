@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,16 +9,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.OnCostRefreshSubscriber;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
-public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSubscriber
+public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSubscriber, StartupCard
 {
     public static final String ID = Register(YunYun.class, EYBCardBadge.Special);
 
@@ -136,5 +137,18 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
                 this.setCostForTurn(currentCost + costModifier);
             }
         }
+    }
+
+    @Override
+    public boolean atBattleStartPreDraw()
+    {
+        if (GameUtilities.IsEliteRoom())
+        {
+            GameActions.Bottom.ChannelOrb(new Lightning(), false);
+
+            return true;
+        }
+
+        return false;
     }
 }

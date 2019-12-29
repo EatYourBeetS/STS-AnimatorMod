@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.relics.UnnamedReign.AncientMedallion;
+import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import patches.AbstractEnums;
 
 public class TheMaskedTraveler3 extends AnimatorEvent

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 import eatyourbeets.potions.FalseLifePotion;
-import eatyourbeets.relics.UnnamedReign.UnnamedReignRelic;
+import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 
 public class PotionHelperPatches
 {

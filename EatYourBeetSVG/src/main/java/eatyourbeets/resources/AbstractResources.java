@@ -4,18 +4,20 @@ import basemod.BaseMod;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.*;
-import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import patches.AbstractEnums;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
@@ -30,7 +32,8 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
            EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
            AddAudioSubscriber
 {
-    protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets/cards/");
+    protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.cards.");
+    protected static final ArrayList<String> relicClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.relics.");
     protected static final HashMap<String, Map<String, String>> dynamicKeywords = new HashMap<>();
     protected static final HashMap<String, Keyword> keywords = new HashMap<>();
     protected static final HashMap<String, Texture> textures = new HashMap<>();
@@ -202,6 +205,28 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         PostInitialize();
     }
 
+    protected static void LoadCustomRelics(String character)
+    {
+        final String prefix = "eatyourbeets.relics." + character;
+
+        for (String s : relicClassNames)
+        {
+            if (s.startsWith(prefix))
+            {
+                try
+                {
+                    logger.info("Adding: " + s);
+
+                    LoadRelic(Class.forName(s));
+                }
+                catch (ClassNotFoundException e)
+                {
+                    logger.warn("Class not found : " + s);
+                }
+            }
+        }
+    }
+
     protected static void LoadCustomCards(String character)
     {
         final String prefix = "eatyourbeets.cards." + character;
@@ -224,9 +249,10 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         }
     }
 
-    protected static void LoadCard(Class<?> cardClass)
+    @SuppressWarnings("unchecked")
+    protected static void LoadCard(Class type)
     {
-        if (Hidden.class.isAssignableFrom(cardClass) || Modifier.isAbstract(cardClass.getModifiers()))
+        if (Hidden.class.isAssignableFrom(type) || Modifier.isAbstract(type.getModifiers()))
         {
             return;
         }
@@ -236,7 +262,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
         try
         {
-            card = (AbstractCard) cardClass.getConstructor().newInstance();
+            card = (AbstractCard)type.getConstructor().newInstance();
             id = card.cardID;
         }
         catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
@@ -252,6 +278,28 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         }
 
         BaseMod.addCard(card);
+    }
+
+    @SuppressWarnings("unchecked")
+    protected static void LoadRelic(Class type)
+    {
+        if (Hidden.class.isAssignableFrom(type) || Modifier.isAbstract(type.getModifiers()))
+        {
+            return;
+        }
+
+        AbstractRelic relic;
+        try
+        {
+            relic = (AbstractRelic)type.getConstructor().newInstance();
+        }
+        catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
+        {
+            e.printStackTrace();
+            return;
+        }
+
+        BaseMod.addRelicToCustomPool(relic, AbstractEnums.Cards.THE_ANIMATOR);
     }
 
     @SuppressWarnings("unchecked") // I miss C# ...

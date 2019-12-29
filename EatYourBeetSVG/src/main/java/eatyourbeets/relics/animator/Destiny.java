@@ -4,11 +4,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.AnimatorRelic;
 
 import java.util.ArrayList;
 
-public class Destiny extends AnimatorRelic implements OnReceiveRewardsSubscriber
+public class Destiny extends AnimatorRelic implements OnReceiveRewardsSubscriber, Hidden
 {
     public static final String ID = CreateFullID(Destiny.class.getSimpleName());
 

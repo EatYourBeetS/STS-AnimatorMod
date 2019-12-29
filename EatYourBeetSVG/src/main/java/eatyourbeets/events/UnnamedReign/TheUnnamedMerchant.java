@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.events.AnimatorEvent;
-import eatyourbeets.relics.UnnamedReign.AncientMedallion;
+import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class TheUnnamedMerchant extends AnimatorEvent

@@ -28,8 +28,8 @@ public class Tatsumaki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Aether(), true);
         GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.ChannelOrb(new Aether(), true);
 
         if (GameUtilities.GetUniqueOrbsCount() >= 3 && EffectHistory.TryActivateLimited(this.cardID))
         {

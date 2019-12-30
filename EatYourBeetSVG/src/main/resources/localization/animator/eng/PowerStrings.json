@@ -17,7 +17,7 @@
 	},
 	"animator:BiyorigoPower":
 	{
-		"DESCRIPTIONS": ["Whenever you gain #yDexterity, also gain #b", " #yForce."],
+		"DESCRIPTIONS": ["Whenever you end your turn with unspent energy, double your #yForce."],
 		"NAME": "Bito Kanzashi"
 	},
 	"animator:BorosPower":

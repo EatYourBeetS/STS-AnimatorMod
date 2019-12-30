@@ -1,15 +1,13 @@
 package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.JavaUtilities;
 
 public abstract class OrbCore_AbstractPower extends AnimatorPower
 {
@@ -17,13 +15,12 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
 
     protected int value;
     protected int uses;
-    protected boolean firstSynergy;
 
     public OrbCore_AbstractPower(String id, AbstractCreature owner, int amount)
     {
         super(owner, id);
 
-        this.firstSynergy = PlayerStatistics.getSynergiesThisTurn() == 0;
+        this.enabled = false;
         this.uses = amount;
         this.amount = amount;
     }
@@ -31,13 +28,13 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        if (firstSynergy)
+        if (enabled)
         {
-            this.description = "Needs 1 more Synergy";
+            this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1] + this.value + powerStrings.DESCRIPTIONS[2];
         }
         else
         {
-            this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1] + this.value + powerStrings.DESCRIPTIONS[2];
+            this.description = "Needs 1 more Synergy";
         }
     }
 
@@ -51,22 +48,9 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
     }
 
     @Override
-    public void renderIcons(SpriteBatch sb, float x, float y, Color c)
-    {
-        if (firstSynergy)
-        {
-            super.renderIcons(sb, x, y, disabledColor);
-        }
-        else
-        {
-            super.renderIcons(sb, x, y, c);
-        }
-    }
-
-    @Override
     public void atStartOfTurn()
     {
-        this.firstSynergy = true;
+        this.enabled = false;
         this.amount = uses;
         updateDescription();
     }
@@ -79,9 +63,9 @@ public abstract class OrbCore_AbstractPower extends AnimatorPower
         AnimatorCard card = JavaUtilities.SafeCast(usedCard, AnimatorCard.class);
         if (card != null && card.HasSynergy())
         {
-            if (firstSynergy)
+            if (!enabled)
             {
-                firstSynergy = false;
+                enabled = true;
             }
             else if (amount > 0)
             {

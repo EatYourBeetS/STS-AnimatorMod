@@ -26,7 +26,7 @@ public class PridePower extends AnimatorPower
     }
 
     @Override
-    public int onAttacked(DamageInfo info, int damageAmount)
+    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
     {
         damageAmount = super.onAttacked(info, damageAmount);
 

@@ -1,7 +1,5 @@
 package eatyourbeets.powers.common;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.OnStatsClearedSubscriber;
@@ -13,7 +11,6 @@ import java.util.HashSet;
 
 public abstract class PlayerAttributePower extends CommonPower
 {
-    protected static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
     protected static final PreservedPowers preservedPowers = new PreservedPowers();
 
     public PlayerAttributePower(String powerID, AbstractCreature owner, int amount)
@@ -46,7 +43,7 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.atStartOfTurn();
 
-        if (!preservedPowers.contains(ID))
+        if (enabled)
         {
             ReducePower(1);
             GameActions.Bottom.ReducePower(this, 1);
@@ -54,16 +51,11 @@ public abstract class PlayerAttributePower extends CommonPower
     }
 
     @Override
-    public void renderIcons(SpriteBatch sb, float x, float y, Color c)
+    public void update(int slot)
     {
-        if (preservedPowers.contains(ID))
-        {
-            super.renderIcons(sb, x, y, disabledColor);
-        }
-        else
-        {
-            super.renderIcons(sb, x, y, c);
-        }
+        super.update(slot);
+
+        enabled = (!preservedPowers.contains(ID));
     }
 
     protected abstract void GainPower(int amount);

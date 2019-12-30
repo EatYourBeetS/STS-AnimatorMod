@@ -3,11 +3,10 @@ package eatyourbeets.relics.animator;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.GameActions;
 
 public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber
 {
@@ -23,7 +22,7 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], LOSE_MAX_HP);
+        return FormatDescription(LOSE_MAX_HP);
     }
 
     public void atBattleStart()
@@ -39,11 +38,11 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
             }
             else if (AbstractDungeon.ascensionLevel >= 7)
             {
-                bonusHealth += (int)Math.ceil(m.maxHealth * 0.11);
+                bonusHealth += (int)Math.ceil(m.maxHealth * 0.09);
             }
             else
             {
-                bonusHealth += (int)Math.ceil(m.maxHealth * 0.14);
+                bonusHealth += (int)Math.ceil(m.maxHealth * 0.13);
             }
 
             m.increaseMaxHp(bonusHealth, true);

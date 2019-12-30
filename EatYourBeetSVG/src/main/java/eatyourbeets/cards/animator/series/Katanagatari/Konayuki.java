@@ -1,72 +1,48 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Konayuki extends AnimatorCard
 {
-    public static final String ID = Register(Konayuki.class, EYBCardBadge.Drawn);
+    public static final String ID = Register(Konayuki.class, EYBCardBadge.Special);
 
     public Konayuki()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        Initialize(33, 0, 3);
-        SetUpgrade(11, 0, 1);
+        Initialize(0, 6, 2, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetSynergy(Synergies.Katanagatari);
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        if (GameUtilities.GetPowerAmount(ForcePower.POWER_ID) <= 0 && EffectHistory.TryActivateSemiLimited(cardID))
-        {
-            modifyCostForTurn(-1);
-            this.flash();
-        }
-    }
-
-    @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        if (GameUtilities.GetStrength() >= 10)
-        {
-            this.target = CardTarget.ENEMY;
-        }
-        else
-        {
-            this.target = CardTarget.SELF;
-        }
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (GameUtilities.GetStrength(p) >= 10)
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainForce(magicNumber)
+        .AddCallback(force ->
         {
-            if (m == null)
+            if (force.amount >= 10)
             {
-                m = GameUtilities.GetRandomEnemy(true);
+                GameEffects.Queue.ShowCardBriefly(this.makeStatEquivalentCopy());
+                GameActions.Bottom.DealDamageToRandomEnemy(40, damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_HEAVY)
+                .SetPiercing(true, false);
             }
+        });
 
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        }
-        else
+        for (AbstractCard card : GameUtilities.GetAllInBattleInstances(this))
         {
-            GameActions.Bottom.GainForce(magicNumber);
+            card.baseMagicNumber = card.magicNumber += secondaryValue;
         }
     }
 }

@@ -78,7 +78,7 @@
 	},
 	"animator:HolyGrailRelic":
 	{
-		"DESCRIPTIONS": ["At the start of each combat, add #yThe #yGrail to your hand."],
+		"DESCRIPTIONS": ["Upon pickup, gain #b{0} #yGold. At the start of each combat, add #yThe #yGrail to your hand."],
 		"FLAVOR": "'Reaching Akasha'. There is no greater purpose than this to us Tohsaka.",
 		"NAME": "Ancient Chalice"
 	},

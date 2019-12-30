@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.FeridBathory;
 import eatyourbeets.effects.attack.Hemokinesis2Effect;
 import eatyourbeets.powers.AnimatorPower;
@@ -16,7 +15,7 @@ import eatyourbeets.utilities.GameEffects;
 public class FeridBathoryPower extends AnimatorPower
 {
     public static final int EXHAUST_PILE_THRESHOLD = 20;
-    public static final int STRENGTH_GAIN = 9;
+    public static final int FORCE_AMOUNT = 10;
 
     public static final String POWER_ID = CreateFullID(FeridBathoryPower.class.getSimpleName());
 
@@ -46,9 +45,8 @@ public class FeridBathoryPower extends AnimatorPower
 
         if (AbstractDungeon.player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && EffectHistory.TryActivateLimited(FeridBathory.ID))
         {
-            AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(new FeridBathory()));
-
-            GameActions.Bottom.GainStrength(STRENGTH_GAIN);
+            GameEffects.Queue.ShowCardBriefly(new FeridBathory());
+            GameActions.Bottom.GainForce(FORCE_AMOUNT);
         }
     }
 }

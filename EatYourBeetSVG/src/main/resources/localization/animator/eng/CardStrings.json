@@ -97,7 +97,7 @@
 	},
 	"animator:Biyorigo":
 	{
-		"DESCRIPTION": "Gain !M! Artifact. NL Whenever you gain NL 1 or more Dexterity, NL also gain !SV! Force.",
+		"DESCRIPTION": "Gain 1 Artifact. NL Gain !M! Thorns. || Whenever you end NL your turn with NL unspent Energy, NL double your Force.",
 		"NAME": "Biyorigo"
 	},
 	"animator:BlackLotus":
@@ -334,7 +334,7 @@
 	},
 	"animator:ElricEdward":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL Cycle 1 card. || #yChannel[] 1 Orb NL based on the card NL you cycled.",
+		"DESCRIPTION": "Deal !D! damage. NL Cycle 1 card, then NL #yChannel[] 1 Orb based NL on its type. #y*[]",
 		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#yAttack: Channel 1 #yLightning NL #ySkill: Channel 1 #yFrost NL #yPower: Channel 1 #yEarth"],
 		"NAME": "Edward Elric"
 	},
@@ -397,7 +397,7 @@
 	},
 	"animator:FeridBathory":
 	{
-		"DESCRIPTION": "Whenever a card is NL Exhausted, steal !M! HP NL from a random enemy NL as Temp._HP. || Limited. At the start of NL your turn, if you have NL at least 20 cards in NL your Exhaust pile, NL gain !SV! Strength.",
+		"DESCRIPTION": "Whenever a card is NL Exhausted, steal !M! HP NL from a random enemy NL as Temp._HP. || Limited. At the start of NL your turn, if you have NL at least 20 cards in NL your Exhaust pile, NL gain !SV! Force.",
 		"NAME": "Ferid Bathory"
 	},
 	"animator:Fredrika":
@@ -414,7 +414,7 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Apply !M! Burning. NL Take !SV! damage at NL the end of turn. || Semi-Limited. NL On Synergy, Fetch NL a card which costs NL 3 or more Energy NL and Retain it.",
+		"DESCRIPTION": "Deal !D! Damage. NL Take !SV! damage at NL the end of turn. || On Synergy, NL apply !M! Burning.",
 		"NAME": "Genos"
 	},
 	"animator:Geryuganshoop":
@@ -471,7 +471,7 @@
 	},
 	"animator:Greed":
 	{
-		"DESCRIPTION": "Gain !M! Plated_Armor. NL Gain !M! Metallicize. NL Gain !M! Malleable. || Costs 1 less for every NL 100 #yGold[] you have. NL When you add this NL card to your deck, NL gain !SV! #yGold[].",
+		"DESCRIPTION": "Gain !M! Plated_Armor. NL Gain !M! Metallicize. NL Gain !M! Malleable. || Limited. For every NL !SV! #yGold you have, NL gain [E] next turn.",
 		"NAME": "Greed"
 	},
 	"animator:GuildGirl":
@@ -603,7 +603,7 @@
 	},
 	"animator:Konayuki":
 	{
-		"DESCRIPTION": "If you have at least NL 10 Strength, deal !D! NL damage, otherwise NL gain !M! Force. || Semi-Limited. NL When Drawn, if you NL have no Force, NL reduce this card's NL cost by 1 this turn.",
+		"DESCRIPTION": "Gain !B! Block. NL Gain !M! Force, then NL increase this number NL by !SV! this combat. || Limited. If you have NL 10 or more Force, NL deal 40 damage to NL a random enemy.",
 		"NAME": "Konayuki"
 	},
 	"animator:KrulTepes":
@@ -908,7 +908,7 @@
 	},
 	"animator:Shichika":
 	{
-		"DESCRIPTION": "Martial_Artist 3. NL Gain !M! Force. NL Add #yKyotouryuu[] NL to your hand. NL Exhaust. || On Synergy, NL gain 1 Agility NL and 2 Thorns.",
+		"DESCRIPTION": "Martial_Artist 3. NL Gain !M! Force. NL Add #yKyotouryuu[] NL to your hand. NL Exhaust. || On Synergy, NL gain 2 Thorns NL and 1 Agility.",
 		"NAME": "Shichika"
 	},
 	"animator:ShichikaKyotouryuu":
@@ -954,7 +954,7 @@
 	},
 	"animator:SilverFang":
 	{
-		"DESCRIPTION": "Martial_Artist. NL Deal !D! Damage. NL Lose no Agility NL next turn. || On Synergy, NL gain !M! Agility.",
+		"DESCRIPTION": "Martial_Artist. NL Deal !D! Damage. NL Lose no Agility NL next turn. || On Synergy, NL gain !M! Block.",
 		"NAME": "Silver Fang"
 	},
 	"animator:SirTouchMe":
@@ -995,7 +995,7 @@
 	},
 	"animator:Strike_AccelWorld":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL When Discarded, NL Deal !M! damage NL to a random enemy.",
+		"DESCRIPTION": "Deal !D! damage. NL When Discarded, NL Deal !M! damage to NL a random enemy.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Elsword":
@@ -1091,9 +1091,9 @@
 	},
 	"animator:Tatsumaki":
 	{
-		"DESCRIPTION": "Channel 1 Aether. NL Gain !M! Intellect. || Limited. If you have NL 3 or more unique NL Orbs, draw 2 cards NL and gain [E] [E].",
+		"DESCRIPTION": "Channel 1 Aether. NL Gain !M! Intellect. || Limited. If you had NL 3 or more unique NL Orbs, draw 2 cards NL and gain [E] [E].",
 		"NAME": "Tatsumaki",
-		"UPGRADE_DESCRIPTION": "Channel 1 Aether. NL Gain !M! Intellect. NL Lose no Intellect NL next turn. || Limited. If you have NL 3 or more unique NL Orbs, draw 2 cards NL and gain [E] [E]."
+		"UPGRADE_DESCRIPTION": "Channel 1 Aether. NL Gain !M! Intellect. NL Lose no Intellect NL next turn."
 	},
 	"animator:Tet":
 	{
@@ -1156,7 +1156,7 @@
 	},
 	"animator:Vanir":
 	{
-		"DESCRIPTION": "Shapeshifter. NL Deal !D! Damage. NL Decrease this card's NL damage by !M! this NL combat. || When Exhausted, NL choose a card in your draw pile and turn it into a new copy of this card.",
+		"DESCRIPTION": "Shapeshifter. NL Deal !D! Damage. NL Decrease this card's NL damage by !M! this NL combat. || When Exhausted, NL choose a card in your NL draw pile and turn it NL into a new copy of NL this card.",
 		"NAME": "Vanir"
 	},
 	"animator:Veldora":
@@ -1178,7 +1178,7 @@
 	},
 	"animator:Viivi":
 	{
-		"DESCRIPTION": "Deal !D! damage NL to a random NL Enemy !M! times. || When Discarded, NL obtain 1 NL Throwing-Knife.",
+		"DESCRIPTION": "Deal !D! damage NL to a random NL enemy !M! times. || When Discarded, NL obtain 1 NL Throwing-Knife.",
 		"NAME": "Viivi"
 	},
 	"animator:Witch":

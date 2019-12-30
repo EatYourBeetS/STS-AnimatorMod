@@ -19,7 +19,7 @@ public class SelfDamagePower extends CommonPower implements HealthBarRenderPower
 
         this.amount = amount;
         this.type = PowerType.DEBUFF;
-        this.priority = 105;
+        this.priority = 97;
 
         updateDescription();
     }

@@ -2,7 +2,9 @@ package eatyourbeets.powers;
 
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -18,6 +20,8 @@ import java.util.StringJoiner;
 public abstract class BasePower extends AbstractPower implements CloneablePowerInterface
 {
     protected static final Logger logger = LogManager.getLogger(BasePower.class.getName());
+    protected static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
+    protected boolean enabled = true;
 
     protected final PowerStrings powerStrings;
 
@@ -102,5 +106,18 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
     public void RemovePower()
     {
         GameActions.Bottom.RemovePower(owner, owner, this);
+    }
+
+    @Override
+    public void renderIcons(SpriteBatch sb, float x, float y, Color c)
+    {
+        if (enabled)
+        {
+            super.renderIcons(sb, x, y, c);
+        }
+        else
+        {
+            super.renderIcons(sb, x, y, disabledColor);
+        }
     }
 }

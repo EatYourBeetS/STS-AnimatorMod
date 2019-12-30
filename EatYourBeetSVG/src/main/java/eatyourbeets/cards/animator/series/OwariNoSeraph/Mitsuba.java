@@ -17,7 +17,7 @@ public class Mitsuba extends AnimatorCard
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
         Initialize(9, 6, 2);
-        SetUpgrade(3, 1, 0);
+        SetUpgrade(3, 2, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }

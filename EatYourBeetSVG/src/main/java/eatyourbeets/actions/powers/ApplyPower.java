@@ -165,13 +165,11 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     @Override
     protected void UpdateInternal()
     {
-        if (shouldCancelAction())
+        tickDuration();
+
+        if (isDone)
         {
             Complete(callbackResult);
-        }
-        else
-        {
-            tickDuration();
         }
     }
 

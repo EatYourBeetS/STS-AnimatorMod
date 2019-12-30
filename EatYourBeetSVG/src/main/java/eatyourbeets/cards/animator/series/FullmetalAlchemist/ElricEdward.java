@@ -1,18 +1,15 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.Earth;
-
-import java.util.List;
+import eatyourbeets.utilities.GameActions;
 
 public class ElricEdward extends AnimatorCard
 {
@@ -29,17 +26,6 @@ public class ElricEdward extends AnimatorCard
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.FullmetalAlchemist);
-    }
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips()
-    {
-        if (cardText.index == 1)
-        {
-            return super.getCustomTooltips();
-        }
-
-        return null;
     }
 
     @Override

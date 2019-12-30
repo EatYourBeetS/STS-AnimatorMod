@@ -68,12 +68,15 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
         if (p.orbs.size() > 0)
         {
             AbstractOrb orb = p.orbs.get(0);
-            AbstractOrb copy = orb.makeCopy();
+            if (!(orb instanceof EmptyOrbSlot))
+            {
+                AbstractOrb copy = orb.makeCopy();
 
-            copy.evokeAmount = orb.evokeAmount;
-            copy.passiveAmount = orb.passiveAmount;
+                copy.evokeAmount = orb.evokeAmount;
+                copy.passiveAmount = orb.passiveAmount;
 
-            GameActions.Bottom.ChannelOrb(copy, true);
+                GameActions.Bottom.ChannelOrb(copy, true);
+            }
         }
 
         GameActions.Bottom.GainBlock(block);

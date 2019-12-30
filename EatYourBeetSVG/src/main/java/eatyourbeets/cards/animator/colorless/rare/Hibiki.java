@@ -26,7 +26,8 @@ public class Hibiki extends AnimatorCard
     {
         for (int i = 0; i < this.magicNumber; i++)
         {
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.BLUNT_LIGHT)
+            .SetOptions(true, false);
         }
 
         GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseMagicNumber += secondaryValue);

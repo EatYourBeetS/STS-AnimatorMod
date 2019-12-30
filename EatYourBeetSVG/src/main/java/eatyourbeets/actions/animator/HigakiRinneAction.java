@@ -1,14 +1,13 @@
 package eatyourbeets.actions.animator;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.unique.BouncingFlaskAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.cards.colorless.Shiv;
 import com.megacrit.cardcrawl.cards.status.Slimed;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -19,14 +18,14 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.effects.combatOnly.ShuffleEnemiesEffect;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.MarkOfPoisonPower;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
@@ -55,11 +54,10 @@ public class HigakiRinneAction extends EYBAction
     protected void FirstUpdate()
     {
         roll = AbstractDungeon.cardRandomRng.random(188);
-        
-        AbstractPlayer p = AbstractDungeon.player;
+
         if (tryActivate(3))
         {
-            GameActions.Bottom.SelectFromPile(higakiRinne.name, 1, p.hand)
+            GameActions.Bottom.SelectFromPile(higakiRinne.name, 1, player.hand)
             .SetOptions(false, false)
             .SetMessage(CardRewardScreen.TEXT[1])
             .AddCallback(cards ->
@@ -73,14 +71,14 @@ public class HigakiRinneAction extends EYBAction
                         case ATTACK:
                             if (m != null)
                             {
-                                GameActions.Bottom.ApplyVulnerable(player, m, 1);
+                                GameActions.Bottom.ApplyVulnerable(this.player, m, 1);
                             }
                             break;
 
                         case SKILL:
                             if (m != null)
                             {
-                                GameActions.Bottom.ApplyWeak(player, m, 1);
+                                GameActions.Bottom.ApplyWeak(this.player, m, 1);
                             }
                             break;
 
@@ -91,14 +89,14 @@ public class HigakiRinneAction extends EYBAction
                         case STATUS:
                             if (m != null)
                             {
-                                GameActions.Bottom.ApplyBurning(player, m, 3);
+                                GameActions.Bottom.ApplyBurning(this.player, m, 3);
                             }
                             break;
 
                         case CURSE:
                             if (m != null)
                             {
-                                GameActions.Bottom.ApplyConstricted(player, m, 3);
+                                GameActions.Bottom.ApplyConstricted(this.player, m, 3);
                             }
                             break;
                     }
@@ -116,7 +114,7 @@ public class HigakiRinneAction extends EYBAction
         {
             for (int i = 0; i < 3; i++)
             {
-                GameActions.Bottom.Add(new DamageRandomEnemyAction(new DamageInfo(p, 3, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
+                GameActions.Bottom.Add(new DamageRandomEnemyAction(new DamageInfo(player, 3, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
             }
         }
         else if (tryActivate(6)) // 18
@@ -165,7 +163,7 @@ public class HigakiRinneAction extends EYBAction
             AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
-                GameActions.Bottom.ApplyVulnerable(p, m, 1);
+                GameActions.Bottom.ApplyVulnerable(player, m, 1);
             }
         }
         else if (tryActivate(8)) // 90
@@ -173,7 +171,7 @@ public class HigakiRinneAction extends EYBAction
             AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
-                GameActions.Bottom.ApplyWeak(p, m, 1);
+                GameActions.Bottom.ApplyWeak(player, m, 1);
             }
         }
         else if (tryActivate(8)) // 98
@@ -193,7 +191,7 @@ public class HigakiRinneAction extends EYBAction
             AbstractCard card = CardLibrary.getRandomColorSpecificCard(higakiRinne.color, AbstractDungeon.cardRandomRng);
             if (!card.tags.contains(AbstractCard.CardTags.HEALING))
             {
-                GameActions.Bottom.MakeCardInHand(card);
+                GameActions.Bottom.MakeCardInHand(card.makeCopy());
             }
         }
         else if (tryActivate(7)) // 118
@@ -202,7 +200,7 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(6)) // 124
         {
-            GameActions.Bottom.Talk(p, "???", 1.0F, 2.0F);
+            GameActions.Bottom.Talk(player, "???", 1.0F, 2.0F);
         }
         else if (tryActivate(2)) // 126
         {
@@ -218,21 +216,21 @@ public class HigakiRinneAction extends EYBAction
         {
             for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
             {
-                GameActions.Bottom.DealDamage(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.BLUNT_HEAVY);
+                GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.BLUNT_HEAVY);
             }
         }
         else if (tryActivate(6)) // 138
         {
             for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
             {
-                GameActions.Bottom.DealDamage(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HEAVY);
+                GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HEAVY);
             }
         }
         else if (tryActivate(6)) // 144
         {
             for (AbstractCreature m : GameUtilities.GetCurrentEnemies(true))
             {
-                GameActions.Bottom.DealDamage(p, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.POISON);
+                GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.POISON);
             }
         }
         else if (tryActivate(6)) // 150
@@ -255,7 +253,7 @@ public class HigakiRinneAction extends EYBAction
             AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
-                GameActions.Bottom.ApplyConstricted(p, m, 3);
+                GameActions.Bottom.ApplyConstricted(player, m, 3);
             }
         }
         else if (tryActivate(3)) // 166
@@ -263,7 +261,7 @@ public class HigakiRinneAction extends EYBAction
             AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
-                GameActions.Bottom.ApplyBurning(p, m, 3);
+                GameActions.Bottom.ApplyBurning(player, m, 3);
             }
         }
         else if (tryActivate(3)) // 169
@@ -279,7 +277,7 @@ public class HigakiRinneAction extends EYBAction
             AbstractMonster m = GameUtilities.GetRandomEnemy(true);
             if (m != null)
             {
-                GameActions.Bottom.ApplyPower(p, m, new MarkOfPoisonPower(m, p, 2), 2);
+                GameActions.Bottom.ApplyPower(player, m, new MarkOfPoisonPower(m, player, 2), 2);
             }
         }
         else if (tryActivate(3)) // 178
@@ -298,7 +296,7 @@ public class HigakiRinneAction extends EYBAction
             {
                 if (effect instanceof ShuffleEnemiesEffect)
                 {
-                    GameActions.Bottom.StackPower(new EnchantedArmorPower(p, 1));
+                    GameActions.Bottom.StackPower(new EnchantedArmorPower(player, 1));
                     Complete();
                     return;
                 }
@@ -308,7 +306,7 @@ public class HigakiRinneAction extends EYBAction
             {
                 if (effect instanceof ShuffleEnemiesEffect)
                 {
-                    GameActions.Bottom.StackPower(new EnchantedArmorPower(p, 1));
+                    GameActions.Bottom.StackPower(new EnchantedArmorPower(player, 1));
                     Complete();
                     return;
                 }

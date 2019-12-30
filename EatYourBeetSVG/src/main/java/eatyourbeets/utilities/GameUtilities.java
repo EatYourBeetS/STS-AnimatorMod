@@ -38,6 +38,7 @@ import java.util.Iterator;
 
 public class GameUtilities
 {
+    private static final OnPhaseChangedSubscriber handLayoutRefresher = new HandLayoutRefresher();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
     public static int GetActualAscensionLevel()
@@ -638,41 +639,6 @@ public class GameUtilities
         return item;
     }
 
-    public static int UseEnergyXCost(AbstractCard card)
-    {
-        int amount = card.energyOnUse = EnergyPanel.getCurrentEnergy();
-
-        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
-        {
-            amount += ChemicalX.BOOST;
-        }
-
-        if (!card.freeToPlayOnce && !card.ignoreEnergyOnUse)
-        {
-            EnergyPanel.useEnergy(card.energyOnUse);
-        }
-
-        RefreshHandLayout();
-
-        return amount;
-    }
-
-    public static void RefreshHandLayout()
-    {
-        PlayerStatistics.onPhaseChanged.SubscribeOnce(handLayoutRefresher);
-    }
-
-    private final static OnPhaseChangedSubscriber handLayoutRefresher = phase ->
-    {
-        if (phase == GameActionManager.Phase.WAITING_ON_USER)
-        {
-            CardGroup hand = AbstractDungeon.player.hand;
-            hand.refreshHandLayout();
-            hand.applyPowers();
-            hand.glowCheck();
-        }
-    };
-
     public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
     {
         AbstractPlayer player = AbstractDungeon.player;
@@ -699,6 +665,47 @@ public class GameUtilities
         else
         {
             return null;
+        }
+    }
+
+    public static int UseEnergyXCost(AbstractCard card)
+    {
+        int amount = card.energyOnUse = EnergyPanel.getCurrentEnergy();
+
+        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
+        {
+            amount += ChemicalX.BOOST;
+        }
+
+        if (!card.freeToPlayOnce && !card.ignoreEnergyOnUse)
+        {
+            EnergyPanel.useEnergy(card.energyOnUse);
+        }
+
+        RefreshHandLayout();
+
+        return amount;
+    }
+
+    public static void RefreshHandLayout()
+    {
+        PlayerStatistics.onPhaseChanged.Subscribe(handLayoutRefresher);
+    }
+
+    private static class HandLayoutRefresher implements OnPhaseChangedSubscriber
+    {
+        @Override
+        public void OnPhaseChanged(GameActionManager.Phase phase)
+        {
+            if (phase == GameActionManager.Phase.WAITING_ON_USER)
+            {
+                CardGroup hand = AbstractDungeon.player.hand;
+                hand.refreshHandLayout();
+                hand.applyPowers();
+                hand.glowCheck();
+
+                PlayerStatistics.onPhaseChanged.Unsubscribe(handLayoutRefresher);
+            }
         }
     }
 }

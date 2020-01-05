@@ -1,16 +1,14 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import eatyourbeets.cards.animator.ultrarare.HolyGrail;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 
 public class HolyGrailRelic extends AnimatorRelic
 {
     public static final String ID = CreateFullID(HolyGrailRelic.class.getSimpleName());
-    public static final int GOLD_AMOUNT = 100;
+    public static final int MAX_HP_ON_PICKUP = 8;
 
     public HolyGrailRelic()
     {
@@ -20,7 +18,7 @@ public class HolyGrailRelic extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(GOLD_AMOUNT);
+        return FormatDescription(MAX_HP_ON_PICKUP);
     }
 
     @Override
@@ -28,8 +26,7 @@ public class HolyGrailRelic extends AnimatorRelic
     {
         super.onEquip();
 
-        GameEffects.List.Add(new RainingGoldEffect(GOLD_AMOUNT));
-        AbstractDungeon.player.gainGold(GOLD_AMOUNT);
+        AbstractDungeon.player.increaseMaxHp(MAX_HP_ON_PICKUP, true);
     }
 
     @Override

@@ -172,7 +172,11 @@ public class Synergies
 
     public static boolean WouldSynergize(AnimatorCard card, AnimatorCard other)
     {
-        if (other != null && other.synergy != null && card.synergy != null)
+        if (preemptiveSynergies > 0)
+        {
+            return true;
+        }
+        else if (other != null && other.synergy != null && card.synergy != null)
         {
             return (card instanceof Spellcaster && other instanceof Spellcaster) ||
                     (card instanceof MartialArtist && other instanceof MartialArtist) ||

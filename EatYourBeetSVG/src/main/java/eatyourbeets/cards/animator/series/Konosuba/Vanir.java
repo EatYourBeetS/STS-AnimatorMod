@@ -21,8 +21,8 @@ public class Vanir extends AnimatorCard
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(11, 0, 3);
-        SetUpgrade(3, 0, 0);
+        Initialize(12, 0, 3);
+        SetUpgrade(1, 0, -1);
 
         SetSynergy(Synergies.Konosuba, true);
     }

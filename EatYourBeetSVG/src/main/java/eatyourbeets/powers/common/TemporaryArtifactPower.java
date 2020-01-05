@@ -12,7 +12,8 @@ import eatyourbeets.utilities.GameActions;
 
 public class TemporaryArtifactPower extends AbstractPower implements CloneablePowerInterface
 {
-    public static final String POWER_ID = "TemporaryArtifact";
+    public static final String FAKE_POWER_ID = "Thanks for hardcoding everything (temp. artifact)";
+    public static final String ARTIFACT_ID = ArtifactPower.POWER_ID;
     private static final PowerStrings powerStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
@@ -20,13 +21,21 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
     public TemporaryArtifactPower(AbstractCreature owner, int amount)
     {
         this.name = "Temporary " + NAME;
-        this.ID = POWER_ID;
+        this.ID = FAKE_POWER_ID;
         this.owner = owner;
         this.amount = amount;
         this.updateDescription();
         this.loadRegion("artifact");
         this.type = PowerType.BUFF;
         this.priority = 0;
+    }
+
+    @Override
+    public void onInitialApplication()
+    {
+        super.onInitialApplication();
+
+        this.ID = ARTIFACT_ID;
     }
 
     public void updateDescription()
@@ -46,7 +55,6 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
     {
         super.onSpecificTrigger();
 
-        this.ID = POWER_ID;
         GameActions.Top.ReducePower(this, 1);
     }
 
@@ -55,13 +63,13 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
     {
         super.onApplyPower(power, target, source);
 
-        if (power.type == PowerType.DEBUFF && owner == target)
+        if (ArtifactPower.POWER_ID.equals(power.ID))
         {
-            this.ID = ArtifactPower.POWER_ID;
-        }
-        else
-        {
-            this.ID = POWER_ID;
+            // There is no trigger for when the enemy is applying a power to you, which would have
+            // made this much easier and cleaner... the alternative (without patching) is to change this
+            // power's id when artifact would be applied, then changing it back with the next action
+            this.ID = FAKE_POWER_ID;
+            GameActions.Top.Callback(__ -> this.ID = ARTIFACT_ID);
         }
     }
 
@@ -89,8 +97,9 @@ public class TemporaryArtifactPower extends AbstractPower implements CloneablePo
 
     static
     {
-        powerStrings = CardCrawlGame.languagePack.getPowerStrings(ArtifactPower.POWER_ID);
+        powerStrings = CardCrawlGame.languagePack.getPowerStrings(ARTIFACT_ID);
         NAME = powerStrings.NAME;
         DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     }
 }
+

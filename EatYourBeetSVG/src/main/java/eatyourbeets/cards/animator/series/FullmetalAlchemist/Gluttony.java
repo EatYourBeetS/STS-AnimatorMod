@@ -33,7 +33,7 @@ public class Gluttony extends AnimatorCard
             int total = player.drawPile.size() + player.discardPile.size() + player.hand.size();
             if (total < secondaryValue)
             {
-                cantUseMessage = cardData.strings.EXTENDED_DESCRIPTION[0];
+                cantUseMessage = cardData.strings.EXTENDED_DESCRIPTION[2];
 
                 return false;
             }

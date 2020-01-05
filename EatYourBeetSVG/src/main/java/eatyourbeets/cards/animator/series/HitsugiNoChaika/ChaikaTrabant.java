@@ -16,6 +16,16 @@ import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 
+// TODO:
+//"EXTENDED_DESCRIPTION":
+//[
+//"The Ripper", "Next turn, deal NL !D! Piercing NL damage.",
+//"The Burner", "Deal !D! damage. NL Apply !M! Burning.",
+//"The Intruder", "Deal !D! damage. NL Apply !M! Poison NL to ALL enemies.",
+//"The Blinder", "Deal !D! damage. NL Apply !M! Weak.",
+//"The Slugger ", "Next turn, deal !D! NL damage and apply NL !M! Vulnerable."
+//],
+
 public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ID = Register(ChaikaTrabant.class, EYBCardBadge.Discard);
@@ -78,7 +88,6 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
             target = GameUtilities.GetRandomEnemy(true);
         }
 
-        AbstractPlayer p = AbstractDungeon.player;
         AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this.makeStatEquivalentCopy()));
         PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
 
@@ -88,11 +97,11 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         GameActions.Bottom.DealDamage(this, target, AbstractGameAction.AttackEffect.FIRE)
                 .SetPiercing(true, false);
 
-        WeightedList<AbstractPower> debuffs = GetRandomDebuffs(p, target);
+        WeightedList<AbstractPower> debuffs = GetRandomDebuffs(player, target);
         for (int i = 0; i < secondaryValue; i++)
         {
             AbstractPower debuff = debuffs.Retrieve(AbstractDungeon.cardRandomRng);
-            GameActions.Bottom.ApplyPower(p, target, debuff, debuff.amount);
+            GameActions.Bottom.ApplyPower(player, target, debuff, debuff.amount);
         }
     }
 }

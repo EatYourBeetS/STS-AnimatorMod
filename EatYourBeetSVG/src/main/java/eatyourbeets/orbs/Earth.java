@@ -12,12 +12,13 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
-import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
-import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
@@ -173,4 +174,17 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         evoked = false;
         PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
     }
+
+    @Override
+    public AbstractOrb makeCopy()
+    {
+        Earth copy = new Earth();
+        if (!evoked)
+        {
+            copy.turns = turns;
+        }
+
+        return copy;
+    }
+
 }

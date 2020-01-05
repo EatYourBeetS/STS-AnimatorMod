@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 {
@@ -43,8 +44,13 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (HasSynergy() && m != null)
+        if (HasSynergy())
         {
+            if (m == null)
+            {
+                m = GameUtilities.GetRandomEnemy(true);
+            }
+
             GameActions.Bottom.ApplyWeak(p, m, 1);
         }
 

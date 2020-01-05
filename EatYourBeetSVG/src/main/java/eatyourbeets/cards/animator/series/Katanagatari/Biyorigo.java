@@ -27,10 +27,6 @@ public class Biyorigo extends AnimatorCard
     {
         GameActions.Bottom.GainThorns(magicNumber);
         GameActions.Bottom.GainArtifact(secondaryValue);
-
-        if (!p.hasPower(BiyorigoPower.POWER_ID))
-        {
-            GameActions.Bottom.StackPower(new BiyorigoPower(p));
-        }
+        GameActions.Bottom.StackPower(new BiyorigoPower(p, 1));
     }
 }

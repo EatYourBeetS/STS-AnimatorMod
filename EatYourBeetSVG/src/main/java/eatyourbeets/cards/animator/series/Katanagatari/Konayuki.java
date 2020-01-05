@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -32,7 +33,7 @@ public class Konayuki extends AnimatorCard
         GameActions.Bottom.GainForce(magicNumber)
         .AddCallback(force ->
         {
-            if (force.amount >= 10)
+            if (force.amount >= 10 && EffectHistory.TryActivateLimited(cardID))
             {
                 GameEffects.Queue.ShowCardBriefly(this.makeStatEquivalentCopy());
                 GameActions.Bottom.DealDamageToRandomEnemy(40, damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_HEAVY)

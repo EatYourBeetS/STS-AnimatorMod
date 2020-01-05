@@ -6,14 +6,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.utilities.GameActions;
 
 public class ElricEdward extends AnimatorCard
 {
-    public static final String ID = Register(ElricEdward.class, EYBCardBadge.Special);
+    public static final String ID = Register(ElricEdward.class);
 
     public ElricEdward()
     {

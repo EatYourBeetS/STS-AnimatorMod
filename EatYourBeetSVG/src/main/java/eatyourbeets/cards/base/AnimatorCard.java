@@ -46,6 +46,8 @@ public abstract class AnimatorCard extends EYBCard
     {
         super(data, id, imagePath, cost, type, color, rarity, target);
 
+        assetUrl = imagePath;
+
         if (this instanceof AnimatorCard_UltraRare)
         {
             setBannerTexture(AnimatorResources_Images.BANNER_SPECIAL2_PNG, AnimatorResources_Images.BANNER_SPECIAL2_P_PNG);

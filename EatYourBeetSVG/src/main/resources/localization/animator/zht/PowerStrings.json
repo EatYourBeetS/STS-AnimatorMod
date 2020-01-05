@@ -17,7 +17,7 @@
 	},
 	"animator:BiyorigoPower":
 	{
-		"DESCRIPTIONS": ["每當你得到 #y敏捷 時，也得到 #b", " 點 #y武力 。"],
+		"DESCRIPTIONS": ["在你的回合結束時， 消耗剩餘的能量之 #b", " 來獲得 #b", " 點 #y武力"],
 		"NAME": "微刀・釵"
 	},
 	"animator:BorosPower":

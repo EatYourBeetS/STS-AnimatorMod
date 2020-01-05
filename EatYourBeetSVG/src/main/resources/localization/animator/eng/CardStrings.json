@@ -97,7 +97,7 @@
 	},
 	"animator:Biyorigo":
 	{
-		"DESCRIPTION": "Gain 1 Artifact. NL Gain !M! Thorns. || Whenever you end NL your turn with NL unspent Energy, NL double your Force.",
+		"DESCRIPTION": "Gain 1 Artifact. NL Gain !M! Thorns. || At the end of each NL turn, spend 1 of your NL remaining Energy to NL gain 2 Force",
 		"NAME": "Biyorigo"
 	},
 	"animator:BlackLotus":
@@ -440,7 +440,7 @@
 	},
 	"animator:Gluttony":
 	{
-		"DESCRIPTION": "Exhaust the top !M! NL cards of your draw NL pile to gain !M! Force NL and Heal !M! HP. Exhaust. || This card cannot NL be played while you NL have less than !SV! NL total cards in play.",
+		"DESCRIPTION": "Exhaust the top !M! NL cards of your draw NL pile to gain !M! Force NL and Heal !M! HP. Exhaust. || Unplayable while NL you have less than !SV! NL total cards in play.",
 		"EXTENDED_DESCRIPTION": ["Not enough cards in play."],
 		"NAME": "Gluttony"
 	},
@@ -471,7 +471,7 @@
 	},
 	"animator:Greed":
 	{
-		"DESCRIPTION": "Gain !M! Plated_Armor. NL Gain !M! Metallicize. NL Gain !M! Malleable. || Limited. For every NL !SV! #yGold you have, NL gain [E] next turn.",
+		"DESCRIPTION": "Gain !M! Plated_Armor. NL Gain !M! Metallicize. NL Gain !M! Malleable. || Limited. NL For every 150 #yGold[] NL you have, gain [E] NL next turn.",
 		"NAME": "Greed"
 	},
 	"animator:GuildGirl":
@@ -923,8 +923,9 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "At the start of each turn, add 1 of !M! random #yAttacks[] to your hand, gain Force equal to its cost. || Limited. NL Choose a card NL in your hand NL and Upgrade it NL permanently.",
-		"NAME": "Shikizaki Kiki"
+		"DESCRIPTION": "Ethereal. Fetch an NL #yAttack[] from your NL draw or discard pile. NL Double its damage NL until end of combat. || When Drawn, NL if you have !SV! or NL more Force and NL Agility, gain [E]",
+		"NAME": "Shikizaki Kiki",
+		"UPGRADE_DESCRIPTION": "Fetch an #yAttack[] NL from your draw NL or discard pile. NL Double its damage NL until end of combat."
 	},
 	"animator:Shimakaze":
 	{

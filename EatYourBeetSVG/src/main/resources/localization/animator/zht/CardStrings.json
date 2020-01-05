@@ -333,7 +333,7 @@
 	},
 	"animator:ElricEdward":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害。 NL 循環 1 張牌。 || 每 循環 1 張牌， NL 生成 該牌對應種類的 NL 1 個額外充能球 。",
+		"DESCRIPTION": "造成 !D! 點傷害。 NL 循環 1 張牌。 每 循環 1 張牌， NL 生成 該牌對應種類的 NL 1 個額外充能球 。",
 		"EXTENDED_DESCRIPTION": ["額外效果", "攻擊： NL 生成 1 個 閃電 充能球 NL 技能: NL 生成  1 個 冰霜 充能球 。 NL 能力: NL 生成  1 個 大地 充能球 。"],
 		"NAME": "愛德華·艾爾利克"
 	},
@@ -396,7 +396,7 @@
 	},
 	"animator:FeridBathory":
 	{
-		"DESCRIPTION": "每 消耗 1 張牌， NL 隨機一名敵人 NL 失去 !M! 生命， NL 獲得 !M! 臨時生命 。 || 曇現 。 NL 回合開始時， NL 如果消耗堆中 NL 有至少 20 張牌， NL 獲得 !SV! 點 力量 。",
+		"DESCRIPTION": "每 消耗 1 張牌， NL 隨機一名敵人 NL 失去 !M! 生命， NL 獲得 !M! 臨時生命 。 || 曇現 。 NL 回合開始時， NL 如果消耗堆中 NL 有至少 20 張牌， NL 獲得 !SV! 點 武力 。",
 		"NAME": "費里德·巴特利"
 	},
 	"animator:Fredrika":
@@ -413,7 +413,7 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "造成 !D! 傷害。 NL 給予 !M! 層 點燃 。 NL 回合結束時受到 NL !SV! 點傷害。 || 有限 。 NL 同調 ： 取出 1 張 NL 3 耗能以上的牌 NL 並保留它。",
+		"DESCRIPTION": "造成 !D! 傷害。 NL 回合結束時受到 NL !SV! 點傷害。 || 同調 ： 給予 !M! 層 點燃 。",
 		"NAME": "傑諾斯"
 	},
 	"animator:Geryuganshoop":
@@ -471,7 +471,7 @@
 	},
 	"animator:Greed":
 	{
-		"DESCRIPTION": "獲得 !M! 層 多層護甲 。 NL 獲得 !M! 層 金屬化 。 NL 獲得 !M! 層 柔韌 。 || 當你把這張牌加入牌組時， NL 獲得 !SV! 金幣 。 NL 每擁有 100 金幣 ， NL 減少這張牌 1 點消耗 。",
+		"DESCRIPTION": "獲得 !M! 層 多層護甲 。 NL 獲得 !M! 層 金屬化 。 NL 獲得 !M! 層 柔韌 。 || 曇現 。 每擁有 150 金幣 ， 下一回合 獲得 [E] 。",
 		"NAME": "貪婪"
 	},
 	"animator:GuildGirl":
@@ -603,7 +603,7 @@
 	},
 	"animator:Konayuki":
 	{
-		"DESCRIPTION": "若至少擁有 NL 10 點 力量 ， NL 造成 !D! 點傷害， 否則獲得 !M! 點 武力 。 || 有限 。 NL 被抽到： NL 如果你沒有 武力 ，NL 本回合減少一點耗能。",
+		"DESCRIPTION": "獲得 !B! 點 格擋 。 獲得 !M! 點 武力， 並且將此數量增加 !SV! 。 || 曇現 。 若至少擁有 NL 10 點 力量， 對一名隨機敵人造成 40 點傷害。",
 		"NAME": "凍空粉雪"
 	},
 	"animator:KrulTepes":
@@ -922,8 +922,9 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "每回合開始時，從 !M! 張隨機 #y攻擊牌[] 中選擇一張加入手牌，獲得其能耗相同的 武力 。 || 曇現 。 NL 選擇一張手牌並將其永久 升級 。",
-		"NAME": "四季崎 記紀"
+		"DESCRIPTION": "Ethereal. Fetch an NL #yAttack[] from your NL draw or discard pile. NL Double its damage NL until end of combat. || When Drawn, NL if you have !SV! or NL more Force and NL Agility, gain [E]",
+		"NAME": "四季崎 記紀",
+		"UPGRADE_DESCRIPTION": "Fetch an #yAttack[] NL from your draw NL or discard pile. NL Double its damage NL until end of combat."
 	},
 	"animator:Shimakaze":
 	{
@@ -953,7 +954,7 @@
 	},
 	"animator:SilverFang":
 	{
-		"DESCRIPTION": "武師 。 NL 造成 !D! 點傷害。 NL 在下一回合中不會失去 機敏 。 || 同調 ： NL 獲得 1 點 機敏 。",
+		"DESCRIPTION": "武師 。 NL 造成 !D! 點傷害。 NL 在下一回合中不會失去 機敏 。 || 同調 ： NL 獲得 !M! 點 格擋 。",
 		"NAME": "銀色獠牙"
 	},
 	"animator:SirTouchMe":

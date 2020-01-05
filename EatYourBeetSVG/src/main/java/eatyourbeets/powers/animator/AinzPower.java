@@ -152,6 +152,11 @@ public class AinzPower extends AnimatorPower
             builder.SetNumbers(number, number, number, number);
             builder.SetOnUse(onUseAction);
 
+            if (this == DamageAll)
+            {
+                builder.SetMultiDamage(true);
+            }
+
             return builder;
         }
 

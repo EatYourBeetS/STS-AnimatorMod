@@ -29,7 +29,7 @@ import eatyourbeets.orbs.Aether;
 import eatyourbeets.orbs.Earth;
 import eatyourbeets.orbs.Fire;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.common.TemporaryBiasPower;
 import eatyourbeets.powers.unnamed.ResonancePower;
 
 import java.util.ArrayList;
@@ -670,16 +670,21 @@ public class GameUtilities
 
     public static int UseEnergyXCost(AbstractCard card)
     {
-        int amount = card.energyOnUse = EnergyPanel.getCurrentEnergy();
+        int amount = EnergyPanel.getCurrentEnergy();
+
+        if (card.freeToPlayOnce || card.ignoreEnergyOnUse)
+        {
+            amount = card.energyOnUse;
+        }
+        else
+        {
+            card.energyOnUse = amount;
+            EnergyPanel.useEnergy(card.energyOnUse);
+        }
 
         if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
         {
             amount += ChemicalX.BOOST;
-        }
-
-        if (!card.freeToPlayOnce && !card.ignoreEnergyOnUse)
-        {
-            EnergyPanel.useEnergy(card.energyOnUse);
         }
 
         RefreshHandLayout();

@@ -17,7 +17,7 @@
 	},
 	"animator:BiyorigoPower":
 	{
-		"DESCRIPTIONS": ["Whenever you end your turn with unspent energy, double your #yForce."],
+		"DESCRIPTIONS": ["At the end of each turn, spend #b", " of your remaining energy to gain #b", " #yForce."],
 		"NAME": "Bito Kanzashi"
 	},
 	"animator:BorosPower":

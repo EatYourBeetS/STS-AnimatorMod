@@ -126,8 +126,8 @@ public class SoraAction extends EYBAction
 
         UpgradeAll(2, 3, 0),
         Motivate(2, 10, 1),
-        DrawCards(2, 13, 2),
-        CycleCards(2, 14, 3);
+        CycleCards(2, 13, 3),
+        DrawCards(2, 14, 2);
 
         private static final String[] CARD_TEXT = AnimatorResources_Strings.SpecialEffects.TEXT;
 

@@ -117,7 +117,7 @@
 	},
 	"animator:Caster":
 	{
-		"DESCRIPTION": "法师 2 。 NL 本回合从敌人身上 NL 窃取 !M! 点 力量 。 NL 生成 1 个 NL 黑暗 充能球。 || 被 消耗  : NL 激发 所有的 NL 暗黑 充能球。",
+		"DESCRIPTION": "法师 2 。 NL 本回合从敌人身上 NL 窃取 !M! 点 力量 。 NL 生成 1 个 NL 黑暗 充能球。 || 被 消耗 : NL 激发 所有的 NL 暗黑 充能球。",
 		"NAME": "Caster"
 	},
 	"animator:ChaikaBohdan":
@@ -333,7 +333,7 @@
 	},
 	"animator:ElricEdward":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害。 NL 循环 1 张牌。 || 每 循环 1 张牌， NL 生成 该牌对应种类的 NL 1 个额外充能球 。",
+		"DESCRIPTION": "造成 !D! 点伤害。 NL 循环 1 张牌。 每 循环 1 张牌， NL 生成 该牌对应种类的 NL 1 个额外充能球 。",
 		"EXTENDED_DESCRIPTION": ["额外效果", "攻击： NL 生成 1 个 闪电 充能球 NL 技能: NL 生成  1 个 冰霜 充能球 。 NL 能力: NL 生成  1 个 大地 充能球 。"],
 		"NAME": "爱德华·艾尔利克"
 	},
@@ -396,7 +396,7 @@
 	},
 	"animator:FeridBathory":
 	{
-		"DESCRIPTION": "每 消耗 1 张牌， NL 随机一名敌人 NL 失去 !M! 生命， NL 获得 !M! 临时生命 。 || 昙现 。 NL 回合开始时， NL 如果消耗堆中 NL 有至少 20 张牌， NL 获得 !SV! 点 力量 。",
+		"DESCRIPTION": "每 消耗 1 张牌， NL 随机一名敌人 NL 失去 !M! 生命， NL 获得 !M! 临时生命 。 || 昙现 。 NL 回合开始时， NL 如果消耗堆中 NL 有至少 20 张牌， NL 获得 !SV! 点 武力 。",
 		"NAME": "费里德·巴特利"
 	},
 	"animator:Fredrika":
@@ -413,7 +413,7 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "造成 !D! 伤害。 NL 给予 !M! 层 点燃 。 NL 回合结束时受到 NL !SV! 点伤害。 || 有限 。 NL 同调 ： 取出 1 张 NL 3 耗能以上的牌 NL 并保留它。",
+		"DESCRIPTION": "造成 !D! 伤害。 NL 回合结束时受到 NL !SV! 点伤害。 || 同调 ： 给予 !M! 层 点燃 。",
 		"NAME": "杰诺斯"
 	},
 	"animator:Geryuganshoop":
@@ -471,7 +471,7 @@
 	},
 	"animator:Greed":
 	{
-		"DESCRIPTION": "获得 !M! 层 多层护甲 。 NL 获得 !M! 层 金属化 。 NL 获得 !M! 层 柔韧 。 || 当你把这张牌加入牌组时， NL 获得 !SV! 金币 。 NL 每拥有 100 金币 ， NL 减少这张牌 1 点消耗 。",
+		"DESCRIPTION": "获得 !M! 层 多层护甲 。 NL 获得 !M! 层 金属化 。 NL 获得 !M! 层 柔韧 。 || 昙现 。 每拥有 150 金币 ，下一回合 获得 [E] 。",
 		"NAME": "贪婪"
 	},
 	"animator:GuildGirl":
@@ -603,7 +603,7 @@
 	},
 	"animator:Konayuki":
 	{
-		"DESCRIPTION": "若至少拥有 NL 10 点 力量 ， NL 造成 !D! 点伤害， 否则获得 !M! 点 武力 。 || 有限 。 NL 被抽到： NL 如果你没有 武力 ，NL 本回合减少一点耗能。",
+		"DESCRIPTION": "获得 !B! 点 格挡 。 获得 !M! 点 武力， 并且将此数量增加 !SV! 。 || 昙现 。 若至少拥有 NL 10 点 力量， 对一名随机敌人造成 40 点伤害。",
 		"NAME": "冻空粉雪"
 	},
 	"animator:KrulTepes":
@@ -922,8 +922,9 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "每回合开始时，从 !M! 张随机 #y攻击牌[] 中选择一张加入手牌，获得其能耗相同的 武力 。 || 昙现 。 NL 选择一张手牌并将其永久 升级 。",
-		"NAME": "四季崎 记纪"
+		"DESCRIPTION": "Ethereal. Fetch an NL #yAttack[] from your NL draw or discard pile. NL Double its damage NL until end of combat. || When Drawn, NL if you have !SV! or NL more Force and NL Agility, gain [E]",
+		"NAME": "四季崎 记纪",
+		"UPGRADE_DESCRIPTION": "Fetch an #yAttack[] NL from your draw NL or discard pile. NL Double its damage NL until end of combat."
 	},
 	"animator:Shimakaze":
 	{
@@ -953,7 +954,7 @@
 	},
 	"animator:SilverFang":
 	{
-		"DESCRIPTION": "武师 。 NL 造成 !D! 点伤害。 NL 在下一回合中不会失去 机敏 。 || 同调 ： NL 获得 1 点 机敏 。",
+		"DESCRIPTION": "武师 。 NL 造成 !D! 点伤害。 NL 在下一回合中不会失去 机敏 。 || 同调 ： NL 获得 !M! 点 格挡 。",
 		"NAME": "银色獠牙"
 	},
 	"animator:SirTouchMe":

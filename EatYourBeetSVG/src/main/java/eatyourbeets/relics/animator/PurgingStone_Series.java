@@ -1,51 +1,78 @@
 package eatyourbeets.relics.animator;
 
 import basemod.abstracts.CustomSavable;
+import com.evacipated.cardcrawl.mod.stslib.patches.HitboxRightClick;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import eatyourbeets.interfaces.markers.Hidden;
-import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.actions.pileSelection.SelectFromPile;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.characters.AnimatorMetrics;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.utilities.RandomizedList;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringJoiner;
 
-public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<String>, Hidden
+public class PurgingStone_Series extends AbstractPurgingStone implements CustomSavable<String>
 {
+    public static final int DEFAULT_SERIES_SIZE = 8;
     public static final String ID = CreateFullID(PurgingStone_Series.class.getSimpleName());
 
-    private static Field isBoss = null;
-    private final ArrayList<Synergy> bannedSynergies;
+    private final ArrayList<Synergy> bannedSynergies = new ArrayList<>();
 
     public PurgingStone_Series()
     {
         super(ID, CreateFullID("PurgingStone"), RelicTier.STARTER, LandingSound.SOLID);
+    }
 
-        bannedSynergies = new ArrayList<>();
+    @Override
+    public String getUpdatedDescription()
+    {
+        return FormatDescription(DEFAULT_SERIES_SIZE);
+    }
 
-        if (isBoss == null)
+    @Override
+    public void update()
+    {
+        super.update();
+
+        if (HitboxRightClick.rightClicked.get(this.hb)
+            && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID
+            && !GameUtilities.InBattle() && bannedSynergies.size() > 0)
         {
-            try
+            CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+
+            for (Synergy synergy : mainSeries.keySet())//  bannedSynergies)
             {
-                isBoss = RewardItem.class.getDeclaredField("isBoss");
-                isBoss.setAccessible(true);
+                AbstractCard card = mainSeries.get(synergy);
+                if (card != null)
+                {
+                    group.addToBottom(card.makeCopy());
+                }
             }
-            catch (NoSuchFieldException e)
+
+            if (group.size() == 0)
             {
-                e.printStackTrace();
-                isBoss = null;
+                return;
             }
+
+            AbstractDungeon.dynamicBanner.hide();
+            GameEffects.TopLevelList.Callback(new SelectFromPile(name, 99, group)
+                .SetOptions(false, true)
+                .SetMessage(DESCRIPTIONS[2])
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard card : cards)
+                    {
+                        RemoveSynergy(((AnimatorCard)card).synergy);
+                    }
+                    UpdateBannedTip();
+                }))
+            .UpdateIfScreenIsUp(false);
         }
     }
 
@@ -62,35 +89,40 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
     private void UpdateBannedTip()
     {
         String message;
-        if (bannedSynergies != null && bannedSynergies.size() > 0)
+        if (bannedSynergies.size() > 0)
         {
             StringJoiner sj = new StringJoiner(" NL ");
-            sj.add(DESCRIPTIONS[0]);
+            sj.add(getUpdatedDescription());
             sj.add("");
             sj.add(DESCRIPTIONS[1]);
 
-            for (Synergy bannedSynergy : bannedSynergies)
+            for (Synergy synergy : GetAvailableSeries())
             {
-                StringJoiner java = new StringJoiner(" ");
-                java.add("- ");
-                for (String s : bannedSynergy.Name.split(" "))
+                StringJoiner javaIsAGreatProgrammingLanguage = new StringJoiner(" ");
+
+                javaIsAGreatProgrammingLanguage.add("- ");
+
+                for (String s : synergy.Name.split(" "))
                 {
-                    java.add("#r" + s);
+                    javaIsAGreatProgrammingLanguage.add("#y" + s);
                 }
-                sj.add(java.toString());
+
+                sj.add(javaIsAGreatProgrammingLanguage.toString());
             }
 
             message = sj.toString();
         }
         else
         {
-            message = DESCRIPTIONS[0];
+            message = getUpdatedDescription();
         }
 
         if (this.tips.size() > 0)
         {
             this.tips.get(0).body = message;
         }
+
+        counter = (mainSeries.size() - bannedSynergies.size());
     }
 
     @Override
@@ -98,52 +130,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
     {
         super.onEquip();
 
-        counter = 0;
         UpdateBannedTip();
-
-        AddUses(4);
-    }
-
-    @Override
-    public void onVictory()
-    {
-        super.onVictory();
-
-        AbstractRoom room = AbstractDungeon.getCurrRoom();
-        if (room.rewardAllowed && room instanceof MonsterRoomBoss)
-        {
-            AddUses(1);
-        }
-    }
-
-    private void AddUses(int uses)
-    {
-        int max = 5;
-        int banned = bannedSynergies.size();
-
-        counter += uses;
-        if (counter + banned > max)
-        {
-            counter = max - banned;
-        }
-    }
-
-    public static PurgingStone_Series GetInstance()
-    {
-        if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null)
-        {
-            return null;
-        }
-
-        for (AbstractRelic r : AbstractDungeon.player.relics)
-        {
-            if (r instanceof PurgingStone_Series)
-            {
-                return (PurgingStone_Series)r;
-            }
-        }
-
-        return null;
     }
 
     public boolean IsBanned(Synergy synergy)
@@ -151,6 +138,7 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
         return bannedSynergies.contains(synergy);
     }
 
+    @Override
     public boolean IsBanned(AbstractCard card)
     {
         AnimatorCard animatorCard = JavaUtilities.SafeCast(card, AnimatorCard.class);
@@ -160,63 +148,6 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
         }
 
         return false;
-    }
-
-    public boolean CanActivate(RewardItem rewardItem)
-    {
-        if (!GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD)
-        {
-            try
-            {
-                if (!(boolean)isBoss.get(rewardItem))
-                {
-                    return counter > 0;
-                }
-            }
-            catch (IllegalAccessException | ClassCastException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        return false;
-    }
-
-    public boolean CanBan(AbstractCard card)
-    {
-        if (counter > 0)
-        {
-            AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
-            if (c != null)
-            {
-                Synergy s = c.synergy;
-                if (s != null && !s.Equals(Synergies.Kancolle) && !s.Equals(Synergies.HatarakuMaouSama))
-                {
-                    return !bannedSynergies.contains(s);
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public void Ban(AbstractCard card)
-    {
-        AnimatorCard animatorCard = JavaUtilities.SafeCast(card, AnimatorCard.class);
-        if (animatorCard != null)
-        {
-            Synergy synergy = animatorCard.synergy;
-            if (synergy != null)
-            {
-                RemoveSynergy(synergy);
-                bannedSynergies.add(synergy);
-
-                counter -= 1;
-                this.flash();
-            }
-        }
-
-        UpdateBannedTip();
     }
 
     @Override
@@ -253,8 +184,6 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
                 bannedSynergies.add(Synergies.GetByID(id));
             }
         }
-
-        AddUses(0);
     }
 
     private void RemoveSynergy(Synergy synergy)
@@ -275,18 +204,18 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
             switch (c.rarity)
             {
                 case COMMON:
-                    pool    = AbstractDungeon.srcCommonCardPool;
-                    srcPool = AbstractDungeon.commonCardPool;
+                    srcPool = AbstractDungeon.srcCommonCardPool;
+                    pool    = AbstractDungeon.commonCardPool;
                     break;
 
                 case UNCOMMON:
-                    pool    = AbstractDungeon.srcUncommonCardPool;
-                    srcPool = AbstractDungeon.uncommonCardPool;
+                    srcPool = AbstractDungeon.srcUncommonCardPool;
+                    pool    = AbstractDungeon.uncommonCardPool;
                     break;
 
                 case RARE:
-                    pool    = AbstractDungeon.srcRareCardPool;
-                    srcPool = AbstractDungeon.rareCardPool;
+                    srcPool = AbstractDungeon.srcRareCardPool;
+                    pool    = AbstractDungeon.rareCardPool;
                     break;
 
                 case BASIC:
@@ -314,13 +243,30 @@ public class PurgingStone_Series extends AnimatorRelic implements CustomSavable<
         logger.info("Banned " + synergy.Name + " " + banCount + ", " + srcBanCount);
     }
 
-    public void UpdateBannedCards()
+    @Override
+    public void UpdateBannedCardsInternal()
     {
+        if (bannedSynergies.size() == 0)
+        {
+            flash();
+
+            RandomizedList<Synergy> synergies = new RandomizedList<>(mainSeries.keySet());
+            while (synergies.Count() > DEFAULT_SERIES_SIZE)
+            {
+                Synergy synergy = synergies.Retrieve(AbstractDungeon.miscRng);
+                if (synergy.ID != AnimatorMetrics.lastLoadout)
+                {
+                    bannedSynergies.add(synergy);
+                }
+            }
+        }
+
         logger.info("Banned " + bannedSynergies.size() + " Synergies:");
         for (Synergy s : bannedSynergies)
         {
             RemoveSynergy(s);
         }
+
         UpdateBannedTip();
     }
 }

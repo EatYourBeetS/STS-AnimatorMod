@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.blights.AnimatorBlight;
-import eatyourbeets.resources.AnimatorResources_Strings;
+import eatyourbeets.resources.animator.AnimatorResources_Strings;
 import eatyourbeets.utilities.GameActions;
 
 public class UltimateCrystal extends AnimatorBlight

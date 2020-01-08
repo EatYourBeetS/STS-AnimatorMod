@@ -2,8 +2,8 @@ package eatyourbeets.cards.base;
 
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import eatyourbeets.resources.AnimatorResources;
-import eatyourbeets.resources.AnimatorResources_Images;
+import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.animator.AnimatorResources_Images;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;

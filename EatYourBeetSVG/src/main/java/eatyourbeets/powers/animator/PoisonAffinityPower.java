@@ -1,10 +1,12 @@
 package eatyourbeets.powers.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
+import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -28,14 +30,17 @@ public class PoisonAffinityPower extends AnimatorPower
         {
             if (power.ID.equals(PoisonPower.POWER_ID))
             {
-                ApplyPowerAction applyPowerAction = JavaUtilities.SafeCast(AbstractDungeon.actionManager.currentAction, ApplyPowerAction.class);
-
-                if (applyPowerAction != null)
-                {
-                    applyPowerAction.amount += this.amount;
-                }
-
                 power.amount += this.amount;
+
+                AbstractGameAction action = AbstractDungeon.actionManager.currentAction;
+                if (action instanceof ApplyPower || action instanceof ApplyPowerAction)
+                {
+                    action.amount += this.amount;
+                }
+                else
+                {
+                    JavaUtilities.GetLogger(this).warn("Unknown action type: " + action.getClass().getName());
+                }
             }
         }
 

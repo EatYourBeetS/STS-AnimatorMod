@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import eatyourbeets.ui.VoidEnergyOrb;
+import eatyourbeets.ui.unnamed.VoidEnergyOrb;
 
 public class EnergyPanelPatches
 {

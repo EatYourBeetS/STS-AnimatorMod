@@ -8,10 +8,13 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import java.util.ArrayList;
+
 public abstract class EYBAction extends AbstractGameAction
 {
-    protected final AbstractPlayer player;
+    protected final ArrayList<Object> tags = new ArrayList<>(1);
     protected AbstractCard card;
+    protected final AbstractPlayer player;
     protected String message;
     protected String name;
     protected boolean isRealtime;
@@ -27,6 +30,18 @@ public abstract class EYBAction extends AbstractGameAction
         this.player = AbstractDungeon.player;
         this.duration = this.startDuration = duration;
         this.actionType = type;
+    }
+
+    public boolean HasTag(Object tag)
+    {
+        return this.tags.contains(tag);
+    }
+
+    public EYBAction AddTag(Object tag)
+    {
+        this.tags.add(tag);
+
+        return this;
     }
 
     public EYBAction SetRealtime(boolean isRealtime)

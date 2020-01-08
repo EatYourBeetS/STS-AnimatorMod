@@ -2,7 +2,7 @@ package eatyourbeets.characters;
 
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.resources.AnimatorResources_Strings;
+import eatyourbeets.resources.animator.AnimatorResources_Strings;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
@@ -110,7 +110,7 @@ public class AnimatorCharacterSelect
         }
     }
 
-    private static void AddLoadout(AnimatorCustomLoadout loadout, int level, String description)
+    private static void AddLoadout(AnimatorCustomLoadout loadout, int level)
     {
         StringJoiner sj = new StringJoiner(", ");
         for (String s : loadout.GetStartingDeck())
@@ -121,7 +121,6 @@ public class AnimatorCharacterSelect
             }
         }
         loadout.description = sj.toString();
-        //loadout.description = description;
         loadout.unlockLevel = level;
         customLoadouts.add(loadout);
     }
@@ -142,27 +141,21 @@ public class AnimatorCharacterSelect
 
     static
     {
-//        String recommended = uiText[5];
-//        String balanced = uiText[6];
-//        String unbalanced = uiText[7];
-//        String veryUnbalanced = uiText[8];
-//        String special = uiText[9];
-
-        AddLoadout(new Konosuba()           , 0, "");
-        AddLoadout(new Gate()               , 1, "");
-        AddLoadout(new Elsword()            , 1, "");
-        AddLoadout(new NoGameNoLife()       , 1, "");
-        AddLoadout(new OwariNoSeraph()      , 2, "");
-        AddLoadout(new GoblinSlayer()       , 2, "");
-        AddLoadout(new Katanagatari()       , 2, "");
-        AddLoadout(new FullmetalAlchemist() , 2, "");
-        AddLoadout(new Fate()               , 3, "");
-        AddLoadout(new Overlord()           , 3, "");
-        AddLoadout(new Chaika()             , 3, "");
-        AddLoadout(new TenSura()            , 3, "");
-        AddLoadout(new OnePunchMan()        , 4, "");
-        AddLoadout(new Kancolle()           , 4, "");
-        AddLoadout(new AccelWorld()         , 4, "");
-        AddLoadout(new Random()             , 0, "");
+        AddLoadout(new Konosuba()           , 0);
+        AddLoadout(new Gate()               , 1);
+        AddLoadout(new Elsword()            , 1);
+        AddLoadout(new NoGameNoLife()       , 1);
+        AddLoadout(new OwariNoSeraph()      , 2);
+        AddLoadout(new GoblinSlayer()       , 2);
+        AddLoadout(new Katanagatari()       , 2);
+        AddLoadout(new FullmetalAlchemist() , 2);
+        AddLoadout(new Fate()               , 3);
+        AddLoadout(new Overlord()           , 3);
+        AddLoadout(new Chaika()             , 3);
+        AddLoadout(new TenSura()            , 3);
+        AddLoadout(new OnePunchMan()        , 4);
+        AddLoadout(new Kancolle()           , 4);
+        AddLoadout(new AccelWorld()         , 4);
+        AddLoadout(new Random()             , 0);
     }
 }

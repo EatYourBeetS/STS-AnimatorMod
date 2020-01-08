@@ -2,7 +2,7 @@ package eatyourbeets.orbs;
 
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.resources.AnimatorResources;
+import eatyourbeets.resources.animator.AnimatorResources;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.resources.EYBResources_Strings;
+import eatyourbeets.resources.common.EYBResources_Strings;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBCardBadge

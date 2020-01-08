@@ -10,9 +10,14 @@ public abstract class EYBEffectWithCallback<T> extends EYBEffect
 {
     protected ArrayList<GenericCallback<T>> callbacks = new ArrayList<>();
 
-    public EYBEffectWithCallback(int amount)
+    public EYBEffectWithCallback()
     {
         super(0);
+    }
+
+    public EYBEffectWithCallback(int amount)
+    {
+        super(amount);
     }
 
     public EYBEffectWithCallback(int amount, float duration)

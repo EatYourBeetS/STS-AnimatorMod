@@ -917,7 +917,7 @@
 	},
 	"animator:Shigure":
 	{
-		"DESCRIPTION": "造成 !M! 層 中毒 。 NL 造成 !D! 點 NL 穿刺 傷害。 || 當 同調 或 被 消耗 時： NL 獲得 !SV! 點 支援傷害 。",
+		"DESCRIPTION": "造成 !D! 點 NL 穿刺 傷害。 造成 !M! 層 中毒 。 || 曇現 。 被 消耗： 獲得 !SV! 點 支援傷害 。",
 		"NAME": "時雨"
 	},
 	"animator:ShikizakiKiki":

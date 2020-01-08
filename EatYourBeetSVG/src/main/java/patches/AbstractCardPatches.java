@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.UnnamedResources_Images;
+import eatyourbeets.resources.unnamed.UnnamedResources_Images;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 

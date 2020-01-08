@@ -1,6 +1,6 @@
 package eatyourbeets.interfaces.csharp;
 
-public interface Action
+public interface ActionT0
 {
     void Invoke();
 }

@@ -1,7 +1,7 @@
 package eatyourbeets.powers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.resources.AnimatorResources;
+import eatyourbeets.resources.animator.AnimatorResources;
 
 public abstract class AnimatorPower extends BasePower
 {

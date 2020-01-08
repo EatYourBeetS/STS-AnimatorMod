@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 {
@@ -22,10 +23,11 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
     protected boolean cancelIfFull;
     protected boolean randomSpot = true;
     protected boolean toBottom;
+    protected AbstractCard actualCard;
 
     public MakeTempCard(AbstractCard card, CardGroup group)
     {
-        super(ActionType.CARD_MANIPULATION);
+        super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_MED);
 
         this.card = card;
         this.cardGroup = group;
@@ -60,8 +62,6 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
     @Override
     protected void FirstUpdate()
     {
-        AbstractCard actualCard;
-
         if (makeCopy)
         {
             actualCard = card.makeStatEquivalentCopy();
@@ -80,7 +80,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         {
             case DRAW_PILE:
             {
-                GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
+                 GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
                 (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
                 (float) Settings.HEIGHT / 2.0F, randomSpot, true, toBottom));
 
@@ -127,16 +127,29 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
             case MASTER_DECK:
             {
-                // Not actually a temp card in this case, so this action might need a different name
-                GameActions.Bottom.Add(new AddCardToDeckAction(actualCard));
+                GameActions.Top.Add(new AddCardToDeckAction(actualCard));
                 break;
             }
 
             case CARD_POOL:
             case UNSPECIFIED:
-                return;
+            default:
+            {
+                JavaUtilities.GetLogger(this).warn("Can't make temp card in " + cardGroup.type.name());
+                Complete();
+                break;
+            }
         }
+    }
 
-        Complete(actualCard);
+    @Override
+    protected void UpdateInternal()
+    {
+        tickDuration();
+
+        if (isDone)
+        {
+            Complete(actualCard);
+        }
     }
 }

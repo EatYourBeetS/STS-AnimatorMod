@@ -1,4 +1,4 @@
-package eatyourbeets.ui;
+package eatyourbeets.ui.relics;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

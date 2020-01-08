@@ -1,7 +1,7 @@
 package eatyourbeets.cards.animator.special;
 
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.AnimatorResources;
+import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.markers.Hidden;
 

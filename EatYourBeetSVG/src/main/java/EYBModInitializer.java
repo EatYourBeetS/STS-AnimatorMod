@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.console.CommandsManager;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.relics.animator.PurgingStone_Cards;
+import eatyourbeets.relics.animator.AbstractPurgingStone;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.utilities.InputManager;
 import org.apache.logging.log4j.LogManager;
@@ -92,24 +92,20 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     @Override
     public void receiveStartGame()
     {
-        if (Settings.isStandardRun())
+        if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
         {
-            if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+            if (Settings.isStandardRun())
             {
                 AnimatorMetrics.SaveTrophies(true);
             }
-            else
-            {
-                RemoveColorless(AbstractDungeon.srcColorlessCardPool);
-                RemoveColorless(AbstractDungeon.colorlessCardPool);
-            }
+        }
+        else
+        {
+            RemoveColorless(AbstractDungeon.srcColorlessCardPool);
+            RemoveColorless(AbstractDungeon.colorlessCardPool);
         }
 
-        PurgingStone_Cards purgingStone = PurgingStone_Cards.GetInstance();
-        if (purgingStone != null)
-        {
-            purgingStone.UpdateBannedCards();
-        }
+        AbstractPurgingStone.UpdateBannedCards();
     }
 
     @Override
@@ -121,11 +117,7 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
             RemoveColorless(AbstractDungeon.colorlessCardPool);
         }
 
-        PurgingStone_Cards purgingStone = PurgingStone_Cards.GetInstance();
-        if (purgingStone != null)
-        {
-            purgingStone.UpdateBannedCards();
-        }
+        AbstractPurgingStone.UpdateBannedCards();
     }
 
     private void RemoveColorless(CardGroup group)

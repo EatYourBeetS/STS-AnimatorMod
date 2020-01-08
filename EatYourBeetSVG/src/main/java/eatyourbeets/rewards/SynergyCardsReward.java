@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import eatyourbeets.dungeons.CustomAbstractDungeon;
-import eatyourbeets.resources.AnimatorResources_Strings;
+import eatyourbeets.resources.animator.AnimatorResources_Strings;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;

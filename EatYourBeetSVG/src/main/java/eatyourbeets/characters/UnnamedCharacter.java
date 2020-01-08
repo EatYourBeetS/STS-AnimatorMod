@@ -20,8 +20,8 @@ import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.cards.unnamed.Defend;
 import eatyourbeets.cards.unnamed.Strike;
 import eatyourbeets.relics.unnamed.InfinitePower;
-import eatyourbeets.resources.UnnamedResources;
-import eatyourbeets.resources.UnnamedResources_Images;
+import eatyourbeets.resources.unnamed.UnnamedResources;
+import eatyourbeets.resources.unnamed.UnnamedResources_Images;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;

@@ -22,8 +22,6 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractMissingPiece extends AnimatorRelic implements OnReceiveRewardsSubscriber
 {
-    private static final ArrayList<Synergy> possibleRewards = new ArrayList<>();
-
     private boolean skipReward;
 
     public AbstractMissingPiece(String id, RelicTier tier, LandingSound sfx)
@@ -138,12 +136,8 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         WeightedList<Synergy> list = new WeightedList<>();
         Map<Synergy, List<AbstractCard>> synergyListMap = AbstractDungeon.player.masterDeck.group.stream().collect(Collectors.groupingBy(this::Group));
 
-        PurgingStone_Cards purgingStone = PurgingStone_Cards.GetInstance();
-
-        for (Synergy s : possibleRewards)
+        for (Synergy s : AbstractPurgingStone.GetAvailableSeries())
         {
-//            if (purgingStone == null || !purgingStone.IsBanned(s))
-//            {
             int weight = 2;
             if (synergyListMap.containsKey(s))
             {
@@ -161,7 +155,6 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
             logger.info(s.Name + " : " + weight);
             list.Add(s, weight);
-//            }
         }
 
         if (relicId.equals(ColorlessFragment.ID))
@@ -183,22 +176,5 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         }
 
         return synergy != null ? synergy : Synergies.ANY;
-    }
-
-    static
-    {
-        possibleRewards.add(Synergies.Gate);
-        possibleRewards.add(Synergies.Overlord);
-        possibleRewards.add(Synergies.NoGameNoLife);
-        possibleRewards.add(Synergies.Chaika);
-        possibleRewards.add(Synergies.Katanagatari);
-        possibleRewards.add(Synergies.Fate);
-        possibleRewards.add(Synergies.Elsword);
-        possibleRewards.add(Synergies.Konosuba);
-        possibleRewards.add(Synergies.OwariNoSeraph);
-        possibleRewards.add(Synergies.GoblinSlayer);
-        possibleRewards.add(Synergies.FullmetalAlchemist);
-        possibleRewards.add(Synergies.TenSura);
-        possibleRewards.add(Synergies.OnePunchMan);
     }
 }

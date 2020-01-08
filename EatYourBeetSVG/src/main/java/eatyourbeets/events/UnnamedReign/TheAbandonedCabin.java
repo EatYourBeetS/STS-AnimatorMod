@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
-import eatyourbeets.resources.EYBResources;
+import eatyourbeets.resources.common.EYBResources;
 import eatyourbeets.utilities.GameEffects;
 
 public class TheAbandonedCabin extends AnimatorEvent

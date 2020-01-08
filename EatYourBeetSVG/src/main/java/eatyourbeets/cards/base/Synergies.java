@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.interfaces.markers.Spellcaster;
-import eatyourbeets.resources.AnimatorResources_Strings;
+import eatyourbeets.resources.animator.AnimatorResources_Strings;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;

@@ -13,7 +13,7 @@ import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.animator.series.NoGameNoLife.Sora;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCardBuilder;
-import eatyourbeets.resources.AnimatorResources_Strings;
+import eatyourbeets.resources.animator.AnimatorResources_Strings;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;

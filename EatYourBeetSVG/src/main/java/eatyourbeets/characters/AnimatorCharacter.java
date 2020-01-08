@@ -17,8 +17,8 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
-import eatyourbeets.resources.AnimatorResources;
-import eatyourbeets.resources.AnimatorResources_Images;
+import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.animator.AnimatorResources_Images;
 import eatyourbeets.cards.animator.basic.Strike;
 import patches.AbstractEnums;
 

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -14,13 +15,13 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Shigure extends AnimatorCard
 {
-    public static final String ID = Register(Shigure.class, EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Shigure.class, EYBCardBadge.Exhaust);
 
     public Shigure()
     {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(4, 0, 3, 2);
+        Initialize(7, 0, 2, 3);
         SetUpgrade(2, 0, 1, 0);
 
         SetPiercing(true);
@@ -32,20 +33,21 @@ public class Shigure extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
+        if (EffectHistory.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(enemy -> GameEffects.List.Add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx())))
-        .SetPiercing(true, true);
-
-        if (HasSynergy())
+        .SetPiercing(true, true)
+        .SetDamageEffect(enemy ->
         {
-            GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
-        }
+            GameEffects.List.Add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()));
+            GameActions.Top.ApplyPoison(player, enemy, magicNumber);
+        });
     }
 }

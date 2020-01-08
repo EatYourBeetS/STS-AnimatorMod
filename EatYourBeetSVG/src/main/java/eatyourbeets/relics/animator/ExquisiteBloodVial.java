@@ -40,7 +40,8 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
     {
         if (trigger == OnRelicObtainedSubscriber.Trigger.Equip && relic instanceof BloodVial && truePotential)
         {
-            GameEffects.Queue.Add(new RemoveRelicEffect(this, relic, 1));
+            GameEffects.Queue.Add(new RemoveRelicEffect(relic))
+            .AddCallback(__ -> setCounter(counter + 1));
         }
     }
 
@@ -145,7 +146,8 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
             {
                 if (relic instanceof BloodVial)
                 {
-                    AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, relic, 1));
+                    GameEffects.Queue.Add(new RemoveRelicEffect(relic))
+                    .AddCallback(__ -> setCounter(counter + 1));
                 }
             }
         }

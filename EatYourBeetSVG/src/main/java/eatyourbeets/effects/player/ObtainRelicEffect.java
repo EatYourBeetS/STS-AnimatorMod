@@ -1,38 +1,24 @@
 package eatyourbeets.effects.player;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.effects.EYBEffect;
 
-public class ObtainRelicEffect extends AbstractGameEffect
+public class ObtainRelicEffect extends EYBEffect
 {
     private final AbstractRelic relic;
 
     public ObtainRelicEffect(AbstractRelic relic)
     {
         this.relic = relic;
-        this.duration = this.startingDuration = 1f;
     }
 
-    public void update()
+    @Override
+    protected void FirstUpdate()
     {
-        if (!this.isDone)
-        {
-            relic.instantObtain();
-            CardCrawlGame.metricData.addRelicObtainData(relic);
-        }
+        relic.instantObtain();
+        CardCrawlGame.metricData.addRelicObtainData(relic);
 
-        this.isDone = true;
-    }
-
-    public void render(SpriteBatch sb)
-    {
-
-    }
-
-    public void dispose()
-    {
-
+        Complete();
     }
 }

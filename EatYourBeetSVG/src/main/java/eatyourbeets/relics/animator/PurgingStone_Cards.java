@@ -6,27 +6,25 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import eatyourbeets.cards.base.CardRarityComparator;
 import eatyourbeets.cards.base.CardSeriesComparator;
-import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Comparator;
 
-public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<String>
+public class PurgingStone_Cards extends AbstractPurgingStone implements CustomSavable<String>
 {
     public static final String ID = CreateFullID(PurgingStone_Cards.class.getSimpleName());
 
     private static final int MAX_BAN_COUNT = 80;
     private static final int MAX_STORED_USES = 3;
-    private static Field isBoss = null;
+    private static FieldInfo<Boolean> isBoss = null;
     private final ArrayList<String> bannedCards = new ArrayList<>();
 
     @Override
@@ -41,16 +39,7 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
 
         if (isBoss == null)
         {
-            try
-            {
-                isBoss = RewardItem.class.getDeclaredField("isBoss");
-                isBoss.setAccessible(true);
-            }
-            catch (NoSuchFieldException e)
-            {
-                e.printStackTrace();
-                isBoss = null;
-            }
+            isBoss = JavaUtilities.GetPrivateField("isBoss", RewardItem.class);
         }
     }
 
@@ -125,16 +114,6 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
         }
     }
 
-    private class CardRarityComparator implements Comparator<AbstractCard>
-    {
-        private CardRarityComparator() {
-        }
-
-        public int compare(AbstractCard c1, AbstractCard c2) {
-            return c1.rarity.compareTo(c2.rarity);
-        }
-    }
-
     private void AddUses(int uses)
     {
         int banned = bannedCards.size();
@@ -151,29 +130,12 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
         }
     }
 
-    public static PurgingStone_Cards GetInstance()
-    {
-        if (AbstractDungeon.player == null || AbstractDungeon.player.relics == null)
-        {
-            return null;
-        }
-
-        for (AbstractRelic r : AbstractDungeon.player.relics)
-        {
-            if (r instanceof PurgingStone_Cards)
-            {
-                return (PurgingStone_Cards)r;
-            }
-        }
-
-        return null;
-    }
-
     public boolean IsBanned(String cardID)
     {
         return bannedCards.contains(cardID);
     }
 
+    @Override
     public boolean IsBanned(AbstractCard card)
     {
         return card != null && IsBanned(card.cardID);
@@ -181,19 +143,9 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
 
     public boolean CanActivate(RewardItem rewardItem)
     {
-        if (!GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD)
+        if (!GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD && !isBoss.Get(rewardItem))
         {
-            try
-            {
-                if (!(boolean)isBoss.get(rewardItem))
-                {
-                    return counter > 0;
-                }
-            }
-            catch (IllegalAccessException | ClassCastException e)
-            {
-                e.printStackTrace();
-            }
+            return counter > 0;
         }
 
         return false;
@@ -345,7 +297,8 @@ public class PurgingStone_Cards extends AnimatorRelic implements CustomSavable<S
         logger.info("Banned " + card.cardID + " " + banCount + ", " + srcBanCount);
     }
 
-    public void UpdateBannedCards()
+    @Override
+    public void UpdateBannedCardsInternal()
     {
         logger.info("Banned " + bannedCards.size() + " Cards:");
         for (String card : bannedCards)

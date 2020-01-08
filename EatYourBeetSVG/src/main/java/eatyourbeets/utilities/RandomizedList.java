@@ -3,6 +3,7 @@ package eatyourbeets.utilities;
 import com.megacrit.cardcrawl.random.Random;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class RandomizedList<T>
 {
@@ -13,9 +14,9 @@ public class RandomizedList<T>
         items = new ArrayList<>();
     }
 
-    public RandomizedList(ArrayList<T> list)
+    public RandomizedList(Collection<? extends T> collection)
     {
-        items = new ArrayList<>(list);
+        items = new ArrayList<>(collection);
     }
 
     public void Add(T item)

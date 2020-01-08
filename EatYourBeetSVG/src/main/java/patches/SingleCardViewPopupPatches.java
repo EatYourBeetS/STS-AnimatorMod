@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.UnnamedCard;
-import eatyourbeets.resources.AnimatorResources_Images;
-import eatyourbeets.resources.UnnamedResources_Images;
+import eatyourbeets.resources.animator.AnimatorResources_Images;
+import eatyourbeets.resources.unnamed.UnnamedResources_Images;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 

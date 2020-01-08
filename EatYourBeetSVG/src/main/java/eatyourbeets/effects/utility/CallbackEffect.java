@@ -1,6 +1,7 @@
 package eatyourbeets.effects.utility;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.EYBEffectWithCallback;
 
 import java.util.function.BiConsumer;
@@ -8,6 +9,7 @@ import java.util.function.Consumer;
 
 public class CallbackEffect extends EYBEffectWithCallback<AbstractGameAction>
 {
+    private boolean updateIfScreenIsUp = true;
     private final AbstractGameAction action;
 
     public CallbackEffect(AbstractGameAction action)
@@ -31,12 +33,22 @@ public class CallbackEffect extends EYBEffectWithCallback<AbstractGameAction>
         AddCallback(state, onCompletion);
     }
 
+    public CallbackEffect UpdateIfScreenIsUp(boolean value)
+    {
+        updateIfScreenIsUp = value;
+
+        return this;
+    }
+
     @Override
     public void update()
     {
         if (!action.isDone)
         {
-            action.update();
+            if (updateIfScreenIsUp || !AbstractDungeon.isScreenUp)
+            {
+                action.update();
+            }
         }
         else
         {

@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.events.TheMaskedTraveler2;
-import eatyourbeets.resources.EYBResources;
-import eatyourbeets.room.AnimatorCustomEventRoom;
+import eatyourbeets.resources.common.EYBResources;
+import eatyourbeets.rooms.AnimatorCustomEventRoom;
 
 public class TheEndingPatches
 {

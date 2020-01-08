@@ -19,8 +19,8 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     {
         super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 1, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.KillLaKill);

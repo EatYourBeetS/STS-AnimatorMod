@@ -1,4 +1,4 @@
-package eatyourbeets.ui;
+package eatyourbeets.ui.unnamed;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.UnnamedResources;
-import eatyourbeets.resources.UnnamedResources_Strings;
+import eatyourbeets.resources.unnamed.UnnamedResources;
+import eatyourbeets.resources.unnamed.UnnamedResources_Strings;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

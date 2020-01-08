@@ -1,4 +1,4 @@
-package eatyourbeets.resources;
+package eatyourbeets.resources.unnamed;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import eatyourbeets.characters.UnnamedCharacter;
 import eatyourbeets.relics.unnamed.InfinitePower;
+import eatyourbeets.resources.AbstractResources;
 import patches.AbstractEnums;
 
 import java.io.File;

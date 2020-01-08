@@ -14,7 +14,7 @@ public class LimeBell extends AnimatorCard
     {
         super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 7, 2);
+        Initialize(0, 8, 2);
         SetUpgrade(0, 4, 0);
 
         SetExhaust(true);

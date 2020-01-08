@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.misc.NanamiEffects.*;
-import eatyourbeets.resources.AnimatorResources;
+import eatyourbeets.ui.cards.TargetEffectPreview;
+import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Nanami extends AnimatorCard
@@ -16,9 +17,7 @@ public class Nanami extends AnimatorCard
     public static final String ID = Register(Nanami.class);
     public static final String[] DESCRIPTIONS = AnimatorResources.GetCardStrings(ID).EXTENDED_DESCRIPTION;
 
-    // TODO: Create a dedicated class for this
-    private AbstractMonster _lastTarget = null;
-    private AbstractMonster _target = null;
+    private final TargetEffectPreview targetEffectPreview = new TargetEffectPreview(this::updateCurrentEffect);
 
     public Nanami()
     {
@@ -42,8 +41,7 @@ public class Nanami extends AnimatorCard
         targetDrawScale = 1f;
         target_x = Settings.WIDTH * 0.4f;
         target_y = Settings.HEIGHT * 0.4f;
-
-        _target = mo;
+        targetEffectPreview.SetCurrentTarget(mo);
     }
 
     @Override
@@ -51,14 +49,7 @@ public class Nanami extends AnimatorCard
     {
         super.update();
 
-        if (_lastTarget != _target)
-        {
-            updateCurrentEffect(_target);
-
-            _lastTarget = _target;
-        }
-
-        _target = null;
+        targetEffectPreview.Update();
     }
 
     @Override

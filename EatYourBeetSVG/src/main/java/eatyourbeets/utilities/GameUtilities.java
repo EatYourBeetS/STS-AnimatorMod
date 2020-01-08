@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
@@ -286,6 +287,29 @@ public class GameUtilities
         }
 
         return cards;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends AbstractRelic> T GetRelic(String relicID)
+    {
+        for (AbstractRelic relic : AbstractDungeon.player.relics)
+        {
+            if (relic != null && relicID.equals(relic.relicId))
+            {
+                try
+                {
+                    return (T)relic;
+                }
+                catch (ClassCastException e)
+                {
+                    e.printStackTrace();
+
+                    return null;
+                }
+            }
+        }
+
+        return null;
     }
 
     public static <T> T GetPower(AbstractCreature owner, Class<T> powerType)

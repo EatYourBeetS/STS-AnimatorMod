@@ -1,6 +1,7 @@
-package eatyourbeets.resources;
+package eatyourbeets.resources.common;
 
 import com.megacrit.cardcrawl.localization.UIStrings;
+import eatyourbeets.resources.AbstractResources;
 
 public class EYBResources_Strings
 {

@@ -16,6 +16,8 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.effects.card.HideCardEffect;
 import eatyourbeets.relics.animator.PurgingStone_Cards;
 import eatyourbeets.ui.buttons.BanCardButton;
+import eatyourbeets.ui.relics.BundledRelicContainer;
+import eatyourbeets.ui.relics.BundledRelicProvider;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,7 +61,7 @@ public class CardRewardScreenPatch
             rewardBundle.Open(cards);
         }
 
-        purgingStone = PurgingStone_Cards.GetInstance();
+        PurgingStone_Cards purgingStone = GameUtilities.GetRelic(PurgingStone_Cards.ID);
         if (purgingStone != null && purgingStone.CanActivate(rItem))
         {
             for (AbstractCard card : cards)

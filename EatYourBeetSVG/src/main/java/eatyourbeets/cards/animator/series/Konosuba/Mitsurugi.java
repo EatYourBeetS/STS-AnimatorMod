@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.ui.cards.TargetEffectPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -13,16 +14,14 @@ public class Mitsurugi extends AnimatorCard
 {
     public static final String ID = Register(Mitsurugi.class, EYBCardBadge.Exhaust);
 
-    // TODO: use a class for this and for Nanami
-    private AbstractMonster lastTargetEnemy = null;
-    private AbstractMonster targetEnemy = null;
+    private final TargetEffectPreview targetEffectPreview = new TargetEffectPreview(this::updateCurrentEffect);
 
     public Mitsurugi()
     {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        Initialize(7, 0, 1, 4);
-        SetUpgrade(4, 0, 0, 0);
+        Initialize(8, 0, 1, 4);
+        SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.Konosuba);
     }
@@ -32,7 +31,7 @@ public class Mitsurugi extends AnimatorCard
     {
         super.calculateCardDamage(mo);
 
-        targetEnemy = mo;
+        targetEffectPreview.SetCurrentTarget(mo);
     }
 
     @Override
@@ -40,14 +39,7 @@ public class Mitsurugi extends AnimatorCard
     {
         super.update();
 
-        if (lastTargetEnemy != targetEnemy)
-        {
-            updateCurrentEffect(targetEnemy);
-
-            lastTargetEnemy = targetEnemy;
-        }
-
-        targetEnemy = null;
+        targetEffectPreview.Update();
     }
 
     @Override

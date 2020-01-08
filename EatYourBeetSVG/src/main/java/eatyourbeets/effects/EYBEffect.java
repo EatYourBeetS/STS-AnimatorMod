@@ -3,6 +3,7 @@ package eatyourbeets.effects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
@@ -19,7 +20,7 @@ public abstract class EYBEffect extends AbstractGameEffect
 
     public EYBEffect(int amount)
     {
-        this(amount, 0);
+        this(amount, Settings.ACTION_DUR_FAST);
     }
 
     public EYBEffect(int amount, float duration)

@@ -1,4 +1,4 @@
-package eatyourbeets.resources;
+package eatyourbeets.resources.animator;
 
 import com.badlogic.gdx.graphics.Texture;
 

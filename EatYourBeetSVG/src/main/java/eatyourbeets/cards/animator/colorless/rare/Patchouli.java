@@ -14,7 +14,7 @@ import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.csharp.Action;
+import eatyourbeets.interfaces.csharp.ActionT0;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -72,7 +72,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
     {
         if (magicNumber > 0)
         {
-            RandomizedList<Action> actions = new RandomizedList<>();
+            RandomizedList<ActionT0> actions = new RandomizedList<>();
 
             for (int i = 0; i < magicNumber; i++)
             {

@@ -1,11 +1,15 @@
 package eatyourbeets.blights.animator;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.actions.cardManipulation.MakeTempCard;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnShuffleSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscriber, OnShuffleSubscriber
 {
@@ -29,7 +33,16 @@ public class UltimateWisp extends AnimatorBlight implements OnBattleStartSubscri
     @Override
     public void OnShuffle(boolean triggerRelics)
     {
-        GameActions.Bottom.MakeCardInDrawPile(new VoidCard());
+        for (AbstractGameAction action : AbstractDungeon.actionManager.actions)
+        {
+            MakeTempCard temp = JavaUtilities.SafeCast(action, MakeTempCard.class);
+            if (temp != null && temp.HasTag(this))
+            {
+                return;
+            }
+        }
+
+        GameActions.Bottom.MakeCardInDrawPile(new VoidCard()).AddTag(this);
 
         this.flash();
     }

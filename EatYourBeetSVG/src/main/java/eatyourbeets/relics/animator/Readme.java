@@ -8,7 +8,7 @@ import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.effects.player.SpawnRelicEffect;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.resources.AnimatorResources_Strings;
+import eatyourbeets.resources.animator.AnimatorResources_Strings;
 import eatyourbeets.utilities.InputManager;
 
 public class Readme extends AnimatorRelic

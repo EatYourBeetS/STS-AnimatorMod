@@ -3,12 +3,11 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -32,7 +31,7 @@ public class Geryuganshoop extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Cycle(name, secondaryValue)
-        .AddCallback(__ -> GameActions.Bottom.SelectFromPile(name, magicNumber, AbstractDungeon.player.exhaustPile)
+        .AddCallback(__ -> GameActions.Bottom.SelectFromPile(name, magicNumber, player.exhaustPile)
                            .SetMessage(JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[0], magicNumber))
                            .SetOptions(false, true)
                            .AddCallback(this::OnCardChosen));
@@ -44,18 +43,17 @@ public class Geryuganshoop extends AnimatorCard
 
         if (cards != null && cards.size() > 0)
         {
-            AbstractPlayer p = AbstractDungeon.player;
             for (AbstractCard card : cards)
             {
                 if (!limited && (card.cardID.equals(Boros.ID) || card.cardID.startsWith(Melzalgald.ID)))
                 {
                     EffectHistory.TryActivateLimited(this.cardID);
-                    GameActions.Bottom.MoveCard(card, p.hand, p.exhaustPile)
+                    GameActions.Bottom.MoveCard(card, player.hand, player.exhaustPile)
                             .ShowEffect(true, false);
                 }
                 else
                 {
-                    p.exhaustPile.removeCard(card);
+                    player.exhaustPile.removeCard(card);
                     CardCrawlGame.sound.play("CARD_EXHAUST", 0.2F);
                 }
             }

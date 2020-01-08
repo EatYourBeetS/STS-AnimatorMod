@@ -122,7 +122,7 @@
 	},
 	"animator:ChaikaBohdan":
 	{
-		"DESCRIPTION": "Deal !D! damage. NL If your hand NL is empty, draw NL !M! cards. || Whenever you hit an enemy while this is in your hand, gain !SV! additional damage until played.",
+		"DESCRIPTION": "Deal !D! damage. NL If your hand NL is empty, draw NL !M! cards. || Whenever you hit an NL enemy while this is in NL your hand, gain !SV! NL additional damage NL until played.",
 		"NAME": "Chaika Bohdan"
 	},
 	"animator:ChaikaTrabant":
@@ -754,9 +754,8 @@
 	},
 	"animator:NononJakuzure":
 	{
-		"DESCRIPTION": "Cycle !SV! card. NL Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1.",
-		"NAME": "Nonon Jakuzure",
-		"UPGRADE_DESCRIPTION": "Cycle !SV! cards. NL Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1."
+		"DESCRIPTION": "Cycle !SV! cards. NL Motivate !M!. NL Exhaust. || Whenever you NL Synergize while this NL is in your hand, NL increase this card's NL Motivate by 1.",
+		"NAME": "Nonon Jakuzure"
 	},
 	"animator:OrbCore_Aether":
 	{
@@ -918,7 +917,7 @@
 	},
 	"animator:Shigure":
 	{
-		"DESCRIPTION": "Apply !M! Poison. NL Deal !D! Piercing NL damage. || On Synergy or when NL Exhausted, gain !SV! NL Support_Damage.",
+		"DESCRIPTION": "Deal !D! Piercing NL damage. Apply NL !M! Poison. || Limited. When NL Exhausted, gain !SV! NL Support_Damage.",
 		"NAME": "Shigure"
 	},
 	"animator:ShikizakiKiki":

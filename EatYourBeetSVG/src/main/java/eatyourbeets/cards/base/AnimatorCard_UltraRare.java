@@ -6,7 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.ultrarare.*;
-import eatyourbeets.resources.AnimatorResources_Images;
+import eatyourbeets.resources.animator.AnimatorResources_Images;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.RenderHelpers;
 import patches.AbstractEnums;

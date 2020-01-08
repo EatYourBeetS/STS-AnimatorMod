@@ -13,16 +13,17 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.resources.AnimatorResources;
-import eatyourbeets.resources.AnimatorResources_Images;
-import eatyourbeets.dungeons.CustomAbstractDungeon;
-import eatyourbeets.resources.AnimatorResources_Strings;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.dungeons.CustomAbstractDungeon;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.relics.animator.PurgingStone_Cards;
+import eatyourbeets.relics.animator.PurgingStone_Series;
 import eatyourbeets.relics.animator.TheMissingPiece;
+import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.animator.AnimatorResources_Images;
+import eatyourbeets.resources.animator.AnimatorResources_Strings;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -117,6 +118,10 @@ public abstract class AnimatorCustomLoadout
             UnlockTracker.markRelicAsSeen(LivingPicture.ID);
         }
         if (!UnlockTracker.isRelicSeen(PurgingStone_Cards.ID))
+        {
+            UnlockTracker.markRelicAsSeen(PurgingStone_Cards.ID);
+        }
+        if (!UnlockTracker.isRelicSeen(PurgingStone_Series.ID))
         {
             UnlockTracker.markRelicAsSeen(PurgingStone_Cards.ID);
         }

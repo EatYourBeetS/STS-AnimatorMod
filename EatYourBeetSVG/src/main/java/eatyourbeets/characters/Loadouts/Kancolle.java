@@ -7,13 +7,12 @@ import eatyourbeets.cards.animator.basic.Defend_Kancolle;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_Kancolle;
 import eatyourbeets.cards.animator.colorless.uncommon.Shimakaze;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.characters.AnimatorMetrics;
-import eatyourbeets.relics.animator.PurgingStone_Cards;
+import eatyourbeets.utilities.JavaUtilities;
 import patches.AbstractEnums;
 
 import java.util.ArrayList;
@@ -103,8 +102,8 @@ public class Kancolle extends AnimatorCustomLoadout
             trophies.trophy2 = Math.max(trophies.trophy2, ascensionLevel);
         }
 
-        PurgingStone_Cards p = PurgingStone_Cards.GetInstance();
-        if (uniqueSynergies >= 10 && (p == null || p.GetBannedCount() == 0))
+        // TODO: change this requirement
+        if (uniqueSynergies >= 10)
         {
             trophies.trophy3 = Math.max(trophies.trophy3, ascensionLevel);
         }

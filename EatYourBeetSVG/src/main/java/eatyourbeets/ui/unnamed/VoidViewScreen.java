@@ -1,4 +1,4 @@
-package eatyourbeets.ui;
+package eatyourbeets.ui.unnamed;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

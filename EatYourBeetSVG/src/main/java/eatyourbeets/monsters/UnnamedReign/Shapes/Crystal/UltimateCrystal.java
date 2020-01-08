@@ -11,7 +11,7 @@ import eatyourbeets.actions.monsters.MoveMonsterAction;
 import eatyourbeets.monsters.Moveset;
 import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
-import eatyourbeets.resources.EYBResources;
+import eatyourbeets.resources.common.EYBResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;

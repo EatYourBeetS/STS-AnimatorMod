@@ -31,7 +31,7 @@ import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.ui.Void;
+import eatyourbeets.ui.unnamed.Void;
 import eatyourbeets.utilities.JavaUtilities;
 import patches.CardGlowBorderPatch;
 

@@ -14,6 +14,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.common.EYBResources;
+import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +37,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 {
     protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.cards.");
     protected static final ArrayList<String> relicClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.relics.");
+    protected static final ArrayList<String> powerClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.powers.");
     protected static final HashMap<String, Map<String, String>> dynamicKeywords = new HashMap<>();
     protected static final HashMap<String, Keyword> keywords = new HashMap<>();
     protected static final HashMap<String, Texture> textures = new HashMap<>();
@@ -42,6 +46,11 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     protected static EYBResources commonResources;
     protected static UnnamedResources unnamedResources;
     protected static AnimatorResources animatorResources;
+
+    public static String CreateID(String prefix, String suffix)
+    {
+        return prefix + ":" + suffix;
+    }
 
     public static Texture GetTexture(String path)
     {
@@ -249,10 +258,9 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         }
     }
 
-    @SuppressWarnings("unchecked")
-    protected static void LoadCard(Class type)
+    protected static void LoadCard(Class<?> type)
     {
-        if (Hidden.class.isAssignableFrom(type) || Modifier.isAbstract(type.getModifiers()))
+        if (!CanInstantiate(type))
         {
             return;
         }
@@ -280,10 +288,9 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         BaseMod.addCard(card);
     }
 
-    @SuppressWarnings("unchecked")
-    protected static void LoadRelic(Class type)
+    protected static void LoadRelic(Class<?> type)
     {
-        if (Hidden.class.isAssignableFrom(type) || Modifier.isAbstract(type.getModifiers()))
+        if (!CanInstantiate(type))
         {
             return;
         }
@@ -305,23 +312,33 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     @SuppressWarnings("unchecked") // I miss C# ...
     protected static void LoadCustomPowers(String character)
     {
-        String jsonString = Gdx.files.internal("localization/" + character + "/eng/PowerStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
-        Map<String, PowerStrings> map = new Gson().fromJson(jsonString, new TypeToken<HashMap<String, PowerStrings>>(){}.getType());
+        final String prefix = "eatyourbeets.cards." + character;
 
-        for (String powerID : map.keySet())
+        for (String s : cardClassNames)
         {
-            try
+            if (s.startsWith(prefix))
             {
-                logger.info("Adding: " + powerID);
-                Class<? extends AbstractPower> powerClass = (Class<? extends AbstractPower>) Class.forName("eatyourbeets.powers." + character + "." + powerID.replace(character + ":", ""));
+                try
+                {
+                    logger.info("Adding: " + s);
 
-                BaseMod.addPower(powerClass, powerID);
-            }
-            catch (ClassNotFoundException e)
-            {
-                logger.warn("Class not found : " + powerID);
+                    Class<?> type = Class.forName(s);
+                    if (CanInstantiate(type))
+                    {
+                        BaseMod.addPower((Class<AbstractPower>) type, CreateID(character, type.getSimpleName()));
+                    }
+                }
+                catch (ClassNotFoundException e)
+                {
+                    logger.warn("Class not found : " + s);
+                }
             }
         }
+    }
+
+    protected static boolean CanInstantiate(Class<?> type)
+    {
+        return (!Hidden.class.isAssignableFrom(type) && !Modifier.isAbstract(type.getModifiers()));
     }
 
     protected void LoadKeywords(String path)

@@ -1,7 +1,7 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes;
 
 import eatyourbeets.monsters.AnimatorMonster;
-import eatyourbeets.resources.AnimatorResources;
+import eatyourbeets.resources.animator.AnimatorResources;
 
 public abstract class UnnamedShape extends AnimatorMonster
 {

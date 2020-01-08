@@ -110,13 +110,13 @@
 	{
 		"DESCRIPTIONS": ["You may banish cards from appearing in future #ynormal rewards and shops. Gain #b1 use at the end of each combat, and #b2 uses against Elites or Bosses. Can store up to #b{0} uses."],
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
-		"NAME": "Purging Stone"
+		"NAME": "Purging Stone #1"
 	},
 	"animator:PurgingStone_Series":
 	{
-		"DESCRIPTIONS": ["You may banish card #yseries from appearing in all future rewards and shops. Gain more uses after defeating a boss.", "Removed Series:"],
+		"DESCRIPTIONS": ["At the start of act 1, randomly add {0} card series to the card pool. You may #pRight #pClick to add more series.", "Available Series:", "Choose any number of series to Add."],
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
-		"NAME": "Purging Stone (Alt)"
+		"NAME": "Purging Stone #2"
 	},
 	"animator:RacePiece":
 	{

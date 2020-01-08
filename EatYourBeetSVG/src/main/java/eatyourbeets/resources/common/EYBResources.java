@@ -1,4 +1,4 @@
-package eatyourbeets.resources;
+package eatyourbeets.resources.common;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
@@ -20,6 +20,7 @@ import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.GenericFadingPower;
+import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.rewards.SpecialGoldReward;
 import eatyourbeets.rewards.SynergyCardsReward;
 import eatyourbeets.variables.SecondaryValueVariable;

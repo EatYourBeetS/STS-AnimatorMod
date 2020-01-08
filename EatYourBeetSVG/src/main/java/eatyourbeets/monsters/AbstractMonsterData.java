@@ -3,7 +3,7 @@ package eatyourbeets.monsters;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import eatyourbeets.resources.AnimatorResources;
+import eatyourbeets.resources.animator.AnimatorResources;
 
 public abstract class AbstractMonsterData
 {

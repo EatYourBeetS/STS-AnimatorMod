@@ -7,17 +7,17 @@ import com.megacrit.cardcrawl.localization.*;
 import eatyourbeets.characters.UnnamedCharacter;
 import eatyourbeets.relics.unnamed.InfinitePower;
 import eatyourbeets.resources.AbstractResources;
-import patches.AbstractEnums;
 
 import java.io.File;
 
 public class UnnamedResources extends AbstractResources
 {
+    public final static String ID = "unnamed";
     private static String languagePath = null;
 
-    public static String CreateID(String suffix)
+    public UnnamedResources()
     {
-        return "unnamed:" + suffix;
+        super(ID);
     }
 
     private static void LoadLanguagePath()
@@ -44,17 +44,17 @@ public class UnnamedResources extends AbstractResources
     {
         Color color = CardHelper.getColor(60, 77, 106);
 
-        BaseMod.addColor(AbstractEnums.Cards.THE_UNNAMED, color, color, color, color, color, color, color,
-                UnnamedResources_Images.ATTACK_PNG,  UnnamedResources_Images.SKILL_PNG ,    UnnamedResources_Images.POWER_PNG ,
-                UnnamedResources_Images.ORB_1A_PNG,  UnnamedResources_Images.ATTACK_P_PNG , UnnamedResources_Images.SKILL_P_PNG ,
-                UnnamedResources_Images.POWER_P_PNG, UnnamedResources_Images.ORB_1B_PNG,    UnnamedResources_Images.ORB_1C_PNG);
+        BaseMod.addColor(Enums.Cards.THE_UNNAMED, color, color, color, color, color, color, color,
+                UnnamedImages.ATTACK_PNG,  UnnamedImages.SKILL_PNG ,    UnnamedImages.POWER_PNG ,
+                UnnamedImages.ORB_1A_PNG,  UnnamedImages.ATTACK_P_PNG , UnnamedImages.SKILL_P_PNG ,
+                UnnamedImages.POWER_P_PNG, UnnamedImages.ORB_1B_PNG,    UnnamedImages.ORB_1C_PNG);
     }
 
     @Override
     protected void InitializeCharacter()
     {
-        UnnamedCharacter unnamedCharacter = new UnnamedCharacter(UnnamedCharacter.NAME, AbstractEnums.Characters.THE_UNNAMED);
-        BaseMod.addCharacter(unnamedCharacter, UnnamedResources_Images.CHAR_BUTTON_PNG, UnnamedResources_Images.CHAR_PORTRAIT_JPG, AbstractEnums.Characters.THE_UNNAMED);
+        UnnamedCharacter unnamedCharacter = new UnnamedCharacter(UnnamedCharacter.NAME, Enums.Characters.THE_UNNAMED);
+        BaseMod.addCharacter(unnamedCharacter, UnnamedImages.CHAR_BUTTON_PNG, UnnamedImages.CHAR_PORTRAIT_JPG, Enums.Characters.THE_UNNAMED);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class UnnamedResources extends AbstractResources
     @Override
     protected void InitializeRelics()
     {
-        BaseMod.addRelicToCustomPool(new InfinitePower(), AbstractEnums.Cards.THE_UNNAMED);
+        BaseMod.addRelicToCustomPool(new InfinitePower(), Enums.Cards.THE_UNNAMED);
     }
 
     @Override

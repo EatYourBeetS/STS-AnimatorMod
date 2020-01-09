@@ -8,10 +8,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
-import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
@@ -45,7 +45,7 @@ public class TheMaskedTraveler1 extends AnimatorEvent
         AbstractPlayer p = AbstractDungeon.player;
         for (AbstractCard card : p.masterDeck.group)
         {
-            if (card.tags.contains(AbstractEnums.CardTags.IMPROVED_DEFEND) || card.tags.contains(AbstractEnums.CardTags.IMPROVED_STRIKE))
+            if (card.tags.contains(GR.Enums.CardTags.IMPROVED_DEFEND) || card.tags.contains(GR.Enums.CardTags.IMPROVED_STRIKE))
             {
                 cards.add(card);
             }
@@ -97,7 +97,7 @@ public class TheMaskedTraveler1 extends AnimatorEvent
 
             for (AbstractCard card : deck)
             {
-                if (card.tags.contains(AbstractEnums.CardTags.IMPROVED_STRIKE) || card.tags.contains(AbstractEnums.CardTags.IMPROVED_DEFEND))
+                if (card.tags.contains(GR.Enums.CardTags.IMPROVED_STRIKE) || card.tags.contains(GR.Enums.CardTags.IMPROVED_DEFEND))
                 {
                     if (card.tags.contains(AbstractCard.CardTags.HEALING))
                     {
@@ -167,11 +167,11 @@ public class TheMaskedTraveler1 extends AnimatorEvent
 
         for (AbstractCard c : CardLibrary.getAllCards())
         {
-            if (c.tags.contains(AbstractEnums.CardTags.IMPROVED_STRIKE))
+            if (c.tags.contains(GR.Enums.CardTags.IMPROVED_STRIKE))
             {
                 replacementStrike.add(c);
             }
-            else if (c.tags.contains(AbstractEnums.CardTags.IMPROVED_DEFEND))
+            else if (c.tags.contains(GR.Enums.CardTags.IMPROVED_DEFEND))
             {
                 replacementDefend.add(c);
             }

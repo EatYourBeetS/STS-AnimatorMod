@@ -20,9 +20,8 @@ import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.relics.animator.PurgingStone_Cards;
 import eatyourbeets.relics.animator.PurgingStone_Series;
 import eatyourbeets.relics.animator.TheMissingPiece;
-import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.resources.animator.AnimatorResources_Images;
-import eatyourbeets.resources.animator.AnimatorResources_Strings;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.lang.reflect.Field;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 
 public abstract class AnimatorCustomLoadout
 {
-    protected static final String[] trophyStrings = AnimatorResources_Strings.Trophies.TEXT;
+    protected static final AnimatorStrings.Trophies trophyStrings = GR.Animator.Text.Trophies;
 
     public static final Texture bronze = LoadTexture("Bronze");
     public static final Texture silver = LoadTexture("Silver");
@@ -88,14 +87,11 @@ public abstract class AnimatorCustomLoadout
         }
 
         trophies = GetTrophies(true, ID);
-        selectScreen.bgCharImg = AnimatorResources_Images.GetCharacterPortrait(ID);
+        selectScreen.bgCharImg = GR.Animator.Images.Textures.GetCharacterPortrait(ID);
         Locked = unlockLevel > currentLevel;
         if (Locked)
         {
-            lockedDescription =
-                    AnimatorCharacterSelect.uiText[2] + unlockLevel +
-                            AnimatorCharacterSelect.uiText[3] + currentLevel +
-                            AnimatorCharacterSelect.uiText[4];
+            lockedDescription = GR.Animator.Text.CharSelect.UnlocksAtLevel(unlockLevel, currentLevel);
         }
     }
 
@@ -123,7 +119,7 @@ public abstract class AnimatorCustomLoadout
         }
         if (!UnlockTracker.isRelicSeen(PurgingStone_Series.ID))
         {
-            UnlockTracker.markRelicAsSeen(PurgingStone_Cards.ID);
+            UnlockTracker.markRelicAsSeen(PurgingStone_Series.ID);
         }
         if (!UnlockTracker.isRelicSeen(TheMissingPiece.ID))
         {
@@ -158,15 +154,15 @@ public abstract class AnimatorCustomLoadout
     {
         if (trophy == 1)
         {
-            return trophyStrings[3];
+            return trophyStrings.BronzeDescription;
         }
         else if (trophy == 2)
         {
-            return trophyStrings[4];
+            return trophyStrings.SilverDescription;
         }
         else if (trophy == 3)
         {
-            return trophyStrings[5];
+            return trophyStrings.GoldDescription;
         }
 
         return null;
@@ -210,11 +206,11 @@ public abstract class AnimatorCustomLoadout
         {
             if (specialTrophies.trophy1 > 0)
             {
-                TipHelper.renderGenericTip(trophySpecialHb.cX + offsetX, trophySpecialHb.cY + offsetY, trophyStrings[12], trophyStrings[11]);
+                TipHelper.renderGenericTip(trophySpecialHb.cX + offsetX, trophySpecialHb.cY + offsetY, trophyStrings.Platinum, trophyStrings.PlatinumDescription);
             }
             else
             {
-                TipHelper.renderGenericTip(trophySpecialHb.cX + offsetX, trophySpecialHb.cY + offsetY, trophyStrings[12], trophyStrings[10]);
+                TipHelper.renderGenericTip(trophySpecialHb.cX + offsetX, trophySpecialHb.cY + offsetY, trophyStrings.Platinum, trophyStrings.PlatinumHint);
             }
         }
     }
@@ -255,15 +251,15 @@ public abstract class AnimatorCustomLoadout
         float offsetY = 0 * Settings.scale;
         if (trophy1Hb.hovered)
         {
-            TipHelper.renderGenericTip(trophy1Hb.cX + offsetX, trophy1Hb.cY + offsetY, trophyStrings[0], GetTrophyMessage(1));
+            TipHelper.renderGenericTip(trophy1Hb.cX + offsetX, trophy1Hb.cY + offsetY, trophyStrings.Bronze, GetTrophyMessage(1));
         }
         else if (trophy2Hb.hovered)
         {
-            TipHelper.renderGenericTip(trophy2Hb.cX + offsetX, trophy2Hb.cY + offsetY, trophyStrings[1], GetTrophyMessage(2));
+            TipHelper.renderGenericTip(trophy2Hb.cX + offsetX, trophy2Hb.cY + offsetY, trophyStrings.Silver, GetTrophyMessage(2));
         }
         else if (trophy3Hb.hovered)
         {
-            TipHelper.renderGenericTip(trophy3Hb.cX + offsetX, trophy3Hb.cY + offsetY, trophyStrings[2], GetTrophyMessage(3));
+            TipHelper.renderGenericTip(trophy3Hb.cX + offsetX, trophy3Hb.cY + offsetY, trophyStrings.Gold, GetTrophyMessage(3));
         }
     }
 
@@ -383,6 +379,6 @@ public abstract class AnimatorCustomLoadout
 
     private static Texture LoadTexture(String name)
     {
-        return new Texture(AnimatorResources.GetRewardImage(AnimatorResources.CreateID(name)));
+        return GR.Animator.Textures.GetRewardImage(name);
     }
 }

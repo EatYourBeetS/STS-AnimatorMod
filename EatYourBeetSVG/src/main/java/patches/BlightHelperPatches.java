@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.helpers.BlightHelper;
 import eatyourbeets.blights.animator.*;
+import eatyourbeets.blights.common.CustomTimeMaze;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -38,6 +39,7 @@ public class BlightHelperPatches
     {
         customBlights.put(Haunted.ID, Haunted.class);
         customBlights.put(Doomed.ID, Doomed.class);
+        customBlights.put(CustomTimeMaze.ID, CustomTimeMaze.class);
         customBlights.put(UltimateCube.ID, UltimateCube.class);
         customBlights.put(UltimateCrystal.ID, UltimateCrystal.class);
         customBlights.put(UltimateWisp.ID, UltimateWisp.class);

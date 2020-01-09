@@ -19,5 +19,31 @@
 			"When Drawn",
 			"Special"
 		]
+	},
+	
+	"EYB:HandSelection":
+	{
+		"TEXT":
+		[
+			"move to your draw pile."
+		]
+	},
+	
+	"EYB:GridSelection":
+	{
+		"TEXT":
+		[
+			"Discard up to {0} card(s).",
+			"Shuffle {0} card(s) into your Draw Pile.",
+			"Transform into a {0}"
+		]
+	},
+
+	"EYB:TheUnnamedReign":
+	{
+		"TEXT": 
+		[
+			"The Unnamed Reign"
+		]
 	}
 }

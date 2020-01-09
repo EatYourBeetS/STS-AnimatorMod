@@ -7,23 +7,22 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.characters.AnimatorCharacterSelect;
 import eatyourbeets.characters.AnimatorCustomLoadout;
-import eatyourbeets.resources.animator.AnimatorResources_Strings;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import patches.AbstractEnums;
 
 public class CharacterSelectScreenPatch
 {
     protected static final Logger logger = LogManager.getLogger(CharacterSelectScreenPatch.class.getName());
 
-    public static final UIStrings UIStrings = AnimatorResources_Strings.CharacterSelect;
+    public static final AnimatorStrings.CharacterSelect UIStrings = GR.Animator.Text.CharSelect;
 
     public static Hitbox startingCardsLabelHb;
     public static Hitbox startingCardsSelectedHb;
@@ -42,8 +41,8 @@ public class CharacterSelectScreenPatch
 
     public static void Initialize(CharacterSelectScreen selectScreen)
     {
-        float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, UIStrings.TEXT[0], 9999.0F, 0.0F); // Ascension
-        float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, UIStrings.TEXT[1], 9999.0F, 0.0F); // Level 22
+        float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, UIStrings.LeftText, 9999.0F, 0.0F); // Ascension
+        float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, UIStrings.RightText, 9999.0F, 0.0F); // Level 22
 
         POS_X = 180f * Settings.scale;
         POS_Y = ((float) Settings.HEIGHT / 2.0F) + (20 * Settings.scale);
@@ -143,7 +142,7 @@ public class CharacterSelectScreenPatch
             FontHelper.cardTitleFont_small.getData().setScale(Settings.scale * originalScale);
         }
 
-        FontHelper.renderFont(sb, FontHelper.cardTitleFont, UIStrings.TEXT[0], startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
+        FontHelper.renderFont(sb, FontHelper.cardTitleFont, UIStrings.LeftText, startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
         FontHelper.renderFont(sb, FontHelper.cardTitleFont, info.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);
 
         if (!startingCardsLeftHb.hovered)
@@ -182,7 +181,7 @@ public class CharacterSelectScreenPatch
         {
             if (o.selected)
             {
-                if (o.c.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+                if (o.c.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
                 {
                     if (current != o)
                     {
@@ -191,7 +190,7 @@ public class CharacterSelectScreenPatch
 
                     selectedOption = o;
                 }
-                else if (o.c.chosenClass == AbstractEnums.Characters.THE_UNNAMED)
+                else if (o.c.chosenClass == GR.Enums.Characters.THE_UNNAMED)
                 {
                     selectScreen.confirmButton.isDisabled = true;
                 }
@@ -203,7 +202,7 @@ public class CharacterSelectScreenPatch
 
     private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
     {
-        int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
+        int currentLevel = UnlockTracker.getUnlockLevel(GR.Enums.Characters.THE_ANIMATOR);
         AnimatorCharacterSelect.GetSelectedLoadout(false).Refresh(currentLevel, selectScreen, option);
     }
 }

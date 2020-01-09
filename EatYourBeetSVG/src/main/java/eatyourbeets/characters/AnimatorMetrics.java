@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
-import patches.AbstractEnums;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,7 +86,7 @@ public class AnimatorMetrics
         try
         {
             config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
-            prefs = SaveHelper.getPrefs(AbstractEnums.Characters.THE_ANIMATOR.name());
+            prefs = SaveHelper.getPrefs(GR.Enums.Characters.THE_ANIMATOR.name());
 
             data = config.getString(TROPHY_DATA_KEY);
             if (data == null)

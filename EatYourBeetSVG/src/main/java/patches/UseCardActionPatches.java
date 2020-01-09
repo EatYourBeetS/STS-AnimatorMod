@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.actions.unnamed.MoveToVoidAction;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
@@ -29,9 +30,9 @@ public class UseCardActionPatches
 
         public static boolean Patch(AbstractCard card)
         {
-            boolean shouldPurge = card.purgeOnUse || card.tags.contains(AbstractEnums.CardTags.PURGE);
+            boolean shouldPurge = card.purgeOnUse || card.tags.contains(GR.Enums.CardTags.PURGE);
 
-            if (!shouldPurge && card.tags.contains(AbstractEnums.CardTags.VOIDBOUND))
+            if (!shouldPurge && card.tags.contains(GR.Enums.CardTags.VOIDBOUND))
             {
                 GameActions.Bottom.Add(new MoveToVoidAction(card));
                 shouldPurge = true;

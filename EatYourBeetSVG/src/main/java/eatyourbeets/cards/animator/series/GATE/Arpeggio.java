@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.orbs.Earth;
+import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard implements Spellcaster

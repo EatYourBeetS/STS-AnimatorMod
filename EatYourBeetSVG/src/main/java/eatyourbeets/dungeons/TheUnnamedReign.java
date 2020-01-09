@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.DungeonMap;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -18,24 +17,19 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EmptyRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
-import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.resources.GR;
 import eatyourbeets.scenes.TheUnnamedReignScene;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
 public class TheUnnamedReign extends AbstractDungeon
 {
-    private static final Logger logger = LogManager.getLogger(TheUnnamedReign.class.getName());
-    private static final UIStrings uiStrings;
-    public static final String[] TEXT;
-    public static final String NAME;
-    public static final String ID = AnimatorResources.CreateID("TheUnnamedReign");
+    public static final String NAME = GR.Common.Text.TheUnnamedReign.Name;
+    public static final String ID = GR.Common.CreateID("TheUnnamedReign");
 
     protected ArrayList<String> MONSTER_LIST_WHICH_ACTUALLY_WORKS;
 
@@ -300,12 +294,5 @@ public class TheUnnamedReign extends AbstractDungeon
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_WISP);
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CUBE);
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CRYSTAL);
-    }
-
-    static
-    {
-        uiStrings = CardCrawlGame.languagePack.getUIString(ID);
-        TEXT = uiStrings.TEXT;
-        NAME = TEXT[0];
     }
 }

@@ -20,9 +20,9 @@ import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.cards.unnamed.Defend;
 import eatyourbeets.cards.unnamed.Strike;
 import eatyourbeets.relics.unnamed.InfinitePower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
-import eatyourbeets.resources.unnamed.UnnamedResources_Images;
-import patches.AbstractEnums;
+import eatyourbeets.resources.unnamed.UnnamedImages;
 
 import java.util.ArrayList;
 
@@ -36,9 +36,9 @@ public class UnnamedCharacter extends CustomPlayer
 
     public UnnamedCharacter(String name, PlayerClass playerClass)
     {
-        super(name, playerClass, UnnamedResources_Images.ORB_TEXTURES, UnnamedResources_Images.ORB_VFX_PNG, (String) null, null);
+        super(name, playerClass, UnnamedImages.ORB_TEXTURES, UnnamedImages.ORB_VFX_PNG, (String) null, null);
 
-        initializeClass(null, UnnamedResources_Images.SHOULDER2_PNG, UnnamedResources_Images.SHOULDER1_PNG, UnnamedResources_Images.CORPSE_PNG,
+        initializeClass(null, UnnamedImages.SHOULDER2_PNG, UnnamedImages.SHOULDER1_PNG, UnnamedImages.CORPSE_PNG,
                 getLoadout(), 0.0F, -20.0F, 240.0F, 260.0F, new EnergyManager(3));
 
         reloadAnimation();
@@ -46,7 +46,7 @@ public class UnnamedCharacter extends CustomPlayer
 
     public void reloadAnimation()
     {
-        this.loadAnimation(UnnamedResources_Images.SKELETON_ATLAS, UnnamedResources_Images.SKELETON_JSON, 1.0f);
+        this.loadAnimation(UnnamedImages.SKELETON_ATLAS, UnnamedImages.SKELETON_JSON, 1.0f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         this.stateData.setMix("Hit", "Idle", 0.1F);
         e.setTimeScale(0.9F);
@@ -73,7 +73,7 @@ public class UnnamedCharacter extends CustomPlayer
     @Override
     public AbstractPlayer newInstance()
     {
-        return new UnnamedCharacter(this.name, AbstractEnums.Characters.THE_UNNAMED);
+        return new UnnamedCharacter(this.name, GR.Enums.Characters.THE_UNNAMED);
     }
 
     @Override
@@ -188,7 +188,7 @@ public class UnnamedCharacter extends CustomPlayer
     @Override
     public AbstractCard.CardColor getCardColor()
     {
-        return AbstractEnums.Cards.THE_UNNAMED;
+        return GR.Enums.Cards.THE_UNNAMED;
     }
 
     @Override

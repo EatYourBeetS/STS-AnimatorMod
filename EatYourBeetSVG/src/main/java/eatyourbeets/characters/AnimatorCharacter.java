@@ -17,10 +17,9 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
-import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.resources.animator.AnimatorResources_Images;
 import eatyourbeets.cards.animator.basic.Strike;
-import patches.AbstractEnums;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorResources;
 
 import java.util.ArrayList;
 
@@ -32,11 +31,11 @@ public class AnimatorCharacter extends CustomPlayer
     public static final String[] TEXT = characterStrings.TEXT;
     public static final String NAME = NAMES[0];
 
-    public AnimatorCharacter(String name, PlayerClass playerClass)
+    public AnimatorCharacter()
     {
-        super(name, playerClass, AnimatorResources_Images.ORB_TEXTURES, AnimatorResources_Images.ORB_VFX_PNG, (String) null, null);
+        super(NAME, GR.Animator.PlayerClass, GR.Animator.Images.ORB_TEXTURES, GR.Animator.Images.ORB_VFX_PNG, (String) null, null);
 
-        initializeClass(null, AnimatorResources_Images.SHOULDER2_PNG, AnimatorResources_Images.SHOULDER1_PNG, AnimatorResources_Images.CORPSE_PNG,
+        initializeClass(null, GR.Animator.Images.SHOULDER2_PNG, GR.Animator.Images.SHOULDER1_PNG, GR.Animator.Images.CORPSE_PNG,
                 getLoadout(), 0.0F, -5.0F, 240.0F, 244.0F, new EnergyManager(3));
 
         reloadAnimation();
@@ -44,7 +43,7 @@ public class AnimatorCharacter extends CustomPlayer
 
     public void reloadAnimation()
     {
-        this.loadAnimation(AnimatorResources_Images.SKELETON_ATLAS, AnimatorResources_Images.SKELETON_JSON, 1.0f);
+        this.loadAnimation(GR.Animator.Images.SKELETON_ATLAS, GR.Animator.Images.SKELETON_JSON, 1.0f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         this.stateData.setMix("Hit", "Idle", 0.1F);
         e.setTimeScale(0.9F);
@@ -71,7 +70,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public AbstractPlayer newInstance()
     {
-        return new AnimatorCharacter(this.name, AbstractEnums.Characters.THE_ANIMATOR);
+        return new AnimatorCharacter();
     }
 
     @Override
@@ -170,7 +169,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public AbstractCard.CardColor getCardColor()
     {
-        return AbstractEnums.Cards.THE_ANIMATOR;
+        return GR.Enums.Cards.THE_ANIMATOR;
     }
 
     @Override

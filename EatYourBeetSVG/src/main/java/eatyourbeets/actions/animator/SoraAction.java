@@ -13,12 +13,12 @@ import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.animator.series.NoGameNoLife.Sora;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCardBuilder;
-import eatyourbeets.resources.animator.AnimatorResources_Strings;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 import org.apache.logging.log4j.util.TriConsumer;
-import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
@@ -128,8 +128,6 @@ public class SoraAction extends EYBAction
         Motivate(2, 10, 1),
         CycleCards(2, 13, 3),
         DrawCards(2, 14, 2);
-
-        private static final String[] CARD_TEXT = AnimatorResources_Strings.SpecialEffects.TEXT;
 
         private int descriptionIndex;
         private int nameIndex;
@@ -283,9 +281,10 @@ public class SoraAction extends EYBAction
         protected AnimatorCardBuilder GenerateInternal(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
             AnimatorCardBuilder builder = new AnimatorCardBuilder(Sora.ID + "Alt");
+            AnimatorStrings.Special text = GR.Animator.Text.Special;
 
-            builder.SetText(CARD_TEXT[nameIndex], CARD_TEXT[descriptionIndex], "");
-            builder.SetProperties(AbstractCard.CardType.SKILL, AbstractEnums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
+            builder.SetText(text.Get(nameIndex), text.Get(descriptionIndex), "");
+            builder.SetProperties(AbstractCard.CardType.SKILL, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
             builder.SetNumbers(number, number, number, number);
             builder.SetOnUse(onUseAction);
 

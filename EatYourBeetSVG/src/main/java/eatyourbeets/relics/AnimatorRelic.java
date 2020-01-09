@@ -4,11 +4,11 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import patches.AbstractEnums;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -18,7 +18,7 @@ public abstract class AnimatorRelic extends CustomRelic
 
     public static String CreateFullID(String id)
     {
-        return AnimatorResources.CreateID(id);
+        return GR.Animator.CreateID(id);
     }
 
     public AnimatorRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
@@ -54,7 +54,7 @@ public abstract class AnimatorRelic extends CustomRelic
     @Override
     public boolean canSpawn()
     {
-        return AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR;
+        return AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR;
     }
 
     protected String FormatDescription(Object... args)

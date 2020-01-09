@@ -49,15 +49,15 @@ public class AccelWorld extends AnimatorCustomLoadout
     {
         if (trophy == 1)
         {
-            return trophyStrings[3];
+            return trophyStrings.BronzeDescription;
         }
         else if (trophy == 2)
         {
-            return trophyStrings[8];
+            return trophyStrings.SilverAccelWorld;
         }
         else if (trophy == 3)
         {
-            return trophyStrings[9];
+            return trophyStrings.GoldAccelWorld;
         }
 
         return null;

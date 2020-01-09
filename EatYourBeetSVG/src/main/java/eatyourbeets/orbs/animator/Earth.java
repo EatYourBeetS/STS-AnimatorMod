@@ -1,4 +1,4 @@
-package eatyourbeets.orbs;
+package eatyourbeets.orbs.animator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameActions;

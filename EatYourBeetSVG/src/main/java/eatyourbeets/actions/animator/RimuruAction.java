@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.series.TenseiSlime.Rimuru;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
-import patches.AbstractEnums;
 
 public class RimuruAction extends EYBAction
 {
@@ -67,7 +67,7 @@ public class RimuruAction extends EYBAction
                 newCopy.retain = true;
             }
 
-            newCopy.tags.add(AbstractEnums.CardTags.TEMPORARY);
+            newCopy.tags.add(GR.Enums.CardTags.TEMPORARY);
             newCopy.name = rimuru.name;
 
             if (group.type == CardGroup.CardGroupType.HAND)

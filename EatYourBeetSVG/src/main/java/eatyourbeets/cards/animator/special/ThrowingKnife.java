@@ -7,13 +7,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
-import patches.AbstractEnums;
 
 public abstract class ThrowingKnife extends AnimatorCard implements Hidden
 {
@@ -25,7 +25,7 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
     {
         super(staticCardData.get(id), id, AnimatorResources.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
 
-        this.tags.add(AbstractEnums.CardTags.PURGE);
+        this.tags.add(GR.Enums.CardTags.PURGE);
     }
 
     public static AbstractCard GetRandomCard()

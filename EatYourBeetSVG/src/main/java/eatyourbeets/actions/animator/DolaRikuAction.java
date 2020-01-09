@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.series.NoGameNoLife.DolaRiku;
-import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -19,7 +19,7 @@ public class DolaRikuAction extends EYBAction
     {
         super(ActionType.CARD_MANIPULATION);
 
-        Initialize(choices, AbstractResources.GetCardStrings(DolaRiku.ID).NAME);
+        Initialize(choices, GR.GetCardStrings(DolaRiku.ID).NAME);
 
         card = exhausted;
     }

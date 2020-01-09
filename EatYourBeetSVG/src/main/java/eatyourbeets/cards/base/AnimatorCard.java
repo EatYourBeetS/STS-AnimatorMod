@@ -2,9 +2,8 @@ package eatyourbeets.cards.base;
 
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.resources.animator.AnimatorResources_Images;
-import patches.AbstractEnums;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ public abstract class AnimatorCard extends EYBCard
 
     protected static String Register(Class<? extends AnimatorCard> type, EYBCardBadge... badges)
     {
-        return RegisterCard(type, AnimatorResources.CreateID(type.getSimpleName()), badges);
+        return RegisterCard(type, GR.Animator.CreateID(type.getSimpleName()), badges);
     }
 
     @Override
@@ -34,7 +33,7 @@ public abstract class AnimatorCard extends EYBCard
 
     protected AnimatorCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
-        this(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), cost, type, AbstractEnums.Cards.THE_ANIMATOR, rarity, target);
+        this(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), cost, type, GR.Enums.Cards.THE_ANIMATOR, rarity, target);
     }
 
     protected AnimatorCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
@@ -50,11 +49,11 @@ public abstract class AnimatorCard extends EYBCard
 
         if (this instanceof AnimatorCard_UltraRare)
         {
-            setBannerTexture(AnimatorResources_Images.BANNER_SPECIAL2_PNG, AnimatorResources_Images.BANNER_SPECIAL2_P_PNG);
+            setBannerTexture(GR.Animator.Images.BANNER_SPECIAL2_PNG, GR.Animator.Images.BANNER_SPECIAL2_P_PNG);
         }
         else if (rarity == CardRarity.SPECIAL)
         {
-            setBannerTexture(AnimatorResources_Images.BANNER_SPECIAL_PNG, AnimatorResources_Images.BANNER_SPECIAL_P_PNG);
+            setBannerTexture(GR.Animator.Images.BANNER_SPECIAL_PNG, GR.Animator.Images.BANNER_SPECIAL_P_PNG);
         }
     }
 

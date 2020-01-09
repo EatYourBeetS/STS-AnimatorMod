@@ -7,12 +7,12 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.unnamed.MoveToVoidAction;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import patches.AbstractEnums;
 
 public abstract class UnnamedCard extends EYBCard
 {
@@ -45,7 +45,7 @@ public abstract class UnnamedCard extends EYBCard
 
     protected UnnamedCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
-        this(id, cost, type, AbstractEnums.Cards.THE_UNNAMED, rarity, target);
+        this(id, cost, type, GR.Enums.Cards.THE_UNNAMED, rarity, target);
     }
 
     protected UnnamedCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
@@ -73,14 +73,14 @@ public abstract class UnnamedCard extends EYBCard
     {
         if (value)
         {
-            if (!tags.contains(AbstractEnums.CardTags.ECHO))
+            if (!tags.contains(GR.Enums.CardTags.ECHO))
             {
-                tags.add(AbstractEnums.CardTags.ECHO);
+                tags.add(GR.Enums.CardTags.ECHO);
             }
         }
         else
         {
-            tags.remove(AbstractEnums.CardTags.ECHO);
+            tags.remove(GR.Enums.CardTags.ECHO);
         }
 
         isEcho = value;
@@ -90,14 +90,14 @@ public abstract class UnnamedCard extends EYBCard
     {
         if (value)
         {
-            if (!tags.contains(AbstractEnums.CardTags.VOIDBOUND))
+            if (!tags.contains(GR.Enums.CardTags.VOIDBOUND))
             {
-                tags.add(AbstractEnums.CardTags.VOIDBOUND);
+                tags.add(GR.Enums.CardTags.VOIDBOUND);
             }
         }
         else
         {
-            tags.remove(AbstractEnums.CardTags.VOIDBOUND);
+            tags.remove(GR.Enums.CardTags.VOIDBOUND);
         }
 
         isVoidbound = value;
@@ -110,12 +110,12 @@ public abstract class UnnamedCard extends EYBCard
 
     public boolean isEcho()
     {
-        return isEcho || tags.contains(AbstractEnums.CardTags.ECHO);
+        return isEcho || tags.contains(GR.Enums.CardTags.ECHO);
     }
 
     public boolean isVoidbound()
     {
-        return isVoidbound || tags.contains(AbstractEnums.CardTags.VOIDBOUND);
+        return isVoidbound || tags.contains(GR.Enums.CardTags.VOIDBOUND);
     }
 
     public boolean isDepleted()

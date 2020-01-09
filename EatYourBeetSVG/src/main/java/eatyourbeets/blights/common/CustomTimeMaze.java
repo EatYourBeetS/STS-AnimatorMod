@@ -7,11 +7,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.BlightStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.EndPlayerTurnAction;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class CustomTimeMaze extends AbstractBlight
 {
-    public static final String ID = "animator:TimeMaze";
+    public static final String ID = GR.Common.CreateID("TimeMaze");
     private static final BlightStrings blightStrings;
     public static final String NAME;
     public static final String[] DESC;

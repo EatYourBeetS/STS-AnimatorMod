@@ -1,4 +1,4 @@
-package eatyourbeets.rewards;
+package eatyourbeets.rewards.animator;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomReward;
@@ -8,12 +8,12 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
-import eatyourbeets.dungeons.CustomAbstractDungeon;
-import eatyourbeets.resources.animator.AnimatorResources_Strings;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
-import patches.AbstractEnums;
+import eatyourbeets.dungeons.CustomAbstractDungeon;
+import eatyourbeets.resources.GR;
+import eatyourbeets.rewards.AnimatorReward;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class SynergyCardsReward extends AnimatorReward
 
     public SynergyCardsReward(Synergy synergy)
     {
-        super(ID, GenerateRewardTitle(synergy), AbstractEnums.Rewards.SYNERGY_CARDS);
+        super(ID, GenerateRewardTitle(synergy), GR.Enums.Rewards.SYNERGY_CARDS);
 
         this.synergy = synergy;
         this.cards = CustomAbstractDungeon.getRewardCards(synergy);
@@ -51,8 +51,7 @@ public class SynergyCardsReward extends AnimatorReward
 
         if (this.hb.hovered)
         {
-            TipHelper.renderGenericTip(360.0F * Settings.scale, (float) InputHelper.mY, synergy.Name,
-                    AnimatorResources_Strings.Rewards.TEXT[0]);
+            TipHelper.renderGenericTip(360.0F * Settings.scale, (float) InputHelper.mY, synergy.Name, GR.Animator.Text.Rewards.Description);
         }
     }
 

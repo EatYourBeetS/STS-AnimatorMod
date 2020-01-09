@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.AnimatorResources_Strings;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
@@ -55,7 +55,7 @@ public class Tet extends AnimatorCard
     private void DiscardFromDrawPile()
     {
         GameActions.Top.SelectFromPile(name, magicNumber, player.drawPile)
-        .SetMessage(AnimatorResources_Strings.GridSelection.TEXT[0], magicNumber)
+        .SetMessage(GR.Common.Text.GridSelection.DiscardUpTo(magicNumber))
         .SetOptions(false, true)
         .AddCallback(cards ->
         {
@@ -69,7 +69,7 @@ public class Tet extends AnimatorCard
     private void ShuffleFromDiscardPile()
     {
         GameActions.Top.SelectFromPile(name, magicNumber, player.discardPile)
-        .SetMessage(AnimatorResources_Strings.GridSelection.TEXT[1], magicNumber)
+        .SetMessage(GR.Common.Text.GridSelection.MoveToDrawPile(magicNumber))
         .SetOptions(false, true)
         .AddCallback(cards ->
         {

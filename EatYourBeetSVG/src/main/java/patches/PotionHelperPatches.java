@@ -51,7 +51,7 @@ public class PotionHelperPatches
 //        @SpirePrefixPatch
 //        public static SpireReturn<AbstractPotion> MethodInfo(AbstractPlayer.PlayerClass chosenClass)
 //        {
-//            if (chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+//            if (chosenClass == Enums.Characters.THE_ANIMATOR)
 //            {
 //                PotionHelper.potions.add(FalseLifePotion.POTION_ID);
 //            }

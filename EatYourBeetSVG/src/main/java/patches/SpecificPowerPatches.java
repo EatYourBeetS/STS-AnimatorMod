@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.powers.SharpHidePower;
+import eatyourbeets.resources.GR;
 
 public class SpecificPowerPatches
 {
@@ -15,7 +16,7 @@ public class SpecificPowerPatches
         @SpirePrefixPatch
         public static SpireReturn Prefix(SharpHidePower __instance, AbstractCard card, UseCardAction action)
         {
-            if (card.hasTag(AbstractEnums.CardTags.PIERCING))
+            if (card.hasTag(GR.Enums.CardTags.PIERCING))
             {
                 return SpireReturn.Return(null);
             }

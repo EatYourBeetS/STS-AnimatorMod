@@ -8,23 +8,25 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.actions.monsters.MoveMonsterAction;
-import eatyourbeets.monsters.Moveset;
-import eatyourbeets.monsters.SharedMoveset.*;
-import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
-import eatyourbeets.resources.common.EYBResources;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.effects.utility.CallbackEffect;
+import eatyourbeets.monsters.Moveset;
+import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
+import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndArtifact;
+import eatyourbeets.monsters.SharedMoveset.Move_ShuffleCard;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Moveset.Move_UltimateCrystalAttack;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
-import eatyourbeets.powers.common.AntiArtifactSlowPower;
 import eatyourbeets.powers.UnnamedReign.UltimateCrystalPower;
+import eatyourbeets.powers.common.AntiArtifactSlowPower;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 public class UltimateCrystal extends Crystal
 {
@@ -113,7 +115,7 @@ public class UltimateCrystal extends Crystal
             GameEffects.List.Add(new CallbackEffect(new WaitRealtimeAction(15),
                     this, (state, action)-> CardCrawlGame.music.unsilenceBGM()));
 
-            CardCrawlGame.sound.play(EYBResources.Audio_TheUltimateCrystal, true);
+            CardCrawlGame.sound.play(GR.Common.Audio_TheUltimateCrystal, true);
         }
         else
         {

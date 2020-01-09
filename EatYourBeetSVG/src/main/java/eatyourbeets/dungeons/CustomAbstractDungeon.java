@@ -16,8 +16,8 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
-import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
@@ -239,7 +239,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
 
     private static void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
     {
-        int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
+        int currentLevel = UnlockTracker.getUnlockLevel(GR.Enums.Characters.THE_ANIMATOR);
         if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36)
         {
             return;
@@ -328,7 +328,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
 
         if (card != null && cards.size() > 0)
         {
-            //card.tags.remove(AbstractEnums.CardTags.UNOBTAINABLE);
+            //card.tags.remove(Enums.CardTags.UNOBTAINABLE);
             cards.remove(0);
             cards.add(card);
         }

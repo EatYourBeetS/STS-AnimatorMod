@@ -3,7 +3,7 @@ package eatyourbeets.resources.unnamed;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
-public class UnnamedResources_Images
+public class UnnamedImages
 {
     public static final String ATTACK_PNG = "images/cardui/unnamed/512/bg_attack_canvas.png";
     public static final String SKILL_PNG = "images/cardui/unnamed/512/bg_skill_canvas.png";

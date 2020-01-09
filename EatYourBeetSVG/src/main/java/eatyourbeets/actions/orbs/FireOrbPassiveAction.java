@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.orbs.Fire;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameUtilities;
 
 public class FireOrbPassiveAction extends EYBAction

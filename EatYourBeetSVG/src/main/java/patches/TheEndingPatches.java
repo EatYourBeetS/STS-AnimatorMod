@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.events.TheMaskedTraveler2;
-import eatyourbeets.resources.common.EYBResources;
+import eatyourbeets.resources.GR;
 import eatyourbeets.rooms.AnimatorCustomEventRoom;
 
 public class TheEndingPatches
@@ -20,14 +20,14 @@ public class TheEndingPatches
         public static void Postfix(TheEnding __instance)
         {
             if (AnimatorCustomLoadout.specialTrophies.trophy1 > 0 ||
-                AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+                AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
             {
                 MapRoomNode rest = __instance.getMap().get(0).get(3);
                 MapRoomNode shop = __instance.getMap().get(1).get(3);
                 MapRoomNode node = __instance.getMap().get(1).get(5);
 
                 node.room = new AnimatorCustomEventRoom(TheMaskedTraveler2::new);
-                node.room.setMapImg(EYBResources.Map_Act5Entrance, EYBResources.Map_Act5EntranceOutline);
+                node.room.setMapImg(GR.Common.Textures.UnnamedReignEntrance, GR.Common.Textures.UnnamedReignEntranceOutline);
 
                 connectNode(rest, node);
                 connectNode(node, shop);

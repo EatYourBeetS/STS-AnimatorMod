@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import org.apache.logging.log4j.util.TriConsumer;
-import patches.AbstractEnums;
 
 import java.util.function.Consumer;
 
@@ -54,7 +54,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
     public AnimatorCardBuilder SetProperties(AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target)
     {
-        return SetProperties(type, AbstractEnums.Cards.THE_ANIMATOR, rarity, target);
+        return SetProperties(type, GR.Enums.Cards.THE_ANIMATOR, rarity, target);
     }
 
     public AnimatorCardBuilder SetProperties(AbstractCard.CardType type, AbstractCard.CardColor color, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target)

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
+import eatyourbeets.resources.GR;
 
 import java.util.ArrayList;
 
@@ -22,16 +23,16 @@ public class SoulPatches
         {
             if (card != null)
             {
-                if (card.tags.contains(AbstractEnums.CardTags.LOYAL))
+                if (card.tags.contains(GR.Enums.CardTags.LOYAL))
                 {
                     soul.isReadyForReuse = true;
                     AbstractDungeon.player.discardPile.moveToDeck(card, true);
                 }
-                else if (card.tags.contains(AbstractEnums.CardTags.PURGING) && !visualOnly)
+                else if (card.tags.contains(GR.Enums.CardTags.PURGING) && !visualOnly)
                 {
                     soul.isReadyForReuse = true;
                     AbstractDungeon.player.discardPile.removeCard(card);
-                    card.tags.remove(AbstractEnums.CardTags.PURGING);
+                    card.tags.remove(GR.Enums.CardTags.PURGING);
                 }
             }
         }
@@ -47,7 +48,7 @@ public class SoulPatches
                 ((OnAddedToDeckSubscriber)card).OnAddedToDeck();
             }
 
-            if (card.tags.contains(AbstractEnums.CardTags.UNIQUE))
+            if (card.tags.contains(GR.Enums.CardTags.UNIQUE))
             {
                 AbstractCard first = null;
 

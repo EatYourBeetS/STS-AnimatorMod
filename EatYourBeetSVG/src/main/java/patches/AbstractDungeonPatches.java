@@ -12,6 +12,7 @@ import eatyourbeets.events.TheMaskedTraveler1;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
 public class AbstractDungeonPatches
@@ -22,7 +23,7 @@ public class AbstractDungeonPatches
         @SpirePrefixPatch
         public static void Prefix(AbstractDungeon dungeon_instance)
         {
-            if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+            if (AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
             {
                 if (GameUtilities.GetActualAscensionLevel() >= 17)
                 {

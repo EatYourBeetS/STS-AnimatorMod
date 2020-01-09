@@ -18,7 +18,7 @@ public class StoreRelicPatch
     public static void Method(StoreRelic __instance, AbstractRelic relic, int slot, ShopScreen screen)
     {
 //        TODO: Implement this
-//        if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR &&
+//        if (AbstractDungeon.player.chosenClass == Enums.Characters.THE_ANIMATOR &&
 //            AbstractDungeon.floorNum >= 16 && AbstractDungeon.floorNum <= 36 &&
 //            AbstractDungeon.merchantRng.randomBoolean() && !DevConsole.visible)
 //        {

@@ -1,6 +1,6 @@
 package eatyourbeets.relics.animator;
 
-import eatyourbeets.orbs.Fire;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 

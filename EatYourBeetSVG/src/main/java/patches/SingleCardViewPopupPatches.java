@@ -4,7 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -13,14 +16,16 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.UnnamedCard;
-import eatyourbeets.resources.animator.AnimatorResources_Images;
-import eatyourbeets.resources.unnamed.UnnamedResources_Images;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorImages;
+import eatyourbeets.resources.unnamed.UnnamedImages;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class SingleCardViewPopupPatches
 {
     private static final FieldInfo<AbstractCard> cardField = JavaUtilities.GetPrivateField("card", SingleCardViewPopup.class);
+    private static final AnimatorImages Images = GR.Animator.Images;
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderTitle")
     public static class SingleCardViewPopup_RenderTitle
@@ -53,16 +58,16 @@ public class SingleCardViewPopupPatches
                     switch (card.type)
                     {
                         case ATTACK:
-                            tmpImg = AnimatorResources_Images.CARD_FRAME_ATTACK_SPECIAL_L;
+                            tmpImg = Images.Textures.CARD_FRAME_ATTACK_SPECIAL_L;
                             break;
 
                         case POWER:
-                            tmpImg = AnimatorResources_Images.CARD_FRAME_POWER_SPECIAL_L;
+                            tmpImg = Images.Textures.CARD_FRAME_POWER_SPECIAL_L;
                             break;
 
                         case SKILL:
                         default:
-                            tmpImg = AnimatorResources_Images.CARD_FRAME_SKILL_SPECIAL_L;
+                            tmpImg = Images.Textures.CARD_FRAME_SKILL_SPECIAL_L;
                             break;
                     }
 
@@ -131,8 +136,8 @@ public class SingleCardViewPopupPatches
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderCost")
     public static class SingleCardViewPopup_RenderCost
     {
-        private static final Texture Animator_OrbB = new Texture(AnimatorResources_Images.ORB_B_PNG);
-        private static final TextureAtlas.AtlasRegion Unnamed_Orb2B = UnnamedResources_Images.ORB_2_ATLAS.findRegion(UnnamedResources_Images.ORB_2B_PNG);
+        private static final Texture Animator_OrbB = new Texture(GR.Animator.Images.ORB_B_PNG);
+        private static final TextureAtlas.AtlasRegion Unnamed_Orb2B = UnnamedImages.ORB_2_ATLAS.findRegion(UnnamedImages.ORB_2B_PNG);
 
         @SpirePrefixPatch
         public static SpireReturn Method(SingleCardViewPopup __instance, SpriteBatch sb)

@@ -13,12 +13,11 @@ import com.megacrit.cardcrawl.relics.BloodVial;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
+import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.effects.player.RemoveRelicEffect;
-import eatyourbeets.monsters.Bosses.KrulTepes;
 
 public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtainedSubscriber
 {
@@ -40,8 +39,7 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
     {
         if (trigger == OnRelicObtainedSubscriber.Trigger.Equip && relic instanceof BloodVial && truePotential)
         {
-            GameEffects.Queue.Add(new RemoveRelicEffect(relic))
-            .AddCallback(__ -> setCounter(counter + 1));
+            GameEffects.Queue.RemoveRelic(relic).AddCallback(__ -> setCounter(counter + 1));
         }
     }
 
@@ -146,8 +144,7 @@ public class ExquisiteBloodVial extends AnimatorRelic implements OnRelicObtained
             {
                 if (relic instanceof BloodVial)
                 {
-                    GameEffects.Queue.Add(new RemoveRelicEffect(relic))
-                    .AddCallback(__ -> setCounter(counter + 1));
+                    GameEffects.Queue.RemoveRelic(relic).AddCallback(__ -> setCounter(counter + 1));
                 }
             }
         }

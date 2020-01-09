@@ -12,11 +12,10 @@ import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.console.CommandsManager;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.AbstractPurgingStone;
-import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.InputManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
@@ -39,7 +38,7 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
         logger.info("EYBModInitializer()");
 
         BaseMod.subscribe(this);
-        AbstractResources.Initialize();
+        GR.Initialize();
     }
 
     @Override
@@ -92,7 +91,7 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     @Override
     public void receiveStartGame()
     {
-        if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+        if (AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
         {
             if (Settings.isStandardRun())
             {
@@ -111,7 +110,7 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     @Override
     public void receiveStartAct()
     {
-        if (AbstractDungeon.player.chosenClass != AbstractEnums.Characters.THE_ANIMATOR)
+        if (AbstractDungeon.player.chosenClass != GR.Enums.Characters.THE_ANIMATOR)
         {
             RemoveColorless(AbstractDungeon.srcColorlessCardPool);
             RemoveColorless(AbstractDungeon.colorlessCardPool);

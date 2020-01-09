@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import patches.AbstractEnums;
 
 public class TakanashiRikka extends AnimatorCard
 {
@@ -39,7 +39,7 @@ public class TakanashiRikka extends AnimatorCard
             }
 
             copy.baseDamage = magicNumber;
-            copy.tags.add(AbstractEnums.CardTags.PURGE);
+            copy.tags.add(GR.Enums.CardTags.PURGE);
 
             GameActions.Top.MakeCardInHand(copy);
         }

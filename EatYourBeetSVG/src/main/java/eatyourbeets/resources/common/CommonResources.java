@@ -1,8 +1,6 @@
 package eatyourbeets.resources.common;
 
 import basemod.BaseMod;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -16,61 +14,28 @@ import eatyourbeets.events.UnnamedReign.TheMaskedTraveler3;
 import eatyourbeets.events.UnnamedReign.TheUnnamedMerchant;
 import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
-import eatyourbeets.potions.FalseLifePotion;
-import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.rewards.SpecialGoldReward;
-import eatyourbeets.rewards.SynergyCardsReward;
 import eatyourbeets.variables.SecondaryValueVariable;
-import patches.AbstractEnums;
 
-import java.io.File;
-
-public class EYBResources extends AbstractResources
+public class CommonResources extends AbstractResources
 {
-    private static String languagePath = null;
+    public final static String ID = "EYB";
+    public final CommonStrings Text = new CommonStrings();
+    public final CommonImages Images = new CommonImages();
 
-    public static String CreateCommonID(String suffix)
+    public final String Audio_TheHaunt = "ANIMATOR_THE_HAUNT.ogg";
+    public final String Audio_TheUnnamed = "ANIMATOR_THE_UNNAMED.ogg";
+    public final String Audio_TheCreature = "ANIMATOR_THE_CREATURE.ogg";
+    public final String Audio_TheUltimateCrystal = "ANIMATOR_THE_ULTIMATE_CRYSTAL";
+
+    public CommonImages.Textures Textures;
+
+    public CommonResources()
     {
-        return "EYB:" + suffix;
+        super(ID);
     }
-
-    private static void LoadLanguagePath()
-    {
-        if (languagePath != null)
-        {
-            return;
-        }
-
-        String filePath = "c:/temp/common-localization/";
-        File f = new File(filePath);
-        if(f.exists() && f.isDirectory())
-        {
-            languagePath = filePath;
-        }
-        else if (Settings.language == Settings.GameLanguage.ZHT)
-        {
-            languagePath = "localization/common/zht/";
-        }
-        else if (Settings.language == Settings.GameLanguage.ZHS)
-        {
-            languagePath = "localization/common/zhs/";
-        }
-        else
-        {
-            languagePath = "localization/common/eng/";
-        }
-    }
-
-    public static Texture Map_Act5Entrance;
-    public static Texture Map_Act5EntranceOutline;
-
-    public static final String Audio_TheHaunt = "ANIMATOR_THE_HAUNT.ogg";
-    public static final String Audio_TheUnnamed = "ANIMATOR_THE_UNNAMED.ogg";
-    public static final String Audio_TheCreature = "ANIMATOR_THE_CREATURE.ogg";
-    public static final String Audio_TheUltimateCrystal = "ANIMATOR_THE_ULTIMATE_CRYSTAL";
 
     @Override
     protected void InitializeEvents()
@@ -109,27 +74,10 @@ public class EYBResources extends AbstractResources
     @Override
     protected void InitializeCards()
     {
+        Textures = Images.CreateTextures();
+        Text.LoadStrings();
+
         BaseMod.addDynamicVariable(new SecondaryValueVariable());
-    }
-
-    @Override
-    protected void InitializeRewards()
-    {
-        SynergyCardsReward.Serializer synergySerializer = new SynergyCardsReward.Serializer();
-        BaseMod.registerCustomReward(AbstractEnums.Rewards.SYNERGY_CARDS, synergySerializer, synergySerializer);
-
-        SpecialGoldReward.Serializer goldSerializer = new SpecialGoldReward.Serializer();
-        BaseMod.registerCustomReward(AbstractEnums.Rewards.SPECIAL_GOLD, goldSerializer, goldSerializer);
-    }
-
-    @Override
-    protected void InitializePotions()
-    {
-        BaseMod.addPotion(FalseLifePotion.class, Color.GOLDENROD.cpy(), Color.WHITE.cpy(), Color.GOLDENROD.cpy(),
-                            FalseLifePotion.POTION_ID, AbstractEnums.Characters.THE_ANIMATOR);
-
-        BaseMod.addPotion(GrowthPotion.class, Color.NAVY.cpy(), Color.FOREST.cpy(), Color.YELLOW.cpy(),
-                GrowthPotion.POTION_ID, AbstractEnums.Characters.THE_ANIMATOR);
     }
 
     @Override
@@ -142,26 +90,30 @@ public class EYBResources extends AbstractResources
     protected void PostInitialize()
     {
         AnimatorMetrics.Initialize();
-        BaseMod.addSaveField("animator_SaveData", PlayerStatistics.Instance);
-
-        Map_Act5Entrance = new Texture("images/ui/map/act5Entrance.png");
-        Map_Act5EntranceOutline = new Texture("images/ui/map/act5EntranceOutline.png");
+        BaseMod.addSaveField(CreateID("SaveData"), PlayerStatistics.Instance);
     }
 
     @Override
     protected void InitializeStrings()
     {
-        LoadLanguagePath();
-
-        BaseMod.loadCustomStringsFile(UIStrings.class, languagePath + "UIStrings.json");
-        BaseMod.loadCustomStringsFile(PowerStrings.class, languagePath + "PowerStrings.json");
-
-        super.InitializeStrings();
+        LoadCustomStrings(PowerStrings.class);
+        LoadCustomStrings(UIStrings.class);
     }
 
     @Override
     protected void InitializeKeywords()
     {
-        LoadKeywords(languagePath + "KeywordStrings.json");
+        LoadKeywords();
+    }
+
+    @Override
+    protected String GetLanguagePath(Settings.GameLanguage language)
+    {
+        if (language != Settings.GameLanguage.ZHT && language != Settings.GameLanguage.ZHS)
+        {
+            language = Settings.GameLanguage.ENG;
+        }
+
+        return super.GetLanguagePath(language);
     }
 }

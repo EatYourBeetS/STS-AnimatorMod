@@ -5,11 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
-import patches.AbstractEnums;
 
 public class TheMaskedTraveler3 extends AnimatorEvent
 {
@@ -97,7 +97,7 @@ public class TheMaskedTraveler3 extends AnimatorEvent
     {
         AbstractDungeon.getCurrRoom().rewards.clear();
 
-        RewardItem rewardItem = new RewardItem(AbstractEnums.Cards.THE_ANIMATOR);
+        RewardItem rewardItem = new RewardItem(GR.Enums.Cards.THE_ANIMATOR);
         RandomizedList<AbstractCard> cards = new RandomizedList<>(AbstractDungeon.rareCardPool.group);
 
         rewardItem.cards.clear();

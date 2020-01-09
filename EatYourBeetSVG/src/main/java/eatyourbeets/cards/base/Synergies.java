@@ -2,10 +2,9 @@ package eatyourbeets.cards.base;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.interfaces.markers.Spellcaster;
-import eatyourbeets.resources.animator.AnimatorResources_Strings;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.HashMap;
 
 public class Synergies
 {
-    private final static UIStrings uiStrings = AnimatorResources_Strings.Synergies;
     private final static HashMap<Integer, Synergy> All = new HashMap<>();
 
     @SuppressWarnings("FieldCanBeLocal")
@@ -63,7 +61,7 @@ public class Synergies
 
     private static Synergy CreateSynergy(int id)
     {
-        Synergy s = new Synergy(id, uiStrings.TEXT[id]);
+        Synergy s = new Synergy(id, GR.Animator.Text.Synergies.SynergyName(id));
         if (id > 0)
         {
             All.put(id, s);
@@ -72,9 +70,9 @@ public class Synergies
         return s;
     }
 
-    public static String GetSeriesString()
+    public static String GetLocalizedSeriesString()
     {
-        return uiStrings.EXTRA_TEXT[0];
+        return GR.Animator.Text.Synergies.Series;
     }
 
     public static Synergy GetByID(int id)

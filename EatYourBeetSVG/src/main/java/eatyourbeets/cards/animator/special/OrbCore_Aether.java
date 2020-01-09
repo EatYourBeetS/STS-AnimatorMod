@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.orbs.Aether;
+import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.animator.OrbCore_AetherPower;
 import eatyourbeets.utilities.GameActions;
 

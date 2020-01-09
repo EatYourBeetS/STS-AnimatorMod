@@ -2,13 +2,12 @@ package eatyourbeets.characters;
 
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.resources.animator.AnimatorResources_Strings;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.characters.Loadouts.*;
 import eatyourbeets.powers.PlayerStatistics;
-import patches.AbstractEnums;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 import java.util.StringJoiner;
@@ -18,15 +17,13 @@ public class AnimatorCharacterSelect
     private static int index = 0;
     private static final ArrayList<AnimatorCustomLoadout> customLoadouts = new ArrayList<>();
 
-    protected static final String[] uiText = AnimatorResources_Strings.CharacterSelect.TEXT;
-
     public static AnimatorCustomLoadout GetSelectedLoadout(boolean startingGame)
     {
         AnimatorCustomLoadout loadout = customLoadouts.get(index);
         if (startingGame && loadout instanceof Random)
         {
             ArrayList<AnimatorCustomLoadout> unlocked = new ArrayList<>();
-            int currentLevel = UnlockTracker.getUnlockLevel(AbstractEnums.Characters.THE_ANIMATOR);
+            int currentLevel = UnlockTracker.getUnlockLevel(GR.Enums.Characters.THE_ANIMATOR);
             for (AnimatorCustomLoadout item : customLoadouts)
             {
                 if (!(item instanceof Random) && currentLevel >= item.unlockLevel)

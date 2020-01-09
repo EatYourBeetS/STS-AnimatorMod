@@ -309,6 +309,7 @@
 	"animator:DolaStephanie":
 	{
 		"DESCRIPTION": "Choose a card in your hand, Fetch 1 card with the same Synergy from your draw pile. Exhaust.",
+		"EXTENDED_DESCRIPTION": ["Fetch Cards with the same Synergy."],
 		"NAME": "Stephanie",
 		"UPGRADE_DESCRIPTION": "Choose a card in your hand, Fetch 1 card with the same Synergy from your draw pile."
 	},

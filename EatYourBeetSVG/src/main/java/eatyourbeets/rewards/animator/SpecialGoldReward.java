@@ -1,4 +1,4 @@
-package eatyourbeets.rewards;
+package eatyourbeets.rewards.animator;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomReward;
@@ -6,8 +6,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rewards.RewardSave;
+import eatyourbeets.resources.GR;
+import eatyourbeets.rewards.AnimatorReward;
 import eatyourbeets.utilities.JavaUtilities;
-import patches.AbstractEnums;
 
 public class SpecialGoldReward extends AnimatorReward
 {
@@ -19,7 +20,7 @@ public class SpecialGoldReward extends AnimatorReward
 
     public SpecialGoldReward(String text, int amount)
     {
-        super(ImageMaster.UI_GOLD,amount + GOLD_STRING + " (" + text + ")", AbstractEnums.Rewards.SPECIAL_GOLD);
+        super(ImageMaster.UI_GOLD,amount + GOLD_STRING + " (" + text + ")", GR.Enums.Rewards.SPECIAL_GOLD);
 
         this.text = text;
         this.goldAmt = amount;

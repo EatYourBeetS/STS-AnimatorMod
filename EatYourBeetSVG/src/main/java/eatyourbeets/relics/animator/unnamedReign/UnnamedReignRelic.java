@@ -126,7 +126,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
             {
                 if (r != null && (r != relic) && !(r instanceof OnEquipUnnamedReignRelicSubscriber))
                 {
-                    effect.Enqueue(new RemoveRelicEffect(relic, r));
+                    effect.Enqueue(new RemoveRelicEffect(r));
                 }
             }
 
@@ -148,7 +148,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
             {
                 if ((r instanceof UnnamedReignRelic) && r != relic)
                 {
-                    AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(r, relic));
+                    GameEffects.Queue.RemoveRelic(relic);
                     r.flash();
                 }
             }

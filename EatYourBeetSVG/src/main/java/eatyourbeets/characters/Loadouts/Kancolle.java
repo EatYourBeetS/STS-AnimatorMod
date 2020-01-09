@@ -12,8 +12,8 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.characters.AnimatorMetrics;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
-import patches.AbstractEnums;
 
 import java.util.ArrayList;
 
@@ -50,15 +50,15 @@ public class Kancolle extends AnimatorCustomLoadout
     {
         if (trophy == 1)
         {
-            return trophyStrings[3];
+            return trophyStrings.BronzeDescription;
         }
         else if (trophy == 2)
         {
-            return trophyStrings[6];
+            return trophyStrings.SilverKancolle;
         }
         else if (trophy == 3)
         {
-            return trophyStrings[7];
+            return trophyStrings.GoldKancolle;
         }
 
         return null;
@@ -83,7 +83,7 @@ public class Kancolle extends AnimatorCustomLoadout
         for (AbstractCard c : cards)
         {
             AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-            if (card != null && card.color == AbstractEnums.Cards.THE_ANIMATOR)
+            if (card != null && card.color == GR.Enums.Cards.THE_ANIMATOR)
             {
                 Synergy synergy = card.synergy;
                 if (synergy != null)

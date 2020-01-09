@@ -22,7 +22,7 @@ import eatyourbeets.cards.base.AnimatorCardBuilder;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -90,7 +90,7 @@ public abstract class AbstractPurgingStone extends AnimatorRelic
 
     private static void Create(Synergy synergy, AnimatorCard base)
     {
-        AnimatorCardBuilder builder = new AnimatorCardBuilder(AnimatorResources.CreateID("synergy:" + synergy.ID));
+        AnimatorCardBuilder builder = new AnimatorCardBuilder(GR.CreateID("synergy", String.valueOf(synergy.ID)));
         builder.SetImage(base.assetUrl);
         builder.SetProperties(base.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
         builder.SetText(synergy.Name, "Contains all cards from this series.", "");

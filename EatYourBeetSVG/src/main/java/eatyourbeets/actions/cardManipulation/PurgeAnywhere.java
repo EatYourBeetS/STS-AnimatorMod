@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import patches.AbstractEnums;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -34,7 +34,7 @@ public class PurgeAnywhere extends EYBAction
         this.card = card;
         if (this.card != null)
         {
-            this.card.tags.add(AbstractEnums.CardTags.PURGING);
+            this.card.tags.add(GR.Enums.CardTags.PURGING);
         }
 
         Initialize(repeat);

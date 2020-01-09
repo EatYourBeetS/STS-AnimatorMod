@@ -14,8 +14,7 @@ import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
-import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.resources.common.EYBResources_Strings;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBCardBadge
@@ -35,9 +34,9 @@ public class EYBCardBadge
 
     private EYBCardBadge(int id, String texturePath)
     {
-        this.name = EYBResources_Strings.CardBadges.EXTRA_TEXT[id];
-        this.description = EYBResources_Strings.CardBadges.TEXT[id + 1];
-        this.texture = AbstractResources.GetTexture(texturePath);
+        this.name = GR.Common.Text.CardBadges.GetName(id);
+        this.description = GR.Common.Text.CardBadges.GetDescription(id);
+        this.texture = GR.GetTexture(texturePath);
         this.id = id;
     }
 

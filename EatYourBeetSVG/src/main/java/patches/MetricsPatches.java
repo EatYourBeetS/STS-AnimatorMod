@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.metrics.Metrics;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
@@ -37,7 +38,7 @@ public class MetricsPatches
         {
             if (Settings.UPLOAD_DATA && __instance.type == Metrics.MetricRequestType.UPLOAD_METRICS)
             {
-                if (AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR && !Settings.isDebug && Settings.isStandardRun())
+                if (AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR && !Settings.isDebug && Settings.isStandardRun())
                 {
                     cardsData.clear();
 

@@ -14,14 +14,11 @@ import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
-import eatyourbeets.resources.animator.AnimatorResources_Strings;
+import eatyourbeets.resources.GR;
 
 public class BanCardButton
 {
-    private static final UIStrings uiStrings;
-    public static final String[] TEXT;
     private static final int W = 512;
     private static final int H = 256;
 
@@ -206,14 +203,12 @@ public class BanCardButton
         }
         else
         {
-            return TEXT[0];
+            return GR.Animator.Text.Rewards.Banish;
         }
     }
 
     static
     {
-        uiStrings = AnimatorResources_Strings.CardSelect;
-        TEXT = uiStrings.TEXT;
 //        SHOW_Y = 220.0F * Settings.scale;
 //        SHOW_X = (float) Settings.WIDTH / 2.0F;
 //        HIDE_X = (float) Settings.WIDTH / 2.0F;

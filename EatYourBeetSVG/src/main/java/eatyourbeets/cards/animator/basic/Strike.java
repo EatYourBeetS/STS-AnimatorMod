@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import patches.AbstractEnums;
 
 public class Strike extends AnimatorCard
 {
@@ -25,7 +25,7 @@ public class Strike extends AnimatorCard
 
         this.tags.add(BaseModCardTags.BASIC_STRIKE);
         this.tags.add(AbstractCard.CardTags.STRIKE);
-        this.tags.add(AbstractEnums.CardTags.IMPROVED_STRIKE);
+        this.tags.add(GR.Enums.CardTags.IMPROVED_STRIKE);
     }
 
     public Strike()

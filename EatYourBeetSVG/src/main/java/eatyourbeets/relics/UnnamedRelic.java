@@ -4,10 +4,10 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import patches.AbstractEnums;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -53,6 +53,6 @@ public abstract class UnnamedRelic extends CustomRelic
     @Override
     public boolean canSpawn()
     {
-        return AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_UNNAMED;
+        return AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_UNNAMED;
     }
 }

@@ -10,11 +10,12 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.ultrarare.Hero;
-import eatyourbeets.effects.player.ObtainRelicEffect;
+import eatyourbeets.relics.animator.CursedGlyph;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
-import eatyourbeets.relics.animator.CursedGlyph;
-import eatyourbeets.resources.animator.AnimatorResources_Strings;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorStrings;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -25,7 +26,7 @@ public class BundledRelic
     public final String cardID;
     public AbstractCard card;
 
-    private static final String[] text = AnimatorResources_Strings.Rewards.TEXT;
+    private static final AnimatorStrings.Rewards text = GR.Animator.Text.Rewards;
 
     private final AbstractRelic.RelicTier relicTier;
     private final String relicID;
@@ -135,11 +136,11 @@ public class BundledRelic
             font.getData().setScale(relic.scale * 0.8f);
             if (relicID.equals(CursedGlyph.ID))
             {
-                FontHelper.renderFontLeft(sb, font, text[2], card.current_x + (offset_x * 0.66f), card.current_y + offset_y, Color.RED);
+                FontHelper.renderFontLeft(sb, font, text.CursedRelic, card.current_x + (offset_x * 0.66f), card.current_y + offset_y, Color.RED);
             }
             else
             {
-                FontHelper.renderFontLeft(sb, font, text[1], card.current_x + (offset_x * 0.66f), card.current_y + offset_y, Color.WHITE);
+                FontHelper.renderFontLeft(sb, font, text.BonusRelic, card.current_x + (offset_x * 0.66f), card.current_y + offset_y, Color.WHITE);
             }
             font.getData().setScale(1f);
 
@@ -162,7 +163,7 @@ public class BundledRelic
             }
 
             relic.hb.resize(AbstractRelic.PAD_X, AbstractRelic.PAD_X);
-            AbstractDungeon.effectsQueue.add(new ObtainRelicEffect(relic));
+            GameEffects.Queue.ObtainRelic(relic);
         }
     }
 

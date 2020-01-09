@@ -5,15 +5,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.ui.FtueTip;
 import eatyourbeets.characters.AnimatorMetrics;
-import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.effects.player.SpawnRelicEffect;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.resources.animator.AnimatorResources_Strings;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorStrings;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.InputManager;
 
 public class Readme extends AnimatorRelic
 {
-    private static final String[] TEXT = AnimatorResources_Strings.Tips.TEXT;
+    private static final AnimatorStrings.Tips Text = GR.Animator.Text.Tips;
     public static final String ID = CreateFullID(Readme.class.getSimpleName());
 
     private final String key;
@@ -30,7 +31,7 @@ public class Readme extends AnimatorRelic
 
         if (AbstractDungeon.effectsQueue != null)
         {
-            AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, this));
+            GameEffects.Queue.RemoveRelic(this);
         }
     }
 
@@ -62,20 +63,20 @@ public class Readme extends AnimatorRelic
 
         if (Settings.isControllerMode)
         {
-            SpawnRelic(base + "Controller", 7, 8);
+            SpawnRelic(base + "Controller", 4);
         }
 
-        SpawnRelic(base + "General", 1, 2);
-        SpawnRelic(base + "Synergies", 3, 4);
-        SpawnRelic(base + "Badges", 5, 6);
+        SpawnRelic(base + "General", 0);
+        SpawnRelic(base + "Synergies", 1);
+        SpawnRelic(base + "Badges", 2);
     }
 
-    private static void SpawnRelic(String key, int headerIndex, int contentIndex)
+    private static void SpawnRelic(String key, int index)
     {
         if (!AnimatorMetrics.GetConfig().getBool(key))
         {
-            AbstractDungeon.effectsQueue.add(new SpawnRelicEffect(
-                    new Readme(key, TEXT[headerIndex], TEXT[contentIndex]),Settings.WIDTH / 2f, Settings.HEIGHT / 2f));
+            GameEffects.Queue.Add(new SpawnRelicEffect(new Readme(key, Text.Header(index), Text.Content(index)),
+            Settings.WIDTH / 2f, Settings.HEIGHT / 2f));
         }
     }
 
@@ -95,7 +96,7 @@ public class Readme extends AnimatorRelic
 
         if (AbstractDungeon.getCurrMapNode().y > 2)
         {
-            AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, this));
+            GameEffects.Queue.RemoveRelic(this);
         }
     }
 
@@ -107,9 +108,10 @@ public class Readme extends AnimatorRelic
         if (hb.hovered && !AbstractDungeon.isScreenUp && InputManager.RightClick.IsJustPressed())
         {
             AbstractDungeon.ftue = new FtueTip(header, content, Settings.WIDTH / 2f, Settings.HEIGHT / 2f, FtueTip.TipType.CARD_REWARD);
-            AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, this));
             AnimatorMetrics.GetConfig().setBool(key, true);
             AnimatorMetrics.SaveConfig();
+
+            GameEffects.Queue.RemoveRelic(this);
         }
     }
 

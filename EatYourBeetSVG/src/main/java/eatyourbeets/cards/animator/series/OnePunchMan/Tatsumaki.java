@@ -8,7 +8,7 @@ import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.orbs.Aether;
+import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Tatsumaki extends AnimatorCard

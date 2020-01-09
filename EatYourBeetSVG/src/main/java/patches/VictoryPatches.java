@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
 import com.megacrit.cardcrawl.screens.VictoryScreen;
 import eatyourbeets.characters.AnimatorCharacterSelect;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
 public class VictoryPatches
@@ -16,7 +17,7 @@ public class VictoryPatches
         @SpirePrefixPatch
         public static void Method(VictoryScreen __instance)
         {
-            if (Settings.isStandardRun() && AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+            if (Settings.isStandardRun() && AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
             {
                 AnimatorCharacterSelect.OnTrueVictory(GameUtilities.GetActualAscensionLevel());
             }
@@ -30,7 +31,7 @@ public class VictoryPatches
         public static void Method(VictoryRoom __instance)
         {
             if (__instance.eType == VictoryRoom.EventType.HEART && Settings.isStandardRun()
-                && AbstractDungeon.player.chosenClass == AbstractEnums.Characters.THE_ANIMATOR)
+                && AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
             {
                 AnimatorCharacterSelect.OnVictory(GameUtilities.GetActualAscensionLevel());
             }

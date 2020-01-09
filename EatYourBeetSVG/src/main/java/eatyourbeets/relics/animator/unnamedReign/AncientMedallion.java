@@ -11,14 +11,13 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.dungeons.TheUnnamedReign;
-import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.interfaces.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
-import patches.AbstractEnums;
+import eatyourbeets.utilities.RandomizedList;
 
 public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicSubscriber, OnRelicObtainedSubscriber
 {
@@ -138,8 +137,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
                 this.equipCounter = ((AncientMedallion) relic).equipCounter;
                 this.flash();
 
-                GameEffects.Queue.Add(new RemoveRelicEffect(relic))
-                .AddCallback(equipCounter, (c, r) -> setCounter(counter + (int)c));
+                GameEffects.Queue.RemoveRelic(relic).AddCallback(equipCounter, (c, r) -> setCounter(counter + (int)c));
             }
 
             this.onManualEquip();
@@ -226,11 +224,11 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     private boolean UpdateSelection()
     {
         AbstractCard preview = AbstractDungeon.gridSelectScreen.upgradePreviewCard;
-        if (preview != null && !preview.tags.contains(AbstractEnums.CardTags.TEMPORARY) && preview.canUpgrade())
+        if (preview != null && !preview.tags.contains(GR.Enums.CardTags.TEMPORARY) && preview.canUpgrade())
         {
             preview.upgrade();
             preview.displayUpgrades();
-            preview.tags.add(AbstractEnums.CardTags.TEMPORARY);
+            preview.tags.add(GR.Enums.CardTags.TEMPORARY);
         }
 
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)

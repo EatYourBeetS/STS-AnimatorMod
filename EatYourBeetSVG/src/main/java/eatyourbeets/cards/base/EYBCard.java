@@ -18,12 +18,9 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.resources.animator.AnimatorResources_Images;
-import eatyourbeets.resources.common.EYBResources_Strings;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
-import patches.AbstractEnums;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +63,7 @@ public abstract class EYBCard extends CustomCard
 
     public static String RegisterCard(Class<? extends EYBCard> type, String cardID, EYBCardBadge[] badges)
     {
-        staticCardData.put(cardID, new EYBCardData(type, badges, AbstractResources.GetCardStrings(cardID)));
+        staticCardData.put(cardID, new EYBCardData(type, badges, GR.GetCardStrings(cardID)));
 
         return cardID;
     }
@@ -150,7 +147,7 @@ public abstract class EYBCard extends CustomCard
                 return;
 
             case SPECIAL:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, AnimatorResources_Images.CARD_FRAME_ATTACK_SPECIAL, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_ATTACK_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
@@ -176,7 +173,7 @@ public abstract class EYBCard extends CustomCard
                 return;
 
             case SPECIAL:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, AnimatorResources_Images.CARD_FRAME_SKILL_SPECIAL, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_SKILL_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
@@ -202,7 +199,7 @@ public abstract class EYBCard extends CustomCard
                 break;
 
             case SPECIAL:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, AnimatorResources_Images.CARD_FRAME_POWER_SPECIAL, x, y);
+                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_POWER_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
@@ -311,7 +308,7 @@ public abstract class EYBCard extends CustomCard
 
     protected boolean InitializingPreview()
     {
-        Keyword preview = AbstractResources.GetKeyword("~Preview");
+        Keyword preview = GR.GetKeyword("~Preview");
         AddTooltip(new TooltipInfo(preview.PROPER_NAME, preview.DESCRIPTION));
 
         cardData = staticCardData.get(cardID);
@@ -351,7 +348,7 @@ public abstract class EYBCard extends CustomCard
                     if (mY < (y + 76 * scale) && mY > (y + 16 * scale))
                     {
                         TipHelper.renderGenericTip(1300.0f * Settings.scale, 900.0f * Settings.scale,
-                                badge.description, EYBResources_Strings.CardBadges.TEXT[0]);
+                        badge.description, GR.Common.Text.CardBadges.Tooltip);
                     }
                 }
 
@@ -547,14 +544,14 @@ public abstract class EYBCard extends CustomCard
     {
         if (value)
         {
-            if (!tags.contains(AbstractEnums.CardTags.LOYAL))
+            if (!tags.contains(GR.Enums.CardTags.LOYAL))
             {
-                tags.add(AbstractEnums.CardTags.LOYAL);
+                tags.add(GR.Enums.CardTags.LOYAL);
             }
         }
         else
         {
-            tags.remove(AbstractEnums.CardTags.LOYAL);
+            tags.remove(GR.Enums.CardTags.LOYAL);
         }
     }
 
@@ -562,14 +559,14 @@ public abstract class EYBCard extends CustomCard
     {
         if (value)
         {
-            if (!tags.contains(AbstractEnums.CardTags.PIERCING))
+            if (!tags.contains(GR.Enums.CardTags.PIERCING))
             {
-                tags.add(AbstractEnums.CardTags.PIERCING);
+                tags.add(GR.Enums.CardTags.PIERCING);
             }
         }
         else
         {
-            tags.remove(AbstractEnums.CardTags.PIERCING);
+            tags.remove(GR.Enums.CardTags.PIERCING);
         }
     }
 
@@ -592,14 +589,14 @@ public abstract class EYBCard extends CustomCard
     {
         if (value)
         {
-            if (!tags.contains(AbstractEnums.CardTags.PURGE))
+            if (!tags.contains(GR.Enums.CardTags.PURGE))
             {
-                tags.add(AbstractEnums.CardTags.PURGE);
+                tags.add(GR.Enums.CardTags.PURGE);
             }
         }
         else
         {
-            tags.remove(AbstractEnums.CardTags.PURGE);
+            tags.remove(GR.Enums.CardTags.PURGE);
         }
     }
 
@@ -609,16 +606,16 @@ public abstract class EYBCard extends CustomCard
 
         if (value)
         {
-            if (!tags.contains(AbstractEnums.CardTags.UNIQUE))
+            if (!tags.contains(GR.Enums.CardTags.UNIQUE))
             {
-                tags.add(AbstractEnums.CardTags.UNIQUE);
-                Keyword unique = AbstractResources.GetKeyword("~Unique");
+                tags.add(GR.Enums.CardTags.UNIQUE);
+                Keyword unique = GR.GetKeyword("~Unique");
                 AddTooltip(new TooltipInfo(unique.PROPER_NAME, unique.DESCRIPTION));
             }
         }
         else
         {
-            tags.remove(AbstractEnums.CardTags.UNIQUE);
+            tags.remove(GR.Enums.CardTags.UNIQUE);
         }
     }
 

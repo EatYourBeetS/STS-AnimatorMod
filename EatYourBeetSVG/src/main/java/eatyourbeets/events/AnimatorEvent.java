@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
@@ -17,13 +18,14 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
+// TODO: Create common event class
 public abstract class AnimatorEvent extends AbstractImageEvent
 {
     protected static final Logger logger = LogManager.getLogger(EYBAction.class.getName());
 
     public static String CreateFullID(String id)
     {
-        return AnimatorResources.CreateID(id);
+        return GR.Animator.CreateID(id);
     }
 
     private static final FieldInfo<ArrayList<LargeDialogOptionButton>> optionListField = JavaUtilities.GetPrivateField("optionList", GenericEventDialog.class);

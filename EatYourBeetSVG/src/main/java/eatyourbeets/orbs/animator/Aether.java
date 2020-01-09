@@ -1,4 +1,4 @@
-package eatyourbeets.orbs;
+package eatyourbeets.orbs.animator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.orbs.AetherOrbEvokeAction;
 import eatyourbeets.actions.orbs.AetherOrbPassiveAction;

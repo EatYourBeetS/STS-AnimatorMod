@@ -1,170 +1,32 @@
 package eatyourbeets.resources;
 
-import basemod.BaseMod;
 import basemod.interfaces.*;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.mod.stslib.Keyword;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.interfaces.markers.Hidden;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.resources.common.EYBResources;
-import eatyourbeets.resources.unnamed.UnnamedResources;
-import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import patches.AbstractEnums;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
 
-public abstract class AbstractResources
+public abstract class AbstractResources extends GR
 implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber,
            EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
            AddAudioSubscriber
 {
-    protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.cards.");
-    protected static final ArrayList<String> relicClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.relics.");
-    protected static final ArrayList<String> powerClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.powers.");
-    protected static final HashMap<String, Map<String, String>> dynamicKeywords = new HashMap<>();
-    protected static final HashMap<String, Keyword> keywords = new HashMap<>();
-    protected static final HashMap<String, Texture> textures = new HashMap<>();
+
     protected static final Logger logger = LogManager.getLogger(AnimatorResources.class.getName());
 
-    protected static EYBResources commonResources;
-    protected static UnnamedResources unnamedResources;
-    protected static AnimatorResources animatorResources;
+    protected String languagePath;
+    protected String prefix;
 
-    public static String CreateID(String prefix, String suffix)
+    protected AbstractResources(String prefix)
     {
-        return prefix + ":" + suffix;
+        this.prefix = prefix;
     }
 
-    public static Texture GetTexture(String path)
+    public String CreateID(String suffix)
     {
-        Texture texture = textures.get(path);
-        if (texture == null)
-        {
-            texture = new Texture(path);
-            texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-            textures.put(path, texture);
-        }
-
-        return texture;
-    }
-
-    public static Map<String, String> GetDynamicKeyword(String keywordID)
-    {
-        return dynamicKeywords.get(keywordID);
-    }
-
-    public static Keyword GetKeyword(String keywordID)
-    {
-        return keywords.get(keywordID);
-    }
-
-    public static CharacterStrings GetCharacterStrings(String characterID)
-    {
-        return CardCrawlGame.languagePack.getCharacterString(characterID);
-    }
-
-    public static MonsterStrings GetMonsterStrings(String monsterID)
-    {
-        return CardCrawlGame.languagePack.getMonsterStrings(monsterID);
-    }
-
-    public static PowerStrings GetPowerStrings(String powerID)
-    {
-        return CardCrawlGame.languagePack.getPowerStrings(powerID);
-    }
-
-    public static CardStrings GetCardStrings(String cardID)
-    {
-        return CardCrawlGame.languagePack.getCardStrings(cardID);
-    }
-
-    public static EventStrings GetEventStrings(String eventID)
-    {
-        return CardCrawlGame.languagePack.getEventString(eventID);
-    }
-
-    public static BlightStrings GetBlightStrings(String blightID)
-    {
-        return CardCrawlGame.languagePack.getBlightString(blightID);
-    }
-
-    public static UIStrings GetUIStrings(String stringID)
-    {
-        return CardCrawlGame.languagePack.getUIString(stringID);
-    }
-
-    public static OrbStrings GetOrbStrings(String orbID)
-    {
-        return CardCrawlGame.languagePack.getOrbString(orbID);
-    }
-
-    public static String GetCardImage(String cardID)
-    {
-        return "images/cards/" + cardID.replace(":", "/") + ".png";
-    }
-
-    public static String GetRelicImage(String relicID)
-    {
-        return "images/relics/" + relicID.replace(":", "/") + ".png";
-    }
-
-    public static String GetBlightImageName(String blightID)
-    {
-        return blightID.replace(":", "/") + ".png";
-    }
-
-    public static String GetPowerImage(String powerID)
-    {
-        return "images/powers/" + powerID.replace(":", "/") + ".png";
-    }
-
-    public static String GetMonsterImage(String monsterID)
-    {
-        return "images/monsters/" + monsterID.replace(":", "/") + ".png";
-    }
-
-    public static String GetRewardImage(String rewardID)
-    {
-        return "images/ui/rewards/" + rewardID.replace(":", "/") + ".png";
-    }
-
-    public static void Initialize()
-    {
-        commonResources = Initialize(commonResources, new EYBResources());
-        animatorResources = Initialize(animatorResources, new AnimatorResources());
-        //unnamedResources = Initialize(unnamedResources, new UnnamedResources());
-    }
-
-    private static <T extends AbstractResources> T Initialize(AbstractResources existing, T resources)
-    {
-        if (existing != null)
-        {
-            BaseMod.unsubscribe(existing);
-        }
-
-        resources.InitializeInternal();
-        resources.InitializeColor();
-
-        BaseMod.subscribe(resources);
-
-        return resources;
+        return CreateID(prefix, suffix);
     }
 
     @Override
@@ -198,7 +60,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     }
 
     @Override
-    public void receiveAddAudio()
+    public final void receiveAddAudio()
     {
         InitializeAudio();
     }
@@ -214,230 +76,71 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         PostInitialize();
     }
 
-    protected static void LoadCustomRelics(String character)
+    protected void InitializeInternal()  { }
+    protected void InitializeColor()     { }
+    protected void InitializeMonsters()  { }
+    protected void InitializeEvents()    { }
+    protected void InitializeRewards()   { }
+    protected void InitializeAudio()     { }
+    protected void InitializeCards()     { }
+    protected void InitializePowers()    { }
+    protected void InitializeStrings()   { }
+    protected void InitializeRelics()    { }
+    protected void InitializePotions()   { }
+    protected void InitializeCharacter() { }
+    protected void InitializeKeywords()  { }
+    protected void PostInitialize()      { }
+
+    protected String GetLanguagePath()
     {
-        final String prefix = "eatyourbeets.relics." + character;
-
-        for (String s : relicClassNames)
+        if (languagePath == null)
         {
-            if (s.startsWith(prefix))
+            File f = new File("c:/temp/" + prefix + "-localization/");
+            if (f.exists() && f.isDirectory())
             {
-                try
-                {
-                    logger.info("Adding: " + s);
-
-                    LoadRelic(Class.forName(s));
-                }
-                catch (ClassNotFoundException e)
-                {
-                    logger.warn("Class not found : " + s);
-                }
+                languagePath = f.getAbsolutePath();
+            }
+            else
+            {
+                languagePath = GetLanguagePath(Settings.language);
             }
         }
+
+        return languagePath;
     }
 
-    protected static void LoadCustomCards(String character)
+    protected String GetLanguagePath(Settings.GameLanguage language)
     {
-        final String prefix = "eatyourbeets.cards." + character;
-
-        for (String s : cardClassNames)
-        {
-            if (s.startsWith(prefix))
-            {
-                try
-                {
-                    logger.info("Adding: " + s);
-
-                    LoadCard(Class.forName(s));
-                }
-                catch (ClassNotFoundException e)
-                {
-                    logger.warn("Class not found : " + s);
-                }
-            }
-        }
+        return "localization/" + prefix + "/" + language.name().toLowerCase() + "/";
     }
 
-    protected static void LoadCard(Class<?> type)
+    protected void LoadKeywords()
     {
-        if (!CanInstantiate(type))
-        {
-            return;
-        }
-
-        AbstractCard card;
-        String id;
-
-        try
-        {
-            card = (AbstractCard)type.getConstructor().newInstance();
-            id = card.cardID;
-        }
-        catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
-        {
-            e.printStackTrace();
-            return;
-        }
-
-        if (UnlockTracker.isCardLocked(id))
-        {
-            UnlockTracker.unlockCard(id);
-            card.isLocked = false;
-        }
-
-        BaseMod.addCard(card);
+        super.LoadKeywords(GetLanguagePath() + "KeywordStrings.json");
     }
 
-    protected static void LoadRelic(Class<?> type)
+    protected void LoadDynamicKeywords()
     {
-        if (!CanInstantiate(type))
-        {
-            return;
-        }
-
-        AbstractRelic relic;
-        try
-        {
-            relic = (AbstractRelic)type.getConstructor().newInstance();
-        }
-        catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
-        {
-            e.printStackTrace();
-            return;
-        }
-
-        BaseMod.addRelicToCustomPool(relic, AbstractEnums.Cards.THE_ANIMATOR);
+        super.LoadDynamicKeywords(GetLanguagePath() + "DynamicKeywordStrings.json");
     }
 
-    @SuppressWarnings("unchecked") // I miss C# ...
-    protected static void LoadCustomPowers(String character)
+    protected void LoadCustomRelics()
     {
-        final String prefix = "eatyourbeets.cards." + character;
-
-        for (String s : cardClassNames)
-        {
-            if (s.startsWith(prefix))
-            {
-                try
-                {
-                    logger.info("Adding: " + s);
-
-                    Class<?> type = Class.forName(s);
-                    if (CanInstantiate(type))
-                    {
-                        BaseMod.addPower((Class<AbstractPower>) type, CreateID(character, type.getSimpleName()));
-                    }
-                }
-                catch (ClassNotFoundException e)
-                {
-                    logger.warn("Class not found : " + s);
-                }
-            }
-        }
+        super.LoadCustomRelics(prefix);
     }
 
-    protected static boolean CanInstantiate(Class<?> type)
+    protected void LoadCustomCards()
     {
-        return (!Hidden.class.isAssignableFrom(type) && !Modifier.isAbstract(type.getModifiers()));
+        super.LoadCustomCards(prefix);
     }
 
-    protected void LoadKeywords(String path)
+    protected void LoadCustomPowers()
     {
-        String json = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
-
-        Gson gson = new Gson();
-        Type typeToken = new TypeToken<Map<String, Keyword>>()
-        {
-        }.getType();
-        Map<String, Keyword> keywords = gson.fromJson(json, typeToken);
-
-        for (Map.Entry<String, Keyword> pair : keywords.entrySet())
-        {
-            String id = pair.getKey();
-            Keyword keyword = pair.getValue();
-
-            if (!id.startsWith("~"))
-            {
-                BaseMod.addKeyword(keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
-            }
-
-            AbstractResources.keywords.put(id, keyword);
-        }
+        super.LoadCustomPowers(prefix);
     }
 
-    protected void LoadDynamicKeywords(String path)
+    protected void LoadCustomStrings(Class<?> type)
     {
-        String json = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
-
-        Gson gson = new Gson();
-        Type typeToken = new TypeToken<Map<String, Map<String, String>>>()
-        {
-        }.getType();
-        Map<String, Map<String, String>> keywords = gson.fromJson(json, typeToken);
-
-        for (Map.Entry<String, Map<String, String>> pair : keywords.entrySet())
-        {
-            String id = pair.getKey();
-            Map<String, String> keyword = pair.getValue();
-
-            AbstractResources.dynamicKeywords.put(id, keyword);
-        }
-    }
-
-    protected void InitializeInternal()
-    {
-
-    }
-
-    protected void InitializeColor()
-    {
-    }
-
-    protected void InitializeMonsters()
-    {
-    }
-
-    protected void InitializeEvents()
-    {
-    }
-
-    protected void InitializeRewards()
-    {
-    }
-
-    protected void InitializeAudio()
-    {
-    }
-
-    protected void InitializeCards()
-    {
-    }
-
-    protected void InitializePowers()
-    {
-    }
-
-    protected void InitializeStrings()
-    {
-    }
-
-    protected void InitializeRelics()
-    {
-    }
-
-    protected void InitializePotions()
-    {
-    }
-
-    protected void InitializeCharacter()
-    {
-    }
-
-    protected void InitializeKeywords()
-    {
-    }
-
-    protected void PostInitialize()
-    {
+        super.LoadCustomStrings(type, GetLanguagePath() + type.getSimpleName() + ".json");
     }
 }

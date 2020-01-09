@@ -1,11 +1,10 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
 
@@ -33,6 +32,6 @@ public class Destiny extends AnimatorRelic implements OnReceiveRewardsSubscriber
     @Override
     public void OnReceiveRewards(ArrayList<RewardItem> rewards)
     {
-        AbstractDungeon.effectsQueue.add(new RemoveRelicEffect(this, this));
+        GameEffects.Queue.RemoveRelic(this);
     }
 }

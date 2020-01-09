@@ -54,38 +54,10 @@
 	{
 		"TEXT":
 		[
-			"-",
 			"General", "Each of these Notes disappears permanently once clicked. The mod is updated often, so you might see them again whenever there is an important change.",
 			"Synergies", "Certain cards have effects that trigger on #ySynergy. A card #ySynergizes if the previous card played this turn was from the same series, or if they both have a #ySpellcaster or #yMartial #yArtist keyword.",
 			"Badges", "Cards in this mod have a secondary effect which is #ynever affected by #yUpgrades and is represented by a badge on the card. Hold #bRight #bClick at any moment and anywhere on the screen to check them, or press #bControl to toggle them.",
 			"Controller", "While playing with a controller, you can press #bRight #bStick in situations where #bRight #bClick would be required."
-		]
-	},
-
-	"animator:HandSelection":
-	{
-		"TEXT":
-		[
-			"move to your draw pile.",
-			"Fetch Cards with the same Synergy."
-		]
-	},
-	
-	"animator:GridSelection":
-	{
-		"TEXT":
-		[
-			"Discard up to {0} card(s).",
-			"Shuffle {0} card(s) into your Draw Pile.",
-			"Transform into a {0}"
-		]
-	},
-
-	"animator:TheUnnamedReign":
-	{
-		"TEXT": 
-		[
-			"The Unnamed Reign"
 		]
 	},
 
@@ -147,14 +119,7 @@
 		[
 			"Only contains Cards with this synergy. WARNING: once you click on this, the other 2 Card rewards will disappear.",
 			"Bonus Relic",
-			"Cursed Relic"
-		]
-	},
-
-	"animator:CardSelect":
-	{
-		"TEXT":
-		[
+			"Cursed Relic",
 			"Banish"
 		]
 	},
@@ -165,15 +130,7 @@
 		[
 			"Starting Cards: ",
 			"###############",
-			"Unlocks at Level ",
-			" (You are Level ",
-			")",
-			"Recommended.",
-			"Balanced start.",
-			"Strong start.",
-			"Very strong start.",
-			"Special: More Gold"
+			"Unlocks at Level {0} (You are Level {1})"
 		]
 	}
-
 }

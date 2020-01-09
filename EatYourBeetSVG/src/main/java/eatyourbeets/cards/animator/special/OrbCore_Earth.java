@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.orbs.Earth;
+import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.animator.OrbCore_EarthPower;
 
 public class OrbCore_Earth extends OrbCore implements Hidden

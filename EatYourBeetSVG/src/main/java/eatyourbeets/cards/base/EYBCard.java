@@ -348,7 +348,7 @@ public abstract class EYBCard extends CustomCard
                     if (mY < (y + 76 * scale) && mY > (y + 16 * scale))
                     {
                         TipHelper.renderGenericTip(1300.0f * Settings.scale, 900.0f * Settings.scale,
-                        badge.description, GR.Common.Text.CardBadges.Tooltip);
+                        badge.description, GR.Common.Strings.CardBadges.Tooltip);
                     }
                 }
 

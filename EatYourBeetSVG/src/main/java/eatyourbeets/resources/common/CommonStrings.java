@@ -15,7 +15,7 @@ public class CommonStrings
     public HandSelection HandSelection;
     public GridSelection GridSelection;
 
-    public void LoadStrings()
+    public void Initialize()
     {
         CardBadges = new CardBadges();
         TheUnnamedReign = new TheUnnamedReign();

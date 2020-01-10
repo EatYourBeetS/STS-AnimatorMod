@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.characters.AnimatorMetrics;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
@@ -254,7 +254,7 @@ public class PurgingStone_Series extends AbstractPurgingStone implements CustomS
             while (synergies.Count() > DEFAULT_SERIES_SIZE)
             {
                 Synergy synergy = synergies.Retrieve(AbstractDungeon.miscRng);
-                if (synergy.ID != AnimatorMetrics.lastLoadout)
+                if (synergy.ID != GR.Animator.Metrics.SelectedLoadout.ID)
                 {
                     bannedSynergies.add(synergy);
                 }

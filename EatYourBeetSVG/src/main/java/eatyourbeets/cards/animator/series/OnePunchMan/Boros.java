@@ -29,6 +29,7 @@ public class Boros extends AnimatorCard
 
         GameActions.Bottom.GainForce(secondaryValue);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.Flash(this);
     }
 
     @Override

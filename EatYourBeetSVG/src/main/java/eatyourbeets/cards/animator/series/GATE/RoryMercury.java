@@ -28,6 +28,7 @@ public class RoryMercury extends AnimatorCard
         super.triggerWhenDrawn();
 
         GameActions.Bottom.GainForce(1);
+        GameActions.Bottom.Flash(this);
     }
 
     @Override

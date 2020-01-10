@@ -27,6 +27,7 @@ public class Shuna extends AnimatorCard
         super.triggerWhenDrawn();
 
         GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.Flash(this);
     }
 
     @Override

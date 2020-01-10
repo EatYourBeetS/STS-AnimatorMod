@@ -40,6 +40,7 @@ public class Jibril extends AnimatorCard implements Spellcaster
         if (EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Add(new TriggerPassiveAction(1));
+            GameActions.Bottom.Flash(this);
         }
     }
 

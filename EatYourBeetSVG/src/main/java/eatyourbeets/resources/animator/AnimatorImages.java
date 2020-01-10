@@ -45,26 +45,36 @@ public class AnimatorImages
 
     public Textures Textures;
 
-    public Textures CreateTextures()
+    public Textures InitializeTextures()
     {
         return Textures = new Textures();
     }
 
     public class Textures
     {
-        public final Texture CARD_BG_ATTACK = GR.GetTexture(ATTACK_PNG);
-        public final Texture CARD_BG_SKILL = GR.GetTexture(SKILL_PNG);
-        public final Texture CARD_BG_POWER = GR.GetTexture(POWER_PNG);
+        public final Texture CARD_BG_ATTACK   = GR.GetTexture(ATTACK_PNG);
+        public final Texture CARD_BG_SKILL    = GR.GetTexture(SKILL_PNG);
+        public final Texture CARD_BG_POWER    = GR.GetTexture(POWER_PNG);
         public final Texture CARD_BG_ATTACK_L = GR.GetTexture(ATTACK_P_PNG);
-        public final Texture CARD_BG_SKILL_L = GR.GetTexture(SKILL_P_PNG);
-        public final Texture CARD_BG_POWER_L = GR.GetTexture(POWER_P_PNG);
+        public final Texture CARD_BG_SKILL_L  = GR.GetTexture(SKILL_P_PNG);
+        public final Texture CARD_BG_POWER_L  = GR.GetTexture(POWER_P_PNG);
 
-        public final Texture CARD_FRAME_ATTACK_SPECIAL = GR.GetTexture("images/cardui/animator/512/frame_attack_special.png");
-        public final Texture CARD_FRAME_SKILL_SPECIAL = GR.GetTexture("images/cardui/animator/512/frame_skill_special.png");
-        public final Texture CARD_FRAME_POWER_SPECIAL = GR.GetTexture("images/cardui/animator/512/frame_power_special.png");
+        public final Texture CARD_FRAME_ATTACK_SPECIAL   = GR.GetTexture("images/cardui/animator/512/frame_attack_special.png");
+        public final Texture CARD_FRAME_SKILL_SPECIAL    = GR.GetTexture("images/cardui/animator/512/frame_skill_special.png");
+        public final Texture CARD_FRAME_POWER_SPECIAL    = GR.GetTexture("images/cardui/animator/512/frame_power_special.png");
         public final Texture CARD_FRAME_ATTACK_SPECIAL_L = GR.GetTexture("images/cardui/animator/1024/frame_attack_special.png");
-        public final Texture CARD_FRAME_SKILL_SPECIAL_L = GR.GetTexture("images/cardui/animator/1024/frame_skill_special.png");
-        public final Texture CARD_FRAME_POWER_SPECIAL_L = GR.GetTexture("images/cardui/animator/1024/frame_power_special.png");
+        public final Texture CARD_FRAME_SKILL_SPECIAL_L  = GR.GetTexture("images/cardui/animator/1024/frame_skill_special.png");
+        public final Texture CARD_FRAME_POWER_SPECIAL_L  = GR.GetTexture("images/cardui/animator/1024/frame_power_special.png");
+
+        public final Texture BRONZE_TROPHY        = GR.GetTexture("images/ui/rewards/animator/Bronze.png");
+        public final Texture SILVER_TROPHY        = GR.GetTexture("images/ui/rewards/animator/Silver.png");
+        public final Texture GOLD_TROPHY          = GR.GetTexture("images/ui/rewards/animator/Gold.png");
+        public final Texture PLATINUM_TROPHY      = GR.GetTexture("images/ui/rewards/animator/Platinum.png");
+        public final Texture LOCKED_TROPHY        = GR.GetTexture("images/ui/rewards/animator/Locked.png");
+        public final Texture BRONZE_TROPHY_SLOT   = GR.GetTexture("images/ui/rewards/animator/Slot1.png");
+        public final Texture GOLD_TROPHY_SLOT     = GR.GetTexture("images/ui/rewards/animator/Slot2.png");
+        public final Texture PLATINUM_TROPHY_SLOT = GR.GetTexture("images/ui/rewards/animator/Slot3.png");
+        public final Texture SYNERGY_CARD_REWARD  = GR.GetTexture("images/ui/rewards/animator/SynergyCardsReward.png");
 
         public Texture GetCharacterPortrait(int id)
         {
@@ -80,11 +90,6 @@ public class AnimatorImages
             }
 
             return result;
-        }
-
-        public Texture GetRewardImage(String name)
-        {
-            return GR.GetTexture(GR.GetRewardImage(GR.Animator.CreateID(name)));
         }
     }
 }

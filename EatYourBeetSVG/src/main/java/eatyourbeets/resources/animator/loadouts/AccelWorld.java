@@ -1,4 +1,4 @@
-package eatyourbeets.characters.Loadouts;
+package eatyourbeets.resources.animator.loadouts;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -8,69 +8,77 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_AccelWorld;
 import eatyourbeets.cards.animator.colorless.uncommon.Kuroyukihime;
 import eatyourbeets.cards.animator.colorless.uncommon.LimeBell;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
-import eatyourbeets.characters.AnimatorCustomLoadout;
-import eatyourbeets.characters.AnimatorMetrics;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.metrics.AnimatorTrophies;
 
 import java.util.ArrayList;
 
-public class AccelWorld extends AnimatorCustomLoadout
+public class AccelWorld extends AnimatorLoadout
 {
     public AccelWorld()
     {
-        Synergy s = Synergies.AccelWorld;
-
-        //this.MaxHP = 71;
-        this.ID = s.ID;
-        this.Name = s.Name;
+        super(Synergies.AccelWorld);
     }
 
     @Override
     public ArrayList<String> GetStartingDeck()
     {
-        ArrayList<String> res = new ArrayList<>();
-        res.add(Strike_AccelWorld.ID);
-        res.add(Defend_AccelWorld.ID);
-        res.add(Strike.ID);
-        res.add(Strike.ID);
-        res.add(Strike.ID);
-        res.add(Defend.ID);
-        res.add(Defend.ID);
-        res.add(Defend.ID);
-        res.add(Kuroyukihime.ID);
-        res.add(LimeBell.ID);
+        if (startingDeck.isEmpty())
+        {
+            startingDeck.add(Strike_AccelWorld.ID);
+            startingDeck.add(Defend_AccelWorld.ID);
+            startingDeck.add(Strike.ID);
+            startingDeck.add(Strike.ID);
+            startingDeck.add(Strike.ID);
+            startingDeck.add(Defend.ID);
+            startingDeck.add(Defend.ID);
+            startingDeck.add(Defend.ID);
+            startingDeck.add(Kuroyukihime.ID);
+            startingDeck.add(LimeBell.ID);
+        }
 
-        return res;
+        return startingDeck;
     }
 
     @Override
-    protected String GetTrophyMessage(int trophy)
+    public String GetRepresentativeCard()
+    {
+        return Kuroyukihime.ID;
+    }
+
+    @Override
+    public AnimatorCard_UltraRare GetUltraRare()
+    {
+        return null;
+    }
+
+    @Override
+    public String GetTrophyMessage(int trophy)
     {
         if (trophy == 1)
         {
-            return trophyStrings.BronzeDescription;
+            return GR.Animator.Text.Trophies.BronzeDescription;
         }
         else if (trophy == 2)
         {
-            return trophyStrings.SilverAccelWorld;
+            return GR.Animator.Text.Trophies.SilverAccelWorld;
         }
         else if (trophy == 3)
         {
-            return trophyStrings.GoldAccelWorld;
+            return GR.Animator.Text.Trophies.GoldAccelWorld;
         }
 
         return null;
     }
 
-    public void OnVictory(AnimatorCustomLoadout currentLoadout, int ascensionLevel)
+    public void OnVictory(AnimatorLoadout currentLoadout, int ascensionLevel)
     {
-        if (trophies == null)
-        {
-            trophies = GetTrophies(false);
-        }
+        AnimatorTrophies trophies = GetTrophies();
 
-        if (AnimatorMetrics.lastLoadout == ID)
+        if (GR.Animator.Metrics.SelectedLoadout.ID == ID)
         {
             trophies.trophy1 = Math.max(trophies.trophy1, ascensionLevel);
         }

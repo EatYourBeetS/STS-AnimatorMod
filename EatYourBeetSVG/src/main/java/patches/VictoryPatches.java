@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
 import com.megacrit.cardcrawl.screens.VictoryScreen;
-import eatyourbeets.characters.AnimatorCharacterSelect;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -19,7 +18,7 @@ public class VictoryPatches
         {
             if (Settings.isStandardRun() && AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
             {
-                AnimatorCharacterSelect.OnTrueVictory(GameUtilities.GetActualAscensionLevel());
+                GR.Animator.Metrics.OnTrueVictory(GameUtilities.GetActualAscensionLevel());
             }
         }
     }
@@ -33,7 +32,7 @@ public class VictoryPatches
             if (__instance.eType == VictoryRoom.EventType.HEART && Settings.isStandardRun()
                 && AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
             {
-                AnimatorCharacterSelect.OnVictory(GameUtilities.GetActualAscensionLevel());
+                GR.Animator.Metrics.OnVictory(GameUtilities.GetActualAscensionLevel());
             }
         }
     }

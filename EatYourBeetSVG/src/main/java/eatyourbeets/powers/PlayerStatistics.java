@@ -1,18 +1,15 @@
 package eatyourbeets.powers;
 
 import basemod.DevConsole;
-import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
-import com.google.gson.annotations.Expose;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -21,7 +18,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
@@ -30,6 +26,7 @@ import eatyourbeets.interfaces.*;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.ui.unnamed.Void;
 import eatyourbeets.utilities.JavaUtilities;
@@ -37,7 +34,7 @@ import patches.CardGlowBorderPatch;
 
 import java.util.ArrayList;
 
-public class PlayerStatistics extends AnimatorPower implements InvisiblePower, CustomSavable<PlayerStatistics.SaveData>
+public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 {
     public static final String POWER_ID = CreateFullID(PlayerStatistics.class.getSimpleName());
 
@@ -68,7 +65,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
 
     public static final Void Void = new Void();
     public static boolean LoadingPlayerSave;
-    public static SaveData SaveData = new SaveData();
 
     private static final EffectHistory effectHistory = new EffectHistory();
     private static GameActionManager.Phase currentPhase;
@@ -153,7 +149,8 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         ClearStats();
         onBattleStart.Clear();
         onBattleEnd.Clear();
-        SaveData = new SaveData();
+
+        GR.Common.CurrentGameData.Import(null);
     }
 
     public static void OnStartOver()
@@ -161,7 +158,8 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
         ClearStats();
         onBattleStart.Clear();
         onBattleEnd.Clear();
-        SaveData = new SaveData();
+
+        GR.Common.CurrentGameData.Import(null);
         DevConsole.enabled = true;
     }
 
@@ -567,82 +565,4 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower, C
             }
         }
     }
-
-    @Override
-    public SaveData onSave()
-    {
-        if (SaveData != null)
-        {
-            SaveData.OnBeforeSaving();
-        }
-
-        return SaveData;
-    }
-
-    @Override
-    public void onLoad(SaveData saveData)
-    {
-        if (saveData != null)
-        {
-            SaveData = saveData;
-        }
-        else
-        {
-            SaveData = new SaveData();
-        }
-
-        SaveData.ValidateFields();
-    }
-
-    public static class SaveData
-    {
-        public Boolean EnteredUnnamedReign = false;
-        public Integer RNGCounter = 0;
-
-        @Expose(serialize = false, deserialize = false)
-        private Random rng;
-
-        protected void OnBeforeSaving()
-        {
-            if (rng != null)
-            {
-                RNGCounter = rng.counter;
-            }
-            else
-            {
-                RNGCounter = 0;
-            }
-        }
-
-        protected void Reset()
-        {
-
-        }
-
-        protected void ValidateFields()
-        {
-            if (EnteredUnnamedReign == null)
-            {
-                EnteredUnnamedReign = false;
-            }
-
-            if (RNGCounter == null)
-            {
-                RNGCounter = 0;
-            }
-        }
-
-        public Random GetRNG()
-        {
-            if (rng == null)
-            {
-                rng = new Random(Settings.seed);
-                rng.setCounter(RNGCounter);
-            }
-
-            return rng;
-        }
-    }
-
-
 }

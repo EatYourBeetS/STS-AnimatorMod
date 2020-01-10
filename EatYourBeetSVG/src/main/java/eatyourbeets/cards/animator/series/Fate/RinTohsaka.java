@@ -39,6 +39,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
         if (EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainTemporaryArtifact(1);
+            GameActions.Bottom.Flash(this);
         }
     }
 

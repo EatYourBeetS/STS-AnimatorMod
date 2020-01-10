@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.ui.FtueTip;
-import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.effects.player.SpawnRelicEffect;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
@@ -29,7 +28,7 @@ public class Readme extends AnimatorRelic
         header = "<ERROR>";
         content = "<ERROR>";
 
-        if (AbstractDungeon.effectsQueue != null)
+        if (AbstractDungeon.player != null)
         {
             GameEffects.Queue.RemoveRelic(this);
         }
@@ -73,7 +72,7 @@ public class Readme extends AnimatorRelic
 
     private static void SpawnRelic(String key, int index)
     {
-        if (!AnimatorMetrics.GetConfig().getBool(key))
+        if (!GR.Animator.GetConfig().getBool(key))
         {
             GameEffects.Queue.Add(new SpawnRelicEffect(new Readme(key, Text.Header(index), Text.Content(index)),
             Settings.WIDTH / 2f, Settings.HEIGHT / 2f));
@@ -108,8 +107,9 @@ public class Readme extends AnimatorRelic
         if (hb.hovered && !AbstractDungeon.isScreenUp && InputManager.RightClick.IsJustPressed())
         {
             AbstractDungeon.ftue = new FtueTip(header, content, Settings.WIDTH / 2f, Settings.HEIGHT / 2f, FtueTip.TipType.CARD_REWARD);
-            AnimatorMetrics.GetConfig().setBool(key, true);
-            AnimatorMetrics.SaveConfig();
+
+            GR.Animator.GetConfig().setBool(key, true);
+            GR.Animator.SaveConfig();
 
             GameEffects.Queue.RemoveRelic(this);
         }

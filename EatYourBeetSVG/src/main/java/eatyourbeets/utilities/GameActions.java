@@ -1,5 +1,6 @@
 package eatyourbeets.utilities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -18,6 +19,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
 import eatyourbeets.actions.cardManipulation.*;
 import eatyourbeets.actions.basic.*;
 import eatyourbeets.actions.damage.DealDamage;
@@ -250,11 +252,6 @@ public final class GameActions
         return Add(new DrawCards(amount));
     }
 
-    public PlayCardFromPile PlayCard(AbstractCard card, CardGroup group, AbstractMonster target)
-    {
-        return Add(new PlayCardFromPile(card, group, target));
-    }
-
     public MoveCard Draw(AbstractCard card)
     {
         final float cardX = CardGroup.DRAW_PILE_X * 1.5f;
@@ -288,6 +285,11 @@ public final class GameActions
     public FetchFromPile FetchFromPile(String sourceName, int amount, CardGroup... groups)
     {
         return Add(new FetchFromPile(sourceName, amount, groups));
+    }
+
+    public VFXAction Flash(AbstractCard card)
+    {
+        return Add(new VFXAction(new CardFlashVfx(card, Color.ORANGE.cpy())));
     }
 
     public ApplyPower GainAgility(int amount)
@@ -491,6 +493,11 @@ public final class GameActions
     public MoveCards MoveCards(CardGroup destination, CardGroup source, int amount)
     {
         return Add(new MoveCards(destination, source, amount));
+    }
+
+    public PlayCardFromPile PlayCard(AbstractCard card, CardGroup group, AbstractMonster target)
+    {
+        return Add(new PlayCardFromPile(card, group, target));
     }
 
     public PurgeAnywhere Purge(UUID uuid)

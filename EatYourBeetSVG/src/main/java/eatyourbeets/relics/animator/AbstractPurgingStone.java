@@ -93,7 +93,7 @@ public abstract class AbstractPurgingStone extends AnimatorRelic
         AnimatorCardBuilder builder = new AnimatorCardBuilder(GR.CreateID("synergy", String.valueOf(synergy.ID)));
         builder.SetImage(base.assetUrl);
         builder.SetProperties(base.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
-        builder.SetText(synergy.Name, "Contains all cards from this series.", "");
+        builder.SetText(synergy.Name, "Contains 10 cards from this series.", "");
         builder.SetSynergy(synergy, false);
         mainSeries.put(synergy, builder.Build());
     }

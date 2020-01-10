@@ -149,4 +149,16 @@ public class JavaUtilities
     {
         return GetLogger(instance.getClass());
     }
+
+    public static int ParseInt(String value, int defaultValue)
+    {
+        try
+        {
+            return Integer.parseInt(value);
+        }
+        catch (NumberFormatException ex)
+        {
+            return defaultValue;
+        }
+    }
 }

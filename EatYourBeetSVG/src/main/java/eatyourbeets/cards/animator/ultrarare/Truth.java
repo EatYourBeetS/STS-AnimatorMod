@@ -83,7 +83,7 @@ public class Truth extends AnimatorCard_UltraRare
         {
             GameActions.Bottom.SelectFromPile(name, 1, temp)
             .SetOptions(false, false)
-            .SetMessage(GR.Common.Text.GridSelection.TransformInto(Wound.NAME))
+            .SetMessage(GR.Common.Strings.GridSelection.TransformInto(Wound.NAME))
             .AddCallback(cards ->
             {
                 AbstractCard card = cards.get(0);

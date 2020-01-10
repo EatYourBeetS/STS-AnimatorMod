@@ -6,23 +6,24 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
-import eatyourbeets.monsters.UnnamedReign.Shapes.UnnamedShape;
-import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist;
-import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Crystal;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
-import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.*;
-import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_BEHOLD;
-import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_DollSummoner;
-import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_Single;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.Cube;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.UltimateCube;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
+import eatyourbeets.monsters.UnnamedReign.Shapes.UnnamedShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.UltimateWisp;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.Wisp;
+import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist;
+import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_BEHOLD;
+import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_DollSummoner;
+import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_Single;
 import eatyourbeets.monsters.UnnamedReign.UnnamedHat.TheUnnamed_Hat;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.RandomizedList;
 
 public class UnnamedEnemyGroup
 {
@@ -201,7 +202,7 @@ public class UnnamedEnemyGroup
 
     protected static <T> T Retrieve(RandomizedList<T> list)
     {
-        return list.Retrieve(PlayerStatistics.SaveData.GetRNG());
+        return list.Retrieve(GR.Common.CurrentGameData.GetRNG());
     }
 
     private static UnnamedShape Create(int index, MonsterShape shape, MonsterTier tier, MonsterElement element)
@@ -226,7 +227,6 @@ public class UnnamedEnemyGroup
 
         return null;
     }
-
 
     private static final float[] xPos = new float[4];
     private static final float[] yPos = new float[4];

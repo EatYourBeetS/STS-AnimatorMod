@@ -29,6 +29,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
         if (cost > 0)
         {
             GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.modifyCostForCombat(-1));
+            GameActions.Bottom.Flash(this);
         }
     }
 

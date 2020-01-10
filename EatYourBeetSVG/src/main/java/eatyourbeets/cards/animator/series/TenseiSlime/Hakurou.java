@@ -36,6 +36,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
         super.triggerWhenDrawn();
 
         GameActions.Bottom.GainAgility(1);
+        GameActions.Bottom.Flash(this);
     }
 
     @Override

@@ -26,7 +26,7 @@ public class Curse_Greed extends AnimatorCard_Curse
         super.triggerWhenDrawn();
 
         GameActions.Bottom.Add(new RandomCostIncrease(1, false));
-        this.flash();
+        GameActions.Bottom.Flash(this);
     }
 
     @Override

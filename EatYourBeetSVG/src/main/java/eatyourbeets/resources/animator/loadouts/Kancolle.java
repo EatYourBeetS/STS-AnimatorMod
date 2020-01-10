@@ -1,4 +1,4 @@
-package eatyourbeets.characters.Loadouts;
+package eatyourbeets.resources.animator.loadouts;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -8,70 +8,80 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_Kancolle;
 import eatyourbeets.cards.animator.colorless.uncommon.Shimakaze;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
-import eatyourbeets.characters.AnimatorCustomLoadout;
-import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.metrics.AnimatorTrophies;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
-public class Kancolle extends AnimatorCustomLoadout
+public class Kancolle extends AnimatorLoadout
 {
     public Kancolle()
     {
-        Synergy s = Synergies.Kancolle;
+        super(Synergies.Kancolle);
 
-        this.ID = s.ID;
-        this.Name = s.Name;
         this.StartingGold = 249;
     }
 
     @Override
     public ArrayList<String> GetStartingDeck()
     {
-        ArrayList<String> res = new ArrayList<>();
-        res.add(Strike_Kancolle.ID);
-        res.add(Defend_Kancolle.ID);
-        res.add(Strike.ID);
-        res.add(Strike.ID);
-        res.add(Strike.ID);
-        res.add(Defend.ID);
-        res.add(Defend.ID);
-        res.add(Defend.ID);
-        res.add(Shimakaze.ID);
+        if (startingDeck.isEmpty())
+        {
+            startingDeck.add(Strike_Kancolle.ID);
+            startingDeck.add(Defend_Kancolle.ID);
+            startingDeck.add(Strike.ID);
+            startingDeck.add(Strike.ID);
+            startingDeck.add(Strike.ID);
+            startingDeck.add(Defend.ID);
+            startingDeck.add(Defend.ID);
+            startingDeck.add(Defend.ID);
+            startingDeck.add(Shimakaze.ID);
+        }
 
-        return res;
+        return startingDeck;
     }
 
     @Override
-    protected String GetTrophyMessage(int trophy)
+    public String GetRepresentativeCard()
+    {
+        return Shimakaze.ID;
+    }
+
+    @Override
+    public AnimatorCard_UltraRare GetUltraRare()
+    {
+        return null;
+    }
+
+    @Override
+    public String GetTrophyMessage(int trophy)
     {
         if (trophy == 1)
         {
-            return trophyStrings.BronzeDescription;
+            return GR.Animator.Text.Trophies.BronzeDescription;
         }
         else if (trophy == 2)
         {
-            return trophyStrings.SilverKancolle;
+            return GR.Animator.Text.Trophies.SilverKancolle;
         }
         else if (trophy == 3)
         {
-            return trophyStrings.GoldKancolle;
+            return GR.Animator.Text.Trophies.GoldKancolle;
         }
 
         return null;
     }
 
-    public void OnVictory(AnimatorCustomLoadout currentLoadout, int ascensionLevel)
+    public void OnVictory(AnimatorLoadout currentLoadout, int ascensionLevel)
     {
-        if (trophies == null)
-        {
-            trophies = GetTrophies(false);
-        }
+        AnimatorTrophies trophies = GetTrophies();
 
-        if (AnimatorMetrics.lastLoadout == ID)
+        if (GR.Animator.Metrics.SelectedLoadout.ID == ID)
         {
             trophies.trophy1 = Math.max(trophies.trophy1, ascensionLevel);
         }
@@ -102,7 +112,6 @@ public class Kancolle extends AnimatorCustomLoadout
             trophies.trophy2 = Math.max(trophies.trophy2, ascensionLevel);
         }
 
-        // TODO: change this requirement
         if (uniqueSynergies >= 10)
         {
             trophies.trophy3 = Math.max(trophies.trophy3, ascensionLevel);

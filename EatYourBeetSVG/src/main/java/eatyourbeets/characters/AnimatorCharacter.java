@@ -20,6 +20,9 @@ import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.animator.loadouts.Random;
+import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
@@ -139,13 +142,13 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public ArrayList<String> getStartingDeck()
     {
-        return AnimatorCharacterSelect.GetSelectedLoadout(true).GetStartingDeck();
+        return GetCurrentLoadout().GetStartingDeck();
     }
 
     @Override
     public ArrayList<String> getStartingRelics()
     {
-        return AnimatorCharacterSelect.GetSelectedLoadout(true).GetStartingRelics();
+        return GetCurrentLoadout().GetStartingRelics();
     }
 
     @Override
@@ -157,7 +160,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public CharSelectInfo getLoadout()
     {
-        return AnimatorCharacterSelect.GetSelectedLoadout(true).GetLoadout(NAMES[0], TEXT[0], this);
+        return GetCurrentLoadout().GetLoadout(NAMES[0], TEXT[0], this);
     }
 
     @Override
@@ -183,5 +186,27 @@ public class AnimatorCharacter extends CustomPlayer
     {
         // yes
         return super.getCharStat();
+    }
+
+    protected AnimatorLoadout GetCurrentLoadout()
+    {
+        AnimatorLoadout current = GR.Animator.Metrics.SelectedLoadout;
+        if (current instanceof Random)
+        {
+            int currentLevel = GR.Animator.GetUnlockLevel();
+
+            RandomizedList<AnimatorLoadout> list = new RandomizedList<>();
+            for (AnimatorLoadout loadout : GR.Animator.Metrics.BaseLoadouts)
+            {
+                if (currentLevel >= loadout.UnlockLevel)
+                {
+                    list.Add(loadout);
+                }
+            }
+
+            current = list.Retrieve(new com.megacrit.cardcrawl.random.Random());
+        }
+
+        return current;
     }
 }

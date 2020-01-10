@@ -25,7 +25,7 @@ public class UltimateCrystal extends AnimatorBlight
         super.atBattleStart();
 
         GameActions.Bottom.SelectFromHand(name, initialAmount, false)
-        .SetMessage(GR.Common.Text.HandSelection.MoveToDrawPile)
+        .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
         .AddCallback(cards ->
         {
             AbstractPlayer p = AbstractDungeon.player;

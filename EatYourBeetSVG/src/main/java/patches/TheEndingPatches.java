@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.events.TheMaskedTraveler2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.rooms.AnimatorCustomEventRoom;
@@ -19,7 +18,7 @@ public class TheEndingPatches
         @SpirePostfixPatch
         public static void Postfix(TheEnding __instance)
         {
-            if (AnimatorCustomLoadout.specialTrophies.trophy1 > 0 ||
+            if (GR.Animator.Metrics.SpecialTrophies.trophy1 > 0 ||
                 AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
             {
                 MapRoomNode rest = __instance.getMap().get(0).get(3);

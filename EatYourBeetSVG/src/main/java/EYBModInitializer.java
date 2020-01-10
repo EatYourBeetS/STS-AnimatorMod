@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.characters.AnimatorMetrics;
 import eatyourbeets.console.CommandsManager;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.AbstractPurgingStone;
@@ -57,15 +56,13 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     @Override
     public void receivePostDraw(AbstractCard abstractCard)
     {
-        logger.info("Drawn: " + abstractCard.name);
         PlayerStatistics.Instance.OnAfterDraw(abstractCard);
     }
 
     @Override
     public void receivePostEnergyRecharge()
     {
-        // Ensure PlayerStatistics is always active at turn start
-        PlayerStatistics.EnsurePowerIsApplied();
+        PlayerStatistics.EnsurePowerIsApplied(); // Ensure PlayerStatistics is always active at turn start
     }
 
     @Override
@@ -95,7 +92,7 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
         {
             if (Settings.isStandardRun())
             {
-                AnimatorMetrics.SaveTrophies(true);
+                GR.Animator.Metrics.SaveTrophies(true);
             }
         }
         else
@@ -142,15 +139,6 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     {
         PlayerStatistics.OnAfterDeath();
     }
-
-//    @Override
-//    public void receivePreUpdate()
-//    {
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT))
-//        {
-//            EYBCardText.Toggled = !EYBCardText.Toggled;
-//        }
-//    }
 
     @Override
     public void receivePostUpdate()

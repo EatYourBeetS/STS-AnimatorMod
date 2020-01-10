@@ -34,6 +34,7 @@ public class Ainz extends AnimatorCard
             this.updateCost(-1);
 
             GameActions.Bottom.GainRandomStat(1);
+            GameActions.Bottom.Flash(this);
         }
     }
 

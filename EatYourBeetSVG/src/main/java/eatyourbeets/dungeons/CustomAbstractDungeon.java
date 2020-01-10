@@ -15,7 +15,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
-import eatyourbeets.characters.AnimatorCustomLoadout;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -228,7 +227,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
     public static float GetUltraRareChance()
     {
         float bonus = 1;
-        int level = AnimatorCustomLoadout.specialTrophies.trophy1;
+        int level = GR.Animator.Metrics.SpecialTrophies.trophy1;
         if (level > 0)
         {
             bonus += level / (level + 100f);

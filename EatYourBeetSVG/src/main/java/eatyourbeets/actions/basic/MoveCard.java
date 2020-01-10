@@ -281,14 +281,14 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     {
         if (player.hand.size() >= BaseMod.MAX_HAND_SIZE)
         {
-            sourcePile.moveToDiscardPile(card);
             player.createHandIsFullDialog();
+            sourcePile.moveToDiscardPile(card);
         }
         else
         {
+            card.triggerWhenDrawn();
             CardCrawlGame.sound.play("CARD_OBTAIN");
             sourcePile.moveToHand(card, sourcePile);
-            card.triggerWhenDrawn();
         }
     }
 

@@ -39,7 +39,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
             GameUtilities.GetPowerAmount(ForcePower.POWER_ID) >= secondaryValue)
         {
             GameActions.Bottom.GainEnergy(1);
-            flash();
+            GameActions.Bottom.Flash(this);
         }
     }
 

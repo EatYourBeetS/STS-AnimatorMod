@@ -12,12 +12,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.metrics.Metrics;
-import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.characters.AnimatorCharacterSelect;
-import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,9 +73,9 @@ public class MetricsPatches
                     params.clear();
                     params.put("ascension", AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0);
                     params.put("cards", cardsData);
-                    params.put("enteredAct5", PlayerStatistics.SaveData.EnteredUnnamedReign);
+                    params.put("enteredAct5", GR.Common.CurrentGameData.EnteredUnnamedReign);
                     params.put("isVictory", AbstractDungeon.is_victory);
-                    params.put("startingSeries", AnimatorCharacterSelect.GetSelectedLoadout(false).ID);
+                    params.put("startingSeries", GR.Animator.Metrics.SelectedLoadout.ID);
                     params.put("language", Settings.language.name());
 
                     String data = gson.toJson(params);
@@ -97,7 +95,7 @@ public class MetricsPatches
                         public void cancelled() {  }
                     });
                 }
-                else if (PlayerStatistics.SaveData.EnteredUnnamedReign)
+                else if (GR.Common.CurrentGameData.EnteredUnnamedReign)
                 {
                     params.clear();
                     params.put("playerClass", AbstractDungeon.player.chosenClass.name());

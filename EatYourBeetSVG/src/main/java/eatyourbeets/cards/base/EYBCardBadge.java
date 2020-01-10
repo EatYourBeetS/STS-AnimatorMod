@@ -34,8 +34,8 @@ public class EYBCardBadge
 
     private EYBCardBadge(int id, String texturePath)
     {
-        this.name = GR.Common.Text.CardBadges.GetName(id);
-        this.description = GR.Common.Text.CardBadges.GetDescription(id);
+        this.name = GR.Common.Strings.CardBadges.GetName(id);
+        this.description = GR.Common.Strings.CardBadges.GetDescription(id);
         this.texture = GR.GetTexture(texturePath);
         this.id = id;
     }

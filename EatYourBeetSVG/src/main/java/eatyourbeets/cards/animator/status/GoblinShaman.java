@@ -25,6 +25,7 @@ public class GoblinShaman extends AnimatorCard_Status
     {
         super.triggerWhenDrawn();
         GameActions.Bottom.Draw(1);
+        GameActions.Bottom.Flash(this);
     }
 
     @Override

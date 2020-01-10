@@ -55,7 +55,7 @@ public class Tet extends AnimatorCard
     private void DiscardFromDrawPile()
     {
         GameActions.Top.SelectFromPile(name, magicNumber, player.drawPile)
-        .SetMessage(GR.Common.Text.GridSelection.DiscardUpTo(magicNumber))
+        .SetMessage(GR.Common.Strings.GridSelection.DiscardUpTo(magicNumber))
         .SetOptions(false, true)
         .AddCallback(cards ->
         {
@@ -69,7 +69,7 @@ public class Tet extends AnimatorCard
     private void ShuffleFromDiscardPile()
     {
         GameActions.Top.SelectFromPile(name, magicNumber, player.discardPile)
-        .SetMessage(GR.Common.Text.GridSelection.MoveToDrawPile(magicNumber))
+        .SetMessage(GR.Common.Strings.GridSelection.MoveToDrawPile(magicNumber))
         .SetOptions(false, true)
         .AddCallback(cards ->
         {

@@ -23,9 +23,9 @@ import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.monsters.AbstractMonsterData;
 import eatyourbeets.monsters.AnimatorMonster;
 import eatyourbeets.monsters.Bosses.TheUnnamedMoveset.*;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.UnnamedReign.InfinitePower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.scenes.TheUnnamedReignScene;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -110,7 +110,7 @@ public class TheUnnamed extends AnimatorMonster
     @Override
     public void usePreBattleAction()
     {
-        if (!PlayerStatistics.SaveData.EnteredUnnamedReign)
+        if (!GR.Common.CurrentGameData.EnteredUnnamedReign)
         {
             AbstractDungeon.player.isDead = true;
             AbstractDungeon.player.currentHealth = 0;

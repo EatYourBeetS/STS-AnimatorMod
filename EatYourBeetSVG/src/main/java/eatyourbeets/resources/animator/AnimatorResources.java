@@ -2,11 +2,13 @@ package eatyourbeets.resources.animator;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
@@ -14,18 +16,62 @@ import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
 
+import java.io.IOException;
+
 public class AnimatorResources extends AbstractResources
 {
+    private SpireConfig config;
+
     public final static String ID = "animator";
     public final AbstractCard.CardColor CardColor = Enums.Cards.THE_ANIMATOR;
     public final AbstractPlayer.PlayerClass PlayerClass = Enums.Characters.THE_ANIMATOR;
     public final AnimatorImages Images = new AnimatorImages();
     public final AnimatorStrings Text = new AnimatorStrings();
+    public final AnimatorMetrics Metrics = new AnimatorMetrics();
     public AnimatorImages.Textures Textures;
 
     public AnimatorResources()
     {
         super(ID);
+    }
+
+    public int GetUnlockLevel()
+    {
+        return UnlockTracker.getUnlockLevel(PlayerClass);
+    }
+
+    public SpireConfig GetConfig()
+    {
+        try
+        {
+            if (config == null)
+            {
+                config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
+            }
+
+            return config;
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean SaveConfig()
+    {
+        SpireConfig config = GetConfig();
+
+        try
+        {
+            config.save();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -62,7 +108,7 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeCards()
     {
-        Textures = Images.CreateTextures();
+        Textures = Images.InitializeTextures();
         Text.LoadStrings();
 
         LoadCustomCards();
@@ -105,6 +151,12 @@ public class AnimatorResources extends AbstractResources
 
         SpecialGoldReward.Serializer goldSerializer = new SpecialGoldReward.Serializer();
         BaseMod.registerCustomReward(Enums.Rewards.SPECIAL_GOLD, goldSerializer, goldSerializer);
+    }
+
+    @Override
+    protected void PostInitialize()
+    {
+        Metrics.Initialize();
     }
 
     @Override

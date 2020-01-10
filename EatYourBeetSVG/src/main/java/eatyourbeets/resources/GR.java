@@ -64,12 +64,12 @@ public class GR
         //Initialize(Unnamed);
     }
 
-    protected static void Initialize(AbstractResources existing)
+    protected static void Initialize(AbstractResources resources)
     {
-        existing.InitializeInternal();
-        existing.InitializeColor();
+        resources.InitializeInternal();
+        resources.InitializeColor();
 
-        BaseMod.subscribe(existing);
+        BaseMod.subscribe(resources);
     }
 
     public static CharacterStrings GetCharacterStrings(String characterID)
@@ -336,7 +336,7 @@ public class GR
         BaseMod.loadCustomStringsFile(type, path);
     }
 
-    protected boolean CanInstantiate(Class<?> type)
+    public static boolean CanInstantiate(Class<?> type)
     {
         return (!Hidden.class.isAssignableFrom(type) && !Modifier.isAbstract(type.getModifiers()));
     }

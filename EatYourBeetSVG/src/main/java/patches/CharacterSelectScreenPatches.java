@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
-import eatyourbeets.ui.CharacterSelectScreenPatch;
+import eatyourbeets.ui.animator.characterSelect.AnimatorCharacterSelectScreen;
 
 public class CharacterSelectScreenPatches
 {
@@ -14,7 +14,7 @@ public class CharacterSelectScreenPatches
         @SpirePostfixPatch
         public static void Initialize(CharacterSelectScreen __instance)
         {
-            CharacterSelectScreenPatch.Initialize(__instance);
+            AnimatorCharacterSelectScreen.Initialize(__instance);
         }
     }
 
@@ -24,7 +24,7 @@ public class CharacterSelectScreenPatches
         @SpirePostfixPatch
         public static void Postfix(CharacterSelectScreen __instance, SpriteBatch sb)
         {
-            CharacterSelectScreenPatch.Render(__instance, sb);
+            AnimatorCharacterSelectScreen.Render(__instance, sb);
         }
     }
 
@@ -34,7 +34,7 @@ public class CharacterSelectScreenPatches
         @SpirePostfixPatch
         public static void Postfix(CharacterSelectScreen __instance)
         {
-            CharacterSelectScreenPatch.Update(__instance);
+            AnimatorCharacterSelectScreen.Update(__instance);
         }
     }
 }

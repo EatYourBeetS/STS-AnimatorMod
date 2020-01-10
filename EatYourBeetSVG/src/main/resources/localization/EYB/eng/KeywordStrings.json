@@ -170,7 +170,7 @@
 	},
 	"~Preview":
 	{
-		"DESCRIPTION": "Press #pSHIFT to view related cards.",
+		"DESCRIPTION": "Press #pSHIFT to view related cards (outside combat).",
 		"NAMES": ["~"],
 		"PROPER_NAME": "Card Preview"
 	},

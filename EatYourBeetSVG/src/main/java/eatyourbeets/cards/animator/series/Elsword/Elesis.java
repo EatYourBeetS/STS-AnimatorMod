@@ -33,6 +33,7 @@ public class Elesis extends AnimatorCard
             c.baseDamage += secondaryValue;
             c.applyPowers();
         });
+        GameActions.Bottom.Flash(this);
     }
 
     @Override

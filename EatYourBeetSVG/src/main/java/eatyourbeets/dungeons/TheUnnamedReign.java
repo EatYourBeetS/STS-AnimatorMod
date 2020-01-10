@@ -19,7 +19,6 @@ import com.megacrit.cardcrawl.rooms.EmptyRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.GR;
 import eatyourbeets.scenes.TheUnnamedReignScene;
 import eatyourbeets.utilities.RandomizedList;
@@ -28,7 +27,7 @@ import java.util.ArrayList;
 
 public class TheUnnamedReign extends AbstractDungeon
 {
-    public static final String NAME = GR.Common.Text.TheUnnamedReign.Name;
+    public static final String NAME = GR.Common.Strings.TheUnnamedReign.Name;
     public static final String ID = GR.Common.CreateID("TheUnnamedReign");
 
     protected ArrayList<String> MONSTER_LIST_WHICH_ACTUALLY_WORKS;
@@ -128,7 +127,7 @@ public class TheUnnamedReign extends AbstractDungeon
 
     protected void initializeLevelSpecificChances()
     {
-        PlayerStatistics.SaveData.EnteredUnnamedReign = true;
+        GR.Common.CurrentGameData.EnteredUnnamedReign = true;
 
         shopRoomChance = 0.12F;
         restRoomChance = 0.10F;

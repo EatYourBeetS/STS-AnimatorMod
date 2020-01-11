@@ -78,7 +78,7 @@ public class AnimatorMetrics
     {
         for (AnimatorTrophies trophies : Trophies)
         {
-            if (trophies.id == id)
+            if (trophies.ID == id)
             {
                 return trophies;
             }
@@ -107,7 +107,7 @@ public class AnimatorMetrics
             SelectedLoadout = GetBaseLoadout(Synergies.Konosuba.ID);
         }
 
-        if (SpecialTrophies == null || SpecialTrophies.id != 0)
+        if (SpecialTrophies == null || SpecialTrophies.ID != 0)
         {
             SpecialTrophies = new AnimatorTrophies(0);
         }
@@ -140,12 +140,12 @@ public class AnimatorMetrics
 
 //        if (PlayerStatistics.SaveData.EnteredUnnamedReign)
 //        {
-//            if (AnimatorCustomLoadout.specialTrophies.trophy1 < 0)
+//            if (AnimatorCustomLoadout.specialTrophies.Trophy1 < 0)
 //            {
-//                AnimatorCustomLoadout.specialTrophies.trophy1 = 0;
+//                AnimatorCustomLoadout.specialTrophies.Trophy1 = 0;
 //            }
 //
-//            AnimatorCustomLoadout.specialTrophies.trophy1 += 1 + Math.floorDiv(ascensionLevel, 4);
+//            AnimatorCustomLoadout.specialTrophies.Trophy1 += 1 + Math.floorDiv(ascensionLevel, 4);
 //        }
 //
 //        AnimatorMetrics.SaveTrophies(true);
@@ -217,11 +217,11 @@ public class AnimatorMetrics
 
                     trophies.Deserialize(items[i]);
 
-                    if (trophies.id == 0)
+                    if (trophies.ID == 0)
                     {
                         SpecialTrophies = trophies;
                     }
-                    else if (trophies.id > 0)
+                    else if (trophies.ID > 0)
                     {
                         Trophies.add(trophies);
                     }

@@ -12,61 +12,54 @@ import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.effects.utility.CallbackEffect2;
 
+import java.util.ArrayList;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-// TODO: Other effects
 public final class GameEffects
 {
-    public final static GameEffects List = new GameEffects(Type.List);
-    public final static GameEffects Queue = new GameEffects(Type.Queue);
-    public final static GameEffects TopLevelList = new GameEffects(Type.TopLevelList);
-    public final static GameEffects TopLevelQueue = new GameEffects(Type.TopLevelQueue);
+    public final static GameEffects List = new GameEffects(EffectType.List);
+    public final static GameEffects Queue = new GameEffects(EffectType.Queue);
+    public final static GameEffects TopLevelList = new GameEffects(EffectType.TopLevelList);
+    public final static GameEffects TopLevelQueue = new GameEffects(EffectType.TopLevelQueue);
 
-    protected final Type effectType;
+    protected final EffectType effectType;
 
-    protected GameEffects(Type effectType)
+    protected GameEffects(EffectType effectType)
     {
         this.effectType = effectType;
     }
 
-    public <T extends AbstractGameEffect> T Add(T effect)
+    public ArrayList<AbstractGameEffect> GetList()
     {
         switch (effectType)
         {
             case List:
-                AbstractDungeon.effectList.add(effect);
-                break;
+                return AbstractDungeon.effectList;
 
             case Queue:
-                AbstractDungeon.effectsQueue.add(effect);
-                break;
+                return AbstractDungeon.effectsQueue;
 
             case TopLevelList:
-                AbstractDungeon.topLevelEffects.add(effect);
-                break;
+                return AbstractDungeon.topLevelEffects;
 
             case TopLevelQueue:
-                AbstractDungeon.topLevelEffectsQueue.add(effect);
-                break;
+                return AbstractDungeon.topLevelEffectsQueue;
         }
 
+        throw new RuntimeException("Enum value does not exist.");
+    }
+
+    public int Count()
+    {
+        return GetList().size();
+    }
+
+    public <T extends AbstractGameEffect> T Add(T effect)
+    {
+        GetList().add(effect);
+
         return effect;
-    }
-
-    public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card)
-    {
-        return Add(new ShowCardBrieflyEffect(card));
-    }
-
-    public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card, float x, float y)
-    {
-        return Add(new ShowCardBrieflyEffect(card, x, y));
-    }
-
-    public CallbackEffect WaitRealtime(float duration)
-    {
-        return Add(new CallbackEffect(new WaitRealtimeAction(duration)));
     }
 
     public CallbackEffect2 Callback(AbstractGameEffect effect)
@@ -109,7 +102,22 @@ public final class GameEffects
         return Add(new RemoveRelicEffect(relic));
     }
 
-    public enum Type
+    public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card)
+    {
+        return Add(new ShowCardBrieflyEffect(card));
+    }
+
+    public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card, float x, float y)
+    {
+        return Add(new ShowCardBrieflyEffect(card, x, y));
+    }
+
+    public CallbackEffect WaitRealtime(float duration)
+    {
+        return Add(new CallbackEffect(new WaitRealtimeAction(duration)));
+    }
+
+    public enum EffectType
     {
         List,
         Queue,

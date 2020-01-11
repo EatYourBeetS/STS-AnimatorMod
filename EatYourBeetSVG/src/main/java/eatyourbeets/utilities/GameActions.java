@@ -52,17 +52,17 @@ import java.util.function.Consumer;
 @SuppressWarnings("UnusedReturnValue")
 public final class GameActions
 {
-    public static final GameActions Top = new GameActions(Order.Top);
-    public static final GameActions Bottom = new GameActions(Order.Bottom);
-    public static final GameActions TurnStart = new GameActions(Order.TurnStart);
-    public static final GameActions NextCombat = new GameActions(Order.NextCombat);
-    public static final GameActions Instant = new GameActions(Order.Instant);
+    public static final GameActions Top = new GameActions(ActionOrder.Top);
+    public static final GameActions Bottom = new GameActions(ActionOrder.Bottom);
+    public static final GameActions TurnStart = new GameActions(ActionOrder.TurnStart);
+    public static final GameActions NextCombat = new GameActions(ActionOrder.NextCombat);
+    public static final GameActions Instant = new GameActions(ActionOrder.Instant);
 
-    protected final Order actionOrder;
+    protected final ActionOrder actionOrder;
 
-    protected GameActions(Order order)
+    protected GameActions(ActionOrder actionOrder)
     {
-        actionOrder = order;
+        this.actionOrder = actionOrder;
     }
 
     public <T extends AbstractGameAction> T Add(T action)
@@ -619,7 +619,7 @@ public final class GameActions
         return Add(new WaitRealtimeAction(duration));
     }
 
-    public enum Order
+    public enum ActionOrder
     {
         Top,
         Bottom,

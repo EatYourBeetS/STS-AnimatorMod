@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
-import patches.MusicMasterPatch;
+import patches.MusicMasterPatches;
 
 public class PlayTempBgmAction extends EYBAction
 {
@@ -30,7 +30,7 @@ public class PlayTempBgmAction extends EYBAction
         wait.update();
         if (wait.isDone)
         {
-            if (!MusicMasterPatch.PlayTempBgmInstantly.AlreadyPlaying(CardCrawlGame.music, this.key))
+            if (!MusicMasterPatches.IsAlreadyPlaying(CardCrawlGame.music, this.key))
             {
                 CardCrawlGame.music.silenceBGM();
                 AbstractDungeon.scene.fadeOutAmbiance();

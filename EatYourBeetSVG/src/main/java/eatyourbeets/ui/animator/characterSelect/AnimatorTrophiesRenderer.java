@@ -81,9 +81,9 @@ public class AnimatorTrophiesRenderer
         }
 
         FontHelper.tipHeaderFont.getData().setScale(0.6f);
-        RenderTrophy(trophy1Hb, trophies.trophy1, textures.BRONZE_TROPHY, sb);
-        RenderTrophy(trophy2Hb, trophies.trophy2, textures.SILVER_TROPHY, sb);
-        RenderTrophy(trophy3Hb, trophies.trophy3, textures.GOLD_TROPHY, sb);
+        RenderTrophy(trophy1Hb, trophies.Trophy1, textures.BRONZE_TROPHY, sb);
+        RenderTrophy(trophy2Hb, trophies.Trophy2, textures.SILVER_TROPHY, sb);
+        RenderTrophy(trophy3Hb, trophies.Trophy3, textures.GOLD_TROPHY, sb);
         FontHelper.tipHeaderFont.getData().setScale(1);
     }
 

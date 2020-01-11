@@ -373,7 +373,7 @@ public class GR
         public static class Screens
         {
             @SpireEnum
-            public static AbstractDungeon.CurrentScreen PURGING_STONE_SCREEN;
+            public static AbstractDungeon.CurrentScreen ANIMATOR_SCREEN;
         }
 
         public static class Rewards

@@ -83,7 +83,7 @@ public class Kancolle extends AnimatorLoadout
 
         if (GR.Animator.Metrics.SelectedLoadout.ID == ID)
         {
-            trophies.trophy1 = Math.max(trophies.trophy1, ascensionLevel);
+            trophies.Trophy1 = Math.max(trophies.Trophy1, ascensionLevel);
         }
 
         ArrayList<Integer> synergies = new ArrayList<>();
@@ -109,12 +109,12 @@ public class Kancolle extends AnimatorLoadout
 
         if (uniqueSynergies >= 7)
         {
-            trophies.trophy2 = Math.max(trophies.trophy2, ascensionLevel);
+            trophies.Trophy2 = Math.max(trophies.Trophy2, ascensionLevel);
         }
 
         if (uniqueSynergies >= 10)
         {
-            trophies.trophy3 = Math.max(trophies.trophy3, ascensionLevel);
+            trophies.Trophy3 = Math.max(trophies.Trophy3, ascensionLevel);
         }
     }
 }

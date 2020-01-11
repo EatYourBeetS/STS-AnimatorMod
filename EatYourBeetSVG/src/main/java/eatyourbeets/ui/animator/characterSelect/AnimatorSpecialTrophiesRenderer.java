@@ -45,14 +45,14 @@ public class AnimatorSpecialTrophiesRenderer
 
         if (trophySpecialHb.hovered)
         {
-            String description = specialTrophies.trophy1 > 0 ? trophyStrings.PlatinumDescription : trophyStrings.PlatinumHint;
+            String description = specialTrophies.Trophy1 > 0 ? trophyStrings.PlatinumDescription : trophyStrings.PlatinumHint;
             TipHelper.renderGenericTip(trophySpecialHb.cX + offsetX, trophySpecialHb.cY + offsetY, trophyStrings.Platinum, description);
         }
     }
 
     public void Render(SpriteBatch sb)
     {
-        RenderSpecialTrophy(trophySpecialHb, specialTrophies.trophy1, sb);
+        RenderSpecialTrophy(trophySpecialHb, specialTrophies.Trophy1, sb);
     }
 
     private static void RenderSpecialTrophy(Hitbox trophyHb, int trophyLevel, SpriteBatch sb)

@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
@@ -12,15 +11,15 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.animator.Readme;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import patches.StoreRelicPatch;
+import patches.StoreRelicPatches;
 
 public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 {
@@ -51,7 +50,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 
         if (!(relic instanceof UnnamedReignRelic) && !(relic instanceof Readme))
         {
-            for (AbstractRelic r : StoreRelicPatch.last20Relics)
+            for (AbstractRelic r : StoreRelicPatches.last20Relics)
             {
                 if (r == relic)
                 {
@@ -64,13 +63,13 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 
             upgrade();
 
-            AbstractDungeon.player.bottledCardUpgradeCheck(this);
-            AbstractDungeon.player.gainGold(GOLD_REWARD);
+            player.bottledCardUpgradeCheck(this);
+            player.gainGold(GOLD_REWARD);
 
-            if (AbstractDungeon.effectsQueue.size() < 5)
+            if (GameEffects.TopLevelQueue.Count() < 5)
             {
-                GameEffects.Queue.Add(new UpgradeShineEffect(pos_x, pos_y));
-                GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy(), pos_x, pos_y);
+                GameEffects.TopLevelQueue.Add(new UpgradeShineEffect(pos_x, pos_y));
+                GameEffects.TopLevelQueue.ShowCardBriefly(makeStatEquivalentCopy(), pos_x, pos_y);
             }
         }
     }

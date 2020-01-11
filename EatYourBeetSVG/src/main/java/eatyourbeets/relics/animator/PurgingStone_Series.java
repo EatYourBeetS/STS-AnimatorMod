@@ -5,10 +5,10 @@ import com.evacipated.cardcrawl.mod.stslib.patches.HitboxRightClick;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import eatyourbeets.actions.pileSelection.SelectFromPile;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -44,35 +44,8 @@ public class PurgingStone_Series extends AbstractPurgingStone implements CustomS
             && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID
             && !GameUtilities.InBattle() && bannedSynergies.size() > 0)
         {
-            CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-
-            for (Synergy synergy : mainSeries.keySet())//  bannedSynergies)
-            {
-                AbstractCard card = mainSeries.get(synergy);
-                if (card != null)
-                {
-                    group.addToBottom(card.makeCopy());
-                }
-            }
-
-            if (group.size() == 0)
-            {
-                return;
-            }
-
-            AbstractDungeon.dynamicBanner.hide();
-            GameEffects.TopLevelList.Callback(new SelectFromPile(name, 99, group)
-                .SetOptions(false, true)
-                .SetMessage(DESCRIPTIONS[2])
-                .AddCallback(cards ->
-                {
-                    for (AbstractCard card : cards)
-                    {
-                        RemoveSynergy(((AnimatorCard)card).synergy);
-                    }
-                    UpdateBannedTip();
-                }))
-            .UpdateIfScreenIsUp(false);
+            // TODO: Logic
+            GR.Animator.Screen.Open();
         }
     }
 

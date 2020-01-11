@@ -14,7 +14,7 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
-import patches.CardGlowBorderPatch;
+import patches.CardGlowBorderPatches;
 
 public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPostDrawSubscriber, OnBattleStartSubscriber
 {
@@ -71,7 +71,7 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
             action.actionType = AbstractGameAction.ActionType.EXHAUST;
             action.exhaustCard = true;
             shouldExhaust = false;
-            CardGlowBorderPatch.overrideColor = null;
+            CardGlowBorderPatches.overrideColor = null;
         }
     }
 
@@ -88,13 +88,13 @@ public class UltimateWispPower extends AnimatorPower implements OnStartOfTurnPos
     {
         PlayerStatistics.onBattleStart.Subscribe(this);
         PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
-        CardGlowBorderPatch.overrideColor = RED;
+        CardGlowBorderPatches.overrideColor = RED;
     }
 
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        CardGlowBorderPatch.overrideColor = RED;
+        CardGlowBorderPatches.overrideColor = RED;
     }
 
     @Override

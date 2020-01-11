@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
@@ -46,7 +48,8 @@ public class JavaUtilities
     {
         try
         {
-            java.lang.reflect.Method method = type.getDeclaredMethod(methodName, parameterTypes);
+            Method method = type.getDeclaredMethod(methodName, parameterTypes);
+
             method.setAccessible(true);
 
             return new MethodInfo(method);
@@ -61,7 +64,8 @@ public class JavaUtilities
     {
         try
         {
-            java.lang.reflect.Field field = type.getDeclaredField(fieldName);
+            Field field = type.getDeclaredField(fieldName);
+
             field.setAccessible(true);
 
             return new FieldInfo<>(field);

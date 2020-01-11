@@ -15,6 +15,7 @@ import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
+import eatyourbeets.screens.AnimatorCustomScreen;
 
 import java.io.IOException;
 
@@ -28,6 +29,7 @@ public class AnimatorResources extends AbstractResources
     public final AnimatorImages Images = new AnimatorImages();
     public final AnimatorStrings Text = new AnimatorStrings();
     public final AnimatorMetrics Metrics = new AnimatorMetrics();
+    public final AnimatorCustomScreen Screen = new AnimatorCustomScreen();
     public AnimatorImages.Textures Textures;
 
     public AnimatorResources()

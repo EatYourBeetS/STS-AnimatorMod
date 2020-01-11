@@ -30,7 +30,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.ui.unnamed.Void;
 import eatyourbeets.utilities.JavaUtilities;
-import patches.CardGlowBorderPatch;
+import patches.CardGlowBorderPatches;
 
 import java.util.ArrayList;
 
@@ -98,7 +98,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
             s.OnStatsCleared();
         }
 
-        CardGlowBorderPatch.overrideColor = null;
+        CardGlowBorderPatches.overrideColor = null;
         Synergies.SetLastCardPlayed(null);
         turnDamageMultiplier = 0;
         turnCount = 0;

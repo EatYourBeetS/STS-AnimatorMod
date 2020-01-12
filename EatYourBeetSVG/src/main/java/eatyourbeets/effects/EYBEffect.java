@@ -72,7 +72,7 @@ public abstract class EYBEffect extends AbstractGameEffect
         }
         else
         {
-            tickDuration();
+            UpdateInternal();
         }
     }
 

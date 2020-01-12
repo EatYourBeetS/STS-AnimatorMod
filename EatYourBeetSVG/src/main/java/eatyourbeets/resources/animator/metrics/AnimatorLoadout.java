@@ -9,7 +9,6 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.relics.animator.LivingPicture;
@@ -26,14 +25,15 @@ import java.util.StringJoiner;
 
 public abstract class AnimatorLoadout
 {
-    protected final ArrayList<String> startingDeck = new ArrayList<>();
-    protected final Map<String, AbstractCard> libraryCards = new HashMap<>();
+    protected ArrayList<String> startingDeck = new ArrayList<>();
+    protected Map<String, AbstractCard> libraryCards = null;
     protected AnimatorCard_UltraRare ultraRare = null;
     protected String shortDescription = null;
 
     public int ID;
     public String Name;
-    public Synergy synergy;
+    public Synergy Synergy;
+    public boolean IsBeta;
 
     public int StartingGold = 99;
     public int MaxHP = 71;
@@ -41,23 +41,25 @@ public abstract class AnimatorLoadout
     public int OrbSlots = 3;
     public int UnlockLevel = 0;
 
-    public AnimatorLoadout(String name, int id)
+    public AnimatorLoadout(String name)
     {
-        this.synergy = null;
+        this.IsBeta = true;
+        this.Synergy = null;
         this.Name = name;
-        this.ID = id;
+        this.ID = -1;
     }
 
     public AnimatorLoadout(Synergy synergy)
     {
-        this.synergy = synergy;
+        this.IsBeta = false;
+        this.Synergy = synergy;
         this.Name = synergy.Name;
         this.ID = synergy.ID;
     }
 
     public abstract AnimatorCard_UltraRare GetUltraRare();
     public abstract ArrayList<String> GetStartingDeck();
-    public abstract String GetRepresentativeCard();
+    public abstract String GetSymbolicCardID();
 
     public CharSelectInfo GetLoadout(String name, String description, AnimatorCharacter animatorCharacter)
     {
@@ -92,13 +94,18 @@ public abstract class AnimatorLoadout
         return res;
     }
 
-    public Map<String, AbstractCard> GetAllCards()
+    public Map<String, AbstractCard> GetNonColorlessCards()
     {
-        if (libraryCards.isEmpty())
+        if (libraryCards == null)
         {
-            for (AbstractCard card : Synergies.GetCardsWithSynergy(synergy))
+            libraryCards = new HashMap<>();
+
+            for (AbstractCard card : CardLibrary.getAllCards())
             {
-                libraryCards.put(card.cardID, card);
+                if (card.color == GR.Animator.CardColor && card instanceof AnimatorCard && Synergy.equals(((AnimatorCard)card).synergy))
+                {
+                    libraryCards.put(card.cardID, card);
+                }
             }
         }
 
@@ -107,11 +114,11 @@ public abstract class AnimatorLoadout
 
     public AnimatorTrophies GetTrophies()
     {
-        AnimatorTrophies trophies = GR.Animator.Metrics.GetTrophies(ID);
+        AnimatorTrophies trophies = GR.Animator.Database.GetTrophies(ID);
         if (trophies == null)
         {
             trophies = new AnimatorTrophies(ID);
-            GR.Animator.Metrics.Trophies.add(trophies);
+            GR.Animator.Database.Trophies.add(trophies);
         }
 
         return trophies;
@@ -158,7 +165,7 @@ public abstract class AnimatorLoadout
     {
         AnimatorTrophies trophies = GetTrophies();
 
-        if (GR.Animator.Metrics.SelectedLoadout.ID == ID)
+        if (GR.Animator.Database.SelectedLoadout.ID == ID)
         {
             trophies.Trophy1 = Math.max(trophies.Trophy1, ascensionLevel);
         }

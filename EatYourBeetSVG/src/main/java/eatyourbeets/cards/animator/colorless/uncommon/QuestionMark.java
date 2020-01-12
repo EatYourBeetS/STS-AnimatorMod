@@ -9,7 +9,7 @@ import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnStartOfTurnSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 

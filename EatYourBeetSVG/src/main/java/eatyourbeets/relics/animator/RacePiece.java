@@ -147,7 +147,7 @@ public class RacePiece extends AnimatorRelic
             WeightedList<AnimatorCard> rewards = new WeightedList<>();
 
             ArrayList<AnimatorCard> cards = new ArrayList<>();
-            Synergies.AddCardsWithSynergy(synergy, CardLibrary.getAllCards(), cards);
+            Synergies.AddCards(synergy, CardLibrary.getAllCards(), cards);
 
             for (AnimatorCard c : cards)
             {

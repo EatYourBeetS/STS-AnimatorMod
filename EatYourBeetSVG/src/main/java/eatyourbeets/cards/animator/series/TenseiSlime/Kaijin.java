@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
+import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
 import eatyourbeets.powers.animator.KaijinPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;

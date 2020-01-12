@@ -38,7 +38,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
         {
             if (shapeshifterPool.Count() == 0)
             {
-                shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetAnimatorCards(), c -> c.anySynergy));
+                shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetNonColorlessCard(), c -> c.anySynergy));
                 shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetColorlessCards(), c -> c.anySynergy));
             }
 

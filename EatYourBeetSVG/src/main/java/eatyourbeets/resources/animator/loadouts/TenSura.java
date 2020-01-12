@@ -42,7 +42,7 @@ public class TenSura extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return Shizu.ID;
     }

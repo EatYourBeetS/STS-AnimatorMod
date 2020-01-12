@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.utilities.WeightedList;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
-import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
+import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
 
 import java.util.ArrayList;
 import java.util.List;

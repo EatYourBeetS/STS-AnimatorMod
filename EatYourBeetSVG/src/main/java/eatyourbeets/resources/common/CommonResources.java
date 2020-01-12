@@ -18,14 +18,18 @@ import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.powers.common.GenericFadingPower;
 import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.resources.GR;
 import eatyourbeets.variables.SecondaryValueVariable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CommonResources extends AbstractResources implements CustomSavable<CommonResources.SaveData>
 {
     public final static String ID = "EYB";
     public final CommonStrings Strings = new CommonStrings();
     public final CommonImages Images = new CommonImages();
-    public final SaveData CurrentGameData = new SaveData();
+    public final SaveData DungeonData = new SaveData();
 
     public final String Audio_TheHaunt = "ANIMATOR_THE_HAUNT.ogg";
     public final String Audio_TheUnnamed = "ANIMATOR_THE_UNNAMED.ogg";
@@ -89,6 +93,7 @@ public class CommonResources extends AbstractResources implements CustomSavable<
     @Override
     protected void PostInitialize()
     {
+        GR.Screens.Initialize();
         BaseMod.addSaveField(SaveData.ID, this);
     }
 
@@ -119,21 +124,22 @@ public class CommonResources extends AbstractResources implements CustomSavable<
     @Override
     public SaveData onSave()
     {
-        CurrentGameData.Validate();
-        return CurrentGameData;
+        DungeonData.Validate();
+        return DungeonData;
     }
 
     @Override
     public void onLoad(SaveData data)
     {
-        CurrentGameData.Import(data);
-        CurrentGameData.Validate();
+        DungeonData.Import(data);
+        DungeonData.Validate();
     }
 
     public static class SaveData
     {
         public static final String ID = CreateID(CommonResources.ID, SaveData.class.getSimpleName());
 
+        public Map<String, String> HashMap = null;
         public Boolean EnteredUnnamedReign = false;
         public Integer RNGCounter = 0;
 
@@ -144,12 +150,14 @@ public class CommonResources extends AbstractResources implements CustomSavable<
         {
             if (data != null)
             {
+                HashMap = new HashMap<>(data.HashMap);
                 EnteredUnnamedReign = data.EnteredUnnamedReign;
                 RNGCounter = data.RNGCounter;
                 rng = data.rng;
             }
             else
             {
+                HashMap = new HashMap<>();
                 EnteredUnnamedReign = false;
                 RNGCounter = 0;
                 rng = null;
@@ -158,6 +166,11 @@ public class CommonResources extends AbstractResources implements CustomSavable<
 
         public void Validate()
         {
+            if (HashMap == null)
+            {
+                HashMap = new HashMap<>();
+            }
+
             if (rng != null)
             {
                 RNGCounter = rng.counter;
@@ -182,6 +195,16 @@ public class CommonResources extends AbstractResources implements CustomSavable<
             }
 
             return rng;
+        }
+
+        public String Read(String key)
+        {
+            return HashMap.get(key);
+        }
+
+        public void Write(String key, String serialized)
+        {
+            HashMap.put(key, serialized);
         }
     }
 }

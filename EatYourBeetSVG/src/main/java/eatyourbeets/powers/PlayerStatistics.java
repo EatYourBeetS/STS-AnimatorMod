@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.*;
+import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.IntellectPower;
@@ -150,7 +150,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         onBattleStart.Clear();
         onBattleEnd.Clear();
 
-        GR.Common.CurrentGameData.Import(null);
+        GR.Common.DungeonData.Import(null);
     }
 
     public static void OnStartOver()
@@ -159,7 +159,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         onBattleStart.Clear();
         onBattleEnd.Clear();
 
-        GR.Common.CurrentGameData.Import(null);
+        GR.Common.DungeonData.Import(null);
         DevConsole.enabled = true;
     }
 

@@ -42,7 +42,7 @@ public class OwariNoSeraph extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return KrulTepes.ID;
     }

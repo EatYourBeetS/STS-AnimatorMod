@@ -88,20 +88,20 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     @Override
     public void receiveStartGame()
     {
-        if (AbstractDungeon.player.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
+        if (AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass)
         {
             if (Settings.isStandardRun())
             {
-                GR.Animator.Metrics.SaveTrophies(true);
+                GR.Animator.Database.SaveTrophies(true);
             }
+
+            AbstractPurgingStone.UpdateBannedCards();
         }
         else
         {
             RemoveColorless(AbstractDungeon.srcColorlessCardPool);
             RemoveColorless(AbstractDungeon.colorlessCardPool);
         }
-
-        AbstractPurgingStone.UpdateBannedCards();
     }
 
     @Override

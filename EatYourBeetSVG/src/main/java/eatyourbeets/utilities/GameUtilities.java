@@ -25,7 +25,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
@@ -450,7 +450,7 @@ public class GameUtilities
     public static boolean InBattle()
     {
         AbstractRoom room = GetCurrentRoom();
-        if (room != null && !room.isBattleOver)
+        if (room != null && !room.isBattleOver && !AbstractDungeon.player.isDead)
         {
             return room.phase == AbstractRoom.RoomPhase.COMBAT || (room.monsters != null && !room.monsters.areMonstersBasicallyDead());
         }

@@ -11,8 +11,6 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;
-import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
-import com.megacrit.cardcrawl.helpers.input.InputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.resources.GR;
@@ -91,7 +89,7 @@ public class BanCardButton
                 CardCrawlGame.sound.play("UI_CLICK_1");
             }
 
-            if (this.hb.clicked || InputActionSet.cancel.isJustPressed() || CInputActionSet.cancel.isJustPressed())
+            if (this.hb.clicked)// || InputActionSet.cancel.isJustPressed() || CInputActionSet.cancel.isJustPressed())
             {
                 this.hb.clicked = false;
                 this.banned = true;

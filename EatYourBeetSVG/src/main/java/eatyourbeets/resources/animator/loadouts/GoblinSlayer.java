@@ -41,7 +41,7 @@ public class GoblinSlayer extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return eatyourbeets.cards.animator.series.GoblinSlayer.GoblinSlayer.ID;
     }

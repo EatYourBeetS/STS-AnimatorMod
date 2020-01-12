@@ -90,7 +90,7 @@ public class TheHaunt extends AnimatorEvent
         AbstractPlayer p = AbstractDungeon.player;
         AbstractDungeon.getCurrRoom().spawnBlightAndObtain(p.hb.cX, p.hb.cY, new Haunted());
 
-        //PlayerStatistics.CurrentGameData.TheHaunt += 1;
+        //PlayerStatistics.DungeonData.TheHaunt += 1;
         this.imageEventText.updateBodyText(eventStrings.DESCRIPTIONS[5]);
         this.imageEventText.setDialogOption(OPTIONS[2]);
     }

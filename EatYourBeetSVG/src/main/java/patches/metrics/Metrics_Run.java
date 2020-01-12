@@ -71,9 +71,9 @@ public class Metrics_Run
                 params.clear();
                 params.put("ascension", AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0);
                 params.put("cards", cardsData);
-                params.put("enteredAct5", GR.Common.CurrentGameData.EnteredUnnamedReign);
+                params.put("enteredAct5", GR.Common.DungeonData.EnteredUnnamedReign);
                 params.put("isVictory", AbstractDungeon.is_victory);
-                params.put("startingSeries", GR.Animator.Metrics.SelectedLoadout.ID);
+                params.put("startingSeries", GR.Animator.Database.SelectedLoadout.ID);
                 params.put("language", Settings.language.name());
 
                 String data = gson.toJson(params);
@@ -93,7 +93,7 @@ public class Metrics_Run
                     public void cancelled() {  }
                 });
             }
-            else if (GR.Common.CurrentGameData.EnteredUnnamedReign)
+            else if (GR.Common.DungeonData.EnteredUnnamedReign)
             {
                 params.clear();
                 params.put("playerClass", AbstractDungeon.player.chosenClass.name());

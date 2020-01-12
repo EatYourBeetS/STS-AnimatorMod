@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -40,12 +39,10 @@ public class PurgingStone_Series extends AbstractPurgingStone implements CustomS
     {
         super.update();
 
-        if (HitboxRightClick.rightClicked.get(this.hb)
-            && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID
-            && !GameUtilities.InBattle() && bannedSynergies.size() > 0)
+        if (HitboxRightClick.rightClicked.get(this.hb) && GR.Screens.SeriesSelection.CanOpen())
         {
             // TODO: Logic
-            GR.Animator.Screen.Open();
+            GR.Screens.SeriesSelection.Open(true);
         }
     }
 
@@ -171,7 +168,7 @@ public class PurgingStone_Series extends AbstractPurgingStone implements CustomS
 
         CardGroup pool;
         CardGroup srcPool;
-        ArrayList<AnimatorCard> cards = Synergies.GetCardsWithSynergy(synergy);
+        ArrayList<AnimatorCard> cards = Synergies.GetNonColorlessCard(synergy);
         for (AnimatorCard c : cards)
         {
             switch (c.rarity)
@@ -227,7 +224,7 @@ public class PurgingStone_Series extends AbstractPurgingStone implements CustomS
             while (synergies.Count() > DEFAULT_SERIES_SIZE)
             {
                 Synergy synergy = synergies.Retrieve(AbstractDungeon.miscRng);
-                if (synergy.ID != GR.Animator.Metrics.SelectedLoadout.ID)
+                if (synergy.ID != GR.Animator.Database.SelectedLoadout.ID)
                 {
                     bannedSynergies.add(synergy);
                 }

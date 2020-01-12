@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnCostRefreshSubscriber;
+import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;

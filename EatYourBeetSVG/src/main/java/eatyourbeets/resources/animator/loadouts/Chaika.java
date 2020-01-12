@@ -42,7 +42,7 @@ public class Chaika extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return ChaikaTrabant.ID;
     }

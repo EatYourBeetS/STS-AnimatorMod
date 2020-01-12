@@ -8,7 +8,7 @@ import eatyourbeets.actions.animator.GurenAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.ui.EffectHistory;

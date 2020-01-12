@@ -42,7 +42,7 @@ public class Overlord extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return Ainz.ID;
     }

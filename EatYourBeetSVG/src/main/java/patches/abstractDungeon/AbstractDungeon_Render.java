@@ -15,9 +15,9 @@ public class AbstractDungeon_Render
     @SpireInsertPatch(locator=Locator.class)
     public static void Insert(AbstractDungeon __instance, SpriteBatch sb)
     {
-        if (AbstractDungeon.screen == GR.Enums.Screens.ANIMATOR_SCREEN)
+        if (AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN)
         {
-            GR.Animator.Screen.Render(sb);
+            GR.Screens.Render(sb);
         }
     }
 

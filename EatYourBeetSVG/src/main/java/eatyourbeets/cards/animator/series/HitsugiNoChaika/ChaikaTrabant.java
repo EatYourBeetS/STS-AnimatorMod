@@ -14,7 +14,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 
 // TODO:
 //"EXTENDED_DESCRIPTION":

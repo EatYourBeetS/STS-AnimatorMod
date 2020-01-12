@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffects;

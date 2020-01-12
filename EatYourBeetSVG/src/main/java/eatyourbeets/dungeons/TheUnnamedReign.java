@@ -127,7 +127,7 @@ public class TheUnnamedReign extends AbstractDungeon
 
     protected void initializeLevelSpecificChances()
     {
-        GR.Common.CurrentGameData.EnteredUnnamedReign = true;
+        GR.Common.DungeonData.EnteredUnnamedReign = true;
 
         shopRoomChance = 0.12F;
         restRoomChance = 0.10F;

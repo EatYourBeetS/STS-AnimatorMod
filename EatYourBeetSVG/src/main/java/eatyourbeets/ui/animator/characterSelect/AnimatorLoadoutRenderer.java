@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
-import eatyourbeets.resources.animator.loadouts.Random;
+import eatyourbeets.resources.animator.loadouts._Random;
 import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
@@ -57,7 +57,7 @@ public class AnimatorLoadoutRenderer
     {
         this.selectScreen = selectScreen;
         this.characterOption = characterOption;
-        this.loadout = GR.Animator.Metrics.SelectedLoadout;
+        this.loadout = GR.Animator.Database.SelectedLoadout;
 
         goldField.Set(characterOption, loadout.StartingGold);
         hpField.Set(characterOption, String.valueOf(loadout.MaxHP));
@@ -103,19 +103,19 @@ public class AnimatorLoadoutRenderer
         {
             startingCardsLeftHb.clicked = false;
 
-            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Metrics.BaseLoadouts;
+            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Database.BaseLoadouts;
             int current = loadouts.indexOf(loadout);
             if (current == 0)
             {
-                GR.Animator.Metrics.SelectedLoadout = new Random();
+                GR.Animator.Database.SelectedLoadout = new _Random();
             }
             else if (current == -1)
             {
-                GR.Animator.Metrics.SelectedLoadout = loadouts.get(loadouts.size() -1);
+                GR.Animator.Database.SelectedLoadout = loadouts.get(loadouts.size() -1);
             }
             else
             {
-                GR.Animator.Metrics.SelectedLoadout = loadouts.get(current -1);
+                GR.Animator.Database.SelectedLoadout = loadouts.get(current -1);
             }
 
             Refresh(selectScreen, characterOption);
@@ -125,19 +125,19 @@ public class AnimatorLoadoutRenderer
         {
             startingCardsRightHb.clicked = false;
 
-            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Metrics.BaseLoadouts;
+            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Database.BaseLoadouts;
             int current = loadouts.indexOf(loadout);
             if (current >= (loadouts.size()-1))
             {
-                GR.Animator.Metrics.SelectedLoadout = new Random();
+                GR.Animator.Database.SelectedLoadout = new _Random();
             }
             else if (current == -1)
             {
-                GR.Animator.Metrics.SelectedLoadout = loadouts.get(0);
+                GR.Animator.Database.SelectedLoadout = loadouts.get(0);
             }
             else
             {
-                GR.Animator.Metrics.SelectedLoadout = loadouts.get(current +1);
+                GR.Animator.Database.SelectedLoadout = loadouts.get(current +1);
             }
 
             Refresh(selectScreen, characterOption);

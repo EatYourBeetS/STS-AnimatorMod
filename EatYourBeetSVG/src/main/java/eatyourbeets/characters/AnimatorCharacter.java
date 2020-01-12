@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.resources.animator.loadouts.Random;
+import eatyourbeets.resources.animator.loadouts._Random;
 import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -190,13 +190,13 @@ public class AnimatorCharacter extends CustomPlayer
 
     protected AnimatorLoadout GetCurrentLoadout()
     {
-        AnimatorLoadout current = GR.Animator.Metrics.SelectedLoadout;
-        if (current instanceof Random)
+        AnimatorLoadout current = GR.Animator.Database.SelectedLoadout;
+        if (current instanceof _Random)
         {
             int currentLevel = GR.Animator.GetUnlockLevel();
 
             RandomizedList<AnimatorLoadout> list = new RandomizedList<>();
-            for (AnimatorLoadout loadout : GR.Animator.Metrics.BaseLoadouts)
+            for (AnimatorLoadout loadout : GR.Animator.Database.BaseLoadouts)
             {
                 if (currentLevel >= loadout.UnlockLevel)
                 {

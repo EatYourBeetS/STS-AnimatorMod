@@ -33,7 +33,7 @@ public class AnimatorSpecialTrophiesRenderer
 
     public void Refresh()
     {
-        this.specialTrophies = GR.Animator.Metrics.SpecialTrophies;
+        this.specialTrophies = GR.Animator.Database.SpecialTrophies;
     }
 
     public void Update()

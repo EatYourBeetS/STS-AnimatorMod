@@ -17,9 +17,9 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.attack.LaserBeam2Effect;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.interfaces.OnAfterCardDiscardedSubscriber;
-import eatyourbeets.interfaces.OnAfterCardExhaustedSubscriber;
-import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.utilities.GameUtilities;
 
 public class NivaLada extends AnimatorCard_UltraRare

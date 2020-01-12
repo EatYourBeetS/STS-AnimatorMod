@@ -94,44 +94,32 @@ public class Synergies
         return result;
     }
 
-    public static ArrayList<AnimatorCard> GetAnimatorCards()
+    public static ArrayList<AnimatorCard> GetNonColorlessCard()
     {
         ArrayList<AnimatorCard> result = new ArrayList<>();
-        AddAnimatorCards(AbstractDungeon.srcCommonCardPool.group, result);
-        AddAnimatorCards(AbstractDungeon.srcUncommonCardPool.group, result);
-        AddAnimatorCards(AbstractDungeon.srcRareCardPool.group, result);
+        AddCards(null, AbstractDungeon.srcCommonCardPool.group, result);
+        AddCards(null, AbstractDungeon.srcUncommonCardPool.group, result);
+        AddCards(null, AbstractDungeon.srcRareCardPool.group, result);
 
         return result;
     }
 
-    public static ArrayList<AnimatorCard> GetCardsWithSynergy(Synergy synergy)
+    public static ArrayList<AnimatorCard> GetNonColorlessCard(Synergy synergy)
     {
         ArrayList<AnimatorCard> result = new ArrayList<>();
-        AddCardsWithSynergy(synergy, AbstractDungeon.srcCommonCardPool.group, result);
-        AddCardsWithSynergy(synergy, AbstractDungeon.srcUncommonCardPool.group, result);
-        AddCardsWithSynergy(synergy, AbstractDungeon.srcRareCardPool.group, result);
+        AddCards(synergy, AbstractDungeon.srcCommonCardPool.group, result);
+        AddCards(synergy, AbstractDungeon.srcUncommonCardPool.group, result);
+        AddCards(synergy, AbstractDungeon.srcRareCardPool.group, result);
 
         return result;
     }
 
-    public static void AddAnimatorCards(ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
+    public static void AddCards(Synergy synergy, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
     {
         for (AbstractCard c : source)
         {
             AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-            if (card != null)
-            {
-                destination.add(card);
-            }
-        }
-    }
-
-    public static void AddCardsWithSynergy(Synergy synergy, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
-    {
-        for (AbstractCard c : source)
-        {
-            AnimatorCard card = JavaUtilities.SafeCast(c, AnimatorCard.class);
-            if (card != null && (synergy.Equals(card.synergy) || synergy.Equals(Synergies.ANY)))
+            if (card != null && (synergy == null || synergy.Equals(card.synergy) || synergy.Equals(Synergies.ANY)))
             {
                 destination.add(card);
             }

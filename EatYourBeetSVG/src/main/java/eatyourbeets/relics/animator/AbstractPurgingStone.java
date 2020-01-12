@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: this is now useless
 public abstract class AbstractPurgingStone extends AnimatorRelic
 {
     public static final Map<Synergy, AnimatorCard> mainSeries = new HashMap<>();
@@ -90,7 +91,7 @@ public abstract class AbstractPurgingStone extends AnimatorRelic
 
     private static void Create(Synergy synergy, AnimatorCard base)
     {
-        AnimatorCardBuilder builder = new AnimatorCardBuilder(GR.CreateID("synergy", String.valueOf(synergy.ID)));
+        AnimatorCardBuilder builder = new AnimatorCardBuilder(GR.CreateID("Synergy", String.valueOf(synergy.ID)));
         builder.SetImage(base.assetUrl);
         builder.SetProperties(base.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
         builder.SetText(synergy.Name, "Contains 10 cards from this series.", "");

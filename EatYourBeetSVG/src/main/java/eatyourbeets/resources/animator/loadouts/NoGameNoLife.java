@@ -42,7 +42,7 @@ public class NoGameNoLife extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return Sora.ID;
     }

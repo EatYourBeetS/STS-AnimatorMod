@@ -47,7 +47,7 @@ public class Kancolle extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return Shimakaze.ID;
     }
@@ -81,7 +81,7 @@ public class Kancolle extends AnimatorLoadout
     {
         AnimatorTrophies trophies = GetTrophies();
 
-        if (GR.Animator.Metrics.SelectedLoadout.ID == ID)
+        if (GR.Animator.Database.SelectedLoadout.ID == ID)
         {
             trophies.Trophy1 = Math.max(trophies.Trophy1, ascensionLevel);
         }

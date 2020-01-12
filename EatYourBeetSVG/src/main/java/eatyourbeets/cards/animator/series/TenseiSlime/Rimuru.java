@@ -8,8 +8,8 @@ import eatyourbeets.actions.animator.RimuruAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.interfaces.OnAfterCardPlayedSubscriber;
-import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 

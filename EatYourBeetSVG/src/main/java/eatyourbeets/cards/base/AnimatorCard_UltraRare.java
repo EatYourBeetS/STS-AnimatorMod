@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.ultrarare.*;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -79,20 +78,20 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     protected void renderAttackBg(SpriteBatch sb, float x, float y)
     {
         RENDER_COLOR.a = this.transparency;
-        RenderHelpers.RenderOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_ATTACK_BG_GRAY, x, y);
+        RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_ATTACK_BG_GRAY, x, y);
     }
 
     @SpireOverride
     protected void renderSkillBg(SpriteBatch sb, float x, float y)
     {
         RENDER_COLOR.a = this.transparency;
-        RenderHelpers.RenderOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_SKILL_BG_GRAY, x, y);
+        RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_SKILL_BG_GRAY, x, y);
     }
 
     @SpireOverride
     protected void renderPowerBg(SpriteBatch sb, float x, float y)
     {
         RENDER_COLOR.a = this.transparency;
-        RenderHelpers.RenderOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_POWER_BG_GRAY, x, y);
+        RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_POWER_BG_GRAY, x, y);
     }
 }

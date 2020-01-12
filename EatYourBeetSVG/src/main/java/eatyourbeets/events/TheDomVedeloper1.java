@@ -29,9 +29,9 @@ public class TheDomVedeloper1 extends AnimatorEvent
     {
         super(ID);
 
-        Synergies.AddAnimatorCards(AbstractDungeon.srcCommonCardPool.group, cards.GetInnerList());
-        Synergies.AddAnimatorCards(AbstractDungeon.srcUncommonCardPool.group, cards.GetInnerList());
-        Synergies.AddAnimatorCards(AbstractDungeon.srcRareCardPool.group, cards.GetInnerList());
+        Synergies.AddCards(null, AbstractDungeon.srcCommonCardPool.group, cards.GetInnerList());
+        Synergies.AddCards(null, AbstractDungeon.srcUncommonCardPool.group, cards.GetInnerList());
+        Synergies.AddCards(null, AbstractDungeon.srcRareCardPool.group, cards.GetInnerList());
 
         this.imageEventText.updateBodyText(eventStrings.DESCRIPTIONS[0]);
         this.imageEventText.updateDialogOption(CHOICE_CONTINUE, OPTIONS[8]);

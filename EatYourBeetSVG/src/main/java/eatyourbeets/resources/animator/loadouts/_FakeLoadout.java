@@ -11,7 +11,7 @@ public class _FakeLoadout extends AnimatorLoadout
 {
     public _FakeLoadout()
     {
-        super("<Error>", -1);
+        super("<Error>");
     }
 
     @Override
@@ -29,7 +29,7 @@ public class _FakeLoadout extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return null;
     }

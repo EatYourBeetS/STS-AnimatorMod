@@ -42,7 +42,7 @@ public class Konosuba extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return Megumin.ID;
     }

@@ -42,7 +42,7 @@ public class Katanagatari extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return Togame.ID;
     }

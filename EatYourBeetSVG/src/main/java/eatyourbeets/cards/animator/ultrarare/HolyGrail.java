@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnBattleEndSubscriber;
+import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.HolyGrailRelic;
 import eatyourbeets.utilities.GameActions;

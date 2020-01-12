@@ -154,6 +154,21 @@ public class JavaUtilities
         return GetLogger(instance.getClass());
     }
 
+    public static void Log(Class source, Object message)
+    {
+        GetLogger(source).info(message);
+    }
+
+    public static void Log(Object source, Object message)
+    {
+        GetLogger(source).info(message);
+    }
+
+    public static void Log(Object source, String format, Object... values)
+    {
+        GetLogger(source).info(Format(format, values));
+    }
+
     public static int ParseInt(String value, int defaultValue)
     {
         try

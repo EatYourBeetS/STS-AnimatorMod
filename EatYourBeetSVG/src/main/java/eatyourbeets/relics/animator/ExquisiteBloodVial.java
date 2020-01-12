@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.BloodVial;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
-import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;

@@ -42,7 +42,7 @@ public class Elsword extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return Eve.ID;
     }

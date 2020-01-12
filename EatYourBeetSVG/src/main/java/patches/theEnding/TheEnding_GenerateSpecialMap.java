@@ -16,7 +16,7 @@ public class TheEnding_GenerateSpecialMap
     @SpirePostfixPatch
     public static void Postfix(TheEnding __instance)
     {
-        if (GR.Animator.Metrics.SpecialTrophies.Trophy1 > 0 || AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass)
+        if (GR.Animator.Database.SpecialTrophies.Trophy1 > 0 || AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass)
         {
             MapRoomNode rest = __instance.getMap().get(0).get(3);
             MapRoomNode shop = __instance.getMap().get(1).get(3);

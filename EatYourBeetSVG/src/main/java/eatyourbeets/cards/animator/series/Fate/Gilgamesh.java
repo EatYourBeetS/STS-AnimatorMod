@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.animator.Readme;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.utilities.GameActions;

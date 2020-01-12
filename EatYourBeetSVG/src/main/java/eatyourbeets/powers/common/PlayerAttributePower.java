@@ -1,8 +1,8 @@
 package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.interfaces.OnStatsClearedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;

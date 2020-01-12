@@ -4,7 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
-import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
+import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
 import javassist.CtBehavior;
 
 @SpirePatch(clz = CombatRewardScreen.class, method = "setupItemReward")

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.interfaces.OnRemoveFromDeckSubscriber;
+import eatyourbeets.interfaces.subscribers.OnRemoveFromDeckSubscriber;
 
 @SpirePatch(clz = CardGroup.class, method = "removeCard", paramtypez = {AbstractCard.class})
 public class CardGroup_RemoveCard

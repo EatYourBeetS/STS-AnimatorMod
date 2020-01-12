@@ -42,7 +42,7 @@ public class Gate extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return RoryMercury.ID;
     }

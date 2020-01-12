@@ -11,7 +11,7 @@ import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.series.GoblinSlayer.GuildGirl;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
-import eatyourbeets.interfaces.OnEnemyDyingSubscriber;
+import eatyourbeets.interfaces.subscribers.OnEnemyDyingSubscriber;
 import eatyourbeets.utilities.GameUtilities;
 
 public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscriber

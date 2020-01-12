@@ -65,7 +65,7 @@ public class EYBCardBadge
 
     public static void RenderLegend(SpriteBatch sb)
     {
-        RenderHelpers.RenderOnScreen(sb, LegendTexture, hitbox.x, hitbox.y,
+        RenderHelpers.Draw(sb, LegendTexture, hitbox.x, hitbox.y,
                 hitbox.width / Settings.scale, hitbox.height / Settings.scale);
 
         float offset = hitbox.height * 0.2f;
@@ -83,7 +83,7 @@ public class EYBCardBadge
 
     private static void RenderSingleBadge(SpriteBatch sb, EYBCardBadge badge, float y)
     {
-        RenderHelpers.RenderOnScreen(sb, badge.texture, hitbox.x, y - (hitbox.height * 0.09f), hitbox.height * 0.22f);
+        RenderHelpers.Draw(sb, badge.texture, hitbox.x, y - (hitbox.height * 0.09f), hitbox.height * 0.22f);
         FontHelper.renderFontCentered(sb, FontHelper.tipHeaderFont, badge.name, hitbox.x + (hitbox.width * 0.6f), y);
     }
 

@@ -143,19 +143,19 @@ public abstract class EYBCard extends CustomCard
             case BASIC:
             case CURSE:
             case COMMON:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_COMMON, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_COMMON, x, y);
                 return;
 
             case SPECIAL:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_ATTACK_SPECIAL, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_ATTACK_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_UNCOMMON, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_UNCOMMON, x, y);
                 return;
 
             case RARE:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_RARE, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_ATTACK_RARE, x, y);
         }
     }
 
@@ -169,19 +169,19 @@ public abstract class EYBCard extends CustomCard
             case BASIC:
             case CURSE:
             case COMMON:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_COMMON, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_COMMON, x, y);
                 return;
 
             case SPECIAL:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_SKILL_SPECIAL, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_SKILL_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_UNCOMMON, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_UNCOMMON, x, y);
                 return;
 
             case RARE:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_RARE, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_SKILL_RARE, x, y);
         }
     }
 
@@ -195,19 +195,19 @@ public abstract class EYBCard extends CustomCard
             case BASIC:
             case CURSE:
             case COMMON:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_COMMON, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_COMMON, x, y);
                 break;
 
             case SPECIAL:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_POWER_SPECIAL, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_POWER_SPECIAL, x, y);
                 return;
 
             case UNCOMMON:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_UNCOMMON, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_UNCOMMON, x, y);
                 break;
 
             case RARE:
-                RenderHelpers.RenderOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_RARE, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_RARE, x, y);
         }
     }
     
@@ -341,7 +341,7 @@ public abstract class EYBCard extends CustomCard
 
             for (EYBCardBadge badge : cardData.badges)
             {
-                RenderHelpers.RenderOnScreen(sb, badge.texture, x, y, 96);
+                RenderHelpers.Draw(sb, badge.texture, x, y, 96);
 
                 if (mX > (x + 10 * scale) && mX < (x + 90 * scale))
                 {
@@ -380,7 +380,7 @@ public abstract class EYBCard extends CustomCard
                 offset.rotate(angle);
                 offset.scl(scale);
 
-                RenderHelpers.RenderOnCard(sb, this, badge.texture, this.current_x + offset.x, this.current_y + offset.y, 48);
+                RenderHelpers.DrawOnCard(sb, this, badge.texture, this.current_x + offset.x, this.current_y + offset.y, 48);
                 base_Y -= 30;
             }
         }
@@ -462,9 +462,11 @@ public abstract class EYBCard extends CustomCard
 
         fontData.setScale(scaleMulti * (isCardPopup ? 1 : this.drawScale));
 
+        Color color = GetHeaderColor();
+        color.a = transparency;
         FontHelper.renderRotatedText(sb, font, text,
                 xPos, yPos, 0.0F, offsetY,
-                this.angle, true, GetHeaderColor());
+                this.angle, true, color);
 
         fontData.setScale(originalScale);
     }

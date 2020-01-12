@@ -42,7 +42,7 @@ public class OnePunchMan extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return Saitama.ID;
     }

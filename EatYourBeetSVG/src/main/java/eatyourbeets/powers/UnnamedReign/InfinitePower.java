@@ -25,14 +25,14 @@ import eatyourbeets.cards.animator.series.NoGameNoLife.ChlammyZell;
 import eatyourbeets.cards.animator.series.OnePunchMan.Boros;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Guren;
-import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.interfaces.OnApplyPowerSubscriber;
-import eatyourbeets.interfaces.OnBattleStartSubscriber;
+import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
+import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;

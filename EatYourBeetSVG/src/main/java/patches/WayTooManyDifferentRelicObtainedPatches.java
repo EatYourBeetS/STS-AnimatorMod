@@ -6,7 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.metrics.MetricData;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.select.BossRelicSelectScreen;
-import eatyourbeets.interfaces.OnRelicObtainedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 

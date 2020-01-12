@@ -42,7 +42,7 @@ public class Fate extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return Saber.ID;
     }

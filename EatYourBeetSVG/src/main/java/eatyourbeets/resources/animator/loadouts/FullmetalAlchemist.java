@@ -42,7 +42,7 @@ public class FullmetalAlchemist extends AnimatorLoadout
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
         return RoyMustang.ID;
     }

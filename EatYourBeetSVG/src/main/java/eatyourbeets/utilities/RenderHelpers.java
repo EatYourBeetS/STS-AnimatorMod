@@ -104,6 +104,7 @@ public class RenderHelpers
 
     public static class TextureRenderer
     {
+        public Hitbox hb;
         public Texture texture;
         public Color color;
         public float rotation;
@@ -122,6 +123,11 @@ public class RenderHelpers
             this.srcHeight = texture.getHeight();
         }
 
+        public void Draw(SpriteBatch sb)
+        {
+            Draw(sb, hb);
+        }
+
         public void Draw(SpriteBatch sb, Hitbox hb)
         {
             sb.setColor(color);
@@ -132,6 +138,13 @@ public class RenderHelpers
         {
             sb.setColor(color);
             sb.draw(texture, x, y, 0, 0, width, height, scaleX, scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
+        }
+
+        public TextureRenderer SetHitbox(Hitbox hb)
+        {
+            this.hb = hb;
+
+            return this;
         }
 
         public TextureRenderer SetColor(float r, float g, float b, float a)

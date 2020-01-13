@@ -458,6 +458,6 @@ public class GridLayoutControl implements UIControl, ScrollBarListener
 
     private boolean shouldShowScrollBar()
     {
-        return this.scrollUpperBound > SCROLL_BAR_THRESHOLD;
+        return false;// this.scrollUpperBound > SCROLL_BAR_THRESHOLD;
     }
 }

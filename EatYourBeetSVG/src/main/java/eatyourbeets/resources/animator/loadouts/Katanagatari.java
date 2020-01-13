@@ -6,7 +6,7 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_Katanagatari;
 import eatyourbeets.cards.animator.series.Katanagatari.Azekura;
 import eatyourbeets.cards.animator.series.Katanagatari.Emonzaemon;
-import eatyourbeets.cards.animator.series.Katanagatari.Togame;
+import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.animator.ultrarare.ShikizakiKiki;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
@@ -44,7 +44,7 @@ public class Katanagatari extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Togame.ID;
+        return HigakiRinne.ID;
     }
 
     @Override

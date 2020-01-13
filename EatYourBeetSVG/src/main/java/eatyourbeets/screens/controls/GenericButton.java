@@ -58,6 +58,13 @@ public class GenericButton implements UIControl
         return this;
     }
 
+    public GenericButton SetDimensions(float width, float height)
+    {
+        this.hb.resize(width, height);
+
+        return this;
+    }
+
     public GenericButton SetPosition(float x, float y)
     {
         this.hb.move(x, y);

@@ -1,111 +1,124 @@
 package eatyourbeets.screens.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.cards.base.AnimatorCardBuilder;
-import eatyourbeets.interfaces.csharp.ActionT0;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
 import eatyourbeets.screens.AbstractScreen;
+import eatyourbeets.screens.controls.DraggableHitbox;
 import eatyourbeets.screens.controls.GenericButton;
 import eatyourbeets.screens.controls.GridLayoutControl;
 import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class SeriesSelectionScreen extends AbstractScreen
 {
-    private static final Random rng = new Random();
-
-    private int totalCards = 0;
-    private final Map<AbstractCard, AnimatorLoadout> loadoutMap = new HashMap<>();
-    private final ArrayList<AnimatorLoadout> selectedLoadouts = new ArrayList<>();
-
-    private final GenericButton deselectAll = CreateButton(Settings.WIDTH * 0.82f, Settings.HEIGHT * 0.68f, "Deselect All", null).SetColor(Color.FIREBRICK);
-    private final GenericButton selectRandom75 = CreateButton(Settings.WIDTH * 0.82f, Settings.HEIGHT * 0.60f, "Random (75 cards)", null).SetColor(Color.SKY);
-    private final GenericButton selectRandom100 = CreateButton(Settings.WIDTH * 0.82f, Settings.HEIGHT * 0.52f, "Random (100 cards)", null).SetColor(Color.SKY);
-    private final GenericButton selectAll = CreateButton(Settings.WIDTH * 0.82f, Settings.HEIGHT * 0.44f, "Select All", null).SetColor(Color.ROYAL);
-    private final GenericButton confirm = CreateButton(Settings.WIDTH * 0.82f, Settings.HEIGHT * 0.25f, "Confirm", null).SetColor(Color.FOREST);
-
+    private final Random rng = new Random();
+    private final SeriesSelectionBuilder seriesSelectionBuilder = new SeriesSelectionBuilder();
     private final GridLayoutControl gridLayoutControl = new GridLayoutControl();
+    private final GenericButton deselectAll;
+    private final GenericButton selectRandom75;
+    private final GenericButton selectRandom100;
+    private final GenericButton selectAll;
+    private final GenericButton confirm;
+    private final RenderHelpers.TextureRenderer tip1;
+    private final RenderHelpers.TextureRenderer tip2;
 
     public SeriesSelectionScreen()
     {
-        deselectAll.hb.resize(Settings.WIDTH * 0.18f, Settings.HEIGHT * 0.07f);
-        selectRandom75.hb.resize(Settings.WIDTH * 0.18f, Settings.HEIGHT * 0.07f);
-        selectRandom100.hb.resize(Settings.WIDTH * 0.18f, Settings.HEIGHT * 0.07f);
-        selectAll.hb.resize(Settings.WIDTH * 0.18f, Settings.HEIGHT * 0.07f);
-        confirm.hb.resize(Settings.WIDTH * 0.18f, Settings.HEIGHT * 0.08f);
+        float xPos = Settings.WIDTH * 0.82f;
+        float yPos = Settings.HEIGHT * 0.70f;
+        float yPosDelta = -Settings.HEIGHT * 0.08f;
+        float buttonWidth = Settings.WIDTH * 0.18f;
+        float buttonHeight = Settings.HEIGHT * 0.07f;
 
-        confirm.isDisabled = true;
+        deselectAll = CreateButton(xPos, yPos + (yPosDelta*0), buttonWidth, buttonHeight)
+        .SetText("Deselect All")
+        .SetOnClick(this::DeselectAll)
+        .SetColor(Color.FIREBRICK);
 
-        selectAll.SetOnClick(this::SelectAll);
-        deselectAll.SetOnClick(this::DeselectAll);
-        selectRandom75.SetOnClick(() -> SelectRandom(75));
-        selectRandom100.SetOnClick(() -> SelectRandom(100));
+        selectRandom75 = CreateButton(xPos, yPos + (yPosDelta*1), buttonWidth, buttonHeight)
+        .SetText("Random (75 cards)")
+        .SetOnClick(() -> SelectRandom(75))
+        .SetColor(Color.SKY);
+
+        selectRandom100 = CreateButton(xPos, yPos + (yPosDelta*2), buttonWidth, buttonHeight)
+        .SetText("Random (100 cards)")
+        .SetOnClick(() -> SelectRandom(100))
+        .SetColor(Color.SKY);
+
+        selectAll = CreateButton(xPos, yPos + (yPosDelta*3), buttonWidth, buttonHeight)
+        .SetText("Select All")
+        .SetOnClick(this::SelectAll)
+        .SetColor(Color.ROYAL);
+
+        tip1 = RenderHelpers.ForTexture(GR.Common.Textures.Panel).SetColor(Color.DARK_GRAY)
+        .SetHitbox(new DraggableHitbox(xPos, yPos + (yPosDelta*5.3f), buttonWidth, buttonHeight*2.5f, true));
+
+        tip2 = RenderHelpers.ForTexture(GR.Common.Textures.Panel).SetColor(Color.DARK_GRAY)
+        .SetHitbox(new DraggableHitbox(xPos, yPos + (yPosDelta*6f), buttonWidth, buttonHeight*0.8f, true));
+
+        confirm = CreateButton(xPos, yPos + (yPosDelta*7), buttonWidth, buttonHeight*1.1f)
+        .SetText("Proceed")
+        .SetOnClick(() -> {})
+        .SetColor(Color.FOREST);
     }
 
     public void Open(boolean firstTime)
     {
         super.Open();
 
-        loadoutMap.clear();
-        selectedLoadouts.clear();
-        totalCards = 0;
+        ArrayList<AbstractCard> promoted = new ArrayList<>();
+        ArrayList<AbstractCard> beta = new ArrayList<>();
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-        CardGroup test = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        RandomizedList<AnimatorLoadout> loadouts = new RandomizedList<>(GR.Animator.Database.BaseLoadouts);
-        AnimatorLoadout loadout = GR.Animator.Database.SelectedLoadout;
-
-        loadouts.Remove(loadout);
-
-        int i = 0;
-        while (loadouts.Count() >= 0)
+        for (SeriesSelectionCard c : seriesSelectionBuilder.CreateCards())
         {
-            if (loadout != null)
+            if (c.promoted)
             {
-                int size = loadout.GetNonColorlessCards().size();
-                if (size > 0)
+                if (GR.Animator.Database.SelectedLoadout == c.loadout)
                 {
-                    i+=1;
-
-                    AbstractCard card = CardLibrary.getCard(loadout.GetSymbolicCardID());
-                    AbstractCard.CardRarity rarity = i <= 3 ? AbstractCard.CardRarity.RARE : AbstractCard.CardRarity.COMMON;
-                    AnimatorCardBuilder builder = new AnimatorCardBuilder(String.valueOf(loadout.ID)).SetImage(card.assetUrl)
-                    .SetProperties(card.type, rarity, AbstractCard.CardTarget.NONE)
-                    .SetText(loadout.Name, "Contains " + size + " cards from this series.", "");
-
-                    card = builder.Build();
-                    loadoutMap.put(card, loadout);
-
-                    if (i <= 3)
-                    {
-                        card.retain = true;
-                        Select(card);
-                    }
-                    else
-                    {
-                        card.retain = false;
-                        Deselect(card);
-                    }
-
-                    test.addToTop(card);
+                    promoted.add(c.card);
+                }
+                else
+                {
+                    promoted.add(0, c.card);
                 }
             }
+            else
+            {
+                if (c.loadout.IsBeta)
+                {
+                    beta.add(c.card);
+                }
+                else
+                {
+                    group.addToBottom(c.card);
+                }
 
-            loadout = loadouts.Retrieve(GR.Common.DungeonData.GetRNG());
+                Deselect(c.card);
+            }
         }
 
-        gridLayoutControl.Open(test, this::OnCardClicked);
+        for (AbstractCard c : promoted)
+        {
+            group.addToBottom(c);
+        }
+
+        for (AbstractCard c : beta)
+        {
+            group.addToTop(c);
+        }
+
+        gridLayoutControl.Open(group, this::OnCardClicked);
     }
 
     @Override
@@ -118,6 +131,21 @@ public class SeriesSelectionScreen extends AbstractScreen
         selectRandom100.Render(sb);
         selectAll.Render(sb);
         confirm.Render(sb);
+
+        final String message = "Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards.";
+
+        BitmapFont font = FontHelper.tipBodyFont;
+        tip1.Draw(sb);
+        float step = tip1.hb.width * 0.1f;
+        FontHelper.renderSmartText(sb, font, message, tip1.hb.x + step, tip1.hb.y + (tip1.hb.height * 0.85f),
+                tip1.hb.width - (step*2), font.getLineHeight(), Settings.CREAM_COLOR);
+        tip1.hb.render(sb);
+
+        tip2.Draw(sb);
+        float step2 = tip2.hb.width * 0.1f;
+        FontHelper.renderSmartText(sb, font, "You have selected #b" + seriesSelectionBuilder.TotalCardsInPool + " cards.", tip2.hb.x + step2, tip2.hb.y + (tip2.hb.height * 0.6f),
+                tip2.hb.width - (step2*2), font.getLineHeight(), Settings.CREAM_COLOR);
+        tip2.hb.render(sb);
     }
 
     @Override
@@ -128,46 +156,40 @@ public class SeriesSelectionScreen extends AbstractScreen
         selectRandom100.Update();
         selectAll.Update();
         confirm.Update();
+        tip1.hb.update();
+        tip2.hb.update();
 
         gridLayoutControl.Update();
     }
 
     private void OnCardClicked(AbstractCard card)
     {
-        if (card.retain)
+        SeriesSelectionCard c = seriesSelectionBuilder.Find(card);
+        if (c.promoted)
         {
             CardCrawlGame.sound.play("CARD_REJECT");
         }
+        else if (seriesSelectionBuilder.selectedCards.contains(card))
+        {
+            Deselect(card);
+        }
         else
         {
-            if (selectedLoadouts.contains(loadoutMap.get(card)))
-            {
-                Deselect(card);
-            }
-            else
-            {
-                Select(card);
-                CardCrawlGame.sound.play("CARD_SELECT");
-            }
+            Select(card);
+            CardCrawlGame.sound.play("CARD_SELECT");
         }
     }
 
     private void SelectRandom(int minimum)
     {
-        int currentCount = 0;
-
         RandomizedList<AbstractCard> toSelect = new RandomizedList<>();
-        for (AbstractCard card : loadoutMap.keySet())
+        for (SeriesSelectionCard c : seriesSelectionBuilder.GetAllCards())
         {
-            Deselect(card);
-
-            if (!card.upgraded)
-            {
-                toSelect.Add(card);
-            }
+            Deselect(c.card);
+            toSelect.Add(c.card);
         }
 
-        while (totalCards < minimum)
+        while (seriesSelectionBuilder.TotalCardsInPool < minimum)
         {
             Select(toSelect.Retrieve(rng));
         }
@@ -175,60 +197,35 @@ public class SeriesSelectionScreen extends AbstractScreen
 
     private void DeselectAll()
     {
-        for (AbstractCard card : loadoutMap.keySet())
+        for (SeriesSelectionCard c : seriesSelectionBuilder.GetAllCards())
         {
-            Deselect(card);
+            Deselect(c.card);
         }
     }
 
     private void SelectAll()
     {
-        for (AbstractCard card : loadoutMap.keySet())
+        for (SeriesSelectionCard c : seriesSelectionBuilder.GetAllCards())
         {
-            Select(card);
+            Select(c.card);
         }
     }
 
     private void Deselect(AbstractCard card)
     {
-        if (!card.retain)
+        if (seriesSelectionBuilder.Deselect(card))
         {
             card.stopGlowing();
             card.targetTransparency = 0.75f;
-
-            AnimatorLoadout loadout = loadoutMap.get(card);
-            if (selectedLoadouts.remove(loadout))
-            {
-                totalCards -= loadout.GetNonColorlessCards().size();
-            }
         }
     }
 
     private void Select(AbstractCard card)
     {
-        if (!card.retain)
+        if (seriesSelectionBuilder.Select(card))
         {
             card.beginGlowing();
+            card.targetTransparency = 1f;
         }
-
-        AnimatorLoadout loadout = loadoutMap.get(card);
-        if (!selectedLoadouts.contains(loadout))
-        {
-            selectedLoadouts.add(loadout);
-            totalCards += loadout.GetNonColorlessCards().size();
-        }
-
-        card.targetTransparency = 1f;
-    }
-
-    private static GenericButton CreateButton(float x, float y, String text, ActionT0 onClick)
-    {
-        final Texture buttonTexture = GR.Common.Textures.HexagonalButton;
-        final Texture buttonBorderTexture = GR.Common.Textures.HexagonalButtonBorder;
-
-        return new GenericButton(buttonTexture, x, y)
-                .SetBorder(buttonBorderTexture, Color.WHITE)
-                .SetOnClick(onClick)
-                .SetText(text);
     }
 }

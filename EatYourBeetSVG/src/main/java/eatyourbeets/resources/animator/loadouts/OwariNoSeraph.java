@@ -4,9 +4,9 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Defend_OwariNoSeraph;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_OwariNoSeraph;
-import eatyourbeets.cards.animator.series.OwariNoSeraph.KrulTepes;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Mikaela;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Shinoa;
+import eatyourbeets.cards.animator.series.OwariNoSeraph.Yuuichirou;
 import eatyourbeets.cards.animator.ultrarare.HiiragiTenri;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
@@ -44,7 +44,7 @@ public class OwariNoSeraph extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return KrulTepes.ID;
+        return Yuuichirou.ID;
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.dungeons.TheUnnamedReign;
-import eatyourbeets.events.TheMaskedTraveler1;
+import eatyourbeets.events.animator.TheMaskedTraveler1;
 import eatyourbeets.events.UnnamedReign.TheAbandonedCabin;
 import eatyourbeets.events.UnnamedReign.TheHaunt;
 import eatyourbeets.events.UnnamedReign.TheMaskedTraveler3;
@@ -93,7 +93,7 @@ public class CommonResources extends AbstractResources implements CustomSavable<
     @Override
     protected void PostInitialize()
     {
-        GR.Screens.Initialize();
+        GR.UI.Initialize();
         BaseMod.addSaveField(SaveData.ID, this);
     }
 

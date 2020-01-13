@@ -1,4 +1,4 @@
-package eatyourbeets.ui.unnamed;
+package eatyourbeets.ui.screens.unnamed;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;

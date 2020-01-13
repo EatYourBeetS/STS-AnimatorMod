@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.ui.GridCardSelectScreenPatch;
+import eatyourbeets.ui.screens.GridCardSelectScreenPatch;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 

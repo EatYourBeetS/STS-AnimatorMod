@@ -1,4 +1,4 @@
-package eatyourbeets.ui.animator.characterSelect;
+package eatyourbeets.ui.screens.animator.characterSelection;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;

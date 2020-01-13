@@ -1,11 +1,10 @@
-package eatyourbeets.screens.controls;
+package eatyourbeets.ui.controls;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
@@ -15,20 +14,18 @@ import eatyourbeets.utilities.RenderHelpers;
 
 public class GenericButton implements UIControl
 {
-    private static final Color HOVER_BLEND_COLOR = new Color(1.0F, 1.0F, 1.0F, 0.3F);
-    private static final Color TEXT_DISABLED_COLOR = new Color(0.6F, 0.6F, 0.6F, 1.0F);
+    protected TextureRenderer buttonRenderer;
+    protected TextureRenderer buttonBorderRenderer;
 
-    protected RenderHelpers.TextureRenderer buttonRenderer;
-    protected RenderHelpers.TextureRenderer buttonBorderRenderer;
-
-    public final DraggableHitbox hb;
+    public final AdvancedHitbox hb;
     public float targetAlpha = 1f;
     public float currentAlpha = 1f;
-    public Color textColor = Color.WHITE.cpy();
-    public Color buttonColor = Color.WHITE.cpy();
-    public boolean isDisabled;
-    public ActionT0 onClick;
-    public String text;
+
+    private Color textColor = Color.WHITE.cpy();
+    private Color buttonColor = Color.WHITE.cpy();
+    private boolean interactable;
+    private ActionT0 onClick;
+    private String text;
 
     public GenericButton(Texture buttonTexture, Color buttonColor, float x, float y)
     {
@@ -39,8 +36,9 @@ public class GenericButton implements UIControl
 
     public GenericButton(Texture buttonTexture, float x, float y)
     {
-        this.hb = new DraggableHitbox(x, y, Scale(buttonTexture.getWidth()), Scale(buttonTexture.getHeight()), true);
+        this.hb = new AdvancedHitbox(x, y, UIControl.Scale(buttonTexture.getWidth()), UIControl.Scale(buttonTexture.getHeight()), false);
         this.buttonRenderer = RenderHelpers.ForTexture(buttonTexture);
+        this.interactable = true;
         this.text = "-";
     }
 
@@ -54,6 +52,13 @@ public class GenericButton implements UIControl
         {
             this.buttonBorderRenderer = RenderHelpers.ForTexture(borderTexture, color);
         }
+
+        return this;
+    }
+
+    public GenericButton SetInteractable(boolean interactable)
+    {
+        this.interactable = interactable;
 
         return this;
     }
@@ -130,7 +135,7 @@ public class GenericButton implements UIControl
             this.RenderButton(sb);
 
             BitmapFont font = FontHelper.buttonLabelFont;
-            Color textColor = isDisabled ? TEXT_DISABLED_COLOR : this.textColor;
+            Color textColor = interactable ? this.textColor : TEXT_DISABLED_COLOR;
             if (FontHelper.getSmartWidth(font, text, 9999.0F, 0.0F) > (hb.width * 0.8))
             {
                 RenderHelpers.WriteCentered(sb, font, text, hb, textColor, 0.8f);
@@ -153,7 +158,7 @@ public class GenericButton implements UIControl
             buttonBorderRenderer.Draw(sb, hb);
         }
 
-        if (this.hb.hovered && !this.hb.clickStarted)
+        if (interactable && this.hb.hovered && !this.hb.clickStarted)
         {
             sb.setBlendFunction(770, 1);
 
@@ -178,14 +183,9 @@ public class GenericButton implements UIControl
     {
         this.hb.clicked = false;
 
-        if (!isDisabled && onClick != null)
+        if (interactable && onClick != null)
         {
             onClick.Invoke();
         }
-    }
-
-    protected float Scale(float value)
-    {
-        return Settings.scale * value;
     }
 }

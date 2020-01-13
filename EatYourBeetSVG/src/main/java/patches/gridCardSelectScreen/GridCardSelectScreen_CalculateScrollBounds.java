@@ -4,7 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
-import eatyourbeets.ui.GridCardSelectScreenPatch;
+import eatyourbeets.ui.screens.GridCardSelectScreenPatch;
 
 @SpirePatch(clz= GridCardSelectScreen.class, method="calculateScrollBounds")
 public class GridCardSelectScreen_CalculateScrollBounds

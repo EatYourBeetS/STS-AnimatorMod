@@ -1,4 +1,4 @@
-package eatyourbeets.events;
+package eatyourbeets.events.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,6 +12,7 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.effects.special.MaskedTravelerTransformCardsEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
+import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.TheEgnaroPiece;
 import eatyourbeets.relics.animator.unnamedReign.TheEruzaStone;

@@ -20,9 +20,9 @@ public class TryOpenAnimatorScreen extends EYBEffect
 
         if (keepTrying)
         {
-            if (GR.Screens.SeriesSelection.CanOpen())
+            if (GR.UI.SeriesSelection.CanOpen())
             {
-                GR.Screens.SeriesSelection.Open(false);
+                GR.UI.SeriesSelection.Open(false);
                 Complete();
             }
         }

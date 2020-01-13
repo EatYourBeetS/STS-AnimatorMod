@@ -1,4 +1,4 @@
-package eatyourbeets.ui.buttons;
+package eatyourbeets.events;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.TipHelper;

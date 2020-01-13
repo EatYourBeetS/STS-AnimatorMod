@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import eatyourbeets.events.TheMaskedTraveler2;
+import eatyourbeets.events.animator.TheMaskedTraveler2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.rooms.AnimatorCustomEventRoom;
 

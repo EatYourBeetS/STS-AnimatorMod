@@ -1,8 +1,9 @@
-package eatyourbeets.events;
+package eatyourbeets.events.animator;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.events.AnimatorEvent;
 import eatyourbeets.utilities.RandomizedList;
 
 @SuppressWarnings("FieldCanBeLocal")

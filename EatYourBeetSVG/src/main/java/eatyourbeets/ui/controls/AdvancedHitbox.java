@@ -1,4 +1,4 @@
-package eatyourbeets.screens.controls;
+package eatyourbeets.ui.controls;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 
-public class DraggableHitbox extends Hitbox
+public class AdvancedHitbox extends Hitbox
 {
     protected Vector2 dragStart = null;
 
@@ -17,12 +17,12 @@ public class DraggableHitbox extends Hitbox
     public float target_cY;
     public boolean canDrag;
 
-    public DraggableHitbox(float x, float y, float width, float height)
+    public AdvancedHitbox(float x, float y, float width, float height)
     {
         this(x, y, width, height, false);
     }
 
-    public DraggableHitbox(float x, float y, float width, float height, boolean canDrag)
+    public AdvancedHitbox(float x, float y, float width, float height, boolean canDrag)
     {
         super(x, y, width, height);
 
@@ -50,7 +50,7 @@ public class DraggableHitbox extends Hitbox
             {
                 if (InputHelper.justClickedLeft)
                 {
-                    if (GR.Screens.TryDragging())
+                    if (GR.UI.TryDragging())
                     {
                         dragStart = new Vector2(mX, mY);
                         return;
@@ -66,7 +66,7 @@ public class DraggableHitbox extends Hitbox
                     target_cX = Math.min(max_X, Math.max(min_X, target_cX + (mX - dragStart.x)));
                     target_cY = Math.min(max_Y, Math.max(min_Y, target_cY + (mY - dragStart.y)));
 
-                    if (GR.Screens.TryDragging())
+                    if (GR.UI.TryDragging())
                     {
                         dragStart.set(mX, mY);
                         return;

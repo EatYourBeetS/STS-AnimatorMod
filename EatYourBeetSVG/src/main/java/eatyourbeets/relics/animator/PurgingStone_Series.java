@@ -39,10 +39,10 @@ public class PurgingStone_Series extends AbstractPurgingStone implements CustomS
     {
         super.update();
 
-        if (HitboxRightClick.rightClicked.get(this.hb) && GR.Screens.SeriesSelection.CanOpen())
+        if (HitboxRightClick.rightClicked.get(this.hb) && GR.UI.SeriesSelection.CanOpen())
         {
             // TODO: Logic
-            GR.Screens.SeriesSelection.Open(true);
+            GR.UI.SeriesSelection.Open(true);
         }
     }
 

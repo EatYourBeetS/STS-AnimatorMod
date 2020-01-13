@@ -11,7 +11,6 @@ import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.ui.buttons.DialogRelicButton;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

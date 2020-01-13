@@ -21,7 +21,6 @@ import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.common.CommonResources;
 import eatyourbeets.resources.unnamed.UnnamedResources;
-import eatyourbeets.screens.ScreenManager;
 import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,7 +44,7 @@ public class GR
     protected static final HashMap<String, Keyword> keywords = new HashMap<>();
     protected static final HashMap<String, Texture> textures = new HashMap<>();
 
-    public static ScreenManager Screens;
+    public static UIManager UI;
     public static AnimatorResources Animator;
     public static UnnamedResources Unnamed;
     public static CommonResources Common;
@@ -57,7 +56,7 @@ public class GR
             throw new RuntimeException("Already Initialized");
         }
 
-        Screens = new ScreenManager();
+        UI = new UIManager();
         Common = new CommonResources();
         Animator = new AnimatorResources();
         Unnamed = new UnnamedResources();

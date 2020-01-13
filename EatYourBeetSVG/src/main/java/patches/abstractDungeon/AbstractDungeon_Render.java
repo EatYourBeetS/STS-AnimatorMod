@@ -17,7 +17,7 @@ public class AbstractDungeon_Render
     {
         if (AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN)
         {
-            GR.Screens.Render(sb);
+            GR.UI.Render(sb);
         }
     }
 

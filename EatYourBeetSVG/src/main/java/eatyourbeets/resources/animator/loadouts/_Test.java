@@ -4,7 +4,7 @@ import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
 import eatyourbeets.resources.animator.metrics.AnimatorTrophies;
-import eatyourbeets.ui.animator.characterSelect.AnimatorLoadoutRenderer;
+import eatyourbeets.ui.screens.animator.characterSelection.AnimatorLoadoutRenderer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

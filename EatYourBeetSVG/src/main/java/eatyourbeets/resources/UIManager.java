@@ -1,10 +1,11 @@
-package eatyourbeets.screens;
+package eatyourbeets.resources;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import eatyourbeets.screens.animator.SeriesSelectionScreen;
+import eatyourbeets.ui.screens.AbstractScreen;
+import eatyourbeets.ui.screens.animator.seriesSelection.SeriesSelectionScreen;
 
-public class ScreenManager
+public class UIManager
 {
     protected boolean isDragging;
 

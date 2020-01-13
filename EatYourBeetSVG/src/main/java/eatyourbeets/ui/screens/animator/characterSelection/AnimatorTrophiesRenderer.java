@@ -1,4 +1,4 @@
-package eatyourbeets.ui.animator.characterSelect;
+package eatyourbeets.ui.screens.animator.characterSelection;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;

@@ -16,7 +16,7 @@ public class AbstractDungeon_Update
     {
         if (AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN)
         {
-            GR.Screens.Update();
+            GR.UI.Update();
         }
     }
 

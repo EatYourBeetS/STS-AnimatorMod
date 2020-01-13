@@ -17,7 +17,7 @@ public class NeowRoomPatches
             JavaUtilities.Log(NeowRoom.class, "On ENTER ROOM:");
             if (!isDone)
             {
-                GR.Screens.SeriesSelection.Open(true);
+                GR.UI.SeriesSelection.Open(true);
             }
         }
     }

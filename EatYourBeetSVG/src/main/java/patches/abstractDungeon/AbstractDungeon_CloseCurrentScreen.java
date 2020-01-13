@@ -13,7 +13,7 @@ public class AbstractDungeon_CloseCurrentScreen
     {
         if (AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN)
         {
-            GR.Screens.Dispose();
+            GR.UI.Dispose();
         }
     }
 }

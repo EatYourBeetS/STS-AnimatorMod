@@ -1,4 +1,4 @@
-package eatyourbeets.screens.animator;
+package eatyourbeets.ui.screens.animator.seriesSelection;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;

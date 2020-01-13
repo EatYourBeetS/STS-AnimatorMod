@@ -5,7 +5,7 @@ import eatyourbeets.cards.animator.basic.Defend_TenSura;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_TenSura;
 import eatyourbeets.cards.animator.series.TenseiSlime.Benimaru;
-import eatyourbeets.cards.animator.series.TenseiSlime.Shizu;
+import eatyourbeets.cards.animator.series.TenseiSlime.Rimuru;
 import eatyourbeets.cards.animator.series.TenseiSlime.Shuna;
 import eatyourbeets.cards.animator.ultrarare.Veldora;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
@@ -44,7 +44,7 @@ public class TenSura extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Shizu.ID;
+        return Rimuru.ID;
     }
 
     @Override

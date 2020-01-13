@@ -1,4 +1,4 @@
-package eatyourbeets.ui.unnamed;
+package eatyourbeets.ui.screens.unnamed;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.TextureLoader;

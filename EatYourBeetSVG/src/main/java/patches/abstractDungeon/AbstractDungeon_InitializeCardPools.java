@@ -4,8 +4,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Ghosts;
-import eatyourbeets.events.TheDomVedeloper1;
-import eatyourbeets.events.TheMaskedTraveler1;
+import eatyourbeets.events.animator.TheDomVedeloper1;
+import eatyourbeets.events.animator.TheMaskedTraveler1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 

@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.ui.CardRewardScreenPatch;
+import eatyourbeets.ui.screens.CardRewardScreenPatch;
 
 @SpirePatch(clz= CardRewardScreen.class, method="render")
 public class CardRewardScreen_Render

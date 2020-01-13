@@ -1,4 +1,4 @@
-package eatyourbeets.screens;
+package eatyourbeets.ui.screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.resources.GR;
-import eatyourbeets.screens.controls.GenericButton;
+import eatyourbeets.ui.controls.GenericButton;
 import eatyourbeets.utilities.GameUtilities;
 
 public abstract class AbstractScreen
@@ -21,7 +21,7 @@ public abstract class AbstractScreen
 
     protected void Open()
     {
-        GR.Screens.CurrentScreen = this;
+        GR.UI.CurrentScreen = this;
         Settings.hideTopBar = true;
         Settings.hideRelics = true;
 
@@ -48,7 +48,7 @@ public abstract class AbstractScreen
     // Modified Logic from AbstractDungeon.closeCurrentScreen and AbstractDungeon.genericScreenOverlayReset
     public void Dispose()
     {
-        GR.Screens.CurrentScreen = null;
+        GR.UI.CurrentScreen = null;
         Settings.hideTopBar = false;
         Settings.hideRelics = false;
 

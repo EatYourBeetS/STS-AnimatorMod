@@ -1,4 +1,4 @@
-package eatyourbeets.screens.controls;
+package eatyourbeets.ui.controls;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -363,7 +363,7 @@ public class GridLayoutControl implements UIControl, ScrollBarListener
 
                 if (InputHelper.justClickedLeft)
                 {
-                    if (GR.Screens.TryDragging())
+                    if (GR.UI.TryDragging())
                     {
                         this.grabbedScreen = true;
                         this.grabStartY = (float) y - this.scrollDelta;
@@ -372,7 +372,7 @@ public class GridLayoutControl implements UIControl, ScrollBarListener
             }
             else if (InputHelper.isMouseDown)
             {
-                if (GR.Screens.TryDragging())
+                if (GR.UI.TryDragging())
                 {
                     this.scrollDelta = (float) y - this.grabStartY;
                 }

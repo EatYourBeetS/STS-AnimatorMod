@@ -6,11 +6,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.controls.GenericButton;
+import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.utilities.GameUtilities;
 
-public abstract class AbstractScreen
+public abstract class AbstractScreen extends GUIElement
 {
     public static final AbstractDungeon.CurrentScreen ScreenType = GR.Enums.Screens.EYB_SCREEN;
 
@@ -95,11 +96,11 @@ public abstract class AbstractScreen
         return screen == null || screen == AbstractDungeon.CurrentScreen.NONE;
     }
 
-    protected static GenericButton CreateButton(float x, float y, float width, float height)
+    protected static GUI_Button CreateHexagonalButton(float x, float y, float width, float height)
     {
         final Texture buttonTexture = GR.Common.Textures.HexagonalButton;
         final Texture buttonBorderTexture = GR.Common.Textures.HexagonalButtonBorder;
-        return new GenericButton(buttonTexture, x, y)
+        return new GUI_Button(buttonTexture, x, y)
         .SetBorder(buttonBorderTexture, Color.WHITE)
         .SetDimensions(width, height);
     }

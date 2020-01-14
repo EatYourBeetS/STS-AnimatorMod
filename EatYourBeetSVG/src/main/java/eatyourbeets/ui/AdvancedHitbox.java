@@ -1,4 +1,4 @@
-package eatyourbeets.ui.controls;
+package eatyourbeets.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
@@ -17,6 +17,16 @@ public class AdvancedHitbox extends Hitbox
     public float target_cY;
     public boolean canDrag;
 
+    public AdvancedHitbox(Hitbox hb)
+    {
+        this(hb.x, hb.y, hb.width, hb.height);
+    }
+
+    public AdvancedHitbox(Hitbox hb, float width, float height)
+    {
+        this(hb.x, hb.y, width, height);
+    }
+
     public AdvancedHitbox(float x, float y, float width, float height)
     {
         this(x, y, width, height, false);
@@ -29,6 +39,13 @@ public class AdvancedHitbox extends Hitbox
         this.target_cX = cX;
         this.target_cY = cY;
         this.canDrag = canDrag;
+    }
+
+    public AdvancedHitbox SetDraggable(boolean draggable)
+    {
+        this.canDrag = draggable;
+
+        return this;
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.ui.controls.TextureRenderer;
+import eatyourbeets.ui.controls.GUI_Image;
 
 public class RenderHelpers
 {
@@ -93,14 +93,14 @@ public class RenderHelpers
         FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.cY, color, scale);
     }
 
-    public static TextureRenderer ForTexture(Texture texture)
+    public static GUI_Image ForTexture(Texture texture)
     {
         return ForTexture(texture, Color.WHITE);
     }
 
-    public static TextureRenderer ForTexture(Texture texture, Color color)
+    public static GUI_Image ForTexture(Texture texture, Color color)
     {
-        return new TextureRenderer(texture, color);
+        return new GUI_Image(texture, color);
     }
 
 }

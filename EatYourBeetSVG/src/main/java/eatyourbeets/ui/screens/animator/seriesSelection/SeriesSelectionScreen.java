@@ -10,87 +10,91 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.interfaces.csharp.FuncT1;
+import eatyourbeets.relics.animator.PurgingStone_Cards;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.screens.AbstractScreen;
+import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.*;
+import eatyourbeets.ui.screens.AbstractScreen;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.utilities.RenderHelpers;
 import eatyourbeets.utilities.Testing;
-import eatyourbeets.ui.controls.TextureRenderer;
 
 import java.util.ArrayList;
 
 public class SeriesSelectionScreen extends AbstractScreen
 {
-    private final GridLayoutControl gridLayoutControl = new GridLayoutControl();
-    private final GenericButton deselectAll;
-    private final GenericButton selectRandom75;
-    private final GenericButton selectRandom100;
-    private final GenericButton selectAll;
-    private final GenericButton confirm;
-    private final ToggleButton toggleBeta;
-    private final TextBox infoTextBox;
-    private final TextBox selectedAmountTextBox;
+    private static final Random rng = new Random();
+    private static boolean isBetaToggled = false;
 
-    private TextureRenderer purgingStoneRenderer;
+    private final GUI_CardGrid cardGrid;
+    private final GUI_Button deselectAll;
+    private final GUI_Button selectRandom75;
+    private final GUI_Button selectRandom100;
+    private final GUI_Button selectAll;
+    private final GUI_Button confirm;
+    private final GUI_Toggle toggleBeta;
+    private final GUI_TextBox selectionInfo;
+    private final GUI_TextBox selectionAmount;
+    private final GUI_Image purgingStoneImage;
 
-    private final Random rng = new Random();
     private final SeriesSelectionBuilder repository = new SeriesSelectionBuilder();
     private final ArrayList<AbstractCard> betaCards = new ArrayList<>();
     private final ArrayList<AbstractCard> promotedCards = new ArrayList<>();
     private final CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-    private boolean isBetaToggled = false;
     private int totalCardsCache = 0;
 
     public SeriesSelectionScreen()
     {
-        final FuncT1<Float,Float> getY = (delta) -> (Settings.HEIGHT * 0.78f - (Settings.HEIGHT * 0.08f * delta));
-        final float xPos = Settings.WIDTH * 0.82f;
-        final float buttonWidth = Settings.WIDTH * 0.18f;
-        final float buttonHeight = Settings.HEIGHT * 0.07f;
+        final FuncT1<Float,Float> getY = (delta) -> GetHeight(0.78f) - GetHeight(0.08f * delta);
 
-        toggleBeta = new ToggleButton(new AdvancedHitbox(xPos, getY.Invoke(0f), buttonWidth, buttonHeight * 0.8f))
+        final float buttonHeight = GetHeight(0.07f);
+        final float buttonWidth = GetWidth(0.18f);
+        final float xPos = GetWidth(0.82f);
+
+        cardGrid = new GUI_CardGrid();
+
+        toggleBeta = new GUI_Toggle(new AdvancedHitbox(xPos, getY.Invoke(0f), buttonWidth, buttonHeight * 0.8f))
         .SetText("Show Beta series.")
         .SetOnToggle(this::ToggleBetaSeries)
         .SetTexture(GR.Common.Textures.Panel, Color.DARK_GRAY);
 
-        deselectAll = CreateButton(xPos, getY.Invoke(1f), buttonWidth, buttonHeight)
+        deselectAll = CreateHexagonalButton(xPos, getY.Invoke(1f), buttonWidth, buttonHeight)
         .SetText("Deselect All")
         .SetOnClick(this::DeselectAll)
         .SetColor(Color.FIREBRICK);
 
-        selectRandom75 = CreateButton(xPos, getY.Invoke(2f), buttonWidth, buttonHeight)
+        selectRandom75 = CreateHexagonalButton(xPos, getY.Invoke(2f), buttonWidth, buttonHeight)
         .SetText("Random (75 cards)")
         .SetOnClick(() -> SelectRandom(75))
         .SetColor(Color.SKY);
 
-        selectRandom100 = CreateButton(xPos, getY.Invoke(3f), buttonWidth, buttonHeight)
+        selectRandom100 = CreateHexagonalButton(xPos, getY.Invoke(3f), buttonWidth, buttonHeight)
         .SetText("Random (100 cards)")
         .SetOnClick(() -> SelectRandom(100))
         .SetColor(Color.SKY);
 
-        selectAll = CreateButton(xPos, getY.Invoke(4f), buttonWidth, buttonHeight)
+        selectAll = CreateHexagonalButton(xPos, getY.Invoke(4f), buttonWidth, buttonHeight)
         .SetText("Select All")
         .SetOnClick(this::SelectAll)
         .SetColor(Color.ROYAL);
 
-        final String message = "Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards.";
-        infoTextBox = new TextBox(GR.Common.Textures.Panel, new Hitbox(xPos, getY.Invoke(6.3f), buttonWidth, buttonHeight*2.5f))
-        .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
-        .SetFont(FontHelper.tipBodyFont)
-        .SetText(message);
-
-        selectedAmountTextBox = new TextBox(GR.Common.Textures.Panel, new Hitbox(xPos, getY.Invoke(7f), buttonWidth, buttonHeight*0.8f))
+        selectionAmount = new GUI_TextBox(GR.Common.Textures.Panel, new Hitbox(xPos, getY.Invoke(4.8f), buttonWidth, buttonHeight*0.8f))
         .SetColors(Color.DARK_GRAY, Settings.GOLD_COLOR)
         .SetAlignment(0.5f, true)
         .SetFont(FontHelper.charDescFont); //FontHelper.textAboveEnemyFont);
 
-        purgingStoneRenderer = RenderHelpers.ForTexture(GR.GetTexture(GR.GetRelicImage(GR.Animator.CreateID("PurgingStone"))))
-        .SetHitbox(new Hitbox(xPos, getY.Invoke(6.5f), buttonHeight*0.8f, buttonHeight*0.8f));
+        float selectionAmountSize = selectionAmount.hb.height;
+        purgingStoneImage = new GUI_Relic(new PurgingStone_Cards(), new AdvancedHitbox(selectionAmount.hb.x + (selectionAmountSize * 0.25f),
+        selectionAmount.hb.y, selectionAmountSize, selectionAmountSize));
 
-        confirm = CreateButton(xPos, getY.Invoke(8f), buttonWidth, buttonHeight*1.1f)
+        final String message = "Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards.";
+        selectionInfo = new GUI_TextBox(GR.Common.Textures.Panel, new Hitbox(xPos, getY.Invoke(7f), buttonWidth, buttonHeight*2.5f))
+        .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
+        .SetFont(FontHelper.tipBodyFont)
+        .SetText(message);
+
+        confirm = CreateHexagonalButton(xPos, getY.Invoke(8f), buttonWidth, buttonHeight*1.1f)
         .SetText("Proceed")
-        .SetOnClick(() -> selectedAmountTextBox.SetColors(Color.DARK_GRAY, Testing.GetRandomColor()))
+        .SetOnClick(() -> selectionAmount.SetColors(Color.DARK_GRAY, Testing.GetRandomColor()))
         .SetColor(Color.FOREST);
     }
 
@@ -140,7 +144,7 @@ public class SeriesSelectionScreen extends AbstractScreen
             cardGroup.addToTop(c);
         }
 
-        gridLayoutControl.Open(cardGroup, this::OnCardClicked);
+        cardGrid.Open(cardGroup, this::OnCardClicked);
 
         ToggleBetaSeries(isBetaToggled);
     }
@@ -148,7 +152,7 @@ public class SeriesSelectionScreen extends AbstractScreen
     @Override
     public void Render(SpriteBatch sb)
     {
-        gridLayoutControl.Render(sb);
+        cardGrid.Render(sb);
 
         if (betaCards.size() > 0)
         {
@@ -161,13 +165,10 @@ public class SeriesSelectionScreen extends AbstractScreen
         selectAll.Render(sb);
         confirm.Render(sb);
 
-        infoTextBox.Render(sb);
-        selectedAmountTextBox.Render(sb);
+        selectionInfo.Render(sb);
+        selectionAmount.Render(sb);
 
-        if (totalCardsCache >= 100)
-        {
-            purgingStoneRenderer.Draw(sb);
-        }
+        purgingStoneImage.TryRender(sb);
     }
 
     @Override
@@ -184,13 +185,15 @@ public class SeriesSelectionScreen extends AbstractScreen
             toggleBeta.SetToggle(isBetaToggled).Update();
         }
 
+        purgingStoneImage.TryUpdate();
+
         deselectAll.Update();
         selectRandom75.Update();
         selectRandom100.Update();
         selectAll.Update();
         confirm.Update();
 
-        gridLayoutControl.Update();
+        cardGrid.Update();
     }
 
     private void OnCardClicked(AbstractCard card)
@@ -282,21 +285,18 @@ public class SeriesSelectionScreen extends AbstractScreen
 
     private void TotalCardsChanged(int totalCards)
     {
-        selectedAmountTextBox.SetText(totalCards + " cards selected.");
-        if (totalCards >= 100)
+        selectionAmount.SetText(totalCards + " cards selected.");
+        purgingStoneImage.SetActive(totalCards >= 100);
+
+        if (totalCards >= 75)
         {
             confirm.SetInteractable(true);
-            selectedAmountTextBox.SetFontColor(Color.GREEN);
-        }
-        else if (totalCards >= 75)
-        {
-            confirm.SetInteractable(true);
-            selectedAmountTextBox.SetFontColor(Color.LIME);
+            selectionAmount.SetFontColor(Color.GREEN);
         }
         else
         {
             confirm.SetInteractable(false);
-            selectedAmountTextBox.SetFontColor(Color.GRAY);
+            selectionAmount.SetFontColor(Color.GRAY);
         }
     }
 }

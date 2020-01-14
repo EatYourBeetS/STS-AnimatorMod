@@ -8,14 +8,15 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import eatyourbeets.interfaces.UIControl;
+import eatyourbeets.ui.AdvancedHitbox;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.interfaces.csharp.ActionT0;
 import eatyourbeets.utilities.RenderHelpers;
 
-public class GenericButton implements UIControl
+public class GUI_Button extends GUIElement
 {
-    protected TextureRenderer buttonRenderer;
-    protected TextureRenderer buttonBorderRenderer;
+    protected GUI_Image buttonRenderer;
+    protected GUI_Image buttonBorderRenderer;
 
     public final AdvancedHitbox hb;
     public float targetAlpha = 1f;
@@ -27,22 +28,22 @@ public class GenericButton implements UIControl
     private ActionT0 onClick;
     private String text;
 
-    public GenericButton(Texture buttonTexture, Color buttonColor, float x, float y)
+    public GUI_Button(Texture buttonTexture, Color buttonColor, float x, float y)
     {
         this(buttonTexture, x, y);
 
         this.buttonColor = buttonColor;
     }
 
-    public GenericButton(Texture buttonTexture, float x, float y)
+    public GUI_Button(Texture buttonTexture, float x, float y)
     {
-        this.hb = new AdvancedHitbox(x, y, UIControl.Scale(buttonTexture.getWidth()), UIControl.Scale(buttonTexture.getHeight()), false);
+        this.hb = new AdvancedHitbox(x, y, Scale(buttonTexture.getWidth()), Scale(buttonTexture.getHeight()), false);
         this.buttonRenderer = RenderHelpers.ForTexture(buttonTexture);
         this.interactable = true;
         this.text = "-";
     }
 
-    public GenericButton SetBorder(Texture borderTexture, Color color)
+    public GUI_Button SetBorder(Texture borderTexture, Color color)
     {
         if (borderTexture == null)
         {
@@ -56,42 +57,42 @@ public class GenericButton implements UIControl
         return this;
     }
 
-    public GenericButton SetInteractable(boolean interactable)
+    public GUI_Button SetInteractable(boolean interactable)
     {
         this.interactable = interactable;
 
         return this;
     }
 
-    public GenericButton SetDimensions(float width, float height)
+    public GUI_Button SetDimensions(float width, float height)
     {
         this.hb.resize(width, height);
 
         return this;
     }
 
-    public GenericButton SetPosition(float x, float y)
+    public GUI_Button SetPosition(float x, float y)
     {
         this.hb.move(x, y);
 
         return this;
     }
 
-    public GenericButton SetText(String text)
+    public GUI_Button SetText(String text)
     {
         this.text = text;
 
         return this;
     }
 
-    public GenericButton SetOnClick(ActionT0 onClick)
+    public GUI_Button SetOnClick(ActionT0 onClick)
     {
         this.onClick = onClick;
 
         return this;
     }
 
-    public GenericButton SetColor(Color buttonColor)
+    public GUI_Button SetColor(Color buttonColor)
     {
         this.buttonColor = buttonColor;
 
@@ -151,18 +152,18 @@ public class GenericButton implements UIControl
 
     protected void RenderButton(SpriteBatch sb)
     {
-        buttonRenderer.SetColor(buttonColor).Draw(sb, hb);
+        buttonRenderer.SetColor(buttonColor).Render(sb, hb);
 
         if (buttonBorderRenderer != null)
         {
-            buttonBorderRenderer.Draw(sb, hb);
+            buttonBorderRenderer.Render(sb, hb);
         }
 
         if (interactable && this.hb.hovered && !this.hb.clickStarted)
         {
             sb.setBlendFunction(770, 1);
 
-            buttonRenderer.SetColor(HOVER_BLEND_COLOR).Draw(sb, hb);
+            buttonRenderer.SetColor(HOVER_BLEND_COLOR).Render(sb, hb);
 
             sb.setBlendFunction(770, 771);
         }

@@ -6,14 +6,15 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.interfaces.UIControl;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
-public class TextBox implements UIControl
+public class GUI_TextBox extends GUIElement
 {
-    private final Hitbox hb;
-    private final TextureRenderer texture;
+    public final Hitbox hb;
+
+    private final GUI_Image texture;
     private Color backgroundColor;
     private Color textColor;
     private BitmapFont font;
@@ -22,7 +23,7 @@ public class TextBox implements UIControl
     private float verticalRatio;
     private boolean horizontallyCentered;
 
-    public TextBox(Texture backgroundTexture, Hitbox hb)
+    public GUI_TextBox(Texture backgroundTexture, Hitbox hb)
     {
         this.texture = RenderHelpers.ForTexture(backgroundTexture).SetHitbox(hb);
         this.verticalRatio = 0.85f;
@@ -30,26 +31,26 @@ public class TextBox implements UIControl
         this.hb = hb;
     }
 
-    public TextBox SetText(String text)
+    public GUI_TextBox SetText(String text)
     {
         this.text = text;
 
         return this;
     }
 
-    public TextBox SetText(String format, Object... args)
+    public GUI_TextBox SetText(String format, Object... args)
     {
         this.text = JavaUtilities.Format(format, args);
 
         return this;
     }
 
-    public TextBox SetFont(BitmapFont font)
+    public GUI_TextBox SetFont(BitmapFont font)
     {
         return SetFont(font, 1);
     }
 
-    public TextBox SetFont(BitmapFont font, float fontScale)
+    public GUI_TextBox SetFont(BitmapFont font, float fontScale)
     {
         this.font = font;
         this.fontScale = fontScale;
@@ -57,7 +58,7 @@ public class TextBox implements UIControl
         return this;
     }
 
-    public TextBox SetAlignment(float verticalRatio, boolean centerHorizontally)
+    public GUI_TextBox SetAlignment(float verticalRatio, boolean centerHorizontally)
     {
         this.verticalRatio = verticalRatio;
         this.horizontallyCentered = centerHorizontally;
@@ -65,7 +66,7 @@ public class TextBox implements UIControl
         return this;
     }
 
-    public TextBox SetColors(Color backgroundColor, Color textColor)
+    public GUI_TextBox SetColors(Color backgroundColor, Color textColor)
     {
         this.backgroundColor = backgroundColor;
         this.textColor = textColor;
@@ -73,7 +74,7 @@ public class TextBox implements UIControl
         return this;
     }
 
-    public TextBox SetFontColor(Color textColor)
+    public GUI_TextBox SetFontColor(Color textColor)
     {
         this.textColor = textColor;
 
@@ -90,7 +91,7 @@ public class TextBox implements UIControl
     public void Render(SpriteBatch sb)
     {
         texture.SetColor(backgroundColor);
-        texture.Draw(sb, hb);
+        texture.Render(sb, hb);
 
         if (fontScale != 1)
         {

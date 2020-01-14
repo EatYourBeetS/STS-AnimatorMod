@@ -18,13 +18,13 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.mainMenu.ScrollBar;
 import com.megacrit.cardcrawl.screens.mainMenu.ScrollBarListener;
 import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
-import eatyourbeets.interfaces.UIControl;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.resources.GR;
 
 import java.util.ArrayList;
 
-public class GridLayoutControl implements UIControl, ScrollBarListener
+public class GUI_CardGrid extends GUIElement implements ScrollBarListener
 {
     private ActionT1<AbstractCard> onCardClicked;
 
@@ -69,7 +69,7 @@ public class GridLayoutControl implements UIControl, ScrollBarListener
         PAD_Y = AbstractCard.IMG_HEIGHT * 0.75F + Settings.CARD_VIEW_PAD_Y;
     }
 
-    public GridLayoutControl()
+    public GUI_CardGrid()
     {
         this.scrollLowerBound = -Settings.DEFAULT_SCROLL_LIMIT;
         this.scrollUpperBound = Settings.DEFAULT_SCROLL_LIMIT;

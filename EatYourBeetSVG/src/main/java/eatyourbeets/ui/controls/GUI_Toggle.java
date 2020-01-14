@@ -11,23 +11,23 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import eatyourbeets.interfaces.UIControl;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.utilities.RenderHelpers;
 
-public class ToggleButton implements UIControl
+public class GUI_Toggle extends GUIElement
 {
     public Hitbox hb;
     public boolean toggled;
 
     private boolean interactable;
-    private TextureRenderer texture;
+    private GUI_Image texture;
     private Color textureColor;
     private BitmapFont font;
     private String text;
     private ActionT1<Boolean> onToggle;
 
-    public ToggleButton(Hitbox hb)
+    public GUI_Toggle(Hitbox hb)
     {
         this.hb = hb;
         this.font = FontHelper.topPanelInfoFont;
@@ -35,21 +35,21 @@ public class ToggleButton implements UIControl
         this.text = "-";
     }
 
-    public ToggleButton SetFont(BitmapFont font)
+    public GUI_Toggle SetFont(BitmapFont font)
     {
         this.font = font;
 
         return this;
     }
 
-    public ToggleButton SetText(String text)
+    public GUI_Toggle SetText(String text)
     {
         this.text = text;
 
         return this;
     }
 
-    public ToggleButton SetTexture(Texture texture, Color color)
+    public GUI_Toggle SetTexture(Texture texture, Color color)
     {
         this.texture = RenderHelpers.ForTexture(texture).SetHitbox(hb);
         this.textureColor = color;
@@ -57,14 +57,14 @@ public class ToggleButton implements UIControl
         return this;
     }
 
-    public ToggleButton SetOnToggle(ActionT1<Boolean> onToggle)
+    public GUI_Toggle SetOnToggle(ActionT1<Boolean> onToggle)
     {
         this.onToggle = onToggle;
 
         return this;
     }
 
-    public ToggleButton SetToggle(boolean value)
+    public GUI_Toggle SetToggle(boolean value)
     {
         this.toggled = value;
 
@@ -124,7 +124,7 @@ public class ToggleButton implements UIControl
         if (texture != null)
         {
             texture.SetColor(textureColor);
-            texture.Draw(sb);
+            texture.Render(sb);
         }
 
         Color fontColor;

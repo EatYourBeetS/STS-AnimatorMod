@@ -7,76 +7,59 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.ui.GUIElement;
-import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.RenderHelpers;
 
 public class GUI_TextBox extends GUIElement
 {
     public final Hitbox hb;
-
-    private final GUI_Image texture;
-    private Color backgroundColor;
-    private Color textColor;
-    private BitmapFont font;
-    private String text;
-    private float fontScale;
-    private float verticalRatio;
-    private boolean horizontallyCentered;
+    public final GUI_Image image;
+    public final GUI_Label label;
 
     public GUI_TextBox(Texture backgroundTexture, Hitbox hb)
     {
-        this.texture = RenderHelpers.ForTexture(backgroundTexture).SetHitbox(hb);
-        this.verticalRatio = 0.85f;
-        this.text = "-";
+        this.label = new GUI_Label(FontHelper.buttonLabelFont);
+        this.image = new GUI_Image(backgroundTexture);
         this.hb = hb;
     }
 
     public GUI_TextBox SetText(String text)
     {
-        this.text = text;
+        this.label.SetText(text);
 
         return this;
     }
 
     public GUI_TextBox SetText(String format, Object... args)
     {
-        this.text = JavaUtilities.Format(format, args);
+        this.label.SetText(format, args);
 
         return this;
     }
 
     public GUI_TextBox SetFont(BitmapFont font)
     {
-        return SetFont(font, 1);
-    }
-
-    public GUI_TextBox SetFont(BitmapFont font, float fontScale)
-    {
-        this.font = font;
-        this.fontScale = fontScale;
+        this.label.SetFont(font, 1);
 
         return this;
     }
 
     public GUI_TextBox SetAlignment(float verticalRatio, boolean centerHorizontally)
     {
-        this.verticalRatio = verticalRatio;
-        this.horizontallyCentered = centerHorizontally;
+        this.label.SetAlignment(verticalRatio, centerHorizontally);
 
         return this;
     }
 
     public GUI_TextBox SetColors(Color backgroundColor, Color textColor)
     {
-        this.backgroundColor = backgroundColor;
-        this.textColor = textColor;
+        this.image.SetColor(backgroundColor);
+        this.label.SetColor(textColor);
 
         return this;
     }
 
     public GUI_TextBox SetFontColor(Color textColor)
     {
-        this.textColor = textColor;
+        this.label.SetColor(textColor);
 
         return this;
     }
@@ -84,36 +67,15 @@ public class GUI_TextBox extends GUIElement
     @Override
     public void Update()
     {
-        texture.hb.update();
+        hb.update();
     }
 
     @Override
     public void Render(SpriteBatch sb)
     {
-        texture.SetColor(backgroundColor);
-        texture.Render(sb, hb);
+        image.Render(sb, hb);
+        label.Render(sb, hb);
 
-        if (fontScale != 1)
-        {
-            font.getData().setScale(fontScale);
-        }
-
-        if (horizontallyCentered)
-        {
-            FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.y + (hb.height * verticalRatio), textColor);
-        }
-        else
-        {
-            final float step = hb.width * 0.1f;
-            FontHelper.renderSmartText(sb, font, text, hb.x + step, hb.y + (hb.height * verticalRatio),
-                    hb.width - (step * 2), font.getLineHeight(), textColor);
-        }
-
-        if (fontScale != 1)
-        {
-            font.getData().setScale(1f);
-        }
-
-        texture.hb.render(sb);
+        hb.render(sb);
     }
 }

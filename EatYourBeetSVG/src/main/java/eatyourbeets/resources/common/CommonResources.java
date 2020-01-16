@@ -93,8 +93,9 @@ public class CommonResources extends AbstractResources implements CustomSavable<
     @Override
     protected void PostInitialize()
     {
-        GR.UI.Initialize();
         BaseMod.addSaveField(SaveData.ID, this);
+
+        GR.Complete();
     }
 
     @Override

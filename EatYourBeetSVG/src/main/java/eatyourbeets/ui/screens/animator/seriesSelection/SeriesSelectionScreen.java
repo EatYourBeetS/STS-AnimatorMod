@@ -3,9 +3,9 @@ package eatyourbeets.ui.screens.animator.seriesSelection;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.random.Random;
@@ -15,42 +15,36 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.*;
 import eatyourbeets.ui.screens.AbstractScreen;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.utilities.Testing;
-
-import java.util.ArrayList;
+import patches.CardGlowBorderPatches;
 
 public class SeriesSelectionScreen extends AbstractScreen
 {
-    private static final Random rng = new Random();
-    private static boolean isBetaToggled = false;
+    protected static final Random rng = new Random();
+    protected int totalCardsCache = 0;
 
-    private final GUI_CardGrid cardGrid;
-    private final GUI_Button deselectAll;
-    private final GUI_Button selectRandom75;
-    private final GUI_Button selectRandom100;
-    private final GUI_Button selectAll;
-    private final GUI_Button confirm;
-    private final GUI_Toggle toggleBeta;
-    private final GUI_TextBox selectionInfo;
-    private final GUI_TextBox selectionAmount;
-    private final GUI_Image purgingStoneImage;
+    public static boolean isBetaToggled = false;
 
-    private final SeriesSelectionBuilder repository = new SeriesSelectionBuilder();
-    private final ArrayList<AbstractCard> betaCards = new ArrayList<>();
-    private final ArrayList<AbstractCard> promotedCards = new ArrayList<>();
-    private final CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-    private int totalCardsCache = 0;
+    public final SeriesSelectionProvider repository = new SeriesSelectionProvider();
+    public final GUI_CardGrid cardGrid;
+    public final GUI_Button deselectAll;
+    public final GUI_Button selectRandom75;
+    public final GUI_Button selectRandom100;
+    public final GUI_Button selectAll;
+    public final GUI_Button confirm;
+    public final GUI_Toggle toggleBeta;
+    public final GUI_TextBox selectionInfo;
+    public final GUI_TextBox selectionAmount;
+    public final GUI_Image purgingStoneImage;
 
     public SeriesSelectionScreen()
     {
-        final FuncT1<Float,Float> getY = (delta) -> GetHeight(0.78f) - GetHeight(0.08f * delta);
+        final FuncT1<Float,Float> getY = (delta) -> ScreenH(0.78f) - ScreenH(0.08f * delta);
 
-        final float buttonHeight = GetHeight(0.07f);
-        final float buttonWidth = GetWidth(0.18f);
-        final float xPos = GetWidth(0.82f);
-
-        cardGrid = new GUI_CardGrid();
+        final float buttonHeight = ScreenH(0.07f);
+        final float buttonWidth = ScreenW(0.18f);
+        final float xPos = ScreenW(0.82f);
 
         toggleBeta = new GUI_Toggle(new AdvancedHitbox(xPos, getY.Invoke(0f), buttonWidth, buttonHeight * 0.8f))
         .SetText("Show Beta series.")
@@ -82,7 +76,7 @@ public class SeriesSelectionScreen extends AbstractScreen
         .SetAlignment(0.5f, true)
         .SetFont(FontHelper.charDescFont); //FontHelper.textAboveEnemyFont);
 
-        float selectionAmountSize = selectionAmount.hb.height;
+        final float selectionAmountSize = selectionAmount.hb.height;
         purgingStoneImage = new GUI_Relic(new PurgingStone_Cards(), new AdvancedHitbox(selectionAmount.hb.x + (selectionAmountSize * 0.25f),
         selectionAmount.hb.y, selectionAmountSize, selectionAmountSize));
 
@@ -94,67 +88,28 @@ public class SeriesSelectionScreen extends AbstractScreen
 
         confirm = CreateHexagonalButton(xPos, getY.Invoke(8f), buttonWidth, buttonHeight*1.1f)
         .SetText("Proceed")
-        .SetOnClick(() -> selectionAmount.SetColors(Color.DARK_GRAY, Testing.GetRandomColor()))
+        .SetOnClick(AbstractDungeon::closeCurrentScreen)
         .SetColor(Color.FOREST);
+
+        cardGrid = new GUI_CardGrid()
+        .SetOnCardClick(this::OnCardClicked);
     }
 
     public void Open(boolean firstTime)
     {
         super.Open();
 
-        betaCards.clear();
-        promotedCards.clear();
-        cardGroup.clear();
+        CardGlowBorderPatches.overrideColor = Color.GRAY.cpy();
 
-        for (SeriesSelectionCard c : repository.CreateCards())
-        {
-            if (c.promoted)
-            {
-                if (GR.Animator.Database.SelectedLoadout == c.loadout)
-                {
-                    promotedCards.add(c.card);
-                }
-                else
-                {
-                    promotedCards.add(0, c.card);
-                }
-            }
-            else
-            {
-                if (c.loadout.IsBeta)
-                {
-                    betaCards.add(c.card);
-                }
-                else
-                {
-                    cardGroup.addToBottom(c.card);
-                }
-
-                Deselect(c.card);
-            }
-        }
-
-        for (AbstractCard c : promotedCards)
-        {
-            cardGroup.addToBottom(c);
-        }
-
-        for (AbstractCard c : betaCards)
-        {
-            cardGroup.addToTop(c);
-        }
-
-        cardGrid.Open(cardGroup, this::OnCardClicked);
-
-        ToggleBetaSeries(isBetaToggled);
+        GameEffects.TopLevelList.Callback(new SeriesSelectionEffect(this));
     }
 
     @Override
     public void Render(SpriteBatch sb)
     {
-        cardGrid.Render(sb);
+        cardGrid.TryRender(sb);
 
-        if (betaCards.size() > 0)
+        if (repository.betaCards.size() > 0)
         {
             toggleBeta.Render(sb);
         }
@@ -180,7 +135,7 @@ public class SeriesSelectionScreen extends AbstractScreen
             TotalCardsChanged(totalCardsCache);
         }
 
-        if (betaCards.size() > 0)
+        if (repository.betaCards.size() > 0)
         {
             toggleBeta.SetToggle(isBetaToggled).Update();
         }
@@ -193,12 +148,12 @@ public class SeriesSelectionScreen extends AbstractScreen
         selectAll.Update();
         confirm.Update();
 
-        cardGrid.Update();
+        cardGrid.TryUpdate();
     }
 
-    private void OnCardClicked(AbstractCard card)
+    protected void OnCardClicked(AbstractCard card)
     {
-        SeriesSelectionCard c = repository.Find(card);
+        SeriesSelectionItem c = repository.Find(card);
         if (c.promoted)
         {
             CardCrawlGame.sound.play("CARD_REJECT");
@@ -214,10 +169,10 @@ public class SeriesSelectionScreen extends AbstractScreen
         }
     }
 
-    private void SelectRandom(int minimum)
+    public void SelectRandom(int minimum)
     {
         RandomizedList<AbstractCard> toSelect = new RandomizedList<>();
-        for (AbstractCard c : cardGroup.group)
+        for (AbstractCard c : repository.allCards)
         {
             Deselect(c);
             toSelect.Add(c);
@@ -229,61 +184,63 @@ public class SeriesSelectionScreen extends AbstractScreen
         }
     }
 
-    private void DeselectAll()
+    public void DeselectAll()
     {
-        for (AbstractCard c : cardGroup.group)
+        for (AbstractCard c : repository.allCards)
         {
             Deselect(c);
         }
     }
 
-    private void SelectAll()
+    public void SelectAll()
     {
-        for (AbstractCard c : cardGroup.group)
+        for (AbstractCard c : repository.allCards)
         {
             Select(c);
         }
     }
 
-    private void Deselect(AbstractCard card)
+    public void Deselect(AbstractCard card)
     {
         if (repository.Deselect(card))
         {
-            card.stopGlowing();
             card.targetTransparency = 0.66f;
+            card.stopGlowing();
         }
     }
 
-    private void Select(AbstractCard card)
+    public void Select(AbstractCard card)
     {
         if (repository.Select(card))
         {
-            card.beginGlowing();
             card.targetTransparency = 1f;
+            card.beginGlowing();
         }
     }
 
-    private void ToggleBetaSeries(boolean value)
+    public void ToggleBetaSeries(boolean value)
     {
         if (isBetaToggled = value)
         {
-            for (AbstractCard card : betaCards)
+            for (AbstractCard card : repository.betaCards)
             {
-                cardGroup.addToTop(card);
+                cardGrid.cards.add(card);
+                repository.allCards.add(card);
                 card.transparency = 0.01f;
             }
         }
         else
         {
-            for (AbstractCard card : betaCards)
+            for (AbstractCard card : repository.betaCards)
             {
                 Deselect(card);
-                cardGroup.removeCard(card);
+                cardGrid.cards.remove(card);
+                repository.allCards.remove(card);
             }
         }
     }
 
-    private void TotalCardsChanged(int totalCards)
+    protected void TotalCardsChanged(int totalCards)
     {
         selectionAmount.SetText(totalCards + " cards selected.");
         purgingStoneImage.SetActive(totalCards >= 100);

@@ -1,14 +1,11 @@
 package eatyourbeets.utilities;
 
+import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.utility.QueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
-import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -583,86 +580,6 @@ public class GameUtilities
         AbstractDungeon.actionManager.clearPostCombatActions();
     }
 
-    public static void PlayCard(AbstractCard card, AbstractMonster m, boolean purge, boolean exhaust)
-    {
-        RefreshHandLayout();
-
-        AbstractDungeon.getCurrRoom().souls.remove(card);
-        AbstractDungeon.player.limbo.group.add(card);
-
-        card.freeToPlayOnce = true;
-//        card.current_x = (float) Settings.WIDTH / 2.0F;
-//        card.current_y = (float) Settings.HEIGHT / 2.0F;
-        card.target_x = (float) Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
-        card.target_y = (float) Settings.HEIGHT / 2.0F;
-        card.targetAngle = 0.0F;
-        card.unfadeOut();
-        card.lighten(true);
-        card.drawScale = 0.5F;
-        card.targetDrawScale = 0.75F;
-
-        if (!card.canUse(AbstractDungeon.player, m))
-        {
-            if (purge)
-            {
-                GameActions.Top.Add(new UnlimboAction(card));
-            }
-            else if (exhaust)
-            {
-                GameActions.Top.Exhaust(card);
-            }
-            else
-            {
-                GameActions.Top.Discard(card, AbstractDungeon.player.limbo);
-                GameActions.Top.Add(new WaitAction(0.4F));
-            }
-        }
-        else
-        {
-            card.exhaustOnUseOnce = exhaust;
-            card.purgeOnUse = purge;
-            card.applyPowers();
-
-            GameActions.Top.Add(new QueueCardAction(card, m));
-            GameActions.Top.Add(new UnlimboAction(card));
-
-            if (!Settings.FAST_MODE)
-            {
-                GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_MED));
-            }
-            else
-            {
-                GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_FASTER));
-            }
-        }
-    }
-
-    public static CardQueueItem PlayCopy(AbstractCard source, AbstractMonster m, boolean applyPowers)
-    {
-        RefreshHandLayout();
-
-        AbstractCard temp = source.makeSameInstanceOf();
-        AbstractDungeon.player.limbo.addToBottom(temp);
-        temp.current_x = source.current_x;
-        temp.current_y = source.current_y;
-        temp.target_x = (float) Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
-        temp.target_y = (float) Settings.HEIGHT / 2.0F;
-        temp.freeToPlayOnce = true;
-
-        if (applyPowers)
-        {
-            temp.applyPowers();
-        }
-
-        temp.calculateCardDamage(m);
-        temp.purgeOnUse = true;
-
-        CardQueueItem item = new CardQueueItem(temp, m, source.energyOnUse, true);
-        AbstractDungeon.actionManager.cardQueue.add(item);
-
-        return item;
-    }
-
     public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
     {
         AbstractPlayer player = AbstractDungeon.player;
@@ -719,6 +636,41 @@ public class GameUtilities
     public static void RefreshHandLayout()
     {
         PlayerStatistics.onPhaseChanged.Subscribe(handLayoutRefresher);
+    }
+
+    public static boolean TrySetPosition(CardGroup group, AbstractCard card)
+    {
+        Vector2 pos = TryGetPosition(group);
+        if (pos != null)
+        {
+            card.current_x = pos.x;
+            card.current_y = pos.y;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public static Vector2 TryGetPosition(CardGroup group)
+    {
+        if (group != null)
+        {
+            if (group.type == CardGroup.CardGroupType.DRAW_PILE)
+            {
+                return new Vector2(CardGroup.DRAW_PILE_X, CardGroup.DRAW_PILE_Y);
+            }
+            else if (group.type == CardGroup.CardGroupType.DISCARD_PILE)
+            {
+                return new Vector2(CardGroup.DISCARD_PILE_X, CardGroup.DRAW_PILE_Y);
+            }
+            else if (group.type == CardGroup.CardGroupType.EXHAUST_PILE)
+            {
+                return new Vector2(CardGroup.DISCARD_PILE_X, CardGroup.DRAW_PILE_Y + (Settings.scale * 30f));
+            }
+        }
+
+        return null;
     }
 
     private static class HandLayoutRefresher implements OnPhaseChangedSubscriber

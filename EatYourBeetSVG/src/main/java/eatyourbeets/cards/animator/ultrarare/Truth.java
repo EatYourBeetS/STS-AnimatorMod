@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class Truth extends AnimatorCard_UltraRare
 {
+    private static final Wound wound = new Wound();
+
     public static final String ID = Register(Truth.class, EYBCardBadge.Special);
 
     public Truth()
@@ -70,7 +72,7 @@ public class Truth extends AnimatorCard_UltraRare
         CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
-            if (!c.cardID.equals(Wound.ID) && !c.cardID.equals(this.cardID)
+            if (!c.cardID.equals(wound.cardID) && !c.cardID.equals(this.cardID)
                     && !c.cardID.equals(Necronomicurse.ID)
                     && !c.cardID.equals(AscendersBane.ID)
                     && !SoulboundField.soulbound.get(c))
@@ -83,12 +85,12 @@ public class Truth extends AnimatorCard_UltraRare
         {
             GameActions.Bottom.SelectFromPile(name, 1, temp)
             .SetOptions(false, false)
-            .SetMessage(GR.Common.Strings.GridSelection.TransformInto(Wound.NAME))
+            .SetMessage(GR.Common.Strings.GridSelection.TransformInto(wound.name))
             .AddCallback(cards ->
             {
                 AbstractCard card = cards.get(0);
                 AbstractDungeon.player.masterDeck.removeCard(card);
-                AbstractDungeon.player.masterDeck.addToTop(new Wound());
+                AbstractDungeon.player.masterDeck.addToTop(wound.makeCopy());
             });
         }
     }

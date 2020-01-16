@@ -18,7 +18,7 @@ import eatyourbeets.utilities.JavaUtilities;
 @SpirePatch(clz= AbstractCard.class, method="renderEnergy")
 public class AbstractCard_RenderEnergy
 {
-    private static final FieldInfo<Boolean> DarkenField = JavaUtilities.GetPrivateField("darken", AbstractCard.class);
+    private static final FieldInfo<Boolean> DarkenField = JavaUtilities.GetField("darken", AbstractCard.class);
     private static final TextureAtlas.AtlasRegion Orb2A = UnnamedImages.ORB_2_ATLAS.findRegion(UnnamedImages.ORB_2A_PNG);
 
     @SpirePostfixPatch

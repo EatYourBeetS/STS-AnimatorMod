@@ -77,6 +77,11 @@ public abstract class EYBAction extends AbstractGameAction
         Initialize(player, amount, name);
     }
 
+    protected void Initialize(AbstractCreature target, int amount)
+    {
+        Initialize(target, target, amount, null);
+    }
+
     protected void Initialize(AbstractCreature target, int amount, String name)
     {
         Initialize(target, target, amount, name);

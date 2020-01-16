@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActions;
 
 public class BorosPower extends AnimatorPower
 {
@@ -41,7 +41,7 @@ public class BorosPower extends AnimatorPower
                 m = (AbstractMonster) action.target;
             }
 
-            GameUtilities.PlayCopy(card, m, false);
+            GameActions.Top.PlayCopy(card, m);
         }
     }
 }

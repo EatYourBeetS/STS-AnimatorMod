@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -11,11 +10,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.special.RefreshHandLayout;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Fredrika extends AnimatorCard
@@ -51,7 +50,7 @@ public class Fredrika extends AnimatorCard
         SetSynergy(Synergies.Chaika, true);
     }
 
-    @SpireOverride
+    @Override
     protected void applyPowersToBlock()
     {
         float tmp = (float) this.baseBlock;

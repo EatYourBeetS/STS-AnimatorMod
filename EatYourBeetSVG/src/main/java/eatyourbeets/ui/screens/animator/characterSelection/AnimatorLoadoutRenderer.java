@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 public class AnimatorLoadoutRenderer
 {
-    protected static FieldInfo<String> hpField = JavaUtilities.GetPrivateField("hp", CharacterOption.class);
-    protected static FieldInfo<Integer> goldField = JavaUtilities.GetPrivateField("gold", CharacterOption.class);
+    protected static FieldInfo<String> hpField = JavaUtilities.GetField("hp", CharacterOption.class);
+    protected static FieldInfo<Integer> goldField = JavaUtilities.GetField("gold", CharacterOption.class);
     protected static final AnimatorStrings.CharacterSelect charSelectStrings = GR.Animator.Text.CharSelect;
 
     protected final Hitbox startingCardsLabelHb;

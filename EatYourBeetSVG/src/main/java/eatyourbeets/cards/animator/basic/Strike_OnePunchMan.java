@@ -30,7 +30,7 @@ public class Strike_OnePunchMan extends Strike
         {
             if (c.tags.contains(CardTags.STRIKE))
             {
-                GameActions.Top.MoveCard(c, p.hand, p.drawPile);
+                GameActions.Top.MoveCard(c, p.drawPile, p.hand);
                 return;
             }
         }

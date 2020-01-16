@@ -19,6 +19,18 @@ public class GUI_Image extends GUIElement
     public boolean flipX;
     public boolean flipY;
 
+    public GUI_Image(Texture texture)
+    {
+        this(texture, Color.WHITE);
+    }
+
+    public GUI_Image(Texture texture, Hitbox hb)
+    {
+        this(texture, Color.WHITE);
+
+        this.hb = hb;
+    }
+
     public GUI_Image(Texture texture, Color color)
     {
         this.texture = texture;
@@ -50,6 +62,13 @@ public class GUI_Image extends GUIElement
     {
         sb.setColor(color);
         sb.draw(texture, x, y, 0, 0, width, height, scaleX, scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
+    }
+
+    public GUI_Image SetTexture(Texture texture)
+    {
+        this.texture = texture;
+
+        return this;
     }
 
     public GUI_Image SetHitbox(Hitbox hb)

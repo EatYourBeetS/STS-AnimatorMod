@@ -1,463 +1,237 @@
 package eatyourbeets.ui.controls;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.screens.mainMenu.ScrollBar;
-import com.megacrit.cardcrawl.screens.mainMenu.ScrollBarListener;
-import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
-import eatyourbeets.ui.GUIElement;
 import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.GUIElement;
 
 import java.util.ArrayList;
 
-public class GUI_CardGrid extends GUIElement implements ScrollBarListener
+public class GUI_CardGrid extends GUIElement
 {
-    private ActionT1<AbstractCard> onCardClicked;
+    private static final float DRAW_START_X = (Settings.WIDTH - (5.0F * AbstractCard.IMG_WIDTH * 0.75F) - (4.0F * Settings.CARD_VIEW_PAD_X) + AbstractCard.IMG_WIDTH * 0.75F) * 0.4f; // 0.5f
+    private static final float DRAW_START_Y = (float) Settings.HEIGHT * 0.7F;
+    private static final float PAD_X = AbstractCard.IMG_WIDTH * 0.75F + Settings.CARD_VIEW_PAD_X;
+    private static final float PAD_Y = AbstractCard.IMG_HEIGHT * 0.75F + Settings.CARD_VIEW_PAD_Y;
+    private static final float SCROLL_BAR_THRESHOLD = 500.0F * Settings.scale;
+    private static final int ROW_SIZE = 5;
 
-    private static final UIStrings uiStrings;
-    public static final String[] TEXT;
+    public final GUI_VerticalScrollBar scrollBar;
+    public final ArrayList<AbstractCard> cards;
+    public boolean autoShowScrollbar = true;
+    public AbstractCard hoveredCard = null;
+    public String message = null;
 
-    private static final float DRAW_START_X;
-    private static final float DRAW_START_Y;
-    private static final float PAD_X;
-    private static final float PAD_Y;
-
-    private static final int CARDS_PER_LINE = 5;
-    private static final float SCROLL_BAR_THRESHOLD;
-    private float grabStartY = 0.0F;
-    private float scrollDelta = 0.0F;
-    public ArrayList<AbstractCard> selectedCards = new ArrayList<>();
-    public CardGroup targetGroup;
-    private AbstractCard hoveredCard = null;
-    private int numCards = 0;
-    private int cardSelectAmount = 0;
-    private float scrollLowerBound;
-    private float scrollUpperBound;
-    private boolean grabbedScreen;
-    private boolean canCancel;
-    public GridSelectConfirmButton confirmButton;
-    private String tipMsg;
-    private int prevDeckSize;
-    public boolean cancelWasOn;
-    public boolean anyNumber;
-    public String cancelText;
-    private ScrollBar scrollBar;
-    private static final int ARROW_W = 64;
-
-    static
-    {
-        uiStrings = CardCrawlGame.languagePack.getUIString("GridCardSelectScreen");
-        TEXT = uiStrings.TEXT;
-        SCROLL_BAR_THRESHOLD = 500.0F * Settings.scale;
-        DRAW_START_X = (Settings.WIDTH - (5.0F * AbstractCard.IMG_WIDTH * 0.75F) - (4.0F * Settings.CARD_VIEW_PAD_X) + AbstractCard.IMG_WIDTH * 0.75F) * 0.4f; // 0.5f
-        DRAW_START_Y = (float) Settings.HEIGHT * 0.7F;
-        PAD_X = AbstractCard.IMG_WIDTH * 0.75F + Settings.CARD_VIEW_PAD_X;
-        PAD_Y = AbstractCard.IMG_HEIGHT * 0.75F + Settings.CARD_VIEW_PAD_Y;
-    }
+    protected ActionT1<AbstractCard> onCardClick;
+    protected boolean draggingScreen;
+    protected float lowerScrollBound = -Settings.DEFAULT_SCROLL_LIMIT;
+    protected float upperScrollBound = Settings.DEFAULT_SCROLL_LIMIT;
+    protected float scrollStart;
+    protected float scrollDelta;
+    protected int deckSizeCache;
 
     public GUI_CardGrid()
     {
-        this.scrollLowerBound = -Settings.DEFAULT_SCROLL_LIMIT;
-        this.scrollUpperBound = Settings.DEFAULT_SCROLL_LIMIT;
-        this.grabbedScreen = false;
-        this.canCancel = true;
-        this.confirmButton = new GridSelectConfirmButton(TEXT[0]);
-        this.tipMsg = "";
-        this.prevDeckSize = 0;
-        this.cancelWasOn = false;
-        this.anyNumber = false;
-        this.scrollBar = new ScrollBar(this);
-        this.scrollBar.move(0.0F, -30.0F * Settings.scale);
+        this.cards = new ArrayList<>();
+        this.scrollBar = new GUI_VerticalScrollBar(new Hitbox(ScreenW(0.03f), ScreenH(0.7f)))
+        .SetPosition(ScreenW(0.05f), ScreenH(0.5f))
+        .SetOnScroll(this::OnScroll);
     }
 
-    public void Open(CardGroup group, ActionT1<AbstractCard> onCardClicked)
+    public GUI_CardGrid SetOnCardClick(ActionT1<AbstractCard> onCardClicked)
     {
-        this.targetGroup = group;
+        this.onCardClick = onCardClicked;
 
-        this.onCardClicked = onCardClicked;
+        return this;
+    }
 
-        this.anyNumber = false;
-        this.canCancel = false;
+    public void Refresh()
+    {
+        this.deckSizeCache = 0;
         this.hoveredCard = null;
-        this.selectedCards.clear();
-        this.cardSelectAmount = 0;
         this.scrollDelta = 0.0F;
-        this.grabStartY = 0.0F;
-        this.grabbedScreen = false;
-        this.hideCards();
+        this.scrollStart = 0.0F;
+        this.draggingScreen = false;
+        this.message = null;
 
-        if (anyNumber)
+        for (AbstractCard card : this.cards)
         {
-            this.confirmButton.show();
-            this.confirmButton.isDisabled = false;
-        }
-        else
-        {
-            this.confirmButton.hideInstantly();
+            card.targetDrawScale = card.drawScale = 0.75f;
+            card.setAngle(0, true);
+            card.lighten(true);
         }
 
-        this.tipMsg = null;
-        this.numCards = 9;
-
-        if (canCancel)
-        {
-            AbstractDungeon.overlayMenu.cancelButton.show(TEXT[1]);
-        }
-        else
-        {
-            AbstractDungeon.overlayMenu.cancelButton.hide();
-        }
-
-        this.calculateScrollBounds();
+        RefreshDeckSize();
     }
 
     @Override
     public void Render(SpriteBatch sb)
     {
-        if (this.shouldShowScrollBar())
+        if (ShouldShowScrollbar())
         {
-            this.scrollBar.render(sb);
+            scrollBar.Render(sb);
         }
 
-        if (this.hoveredCard != null)
+        for (AbstractCard card : cards)
         {
-            if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT)
+            if (card != hoveredCard)
             {
-                this.targetGroup.renderExceptOneCard(sb, this.hoveredCard);
+                card.render(sb);
             }
-            else
-            {
-                this.targetGroup.renderExceptOneCardShowBottled(sb, this.hoveredCard);
-            }
-
-            this.hoveredCard.renderHoverShadow(sb);
-            this.hoveredCard.render(sb);
-            if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT)
-            {
-                AbstractRelic tmp;
-                float prevX;
-                float prevY;
-                if (this.hoveredCard.inBottleFlame)
-                {
-                    tmp = RelicLibrary.getRelic("Bottled Flame");
-                    prevX = tmp.currentX;
-                    prevY = tmp.currentY;
-                    tmp.currentX = this.hoveredCard.current_x + 130.0F * Settings.scale;
-                    tmp.currentY = this.hoveredCard.current_y + 182.0F * Settings.scale;
-                    tmp.scale = this.hoveredCard.drawScale * Settings.scale * 1.5F;
-                    tmp.render(sb);
-                    tmp.currentX = prevX;
-                    tmp.currentY = prevY;
-                }
-                else if (this.hoveredCard.inBottleLightning)
-                {
-                    tmp = RelicLibrary.getRelic("Bottled Lightning");
-                    prevX = tmp.currentX;
-                    prevY = tmp.currentY;
-                    tmp.currentX = this.hoveredCard.current_x + 130.0F * Settings.scale;
-                    tmp.currentY = this.hoveredCard.current_y + 182.0F * Settings.scale;
-                    tmp.scale = this.hoveredCard.drawScale * Settings.scale * 1.5F;
-                    tmp.render(sb);
-                    tmp.currentX = prevX;
-                    tmp.currentY = prevY;
-                }
-                else if (this.hoveredCard.inBottleTornado)
-                {
-                    tmp = RelicLibrary.getRelic("Bottled Tornado");
-                    prevX = tmp.currentX;
-                    prevY = tmp.currentY;
-                    tmp.currentX = this.hoveredCard.current_x + 130.0F * Settings.scale;
-                    tmp.currentY = this.hoveredCard.current_y + 182.0F * Settings.scale;
-                    tmp.scale = this.hoveredCard.drawScale * Settings.scale * 1.5F;
-                    tmp.render(sb);
-                    tmp.currentX = prevX;
-                    tmp.currentY = prevY;
-                }
-            }
-
-            this.hoveredCard.renderCardTip(sb);
-        }
-        else if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT)
-        {
-            this.targetGroup.render(sb);
-        }
-        else
-        {
-            this.targetGroup.renderShowBottled(sb);
         }
 
-        if (this.anyNumber)
+        if (hoveredCard != null)
         {
-            this.confirmButton.render(sb);
+            hoveredCard.renderHoverShadow(sb);
+            hoveredCard.render(sb);
+            hoveredCard.renderCardTip(sb);
         }
 
-        if (this.tipMsg != null)
+        if (message != null)
         {
-            FontHelper.renderDeckViewTip(sb, this.tipMsg, 96.0F * Settings.scale, Settings.CREAM_COLOR);
+            FontHelper.renderDeckViewTip(sb, message, Scale(96.0F), Settings.CREAM_COLOR);
         }
     }
 
     @Override
     public void Update()
     {
-        boolean isDraggingScrollBar = false;
-
-        if (this.shouldShowScrollBar())
+        if (ShouldShowScrollbar())
         {
-            isDraggingScrollBar = this.scrollBar.update();
-        }
-
-        this.updateScrolling(isDraggingScrollBar);
-
-        this.confirmButton.update();
-
-        if (this.anyNumber && this.confirmButton.hb.clicked)
-        {
-            this.confirmButton.hb.clicked = false;
-            AbstractDungeon.closeCurrentScreen();
+            scrollBar.Update();
+            UpdateScrolling(scrollBar.isDragging);
         }
         else
         {
-            this.updateCardPositionsAndHoverLogic();
-            if (this.hoveredCard != null)
+            UpdateScrolling(false);
+        }
+
+        UpdateCards();
+
+        if (hoveredCard != null)
+        {
+            if (InputHelper.justClickedLeft)
             {
-                if (InputHelper.justClickedLeft)
+                hoveredCard.hb.clickStarted = true;
+            }
+
+            if (hoveredCard.hb.clicked || CInputActionSet.select.isJustPressed())
+            {
+                hoveredCard.hb.clicked = false;
+
+                if (onCardClick != null)
                 {
-                    this.hoveredCard.hb.clickStarted = true;
-                }
-
-                if (this.hoveredCard.hb.clicked || CInputActionSet.select.isJustPressed())
-                {
-                    this.hoveredCard.hb.clicked = false;
-
-                    if (onCardClicked != null)
-                    {
-                        onCardClicked.Invoke(hoveredCard);
-                    }
-
-//                    if (!this.selectedCards.contains(this.hoveredCard))
-//                    {
-//                        this.selectedCards.add(this.hoveredCard);
-//
-//                        this.hoveredCard.targetTransparency = 1;
-//                        this.hoveredCard.beginGlowing();
-//
-//                        this.hoveredCard.targetDrawScale = 0.75F;
-//                        this.hoveredCard.drawScale = 0.875F;
-//                        ++this.cardSelectAmount;
-//                        CardCrawlGame.sound.play("CARD_SELECT");
-//
-//                        if (this.numCards == this.cardSelectAmount)
-//                        {
-//                            AbstractDungeon.closeCurrentScreen();
-//
-//                            if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.SHOP)
-//                            {
-//                                AbstractDungeon.overlayMenu.cancelButton.hide();
-//                            }
-//                            else
-//                            {
-//                                AbstractDungeon.overlayMenu.cancelButton.show(TEXT[3]);
-//                            }
-//
-//                            for (AbstractCard card : this.selectedCards)
-//                            {
-//                                card.stopGlowing();
-//                            }
-//
-//                            if (this.targetGroup.type == CardGroup.CardGroupType.DISCARD_PILE)
-//                            {
-//                                for (AbstractCard card : this.targetGroup.group)
-//                                {
-//                                    card.drawScale = 0.12F;
-//                                    card.targetDrawScale = 0.12F;
-//                                    card.teleportToDiscardPile();
-//                                    card.lighten(true);
-//                                }
-//                            }
-//                        }
-//                    }
-//                    else if (this.selectedCards.contains(this.hoveredCard))
-//                    {
-//                        this.hoveredCard.stopGlowing();
-//                        this.hoveredCard.targetTransparency = 0.7f;
-//
-//                        this.selectedCards.remove(this.hoveredCard);
-//                        --this.cardSelectAmount;
-//                    }
+                    onCardClick.Invoke(hoveredCard);
                 }
             }
         }
     }
 
-    private void updateCardPositionsAndHoverLogic()
+    protected void UpdateCards()
     {
-        int lineNum = 0;
-        ArrayList<AbstractCard> cards = this.targetGroup.group;
-        for (int i = 0; i < cards.size(); ++i)
+        hoveredCard = null;
+
+        int row = 0;
+        int column = 0;
+        for (AbstractCard card : cards)
         {
-            int mod = i % 5;
-            if (mod == 0 && i != 0)
-            {
-                ++lineNum;
-            }
-
-            AbstractCard card = cards.get(i);
-
-            card.target_x = DRAW_START_X + (float) mod * PAD_X;
-            card.target_y = DRAW_START_Y + this.scrollDelta - (float) lineNum * PAD_Y;
+            card.target_x = DRAW_START_X + (column * PAD_X);
+            card.target_y = DRAW_START_Y + scrollDelta - (row * PAD_Y);
             card.fadingOut = false;
             card.update();
             card.updateHoverLogic();
-            this.hoveredCard = null;
 
-            for (AbstractCard c : cards)
+            if (card.hb.hovered)
             {
-                if (c.hb.hovered)
-                {
-                    this.hoveredCard = c;
-                }
+                hoveredCard = card;
+            }
+
+            column += 1;
+            if (column >= ROW_SIZE)
+            {
+                column = 0;
+                row += 1;
             }
         }
     }
 
-    public void hide()
+    protected void UpdateScrolling(boolean isDraggingScrollBar)
     {
-        if (!AbstractDungeon.overlayMenu.cancelButton.isHidden)
-        {
-            this.cancelWasOn = true;
-            this.cancelText = AbstractDungeon.overlayMenu.cancelButton.buttonText;
-        }
-    }
-
-    private void updateScrolling(boolean isDraggingScrollBar)
-    {
-        int y = InputHelper.mY;
-
         if (!isDraggingScrollBar)
         {
-            if (!this.grabbedScreen)
+            if (draggingScreen)
             {
-                if (InputHelper.scrolledDown)
+                if (InputHelper.isMouseDown && GR.UI.TryDragging())
                 {
-                    this.scrollDelta += Settings.SCROLL_SPEED;
+                    scrollDelta = InputHelper.mY - scrollStart;
                 }
-                else if (InputHelper.scrolledUp)
+                else
                 {
-                    this.scrollDelta -= Settings.SCROLL_SPEED;
-                }
-
-                if (InputHelper.justClickedLeft)
-                {
-                    if (GR.UI.TryDragging())
-                    {
-                        this.grabbedScreen = true;
-                        this.grabStartY = (float) y - this.scrollDelta;
-                    }
-                }
-            }
-            else if (InputHelper.isMouseDown)
-            {
-                if (GR.UI.TryDragging())
-                {
-                    this.scrollDelta = (float) y - this.grabStartY;
+                    draggingScreen = false;
                 }
             }
             else
             {
-                this.grabbedScreen = false;
+                if (InputHelper.scrolledDown)
+                {
+                    scrollDelta += Settings.SCROLL_SPEED;
+                }
+                else if (InputHelper.scrolledUp)
+                {
+                    scrollDelta -= Settings.SCROLL_SPEED;
+                }
+
+                if (InputHelper.justClickedLeft && GR.UI.TryDragging())
+                {
+                    draggingScreen = true;
+                    scrollStart = InputHelper.mY - scrollDelta;
+                }
             }
         }
 
-        if (this.prevDeckSize != this.targetGroup.size())
+        if (deckSizeCache != cards.size())
         {
-            this.calculateScrollBounds();
+            RefreshDeckSize();
         }
 
-        if (this.scrollDelta < this.scrollLowerBound)
+        if (scrollDelta < lowerScrollBound)
         {
-            this.scrollDelta = MathHelper.scrollSnapLerpSpeed(this.scrollDelta, this.scrollLowerBound);
+            scrollDelta = MathHelper.scrollSnapLerpSpeed(scrollDelta, lowerScrollBound);
         }
-        else if (this.scrollDelta > this.scrollUpperBound)
+        else if (scrollDelta > upperScrollBound)
         {
-            this.scrollDelta = MathHelper.scrollSnapLerpSpeed(this.scrollDelta, this.scrollUpperBound);
+            scrollDelta = MathHelper.scrollSnapLerpSpeed(scrollDelta, upperScrollBound);
         }
 
-        this.updateBarPosition();
+        scrollBar.Scroll(MathHelper.percentFromValueBetween(lowerScrollBound, upperScrollBound, scrollDelta), false);
     }
 
-    private void calculateScrollBounds()
+    protected void RefreshDeckSize()
     {
-        if (this.targetGroup.size() > 10)
+        deckSizeCache = cards.size();
+        upperScrollBound = Settings.DEFAULT_SCROLL_LIMIT;
+
+        if (deckSizeCache > 10)
         {
-            int scrollTmp = this.targetGroup.size() / 5 - 2;
-            if (this.targetGroup.size() % 5 != 0)
-            {
-                ++scrollTmp;
-            }
-
-            this.scrollUpperBound = Settings.DEFAULT_SCROLL_LIMIT + (float) scrollTmp * PAD_Y;
-        }
-        else
-        {
-            this.scrollUpperBound = Settings.DEFAULT_SCROLL_LIMIT;
-        }
-
-        this.prevDeckSize = this.targetGroup.size();
-    }
-
-    private void hideCards()
-    {
-        int lineNum = 0;
-        ArrayList<AbstractCard> cards = this.targetGroup.group;
-
-        for (int i = 0; i < cards.size(); ++i)
-        {
-            AbstractCard card = cards.get(i);
-
-            card.setAngle(0.0F, true);
-            int mod = i % 5;
-            if (mod == 0 && i != 0)
-            {
-                ++lineNum;
-            }
-
-            card.lighten(true);
-            card.current_x = DRAW_START_X + (float) mod * PAD_X;
-            card.current_y = DRAW_START_Y + this.scrollDelta - (float) lineNum * PAD_Y - MathUtils.random(100.0F * Settings.scale, 200.0F * Settings.scale);
-            card.targetDrawScale = 0.75F;
-            card.drawScale = 0.75F;
+            int offset = ((deckSizeCache / ROW_SIZE) - ((deckSizeCache % ROW_SIZE > 0) ? 1 : 2));
+            upperScrollBound += PAD_Y * offset;
         }
     }
 
-    public void scrolledUsingBar(float newPercent)
+    protected void OnScroll(float newPercent)
     {
-        this.scrollDelta = MathHelper.valueFromPercentBetween(this.scrollLowerBound, this.scrollUpperBound, newPercent);
-        this.updateBarPosition();
+        scrollDelta = MathHelper.valueFromPercentBetween(lowerScrollBound, upperScrollBound, newPercent);
     }
 
-    private void updateBarPosition()
+    protected boolean ShouldShowScrollbar()
     {
-        float percent = MathHelper.percentFromValueBetween(this.scrollLowerBound, this.scrollUpperBound, this.scrollDelta);
-        this.scrollBar.parentScrolledToPercent(percent);
-    }
-
-    private boolean shouldShowScrollBar()
-    {
-        return false;// this.scrollUpperBound > SCROLL_BAR_THRESHOLD;
+        return autoShowScrollbar && upperScrollBound > SCROLL_BAR_THRESHOLD;
     }
 }

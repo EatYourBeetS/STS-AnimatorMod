@@ -47,7 +47,7 @@ public class Gluttony extends AnimatorCard
     {
         if (p.drawPile.size() >= magicNumber)
         {
-            GameActions.Top.MoveCards(p.exhaustPile, p.drawPile, magicNumber)
+            GameActions.Top.MoveCards(p.drawPile, p.exhaustPile, magicNumber)
             .ShowEffect(true, true)
             .SetOptions(false, true);
 

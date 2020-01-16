@@ -30,7 +30,7 @@ public class Guy extends AnimatorCard
 
         if (HasSynergy())
         {
-            GameActions.Bottom.MoveCards(p.discardPile, p.drawPile, secondaryValue)
+            GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, secondaryValue)
             .ShowEffect(true, true)
             .SetOptions(false, true);
         }

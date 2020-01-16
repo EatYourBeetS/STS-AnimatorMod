@@ -1,7 +1,5 @@
 package eatyourbeets.cards.unnamed;
 
-import basemod.helpers.BaseModCardTags;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.UnnamedCard;
@@ -16,8 +14,8 @@ public class Strike extends UnnamedCard
 
         Initialize(6,0);
 
-        this.tags.add(BaseModCardTags.BASIC_STRIKE);
-        this.tags.add(AbstractCard.CardTags.STRIKE);
+        this.tags.add(CardTags.STARTER_STRIKE);
+        this.tags.add(CardTags.STRIKE);
     }
 
     @Override

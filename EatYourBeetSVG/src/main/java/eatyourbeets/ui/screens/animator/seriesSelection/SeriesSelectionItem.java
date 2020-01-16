@@ -6,28 +6,28 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCardBuilder;
 import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
 
-public class SeriesSelectionCard
+public class SeriesSelectionItem
 {
     public int size;
     public boolean promoted;
     public AnimatorCard card;
     public AnimatorLoadout loadout;
 
-    public static SeriesSelectionCard TryCreate(AnimatorLoadout loadout)
+    public static SeriesSelectionItem TryCreate(AnimatorLoadout loadout)
     {
         if (loadout != null)
         {
             int size = loadout.GetNonColorlessCards().size();
             if (size > 0)
             {
-                return new SeriesSelectionCard(loadout);
+                return new SeriesSelectionItem(loadout);
             }
         }
 
         return null;
     }
 
-    public SeriesSelectionCard(AnimatorLoadout loadout)
+    public SeriesSelectionItem(AnimatorLoadout loadout)
     {
         this.loadout = loadout;
         this.size = loadout.GetNonColorlessCards().size();

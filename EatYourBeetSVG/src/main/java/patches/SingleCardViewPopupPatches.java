@@ -24,7 +24,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class SingleCardViewPopupPatches
 {
-    private static final FieldInfo<AbstractCard> cardField = JavaUtilities.GetPrivateField("card", SingleCardViewPopup.class);
+    private static final FieldInfo<AbstractCard> cardField = JavaUtilities.GetField("card", SingleCardViewPopup.class);
     private static final AnimatorImages Images = GR.Animator.Images;
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderTitle")

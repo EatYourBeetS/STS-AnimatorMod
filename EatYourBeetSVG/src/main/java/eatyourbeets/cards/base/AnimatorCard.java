@@ -1,6 +1,7 @@
 package eatyourbeets.cards.base;
 
 import basemod.helpers.TooltipInfo;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
@@ -10,6 +11,9 @@ import java.util.List;
 
 public abstract class AnimatorCard extends EYBCard
 {
+    private static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
+    private static final Color synergyGlowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR;
+
     private final List<TooltipInfo> customTooltips = new ArrayList<>();
 
     public Synergy synergy;
@@ -18,17 +22,6 @@ public abstract class AnimatorCard extends EYBCard
     protected static String Register(Class<? extends AnimatorCard> type, EYBCardBadge... badges)
     {
         return RegisterCard(type, GR.Animator.CreateID(type.getSimpleName()), badges);
-    }
-
-    @Override
-    protected String GetHeaderText()
-    {
-        if (synergy != null)
-        {
-            return synergy.Name;
-        }
-
-        return null;
     }
 
     protected AnimatorCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
@@ -79,11 +72,37 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
+    public void triggerOnGlowCheck()
+    {
+        super.triggerOnGlowCheck();
+
+        if (HasSynergy())
+        {
+            this.glowColor = synergyGlowColor;
+        }
+        else
+        {
+            this.glowColor = defaultGlowColor;
+        }
+    }
+
+    @Override
     public AbstractCard makeStatEquivalentCopy()
     {
         AnimatorCard copy = (AnimatorCard) super.makeStatEquivalentCopy();
         copy.synergy = synergy;
         copy.anySynergy = anySynergy;
         return copy;
+    }
+
+    @Override
+    protected String GetHeaderText()
+    {
+        if (synergy != null)
+        {
+            return synergy.Name;
+        }
+
+        return null;
     }
 }

@@ -70,7 +70,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
                 Complete(card);
             }
 
-            card.modifyCostForTurn(-amount);
+            this.card.setCostForTurn(this.card.costForTurn - amount);
 
             PlayerStatistics.onStartOfTurnPostDraw.Subscribe(this);
             PlayerStatistics.onEndOfTurn.Subscribe(this);
@@ -142,7 +142,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
         if (this.card.uuid.equals(card.uuid))
         {
-            this.card.modifyCostForTurn(-amount);
+            this.card.setCostForTurn(this.card.costForTurn - amount);
         }
     }
 
@@ -151,7 +151,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     {
         if (this.card.uuid.equals(card.uuid))
         {
-            this.card.modifyCostForTurn(-amount);
+            this.card.setCostForTurn(this.card.costForTurn - amount);
         }
     }
 }

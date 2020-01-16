@@ -48,7 +48,7 @@ public class Geryuganshoop extends AnimatorCard
                 if (!limited && (card.cardID.equals(Boros.ID) || card.cardID.startsWith(Melzalgald.ID)))
                 {
                     EffectHistory.TryActivateLimited(this.cardID);
-                    GameActions.Bottom.MoveCard(card, player.hand, player.exhaustPile)
+                    GameActions.Bottom.MoveCard(card, player.exhaustPile, player.hand)
                             .ShowEffect(true, false);
                 }
                 else

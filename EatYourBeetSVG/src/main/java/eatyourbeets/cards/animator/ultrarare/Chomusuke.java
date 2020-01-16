@@ -37,7 +37,7 @@ public class Chomusuke extends AnimatorCard_UltraRare
         {
             AbstractPlayer p = AbstractDungeon.player;
             GameActions.Bottom.GainEnergy(2);
-            GameActions.Bottom.MoveCard(this, p.hand, p.exhaustPile)
+            GameActions.Bottom.MoveCard(this, p.exhaustPile, p.hand)
             .ShowEffect(true, true);
         }
     }

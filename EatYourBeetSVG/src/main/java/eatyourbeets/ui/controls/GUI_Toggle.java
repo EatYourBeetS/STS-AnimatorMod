@@ -35,6 +35,13 @@ public class GUI_Toggle extends GUIElement
         this.text = "-";
     }
 
+    public GUI_Toggle SetInteractable(boolean interactable)
+    {
+        this.interactable = interactable;
+
+        return this;
+    }
+
     public GUI_Toggle SetFont(BitmapFont font)
     {
         this.font = font;

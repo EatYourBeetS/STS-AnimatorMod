@@ -5,7 +5,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
@@ -20,8 +23,9 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
-import eatyourbeets.actions.cardManipulation.*;
+import eatyourbeets.actions.animator.CreateThrowingKnives;
 import eatyourbeets.actions.basic.*;
+import eatyourbeets.actions.cardManipulation.*;
 import eatyourbeets.actions.damage.DealDamage;
 import eatyourbeets.actions.damage.DealDamageToAll;
 import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
@@ -35,14 +39,18 @@ import eatyourbeets.actions.pileSelection.FetchFromPile;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
-import eatyourbeets.actions.animator.CreateThrowingKnives;
 import eatyourbeets.actions.special.GainGold;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.powers.common.TemporaryArtifactPower;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -52,11 +60,14 @@ import java.util.function.Consumer;
 @SuppressWarnings("UnusedReturnValue")
 public final class GameActions
 {
+    @Deprecated
+    public static final GameActions NextCombat = new GameActions(ActionOrder.NextCombat);
+
     public static final GameActions Top = new GameActions(ActionOrder.Top);
     public static final GameActions Bottom = new GameActions(ActionOrder.Bottom);
     public static final GameActions TurnStart = new GameActions(ActionOrder.TurnStart);
-    public static final GameActions NextCombat = new GameActions(ActionOrder.NextCombat);
     public static final GameActions Instant = new GameActions(ActionOrder.Instant);
+    public static final GameActions Last = new GameActions(ActionOrder.Last);
 
     protected final ActionOrder actionOrder;
 
@@ -104,6 +115,12 @@ public final class GameActions
                 AbstractDungeon.actionManager.currentAction = action;
                 AbstractDungeon.actionManager.phase = GameActionManager.Phase.EXECUTING_ACTIONS;
 
+                break;
+            }
+
+            case Last:
+            {
+                DelayedAction.Add(action);
                 break;
             }
         }
@@ -234,7 +251,7 @@ public final class GameActions
 
     public MoveCard Discard(AbstractCard card, CardGroup group)
     {
-        return MoveCard(card, AbstractDungeon.player.discardPile, group);
+        return MoveCard(card, group, AbstractDungeon.player.discardPile);
     }
 
     public DiscardFromHand DiscardFromHand(String sourceName, int amount, boolean isRandom)
@@ -257,7 +274,7 @@ public final class GameActions
         final float cardX = CardGroup.DRAW_PILE_X * 1.5f;
         final float cardY = CardGroup.DRAW_PILE_Y * 2f;
 
-        return MoveCard(card, AbstractDungeon.player.hand, AbstractDungeon.player.drawPile)
+        return MoveCard(card, AbstractDungeon.player.drawPile, AbstractDungeon.player.hand)
         .SetCardPosition(cardX, cardY)
         .ShowEffect(true, false);
     }
@@ -269,7 +286,7 @@ public final class GameActions
 
     public MoveCard Exhaust(AbstractCard card, CardGroup group)
     {
-        return MoveCard(card, AbstractDungeon.player.exhaustPile, group);
+        return MoveCard(card, group, AbstractDungeon.player.exhaustPile);
     }
 
     public ExhaustFromHand ExhaustFromHand(String sourceName, int amount, boolean isRandom)
@@ -480,24 +497,36 @@ public final class GameActions
         return Add(new MoveCard(card, destination));
     }
 
-    public MoveCard MoveCard(AbstractCard card, CardGroup destination, CardGroup source)
+    public MoveCard MoveCard(AbstractCard card, CardGroup source, CardGroup destination)
     {
         return Add(new MoveCard(card, destination, source));
     }
 
-    public MoveCards MoveCards(CardGroup destination, CardGroup source)
+    public MoveCards MoveCards(CardGroup source, CardGroup destination)
     {
         return Add(new MoveCards(destination, source));
     }
 
-    public MoveCards MoveCards(CardGroup destination, CardGroup source, int amount)
+    public MoveCards MoveCards(CardGroup source, CardGroup destination, int amount)
     {
         return Add(new MoveCards(destination, source, amount));
     }
 
-    public PlayCardFromPile PlayCard(AbstractCard card, CardGroup group, AbstractMonster target)
+    public PlayCard PlayCard(AbstractCard card, CardGroup sourcePile, AbstractMonster target)
     {
-        return Add(new PlayCardFromPile(card, group, target));
+        return Add(new PlayCard(card, target)).SetSourcePile(sourcePile);
+    }
+
+    public PlayCard PlayCard(AbstractCard card, AbstractMonster target)
+    {
+        return Add(new PlayCard(card, target));
+    }
+
+    public PlayCard PlayCopy(AbstractCard card, AbstractMonster target)
+    {
+        return Add(new PlayCard(card.makeSameInstanceOf(), target))
+        .SetCurrentPosition(card.current_x, card.current_y)
+        .SetPurge(true);
     }
 
     public PurgeAnywhere Purge(UUID uuid)
@@ -625,6 +654,33 @@ public final class GameActions
         Bottom,
         TurnStart,
         NextCombat,
-        Instant
+        Instant,
+        Last
+    }
+
+    protected static class DelayedAction implements OnPhaseChangedSubscriber
+    {
+        private final AbstractGameAction action;
+
+        private DelayedAction(AbstractGameAction action)
+        {
+            this.action = action;
+        }
+
+        public static void Add(AbstractGameAction action)
+        {
+            PlayerStatistics.onPhaseChanged.Subscribe(new DelayedAction(action));
+        }
+
+        @Override
+        public void OnPhaseChanged(GameActionManager.Phase phase)
+        {
+            if (phase == GameActionManager.Phase.WAITING_ON_USER)
+            {
+                GameActions.Bottom.Add(action);
+
+                PlayerStatistics.onPhaseChanged.Unsubscribe(this);
+            }
+        }
     }
 }

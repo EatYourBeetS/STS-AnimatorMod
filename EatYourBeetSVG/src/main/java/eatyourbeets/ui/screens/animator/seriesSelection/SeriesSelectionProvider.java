@@ -1,6 +1,7 @@
 package eatyourbeets.ui.screens.animator.seriesSelection;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.animator.colorless.rare.Emilia;
@@ -17,25 +18,37 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SeriesSelectionBuilder
+public class SeriesSelectionProvider
 {
     public int TotalCardsInPool = 0;
+    public final Map<AbstractCard, SeriesSelectionItem> cardsMap = new HashMap<>();
+    public final ArrayList<AbstractCard> promotedCards = new ArrayList<>();
     public final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
-    public final Map<AbstractCard, SeriesSelectionCard> cardsMap = new HashMap<>();
+    public final ArrayList<AbstractCard> betaCards = new ArrayList<>();
+    public final ArrayList<AbstractCard> allCards = new ArrayList<>();
 
-    public Collection<SeriesSelectionCard> CreateCards()
+    public static void PreloadResources()
+    {
+        new SeriesSelectionProvider().CreateCards();
+        CardCrawlGame.sound.preload("CARD_SELECT");
+    }
+
+    public void CreateCards()
     {
         TotalCardsInPool = 0;
 
         cardsMap.clear();
         selectedCards.clear();
+        promotedCards.clear();
+        betaCards.clear();
+        allCards.clear();
 
         int promotedCount = 0;
-        RandomizedList<SeriesSelectionCard> toPromote = new RandomizedList<>();
-        ArrayList<SeriesSelectionCard> seriesSelectionCards = new ArrayList<>();
+        RandomizedList<SeriesSelectionItem> toPromote = new RandomizedList<>();
+        ArrayList<SeriesSelectionItem> seriesSelectionItems = new ArrayList<>();
         for (AnimatorLoadout loadout : GR.Animator.Database.BaseLoadouts)
         {
-            SeriesSelectionCard card = SeriesSelectionCard.TryCreate(loadout);
+            SeriesSelectionItem card = SeriesSelectionItem.TryCreate(loadout);
             if (card != null)
             {
                 if (loadout == GR.Animator.Database.SelectedLoadout)
@@ -48,18 +61,17 @@ public class SeriesSelectionBuilder
                     toPromote.Add(card);
                 }
 
-                seriesSelectionCards.add(card);
+                seriesSelectionItems.add(card);
             }
         }
 
         // <Beta>
 
-        seriesSelectionCards.add(SeriesSelectionCard.TryCreate(new _Test(Synergies.HatarakuMaouSama, Urushihara.ID, 4)));
-        seriesSelectionCards.add(SeriesSelectionCard.TryCreate(new _Test(Synergies.ReZero, Emilia.ID, 5)));
-        seriesSelectionCards.add(SeriesSelectionCard.TryCreate(new _Test(Synergies.Jojo, QuestionMark.ID, 7)));
+        seriesSelectionItems.add(SeriesSelectionItem.TryCreate(new _Test(Synergies.HatarakuMaouSama, Urushihara.ID, 4)));
+        seriesSelectionItems.add(SeriesSelectionItem.TryCreate(new _Test(Synergies.ReZero, Emilia.ID, 5)));
+        seriesSelectionItems.add(SeriesSelectionItem.TryCreate(new _Test(Synergies.Jojo, QuestionMark.ID, 7)));
 
         // </Beta>
-
 
         Random rng = new Random(Settings.seed + 13);
         while (promotedCount < 3)
@@ -68,22 +80,18 @@ public class SeriesSelectionBuilder
             promotedCount += 1;
         }
 
-        for (SeriesSelectionCard c : seriesSelectionCards)
+        for (SeriesSelectionItem c : seriesSelectionItems)
         {
-            AbstractCard card = c.BuildCard();
-            cardsMap.put(card, c);
-            Select(card);
+            cardsMap.put(c.BuildCard(), c);
         }
-
-        return cardsMap.values();
     }
 
-    public SeriesSelectionCard Find(AbstractCard card)
+    public SeriesSelectionItem Find(AbstractCard card)
     {
         return cardsMap.get(card);
     }
 
-    public Collection<SeriesSelectionCard> GetAllCards()
+    public Collection<SeriesSelectionItem> GetAllCards()
     {
         return cardsMap.values();
     }
@@ -102,7 +110,7 @@ public class SeriesSelectionBuilder
 
     public boolean Deselect(AbstractCard card)
     {
-        SeriesSelectionCard c = Find(card);
+        SeriesSelectionItem c = Find(card);
         if (!c.promoted && selectedCards.remove(card))
         {
             TotalCardsInPool -= c.size;

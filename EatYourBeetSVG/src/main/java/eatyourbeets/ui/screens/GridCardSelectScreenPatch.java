@@ -11,15 +11,15 @@ import java.util.ArrayList;
 
 public class GridCardSelectScreenPatch
 {
-    private static final FieldInfo<Float> Field_drawStartX = JavaUtilities.GetPrivateField("drawStartX", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> Field_padX = JavaUtilities.GetPrivateField("padX", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> Field_padY = JavaUtilities.GetPrivateField("padY", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> Field_drawStartY = JavaUtilities.GetPrivateField("drawStartY", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> Field_currentDiffY = JavaUtilities.GetPrivateField("currentDiffY", GridCardSelectScreen.class);
-    private static final FieldInfo<AbstractCard> Field_hoveredCard = JavaUtilities.GetPrivateField("hoveredCard", GridCardSelectScreen.class);
-    private static final FieldInfo<CardGroup> Field_targetGroup = JavaUtilities.GetPrivateField("targetGroup", GridCardSelectScreen.class);
-    private static final FieldInfo<Integer> Field_prevDeckSize = JavaUtilities.GetPrivateField("prevDeckSize", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> Field_scrollUpperBound = JavaUtilities.GetPrivateField("scrollUpperBound", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> Field_drawStartX = JavaUtilities.GetField("drawStartX", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> Field_padX = JavaUtilities.GetField("padX", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> Field_padY = JavaUtilities.GetField("padY", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> Field_drawStartY = JavaUtilities.GetField("drawStartY", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> Field_currentDiffY = JavaUtilities.GetField("currentDiffY", GridCardSelectScreen.class);
+    private static final FieldInfo<AbstractCard> Field_hoveredCard = JavaUtilities.GetField("hoveredCard", GridCardSelectScreen.class);
+    private static final FieldInfo<CardGroup> Field_targetGroup = JavaUtilities.GetField("targetGroup", GridCardSelectScreen.class);
+    private static final FieldInfo<Integer> Field_prevDeckSize = JavaUtilities.GetField("prevDeckSize", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> Field_scrollUpperBound = JavaUtilities.GetField("scrollUpperBound", GridCardSelectScreen.class);
 
     private static final CardGroup mergedGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static final ArrayList<CardGroup> cardGroups = new ArrayList<>();

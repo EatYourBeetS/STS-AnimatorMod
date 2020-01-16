@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
-import com.megacrit.cardcrawl.cards.colorless.Shiv;
 import com.megacrit.cardcrawl.cards.status.Slimed;
+import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -16,14 +16,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.actions.animator.HigakiRinneAction;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.animator.HigakiRinnePower;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions.animator.HigakiRinneAction;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.animator.HigakiRinnePower;
 
 import java.util.ArrayList;
 
@@ -77,7 +77,7 @@ public class HigakiRinne extends AnimatorCard
         else if (n < 38)
         {
             GameActions.Top.Draw(1);
-            GameActions.Top.MoveCard(this, player.discardPile, player.hand);
+            GameActions.Top.MoveCard(this, player.hand, player.discardPile);
             GameActions.Top.WaitRealtime(0.3f);
         }
         else if (n < 45)

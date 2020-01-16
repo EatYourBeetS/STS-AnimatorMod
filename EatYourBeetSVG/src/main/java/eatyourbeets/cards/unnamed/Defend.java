@@ -1,6 +1,5 @@
 package eatyourbeets.cards.unnamed;
 
-import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.UnnamedCard;
@@ -16,7 +15,7 @@ public class Defend extends UnnamedCard
 
         Initialize(0, 6);
 
-        this.tags.add(BaseModCardTags.BASIC_DEFEND);
+        this.tags.add(CardTags.STARTER_DEFEND);
     }
 
     @Override

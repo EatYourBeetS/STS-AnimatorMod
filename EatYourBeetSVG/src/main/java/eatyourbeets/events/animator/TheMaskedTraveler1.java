@@ -1,6 +1,5 @@
 package eatyourbeets.events.animator;
 
-import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -105,11 +104,11 @@ public class TheMaskedTraveler1 extends AnimatorEvent
                         strikes.GetInnerList().removeIf(c -> c.cardID.equals(card.cardID));
                     }
                 }
-                else if (card.tags.contains(BaseModCardTags.BASIC_DEFEND))
+                else if (card.tags.contains(AbstractCard.CardTags.STARTER_DEFEND))
                 {
                     defendsToReplace.add(card);
                 }
-                else if (card.tags.contains(BaseModCardTags.BASIC_STRIKE))
+                else if (card.tags.contains(AbstractCard.CardTags.STARTER_STRIKE))
                 {
                     strikesToReplace.add(card);
                 }

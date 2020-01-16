@@ -15,8 +15,8 @@ import java.util.Map;
 @SpirePatch(clz= TipHelper.class, method="renderBox")
 public class TipHelper_RenderBox
 {
-    private static final FieldInfo<Boolean> IsCard = JavaUtilities.GetPrivateField("isCard", TipHelper.class);
-    private static final FieldInfo<AbstractCard> Card = JavaUtilities.GetPrivateField("card", TipHelper.class);
+    private static final FieldInfo<Boolean> IsCard = JavaUtilities.GetField("isCard", TipHelper.class);
+    private static final FieldInfo<AbstractCard> Card = JavaUtilities.GetField("card", TipHelper.class);
 
     @SpirePrefixPatch
     public static void Method(SpriteBatch sb, String word, float x, float y)

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringJoiner;
 
-public class PurgingStone_Series extends AbstractPurgingStone implements CustomSavable<String>
+public class PurgingStone_Series extends AbstractPurgingStone implements CustomSavable<String>, Hidden
 {
     public static final int DEFAULT_SERIES_SIZE = 8;
     public static final String ID = CreateFullID(PurgingStone_Series.class.getSimpleName());

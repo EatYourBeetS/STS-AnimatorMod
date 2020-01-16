@@ -269,7 +269,7 @@ public class BundledRelicProvider
         AddBundle(DolaRiku.ID, UnceasingTop.ID, AbstractRelic.RelicTier.RARE, R1);
         AddBundle(DolaStephanie.ID, HappyFlower.ID, AbstractRelic.RelicTier.COMMON, R3);
 
-        AddBundle(Shiro.ID, Dodecahedron.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
+        AddBundle(Shiro.ID, Abacus.ID, AbstractRelic.RelicTier.UNCOMMON, R2);
         AddBundle(Sora.ID, QuestionCard.ID, AbstractRelic.RelicTier.UNCOMMON, R1);
 
         AddBundle(Azriel.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);

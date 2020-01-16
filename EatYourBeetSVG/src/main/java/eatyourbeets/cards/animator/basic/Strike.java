@@ -1,14 +1,12 @@
 package eatyourbeets.cards.animator.basic;
 
-import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -23,8 +21,8 @@ public class Strike extends AnimatorCard
 
         //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");
 
-        this.tags.add(BaseModCardTags.BASIC_STRIKE);
-        this.tags.add(AbstractCard.CardTags.STRIKE);
+        this.tags.add(CardTags.STARTER_STRIKE);
+        this.tags.add(CardTags.STRIKE);
         this.tags.add(GR.Enums.CardTags.IMPROVED_STRIKE);
     }
 
@@ -35,8 +33,8 @@ public class Strike extends AnimatorCard
         Initialize(6, 0);
         SetUpgrade(3, 0);
 
-        this.tags.add(BaseModCardTags.BASIC_STRIKE);
-        this.tags.add(AbstractCard.CardTags.STRIKE);
+        this.tags.add(CardTags.STARTER_STRIKE);
+        this.tags.add(CardTags.STRIKE);
     }
 
     @Override

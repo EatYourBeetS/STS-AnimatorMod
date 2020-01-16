@@ -82,7 +82,7 @@ public class GoblinSlayer extends AnimatorCard
         {
             if (GameUtilities.IsCurseOrStatus(card))
             {
-                GameActions.Top.MoveCard(card, destination, source)
+                GameActions.Top.MoveCard(card, source, destination)
                         .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
                         .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
             }

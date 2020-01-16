@@ -44,7 +44,7 @@ public class JavaUtilities
         return null;
     }
 
-    public static MethodInfo GetPrivateMethod(String methodName, Class<?> type, Class<?>... parameterTypes) throws RuntimeException
+    public static MethodInfo GetMethod(String methodName, Class<?> type, Class<?>... parameterTypes) throws RuntimeException
     {
         try
         {
@@ -60,7 +60,7 @@ public class JavaUtilities
         }
     }
 
-    public static <T> FieldInfo<T> GetPrivateField(String fieldName, Class<?> type) throws RuntimeException
+    public static <T> FieldInfo<T> GetField(String fieldName, Class<?> type) throws RuntimeException
     {
         try
         {
@@ -179,5 +179,10 @@ public class JavaUtilities
         {
             return defaultValue;
         }
+    }
+
+    public static float Clamp(float value, float min, float max)
+    {
+        return (value < min) ? min : (value > max) ? max : value;
     }
 }

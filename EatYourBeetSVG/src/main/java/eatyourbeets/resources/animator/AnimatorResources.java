@@ -15,6 +15,7 @@ import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
+import eatyourbeets.ui.screens.animator.seriesSelection.SeriesSelectionProvider;
 
 import java.io.IOException;
 
@@ -158,6 +159,8 @@ public class AnimatorResources extends AbstractResources
     protected void PostInitialize()
     {
         Database.Initialize();
+
+        SeriesSelectionProvider.PreloadResources();
     }
 
     @Override

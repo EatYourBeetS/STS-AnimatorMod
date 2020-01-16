@@ -48,6 +48,7 @@ public class GR
     public static AnimatorResources Animator;
     public static UnnamedResources Unnamed;
     public static CommonResources Common;
+    public static boolean IsLoaded;
 
     public static void Initialize()
     {
@@ -170,6 +171,12 @@ public class GR
     public static Keyword GetKeyword(String keywordID)
     {
         return keywords.get(keywordID);
+    }
+
+    protected static void Complete()
+    {
+        UI.Initialize();
+        IsLoaded = true;
     }
 
     protected void LoadCustomRelics(String character)

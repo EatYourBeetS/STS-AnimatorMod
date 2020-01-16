@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Fate;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -43,7 +42,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
         }
     }
 
-    @SpireOverride
+    @Override
     protected void applyPowersToBlock()
     {
         float tmp = (float) this.baseBlock;

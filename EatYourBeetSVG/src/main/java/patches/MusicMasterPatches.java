@@ -48,6 +48,6 @@ public class MusicMasterPatches
 
     static
     {
-        tempTracksField = JavaUtilities.GetPrivateField("tempTrack", MusicMaster.class);
+        tempTracksField = JavaUtilities.GetField("tempTrack", MusicMaster.class);
     }
 }

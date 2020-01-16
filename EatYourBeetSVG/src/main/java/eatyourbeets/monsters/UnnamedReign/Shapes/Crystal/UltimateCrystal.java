@@ -3,10 +3,12 @@ package eatyourbeets.monsters.UnnamedReign.Shapes.Crystal;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.WraithFormPower;
 import eatyourbeets.actions.monsters.MoveMonsterAction;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
@@ -130,16 +132,6 @@ public class UltimateCrystal extends Crystal
                         power.amount = p.amount;
                         power.owner = this;
                         this.powers.add(power);
-                    }
-                }
-                else if (p instanceof PoisonPower) // Poison does not implement CloneablePowerInterface...
-                {
-                    PoisonPower poison = JavaUtilities.SafeCast(p, PoisonPower.class);
-                    if (poison != null)
-                    {
-                        AbstractCreature source = JavaUtilities.<AbstractCreature>GetPrivateField("source", PoisonPower.class).Get(poison);
-
-                        this.powers.add(new PoisonPower(this, source, poison.amount));
                     }
                 }
             }

@@ -14,6 +14,7 @@ public class NeowRoomPatches
         @SpirePostfixPatch
         public static void Prefix(NeowRoom __instance, boolean isDone)
         {
+            // TODO: Series Selection Screen, also consider adding some class specific relics to the animator pool
             JavaUtilities.Log(NeowRoom.class, "On ENTER ROOM:");
             if (!isDone)
             {

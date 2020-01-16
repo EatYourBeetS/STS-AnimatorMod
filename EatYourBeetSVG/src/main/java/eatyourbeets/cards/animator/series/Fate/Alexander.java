@@ -3,12 +3,11 @@ package eatyourbeets.cards.animator.series.Fate;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Alexander extends AnimatorCard
 {
@@ -29,7 +28,8 @@ public class Alexander extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.Callback(__ -> GameUtilities.PlayCopy(this, null, true));
+        GameActions.Bottom.PlayCard(this, null);
+        //GameActions.Bottom.Callback(__ -> GameUtilities.PlayCopy(this, null, true));
     }
 
     @Override

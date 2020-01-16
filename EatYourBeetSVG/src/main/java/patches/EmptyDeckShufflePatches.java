@@ -10,7 +10,7 @@ import eatyourbeets.utilities.JavaUtilities;
 @SpirePatch(clz = EmptyDeckShuffleAction.class, method = "update")
 public class EmptyDeckShufflePatches
 {
-    private static final FieldInfo<Boolean> shuffled = JavaUtilities.GetPrivateField("shuffled", EmptyDeckShuffleAction.class);
+    private static final FieldInfo<Boolean> shuffled = JavaUtilities.GetField("shuffled", EmptyDeckShuffleAction.class);
 
     @SpirePrefixPatch
     public static void Prefix(EmptyDeckShuffleAction __instance)

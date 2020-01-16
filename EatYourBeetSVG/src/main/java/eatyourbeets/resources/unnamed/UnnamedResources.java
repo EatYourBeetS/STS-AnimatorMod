@@ -86,17 +86,4 @@ public class UnnamedResources extends AbstractResources
     {
         LoadKeywords(languagePath + "KeywordStrings.json");
     }
-
-    @Override
-    protected void PostInitialize()
-    {
-        super.PostInitialize();
-
-        //TODO: Remove this
-//        for (AbstractCard card : CardLibrary.getAllCards())
-//        {
-//            UnlockTracker.markCardAsSeen(card.cardID);
-//        }
-        //
-    }
 }

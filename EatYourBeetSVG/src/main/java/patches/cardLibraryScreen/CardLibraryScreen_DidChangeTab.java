@@ -17,7 +17,7 @@ import eatyourbeets.utilities.JavaUtilities;
 @SpirePatch(clz = CardLibraryScreen.class, method = "didChangeTab", paramtypez = {ColorTabBar.class, ColorTabBar.CurrentTab.class})
 public class CardLibraryScreen_DidChangeTab
 {
-    private static final FieldInfo<CardLibSortHeader> headerField = JavaUtilities.GetPrivateField("sortHeader", CardLibraryScreen.class);
+    private static final FieldInfo<CardLibSortHeader> headerField = JavaUtilities.GetField("sortHeader", CardLibraryScreen.class);
     private static final CustomCardLibSortHeader customHeader = new CustomCardLibSortHeader(null);
     private static CardLibSortHeader defaultHeader;
 

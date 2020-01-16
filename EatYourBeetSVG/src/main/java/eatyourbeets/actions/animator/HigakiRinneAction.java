@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.actions.unique.BouncingFlaskAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
-import com.megacrit.cardcrawl.cards.colorless.Shiv;
 import com.megacrit.cardcrawl.cards.status.Slimed;
+import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.combatOnly.ShuffleEnemiesEffect;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.MarkOfPoisonPower;
@@ -188,8 +189,9 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(3)) // 111
         {
-            AbstractCard card = CardLibrary.getRandomColorSpecificCard(higakiRinne.color, AbstractDungeon.cardRandomRng);
-            if (!card.tags.contains(AbstractCard.CardTags.HEALING))
+            // TODO: Helper method
+            AbstractCard card = JavaUtilities.GetRandomElement(Synergies.GetNonColorlessCard(), AbstractDungeon.cardRandomRng);
+            if (card != null && !card.tags.contains(AbstractCard.CardTags.HEALING))
             {
                 GameActions.Bottom.MakeCardInHand(card.makeCopy());
             }

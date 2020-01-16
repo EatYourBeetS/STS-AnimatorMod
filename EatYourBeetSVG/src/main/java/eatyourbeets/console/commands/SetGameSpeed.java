@@ -28,8 +28,8 @@ import java.util.ArrayList;
          {
              Class<?> c = Class.forName("skrelpoid.superfastmode.SuperFastMode");
 
-             isDeltaMultiplied = JavaUtilities.GetPrivateField("isDeltaMultiplied", c);
-             deltaMultiplier = JavaUtilities.GetPrivateField("deltaMultiplier", c);
+             isDeltaMultiplied = JavaUtilities.GetField("isDeltaMultiplied", c);
+             deltaMultiplier = JavaUtilities.GetField("deltaMultiplier", c);
 
              return true;
          }

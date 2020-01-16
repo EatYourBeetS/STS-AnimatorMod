@@ -123,7 +123,7 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
     private void MoveCard(AbstractCard card)
     {
         selectedCards.add(card);
-        GameActions.Top.MoveCard(card, targetPile, sourcePile)
+        GameActions.Top.MoveCard(card, sourcePile, targetPile)
         .ShowEffect(showEffect, realtime);
     }
 }

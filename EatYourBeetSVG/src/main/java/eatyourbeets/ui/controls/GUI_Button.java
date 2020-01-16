@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.ui.AdvancedHitbox;
@@ -15,10 +16,10 @@ import eatyourbeets.utilities.RenderHelpers;
 
 public class GUI_Button extends GUIElement
 {
-    protected GUI_Image buttonRenderer;
-    protected GUI_Image buttonBorderRenderer;
+    public final Hitbox hb;
+    public GUI_Image background;
+    public GUI_Image border;
 
-    public final AdvancedHitbox hb;
     public float targetAlpha = 1f;
     public float currentAlpha = 1f;
 
@@ -28,17 +29,15 @@ public class GUI_Button extends GUIElement
     private ActionT0 onClick;
     private String text;
 
-    public GUI_Button(Texture buttonTexture, Color buttonColor, float x, float y)
-    {
-        this(buttonTexture, x, y);
-
-        this.buttonColor = buttonColor;
-    }
-
     public GUI_Button(Texture buttonTexture, float x, float y)
     {
-        this.hb = new AdvancedHitbox(x, y, Scale(buttonTexture.getWidth()), Scale(buttonTexture.getHeight()), false);
-        this.buttonRenderer = RenderHelpers.ForTexture(buttonTexture);
+        this(buttonTexture, new AdvancedHitbox(x, y, Scale(buttonTexture.getWidth()), Scale(buttonTexture.getHeight()), false));
+    }
+
+    public GUI_Button(Texture buttonTexture, Hitbox hitbox)
+    {
+        this.hb = hitbox;
+        this.background = RenderHelpers.ForTexture(buttonTexture);
         this.interactable = true;
         this.text = "-";
     }
@@ -47,11 +46,11 @@ public class GUI_Button extends GUIElement
     {
         if (borderTexture == null)
         {
-            this.buttonBorderRenderer = null;
+            this.border = null;
         }
         else
         {
-            this.buttonBorderRenderer = RenderHelpers.ForTexture(borderTexture, color);
+            this.border = RenderHelpers.ForTexture(borderTexture, color).SetHitbox(hb);
         }
 
         return this;
@@ -152,18 +151,18 @@ public class GUI_Button extends GUIElement
 
     protected void RenderButton(SpriteBatch sb)
     {
-        buttonRenderer.SetColor(buttonColor).Render(sb, hb);
+        background.SetColor(buttonColor).Render(sb, hb);
 
-        if (buttonBorderRenderer != null)
+        if (border != null)
         {
-            buttonBorderRenderer.Render(sb, hb);
+            border.Render(sb);
         }
 
         if (interactable && this.hb.hovered && !this.hb.clickStarted)
         {
             sb.setBlendFunction(770, 1);
 
-            buttonRenderer.SetColor(HOVER_BLEND_COLOR).Render(sb, hb);
+            background.SetColor(HOVER_BLEND_COLOR).Render(sb, hb);
 
             sb.setBlendFunction(770, 771);
         }

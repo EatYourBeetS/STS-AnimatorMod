@@ -55,7 +55,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         {
             if (turns <= 0)
             {
-                GameActions.Bottom.MoveCard(this, p.drawPile, p.exhaustPile)
+                GameActions.Bottom.MoveCard(this, p.exhaustPile, p.drawPile)
                 .ShowEffect(false, false);
                 PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
             }

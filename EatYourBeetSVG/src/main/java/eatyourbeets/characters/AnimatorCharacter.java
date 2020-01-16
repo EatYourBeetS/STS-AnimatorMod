@@ -140,6 +140,12 @@ public class AnimatorCharacter extends CustomPlayer
     }
 
     @Override
+    public String getPortraitImageName()
+    {
+        return null; // Updated in AnimatorCharacterSelectScreen
+    }
+
+    @Override
     public ArrayList<String> getStartingDeck()
     {
         return GetCurrentLoadout().GetStartingDeck();

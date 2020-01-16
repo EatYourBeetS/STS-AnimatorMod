@@ -9,14 +9,14 @@ public abstract class GUIElement
     public static final Color HOVER_BLEND_COLOR = new Color(1.0F, 1.0F, 1.0F, 0.3F);
     public static final Color TEXT_DISABLED_COLOR = new Color(0.6F, 0.6F, 0.6F, 1.0F);
 
-    public boolean active = true;
+    public boolean isActive = true;
 
     public abstract void Update();
     public abstract void Render(SpriteBatch sb);
 
     public void TryRender(SpriteBatch sb)
     {
-        if (active)
+        if (isActive)
         {
             Render(sb);
         }
@@ -24,7 +24,7 @@ public abstract class GUIElement
 
     public void TryUpdate()
     {
-        if (active)
+        if (isActive)
         {
             Update();
         }
@@ -32,7 +32,7 @@ public abstract class GUIElement
 
     public GUIElement SetActive(boolean active)
     {
-        this.active = active;
+        this.isActive = active;
 
         return this;
     }
@@ -42,12 +42,12 @@ public abstract class GUIElement
         return Settings.scale * value;
     }
 
-    protected static float GetWidth(float value)
+    protected static float ScreenW(float value)
     {
         return Settings.WIDTH * value;
     }
 
-    protected static float GetHeight(float value)
+    protected static float ScreenH(float value)
     {
         return Settings.HEIGHT * value;
     }

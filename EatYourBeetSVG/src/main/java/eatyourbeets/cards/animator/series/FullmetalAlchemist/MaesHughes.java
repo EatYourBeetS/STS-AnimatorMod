@@ -62,9 +62,9 @@ public class MaesHughes extends AnimatorCard
                 if (group.type != CardGroup.CardGroupType.HAND)
                 {
                     GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
-                    GameActions.Top.MoveCard(c, AbstractDungeon.player.hand, group)
+                    GameActions.Top.MoveCard(c, group, AbstractDungeon.player.hand)
                     .ShowEffect(true, true)
-                    .AddCallback(card -> card.modifyCostForTurn(-1));
+                    .AddCallback(card -> card.setCostForTurn(card.costForTurn-1));
                 }
 
                 return true;

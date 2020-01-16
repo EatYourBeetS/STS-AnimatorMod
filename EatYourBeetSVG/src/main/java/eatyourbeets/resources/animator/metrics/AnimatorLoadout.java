@@ -133,7 +133,7 @@ public abstract class AnimatorLoadout
             {
                 if (!s.contains(Strike.ID) && !s.contains(Defend.ID))
                 {
-                    sj.add(CardLibrary.getCardNameFromKey(s));
+                    sj.add(CardLibrary.getCard(s).originalName);
                 }
             }
 

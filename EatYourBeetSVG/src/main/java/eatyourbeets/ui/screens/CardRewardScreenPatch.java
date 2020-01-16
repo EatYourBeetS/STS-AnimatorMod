@@ -61,7 +61,7 @@ public class CardRewardScreenPatch
             rewardBundle.Open(cards);
         }
 
-        PurgingStone_Cards purgingStone = GameUtilities.GetRelic(PurgingStone_Cards.ID);
+        purgingStone = GameUtilities.GetRelic(PurgingStone_Cards.ID);
         if (purgingStone != null && purgingStone.CanActivate(rItem))
         {
             for (AbstractCard card : cards)

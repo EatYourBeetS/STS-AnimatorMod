@@ -44,6 +44,12 @@ public class UnnamedCharacter extends CustomPlayer
         reloadAnimation();
     }
 
+    @Override
+    public String getPortraitImageName()
+    {
+        return null;
+    }
+
     public void reloadAnimation()
     {
         this.loadAnimation(UnnamedImages.SKELETON_ATLAS, UnnamedImages.SKELETON_JSON, 1.0f);

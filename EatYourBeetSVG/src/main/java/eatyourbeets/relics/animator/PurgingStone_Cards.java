@@ -39,7 +39,7 @@ public class PurgingStone_Cards extends AbstractPurgingStone implements CustomSa
 
         if (isBoss == null)
         {
-            isBoss = JavaUtilities.GetPrivateField("isBoss", RewardItem.class);
+            isBoss = JavaUtilities.GetField("isBoss", RewardItem.class);
         }
     }
 

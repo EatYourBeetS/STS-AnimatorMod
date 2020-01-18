@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SeriesSelectionProvider
+public class AnimatorLoadoutsContainer
 {
     public int TotalCardsInPool = 0;
     public final Map<AbstractCard, AnimatorRuntimeLoadout> cardsMap = new HashMap<>();
@@ -125,6 +125,7 @@ public class SeriesSelectionProvider
 
     public void CommitChanges()
     {
+        GR.Animator.Dungeon.Series.clear();
         for (AbstractCard card : selectedCards)
         {
             GR.Animator.Dungeon.AddSeries(Find(card));

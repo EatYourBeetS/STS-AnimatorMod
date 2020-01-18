@@ -1,4 +1,4 @@
-package eatyourbeets.ui.buttons;
+package eatyourbeets.ui.screens.animator.cardReward;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

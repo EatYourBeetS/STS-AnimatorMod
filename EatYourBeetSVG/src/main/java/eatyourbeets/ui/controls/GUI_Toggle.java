@@ -56,6 +56,13 @@ public class GUI_Toggle extends GUIElement
         return this;
     }
 
+    public GUI_Toggle SetPosition(float x, float y)
+    {
+        this.hb.move(x, y);
+
+        return this;
+    }
+
     public GUI_Toggle SetTexture(Texture texture, Color color)
     {
         this.texture = RenderHelpers.ForTexture(texture).SetHitbox(hb);
@@ -148,7 +155,7 @@ public class GUI_Toggle extends GUIElement
             fontColor = Settings.CREAM_COLOR;
         }
 
-        FontHelper.renderFontCentered(sb, font, text, hb.cX + 18f * Settings.scale, hb.cY, fontColor);
+        FontHelper.renderFontCentered(sb, font, text, hb.cX + 14f * Settings.scale, hb.cY, fontColor);
 
         Texture img;
         if (toggled)
@@ -161,7 +168,7 @@ public class GUI_Toggle extends GUIElement
         }
 
         sb.setColor(fontColor);
-        sb.draw(img, hb.x + 18f * Settings.scale, hb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale,
+        sb.draw(img, hb.x + 8f * Settings.scale, hb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale,
                 0.0F, 0, 0, 48, 48, false, false);
 
         hb.render(sb);

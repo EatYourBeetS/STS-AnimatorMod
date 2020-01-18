@@ -5,20 +5,27 @@ import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.screens.animator.cardReward.AnimatorCardBadgeLegend;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -210,13 +217,13 @@ public abstract class EYBCard extends CustomCard
                 RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, ImageMaster.CARD_FRAME_POWER_RARE, x, y);
         }
     }
-    
+
     @Override
     public void render(SpriteBatch sb)
     {
         if (!Settings.hideCards)
         {
-            if (EYBCardBadge.ShouldRenderUpgrade(this))
+            if (AnimatorCardBadgeLegend.showUpgrades && canUpgrade() && !CardCrawlGame.isPopupOpen && SingleCardViewPopup.isViewingUpgrade)
             {
                 EYBCard copy = (EYBCard) this.makeCopy();
                 copy.current_x = this.current_x;
@@ -269,6 +276,35 @@ public abstract class EYBCard extends CustomCard
         }
     }
 
+    @Override
+    public void renderSmallEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y)
+    {
+        Texture texture;
+        if (region == AbstractCard.orb_red)
+        {
+            texture = GR.GetTexture(GR.GetPowerImage(ForcePower.POWER_ID));
+        }
+        else if (region == AbstractCard.orb_green)
+        {
+            texture = GR.GetTexture(GR.GetPowerImage(AgilityPower.POWER_ID));
+        }
+        else if (region == AbstractCard.orb_blue)
+        {
+            texture = GR.GetTexture(GR.GetPowerImage(IntellectPower.POWER_ID));
+        }
+        else
+        {
+            super.renderSmallEnergy(sb, region, x, y);
+            return;
+        }
+
+        final float scale = Settings.scale * this.drawScale;
+        sb.setColor(1, 1, 1, transparency);
+        sb.draw(texture, this.current_x + (x - 6) * scale, this.current_y + (y - 3) * scale, 0.0F, 0.0F,
+        32, 32, //(float)region.packedWidth, (float)region.packedHeight,
+        scale, scale, 0.0F, 0, 0, texture.getWidth(), texture.getHeight(), false, false);
+    }
+
     public void renderInSingleCardPopup(SpriteBatch sb, boolean preRender)
     {
         if (preRender)
@@ -293,7 +329,7 @@ public abstract class EYBCard extends CustomCard
 
     public boolean isOnScreen()
     {
-        return this.current_y >= -200.0F * Settings.scale && this.current_y <= (float)Settings.HEIGHT + 200.0F * Settings.scale;
+        return this.current_y >= -200.0F * Settings.scale && this.current_y <= (float) Settings.HEIGHT + 200.0F * Settings.scale;
     }
 
     protected Color GetHeaderColor()
@@ -333,8 +369,8 @@ public abstract class EYBCard extends CustomCard
         if (isCardPopup)
         {
             scale = Settings.scale;
-            x = (float)Settings.WIDTH / 2.0F + 228.0F * scale;
-            y = (float)Settings.HEIGHT / 2.0F + 320 * scale;
+            x = (float) Settings.WIDTH / 2.0F + 228.0F * scale;
+            y = (float) Settings.HEIGHT / 2.0F + 320 * scale;
 
             float mX = Gdx.input.getX();
             float mY = Settings.HEIGHT - Gdx.input.getY();
@@ -348,7 +384,7 @@ public abstract class EYBCard extends CustomCard
                     if (mY < (y + 76 * scale) && mY > (y + 16 * scale))
                     {
                         TipHelper.renderGenericTip(1300.0f * Settings.scale, 900.0f * Settings.scale,
-                        badge.description, GR.Common.Strings.CardBadges.Tooltip);
+                                badge.description, GR.Common.Strings.CardBadges.Tooltip);
                     }
                 }
 
@@ -375,7 +411,7 @@ public abstract class EYBCard extends CustomCard
             int base_Y = 0;
             for (EYBCardBadge badge : cardData.badges)
             {
-                Vector2 offset = new Vector2(x,  base_Y + y);
+                Vector2 offset = new Vector2(x, base_Y + y);
 
                 offset.rotate(angle);
                 offset.scl(scale);
@@ -397,8 +433,8 @@ public abstract class EYBCard extends CustomCard
             {
                 if (isCardPopup)
                 {
-                    preview.current_x = (float)Settings.WIDTH / 5.0F - 10.0F * Settings.scale;
-                    preview.current_y = (float)Settings.HEIGHT / 4.0F;
+                    preview.current_x = (float) Settings.WIDTH / 5.0F - 10.0F * Settings.scale;
+                    preview.current_y = (float) Settings.HEIGHT / 4.0F;
                     preview.drawScale = 1f;
                 }
                 else

@@ -12,8 +12,9 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
+import eatyourbeets.ui.GUIElement;
 
-public class AnimatorSpecialTrophiesRenderer
+public class AnimatorSpecialTrophiesRenderer extends GUIElement
 {
     protected static final AnimatorStrings.Trophies trophyStrings = GR.Animator.Strings.Trophies;
     protected static final AnimatorImages images = GR.Animator.Images;

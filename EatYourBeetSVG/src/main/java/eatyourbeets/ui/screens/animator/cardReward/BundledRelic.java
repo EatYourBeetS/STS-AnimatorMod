@@ -1,4 +1,4 @@
-package eatyourbeets.ui.relics;
+package eatyourbeets.ui.screens.animator.cardReward;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.relics.animator.CursedGlyph;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
@@ -97,7 +96,7 @@ public class BundledRelic
         }
     }
 
-    public void Update(CardRewardScreen screen)
+    public void Update()
     {
         if (relic != null)
         {
@@ -107,7 +106,7 @@ public class BundledRelic
         }
     }
 
-    public void Render(CardRewardScreen screen, SpriteBatch sb)
+    public void Render(SpriteBatch sb)
     {
         if (relic != null)
         {

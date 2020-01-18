@@ -19,14 +19,13 @@ import eatyourbeets.ui.screens.AbstractScreen;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
 
-public class SeriesSelectionScreen extends AbstractScreen
+public class AnimatorSeriesSelectScreen extends AbstractScreen
 {
     protected static final Random rng = new Random();
+    protected static boolean isBetaToggled = false;
     protected int totalCardsCache = 0;
 
-    public static boolean isBetaToggled = false;
-
-    public final SeriesSelectionProvider repository = new SeriesSelectionProvider();
+    public final AnimatorLoadoutsContainer container = new AnimatorLoadoutsContainer();
     public final GUI_CardGrid cardGrid;
     public final GUI_Button deselectAll;
     public final GUI_Button selectRandom75;
@@ -38,7 +37,7 @@ public class SeriesSelectionScreen extends AbstractScreen
     public final GUI_TextBox selectionAmount;
     public final GUI_Image purgingStoneImage;
 
-    public SeriesSelectionScreen()
+    public AnimatorSeriesSelectScreen()
     {
         final Texture panelTexture = GR.Common.Images.Panel.Texture();
         final FuncT1<Float,Float> getY = (delta) -> ScreenH(0.78f) - ScreenH(0.08f * delta);
@@ -94,7 +93,7 @@ public class SeriesSelectionScreen extends AbstractScreen
         .SetOnClick(() ->
         {
             cardGrid.Clear();
-            repository.CommitChanges();
+            container.CommitChanges();
             AbstractDungeon.closeCurrentScreen();
         })
         .SetColor(Color.FOREST);
@@ -104,7 +103,7 @@ public class SeriesSelectionScreen extends AbstractScreen
     {
         super.Open();
 
-        GameEffects.TopLevelList.Add(new SeriesSelectionEffect(this));
+        GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
     }
 
     @Override
@@ -112,7 +111,7 @@ public class SeriesSelectionScreen extends AbstractScreen
     {
         cardGrid.TryRender(sb);
 
-        if (repository.betaCards.size() > 0)
+        if (container.betaCards.size() > 0)
         {
             toggleBeta.Render(sb);
         }
@@ -132,13 +131,13 @@ public class SeriesSelectionScreen extends AbstractScreen
     @Override
     public void Update()
     {
-        if (totalCardsCache != repository.TotalCardsInPool)
+        if (totalCardsCache != container.TotalCardsInPool)
         {
-            totalCardsCache = repository.TotalCardsInPool;
+            totalCardsCache = container.TotalCardsInPool;
             TotalCardsChanged(totalCardsCache);
         }
 
-        if (repository.betaCards.size() > 0)
+        if (container.betaCards.size() > 0)
         {
             toggleBeta.SetToggle(isBetaToggled).Update();
         }
@@ -156,12 +155,12 @@ public class SeriesSelectionScreen extends AbstractScreen
 
     protected void OnCardClicked(AbstractCard card)
     {
-        AnimatorRuntimeLoadout c = repository.Find(card);
+        AnimatorRuntimeLoadout c = container.Find(card);
         if (c.promoted)
         {
             CardCrawlGame.sound.play("CARD_REJECT");
         }
-        else if (repository.selectedCards.contains(card))
+        else if (container.selectedCards.contains(card))
         {
             Deselect(card);
         }
@@ -175,13 +174,13 @@ public class SeriesSelectionScreen extends AbstractScreen
     public void SelectRandom(int minimum)
     {
         RandomizedList<AbstractCard> toSelect = new RandomizedList<>();
-        for (AbstractCard c : repository.allCards)
+        for (AbstractCard c : container.allCards)
         {
             Deselect(c);
             toSelect.Add(c);
         }
 
-        while (repository.TotalCardsInPool < minimum)
+        while (container.TotalCardsInPool < minimum)
         {
             Select(toSelect.Retrieve(rng));
         }
@@ -189,7 +188,7 @@ public class SeriesSelectionScreen extends AbstractScreen
 
     public void DeselectAll()
     {
-        for (AbstractCard c : repository.allCards)
+        for (AbstractCard c : container.allCards)
         {
             Deselect(c);
         }
@@ -197,7 +196,7 @@ public class SeriesSelectionScreen extends AbstractScreen
 
     public void SelectAll()
     {
-        for (AbstractCard c : repository.allCards)
+        for (AbstractCard c : container.allCards)
         {
             Select(c);
         }
@@ -205,7 +204,7 @@ public class SeriesSelectionScreen extends AbstractScreen
 
     public void Deselect(AbstractCard card)
     {
-        if (repository.Deselect(card))
+        if (container.Deselect(card))
         {
             card.targetTransparency = 0.66f;
             card.stopGlowing();
@@ -214,7 +213,7 @@ public class SeriesSelectionScreen extends AbstractScreen
 
     public void Select(AbstractCard card)
     {
-        if (repository.Select(card))
+        if (container.Select(card))
         {
             card.targetTransparency = 1f;
             card.beginGlowing();
@@ -225,20 +224,20 @@ public class SeriesSelectionScreen extends AbstractScreen
     {
         if (isBetaToggled = value)
         {
-            for (AbstractCard card : repository.betaCards)
+            for (AbstractCard card : container.betaCards)
             {
                 cardGrid.cards.add(card);
-                repository.allCards.add(card);
+                container.allCards.add(card);
                 card.transparency = 0.01f;
             }
         }
         else
         {
-            for (AbstractCard card : repository.betaCards)
+            for (AbstractCard card : container.betaCards)
             {
                 Deselect(card);
                 cardGrid.cards.remove(card);
-                repository.allCards.remove(card);
+                container.allCards.remove(card);
             }
         }
     }

@@ -1,16 +1,21 @@
-package eatyourbeets.ui.relics;
+package eatyourbeets.ui.screens.animator.cardReward;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import eatyourbeets.ui.GUIElement;
 
 import java.util.ArrayList;
 
-public class BundledRelicContainer
+public class BundledRelicContainer extends GUIElement
 {
     public final RewardItem rewardItem;
     public final ArrayList<BundledRelic> bundledRelics;
+
+    public BundledRelicContainer()
+    {
+        this(null);
+    }
 
     public BundledRelicContainer(RewardItem rewardItem)
     {
@@ -18,38 +23,51 @@ public class BundledRelicContainer
         this.bundledRelics = new ArrayList<>();
     }
 
-    public void Open(ArrayList<AbstractCard> cards)
+    public void Open(RewardItem rewardItem, ArrayList<AbstractCard> cards)
+    {
+        isActive = false;
+
+//        rewardBundle = BundledRelicProvider.SetupBundledRelics(rewardItem, cards);
+//        if (rewardBundle != null)
+//        {
+//            rewardBundle.Open(cards);
+//        }
+
+//        for (BundledRelic bundledRelic : bundledRelics)
+//        {
+//            for (AbstractCard card : cards)
+//            {
+//                if (bundledRelic.cardID.equals(card.cardID))
+//                {
+//                    bundledRelic.card = card;
+//                    bundledRelic.Open();
+//                }
+//            }
+//        }
+    }
+
+    public void Close()
+    {
+
+    }
+
+    public void Update()
     {
         for (BundledRelic bundledRelic : bundledRelics)
         {
-            for (AbstractCard card : cards)
-            {
-                if (bundledRelic.cardID.equals(card.cardID))
-                {
-                    bundledRelic.card = card;
-                    bundledRelic.Open();
-                }
-            }
+            bundledRelic.Update();
         }
     }
 
-    public void Update(CardRewardScreen screen)
+    public void Render(SpriteBatch sb)
     {
         for (BundledRelic bundledRelic : bundledRelics)
         {
-            bundledRelic.Update(screen);
+            bundledRelic.Render(sb);
         }
     }
 
-    public void Render(CardRewardScreen screen, SpriteBatch sb)
-    {
-        for (BundledRelic bundledRelic : bundledRelics)
-        {
-            bundledRelic.Render(screen, sb);
-        }
-    }
-
-    public void Acquired(AbstractCard hoveredCard)
+    public void OnCardObtained(AbstractCard hoveredCard)
     {
         for (BundledRelic bundledRelic : bundledRelics)
         {

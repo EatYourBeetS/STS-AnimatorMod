@@ -13,12 +13,13 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.loadouts._Random;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
-public class AnimatorLoadoutRenderer
+public class AnimatorLoadoutRenderer extends GUIElement
 {
     protected static FieldInfo<String> hpField = JavaUtilities.GetField("hp", CharacterOption.class);
     protected static FieldInfo<Integer> goldField = JavaUtilities.GetField("gold", CharacterOption.class);

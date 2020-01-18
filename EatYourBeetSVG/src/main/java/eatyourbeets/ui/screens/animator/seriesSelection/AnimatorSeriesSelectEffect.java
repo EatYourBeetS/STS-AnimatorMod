@@ -10,19 +10,19 @@ import eatyourbeets.ui.controls.GUI_CardGrid;
 
 import java.util.ArrayDeque;
 
-public class SeriesSelectionEffect extends EYBEffect
+public class AnimatorSeriesSelectEffect extends EYBEffect
 {
     private final ArrayDeque<AbstractCard> toAdd = new ArrayDeque<>(20);
-    private final SeriesSelectionProvider repository;
-    private final SeriesSelectionScreen screen;
+    private final AnimatorLoadoutsContainer container;
+    private final AnimatorSeriesSelectScreen screen;
     private final GUI_CardGrid grid;
 
-    public SeriesSelectionEffect(SeriesSelectionScreen screen)
+    public AnimatorSeriesSelectEffect(AnimatorSeriesSelectScreen screen)
     {
         super(Settings.ACTION_DUR_FAST, true);
 
         this.screen = screen;
-        this.repository = screen.repository;
+        this.container = screen.container;
         this.grid = screen.cardGrid;
         this.grid.Clear();
     }
@@ -32,30 +32,30 @@ public class SeriesSelectionEffect extends EYBEffect
     {
         SetInteractable(false);
 
-        repository.CreateCards();
+        container.CreateCards();
 
-        for (AnimatorRuntimeLoadout c : repository.cardsMap.values())
+        for (AnimatorRuntimeLoadout c : container.cardsMap.values())
         {
             if (c.promoted)
             {
                 if (GR.Animator.Data.SelectedLoadout == c.Loadout)
                 {
-                    repository.promotedCards.add(c.card);
+                    container.promotedCards.add(c.card);
                 }
                 else
                 {
-                    repository.promotedCards.add(0, c.card);
+                    container.promotedCards.add(0, c.card);
                 }
             }
             else
             {
                 if (c.Loadout.IsBeta)
                 {
-                    repository.betaCards.add(c.card);
+                    container.betaCards.add(c.card);
                 }
                 else
                 {
-                    repository.allCards.add(c.card);
+                    container.allCards.add(c.card);
                 }
 
                 c.card.targetTransparency = 0.66f;
@@ -64,17 +64,17 @@ public class SeriesSelectionEffect extends EYBEffect
             c.card.transparency = 0.01f;
         }
 
-        for (AbstractCard c : repository.promotedCards)
+        for (AbstractCard c : container.promotedCards)
         {
-            repository.allCards.add(0, c);
+            container.allCards.add(0, c);
         }
 
-        if (SeriesSelectionScreen.isBetaToggled)
+        if (AnimatorSeriesSelectScreen.isBetaToggled)
         {
-            repository.allCards.addAll(repository.betaCards);
+            container.allCards.addAll(container.betaCards);
         }
 
-        toAdd.addAll(repository.allCards);
+        toAdd.addAll(container.allCards);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class SeriesSelectionEffect extends EYBEffect
             {
                 SetInteractable(true);
 
-                for (AbstractCard c : repository.promotedCards)
+                for (AbstractCard c : container.promotedCards)
                 {
                     screen.Select(c);
                 }

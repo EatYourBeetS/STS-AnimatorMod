@@ -51,6 +51,8 @@ public class GUI_Image extends GUIElement
     public void Render(SpriteBatch sb)
     {
         Render(sb, hb);
+
+        hb.render(sb);
     }
 
     public void Render(SpriteBatch sb, Hitbox hb)
@@ -74,6 +76,13 @@ public class GUI_Image extends GUIElement
     public GUI_Image SetHitbox(Hitbox hb)
     {
         this.hb = hb;
+
+        return this;
+    }
+
+    public GUI_Image SetPosition(float x, float y)
+    {
+        this.hb.move(x, y);
 
         return this;
     }

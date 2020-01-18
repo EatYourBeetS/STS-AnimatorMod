@@ -25,7 +25,7 @@ public class EYBCardText
     {
         this.card = card;
         this.index = NewIndex;
-        this.descriptions = ConvertColorCode(cardStrings.DESCRIPTION).split(Pattern.quote(" || "));
+        this.descriptions = Converter.Convert(cardStrings.DESCRIPTION).split(Pattern.quote(" || "));
         this.canUpdate = true;
 
 //        String[] ext = cardStrings.EXTENDED_DESCRIPTION;
@@ -36,7 +36,7 @@ public class EYBCardText
 
         if (StringUtils.isNotEmpty(cardStrings.UPGRADE_DESCRIPTION))
         {
-            String[] temp = ConvertColorCode(cardStrings.UPGRADE_DESCRIPTION).split(Pattern.quote(" || "));
+            String[] temp = Converter.Convert(cardStrings.UPGRADE_DESCRIPTION).split(Pattern.quote(" || "));
             this.upgradedDescriptions = new String[2];
             this.upgradedDescriptions[0] = temp[0];
 
@@ -112,8 +112,8 @@ public class EYBCardText
 
     public void OverrideDescription(String description, String secondaryDescription, boolean forceRefresh)
     {
-        overrideDescription = ConvertColorCode(description);
-        overrideSecondaryDescription = ConvertColorCode(secondaryDescription);
+        overrideDescription = Converter.Convert(description);
+        overrideSecondaryDescription = Converter.Convert(secondaryDescription);
 
         if (forceRefresh)
         {
@@ -121,54 +121,153 @@ public class EYBCardText
         }
     }
 
-    protected String ConvertColorCode(String string)
+    protected static class Converter
     {
-        if (string == null || string.equals(""))
+        private static Character lastCharacter;
+        private static StringBuilder builder;
+        private static String source;
+        private static int remaining;
+        private static int index;
+
+        public static String Convert(String text)
         {
-            return string;
+            if (text == null || text.equals(""))
+            {
+                return text;
+            }
+
+            builder = new StringBuilder();
+            source = text;
+            remaining = text.length();
+            index = 0;
+
+            while (remaining > 0)
+            {
+                AddCharacter();
+            }
+
+            return builder.toString();
         }
 
-        StringBuilder sb = new StringBuilder(string.length());
-
-        for (int i = 0; i < string.length(); i++)
+        private static void AddCharacter()
         {
-            char character = string.charAt(i);
-            if ((character == '#') && (i == 0 || string.charAt(i-1) == ' ') && ((i + 1) < string.length()))
+            Character character = source.charAt(index);
+            if (character == '<' && lastCharacter == ' ' && remaining >= 3)
             {
-                switch(string.charAt(i + 1))
-                {
-                    case 'b':
-                        sb.append("[#87ceeb]");
-                        i += 1;
-                        break;
-
-                    case 'g':
-                        sb.append("[#7fff00]");
-                        i += 1;
-                        break;
-
-                    case 'r':
-                        sb.append("[#ff6563]");
-                        i += 1;
-                        break;
-
-                    case 'y':
-                        sb.append("[#efc851]");
-                        i += 1;
-                        break;
-
-                    default:
-                        JavaUtilities.Logger.warn("Unknown Color Code for " + card.cardID + " (#" + string.charAt(i+1) + ")");
-                        sb.append(character);
-                        break;
-                }
+                lastCharacter = character;
+                AddSpecialCode();
+            }
+            else if (character == '#' && lastCharacter == ' ' && remaining >= 3)
+            {
+                lastCharacter = character;
+                AddColorCode();
             }
             else
             {
-                sb.append(character);
+                lastCharacter = character;
+                builder.append(character);
+                MoveIndex(1);
             }
         }
 
-        return sb.toString();
+        private static void AddColorCode()
+        {
+            switch(source.charAt(index + 1))
+            {
+                case 'b':
+                    builder.append("[#87ceeb]");
+                    break;
+
+                case 'g':
+                    builder.append("[#7fff00]");
+                    break;
+
+                case 'r':
+                    builder.append("[#ff6563]");
+                    break;
+
+                case 'y':
+                    builder.append("[#efc851]");
+                    break;
+
+                case 'R':
+                    builder.append("[#ef916b]");
+                    break;
+
+                case 'B':
+                    builder.append("[#49b3dd]");
+                    break;
+
+                case 'G':
+                    builder.append("[#8edb00]");
+                    break;
+
+                default:
+                    JavaUtilities.Logger.warn("Unknown Color Code: " + source);
+                    builder.append(lastCharacter);
+                    MoveIndex(1);
+                    return;
+            }
+
+            MoveIndex(2);
+        }
+
+        private static void AddSpecialCode()
+        {
+            // @A:1.0, @F:0.2
+            char character =  source.charAt(index + 1);
+            switch (character)
+            {
+                case 'A':
+                    TryAddScaling("([#8edb00]", " [G] )");
+                    break;
+
+                case 'F':
+                    TryAddScaling("([#8edb00]", " [R] )");
+                    break;
+
+                case 'I':
+                    TryAddScaling("([#8edb00]", " [B] )");
+                    break;
+
+                default:
+                    JavaUtilities.Logger.warn("Unknown Special Code: " + source);
+                    builder.append(lastCharacter);
+                    MoveIndex(1);
+                    break;
+            }
+        }
+
+        private static void TryAddScaling(String prefix, String suffix)
+        {
+            builder.append(prefix);
+            MoveIndex(2);
+
+            while (remaining > 0)
+            {
+                char character = source.charAt(index);
+                if (character == '>')
+                {
+                    lastCharacter = character;
+                    builder.append(suffix);
+                    MoveIndex(1);
+                    return;
+                }
+                else
+                {
+                    lastCharacter = character;
+                    builder.append(character);
+                    MoveIndex(1);
+                }
+            }
+        }
+
+        private static boolean MoveIndex(int amount)
+        {
+            index += amount;
+            remaining = source.length() - index;
+
+            return remaining > 0;
+        }
     }
 }

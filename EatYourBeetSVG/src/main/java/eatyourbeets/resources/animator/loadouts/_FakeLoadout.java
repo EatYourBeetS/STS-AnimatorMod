@@ -3,7 +3,7 @@ package eatyourbeets.resources.animator.loadouts;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
 

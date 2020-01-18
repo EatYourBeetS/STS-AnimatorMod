@@ -9,7 +9,7 @@ import eatyourbeets.cards.animator.series.GoblinSlayer.LizardPriest;
 import eatyourbeets.cards.animator.ultrarare.Hero;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
 

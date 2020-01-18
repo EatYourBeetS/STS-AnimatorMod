@@ -9,14 +9,14 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import eatyourbeets.dungeons.CustomAbstractDungeon;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.AnimatorStrings;
-import eatyourbeets.resources.animator.metrics.AnimatorTrophies;
+import eatyourbeets.resources.animator.AnimatorImages;
+import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 
 public class AnimatorSpecialTrophiesRenderer
 {
-    protected static final AnimatorStrings.Trophies trophyStrings = GR.Animator.Text.Trophies;
-    protected static final AnimatorImages.Textures textures = GR.Animator.Textures;
+    protected static final AnimatorStrings.Trophies trophyStrings = GR.Animator.Strings.Trophies;
+    protected static final AnimatorImages images = GR.Animator.Images;
 
     protected final Hitbox trophySpecialHb;
     protected AnimatorTrophies specialTrophies;
@@ -33,7 +33,7 @@ public class AnimatorSpecialTrophiesRenderer
 
     public void Refresh()
     {
-        this.specialTrophies = GR.Animator.Database.SpecialTrophies;
+        this.specialTrophies = GR.Animator.Data.SpecialTrophies;
     }
 
     public void Update()
@@ -69,17 +69,17 @@ public class AnimatorSpecialTrophiesRenderer
         float halfH = 32;
 
         sb.setColor(trophyHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
-        sb.draw(textures.PLATINUM_TROPHY_SLOT, trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale,
+        sb.draw(images.PLATINUM_TROPHY_SLOT.Texture(), trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale,
                                     0.0F, 0, 0, 64, 64, false, false);
 
         Texture trophyTexture;
         if (trophyLevel <= 0)
         {
-            trophyTexture = textures.LOCKED_TROPHY;
+            trophyTexture = images.LOCKED_TROPHY.Texture();
         }
         else
         {
-            trophyTexture = textures.PLATINUM_TROPHY;
+            trophyTexture = images.PLATINUM_TROPHY.Texture();
         }
 
         sb.setColor(Color.WHITE);

@@ -1,45 +1,60 @@
 package eatyourbeets.relics.animator;
 
 import basemod.abstracts.CustomSavable;
-import com.evacipated.cardcrawl.mod.stslib.patches.HitboxRightClick;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
-import eatyourbeets.cards.base.CardRarityComparator;
-import eatyourbeets.cards.base.CardSeriesComparator;
+import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
-public class PurgingStone_Cards extends AbstractPurgingStone implements CustomSavable<String>
+public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 {
-    public static final String ID = CreateFullID(PurgingStone_Cards.class.getSimpleName());
+    public static final String ID = CreateFullID(PurgingStone.class.getSimpleName());
 
     private static final int MAX_BAN_COUNT = 80;
     private static final int MAX_STORED_USES = 3;
     private static FieldInfo<Boolean> isBoss = null;
     private final ArrayList<String> bannedCards = new ArrayList<>();
 
-    @Override
-    public String getUpdatedDescription()
+    public PurgingStone()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], MAX_STORED_USES);
-    }
-
-    public PurgingStone_Cards()
-    {
-        super(ID, CreateFullID("PurgingStone"), RelicTier.STARTER, LandingSound.SOLID);
+        super(ID, RelicTier.STARTER, LandingSound.SOLID);
 
         if (isBoss == null)
         {
             isBoss = JavaUtilities.GetField("isBoss", RewardItem.class);
+        }
+    }
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return FormatDescription(MAX_STORED_USES);
+    }
+
+    public static void UpdateBannedCards()
+    {
+        AbstractPlayer player = AbstractDungeon.player;
+        if (player != null && player.relics != null)
+        {
+            for (AbstractRelic relic : player.relics)
+            {
+                if (relic instanceof PurgingStone)
+                {
+                    ((PurgingStone)relic).UpdateBannedCardsInternal();
+                }
+            }
         }
     }
 
@@ -81,39 +96,6 @@ public class PurgingStone_Cards extends AbstractPurgingStone implements CustomSa
         }
     }
 
-    @Override
-    public void update()
-    {
-        super.update();
-
-        if (HitboxRightClick.rightClicked.get(this.hb) && !GameUtilities.InBattle() &&
-            AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID && bannedCards.size() > 0)
-        {
-            CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-
-            for (String cardID : bannedCards)
-            {
-                AbstractCard card = CardLibrary.getCard(cardID);
-                if (card != null)
-                {
-                    group.addToBottom(card.makeCopy());
-                }
-            }
-
-            if (group.size() == 0)
-            {
-                return;
-            }
-
-            group.group.sort(new CardRarityComparator());
-            group.group.sort(new CardSeriesComparator());
-
-            AbstractDungeon.dynamicBanner.hide();
-            AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            AbstractDungeon.gridSelectScreen.open(group, 0, false, "");
-        }
-    }
-
     private void AddUses(int uses)
     {
         int banned = bannedCards.size();
@@ -135,7 +117,6 @@ public class PurgingStone_Cards extends AbstractPurgingStone implements CustomSa
         return bannedCards.contains(cardID);
     }
 
-    @Override
     public boolean IsBanned(AbstractCard card)
     {
         return card != null && IsBanned(card.cardID);
@@ -297,7 +278,6 @@ public class PurgingStone_Cards extends AbstractPurgingStone implements CustomSa
         logger.info("Banned " + card.cardID + " " + banCount + ", " + srcBanCount);
     }
 
-    @Override
     public void UpdateBannedCardsInternal()
     {
         logger.info("Banned " + bannedCards.size() + " Cards:");

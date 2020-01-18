@@ -281,7 +281,7 @@ public class SoraAction extends EYBAction
         protected AnimatorCardBuilder GenerateInternal(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
             AnimatorCardBuilder builder = new AnimatorCardBuilder(Sora.ID + "Alt");
-            AnimatorStrings.Special text = GR.Animator.Text.Special;
+            AnimatorStrings.Special text = GR.Animator.Strings.Special;
 
             builder.SetText(text.Get(nameIndex), text.Get(descriptionIndex), "");
             builder.SetProperties(AbstractCard.CardType.SKILL, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);

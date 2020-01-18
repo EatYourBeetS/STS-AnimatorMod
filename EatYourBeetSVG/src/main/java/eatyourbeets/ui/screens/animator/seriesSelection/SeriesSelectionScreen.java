@@ -1,6 +1,7 @@
 package eatyourbeets.ui.screens.animator.seriesSelection;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,14 +11,13 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.interfaces.csharp.FuncT1;
-import eatyourbeets.relics.animator.PurgingStone_Cards;
+import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.AdvancedHitbox;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.controls.*;
 import eatyourbeets.ui.screens.AbstractScreen;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
-import patches.CardGlowBorderPatches;
 
 public class SeriesSelectionScreen extends AbstractScreen
 {
@@ -40,16 +40,19 @@ public class SeriesSelectionScreen extends AbstractScreen
 
     public SeriesSelectionScreen()
     {
+        final Texture panelTexture = GR.Common.Images.Panel.Texture();
         final FuncT1<Float,Float> getY = (delta) -> ScreenH(0.78f) - ScreenH(0.08f * delta);
-
         final float buttonHeight = ScreenH(0.07f);
         final float buttonWidth = ScreenW(0.18f);
         final float xPos = ScreenW(0.82f);
 
-        toggleBeta = new GUI_Toggle(new AdvancedHitbox(xPos, getY.Invoke(0f), buttonWidth, buttonHeight * 0.8f))
+        cardGrid = new GUI_CardGrid()
+        .SetOnCardClick(this::OnCardClicked);
+
+        toggleBeta = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(0f), buttonWidth, buttonHeight * 0.8f))
         .SetText("Show Beta series.")
         .SetOnToggle(this::ToggleBetaSeries)
-        .SetTexture(GR.Common.Textures.Panel, Color.DARK_GRAY);
+        .SetTexture(panelTexture, Color.DARK_GRAY);
 
         deselectAll = CreateHexagonalButton(xPos, getY.Invoke(1f), buttonWidth, buttonHeight)
         .SetText("Deselect All")
@@ -71,37 +74,37 @@ public class SeriesSelectionScreen extends AbstractScreen
         .SetOnClick(this::SelectAll)
         .SetColor(Color.ROYAL);
 
-        selectionAmount = new GUI_TextBox(GR.Common.Textures.Panel, new Hitbox(xPos, getY.Invoke(4.8f), buttonWidth, buttonHeight*0.8f))
+        selectionAmount = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(4.8f), buttonWidth, buttonHeight*0.8f))
         .SetColors(Color.DARK_GRAY, Settings.GOLD_COLOR)
         .SetAlignment(0.5f, true)
         .SetFont(FontHelper.charDescFont); //FontHelper.textAboveEnemyFont);
 
         final float selectionAmountSize = selectionAmount.hb.height;
-        purgingStoneImage = new GUI_Relic(new PurgingStone_Cards(), new AdvancedHitbox(selectionAmount.hb.x + (selectionAmountSize * 0.25f),
+        purgingStoneImage = new GUI_Relic(new PurgingStone(), new Hitbox(selectionAmount.hb.x + (selectionAmountSize * 0.25f),
         selectionAmount.hb.y, selectionAmountSize, selectionAmountSize));
 
         final String message = "Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards.";
-        selectionInfo = new GUI_TextBox(GR.Common.Textures.Panel, new Hitbox(xPos, getY.Invoke(7f), buttonWidth, buttonHeight*2.5f))
+        selectionInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(7f), buttonWidth, buttonHeight*2.5f))
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
         .SetFont(FontHelper.tipBodyFont)
         .SetText(message);
 
         confirm = CreateHexagonalButton(xPos, getY.Invoke(8f), buttonWidth, buttonHeight*1.1f)
         .SetText("Proceed")
-        .SetOnClick(AbstractDungeon::closeCurrentScreen)
+        .SetOnClick(() ->
+        {
+            cardGrid.Clear();
+            repository.CommitChanges();
+            AbstractDungeon.closeCurrentScreen();
+        })
         .SetColor(Color.FOREST);
-
-        cardGrid = new GUI_CardGrid()
-        .SetOnCardClick(this::OnCardClicked);
     }
 
     public void Open(boolean firstTime)
     {
         super.Open();
 
-        CardGlowBorderPatches.overrideColor = Color.GRAY.cpy();
-
-        GameEffects.TopLevelList.Callback(new SeriesSelectionEffect(this));
+        GameEffects.TopLevelList.Add(new SeriesSelectionEffect(this));
     }
 
     @Override
@@ -153,7 +156,7 @@ public class SeriesSelectionScreen extends AbstractScreen
 
     protected void OnCardClicked(AbstractCard card)
     {
-        SeriesSelectionItem c = repository.Find(card);
+        AnimatorRuntimeLoadout c = repository.Find(card);
         if (c.promoted)
         {
             CardCrawlGame.sound.play("CARD_REJECT");

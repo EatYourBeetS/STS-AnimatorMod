@@ -27,9 +27,11 @@ public class GUI_Label extends GUIElement
     public GUI_Label(BitmapFont font, Hitbox hb)
     {
         this.verticalRatio = 0.85f;
+        this.textColor = Color.WHITE;
+        this.fontScale = 1;
+        this.font = font;
         this.text = "-";
         this.hb = hb;
-        this.font = font;
     }
 
     public GUI_Label SetText(String text)

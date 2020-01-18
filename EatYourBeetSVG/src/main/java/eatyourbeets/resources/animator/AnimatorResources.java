@@ -26,11 +26,10 @@ public class AnimatorResources extends AbstractResources
     public final static String ID = "animator";
     public final AbstractCard.CardColor CardColor = Enums.Cards.THE_ANIMATOR;
     public final AbstractPlayer.PlayerClass PlayerClass = Enums.Characters.THE_ANIMATOR;
+    public final AnimatorDungeonData Dungeon = AnimatorDungeonData.Register(CreateID("Data"));
+    public final AnimatorPlayerData Data = new AnimatorPlayerData();
+    public final AnimatorStrings Strings = new AnimatorStrings();
     public final AnimatorImages Images = new AnimatorImages();
-    public final AnimatorStrings Text = new AnimatorStrings();
-    public final AnimatorData Database = new AnimatorData();
-
-    public AnimatorImages.Textures Textures;
 
     public AnimatorResources()
     {
@@ -110,9 +109,7 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeCards()
     {
-        Textures = Images.InitializeTextures();
-        Text.LoadStrings();
-
+        Strings.Initialize();
         LoadCustomCards();
     }
 
@@ -158,8 +155,7 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void PostInitialize()
     {
-        Database.Initialize();
-
+        Data.Initialize();
         SeriesSelectionProvider.PreloadResources();
     }
 

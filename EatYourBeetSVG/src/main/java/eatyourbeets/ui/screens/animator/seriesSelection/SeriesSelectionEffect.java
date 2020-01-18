@@ -5,26 +5,26 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.controls.GUI_CardGrid;
 
-import java.util.ArrayList;
+import java.util.ArrayDeque;
 
 public class SeriesSelectionEffect extends EYBEffect
 {
-    private final ArrayList<AbstractCard> toAdd = new ArrayList<>();
+    private final ArrayDeque<AbstractCard> toAdd = new ArrayDeque<>(20);
     private final SeriesSelectionProvider repository;
     private final SeriesSelectionScreen screen;
     private final GUI_CardGrid grid;
 
     public SeriesSelectionEffect(SeriesSelectionScreen screen)
     {
-        super(1, Settings.ACTION_DUR_FAST, true);
+        super(Settings.ACTION_DUR_FAST, true);
 
         this.screen = screen;
         this.repository = screen.repository;
         this.grid = screen.cardGrid;
-        this.grid.cards.clear();
-        this.grid.Refresh();
+        this.grid.Clear();
     }
 
     @Override
@@ -34,11 +34,11 @@ public class SeriesSelectionEffect extends EYBEffect
 
         repository.CreateCards();
 
-        for (SeriesSelectionItem c : repository.cardsMap.values())
+        for (AnimatorRuntimeLoadout c : repository.cardsMap.values())
         {
             if (c.promoted)
             {
-                if (GR.Animator.Database.SelectedLoadout == c.loadout)
+                if (GR.Animator.Data.SelectedLoadout == c.Loadout)
                 {
                     repository.promotedCards.add(c.card);
                 }
@@ -49,7 +49,7 @@ public class SeriesSelectionEffect extends EYBEffect
             }
             else
             {
-                if (c.loadout.IsBeta)
+                if (c.Loadout.IsBeta)
                 {
                     repository.betaCards.add(c.card);
                 }
@@ -60,12 +60,13 @@ public class SeriesSelectionEffect extends EYBEffect
 
                 c.card.targetTransparency = 0.66f;
             }
+
+            c.card.transparency = 0.01f;
         }
 
         for (AbstractCard c : repository.promotedCards)
         {
             repository.allCards.add(0, c);
-            screen.Select(c);
         }
 
         if (SeriesSelectionScreen.isBetaToggled)
@@ -85,7 +86,7 @@ public class SeriesSelectionEffect extends EYBEffect
         {
             if (toAdd.size() > 0)
             {
-                grid.cards.add(toAdd.remove(0));
+                grid.AddCard(toAdd.pop());
 
                 if (grid.cards.size() <= 3)
                 {
@@ -102,6 +103,11 @@ public class SeriesSelectionEffect extends EYBEffect
             else
             {
                 SetInteractable(true);
+
+                for (AbstractCard c : repository.promotedCards)
+                {
+                    screen.Select(c);
+                }
             }
         }
     }

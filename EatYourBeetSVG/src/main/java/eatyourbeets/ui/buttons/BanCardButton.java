@@ -201,7 +201,7 @@ public class BanCardButton
         }
         else
         {
-            return GR.Animator.Text.Rewards.Banish;
+            return GR.Animator.Strings.Rewards.Banish;
         }
     }
 

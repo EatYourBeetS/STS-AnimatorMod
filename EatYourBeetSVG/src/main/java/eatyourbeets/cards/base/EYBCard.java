@@ -147,7 +147,7 @@ public abstract class EYBCard extends CustomCard
                 return;
 
             case SPECIAL:
-                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_ATTACK_SPECIAL, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Images.CARD_FRAME_ATTACK_SPECIAL.Texture(), x, y);
                 return;
 
             case UNCOMMON:
@@ -173,7 +173,7 @@ public abstract class EYBCard extends CustomCard
                 return;
 
             case SPECIAL:
-                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_SKILL_SPECIAL, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Images.CARD_FRAME_SKILL_SPECIAL.Texture(), x, y);
                 return;
 
             case UNCOMMON:
@@ -199,7 +199,7 @@ public abstract class EYBCard extends CustomCard
                 break;
 
             case SPECIAL:
-                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Textures.CARD_FRAME_POWER_SPECIAL, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, FRAME_COLOR, GR.Animator.Images.CARD_FRAME_POWER_SPECIAL.Texture(), x, y);
                 return;
 
             case UNCOMMON:

@@ -21,7 +21,7 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.loadouts._Random;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -178,7 +178,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public AbstractCard.CardColor getCardColor()
     {
-        return GR.Enums.Cards.THE_ANIMATOR;
+        return GR.Animator.CardColor;
     }
 
     @Override
@@ -196,15 +196,15 @@ public class AnimatorCharacter extends CustomPlayer
 
     protected AnimatorLoadout GetCurrentLoadout()
     {
-        AnimatorLoadout current = GR.Animator.Database.SelectedLoadout;
-        if (current instanceof _Random)
-        {
-            int currentLevel = GR.Animator.GetUnlockLevel();
+        int level = GR.Animator.GetUnlockLevel();
+        AnimatorLoadout current = GR.Animator.Data.SelectedLoadout;
 
+        if (current instanceof _Random || level < current.UnlockLevel)
+        {
             RandomizedList<AnimatorLoadout> list = new RandomizedList<>();
-            for (AnimatorLoadout loadout : GR.Animator.Database.BaseLoadouts)
+            for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
             {
-                if (currentLevel >= loadout.UnlockLevel)
+                if (level >= loadout.UnlockLevel)
                 {
                     list.Add(loadout);
                 }

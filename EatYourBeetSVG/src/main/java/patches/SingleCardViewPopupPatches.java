@@ -58,16 +58,16 @@ public class SingleCardViewPopupPatches
                     switch (card.type)
                     {
                         case ATTACK:
-                            tmpImg = Images.Textures.CARD_FRAME_ATTACK_SPECIAL_L;
+                            tmpImg = Images.CARD_FRAME_ATTACK_SPECIAL_L.Texture();
                             break;
 
                         case POWER:
-                            tmpImg = Images.Textures.CARD_FRAME_POWER_SPECIAL_L;
+                            tmpImg = Images.CARD_FRAME_POWER_SPECIAL_L.Texture();
                             break;
 
                         case SKILL:
                         default:
-                            tmpImg = Images.Textures.CARD_FRAME_SKILL_SPECIAL_L;
+                            tmpImg = Images.CARD_FRAME_SKILL_SPECIAL_L.Texture();
                             break;
                     }
 

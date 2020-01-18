@@ -6,19 +6,21 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.TreasureRoomBoss;
-import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
-import eatyourbeets.utilities.WeightedList;
-import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
+import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
+import eatyourbeets.rewards.animator.SynergyCardsReward;
+import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public abstract class AbstractMissingPiece extends AnimatorRelic implements OnReceiveRewardsSubscriber
 {
@@ -134,27 +136,36 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     private WeightedList<Synergy> CreateWeightedList()
     {
         WeightedList<Synergy> list = new WeightedList<>();
-        Map<Synergy, List<AbstractCard>> synergyListMap = AbstractDungeon.player.masterDeck.group.stream().collect(Collectors.groupingBy(this::Group));
+        Map<Synergy, List<AbstractCard>> synergyListMap = GetCardsBySynergy(AbstractDungeon.player.masterDeck.group);
 
-        for (Synergy s : AbstractPurgingStone.GetAvailableSeries())
+        if (GR.Animator.Dungeon.Series.isEmpty())
         {
-            int weight = 2;
-            if (synergyListMap.containsKey(s))
-            {
-                int size = synergyListMap.get(s).size();
+            GR.Animator.Dungeon.AddAllSeries();
+        }
 
-                if (size >= 2)
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
+        {
+            if (series.Cards.size() >= 10)
+            {
+                Synergy s = series.Loadout.Synergy;
+
+                int weight = series.promoted ? 5 : 2;
+                if (synergyListMap.containsKey(s))
                 {
-                    weight += 12 + (size * 3);
-                    if (weight > 26)
+                    int size = synergyListMap.get(s).size();
+                    if (size >= 2)
                     {
-                        weight = 26;
+                        weight += 12 + (size * 3);
+                        if (weight > 26)
+                        {
+                            weight = 26;
+                        }
                     }
                 }
-            }
 
-            logger.info(s.Name + " : " + weight);
-            list.Add(s, weight);
+                logger.info(s.Name + " : " + weight);
+                list.Add(s, weight);
+            }
         }
 
         if (relicId.equals(ColorlessFragment.ID))
@@ -165,16 +176,21 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         return list;
     }
 
-    private Synergy Group(AbstractCard card)
+    private Map<Synergy, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
     {
-        AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
-
-        Synergy synergy = null;
-        if (c != null)
+        Map<Synergy, List<AbstractCard>> map = new HashMap<>();
+        for(AbstractCard card : cards)
         {
-            synergy = c.synergy;
+            Synergy key = Synergies.ANY;
+            AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+            if (c != null && c.synergy != null)
+            {
+                key = c.synergy;
+            }
+
+            map.computeIfAbsent(key, k -> new ArrayList<>()).add(card);
         }
 
-        return synergy != null ? synergy : Synergies.ANY;
+        return map;
     }
 }

@@ -1,8 +1,8 @@
 package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
-import eatyourbeets.resources.animator.metrics.AnimatorTrophies;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.ui.screens.animator.characterSelection.AnimatorLoadoutRenderer;
 
 import java.util.ArrayList;

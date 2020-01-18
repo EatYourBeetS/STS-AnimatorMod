@@ -308,6 +308,7 @@
 	"animator:DolaStephanie":
 	{
 		"DESCRIPTION": "选择一张手牌， NL 取出 1 张 NL 同系列的牌。 NL 消耗 。",
+		"EXTENDED_DESCRIPTION": ["抽取同系列的牌。"],
 		"NAME": "史蒂芬妮·多拉",
 		"UPGRADE_DESCRIPTION": "选择一张手牌， NL 取出 1 张 NL 同系列的牌。"
 	},
@@ -499,12 +500,12 @@
 	},
 	"animator:HarukoHaruhara":
 	{
-		"DESCRIPTION": "随机丢弃 1 张牌。 随机打出手牌部的1张牌。",
+		"DESCRIPTION": "随机丢弃 1 张牌。 随机打出手牌部的 1 张牌。",
 		"NAME": "春原晴子"
 	},
 	"animator:Hero":
 	{
-		"DESCRIPTION": "造成 !D! 点伤害。 NL 抽 !M! 张牌 。 || 这张牌位于牌组中时， NL 大幅增加获得 NL 额外遗物 的几率 。",
+		"DESCRIPTION": "造成 !D! 点伤害。 NL 抽 !M! 张牌 。 || 昙现 。 NL 如果这张牌 NL 杀死一个敌人， NL 战斗结束时， NL 40% 的机会 NL 得到1个遗物。",
 		"NAME": "“英雄”"
 	},
 	"animator:Hibiki":
@@ -540,8 +541,8 @@
 	},
 	"animator:HolyGrail":
 	{
-		"DESCRIPTION": "Innate. Retain. NL Refill your Energy. NL Draw !M! cards. NL Lose !SV! Max HP. NL Exhaust. || If you end the NL combat with this NL card in your hand, NL gain 2 Max HP.",
-		"NAME": "The Grail"
+		"DESCRIPTION": " 忠诚 。 保留 。 NL 重新充满能量。 NL 抽 !M! 张牌。 NL 失去 !SV! 点最大生命。 NL 消耗 。 || 如果战斗结束时 NL 此牌在手牌里， NL 获得 2 点最大生命。",
+		"NAME": "圣杯"
 	},
 	"animator:HououinKyouma":
 	{
@@ -922,9 +923,9 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "Ethereal. Fetch an NL #yAttack[] from your NL draw or discard pile. NL Double its damage NL until end of combat. || When Drawn, NL if you have !SV! or NL more Force and NL Agility, gain [E]",
+		"DESCRIPTION": " 虚无 。 NL 从你的抽牌堆 NL 或弃牌堆抽取 NL 1 张 攻击牌 。 NL 战斗结束前 NL 造成双倍伤害。 || 被抽到时， NL 如果你有 !SV! 点 NL 或更多的 武力 NL 和 机敏 ，获得 [E] ",
 		"NAME": "四季崎 记纪",
-		"UPGRADE_DESCRIPTION": "Fetch an #yAttack[] NL from your draw NL or discard pile. NL Double its damage NL until end of combat."
+		"UPGRADE_DESCRIPTION": "从你的抽牌堆 NL 或弃牌堆抽取 NL 1 张 攻击牌 。  NL 战斗结束前 NL 造成双倍伤害。"
 	},
 	"animator:Shimakaze":
 	{

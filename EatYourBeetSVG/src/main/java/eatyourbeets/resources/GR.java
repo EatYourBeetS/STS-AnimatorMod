@@ -22,7 +22,6 @@ import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.common.CommonResources;
 import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.utilities.JavaUtilities;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
@@ -35,8 +34,10 @@ import java.util.Map;
 
 public class GR
 {
-    protected static final Logger logger = LogManager.getLogger(GR.class.getName());
+    // TODO: Reminder to set to false
+    public static final boolean TEST_MODE = false;
 
+    protected static final Logger logger = JavaUtilities.GetLogger(GR.class);
     protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.cards.");
     protected static final ArrayList<String> relicClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.relics.");
     protected static final ArrayList<String> powerClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.powers.");
@@ -171,12 +172,6 @@ public class GR
     public static Keyword GetKeyword(String keywordID)
     {
         return keywords.get(keywordID);
-    }
-
-    protected static void Complete()
-    {
-        UI.Initialize();
-        IsLoaded = true;
     }
 
     protected void LoadCustomRelics(String character)

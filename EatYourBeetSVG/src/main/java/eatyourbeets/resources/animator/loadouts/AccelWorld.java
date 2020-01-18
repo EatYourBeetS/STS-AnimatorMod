@@ -11,8 +11,8 @@ import eatyourbeets.cards.animator.colorless.uncommon.LimeBell;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
-import eatyourbeets.resources.animator.metrics.AnimatorTrophies;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 
 import java.util.ArrayList;
 
@@ -60,15 +60,15 @@ public class AccelWorld extends AnimatorLoadout
     {
         if (trophy == 1)
         {
-            return GR.Animator.Text.Trophies.BronzeDescription;
+            return GR.Animator.Strings.Trophies.BronzeDescription;
         }
         else if (trophy == 2)
         {
-            return GR.Animator.Text.Trophies.SilverAccelWorld;
+            return GR.Animator.Strings.Trophies.SilverAccelWorld;
         }
         else if (trophy == 3)
         {
-            return GR.Animator.Text.Trophies.GoldAccelWorld;
+            return GR.Animator.Strings.Trophies.GoldAccelWorld;
         }
 
         return null;
@@ -78,7 +78,7 @@ public class AccelWorld extends AnimatorLoadout
     {
         AnimatorTrophies trophies = GetTrophies();
 
-        if (GR.Animator.Database.SelectedLoadout.ID == ID)
+        if (GR.Animator.Dungeon.StartingSeries == this)
         {
             trophies.Trophy1 = Math.max(trophies.Trophy1, ascensionLevel);
         }

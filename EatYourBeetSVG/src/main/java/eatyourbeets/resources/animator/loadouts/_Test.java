@@ -1,13 +1,11 @@
 package eatyourbeets.resources.animator.loadouts;
 
-import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
-import eatyourbeets.resources.animator.metrics.AnimatorTrophies;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.ui.screens.animator.characterSelection.AnimatorLoadoutRenderer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class _Test extends AnimatorLoadout
 {
@@ -22,12 +20,6 @@ public class _Test extends AnimatorLoadout
         this.ID = -1;
         this.StartingGold = 0;
         this.MaxHP = 0;
-        this.libraryCards = new HashMap<>();
-
-        for (int i = 0; i < amount; i++)
-        {
-            this.libraryCards.put(String.valueOf(i), new QuestionMark());
-        }
     }
 
     @Override

@@ -16,14 +16,14 @@ public class TheEnding_GenerateSpecialMap
     @SpirePostfixPatch
     public static void Postfix(TheEnding __instance)
     {
-        if (GR.Animator.Database.SpecialTrophies.Trophy1 > 0 || AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass)
+        if (GR.Animator.Data.SpecialTrophies.Trophy1 > 0 || AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass)
         {
             MapRoomNode rest = __instance.getMap().get(0).get(3);
             MapRoomNode shop = __instance.getMap().get(1).get(3);
             MapRoomNode node = __instance.getMap().get(1).get(5);
 
             node.room = new AnimatorCustomEventRoom(TheMaskedTraveler2::new);
-            node.room.setMapImg(GR.Common.Textures.UnnamedReignEntrance, GR.Common.Textures.UnnamedReignEntranceOutline);
+            node.room.setMapImg(GR.Common.Images.UnnamedReignEntrance.Texture(), GR.Common.Images.UnnamedReignEntranceOutline.Texture());
 
             connectNode(rest, node);
             connectNode(node, shop);

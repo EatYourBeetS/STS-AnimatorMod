@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: Change this to give a random bonus based on the card series
 public class BundledRelicProvider
 {
     private static final Map<String, BundledRelic> bundledRelicsPool = new HashMap<>();

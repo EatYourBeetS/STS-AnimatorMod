@@ -4,13 +4,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.cards.animator.colorless.rare.Emilia;
-import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
-import eatyourbeets.cards.animator.colorless.uncommon.Urushihara;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.loadouts._Test;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -21,7 +17,7 @@ import java.util.Map;
 public class SeriesSelectionProvider
 {
     public int TotalCardsInPool = 0;
-    public final Map<AbstractCard, SeriesSelectionItem> cardsMap = new HashMap<>();
+    public final Map<AbstractCard, AnimatorRuntimeLoadout> cardsMap = new HashMap<>();
     public final ArrayList<AbstractCard> promotedCards = new ArrayList<>();
     public final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
     public final ArrayList<AbstractCard> betaCards = new ArrayList<>();
@@ -29,8 +25,15 @@ public class SeriesSelectionProvider
 
     public static void PreloadResources()
     {
-        new SeriesSelectionProvider().CreateCards();
         CardCrawlGame.sound.preload("CARD_SELECT");
+        for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
+        {
+            AnimatorRuntimeLoadout temp = AnimatorRuntimeLoadout.TryCreate(loadout);
+            if (temp != null)
+            {
+                temp.BuildCard();
+            }
+        }
     }
 
     public void CreateCards()
@@ -44,14 +47,14 @@ public class SeriesSelectionProvider
         allCards.clear();
 
         int promotedCount = 0;
-        RandomizedList<SeriesSelectionItem> toPromote = new RandomizedList<>();
-        ArrayList<SeriesSelectionItem> seriesSelectionItems = new ArrayList<>();
-        for (AnimatorLoadout loadout : GR.Animator.Database.BaseLoadouts)
+        RandomizedList<AnimatorRuntimeLoadout> toPromote = new RandomizedList<>();
+        ArrayList<AnimatorRuntimeLoadout> seriesSelectionItems = new ArrayList<>();
+        for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
         {
-            SeriesSelectionItem card = SeriesSelectionItem.TryCreate(loadout);
+            AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
             if (card != null)
             {
-                if (loadout == GR.Animator.Database.SelectedLoadout)
+                if (loadout == GR.Animator.Data.SelectedLoadout)
                 {
                     card.Promote();
                     promotedCount += 1;
@@ -67,9 +70,9 @@ public class SeriesSelectionProvider
 
         // <Beta>
 
-        seriesSelectionItems.add(SeriesSelectionItem.TryCreate(new _Test(Synergies.HatarakuMaouSama, Urushihara.ID, 4)));
-        seriesSelectionItems.add(SeriesSelectionItem.TryCreate(new _Test(Synergies.ReZero, Emilia.ID, 5)));
-        seriesSelectionItems.add(SeriesSelectionItem.TryCreate(new _Test(Synergies.Jojo, QuestionMark.ID, 7)));
+//        seriesSelectionItems.add(AnimatorRuntimeLoadout.TryCreate(new _Test(Synergies.HatarakuMaouSama, Urushihara.ID, 4)));
+//        seriesSelectionItems.add(AnimatorRuntimeLoadout.TryCreate(new _Test(Synergies.ReZero, Emilia.ID, 5)));
+//        seriesSelectionItems.add(AnimatorRuntimeLoadout.TryCreate(new _Test(Synergies.Jojo, QuestionMark.ID, 7)));
 
         // </Beta>
 
@@ -80,18 +83,18 @@ public class SeriesSelectionProvider
             promotedCount += 1;
         }
 
-        for (SeriesSelectionItem c : seriesSelectionItems)
+        for (AnimatorRuntimeLoadout c : seriesSelectionItems)
         {
             cardsMap.put(c.BuildCard(), c);
         }
     }
 
-    public SeriesSelectionItem Find(AbstractCard card)
+    public AnimatorRuntimeLoadout Find(AbstractCard card)
     {
         return cardsMap.get(card);
     }
 
-    public Collection<SeriesSelectionItem> GetAllCards()
+    public Collection<AnimatorRuntimeLoadout> GetAllCards()
     {
         return cardsMap.values();
     }
@@ -100,7 +103,7 @@ public class SeriesSelectionProvider
     {
         if (!selectedCards.contains(card))
         {
-            TotalCardsInPool += Find(card).size;
+            TotalCardsInPool += Find(card).Cards.size();
             selectedCards.add(card);
             return true;
         }
@@ -110,18 +113,21 @@ public class SeriesSelectionProvider
 
     public boolean Deselect(AbstractCard card)
     {
-        SeriesSelectionItem c = Find(card);
+        AnimatorRuntimeLoadout c = Find(card);
         if (!c.promoted && selectedCards.remove(card))
         {
-            TotalCardsInPool -= c.size;
+            TotalCardsInPool -= c.Cards.size();
             return true;
         }
 
         return false;
     }
 
-    public void UpdateDatabase()
+    public void CommitChanges()
     {
-        // TODO:
+        for (AbstractCard card : selectedCards)
+        {
+            GR.Animator.Dungeon.AddSeries(Find(card));
+        }
     }
 }

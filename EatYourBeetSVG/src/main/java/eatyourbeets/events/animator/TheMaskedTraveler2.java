@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.characters.AnimatorCharacter;
-import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.effects.special.MaskedTravelerTransformCardsEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
 import eatyourbeets.events.AnimatorEvent;
@@ -17,6 +16,7 @@ import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.TheEgnaroPiece;
 import eatyourbeets.relics.animator.unnamedReign.TheEruzaStone;
 import eatyourbeets.relics.animator.unnamedReign.TheWolleyCore;
+import eatyourbeets.resources.GR;
 
 import java.util.ArrayList;
 
@@ -176,7 +176,7 @@ public class TheMaskedTraveler2 extends AnimatorEvent
 
     private void HandleSpecialPhase(int button)
     {
-        TheUnnamedReign.EnterDungeon();
+        GR.Common.Dungeon.EnterUnnamedReign();
     }
 
     private void ObtainRelic(AbstractRelic relic)

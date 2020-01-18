@@ -33,12 +33,10 @@ import java.util.ArrayList;
 
              return true;
          }
-         catch (RuntimeException | ClassNotFoundException e)
+         catch (RuntimeException | ClassNotFoundException ignored)
          {
-             e.printStackTrace();
+             return false;
          }
-
-         return false;
      }
 
      @Override

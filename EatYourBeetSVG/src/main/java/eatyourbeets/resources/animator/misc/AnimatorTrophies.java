@@ -1,4 +1,4 @@
-package eatyourbeets.resources.animator.metrics;
+package eatyourbeets.resources.animator.misc;
 
 import eatyourbeets.utilities.JavaUtilities;
 

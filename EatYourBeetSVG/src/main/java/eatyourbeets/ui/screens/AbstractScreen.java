@@ -46,9 +46,9 @@ public abstract class AbstractScreen extends GUIElement
         CardCrawlGame.sound.play("DECK_OPEN");
     }
 
-    // Modified Logic from AbstractDungeon.closeCurrentScreen and AbstractDungeon.genericScreenOverlayReset
     public void Dispose()
     {
+        // Modified Logic from AbstractDungeon.closeCurrentScreen and AbstractDungeon.genericScreenOverlayReset
         GR.UI.CurrentScreen = null;
         Settings.hideTopBar = false;
         Settings.hideRelics = false;
@@ -91,17 +91,17 @@ public abstract class AbstractScreen extends GUIElement
 
     }
 
-    protected static boolean IsNullOrNone(AbstractDungeon.CurrentScreen screen)
-    {
-        return screen == null || screen == AbstractDungeon.CurrentScreen.NONE;
-    }
-
     protected static GUI_Button CreateHexagonalButton(float x, float y, float width, float height)
     {
-        final Texture buttonTexture = GR.Common.Textures.HexagonalButton;
-        final Texture buttonBorderTexture = GR.Common.Textures.HexagonalButtonBorder;
+        final Texture buttonTexture = GR.Common.Images.HexagonalButton.Texture();
+        final Texture buttonBorderTexture = GR.Common.Images.HexagonalButtonBorder.Texture();
         return new GUI_Button(buttonTexture, x, y)
         .SetBorder(buttonBorderTexture, Color.WHITE)
         .SetDimensions(width, height);
+    }
+
+    private static boolean IsNullOrNone(AbstractDungeon.CurrentScreen screen)
+    {
+        return screen == null || screen == AbstractDungeon.CurrentScreen.NONE;
     }
 }

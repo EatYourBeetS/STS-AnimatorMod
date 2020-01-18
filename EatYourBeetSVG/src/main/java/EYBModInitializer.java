@@ -1,5 +1,6 @@
 import basemod.BaseMod;
 import basemod.interfaces.*;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -10,8 +11,10 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.console.CommandsManager;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.relics.animator.AbstractPurgingStone;
+import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.AdvancedHitbox;
+import eatyourbeets.ui.controls.GUI_TextBox;
 import eatyourbeets.utilities.InputManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +25,8 @@ import java.util.ArrayList;
 public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
                                            PostEnergyRechargeSubscriber, PostDrawSubscriber, StartGameSubscriber,
                                            StartActSubscriber, MaxHPChangeSubscriber, PostDeathSubscriber,
-                                           PreStartGameSubscriber, PreUpdateSubscriber, PostUpdateSubscriber, PostInitializeSubscriber
+                                           PreStartGameSubscriber, PreUpdateSubscriber, PostUpdateSubscriber, PostInitializeSubscriber,
+                                          PostRenderSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
 
@@ -92,10 +96,10 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
         {
             if (Settings.isStandardRun())
             {
-                GR.Animator.Database.SaveTrophies(true);
+                GR.Animator.Data.SaveTrophies(true);
             }
 
-            AbstractPurgingStone.UpdateBannedCards();
+            PurgingStone.UpdateBannedCards();
         }
         else
         {
@@ -113,7 +117,7 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
             RemoveColorless(AbstractDungeon.colorlessCardPool);
         }
 
-        AbstractPurgingStone.UpdateBannedCards();
+        PurgingStone.UpdateBannedCards();
     }
 
     private void RemoveColorless(CardGroup group)
@@ -150,5 +154,25 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     public void receivePreUpdate()
     {
         InputManager.PreUpdate();
+    }
+
+    private static GUI_TextBox testModeLabel;
+
+    @Override
+    public void receivePostRender(SpriteBatch sb)
+    {
+        if (GR.TEST_MODE)
+        {
+            if (testModeLabel == null)
+            {
+                testModeLabel = new GUI_TextBox(GR.Common.Images.Panel.Texture(),
+                new AdvancedHitbox(Settings.WIDTH * 0.12f, Settings.HEIGHT * 0.08f))
+                .SetPosition(Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.85f)
+                .SetAlignment(0.5f, true)
+                .SetText("TEST MODE");
+            }
+
+            testModeLabel.Render(sb);
+        }
     }
 }

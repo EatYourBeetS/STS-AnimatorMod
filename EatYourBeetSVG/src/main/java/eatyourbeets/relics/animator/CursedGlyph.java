@@ -32,7 +32,7 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
             GameActions.Top.Add(new RelicAboveCreatureAction(m, this));
 
             int bonusHealth = 6;
-            if (GR.Common.DungeonData.EnteredUnnamedReign)
+            if (GR.Common.Dungeon.IsUnnamedReign())
             {
                 bonusHealth += (int)Math.ceil(m.maxHealth * 0.07);
             }

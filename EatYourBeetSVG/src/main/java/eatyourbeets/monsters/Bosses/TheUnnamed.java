@@ -110,7 +110,7 @@ public class TheUnnamed extends AnimatorMonster
     @Override
     public void usePreBattleAction()
     {
-        if (!GR.Common.DungeonData.EnteredUnnamedReign)
+        if (!GR.Common.Dungeon.IsUnnamedReign())
         {
             AbstractDungeon.player.isDead = true;
             AbstractDungeon.player.currentHealth = 0;
@@ -290,7 +290,7 @@ public class TheUnnamed extends AnimatorMonster
         return removed;
     }
 
-    protected static class Data extends AbstractMonsterData
+    public static class Data extends AbstractMonsterData
     {
         public Data(String id)
         {

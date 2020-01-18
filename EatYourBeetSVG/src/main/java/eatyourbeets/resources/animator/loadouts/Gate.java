@@ -10,7 +10,7 @@ import eatyourbeets.cards.animator.series.GATE.TukaLunaMarceau;
 import eatyourbeets.cards.animator.ultrarare.Giselle;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
 

@@ -4,7 +4,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.neow.NeowRoom;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class NeowRoomPatches
 {
@@ -15,10 +14,16 @@ public class NeowRoomPatches
         public static void Prefix(NeowRoom __instance, boolean isDone)
         {
             // TODO: Series Selection Screen, also consider adding some class specific relics to the animator pool
-            JavaUtilities.Log(NeowRoom.class, "On ENTER ROOM:");
-            if (!isDone)
+            if (GR.Animator.Dungeon.Series.isEmpty())
             {
-                GR.UI.SeriesSelection.Open(true);
+                if (GR.TEST_MODE)
+                {
+                    GR.UI.SeriesSelection.Open(true);
+                }
+                else
+                {
+                    GR.Animator.Dungeon.AddAllSeries();
+                }
             }
         }
     }

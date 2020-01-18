@@ -8,15 +8,15 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.AnimatorStrings;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
-import eatyourbeets.resources.animator.metrics.AnimatorTrophies;
+import eatyourbeets.resources.animator.AnimatorImages;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 
 public class AnimatorTrophiesRenderer
 {
-    protected static final AnimatorStrings.Trophies trophyStrings = GR.Animator.Text.Trophies;
-    protected static final AnimatorImages.Textures textures = GR.Animator.Textures;
+    protected static final AnimatorStrings.Trophies trophyStrings = GR.Animator.Strings.Trophies;
+    protected static final AnimatorImages images = GR.Animator.Images;
 
     protected final Hitbox trophy1Hb;
     protected final Hitbox trophy2Hb;
@@ -81,9 +81,9 @@ public class AnimatorTrophiesRenderer
         }
 
         FontHelper.tipHeaderFont.getData().setScale(0.6f);
-        RenderTrophy(trophy1Hb, trophies.Trophy1, textures.BRONZE_TROPHY, sb);
-        RenderTrophy(trophy2Hb, trophies.Trophy2, textures.SILVER_TROPHY, sb);
-        RenderTrophy(trophy3Hb, trophies.Trophy3, textures.GOLD_TROPHY, sb);
+        RenderTrophy(trophy1Hb, trophies.Trophy1, images.BRONZE_TROPHY.Texture(), sb);
+        RenderTrophy(trophy2Hb, trophies.Trophy2, images.SILVER_TROPHY.Texture(), sb);
+        RenderTrophy(trophy3Hb, trophies.Trophy3, images.GOLD_TROPHY.Texture(), sb);
         FontHelper.tipHeaderFont.getData().setScale(1);
     }
 
@@ -92,11 +92,11 @@ public class AnimatorTrophiesRenderer
         Texture slotTexture;
         if (trophyLevel <= 0)
         {
-            slotTexture = textures.BRONZE_TROPHY_SLOT;
+            slotTexture = images.BRONZE_TROPHY_SLOT.Texture();
         }
         else
         {
-            slotTexture = textures.GOLD_TROPHY_SLOT;
+            slotTexture = images.GOLD_TROPHY_SLOT.Texture();
         }
 
         final float w = 48;
@@ -111,7 +111,7 @@ public class AnimatorTrophiesRenderer
         Texture trophyTexture;
         if (trophyLevel < 0)
         {
-            trophyTexture = textures.LOCKED_TROPHY;
+            trophyTexture = images.LOCKED_TROPHY.Texture();
         }
         else
         {

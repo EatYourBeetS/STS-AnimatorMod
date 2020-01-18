@@ -61,7 +61,7 @@ public class Synergies
 
     private static Synergy CreateSynergy(int id)
     {
-        Synergy s = new Synergy(id, GR.Animator.Text.Synergies.SynergyName(id));
+        Synergy s = new Synergy(id, GR.Animator.Strings.Synergies.SynergyName(id));
         if (id > 0)
         {
             All.put(id, s);
@@ -72,7 +72,7 @@ public class Synergies
 
     public static String GetLocalizedSeriesString()
     {
-        return GR.Animator.Text.Synergies.Series;
+        return GR.Animator.Strings.Synergies.Series;
     }
 
     public static Synergy GetByID(int id)

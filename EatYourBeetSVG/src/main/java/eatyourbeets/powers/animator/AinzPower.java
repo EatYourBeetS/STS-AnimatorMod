@@ -145,7 +145,7 @@ public class AinzPower extends AnimatorPower
         {
             AnimatorCardBuilder builder = new AnimatorCardBuilder(Ainz.ID + "Alt");
 
-            builder.SetText(CARD_STRINGS.NAME, GR.Animator.Text.Special.Get(index), "");
+            builder.SetText(CARD_STRINGS.NAME, GR.Animator.Strings.Special.Get(index), "");
             builder.SetProperties(AbstractCard.CardType.SKILL, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
             builder.SetNumbers(number, number, number, number);
             builder.SetOnUse(onUseAction);

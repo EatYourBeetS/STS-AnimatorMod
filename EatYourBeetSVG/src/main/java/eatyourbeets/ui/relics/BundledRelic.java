@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.cards.animator.ultrarare.Hero;
 import eatyourbeets.relics.animator.CursedGlyph;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
@@ -26,7 +25,7 @@ public class BundledRelic
     public final String cardID;
     public AbstractCard card;
 
-    private static final AnimatorStrings.Rewards text = GR.Animator.Text.Rewards;
+    private static final AnimatorStrings.Rewards text = GR.Animator.Strings.Rewards;
 
     private final AbstractRelic.RelicTier relicTier;
     private final String relicID;
@@ -45,23 +44,11 @@ public class BundledRelic
 
     public BundledRelic Clone(float roll)
     {
-        boolean hasHero = false;
         float chance = this.chance;
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.getAttacks().group)
-        {
-            if (c instanceof Hero)
-            {
-                chance += 16;
-                hasHero = true;
-            }
-        }
 
-        if (GameUtilities.GetActualAscensionLevel() > 6 && !hasHero)
+        if (GameUtilities.GetActualAscensionLevel() > 6 && chance < 50)
         {
-            if (chance < 50)
-            {
-                chance = 0;
-            }
+            chance = 0;
         }
 
         //JavaUtilities.Logger.info(cardID + ", Rolled: " + roll + " (" + chance + ")");

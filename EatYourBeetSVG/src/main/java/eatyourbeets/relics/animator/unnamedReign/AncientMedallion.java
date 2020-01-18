@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.interfaces.subscribers.OnEquipUnnamedReignRelicSubscriber;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
@@ -260,7 +259,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     {
         if (event)
         {
-            TheUnnamedReign.EnterDungeon();
+            GR.Common.Dungeon.EnterUnnamedReign();
 
             event = false;
         }

@@ -85,6 +85,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     protected void InitializeCards()     { }
     protected void InitializePowers()    { }
     protected void InitializeStrings()   { }
+    protected void InitializeTextures()  { }
     protected void InitializeRelics()    { }
     protected void InitializePotions()   { }
     protected void InitializeCharacter() { }

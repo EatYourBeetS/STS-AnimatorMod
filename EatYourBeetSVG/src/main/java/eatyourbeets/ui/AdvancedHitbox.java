@@ -22,6 +22,11 @@ public class AdvancedHitbox extends Hitbox
         this(hb.x, hb.y, hb.width, hb.height);
     }
 
+    public AdvancedHitbox(float width, float height)
+    {
+        this(-9999, -9999, width, height);
+    }
+
     public AdvancedHitbox(Hitbox hb, float width, float height)
     {
         this(hb.x, hb.y, width, height);

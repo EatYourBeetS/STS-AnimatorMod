@@ -150,7 +150,8 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         onBattleStart.Clear();
         onBattleEnd.Clear();
 
-        GR.Common.DungeonData.Import(null);
+        GR.Animator.Dungeon.Reset();
+        GR.Common.Dungeon.Reset();
     }
 
     public static void OnStartOver()
@@ -159,8 +160,9 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         onBattleStart.Clear();
         onBattleEnd.Clear();
 
-        GR.Common.DungeonData.Import(null);
         DevConsole.enabled = true;
+        GR.Animator.Dungeon.Reset();
+        GR.Common.Dungeon.Reset();
     }
 
     public static void OnAfterDeath()

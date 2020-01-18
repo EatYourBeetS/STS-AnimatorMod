@@ -57,6 +57,13 @@ public class GUI_TextBox extends GUIElement
         return this;
     }
 
+    public GUI_TextBox SetPosition(float x, float y)
+    {
+        this.hb.move(x, y);
+
+        return this;
+    }
+
     public GUI_TextBox SetFontColor(Color textColor)
     {
         this.label.SetColor(textColor);

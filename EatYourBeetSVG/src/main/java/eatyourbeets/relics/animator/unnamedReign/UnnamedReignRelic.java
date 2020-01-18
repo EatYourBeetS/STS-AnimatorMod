@@ -11,15 +11,16 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
-import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.effects.player.RemoveRelicEffect;
-import eatyourbeets.effects.utility.SequentialEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
+import eatyourbeets.effects.utility.CallbackEffect;
+import eatyourbeets.effects.utility.SequentialEffect;
 import eatyourbeets.interfaces.subscribers.OnEquipUnnamedReignRelicSubscriber;
+import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -57,6 +58,11 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
     {
         super.update();
 
+        if (GR.TEST_MODE)
+        {
+            return;
+        }
+
         if (isObtained)
         {
             DevConsole.visible = false;
@@ -68,6 +74,11 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
     private void DisableConsole()
     {
+        if (GR.TEST_MODE)
+        {
+            return;
+        }
+
         if (DevConsole.visible)
         {
             InputHelper.regainInputFocus();

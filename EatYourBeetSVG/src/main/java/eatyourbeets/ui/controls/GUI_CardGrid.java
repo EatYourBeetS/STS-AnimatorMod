@@ -13,6 +13,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class GUI_CardGrid extends GUIElement
 {
@@ -52,7 +53,7 @@ public class GUI_CardGrid extends GUIElement
         return this;
     }
 
-    public void Refresh()
+    public void Clear()
     {
         this.deckSizeCache = 0;
         this.hoveredCard = null;
@@ -60,15 +61,29 @@ public class GUI_CardGrid extends GUIElement
         this.scrollStart = 0.0F;
         this.draggingScreen = false;
         this.message = null;
-
-        for (AbstractCard card : this.cards)
-        {
-            card.targetDrawScale = card.drawScale = 0.75f;
-            card.setAngle(0, true);
-            card.lighten(true);
-        }
+        this.cards.clear();
 
         RefreshDeckSize();
+    }
+
+    public GUI_CardGrid AddCards(Collection<AbstractCard> cards)
+    {
+        for (AbstractCard card : cards)
+        {
+            AddCard(card);
+        }
+
+        return this;
+    }
+
+    public GUI_CardGrid AddCard(AbstractCard card)
+    {
+        card.targetDrawScale = card.drawScale = 0.75f;
+        card.setAngle(0, true);
+        card.lighten(true);
+        cards.add(card);
+
+        return this;
     }
 
     @Override

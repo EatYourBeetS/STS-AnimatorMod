@@ -1,4 +1,4 @@
-package eatyourbeets.resources.animator.metrics;
+package eatyourbeets.resources.animator.misc;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,21 +12,17 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.relics.animator.LivingPicture;
-import eatyourbeets.relics.animator.PurgingStone_Cards;
-import eatyourbeets.relics.animator.PurgingStone_Series;
+import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.StringJoiner;
 
 public abstract class AnimatorLoadout
 {
     protected ArrayList<String> startingDeck = new ArrayList<>();
-    protected Map<String, AbstractCard> libraryCards = null;
     protected AnimatorCard_UltraRare ultraRare = null;
     protected String shortDescription = null;
 
@@ -73,13 +69,9 @@ public abstract class AnimatorLoadout
         {
             UnlockTracker.markRelicAsSeen(LivingPicture.ID);
         }
-        if (!UnlockTracker.isRelicSeen(PurgingStone_Cards.ID))
+        if (!UnlockTracker.isRelicSeen(PurgingStone.ID))
         {
-            UnlockTracker.markRelicAsSeen(PurgingStone_Cards.ID);
-        }
-        if (!UnlockTracker.isRelicSeen(PurgingStone_Series.ID))
-        {
-            UnlockTracker.markRelicAsSeen(PurgingStone_Series.ID);
+            UnlockTracker.markRelicAsSeen(PurgingStone.ID);
         }
         if (!UnlockTracker.isRelicSeen(TheMissingPiece.ID))
         {
@@ -88,37 +80,19 @@ public abstract class AnimatorLoadout
 
         ArrayList<String> res = new ArrayList<>();
         res.add(LivingPicture.ID);
-        res.add(PurgingStone_Cards.ID);
+        res.add(PurgingStone.ID);
         res.add(TheMissingPiece.ID);
 
         return res;
     }
 
-    public Map<String, AbstractCard> GetNonColorlessCards()
-    {
-        if (libraryCards == null)
-        {
-            libraryCards = new HashMap<>();
-
-            for (AbstractCard card : CardLibrary.getAllCards())
-            {
-                if (card.color == GR.Animator.CardColor && card instanceof AnimatorCard && Synergy.equals(((AnimatorCard)card).synergy))
-                {
-                    libraryCards.put(card.cardID, card);
-                }
-            }
-        }
-
-        return libraryCards;
-    }
-
     public AnimatorTrophies GetTrophies()
     {
-        AnimatorTrophies trophies = GR.Animator.Database.GetTrophies(ID);
+        AnimatorTrophies trophies = GR.Animator.Data.GetTrophies(ID);
         if (trophies == null)
         {
             trophies = new AnimatorTrophies(ID);
-            GR.Animator.Database.Trophies.add(trophies);
+            GR.Animator.Data.Trophies.add(trophies);
         }
 
         return trophies;
@@ -147,15 +121,15 @@ public abstract class AnimatorLoadout
     {
         if (trophy == 1)
         {
-            return GR.Animator.Text.Trophies.BronzeDescription;
+            return GR.Animator.Strings.Trophies.BronzeDescription;
         }
         else if (trophy == 2)
         {
-            return GR.Animator.Text.Trophies.SilverDescription;
+            return GR.Animator.Strings.Trophies.SilverDescription;
         }
         else if (trophy == 3)
         {
-            return GR.Animator.Text.Trophies.GoldDescription;
+            return GR.Animator.Strings.Trophies.GoldDescription;
         }
 
         return null;
@@ -165,7 +139,7 @@ public abstract class AnimatorLoadout
     {
         AnimatorTrophies trophies = GetTrophies();
 
-        if (GR.Animator.Database.SelectedLoadout.ID == ID)
+        if (GR.Animator.Data.SelectedLoadout.ID == ID)
         {
             trophies.Trophy1 = Math.max(trophies.Trophy1, ascensionLevel);
         }

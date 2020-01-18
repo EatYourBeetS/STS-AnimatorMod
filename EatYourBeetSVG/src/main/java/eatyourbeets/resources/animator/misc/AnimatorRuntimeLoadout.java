@@ -1,0 +1,114 @@
+package eatyourbeets.resources.animator.misc;
+
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCardBuilder;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.JavaUtilities;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class AnimatorRuntimeLoadout
+{
+    public final int ID;
+    public final Map<String, AbstractCard> Cards;
+    public final boolean IsBeta;
+    public final AnimatorLoadout Loadout;
+
+    public AnimatorCard card;
+    public boolean promoted;
+
+    public static AnimatorRuntimeLoadout TryCreate(AnimatorLoadout loadout)
+    {
+        if (loadout != null)
+        {
+            AnimatorRuntimeLoadout result = new AnimatorRuntimeLoadout(loadout);
+            if (result.Cards.size() > 0)
+            {
+                return result;
+            }
+        }
+
+        return null;
+    }
+
+    private AnimatorRuntimeLoadout(AnimatorLoadout loadout)
+    {
+        this.ID = loadout.ID;
+        this.IsBeta = loadout.IsBeta;
+        this.Loadout = loadout;
+        this.Cards = GetNonColorlessCards(loadout.Synergy);
+
+        this.promoted = false;
+        this.card = null;
+    }
+
+    public void Promote()
+    {
+        if (card != null)
+        {
+            throw new RuntimeException("Can not promote a card that has already been built.");
+        }
+
+        this.promoted = true;
+    }
+
+    public AbstractCard BuildCard()
+    {
+        AbstractCard temp = CardLibrary.getCard(Loadout.GetSymbolicCardID());
+        if (temp == null)
+        {
+            JavaUtilities.Log(this, "Loadout.GetSymbolicCardID() failed, " + Loadout.Name);
+            return null;
+        }
+
+        AnimatorCardBuilder builder = new AnimatorCardBuilder(String.valueOf(Loadout.ID)).SetImage(temp.assetUrl);
+
+        if (promoted)
+        {
+            card = builder
+            .SetText(Loadout.Name, "Contains " + Cards.size() + " cards. NL Cards from this series NL might have a random NL #yBonus[] upon pickup.", "")
+            .SetProperties(temp.type, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.NONE).Build();
+            card.retain = true;
+        }
+        else if (Loadout.IsBeta)
+        {
+            card = builder
+            .SetText(Loadout.Name, "Contains " + Cards.size() + " cards. NL This series is incomplete and/or still being tested.", "")
+            .SetProperties(temp.type, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE).Build();
+            card.retain = false;
+        }
+        else
+        {
+            card = builder
+            .SetText(Loadout.Name, "Contains " + Cards.size() + " cards.", "")
+            .SetProperties(temp.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE).Build();
+            card.retain = false;
+        }
+
+        return card;
+    }
+
+    private Map<String, AbstractCard> GetNonColorlessCards(Synergy synergy)
+    {
+        Map<String, AbstractCard> cards = new HashMap<>();
+
+        if (synergy != null && synergy != Synergies.ANY)
+        {
+            for (AbstractCard card : CardLibrary.getAllCards())
+            {
+                AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+                if (c != null && card.color == GR.Animator.CardColor && synergy.equals(c.synergy))
+                {
+                    cards.put(c.cardID, c);
+                }
+            }
+        }
+
+        return cards;
+    }
+}

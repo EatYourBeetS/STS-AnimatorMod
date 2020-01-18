@@ -505,7 +505,7 @@
 	},
 	"animator:Hero":
 	{
-		"DESCRIPTION": "Deal !D! Damage. NL Draw !M! cards. || While in your NL deck, greatly increase NL the chances of NL #yBonus #yRelics.",
+		"DESCRIPTION": "Deal !D! damage. NL Draw !M! cards. || Limited. NL If this card kills an NL enemy, 40% chance NL to obtain a relic at NL the end of combat.",
 		"NAME": "'Hero'"
 	},
 	"animator:Hibiki":

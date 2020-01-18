@@ -227,7 +227,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
     public static float GetUltraRareChance()
     {
         float bonus = 1;
-        int level = GR.Animator.Database.SpecialTrophies.Trophy1;
+        int level = GR.Animator.Data.SpecialTrophies.Trophy1;
         if (level > 0)
         {
             bonus += level / (level + 100f);

@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.loadouts._Random;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -22,7 +22,7 @@ public class AnimatorLoadoutRenderer
 {
     protected static FieldInfo<String> hpField = JavaUtilities.GetField("hp", CharacterOption.class);
     protected static FieldInfo<Integer> goldField = JavaUtilities.GetField("gold", CharacterOption.class);
-    protected static final AnimatorStrings.CharacterSelect charSelectStrings = GR.Animator.Text.CharSelect;
+    protected static final AnimatorStrings.CharacterSelect charSelectStrings = GR.Animator.Strings.CharSelect;
 
     protected final Hitbox startingCardsLabelHb;
     protected final Hitbox startingCardsSelectedHb;
@@ -57,11 +57,11 @@ public class AnimatorLoadoutRenderer
     {
         this.selectScreen = selectScreen;
         this.characterOption = characterOption;
-        this.loadout = GR.Animator.Database.SelectedLoadout;
+        this.loadout = GR.Animator.Data.SelectedLoadout;
 
         goldField.Set(characterOption, loadout.StartingGold);
         hpField.Set(characterOption, String.valueOf(loadout.MaxHP));
-        selectScreen.bgCharImg = GR.Animator.Images.Textures.GetCharacterPortrait(loadout.ID);
+        selectScreen.bgCharImg = GR.Animator.Images.GetCharacterPortrait(loadout.ID);
 
         int currentLevel = GR.Animator.GetUnlockLevel();
         if (currentLevel >= loadout.UnlockLevel)
@@ -70,7 +70,7 @@ public class AnimatorLoadoutRenderer
         }
         else
         {
-            lockedDescription = GR.Animator.Text.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, currentLevel);
+            lockedDescription = GR.Animator.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, currentLevel);
         }
 
         AnimatorCharacterSelectScreen.TrophiesRenderer.Refresh(loadout);
@@ -103,19 +103,19 @@ public class AnimatorLoadoutRenderer
         {
             startingCardsLeftHb.clicked = false;
 
-            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Database.BaseLoadouts;
+            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Data.BaseLoadouts;
             int current = loadouts.indexOf(loadout);
             if (current == 0)
             {
-                GR.Animator.Database.SelectedLoadout = new _Random();
+                GR.Animator.Data.SelectedLoadout = new _Random();
             }
             else if (current == -1)
             {
-                GR.Animator.Database.SelectedLoadout = loadouts.get(loadouts.size() -1);
+                GR.Animator.Data.SelectedLoadout = loadouts.get(loadouts.size() -1);
             }
             else
             {
-                GR.Animator.Database.SelectedLoadout = loadouts.get(current -1);
+                GR.Animator.Data.SelectedLoadout = loadouts.get(current -1);
             }
 
             Refresh(selectScreen, characterOption);
@@ -125,19 +125,19 @@ public class AnimatorLoadoutRenderer
         {
             startingCardsRightHb.clicked = false;
 
-            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Database.BaseLoadouts;
+            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Data.BaseLoadouts;
             int current = loadouts.indexOf(loadout);
             if (current >= (loadouts.size()-1))
             {
-                GR.Animator.Database.SelectedLoadout = new _Random();
+                GR.Animator.Data.SelectedLoadout = new _Random();
             }
             else if (current == -1)
             {
-                GR.Animator.Database.SelectedLoadout = loadouts.get(0);
+                GR.Animator.Data.SelectedLoadout = loadouts.get(0);
             }
             else
             {
-                GR.Animator.Database.SelectedLoadout = loadouts.get(current +1);
+                GR.Animator.Data.SelectedLoadout = loadouts.get(current +1);
             }
 
             Refresh(selectScreen, characterOption);

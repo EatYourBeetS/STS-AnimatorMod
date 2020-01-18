@@ -1,7 +1,5 @@
 package eatyourbeets.resources.animator;
 
-import basemod.BaseMod;
-import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.utils.Base64Coder;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Prefs;
@@ -9,25 +7,21 @@ import com.megacrit.cardcrawl.helpers.SaveHelper;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.csharp.ActionT2;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.resources.animator.loadouts.*;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
-import eatyourbeets.resources.animator.metrics.AnimatorTrophies;
-import eatyourbeets.resources.common.CommonResources;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
-public class AnimatorData implements CustomSavable<AnimatorData.SaveData>
+public class AnimatorPlayerData
 {
     private static final String TROPHY_DATA_KEY = "TDAL";
 
-    private SaveData saveData;
-
     public final ArrayList<AnimatorLoadout> BaseLoadouts = new ArrayList<>(); // Contains starting series
     public final ArrayList<AnimatorLoadout> BetaLoadouts = new ArrayList<>(); // Contains series which cannot be chosen from Character select
-    public final ArrayList<AnimatorLoadout> Loadouts = new ArrayList<>();     // Contains series available for the current run
     public final ArrayList<AnimatorTrophies> Trophies = new ArrayList<>();
     public AnimatorTrophies SpecialTrophies = new AnimatorTrophies(-1);
     public AnimatorLoadout SelectedLoadout = new _FakeLoadout();
@@ -56,39 +50,11 @@ public class AnimatorData implements CustomSavable<AnimatorData.SaveData>
         {
             SpecialTrophies = new AnimatorTrophies(0);
         }
-
-        BaseMod.addSaveField(CommonResources.SaveData.ID, this);
     }
 
-    public void AddLoadout(AnimatorLoadout loadout)
+    public AnimatorLoadout GetLoadout(int id, boolean isBeta)
     {
-        if (!Loadouts.contains(loadout))
-        {
-            Loadouts.add(loadout);
-        }
-    }
-
-    public boolean RemoveLoadout(AnimatorLoadout loadout)
-    {
-        return Loadouts.remove(loadout);
-    }
-
-    public ArrayList<AnimatorLoadout> GetAvailableLoadouts()
-    {
-        return Loadouts;
-    }
-
-    public AnimatorLoadout GetAvailableLoadout(int id)
-    {
-        for (AnimatorLoadout loadout : Loadouts)
-        {
-            if (loadout.ID == id)
-            {
-                return loadout;
-            }
-        }
-
-        return null;
+        return isBeta ? GetBetaLoadout(id) : GetBaseLoadout(id);
     }
 
     public AnimatorLoadout GetBetaLoadout(int id)
@@ -130,7 +96,7 @@ public class AnimatorData implements CustomSavable<AnimatorData.SaveData>
         return null;
     }
 
-    public void OnVictory(int ascensionLevel)
+    public void RecordVictory(int ascensionLevel)
     {
         if (ascensionLevel < 0) // Ascension reborn mod adds negative ascension levels
         {
@@ -145,14 +111,14 @@ public class AnimatorData implements CustomSavable<AnimatorData.SaveData>
         SaveTrophies(true);
     }
 
-    public void OnTrueVictory(int ascensionLevel)
+    public void RecordTrueVictory(int ascensionLevel)
     {
         if (ascensionLevel < 0) // Ascension reborn mod adds negative ascension levels
         {
             return;
         }
 
-        if (GR.Common.DungeonData.EnteredUnnamedReign)
+        if (GR.Common.Dungeon.IsUnnamedReign())
         {
             if (SpecialTrophies.Trophy1 < 0)
             {
@@ -167,7 +133,7 @@ public class AnimatorData implements CustomSavable<AnimatorData.SaveData>
 
     public void SaveTrophies(boolean flush)
     {
-        JavaUtilities.GetLogger(AnimatorData.class).info("Saving Trophies");
+        JavaUtilities.GetLogger(AnimatorPlayerData.class).info("Saving Trophies");
 
         String serialized = SerializeTrophies();
 
@@ -276,95 +242,6 @@ public class AnimatorData implements CustomSavable<AnimatorData.SaveData>
                         Trophies.add(trophies);
                     }
                 }
-            }
-        }
-    }
-
-    @Override
-    public SaveData onSave()
-    {
-        if (saveData == null)
-        {
-            saveData = new SaveData();
-        }
-
-        saveData.Validate();
-        saveData.Import(Loadouts);
-
-        return saveData;
-    }
-
-    @Override
-    public void onLoad(SaveData saveData)
-    {
-        if (saveData == null)
-        {
-            saveData = new SaveData();
-        }
-
-        saveData.Validate();
-        saveData.Export(Loadouts);
-
-        this.saveData = saveData;
-    }
-
-    public static class SaveData
-    {
-        public static final String ID = GR.CreateID(AnimatorResources.ID, SaveData.class.getSimpleName());
-
-        public ArrayList<Integer> baseLoadouts;
-        public ArrayList<Integer> betaLoadouts;
-
-        public void Import(ArrayList<AnimatorLoadout> loadouts)
-        {
-            baseLoadouts.clear();
-            betaLoadouts.clear();
-
-            for (AnimatorLoadout loadout : loadouts)
-            {
-                if (loadout.IsBeta)
-                {
-                    betaLoadouts.clear();
-                }
-                else
-                {
-                    baseLoadouts.add(loadout.ID);
-                }
-            }
-        }
-
-        public void Export(ArrayList<AnimatorLoadout> loadouts)
-        {
-            loadouts.clear();
-
-            for (Integer id : baseLoadouts)
-            {
-                AnimatorLoadout loadout = GR.Animator.Database.GetBaseLoadout(id);
-                if (loadout != null)
-                {
-                    loadouts.add(loadout);
-                }
-            }
-
-            for (Integer id : betaLoadouts)
-            {
-                AnimatorLoadout loadout = GR.Animator.Database.GetBetaLoadout(id);
-                if (loadout != null)
-                {
-                    loadouts.add(loadout);
-                }
-            }
-        }
-
-        public void Validate()
-        {
-            if (baseLoadouts == null)
-            {
-                baseLoadouts = new ArrayList<>();
-            }
-            if (betaLoadouts == null)
-            {
-                betaLoadouts = new ArrayList<>();
             }
         }
     }

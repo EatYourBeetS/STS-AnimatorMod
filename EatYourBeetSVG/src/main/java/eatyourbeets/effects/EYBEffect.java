@@ -28,6 +28,11 @@ public abstract class EYBEffect extends AbstractGameEffect
         this(amount, duration, false);
     }
 
+    public EYBEffect(float duration, boolean isRealtime)
+    {
+        this(0, duration, isRealtime);
+    }
+
     public EYBEffect(int amount, float duration, boolean isRealtime)
     {
         this.amount = amount;

@@ -13,7 +13,7 @@ public class AnimatorStrings
     public Special Special;
     public Trophies Trophies;
 
-    public void LoadStrings()
+    public void Initialize()
     {
         Tips = new Tips();
         Rewards = new Rewards();

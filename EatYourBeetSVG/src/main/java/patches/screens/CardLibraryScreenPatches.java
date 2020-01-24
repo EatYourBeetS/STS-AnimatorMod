@@ -18,7 +18,7 @@ public class CardLibraryScreenPatches
     @SpirePatch(clz = CardLibraryScreen.class, method = "didChangeTab", paramtypez = {ColorTabBar.class, ColorTabBar.CurrentTab.class})
     public static class CardLibraryScreen_DidChangeTab
     {
-        private static final FieldInfo<CardLibSortHeader> headerField = JavaUtilities.GetField("sortHeader", CardLibraryScreen.class);
+        private static final FieldInfo<CardLibSortHeader> _sortHeader = JavaUtilities.GetField("sortHeader", CardLibraryScreen.class);
         private static final CustomCardLibSortHeader customHeader = new CustomCardLibSortHeader(null);
         private static CardLibSortHeader defaultHeader;
 
@@ -27,7 +27,7 @@ public class CardLibraryScreenPatches
         {
             if (defaultHeader == null)
             {
-                defaultHeader = headerField.Get(screen);
+                defaultHeader = _sortHeader.Get(screen);
 
                 Hitbox upgradeHitbox = tabBar.viewUpgradeHb;
 
@@ -39,17 +39,17 @@ public class CardLibraryScreenPatches
 
             if (newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_ANIMATOR))
             {
-                if (headerField.Get(screen) != customHeader)
+                if (_sortHeader.Get(screen) != customHeader)
                 {
-                    headerField.Set(screen, customHeader);
+                    _sortHeader.Set(screen, customHeader);
                     customHeader.SetupButtons();
                 }
             }
             else
             {
-                if (headerField.Get(screen) != defaultHeader)
+                if (_sortHeader.Get(screen) != defaultHeader)
                 {
-                    headerField.Set(screen, defaultHeader);
+                    _sortHeader.Set(screen, defaultHeader);
                 }
             }
         }

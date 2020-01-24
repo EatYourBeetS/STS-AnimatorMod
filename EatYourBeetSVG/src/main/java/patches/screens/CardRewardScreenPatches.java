@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.ui.screens.animator.cardReward.AnimatorCardRewardScreen;
+import eatyourbeets.ui.animator.cardReward.AnimatorCardRewardScreen;
 
 import java.util.ArrayList;
 

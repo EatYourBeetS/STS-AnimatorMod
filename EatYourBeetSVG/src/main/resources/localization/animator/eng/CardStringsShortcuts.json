@@ -1,0 +1,19 @@
+
+{
+	"<LIM>": "Limited",
+	"<SLM>": "Semi-Limited",
+
+	"<AGI>": "Agility",
+	"<FOR>": "Force",
+	"<INT>": "Intellect",
+	"<MAR>": "{Martial Artist}",
+	"<SPE>": "Spellcaster",
+
+	"<DRW>": "Draw 1 card",
+	"<DRW-M>": "Draw !M! card(s)",
+
+	"<BLK>": "Gain !B! Block",
+
+	"<DMG>": "Deal !D! damage",
+	"<DMG-ALL>": "Deal !D! damage NL to ALL enemies"
+}

@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
-import eatyourbeets.ui.screens.GridCardSelectScreenPatch;
+import eatyourbeets.ui.GridCardSelectScreenPatch;
 
 public class GridCardSelectScreenPatches
 {

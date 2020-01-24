@@ -120,11 +120,6 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         super.LoadKeywords(GetLanguagePath() + "KeywordStrings.json");
     }
 
-    protected void LoadDynamicKeywords()
-    {
-        super.LoadDynamicKeywords(GetLanguagePath() + "DynamicKeywordStrings.json");
-    }
-
     protected void LoadCustomRelics()
     {
         super.LoadCustomRelics(prefix);

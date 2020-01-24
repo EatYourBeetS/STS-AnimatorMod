@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
  public class SetGameSpeed extends ConsoleCommand
  {
-     private static FieldInfo<Boolean> isDeltaMultiplied;
-     private static FieldInfo<Float> deltaMultiplier;
+     private static FieldInfo<Boolean> _isDeltaMultiplied;
+     private static FieldInfo<Float> _deltaMultiplier;
 
      public static SpireConfig config;
 
@@ -28,8 +28,8 @@ import java.util.ArrayList;
          {
              Class<?> c = Class.forName("skrelpoid.superfastmode.SuperFastMode");
 
-             isDeltaMultiplied = JavaUtilities.GetField("isDeltaMultiplied", c);
-             deltaMultiplier = JavaUtilities.GetField("deltaMultiplier", c);
+             _isDeltaMultiplied = JavaUtilities.GetField("isDeltaMultiplied", c);
+             _deltaMultiplier = JavaUtilities.GetField("deltaMultiplier", c);
 
              return true;
          }
@@ -48,7 +48,7 @@ import java.util.ArrayList;
              {
                  if (tokens[1].equals("off"))
                  {
-                     isDeltaMultiplied.Set(null, false);
+                     _isDeltaMultiplied.Set(null, false);
 
                      DevConsole.log("Speed multiplier off");
                  }
@@ -64,8 +64,8 @@ import java.util.ArrayList;
                          speed = 10f;
                      }
 
-                     deltaMultiplier.Set(null, speed);
-                     isDeltaMultiplied.Set(null, true);
+                     _deltaMultiplier.Set(null, speed);
+                     _isDeltaMultiplied.Set(null, true);
 
                      DevConsole.log("Set game speed at: " + (speed * 100) + "%");
                  }

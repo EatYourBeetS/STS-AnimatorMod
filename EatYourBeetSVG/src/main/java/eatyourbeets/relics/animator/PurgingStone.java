@@ -22,19 +22,14 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 {
     public static final String ID = CreateFullID(PurgingStone.class.getSimpleName());
 
+    private static final FieldInfo<Boolean> _isBoss = JavaUtilities.GetField("isBoss", RewardItem.class);
     private static final int MAX_BAN_COUNT = 80;
     private static final int MAX_STORED_USES = 3;
-    private static FieldInfo<Boolean> isBoss = null;
     private final ArrayList<String> bannedCards = new ArrayList<>();
 
     public PurgingStone()
     {
         super(ID, RelicTier.STARTER, LandingSound.SOLID);
-
-        if (isBoss == null)
-        {
-            isBoss = JavaUtilities.GetField("isBoss", RewardItem.class);
-        }
     }
 
     @Override
@@ -124,7 +119,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 
     public boolean CanActivate(RewardItem rewardItem)
     {
-        if (!GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD && !isBoss.Get(rewardItem))
+        if (!GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD && !_isBoss.Get(rewardItem))
         {
             return counter > 0;
         }

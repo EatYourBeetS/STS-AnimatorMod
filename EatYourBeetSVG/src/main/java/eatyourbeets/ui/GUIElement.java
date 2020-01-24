@@ -14,20 +14,24 @@ public abstract class GUIElement
     public abstract void Update();
     public abstract void Render(SpriteBatch sb);
 
-    public void TryRender(SpriteBatch sb)
+    public boolean TryRender(SpriteBatch sb)
     {
         if (isActive)
         {
             Render(sb);
         }
+
+        return isActive;
     }
 
-    public void TryUpdate()
+    public boolean TryUpdate()
     {
         if (isActive)
         {
             Update();
         }
+
+        return isActive;
     }
 
     public GUIElement SetActive(boolean active)

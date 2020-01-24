@@ -150,6 +150,12 @@
 		"NAMES": ["semi-limited"],
 		"PROPER_NAME": "Semi-Limited"
 	},
+	"Steal":
+	{
+		"DESCRIPTION": "You can steal up to #b50 #yGold from a boss, #b25 #yGold from an elite, or #b10 #yGold from other non-minion enemies.",
+		"NAMES": ["steal"],
+		"PROPER_NAME": "Steal"
+	},
 	"Slow":
 	{
 		"DESCRIPTION": "For every card you have played this turn, enemy takes #b10% more damage from #yAttacks.",
@@ -171,13 +177,13 @@
 	"~Preview":
 	{
 		"DESCRIPTION": "Press #pSHIFT to view related cards (outside combat).",
-		"NAMES": ["~"],
+		"NAMES": ["~preview"],
 		"PROPER_NAME": "Card Preview"
 	},
 	"~Unique":
 	{
 		"DESCRIPTION": "Can be upgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead.",
-		"NAMES": ["~"],
+		"NAMES": ["~unique"],
 		"PROPER_NAME": "Unique"
 	}
 }

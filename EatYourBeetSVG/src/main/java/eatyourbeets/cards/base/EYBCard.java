@@ -5,12 +5,9 @@ import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -21,11 +18,9 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.screens.animator.cardReward.AnimatorCardBadgeLegend;
+import eatyourbeets.ui.animator.cardReward.AnimatorCardBadgeLegend;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -36,16 +31,17 @@ import java.util.Map;
 
 public abstract class EYBCard extends CustomCard
 {
+    protected static final FieldInfo<Boolean> _renderTip = JavaUtilities.GetField("renderTip", AbstractCard.class);
     protected static final Color FRAME_COLOR = Color.WHITE.cpy();
     protected static final Map<String, EYBCardData> staticCardData = new HashMap<>();
     protected static AbstractPlayer player = null;
 
-    private final List<TooltipInfo> customTooltips = new ArrayList<>();
-    private boolean lastHovered = false;
-    private boolean hoveredInHand = false;
+    public final List<TooltipInfo> customTooltips = new ArrayList<>();
+    public boolean hovered = false;
+    public boolean hoveredInHand = false;
 
-    protected EYBCardText cardText;
-    protected EYBCardData cardData;
+    protected final EYBCardText cardText;
+    protected final EYBCardData cardData;
     protected boolean isMultiUpgrade;
     protected int upgrade_damage;
     protected int upgrade_magicNumber;
@@ -80,7 +76,7 @@ public abstract class EYBCard extends CustomCard
         super(id, cardData.strings.NAME, imagePath, cost, "", type, color, rarity, target);
 
         this.cardData = cardData;
-        this.cardText = new EYBCardText(this, cardData.strings);
+        this.cardText = new EYBAdvancedCardText(this, cardData.strings);
         this.cardText.ForceRefresh();
     }
 
@@ -117,19 +113,17 @@ public abstract class EYBCard extends CustomCard
     }
 
     @Override
-    public boolean isHoveredInHand(float scale)
-    {
-        hoveredInHand = super.isHoveredInHand(scale);
-
-        return hoveredInHand;
-    }
-
-    @Override
     public void hover()
     {
         super.hover();
 
-        lastHovered = true;
+        hovered = true;
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
     }
 
     @Override
@@ -137,7 +131,7 @@ public abstract class EYBCard extends CustomCard
     {
         super.unhover();
 
-        lastHovered = false;
+        hovered = false;
     }
 
     @SpireOverride
@@ -225,7 +219,7 @@ public abstract class EYBCard extends CustomCard
         {
             if (AnimatorCardBadgeLegend.showUpgrades && canUpgrade() && !CardCrawlGame.isPopupOpen && SingleCardViewPopup.isViewingUpgrade)
             {
-                EYBCard copy = (EYBCard) this.makeCopy();
+                EYBCard copy = (EYBCard) this.makeStatEquivalentCopy();
                 copy.current_x = this.current_x;
                 copy.current_y = this.current_y;
                 copy.drawScale = this.drawScale;
@@ -277,32 +271,33 @@ public abstract class EYBCard extends CustomCard
     }
 
     @Override
-    public void renderSmallEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y)
+    public void initializeDescription()
     {
-        Texture texture;
-        if (region == AbstractCard.orb_red)
+        if (cardText != null)
         {
-            texture = GR.GetTexture(GR.GetPowerImage(ForcePower.POWER_ID));
+            this.cardText.InitializeDescription();
         }
-        else if (region == AbstractCard.orb_green)
-        {
-            texture = GR.GetTexture(GR.GetPowerImage(AgilityPower.POWER_ID));
-        }
-        else if (region == AbstractCard.orb_blue)
-        {
-            texture = GR.GetTexture(GR.GetPowerImage(IntellectPower.POWER_ID));
-        }
-        else
-        {
-            super.renderSmallEnergy(sb, region, x, y);
-            return;
-        }
+    }
 
-        final float scale = Settings.scale * this.drawScale;
-        sb.setColor(1, 1, 1, transparency);
-        sb.draw(texture, this.current_x + (x - 6) * scale, this.current_y + (y - 3) * scale, 0.0F, 0.0F,
-        32, 32, //(float)region.packedWidth, (float)region.packedHeight,
-        scale, scale, 0.0F, 0, 0, texture.getWidth(), texture.getHeight(), false, false);
+    @Override
+    public void initializeDescriptionCN()
+    {
+        if (cardText != null)
+        {
+            this.cardText.InitializeDescription();
+        }
+    }
+
+    @SpireOverride
+    public void renderDescription(SpriteBatch sb)
+    {
+        this.cardText.RenderDescription(sb);
+    }
+
+    @Override
+    public void renderCardTip(SpriteBatch sb)
+    {
+        this.cardText.RenderTooltips(sb);
     }
 
     public void renderInSingleCardPopup(SpriteBatch sb, boolean preRender)
@@ -332,6 +327,11 @@ public abstract class EYBCard extends CustomCard
         return this.current_y >= -200.0F * Settings.scale && this.current_y <= (float) Settings.HEIGHT + 200.0F * Settings.scale;
     }
 
+    public boolean CanRenderTip()
+    {
+        return GR.UI.CardPopup.GetCard() == this || _renderTip.Get(this);
+    }
+
     protected Color GetHeaderColor()
     {
         return Settings.CREAM_COLOR.cpy();
@@ -344,10 +344,8 @@ public abstract class EYBCard extends CustomCard
 
     protected boolean InitializingPreview()
     {
-        Keyword preview = GR.GetKeyword("~Preview");
-        AddTooltip(new TooltipInfo(preview.PROPER_NAME, preview.DESCRIPTION));
-
-        cardData = staticCardData.get(cardID);
+        EYBCardTooltip preview = GR.GetTooltip("~preview");
+        AddTooltip(new TooltipInfo(preview.title, preview.description));
 
         if (!cardData.previewInitialized)
         {
@@ -426,7 +424,7 @@ public abstract class EYBCard extends CustomCard
     {
         final int DEFAULT_KEY = Input.Keys.SHIFT_LEFT;
 
-        if (cardData.previewInitialized && (isCardPopup || (lastHovered && !hoveredInHand)) && !Settings.hideCards && Gdx.input.isKeyPressed(DEFAULT_KEY))
+        if (cardData.previewInitialized && CanRenderTip() && !Settings.hideCards && Gdx.input.isKeyPressed(DEFAULT_KEY))
         {
             AbstractCard preview = cardData.GetCardPreview(this);
             if ((preview != null))
@@ -647,8 +645,8 @@ public abstract class EYBCard extends CustomCard
             if (!tags.contains(GR.Enums.CardTags.UNIQUE))
             {
                 tags.add(GR.Enums.CardTags.UNIQUE);
-                Keyword unique = GR.GetKeyword("~Unique");
-                AddTooltip(new TooltipInfo(unique.PROPER_NAME, unique.DESCRIPTION));
+                EYBCardTooltip unique = GR.GetTooltip("~unique");
+                AddTooltip(new TooltipInfo(unique.title, unique.description));
             }
         }
         else

@@ -21,7 +21,7 @@
 	"Flaming Weapon":
 	{
 		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yBurning.",
-		"NAMES": ["flaming weapon", "flaming_weapon"],
+		"NAMES": ["flaming weapon"],
 		"PROPER_NAME": "Flaming Weapon"
 	},
 	"Heartseeker":
@@ -50,8 +50,8 @@
 	},
 	"Martial Artist":
 	{
-		"DESCRIPTION": "This card's damage is enhanced by #yDexterity.",
-		"NAMES": ["martial artist", "martial_artist"],
+		"DESCRIPTION": "#ySynergizes with other #yMartial #yArtists.",
+		"NAMES": ["martial artist"],
 		"PROPER_NAME": "Martial Artist"
 	},
 	"Motivate":
@@ -104,14 +104,14 @@
 	},
 	"Spellcaster":
 	{
-		"DESCRIPTION": "This card's damage is enhanced by #yFocus.",
+		"DESCRIPTION": "#Synergizes with other #ySpellcasters.",
 		"NAMES": ["spellcaster"],
 		"PROPER_NAME": "Spellcaster"
 	},
 	"Support Damage":
 	{
 		"DESCRIPTION": "Deal damage to the enemy with the lowest HP at the end of each turn. Affected by damage modifiers.",
-		"NAMES": ["support damage", "support_damage", "supp. damage", "supp._damage"],
+		"NAMES": ["support damage", "supp. damage"],
 		"PROPER_NAME": "Support Damage"
 	},
 	"Synergy":

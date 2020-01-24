@@ -3,20 +3,30 @@ package eatyourbeets.resources.common;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.localization.Keyword;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.UnnamedReign.TheAbandonedCabin;
 import eatyourbeets.events.UnnamedReign.TheHaunt;
 import eatyourbeets.events.UnnamedReign.TheMaskedTraveler3;
 import eatyourbeets.events.UnnamedReign.TheUnnamedMerchant;
 import eatyourbeets.events.animator.TheMaskedTraveler1;
+import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.powers.common.GenericFadingPower;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.GR;
-import eatyourbeets.variables.SecondaryValueVariable;
+
+import java.lang.reflect.Field;
 
 public class CommonResources extends AbstractResources
 {
@@ -72,7 +82,6 @@ public class CommonResources extends AbstractResources
     protected void InitializeCards()
     {
         Strings.Initialize();
-        BaseMod.addDynamicVariable(new SecondaryValueVariable());
     }
 
     @Override
@@ -86,6 +95,8 @@ public class CommonResources extends AbstractResources
     {
         GR.UI.Initialize();
         GR.IsLoaded = true;
+
+        //CTContext.Test();
     }
 
     @Override
@@ -99,6 +110,41 @@ public class CommonResources extends AbstractResources
     protected void InitializeKeywords()
     {
         LoadKeywords();
+
+        for (Field field : GameDictionary.class.getDeclaredFields())
+        {
+            if (field.getType() == Keyword.class)
+            {
+                try
+                {
+                    Keyword k = (Keyword) field.get(null);
+                    EYBCardTooltip tooltip = new EYBCardTooltip(k.NAMES[0], k.DESCRIPTION);
+
+                    tooltipIDs.put(TipHelper.capitalize(field.getName()), tooltip);
+
+                    for (String name : k.NAMES)
+                    {
+                        tooltips.put(name, tooltip);
+                    }
+
+//                keywords.put("[R]", GameDictionary.TEXT[0]);
+//                keywords.put("[G]", GameDictionary.TEXT[0]);
+//                keywords.put("[B]", GameDictionary.TEXT[0]);
+//                keywords.put("[W]", GameDictionary.TEXT[0]);
+//                keywords.put("[E]", GameDictionary.TEXT[0]);
+//                TextureAtlas.AtlasRegion currentOrb = AbstractDungeon.player != null ? AbstractDungeon.player.getOrb() : AbstractCard.orb_red;
+                }
+                catch (IllegalAccessException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+        ActionT1<AbstractPower> addIcon = (power) -> GR.GetTooltip(power.name.toLowerCase()).icon = power.img;
+        addIcon.Invoke(new ForcePower(null, 0));
+        addIcon.Invoke(new AgilityPower(null, 0));
+        addIcon.Invoke(new IntellectPower(null, 0));
     }
 
     @Override

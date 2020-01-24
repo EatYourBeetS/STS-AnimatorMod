@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.common.CommonResources;
@@ -35,14 +36,14 @@ import java.util.Map;
 public class GR
 {
     // TODO: Set to false
-    public static final boolean TEST_MODE = true;
+    public static final boolean TEST_MODE = false;
 
     protected static final Logger logger = JavaUtilities.GetLogger(GR.class);
     protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.cards.");
     protected static final ArrayList<String> relicClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.relics.");
     protected static final ArrayList<String> powerClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.powers.");
-    protected static final HashMap<String, Map<String, String>> dynamicKeywords = new HashMap<>();
-    protected static final HashMap<String, Keyword> keywords = new HashMap<>();
+    protected static final HashMap<String, EYBCardTooltip> tooltipIDs = new HashMap<>();
+    protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
     protected static final HashMap<String, Texture> textures = new HashMap<>();
 
     public static UIManager UI;
@@ -164,14 +165,14 @@ public class GR
         return prefix + ":" + suffix;
     }
 
-    public static Map<String, String> GetDynamicKeyword(String keywordID)
+    public static EYBCardTooltip GetTooltip(String name)
     {
-        return dynamicKeywords.get(keywordID);
+        return tooltips.get(name);
     }
 
-    public static Keyword GetKeyword(String keywordID)
+    public static EYBCardTooltip GetTooltipByID(String name)
     {
-        return keywords.get(keywordID);
+        return tooltipIDs.get(name);
     }
 
     protected void LoadCustomRelics(String character)
@@ -308,30 +309,14 @@ public class GR
         {
             String id = pair.getKey();
             Keyword keyword = pair.getValue();
+            EYBCardTooltip tooltip = new EYBCardTooltip(keyword);
 
-            if (!id.startsWith("~"))
+            tooltipIDs.put(id, tooltip);
+
+            for (String name : keyword.NAMES)
             {
-                BaseMod.addKeyword(keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+                tooltips.put(name, tooltip);
             }
-
-            GR.keywords.put(id, keyword);
-        }
-    }
-
-    protected void LoadDynamicKeywords(String path)
-    {
-        String json = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
-
-        Gson gson = new Gson();
-        Type typeToken = new TypeToken<Map<String, Map<String, String>>>(){}.getType();
-        Map<String, Map<String, String>> items = gson.fromJson(json, typeToken);
-
-        for (Map.Entry<String, Map<String, String>> pair : items.entrySet())
-        {
-            String id = pair.getKey();
-            Map<String, String> keyword = pair.getValue();
-
-            GR.dynamicKeywords.put(id, keyword);
         }
     }
 

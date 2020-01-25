@@ -10,15 +10,21 @@ public abstract class CTToken
 {
     protected static final GlyphLayout layout = new GlyphLayout();
     protected static final StringBuilder builder = new StringBuilder();
+    protected static final StringBuilder tempBuilder = new StringBuilder();
 
-    public transient float width;
     public CTTokenType type;
     public String text;
 
-    public void SetWidth(BitmapFont font)
+    protected CTToken(CTTokenType type, String text)
+    {
+        this.type = type;
+        this.text = text;
+    }
+
+    public float GetWidth(BitmapFont font)
     {
         layout.setText(font, text);
-        width = layout.width;
+        return layout.width;
     }
 
     @Override
@@ -30,12 +36,10 @@ public abstract class CTToken
     public void Render(SpriteBatch sb, CTContext context)
     {
         final AbstractCard card = context.card;
+        float width = GetWidth(context.font);
 
-        layout.setText(context.font, text);
+        FontHelper.renderRotatedText(sb, context.font, text, context.start_x + width / 2.0F, context.start_y, 0, 0, card.angle, true, context.color);
 
-        FontHelper.renderRotatedText(sb, context.font, text, card.current_x, card.current_y, context.start_x - card.current_x + layout.width / 2.0F,
-        (float)context.line * 1.45F * -context.height + context.start_y - card.current_y + -6.0F, card.angle, true, context.color);
-
-        context.start_x += layout.width; // context.start_x = (float) Math.round(context.start_x + layout.width);
+        context.start_x += width; // context.start_x = (float) Math.round(context.start_x + layout.width);
     }
 }

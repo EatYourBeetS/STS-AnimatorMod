@@ -340,7 +340,7 @@
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "造成 !D! 點傷害。 NL 給予 !M! 層 點燃 。 NL 循環 !SV! 張牌。 || 被丟棄： 生成 1 個 火焰 充能球 。",
+		"DESCRIPTION": "造成 !D! 點傷害。 NL 給予 !SV! 層 點燃 。 NL 循環 !M! 張牌。 || 被丟棄： 生成 1 個 火焰 充能球 。",
 		"NAME": "艾索德"
 	},
 	"animator:Emilia":
@@ -419,7 +419,7 @@
 	},
 	"animator:Geryuganshoop":
 	{
-		"DESCRIPTION": "循環 !SV! 張牌 。 NL 抹除 最多 !M! 張已 消耗 的牌， NL 獲得等量 [E] 。 || 曇現 。 NL 如果你 抹除 了 NL 梅魯扎嘎魯多 NL 或者 波羅斯 ， NL 將他們返回手牌。",
+		"DESCRIPTION": "循環 !M! 張牌 。 NL 抹除 最多 !SV! 張已 消耗 的牌， NL 獲得等量 [E] 。 || 曇現 。 NL 如果你 抹除 了 NL 梅魯扎嘎魯多 NL 或者 波羅斯 ， NL 將他們返回手牌。",
 		"EXTENDED_DESCRIPTION": ["選擇 {0} 張牌抹除，獲得等量能量。"],
 		"NAME": "戈留干修普"
 	},
@@ -755,7 +755,7 @@
 	},
 	"animator:NononJakuzure":
 	{
-		"DESCRIPTION": "循環 !SV! 張牌。 激勵 !M! 。 NL 消耗 。 || 當在手牌時 同調 ， NL 將這張牌的 激勵 提高 1 。",
+		"DESCRIPTION": "循環 !M! 張牌。 激勵 !SV! 。 NL 消耗 。 || 當在手牌時 同調 ， NL 將這張牌的 激勵 提高 1 。",
 		"NAME": "蛇崩乃音"
 	},
 	"animator:OrbCore_Aether":

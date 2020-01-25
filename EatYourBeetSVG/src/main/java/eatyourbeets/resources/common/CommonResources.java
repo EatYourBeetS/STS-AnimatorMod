@@ -1,6 +1,9 @@
 package eatyourbeets.resources.common;
 
 import basemod.BaseMod;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
@@ -16,7 +19,6 @@ import eatyourbeets.events.UnnamedReign.TheHaunt;
 import eatyourbeets.events.UnnamedReign.TheMaskedTraveler3;
 import eatyourbeets.events.UnnamedReign.TheUnnamedMerchant;
 import eatyourbeets.events.animator.TheMaskedTraveler1;
-import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.powers.common.AgilityPower;
@@ -95,8 +97,6 @@ public class CommonResources extends AbstractResources
     {
         GR.UI.Initialize();
         GR.IsLoaded = true;
-
-        //CTContext.Test();
     }
 
     @Override
@@ -110,6 +110,15 @@ public class CommonResources extends AbstractResources
     protected void InitializeKeywords()
     {
         LoadKeywords();
+
+        AddPowerTooltip("[F]", new ForcePower(null, 0));
+        AddPowerTooltip("[A]", new AgilityPower(null, 0));
+        AddPowerTooltip("[I]", new IntellectPower(null, 0));
+        AddEnergyTooltip("[R]", AbstractCard.orb_red);
+        AddEnergyTooltip("[G]", AbstractCard.orb_green);
+        AddEnergyTooltip("[B]", AbstractCard.orb_blue);
+        AddEnergyTooltip("[P]", AbstractCard.orb_purple);
+        AddEnergyTooltip("[E]", null); // TODO: generalize this
 
         for (Field field : GameDictionary.class.getDeclaredFields())
         {
@@ -126,13 +135,6 @@ public class CommonResources extends AbstractResources
                     {
                         tooltips.put(name, tooltip);
                     }
-
-//                keywords.put("[R]", GameDictionary.TEXT[0]);
-//                keywords.put("[G]", GameDictionary.TEXT[0]);
-//                keywords.put("[B]", GameDictionary.TEXT[0]);
-//                keywords.put("[W]", GameDictionary.TEXT[0]);
-//                keywords.put("[E]", GameDictionary.TEXT[0]);
-//                TextureAtlas.AtlasRegion currentOrb = AbstractDungeon.player != null ? AbstractDungeon.player.getOrb() : AbstractCard.orb_red;
                 }
                 catch (IllegalAccessException ex)
                 {
@@ -140,11 +142,6 @@ public class CommonResources extends AbstractResources
                 }
             }
         }
-
-        ActionT1<AbstractPower> addIcon = (power) -> GR.GetTooltip(power.name.toLowerCase()).icon = power.img;
-        addIcon.Invoke(new ForcePower(null, 0));
-        addIcon.Invoke(new AgilityPower(null, 0));
-        addIcon.Invoke(new IntellectPower(null, 0));
     }
 
     @Override
@@ -156,5 +153,27 @@ public class CommonResources extends AbstractResources
         }
 
         return super.GetLanguagePath(language);
+    }
+
+    private static void AddEnergyTooltip(String id, TextureAtlas.AtlasRegion region)
+    {
+        if (region == null)
+        {
+            Texture texture = GR.GetTexture(GR.Animator.Images.ORB_C_PNG);
+            region = new TextureAtlas.AtlasRegion(texture, 2, 2, texture.getWidth()-4, texture.getHeight()-4);
+        }
+
+        EYBCardTooltip tooltip = new EYBCardTooltip(TipHelper.TEXT[0], GameDictionary.TEXT[0]);
+        tooltip.icon = region;
+        tooltips.put(id, tooltip);
+    }
+
+    private static void AddPowerTooltip(String symbol, AbstractPower power)
+    {
+        int size = power.img.getWidth(); // width should always be equal to height
+
+        EYBCardTooltip tooltip = GR.GetTooltip(power.name.toLowerCase());
+        tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 2, size-4, size-4);
+        tooltips.put(symbol, tooltip);
     }
 }

@@ -4,12 +4,13 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
 
-public class SpecialToken extends CTToken
+public abstract class SpecialToken extends CTToken
 {
     private static final CTContext internalParser = new CTContext();
 
     private SpecialToken()
     {
+        super(null, null);
         // this could be:
         // {#G:+4.0} -> Green colored text
         // {kw(Preview):Entou Jyuu} -> Add 'Preview' keyword, but show gold colored 'Entou Jyuu'
@@ -45,11 +46,11 @@ public class SpecialToken extends CTToken
 
                     if (word.length() > 1 && word.charAt(0) == '~')
                     {
-                        internalParser.Initialize(null, word.substring(1), parser.font);
+                        internalParser.Initialize(null, word.substring(1));
                     }
                     else
                     {
-                        internalParser.Initialize(null, word, parser.font);
+                        internalParser.Initialize(null, word);
                     }
 
                     for (CTLine line : internalParser.lines)

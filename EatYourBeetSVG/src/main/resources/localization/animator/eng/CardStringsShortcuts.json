@@ -1,7 +1,7 @@
 
 {
 	"<LIM>": "Limited",
-	"<SLM>": "Semi-Limited",
+	"<SLM>": "{Semi-Limited}",
 
 	"<AGI>": "Agility",
 	"<FOR>": "Force",

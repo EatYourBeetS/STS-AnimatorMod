@@ -4,7 +4,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class WhitespaceToken extends CTToken
 {
-    private static final WhitespaceToken Default = new WhitespaceToken(" ");
+    protected static final WhitespaceToken Default = new WhitespaceToken();
+
+    private WhitespaceToken()
+    {
+        super(CTTokenType.Whitespace, " ");
+    }
 
     public static int TryAdd(CTContext parser)
     {
@@ -18,21 +23,10 @@ public class WhitespaceToken extends CTToken
         return 0;
     }
 
-    public WhitespaceToken(Object text)
-    {
-        this.type = CTTokenType.Whitespace;
-        this.text = String.valueOf(text);
-    }
-
     @Override
     public void Render(SpriteBatch sb, CTContext context)
     {
-        if (context.whitespaceWidth <= 0)
-        {
-            layout.setText(context.font, text);
-            context.whitespaceWidth = layout.width;
-        }
-
-        context.start_x += context.whitespaceWidth;
+        layout.setText(context.font, text);
+        context.start_x += layout.width;
     }
 }

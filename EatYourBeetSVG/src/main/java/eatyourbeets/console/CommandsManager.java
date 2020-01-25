@@ -20,5 +20,7 @@ public abstract class CommandsManager
         {
             ConsoleCommand.addCommand("setspeed", SetGameSpeed.class);
         }
+
+        ConsoleCommand.addCommand("test", SetGameSpeed.class);
     }
 }

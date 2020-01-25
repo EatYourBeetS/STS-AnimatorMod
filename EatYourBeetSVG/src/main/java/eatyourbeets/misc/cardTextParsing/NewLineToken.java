@@ -1,15 +1,15 @@
 package eatyourbeets.misc.cardTextParsing;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class NewLineToken extends CTToken
 {
-    protected static NewLineToken Default = new NewLineToken(" NL ");
+    protected static NewLineToken Default = new NewLineToken();
 
-    protected NewLineToken(Object text)
+    private NewLineToken()
     {
-        this.type = CTTokenType.NewLine;
-        this.text = String.valueOf(text);
+        super(CTTokenType.NewLine, " NL ");
     }
 
     public static int TryAdd(CTContext parser)
@@ -21,6 +21,12 @@ public class NewLineToken extends CTToken
             return 4;
         }
 
+        return 0;
+    }
+
+    @Override
+    public float GetWidth(BitmapFont font)
+    {
         return 0;
     }
 

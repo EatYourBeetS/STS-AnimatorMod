@@ -1,7 +1,6 @@
 package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
@@ -48,7 +47,7 @@ public class EYBCardTooltip
         POWER_ICON_OFFSET_X = 40.0F * Settings.scale;
     }
 
-    public Texture icon;
+    public TextureAtlas.AtlasRegion icon;
     public String title;
     public String description;
 
@@ -71,11 +70,6 @@ public class EYBCardTooltip
 
     public float Render(SpriteBatch sb, float x, float y)
     {
-        if (title.equals("channel"))
-        {
-            return 0; // I refuse to render 5 lines of tooltip
-        }
-
         float h = -FontHelper.getSmartHeight(FontHelper.tipBodyFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7.0F * Settings.scale;
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
@@ -89,7 +83,7 @@ public class EYBCardTooltip
 
         if (icon != null)
         {
-            sb.draw(icon, x + TEXT_OFFSET_X, y + ORB_OFFSET_Y, 0, 0, 32, 32, Settings.scale, Settings.scale, 0, 0, 0, icon.getWidth(), icon.getHeight(), false, false);
+            renderTipEnergy(sb, icon, x + TEXT_OFFSET_X, y + ORB_OFFSET_Y);
 
             FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipHeaderFont, TipHelper.capitalize(title), x + TEXT_OFFSET_X * 2.5F, y + HEADER_OFFSET_Y, Settings.GOLD_COLOR);
         }

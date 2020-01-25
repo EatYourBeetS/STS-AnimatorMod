@@ -19,8 +19,8 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     {
         super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
 
-        Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.KillLaKill);
@@ -46,7 +46,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
         }
         else
         {
-            baseMagicNumber = (magicNumber += 1);
+            baseSecondaryValue = (secondaryValue += 1);
 
             flash();
         }
@@ -55,12 +55,12 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Cycle(name, secondaryValue)
+        GameActions.Bottom.Cycle(name, magicNumber)
         .AddCallback(__ ->
         { //
             GameActions.Top.Motivate()
             .MotivateZeroCost(false)
-            .AddCallback(magicNumber, this::OnMotivate);
+            .AddCallback(secondaryValue, this::OnMotivate);
         });
     }
 

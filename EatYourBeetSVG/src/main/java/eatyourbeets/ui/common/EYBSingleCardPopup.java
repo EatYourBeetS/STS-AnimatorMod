@@ -148,6 +148,7 @@ public class EYBSingleCardPopup extends GUIElement
                 upgradedCard.current_x = card.current_x;
                 upgradedCard.current_y = card.current_y;
                 upgradedCard.drawScale = card.drawScale;
+                upgradedCard.displayUpgrades();
             }
 
             return upgradedCard;

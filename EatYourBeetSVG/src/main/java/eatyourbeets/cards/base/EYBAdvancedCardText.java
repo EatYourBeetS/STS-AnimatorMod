@@ -71,7 +71,7 @@ public class EYBAdvancedCardText extends EYBCardText
     {
         descLines.clear();
         card.keywords.clear();
-        context.Initialize(card, card.rawDescription, FontHelper.cardDescFont_N);
+        context.Initialize(card, card.rawDescription);
     }
 
     @Override
@@ -121,6 +121,11 @@ public class EYBAdvancedCardText extends EYBCardText
 
             for (EYBCardTooltip tooltip : context.tooltips)
             {
+                if (tooltip.title.equals("channel"))
+                {
+                    continue; // Channel has 5 lines of tooltip...
+                }
+
                 y -= tooltip.Render(sb, x, y) + BOX_EDGE_H * 3.15F;
             }
         }

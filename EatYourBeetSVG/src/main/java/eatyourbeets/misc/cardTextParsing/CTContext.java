@@ -8,11 +8,15 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.Testing;
 
 import java.util.ArrayList;
 
 public class CTContext
 {
+    protected final static BitmapFont DEFAULT_PARSING_FONT = Testing.GenerateCardDescFont(21);
+    protected final static BitmapFont DEFAULT_RENDER_FONT = DEFAULT_PARSING_FONT;
+    protected final static float SCP_SCALE = DEFAULT_RENDER_FONT.getXHeight() / FontHelper.SCP_cardDescFont.getXHeight();
     protected final static float IMG_HEIGHT = 420.0F * Settings.scale;
     protected final static float IMG_WIDTH = 300.0F * Settings.scale;
     protected final static float DESC_BOX_WIDTH = Settings.BIG_TEXT_MODE ? IMG_WIDTH * 0.95F : IMG_WIDTH * 0.79F;
@@ -29,34 +33,36 @@ public class CTContext
     protected int remaining;
     protected int characterIndex;
     protected int lineIndex;
+    protected float scaleModifier;
 
-    public float whitespaceWidth = 0;
     public EYBCard card;
     public float start_y;
     public float start_x;
-    public float spacing;
-    public float height;
+    public float lineHeight;
     public Color color;
-    public int line;
 
-    public static void Test()
+    public void Initialize(EYBCard card, String text)
     {
-        CTContext test = new CTContext();
-
-        test.Initialize(null,"Deal !D! ({G:+3.0}[F]) {K:Preview|Entou Jyuu} Piercing NL damage. Apply NL !M! Poison.", FontHelper.cardDescFont_N);
-        test.Initialize(null, "At the end of your turn, deal !M! damage to all enemies for each #yDebuff[] they have.", FontHelper.cardDescFont_N);
-    }
-
-    public void Initialize(EYBCard card, String text, BitmapFont font)
-    {
+        this.font = DEFAULT_PARSING_FONT;
         this.card = card;
-        this.font = font;
+        this.text = text;
         this.lines.clear();
         this.tooltips.clear();
-        this.lines.add(new CTLine());
-        this.text = text;
+
+        AddLine();
+
         this.characterIndex = 0;
         this.lineIndex = 0;
+
+        if (text.length() > 200)
+        {
+            scaleModifier = 1 - (0.1f * (text.length() / 200f));
+            font.getData().setScale(scaleModifier);
+        }
+        else
+        {
+            scaleModifier = 1f;
+        }
 
         int amount = 0;
         while (MoveIndex(amount))
@@ -78,36 +84,46 @@ public class CTContext
         }
 
         this.lines.get(lineIndex).TrimEnd(); // Remove possible whitespace from the last line
+
+        if (font.getScaleX() != 0)
+        {
+            font.getData().setScale(1);
+        }
     }
 
     public void Render(SpriteBatch sb)
     {
-        this.line = 0;
-
-        if (card.angle == 0.0F && card.drawScale == 1.0F)
+        if (card.angle != 0.0F || card.drawScale <= 1f)
         {
-            this.font = FontHelper.cardDescFont_N;
+            font = DEFAULT_RENDER_FONT;
+            font.getData().setScale(card.drawScale * scaleModifier);
         }
+//        else if (card.drawScale == 1F)
+//        {
+//            font = FontHelper.cardDescFont_N;
+//            font.getData().setScale(scale);
+//        }
         else
         {
-            this.font = FontHelper.cardDescFont_L;
-            this.font.getData().setScale(card.drawScale);
+            font = FontHelper.SCP_cardDescFont;
+            font.getData().setScale(card.drawScale * scaleModifier * SCP_SCALE);
         }
 
-        this.height = font.getCapHeight();
-        this.spacing = 1.45F * -height / Settings.scale / card.drawScale;
-        this.start_y = card.current_y - IMG_HEIGHT * card.drawScale * 0.5f + DESC_OFFSET_Y * card.drawScale + (lines.size() * height) * 0.775F - height * 0.375F;
+        this.lineHeight = font.getCapHeight();
+        this.start_y = 0;
         this.start_x = 0;
-        this.line = 0;
+        this.lineIndex = 0;
         this.color = DEFAULT_COLOR;
-        this.whitespaceWidth = 0;
 
         for (CTLine line : lines)
         {
-            line.Render(sb, this);
+            line.Render(sb);
         }
 
-        font.getData().setScale(1);
+        if (font.getScaleX() != 1)
+        {
+            font.getData().setScale(1);
+        }
     }
 
     protected boolean CompareNext(int amount, char character)
@@ -139,33 +155,25 @@ public class CTContext
         return remaining >= 0;
     }
 
+    protected CTLine AddLine()
+    {
+        CTLine line = new CTLine(this);
+
+        lines.add(line);
+        lineIndex += 1;
+
+        return line;
+    }
+
     protected void AddToken(CTToken token)
     {
-        CTLine line;
-
         if (token.type == CTTokenType.NewLine)
         {
-            line = new CTLine();
-            lines.add(line);
-            lineIndex += 1;
+            AddLine();
         }
         else
         {
-            line = lines.get(lineIndex);
-            token.SetWidth(font);
-
-            if (line.Count() > 0 && (token.width + line.width) > DESC_BOX_WIDTH)
-            {
-                line.TrimEnd();
-                line = new CTLine();
-                lines.add(line);
-                lineIndex += 1;
-            }
-
-            if (line.Count() > 0 || token.type != CTTokenType.Whitespace)
-            {
-                line.Add(token);
-            }
+            lines.get(lineIndex).Add(token);
         }
     }
 

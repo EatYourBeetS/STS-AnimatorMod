@@ -7,15 +7,14 @@ public class PunctuationToken extends CTToken
 {
     private static Map<String, PunctuationToken> tokenCache = new HashMap<>();
 
-    protected PunctuationToken(Object text)
+    protected PunctuationToken(String text)
     {
-        this.type = CTTokenType.Punctuation;
-        this.text = String.valueOf(text);
+        super(CTTokenType.Punctuation, text);
     }
 
     protected static boolean IsValidCharacter(Character character)
     {
-        return character != null && !Character.isLetterOrDigit(character) && "{[!#< _*>]}".indexOf(character) == -1;
+        return character != null && !Character.isLetterOrDigit(character) && !Character.isWhitespace(character);
     }
 
     public static int TryAdd(CTContext parser)
@@ -30,7 +29,7 @@ public class PunctuationToken extends CTToken
             {
                 Character next = parser.NextCharacter(i);
 
-                if (IsValidCharacter(next))
+                if (IsValidCharacter(next) && "{[!#<_*>]}".indexOf(next) == -1)
                 {
                     builder.append(next);
                 }

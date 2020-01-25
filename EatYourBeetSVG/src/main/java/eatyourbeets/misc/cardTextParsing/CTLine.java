@@ -8,34 +8,51 @@ import java.util.ArrayList;
 
 public class CTLine
 {
+    protected final static float IMG_HEIGHT = 420.0F * Settings.scale;
     protected final static float IMG_WIDTH = 300.0F * Settings.scale;
     protected final static float DESC_BOX_WIDTH = Settings.BIG_TEXT_MODE ? IMG_WIDTH * 0.95F : IMG_WIDTH * 0.79F;
+    protected final static float DESC_OFFSET_Y = Settings.BIG_TEXT_MODE ? IMG_HEIGHT * 0.24F : IMG_HEIGHT * 0.255F;
     protected final ArrayList<CTToken> tokens = new ArrayList<>();
+    protected final CTContext context;
 
     public float width = 0;
 
-    public int Count()
+    public CTLine(CTContext context)
     {
-        return tokens.size();
-    }
-
-    public CTToken Get(int index)
-    {
-        return tokens.get(index);
+        this.context = context;
     }
 
     public void Add(CTToken token)
     {
-        tokens.add(token);
-        width += token.width;
+        float tokenWidth = token.GetWidth(context.font);
+        if (tokens.isEmpty())
+        {
+            if (token.type != CTTokenType.Whitespace)
+            {
+                tokens.add(token);
+                width += tokenWidth;
+            }
+        }
+        else if ((tokenWidth + width) < DESC_BOX_WIDTH || (token.type == CTTokenType.Punctuation && token.text.length() == 1))
+        {
+            tokens.add(token);
+            width += tokenWidth;
+        }
+        else
+        {
+            CTLine newLine = context.AddLine();
+
+            if (token.type != CTTokenType.Whitespace)
+            {
+                newLine.tokens.add(token);
+                newLine.width += tokenWidth;
+            }
+
+            TrimEnd();
+        }
     }
 
-    public void Remove(int index)
-    {
-        width -= tokens.remove(index).width;
-    }
-
-    public void Render(SpriteBatch sb, CTContext context)
+    public void Render(SpriteBatch sb)
     {
         final EYBCard card = context.card;
 
@@ -52,12 +69,16 @@ public class CTLine
             context.start_x = card.current_x - (width * card.drawScale * 0.5f) - 14.0F * Settings.scale;
         }
 
+        context.start_y = (card.current_y - IMG_HEIGHT * card.drawScale * 0.5f + DESC_OFFSET_Y * card.drawScale)
+                        + (context.lines.size() * context.lineHeight * 0.775F - context.lineHeight * 0.375F)
+                        - (context.lineHeight * context.lineIndex * 1.45F) - 6f;
+
         for (CTToken token : tokens)
         {
             token.Render(sb, context);
         }
 
-        context.line += 1;
+        context.lineIndex += 1;
     }
 
     @Override
@@ -72,20 +93,12 @@ public class CTLine
         return sb.toString();
     }
 
-    public void TrimEnd()
+    protected void TrimEnd()
     {
         int size = tokens.size();
-        if (size > 0 && Get(size - 1).type == CTTokenType.Whitespace)
+        if (size > 0 && tokens.get(size - 1).type == CTTokenType.Whitespace)
         {
-            Remove(size - 1);
-        }
-    }
-
-    public void TrimStart()
-    {
-        if (tokens.size() > 0 && Get(0).type == CTTokenType.Whitespace)
-        {
-            Remove(0);
+            width -= tokens.remove(size - 1).GetWidth(context.font);
         }
     }
 }

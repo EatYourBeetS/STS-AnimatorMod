@@ -98,13 +98,13 @@
 	},
 	"Shapeshifter":
 	{
-		"DESCRIPTION": "Synergizes with any card.",
+		"DESCRIPTION": "#ySynergizes with any card.",
 		"NAMES": ["shapeshifter", "shapeshift"],
 		"PROPER_NAME": "Shapeshifter"
 	},
 	"Spellcaster":
 	{
-		"DESCRIPTION": "#Synergizes with other #ySpellcasters.",
+		"DESCRIPTION": "#ySynergizes with other #ySpellcasters.",
 		"NAMES": ["spellcaster"],
 		"PROPER_NAME": "Spellcaster"
 	},

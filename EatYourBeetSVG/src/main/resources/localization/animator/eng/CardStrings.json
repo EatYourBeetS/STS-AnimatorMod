@@ -297,7 +297,7 @@
 	},
 	"animator:DolaRiku":
 	{
-		"DESCRIPTION": "Exhaust a card in your NL hand, choose and NL obtain 1 of !M! cards of NL the same rarity, NL it costs 1 less. || <SLM>. NL On Synergy, draw NL a #y0-Cost[] card.",
+		"DESCRIPTION": "Exhaust a card in your NL hand, choose and NL obtain 1 of !M! cards of NL the same rarity, NL it costs 1 less. || <SLM>. NL On Synergy, draw NL a {0-Cost} card.",
 		"NAME": "Riku"
 	},
 	"animator:DolaSchwi":
@@ -533,7 +533,7 @@
 	},
 	"animator:Hitei":
 	{
-		"DESCRIPTION": "At the start of each turn, Exhaust 1 of !M! random cards in your draw or discard pile. || On Synergy, NL gain 2 <INT>, NL gain 2 <AGI>, NL gain 2 <FOR>.",
+		"DESCRIPTION": "At the start of each turn, Exhaust 1 of !M! random cards in your draw or discard pile. Synergy: gain 2 [I], [A] and [F].",
 		"NAME": "Hitei"
 	},
 	"animator:HolyGrail":
@@ -580,7 +580,7 @@
 	},
 	"animator:Jibril":
 	{
-		"DESCRIPTION": "<SPE>. NL <DMG-ALL>. || <SLM>. NL When Drawn, trigger NL the passive ability of NL your next Orb.",
+		"DESCRIPTION": "<SPE>. NL When Drawn, trigger NL the passive ability of NL your next Orb.",
 		"NAME": "Jibril"
 	},
 	"animator:Kaijin":
@@ -982,7 +982,7 @@
 	},
 	"animator:Spearman":
 	{
-		"DESCRIPTION": "Deal !D! Piercing NL damage. Gain 1 Agility. Add a Wound NL into your hand. || <LIM>. NL If this card NL kills an enemy, NL Motivate 2.",
+		"DESCRIPTION": "Piercing. NL Deal !D! damage. NL Gain 1 Agility. NL Add a Wound NL into your hand. || <LIM>. NL If this card NL kills an enemy, NL Motivate 2.",
 		"NAME": "'Spearman'"
 	},
 	"animator:Strike":

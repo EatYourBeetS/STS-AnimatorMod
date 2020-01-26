@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class CTContext
 {
-    protected final static BitmapFont DEFAULT_PARSING_FONT = Testing.GenerateCardDescFont(21);
+    protected final static BitmapFont DEFAULT_PARSING_FONT = Testing.GenerateCardDescFont(23);
     protected final static BitmapFont DEFAULT_RENDER_FONT = DEFAULT_PARSING_FONT;
     protected final static float SCP_SCALE = DEFAULT_RENDER_FONT.getXHeight() / FontHelper.SCP_cardDescFont.getXHeight();
     protected final static float IMG_HEIGHT = 420.0F * Settings.scale;

@@ -80,6 +80,11 @@ public abstract class EYBCard extends CustomCard
         this.cardText.ForceRefresh();
     }
 
+    public boolean IsMultiDamage()
+    {
+        return isMultiDamage;
+    }
+
     @Override
     public List<TooltipInfo> getCustomTooltips()
     {
@@ -731,6 +736,18 @@ public abstract class EYBCard extends CustomCard
             }
 
             OnUpgrade();
+        }
+    }
+
+    @Override
+    public void displayUpgrades()
+    {
+        super.displayUpgrades();
+
+        if (this.upgradedSecondaryValue)
+        {
+            this.secondaryValue = this.baseSecondaryValue;
+            this.isSecondaryValueModified = true;
         }
     }
 

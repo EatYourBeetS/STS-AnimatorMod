@@ -132,13 +132,13 @@ public class Testing
         param.hinting = FreeTypeFontGenerator.Hinting.Slight;
         param.spaceX = 0;
         param.kerning = true;
-        param.borderColor = new Color(0F, 0F, 0F, 1.0F);
-        param.borderWidth = 1f * Settings.scale;
+        param.borderColor = null; //new Color(0F, 0F, 0F, 1.0F);
+        param.borderWidth = 0; //1f * Settings.scale;
         param.gamma = 0.9F;
         param.borderGamma = 0.9F;
-        param.shadowColor = null;//new Color(0.0F, 0.0F, 0.0F, 0F);
-        param.shadowOffsetX = 0 ;//Math.round(3.0F * Settings.scale);
-        param.shadowOffsetY = 0 ;//Math.round(3.0F * Settings.scale);
+        param.shadowColor = new Color(0.0F, 0.0F, 0.0F, 0.25F);
+        param.shadowOffsetX = 1;
+        param.shadowOffsetY = 1;
         param.borderStraight = false;
         param.characters = "";
         param.incremental = true;
@@ -147,7 +147,39 @@ public class Testing
         g.scaleForPixelHeight(param.size);
         BitmapFont font = g.generateFont(param);
         font.setUseIntegerPositions(false);
-        font.getData().markupEnabled = true;
+        font.getData().markupEnabled = false;
+        if (LocalizedStrings.break_chars != null)
+        {
+            font.getData().breakChars = LocalizedStrings.break_chars.toCharArray();
+        }
+
+        return font;
+    }
+
+    public static BitmapFont GenerateCardStatsFont(float size, float borderWidth)
+    {
+        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        param.minFilter = Texture.TextureFilter.Linear;
+        param.magFilter = Texture.TextureFilter.Linear;
+        param.hinting = FreeTypeFontGenerator.Hinting.Slight;
+        param.spaceX = 0;
+        param.kerning = true;
+        param.borderColor = new Color(0F, 0F, 0F, 1F);
+        param.borderWidth = borderWidth * Settings.scale;
+        param.gamma = 0.9F;
+        param.borderGamma = 0.9F;
+        param.shadowColor = null; //new Color(0.0F, 0.0F, 0.0F, 0.5F);
+        param.shadowOffsetX = 0;//Math.round(1.0F * Settings.scale);
+        param.shadowOffsetY = 0;//Math.round(1.0F * Settings.scale);
+        param.borderStraight = false;
+        param.characters = "";
+        param.incremental = true;
+        param.size = Math.round(size * Settings.scale);
+        FreeTypeFontGenerator g = new FreeTypeFontGenerator(TitleFontSize.fontFile);
+        g.scaleForPixelHeight(param.size);
+        BitmapFont font = g.generateFont(param);
+        font.setUseIntegerPositions(false);
+        font.getData().markupEnabled = false;
         if (LocalizedStrings.break_chars != null)
         {
             font.getData().breakChars = LocalizedStrings.break_chars.toCharArray();

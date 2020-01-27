@@ -23,7 +23,7 @@ public class Entoma extends AnimatorCard
 
     public Entoma()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(6, 0, 3);
         SetUpgrade(1, 0, 0);

@@ -15,7 +15,7 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
 
     public Arpeggio()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 2, 0);
         SetUpgrade(0, 0, 0, 1);

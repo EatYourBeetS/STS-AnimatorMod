@@ -4,8 +4,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.regex.Pattern;
-
 public abstract class EYBCardText
 {
     public static boolean Toggled;
@@ -15,8 +13,8 @@ public abstract class EYBCardText
     public int index;
 
     protected final EYBCard card;
-    protected final String[] descriptions;
-    protected final String[] upgradedDescriptions;
+    protected final String description;
+    protected final String upgradedDescription;
     protected String overrideDescription;
     protected String overrideSecondaryDescription;
 
@@ -28,31 +26,16 @@ public abstract class EYBCardText
     {
         this.card = card;
         this.index = NewIndex;
-        this.descriptions = cardStrings.DESCRIPTION.split(Pattern.quote(" || "));
         this.canUpdate = true;
+        this.description = cardStrings.DESCRIPTION;
 
         if (StringUtils.isNotEmpty(cardStrings.UPGRADE_DESCRIPTION))
         {
-            String[] temp = cardStrings.UPGRADE_DESCRIPTION.split(Pattern.quote(" || "));
-            this.upgradedDescriptions = new String[2];
-            this.upgradedDescriptions[0] = temp[0];
-
-            if (temp.length > 1)
-            {
-                this.upgradedDescriptions[1] = temp[1];
-            }
-            else if (descriptions.length > 1)
-            {
-                this.upgradedDescriptions[1] = descriptions[1];
-            }
-            else
-            {
-                this.upgradedDescriptions[1] = "-";
-            }
+            this.upgradedDescription = cardStrings.UPGRADE_DESCRIPTION;
         }
         else
         {
-            this.upgradedDescriptions = null;
+            this.upgradedDescription = null;
         }
     }
 
@@ -70,11 +53,11 @@ public abstract class EYBCardText
             {
                 card.rawDescription = overrideSecondaryDescription;
             }
-            else if (card.upgraded && upgradedDescriptions != null)
+            else if (card.upgraded && upgradedDescription != null)
             {
-                if (upgradedDescriptions.length > index)
+                if (index == 0)
                 {
-                    card.rawDescription = upgradedDescriptions[index];
+                    card.rawDescription = upgradedDescription;
                 }
                 else
                 {
@@ -83,9 +66,9 @@ public abstract class EYBCardText
             }
             else
             {
-                if (descriptions.length > index)
+                if (index == 0)
                 {
-                    card.rawDescription = descriptions[index];
+                    card.rawDescription = description;
                 }
                 else
                 {

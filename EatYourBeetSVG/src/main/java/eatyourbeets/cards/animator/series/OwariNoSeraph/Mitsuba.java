@@ -14,7 +14,7 @@ public class Mitsuba extends AnimatorCard
 
     public Mitsuba()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(9, 6, 2);
         SetUpgrade(3, 2, 0);

@@ -18,7 +18,7 @@ public class Sloth extends AnimatorCard
 
     public Sloth()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(12, 12, 0, 3);
         SetUpgrade(3, 3);

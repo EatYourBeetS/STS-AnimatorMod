@@ -16,7 +16,7 @@ public class PandorasActor extends AnimatorCard implements StartupCard
 
     public PandorasActor()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 5);
         SetUpgrade(0, 3);

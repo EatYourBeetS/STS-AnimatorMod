@@ -15,7 +15,7 @@ public class Millim extends AnimatorCard
 
     public Millim()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.COMMON, AttackType.Elemental);
 
         Initialize(6, 0, 2);
         SetUpgrade(1, 0, 1);

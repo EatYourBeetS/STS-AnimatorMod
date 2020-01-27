@@ -15,7 +15,7 @@ public class Chris extends AnimatorCard
 
     public Chris()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 0, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(4, 0, 4);
         SetUpgrade(2, 0, 2);

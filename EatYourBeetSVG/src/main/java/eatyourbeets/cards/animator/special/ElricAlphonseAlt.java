@@ -15,7 +15,7 @@ public class ElricAlphonseAlt extends AnimatorCard implements Hidden
 
     public ElricAlphonseAlt()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 1, CardRarity.SPECIAL, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);

@@ -19,7 +19,7 @@ public class Layla extends AnimatorCard
 
     public Layla()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(7, 0, 2, 2);
         SetUpgrade(0, 0, 1, 0);

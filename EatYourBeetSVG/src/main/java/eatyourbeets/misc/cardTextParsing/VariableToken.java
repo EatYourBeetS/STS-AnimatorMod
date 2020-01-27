@@ -3,8 +3,8 @@ package eatyourbeets.misc.cardTextParsing;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +49,7 @@ public class VariableToken extends CTToken
     }
 
     @Override
-    public float GetWidth(BitmapFont font)
+    protected float GetWidth(BitmapFont font, String text)
     {
         if (text == null)
         {
@@ -57,87 +57,13 @@ public class VariableToken extends CTToken
         }
         else
         {
-            return super.GetWidth(font);
+            return super.GetWidth(font, text);
         }
     }
 
     @Override
     public void Render(SpriteBatch sb, CTContext context)
     {
-        EYBCard card = context.card;
-        switch (variableID)
-        {
-            case 'D':
-            {
-                if (card.isDamageModified)
-                {
-                    context.color = (card.damage >= card.baseDamage) ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR;
-                    text = Integer.toString(card.damage);
-                }
-                else
-                {
-                    text = Integer.toString(card.baseDamage);
-                }
-
-                break;
-            }
-
-            case 'M':
-            {
-                if (card.isMagicNumberModified)
-                {
-                    context.color = (card.magicNumber >= card.baseMagicNumber) ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR;
-                    text = Integer.toString(card.magicNumber);
-                }
-                else
-                {
-                    text = Integer.toString(card.baseMagicNumber);
-                }
-
-                break;
-            }
-
-            case 'B':
-            {
-                if (card.isBlockModified)
-                {
-                    context.color = (card.block >= card.baseBlock) ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR;
-                    text = Integer.toString(card.block);
-                }
-                else
-                {
-                    text = Integer.toString(card.baseBlock);
-                }
-
-                break;
-            }
-
-            case 'S':
-            {
-                if (card.isSecondaryValueModified)
-                {
-                    context.color = (card.secondaryValue > card.baseSecondaryValue) ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR;
-                    text = Integer.toString(card.secondaryValue);
-                }
-                else
-                {
-                    text = Integer.toString(card.baseSecondaryValue);
-                }
-
-                break;
-            }
-
-            default:
-            {
-                context.color = Settings.RED_TEXT_COLOR;
-                text = "?";
-
-                break;
-            }
-        }
-
-        super.Render(sb, context);
-
-        context.color = CTContext.DEFAULT_COLOR;
+        super.Render(sb, context, RenderHelpers.GetCardAttributeString(context.card, variableID));
     }
 }

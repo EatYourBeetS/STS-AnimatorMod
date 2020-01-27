@@ -14,7 +14,7 @@ public class GazelDwargon extends AnimatorCard
 
     public GazelDwargon()
     {
-        super(ID, -1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, -1, CardRarity.UNCOMMON, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0, 4);
 

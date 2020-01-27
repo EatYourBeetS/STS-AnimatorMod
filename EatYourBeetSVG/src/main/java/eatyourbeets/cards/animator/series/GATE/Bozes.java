@@ -15,7 +15,7 @@ public class Bozes extends AnimatorCard
 
     public Bozes()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
 
         Initialize(7, 0, 2, 1);
         SetUpgrade(0, 0, 1);

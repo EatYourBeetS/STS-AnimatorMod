@@ -30,7 +30,7 @@ public class Fredrika extends AnimatorCard
 
     public Fredrika()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(9, 2, 2);
         SetUpgrade(2, 2, 0);

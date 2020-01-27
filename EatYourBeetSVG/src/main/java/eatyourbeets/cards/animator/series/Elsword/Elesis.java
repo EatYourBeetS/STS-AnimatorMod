@@ -14,7 +14,7 @@ public class Elesis extends AnimatorCard
 
     public Elesis()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 3, CardRarity.RARE, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(4, 0, 3, 8);
         SetUpgrade(6, 0);

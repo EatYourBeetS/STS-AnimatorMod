@@ -35,7 +35,7 @@ public class SymbolToken extends CTToken
     }
 
     @Override
-    public float GetWidth(BitmapFont font)
+    protected float GetWidth(BitmapFont font, String text)
     {
         return 24f * Settings.scale * font.getScaleX();// AbstractCard.CARD_ENERGY_IMG_WIDTH
     }

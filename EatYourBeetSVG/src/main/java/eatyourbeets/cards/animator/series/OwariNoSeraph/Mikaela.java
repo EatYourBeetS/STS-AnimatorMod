@@ -4,10 +4,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class Mikaela extends AnimatorCard
 {
@@ -15,12 +18,18 @@ public class Mikaela extends AnimatorCard
 
     public Mikaela()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(7, 0, 2, 2);
         SetUpgrade(2, 0, 1, 0);
 
         SetSynergy(Synergies.OwariNoSeraph);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetText(RenderHelpers.GetMagicNumberString(this));
     }
 
     @Override

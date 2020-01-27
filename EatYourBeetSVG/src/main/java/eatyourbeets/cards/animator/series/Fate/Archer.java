@@ -15,7 +15,7 @@ public class Archer extends AnimatorCard
 
     public Archer()
     {
-        super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.COMMON, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);

@@ -17,13 +17,12 @@ public class Benimaru extends AnimatorCard
 
     public Benimaru()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardRarity.COMMON, AttackType.Elemental, true);
 
         Initialize(3, 0, 2);
         SetUpgrade(3, 0, 0);
 
         SetEvokeOrbCount(1);
-        SetMultiDamage(true);
         SetSynergy(Synergies.TenSura);
     }
 

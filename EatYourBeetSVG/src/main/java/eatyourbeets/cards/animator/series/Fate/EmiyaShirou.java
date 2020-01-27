@@ -16,7 +16,7 @@ public class EmiyaShirou extends AnimatorCard
 
     public EmiyaShirou()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.ALL);
 
         Initialize(0, 5, 2);
         SetUpgrade(0, 1, 1);

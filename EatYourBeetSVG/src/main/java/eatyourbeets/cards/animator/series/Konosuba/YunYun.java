@@ -26,7 +26,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
 
     public YunYun()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        super(ID, 0, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL_ENEMY);
 
         Initialize(8, 0);
         SetUpgrade(4, 0);

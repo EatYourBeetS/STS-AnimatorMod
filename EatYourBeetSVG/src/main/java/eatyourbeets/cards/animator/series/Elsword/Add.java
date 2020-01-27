@@ -23,7 +23,7 @@ public class Add extends AnimatorCard
 
     public Add()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);

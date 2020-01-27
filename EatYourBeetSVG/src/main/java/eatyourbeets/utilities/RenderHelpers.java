@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.ui.controls.GUI_Image;
 
 public class RenderHelpers
@@ -103,4 +104,94 @@ public class RenderHelpers
         return new GUI_Image(texture, color);
     }
 
+    public static Color CopyColor(AbstractCard card, Color color)
+    {
+        Color result = color.cpy();
+        result.a = card.transparency;
+        return result;
+    }
+
+    public static ColoredString GetSecondaryValueString(EYBCard card)
+    {
+        ColoredString result;
+
+        if (card.isSecondaryValueModified)
+        {
+            result = new ColoredString(card.secondaryValue >= card.baseSecondaryValue ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, card.secondaryValue);
+        }
+        else
+        {
+            result = new ColoredString(Settings.CREAM_COLOR, card.baseSecondaryValue);
+        }
+
+        result.color.a = card.transparency;
+
+        return result;
+    }
+
+    public static ColoredString GetMagicNumberString(AbstractCard card)
+    {
+        ColoredString result;
+
+        if (card.isMagicNumberModified)
+        {
+            result = new ColoredString(card.magicNumber >= card.baseMagicNumber ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, card.magicNumber);
+        }
+        else
+        {
+            result = new ColoredString(Settings.CREAM_COLOR, card.baseMagicNumber);
+        }
+
+        result.color.a = card.transparency;
+
+        return result;
+    }
+
+    public static ColoredString GetBlockString(AbstractCard card)
+    {
+        ColoredString result;
+
+        if (card.isBlockModified)
+        {
+            result = new ColoredString(card.block >= card.baseBlock ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, card.block);
+        }
+        else
+        {
+            result = new ColoredString(Settings.CREAM_COLOR, card.baseBlock);
+        }
+
+        result.color.a = card.transparency;
+
+        return result;
+    }
+
+    public static ColoredString GetDamageString(AbstractCard card)
+    {
+        ColoredString result;
+
+        if (card.isDamageModified)
+        {
+            result = new ColoredString(card.damage >= card.baseDamage ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, card.damage);
+        }
+        else
+        {
+            result = new ColoredString(Settings.CREAM_COLOR, card.baseDamage);
+        }
+
+        result.color.a = card.transparency;
+
+        return result;
+    }
+
+    public static ColoredString GetCardAttributeString(AbstractCard card, char attributeID)
+    {
+        switch (attributeID)
+        {
+            case 'D': return GetDamageString(card);
+            case 'B': return GetBlockString(card);
+            case 'M': return GetMagicNumberString(card);
+            case 'S': return GetSecondaryValueString((EYBCard) card);
+            default: return new ColoredString("?", Settings.RED_TEXT_COLOR);
+        }
+    }
 }

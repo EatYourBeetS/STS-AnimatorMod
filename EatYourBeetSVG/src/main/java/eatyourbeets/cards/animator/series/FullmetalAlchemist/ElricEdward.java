@@ -16,7 +16,7 @@ public class ElricEdward extends AnimatorCard
 
     public ElricEdward()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(4, 0, 1);
         SetUpgrade(4, 0, 0);

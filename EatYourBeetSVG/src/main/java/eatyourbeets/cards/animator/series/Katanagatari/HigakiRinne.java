@@ -33,7 +33,7 @@ public class HigakiRinne extends AnimatorCard
 
     public HigakiRinne()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
+        super(ID, 0, CardRarity.RARE, CardType.SKILL, CardTarget.ALL);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);

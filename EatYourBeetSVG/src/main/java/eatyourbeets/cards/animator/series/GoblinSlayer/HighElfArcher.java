@@ -17,7 +17,7 @@ public class HighElfArcher extends AnimatorCard
 
     public HighElfArcher()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 0, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(3, 0, 2);
         SetUpgrade(0, 0, 1);

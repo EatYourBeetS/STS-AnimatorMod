@@ -13,7 +13,7 @@ public class Guy extends AnimatorCard
 
     public Guy()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 0, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1);

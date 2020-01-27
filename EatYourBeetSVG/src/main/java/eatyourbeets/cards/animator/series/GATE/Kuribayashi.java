@@ -18,7 +18,7 @@ public class Kuribayashi extends AnimatorCard
 
     public Kuribayashi()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(7, 0, 2, 2);
         SetUpgrade(1, 0, 0, 2);

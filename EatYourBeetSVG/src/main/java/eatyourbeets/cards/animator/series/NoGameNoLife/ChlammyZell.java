@@ -15,7 +15,7 @@ public class ChlammyZell extends AnimatorCard
 
     public ChlammyZell()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.ALL);
 
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 1, 0);

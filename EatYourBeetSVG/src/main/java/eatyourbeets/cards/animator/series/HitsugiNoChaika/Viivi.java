@@ -16,7 +16,7 @@ public class Viivi extends AnimatorCard
 
     public Viivi()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ALL_ENEMY);
 
         Initialize(3, 0, 3);
         SetUpgrade(0, 0, 1);

@@ -1,10 +1,11 @@
 package eatyourbeets.misc.cardTextParsing;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import eatyourbeets.utilities.ColoredString;
 
 public abstract class CTToken
 {
@@ -23,23 +24,36 @@ public abstract class CTToken
 
     public float GetWidth(BitmapFont font)
     {
-        layout.setText(font, text);
-        return layout.width;
-    }
-
-    @Override
-    public String toString()
-    {
-        return text;
+        return GetWidth(font, text);
     }
 
     public void Render(SpriteBatch sb, CTContext context)
     {
-        final AbstractCard card = context.card;
-        float width = GetWidth(context.font);
+        Render(sb, context, text, context.color);
+    }
 
-        FontHelper.renderRotatedText(sb, context.font, text, context.start_x + width / 2.0F, context.start_y, 0, 0, card.angle, true, context.color);
+    protected float GetWidth(BitmapFont font, String text)
+    {
+        layout.setText(font, text);
+        return layout.width;
+    }
 
-        context.start_x += width; // context.start_x = (float) Math.round(context.start_x + layout.width);
+    protected void Render(SpriteBatch sb, CTContext context, Color color)
+    {
+        Render(sb, context, text, color);
+    }
+
+    protected void Render(SpriteBatch sb, CTContext context, ColoredString string)
+    {
+        Render(sb, context, string.text, string.color);
+    }
+
+    protected void Render(SpriteBatch sb, CTContext context, String text, Color color)
+    {
+        float width = GetWidth(context.font, text);
+
+        FontHelper.renderRotatedText(sb, context.font, text, context.start_x + width / 2.0F, context.start_y, 0, 0, context.card.angle, true, color);
+
+        context.start_x += width;
     }
 }

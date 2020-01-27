@@ -18,7 +18,7 @@ public class Berserker extends AnimatorCard
 
     public Berserker()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 3, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(26, 0, 2, 14);
         SetUpgrade( 7, 0);

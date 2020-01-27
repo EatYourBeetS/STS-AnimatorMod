@@ -16,7 +16,7 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
 
     public ZankiKiguchi()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 0, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(2, 0, 2);
         SetUpgrade(3, 0, 0);

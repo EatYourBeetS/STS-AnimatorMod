@@ -21,7 +21,7 @@ public class Ain extends AnimatorCard implements Spellcaster
 
     public Ain()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL);
 
         Initialize(3, 0, 2, 1);
         SetUpgrade(0, 0, 1, 0);

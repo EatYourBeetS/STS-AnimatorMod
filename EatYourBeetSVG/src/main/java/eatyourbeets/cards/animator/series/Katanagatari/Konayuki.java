@@ -18,7 +18,7 @@ public class Konayuki extends AnimatorCard
 
     public Konayuki()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 2, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 6, 2, 1);
         SetUpgrade(0, 0, 0, 1);

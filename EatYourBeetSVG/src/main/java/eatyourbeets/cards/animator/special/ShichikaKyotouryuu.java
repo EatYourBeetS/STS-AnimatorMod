@@ -18,7 +18,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
 
     public ShichikaKyotouryuu()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.SPECIAL, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(1, 0, 4);
         SetUpgrade(1, 0, 0);

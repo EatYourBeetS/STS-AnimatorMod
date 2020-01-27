@@ -5,8 +5,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class Priestess extends AnimatorCard
 {
@@ -14,11 +17,17 @@ public class Priestess extends AnimatorCard
 
     public Priestess()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF_AND_ENEMY);
 
         Initialize(0, 0, 4, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetText(RenderHelpers.GetMagicNumberString(this));
     }
 
     @Override

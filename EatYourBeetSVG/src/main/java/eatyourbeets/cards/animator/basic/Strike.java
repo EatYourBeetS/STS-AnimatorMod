@@ -28,7 +28,7 @@ public class Strike extends AnimatorCard
 
     public Strike()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.BASIC, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(6, 0);
         SetUpgrade(3, 0);

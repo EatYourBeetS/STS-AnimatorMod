@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -19,7 +20,7 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
 
     public CrowleyEusford()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        super(ID, 3, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL_ENEMY);
 
         Initialize(18, 0, 4);
         SetUpgrade( 3, 0, 1);
@@ -27,6 +28,12 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
         SetHealing(true);
         SetExhaust(true);
         SetSynergy(Synergies.OwariNoSeraph);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().SetIconTag("???");
     }
 
     @Override

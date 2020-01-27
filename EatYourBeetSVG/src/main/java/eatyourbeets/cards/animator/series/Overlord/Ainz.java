@@ -15,7 +15,7 @@ public class Ainz extends AnimatorCard
 
     public Ainz()
     {
-        super(ID, BASE_COST, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, BASE_COST, CardRarity.RARE, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0, AinzPower.CHOICES);
         SetCostUpgrade(-1);

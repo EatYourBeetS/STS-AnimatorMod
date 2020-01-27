@@ -2,9 +2,14 @@ package eatyourbeets.cards.base;
 
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.damage.DealDamage;
+import eatyourbeets.actions.damage.DealDamageToAll;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +29,22 @@ public abstract class AnimatorCard extends EYBCard
         return RegisterCard(type, GR.Animator.CreateID(type.getSimpleName()), badges);
     }
 
-    protected AnimatorCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
+    protected AnimatorCard(String id, int cost, CardRarity rarity, AttackType attackType)
     {
-        this(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), cost, type, GR.Enums.Cards.THE_ANIMATOR, rarity, target);
+        this(id, cost, rarity, attackType, false);
+    }
+
+    protected AnimatorCard(String id, int cost, CardRarity rarity, AttackType attackType, boolean isAoE)
+    {
+        this(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, isAoE ? CardTarget.ALL_ENEMY : CardTarget.ENEMY);
+
+        SetMultiDamage(isAoE);
+        SetAttackType(attackType);
+    }
+
+    protected AnimatorCard(String id, int cost, CardRarity rarity, CardType type, CardTarget target)
+    {
+        this(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), cost, type, GR.Animator.CardColor, rarity, target);
     }
 
     protected AnimatorCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
@@ -98,11 +116,23 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     protected String GetHeaderText()
     {
-        if (synergy != null)
+        if (synergy == null)
         {
-            return synergy.Name;
+            return null;
         }
 
-        return null;
+        return synergy.Name;
+    }
+
+    public DealDamage DealDamage(AbstractMonster target, AbstractGameAction.AttackEffect effect)
+    {
+        return GameActions.Bottom.DealDamage(this, target, effect)
+        .SetPiercing(attackType.bypassThorns, attackType.bypassBlock);
+    }
+
+    public DealDamageToAll DealDamageToALL(AbstractGameAction.AttackEffect effect)
+    {
+        return GameActions.Bottom.DealDamageToAll(this, effect)
+        .SetPiercing(attackType.bypassThorns, attackType.bypassBlock);
     }
 }

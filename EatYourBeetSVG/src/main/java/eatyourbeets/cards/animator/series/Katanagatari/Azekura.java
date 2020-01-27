@@ -17,7 +17,7 @@ public class Azekura extends AnimatorCard implements MartialArtist
 
     public Azekura()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 2, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 6, 2, 2);
         SetUpgrade(0, 1, 2, 0);

@@ -16,7 +16,7 @@ public class ElricAlphonse extends AnimatorCard
 
     public ElricAlphonse()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 0, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);

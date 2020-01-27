@@ -34,7 +34,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 
     public ChaikaTrabant()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
+        super(ID, 2, CardRarity.RARE, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
 
         Initialize(21, 0, 6, 2);
         SetUpgrade(6, 0, 0, 0);

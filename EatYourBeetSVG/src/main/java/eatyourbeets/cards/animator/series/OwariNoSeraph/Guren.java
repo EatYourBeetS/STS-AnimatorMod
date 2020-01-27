@@ -22,7 +22,7 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
 
     public Guren()
     {
-        super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 3, CardRarity.RARE, CardType.SKILL, CardTarget.ENEMY);
 
         Initialize(0, 0,3);
 

@@ -19,7 +19,7 @@ public class Vanir extends AnimatorCard
 
     public Vanir()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(12, 0, 3);
         SetUpgrade(1, 0, -1);

@@ -17,7 +17,7 @@ public class DwarfShaman extends AnimatorCard implements Spellcaster
 
     public DwarfShaman()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(2, 0, 0);
         SetUpgrade(4, 0, 0);

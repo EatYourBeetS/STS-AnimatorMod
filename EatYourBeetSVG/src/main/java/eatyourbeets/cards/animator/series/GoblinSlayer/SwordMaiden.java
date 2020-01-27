@@ -17,7 +17,7 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
 
     public SwordMaiden()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 2, CardRarity.RARE, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 8);
 

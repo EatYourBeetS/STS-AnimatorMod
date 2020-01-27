@@ -1,5 +1,6 @@
 package eatyourbeets.misc.cardTextParsing;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
@@ -52,6 +53,18 @@ public class CTLine
         }
     }
 
+    public float CalculateHeight(BitmapFont font)
+    {
+        if (tokens.isEmpty())
+        {
+            return font.getCapHeight() * 0.5f;
+        }
+        else
+        {
+            return font.getCapHeight();
+        }
+    }
+
     public void Render(SpriteBatch sb)
     {
         final EYBCard card = context.card;
@@ -66,19 +79,15 @@ public class CTLine
         }
         else
         {
-            context.start_x = card.current_x - (width * card.drawScale * 0.5f) - 14.0F * Settings.scale;
+            context.start_x = card.current_x - (width * card.drawScale * 0.55f);// - 14.0F * Settings.scale;
         }
 
-        context.start_y = (card.current_y - IMG_HEIGHT * card.drawScale * 0.5f + DESC_OFFSET_Y * card.drawScale)
-                        + (context.lines.size() * context.lineHeight * 0.775F - context.lineHeight * 0.375F)
-                        - (context.lineHeight * context.lineIndex * 1.45F) - 6f;
+        context.start_y = context.start_y - (CalculateHeight(context.font) * 1.45F);
 
         for (CTToken token : tokens)
         {
             token.Render(sb, context);
         }
-
-        context.lineIndex += 1;
     }
 
     @Override

@@ -16,7 +16,7 @@ public class LizardPriest extends AnimatorCard
 
     public LizardPriest()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF_AND_ENEMY);
 
         Initialize(0, 8, 1, 2);
         SetUpgrade(0, 3, 0, 0);

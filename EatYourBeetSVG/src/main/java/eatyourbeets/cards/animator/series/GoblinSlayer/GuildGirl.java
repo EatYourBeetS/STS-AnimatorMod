@@ -14,7 +14,7 @@ public class GuildGirl extends AnimatorCard
 
     public GuildGirl()
     {
-        super(ID, 1, CardType.POWER, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.COMMON, CardType.POWER, CardTarget.SELF);
 
         Initialize(0,0, 4);
         SetCostUpgrade(-1);

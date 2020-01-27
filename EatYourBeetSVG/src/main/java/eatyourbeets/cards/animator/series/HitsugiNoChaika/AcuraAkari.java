@@ -15,7 +15,7 @@ public class AcuraAkari extends AnimatorCard
 
     public AcuraAkari()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 2, 2);
         SetCostUpgrade(-1);

@@ -17,7 +17,7 @@ public class Spearman extends AnimatorCard
 
     public Spearman()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, AttackType.Piercing);
 
         Initialize(9, 0, 1);
         SetUpgrade(4, 0);

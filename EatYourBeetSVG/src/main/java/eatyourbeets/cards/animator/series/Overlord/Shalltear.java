@@ -20,7 +20,7 @@ public class Shalltear extends AnimatorCard
 
     public Shalltear()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL);
 
         Initialize(6, 0, 3);
         SetUpgrade(3, 0, 1);

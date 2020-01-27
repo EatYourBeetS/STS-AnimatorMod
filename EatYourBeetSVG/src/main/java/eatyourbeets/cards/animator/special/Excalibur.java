@@ -20,7 +20,7 @@ public class Excalibur extends AnimatorCard implements Hidden
 
     public Excalibur()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super(ID, 3, CardRarity.SPECIAL, CardType.ATTACK, CardTarget.ALL_ENEMY);
 
         Initialize(80, 0);
         SetUpgrade(19, 0);

@@ -30,7 +30,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 
     public Gilgamesh()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.RARE, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(3, 0, 3, GOLD_REWARD);
         SetUpgrade(1, 0);

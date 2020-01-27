@@ -11,9 +11,20 @@ public class WordToken extends CTToken
     protected String modifier = "";
     protected Color overrideColor = null;
 
-    protected static boolean IsValidCharacter(Character character)
+    protected static boolean IsValidCharacter(Character character, boolean firstCharacter)
     {
-        return character != null && ("~_*".indexOf(character) >= 0 || (Character.isLetterOrDigit(character)));
+        if (character == null)
+        {
+            return false;
+        }
+        else if (firstCharacter)
+        {
+            return Character.isLetterOrDigit(character) || character == '~';
+        }
+        else
+        {
+            return Character.isLetterOrDigit(character) || ("_*+-".indexOf(character) >= 0);
+        }
     }
 
     protected WordToken(String text)
@@ -23,7 +34,7 @@ public class WordToken extends CTToken
 
     public static int TryAdd(CTContext parser)
     {
-        if (IsValidCharacter(parser.character))
+        if (IsValidCharacter(parser.character, true))
         {
             tempBuilder.setLength(0);
             builder.setLength(0);
@@ -47,7 +58,7 @@ public class WordToken extends CTToken
                 {
                     mod = false;
                 }
-                else if (IsValidCharacter(next))
+                else if (IsValidCharacter(next, false))
                 {
                     if (mod)
                     {
@@ -85,7 +96,7 @@ public class WordToken extends CTToken
             if (tooltip != null)
             {
                 parser.AddTooltip(tooltip);
-                token.overrideColor = Settings.GOLD_COLOR;
+                token.overrideColor = Settings.GOLD_COLOR.cpy();
             }
 
             return i;
@@ -97,29 +108,25 @@ public class WordToken extends CTToken
     @Override
     public void Render(SpriteBatch sb, CTContext context)
     {
-        String originalText = null;
+        String text = this.text;
         if (modifier.equals("s")) // pluralize
         {
             // TODO: improve this logic
-            originalText = text;
             if (context.card.magicNumber == 0 || context.card.magicNumber > 1)
             {
-                text = originalText + "s";
+                text += "s";
             }
         }
 
         if (overrideColor != null)
         {
-            context.color = overrideColor;
+            overrideColor.a = context.card.targetTransparency;
+
+            Render(sb, context, text, overrideColor);
         }
-
-        super.Render(sb, context);
-
-        context.color = CTContext.DEFAULT_COLOR;
-
-        if (originalText != null)
+        else
         {
-            text = originalText;
+            Render(sb, context, text, context.color);
         }
     }
 }

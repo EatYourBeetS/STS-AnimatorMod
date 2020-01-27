@@ -21,7 +21,7 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
 
     public Rimuru()
     {
-        super(ID, -2, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
+        super(ID, -2, CardRarity.RARE, CardType.SKILL, CardTarget.ALL);
 
         Initialize(0, 0);
 

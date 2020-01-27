@@ -17,7 +17,7 @@ public class ItamiYouji extends AnimatorCard
 
     public ItamiYouji()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.RARE, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(2, 0, 4, 1);
         SetUpgrade(2, 0);

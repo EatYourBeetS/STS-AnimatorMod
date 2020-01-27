@@ -14,6 +14,7 @@
 
 	"<BLK>.": "",
 
+	" || ": " NL  NL ",
 	" NL ": " ",
 	"<DMG>.": "",
 	"<DMG-ALL>": "Target ALL enemies"

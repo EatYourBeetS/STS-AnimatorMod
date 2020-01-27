@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.RenderHelpers;
 import eatyourbeets.utilities.Testing;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class CTContext
 {
     protected final static BitmapFont DEFAULT_PARSING_FONT = Testing.GenerateCardDescFont(23);
     protected final static BitmapFont DEFAULT_RENDER_FONT = DEFAULT_PARSING_FONT;
-    protected final static float SCP_SCALE = DEFAULT_RENDER_FONT.getXHeight() / FontHelper.SCP_cardDescFont.getXHeight();
+    protected final static float SCP_SCALE = 0.5f;
     protected final static float IMG_HEIGHT = 420.0F * Settings.scale;
     protected final static float IMG_WIDTH = 300.0F * Settings.scale;
     protected final static float DESC_BOX_WIDTH = Settings.BIG_TEXT_MODE ? IMG_WIDTH * 0.95F : IMG_WIDTH * 0.79F;
@@ -38,7 +39,6 @@ public class CTContext
     public EYBCard card;
     public float start_y;
     public float start_x;
-    public float lineHeight;
     public Color color;
 
     public void Initialize(EYBCard card, String text)
@@ -48,20 +48,21 @@ public class CTContext
         this.text = text;
         this.lines.clear();
         this.tooltips.clear();
+        this.scaleModifier = 1;
 
         AddLine();
 
         this.characterIndex = 0;
         this.lineIndex = 0;
 
-        if (text.length() > 200)
+        if (card != null)
         {
-            scaleModifier = 1 - (0.1f * (text.length() / 200f));
+            if (text.length() > 100)
+            {
+                scaleModifier -= (0.12f * (text.length() / 100f));
+            }
+
             font.getData().setScale(scaleModifier);
-        }
-        else
-        {
-            scaleModifier = 1f;
         }
 
         int amount = 0;
@@ -85,7 +86,7 @@ public class CTContext
 
         this.lines.get(lineIndex).TrimEnd(); // Remove possible whitespace from the last line
 
-        if (font.getScaleX() != 0)
+        if (card != null && font.getScaleX() != 0)
         {
             font.getData().setScale(1);
         }
@@ -98,26 +99,26 @@ public class CTContext
             font = DEFAULT_RENDER_FONT;
             font.getData().setScale(card.drawScale * scaleModifier);
         }
-//        else if (card.drawScale == 1F)
-//        {
-//            font = FontHelper.cardDescFont_N;
-//            font.getData().setScale(scale);
-//        }
         else
         {
             font = FontHelper.SCP_cardDescFont;
             font.getData().setScale(card.drawScale * scaleModifier * SCP_SCALE);
         }
 
-        this.lineHeight = font.getCapHeight();
-        this.start_y = 0;
-        this.start_x = 0;
-        this.lineIndex = 0;
-        this.color = DEFAULT_COLOR;
-
+        float height = 0;
         for (CTLine line : lines)
         {
-            line.Render(sb);
+            height += line.CalculateHeight(font);
+        }
+
+        this.start_y = (card.current_y - IMG_HEIGHT * card.drawScale * 0.5f + DESC_OFFSET_Y * card.drawScale) + (height * 0.775f + font.getCapHeight() * 0.375F) -6f;
+        this.start_x = 0;
+        this.lineIndex = 0;
+        this.color = RenderHelpers.CopyColor(card, DEFAULT_COLOR);
+
+        for (lineIndex = 0; lineIndex < lines.size(); lineIndex += 1)
+        {
+            lines.get(lineIndex).Render(sb);
         }
 
         if (font.getScaleX() != 1)
@@ -167,7 +168,12 @@ public class CTContext
 
     protected void AddToken(CTToken token)
     {
-        if (token.type == CTTokenType.NewLine)
+        if (card == null)
+        {
+            // if card is null just add all tokens to the first line
+            lines.get(0).tokens.add(token);
+        }
+        else if (token.type == CTTokenType.NewLine)
         {
             AddLine();
         }

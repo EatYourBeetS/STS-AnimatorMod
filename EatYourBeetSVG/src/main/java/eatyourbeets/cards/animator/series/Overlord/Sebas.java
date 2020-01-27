@@ -14,7 +14,7 @@ public class Sebas extends AnimatorCard
 
     public Sebas()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 7, 2, 3);
         SetUpgrade(0, 4, 0, 0);

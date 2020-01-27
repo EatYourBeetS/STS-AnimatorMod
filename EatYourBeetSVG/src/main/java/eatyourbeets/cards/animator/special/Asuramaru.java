@@ -15,7 +15,7 @@ public class Asuramaru extends AnimatorCard implements Hidden
 
     public Asuramaru()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.SPECIAL, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(12, 0, 2);
         SetUpgrade(6, 0, 0);

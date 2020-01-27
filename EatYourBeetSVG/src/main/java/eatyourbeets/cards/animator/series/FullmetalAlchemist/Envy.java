@@ -14,7 +14,7 @@ public class Envy extends AnimatorCard
 
     public Envy()
     {
-        super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 2, CardRarity.RARE, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0);
 

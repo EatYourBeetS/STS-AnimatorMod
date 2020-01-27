@@ -14,7 +14,7 @@ public abstract class AnimatorCard_Boost extends AnimatorCard
 
     protected AnimatorCard_Boost(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
-        super(id, cost, type, rarity, target);
+        super(id, cost, rarity, type, target);
     }
 
     @Override

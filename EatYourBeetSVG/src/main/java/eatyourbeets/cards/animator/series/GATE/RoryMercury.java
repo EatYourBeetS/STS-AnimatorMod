@@ -14,7 +14,7 @@ public class RoryMercury extends AnimatorCard
 
     public RoryMercury()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL_ENEMY);
 
         Initialize(3, 0, 2);
         SetUpgrade(2, 0, 0);

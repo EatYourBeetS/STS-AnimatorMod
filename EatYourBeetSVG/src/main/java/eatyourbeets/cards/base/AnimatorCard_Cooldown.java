@@ -17,7 +17,7 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
 
     protected AnimatorCard_Cooldown(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
-        super(id, cost, type, rarity, target);
+        super(id, cost, rarity, type, target);
     }
 
     @Override

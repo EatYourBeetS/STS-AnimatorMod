@@ -20,7 +20,7 @@ public class Aisha extends AnimatorCard implements Spellcaster
 
     public Aisha()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(2, 0, 1);
         SetUpgrade(2, 0, 0);

@@ -17,7 +17,7 @@ public class Scar extends AnimatorCard
 
     public Scar()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(12, 0, 0, 30);
         SetUpgrade(4, 0);

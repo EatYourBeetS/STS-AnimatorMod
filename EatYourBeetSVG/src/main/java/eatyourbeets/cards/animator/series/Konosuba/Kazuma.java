@@ -14,7 +14,7 @@ public class Kazuma extends AnimatorCard
 
     public Kazuma()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 6, 4);
         SetUpgrade(0, 3, 0);

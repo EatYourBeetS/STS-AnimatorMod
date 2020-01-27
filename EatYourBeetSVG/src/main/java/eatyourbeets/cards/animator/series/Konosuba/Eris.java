@@ -30,7 +30,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleSt
 
     private Eris(boolean revive)
     {
-        super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 0, CardRarity.RARE, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 3);

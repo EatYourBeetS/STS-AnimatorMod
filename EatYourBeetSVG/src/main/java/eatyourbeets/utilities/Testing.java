@@ -156,7 +156,7 @@ public class Testing
         return font;
     }
 
-    public static BitmapFont GenerateCardStatsFont(float size, float borderWidth)
+    public static BitmapFont GenerateCardStatsFont(float size, float borderWidth, float shadowOffset)
     {
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.minFilter = Texture.TextureFilter.Linear;
@@ -168,9 +168,9 @@ public class Testing
         param.borderWidth = borderWidth * Settings.scale;
         param.gamma = 0.9F;
         param.borderGamma = 0.9F;
-        param.shadowColor = null; //new Color(0.0F, 0.0F, 0.0F, 0.5F);
-        param.shadowOffsetX = 0;//Math.round(1.0F * Settings.scale);
-        param.shadowOffsetY = 0;//Math.round(1.0F * Settings.scale);
+        param.shadowColor = new Color(0.0F, 0.0F, 0.0F, 0.5F);
+        param.shadowOffsetX = Math.round(shadowOffset * Settings.scale);
+        param.shadowOffsetY = Math.round(shadowOffset * Settings.scale);
         param.borderStraight = false;
         param.characters = "";
         param.incremental = true;

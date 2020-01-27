@@ -16,7 +16,7 @@ public class Tet extends AnimatorCard
 
     public Tet()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.NONE);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.NONE);
 
         Initialize(0, 0, 2);
 

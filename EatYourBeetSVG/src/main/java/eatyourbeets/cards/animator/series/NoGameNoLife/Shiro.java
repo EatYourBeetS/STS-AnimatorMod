@@ -19,7 +19,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
 
     public Shiro()
     {
-        super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 4, CardRarity.RARE, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0);
         SetCostUpgrade(-1);

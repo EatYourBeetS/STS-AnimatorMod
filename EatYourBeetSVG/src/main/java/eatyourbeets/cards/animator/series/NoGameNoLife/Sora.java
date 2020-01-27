@@ -15,7 +15,7 @@ public class Sora extends AnimatorCard
 
     public Sora()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
+        super(ID, 2, CardRarity.RARE, CardType.SKILL, CardTarget.ALL);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);

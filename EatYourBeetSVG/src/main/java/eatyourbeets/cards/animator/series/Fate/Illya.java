@@ -23,7 +23,7 @@ public class Illya extends AnimatorCard
 
     public Illya()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.ENEMY);
 
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -2);

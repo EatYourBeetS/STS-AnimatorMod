@@ -14,7 +14,7 @@ public class Shinoa extends AnimatorCard
 
     public Shinoa()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
+        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.ALL);
 
         Initialize(0, 6, 1);
         SetUpgrade(0, 3, 0);

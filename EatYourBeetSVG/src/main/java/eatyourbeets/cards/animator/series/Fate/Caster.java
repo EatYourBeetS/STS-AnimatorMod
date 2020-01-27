@@ -18,7 +18,7 @@ public class Caster extends AnimatorCard implements Spellcaster
 
     public Caster()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF_AND_ENEMY);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);

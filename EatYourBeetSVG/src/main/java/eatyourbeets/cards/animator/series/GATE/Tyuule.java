@@ -22,7 +22,7 @@ public class Tyuule extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
 
     public Tyuule()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.ALL_ENEMY);
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 2);

@@ -17,7 +17,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
 
     public Lancer()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(6, 0, 1);
         SetUpgrade(3, 0, 0);

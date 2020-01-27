@@ -14,7 +14,7 @@ public class EntouJyuu extends AnimatorCard implements Hidden
 
     public EntouJyuu()
     {
-        super(ID, 1, CardType.POWER, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 1, CardRarity.SPECIAL, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0, 2);
         SetCostUpgrade(-1);

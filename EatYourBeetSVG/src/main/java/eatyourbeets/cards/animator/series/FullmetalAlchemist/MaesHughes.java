@@ -17,7 +17,7 @@ public class MaesHughes extends AnimatorCard
 
     public MaesHughes()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -1);

@@ -18,7 +18,7 @@ public class RoyMustang extends AnimatorCard
 
     public RoyMustang()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL_ENEMY);
 
         Initialize(7, 0, 4);
         SetUpgrade(4, 0, 0);

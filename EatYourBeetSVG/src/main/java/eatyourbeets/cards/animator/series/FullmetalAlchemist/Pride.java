@@ -16,7 +16,7 @@ public class Pride extends AnimatorCard
 
     public Pride()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF_AND_ENEMY);
 
         Initialize(0,0, 1, 3);
         SetUpgrade(0, 0, 1);

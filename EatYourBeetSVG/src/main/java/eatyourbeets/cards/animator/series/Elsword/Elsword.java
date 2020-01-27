@@ -15,7 +15,7 @@ public class Elsword extends AnimatorCard
 
     public Elsword()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(14, 0, 1, 4);
         SetUpgrade(2,  0, 1, 0);

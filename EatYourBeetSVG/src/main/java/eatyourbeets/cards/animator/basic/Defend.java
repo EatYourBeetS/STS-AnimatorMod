@@ -26,7 +26,7 @@ public class Defend extends AnimatorCard
 
     public Defend()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
+        super(ID, 1, CardRarity.BASIC, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 5);
         SetUpgrade(0, 3);

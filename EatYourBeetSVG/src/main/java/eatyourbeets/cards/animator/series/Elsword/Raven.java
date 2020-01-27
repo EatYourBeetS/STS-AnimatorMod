@@ -22,7 +22,7 @@ public class Raven extends AnimatorCard
 
     public Raven()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(5, 0, 1);
         SetUpgrade(3, 0);

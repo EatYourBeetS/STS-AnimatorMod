@@ -19,7 +19,7 @@ public class Shigure extends AnimatorCard
 
     public Shigure()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(7, 0, 2, 3);
         SetUpgrade(2, 0, 1, 0);

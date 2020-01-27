@@ -17,7 +17,7 @@ public class NarberalGamma extends AnimatorCard
 
     public NarberalGamma()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 1);
 

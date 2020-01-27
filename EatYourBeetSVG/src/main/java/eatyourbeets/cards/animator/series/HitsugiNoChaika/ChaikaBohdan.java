@@ -21,7 +21,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 
     public ChaikaBohdan()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(5, 0, 3, 2);
         SetUpgrade(3, 0, 0, 0);

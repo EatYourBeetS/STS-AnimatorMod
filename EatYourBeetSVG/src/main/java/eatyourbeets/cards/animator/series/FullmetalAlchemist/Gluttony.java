@@ -13,7 +13,7 @@ public class Gluttony extends AnimatorCard
 
     public Gluttony()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 4, 16);
         SetCostUpgrade(-1);

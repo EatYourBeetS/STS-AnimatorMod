@@ -17,7 +17,7 @@ public class Yuuichirou extends AnimatorCard
 
     public Yuuichirou()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(8, 0);
         SetUpgrade(4, 0);

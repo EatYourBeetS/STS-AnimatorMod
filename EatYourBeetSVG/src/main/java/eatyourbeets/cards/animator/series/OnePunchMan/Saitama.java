@@ -26,7 +26,7 @@ public class Saitama extends AnimatorCard
 
     public Saitama()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.NONE);
+        super(ID, 0, CardRarity.RARE, CardType.SKILL, CardTarget.NONE);
 
         Initialize(0, 0);
 

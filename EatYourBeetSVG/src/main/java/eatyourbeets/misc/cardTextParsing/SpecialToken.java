@@ -46,24 +46,21 @@ public abstract class SpecialToken extends CTToken
 
                     if (word.length() > 1 && word.charAt(0) == '~')
                     {
-                        internalParser.Initialize(null, word.substring(1));
+                        internalParser.Initialize(null, word.substring(1)); // card must be null
                     }
                     else
                     {
-                        internalParser.Initialize(null, word);
+                        internalParser.Initialize(null, word); // card must be null
                     }
 
-                    for (CTLine line : internalParser.lines)
+                    for (CTToken token : internalParser.lines.get(0).tokens) // All the tokens are in the first line, regardless of width and type
                     {
-                        for (CTToken token : line.tokens)
+                        if (token instanceof WordToken)
                         {
-                            if (token instanceof WordToken)
-                            {
-                                ((WordToken)token).overrideColor = Settings.GOLD_COLOR;
-                            }
-
-                            parser.AddToken(token);
+                            ((WordToken)token).overrideColor = Settings.GOLD_COLOR;
                         }
+
+                        parser.AddToken(token);
                     }
 
                     return i + 1;

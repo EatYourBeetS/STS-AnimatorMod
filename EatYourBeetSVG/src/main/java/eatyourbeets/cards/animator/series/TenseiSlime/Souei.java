@@ -20,7 +20,7 @@ public class Souei extends AnimatorCard implements MartialArtist
 
     public Souei()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.ENEMY);
 
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, 2);

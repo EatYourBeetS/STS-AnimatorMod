@@ -13,7 +13,7 @@ public class DarknessAdrenaline extends AnimatorCard implements Hidden
 
     public DarknessAdrenaline()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 0, CardRarity.SPECIAL, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);

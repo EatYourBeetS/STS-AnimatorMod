@@ -19,7 +19,7 @@ public class Evileye extends AnimatorCard implements Spellcaster
 
     public Evileye()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0,0, 1);
         SetCostUpgrade(-1);

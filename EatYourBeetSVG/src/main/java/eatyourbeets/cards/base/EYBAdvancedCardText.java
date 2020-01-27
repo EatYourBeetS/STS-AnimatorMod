@@ -2,24 +2,22 @@ package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.cardTextParsing.CTContext;
 import eatyourbeets.misc.cardTextParsing.CTLine;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
-import eatyourbeets.utilities.Testing;
 
 import java.util.ArrayList;
 
@@ -85,11 +83,32 @@ public class EYBAdvancedCardText extends EYBCardText
     @Override
     public void RenderDescription(SpriteBatch sb)
     {
-        if (card.isSeen && !card.isLocked)
+        if (card.isFlipped || card.isSeen && !card.isLocked)
         {
             context.Render(sb);
 
-            RenderBlock(sb, !RenderDamage(sb, true));
+            boolean leftAlign = true;
+            AbstractAttribute temp;
+
+            if ((temp = card.GetDamageInfo()) != null)
+            {
+                temp.Render(sb, card, leftAlign);
+                leftAlign = false;
+            }
+
+            if ((temp = card.GetBlockInfo()) != null)
+            {
+                temp.Render(sb, card, leftAlign);
+                leftAlign = false;
+            }
+
+            if ((temp = card.GetSpecialInfo()) != null)
+            {
+                temp.Render(sb, card, leftAlign);
+                leftAlign = false;
+            }
+
+            RenderBadges(sb);
         }
         else
         {
@@ -141,130 +160,51 @@ public class EYBAdvancedCardText extends EYBCardText
         }
     }
 
-    private boolean RenderDamage(SpriteBatch sb, boolean leftAlign)
+    protected void RenderBadges(SpriteBatch sb)
     {
-        if (card.baseDamage <= 0)
+        if (card.isFlipped || card.isLocked || card.transparency <= 0)
         {
-            return false;
+            return;
         }
 
-        String text;
-        Color textColor;
-        if (card.isDamageModified)
+        final CommonImages.Badges badges = GR.Common.Images.Badges;
+        final float x = 100;
+        final float y = 150;
+        int base_Y = 0;
+
+        if (card.isInnate)
         {
-            textColor = (card.damage >= card.baseDamage) ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR;
-            text = Integer.toString(card.damage);
-        }
-        else
-        {
-            textColor = Settings.CREAM_COLOR;
-            text = Integer.toString(card.baseDamage);
+            base_Y -= RenderBadge(sb, badges.Innate.Texture(), x, base_Y + y);
         }
 
-        String extraText = null;
-        if (card.IsMultiDamage())
+        if (card.isEthereal)
         {
-            extraText = "AoE";
+            base_Y -= RenderBadge(sb, badges.Ethereal.Texture(), x, base_Y + y);
         }
 
-        if (card instanceof Spellcaster)
+        if (card.selfRetain)
         {
-            Render(sb, GR.Common.Images.ElementalDamage.Texture(), text, textColor, leftAlign, extraText);
-        }
-        else if (card.hasTag(GR.Enums.CardTags.PIERCING) && card instanceof MartialArtist)
-        {
-            Render(sb, GR.Common.Images.DealDamagePiercing.Texture(), text, textColor, leftAlign, extraText);
-        }
-        else if (card.hasTag(GR.Enums.CardTags.PIERCING))
-        {
-            Render(sb, GR.Common.Images.DealDamageRanged.Texture(), text, textColor, leftAlign, extraText);
-        }
-        else
-        {
-            Render(sb, GR.Common.Images.DealDamage.Texture(), text, textColor, leftAlign, extraText);
+            base_Y -= RenderBadge(sb, badges.Retain.Texture(), x, base_Y + y);
         }
 
-        return true;
+        if (card.exhaust)
+        {
+            base_Y -= RenderBadge(sb, badges.Exhaust.Texture(), x, base_Y + y);
+        }
     }
 
-    private boolean RenderBlock(SpriteBatch sb, boolean leftAlign)
+    private float RenderBadge(SpriteBatch sb, Texture texture, float x, float y)
     {
-        if (card.baseBlock <= 0)
-        {
-            return false;
-        }
+        Vector2 offset = new Vector2(x, y);
 
-        String text;
-        Color textColor;
-        if (card.isBlockModified)
-        {
-            textColor = (card.block >= card.baseBlock) ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR;
-            text = Integer.toString(card.block);
-        }
-        else
-        {
-            textColor = Settings.CREAM_COLOR;
-            text = Integer.toString(card.baseBlock);
-        }
+        offset.rotate(card.angle);
+        offset.scl(card.drawScale * Settings.scale);
 
-        Render(sb, GR.Common.Images.GainBlock.Texture(), text, textColor, leftAlign, null);
+        Color color = Color.WHITE.cpy();
+        color.a = card.transparency * 0.8f;
 
-        return true;
+        RenderHelpers.DrawOnCard(sb, card, color, texture, card.current_x + offset.x, card.current_y + offset.y, 64, 64);
+
+        return 36;
     }
-
-    private void Render(SpriteBatch sb, Texture icon, String text, Color textColor, boolean leftAlign, String extraText)
-    {
-        BitmapFont font = DEFAULT_FONT;
-        font.getData().setScale(card.drawScale);
-
-        final float scale = Settings.scale * card.drawScale;
-
-        if (leftAlign)
-        {
-            float base_x = card.current_x - (DESC_OFFSET_X * card.drawScale);
-            float base_y = card.current_y - (DESC_OFFSET_Y * card.drawScale);
-
-            RenderHelpers.DrawOnCard(sb, card, icon, base_x, base_y, 48);
-
-            layout.setText(font, text);
-            FontHelper.renderFont(sb, font, text, base_x + 42 * scale, base_y + 20 * scale + layout.height/2f, textColor);
-
-//            float width = layout.width;
-//            font.getData().setScale(card.drawScale * 0.6f);
-//            layout.setText(font, "x2");
-//            FontHelper.renderFont(sb, font, "x2", base_x + 42 * scale + width, base_y + 14 * scale + layout.height/2f, textColor);
-
-            //FontHelper.renderFontLeft(sb, font, text, base_x + 42 * scale, base_y + 20 * scale, textColor);
-
-            if (extraText != null)
-            {
-                DEFAULT_FONT_SMALL.getData().setScale(card.drawScale);
-                FontHelper.renderFontLeft(sb, DEFAULT_FONT_SMALL, extraText, base_x + 10 * scale, base_y + 8 * scale, Settings.CREAM_COLOR);
-                DEFAULT_FONT_SMALL.getData().setScale(1);
-            }
-        }
-        else
-        {
-            float base_x = card.current_x + (DESC_OFFSET_X * card.drawScale) - (48 * scale);
-            float base_y = card.current_y - (DESC_OFFSET_Y * card.drawScale);
-
-            RenderHelpers.DrawOnCard(sb, card, icon, base_x, base_y, 48);
-            FontHelper.renderFontRightAligned(sb, font, text, base_x + 10 * scale, base_y + 20 * scale, textColor);
-
-            if (extraText != null)
-            {
-                DEFAULT_FONT_SMALL.getData().setScale(card.drawScale);
-                FontHelper.renderFontLeft(sb, DEFAULT_FONT_SMALL, extraText, base_x + 10 * scale, base_y + 8 * scale, Settings.CREAM_COLOR);
-                DEFAULT_FONT_SMALL.getData().setScale(1);
-            }
-        }
-
-        font.getData().setScale(1);
-    }
-
-    protected final static float DESC_OFFSET_X = (AbstractCard.IMG_WIDTH * 0.5f);
-    protected final static float DESC_OFFSET_Y = (AbstractCard.IMG_HEIGHT * 0.10f);
-    protected final static BitmapFont DEFAULT_FONT = Testing.GenerateCardStatsFont(38, 2.25f);
-    protected final static BitmapFont DEFAULT_FONT_SMALL = Testing.GenerateCardStatsFont(16, 1f);
-    protected static final GlyphLayout layout = new GlyphLayout();
 }

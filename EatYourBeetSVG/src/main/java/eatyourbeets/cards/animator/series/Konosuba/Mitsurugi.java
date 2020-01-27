@@ -18,7 +18,7 @@ public class Mitsurugi extends AnimatorCard
 
     public Mitsurugi()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 0, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(8, 0, 1, 4);
         SetUpgrade(3, 0, 0, 0);

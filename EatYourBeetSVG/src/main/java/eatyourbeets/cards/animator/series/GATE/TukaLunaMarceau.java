@@ -13,7 +13,7 @@ public class TukaLunaMarceau extends AnimatorCard
 
     public TukaLunaMarceau()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 0, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 2, 3);
         SetUpgrade(0, 2, 0);

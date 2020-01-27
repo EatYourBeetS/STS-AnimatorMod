@@ -13,7 +13,7 @@ public class PinaCoLada extends AnimatorCard
 
     public PinaCoLada()
     {
-        super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 2, CardRarity.RARE, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0, 1);
         SetUpgrade(0, 8, 0);

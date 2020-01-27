@@ -7,7 +7,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,8 +15,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.BlockAttribute;
+import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.cardReward.AnimatorCardBadgeLegend;
 import eatyourbeets.utilities.FieldInfo;
@@ -31,11 +32,29 @@ import java.util.Map;
 
 public abstract class EYBCard extends CustomCard
 {
+    public enum AttackType
+    {
+        Normal(false, false),
+        Elemental(true, true),
+        Piercing(true, true),
+        Ranged(false, true);
+
+        public final boolean bypassThorns;
+        public final boolean bypassBlock;
+
+        AttackType(boolean bypassBlock, boolean bypassThorns)
+        {
+            this.bypassThorns = bypassThorns;
+            this.bypassBlock = bypassBlock;
+        }
+    }
+
     protected static final FieldInfo<Boolean> _renderTip = JavaUtilities.GetField("renderTip", AbstractCard.class);
     protected static final Color FRAME_COLOR = Color.WHITE.cpy();
     protected static final Map<String, EYBCardData> staticCardData = new HashMap<>();
     protected static AbstractPlayer player = null;
 
+    public AttackType attackType = AttackType.Normal;
     public final List<TooltipInfo> customTooltips = new ArrayList<>();
     public boolean hovered = false;
     public boolean hoveredInHand = false;
@@ -78,11 +97,6 @@ public abstract class EYBCard extends CustomCard
         this.cardData = cardData;
         this.cardText = new EYBAdvancedCardText(this, cardData.strings);
         this.cardText.ForceRefresh();
-    }
-
-    public boolean IsMultiDamage()
-    {
-        return isMultiDamage;
     }
 
     @Override
@@ -239,7 +253,6 @@ public abstract class EYBCard extends CustomCard
             UpdateCardText();
             super.render(sb);
             RenderHeader(sb, false);
-            RenderBadges(sb, false, isLibrary);
             RenderCardPreview(sb, false);
         }
     }
@@ -251,7 +264,6 @@ public abstract class EYBCard extends CustomCard
             UpdateCardText();
             super.render(sb);
             RenderHeader(sb, false);
-            RenderBadges(sb, false, true);
         }
     }
 
@@ -269,7 +281,6 @@ public abstract class EYBCard extends CustomCard
                 UpdateCardText();
                 super.renderInLibrary(sb);
                 RenderHeader(sb, false);
-                RenderBadges(sb, false, true);
                 RenderCardPreview(sb, false);
             }
         }
@@ -303,20 +314,6 @@ public abstract class EYBCard extends CustomCard
     public void renderCardTip(SpriteBatch sb)
     {
         this.cardText.RenderTooltips(sb);
-    }
-
-    public void renderInSingleCardPopup(SpriteBatch sb, boolean preRender)
-    {
-        if (preRender)
-        {
-            UpdateCardText();
-        }
-        else
-        {
-            RenderHeader(sb, true);
-            RenderBadges(sb, true, false);
-            RenderCardPreview(sb, true);
-        }
     }
 
     @Override
@@ -359,70 +356,6 @@ public abstract class EYBCard extends CustomCard
         }
 
         return false;
-    }
-
-    protected void RenderBadges(SpriteBatch sb, boolean isCardPopup, boolean isLibrary)
-    {
-        if (cardData.badges.length == 0 || this.isFlipped || this.isLocked || transparency <= 0)
-        {
-            return;
-        }
-
-        float scale, x, y;
-        if (isCardPopup)
-        {
-            scale = Settings.scale;
-            x = (float) Settings.WIDTH / 2.0F + 228.0F * scale;
-            y = (float) Settings.HEIGHT / 2.0F + 320 * scale;
-
-            float mX = Gdx.input.getX();
-            float mY = Settings.HEIGHT - Gdx.input.getY();
-
-            for (EYBCardBadge badge : cardData.badges)
-            {
-                RenderHelpers.Draw(sb, badge.texture, x, y, 96);
-
-                if (mX > (x + 10 * scale) && mX < (x + 90 * scale))
-                {
-                    if (mY < (y + 76 * scale) && mY > (y + 16 * scale))
-                    {
-                        TipHelper.renderGenericTip(1300.0f * Settings.scale, 900.0f * Settings.scale,
-                                badge.description, GR.Common.Strings.CardBadges.Tooltip);
-                    }
-                }
-
-                y -= 60 * scale;
-            }
-        }
-        else
-        {
-            scale = this.drawScale * Settings.scale;
-//            x = -160;
-//            y = 88;
-
-            if (isLibrary || (AbstractDungeon.isScreenUp && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.HAND_SELECT))
-            {
-                x = 110;
-                y = 160;
-            }
-            else
-            {
-                x = -160;
-                y = 88;
-            }
-
-            int base_Y = 0;
-            for (EYBCardBadge badge : cardData.badges)
-            {
-                Vector2 offset = new Vector2(x, base_Y + y);
-
-                offset.rotate(angle);
-                offset.scl(scale);
-
-                RenderHelpers.DrawOnCard(sb, this, badge.texture, this.current_x + offset.x, this.current_y + offset.y, 48);
-                base_Y -= 30;
-            }
-        }
     }
 
     protected void RenderCardPreview(SpriteBatch sb, boolean isCardPopup)
@@ -548,6 +481,45 @@ public abstract class EYBCard extends CustomCard
     protected void AddTooltip(TooltipInfo tooltip)
     {
         customTooltips.add(tooltip);
+    }
+
+    public boolean IsAoE()
+    {
+        return isMultiDamage;
+    }
+
+    public AbstractAttribute GetDamageInfo()
+    {
+        if (baseDamage >= 0)
+        {
+            return DamageAttribute.Instance.SetCard(this);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public AbstractAttribute GetBlockInfo()
+    {
+        if (baseBlock >= 0)
+        {
+            return BlockAttribute.Instance.SetCard(this);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return null;
+    }
+
+    public void SetAttackType(AttackType attackType)
+    {
+        this.attackType = attackType;
     }
 
     public void SetMultiDamage(boolean value)
@@ -707,11 +679,21 @@ public abstract class EYBCard extends CustomCard
         {
             if (upgrade_damage != 0)
             {
+                if (baseDamage < 0)
+                {
+                    baseDamage = 0;
+                }
+
                 upgradeDamage(upgrade_damage);
             }
 
             if (upgrade_block != 0)
             {
+                if (baseBlock < 0)
+                {
+                    baseBlock = 0;
+                }
+
                 upgradeBlock(upgrade_block);
             }
 
@@ -763,8 +745,8 @@ public abstract class EYBCard extends CustomCard
 
     protected void Initialize(int damage, int block, int magicNumber, int secondaryValue)
     {
-        this.baseDamage = damage;
-        this.baseBlock = block;
+        this.baseDamage = this.damage = damage > 0 ? damage : -1;
+        this.baseBlock = this.block = block > 0 ? block : -1;
         this.baseMagicNumber = this.magicNumber = magicNumber;
         this.baseSecondaryValue = this.secondaryValue = secondaryValue;
     }

@@ -19,7 +19,7 @@ public class IzunaHatsuse extends AnimatorCard
 
     public IzunaHatsuse()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 0, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF_AND_ENEMY);
 
         Initialize(4, 2, 4);
         SetUpgrade(2, 2, 2);

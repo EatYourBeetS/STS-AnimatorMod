@@ -15,7 +15,7 @@ public class Shichika extends AnimatorCard implements MartialArtist
 
     public Shichika()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);

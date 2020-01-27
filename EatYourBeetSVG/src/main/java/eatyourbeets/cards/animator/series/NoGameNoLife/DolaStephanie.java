@@ -14,7 +14,7 @@ public class DolaStephanie extends AnimatorCard
 
     public DolaStephanie()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 0, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0);
 

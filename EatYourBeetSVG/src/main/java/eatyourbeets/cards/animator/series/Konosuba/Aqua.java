@@ -17,7 +17,7 @@ public class Aqua extends AnimatorCard
 
     public Aqua()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 0, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);

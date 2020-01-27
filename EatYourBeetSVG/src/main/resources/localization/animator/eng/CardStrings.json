@@ -2,7 +2,7 @@
 {
 	"animator:AcuraAkari":
 	{
-		"DESCRIPTION": "Discard 2 cards NL to obtain !M! NL Throwing-Knives. || <SLM>. NL On Synergy, gain NL !S! Temporary NL Envenom.",
+		"DESCRIPTION": "Discard 2 cards to obtain !M! Throwing-Knives. || <SLM>. NL On Synergy, gain NL !S! Temporary NL Envenom.",
 		"NAME": "Akari"
 	},
 	"animator:AcuraShin":
@@ -87,7 +87,7 @@
 	},
 	"animator:Benimaru":
 	{
-		"DESCRIPTION": "Channel 1 Fire. NL <DMG-ALL>. || Gain !M! {Temp. HP} NL for each enemy NL with Burning.",
+		"DESCRIPTION": "Channel 1 Fire. || Gain !M! {Temp. HP} for each enemy with Burning.",
 		"NAME": "Benimaru"
 	},
 	"animator:Berserker":
@@ -112,7 +112,7 @@
 	},
 	"animator:Bozes":
 	{
-		"DESCRIPTION": "<DMG>. NL Motivate !M!. NL Exhaust. || Whenever a NL card Synergizes NL this turn, gain !S! NL Support_Damage.",
+		"DESCRIPTION": "<DMG>. NL Motivate !M!. NL Exhaust. || Whenever a NL card Synergizes NL this turn, gain !S! NL {Support Damage}.",
 		"NAME": "Bozes"
 	},
 	"animator:Caster":
@@ -165,7 +165,7 @@
 	"animator:CowGirl":
 	{
 		"DESCRIPTION": "Fetch a {0-Cost} card NL from your draw pile. NL Exhaust. || <LIM>. NL When Discarded, NL Motivate 1.",
-		"NAME": "'Cow Girl'",
+		"NAME": "Cow Girl",
 		"UPGRADE_DESCRIPTION": "Fetch a {0-Cost} card NL from your draw NL or discard pile. NL Exhaust."
 	},
 	"animator:CrowleyEusford":
@@ -315,7 +315,7 @@
 	"animator:DwarfShaman":
 	{
 		"DESCRIPTION": "<SPE>. NL <DMG>. NL Channel 1 Earth. || On Synergy, NL draw a card and NL Upgrade it.",
-		"NAME": "'Dwarf Shaman'"
+		"NAME": "Dwarf Shaman"
 	},
 	"animator:Elesis":
 	{
@@ -477,7 +477,7 @@
 	"animator:GuildGirl":
 	{
 		"DESCRIPTION": "At the start NL of each turn, NL Cycle 1 card. || Whenever a NL non-minion enemy NL dies, gain !M! {Gold}. NL Does not stack.",
-		"NAME": "'Guild Girl'"
+		"NAME": "Guild Girl"
 	},
 	"animator:Guren":
 	{
@@ -492,7 +492,7 @@
 	},
 	"animator:Hakurou":
 	{
-		"DESCRIPTION": "<MAR>. NL <DMG> NL !M! times. || On Synergy NL or when Drawn, NL gain 1 <AGI>.",
+		"DESCRIPTION": "<MAR>. Deal 1 more damage per point of [A]. || On Synergy or when Drawn, gain 1 <AGI>.",
 		"NAME": "Hakurou"
 	},
 	"animator:HarukoHaruhara":
@@ -519,7 +519,7 @@
 	"animator:HighElfArcher":
 	{
 		"DESCRIPTION": "Deal !D! Piercing NL damage. If you have NL !M! or less <AGI>, NL gain 1 <AGI>. || <LIM>. NL On Synergy, NL <DRW> and NL gain 1 <AGI>.",
-		"NAME": "'High Elf Archer'"
+		"NAME": "High Elf Archer"
 	},
 	"animator:HiiragiShinya":
 	{
@@ -655,7 +655,7 @@
 	"animator:LizardPriest":
 	{
 		"DESCRIPTION": "<BLK>. NL Set the Block of NL the enemy to 1. || On Synergy, NL Retain 2 cards.",
-		"NAME": "'Lizard Priest'"
+		"NAME": "Lizard Priest"
 	},
 	"animator:MaesHughes":
 	{
@@ -706,7 +706,7 @@
 	},
 	"animator:Millim":
 	{
-		"DESCRIPTION": "{~Unique}. NL <DMG>. NL Apply !M! Burning. NL Apply !M! Poison. || On Synergy, NL draw 2 additional NL cards next turn.",
+		"DESCRIPTION": "{~Unique}. Apply !M! Burning and Poison. || On Synergy, draw 2 more cards next turn.",
 		"NAME": "Millim"
 	},
 	"animator:MisaKurobane":
@@ -818,9 +818,9 @@
 	},
 	"animator:Priestess":
 	{
-		"DESCRIPTION": "Gain !M! {Temp. HP}. NL Apply !S! Weak. || On Synergy NL Exhaust a random NL Status or Curse.",
-		"NAME": "'Priestess'",
-		"UPGRADE_DESCRIPTION": "Gain !M! {Temp. HP}. NL Apply !S! Weak to NL ALL enemies."
+		"DESCRIPTION": "Apply !S! Weak. || Synergy: Exhaust a random Hindrance.",
+		"NAME": "Priestess",
+		"UPGRADE_DESCRIPTION": "Apply !S! Weak to ALL enemies. || Synergy: Exhaust a random Hindrance."
 	},
 	"animator:QuestionMark":
 	{
@@ -871,9 +871,8 @@
 	},
 	"animator:Saber":
 	{
-		"DESCRIPTION": "Loyal. NL <DMG>. NL Cooldown !S! : Purge, NL then add {Excalibur} NL to your hand. || On Synergy, NL reduce this card's NL Cooldown by an NL additional 2.",
-		"NAME": "Saber",
-		"UPGRADE_DESCRIPTION": "Innate. Loyal. NL <DMG>. NL Cooldown !S! : Purge, NL then add {Excalibur} NL to your hand."
+		"DESCRIPTION": "{++Innate. }Loyal. NL <DMG>. NL Cooldown !S! : Purge, NL then add {Excalibur} NL to your hand. || On Synergy, NL reduce this card's NL Cooldown by an NL additional 2.",
+		"NAME": "Saber"
 	},
 	"animator:Saitama":
 	{
@@ -920,7 +919,7 @@
 	},
 	"animator:ShikizakiKiki":
 	{
-		"DESCRIPTION": "Ethereal. Fetch an NL {Attack} from your NL draw or discard pile. NL Double its damage NL until end of combat. || When Drawn, NL if you have !S! or NL more <FOR> and NL <AGI>, gain [E]",
+		"DESCRIPTION": "{--Ethereal. }Fetch an NL {Attack} from your NL draw or discard pile. NL Double its damage NL until end of combat. || When Drawn, NL if you have !S! or NL more <FOR> and NL <AGI>, gain [E]",
 		"NAME": "Shikizaki Kiki",
 		"UPGRADE_DESCRIPTION": "Fetch an {Attack} NL from your draw NL or discard pile. NL Double its damage NL until end of combat."
 	},
@@ -947,7 +946,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "<BLK>. NL <DRW>. || On Synergy NL or when Drawn, NL gain !M! {Temp. HP}.",
+		"DESCRIPTION": "<DRW>. || When Drawn: gain 2 {Temporary HP}.",
 		"NAME": "Shuna"
 	},
 	"animator:SilverFang":
@@ -982,8 +981,8 @@
 	},
 	"animator:Spearman":
 	{
-		"DESCRIPTION": "Piercing. NL Deal !D! damage. NL Gain 1 Agility. NL Add a Wound NL into your hand. || <LIM>. NL If this card NL kills an enemy, NL Motivate 2.",
-		"NAME": "'Spearman'"
+		"DESCRIPTION": "Gain 1 Agility. Add a Wound into your hand. || Synergy: gain 1 Force.",
+		"NAME": "Spearman"
 	},
 	"animator:Strike":
 	{
@@ -1069,7 +1068,7 @@
 	"animator:SwordMaiden":
 	{
 		"DESCRIPTION": "Gain !M! {Temp. HP}. NL Remove your NL rightmost Debuff. NL Exhaust. || <LIM>. NL At the start of NL combat, randomly NL gain 2 <INT>, NL <FOR> or <AGI>.",
-		"NAME": "'Sword Maiden'",
+		"NAME": "Sword Maiden",
 		"UPGRADE_DESCRIPTION": "Gain !M! {Temp. HP}. NL Remove your NL rightmost Debuff."
 	},
 	"animator:TakanashiRikka":
@@ -1180,7 +1179,7 @@
 	"animator:Witch":
 	{
 		"DESCRIPTION": "<SPE>. NL Apply !M! Burning NL to ALL enemies. NL <BLK>. || At the start of each NL Elite combat, obtain NL a random Potion.",
-		"NAME": "'Witch'"
+		"NAME": "Witch"
 	},
 	"animator:Wiz":
 	{

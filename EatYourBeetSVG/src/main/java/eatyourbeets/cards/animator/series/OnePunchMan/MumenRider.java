@@ -19,7 +19,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
     public MumenRider()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 0, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(3, 0, 20);
 

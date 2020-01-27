@@ -16,7 +16,7 @@ public class Melzalgald extends AnimatorCard
 
     public Melzalgald()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 3, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
 
         Initialize(21, 0);
 

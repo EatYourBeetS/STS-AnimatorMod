@@ -18,7 +18,7 @@ public class Witch extends AnimatorCard implements Spellcaster, StartupCard
 
     public Witch()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL);
+        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.ALL);
 
         Initialize(0, 10,2);
         SetUpgrade(0, 3, 1);

@@ -18,7 +18,7 @@ public class Ara extends AnimatorCard implements MartialArtist
 
     public Ara()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(3, 0);
         SetUpgrade(2, 0);

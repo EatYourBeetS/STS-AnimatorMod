@@ -16,7 +16,7 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 
     public LeleiLaLalena()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 0, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF_AND_ENEMY);
 
         Initialize(0, 0, 1);
 

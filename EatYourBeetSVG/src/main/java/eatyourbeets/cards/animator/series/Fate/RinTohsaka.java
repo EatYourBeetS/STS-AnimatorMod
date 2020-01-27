@@ -20,7 +20,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
 
     public RinTohsaka()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 2, 1);
         SetUpgrade(0, 4, 0);

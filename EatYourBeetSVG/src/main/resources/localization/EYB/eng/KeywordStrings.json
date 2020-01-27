@@ -96,6 +96,12 @@
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
+	"Hindrance":
+	{
+		"DESCRIPTION": "A #yStatus or #yCurse card.",
+		"NAMES": ["hindrance", "hindrances"],
+		"PROPER_NAME": "Hindrance"
+	},
 	"Intellect":
 	{
 		"DESCRIPTION": "When you gain or lose #yIntellect, gain or lose that much #yFocus. Lose #b1 #yIntellect at the start of each turn.",

@@ -15,7 +15,7 @@ public class Albedo extends AnimatorCard
 
     public Albedo()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
+        super(ID, 2, CardRarity.RARE, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
 
         Initialize(8, 0);
         SetUpgrade(3, 0);

@@ -13,7 +13,7 @@ public class Rena extends AnimatorCard
 
     public Rena()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
         Initialize(0, 3, 0, 2);
         SetUpgrade(0, 3);

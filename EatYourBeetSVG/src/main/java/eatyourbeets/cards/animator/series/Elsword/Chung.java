@@ -14,7 +14,7 @@ public class Chung extends AnimatorCard
 
     public Chung()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
+        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.ALL);
 
         Initialize(0, 11, 3);
         SetUpgrade(0, 2, -1);

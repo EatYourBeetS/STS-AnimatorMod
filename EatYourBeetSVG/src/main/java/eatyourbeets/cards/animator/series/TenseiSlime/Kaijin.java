@@ -22,7 +22,7 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
 
     public Kaijin()
     {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardRarity.UNCOMMON, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0, 1);
         SetCostUpgrade(-1);

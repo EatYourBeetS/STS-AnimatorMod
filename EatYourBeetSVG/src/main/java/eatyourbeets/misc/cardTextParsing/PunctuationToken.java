@@ -12,14 +12,25 @@ public class PunctuationToken extends CTToken
         super(CTTokenType.Punctuation, text);
     }
 
-    protected static boolean IsValidCharacter(Character character)
+    protected static boolean IsValidCharacter(Character character, boolean firstCharacter)
     {
-        return character != null && !Character.isLetterOrDigit(character) && !Character.isWhitespace(character);
+        if (character == null)
+        {
+            return false;
+        }
+        else if (firstCharacter)
+        {
+            return !Character.isLetterOrDigit(character) && !Character.isWhitespace(character);
+        }
+        else
+        {
+            return ("{[!#<_*>]}".indexOf(character) == -1) && !Character.isLetterOrDigit(character) && !Character.isWhitespace(character);
+        }
     }
 
     public static int TryAdd(CTContext parser)
     {
-        if (IsValidCharacter(parser.character))
+        if (IsValidCharacter(parser.character, true))
         {
             builder.setLength(0);
             builder.append(parser.character);
@@ -29,7 +40,7 @@ public class PunctuationToken extends CTToken
             {
                 Character next = parser.NextCharacter(i);
 
-                if (IsValidCharacter(next) && "{[!#<_*>]}".indexOf(next) == -1)
+                if (IsValidCharacter(next, false))
                 {
                     builder.append(next);
                 }

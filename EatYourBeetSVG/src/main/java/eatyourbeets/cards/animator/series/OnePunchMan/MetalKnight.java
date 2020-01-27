@@ -17,7 +17,7 @@ public class MetalKnight extends AnimatorCard
 
     public MetalKnight()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 3, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
 
         Initialize(11, 0, 3);
         SetUpgrade(3, 0, 0);

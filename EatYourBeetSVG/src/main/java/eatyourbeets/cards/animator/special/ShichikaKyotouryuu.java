@@ -22,15 +22,10 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
 
         Initialize(1, 0, 4);
         SetUpgrade(1, 0, 0);
+        SetScaling(0, 2, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + MartialArtist.GetScaling());
     }
 
     @Override

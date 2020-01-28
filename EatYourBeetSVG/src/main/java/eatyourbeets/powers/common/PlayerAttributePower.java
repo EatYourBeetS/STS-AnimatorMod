@@ -1,6 +1,9 @@
 package eatyourbeets.powers.common;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CommonPower;
@@ -58,6 +61,29 @@ public abstract class PlayerAttributePower extends CommonPower
         enabled = (!preservedPowers.contains(ID));
     }
 
+    @Override
+    public float modifyBlock(float blockAmount, AbstractCard card)
+    {
+        if (card.baseBlock >= 0 && card.type != AbstractCard.CardType.ATTACK && card instanceof EYBCard)
+        {
+            return blockAmount + GetScaling((EYBCard) card);
+        }
+
+        return blockAmount;
+    }
+
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card)
+    {
+        if (card.baseDamage >= 0 && card.type == AbstractCard.CardType.ATTACK && card instanceof EYBCard)
+        {
+            return damage + GetScaling((EYBCard) card);
+        }
+
+        return damage;
+    }
+
+    protected abstract float GetScaling(EYBCard card);
     protected abstract void GainPower(int amount);
     protected abstract void ReducePower(int amount);
 

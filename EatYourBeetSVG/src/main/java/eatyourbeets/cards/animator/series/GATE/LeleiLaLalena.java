@@ -29,8 +29,6 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
     {
         super.applyPowers();
 
-        Spellcaster.ApplyScaling(this, 6);
-
         if (HasSynergy())
         {
             target = CardTarget.SELF_AND_ENEMY;

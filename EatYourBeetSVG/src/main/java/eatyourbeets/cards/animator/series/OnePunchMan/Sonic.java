@@ -25,14 +25,6 @@ public class Sonic extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        MartialArtist.ApplyScaling(this, 6);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainAgility(secondaryValue);

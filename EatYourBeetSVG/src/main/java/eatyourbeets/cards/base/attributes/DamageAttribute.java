@@ -1,7 +1,6 @@
 package eatyourbeets.cards.base.attributes;
 
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class DamageAttribute extends AbstractAttribute
@@ -16,20 +15,20 @@ public class DamageAttribute extends AbstractAttribute
         switch (card.attackType)
         {
             case Elemental:
-                icon = GR.Common.Images.ElementalDamage.Texture();
+                icon = ICONS.Elemental.Texture();
                 break;
 
             case Piercing:
-                icon = GR.Common.Images.PiercingDamage.Texture();
+                icon = ICONS.Piercing.Texture();
                 break;
 
             case Ranged:
-                icon = GR.Common.Images.RangedDamage.Texture();
+                icon = ICONS.Ranged.Texture();
                 break;
 
             case Normal:
             default:
-                icon = GR.Common.Images.NormalDamage.Texture();
+                icon = ICONS.Damage.Texture();
                 break;
         }
 

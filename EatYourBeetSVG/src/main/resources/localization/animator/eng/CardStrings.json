@@ -22,7 +22,7 @@
 	},
 	"animator:Ain":
 	{
-		"DESCRIPTION": "<SPE>. NL <DMG-ALL> NL !M! times. || <SLM>. NL On Synergy, or NL when Discarded, NL gain !S! <INT>.",
+		"DESCRIPTION": "<DMG-ALL> NL !M! times. || <SLM>. NL On Synergy, or NL when Discarded, NL gain !S! <INT>.",
 		"NAME": "Ain"
 	},
 	"animator:Ainz":
@@ -32,51 +32,51 @@
 	},
 	"animator:Aisha":
 	{
-		"DESCRIPTION": "<SPE>. NL <DMG> NL for each Orb NL you have. || <LIM>. NL If you don't have NL any empty Orb Slot, NL gain 1 Orb Slot.",
+		"DESCRIPTION": "<DMG> NL for each Orb NL you have. || <LIM>. NL If you don't have NL any empty Orb Slot, NL gain 1 Orb Slot.",
 		"NAME": "Aisha"
 	},
 	"animator:Albedo":
 	{
-		"DESCRIPTION": "<DMG>. NL Gain that much NL {Enchanted Armor}. || On Synergy, NL gain 1 Temporary NL Artifact.",
+		"DESCRIPTION": "Gain that much NL {Enchanted Armor}. || On Synergy, NL gain 1 Temporary NL Artifact.",
 		"NAME": "Albedo"
 	},
 	"animator:Alexander":
 	{
-		"DESCRIPTION": "<DMG-ALL>. NL Gain 1 <FOR>. || When Exhausted, NL play this card.",
+		"DESCRIPTION": "Gain 1 <FOR>. || When Exhausted, ** play this card.",
 		"NAME": "Alexander",
-		"UPGRADE_DESCRIPTION": "<DMG-ALL>. NL Gain 1 <FOR>. Lose NL no <FOR> next turn."
+		"UPGRADE_DESCRIPTION": "Gain 1 <FOR>. Lose no <FOR> next turn. || When Exhausted, ** play this card."
 	},
 	"animator:Aqua":
 	{
 		"DESCRIPTION": "Heal !M! HP. NL <DRW>. NL Becomes useless for the rest of this combat.",
-		"EXTENDED_DESCRIPTION": ["", "When this card is Exhausted or discarded, gain !S! Temp._HP."],
+		"EXTENDED_DESCRIPTION": ["", "When this card is Exhausted or discarded, gain !S! {Temp. HP}."],
 		"NAME": "Aqua",
 		"UPGRADE_DESCRIPTION": "Heal !M! HP. NL <DRW>. NL Becomes slightly less useless for the rest of this combat."
 	},
 	"animator:Ara":
 	{
-		"DESCRIPTION": "<MAR>. NL <DMG> twice. NL <DRW> for every NL {Debuff} on the enemy. NL Discard 1 card. || <SLM>. NL If you discarded a {Power}, gain 1 <AGI> and 2 <FOR>.",
+		"DESCRIPTION": "<DRW> for every {Debuff} on the enemy. Discard 1 card. || If you discarded a {Power}, gain [A] and [F].",
 		"NAME": "Ara"
 	},
 	"animator:Archer":
 	{
-		"DESCRIPTION": "At the end of your NL turn, deal !M! damage NL to all enemies for NL each {Debuff} they have. || On Synergy, NL apply 1 Vulnerable NL to ALL enemies.",
+		"DESCRIPTION": "At the end of your turn, deal NL !M! damage to all enemies for NL each {Debuff} they have. || On Synergy, apply 1 NL Vulnerable to ALL enemies.",
 		"NAME": "Archer"
 	},
 	"animator:Arpeggio":
 	{
-		"DESCRIPTION": "<SPE>. NL Gain !M! <INT>. NL Exhaust. || On Synergy, NL Channel 1 Earth.",
+		"DESCRIPTION": "Gain !M! <INT>. NL Exhaust. || On Synergy, NL Channel 1 Earth.",
 		"NAME": "Arpeggio",
-		"UPGRADE_DESCRIPTION": "<SPE>. NL Gain !M! <INT>. NL Gain !S! Orb Slot. NL Exhaust. || On Synergy, NL Channel 1 Earth."
+		"UPGRADE_DESCRIPTION": "Gain !M! <INT>. NL Gain !S! Orb Slot. NL Exhaust. || On Synergy, NL Channel 1 Earth."
 	},
 	"animator:Asuramaru":
 	{
-		"DESCRIPTION": "<DMG>. NL Gain !M! Demon_Form. NL Gain !M! <INT>. NL Gain !M! <AGI>. NL Exhaust.",
+		"DESCRIPTION": "Gain !M! Demon_Form. NL Gain !M! <INT>. NL Gain !M! <AGI>. NL Exhaust.",
 		"NAME": "Asuramaru"
 	},
 	"animator:Azekura":
 	{
-		"DESCRIPTION": "<MAR>. NL <BLK> twice. Gain !M! Temporary Thorns. || On Synergy, or NL when Exhausted, gain NL !S! {Plated Armor}.",
+		"DESCRIPTION": "Gain !M! {Temp.} Thorns. || On Synergy, or when Exhausted, gain NL !S! {Plated Armor}.",
 		"NAME": "Azekura"
 	},
 	"animator:Azriel":
@@ -92,7 +92,7 @@
 	},
 	"animator:Berserker":
 	{
-		"DESCRIPTION": "<DMG>. NL Gain !M! <FOR>. || If the enemy dies NL or loses its Block, NL gain !S! Block.",
+		"DESCRIPTION": "Gain !M! <FOR>. || If the enemy dies NL or loses its Block, NL gain !S! Block.",
 		"NAME": "Berserker"
 	},
 	"animator:Biyorigo":
@@ -102,7 +102,7 @@
 	},
 	"animator:BlackLotus":
 	{
-		"DESCRIPTION": "<DMG-ALL>. NL <BLK>. NL Gain !M! Blur.",
+		"DESCRIPTION": "<DMG-ALL>. NL Gain !M! Blur.",
 		"NAME": "Black Lotus"
 	},
 	"animator:Boros":
@@ -112,17 +112,17 @@
 	},
 	"animator:Bozes":
 	{
-		"DESCRIPTION": "<DMG>. NL Motivate !M!. NL Exhaust. || Whenever a NL card Synergizes NL this turn, gain !S! NL {Support Damage}.",
+		"DESCRIPTION": "Motivate !M!. NL Exhaust. || Whenever a NL card Synergizes NL this turn, gain !S! NL {Support Damage}.",
 		"NAME": "Bozes"
 	},
 	"animator:Caster":
 	{
-		"DESCRIPTION": "<SPE>. NL Steal !M! Strength NL until end of turn. NL {Channel} 1 Dark. || When Exhausted, NL Evoke ALL your NL Dark Orbs.",
+		"DESCRIPTION": "Steal !M! Strength NL until end of turn. NL {Channel} 1 Dark. || When Exhausted, NL Evoke ALL your NL Dark Orbs.",
 		"NAME": "Caster"
 	},
 	"animator:ChaikaBohdan":
 	{
-		"DESCRIPTION": "<DMG>. NL If your hand NL is empty, draw NL !M! cards. || Whenever you hit an NL enemy while this is in NL your hand, gain !S! NL additional damage NL until played.",
+		"DESCRIPTION": "If your hand NL is empty, draw NL !M! cards. || Whenever you hit an NL enemy while this is in NL your hand, gain !S! NL additional damage NL until played.",
 		"NAME": "Chaika Bohdan"
 	},
 	"animator:ChaikaTrabant":
@@ -144,12 +144,12 @@
 	},
 	"animator:Chris":
 	{
-		"DESCRIPTION": "<DMG>. NL {Steal} !M! {Gold}. || When Discarded, NL draw a {0-Cost} NL card.",
+		"DESCRIPTION": "{Steal} !M! {Gold}. || When Discarded, NL draw a {0-Cost} NL card.",
 		"NAME": "Chris"
 	},
 	"animator:Chung":
 	{
-		"DESCRIPTION": "<BLK>. NL Decrease this NL card's Block by NL !M! this combat. || When Exhausted, NL Channel 1 Frost.",
+		"DESCRIPTION": "Decrease this NL card's Block by NL !M! this combat. || When Exhausted, NL Channel 1 Frost.",
 		"NAME": "Chung"
 	},
 	"animator:Cirno":
@@ -159,7 +159,7 @@
 	},
 	"animator:Cocytus":
 	{
-		"DESCRIPTION": "<DMG>. NL Gain 1 <FOR>. NL Strength affects this NL card !M! times. || On Synergy, NL randomly gain 1 NL Plated_Armor or NL 1 Thorns.",
+		"DESCRIPTION": "Gain 1 <FOR>. NL Strength affects this NL card !M! times. || On Synergy, NL randomly gain 1 NL {Plated Armor} or NL 1 Thorns.",
 		"NAME": "Cocytus"
 	},
 	"animator:CowGirl":
@@ -195,7 +195,7 @@
 	},
 	"animator:Darkness":
 	{
-		"DESCRIPTION": "<BLK> and NL !M! {Plated Armor}. || The next time you NL take damage, add 1 NL {Adrenaline} to your NL draw pile.",
+		"DESCRIPTION": "Gain !M! {Plated Armor}. || The next time you NL take damage, add 1 NL {Adrenaline} to your NL draw pile.",
 		"NAME": "Darkness"
 	},
 	"animator:DarknessAdrenaline":
@@ -206,77 +206,77 @@
 	},
 	"animator:Defend":
 	{
-		"DESCRIPTION": "<BLK>.",
+		"DESCRIPTION": "",
 		"NAME": "Defend"
 	},
 	"animator:Defend_AccelWorld":
 	{
-		"DESCRIPTION": "<BLK>. NL When Discarded, NL gain !M! Block.",
+		"DESCRIPTION": "When Discarded, NL gain !M! Block.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Elsword":
 	{
-		"DESCRIPTION": "<BLK>. NL Next turn, NL gain !M! Block.",
+		"DESCRIPTION": "Next turn, NL gain !M! Block.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Fate":
 	{
-		"DESCRIPTION": "<BLK>. NL Gain !M! additional NL Block for each enemy.",
+		"DESCRIPTION": "Gain !M! additional NL Block for each enemy.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_FullmetalAlchemist":
 	{
-	"DESCRIPTION": "<BLK>. NL Cooldown !S!: NL {Channel} 1 Frost.",
+		"DESCRIPTION": "Cooldown !S!: NL {Channel} 1 Frost.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_GATE":
 	{
-		"DESCRIPTION": "<BLK>. NL Retain.",
+		"DESCRIPTION": "Retain.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_GoblinSlayer":
 	{
-		"DESCRIPTION": "<BLK>. NL Exhaust.",
+		"DESCRIPTION": "Exhaust.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_HitsugiNoChaika":
 	{
-		"DESCRIPTION": "<BLK>. NL Cycle 1 card.",
+		"DESCRIPTION": "Cycle 1 card.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Kancolle":
 	{
-		"DESCRIPTION": "<BLK>. NL <LIM>: NL Gain !M! {Gold}.",
+		"DESCRIPTION": "<LIM>: NL Gain !M! {Gold}.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Katanagatari":
 	{
-		"DESCRIPTION": "<BLK>. NL Gain !M! temporary Thorns.",
+		"DESCRIPTION": "Gain !M! temporary Thorns.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Konosuba":
 	{
-		"DESCRIPTION": "<BLK>. NL Gain !M! {Temp. HP}.",
+		"DESCRIPTION": "Gain !M! {Temp. HP}.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_NoGameNoLife":
 	{
-		"DESCRIPTION": "<BLK>. NL Retain your leftmost NL playable card.",
+		"DESCRIPTION": "Retain your leftmost NL playable card.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_OnePunchMan":
 	{
-		"DESCRIPTION": "<BLK>. NL <LIM> : Next NL turn, gain [E].",
+		"DESCRIPTION": "<LIM> : Next NL turn, gain [E].",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_Overlord":
 	{
-		"DESCRIPTION": "<BLK>. NL Increase this NL card's Block by !M! NL this combat.",
+		"DESCRIPTION": "Increase this NL card's Block by !M! NL this combat.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_OwariNoSeraph":
 	{
-		"DESCRIPTION": "<BLK>. NL When Exhausted, NL apply !M! Weak NL to ALL enemies.",
+		"DESCRIPTION": "When Exhausted, NL apply !M! Weak NL to ALL enemies.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_TenSura":
@@ -292,7 +292,7 @@
 	},
 	"animator:DolaCouronne":
 	{
-		"DESCRIPTION": "Discard 1 card. NL <BLK>. || <LIM>. NL When Exhausted, NL gain !M! Block NL and 1 Artifact.",
+		"DESCRIPTION": "Discard 1 card. || <LIM>. NL When Exhausted, NL gain !M! Block NL and 1 Artifact.",
 		"NAME": "Couronne"
 	},
 	"animator:DolaRiku":
@@ -302,7 +302,7 @@
 	},
 	"animator:DolaSchwi":
 	{
-		"DESCRIPTION": "Apply !M! Lock-On. NL Cooldown !S! : NL <DMG>. || On Synergy, NL Channel 1 Lightning.",
+		"DESCRIPTION": "Apply !M! Lock-On. NL Cooldown !S! : NL || On Synergy, NL Channel 1 Lightning.",
 		"NAME": "Schwi"
 	},
 	"animator:DolaStephanie":
@@ -314,53 +314,53 @@
 	},
 	"animator:DwarfShaman":
 	{
-		"DESCRIPTION": "<SPE>. NL <DMG>. NL Channel 1 Earth. || On Synergy, NL draw a card and NL Upgrade it.",
+		"DESCRIPTION": "Channel 1 Earth. || On Synergy, NL draw a card and NL Upgrade it.",
 		"NAME": "Dwarf Shaman"
 	},
 	"animator:Elesis":
 	{
-		"DESCRIPTION": "<DMG>. NL Gain !M! <AGI>. NL Gain !M! <FOR>. NL Exhaust. || When Drawn or NL Discarded, increase NL this card's damage NL by !S! this combat.",
+		"DESCRIPTION": "Gain !M! <AGI>. NL Gain !M! <FOR>. NL Exhaust. || When Drawn or NL Discarded, increase NL this card's damage NL by !S! this combat.",
 		"NAME": "Elesis"
 	},
 	"animator:ElricAlphonse":
 	{
-		"DESCRIPTION": "{Ethereal}. NL If you have !M! NL or less <INT>, NL gain 1 <INT>. || When Exhausted, add NL {Armored Alphonse} to NL your discard pile.",
+		"DESCRIPTION": "If you have !M! or ** less [I], gain [I]. || When Exhausted, add ** {Armored Alphonse} ** to your discard pile.",
 		"NAME": "Alphonse Elric"
 	},
 	"animator:ElricAlphonseAlt":
 	{
-		"DESCRIPTION": "Channel 1 Lightning. NL Gain !M! Plated_Armor. NL Exhaust. || On Synergy, NL gain 1 Orb Slot.",
+		"DESCRIPTION": "Channel 1 Lightning. ** Gain !M! {Plated Armor}. || On Synergy, ** gain 1 Orb Slot.",
 		"NAME": "Armored Alphonse"
 	},
 	"animator:ElricEdward":
 	{
-		"DESCRIPTION": "<DMG>. NL Cycle 1 card, then NL {Channel} 1 Orb based NL on its type. {*}",
+		"DESCRIPTION": "Cycle 1 card, then NL {Channel} 1 Orb based NL on its type. {*}",
 		"EXTENDED_DESCRIPTION": ["Bonus Effect", "#yAttack: Channel 1 #yLightning NL #ySkill: Channel 1 #yFrost NL #yPower: Channel 1 #yEarth"],
 		"NAME": "Edward Elric"
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "<DMG>. NL Apply !S! Burning. NL Cycle !M! card(s). || When Discarded, NL Channel 1 Fire.",
+		"DESCRIPTION": "Apply !S! Burning. NL Cycle !M! card(s). || When Discarded, NL Channel 1 Fire.",
 		"NAME": "Elsword"
 	},
 	"animator:Emilia":
 	{
-		"DESCRIPTION": "<SPE>. NL Channel !M! Frost. NL Exhaust. || Next turn, NL Channel 1 Lightning NL for each Frost NL Orb you have.",
+		"DESCRIPTION": "Channel !M! Frost. NL Exhaust. || Next turn, NL Channel 1 Lightning NL for each Frost NL Orb you have.",
 		"NAME": "Emilia"
 	},
 	"animator:EmiyaShirou":
 	{
-		"DESCRIPTION": "<BLK>. NL Upgrade a random NL card in your hand NL !M! times. || If every card NL in your hand was NL already Upgraded, NL draw 2 cards.",
+		"DESCRIPTION": "Upgrade a random NL card in your hand NL !M! times. || If every card NL in your hand was NL already Upgraded, NL draw 2 cards.",
 		"NAME": "Emiya Shirou"
 	},
 	"animator:Emonzaemon":
 	{
-		"DESCRIPTION": "<MAR>. NL Deal !D! Piercing damage twice. || <LIM>. If this is your NL third attack in a row, NL add {Entou Jyuu} to NL your draw pile.",
+		"DESCRIPTION": "Deal 1 more damage per ** point of [A]. || <LIM>. If this is your NL third attack in a row, NL add {Entou Jyuu} to NL your draw pile.",
 		"NAME": "Emonzaemon"
 	},
 	"animator:Entoma":
 	{
-		"DESCRIPTION": "{~Unique}. NL <DMG>. NL Apply !M! Poison. NL Loses 1 damage NL each turn. || <LIM>. NL If this card kills an NL enemy, gain 2 Max HP NL and permanently NL Upgrade this card.",
+		"DESCRIPTION": "{~Unique}. NL Apply !M! Poison. NL Loses 1 damage NL each turn. || <LIM>. NL If this card kills an NL enemy, gain 2 Max HP NL and permanently NL Upgrade this card.",
 		"NAME": "Entoma"
 	},
 	"animator:EntouJyuu":
@@ -387,7 +387,7 @@
 	},
 	"animator:Evileye":
 	{
-		"DESCRIPTION": "<SPE>. NL <DRW-M>. NL Reload: Trigger the NL passive ability of NL your next Orb. || <LIM>. NL On Synergy, gain NL 2 <INT> and NL 1 Orb Slot.",
+		"DESCRIPTION": "<DRW-M>. NL Reload: Trigger the NL passive ability of NL your next Orb. || <LIM>. NL On Synergy, gain NL 2 <INT> and NL 1 Orb Slot.",
 		"NAME": "Evileye"
 	},
 	"animator:Excalibur":
@@ -402,8 +402,8 @@
 	},
 	"animator:Fredrika":
 	{
-		"DESCRIPTION": "Shapeshifter. NL <BLK>. NL Gain !M! additional Block for each enemy. || When Discarded, returns to your hand and changes Form until end of turn.",
-		"EXTENDED_DESCRIPTION": ["Shapeshifter. NL <BLK>.", "Shapeshifter. NL <DMG> twice. Gain 2 Metallicize.", "Shapeshifter. NL <DMG>. NL Apply 1 Vulnerable. NL Apply 1 Weak."],
+		"DESCRIPTION": "Shapeshifter. NL Gain !M! additional Block for each enemy. || When Discarded, returns to your hand and changes Form until end of turn.",
+		"EXTENDED_DESCRIPTION": ["Shapeshifter. NL <BLK>.", "Shapeshifter. NL <DMG> twice. Gain 2 Metallicize.", "Shapeshifter. NL Apply 1 Vulnerable. NL Apply 1 Weak."],
 		"NAME": "Fredrika"
 	},
 	"animator:GazelDwargon":
@@ -414,7 +414,7 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "<DMG>. NL Take !S! damage at NL the end of turn. || On Synergy, NL apply !M! Burning.",
+		"DESCRIPTION": "Take !S! damage at NL the end of turn. || On Synergy, NL apply !M! Burning.",
 		"NAME": "Genos"
 	},
 	"animator:Geryuganshoop":
@@ -430,12 +430,12 @@
 	},
 	"animator:Gillette":
 	{
-		"DESCRIPTION": "<DMG>. NL Next turn, NL gain [E]. || When Discarded, NL Apply 1 Weak NL to ALL enemies.",
+		"DESCRIPTION": "Next turn, NL gain [E]. || When Discarded, NL Apply 1 Weak NL to ALL enemies.",
 		"NAME": "Gillette"
 	},
 	"animator:Giselle":
 	{
-		"DESCRIPTION": "<DMG>. NL Apply !M! Burning NL to ALL enemies. || At the start NL of each combat, NL Channel 1 Fire.",
+		"DESCRIPTION": "Apply !M! Burning NL to ALL enemies. || At the start NL of each combat, NL Channel 1 Fire.",
 		"NAME": "Giselle"
 	},
 	"animator:Gluttony":
@@ -461,7 +461,7 @@
 	},
 	"animator:GoblinSlayer":
 	{
-		"DESCRIPTION": "Retain. NL <DMG>. NL Exhaust every Curse NL and Status in hand NL and discard pile. || Deal 3 additional NL damage for every card NL in your Exhaust pile. NL {Goblins} will start NL invading your deck.",
+		"DESCRIPTION": "Retain. NL Exhaust every Curse NL and Status in hand NL and discard pile. || Deal 3 additional NL damage for every card NL in your Exhaust pile. NL {Goblins} will start NL invading your deck.",
 		"NAME": "Goblin Slayer"
 	},
 	"animator:GoblinSoldier":
@@ -492,7 +492,7 @@
 	},
 	"animator:Hakurou":
 	{
-		"DESCRIPTION": "<MAR>. Deal 1 more damage per point of [A]. || On Synergy or when Drawn, gain 1 <AGI>.",
+		"DESCRIPTION": "Deal 1 more damage per point of [A]. || On Synergy or when Drawn, gain 1 <AGI>.",
 		"NAME": "Hakurou"
 	},
 	"animator:HarukoHaruhara":
@@ -502,7 +502,7 @@
 	},
 	"animator:Hero":
 	{
-		"DESCRIPTION": "<DMG>. NL <DRW-M>. || <LIM>. NL If this card kills an NL enemy, 40% chance NL to obtain a relic at NL the end of combat.",
+		"DESCRIPTION": "<DRW-M>. || <LIM>. NL If this card kills an NL enemy, 40% chance NL to obtain a relic at NL the end of combat.",
 		"NAME": "'Hero'"
 	},
 	"animator:Hibiki":
@@ -523,12 +523,12 @@
 	},
 	"animator:HiiragiShinya":
 	{
-		"DESCRIPTION": "<BLK>. NL Fetch a card from NL your discard pile and NL Retain it, it costs 1 NL more this turn. || On Synergy, gain !M! NL Support_Damage.",
+		"DESCRIPTION": "Fetch a card from NL your discard pile and NL Retain it, it costs 1 NL more this turn. || On Synergy, gain !M! NL Support_Damage.",
 		"NAME": "Shinya Hiiragi"
 	},
 	"animator:HiiragiTenri":
 	{
-		"DESCRIPTION": "Gain !M! {Temp. HP}. NL Play and Exhaust NL ALL cards in your discard pile. || <LIM>. NL When Exhausted, NL shuffle your Exhaust NL pile into your NL draw pile.",
+		"DESCRIPTION": "Play and Exhaust NL ALL cards in your discard pile. || <LIM>. NL When Exhausted, NL shuffle your Exhaust NL pile into your NL draw pile.",
 		"NAME": "Tenri Hiiragi"
 	},
 	"animator:Hitei":
@@ -569,18 +569,18 @@
 	},
 	"animator:IzunaHatsuse":
 	{
-		"DESCRIPTION": "<BLK>. NL Apply 1 Weak. || While you are below 25% max HP, this card will change its form.",
+		"DESCRIPTION": "Apply 1 Weak. || While you are below 25% max HP, this card will change its form.",
 		"EXTENDED_DESCRIPTION": ["<DMG> twice. NL Heal !M! HP."],
 		"NAME": "Izuna Hatsuse"
 	},
 	"animator:JeanneDArc":
 	{
-		"DESCRIPTION": "<BLK>. NL <DMG>. NL Exhaust a random NL Status or Curse. || At the start of NL each combat, gain NL !M! {Temporary HP}.",
+		"DESCRIPTION": "Exhaust a random NL Status or Curse. || At the start of NL each combat, gain NL !M! {Temporary HP}.",
 		"NAME": "Jeanne D'Arc"
 	},
 	"animator:Jibril":
 	{
-		"DESCRIPTION": "<SPE>. NL When Drawn, trigger NL the passive ability of NL your next Orb.",
+		"DESCRIPTION": "Deal 2 more damage per ** point of [I]. || <SLM>. When Drawn, trigger the passive ability of your next Orb.",
 		"NAME": "Jibril"
 	},
 	"animator:Kaijin":
@@ -590,7 +590,7 @@
 	},
 	"animator:Kazuma":
 	{
-		"DESCRIPTION": "<BLK>. NL Cycle 1 card. || On Synergy, NL deal !M! damage to NL a random enemy.",
+		"DESCRIPTION": "Cycle 1 card. || On Synergy, NL deal !M! damage to NL a random enemy.",
 		"NAME": "Kazuma"
 	},
 	"animator:Kira":
@@ -601,17 +601,17 @@
 	},
 	"animator:Konayuki":
 	{
-		"DESCRIPTION": "<BLK>. NL Gain !M! <FOR>, then NL increase this number NL by !S! this combat. || <LIM>. If you have NL 10 or more <FOR>, NL deal 40 damage to NL a random enemy.",
+		"DESCRIPTION": "Gain !M! <FOR>, then NL increase this number NL by !S! this combat. || <LIM>. If you have NL 10 or more <FOR>, NL deal 40 damage to NL a random enemy.",
 		"NAME": "Konayuki"
 	},
 	"animator:KrulTepes":
 	{
-		"DESCRIPTION": "<DMG>. NL Apply !M! Weak. || <LIM>. NL If this card kills NL an Elite or Boss, NL obtain a {Blood Vial}.",
+		"DESCRIPTION": "Apply !M! Weak. || <LIM>. NL If this card kills NL an Elite or Boss, NL obtain a {Blood Vial}.",
 		"NAME": "Krul Tepes"
 	},
 	"animator:Kuribayashi":
 	{
-		"DESCRIPTION": "<DMG>. NL Apply !M! Vulnerable. NL Apply !S! Choked. || <SLM>. On NL Synergy, the enemy NL loses 4 Strength NL this turn.",
+		"DESCRIPTION": "Apply !M! Vulnerable. NL Apply !S! Choked. || <SLM>. On NL Synergy, the enemy NL loses 4 Strength NL this turn.",
 		"NAME": "Kuribayashi"
 	},
 	"animator:Kuroyukihime":
@@ -627,7 +627,7 @@
 	},
 	"animator:Lancer":
 	{
-		"DESCRIPTION": "<MAR>. NL Deal !D! Piercing NL damage. Apply NL !M! Vulnerable. || This card's damage NL is increased by the NL enemy's missing NL HP percentage.",
+		"DESCRIPTION": "Apply !M! Vulnerable. || This card's damage is ** increased by the enemy's ** missing HP percentage.",
 		"NAME": "Lancer"
 	},
 	"animator:Layla":
@@ -639,7 +639,7 @@
 	{
 		"DESCRIPTION": "<SPE>. Discard NL a random card to NL {Channel} !M! Frost. || On Synergy, NL apply 1 Weak.",
 		"NAME": "Lelei La Lalena",
-		"UPGRADE_DESCRIPTION": "<SPE>. NL Discard a card to NL {Channel} !M! Frost. || On Synergy, NL apply 1 Weak."
+		"UPGRADE_DESCRIPTION": "Discard a card to NL {Channel} !M! Frost. || On Synergy, NL apply 1 Weak."
 	},
 	"animator:Lelouch":
 	{
@@ -649,12 +649,12 @@
 	},
 	"animator:LimeBell":
 	{
-		"DESCRIPTION": "<BLK>. NL Reload: Gain !M! NL {Temporary HP}. NL Exhaust.",
+		"DESCRIPTION": "Reload: Gain !M! NL {Temporary HP}. NL Exhaust.",
 		"NAME": "Lime Bell"
 	},
 	"animator:LizardPriest":
 	{
-		"DESCRIPTION": "<BLK>. NL Set the Block of NL the enemy to 1. || On Synergy, NL Retain 2 cards.",
+		"DESCRIPTION": "Set the Block of NL the enemy to 1. || On Synergy, NL Retain 2 cards.",
 		"NAME": "Lizard Priest"
 	},
 	"animator:MaesHughes":
@@ -675,33 +675,33 @@
 	},
 	"animator:Melzalgald":
 	{
-		"DESCRIPTION": "Shapeshifter. NL <DMG>. NL Splits into 3 NL {Attacks}. Exhaust.",
+		"DESCRIPTION": "Shapeshifter. NL Splits into 3 NL {Attacks}. Exhaust.",
 		"NAME": "Melzalgald",
-		"UPGRADE_DESCRIPTION": "Shapeshifter. NL <DMG>. NL Splits into 3 Upgraded NL {Attacks}. Exhaust."
+		"UPGRADE_DESCRIPTION": "Shapeshifter. NL Splits into 3 Upgraded NL {Attacks}. Exhaust."
 	},
 	"animator:MelzalgaldAlt_1":
 	{
-		"DESCRIPTION": "Shapeshifter. NL <DMG>. NL Gain !M! <FOR>. NL Exhaust.",
+		"DESCRIPTION": "Shapeshifter. NL Gain !M! <FOR>. NL Exhaust.",
 		"NAME": "Melzalgald"
 	},
 	"animator:MelzalgaldAlt_2":
 	{
-		"DESCRIPTION": "Shapeshifter. NL <DMG>. NL Gain !M! <INT>. NL Exhaust.",
+		"DESCRIPTION": "Shapeshifter. NL Gain !M! <INT>. NL Exhaust.",
 		"NAME": "Melzalgald"
 	},
 	"animator:MelzalgaldAlt_3":
 	{
-		"DESCRIPTION": "Shapeshifter. NL <DMG>. NL Gain !M! <AGI>. NL Exhaust.",
+		"DESCRIPTION": "Shapeshifter. NL Gain !M! <AGI>. NL Exhaust.",
 		"NAME": "Melzalgald"
 	},
 	"animator:MetalKnight":
 	{
-		"DESCRIPTION": "<DMG>. NL Channel 1 Plasma. NL Gain !M! Metallicize, NL then reduce this NL number by 1. || When Discarded, NL gain 2 Block for NL each of your Orbs.",
+		"DESCRIPTION": "Channel 1 Plasma. NL Gain !M! Metallicize, NL then reduce this NL number by 1. || When Discarded, NL gain 2 Block for NL each of your Orbs.",
 		"NAME": "Metal Knight"
 	},
 	"animator:Mikaela":
 	{
-		"DESCRIPTION": "<DMG>. NL Exhaust a card in NL your discard pile. NL Gain !M! {Temp. HP}. || If you Exhausted NL a Status or Curse, NL gain !S! <FOR>.",
+		"DESCRIPTION": "Exhaust a card in your discard pile. || If you Exhausted an Hindrance, gain !S! [F].",
 		"NAME": "Mikaela"
 	},
 	"animator:Millim":
@@ -717,7 +717,7 @@
 	},
 	"animator:Mitsuba":
 	{
-		"DESCRIPTION": "<DMG>. NL If the enemy had NL more health than NL you, <BLK>. || When Exhausted, NL <DRW-M>.",
+		"DESCRIPTION": "If the enemy had NL more health than NL you, || When Exhausted, NL <DRW-M>.",
 		"NAME": "Mitsuba"
 	},
 	"animator:Mitsurugi":
@@ -728,9 +728,9 @@
 	},
 	"animator:MumenRider":
 	{
-		"DESCRIPTION": "<DMG>. NL Exhaust. || When Exhausted, NL this card returns NL to your draw pile NL after a random NL number of turns.",
+		"DESCRIPTION": "Exhaust. || When Exhausted, NL this card returns NL to your draw pile NL after a random NL number of turns.",
 		"NAME": "Mumen Rider",
-		"UPGRADE_DESCRIPTION": "<DMG>. NL <DRW>. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "<DRW>. NL Exhaust."
 	},
 	"animator:Nanami":
 	{
@@ -797,7 +797,7 @@
 	},
 	"animator:PandorasActor":
 	{
-		"DESCRIPTION": "Shapeshifter. NL <BLK>. || At the start NL of combat, play NL this card.",
+		"DESCRIPTION": "Shapeshifter. NL || At the start NL of combat, play NL this card.",
 		"NAME": "Pandora's Actor"
 	},
 	"animator:Patchouli":
@@ -809,7 +809,7 @@
 	{
 		"DESCRIPTION": "The first {0-Cost} card you play each turn is played twice.",
 		"NAME": "Pina Co Lada",
-		"UPGRADE_DESCRIPTION": "<BLK>. NL The first {0-Cost} card you play each turn is played twice."
+		"UPGRADE_DESCRIPTION": "The first {0-Cost} card you play each turn is played twice."
 	},
 	"animator:Pride":
 	{
@@ -830,12 +830,12 @@
 	},
 	"animator:Raven":
 	{
-		"DESCRIPTION": "<DMG>. NL Draw your lowest NL damage {Attack}. || If the enemy NL is attacking, apply NL 1 Weak, otherwise NL apply 1 Vulnerable.",
+		"DESCRIPTION": "Draw your lowest NL damage {Attack}. || If the enemy NL is attacking, apply NL 1 Weak, otherwise NL apply 1 Vulnerable.",
 		"NAME": "Raven"
 	},
 	"animator:Rena":
 	{
-		"DESCRIPTION": "<BLK>. NL Obtain 1 NL Throwing-Knife. || <SLM>. NL On Synergy or NL when Discarded, NL gain !S! Blur.",
+		"DESCRIPTION": "Obtain 1 NL Throwing-Knife. || <SLM>. NL On Synergy or NL when Discarded, NL gain !S! Blur.",
 		"NAME": "Rena"
 	},
 	"animator:Respite":
@@ -851,7 +851,7 @@
 	},
 	"animator:RinTohsaka":
 	{
-		"DESCRIPTION": "<SPE>. NL <BLK>. NL {Channel} a copy of NL your first Orb. NL Exhaust. || <SLM>. NL When drawn, gain NL 1 Temporary Artifact.",
+		"DESCRIPTION": "{Channel} a copy of NL your first Orb. NL Exhaust. || <SLM>. NL When drawn, gain NL 1 Temporary Artifact.",
 		"NAME": "Rin Tohsaka"
 	},
 	"animator:RoryMercury":
@@ -871,13 +871,13 @@
 	},
 	"animator:Saber":
 	{
-		"DESCRIPTION": "{++Innate. }Loyal. NL <DMG>. NL Cooldown !S! : Purge, NL then add {Excalibur} NL to your hand. || On Synergy, NL reduce this card's NL Cooldown by an NL additional 2.",
+		"DESCRIPTION": "{++Innate. }Loyal. NL Cooldown !S! : Purge, NL then add {Excalibur} NL to your hand. || On Synergy, NL reduce this card's NL Cooldown by an NL additional 2.",
 		"NAME": "Saber"
 	},
 	"animator:Saitama":
 	{
 		"DESCRIPTION": " || Whenever this card is played, increase its cost and change its effect for this combat.",
-		"EXTENDED_DESCRIPTION": ["<DRW-M>. NL Gain !S! <AGI>.", "Prevent the next NL time you would NL lose HP.", "Gain !M! <FOR>. NL <BLK>.", "<DMG> NL !M! times.", "Remove Intangible. NL <DMG>. NL Stun the enemy."],
+		"EXTENDED_DESCRIPTION": ["<DRW-M>. NL Gain !S! <AGI>.", "Prevent the next NL time you would NL lose HP.", "Gain !M! <FOR>. NL <BLK>.", "<DMG> NL !M! times.", "Remove Intangible. NL Stun the enemy."],
 		"NAME": "Saitama",
 		"UPGRADE_DESCRIPTION": "Motivate 1."
 	},
@@ -925,12 +925,12 @@
 	},
 	"animator:Shimakaze":
 	{
-		"DESCRIPTION": "<DMG>. NL <BLK>. NL <DRW-M>. NL Add 1 Dazed to NL your draw pile.",
+		"DESCRIPTION": "<DRW-M>. NL Add 1 Dazed to NL your draw pile.",
 		"NAME": "Shimakaze"
 	},
 	"animator:Shinoa":
 	{
-		"DESCRIPTION": "<BLK>. NL Apply !M! Vulnerable NL to ALL enemies. || On Synergy NL or when Exhausted, NL apply !M! Weak NL to ALL enemies.",
+		"DESCRIPTION": "Apply !M! Vulnerable NL to ALL enemies. || On Synergy NL or when Exhausted, NL apply !M! Weak NL to ALL enemies.",
 		"NAME": "Shinoa"
 	},
 	"animator:Shiro":
@@ -940,9 +940,9 @@
 	},
 	"animator:Shizu":
 	{
-		"DESCRIPTION": "<DMG>. NL Add a Burn to NL your discard pile. NL Exhaust. || Whenever an {Attack} NL deals unblocked NL damage this combat, NL apply 1 Burning.",
+		"DESCRIPTION": "Add a Burn to NL your discard pile. NL Exhaust. || Whenever an {Attack} NL deals unblocked NL damage this combat, NL apply 1 Burning.",
 		"NAME": "Shizu",
-		"UPGRADE_DESCRIPTION": "<DMG>. NL Add a Burn to NL your discard pile."
+		"UPGRADE_DESCRIPTION": "Add a Burn to NL your discard pile."
 	},
 	"animator:Shuna":
 	{
@@ -951,17 +951,17 @@
 	},
 	"animator:SilverFang":
 	{
-		"DESCRIPTION": "<MAR>. NL <DMG>. NL Lose no <AGI> NL next turn. || On Synergy, NL gain !M! Block.",
+		"DESCRIPTION": "<MAR>. NL Lose no <AGI> NL next turn. || On Synergy, NL gain !M! Block.",
 		"NAME": "Silver Fang"
 	},
 	"animator:SirTouchMe":
 	{
-		"DESCRIPTION": "<DMG>. NL Gain !M! Juggernaut. NL <BLK>. || At the start of NL each combat, gain NL !S! {Plated Armor}.",
+		"DESCRIPTION": "Gain !M! Juggernaut. NL || At the start of NL each combat, gain NL !S! {Plated Armor}.",
 		"NAME": "Sir Touch Me"
 	},
 	"animator:Sloth":
 	{
-		"DESCRIPTION": "<BLK>. NL <DMG>. NL Next turn, draw NL 1 less card. || <LIM>. NL When Exhausted, NL gain !S! <FOR>.",
+		"DESCRIPTION": "Next turn, draw NL 1 less card. || <LIM>. NL When Exhausted, NL gain !S! <FOR>.",
 		"NAME": "Sloth"
 	},
 	"animator:Sonic":
@@ -986,48 +986,47 @@
 	},
 	"animator:Strike":
 	{
-		"DESCRIPTION": "<DMG>.",
-		"NAME": "Strike",
-		"UPGRADE_DESCRIPTION": "<DMG>."
+		"DESCRIPTION": "",
+		"NAME": "Strike"
 	},
 	"animator:Strike_AccelWorld":
 	{
-		"DESCRIPTION": "<DMG>. NL When Discarded, NL Deal !M! damage to NL a random enemy.",
+		"DESCRIPTION": "When Discarded, NL Deal !M! damage to NL a random enemy.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Elsword":
 	{
-		"DESCRIPTION": "<DMG>. NL Apply !M! Burning.",
+		"DESCRIPTION": "Apply !M! Burning.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Fate":
 	{
-		"DESCRIPTION": "<DMG>. NL If you have less NL than 3 cards in NL hand, gain [E].",
+		"DESCRIPTION": "If you have less NL than 3 cards in NL hand, gain [E].",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_FullmetalAlchemist":
 	{
-		"DESCRIPTION": "<DMG>. NL Cooldown !S!: NL Channel 1 Lightning.",
+		"DESCRIPTION": "Cooldown !S!: NL Channel 1 Lightning.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_GATE":
 	{
-		"DESCRIPTION": "<DMG>. NL Next turn, NL <DRW>.",
+		"DESCRIPTION": "Next turn, NL <DRW>.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_GoblinSlayer":
 	{
-		"DESCRIPTION": "<DMG>. NL Exhaust.",
+		"DESCRIPTION": "Exhaust.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_HitsugiNoChaika":
 	{
-		"DESCRIPTION": "<DMG>. NL Apply !M! Poison.",
+		"DESCRIPTION": "Apply !M! Poison.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Kancolle":
 	{
-		"DESCRIPTION": "<DMG>. NL <LIM>: NL Gain !M! {Gold}.",
+		"DESCRIPTION": "<LIM>: NL Gain !M! {Gold}.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Katanagatari":
@@ -1037,32 +1036,32 @@
 	},
 	"animator:Strike_Konosuba":
 	{
-		"DESCRIPTION": "<DMG>. NL <BLK>.",
+		"DESCRIPTION": "<BLK>.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_NoGameNoLife":
 	{
-		"DESCRIPTION": "<DMG>. NL Retain your rightmost NL playable card.",
+		"DESCRIPTION": "Retain your rightmost NL playable card.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_OnePunchMan":
 	{
-		"DESCRIPTION": "<DMG>. NL Draw a {Strike}.",
+		"DESCRIPTION": "Draw a {Strike}.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Overlord":
 	{
-		"DESCRIPTION": "<DMG>. NL Increase this card's NL damage by !M! this NL combat.",
+		"DESCRIPTION": "Increase this card's NL damage by !M! this NL combat.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_OwariNoSeraph":
 	{
-		"DESCRIPTION": "<DMG>. NL When Exhausted, NL apply !M! Vulnerable NL to ALL enemies.",
+		"DESCRIPTION": "When Exhausted, NL apply !M! Vulnerable NL to ALL enemies.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_TenSura":
 	{
-		"DESCRIPTION": "<DMG>. NL Gain !M! {Temp. HP}.",
+		"DESCRIPTION": "Gain !M! {Temp. HP}.",
 		"NAME": "Improved Strike"
 	},
 	"animator:SwordMaiden":
@@ -1078,7 +1077,7 @@
 	},
 	"animator:TanyaDegurechaff":
 	{
-		"DESCRIPTION": "<BLK>. NL Discard all {Skills}. NL <DMG> NL for each. || <LIM>. NL At the start of NL combat, add {Type 95} NL to your draw pile.",
+		"DESCRIPTION": "Discard all {Skills}. NL <DMG> NL for each. || <LIM>. NL At the start of NL combat, add {Type 95} NL to your draw pile.",
 		"NAME": "Tanya Degurechaff"
 	},
 	"animator:TanyaDegurechaff_Type95":
@@ -1098,12 +1097,6 @@
 		"NAME": "Tet",
 		"UPGRADE_DESCRIPTION": "Retain. Discard up to 2 cards from your draw pile. Move 2 cards from your discard pile to your draw pile."
 	},
-	"animator:TewiInaba":
-	{
-		"DESCRIPTION": "Evoke your next NL Orb to draw !M! NL cards. Add 1 Dazed to NL your draw pile. || If you Evoked NL an Earth Orb, NL gain !S! Block.",
-		"NAME": "Tewi Inaba",
-		"UPGRADE_DESCRIPTION": "Evoke your next Orb to <DRW-M>. Add 1 Dazed to your draw pile."
-	},
 	"animator:TheHaunt":
 	{
 		"DESCRIPTION": "Gain !M! {Gold}. NL Become more haunted. NL Ethereal. Exhaust.",
@@ -1111,17 +1104,17 @@
 	},
 	"animator:ThrowingKnife_0":
 	{
-		"DESCRIPTION": "<DMG>. NL Apply !M! Weak. NL Purge. || When Discarded, NL play this card on NL a random enemy.",
+		"DESCRIPTION": "Apply !M! Weak. ** Purge. || When Discarded, ** play this card on a ** random enemy.",
 		"NAME": "Throwing-Knife"
 	},
 	"animator:ThrowingKnife_1":
 	{
-		"DESCRIPTION": "<DMG>. NL Apply !M! Vulnerable. NL Purge. || When Discarded, NL play this card on NL a random enemy.",
+		"DESCRIPTION": "Apply !M! Vulnerable. ** Purge. || When Discarded, ** play this card on a ** random enemy.",
 		"NAME": "Throwing-Knife"
 	},
 	"animator:ThrowingKnife_2":
 	{
-		"DESCRIPTION": "<DMG>. NL Apply !M! Poison. NL Purge. || When Discarded, NL play this card on NL a random enemy.",
+		"DESCRIPTION": "Apply !M! Poison. ** Purge. || When Discarded, ** play this card on a ** random enemy.",
 		"NAME": "Throwing-Knife"
 	},
 	"animator:Togame":
@@ -1136,7 +1129,7 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "<BLK>. NL If you had no Block, NL <DRW>. || When Discarded, NL gain !M! Block.",
+		"DESCRIPTION": "If you had no Block, NL <DRW>. || When Discarded, NL gain !M! Block.",
 		"NAME": "Tuka"
 	},
 	"animator:Tyuule":
@@ -1152,7 +1145,7 @@
 	},
 	"animator:Vanir":
 	{
-		"DESCRIPTION": "Shapeshifter. NL <DMG>. NL Decrease this card's NL damage by !M! this NL combat. || When Exhausted, NL choose a card in your NL draw pile and turn it NL into a new copy of NL this card.",
+		"DESCRIPTION": "Shapeshifter. NL Decrease this card's NL damage by !M! this NL combat. || When Exhausted, NL choose a card in your NL draw pile and turn it NL into a new copy of NL this card.",
 		"NAME": "Vanir"
 	},
 	"animator:Veldora":
@@ -1178,7 +1171,7 @@
 	},
 	"animator:Witch":
 	{
-		"DESCRIPTION": "<SPE>. NL Apply !M! Burning NL to ALL enemies. NL <BLK>. || At the start of each NL Elite combat, obtain NL a random Potion.",
+		"DESCRIPTION": "Apply !M! Burning NL to ALL enemies. NL || At the start of each NL Elite combat, obtain NL a random Potion.",
 		"NAME": "Witch"
 	},
 	"animator:Wiz":
@@ -1188,12 +1181,12 @@
 	},
 	"animator:YaoHaDucy":
 	{
-		"DESCRIPTION": "<DMG>. NL If the enemy is NL attacking, it loses NL !M! Strength this turn. || On Synergy, NL if you have any NL {Support Damage}, NL increase it by !S!.",
+		"DESCRIPTION": "If the enemy is NL attacking, it loses NL !M! Strength this turn. || On Synergy, NL if you have any NL {Support Damage}, NL increase it by !S!.",
 		"NAME": "Yao Ha Ducy"
 	},
 	"animator:YunYun":
 	{
-		"DESCRIPTION": "<SPE>. NL <DMG> to NL ALL enemies. Costs 1 more for each other {Attack} in your hand. || At the start of NL each Elite combat, NL {Channel} 1 Lightning.",
+		"DESCRIPTION": "<DMG> to NL ALL enemies. Costs 1 more for each other {Attack} in your hand. || At the start of NL each Elite combat, NL {Channel} 1 Lightning.",
 		"NAME": "YunYun"
 	},
 	"animator:Yusarin":
@@ -1203,18 +1196,18 @@
 	},
 	"animator:Yuuichirou":
 	{
-		"DESCRIPTION": "<DMG>. NL <DRW>. || When Exhausted, NL add {Asuramaru} and NL 2 Wounds to your NL discard pile.",
+		"DESCRIPTION": "<DRW>. || When Exhausted, NL add {Asuramaru} and NL 2 Wounds to your NL discard pile.",
 		"NAME": "Yuuichirou"
 	},
 	"animator:ZankiKiguchi":
 	{
-		"DESCRIPTION": "<MAR>. NL <DMG>. || <LIM>. NL When Exhausted, NL move this card to NL your hand and NL gain !M! <AGI>.",
+		"DESCRIPTION": "<MAR>. NL || <LIM>. NL When Exhausted, NL move this card to NL your hand and NL gain !M! <AGI>.",
 		"NAME": "Zanki Kiguchi"
 	},
 	"animator:Zero":
 	{
-		"DESCRIPTION": "<SPE>. NL Play a random {Skill} NL from your draw pile. NL Exhaust.",
+		"DESCRIPTION": "Play a random {Skill} NL from your draw pile. NL Exhaust.",
 		"NAME": "Zero",
-		"UPGRADE_DESCRIPTION": "<SPE>. NL Play a random {Skill} NL from your draw pile."
+		"UPGRADE_DESCRIPTION": "Play a random {Skill} NL from your draw pile."
 	}
 }

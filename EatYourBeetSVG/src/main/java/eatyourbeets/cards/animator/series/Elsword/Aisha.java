@@ -24,14 +24,9 @@ public class Aisha extends AnimatorCard implements Spellcaster
 
         Initialize(2, 0, 1);
         SetUpgrade(2, 0, 0);
+        SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Elsword);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
     }
 
     @Override

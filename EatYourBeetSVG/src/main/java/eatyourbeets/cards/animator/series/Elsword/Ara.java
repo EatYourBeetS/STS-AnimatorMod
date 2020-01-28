@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -22,14 +23,15 @@ public class Ara extends AnimatorCard implements MartialArtist
 
         Initialize(3, 0);
         SetUpgrade(2, 0);
+        SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Elsword);
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    public AbstractAttribute GetDamageInfo()
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + MartialArtist.GetScaling());
+        return super.GetDamageInfo().AddSuffix("x2");
     }
 
     @Override

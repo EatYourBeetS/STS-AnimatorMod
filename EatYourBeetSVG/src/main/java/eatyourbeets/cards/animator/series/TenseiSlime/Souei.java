@@ -29,14 +29,6 @@ public class Souei extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        MartialArtist.ApplyScaling(this, 2);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);

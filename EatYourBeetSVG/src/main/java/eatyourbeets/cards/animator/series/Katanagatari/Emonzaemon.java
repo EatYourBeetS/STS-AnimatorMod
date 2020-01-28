@@ -26,6 +26,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
 
         Initialize(4, 0);
         SetUpgrade(2, 0);
+        SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Katanagatari);
 
@@ -39,12 +40,6 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
     public AbstractAttribute GetDamageInfo()
     {
         return super.GetDamageInfo().AddSuffix("x2");
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + MartialArtist.GetScaling());
     }
 
     @Override

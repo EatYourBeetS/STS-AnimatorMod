@@ -27,15 +27,6 @@ public class Caster extends AnimatorCard implements Spellcaster
         SetSynergy(Synergies.Fate);
     }
 
-
-    @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        Spellcaster.ApplyScaling(this, 2);
-    }
-
     @Override
     public void triggerOnExhaust()
     {

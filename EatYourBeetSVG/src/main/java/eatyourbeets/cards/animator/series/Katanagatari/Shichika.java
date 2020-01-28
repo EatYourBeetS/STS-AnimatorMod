@@ -30,14 +30,6 @@ public class Shichika extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        MartialArtist.ApplyScaling(this, 3);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainForce(magicNumber);

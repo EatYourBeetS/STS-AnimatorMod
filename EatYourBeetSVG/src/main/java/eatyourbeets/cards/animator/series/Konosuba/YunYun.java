@@ -30,15 +30,10 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
 
         Initialize(8, 0);
         SetUpgrade(4, 0);
+        SetScaling(1, 0, 0);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Konosuba);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
     }
 
     @Override

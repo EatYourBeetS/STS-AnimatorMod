@@ -22,16 +22,9 @@ public class Witch extends AnimatorCard implements Spellcaster, StartupCard
 
         Initialize(0, 10,2);
         SetUpgrade(0, 3, 1);
+        SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.GoblinSlayer);
-    }
-
-    @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        Spellcaster.ApplyScaling(this, 2);
     }
 
     @Override

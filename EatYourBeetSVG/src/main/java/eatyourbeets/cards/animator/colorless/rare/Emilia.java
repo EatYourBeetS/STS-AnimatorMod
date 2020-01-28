@@ -38,14 +38,6 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     }
 
     @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        Spellcaster.ApplyScaling(this, 6);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         for (int i = 0; i < magicNumber; i++)

@@ -25,14 +25,6 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
     }
 
     @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        Spellcaster.ApplyScaling(this, 6);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         if (secondaryValue > 0)

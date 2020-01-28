@@ -27,6 +27,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
 
         Initialize(12, 0);
         SetUpgrade( 2, 0);
+        SetScaling(4, 0, 0);
 
         SetUnique(true, true);
         SetExhaust(true);
@@ -41,12 +42,6 @@ public class Megumin extends AnimatorCard implements Spellcaster
         {
             upgradeDamage(1);
         }
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (Spellcaster.GetScaling() * 4));
     }
 
     @Override

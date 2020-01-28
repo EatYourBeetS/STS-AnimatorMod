@@ -3,14 +3,13 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RenderHelpers;
 
 public class Mikaela extends AnimatorCard
 {
@@ -29,7 +28,7 @@ public class Mikaela extends AnimatorCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return TempHPAttribute.Instance.SetText(RenderHelpers.GetMagicNumberString(this));
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override

@@ -9,12 +9,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.RenderHelpers;
 import eatyourbeets.utilities.Testing;
 
 public abstract class AbstractAttribute
 {
+    protected final static CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
     protected final static float DESC_OFFSET_X = (AbstractCard.IMG_WIDTH * 0.5f);
     protected final static float DESC_OFFSET_Y = (AbstractCard.IMG_HEIGHT * 0.10f);
     protected final static BitmapFont DEFAULT_FONT = Testing.GenerateCardStatsFont(38, 2.25f, 0.7f);
@@ -75,15 +78,20 @@ public abstract class AbstractAttribute
 
     public void Render(SpriteBatch sb, EYBCard card, boolean leftAlign)
     {
-        BitmapFont font = DEFAULT_FONT;
-        font.getData().setScale(card.drawScale);
-
+        final BitmapFont font = DEFAULT_FONT;
         final float scale = Settings.scale * card.drawScale;
+        float base_y = card.current_y - (DESC_OFFSET_Y * card.drawScale);
+
+        if (card.angle != 0)
+        {
+            base_y += Math.abs(card.angle * scale);
+        }
+
+        font.getData().setScale(card.drawScale);
 
         if (leftAlign)
         {
             float base_x = card.current_x - (DESC_OFFSET_X * card.drawScale);
-            float base_y = card.current_y - (DESC_OFFSET_Y * card.drawScale);
 
             RenderHelpers.DrawOnCard(sb, card, icon, base_x, base_y, 48);
 
@@ -110,7 +118,6 @@ public abstract class AbstractAttribute
         else
         {
             float base_x = card.current_x + (DESC_OFFSET_X * card.drawScale) - (48 * scale);
-            float base_y = card.current_y - (DESC_OFFSET_Y * card.drawScale);
 
             RenderHelpers.DrawOnCard(sb, card, icon, base_x, base_y, 48);
 

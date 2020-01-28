@@ -31,14 +31,6 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        MartialArtist.ApplyScaling(this, 4);
-    }
-
-    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();

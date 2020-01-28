@@ -2,6 +2,7 @@ package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -12,6 +13,12 @@ public class ForcePower extends PlayerAttributePower
     public ForcePower(AbstractCreature owner, int amount)
     {
         super(POWER_ID, owner, amount);
+    }
+
+    @Override
+    public float GetScaling(EYBCard card)
+    {
+        return card.forceScaling * amount;
     }
 
     public static void PreserveOnce()

@@ -25,6 +25,7 @@ public class Ain extends AnimatorCard implements Spellcaster
 
         Initialize(3, 0, 2, 1);
         SetUpgrade(0, 0, 1, 0);
+        SetScaling(1, 0, 0);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Elsword);
@@ -39,12 +40,6 @@ public class Ain extends AnimatorCard implements Spellcaster
         {
             GameActions.Bottom.GainIntellect(secondaryValue);
         }
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
     }
 
     @Override

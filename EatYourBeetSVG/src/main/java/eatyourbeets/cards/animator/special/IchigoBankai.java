@@ -26,6 +26,7 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
 
         Initialize(8, 0);
         SetUpgrade(3, 0);
+        SetScaling(0, 3, 0);
 
         SetExhaust(true);
         SetMultiDamage(true);
@@ -46,7 +47,7 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
             effect += ChemicalX.BOOST;
         }
 
-        return super.calculateModifiedCardDamage(player, mo, (effect) * (tmp + MartialArtist.GetScaling()));
+        return super.calculateModifiedCardDamage(player, mo, (effect) * tmp);
     }
 
     @Override

@@ -21,6 +21,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
 
         Initialize(6, 0, 1);
         SetUpgrade(3, 0, 0);
+        SetScaling(0, 1, 1);
 
         SetPiercing(true);
         SetSynergy(Synergies.Fate);
@@ -29,8 +30,6 @@ public class Lancer extends AnimatorCard implements MartialArtist
     @Override
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
     {
-        tmp += MartialArtist.GetScaling();
-
         if (mo != null)
         {
             tmp += (tmp * (1 - GameUtilities.GetHealthPercentage(mo)));

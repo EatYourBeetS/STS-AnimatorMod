@@ -1,8 +1,7 @@
 package eatyourbeets.cards.base.attributes;
 
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class TempHPAttribute extends AbstractAttribute
 {
@@ -10,7 +9,7 @@ public class TempHPAttribute extends AbstractAttribute
 
     public TempHPAttribute()
     {
-        this.icon = GR.Common.Images.TempHP.Texture();
+        this.icon = ICONS.TempHP.Texture();
     }
 
     @Override
@@ -23,9 +22,17 @@ public class TempHPAttribute extends AbstractAttribute
         return this;
     }
 
-    public AbstractAttribute SetCard(EYBCard card, ColoredString text)
+    public AbstractAttribute SetCard(EYBCard card, boolean useMagicNumber)
     {
-        mainText = text;
+        if (useMagicNumber)
+        {
+            mainText = RenderHelpers.GetMagicNumberString(card);
+        }
+        else
+        {
+            mainText = null;
+        }
+
         iconTag = null;
         suffix = null;
 

@@ -21,15 +21,10 @@ public class DwarfShaman extends AnimatorCard implements Spellcaster
 
         Initialize(2, 0, 0);
         SetUpgrade(4, 0, 0);
+        SetScaling(1, 0, 1);
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.GoblinSlayer);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (Spellcaster.GetScaling() * 2));
     }
 
     @Override

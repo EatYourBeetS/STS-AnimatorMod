@@ -20,15 +20,10 @@ public class Jibril extends AnimatorCard implements Spellcaster
         super(ID, 2, CardRarity.COMMON, AttackType.Elemental, true);
 
         Initialize(10, 0);
-        SetUpgrade( 4, 0);
+        SetUpgrade(4, 0);
+        SetScaling(2, 0, 0);
 
         SetSynergy(Synergies.NoGameNoLife);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -15,6 +16,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
@@ -22,13 +26,11 @@ import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.cardReward.AnimatorCardBadgeLegend;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class EYBCard extends CustomCard
 {
@@ -68,6 +70,9 @@ public abstract class EYBCard extends CustomCard
     protected int upgrade_block;
     protected int upgrade_cost;
 
+    public float forceScaling = 0;
+    public float intellectScaling = 0;
+    public float agilityScaling = 0;
     public boolean isSecondaryValueModified = false;
     public boolean upgradedSecondaryValue = false;
     public int baseSecondaryValue = 0;
@@ -751,6 +756,13 @@ public abstract class EYBCard extends CustomCard
         this.baseSecondaryValue = this.secondaryValue = secondaryValue;
     }
 
+    protected void SetScaling(float intellect, float agility, float force)
+    {
+        this.intellectScaling = intellect;
+        this.agilityScaling = agility;
+        this.forceScaling = force;
+    }
+
     protected void SetUpgrade(int damage, int block)
     {
         SetUpgrade(damage, block, 0, 0);
@@ -777,5 +789,127 @@ public abstract class EYBCard extends CustomCard
     protected void OnUpgrade()
     {
 
+    }
+
+    @Override
+    protected void applyPowersToBlock()
+    {
+        throw new RuntimeException("This method must not be called");
+    }
+
+    @Override
+    public void applyPowers()
+    {
+        ApplyPowers(null);
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo)
+    {
+        if (isMultiDamage)
+        {
+            ArrayList<AbstractMonster> m = AbstractDungeon.getCurrRoom().monsters.monsters;
+            multiDamage = new int[m.size()];
+            for (int i = 0; i < multiDamage.length; i++)
+            {
+                ApplyPowers(m.get(i));
+                multiDamage[i] = damage;
+            }
+        }
+        else
+        {
+            ApplyPowers(mo);
+        }
+    }
+
+    protected void ApplyPowers(AbstractMonster enemy)
+    {
+        boolean applyEnemyPowers = (enemy != null && GameUtilities.IsDeadOrEscaped(enemy));
+        float tempBlock = GetInitialBlock();
+        float tempDamage = GetInitialDamage();
+
+        for (AbstractRelic r : player.relics)
+        {
+            tempDamage = r.atDamageModify(tempDamage, this);
+        }
+
+        for (AbstractPower p : player.powers)
+        {
+            tempBlock = ApplyPowerToBlock(p, tempBlock);
+            tempDamage = ApplyPowerToDamage(p, tempDamage, false);
+        }
+
+        if (applyEnemyPowers)
+        {
+            for (AbstractPower p : enemy.powers)
+            {
+                p.atDamageReceive(tempDamage, damageTypeForTurn, this);
+            }
+        }
+
+        tempDamage = player.stance.atDamageGive(tempDamage, this.damageTypeForTurn, this);
+
+        for (AbstractPower p : player.powers)
+        {
+            tempDamage = ApplyPowerToDamage(p, tempDamage, true);
+        }
+
+        if (applyEnemyPowers)
+        {
+            for (AbstractPower p : enemy.powers)
+            {
+                p.atDamageFinalReceive(tempDamage, damageTypeForTurn, this);
+            }
+        }
+
+        UpdateBlock(tempBlock);
+        UpdateDamage(tempDamage);
+    }
+
+    protected void UpdateBlock(float amount)
+    {
+        block = MathUtils.floor(amount);
+        if (block < 0)
+        {
+            block = 0;
+        }
+        this.isBlockModified = (baseBlock != block);
+    }
+
+    protected void UpdateDamage(float amount)
+    {
+        damage = MathUtils.floor(amount);
+        if (damage < 0)
+        {
+            damage = 0;
+        }
+        this.isDamageModified = (baseDamage != damage);
+    }
+
+    protected float GetInitialBlock()
+    {
+        return baseBlock;
+    }
+
+    protected float GetInitialDamage()
+    {
+        return baseDamage;
+    }
+
+    protected float ApplyPowerToBlock(AbstractPower power, float amount)
+    {
+        return power.modifyBlock(amount, this);
+    }
+
+    protected float ApplyPowerToDamage(AbstractPower power, float amount, boolean isFinal)
+    {
+        if (isFinal)
+        {
+            return power.atDamageFinalGive(amount, damageTypeForTurn, this);
+        }
+        else
+        {
+            return power.atDamageGive(amount, damageTypeForTurn, this);
+        }
     }
 }

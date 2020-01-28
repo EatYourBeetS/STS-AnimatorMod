@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RenderHelpers;
 
 public class Priestess extends AnimatorCard
 {
@@ -27,7 +26,7 @@ public class Priestess extends AnimatorCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return TempHPAttribute.Instance.SetText(RenderHelpers.GetMagicNumberString(this));
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override

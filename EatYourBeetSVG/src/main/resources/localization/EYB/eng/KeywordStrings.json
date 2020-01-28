@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "When you gain or lose #yAgility, gain or lose that much #yDexterity. Lose #b1 #yAgility at the start of each turn.",
+		"DESCRIPTION": "Every #b3 points of #yAgility, gain #b1 #yDexterity. Lose #b1 #yAgility at the start of turn.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
@@ -92,7 +92,7 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "When you gain or lose #yForce, gain or lose that much #yStrength. Lose #b1 #yForce at the start of each turn.",
+		"DESCRIPTION": "Every #b3 points of #yForce, gain #b1 #yStrength. Lose #b1 #yForce at the start of turn.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
@@ -104,7 +104,7 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "When you gain or lose #yIntellect, gain or lose that much #yFocus. Lose #b1 #yIntellect at the start of each turn.",
+		"DESCRIPTION": "Every #b3 points of #yIntellect, gain #b1 #yFocus. Lose #b1 #yIntellect at the start of turn.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
@@ -144,6 +144,12 @@
 		"NAMES": ["plated armor", "plated_armor", "plat. armor", "plat._armor"],
 		"PROPER_NAME": "Plated Armor"
 	},
+	"Purge":
+	{
+		"DESCRIPTION": "Removed from the combat.",
+		"NAMES": ["purge", "purged", "purges"],
+		"PROPER_NAME": "Purge"
+	},
 	"Rebound":
 	{
 		"DESCRIPTION": "Put the next card you play this turn on top of your draw pile.",
@@ -177,7 +183,7 @@
 	"Temporary HP":
 	{
 		"DESCRIPTION": "Temporary HP disappears at the end of combat.",
-		"NAMES": ["temporary hp", "temporary_hp", "temp. hp", "temp._hp"],
+		"NAMES": ["temporary hp", "temp. hp"],
 		"PROPER_NAME": "Temporary HP"
 	},
 	"~Preview":

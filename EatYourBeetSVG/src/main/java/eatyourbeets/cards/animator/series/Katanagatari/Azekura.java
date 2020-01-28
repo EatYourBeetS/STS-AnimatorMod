@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameActions;
@@ -21,16 +22,15 @@ public class Azekura extends AnimatorCard implements MartialArtist
 
         Initialize(0, 6, 2, 2);
         SetUpgrade(0, 1, 2, 0);
+        SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.Katanagatari);
     }
 
     @Override
-    public void applyPowers()
+    public AbstractAttribute GetBlockInfo()
     {
-        super.applyPowers();
-
-        MartialArtist.ApplyScaling(this, 2);
+        return super.GetBlockInfo().AddSuffix("x2");
     }
 
     @Override

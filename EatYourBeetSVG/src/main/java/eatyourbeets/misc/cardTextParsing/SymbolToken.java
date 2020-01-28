@@ -2,7 +2,6 @@ package eatyourbeets.misc.cardTextParsing;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
@@ -37,7 +36,7 @@ public class SymbolToken extends CTToken
     @Override
     protected float GetWidth(BitmapFont font, String text)
     {
-        return 24f * Settings.scale * font.getScaleX();// AbstractCard.CARD_ENERGY_IMG_WIDTH
+        return font.getLineHeight() * 0.8f;// AbstractCard.CARD_ENERGY_IMG_WIDTH
     }
 
     public static int TryAdd(CTContext parser)
@@ -65,7 +64,7 @@ public class SymbolToken extends CTToken
     public void Render(SpriteBatch sb, CTContext context)
     {
         EYBCard card = context.card;
-        float size = 24f * Settings.scale * card.drawScale;
+        float size = GetWidth(context.font);// 24f * Settings.scale * card.drawScale * context.scaleModifier;
         float partial = size / 12f;
 
         sb.setColor(context.color);

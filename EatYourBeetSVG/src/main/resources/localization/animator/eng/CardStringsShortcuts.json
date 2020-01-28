@@ -12,10 +12,7 @@
 	"<DRW>": "Draw 1 card",
 	"<DRW-M>": "Draw !M! card(s)",
 
-	"<BLK>.": "",
-
-	" || ": " NL  NL ",
 	" NL ": " ",
-	"<DMG>.": "",
-	"<DMG-ALL>": "Target ALL enemies"
+	" ** ": " NL ",
+	" || ": " NL  NL "
 }

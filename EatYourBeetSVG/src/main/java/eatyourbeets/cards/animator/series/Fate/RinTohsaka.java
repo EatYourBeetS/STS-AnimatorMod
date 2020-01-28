@@ -1,12 +1,9 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
@@ -24,6 +21,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
 
         Initialize(0, 2, 1);
         SetUpgrade(0, 4, 0);
+        SetScaling(1, 0, 0);
 
         SetEvokeOrbCount(1);
         SetExhaust(true);
@@ -40,27 +38,6 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
             GameActions.Bottom.GainTemporaryArtifact(1);
             GameActions.Bottom.Flash(this);
         }
-    }
-
-    @Override
-    protected void applyPowersToBlock()
-    {
-        float tmp = (float) this.baseBlock;
-
-        tmp += Spellcaster.GetScaling();
-
-        for (AbstractPower p : AbstractDungeon.player.powers)
-        {
-            tmp = p.modifyBlock(tmp);
-        }
-
-        if (tmp < 0.0F)
-        {
-            tmp = 0.0F;
-        }
-
-        this.block = MathUtils.floor(tmp);
-        this.isBlockModified = this.block != this.baseBlock;
     }
 
     @Override

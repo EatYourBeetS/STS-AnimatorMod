@@ -21,20 +21,21 @@ public class Hakurou extends AnimatorCard implements MartialArtist
 
         Initialize(1, 0, 3);
         SetUpgrade(0, 0, 1);
+        SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.TenSura);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        upgradedDamage = true;
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
         return super.GetDamageInfo().AddSuffix("x" + magicNumber);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + MartialArtist.GetScaling());
     }
 
     @Override
@@ -59,17 +60,6 @@ public class Hakurou extends AnimatorCard implements MartialArtist
         if (HasSynergy())
         {
             GameActions.Bottom.GainAgility(1);
-        }
-    }
-
-    @Override
-    public void displayUpgrades()
-    {
-        super.displayUpgrades();
-
-        if (upgradedMagicNumber)
-        {
-            isDamageModified = true;
         }
     }
 }

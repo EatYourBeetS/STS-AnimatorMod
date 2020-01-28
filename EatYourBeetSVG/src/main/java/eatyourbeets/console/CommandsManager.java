@@ -2,6 +2,7 @@ package eatyourbeets.console;
 
 import basemod.devcommands.ConsoleCommand;
 import eatyourbeets.console.commands.CreateCustomCard;
+import eatyourbeets.console.commands.ParseGenericCommand;
 import eatyourbeets.console.commands.SetGameSpeed;
 
 import java.nio.file.Files;
@@ -21,6 +22,6 @@ public abstract class CommandsManager
             ConsoleCommand.addCommand("setspeed", SetGameSpeed.class);
         }
 
-        ConsoleCommand.addCommand("test", SetGameSpeed.class);
+        ConsoleCommand.addCommand("parse", ParseGenericCommand.class);
     }
 }

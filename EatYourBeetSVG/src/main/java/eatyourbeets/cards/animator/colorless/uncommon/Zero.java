@@ -41,15 +41,6 @@ public class Zero extends AnimatorCard implements Spellcaster
             skill.applyPowers();
 
             GameActions.Top.Add(new PlayTopCardAction(m, false));
-
-            if (!this.purgeOnUse)
-            {
-                Spellcaster.ApplyScaling(this, 6);
-                for (int i = 0; i < magicNumber; i++)
-                {
-                    GameActions.Top.PlayCopy(this, m);
-                }
-            }
         }
     }
 }

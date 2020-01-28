@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -35,12 +36,20 @@ public class RenderHelpers
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY)
     {
-        DrawOnCard(sb, card, Color.WHITE, img, drawX, drawY);
+        DrawOnCard(sb, card, CopyColor(card, Color.WHITE), img, drawX, drawY);
+    }
+
+    public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float size)
+    {
+        offset.rotate(card.angle);
+        offset.scl(Settings.scale * card.drawScale);
+
+        DrawOnCard(sb, card, CopyColor(card, Color.WHITE), img, card.current_x + offset.x, card.current_y + offset.y, size, size);
     }
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float size)
     {
-        DrawOnCard(sb, card, Color.WHITE, img, drawX, drawY, size, size);
+        DrawOnCard(sb, card, CopyColor(card, Color.WHITE), img, drawX, drawY, size, size);
     }
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY)
@@ -82,6 +91,11 @@ public class RenderHelpers
         sb.setColor(color);
         sb.draw(img, x, y, 0, 0, width, height, Settings.scale, Settings.scale, 0, 0, 0,
                 srcWidth, srcHeight, false, false);
+    }
+
+    public static void WriteOnCard(SpriteBatch sb, AbstractCard card, BitmapFont font, String text, float x, float y, Color color)
+    {
+        FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x, y, card.angle, false, color);
     }
 
     public static void WriteCentered(SpriteBatch sb, BitmapFont font, String text, Hitbox hb, Color color)

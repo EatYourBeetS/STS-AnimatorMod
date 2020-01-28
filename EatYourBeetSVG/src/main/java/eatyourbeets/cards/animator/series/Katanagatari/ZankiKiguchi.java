@@ -20,14 +20,9 @@ public class ZankiKiguchi extends AnimatorCard implements MartialArtist
 
         Initialize(2, 0, 2);
         SetUpgrade(3, 0, 0);
+        SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Katanagatari);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (MartialArtist.GetScaling() * 2));
     }
 
     @Override

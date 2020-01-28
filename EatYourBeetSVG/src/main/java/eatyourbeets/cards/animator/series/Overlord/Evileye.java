@@ -28,14 +28,6 @@ public class Evileye extends AnimatorCard implements Spellcaster
     }
 
     @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        Spellcaster.ApplyScaling(this, 3);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Draw(magicNumber);

@@ -7,21 +7,21 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Berserker extends AnimatorCard
 {
-    public static final String ID = Register(Berserker.class, EYBCardBadge.Special);
+    public static final String ID = Register(Berserker.class);
 
     public Berserker()
     {
         super(ID, 3, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(26, 0, 2, 14);
-        SetUpgrade( 7, 0);
+        Initialize(26, 0, 2, 12);
+        SetUpgrade(6, 0);
+        SetScaling(0, 0, 4);
 
         SetSynergy(Synergies.Fate);
     }

@@ -4,13 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Strike_AccelWorld extends Strike
 {
-    public static final String ID = Register(Strike_AccelWorld.class, EYBCardBadge.Discard);
+    public static final String ID = Register(Strike_AccelWorld.class);
 
     public Strike_AccelWorld()
     {

@@ -6,14 +6,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.ScarUpgradeAction;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Scar extends AnimatorCard
 {
-    public static final String ID = Register(Scar.class, EYBCardBadge.Special);
+    public static final String ID = Register(Scar.class);
 
     public Scar()
     {

@@ -3,13 +3,12 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Gluttony extends AnimatorCard
 {
-    public static final String ID = Register(Gluttony.class, EYBCardBadge.Special);
+    public static final String ID = Register(Gluttony.class);
 
     public Gluttony()
     {

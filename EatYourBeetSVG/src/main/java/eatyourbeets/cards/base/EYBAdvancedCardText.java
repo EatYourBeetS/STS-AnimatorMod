@@ -12,16 +12,11 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.misc.cardTextParsing.CTContext;
 import eatyourbeets.misc.cardTextParsing.CTLine;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
@@ -58,32 +53,24 @@ public class EYBAdvancedCardText extends EYBCardText
     @Override
     public void RenderDescription(SpriteBatch sb)
     {
-        if (card.isFlipped || card.isSeen && !card.isLocked)
+        if (card.isFlipped || card.isSeen && !card.isLocked || card.transparency <= 0.1f)
         {
             context.Render(sb);
 
-            boolean leftAlign = true;
-            AbstractAttribute temp;
+            RenderAttributes(sb);
 
-            if ((temp = card.GetDamageInfo()) != null)
+            if (card.drawScale > 0.3f)
             {
-                temp.Render(sb, card, leftAlign);
-                leftAlign = false;
-            }
+                RenderBadges(sb);
 
-            if ((temp = card.GetBlockInfo()) != null)
-            {
-                temp.Render(sb, card, leftAlign);
-                leftAlign = false;
+                ColoredString bottomText = card.GetBottomText();
+                if (bottomText != null && card.angle == 0)
+                {
+                    FontHelper.cardTitleFont_small.getData().setScale(0.8f * card.drawScale);
+                    FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_small, bottomText.text, card.current_x, card.current_y - (card.drawScale * 0.47f * AbstractCard.IMG_HEIGHT), bottomText.color);
+                    FontHelper.cardTitleFont_small.getData().setScale(1);
+                }
             }
-
-            if ((temp = card.GetSpecialInfo()) != null)
-            {
-                temp.Render(sb, card, leftAlign);
-                leftAlign = false;
-            }
-
-            RenderBadges(sb);
         }
         else
         {
@@ -135,13 +122,29 @@ public class EYBAdvancedCardText extends EYBCardText
         }
     }
 
+    protected void RenderAttributes(SpriteBatch sb)
+    {
+        boolean leftAlign = true;
+        AbstractAttribute temp;
+        if ((temp = card.GetDamageInfo()) != null)
+        {
+            temp.Render(sb, card, leftAlign);
+            leftAlign = false;
+        }
+        if ((temp = card.GetBlockInfo()) != null)
+        {
+            temp.Render(sb, card, leftAlign);
+            leftAlign = false;
+        }
+        if ((temp = card.GetSpecialInfo()) != null)
+        {
+            temp.Render(sb, card, leftAlign);
+            //leftAlign = false;
+        }
+    }
+
     protected void RenderBadges(SpriteBatch sb)
     {
-        if (card.isFlipped || card.isLocked || card.transparency <= 0 || card.drawScale < 0.3f)
-        {
-            return;
-        }
-
         int offset_y = 0;
         if (card.isInnate)
         {
@@ -151,77 +154,53 @@ public class EYBAdvancedCardText extends EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Ethereal.Texture(), offset_y);
         }
-        if (card.selfRetain)
+        if (card.retain || card.selfRetain)
         {
             offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), offset_y);
         }
         if (card.exhaust)
         {
-            offset_y -= RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y);
+            /*offset_y -=*/
+            RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y);
         }
 
         offset_y = 0;
+        if (card.intellectScaling > 0)
+        {
+            offset_y -= RenderScaling(sb, ICONS.Intellect.Texture(), card.intellectScaling, offset_y);
+        }
         if (card.forceScaling > 0)
         {
             offset_y -= RenderScaling(sb, ICONS.Force.Texture(), card.forceScaling, offset_y);
         }
         if (card.agilityScaling > 0)
         {
-            offset_y -= RenderScaling(sb, ICONS.Agility.Texture(), card.agilityScaling, offset_y);
-        }
-        if (card.intellectScaling > 0)
-        {
-            offset_y -= RenderScaling(sb, ICONS.Intellect.Texture(), card.intellectScaling, offset_y);
-        }
-
-        ColoredString bottomText = null;
-        if (card instanceof MartialArtist)
-        {
-            bottomText = new ColoredString("Martial Artist", new Color(0.9f, 1f, 0.9f, card.transparency));
-        }
-        else if (card instanceof Spellcaster)
-        {
-            bottomText = new ColoredString("Spellcaster", new Color(0.9f, 0.9f, 1.0f, card.transparency));
-        }
-
-        if (bottomText != null && card.angle == 0)
-        {
-            FontHelper.cardTitleFont_small.getData().setScale(0.8f * card.drawScale);
-            FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_small, bottomText.text,
-            card.current_x, //- (card.drawScale * 0.5f * AbstractCard.IMG_WIDTH),
-            card.current_y - (card.drawScale * 0.47f * AbstractCard.IMG_HEIGHT), bottomText.color);
-            FontHelper.cardTitleFont_small.getData().setScale(1);
+            /*offset_y -=*/
+            RenderScaling(sb, ICONS.Agility.Texture(), card.agilityScaling, offset_y);
         }
     }
 
     private float RenderScaling(SpriteBatch sb, Texture texture, float scaling, float y)
     {
-        final float scale = card.drawScale * Settings.scale;
-        final float offset_x = -0.52f * AbstractCard.RAW_W;
-        final float offset_y = 0.22f * AbstractCard.RAW_H;
-        final BitmapFont font = FontHelper.cardTitleFont_small;
+        final float offset_x = -AbstractCard.RAW_W * 0.46f;
+        final float offset_y = AbstractCard.RAW_H * 0.28f;
+        final BitmapFont font = RenderHelpers.CardIconFont_Large;
 
-        RenderHelpers.DrawOnCard(sb, card, texture, new Vector2(offset_x, offset_y + y), 38);
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 38, 38);
 
-        font.getData().setScale(0.9f * card.drawScale);
-        RenderHelpers.WriteOnCard(sb, card, font, "x" + (int)scaling,(offset_x + 19) * scale, (offset_y + y) * scale, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
+        font.getData().setScale(0.6f * card.drawScale);
+        RenderHelpers.WriteOnCard(sb, card, font, "x" + (int) scaling, (offset_x + 9), (offset_y + y - 12), Settings.CREAM_COLOR.cpy());
         font.getData().setScale(1);
 
-        return 40;
+        return 36;
     }
 
     private float RenderBadge(SpriteBatch sb, Texture texture, float offset_y)
     {
-        final Vector2 offset = new Vector2(100, 140 + offset_y);
+        final Vector2 offset = new Vector2(AbstractCard.RAW_W * 0.45f, AbstractCard.RAW_H * 0.45f + offset_y);
 
-        offset.rotate(card.angle);
-        offset.scl(card.drawScale * Settings.scale);
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, offset, 64, 64);
 
-        Color color = Color.WHITE.cpy();
-        color.a = card.transparency * 0.92f;
-
-        RenderHelpers.DrawOnCard(sb, card, color, texture, card.current_x + offset.x, card.current_y + offset.y, 64, 64);
-
-        return 48;
+        return 38;
     }
 }

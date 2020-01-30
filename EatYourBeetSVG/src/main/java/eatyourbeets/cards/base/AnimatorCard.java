@@ -2,13 +2,17 @@ package eatyourbeets.cards.base;
 
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.damage.DealDamage;
 import eatyourbeets.actions.damage.DealDamageToAll;
+import eatyourbeets.interfaces.markers.MartialArtist;
+import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
@@ -16,6 +20,9 @@ import java.util.List;
 
 public abstract class AnimatorCard extends EYBCard
 {
+    private static final String SPELLCASTER_STRING = GR.GetTooltipByID("Spellcaster").title;
+    private static final String MARTIAL_ARTIST_STRING = GR.GetTooltipByID("Martial Artist").title;
+    private static final String SHAPESHIFTER_STRING = GR.GetTooltipByID("Shapeshifter").title;
     private static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
     private static final Color synergyGlowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR;
 
@@ -24,9 +31,9 @@ public abstract class AnimatorCard extends EYBCard
     public Synergy synergy;
     public boolean anySynergy;
 
-    protected static String Register(Class<? extends AnimatorCard> type, EYBCardBadge... badges)
+    protected static String Register(Class<? extends AnimatorCard> type)
     {
-        return RegisterCard(type, GR.Animator.CreateID(type.getSimpleName()), badges);
+        return RegisterCard(type, GR.Animator.CreateID(type.getSimpleName()));
     }
 
     protected AnimatorCard(String id, int cost, CardRarity rarity, AttackType attackType)
@@ -134,5 +141,54 @@ public abstract class AnimatorCard extends EYBCard
     {
         return GameActions.Bottom.DealDamageToAll(this, effect)
         .SetPiercing(attackType.bypassThorns, attackType.bypassBlock);
+    }
+
+    @Override
+    protected Texture GetCardBackground()
+    {
+        if (color == GR.Animator.CardColor)
+        {
+            switch (type)
+            {
+                case ATTACK:
+                    return GR.GetTexture(GR.Animator.Images.ATTACK_PNG);
+                case SKILL:
+                    return GR.GetTexture(GR.Animator.Images.SKILL_PNG);
+                case POWER:
+                    return GR.GetTexture(GR.Animator.Images.POWER_PNG);
+            }
+        }
+
+        return super.GetCardBackground();
+    }
+
+    @Override
+    protected Texture GetEnergyOrb()
+    {
+        if (color == GR.Animator.CardColor)
+        {
+            return GR.GetTexture(GR.Animator.Images.ORB_B_PNG);
+        }
+
+        return null;
+    }
+
+    @Override
+    public ColoredString GetBottomText()
+    {
+        if (anySynergy)
+        {
+            return new ColoredString(SHAPESHIFTER_STRING, new Color(1f, 1f, 0.8f, transparency));
+        }
+        else if (this instanceof Spellcaster)
+        {
+            return new ColoredString(SPELLCASTER_STRING, new Color(0.9f, 0.9f, 1.0f, transparency));
+        }
+        else if (this instanceof MartialArtist)
+        {
+            return new ColoredString(MARTIAL_ARTIST_STRING, new Color(0.9f, 1f, 0.9f, transparency));
+        }
+
+        return null;
     }
 }

@@ -2,14 +2,13 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.animator.OrbCore_AetherPower;
 import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Aether extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Aether.class, EYBCardBadge.Special);
+    public static final String ID = Register(OrbCore_Aether.class);
 
     public static final int VALUE = 3;
 

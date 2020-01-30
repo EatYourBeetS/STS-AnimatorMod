@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Wiz extends AnimatorCard
 {
-    public static final String ID = Register(Wiz.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(Wiz.class);
 
     public Wiz()
     {

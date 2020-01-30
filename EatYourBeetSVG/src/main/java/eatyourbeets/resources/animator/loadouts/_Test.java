@@ -48,7 +48,7 @@ public class _Test extends AnimatorLoadout
 
     public void OnVictory(AnimatorLoadoutRenderer currentLoadout, int ascensionLevel)
     {
-
+        //
     }
 
     @Override

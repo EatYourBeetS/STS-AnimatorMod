@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -15,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 @SuppressWarnings("SuspiciousNameCombination")
 public class Layla extends AnimatorCard
 {
-    public static final String ID = Register(Layla.class, EYBCardBadge.Special);
+    public static final String ID = Register(Layla.class);
 
     public Layla()
     {
@@ -29,9 +28,9 @@ public class Layla extends AnimatorCard
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (GameUtilities.GetDebuffsCount(mo) * secondaryValue));
+        return super.ModifyDamage(enemy, amount + (GameUtilities.GetDebuffsCount(enemy) * secondaryValue));
     }
 
     @Override

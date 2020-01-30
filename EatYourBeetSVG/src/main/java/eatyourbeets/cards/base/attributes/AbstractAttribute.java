@@ -13,15 +13,12 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.RenderHelpers;
-import eatyourbeets.utilities.Testing;
 
 public abstract class AbstractAttribute
 {
     protected final static CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
     protected final static float DESC_OFFSET_X = (AbstractCard.IMG_WIDTH * 0.5f);
     protected final static float DESC_OFFSET_Y = (AbstractCard.IMG_HEIGHT * 0.10f);
-    protected final static BitmapFont DEFAULT_FONT = Testing.GenerateCardStatsFont(38, 2.25f, 0.7f);
-    protected final static BitmapFont DEFAULT_FONT_SMALL = Testing.GenerateCardStatsFont(16, 1f, 0.3f);
     protected static final GlyphLayout layout = new GlyphLayout();
 
     public Texture icon;
@@ -59,6 +56,13 @@ public abstract class AbstractAttribute
         return this;
     }
 
+    public AbstractAttribute AddMultiplier(int times)
+    {
+        this.suffix = "x" + times;
+
+        return this;
+    }
+
     public AbstractAttribute AddSuffix(String suffix)
     {
         this.suffix = suffix;
@@ -78,7 +82,7 @@ public abstract class AbstractAttribute
 
     public void Render(SpriteBatch sb, EYBCard card, boolean leftAlign)
     {
-        final BitmapFont font = DEFAULT_FONT;
+        final BitmapFont font = RenderHelpers.CardIconFont_Large;
         final float scale = Settings.scale * card.drawScale;
         float base_y = card.current_y - (DESC_OFFSET_Y * card.drawScale);
 
@@ -110,9 +114,9 @@ public abstract class AbstractAttribute
 
             if (iconTag != null)
             {
-                DEFAULT_FONT_SMALL.getData().setScale(card.drawScale);
-                FontHelper.renderFontLeft(sb, DEFAULT_FONT_SMALL, iconTag, base_x + 10 * scale, base_y + 8 * scale, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
-                DEFAULT_FONT_SMALL.getData().setScale(1);
+                RenderHelpers.CardIconFont_Small.getData().setScale(card.drawScale);
+                FontHelper.renderFontLeft(sb, RenderHelpers.CardIconFont_Small, iconTag, base_x + 10 * scale, base_y + 8 * scale, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
+                RenderHelpers.CardIconFont_Small.getData().setScale(1);
             }
         }
         else
@@ -136,9 +140,9 @@ public abstract class AbstractAttribute
 
             if (iconTag != null)
             {
-                DEFAULT_FONT_SMALL.getData().setScale(card.drawScale);
-                FontHelper.renderFontLeft(sb, DEFAULT_FONT_SMALL, iconTag, base_x + 10 * scale, base_y + 8 * scale, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
-                DEFAULT_FONT_SMALL.getData().setScale(1);
+                RenderHelpers.CardIconFont_Small.getData().setScale(card.drawScale);
+                FontHelper.renderFontLeft(sb, RenderHelpers.CardIconFont_Small, iconTag, base_x + 10 * scale, base_y + 8 * scale, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
+                RenderHelpers.CardIconFont_Small.getData().setScale(1);
             }
         }
 

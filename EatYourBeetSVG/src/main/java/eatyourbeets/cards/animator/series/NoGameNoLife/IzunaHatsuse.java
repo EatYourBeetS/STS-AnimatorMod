@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IzunaHatsuse extends AnimatorCard
 {
-    public static final String ID = Register(IzunaHatsuse.class, EYBCardBadge.Special);
+    public static final String ID = Register(IzunaHatsuse.class);
 
     private boolean transformed;
 
@@ -37,9 +36,9 @@ public class IzunaHatsuse extends AnimatorCard
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         SetTransformed(GameUtilities.GetHealthPercentage(player) < 0.25f);
     }

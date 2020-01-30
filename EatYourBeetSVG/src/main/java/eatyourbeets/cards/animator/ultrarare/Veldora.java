@@ -6,14 +6,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 
 public class Veldora extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Veldora.class, EYBCardBadge.Drawn);
+    public static final String ID = Register(Veldora.class);
 
     public Veldora()
     {

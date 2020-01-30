@@ -3,14 +3,13 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.AinzPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Ainz extends AnimatorCard
 {
-    public static final String ID = Register(Ainz.class, EYBCardBadge.Drawn);
+    public static final String ID = Register(Ainz.class);
     public static final int BASE_COST = 7;
 
     public Ainz()

@@ -5,16 +5,60 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.ui.controls.GUI_Image;
 
 public class RenderHelpers
 {
+    public static final BitmapFont CardDescriptionFont_Normal = GenerateFont(FontHelper.cardDescFont_L, 23, 0, 1);
+    public static final BitmapFont CardDescriptionFont_Large = FontHelper.SCP_cardDescFont;
+    public static final BitmapFont CardIconFont_Large = GenerateFont(FontHelper.cardDescFont_L, 38, 2.25f, 0.7f);
+    public static final BitmapFont CardIconFont_Small = GenerateFont(FontHelper.cardDescFont_L, 16, 1f, 0.3f);
+
+    public static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, float shadowOffset)
+    {
+        return GenerateFont(source, size, borderWidth, new Color(0F, 0F, 0F, 1F), shadowOffset, new Color(0.0F, 0.0F, 0.0F, 0.5F));
+    }
+
+    public static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, Color borderColor, float shadowOffset, Color shadowColor)
+    {
+        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        param.minFilter = Texture.TextureFilter.Linear;
+        param.magFilter = Texture.TextureFilter.Linear;
+        param.hinting = FreeTypeFontGenerator.Hinting.Slight;
+        param.spaceX = 0;
+        param.kerning = true;
+        param.borderColor = borderColor;
+        param.borderWidth = borderWidth * Settings.scale;
+        param.gamma = 0.9F;
+        param.borderGamma = 0.9F;
+        param.shadowColor = shadowColor;
+        param.shadowOffsetX = Math.round(shadowOffset * Settings.scale);
+        param.shadowOffsetY = Math.round(shadowOffset * Settings.scale);
+        param.borderStraight = false;
+        param.characters = "";
+        param.incremental = true;
+        param.size = Math.round(size * Settings.scale);
+        FreeTypeFontGenerator g = new FreeTypeFontGenerator(source.getData().fontFile); // TitleFontSize.fontFile
+        g.scaleForPixelHeight(param.size);
+        BitmapFont font = g.generateFont(param);
+        font.setUseIntegerPositions(false);
+        font.getData().markupEnabled = false;
+        if (LocalizedStrings.break_chars != null)
+        {
+            font.getData().breakChars = LocalizedStrings.break_chars.toCharArray();
+        }
+
+        return font;
+    }
+
     public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY)
     {
         sb.setColor(color);
@@ -34,17 +78,29 @@ public class RenderHelpers
                 card.angle, 0, 0, width, height, false, false);
     }
 
-    public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY)
+    public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height)
     {
-        DrawOnCard(sb, card, CopyColor(card, Color.WHITE), img, drawX, drawY);
+        sb.setColor(color);
+        sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height,
+                card.drawScale * Settings.scale, card.drawScale * Settings.scale,
+                card.angle, 0, 0, img.getWidth(), img.getHeight(), false, false);
     }
 
-    public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float size)
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float width, float height)
     {
-        offset.rotate(card.angle);
+        DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height);
+    }
+
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height)
+    {
+        if (card.angle != 0)
+        {
+            offset.rotate(card.angle);
+        }
+
         offset.scl(Settings.scale * card.drawScale);
 
-        DrawOnCard(sb, card, CopyColor(card, Color.WHITE), img, card.current_x + offset.x, card.current_y + offset.y, size, size);
+        DrawOnCardCentered(sb, card, CopyColor(card, Color.WHITE), img, card.current_x + offset.x, card.current_y + offset.y, width, height);
     }
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float size)
@@ -95,7 +151,9 @@ public class RenderHelpers
 
     public static void WriteOnCard(SpriteBatch sb, AbstractCard card, BitmapFont font, String text, float x, float y, Color color)
     {
-        FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x, y, card.angle, false, color);
+        final float scale = card.drawScale * Settings.scale;
+        color.a = card.transparency;
+        FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x * scale, y * scale, card.angle, false, color);
     }
 
     public static void WriteCentered(SpriteBatch sb, BitmapFont font, String text, Hitbox hb, Color color)

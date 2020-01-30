@@ -6,14 +6,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class MaesHughes extends AnimatorCard
 {
-    public static final String ID = Register(MaesHughes.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(MaesHughes.class);
 
     public MaesHughes()
     {

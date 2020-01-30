@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
@@ -15,7 +14,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 {
-    public static final String ID = Register(ChaikaBohdan.class, EYBCardBadge.Special);
+    public static final String ID = Register(ChaikaBohdan.class);
 
     private int bonusDamage = 0;
 
@@ -30,9 +29,9 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         if (AbstractDungeon.player.hand.contains(this))
         {

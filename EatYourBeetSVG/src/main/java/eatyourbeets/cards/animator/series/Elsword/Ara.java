@@ -3,19 +3,17 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Ara extends AnimatorCard implements MartialArtist
 {
-    public static final EYBCardBadge[] BADGES = {EYBCardBadge.Discard};
-    public static final String ID = Register(Ara.class, EYBCardBadge.Special);
+    public static final String ID = Register(Ara.class);
 
     public Ara()
     {
@@ -31,7 +29,7 @@ public class Ara extends AnimatorCard implements MartialArtist
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddSuffix("x2");
+        return super.GetDamageInfo().AddMultiplier(2);
     }
 
     @Override

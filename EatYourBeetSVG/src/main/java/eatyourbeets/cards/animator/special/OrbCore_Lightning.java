@@ -3,13 +3,12 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.powers.animator.OrbCore_LightningPower;
 
 public class OrbCore_Lightning extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Lightning.class, EYBCardBadge.Special);
+    public static final String ID = Register(OrbCore_Lightning.class);
 
     public static final int VALUE = 9;
 

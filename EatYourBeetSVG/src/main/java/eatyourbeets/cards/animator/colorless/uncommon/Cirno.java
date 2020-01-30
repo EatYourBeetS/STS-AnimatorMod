@@ -8,14 +8,13 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class Cirno extends AnimatorCard
 {
-    public static final String ID = Register(Cirno.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Cirno.class);
 
     public Cirno()
     {

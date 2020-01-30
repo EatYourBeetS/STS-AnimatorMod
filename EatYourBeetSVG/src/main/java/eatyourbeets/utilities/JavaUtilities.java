@@ -12,6 +12,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.StringJoiner;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
@@ -179,5 +180,16 @@ public class JavaUtilities
         {
             return defaultValue;
         }
+    }
+
+    public static <T> String JoinStrings(String delimiter, T[] values)
+    {
+        StringJoiner sj = new StringJoiner(delimiter);
+        for (T value : values)
+        {
+            sj.add(value.toString());
+        }
+
+        return sj.toString();
     }
 }

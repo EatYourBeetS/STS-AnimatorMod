@@ -4,13 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Kazuma extends AnimatorCard
 {
-    public static final String ID = Register(Kazuma.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(Kazuma.class);
 
     public Kazuma()
     {

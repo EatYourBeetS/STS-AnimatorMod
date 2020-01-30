@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ElricAlphonseAlt;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -12,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
-    public static final String ID = Register(ElricAlphonse.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(ElricAlphonse.class);
 
     public ElricAlphonse()
     {

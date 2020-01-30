@@ -7,17 +7,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.interfaces.markers.Spellcaster;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class Ain extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Ain.class, EYBCardBadge.Synergy, EYBCardBadge.Discard);
+    public static final String ID = Register(Ain.class);
 
     public Ain()
     {

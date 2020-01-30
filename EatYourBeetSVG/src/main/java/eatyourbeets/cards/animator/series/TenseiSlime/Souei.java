@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -16,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Souei extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Souei.class, EYBCardBadge.Special);
+    public static final String ID = Register(Souei.class);
 
     public Souei()
     {

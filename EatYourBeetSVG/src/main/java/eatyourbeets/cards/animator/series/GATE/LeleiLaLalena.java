@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
@@ -12,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(LeleiLaLalena.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(LeleiLaLalena.class);
 
     public LeleiLaLalena()
     {
@@ -25,9 +24,9 @@ public class LeleiLaLalena extends AnimatorCard implements Spellcaster
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         if (HasSynergy())
         {

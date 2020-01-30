@@ -21,15 +21,8 @@ public class Respite extends AnimatorCard implements Hidden
         Initialize(0, 0, 6 + (GameUtilities.GetAscensionLevel() / 2));
         SetUpgrade(0, 0, magicNumber / 2);
 
-        SetPurge(true);
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        super.triggerOnEndOfTurnForPlayingCard();
-
         SetRetain(true);
+        SetPurge(true);
     }
 
     @Override

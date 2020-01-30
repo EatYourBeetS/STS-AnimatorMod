@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.cards.base.AnimatorCard_Cooldown;
@@ -17,7 +16,7 @@ import eatyourbeets.cards.base.Synergies;
 // TODO: Consider inverting channel lightning with apply lock-on
 public class DolaSchwi extends AnimatorCard_Cooldown
 {
-    public static final String ID = Register(DolaSchwi.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(DolaSchwi.class);
 
     public DolaSchwi()
     {

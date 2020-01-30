@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
@@ -17,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Giselle extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register(Giselle.class, EYBCardBadge.Special);
+    public static final String ID = Register(Giselle.class);
 
     public Giselle()
     {

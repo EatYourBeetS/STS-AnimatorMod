@@ -1,6 +1,5 @@
 package eatyourbeets.cards.base;
 
-import basemod.abstracts.CustomCard;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -10,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -25,14 +23,14 @@ import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.cardReward.AnimatorCardBadgeLegend;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public abstract class EYBCard extends CustomCard
+public abstract class EYBCard extends EYBCardBase
 {
     public enum AttackType
     {
@@ -51,10 +49,10 @@ public abstract class EYBCard extends CustomCard
         }
     }
 
+    protected abstract ColoredString GetBottomText();
     protected static final FieldInfo<Boolean> _renderTip = JavaUtilities.GetField("renderTip", AbstractCard.class);
     protected static final Color FRAME_COLOR = Color.WHITE.cpy();
     protected static final Map<String, EYBCardData> staticCardData = new HashMap<>();
-    protected static AbstractPlayer player = null;
 
     public AttackType attackType = AttackType.Normal;
     public final List<TooltipInfo> customTooltips = new ArrayList<>();
@@ -88,9 +86,9 @@ public abstract class EYBCard extends CustomCard
         return staticCardData.get(cardID);
     }
 
-    public static String RegisterCard(Class<? extends EYBCard> type, String cardID, EYBCardBadge[] badges)
+    public static String RegisterCard(Class<? extends EYBCard> type, String cardID)
     {
-        staticCardData.put(cardID, new EYBCardData(type, badges, GR.GetCardStrings(cardID)));
+        staticCardData.put(cardID, new EYBCardData(type, GR.GetCardStrings(cardID)));
 
         return cardID;
     }
@@ -102,17 +100,6 @@ public abstract class EYBCard extends CustomCard
         this.cardData = cardData;
         this.cardText = new EYBAdvancedCardText(this, cardData.strings);
         this.cardText.ForceRefresh();
-    }
-
-    @Override
-    public List<TooltipInfo> getCustomTooltips()
-    {
-        if (isLocked || !isSeen || isFlipped)
-        {
-            return super.getCustomTooltips();
-        }
-
-        return customTooltips;
     }
 
     @Override
@@ -142,12 +129,6 @@ public abstract class EYBCard extends CustomCard
         super.hover();
 
         hovered = true;
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
     }
 
     @Override
@@ -532,9 +513,14 @@ public abstract class EYBCard extends CustomCard
         this.isMultiDamage = value;
     }
 
-    public void SetRetain(boolean value)
+    public void SetRetainOnce(boolean value)
     {
         this.retain = value;
+    }
+
+    public void SetRetain(boolean value)
+    {
+        this.selfRetain = value;
     }
 
     public void SetInnate(boolean value)
@@ -627,8 +613,12 @@ public abstract class EYBCard extends CustomCard
             if (!tags.contains(GR.Enums.CardTags.UNIQUE))
             {
                 tags.add(GR.Enums.CardTags.UNIQUE);
-                EYBCardTooltip unique = GR.GetTooltip("~unique");
-                AddTooltip(new TooltipInfo(unique.title, unique.description));
+
+                if (multiUpgrade)
+                {
+                    EYBCardTooltip unique = GR.GetTooltip("~unique");
+                    AddTooltip(new TooltipInfo(unique.title, unique.description));
+                }
             }
         }
         else
@@ -792,15 +782,21 @@ public abstract class EYBCard extends CustomCard
     }
 
     @Override
-    protected void applyPowersToBlock()
+    protected final void applyPowersToBlock()
     {
         throw new RuntimeException("This method must not be called");
     }
 
     @Override
-    public void applyPowers()
+    public final void applyPowers()
     {
-        ApplyPowers(null);
+        calculateCardDamage(null);
+    }
+
+    @Override
+    public void calculateDamageDisplay(AbstractMonster mo)
+    {
+        calculateCardDamage(mo);
     }
 
     @Override
@@ -810,21 +806,33 @@ public abstract class EYBCard extends CustomCard
         {
             ArrayList<AbstractMonster> m = AbstractDungeon.getCurrRoom().monsters.monsters;
             multiDamage = new int[m.size()];
+
+            int best = -999;
             for (int i = 0; i < multiDamage.length; i++)
             {
-                ApplyPowers(m.get(i));
+                if (damage > best)
+                {
+                    best = damage;
+                }
+
+                Refresh(m.get(i));
                 multiDamage[i] = damage;
+            }
+
+            if (best > 0)
+            {
+                UpdateDamage(best);
             }
         }
         else
         {
-            ApplyPowers(mo);
+            Refresh(mo);
         }
     }
 
-    protected void ApplyPowers(AbstractMonster enemy)
+    protected void Refresh(AbstractMonster enemy)
     {
-        boolean applyEnemyPowers = (enemy != null && GameUtilities.IsDeadOrEscaped(enemy));
+        boolean applyEnemyPowers = (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy));
         float tempBlock = GetInitialBlock();
         float tempDamage = GetInitialDamage();
 
@@ -835,15 +843,18 @@ public abstract class EYBCard extends CustomCard
 
         for (AbstractPower p : player.powers)
         {
-            tempBlock = ApplyPowerToBlock(p, tempBlock);
-            tempDamage = ApplyPowerToDamage(p, tempDamage, false);
+            tempBlock = p.modifyBlock(tempBlock, this);
+            tempDamage = p.atDamageGive(tempDamage, damageTypeForTurn, this);
         }
+
+        tempBlock = ModifyBlock(enemy, tempBlock);
+        tempDamage = ModifyDamage(enemy, tempDamage);
 
         if (applyEnemyPowers)
         {
             for (AbstractPower p : enemy.powers)
             {
-                p.atDamageReceive(tempDamage, damageTypeForTurn, this);
+                tempDamage = p.atDamageReceive(tempDamage, damageTypeForTurn, this);
             }
         }
 
@@ -851,19 +862,21 @@ public abstract class EYBCard extends CustomCard
 
         for (AbstractPower p : player.powers)
         {
-            tempDamage = ApplyPowerToDamage(p, tempDamage, true);
+            tempDamage = p.atDamageFinalGive(tempDamage, damageTypeForTurn, this);
         }
 
         if (applyEnemyPowers)
         {
             for (AbstractPower p : enemy.powers)
             {
-                p.atDamageFinalReceive(tempDamage, damageTypeForTurn, this);
+                tempDamage = p.atDamageFinalReceive(tempDamage, damageTypeForTurn, this);
             }
         }
 
         UpdateBlock(tempBlock);
         UpdateDamage(tempDamage);
+
+        JavaUtilities.Log(this, cardID + ", Updating Damage: " + tempDamage);
     }
 
     protected void UpdateBlock(float amount)
@@ -896,20 +909,13 @@ public abstract class EYBCard extends CustomCard
         return baseDamage;
     }
 
-    protected float ApplyPowerToBlock(AbstractPower power, float amount)
+    protected float ModifyBlock(AbstractMonster enemy, float amount)
     {
-        return power.modifyBlock(amount, this);
+        return amount;
     }
 
-    protected float ApplyPowerToDamage(AbstractPower power, float amount, boolean isFinal)
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        if (isFinal)
-        {
-            return power.atDamageFinalGive(amount, damageTypeForTurn, this);
-        }
-        else
-        {
-            return power.atDamageGive(amount, damageTypeForTurn, this);
-        }
+        return amount;
     }
 }

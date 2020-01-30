@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.ElectroPower;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryElectroPower;
 import eatyourbeets.ui.EffectHistory;
@@ -13,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class NarberalGamma extends AnimatorCard
 {
-    public static final String ID = Register(NarberalGamma.class, EYBCardBadge.Special);
+    public static final String ID = Register(NarberalGamma.class);
 
     public NarberalGamma()
     {

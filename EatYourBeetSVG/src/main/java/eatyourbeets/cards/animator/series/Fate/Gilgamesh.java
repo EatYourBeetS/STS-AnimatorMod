@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.animator.Readme;
@@ -25,7 +24,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 {
     private static AbstractRelic lastRelicObtained = null;
 
-    public static final String ID = Register(Gilgamesh.class, EYBCardBadge.Special);
+    public static final String ID = Register(Gilgamesh.class);
     public static final int GOLD_REWARD = 25;
 
     public Gilgamesh()

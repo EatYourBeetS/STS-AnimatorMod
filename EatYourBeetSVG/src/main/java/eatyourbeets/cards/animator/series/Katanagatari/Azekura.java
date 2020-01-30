@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
@@ -14,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Azekura extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Azekura.class, EYBCardBadge.Synergy, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Azekura.class);
 
     public Azekura()
     {
@@ -30,7 +29,7 @@ public class Azekura extends AnimatorCard implements MartialArtist
     @Override
     public AbstractAttribute GetBlockInfo()
     {
-        return super.GetBlockInfo().AddSuffix("x2");
+        return super.GetBlockInfo().AddMultiplier(2);
     }
 
     @Override

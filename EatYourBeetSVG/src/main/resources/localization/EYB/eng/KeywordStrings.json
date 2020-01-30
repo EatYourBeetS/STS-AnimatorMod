@@ -146,7 +146,7 @@
 	},
 	"Purge":
 	{
-		"DESCRIPTION": "Removed from the combat.",
+		"DESCRIPTION": "Removed from combat.",
 		"NAMES": ["purge", "purged", "purges"],
 		"PROPER_NAME": "Purge"
 	},
@@ -162,10 +162,10 @@
 		"NAMES": ["semi-limited"],
 		"PROPER_NAME": "Semi-Limited"
 	},
-	"Steal":
+	"~Steal":
 	{
 		"DESCRIPTION": "You can steal up to #b50 #yGold from a boss, #b25 #yGold from an elite, or #b10 #yGold from other non-minion enemies.",
-		"NAMES": ["steal"],
+		"NAMES": ["~steal"],
 		"PROPER_NAME": "Steal"
 	},
 	"Slow":

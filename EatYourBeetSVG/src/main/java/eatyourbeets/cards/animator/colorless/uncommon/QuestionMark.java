@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.QuestionMarkAction;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
@@ -15,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscriber
 {
-    public static final String ID = Register(QuestionMark.class, EYBCardBadge.Drawn);
+    public static final String ID = Register(QuestionMark.class);
 
     public AnimatorCard copy = null;
 

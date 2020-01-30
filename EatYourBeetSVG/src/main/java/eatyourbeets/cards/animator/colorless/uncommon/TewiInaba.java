@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.orbs.animator.Earth;
@@ -15,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TewiInaba extends AnimatorCard implements Hidden // TODO:
 {
-    public static final String ID = Register(TewiInaba.class, EYBCardBadge.Special);
+    public static final String ID = Register(TewiInaba.class);
 
     public TewiInaba()
     {

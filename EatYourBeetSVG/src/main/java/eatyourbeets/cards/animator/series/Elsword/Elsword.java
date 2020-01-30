@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 
 public class Elsword extends AnimatorCard
 {
-    public static final String ID = Register(Elsword.class, EYBCardBadge.Discard);
+    public static final String ID = Register(Elsword.class);
 
     public Elsword()
     {

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.ultrarare;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.powers.common.ForcePower;
@@ -12,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ShikizakiKiki extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(ShikizakiKiki.class, EYBCardBadge.Drawn);
+    public static final String ID = Register(ShikizakiKiki.class);
 
     public ShikizakiKiki()
     {

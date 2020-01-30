@@ -2,6 +2,7 @@ package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,6 +10,7 @@ import eatyourbeets.actions.unnamed.MoveToVoidAction;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
@@ -25,9 +27,9 @@ public abstract class UnnamedCard extends EYBCard
     public boolean enteredVoid = false;
     public int masteryCost = -2;
 
-    protected static String Register(Class<? extends UnnamedCard> type, EYBCardBadge... badges)
+    protected static String Register(Class<? extends UnnamedCard> type)
     {
-        return RegisterCard(type,"unnamed:" + type.getSimpleName(), badges);
+        return RegisterCard(type,"unnamed:" + type.getSimpleName());
     }
 
     private static String GetCardImage(String cardID)
@@ -204,5 +206,17 @@ public abstract class UnnamedCard extends EYBCard
         {
             return "";
         }
+    }
+
+    @Override
+    protected Texture GetEnergyOrb()
+    {
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    protected ColoredString GetBottomText()
+    {
+        return null;
     }
 }

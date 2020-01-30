@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
@@ -13,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HiiragiTenri extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(HiiragiTenri.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(HiiragiTenri.class);
 
     public HiiragiTenri()
     {

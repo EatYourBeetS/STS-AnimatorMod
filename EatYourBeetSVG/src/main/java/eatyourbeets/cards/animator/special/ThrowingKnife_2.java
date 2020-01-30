@@ -2,12 +2,11 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 
 public class ThrowingKnife_2 extends ThrowingKnife
 {
-    public static final String ID = Register(ThrowingKnife_2.class, EYBCardBadge.Discard);
+    public static final String ID = Register(ThrowingKnife_2.class);
 
     public ThrowingKnife_2()
     {

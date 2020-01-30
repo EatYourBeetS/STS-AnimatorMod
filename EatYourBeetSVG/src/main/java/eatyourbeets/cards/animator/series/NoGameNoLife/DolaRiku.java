@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.DolaRikuAction;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.*;
 
 public class DolaRiku extends AnimatorCard
 {
-    public static final String ID = Register(DolaRiku.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(DolaRiku.class);
 
     public DolaRiku()
     {

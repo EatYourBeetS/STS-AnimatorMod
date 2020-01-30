@@ -4,10 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.EYBCardText;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.resources.GR;
@@ -15,7 +13,6 @@ import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Toggle;
-import eatyourbeets.utilities.RenderHelpers;
 
 public class AnimatorCardBadgeLegend extends GUIElement
 {
@@ -72,19 +69,6 @@ public class AnimatorCardBadgeLegend extends GUIElement
 
         upgradeToggle.Render(sb);
         legendImage.Render(sb);
-
-        RenderSingleBadge(sb, EYBCardBadge.Synergy, y - (offset * 1));
-        RenderSingleBadge(sb, EYBCardBadge.Exhaust, y - (offset * 2));
-        RenderSingleBadge(sb, EYBCardBadge.Discard, y - (offset * 3));
-        RenderSingleBadge(sb, EYBCardBadge.Drawn  , y - (offset * 4));
-        RenderSingleBadge(sb, EYBCardBadge.Special, y - (offset * 5));
-    }
-
-    private void RenderSingleBadge(SpriteBatch sb, EYBCardBadge badge, float y)
-    {
-        Hitbox hb = legendImage.hb;
-        RenderHelpers.Draw(sb, badge.texture, hb.x, y - (hb.height * 0.09f), hb.height * 0.22f);
-        FontHelper.renderFontCentered(sb, FontHelper.tipHeaderFont, badge.name, hb.x + (hb.width * 0.6f), y);
     }
 
     private void ToggleViewUpgrades(boolean value)

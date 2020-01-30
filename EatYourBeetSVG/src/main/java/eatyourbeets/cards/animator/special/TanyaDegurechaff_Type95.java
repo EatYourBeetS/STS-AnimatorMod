@@ -4,13 +4,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff_Type95 extends AnimatorCard
 {
-    public static final String ID = Register(TanyaDegurechaff_Type95.class, EYBCardBadge.Drawn, EYBCardBadge.Discard);
+    public static final String ID = Register(TanyaDegurechaff_Type95.class);
 
     public TanyaDegurechaff_Type95()
     {

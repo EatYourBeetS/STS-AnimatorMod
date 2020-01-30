@@ -24,9 +24,10 @@ public class Defend_FullmetalAlchemist extends Defend
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
+
         this.isSecondaryValueModified = (this.secondaryValue == 0);
         initializeDescription();
     }

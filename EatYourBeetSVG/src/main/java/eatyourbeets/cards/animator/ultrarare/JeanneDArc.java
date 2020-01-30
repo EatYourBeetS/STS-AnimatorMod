@@ -4,7 +4,6 @@ import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
@@ -12,7 +11,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register(JeanneDArc.class, EYBCardBadge.Special);
+    public static final String ID = Register(JeanneDArc.class);
 
     public JeanneDArc()
     {

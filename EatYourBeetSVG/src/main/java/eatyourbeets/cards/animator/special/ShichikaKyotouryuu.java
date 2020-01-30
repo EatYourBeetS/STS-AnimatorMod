@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
@@ -14,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, Hidden
 {
-    public static final String ID = Register(ShichikaKyotouryuu.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(ShichikaKyotouryuu.class);
 
     public ShichikaKyotouryuu()
     {

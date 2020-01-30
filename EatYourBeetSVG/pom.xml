@@ -9,6 +9,10 @@
     <name>EatYourBeetS-VG STS MOD</name>
     <description>Mod including a new custom character: The Animator</description>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.megacrit.cardcrawl</groupId>

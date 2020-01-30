@@ -5,13 +5,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Excalibur;
 import eatyourbeets.cards.base.AnimatorCard_Cooldown;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Saber extends AnimatorCard_Cooldown
 {
-    public static final String ID = Register(Saber.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(Saber.class);
 
     public Saber()
     {

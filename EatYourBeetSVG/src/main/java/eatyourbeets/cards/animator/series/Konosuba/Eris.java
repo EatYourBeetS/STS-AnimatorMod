@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
@@ -21,7 +20,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleStartSubscriber
 {
-    public static final String ID = Register(Eris.class, EYBCardBadge.Special);
+    public static final String ID = Register(Eris.class);
 
     public Eris()
     {

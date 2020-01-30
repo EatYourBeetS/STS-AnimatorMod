@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -12,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class EmiyaShirou extends AnimatorCard
 {
-    public static final String ID = Register(EmiyaShirou.class, EYBCardBadge.Special);
+    public static final String ID = Register(EmiyaShirou.class);
 
     public EmiyaShirou()
     {

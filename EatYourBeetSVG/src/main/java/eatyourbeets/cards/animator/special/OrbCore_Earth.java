@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.orbs.animator.Earth;
@@ -10,7 +9,7 @@ import eatyourbeets.powers.animator.OrbCore_EarthPower;
 
 public class OrbCore_Earth extends OrbCore implements Hidden
 {
-    public static final String ID = Register(OrbCore_Earth.class, EYBCardBadge.Special);
+    public static final String ID = Register(OrbCore_Earth.class);
 
     public static final int VALUE = 3;
 

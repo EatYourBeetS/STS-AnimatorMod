@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.powers.common.TemporaryDrawReductionPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -14,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Sloth extends AnimatorCard
 {
-    public static final String ID = Register(Sloth.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Sloth.class);
 
     public Sloth()
     {

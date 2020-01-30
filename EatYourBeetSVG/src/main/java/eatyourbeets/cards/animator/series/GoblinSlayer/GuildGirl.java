@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -10,7 +9,7 @@ import eatyourbeets.powers.animator.GuildGirlPower;
 
 public class GuildGirl extends AnimatorCard
 {
-    public static final String ID = Register(GuildGirl.class, EYBCardBadge.Special);
+    public static final String ID = Register(GuildGirl.class);
 
     public GuildGirl()
     {

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -12,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Demiurge extends AnimatorCard
 {
-    public static final String ID = Register(Demiurge.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Demiurge.class);
 
     public Demiurge()
     {

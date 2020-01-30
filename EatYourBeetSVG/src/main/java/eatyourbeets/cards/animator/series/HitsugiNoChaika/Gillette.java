@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -13,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Gillette extends AnimatorCard
 {
-    public static final String ID = Register(Gillette.class, EYBCardBadge.Discard);
+    public static final String ID = Register(Gillette.class);
 
     public Gillette()
     {

@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.attack.Hemokinesis2Effect;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 
 public class Shalltear extends AnimatorCard
 {
-    public static final String ID = Register(Shalltear.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(Shalltear.class);
 
     public Shalltear()
     {

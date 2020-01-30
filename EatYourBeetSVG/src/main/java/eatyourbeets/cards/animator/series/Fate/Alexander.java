@@ -4,20 +4,20 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
 
 public class Alexander extends AnimatorCard
 {
-    public static final String ID = Register(Alexander.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Alexander.class);
 
     public Alexander()
     {
         super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ALL_ENEMY);
 
         Initialize(6,0);
+        SetScaling(0, 0, 1);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Fate);

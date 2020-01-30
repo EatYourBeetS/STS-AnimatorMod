@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
@@ -13,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class RinTohsaka extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(RinTohsaka.class, EYBCardBadge.Drawn);
+    public static final String ID = Register(RinTohsaka.class);
 
     public RinTohsaka()
     {

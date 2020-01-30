@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.pileSelection.FetchFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -12,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class CowGirl extends AnimatorCard
 {
-    public static final String ID = Register(CowGirl.class, EYBCardBadge.Discard);
+    public static final String ID = Register(CowGirl.class);
 
     public CowGirl()
     {

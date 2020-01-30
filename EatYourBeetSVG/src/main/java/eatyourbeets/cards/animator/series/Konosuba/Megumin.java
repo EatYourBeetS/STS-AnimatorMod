@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
@@ -19,7 +18,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Megumin extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Megumin.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(Megumin.class);
 
     public Megumin()
     {

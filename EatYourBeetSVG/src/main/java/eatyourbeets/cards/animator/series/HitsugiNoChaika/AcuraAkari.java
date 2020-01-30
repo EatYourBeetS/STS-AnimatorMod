@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
 import eatyourbeets.ui.EffectHistory;
@@ -11,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AcuraAkari extends AnimatorCard
 {
-    public static final String ID = Register(AcuraAkari.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(AcuraAkari.class);
 
     public AcuraAkari()
     {

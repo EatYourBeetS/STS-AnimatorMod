@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.RoseDamageAction;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -12,7 +11,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Rose extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Rose.class, EYBCardBadge.Special);
+    public static final String ID = Register(Rose.class);
 
     public Rose()
     {

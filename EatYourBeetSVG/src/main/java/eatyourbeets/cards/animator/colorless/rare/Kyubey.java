@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.curse.Curse_Greed;
 import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 
 public class Kyubey extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(Kyubey.class, EYBCardBadge.Special);
+    public static final String ID = Register(Kyubey.class);
 
     private static ArrayList<AbstractCard> curses;
 

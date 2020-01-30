@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -13,7 +12,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register(MumenRider.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(MumenRider.class);
 
     private int turns;
 

@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -13,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class ItamiYouji extends AnimatorCard
 {
-    public static final String ID = Register(ItamiYouji.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(ItamiYouji.class);
 
     public ItamiYouji()
     {

@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -12,7 +11,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Kuribayashi extends AnimatorCard
 {
-    public static final String ID = Register(Kuribayashi.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(Kuribayashi.class);
 
     private static final int STRENGTH_DOWN = 4;
 

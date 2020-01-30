@@ -34,7 +34,7 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
         int effect = EnergyPanel.totalCount;
         if (this.energyOnUse > 0)
@@ -47,7 +47,7 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
             effect += ChemicalX.BOOST;
         }
 
-        return super.calculateModifiedCardDamage(player, mo, (effect) * tmp);
+        return effect * amount;
     }
 
     @Override

@@ -6,14 +6,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class SwordMaiden extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(SwordMaiden.class, EYBCardBadge.Special);
+    public static final String ID = Register(SwordMaiden.class);
 
     public SwordMaiden()
     {

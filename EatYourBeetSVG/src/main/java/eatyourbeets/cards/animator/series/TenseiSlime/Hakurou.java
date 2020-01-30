@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Hakurou extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Hakurou.class, EYBCardBadge.Synergy, EYBCardBadge.Drawn);
+    public static final String ID = Register(Hakurou.class);
 
     public Hakurou()
     {
@@ -35,7 +34,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddSuffix("x" + magicNumber);
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override

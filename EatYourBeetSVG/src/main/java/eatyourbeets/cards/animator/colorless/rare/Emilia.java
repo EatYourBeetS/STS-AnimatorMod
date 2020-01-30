@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.markers.Spellcaster;
@@ -17,7 +16,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, Spellcaster
 {
-    public static final String ID = Register(Emilia.class, EYBCardBadge.Special);
+    public static final String ID = Register(Emilia.class);
 
     public Emilia()
     {

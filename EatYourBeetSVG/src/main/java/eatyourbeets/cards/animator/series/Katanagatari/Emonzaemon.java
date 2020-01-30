@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.EntouJyuu;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.ui.EffectHistory;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 
 public class Emonzaemon extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Emonzaemon.class, EYBCardBadge.Special);
+    public static final String ID = Register(Emonzaemon.class);
 
     public Emonzaemon()
     {
@@ -39,7 +38,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddSuffix("x2");
+        return super.GetDamageInfo().AddMultiplier(2);
     }
 
     @Override

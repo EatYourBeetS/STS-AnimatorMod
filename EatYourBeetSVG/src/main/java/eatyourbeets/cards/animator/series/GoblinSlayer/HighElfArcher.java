@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class HighElfArcher extends AnimatorCard
 {
-    public static final String ID = Register(HighElfArcher.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(HighElfArcher.class);
 
     public HighElfArcher()
     {

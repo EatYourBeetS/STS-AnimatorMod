@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.animator.Earth;
@@ -13,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DwarfShaman extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(DwarfShaman.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(DwarfShaman.class);
 
     public DwarfShaman()
     {

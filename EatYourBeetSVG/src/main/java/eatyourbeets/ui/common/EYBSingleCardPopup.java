@@ -382,7 +382,7 @@ public class EYBSingleCardPopup extends GUIElement
 
     private boolean allowUpgradePreview()
     {
-        return enableUpgradeToggle && this.card.color != AbstractCard.CardColor.CURSE && this.card.type != AbstractCard.CardType.STATUS;
+        return enableUpgradeToggle && card.canUpgrade();
     }
 
     private void updateArrows()

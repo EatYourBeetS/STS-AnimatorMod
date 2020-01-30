@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.csharp.ActionT0;
 import eatyourbeets.interfaces.markers.Spellcaster;
@@ -29,7 +28,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
 {
     private int cachedOrbAmount;
 
-    public static final String ID = Register(Patchouli.class, EYBCardBadge.Special);
+    public static final String ID = Register(Patchouli.class);
 
     public Patchouli()
     {
@@ -43,9 +42,9 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         ArrayList<AbstractOrb> orbs = AbstractDungeon.actionManager.orbsChanneledThisCombat;
         if (cachedOrbAmount != orbs.size())

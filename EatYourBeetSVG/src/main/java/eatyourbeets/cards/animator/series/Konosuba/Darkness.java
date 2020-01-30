@@ -5,14 +5,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.animator.special.DarknessAdrenaline;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.DarknessPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Darkness extends AnimatorCard
 {
-    public static final String ID = Register(Darkness.class, EYBCardBadge.Special);
+    public static final String ID = Register(Darkness.class);
 
     public Darkness()
     {

@@ -6,14 +6,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 
 public class HiiragiShinya extends AnimatorCard
 {
-    public static final String ID = Register(HiiragiShinya.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(HiiragiShinya.class);
 
     public HiiragiShinya()
     {

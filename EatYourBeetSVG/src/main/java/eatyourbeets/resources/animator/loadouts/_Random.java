@@ -44,7 +44,7 @@ public class _Random extends AnimatorLoadout
 
     public void OnVictory(AnimatorLoadoutRenderer currentLoadout, int ascensionLevel)
     {
-
+        //
     }
 
     @Override

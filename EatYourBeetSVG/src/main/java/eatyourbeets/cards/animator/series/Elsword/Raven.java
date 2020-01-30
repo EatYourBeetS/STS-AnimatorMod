@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Raven extends AnimatorCard
 {
-    public static final String ID = Register(Raven.class, EYBCardBadge.Special);
+    public static final String ID = Register(Raven.class);
 
     private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Raven::FindBestCard);
 

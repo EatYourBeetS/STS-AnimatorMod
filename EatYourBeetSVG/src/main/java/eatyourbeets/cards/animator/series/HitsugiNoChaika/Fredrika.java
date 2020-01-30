@@ -1,17 +1,14 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
@@ -19,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Fredrika extends AnimatorCard
 {
-    public static final String ID = Register(Fredrika.class, EYBCardBadge.Discard);
+    public static final String ID = Register(Fredrika.class);
 
     private static final int FORM_DEFAULT = 0;
     private static final int FORM_CAT = 1;
@@ -51,27 +48,14 @@ public class Fredrika extends AnimatorCard
     }
 
     @Override
-    protected void applyPowersToBlock()
+    protected float GetInitialBlock()
     {
-        float tmp = (float) this.baseBlock;
-
         if (currentForm == FORM_DEFAULT)
         {
-            tmp += GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
+            return super.GetInitialBlock() + GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
         }
 
-        for (AbstractPower p : AbstractDungeon.player.powers)
-        {
-            tmp = p.modifyBlock(tmp);
-        }
-
-        if (tmp < 0.0F)
-        {
-            tmp = 0.0F;
-        }
-
-        this.block = MathUtils.floor(tmp);
-        this.isBlockModified = (this.baseBlock != this.block);
+        return super.GetInitialBlock();
     }
 
     @Override

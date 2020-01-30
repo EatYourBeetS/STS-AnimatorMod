@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.*;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -28,7 +27,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 
 public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register(ChaikaTrabant.class, EYBCardBadge.Discard);
+    public static final String ID = Register(ChaikaTrabant.class);
 
     private AbstractMonster target;
 

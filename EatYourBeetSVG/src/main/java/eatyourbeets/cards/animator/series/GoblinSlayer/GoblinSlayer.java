@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.basic.MoveCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.animator.CreateRandomGoblins;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -16,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class GoblinSlayer extends AnimatorCard
 {
-    public static final String ID = Register(GoblinSlayer.class, EYBCardBadge.Special);
+    public static final String ID = Register(GoblinSlayer.class);
 
     public GoblinSlayer()
     {
@@ -52,17 +51,9 @@ public class GoblinSlayer extends AnimatorCard
     }
 
     @Override
-    public void triggerOnEndOfTurnForPlayingCard()
+    protected float GetInitialDamage()
     {
-        super.triggerOnEndOfTurnForPlayingCard();
-
-        SetRetain(true);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (player.exhaustPile.size() * 3));
+        return super.GetInitialDamage() + (player.exhaustPile.size() * 3);
     }
 
     @Override

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.base.Synergies;
@@ -16,17 +16,37 @@ import eatyourbeets.utilities.GameActions;
 
 public class Aisha extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Aisha.class, EYBCardBadge.Special);
+    public static final String ID = Register(Aisha.class);
 
     public Aisha()
     {
         super(ID, 1, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(2, 0, 1);
-        SetUpgrade(2, 0, 0);
+        Initialize(2, 0, 0);
+        SetUpgrade(0, 0, 1);
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Elsword);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        upgradedDamage = true;
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        magicNumber = baseMagicNumber + player.filledOrbCount();
     }
 
     @Override

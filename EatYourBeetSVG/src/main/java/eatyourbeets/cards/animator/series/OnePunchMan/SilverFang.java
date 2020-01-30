@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActions;
@@ -12,7 +11,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class SilverFang extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(SilverFang.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(SilverFang.class);
 
     public SilverFang()
     {

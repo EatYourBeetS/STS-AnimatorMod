@@ -19,7 +19,6 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public int magicNumberUpgrade;
     public int secondaryValueUpgrade;
 
-    public EYBCardBadge[] cardBadges;
     public Consumer<AnimatorCard> onUpgrade;
     public TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
     public boolean isShapeshifter;
@@ -34,11 +33,6 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
     public AnimatorCard_Dynamic Build()
     {
-        if (cardBadges == null)
-        {
-            SetBadges();
-        }
-
         if (cardStrings == null)
         {
             SetText("", "", "");
@@ -118,13 +112,6 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public AnimatorCardBuilder SetImage(String imagePath)
     {
         this.imagePath = imagePath;
-
-        return this;
-    }
-
-    public AnimatorCardBuilder SetBadges(EYBCardBadge... badges)
-    {
-        this.cardBadges = badges;
 
         return this;
     }

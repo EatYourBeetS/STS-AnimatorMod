@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Hero extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Hero.class, EYBCardBadge.Special);
+    public static final String ID = Register(Hero.class);
 
     public Hero()
     {

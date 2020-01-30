@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Chomusuke extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Chomusuke.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Chomusuke.class);
 
     public Chomusuke()
     {
@@ -39,17 +38,6 @@ public class Chomusuke extends AnimatorCard_UltraRare
             GameActions.Bottom.GainEnergy(2);
             GameActions.Bottom.MoveCard(this, p.exhaustPile, p.hand)
             .ShowEffect(true, true);
-        }
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        super.triggerOnEndOfTurnForPlayingCard();
-
-        if (upgraded)
-        {
-            SetRetain(true);
         }
     }
 

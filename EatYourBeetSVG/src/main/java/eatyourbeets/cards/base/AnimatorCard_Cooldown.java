@@ -57,9 +57,10 @@ public abstract class AnimatorCard_Cooldown extends AnimatorCard
     }
 
     @Override
-    public void applyPowers()
+    protected void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
+
         this.isSecondaryValueModified = (this.secondaryValue == 0);
         initializeDescription();
     }

@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.Synergies;
@@ -13,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Spearman extends AnimatorCard
 {
-    public static final String ID = Register(Spearman.class, EYBCardBadge.Special);
+    public static final String ID = Register(Spearman.class);
 
     public Spearman()
     {

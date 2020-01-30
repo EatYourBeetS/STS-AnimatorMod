@@ -7,14 +7,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 
 public class Caster extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Caster.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Caster.class);
 
     public Caster()
     {

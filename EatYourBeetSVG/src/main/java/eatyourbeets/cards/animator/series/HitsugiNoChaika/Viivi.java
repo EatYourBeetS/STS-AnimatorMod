@@ -5,14 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 
 public class Viivi extends AnimatorCard
 {
-    public static final String ID = Register(Viivi.class, EYBCardBadge.Discard);
+    public static final String ID = Register(Viivi.class);
 
     public Viivi()
     {

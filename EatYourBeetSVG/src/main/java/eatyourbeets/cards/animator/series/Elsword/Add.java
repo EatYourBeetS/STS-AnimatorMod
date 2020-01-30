@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 public class Add extends AnimatorCard
 {
-    public static final String ID = Register(Add.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(Add.class);
 
     public Add()
     {

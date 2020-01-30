@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -14,7 +13,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class MamizouFutatsuiwa extends AnimatorCard
 {
-    public static final String ID = Register(MamizouFutatsuiwa.class, EYBCardBadge.Discard);
+    public static final String ID = Register(MamizouFutatsuiwa.class);
 
     private static final RandomizedList<AnimatorCard> shapeshifterPool = new RandomizedList<>();
 

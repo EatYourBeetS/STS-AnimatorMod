@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -13,7 +12,7 @@ import eatyourbeets.powers.animator.ShiroPower;
 
 public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
 {
-    public static final String ID = Register(Shiro.class, EYBCardBadge.Special);
+    public static final String ID = Register(Shiro.class);
 
     private int costModifier = 0;
 
@@ -70,9 +69,9 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         OnCostRefresh(this);
     }

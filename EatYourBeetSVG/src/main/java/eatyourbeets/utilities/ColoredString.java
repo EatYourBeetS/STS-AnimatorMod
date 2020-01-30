@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 
 public class ColoredString
 {
-    public final Color color;
-    public final String text;
+    public Color color;
+    public String text;
 
     public ColoredString(Color color, Object text)
     {
@@ -17,5 +17,10 @@ public class ColoredString
     {
         this.color = color.cpy();
         this.text = text;
+    }
+
+    public ColoredString()
+    {
+
     }
 }

@@ -4,7 +4,6 @@ import com.evacipated.cardcrawl.mod.stslib.actions.defect.TriggerPassiveAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Jibril extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Jibril.class, EYBCardBadge.Drawn);
+    public static final String ID = Register(Jibril.class);
 
     public Jibril()
     {

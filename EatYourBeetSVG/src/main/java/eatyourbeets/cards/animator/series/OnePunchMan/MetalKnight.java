@@ -7,13 +7,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.Synergies;
 
 public class MetalKnight extends AnimatorCard
 {
-    public static final String ID = Register(MetalKnight.class, EYBCardBadge.Discard);
+    public static final String ID = Register(MetalKnight.class);
 
     public MetalKnight()
     {

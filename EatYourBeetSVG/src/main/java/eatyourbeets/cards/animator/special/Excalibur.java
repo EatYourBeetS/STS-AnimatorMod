@@ -32,14 +32,6 @@ public class Excalibur extends AnimatorCard implements Hidden
     }
 
     @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        super.triggerOnEndOfTurnForPlayingCard();
-
-        SetRetain(true);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, 1));

@@ -170,9 +170,9 @@ public class GR
         return tooltips.get(name);
     }
 
-    public static EYBCardTooltip GetTooltipByID(String name)
+    public static EYBCardTooltip GetTooltipByID(String id)
     {
-        return tooltipIDs.get(name);
+        return tooltipIDs.get(id);
     }
 
     protected void LoadCustomRelics(String character)

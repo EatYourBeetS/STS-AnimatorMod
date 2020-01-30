@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.UnnamedCard;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Reaper extends UnnamedCard
@@ -23,9 +24,9 @@ public class Reaper extends UnnamedCard
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         this.secondaryValue = this.baseSecondaryValue + GameUtilities.GetStrength(AbstractDungeon.player) * 3;
         this.isSecondaryValueModified = (this.secondaryValue != this.baseSecondaryValue);

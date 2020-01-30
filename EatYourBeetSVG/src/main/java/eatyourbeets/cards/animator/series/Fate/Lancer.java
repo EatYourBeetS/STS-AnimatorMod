@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -13,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Lancer extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Lancer.class, EYBCardBadge.Special);
+    public static final String ID = Register(Lancer.class);
 
     public Lancer()
     {
@@ -28,14 +27,14 @@ public class Lancer extends AnimatorCard implements MartialArtist
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    protected float ModifyDamage(AbstractMonster enemy, float damage)
     {
-        if (mo != null)
+        if (enemy != null)
         {
-            tmp += (tmp * (1 - GameUtilities.GetHealthPercentage(mo)));
+            damage += (damage * (1 - GameUtilities.GetHealthPercentage(enemy)));
         }
 
-        return super.calculateModifiedCardDamage(player, mo, tmp);
+        return super.ModifyDamage(enemy, damage);
     }
 
     @Override

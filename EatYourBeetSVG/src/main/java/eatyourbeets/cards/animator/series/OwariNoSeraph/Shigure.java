@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -15,16 +14,16 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Shigure extends AnimatorCard
 {
-    public static final String ID = Register(Shigure.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Shigure.class);
 
     public Shigure()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, AttackType.Piercing);
 
         Initialize(7, 0, 2, 3);
         SetUpgrade(2, 0, 1, 0);
+        SetScaling(0, 1, 0);
 
-        SetPiercing(true);
         SetSynergy(Synergies.OwariNoSeraph);
     }
 

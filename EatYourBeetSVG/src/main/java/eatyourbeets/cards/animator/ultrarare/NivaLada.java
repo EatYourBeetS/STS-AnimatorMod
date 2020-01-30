@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
@@ -25,7 +24,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class NivaLada extends AnimatorCard_UltraRare
         implements OnBattleStartSubscriber, OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
 {
-    public static final String ID = Register(NivaLada.class, EYBCardBadge.Special);
+    public static final String ID = Register(NivaLada.class);
 
     public NivaLada()
     {
@@ -79,9 +78,10 @@ public class NivaLada extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
+
         this.isSecondaryValueModified = (this.secondaryValue == 0);
         initializeDescription();
     }

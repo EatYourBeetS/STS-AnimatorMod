@@ -17,6 +17,7 @@ public class GazelDwargon extends AnimatorCard
         super(ID, -1, CardRarity.UNCOMMON, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0, 4);
+        SetUpgrade(0, 4, 0);
 
         SetSynergy(Synergies.TenSura);
     }

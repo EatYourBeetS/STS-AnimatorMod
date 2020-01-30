@@ -12,17 +12,15 @@ public class EYBCardData
 
     public final Class<? extends EYBCard> type;
     public final CardStrings strings;
-    public final EYBCardBadge[] badges;
 
     public AbstractCard defaultPreview;
     public AbstractCard upgradedPreview;
     public boolean previewInitialized;
 
-    public EYBCardData(Class<? extends EYBCard> type, EYBCardBadge[] badges, CardStrings cardStrings)
+    public EYBCardData(Class<? extends EYBCard> type, CardStrings cardStrings)
     {
         this.type = type;
         this.strings = cardStrings;
-        this.badges = badges;
     }
 
     public AbstractCard CreateNewInstance() throws RuntimeException

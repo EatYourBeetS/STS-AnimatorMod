@@ -2,14 +2,13 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 
 public class Rena extends AnimatorCard
 {
-    public static final String ID = Register(Rena.class, EYBCardBadge.Synergy, EYBCardBadge.Discard);
+    public static final String ID = Register(Rena.class);
 
     public Rena()
     {

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -11,7 +10,7 @@ import eatyourbeets.powers.animator.ChlammyZellPower;
 
 public class ChlammyZell extends AnimatorCard
 {
-    public static final String ID = Register(ChlammyZell.class, EYBCardBadge.Special);
+    public static final String ID = Register(ChlammyZell.class);
 
     public ChlammyZell()
     {

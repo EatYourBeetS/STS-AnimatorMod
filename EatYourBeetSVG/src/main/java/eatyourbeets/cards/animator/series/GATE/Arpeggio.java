@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -11,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Arpeggio.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(Arpeggio.class);
 
     public Arpeggio()
     {

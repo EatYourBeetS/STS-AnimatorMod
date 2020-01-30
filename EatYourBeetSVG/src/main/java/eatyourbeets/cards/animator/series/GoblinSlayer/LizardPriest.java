@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.powers.common.TemporaryRetainPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -12,7 +11,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class LizardPriest extends AnimatorCard
 {
-    public static final String ID = Register(LizardPriest.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(LizardPriest.class);
 
     public LizardPriest()
     {

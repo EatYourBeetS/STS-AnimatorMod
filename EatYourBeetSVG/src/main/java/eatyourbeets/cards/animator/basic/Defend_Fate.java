@@ -1,10 +1,7 @@
 package eatyourbeets.cards.animator.basic;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -24,24 +21,9 @@ public class Defend_Fate extends Defend
     }
 
     @Override
-    protected void applyPowersToBlock()
+    protected float GetInitialBlock()
     {
-        float tmp = (float) this.baseBlock;
-
-        tmp += GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
-
-        for (AbstractPower p : AbstractDungeon.player.powers)
-        {
-            tmp = p.modifyBlock(tmp);
-        }
-
-        if (tmp < 0.0F)
-        {
-            tmp = 0.0F;
-        }
-
-        this.block = MathUtils.floor(tmp);
-        this.isBlockModified = this.block != this.baseBlock;
+        return super.GetInitialBlock() + GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
     }
 
     @Override

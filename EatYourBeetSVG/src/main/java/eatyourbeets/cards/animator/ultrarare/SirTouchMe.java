@@ -5,14 +5,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.JuggernautPower;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 
 public class SirTouchMe extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register(SirTouchMe.class, EYBCardBadge.Special);
+    public static final String ID = Register(SirTouchMe.class);
 
     public SirTouchMe()
     {

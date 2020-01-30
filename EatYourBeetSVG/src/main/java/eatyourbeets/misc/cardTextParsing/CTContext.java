@@ -4,20 +4,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
-import eatyourbeets.utilities.Testing;
 
 import java.util.ArrayList;
 
 public class CTContext
 {
-    protected final static BitmapFont DEFAULT_PARSING_FONT = Testing.GenerateCardDescFont(23);
-    protected final static BitmapFont DEFAULT_RENDER_FONT = DEFAULT_PARSING_FONT;
-    protected final static float SCP_SCALE = 0.5f;
     protected final static float IMG_HEIGHT = 420.0F * Settings.scale;
     protected final static float IMG_WIDTH = 300.0F * Settings.scale;
     protected final static float DESC_BOX_WIDTH = Settings.BIG_TEXT_MODE ? IMG_WIDTH * 0.95F : IMG_WIDTH * 0.79F;
@@ -43,7 +38,7 @@ public class CTContext
 
     public void Initialize(EYBCard card, String text)
     {
-        this.font = DEFAULT_PARSING_FONT;
+        this.font = RenderHelpers.CardDescriptionFont_Normal;
         this.card = card;
         this.text = text;
         this.lines.clear();
@@ -96,13 +91,13 @@ public class CTContext
     {
         if (card.angle != 0.0F || card.drawScale <= 1f)
         {
-            font = DEFAULT_RENDER_FONT;
+            font = RenderHelpers.CardDescriptionFont_Normal;
             font.getData().setScale(card.drawScale * scaleModifier);
         }
         else
         {
-            font = FontHelper.SCP_cardDescFont;
-            font.getData().setScale(card.drawScale * scaleModifier * SCP_SCALE);
+            font = RenderHelpers.CardDescriptionFont_Large;
+            font.getData().setScale(card.drawScale * scaleModifier * 0.5f);
         }
 
         float height = 0;

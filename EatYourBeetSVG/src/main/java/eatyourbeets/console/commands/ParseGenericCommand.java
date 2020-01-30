@@ -1,10 +1,10 @@
  package eatyourbeets.console.commands;
 
  import basemod.DevConsole;
- import basemod.devcommands.ConsoleCommand;
- import com.badlogic.gdx.graphics.Color;
- import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
- import eatyourbeets.utilities.FieldInfo;
+import basemod.devcommands.ConsoleCommand;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import eatyourbeets.utilities.FieldInfo;
+ import eatyourbeets.utilities.Testing;
 
  import java.util.ArrayList;
 
@@ -25,11 +25,11 @@
      @Override
      protected void execute(String[] tokens, int depth)
      {
-         if (depth == 1)
+         if (tokens.length > 1)
          {
              try
              {
-                Test(tokens[depth]);
+                Test(tokens);
              }
              catch (Exception ex)
              {
@@ -41,24 +41,17 @@
      @Override
      public ArrayList<String> extraOptions(String[] tokens, int depth)
      {
-         if (depth >= 2)
-         {
-             complete = true;
-         }
-
          return new ArrayList<>();
      }
 
-     public static void Test(String text)
+     public static void Test(String[] tokens) throws NumberFormatException
      {
-         String[] values = text.split(",");
-         if (values.length == 3)
+         Float[] values = new Float[tokens.length-1];
+         for (int i = 0; i < values.length; i++)
          {
-             COLOR.r = Integer.parseInt(values[0]) / 100f;
-             COLOR.g = Integer.parseInt(values[1]) / 100f;
-             COLOR.b = Integer.parseInt(values[2]) / 100f;
+             values[i] = Float.parseFloat(tokens[i+1]);
          }
-     }
 
-     public static Color COLOR = Color.WHITE.cpy();
+         Testing.SetValues(values);
+     }
  }

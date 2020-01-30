@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 
 public class Evileye extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Evileye.class, EYBCardBadge.Synergy);
+    public static final String ID = Register(Evileye.class);
 
     public Evileye()
     {

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 
 public class Vanir extends AnimatorCard
 {
-    public static final String ID = Register(Vanir.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Vanir.class);
 
     public Vanir()
     {

@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -20,7 +19,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Saitama extends AnimatorCard
 {
-    public static final String ID = Register(Saitama.class, EYBCardBadge.Special);
+    public static final String ID = Register(Saitama.class);
 
     private int stage;
 
@@ -36,9 +35,9 @@ public class Saitama extends AnimatorCard
     }
 
     @Override
-    public void applyPowers()
+    protected void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         if (stage != misc)
         {

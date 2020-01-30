@@ -28,7 +28,7 @@ public class SingleCardViewPopupPatches
             EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
             if (c != null && !c.isFlipped)
             {
-                GR.UI.CardPopup.Open(card, null);
+                GR.UI.CardPopup.Open(c, null);
 
                 return SpireReturn.Return(null);
             }
@@ -46,7 +46,7 @@ public class SingleCardViewPopupPatches
             EYBCard c = JavaUtilities.SafeCast(card, EYBCard.class);
             if (c != null && !c.isFlipped)
             {
-                GR.UI.CardPopup.Open(card, group);
+                GR.UI.CardPopup.Open(c, group);
 
                 return SpireReturn.Return(null);
             }

@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.attack.Hemokinesis2Effect;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -19,12 +21,19 @@ public class Shalltear extends AnimatorCard
 
     public Shalltear()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL);
+        super(ID, 2, CardRarity.UNCOMMON, AttackType.Elemental, true);
 
-        Initialize(6, 0, 3);
-        SetUpgrade(3, 0, 1);
+        Initialize(3, 0, 3);
+        SetUpgrade(1, 0, 1);
+        SetScaling(1, 1, 1);
 
         SetSynergy(Synergies.Overlord);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override

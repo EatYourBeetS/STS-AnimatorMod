@@ -1,7 +1,6 @@
 package eatyourbeets.cards.base.attributes;
 
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.utilities.RenderHelpers;
 
 public class TempHPAttribute extends AbstractAttribute
 {
@@ -26,7 +25,7 @@ public class TempHPAttribute extends AbstractAttribute
     {
         if (useMagicNumber)
         {
-            mainText = RenderHelpers.GetMagicNumberString(card);
+            mainText = card.GetMagicNumberString();
         }
         else
         {

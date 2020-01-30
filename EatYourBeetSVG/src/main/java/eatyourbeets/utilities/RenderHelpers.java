@@ -20,7 +20,8 @@ public class RenderHelpers
     public static final BitmapFont CardDescriptionFont_Normal = GenerateFont(FontHelper.cardDescFont_L, 23, 0, 1);
     public static final BitmapFont CardDescriptionFont_Large = FontHelper.SCP_cardDescFont;
     public static final BitmapFont CardIconFont_Large = GenerateFont(FontHelper.cardDescFont_L, 38, 2.25f, 0.7f);
-    public static final BitmapFont CardIconFont_Small = GenerateFont(FontHelper.cardDescFont_L, 16, 1f, 0.3f);
+    public static final BitmapFont CardIconFont_Small = GenerateFont(FontHelper.cardDescFont_L, 19, 1f, 0.3f);
+
 
     public static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, float shadowOffset)
     {
@@ -151,9 +152,14 @@ public class RenderHelpers
 
     public static void WriteOnCard(SpriteBatch sb, AbstractCard card, BitmapFont font, String text, float x, float y, Color color)
     {
+        WriteOnCard(sb, card, font, text, x, y, color, false);
+    }
+
+    public static void WriteOnCard(SpriteBatch sb, AbstractCard card, BitmapFont font, String text, float x, float y, Color color, boolean roundY)
+    {
         final float scale = card.drawScale * Settings.scale;
         color.a = card.transparency;
-        FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x * scale, y * scale, card.angle, false, color);
+        FontHelper.renderRotatedText(sb, font, text, card.current_x, card.current_y, x * scale, y * scale, card.angle, roundY, color);
     }
 
     public static void WriteCentered(SpriteBatch sb, BitmapFont font, String text, Hitbox hb, Color color)
@@ -183,86 +189,14 @@ public class RenderHelpers
         return result;
     }
 
-    public static ColoredString GetSecondaryValueString(EYBCard card)
-    {
-        ColoredString result;
-
-        if (card.isSecondaryValueModified)
-        {
-            result = new ColoredString(card.secondaryValue >= card.baseSecondaryValue ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, card.secondaryValue);
-        }
-        else
-        {
-            result = new ColoredString(Settings.CREAM_COLOR, card.baseSecondaryValue);
-        }
-
-        result.color.a = card.transparency;
-
-        return result;
-    }
-
-    public static ColoredString GetMagicNumberString(AbstractCard card)
-    {
-        ColoredString result;
-
-        if (card.isMagicNumberModified)
-        {
-            result = new ColoredString(card.magicNumber >= card.baseMagicNumber ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, card.magicNumber);
-        }
-        else
-        {
-            result = new ColoredString(Settings.CREAM_COLOR, card.baseMagicNumber);
-        }
-
-        result.color.a = card.transparency;
-
-        return result;
-    }
-
-    public static ColoredString GetBlockString(AbstractCard card)
-    {
-        ColoredString result;
-
-        if (card.isBlockModified)
-        {
-            result = new ColoredString(card.block >= card.baseBlock ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, card.block);
-        }
-        else
-        {
-            result = new ColoredString(Settings.CREAM_COLOR, card.baseBlock);
-        }
-
-        result.color.a = card.transparency;
-
-        return result;
-    }
-
-    public static ColoredString GetDamageString(AbstractCard card)
-    {
-        ColoredString result;
-
-        if (card.isDamageModified)
-        {
-            result = new ColoredString(card.damage >= card.baseDamage ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, card.damage);
-        }
-        else
-        {
-            result = new ColoredString(Settings.CREAM_COLOR, card.baseDamage);
-        }
-
-        result.color.a = card.transparency;
-
-        return result;
-    }
-
-    public static ColoredString GetCardAttributeString(AbstractCard card, char attributeID)
+    public static ColoredString GetCardAttributeString(EYBCard card, char attributeID)
     {
         switch (attributeID)
         {
-            case 'D': return GetDamageString(card);
-            case 'B': return GetBlockString(card);
-            case 'M': return GetMagicNumberString(card);
-            case 'S': return GetSecondaryValueString((EYBCard) card);
+            case 'D': return card.GetDamageString();
+            case 'B': return card.GetBlockString();
+            case 'M': return card.GetMagicNumberString();
+            case 'S': return card.GetSecondaryValueString();
             default: return new ColoredString("?", Settings.RED_TEXT_COLOR);
         }
     }

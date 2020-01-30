@@ -17,8 +17,8 @@ public class SilverFang extends AnimatorCard implements MartialArtist
     {
         super(ID, 2, CardRarity.COMMON, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
 
-        Initialize(12, 0, 4);
-        SetUpgrade(4, 0, 0);
+        Initialize(8, 3, 1);
+        SetUpgrade(3, 1, 0);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.OnePunchMan);

@@ -14,7 +14,7 @@ public class Genos extends AnimatorCard
 
     public Genos()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
+        super(ID, 1, CardRarity.COMMON, AttackType.Ranged);
 
         Initialize(14, 0, 3, 4);
         SetUpgrade(4, 0, 0, 0);

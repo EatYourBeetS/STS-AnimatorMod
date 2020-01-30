@@ -1,4 +1,4 @@
-package eatyourbeets.misc.cardTextParsing;
+package eatyourbeets.cards.base.cardTextParsing;
 
 import java.util.HashMap;
 import java.util.Map;

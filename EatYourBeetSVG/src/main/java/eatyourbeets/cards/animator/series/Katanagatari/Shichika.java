@@ -11,6 +11,10 @@ import eatyourbeets.utilities.GameActions;
 public class Shichika extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(Shichika.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new ShichikaKyotouryuu(), false);
+    }
 
     public Shichika()
     {
@@ -21,11 +25,6 @@ public class Shichika extends AnimatorCard implements MartialArtist
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new ShichikaKyotouryuu(), false);
-        }
     }
 
     @Override

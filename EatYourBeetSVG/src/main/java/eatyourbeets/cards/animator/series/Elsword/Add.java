@@ -19,6 +19,10 @@ import java.util.ArrayList;
 public class Add extends AnimatorCard
 {
     public static final String ID = Register(Add.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new Crystallize(), false);
+    }
 
     public Add()
     {
@@ -29,11 +33,6 @@ public class Add extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.Elsword);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new Crystallize(), false);
-        }
     }
 
     @Override

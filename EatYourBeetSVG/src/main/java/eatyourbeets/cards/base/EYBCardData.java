@@ -13,8 +13,9 @@ public class EYBCardData
     public final Class<? extends EYBCard> type;
     public final CardStrings strings;
 
-    public AbstractCard defaultPreview;
-    public AbstractCard upgradedPreview;
+    public EYBCard tempCard = null;
+    public EYBCard defaultPreview;
+    public EYBCard upgradedPreview;
     public boolean previewInitialized;
 
     public EYBCardData(Class<? extends EYBCard> type, CardStrings cardStrings)
@@ -41,28 +42,27 @@ public class EYBCardData
         }
     }
 
-    public void InitializePreview(AbstractCard defaultPreview, boolean upgrade)
+    public void InitializePreview(EYBCard defaultPreview, boolean upgrade)
     {
+        if (previewInitialized)
+        {
+            throw new RuntimeException("The preview was already initialized");
+        }
+
+        this.previewInitialized = true;
         this.defaultPreview = defaultPreview;
+        this.defaultPreview.isPreview = true;
 
         if (upgrade)
         {
-            this.upgradedPreview = defaultPreview.makeStatEquivalentCopy();
+            this.upgradedPreview = (EYBCard) defaultPreview.makeStatEquivalentCopy();
+            this.upgradedPreview.isPreview = true;
             this.upgradedPreview.upgrade();
-        }
-        else
-        {
-            this.upgradedPreview = null;
+            this.upgradedPreview.displayUpgrades();
         }
     }
 
-    public void InitializePreview(AbstractCard defaultPreview, AbstractCard upgradedPreview)
-    {
-        this.defaultPreview = defaultPreview;
-        this.upgradedPreview = upgradedPreview;
-    }
-
-    public AbstractCard GetCardPreview(AbstractCard card)
+    public EYBCard GetCardPreview(EYBCard card)
     {
         if (upgradedPreview != null && card.upgraded)
         {

@@ -4,28 +4,29 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Excalibur;
-import eatyourbeets.cards.base.AnimatorCard_Cooldown;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-public class Saber extends AnimatorCard_Cooldown
+public class Saber extends AnimatorCard
 {
     public static final String ID = Register(Saber.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new Excalibur(), false);
+    }
 
     public Saber()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.RARE, AttackType.Normal);
 
         Initialize(9, 0, 0);
         SetUpgrade(2, 0, 0);
+        SetScaling(0, 1, 0);
 
+        SetCooldown(8, 0, this::OnCooldownCompleted);
         SetLoyal(true);
         SetSynergy(Synergies.Fate);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new Excalibur(), false);
-        }
     }
 
     @Override
@@ -45,20 +46,10 @@ public class Saber extends AnimatorCard_Cooldown
             progress += 2;
         }
 
-        if (ProgressCooldown(progress))
-        {
-            OnCooldownCompleted(p, m);
-        }
+        cooldown.ProgressCooldownAndTrigger(progress, m);
     }
 
-    @Override
-    protected int GetBaseCooldown()
-    {
-        return 8;
-    }
-
-    @Override
-    protected void OnCooldownCompleted(AbstractPlayer p, AbstractMonster m)
+    protected void OnCooldownCompleted(AbstractMonster m)
     {
         GameActions.Bottom.Purge(uuid);
         GameActions.Bottom.MakeCardInHand(new Excalibur());

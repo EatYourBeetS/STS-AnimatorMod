@@ -51,7 +51,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         toggleBeta = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(0f), buttonWidth, buttonHeight * 0.8f))
         .SetText("Show Beta series.")
         .SetOnToggle(this::ToggleBetaSeries)
-        .SetTexture(panelTexture, Color.DARK_GRAY);
+        .SetBackground(panelTexture, Color.DARK_GRAY);
 
         deselectAll = CreateHexagonalButton(xPos, getY.Invoke(1f), buttonWidth, buttonHeight)
         .SetText("Deselect All")

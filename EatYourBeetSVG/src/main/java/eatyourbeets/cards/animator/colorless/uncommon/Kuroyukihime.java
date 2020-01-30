@@ -10,6 +10,10 @@ import eatyourbeets.utilities.GameActions;
 public class Kuroyukihime extends AnimatorCard
 {
     public static final String ID = Register(Kuroyukihime.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new BlackLotus(), false);
+    }
 
     public Kuroyukihime()
     {
@@ -19,11 +23,6 @@ public class Kuroyukihime extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetSynergy(Synergies.AccelWorld);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new BlackLotus(), false);
-        }
     }
 
     @Override

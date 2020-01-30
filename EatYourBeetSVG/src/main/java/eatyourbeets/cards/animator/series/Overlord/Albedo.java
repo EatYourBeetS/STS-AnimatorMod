@@ -18,6 +18,7 @@ public class Albedo extends AnimatorCard
 
         Initialize(8, 0);
         SetUpgrade(3, 0);
+        SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.Overlord);
     }

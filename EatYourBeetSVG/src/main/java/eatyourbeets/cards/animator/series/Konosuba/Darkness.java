@@ -12,6 +12,10 @@ import eatyourbeets.utilities.GameActions;
 public class Darkness extends AnimatorCard
 {
     public static final String ID = Register(Darkness.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new DarknessAdrenaline(), false);
+    }
 
     public Darkness()
     {
@@ -21,11 +25,6 @@ public class Darkness extends AnimatorCard
         SetUpgrade(0, 1, 1);
 
         SetSynergy(Synergies.Konosuba);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new DarknessAdrenaline(), false);
-        }
     }
 
     @Override

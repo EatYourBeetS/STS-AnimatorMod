@@ -132,11 +132,29 @@
 		"NAMES": ["metallicize"],
 		"PROPER_NAME": "Metallicize"
 	},
-	"Piercing":
+	"~Damage":
 	{
-		"DESCRIPTION": "Ignore the target's #yBlock and #yThorns.",
-		"NAMES": ["piercing"],
-		"PROPER_NAME": "Piercing"
+		"DESCRIPTION": "-",
+		"NAMES": ["~damage"],
+		"PROPER_NAME": "Normal Damage"
+	},
+	"~Elemental":
+	{
+		"DESCRIPTION": "Ignores the target's #yBlock and #yThorns.",
+		"NAMES": ["~elemental"],
+		"PROPER_NAME": "Elemental Damage"
+	},
+	"~Piercing":
+	{
+		"DESCRIPTION": "Ignores the target's #yBlock and #yThorns.",
+		"NAMES": ["~piercing"],
+		"PROPER_NAME": "Piercing Damage"
+	},
+	"~Ranged":
+	{
+		"DESCRIPTION": "Ignores the target's #yThorns.",
+		"NAMES": ["~ranged"],
+		"PROPER_NAME": "Ranged Damage"
 	},
 	"Plated Armor":
 	{

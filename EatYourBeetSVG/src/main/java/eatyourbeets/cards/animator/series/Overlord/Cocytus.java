@@ -17,7 +17,7 @@ public class Cocytus extends AnimatorCard
         super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
         Initialize(8, 0, 2);
-        SetUpgrade(1, 0, 1);
+        SetUpgrade(3, 0, 0);
         SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.Overlord);

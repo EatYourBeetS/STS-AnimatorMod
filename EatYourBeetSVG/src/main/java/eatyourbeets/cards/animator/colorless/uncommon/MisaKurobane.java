@@ -11,6 +11,10 @@ import eatyourbeets.utilities.GameActions;
 public class MisaKurobane extends AnimatorCard
 {
     public static final String ID = Register(MisaKurobane.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new Yusarin(), false);
+    }
 
     public MisaKurobane()
     {
@@ -21,11 +25,6 @@ public class MisaKurobane extends AnimatorCard
         SetEvokeOrbCount(1);
         SetExhaust(true);
         SetSynergy(Synergies.Charlotte);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new Yusarin(), false);
-        }
     }
 
     @Override

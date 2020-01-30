@@ -6,13 +6,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.MelzalgaldAlt_1;
 import eatyourbeets.cards.animator.special.MelzalgaldAlt_2;
 import eatyourbeets.cards.animator.special.MelzalgaldAlt_3;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class Melzalgald extends AnimatorCard
 {
     public static final String ID = Register(Melzalgald.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new MelzalgaldAlt_1(), true);
+    }
 
     public Melzalgald()
     {
@@ -22,11 +26,6 @@ public class Melzalgald extends AnimatorCard
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan, true);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new MelzalgaldAlt_1(), true);
-        }
     }
 
     @Override

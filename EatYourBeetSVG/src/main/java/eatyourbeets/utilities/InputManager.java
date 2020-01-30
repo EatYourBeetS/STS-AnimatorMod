@@ -1,9 +1,7 @@
 package eatyourbeets.utilities;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.cards.base.EYBCardText;
 
 public class InputManager
 {
@@ -53,39 +51,9 @@ public class InputManager
         }
     }
 
-    public static void PreUpdate()
-    {
-        UpdateEYBCardText();
-    }
-
     public static void PostUpdate()
     {
         UpdateRightClick();
-    }
-
-    private static void UpdateEYBCardText()
-    {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT))
-        {
-            EYBCardText.Toggled = !EYBCardText.Toggled;
-        }
-        else if (EYBCardText.ToggledOnce)
-        {
-            EYBCardText.NewIndex = 1;
-            EYBCardText.ToggledOnce = false;
-        }
-        else if (EYBCardText.Toggled)
-        {
-            EYBCardText.NewIndex = 1;
-        }
-        else if (RightClick.IsPressed())
-        {
-            EYBCardText.NewIndex = 1;
-        }
-        else
-        {
-            EYBCardText.NewIndex = 0;
-        }
     }
 
     private static void UpdateRightClick()

@@ -16,7 +16,8 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
     {
         super(ID, -1, CardType.SKILL, CardTarget.ALL);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
         SetPurge(true);
         SetSynergy(Synergies.OnePunchMan);

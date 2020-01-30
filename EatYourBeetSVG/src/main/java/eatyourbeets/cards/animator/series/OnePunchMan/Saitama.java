@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -32,6 +33,18 @@ public class Saitama extends AnimatorCard
         this.misc = 0;
 
         SetSynergy(Synergies.OnePunchMan);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        AbstractAttribute damage = super.GetDamageInfo();
+        if (damage != null && stage == 4)
+        {
+            damage.AddMultiplier(magicNumber);
+        }
+
+        return damage;
     }
 
     @Override
@@ -181,7 +194,7 @@ public class Saitama extends AnimatorCard
                 // Prevent the next time you would lose HP
                 this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[1], true);
 
-                Initialize(0, 8, 0, 0);
+                Initialize(0, 0, 0, 0);
 
                 this.target = CardTarget.SELF;
                 this.type = CardType.SKILL;
@@ -212,6 +225,7 @@ public class Saitama extends AnimatorCard
                 this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[3], true);
 
                 Initialize(6, 0, 8, 0);
+                SetScaling(0, 3, 3);
 
                 this.target = CardTarget.ENEMY;
                 this.type = CardType.ATTACK;
@@ -223,10 +237,11 @@ public class Saitama extends AnimatorCard
 
             case 5:
             {
-                // Remove Intangible. Deal !D! damage.
+                // Remove Intangible. Stun the enemy.
                 this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[4], true);
 
-                Initialize(1000, 0, 0, 0);
+                Initialize(999, 0, 0, 0);
+                SetScaling(0, 99, 99);
 
                 this.target = CardTarget.ENEMY;
                 this.type = CardType.ATTACK;

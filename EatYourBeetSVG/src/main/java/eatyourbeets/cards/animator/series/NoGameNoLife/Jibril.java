@@ -18,7 +18,7 @@ public class Jibril extends AnimatorCard implements Spellcaster
     {
         super(ID, 2, CardRarity.COMMON, AttackType.Elemental, true);
 
-        Initialize(10, 0);
+        Initialize(8, 0);
         SetUpgrade(4, 0);
         SetScaling(2, 0, 0);
 

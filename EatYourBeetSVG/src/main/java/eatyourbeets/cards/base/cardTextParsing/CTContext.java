@@ -1,4 +1,4 @@
-package eatyourbeets.misc.cardTextParsing;
+package eatyourbeets.cards.base.cardTextParsing;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -180,7 +180,7 @@ public class CTContext
 
     protected void AddTooltip(EYBCardTooltip tooltip)
     {
-        if (!tooltips.contains(tooltip))
+        if (!tooltips.contains(tooltip) && !tooltip.title.equals("channel")) // TODO: Create another way to ignore certain tooltips
         {
             tooltips.add(tooltip);
         }

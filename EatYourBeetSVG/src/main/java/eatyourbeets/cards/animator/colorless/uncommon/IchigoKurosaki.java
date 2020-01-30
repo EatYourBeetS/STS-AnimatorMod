@@ -12,6 +12,10 @@ import eatyourbeets.utilities.GameUtilities;
 public class IchigoKurosaki extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(IchigoKurosaki.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new IchigoBankai(), false);
+    }
 
     public IchigoKurosaki()
     {
@@ -22,11 +26,6 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
 
         SetExhaust(true);
         SetSynergy(Synergies.Bleach);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new IchigoBankai(), false);
-        }
     }
 
     @Override

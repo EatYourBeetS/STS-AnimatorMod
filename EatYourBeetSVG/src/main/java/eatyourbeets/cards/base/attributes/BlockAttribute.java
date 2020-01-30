@@ -1,7 +1,6 @@
 package eatyourbeets.cards.base.attributes;
 
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.utilities.RenderHelpers;
 
 public class BlockAttribute extends AbstractAttribute
 {
@@ -13,7 +12,7 @@ public class BlockAttribute extends AbstractAttribute
         icon = ICONS.Block.Texture();
         iconTag = null;
         suffix = null;
-        mainText = RenderHelpers.GetBlockString(card);
+        mainText = card.GetBlockString();
 
         return this;
     }

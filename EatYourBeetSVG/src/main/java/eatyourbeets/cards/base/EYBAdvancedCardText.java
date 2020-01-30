@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.misc.cardTextParsing.CTContext;
-import eatyourbeets.misc.cardTextParsing.CTLine;
+import eatyourbeets.cards.base.cardTextParsing.CTContext;
+import eatyourbeets.cards.base.cardTextParsing.CTLine;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.*;
@@ -94,30 +94,42 @@ public class EYBAdvancedCardText extends EYBCardText
             _powerTips.Get(null).clear();
             _renderedTipsThisFrame.Set(null, true);
 
-            float x = card.current_x;
-            if (card.current_x < (float) Settings.WIDTH * 0.75F)
+            float x;
+            float y;
+
+            if (card.isPopup)
             {
-                x += AbstractCard.IMG_WIDTH / 2.0F + CARD_TIP_PAD;
+                x = 0.78f * Settings.WIDTH;
+                y = 0.85f * Settings.HEIGHT;
             }
             else
             {
-                x -= AbstractCard.IMG_WIDTH / 2.0F + CARD_TIP_PAD + BOX_W;
-            }
+                x = card.current_x;
+                if (card.current_x < (float) Settings.WIDTH * 0.75F)
+                {
+                    x += AbstractCard.IMG_WIDTH / 2.0F + CARD_TIP_PAD;
+                }
+                else
+                {
+                    x -= AbstractCard.IMG_WIDTH / 2.0F + CARD_TIP_PAD + BOX_W;
+                }
 
-            float y = card.current_y + AbstractCard.IMG_HEIGHT / 2.0F - BOX_EDGE_H;
-            if (context.tooltips.size() >= 4)
-            {
-                y += (float) (context.tooltips.size() - 1) * 62.0F * Settings.scale;
+                y = card.current_y + AbstractCard.IMG_HEIGHT / 2.0F - BOX_EDGE_H;
+                if (context.tooltips.size() >= 4)
+                {
+                    y += (float) (context.tooltips.size() - 1) * 62.0F * Settings.scale;
+                }
             }
 
             for (EYBCardTooltip tooltip : context.tooltips)
             {
-                if (tooltip.title.equals("channel"))
-                {
-                    continue; // Channel has 5 lines of tooltip...
-                }
-
                 y -= tooltip.Render(sb, x, y) + BOX_EDGE_H * 3.15F;
+            }
+
+            if (card.cardData.previewInitialized)
+            {
+                card.cardsToPreview = card.cardData.GetCardPreview(card);
+                card.renderCardPreview(sb);
             }
         }
     }
@@ -160,7 +172,6 @@ public class EYBAdvancedCardText extends EYBCardText
         }
         if (card.exhaust)
         {
-            /*offset_y -=*/
             RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y);
         }
 
@@ -175,7 +186,6 @@ public class EYBAdvancedCardText extends EYBCardText
         }
         if (card.agilityScaling > 0)
         {
-            /*offset_y -=*/
             RenderScaling(sb, ICONS.Agility.Texture(), card.agilityScaling, offset_y);
         }
     }
@@ -189,7 +199,7 @@ public class EYBAdvancedCardText extends EYBCardText
         RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 38, 38);
 
         font.getData().setScale(0.6f * card.drawScale);
-        RenderHelpers.WriteOnCard(sb, card, font, "x" + (int) scaling, (offset_x + 9), (offset_y + y - 12), Settings.CREAM_COLOR.cpy());
+        RenderHelpers.WriteOnCard(sb, card, font, "x" + (int) scaling, (offset_x + 9), (offset_y + y - 12), Settings.CREAM_COLOR.cpy(), true);
         font.getData().setScale(1);
 
         return 36;

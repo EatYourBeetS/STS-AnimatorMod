@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.ultrarare.*;
 import eatyourbeets.interfaces.markers.Hidden;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
@@ -69,7 +68,6 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     protected void renderCardBg(SpriteBatch sb, float x, float y)
     {
         RENDER_COLOR.a = this.transparency;
-
         switch (type)
         {
             case ATTACK:
@@ -90,6 +88,12 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     @Override
     protected Texture GetEnergyOrb()
     {
-        return GR.GetTexture(GR.Animator.Images.ORB_B_PNG);
+        return IMAGES.CARD_ENERGY_ORB_A.Texture();
+    }
+
+    @Override
+    protected Texture GetCardBanner()
+    {
+        return IMAGES.CARD_BANNER_ULTRARARE.Texture();
     }
 }

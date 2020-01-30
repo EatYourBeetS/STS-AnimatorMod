@@ -11,9 +11,19 @@ import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
 {
-    private boolean transformed = false;
-
     public static final String ID = Register(Aqua.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new Aqua(true), true);
+    }
+
+    private boolean transformed = false;
+    private Aqua(boolean transformed)
+    {
+        this();
+
+        SetTransformed(transformed);
+    }
 
     public Aqua()
     {
@@ -24,13 +34,6 @@ public class Aqua extends AnimatorCard
 
         SetHealing(true);
         SetSynergy(Synergies.Konosuba);
-
-        if (InitializingPreview())
-        {
-            Aqua copy = new Aqua(); // InitializingPreview will be true only once
-            copy.SetTransformed(true);
-            cardData.InitializePreview(copy, true);
-        }
     }
 
     @Override

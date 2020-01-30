@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -13,8 +14,18 @@ import eatyourbeets.utilities.GameUtilities;
 public class IzunaHatsuse extends AnimatorCard
 {
     public static final String ID = Register(IzunaHatsuse.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new IzunaHatsuse(true), true);
+    }
 
     private boolean transformed;
+    private IzunaHatsuse(boolean transformed)
+    {
+        this();
+
+        SetTransformed(transformed);
+    }
 
     public IzunaHatsuse()
     {
@@ -25,14 +36,28 @@ public class IzunaHatsuse extends AnimatorCard
 
         SetTransformed(false);
         SetSynergy(Synergies.NoGameNoLife);
+    }
 
-        if (InitializingPreview())
+    @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        if (transformed)
         {
-            // InitializingPreview will only be true once
-            IzunaHatsuse copy = new IzunaHatsuse();
-            copy.SetTransformed(true);
-            cardData.InitializePreview(copy, true);
+            return null;
         }
+
+        return super.GetBlockInfo();
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        if (!transformed)
+        {
+            return null;
+        }
+
+        return super.GetDamageInfo().AddMultiplier(2);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package eatyourbeets.misc.cardTextParsing;
+package eatyourbeets.cards.base.cardTextParsing;
 
 public enum CTTokenType
 {

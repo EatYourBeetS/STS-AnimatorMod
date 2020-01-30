@@ -14,6 +14,10 @@ import eatyourbeets.utilities.GameActions;
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
     public static final String ID = Register(TanyaDegurechaff.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new TanyaDegurechaff_Type95(), false);
+    }
 
     public TanyaDegurechaff()
     {
@@ -23,11 +27,6 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.YoujoSenki);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new TanyaDegurechaff_Type95(), false);
-        }
     }
 
     @Override

@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import eatyourbeets.cards.base.EYBCardText;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.AdvancedHitbox;
@@ -52,11 +51,6 @@ public class AnimatorCardBadgeLegend extends GUIElement
         {
             legendImage.Update();
             upgradeToggle.SetPosition(legendImage.hb.cX, legendImage.hb.y + legendImage.hb.height + upgradeToggle.hb.height).Update();
-
-            if (legendImage.hb.hovered)
-            {
-                EYBCardText.ToggledOnce = true;
-            }
         }
     }
 

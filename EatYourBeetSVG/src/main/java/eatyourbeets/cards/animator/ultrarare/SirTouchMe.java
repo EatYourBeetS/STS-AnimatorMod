@@ -19,6 +19,7 @@ public class SirTouchMe extends AnimatorCard_UltraRare implements StartupCard
 
         Initialize(4, 4, 4, 3);
         SetUpgrade(2, 2, 2, 0);
+        SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.Overlord);
     }

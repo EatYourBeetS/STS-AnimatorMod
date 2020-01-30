@@ -1,4 +1,4 @@
-package eatyourbeets.misc.cardTextParsing;
+package eatyourbeets.cards.base.cardTextParsing;
 
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCardTooltip;

@@ -1,6 +1,7 @@
 package eatyourbeets.ui.controls;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,9 +10,9 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import eatyourbeets.interfaces.csharp.ActionT0;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
-import eatyourbeets.interfaces.csharp.ActionT0;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class GUI_Button extends GUIElement
@@ -160,11 +161,11 @@ public class GUI_Button extends GUIElement
 
         if (interactable && this.hb.hovered && !this.hb.clickStarted)
         {
-            sb.setBlendFunction(770, 1);
+            sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
 
             background.SetColor(HOVER_BLEND_COLOR).Render(sb, hb);
 
-            sb.setBlendFunction(770, 771);
+            sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         }
     }
 

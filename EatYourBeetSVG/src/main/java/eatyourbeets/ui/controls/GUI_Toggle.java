@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.ui.GUIElement;
@@ -18,21 +19,47 @@ import eatyourbeets.utilities.RenderHelpers;
 public class GUI_Toggle extends GUIElement
 {
     public Hitbox hb;
-    public boolean toggled;
+    public String text = "-";
+    public boolean toggled = false;
+    public boolean interactable = true;
 
-    private boolean interactable;
-    private GUI_Image texture;
-    private Color textureColor;
-    private BitmapFont font;
-    private String text;
-    private ActionT1<Boolean> onToggle;
+    public CInputAction controllerAction = CInputActionSet.select;
+    public GUI_Image untickedImage = new GUI_Image(ImageMaster.COLOR_TAB_BOX_UNTICKED);
+    public GUI_Image tickedImage = new GUI_Image(ImageMaster.COLOR_TAB_BOX_TICKED);
+    public GUI_Image backgroundImage = null;
+    public Color defaultColor = Settings.CREAM_COLOR;
+    public Color hoveredColor = Settings.GOLD_COLOR;
+    public BitmapFont font = FontHelper.topPanelInfoFont;
+    public float tickSize = 48;
+    public ActionT1<Boolean> onToggle = null;
 
     public GUI_Toggle(Hitbox hb)
     {
         this.hb = hb;
-        this.font = FontHelper.topPanelInfoFont;
-        this.interactable = true;
-        this.text = "-";
+    }
+
+    public GUI_Toggle SetFontColors(Color defaultColor, Color hoveredColor)
+    {
+        this.defaultColor = defaultColor.cpy();
+        this.hoveredColor = hoveredColor.cpy();
+
+        return this;
+    }
+
+    public GUI_Toggle SetControllerAction(CInputAction action)
+    {
+        this.controllerAction = action;
+
+        return this;
+    }
+
+    public GUI_Toggle SetTickImage(GUI_Image unticked, GUI_Image ticked, float size)
+    {
+        this.untickedImage = unticked;
+        this.tickedImage = ticked;
+        this.tickSize = size;
+
+        return this;
     }
 
     public GUI_Toggle SetInteractable(boolean interactable)
@@ -63,10 +90,16 @@ public class GUI_Toggle extends GUIElement
         return this;
     }
 
-    public GUI_Toggle SetTexture(Texture texture, Color color)
+    public GUI_Toggle SetBackground(GUI_Image image)
     {
-        this.texture = RenderHelpers.ForTexture(texture).SetHitbox(hb);
-        this.textureColor = color;
+        this.backgroundImage = image;
+
+        return this;
+    }
+
+    public GUI_Toggle SetBackground(Texture texture, Color color)
+    {
+        this.backgroundImage = RenderHelpers.ForTexture(texture).SetHitbox(hb).SetColor(color);
 
         return this;
     }
@@ -123,7 +156,17 @@ public class GUI_Toggle extends GUIElement
             hb.clickStarted = true;
         }
 
-        if (interactable && (hb.clicked || hb.hovered && CInputActionSet.select.isJustPressed()))
+        boolean controllerPressed = false;
+        if (controllerAction != null && controllerAction.isJustPressed())
+        {
+            if (controllerAction != CInputActionSet.select || hb.hovered)
+            {
+                controllerPressed = true;
+                controllerAction.unpress();
+            }
+        }
+
+        if (interactable && (hb.clicked || controllerPressed))
         {
             hb.clicked = false;
             CardCrawlGame.sound.playA("UI_CLICK_1", -0.2F);
@@ -135,10 +178,16 @@ public class GUI_Toggle extends GUIElement
     @Override
     public void Render(SpriteBatch sb)
     {
-        if (texture != null)
+        if (backgroundImage != null)
         {
-            texture.SetColor(textureColor);
-            texture.Render(sb);
+            if (backgroundImage.hb != null)
+            {
+                backgroundImage.Render(sb);
+            }
+            else
+            {
+                backgroundImage.RenderCentered(sb, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - tickSize / 2f, tickSize, tickSize);
+            }
         }
 
         Color fontColor;
@@ -148,28 +197,24 @@ public class GUI_Toggle extends GUIElement
         }
         else if (hb.hovered)
         {
-            fontColor = Settings.GOLD_COLOR;
+            fontColor = hoveredColor;
         }
         else
         {
-            fontColor = Settings.CREAM_COLOR;
+            fontColor = defaultColor;
         }
 
-        FontHelper.renderFontCentered(sb, font, text, hb.cX + 14f * Settings.scale, hb.cY, fontColor);
+        FontHelper.renderFontLeft(sb, font, text, hb.x + (tickSize * 1.3f * Settings.scale), hb.cY, fontColor);
 
-        Texture img;
-        if (toggled)
+        GUI_Image img = toggled ? tickedImage : untickedImage;
+        if (img != null)
         {
-            img = ImageMaster.COLOR_TAB_BOX_TICKED;
-        }
-        else
-        {
-            img = ImageMaster.COLOR_TAB_BOX_UNTICKED;
-        }
+            img.RenderCentered(sb, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - tickSize / 2f, tickSize, tickSize);
 
-        sb.setColor(fontColor);
-        sb.draw(img, hb.x + 8f * Settings.scale, hb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale,
-                0.0F, 0, 0, 48, 48, false, false);
+//            sb.setColor(fontColor);
+//            sb.draw(img, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - tickSize / 2f, tickSize / 2f, tickSize / 2f, tickSize, tickSize,
+//                    Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+        }
 
         hb.render(sb);
     }

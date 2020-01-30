@@ -22,7 +22,6 @@ public class AnimatorImages
     public final String BANNER_SPECIAL2_P_PNG = "images/cardui/animator/1024/banner_special2.png";
 
     public final String BANNER_SPECIAL_PNG = "images/cardui/animator/512/banner_special.png";
-    public final String BANNER_SPECIAL2_PNG = "images/cardui/animator/512/banner_special2.png";
 
     public final String ORB_VFX_PNG = "images/ui/topPanel/animator_canvas/orbVfx.png";
     public final String[] ORB_TEXTURES =
@@ -40,6 +39,12 @@ public class AnimatorImages
     public final String SHOULDER2_PNG = "images/characters/animator/shoulder2.png";
     public final String CORPSE_PNG = "images/characters/animator/corpse.png";
 
+    public final TextureCache CARD_ENERGY_ORB_A           = new TextureCache("images/cardui/animator/512/card_a_orb_canvas.png");
+    public final TextureCache CARD_BACKGROUND_ATTACK      = new TextureCache("images/cardui/animator/512/bg_attack_canvas.png");
+    public final TextureCache CARD_BACKGROUND_SKILL       = new TextureCache("images/cardui/animator/512/bg_skill_canvas.png");
+    public final TextureCache CARD_BACKGROUND_POWER       = new TextureCache("images/cardui/animator/512/bg_power_canvas.png");
+    public final TextureCache CARD_BANNER_SPECIAL         = new TextureCache("images/cardui/animator/512/banner_special.png");
+    public final TextureCache CARD_BANNER_ULTRARARE       = new TextureCache("images/cardui/animator/512/banner_ultrarare.png");
     public final TextureCache CARD_FRAME_ATTACK_SPECIAL   = new TextureCache("images/cardui/animator/512/frame_attack_special.png");
     public final TextureCache CARD_FRAME_SKILL_SPECIAL    = new TextureCache("images/cardui/animator/512/frame_skill_special.png");
     public final TextureCache CARD_FRAME_POWER_SPECIAL    = new TextureCache("images/cardui/animator/512/frame_power_special.png");

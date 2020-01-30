@@ -3,6 +3,7 @@ package eatyourbeets.ui.controls;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.ui.GUIElement;
 
@@ -64,6 +65,13 @@ public class GUI_Image extends GUIElement
     {
         sb.setColor(color);
         sb.draw(texture, x, y, 0, 0, width, height, scaleX, scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
+    }
+
+    public void RenderCentered(SpriteBatch sb, float x, float y, float width, float height)
+    {
+        sb.setColor(color);
+        sb.draw(texture, x, y, width/2f, height/2f, width, height, Settings.scale * scaleX,
+                Settings.scale * scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
     }
 
     public GUI_Image SetTexture(Texture texture)

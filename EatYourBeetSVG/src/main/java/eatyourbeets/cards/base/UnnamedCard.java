@@ -158,38 +158,32 @@ public abstract class UnnamedCard extends EYBCard
     }
 
     @Override
-    protected String GetHeaderText()
+    protected ColoredString GetHeaderText()
     {
-        String text = null;
+        ColoredString result = new ColoredString();
         if (isVoidbound())
         {
-            text = "Voidbound";
+            result.text = "Voidbound";
 
             if (GameUtilities.InBattle())
             {
                 if (enteredVoid)
                 {
-                    headerTextColor = Settings.GOLD_COLOR.cpy();
+                    result.color = Settings.GOLD_COLOR.cpy();
                 }
                 else
                 {
-                    text = "Voidbound, Depleted";
-                    headerTextColor = new Color(1.0F, 1.0F, 1.0F, 0.7F);
+                    result.text = "Voidbound, Depleted";
+                    result.color = new Color(1.0F, 1.0F, 1.0F, 0.7F);
                 }
             }
             else
             {
-                headerTextColor = super.GetHeaderColor();
+                result.color = Settings.CREAM_COLOR.cpy();
             }
         }
 
-        return text;
-    }
-
-    @Override
-    protected Color GetHeaderColor()
-    {
-        return headerTextColor;
+        return result;
     }
 
     public String getMasteryCostString()

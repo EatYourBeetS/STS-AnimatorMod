@@ -5,12 +5,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.damage.DealDamage;
 import eatyourbeets.actions.damage.DealDamageToAll;
+import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
@@ -20,6 +23,8 @@ import java.util.List;
 
 public abstract class AnimatorCard extends EYBCard
 {
+    protected static final AnimatorImages IMAGES = GR.Animator.Images;
+
     private static final String SPELLCASTER_STRING = GR.GetTooltipByID("Spellcaster").title;
     private static final String MARTIAL_ARTIST_STRING = GR.GetTooltipByID("Martial Artist").title;
     private static final String SHAPESHIFTER_STRING = GR.GetTooltipByID("Shapeshifter").title;
@@ -27,6 +32,8 @@ public abstract class AnimatorCard extends EYBCard
     private static final Color synergyGlowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR;
 
     private final List<TooltipInfo> customTooltips = new ArrayList<>();
+
+    protected AnimatorCardCooldown cooldown;
 
     public Synergy synergy;
     public boolean anySynergy;
@@ -62,17 +69,6 @@ public abstract class AnimatorCard extends EYBCard
     protected AnimatorCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
         super(data, id, imagePath, cost, type, color, rarity, target);
-
-        assetUrl = imagePath;
-
-        if (this instanceof AnimatorCard_UltraRare)
-        {
-            setBannerTexture(GR.Animator.Images.BANNER_SPECIAL2_PNG, GR.Animator.Images.BANNER_SPECIAL2_P_PNG);
-        }
-        else if (rarity == CardRarity.SPECIAL)
-        {
-            setBannerTexture(GR.Animator.Images.BANNER_SPECIAL_PNG, GR.Animator.Images.BANNER_SPECIAL_P_PNG);
-        }
     }
 
     public boolean HasSynergy()
@@ -94,6 +90,20 @@ public abstract class AnimatorCard extends EYBCard
     {
         this.synergy = synergy;
         this.anySynergy = shapeshifter;
+    }
+
+    public void SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted)
+    {
+        cooldown = new AnimatorCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        if (cooldown != null)
+        {
+            cooldown.ProgressCooldownAndTrigger(null);
+        }
     }
 
     @Override
@@ -121,14 +131,14 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    protected String GetHeaderText()
+    protected ColoredString GetHeaderText()
     {
         if (synergy == null)
         {
             return null;
         }
 
-        return synergy.Name;
+        return new ColoredString(synergy.Name, Settings.CREAM_COLOR);
     }
 
     public DealDamage DealDamage(AbstractMonster target, AbstractGameAction.AttackEffect effect)
@@ -141,36 +151,6 @@ public abstract class AnimatorCard extends EYBCard
     {
         return GameActions.Bottom.DealDamageToAll(this, effect)
         .SetPiercing(attackType.bypassThorns, attackType.bypassBlock);
-    }
-
-    @Override
-    protected Texture GetCardBackground()
-    {
-        if (color == GR.Animator.CardColor)
-        {
-            switch (type)
-            {
-                case ATTACK:
-                    return GR.GetTexture(GR.Animator.Images.ATTACK_PNG);
-                case SKILL:
-                    return GR.GetTexture(GR.Animator.Images.SKILL_PNG);
-                case POWER:
-                    return GR.GetTexture(GR.Animator.Images.POWER_PNG);
-            }
-        }
-
-        return super.GetCardBackground();
-    }
-
-    @Override
-    protected Texture GetEnergyOrb()
-    {
-        if (color == GR.Animator.CardColor)
-        {
-            return GR.GetTexture(GR.Animator.Images.ORB_B_PNG);
-        }
-
-        return null;
     }
 
     @Override
@@ -190,5 +170,70 @@ public abstract class AnimatorCard extends EYBCard
         }
 
         return null;
+    }
+
+    @Override
+    protected Texture GetCardBackground()
+    {
+        if (color == GR.Animator.CardColor)
+        {
+            switch (type)
+            {
+                case ATTACK: return IMAGES.CARD_BACKGROUND_ATTACK.Texture();
+                case POWER: return IMAGES.CARD_BACKGROUND_POWER.Texture();
+                default: return IMAGES.CARD_BACKGROUND_SKILL.Texture();
+            }
+        }
+
+        return super.GetCardBackground();
+    }
+
+    @Override
+    protected Texture GetEnergyOrb()
+    {
+        if (color == GR.Animator.CardColor)
+        {
+            return IMAGES.CARD_ENERGY_ORB_A.Texture();
+        }
+
+        return null;
+    }
+
+    @Override
+    protected Texture GetCardBanner()
+    {
+        if (rarity == CardRarity.SPECIAL)
+        {
+            return IMAGES.CARD_BANNER_SPECIAL.Texture();
+        }
+
+        return null;
+    }
+
+    @Override
+    protected Texture GetPortraitFrame()
+    {
+        if (rarity == CardRarity.SPECIAL)
+        {
+            switch (type)
+            {
+                case ATTACK: return IMAGES.CARD_FRAME_ATTACK_SPECIAL.Texture();
+                case POWER: return IMAGES.CARD_FRAME_POWER_SPECIAL.Texture();
+                default: return IMAGES.CARD_FRAME_SKILL_SPECIAL.Texture();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public ColoredString GetSecondaryValueString()
+    {
+        if (cooldown != null)
+        {
+            return cooldown.GetSecondaryValueString();
+        }
+
+        return super.GetSecondaryValueString();
     }
 }

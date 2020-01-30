@@ -23,24 +23,18 @@ import java.util.ArrayList;
 
 @SpireInitializer
 public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
-                                           PostEnergyRechargeSubscriber, PostDrawSubscriber, StartGameSubscriber,
-                                           StartActSubscriber, MaxHPChangeSubscriber, PostDeathSubscriber,
-                                           PreStartGameSubscriber, PreUpdateSubscriber, PostUpdateSubscriber, PostInitializeSubscriber,
+                                          PostEnergyRechargeSubscriber, PostDrawSubscriber, StartGameSubscriber,
+                                          StartActSubscriber, MaxHPChangeSubscriber, PostDeathSubscriber,
+                                          PreStartGameSubscriber, PostUpdateSubscriber, PostInitializeSubscriber,
                                           PostRenderSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
+    private static GUI_TextBox testModeLabel;
 
     public static void initialize()
     {
-        // Entry Point
-        new EYBModInitializer();
-    }
-
-    private EYBModInitializer()
-    {
         logger.info("EYBModInitializer()");
-
-        BaseMod.subscribe(this);
+        BaseMod.subscribe(new EYBModInitializer());
         GR.Initialize();
     }
 
@@ -151,14 +145,6 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     }
 
     @Override
-    public void receivePreUpdate()
-    {
-        InputManager.PreUpdate();
-    }
-
-    private static GUI_TextBox testModeLabel;
-
-    @Override
     public void receivePostRender(SpriteBatch sb)
     {
         if (GR.TEST_MODE)
@@ -166,10 +152,10 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
             if (testModeLabel == null)
             {
                 testModeLabel = new GUI_TextBox(GR.Common.Images.Panel.Texture(),
-                new AdvancedHitbox(Settings.WIDTH * 0.12f, Settings.HEIGHT * 0.08f))
-                .SetPosition(Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.85f)
-                .SetAlignment(0.5f, true)
-                .SetText("TEST MODE");
+                        new AdvancedHitbox(Settings.WIDTH * 0.12f, Settings.HEIGHT * 0.08f))
+                        .SetPosition(Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.85f)
+                        .SetAlignment(0.5f, true)
+                        .SetText("TEST MODE");
             }
 
             testModeLabel.Render(sb);

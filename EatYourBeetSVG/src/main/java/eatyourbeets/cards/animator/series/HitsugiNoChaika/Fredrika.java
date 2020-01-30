@@ -16,14 +16,27 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Fredrika extends AnimatorCard
 {
+    private enum Form
+    {
+        Default,
+        Cat,
+        Dominica,
+        Dragoon
+    }
+
     public static final String ID = Register(Fredrika.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new Fredrika(Form.Dragoon), true);
+    }
 
-    private static final int FORM_DEFAULT = 0;
-    private static final int FORM_CAT = 1;
-    private static final int FORM_DOMINICA = 2;
-    private static final int FORM_DRAGOON = 3;
+    private Form currentForm = Form.Default;
+    private Fredrika(Form form)
+    {
+        this();
 
-    private int currentForm = 0;
+        ChangeForm(form);
+    }
 
     public Fredrika()
     {
@@ -32,25 +45,13 @@ public class Fredrika extends AnimatorCard
         Initialize(9, 2, 2);
         SetUpgrade(2, 2, 0);
 
-        if (InitializingPreview())
-        {
-            Fredrika c1 = new Fredrika();
-            Fredrika c2 = new Fredrika();
-
-            c1.ChangeForm(FORM_DRAGOON);
-            c2.ChangeForm(FORM_DRAGOON);
-            c2.upgrade();
-
-            cardData.InitializePreview(c1, c2);
-        }
-
         SetSynergy(Synergies.Chaika, true);
     }
 
     @Override
     protected float GetInitialBlock()
     {
-        if (currentForm == FORM_DEFAULT)
+        if (currentForm == Form.Default)
         {
             return super.GetInitialBlock() + GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
         }
@@ -63,7 +64,7 @@ public class Fredrika extends AnimatorCard
     {
         super.triggerOnEndOfTurnForPlayingCard();
 
-        this.ChangeForm(FORM_DEFAULT);
+        this.ChangeForm(Form.Default);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class Fredrika extends AnimatorCard
     {
         super.onMoveToDiscard();
 
-        this.ChangeForm(FORM_DEFAULT);
+        this.ChangeForm(Form.Default);
     }
 
     @Override
@@ -79,14 +80,14 @@ public class Fredrika extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (this.currentForm == FORM_DEFAULT)
+        if (this.currentForm == Form.Default)
         {
             CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
             for (int i = 1; i <= 3; i++)
             {
                 Fredrika other = (Fredrika) makeStatEquivalentCopy();
-                other.ChangeForm(i);
+                other.ChangeForm(Form.values()[i]);
                 cardGroup.addToTop(other);
             }
 
@@ -108,21 +109,21 @@ public class Fredrika extends AnimatorCard
     {
         switch (currentForm)
         {
-            case FORM_DEFAULT:
+            case Default:
             {
                 GameActions.Bottom.GainBlock(block);
 
                 break;
             }
 
-            case FORM_CAT:
+            case Cat:
             {
                 GameActions.Bottom.GainBlock(block);
 
                 break;
             }
 
-            case FORM_DOMINICA:
+            case Dominica:
             {
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
                 GameActions.Bottom.ApplyVulnerable(p, m, 1);
@@ -131,7 +132,7 @@ public class Fredrika extends AnimatorCard
                 break;
             }
 
-            case FORM_DRAGOON:
+            case Dragoon:
             {
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
@@ -152,7 +153,7 @@ public class Fredrika extends AnimatorCard
         return other;
     }
 
-    private void ChangeForm(int formID)
+    private void ChangeForm(Form formID)
     {
         if (this.currentForm == formID)
         {
@@ -163,7 +164,7 @@ public class Fredrika extends AnimatorCard
 
         switch (formID)
         {
-            case FORM_DEFAULT:
+            case Default:
             {
                 this.loadCardImage(AnimatorResources.GetCardImage(ID));
                 this.cardText.OverrideDescription(null, true);
@@ -174,7 +175,7 @@ public class Fredrika extends AnimatorCard
                 break;
             }
 
-            case FORM_CAT:
+            case Cat:
             {
                 this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Cat"));
                 this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
@@ -185,7 +186,7 @@ public class Fredrika extends AnimatorCard
                 break;
             }
 
-            case FORM_DRAGOON:
+            case Dragoon:
             {
                 this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Dragoon"));
                 this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[1], true);
@@ -196,7 +197,7 @@ public class Fredrika extends AnimatorCard
                 break;
             }
 
-            case FORM_DOMINICA:
+            case Dominica:
             {
                 this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Dominica"));
                 this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[2], true);

@@ -6,18 +6,22 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.EntouJyuu;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 import java.util.ArrayList;
 
 public class Emonzaemon extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(Emonzaemon.class);
+    static
+    {
+        staticCardData.get(ID).InitializePreview(new EntouJyuu(), true);
+    }
 
     public Emonzaemon()
     {
@@ -28,11 +32,6 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Katanagatari);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new EntouJyuu(), true);
-        }
     }
 
     @Override

@@ -1,7 +1,6 @@
 package eatyourbeets.cards.base.attributes;
 
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.utilities.RenderHelpers;
 
 public class DamageAttribute extends AbstractAttribute
 {
@@ -41,7 +40,7 @@ public class DamageAttribute extends AbstractAttribute
             iconTag = null;
         }
 
-        mainText = RenderHelpers.GetDamageString(card);
+        mainText = card.GetDamageString();
 
         return this;
     }

@@ -12,7 +12,6 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.relics.animator.LivingPicture;
-import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
@@ -69,10 +68,6 @@ public abstract class AnimatorLoadout
         {
             UnlockTracker.markRelicAsSeen(LivingPicture.ID);
         }
-        if (!UnlockTracker.isRelicSeen(PurgingStone.ID))
-        {
-            UnlockTracker.markRelicAsSeen(PurgingStone.ID);
-        }
         if (!UnlockTracker.isRelicSeen(TheMissingPiece.ID))
         {
             UnlockTracker.markRelicAsSeen(TheMissingPiece.ID);
@@ -80,9 +75,7 @@ public abstract class AnimatorLoadout
 
         ArrayList<String> res = new ArrayList<>();
         res.add(LivingPicture.ID);
-        res.add(PurgingStone.ID);
         res.add(TheMissingPiece.ID);
-
         return res;
     }
 

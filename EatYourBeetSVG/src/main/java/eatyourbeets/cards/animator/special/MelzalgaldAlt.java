@@ -11,7 +11,7 @@ public abstract class MelzalgaldAlt extends AnimatorCard implements Hidden
 
     public MelzalgaldAlt(String id)
     {
-        super(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF_AND_ENEMY);
+        super(GetStaticData(id), id, AnimatorResources.GetCardImage(id), 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF_AND_ENEMY);
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan, true);

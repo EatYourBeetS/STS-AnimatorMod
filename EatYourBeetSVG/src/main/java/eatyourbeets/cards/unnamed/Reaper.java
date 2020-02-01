@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.UnnamedCard;
-import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Reaper extends UnnamedCard
@@ -16,8 +15,6 @@ public class Reaper extends UnnamedCard
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
 
         Initialize(0,0, 2, 30);
-
-        AddExtendedDescription();
 
         SetExhaust(true);
         SetHealing(true);

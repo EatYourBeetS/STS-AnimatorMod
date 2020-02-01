@@ -130,5 +130,7 @@ public class AnimatorLoadoutsContainer
         {
             GR.Animator.Dungeon.AddSeries(Find(card));
         }
+
+        GR.Animator.Dungeon.InitializeCardPool(false);
     }
 }

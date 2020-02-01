@@ -18,6 +18,10 @@ import java.util.ArrayList;
 public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ID = Register(Vesta.class);
+    static
+    {
+        GetStaticData(ID).InitializePreview(new Vesta_Elixir(), false);
+    }
 
     private int timer;
     private Vesta_Elixir elixir;
@@ -28,8 +32,6 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, -1);
-
-        AddExtendedDescription();
 
         SetExhaust(true);
         SetSynergy(Synergies.TenSura);

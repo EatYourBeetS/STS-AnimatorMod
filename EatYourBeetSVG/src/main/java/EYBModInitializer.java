@@ -3,15 +3,10 @@ import basemod.interfaces.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.console.CommandsManager;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.GUI_TextBox;
@@ -19,14 +14,10 @@ import eatyourbeets.utilities.InputManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-
 @SpireInitializer
 public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
-                                          PostEnergyRechargeSubscriber, PostDrawSubscriber, StartGameSubscriber,
-                                          StartActSubscriber, MaxHPChangeSubscriber, PostDeathSubscriber,
-                                          PreStartGameSubscriber, PostUpdateSubscriber, PostInitializeSubscriber,
-                                          PostRenderSubscriber
+                                          PostEnergyRechargeSubscriber, PostDrawSubscriber, PostDeathSubscriber,
+                                          PreStartGameSubscriber, PostUpdateSubscriber, PostRenderSubscriber
 {
     private static final Logger logger = LogManager.getLogger(EYBModInitializer.class.getName());
     private static GUI_TextBox testModeLabel;
@@ -63,12 +54,6 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
         PlayerStatistics.EnsurePowerIsApplied(); // Ensure PlayerStatistics is always active at turn start
     }
 
-    @Override
-    public void receivePostInitialize()
-    {
-        CommandsManager.RegisterCommands();
-    }
-
     @Override // false = skips monster turn
     public boolean receivePreMonsterTurn(AbstractMonster abstractMonster)
     {
@@ -81,55 +66,6 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     public void receivePreStartGame()
     {
         PlayerStatistics.OnGameStart();
-    }
-
-    @Override
-    public void receiveStartGame()
-    {
-        if (AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass)
-        {
-            if (Settings.isStandardRun())
-            {
-                GR.Animator.Data.SaveTrophies(true);
-            }
-
-            PurgingStone.UpdateBannedCards();
-        }
-        else
-        {
-            RemoveColorless(AbstractDungeon.srcColorlessCardPool);
-            RemoveColorless(AbstractDungeon.colorlessCardPool);
-        }
-    }
-
-    @Override
-    public void receiveStartAct()
-    {
-        if (AbstractDungeon.player.chosenClass != GR.Enums.Characters.THE_ANIMATOR)
-        {
-            RemoveColorless(AbstractDungeon.srcColorlessCardPool);
-            RemoveColorless(AbstractDungeon.colorlessCardPool);
-        }
-
-        PurgingStone.UpdateBannedCards();
-    }
-
-    private void RemoveColorless(CardGroup group)
-    {
-        ArrayList<AbstractCard> toRemove = new ArrayList<>();
-        for (AbstractCard c : group.group)
-        {
-            if (c instanceof AnimatorCard)
-            {
-                toRemove.add(c);
-                logger.info("REMOVING: " + c.name);
-            }
-        }
-
-        for (AbstractCard c : toRemove)
-        {
-            group.removeCard(c);
-        }
     }
 
     @Override

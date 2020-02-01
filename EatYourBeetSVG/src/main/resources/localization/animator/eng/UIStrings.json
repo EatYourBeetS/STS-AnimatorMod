@@ -124,6 +124,17 @@
 		]
 	},
 
+	"animator:SeriesSelection":
+	{
+		"TEXT":
+		[
+			"Contains {0} cards.",
+			"Cards from this series NL might have a random NL {Bonus} upon pickup.",
+			"This series is either NL incomplete or still NL being tested.",
+			"Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards."
+		]
+	},
+
 	"animator:CharacterSelect":
 	{
 		"TEXT":

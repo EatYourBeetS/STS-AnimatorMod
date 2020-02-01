@@ -3,10 +3,10 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.ultrarare.*;
 import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
@@ -71,13 +71,13 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
         switch (type)
         {
             case ATTACK:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_ATTACK_BG_GRAY, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_ATTACK_UR.Texture(), x, y);
                 break;
             case SKILL:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_SKILL_BG_GRAY, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_SKILL_UR.Texture(), x, y);
                 break;
             case POWER:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, ImageMaster.CARD_POWER_BG_GRAY, x, y);
+                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_POWER_UR.Texture(), x, y);
                 break;
             default:
                 super.renderCardBg(sb, x, y);

@@ -41,6 +41,9 @@ public class AnimatorImages
 
     public final TextureCache CARD_ENERGY_ORB_A           = new TextureCache("images/cardui/animator/512/card_a_orb_canvas.png");
     public final TextureCache CARD_BACKGROUND_ATTACK      = new TextureCache("images/cardui/animator/512/bg_attack_canvas.png");
+    public final TextureCache CARD_BACKGROUND_ATTACK_UR   = new TextureCache("images/cardui/animator/512/bg_attack_ultrarare.png");
+    public final TextureCache CARD_BACKGROUND_SKILL_UR    = new TextureCache("images/cardui/animator/512/bg_skill_ultrarare.png");
+    public final TextureCache CARD_BACKGROUND_POWER_UR    = new TextureCache("images/cardui/animator/512/bg_power_ultrarare.png");
     public final TextureCache CARD_BACKGROUND_SKILL       = new TextureCache("images/cardui/animator/512/bg_skill_canvas.png");
     public final TextureCache CARD_BACKGROUND_POWER       = new TextureCache("images/cardui/animator/512/bg_power_canvas.png");
     public final TextureCache CARD_BANNER_SPECIAL         = new TextureCache("images/cardui/animator/512/banner_special.png");

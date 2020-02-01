@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.Synergies;
@@ -16,7 +17,7 @@ public class Spearman extends AnimatorCard
 
     public Spearman()
     {
-        super(ID, 1, CardRarity.COMMON, AttackType.Piercing);
+        super(ID, 1, CardRarity.COMMON, EYBAttackType.Piercing);
 
         Initialize(9, 0, 1);
         SetUpgrade(4, 0);

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
@@ -19,7 +20,7 @@ public class DolaSchwi extends AnimatorCard
 
     public DolaSchwi()
     {
-        super(ID, 0, CardRarity.COMMON, AttackType.Ranged);
+        super(ID, 0, CardRarity.COMMON, EYBAttackType.Ranged);
 
         Initialize(12, 0, 1);
         SetUpgrade(4, 0, 1);

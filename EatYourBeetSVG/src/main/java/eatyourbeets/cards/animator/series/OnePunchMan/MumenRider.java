@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -18,7 +19,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
     public MumenRider()
     {
-        super(ID, 0, CardRarity.COMMON, AttackType.Normal);
+        super(ID, 0, CardRarity.COMMON, EYBAttackType.Normal);
 
         Initialize(3, 0, 20);
 

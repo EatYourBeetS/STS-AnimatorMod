@@ -21,8 +21,6 @@ public class Lelouch extends AnimatorCard
         Initialize(0, 0, 3);
         SetCostUpgrade(-1);
 
-        AddExtendedDescription();
-
         SetPurge(true);
         SetSynergy(Synergies.CodeGeass);
     }

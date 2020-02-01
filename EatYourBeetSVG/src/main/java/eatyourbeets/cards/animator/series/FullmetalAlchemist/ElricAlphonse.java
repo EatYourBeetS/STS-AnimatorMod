@@ -14,7 +14,7 @@ public class ElricAlphonse extends AnimatorCard
     public static final String ID = Register(ElricAlphonse.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new ElricAlphonseAlt(), true);
+        GetStaticData(ID).InitializePreview(new ElricAlphonseAlt(), true);
     }
 
     public ElricAlphonse()

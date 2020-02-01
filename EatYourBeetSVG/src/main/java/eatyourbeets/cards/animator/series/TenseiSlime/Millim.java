@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -14,7 +15,7 @@ public class Millim extends AnimatorCard
 
     public Millim()
     {
-        super(ID, 2, CardRarity.COMMON, AttackType.Elemental);
+        super(ID, 2, CardRarity.COMMON, EYBAttackType.Elemental);
 
         Initialize(6, 0, 2);
         SetUpgrade(1, 0, 1);

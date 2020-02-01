@@ -15,8 +15,6 @@ import eatyourbeets.ui.controls.GUI_Toggle;
 
 public class AnimatorCardBadgeLegend extends GUIElement
 {
-    public static boolean showUpgrades;
-
     public final GUI_Image legendImage;
     public final GUI_Toggle upgradeToggle;
 
@@ -47,6 +45,8 @@ public class AnimatorCardBadgeLegend extends GUIElement
     @Override
     public void Update()
     {
+        upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade);
+
         if (!CardCrawlGame.isPopupOpen)
         {
             legendImage.Update();
@@ -67,6 +67,6 @@ public class AnimatorCardBadgeLegend extends GUIElement
 
     private void ToggleViewUpgrades(boolean value)
     {
-        SingleCardViewPopup.isViewingUpgrade = showUpgrades = value;
+        SingleCardViewPopup.isViewingUpgrade = value;
     }
 }

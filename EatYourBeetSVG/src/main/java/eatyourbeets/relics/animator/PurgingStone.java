@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
@@ -51,11 +52,6 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
                 }
             }
         }
-    }
-
-    public ArrayList<String> GetBannedCards()
-    {
-        return new ArrayList<>(bannedCards);
     }
 
     public int GetBannedCount()
@@ -270,6 +266,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
             srcBanCount++;
         }
 
+        GR.Animator.Dungeon.BannedCards.add(card.cardID);
         logger.info("Banned " + card.cardID + " " + banCount + ", " + srcBanCount);
     }
 

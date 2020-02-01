@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +17,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
 
     public Hakurou()
     {
-        super(ID, 2, CardRarity.COMMON, AttackType.Normal);
+        super(ID, 2, CardRarity.COMMON, EYBAttackType.Normal);
 
         Initialize(1, 0, 3);
         SetUpgrade(0, 0, 1);

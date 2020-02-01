@@ -21,8 +21,6 @@ public class HououinKyouma extends AnimatorCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
-        AddExtendedDescription();
-
         SetPurge(true);
         SetSynergy(Synergies.SteinsGate);
     }

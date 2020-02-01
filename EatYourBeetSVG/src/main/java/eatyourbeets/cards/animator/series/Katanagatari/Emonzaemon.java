@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.EntouJyuu;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
@@ -20,12 +21,12 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
     public static final String ID = Register(Emonzaemon.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new EntouJyuu(), true);
+        GetStaticData(ID).InitializePreview(new EntouJyuu(), true);
     }
 
     public Emonzaemon()
     {
-        super(ID, 1, CardRarity.COMMON, AttackType.Ranged);
+        super(ID, 1, CardRarity.COMMON, EYBAttackType.Ranged);
 
         Initialize(4, 0);
         SetUpgrade(2, 0);

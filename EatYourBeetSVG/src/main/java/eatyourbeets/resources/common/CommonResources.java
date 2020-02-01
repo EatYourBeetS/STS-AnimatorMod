@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.console.CommandsManager;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.UnnamedReign.TheAbandonedCabin;
 import eatyourbeets.events.UnnamedReign.TheHaunt;
@@ -95,6 +96,7 @@ public class CommonResources extends AbstractResources
     @Override
     protected void PostInitialize()
     {
+        CommandsManager.RegisterCommands();
         GR.UI.Initialize();
         GR.IsLoaded = true;
     }

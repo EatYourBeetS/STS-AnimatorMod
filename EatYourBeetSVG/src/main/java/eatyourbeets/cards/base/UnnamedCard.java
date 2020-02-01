@@ -52,7 +52,7 @@ public abstract class UnnamedCard extends EYBCard
 
     protected UnnamedCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        this(staticCardData.get(id), id, GetCardImage(id), cost, type, color, rarity, target);
+        this(GetStaticData(id), id, GetCardImage(id), cost, type, color, rarity, target);
     }
 
     protected UnnamedCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
@@ -158,7 +158,7 @@ public abstract class UnnamedCard extends EYBCard
     }
 
     @Override
-    protected ColoredString GetHeaderText()
+    public ColoredString GetHeaderText()
     {
         ColoredString result = new ColoredString();
         if (isVoidbound())
@@ -209,7 +209,7 @@ public abstract class UnnamedCard extends EYBCard
     }
 
     @Override
-    protected ColoredString GetBottomText()
+    public ColoredString GetBottomText()
     {
         return null;
     }

@@ -16,7 +16,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     public static final String ID = Register(TanyaDegurechaff.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new TanyaDegurechaff_Type95(), false);
+        GetStaticData(ID).InitializePreview(new TanyaDegurechaff_Type95(), false);
     }
 
     public TanyaDegurechaff()

@@ -186,7 +186,7 @@ public class GUI_Toggle extends GUIElement
             }
             else
             {
-                backgroundImage.RenderCentered(sb, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - tickSize / 2f, tickSize, tickSize);
+                backgroundImage.RenderCentered(sb, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - (tickSize / 2f) * Settings.scale, tickSize, tickSize);
             }
         }
 
@@ -206,13 +206,13 @@ public class GUI_Toggle extends GUIElement
 
         FontHelper.renderFontLeft(sb, font, text, hb.x + (tickSize * 1.3f * Settings.scale), hb.cY, fontColor);
 
-        GUI_Image img = toggled ? tickedImage : untickedImage;
-        if (img != null)
+        GUI_Image image = toggled ? tickedImage : untickedImage;
+        if (image != null)
         {
-            img.RenderCentered(sb, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - tickSize / 2f, tickSize, tickSize);
+            image.RenderCentered(sb, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - (tickSize / 2f) * Settings.scale, tickSize, tickSize);
 
 //            sb.setColor(fontColor);
-//            sb.draw(img, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - tickSize / 2f, tickSize / 2f, tickSize / 2f, tickSize, tickSize,
+//            sb.draw(image, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - tickSize / 2f, tickSize / 2f, tickSize / 2f, tickSize, tickSize,
 //                    Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
         }
 

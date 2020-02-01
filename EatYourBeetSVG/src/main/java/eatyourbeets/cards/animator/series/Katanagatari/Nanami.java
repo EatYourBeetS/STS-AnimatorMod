@@ -26,8 +26,6 @@ public class Nanami extends AnimatorCard
         Initialize(5, 4, 3);
         SetUpgrade(1, 1, 1);
 
-        AddExtendedDescription();
-
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
     }

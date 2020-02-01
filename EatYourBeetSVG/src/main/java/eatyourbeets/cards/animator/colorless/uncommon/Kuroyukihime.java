@@ -12,7 +12,7 @@ public class Kuroyukihime extends AnimatorCard
     public static final String ID = Register(Kuroyukihime.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new BlackLotus(), false);
+        GetStaticData(ID).InitializePreview(new BlackLotus(), false);
     }
 
     public Kuroyukihime()

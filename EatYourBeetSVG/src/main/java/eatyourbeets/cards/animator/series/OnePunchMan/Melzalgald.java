@@ -15,7 +15,7 @@ public class Melzalgald extends AnimatorCard
     public static final String ID = Register(Melzalgald.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new MelzalgaldAlt_1(), true);
+        GetStaticData(ID).InitializePreview(new MelzalgaldAlt_1(), true);
     }
 
     public Melzalgald()

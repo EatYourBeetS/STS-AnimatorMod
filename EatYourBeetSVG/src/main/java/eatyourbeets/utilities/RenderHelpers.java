@@ -89,10 +89,15 @@ public class RenderHelpers
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float width, float height)
     {
-        DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height);
+        DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height, Color.WHITE, card.transparency);
     }
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height)
+    {
+        DrawOnCardAuto(sb, card, img, offset, width, height, Color.WHITE, card.transparency);
+    }
+
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height, Color color, float alpha)
     {
         if (card.angle != 0)
         {
@@ -101,8 +106,10 @@ public class RenderHelpers
 
         offset.scl(Settings.scale * card.drawScale);
 
-        DrawOnCardCentered(sb, card, CopyColor(card, Color.WHITE), img, card.current_x + offset.x, card.current_y + offset.y, width, height);
+        DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height);
     }
+
+
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float size)
     {

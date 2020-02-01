@@ -26,9 +26,16 @@ public class TheDomVedeloper1 extends AnimatorEvent
     private final int CHOICE_WEAK        = 3;
     private final int CHOICE_VERYWEAK    = 4;
 
+    private void Throw()
+    {
+        throw new RuntimeException("Not Implemented");
+    }
+
     public TheDomVedeloper1()
     {
         super(ID);
+
+        Throw();
 
         Synergies.AddCards(null, AbstractDungeon.srcCommonCardPool.group, cards.GetInnerList());
         Synergies.AddCards(null, AbstractDungeon.srcUncommonCardPool.group, cards.GetInnerList());

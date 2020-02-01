@@ -92,14 +92,14 @@ public class AnimatorCharacter extends CustomPlayer
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect()
     {
         return new AbstractGameAction.AttackEffect[]
-                {
-                        AbstractGameAction.AttackEffect.SLASH_HEAVY,
-                        AbstractGameAction.AttackEffect.FIRE,
-                        AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
-                        AbstractGameAction.AttackEffect.SLASH_HEAVY,
-                        AbstractGameAction.AttackEffect.FIRE,
-                        AbstractGameAction.AttackEffect.SLASH_DIAGONAL
-                };
+        {
+                AbstractGameAction.AttackEffect.SLASH_HEAVY,
+                AbstractGameAction.AttackEffect.FIRE,
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
+                AbstractGameAction.AttackEffect.SLASH_HEAVY,
+                AbstractGameAction.AttackEffect.FIRE,
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL
+        };
     }
 
     @Override
@@ -123,13 +123,13 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public BitmapFont getEnergyNumFont()
     {
-        return FontHelper.energyNumFontBlue;
+        return FontHelper.energyNumFontRed;
     }
 
     @Override
     public void doCharSelectScreenSelectEffect()
     {
-        CardCrawlGame.sound.playA("TINGSHA", MathUtils.random(-0.1F, 0.2F));
+        CardCrawlGame.sound.playA(getCustomModeCharacterButtonSoundKey(), MathUtils.random(-0.1F, 0.2F));
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
     }
 

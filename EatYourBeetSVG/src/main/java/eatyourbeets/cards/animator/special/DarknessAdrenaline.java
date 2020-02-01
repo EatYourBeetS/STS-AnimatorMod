@@ -15,8 +15,8 @@ public class DarknessAdrenaline extends AnimatorCard implements Hidden
     {
         super(ID, 0, CardRarity.SPECIAL, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 1);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetExhaust(true);
     }
@@ -25,7 +25,7 @@ public class DarknessAdrenaline extends AnimatorCard implements Hidden
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.VFX(new AdrenalineEffect(), 0.15F);
-        GameActions.Bottom.GainEnergy(magicNumber);
-        GameActions.Bottom.Draw(2);
+        GameActions.Bottom.GainEnergy(secondaryValue);
+        GameActions.Bottom.Draw(magicNumber);
     }
 }

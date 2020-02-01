@@ -108,6 +108,8 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
                 {
                     screen.Select(c);
                 }
+
+                screen.toggleBeta.isActive = container.betaCards.size() > 0;
             }
         }
     }

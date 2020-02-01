@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
@@ -21,7 +22,7 @@ public class Shalltear extends AnimatorCard
 
     public Shalltear()
     {
-        super(ID, 2, CardRarity.UNCOMMON, AttackType.Elemental, true);
+        super(ID, 2, CardRarity.UNCOMMON, EYBAttackType.Elemental, true);
 
         Initialize(3, 0, 3);
         SetUpgrade(1, 0, 1);

@@ -14,7 +14,7 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
     public static final String ID = Register(IchigoKurosaki.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new IchigoBankai(), false);
+        GetStaticData(ID).InitializePreview(new IchigoBankai(), false);
     }
 
     public IchigoKurosaki()

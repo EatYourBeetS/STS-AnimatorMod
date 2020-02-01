@@ -14,7 +14,7 @@ public class Darkness extends AnimatorCard
     public static final String ID = Register(Darkness.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new DarknessAdrenaline(), false);
+        GetStaticData(ID).InitializePreview(new DarknessAdrenaline(), false);
     }
 
     public Darkness()

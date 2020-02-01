@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.effects.player.ObtainRelicEffect;
 import eatyourbeets.effects.player.RemoveRelicEffect;
+import eatyourbeets.effects.player.SpawnRelicEffect;
 import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.effects.utility.CallbackEffect2;
 
@@ -90,6 +91,11 @@ public final class GameEffects
     public CallbackEffect Callback(AbstractGameAction action, Object state, BiConsumer<Object, AbstractGameAction> onCompletion)
     {
         return Add(new CallbackEffect(action, state, onCompletion));
+    }
+
+    public SpawnRelicEffect SpawnRelic(AbstractRelic relic, float x, float y)
+    {
+        return Add(new SpawnRelicEffect(relic, x, y));
     }
 
     public ObtainRelicEffect ObtainRelic(AbstractRelic relic)

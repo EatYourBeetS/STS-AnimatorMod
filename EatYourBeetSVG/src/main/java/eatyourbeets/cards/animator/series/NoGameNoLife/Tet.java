@@ -15,9 +15,13 @@ public class Tet extends AnimatorCard
 
     public Tet()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.NONE);
+        super(ID, 0, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.NONE);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0);
+
+        SetInnate(true);
+        SetRetain(true);
+        SetExhaust(true);
 
         SetSynergy(Synergies.NoGameNoLife);
     }
@@ -25,7 +29,7 @@ public class Tet extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetRetain(true);
+        SetExhaust(false);
     }
 
     @Override

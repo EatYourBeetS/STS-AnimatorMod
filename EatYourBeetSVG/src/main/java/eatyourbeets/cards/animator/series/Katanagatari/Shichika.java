@@ -13,7 +13,7 @@ public class Shichika extends AnimatorCard implements MartialArtist
     public static final String ID = Register(Shichika.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new ShichikaKyotouryuu(), false);
+        GetStaticData(ID).InitializePreview(new ShichikaKyotouryuu(), false);
     }
 
     public Shichika()

@@ -13,7 +13,7 @@ public class MisaKurobane extends AnimatorCard
     public static final String ID = Register(MisaKurobane.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new Yusarin(), false);
+        GetStaticData(ID).InitializePreview(new Yusarin(), false);
     }
 
     public MisaKurobane()

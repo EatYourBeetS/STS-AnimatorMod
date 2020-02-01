@@ -10,6 +10,7 @@ public class AnimatorStrings
     public Rewards Rewards;
     public Synergies Synergies;
     public CharacterSelect CharSelect;
+    public SeriesSelection SeriesSelection;
     public Special Special;
     public Trophies Trophies;
 
@@ -21,6 +22,7 @@ public class AnimatorStrings
         CharSelect = new CharacterSelect();
         Special = new Special();
         Trophies = new Trophies();
+        SeriesSelection = new SeriesSelection();
     }
 
     public class Tips
@@ -70,6 +72,28 @@ public class AnimatorStrings
         public final String UnlocksAtLevel(int unlockLevel, int currentLevel)
         {
             return JavaUtilities.Format(Strings.TEXT[2], unlockLevel, currentLevel);
+        }
+    }
+
+    public class SeriesSelection
+    {
+        private final UIStrings Strings = GetUIStrings("SeriesSelection");
+
+        public final String PurgingStoneRequirement = Strings.TEXT[3];
+
+        public final String ContainsNCards(int cardCount)
+        {
+            return JavaUtilities.Format(Strings.TEXT[0], cardCount);
+        }
+
+        public final String ContainsNCards_Promoted(int cardCount)
+        {
+            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[1];
+        }
+
+        public final String ContainsNCards_Beta(int cardCount)
+        {
+            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[2];
         }
     }
 

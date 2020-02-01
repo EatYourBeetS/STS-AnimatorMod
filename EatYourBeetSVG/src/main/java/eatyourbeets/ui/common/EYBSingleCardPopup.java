@@ -81,13 +81,9 @@ public class EYBSingleCardPopup extends GUIElement
     {
         CardCrawlGame.isPopupOpen = true;
 
-        this.isActive = true;
-        this.card = (EYBCard) card.makeStatEquivalentCopy();
-        this.card.current_x = (float) Settings.WIDTH / 2.0F;
-        this.card.current_y = (float) Settings.HEIGHT / 2.0F;
-        this.card.drawScale = this.card.targetDrawScale = 2f;
-        this.card.isPopup = true;
+        this.card = card.MakePopupCopy();
         this.upgradedCard = null;
+        this.isActive = true;
         this.prevCard = null;
         this.nextCard = null;
         this.group = group;
@@ -149,12 +145,8 @@ public class EYBSingleCardPopup extends GUIElement
         {
             if (upgradedCard == null)
             {
-                upgradedCard = (EYBCard) card.makeStatEquivalentCopy();
+                upgradedCard = card.MakePopupCopy();
                 upgradedCard.upgrade();
-                upgradedCard.current_x = card.current_x;
-                upgradedCard.current_y = card.current_y;
-                upgradedCard.drawScale = card.drawScale;
-                upgradedCard.isPopup = true;
                 upgradedCard.displayUpgrades();
             }
 
@@ -176,6 +168,18 @@ public class EYBSingleCardPopup extends GUIElement
         InputHelper.justReleasedClickLeft = false;
         CardCrawlGame.isPopupOpen = false;
         this.isActive = false;
+
+        if (this.card != null)
+        {
+            this.card.Dispose();
+            this.card = null;
+        }
+
+        if (this.upgradedCard != null)
+        {
+            this.upgradedCard.Dispose();
+            this.upgradedCard = null;
+        }
     }
 
     @Override
@@ -184,10 +188,12 @@ public class EYBSingleCardPopup extends GUIElement
         this.cardHb.update();
         this.UpdateArrows();
         this.UpdateInput();
-        this.UpdateFade();
 
-        upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).TryUpdate();
-        betaArtToggle.SetToggle(viewBetaArt).TryUpdate();
+        this.fadeTimer = Math.max(0, fadeTimer - Gdx.graphics.getDeltaTime());
+        this.fadeColor.a = Interpolation.pow2In.apply(0.9F, 0.0F, this.fadeTimer * 4.0F);
+
+        this.upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).TryUpdate();
+        this.betaArtToggle.SetToggle(viewBetaArt).TryUpdate();
     }
 
     @Override
@@ -196,23 +202,6 @@ public class EYBSingleCardPopup extends GUIElement
         sb.setColor(this.fadeColor);
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0.0F, 0.0F, (float) Settings.WIDTH, (float) Settings.HEIGHT);
         sb.setColor(Color.WHITE);
-
-//        this.renderCardBack(sb);
-//        this.renderPortrait(sb);
-//        this.renderFrame(sb);
-//        this.renderCardBanner(sb);
-//        this.renderCardTypeText(sb);
-//        if (Settings.lineBreakViaCharacter)
-//        {
-//            this.renderDescriptionCN(sb);
-//        }
-//        else
-//        {
-//            this.renderDescription(sb);
-//        }
-//
-//        this.renderTitle(sb);
-//        this.renderCost(sb);
 
         EYBCard card = GetCard();
 
@@ -229,12 +218,9 @@ public class EYBSingleCardPopup extends GUIElement
             RenderArrow(sb, nextHb, CInputActionSet.pageRightViewExhaust, true);
         }
 
-        //this.card.renderCardTip(sb);
-        //this.renderTips(sb);
         this.cardHb.render(sb);
 
-        FontHelper.cardTitleFont.getData().setScale(1.0F);
-
+        FontHelper.cardTitleFont.getData().setScale(1);
         if (upgradeToggle.isActive)
         {
             upgradeToggle.Render(sb);
@@ -244,7 +230,6 @@ public class EYBSingleCardPopup extends GUIElement
                 sb.draw(CInputActionSet.proceed.getKeyImg(), this.upgradeHb.cX - 132.0F * Settings.scale - 32.0F, -32.0F + 67.0F * Settings.scale, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
             }
         }
-
         if (betaArtToggle.isActive)
         {
             betaArtToggle.Render(sb);
@@ -280,8 +265,9 @@ public class EYBSingleCardPopup extends GUIElement
 
             if (this.prevHb.clicked || this.prevCard != null && CInputActionSet.pageLeftViewDeck.isJustPressed())
             {
+                this.prevHb.clicked = false;
                 CInputActionSet.pageLeftViewDeck.unpress();
-                this.OpenNext(prevCard);
+                OpenNext(prevCard);
             }
         }
 
@@ -295,6 +281,7 @@ public class EYBSingleCardPopup extends GUIElement
 
             if (this.nextHb.clicked || this.nextCard != null && CInputActionSet.pageRightViewExhaust.isJustPressed())
             {
+                this.nextHb.clicked = false;
                 CInputActionSet.pageRightViewExhaust.unpress();
                 OpenNext(nextCard);
             }
@@ -325,7 +312,7 @@ public class EYBSingleCardPopup extends GUIElement
             if (!this.cardHb.hovered && !this.upgradeHb.hovered && (this.betaArtHb == null || !this.betaArtHb.hovered))
             {
                 JavaUtilities.Log(this, "Closing");
-                this.Close();
+                Close();
                 InputHelper.justClickedLeft = false;
             }
         }
@@ -333,16 +320,16 @@ public class EYBSingleCardPopup extends GUIElement
         {
             CInputActionSet.cancel.unpress();
             InputHelper.pressedEscape = false;
-            this.Close();
+            Close();
         }
 
         if (this.prevCard != null && InputActionSet.left.isJustPressed())
         {
-            this.OpenNext(prevCard);
+            OpenNext(prevCard);
         }
         else if (this.nextCard != null && InputActionSet.right.isJustPressed())
         {
-            this.OpenNext(nextCard);
+            OpenNext(nextCard);
         }
     }
 
@@ -354,17 +341,6 @@ public class EYBSingleCardPopup extends GUIElement
         SingleCardViewPopup.isViewingUpgrade = tmp;
         this.fadeTimer = 0.0F;
         this.fadeColor.a = 0.9F;
-    }
-
-    private void UpdateFade()
-    {
-        this.fadeTimer -= Gdx.graphics.getDeltaTime();
-        if (this.fadeTimer < 0.0F)
-        {
-            this.fadeTimer = 0.0F;
-        }
-
-        this.fadeColor.a = Interpolation.pow2In.apply(0.9F, 0.0F, this.fadeTimer * 4.0F);
     }
 
     private void RenderArrow(SpriteBatch sb, Hitbox hb, CInputAction action, boolean flipX)

@@ -9,13 +9,16 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.BufferPower;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.IntangiblePower;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class Saitama extends AnimatorCard
@@ -169,7 +172,7 @@ public class Saitama extends AnimatorCard
                 this.target = CardTarget.NONE;
                 this.type = CardType.SKILL;
 
-                this.loadCardImage(AnimatorResources.GetCardImage(ID));
+                LoadImage(null);
 
                 break;
             }
@@ -184,7 +187,7 @@ public class Saitama extends AnimatorCard
                 this.target = CardTarget.SELF;
                 this.type = CardType.SKILL;
 
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_0"));
+                LoadImage("_0");
 
                 break;
             }
@@ -199,7 +202,7 @@ public class Saitama extends AnimatorCard
                 this.target = CardTarget.SELF;
                 this.type = CardType.SKILL;
 
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_1"));
+                LoadImage("_1");
 
                 break;
             }
@@ -214,7 +217,7 @@ public class Saitama extends AnimatorCard
                 this.target = CardTarget.SELF;
                 this.type = CardType.SKILL;
 
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_2"));
+                LoadImage("_2");
 
                 break;
             }
@@ -227,10 +230,11 @@ public class Saitama extends AnimatorCard
                 Initialize(6, 0, 8, 0);
                 SetScaling(0, 3, 3);
 
+                this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;
                 this.type = CardType.ATTACK;
 
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_3"));
+                LoadImage("_3");
 
                 break;
             }
@@ -243,10 +247,11 @@ public class Saitama extends AnimatorCard
                 Initialize(999, 0, 0, 0);
                 SetScaling(0, 99, 99);
 
+                this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;
                 this.type = CardType.ATTACK;
 
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_4"));
+                LoadImage("_4");
 
                 break;
             }

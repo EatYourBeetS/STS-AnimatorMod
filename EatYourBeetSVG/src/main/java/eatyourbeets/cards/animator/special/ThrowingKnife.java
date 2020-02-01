@@ -23,7 +23,7 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
 
     public ThrowingKnife(String id)
     {
-        super(staticCardData.get(id), id, AnimatorResources.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(GetStaticData(id), id, AnimatorResources.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
 
         this.tags.add(GR.Enums.CardTags.PURGE);
     }

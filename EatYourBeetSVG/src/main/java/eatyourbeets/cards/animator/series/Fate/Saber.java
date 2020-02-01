@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Excalibur;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
@@ -13,12 +14,12 @@ public class Saber extends AnimatorCard
     public static final String ID = Register(Saber.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new Excalibur(), false);
+        GetStaticData(ID).InitializePreview(new Excalibur(), false);
     }
 
     public Saber()
     {
-        super(ID, 1, CardRarity.RARE, AttackType.Normal);
+        super(ID, 1, CardRarity.RARE, EYBAttackType.Normal);
 
         Initialize(9, 0, 0);
         SetUpgrade(2, 0, 0);

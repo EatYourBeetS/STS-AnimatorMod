@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
@@ -14,7 +13,7 @@ public class Aqua extends AnimatorCard
     public static final String ID = Register(Aqua.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new Aqua(true), true);
+        GetStaticData(ID).InitializePreview(new Aqua(true), true);
     }
 
     private boolean transformed = false;
@@ -95,15 +94,13 @@ public class Aqua extends AnimatorCard
 
         if (transformed)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID + "2"));
+            LoadImage("2");
             cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0], true);
-            transformed = true;
         }
         else
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID));
+            LoadImage(null);
             cardText.OverrideDescription(null, true);
-            transformed = false;
         }
     }
 }

@@ -14,8 +14,8 @@ import eatyourbeets.interfaces.csharp.FuncT1;
 import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
-import eatyourbeets.ui.controls.*;
 import eatyourbeets.ui.AbstractScreen;
+import eatyourbeets.ui.controls.*;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -82,20 +82,14 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         purgingStoneImage = new GUI_Relic(new PurgingStone(), new Hitbox(selectionAmount.hb.x + (selectionAmountSize * 0.25f),
         selectionAmount.hb.y, selectionAmountSize, selectionAmountSize));
 
-        final String message = "Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards.";
         selectionInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(7f), buttonWidth, buttonHeight*2.5f))
+        .SetText(GR.Animator.Strings.SeriesSelection.PurgingStoneRequirement)
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
-        .SetFont(FontHelper.tipBodyFont)
-        .SetText(message);
+        .SetFont(FontHelper.tipBodyFont);
 
         confirm = CreateHexagonalButton(xPos, getY.Invoke(8f), buttonWidth, buttonHeight*1.1f)
         .SetText("Proceed")
-        .SetOnClick(() ->
-        {
-            cardGrid.Clear();
-            container.CommitChanges();
-            AbstractDungeon.closeCurrentScreen();
-        })
+        .SetOnClick(this::Proceed)
         .SetColor(Color.FOREST);
     }
 
@@ -103,7 +97,12 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     {
         super.Open();
 
-        GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
+        if (firstTime)
+        {
+            toggleBeta.isActive = false;
+            purgingStoneImage.isActive = false;
+            GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
+        }
     }
 
     @Override
@@ -111,10 +110,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     {
         cardGrid.TryRender(sb);
 
-        if (container.betaCards.size() > 0)
-        {
-            toggleBeta.Render(sb);
-        }
+        toggleBeta.TryRender(sb);
 
         deselectAll.Render(sb);
         selectRandom75.Render(sb);
@@ -137,10 +133,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             TotalCardsChanged(totalCardsCache);
         }
 
-        if (container.betaCards.size() > 0)
-        {
-            toggleBeta.SetToggle(isBetaToggled).Update();
-        }
+        toggleBeta.SetToggle(isBetaToggled).TryUpdate();
 
         purgingStoneImage.TryUpdate();
 
@@ -240,6 +233,19 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
                 container.allCards.remove(card);
             }
         }
+    }
+
+    public void Proceed()
+    {
+        //TODO: Check card pool
+        if (purgingStoneImage.isActive)
+        {
+            GameEffects.TopLevelQueue.SpawnRelic(new PurgingStone(), purgingStoneImage.hb.cX, purgingStoneImage.hb.cY);
+        }
+
+        cardGrid.Clear();
+        container.CommitChanges();
+        AbstractDungeon.closeCurrentScreen();
     }
 
     protected void TotalCardsChanged(int totalCards)

@@ -24,6 +24,11 @@ import java.util.Map;
 
 public abstract class EYBCardBase extends AbstractCard
 {
+    protected static final Color HOVER_IMG_COLOR = new Color(1.0F, 0.815F, 0.314F, 0.8F);
+    protected static final Color SELECTED_CARD_COLOR = new Color(0.5F, 0.9F, 0.9F, 1.0F);
+    protected static final float SHADOW_OFFSET_X = 18.0F * Settings.scale;
+    protected static final float SHADOW_OFFSET_Y = 14.0F * Settings.scale;
+
     protected static final FieldInfo<Boolean> _renderTip = JavaUtilities.GetField("renderTip", AbstractCard.class);
     protected static final FieldInfo<Boolean> _darken = JavaUtilities.GetField("darken", AbstractCard.class);
     protected static final FieldInfo<Color> _renderColor = JavaUtilities.GetField("renderColor", AbstractCard.class);
@@ -45,21 +50,39 @@ public abstract class EYBCardBase extends AbstractCard
         player = AbstractDungeon.player;
     }
 
-    public EYBCardBase(String id, String name, String img, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)
+    public EYBCardBase(String id, String name, String imagePath, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
         super(id, name, "status/beta", "status/beta", cost, rawDescription, type, color, rarity, target);
 
-        if (img != null)
-        {
-            assetUrl = img;
-            this.loadCardImage(img);
-        }
+        portrait = null;
+        assetUrl = imagePath;
+
+        LoadImage(null);
     }
 
-    public void loadCardImage(String path)
+    public void LoadImage(String suffix)
     {
-        final Texture texture = GR.GetTexture(path);
-        portrait = new TextureAtlas.AtlasRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
+        if (suffix == null)
+        {
+            if (isPopup)
+            {
+                // Do not cache high res picture
+                portraitImg = ImageMaster.loadImage(assetUrl.replace(".png", "_p.png"));
+            }
+            else
+            {
+                portraitImg = GR.GetTexture(assetUrl);
+            }
+        }
+        else if (suffix.equals("_p"))
+        {
+            // Do not cache high res picture
+            portraitImg = ImageMaster.loadImage(assetUrl.replace(".png", "_p.png"));
+        }
+        else
+        {
+            portraitImg = GR.GetTexture(assetUrl.replace(".png", suffix + ".png"));
+        }
     }
 
     public boolean isOnScreen()
@@ -73,9 +96,127 @@ public abstract class EYBCardBase extends AbstractCard
     }
 
     @SpireOverride
-    protected void renderPortrait(SpriteBatch sb)
+    protected void renderCard(SpriteBatch sb, boolean hovered, boolean selected)
+    {
+        if (!Settings.hideCards)
+        {
+            if (isFlipped)
+            {
+                this.renderBack(sb, hovered, selected);
+                return;
+            }
+
+            this.updateGlow();
+            this.renderGlow(sb);
+            this.renderImage(sb, hovered, selected);
+            this.renderTitle(sb);
+            this.renderType(sb);
+            this.renderDescription(sb);
+            this.renderTint(sb);
+            this.renderEnergy(sb);
+        }
+    }
+
+    @SpireOverride
+    protected void renderBack(SpriteBatch sb, boolean hovered, boolean selected)
+    {
+        SpireSuper.call(sb, hovered, selected);
+    }
+
+    @SpireOverride
+    public void renderTint(SpriteBatch sb)
     {
         SpireSuper.call(sb);
+    }
+
+    @SpireOverride
+    public void renderDescription(SpriteBatch sb)
+    {
+        SpireSuper.call(sb);
+    }
+
+    @SpireOverride
+    public void renderDescriptionCN(SpriteBatch sb)
+    {
+        throw new RuntimeException("Not Implemented");
+    }
+
+    @SpireOverride
+    protected void renderType(SpriteBatch sb)
+    {
+        SpireSuper.call(sb);
+    }
+
+    @SpireOverride
+    protected void renderTitle(SpriteBatch sb)
+    {
+        SpireSuper.call(sb);
+    }
+
+    @SpireOverride
+    protected void renderImage(SpriteBatch sb, boolean hovered, boolean selected)
+    {
+        if (AbstractDungeon.player != null)
+        {
+            if (selected)
+            {
+                RenderAtlas(sb, Color.SKY, this.getCardBgAtlas(), this.current_x, this.current_y, 1.03F);
+            }
+
+            RenderAtlas(sb, new Color(0, 0, 0, transparency * 0.25f), this.getCardBgAtlas(), this.current_x + SHADOW_OFFSET_X * this.drawScale, this.current_y - SHADOW_OFFSET_Y * this.drawScale);
+            if (AbstractDungeon.player.hoveredCard == this && (AbstractDungeon.player.isDraggingCard && AbstractDungeon.player.isHoveringDropZone || AbstractDungeon.player.inSingleTargetMode))
+            {
+                RenderAtlas(sb, HOVER_IMG_COLOR, this.getCardBgAtlas(), this.current_x, this.current_y);
+            }
+            else if (selected)
+            {
+                RenderAtlas(sb, SELECTED_CARD_COLOR, this.getCardBgAtlas(), this.current_x, this.current_y);
+            }
+        }
+
+        this.renderPortrait(sb);
+        this.renderCardBg(sb, this.current_x, this.current_y);
+        this.renderPortraitFrame(sb, this.current_x, this.current_y);
+        this.renderBannerImage(sb, this.current_x, this.current_y);
+    }
+
+    @SpireOverride
+    protected void renderGlow(SpriteBatch sb)
+    {
+        SpireSuper.call(sb);
+    }
+
+    @SpireOverride
+    protected void updateGlow()
+    {
+        SpireSuper.call();
+    }
+
+    @SpireOverride
+    protected void renderPortrait(SpriteBatch sb)
+    {
+        final float scale = drawScale * Settings.scale;
+        final Texture img = this.portraitImg;
+        float drawX = this.current_x - 125.0F;
+        float drawY = this.current_y - 95.0F;
+
+        if (!this.isLocked)
+        {
+            sb.setColor(_renderColor.Get(this));
+            if (isPopup)
+            {
+                sb.draw(img, (float)Settings.WIDTH / 2.0F - 250.0F, (float)Settings.HEIGHT / 2.0F - 190.0F + 136.0F * Settings.scale, 250.0F, 190.0F, 500.0F, 380.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 500, 380, false, false);
+            }
+            else
+            {
+                sb.draw(img, drawX, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, scale, scale, this.angle,
+                        0, 0, 250, 190, false, false);
+            }
+        }
+        else
+        {
+            sb.draw(img, drawX, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, scale, scale, this.angle, 0, 0, 250, 190, false, false);
+        }
     }
 
     @SpireOverride
@@ -272,5 +413,11 @@ public abstract class EYBCardBase extends AbstractCard
     {
         sb.setColor(color);
         sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2.0F, drawY + img.offsetY - (float) img.originalHeight / 2.0F, (float) img.originalWidth / 2.0F - img.offsetX, (float) img.originalHeight / 2.0F - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, this.drawScale * Settings.scale, this.drawScale * Settings.scale, this.angle);
+    }
+
+    private void RenderAtlas(SpriteBatch sb, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY, float scale)
+    {
+        sb.setColor(color);
+        sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2.0F, drawY + img.offsetY - (float) img.originalHeight / 2.0F, (float) img.originalWidth / 2.0F - img.offsetX, (float) img.originalHeight / 2.0F - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, this.drawScale * Settings.scale * scale, this.drawScale * Settings.scale * scale, this.angle);
     }
 }

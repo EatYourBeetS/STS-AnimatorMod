@@ -16,7 +16,7 @@ public class Strike extends AnimatorCard
 
     public Strike(String id, int cost, CardTarget target)
     {
-        super(staticCardData.get(id), id, AnimatorResources.GetCardImage(ID + "Alt"), cost, CardType.ATTACK, CardColor.COLORLESS,
+        super(GetStaticData(id), id, AnimatorResources.GetCardImage(ID + "Alt"), cost, CardType.ATTACK, CardColor.COLORLESS,
                 CardRarity.BASIC, target);
 
         //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");

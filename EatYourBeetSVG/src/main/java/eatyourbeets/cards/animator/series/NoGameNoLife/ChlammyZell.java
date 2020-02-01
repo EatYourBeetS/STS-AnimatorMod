@@ -16,7 +16,7 @@ public class ChlammyZell extends AnimatorCard
     public static final String ID = Register(ChlammyZell.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new ChlammyZellScheme(), false);
+        GetStaticData(ID).InitializePreview(new ChlammyZellScheme(), false);
     }
 
     public ChlammyZell()

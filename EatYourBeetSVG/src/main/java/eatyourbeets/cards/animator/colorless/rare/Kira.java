@@ -35,8 +35,6 @@ public class Kira extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, -1);
 
-        AddExtendedDescription();
-
         SetExhaust(true);
         SetEthereal(true);
         SetSynergy(Synergies.DeathNote);

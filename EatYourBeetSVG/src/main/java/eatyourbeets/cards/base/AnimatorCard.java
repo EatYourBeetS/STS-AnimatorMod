@@ -43,14 +43,14 @@ public abstract class AnimatorCard extends EYBCard
         return RegisterCard(type, GR.Animator.CreateID(type.getSimpleName()));
     }
 
-    protected AnimatorCard(String id, int cost, CardRarity rarity, AttackType attackType)
+    protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType)
     {
         this(id, cost, rarity, attackType, false);
     }
 
-    protected AnimatorCard(String id, int cost, CardRarity rarity, AttackType attackType, boolean isAoE)
+    protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType, boolean isAoE)
     {
-        this(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, isAoE ? CardTarget.ALL_ENEMY : CardTarget.ENEMY);
+        this(GetStaticData(id), id, AnimatorResources.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, isAoE ? CardTarget.ALL_ENEMY : CardTarget.ENEMY);
 
         SetMultiDamage(isAoE);
         SetAttackType(attackType);
@@ -58,12 +58,12 @@ public abstract class AnimatorCard extends EYBCard
 
     protected AnimatorCard(String id, int cost, CardRarity rarity, CardType type, CardTarget target)
     {
-        this(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), cost, type, GR.Animator.CardColor, rarity, target);
+        this(GetStaticData(id), id, AnimatorResources.GetCardImage(id), cost, type, GR.Animator.CardColor, rarity, target);
     }
 
     protected AnimatorCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        this(staticCardData.get(id), id, AnimatorResources.GetCardImage(id), cost, type, color, rarity, target);
+        this(GetStaticData(id), id, AnimatorResources.GetCardImage(id), cost, type, color, rarity, target);
     }
 
     protected AnimatorCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
@@ -131,7 +131,7 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    protected ColoredString GetHeaderText()
+    public ColoredString GetHeaderText()
     {
         if (synergy == null)
         {
@@ -182,6 +182,15 @@ public abstract class AnimatorCard extends EYBCard
                 case ATTACK: return IMAGES.CARD_BACKGROUND_ATTACK.Texture();
                 case POWER: return IMAGES.CARD_BACKGROUND_POWER.Texture();
                 default: return IMAGES.CARD_BACKGROUND_SKILL.Texture();
+            }
+        }
+        else if (color == CardColor.COLORLESS)
+        {
+            switch (type)
+            {
+                case ATTACK: return IMAGES.CARD_BACKGROUND_ATTACK_UR.Texture();
+                case POWER: return IMAGES.CARD_BACKGROUND_POWER_UR.Texture();
+                default: return IMAGES.CARD_BACKGROUND_SKILL_UR.Texture();
             }
         }
 

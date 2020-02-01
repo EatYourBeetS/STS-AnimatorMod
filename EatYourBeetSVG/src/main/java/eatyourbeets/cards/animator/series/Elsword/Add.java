@@ -21,7 +21,7 @@ public class Add extends AnimatorCard
     public static final String ID = Register(Add.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new Crystallize(), false);
+        GetStaticData(ID).InitializePreview(new Crystallize(), false);
     }
 
     public Add()

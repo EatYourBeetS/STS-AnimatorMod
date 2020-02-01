@@ -20,7 +20,6 @@ import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.HigakiRinnePower;
-import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -185,19 +184,19 @@ public class HigakiRinne extends AnimatorCard
     {
         if (type == CardType.ATTACK)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID + "Attack"));
+            LoadImage("Attack");
             this.type = CardType.ATTACK;
             this.target = CardTarget.ENEMY;
         }
         else if (type == CardType.POWER)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID + "Power"));
+            LoadImage("Power");
             this.type = CardType.POWER;
             this.target = CardTarget.ALL;
         }
         else
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID));
+            LoadImage(null);
             this.type = CardType.SKILL;
             this.target = CardTarget.ALL;
         }

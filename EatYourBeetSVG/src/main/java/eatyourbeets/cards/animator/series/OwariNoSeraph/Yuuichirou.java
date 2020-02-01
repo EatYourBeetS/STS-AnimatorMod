@@ -15,7 +15,7 @@ public class Yuuichirou extends AnimatorCard
     public static final String ID = Register(Yuuichirou.class);
     static
     {
-        staticCardData.get(ID).InitializePreview(new Asuramaru(), false);
+        GetStaticData(ID).InitializePreview(new Asuramaru(), false);
     }
 
     public Yuuichirou()

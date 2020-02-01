@@ -38,8 +38,6 @@ public class KrulTepes extends AnimatorCard
         SetUpgrade(4, 0, 0);
         SetScaling(0, 2, 2);
 
-        AddExtendedDescription();
-
         SetSynergy(Synergies.OwariNoSeraph);
     }
 

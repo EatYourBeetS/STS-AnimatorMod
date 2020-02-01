@@ -71,23 +71,20 @@ public class AnimatorRuntimeLoadout
         if (promoted)
         {
             card = builder
-            .SetText(Loadout.Name, "Contains " + Cards.size() + " cards. NL Cards from this series NL might have a random NL #yBonus[] upon pickup.", "")
+            .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards_Promoted(Cards.size()), "")
             .SetProperties(temp.type, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.NONE).Build();
-            card.retain = true;
         }
         else if (Loadout.IsBeta)
         {
             card = builder
-            .SetText(Loadout.Name, "Contains " + Cards.size() + " cards. NL This series is incomplete and/or still being tested.", "")
+            .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards_Beta(Cards.size()), "")
             .SetProperties(temp.type, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE).Build();
-            card.retain = false;
         }
         else
         {
             card = builder
-            .SetText(Loadout.Name, "Contains " + Cards.size() + " cards.", "")
+            .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards(Cards.size()), "")
             .SetProperties(temp.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE).Build();
-            card.retain = false;
         }
 
         return card;

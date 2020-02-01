@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.animator.BurningPower;
@@ -16,7 +17,7 @@ public class Benimaru extends AnimatorCard
 
     public Benimaru()
     {
-        super(ID, 1, CardRarity.COMMON, AttackType.Elemental, true);
+        super(ID, 1, CardRarity.COMMON, EYBAttackType.Elemental, true);
 
         Initialize(3, 0, 2);
         SetUpgrade(3, 0, 0);

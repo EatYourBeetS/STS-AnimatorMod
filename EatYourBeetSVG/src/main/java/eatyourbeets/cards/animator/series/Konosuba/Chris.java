@@ -19,8 +19,6 @@ public class Chris extends AnimatorCard
         Initialize(4, 0, 4);
         SetUpgrade(2, 0, 2);
 
-        AddExtendedDescription();
-
         SetSynergy(Synergies.Konosuba);
     }
 

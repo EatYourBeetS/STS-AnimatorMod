@@ -40,6 +40,12 @@ public class UnnamedResources extends AbstractResources
     }
 
     @Override
+    protected void PostInitialize()
+    {
+        throw new RuntimeException("Not Implemented");
+    }
+
+    @Override
     protected void InitializeColor()
     {
         Color color = CardHelper.getColor(60, 77, 106);

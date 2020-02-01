@@ -4,18 +4,28 @@ import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
 import basemod.interfaces.StartActSubscriber;
 import basemod.interfaces.StartGameSubscriber;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.city.Ghosts;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.events.animator.TheMaskedTraveler1;
+import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
-import eatyourbeets.resources.animator.loadouts._FakeLoadout;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, StartGameSubscriber, StartActSubscriber
 {
     public transient final ArrayList<AnimatorRuntimeLoadout> Series = new ArrayList<>();
     public transient AnimatorLoadout StartingSeries = new _FakeLoadout();
+    public HashSet<String> BannedCards = new HashSet<>();
 
     protected ArrayList<AnimatorLoadoutProxy> loadouts = new ArrayList<>();
     protected int startingLoadout = -1;
@@ -93,9 +103,11 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     public void onLoad(AnimatorDungeonData data)
     {
         Series.clear();
+        BannedCards.clear();
 
         if (data != null)
         {
+            BannedCards.addAll(data.BannedCards);
             StartingSeries = GR.Animator.Data.GetBaseLoadout(data.startingLoadout);
 
             for (AnimatorLoadoutProxy proxy : data.loadouts)
@@ -126,12 +138,74 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     public void receiveStartAct()
     {
         FullLog("ON ACT START");
+        InitializeCardPool(false);
     }
 
     @Override
     public void receiveStartGame()
     {
         FullLog("ON GAME START");
+        InitializeCardPool(true);
+    }
+
+    public void InitializeCardPool(boolean startGame)
+    {
+        if (AbstractDungeon.player.chosenClass != GR.Animator.PlayerClass)
+        {
+            AbstractDungeon.srcColorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
+            AbstractDungeon.colorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
+            AbstractDungeon.eventList.remove(TheMaskedTraveler1.ID);
+            return;
+        }
+
+        if (startGame && Settings.isStandardRun())
+        {
+            GR.Animator.Data.SaveTrophies(true);
+        }
+
+        if (GameUtilities.GetActualAscensionLevel() >= 17)
+        {
+            AbstractDungeon.eventList.remove(Ghosts.ID);
+        }
+
+        if (Series.isEmpty())
+        {
+            return;
+        }
+
+        PurgingStone.UpdateBannedCards();
+
+        ArrayList<CardGroup> groups = new ArrayList<>();
+        groups.add(AbstractDungeon.commonCardPool);
+        groups.add(AbstractDungeon.uncommonCardPool);
+        groups.add(AbstractDungeon.srcCommonCardPool);
+        groups.add(AbstractDungeon.srcUncommonCardPool);
+        groups.add(AbstractDungeon.rareCardPool);
+        groups.add(AbstractDungeon.srcRareCardPool);
+
+        for (CardGroup group : groups)
+        {
+            group.group.removeIf(card ->
+            {
+                if (card.color != GR.Animator.CardColor)
+                {
+                    return false;
+                }
+
+                if (!BannedCards.contains(card.cardID))
+                {
+                    for (AnimatorRuntimeLoadout loadout : Series)
+                    {
+                        if (loadout.Cards.containsKey(card.cardID))
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            });
+        }
     }
 
     private void Log(String message)

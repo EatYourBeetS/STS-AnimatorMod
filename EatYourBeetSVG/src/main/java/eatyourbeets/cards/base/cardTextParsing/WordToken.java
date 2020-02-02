@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.EffectHistory;
 
 public class WordToken extends CTToken
 {
+    protected EYBCardTooltip tooltip = null;
     protected String modifier = "";
     protected Color overrideColor = null;
 
@@ -92,11 +94,15 @@ public class WordToken extends CTToken
             parser.AddToken(token);
             token.modifier = tempBuilder.toString();
 
-            EYBCardTooltip tooltip = GR.GetTooltip(word.toLowerCase());
-            if (tooltip != null)
+            if (parser.card != null)
             {
-                parser.AddTooltip(tooltip);
-                token.overrideColor = Settings.GOLD_COLOR.cpy();
+                EYBCardTooltip tooltip = GR.Tooltips.FindByName(word.toLowerCase());
+                if (tooltip != null)
+                {
+                    parser.AddTooltip(tooltip);
+                    token.overrideColor = Settings.GOLD_COLOR.cpy();
+                    token.tooltip = tooltip;
+                }
             }
 
             return i;
@@ -120,7 +126,15 @@ public class WordToken extends CTToken
 
         if (overrideColor != null)
         {
-            overrideColor.a = context.card.targetTransparency;
+            if (tooltip == GR.Tooltips.SemiLimited && EffectHistory.HasActivatedSemiLimited(context.card.cardID)
+               || (tooltip == GR.Tooltips.Limited && EffectHistory.HasActivatedLimited(context.card.cardID)))
+            {
+                overrideColor.a = context.card.transparency * 0.6f;// new Color(1f, 0.4f, 0.1f, context.card.transparency));
+            }
+            else
+            {
+                overrideColor.a = context.card.transparency;
+            }
 
             Render(sb, context, text, overrideColor);
         }

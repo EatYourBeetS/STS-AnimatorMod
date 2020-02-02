@@ -23,6 +23,7 @@ public class Melzalgald extends AnimatorCard
         super(ID, 3, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
 
         Initialize(21, 0);
+        SetScaling(2, 2, 2);
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan, true);

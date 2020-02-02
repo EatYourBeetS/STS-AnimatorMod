@@ -38,7 +38,7 @@ public abstract class SpecialToken extends CTToken
                 {
                     String word = builder.toString();
 
-                    EYBCardTooltip tooltip = GR.GetTooltip(word.toLowerCase());
+                    EYBCardTooltip tooltip = GR.Tooltips.FindByName(word.toLowerCase());
                     if (tooltip != null)
                     {
                         parser.AddTooltip(tooltip);
@@ -58,6 +58,7 @@ public abstract class SpecialToken extends CTToken
                         if (token instanceof WordToken)
                         {
                             ((WordToken)token).overrideColor = Settings.GOLD_COLOR;
+                            ((WordToken)token).tooltip = tooltip;
                         }
 
                         parser.AddToken(token);

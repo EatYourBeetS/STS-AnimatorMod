@@ -4,13 +4,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.effects.attack.ColoredSweepingBeamEffect;
 import eatyourbeets.utilities.GameActions;
 
-public class BlackLotus extends AnimatorCard implements Hidden
+public class BlackLotus extends AnimatorCard
 {
     public static final String ID = Register(BlackLotus.class);
 
@@ -21,6 +21,7 @@ public class BlackLotus extends AnimatorCard implements Hidden
         Initialize(7, 5, 1);
         SetUpgrade(0, 0, 1);
 
+        SetAttackType(EYBAttackType.Ranged);
         SetMultiDamage(true);
         SetSynergy(Synergies.AccelWorld);
     }

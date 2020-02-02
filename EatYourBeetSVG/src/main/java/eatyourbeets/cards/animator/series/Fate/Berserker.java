@@ -19,8 +19,8 @@ public class Berserker extends AnimatorCard
     {
         super(ID, 3, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(26, 0, 2, 12);
-        SetUpgrade(6, 0);
+        Initialize(24, 0, 2, 12);
+        SetUpgrade(0, 0, 1);
         SetScaling(0, 0, 4);
 
         SetSynergy(Synergies.Fate);

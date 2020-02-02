@@ -20,7 +20,7 @@ public final class Examples extends AnimatorCard
 {
     private Examples(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
     {
-        super(null, 0, null, null, null);
+        super(id, cost, type, CardColor.COLORLESS, rarity, target);
     }
 
     @Override

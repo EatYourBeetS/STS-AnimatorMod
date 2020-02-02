@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -18,7 +19,7 @@ public class Layla extends AnimatorCard
 
     public Layla()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.UNCOMMON, EYBAttackType.Ranged);
 
         Initialize(7, 0, 2, 2);
         SetUpgrade(0, 0, 1, 0);

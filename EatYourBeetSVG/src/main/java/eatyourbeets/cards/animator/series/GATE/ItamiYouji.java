@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -16,7 +17,7 @@ public class ItamiYouji extends AnimatorCard
 
     public ItamiYouji()
     {
-        super(ID, 2, CardRarity.RARE, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.RARE, EYBAttackType.Ranged);
 
         Initialize(2, 0, 4, 1);
         SetUpgrade(2, 0);

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.utilities.*;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -33,7 +34,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 
     public ChaikaTrabant()
     {
-        super(ID, 2, CardRarity.RARE, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
+        super(ID, 2, CardRarity.RARE, EYBAttackType.Elemental);
 
         Initialize(21, 0, 6, 2);
         SetUpgrade(6, 0, 0, 0);

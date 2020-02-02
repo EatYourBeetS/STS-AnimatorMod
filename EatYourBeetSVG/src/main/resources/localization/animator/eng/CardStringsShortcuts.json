@@ -2,7 +2,8 @@
 {
 	"<LIM>": "Limited",
 	"<SLM>": "{Semi-Limited}",
-
+	"<slm>": "{Semi-Lim}",
+	
 	"<AGI>": "Agility",
 	"<FOR>": "Force",
 	"<INT>": "Intellect",
@@ -12,7 +13,6 @@
 	"<DRW>": "Draw 1 card",
 	"<DRW-M>": "Draw !M! card(s)",
 
-	" NL ": " ",
 	" ** ": " NL ",
 	" || ": " NL  NL "
 }

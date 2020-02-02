@@ -20,10 +20,10 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.ui.GUIElement;
-import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Toggle;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.MethodInfo;
+import eatyourbeets.utilities.RenderHelpers;
 
 // TODO: Improve this
 public class EYBSingleCardPopup extends GUIElement
@@ -53,24 +53,24 @@ public class EYBSingleCardPopup extends GUIElement
     {
         this.fadeColor = Color.BLACK.cpy();
         this.upgradeHb = new Hitbox(250.0F * Settings.scale, 80.0F * Settings.scale);
-        this.betaArtHb = new Hitbox(250.0F * Settings.scale, 80.0F * Settings.scale);;
-        this.viewBetaArt = false;
+        this.betaArtHb = new Hitbox(250.0F * Settings.scale, 80.0F * Settings.scale);
         this.prevHb = new Hitbox(160.0F * Settings.scale, 160.0F * Settings.scale);
         this.nextHb = new Hitbox(160.0F * Settings.scale, 160.0F * Settings.scale);
         this.cardHb = new Hitbox(550.0F * Settings.scale, 770.0F * Settings.scale);
+        this.viewBetaArt = false;
         this.isActive = false;
 
         upgradeToggle = new GUI_Toggle(upgradeHb).SetText(TEXT[6])
-        .SetBackground(new GUI_Image(ImageMaster.CHECKBOX))
-        .SetTickImage(null, new GUI_Image(ImageMaster.TICK), 64)
+        .SetBackground(RenderHelpers.ForTexture(ImageMaster.CHECKBOX))
+        .SetTickImage(null, RenderHelpers.ForTexture(ImageMaster.TICK), 64)
         .SetFontColors(Settings.GOLD_COLOR, Settings.BLUE_TEXT_COLOR)
         .SetControllerAction(CInputActionSet.proceed)
         .SetFont(FontHelper.cardTitleFont)
         .SetOnToggle(this::ToggleUpgrade);
 
         betaArtToggle = new GUI_Toggle(betaArtHb).SetText(TEXT[14])
-        .SetBackground(new GUI_Image(ImageMaster.CHECKBOX))
-        .SetTickImage(null, new GUI_Image(ImageMaster.TICK), 64)
+        .SetBackground(RenderHelpers.ForTexture(ImageMaster.CHECKBOX))
+        .SetTickImage(null, RenderHelpers.ForTexture(ImageMaster.TICK), 64)
         .SetFontColors(Settings.GOLD_COLOR, Settings.BLUE_TEXT_COLOR)
         .SetControllerAction(CInputActionSet.proceed)
         .SetFont(FontHelper.cardTitleFont)

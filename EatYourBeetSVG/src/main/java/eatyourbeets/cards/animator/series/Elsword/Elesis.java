@@ -17,6 +17,7 @@ public class Elesis extends AnimatorCard
 
         Initialize(4, 0, 3, 8);
         SetUpgrade(6, 0);
+        SetScaling(0, 2, 2);
 
         SetExhaust(true);
         SetSynergy(Synergies.Elsword);

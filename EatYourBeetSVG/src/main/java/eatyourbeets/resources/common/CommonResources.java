@@ -131,11 +131,11 @@ public class CommonResources extends AbstractResources
                     Keyword k = (Keyword) field.get(null);
                     EYBCardTooltip tooltip = new EYBCardTooltip(k.NAMES[0], k.DESCRIPTION);
 
-                    tooltipIDs.put(TipHelper.capitalize(field.getName()), tooltip);
+                    Tooltips.RegisterID(TipHelper.capitalize(field.getName()), tooltip);
 
                     for (String name : k.NAMES)
                     {
-                        tooltips.put(name, tooltip);
+                        Tooltips.RegisterName(name, tooltip);
                     }
                 }
                 catch (IllegalAccessException ex)
@@ -157,25 +157,26 @@ public class CommonResources extends AbstractResources
         return super.GetLanguagePath(language);
     }
 
-    private static void AddEnergyTooltip(String id, TextureAtlas.AtlasRegion region)
+    private static void AddEnergyTooltip(String symbol, TextureAtlas.AtlasRegion region)
     {
         if (region == null)
         {
             Texture texture = GR.GetTexture(GR.Animator.Images.ORB_C_PNG);
-            region = new TextureAtlas.AtlasRegion(texture, 2, 2, texture.getWidth()-4, texture.getHeight()-4);
+            region = new TextureAtlas.AtlasRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
+            //region = new TextureAtlas.AtlasRegion(texture, 2, 2, texture.getWidth()-4, texture.getHeight()-4);
         }
 
         EYBCardTooltip tooltip = new EYBCardTooltip(TipHelper.TEXT[0], GameDictionary.TEXT[0]);
         tooltip.icon = region;
-        tooltips.put(id, tooltip);
+        Tooltips.RegisterName(symbol, tooltip);
     }
 
     private static void AddPowerTooltip(String symbol, AbstractPower power)
     {
         int size = power.img.getWidth(); // width should always be equal to height
 
-        EYBCardTooltip tooltip = GR.GetTooltip(power.name.toLowerCase());
+        EYBCardTooltip tooltip = Tooltips.FindByName(power.name.toLowerCase());
         tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 2, size-4, size-4);
-        tooltips.put(symbol, tooltip);
+        Tooltips.RegisterName(symbol, tooltip);
     }
 }

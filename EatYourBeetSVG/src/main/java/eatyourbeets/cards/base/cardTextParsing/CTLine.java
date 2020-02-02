@@ -11,8 +11,8 @@ public class CTLine
 {
     protected final static float IMG_HEIGHT = 420.0F * Settings.scale;
     protected final static float IMG_WIDTH = 300.0F * Settings.scale;
-    protected final static float DESC_BOX_WIDTH = Settings.BIG_TEXT_MODE ? IMG_WIDTH * 0.95F : IMG_WIDTH * 0.79F;
-    protected final static float DESC_OFFSET_Y = Settings.BIG_TEXT_MODE ? IMG_HEIGHT * 0.24F : IMG_HEIGHT * 0.255F;
+    protected final static float DESC_BOX_WIDTH = IMG_WIDTH * 0.81f;//0.79F;
+    protected final static float DESC_OFFSET_Y = IMG_HEIGHT * 0.255F;
     protected final ArrayList<CTToken> tokens = new ArrayList<>();
     protected final CTContext context;
 

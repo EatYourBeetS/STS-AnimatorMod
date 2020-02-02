@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
@@ -18,10 +19,11 @@ public class Vanir extends AnimatorCard
 
     public Vanir()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, EYBAttackType.Elemental);
 
         Initialize(12, 0, 3);
         SetUpgrade(1, 0, -1);
+        SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Konosuba, true);
     }

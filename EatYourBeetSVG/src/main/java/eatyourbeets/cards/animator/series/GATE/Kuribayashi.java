@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -17,10 +18,11 @@ public class Kuribayashi extends AnimatorCard
 
     public Kuribayashi()
     {
-        super(ID, 2, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.COMMON, EYBAttackType.Ranged);
 
         Initialize(7, 0, 2, 2);
         SetUpgrade(1, 0, 0, 2);
+        SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Gate);
     }

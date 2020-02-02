@@ -89,18 +89,21 @@ public class EYBCardText
             {
                 RenderBadges(sb);
 
-                BitmapFont font = card.isPopup ? FontHelper.SCP_cardTitleFont_small : FontHelper.cardTitleFont_small;
                 ColoredString header = card.GetHeaderText();
                 if (header != null)
                 {
-                    RenderSmallText(sb, font, header, 0, AbstractCard.RAW_H * 0.48f);
+                    BitmapFont font = RenderHelpers.GetSmallTextFont(card, header.text);
+                    RenderHelpers.WriteOnCard(sb, card, font, header.text, 0, AbstractCard.RAW_H * 0.48f, header.color, true);
+                    RenderHelpers.ResetFont(font);
                 }
+
                 ColoredString bottom = card.GetBottomText();
                 if (bottom != null)
                 {
-                    RenderSmallText(sb, font, bottom, 0, -AbstractCard.RAW_H * 0.47f);
+                    BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
+                    RenderHelpers.WriteOnCard(sb, card, RenderHelpers.GetSmallTextFont(card, bottom.text), bottom.text, 0, -AbstractCard.RAW_H * 0.47f, bottom.color, true);
+                    RenderHelpers.ResetFont(font);
                 }
-                font.getData().setScale(1);
             }
         }
         else
@@ -113,7 +116,7 @@ public class EYBCardText
 
     public void RenderTooltips(SpriteBatch sb)
     {
-        if (card.CanRenderTip() && !Settings.hideCards && !_renderedTipsThisFrame.Get(null))
+        if (!Settings.hideCards && (card.isPopup || card.CanRenderTip()) && !_renderedTipsThisFrame.Get(null))
         {
             if (card.isLocked || !card.isSeen || (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard && !Settings.isTouchScreen))
             {
@@ -222,23 +225,6 @@ public class EYBCardText
         }
     }
 
-    protected void RenderSmallText(SpriteBatch sb, BitmapFont font, ColoredString string, float x, float y)
-    {
-        float scaleMulti = 0.8f;
-        int length = string.text.length();
-        if (length > 20)
-        {
-            scaleMulti -= 0.02f * (length - 20);
-            if (scaleMulti < 0.5f)
-            {
-                scaleMulti = 0.5f;
-            }
-        }
-
-        font.getData().setScale(scaleMulti * card.drawScale * (card.isPopup ? 0.5f : 1f));
-        RenderHelpers.WriteOnCard(sb, card, font, string.text, x, y, string.color, true);
-    }
-
     private float RenderScaling(SpriteBatch sb, Texture texture, float scaling, float y)
     {
         final float offset_x = -AbstractCard.RAW_W * 0.46f;
@@ -269,12 +255,13 @@ public class EYBCardText
         {
             return card.transparency - badgeAlphaOffset;
         }
-        else if (card.cardsToPreview instanceof EYBCard)
+
+        if (card.cardsToPreview instanceof EYBCard)
         {
             ((EYBCard)card.cardsToPreview).cardText.badgeAlphaOffset = badgeAlphaOffset;
         }
 
-        if (card.hovered)
+        if (card.CanRenderTip() && !card.isPopup)
         {
             if (badgeAlphaOffset < badgeAlphaTargetOffset)
             {

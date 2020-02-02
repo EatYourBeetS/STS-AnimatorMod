@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.cards.TargetEffectPreview;
 import eatyourbeets.utilities.GameActions;
@@ -17,10 +18,11 @@ public class Mitsurugi extends AnimatorCard
 
     public Mitsurugi()
     {
-        super(ID, 0, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 0, CardRarity.COMMON, EYBAttackType.Normal);
 
         Initialize(8, 0, 1, 4);
         SetUpgrade(3, 0, 0, 0);
+        SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.Konosuba);
     }

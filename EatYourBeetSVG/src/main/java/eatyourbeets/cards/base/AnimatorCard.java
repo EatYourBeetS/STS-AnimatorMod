@@ -1,14 +1,10 @@
 package eatyourbeets.cards.base;
 
-import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.damage.DealDamage;
-import eatyourbeets.actions.damage.DealDamageToAll;
 import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.interfaces.markers.Spellcaster;
@@ -16,23 +12,12 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.GameActions;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class AnimatorCard extends EYBCard
 {
     protected static final AnimatorImages IMAGES = GR.Animator.Images;
-
-    private static final String SPELLCASTER_STRING = GR.GetTooltipByID("Spellcaster").title;
-    private static final String MARTIAL_ARTIST_STRING = GR.GetTooltipByID("Martial Artist").title;
-    private static final String SHAPESHIFTER_STRING = GR.GetTooltipByID("Shapeshifter").title;
-    private static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
-    private static final Color synergyGlowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR;
-
-    private final List<TooltipInfo> customTooltips = new ArrayList<>();
-
+    protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
+    protected static final Color synergyGlowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR;
     protected AnimatorCardCooldown cooldown;
 
     public Synergy synergy;
@@ -46,6 +31,13 @@ public abstract class AnimatorCard extends EYBCard
     protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType)
     {
         this(id, cost, rarity, attackType, false);
+    }
+
+    protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType, CardTarget target)
+    {
+        this(GetStaticData(id), id, AnimatorResources.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, target);
+
+        SetAttackType(attackType);
     }
 
     protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType, boolean isAoE)
@@ -141,32 +133,20 @@ public abstract class AnimatorCard extends EYBCard
         return new ColoredString(synergy.Name, Settings.CREAM_COLOR);
     }
 
-    public DealDamage DealDamage(AbstractMonster target, AbstractGameAction.AttackEffect effect)
-    {
-        return GameActions.Bottom.DealDamage(this, target, effect)
-        .SetPiercing(attackType.bypassThorns, attackType.bypassBlock);
-    }
-
-    public DealDamageToAll DealDamageToALL(AbstractGameAction.AttackEffect effect)
-    {
-        return GameActions.Bottom.DealDamageToAll(this, effect)
-        .SetPiercing(attackType.bypassThorns, attackType.bypassBlock);
-    }
-
     @Override
     public ColoredString GetBottomText()
     {
         if (anySynergy)
         {
-            return new ColoredString(SHAPESHIFTER_STRING, new Color(1f, 1f, 0.8f, transparency));
+            return new ColoredString(GR.Tooltips.Shapeshifter.title, new Color(1f, 1f, 0.8f, transparency));
         }
         else if (this instanceof Spellcaster)
         {
-            return new ColoredString(SPELLCASTER_STRING, new Color(0.9f, 0.9f, 1.0f, transparency));
+            return new ColoredString(GR.Tooltips.Spellcaster.title, new Color(0.9f, 0.9f, 1.0f, transparency));
         }
         else if (this instanceof MartialArtist)
         {
-            return new ColoredString(MARTIAL_ARTIST_STRING, new Color(0.9f, 1f, 0.9f, transparency));
+            return new ColoredString(GR.Tooltips.MartialArtist.title, new Color(0.9f, 1f, 0.9f, transparency));
         }
 
         return null;

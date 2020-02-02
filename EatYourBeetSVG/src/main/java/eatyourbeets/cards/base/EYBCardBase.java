@@ -11,27 +11,43 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class EYBCardBase extends AbstractCard
 {
+    //@Formatter: Off
+    @SpireOverride protected void renderGlow(SpriteBatch sb) { SpireSuper.call(sb); }
+    @SpireOverride protected void updateGlow() { SpireSuper.call(); }
+    @SpireOverride protected void renderBack(SpriteBatch sb, boolean hovered, boolean selected) { SpireSuper.call(sb, hovered, selected); }
+    @SpireOverride protected void renderTint(SpriteBatch sb) { SpireSuper.call(sb); }
+    @SpireOverride protected void renderDescription(SpriteBatch sb) { SpireSuper.call(sb); }
+    @SpireOverride protected void renderType(SpriteBatch sb) { SpireSuper.call(sb); }
+    @SpireOverride protected void renderJokePortrait(SpriteBatch sb) { renderPortrait(sb); }
+    @SpireOverride private void renderDescriptionCN(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
+    @SpireOverride private void renderCard(SpriteBatch sb, boolean hovered, boolean selected) { renderCard(sb, hovered, selected, false); }
+    @Override public final void render(SpriteBatch sb) { renderCard(sb, IsHovered(),false, false); }
+    @Override public final void render(SpriteBatch sb, boolean selected) { renderCard(sb, IsHovered(), selected, false); }
+    @Override public final void renderInLibrary(SpriteBatch sb) { renderCard(sb, IsHovered(), false, true); }
+    @Override public final void renderWithSelections(SpriteBatch sb) { renderCard(sb, false, true, false); }
+    @Override public final void renderSmallEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y) { throw new RuntimeException("Not Implemented"); }
+    @Override public final void renderCardPreviewInSingleView(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
+    @Override public abstract void renderUpgradePreview(SpriteBatch sb);
+    //@Formatter: On
+
+    protected static final FieldInfo<Boolean> _renderTip = JavaUtilities.GetField("renderTip", AbstractCard.class);
+    protected static final FieldInfo<Boolean> _darken = JavaUtilities.GetField("darken", AbstractCard.class);
+    protected static final FieldInfo<Boolean> _hovered = JavaUtilities.GetField("hovered", AbstractCard.class);
+    protected static final FieldInfo<Color> _renderColor = JavaUtilities.GetField("renderColor", AbstractCard.class);
     protected static final Color HOVER_IMG_COLOR = new Color(1.0F, 0.815F, 0.314F, 0.8F);
     protected static final Color SELECTED_CARD_COLOR = new Color(0.5F, 0.9F, 0.9F, 1.0F);
     protected static final float SHADOW_OFFSET_X = 18.0F * Settings.scale;
     protected static final float SHADOW_OFFSET_Y = 14.0F * Settings.scale;
-
-    protected static final FieldInfo<Boolean> _renderTip = JavaUtilities.GetField("renderTip", AbstractCard.class);
-    protected static final FieldInfo<Boolean> _darken = JavaUtilities.GetField("darken", AbstractCard.class);
-    protected static final FieldInfo<Color> _renderColor = JavaUtilities.GetField("renderColor", AbstractCard.class);
     protected static AbstractPlayer player = null;
 
     public boolean isPopup = false;
@@ -40,10 +56,6 @@ public abstract class EYBCardBase extends AbstractCard
     public boolean upgradedSecondaryValue = false;
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
-
-    public static final String PORTRAIT_ENDING = "_p";
-
-    private static Map<Class<? extends EYBCardBase>, BitmapFont> titleFontMap = new HashMap<>();
 
     public static void RefreshPlayer()
     {
@@ -85,144 +97,144 @@ public abstract class EYBCardBase extends AbstractCard
         }
     }
 
-    public boolean isOnScreen()
+    public boolean IsHovered()
     {
-        return this.current_y >= -200.0F * Settings.scale && this.current_y <= (float) Settings.HEIGHT + 200.0F * Settings.scale;
+        return _hovered.Get(this);
+    }
+
+    public boolean IsOnScreen()
+    {
+        return current_y >= -200.0F * Settings.scale && current_y <= Settings.HEIGHT + 200.0F * Settings.scale;
     }
 
     public boolean CanRenderTip()
     {
-        return isPopup || _renderTip.Get(this);
+        return _renderTip.Get(this);
     }
 
-    @SpireOverride
-    protected void renderCard(SpriteBatch sb, boolean hovered, boolean selected)
+    @Override
+    public void renderCardPreview(SpriteBatch sb)
     {
-        if (!Settings.hideCards)
+        if (isPopup)
         {
-            if (isFlipped)
-            {
-                this.renderBack(sb, hovered, selected);
-                return;
-            }
+            cardsToPreview.current_x = (float) Settings.WIDTH * 0.2f - 10.0F * Settings.scale;
+            cardsToPreview.current_y = (float) Settings.HEIGHT * 0.25f;
+            cardsToPreview.drawScale = 1f;
+            cardsToPreview.render(sb);
+        }
+        else if (AbstractDungeon.player == null || !AbstractDungeon.player.isDraggingCard)
+        {
+            final float offset_y = (IMG_HEIGHT / 2.0F - IMG_HEIGHT / 2.0F * 0.8F) * this.drawScale;
+            final float offset_x = (IMG_WIDTH / 2.0F + IMG_WIDTH / 2.0F * 0.8F + 16.0F) * ((this.current_x > Settings.WIDTH * 0.75F) ? this.drawScale : -this.drawScale);
 
-            this.updateGlow();
-            this.renderGlow(sb);
-            this.renderImage(sb, hovered, selected);
-            this.renderTitle(sb);
-            this.renderType(sb);
-            this.renderDescription(sb);
-            this.renderTint(sb);
-            this.renderEnergy(sb);
+            cardsToPreview.current_x = this.current_x + offset_x;
+            cardsToPreview.current_y = this.current_y + offset_y;
+            cardsToPreview.drawScale = this.drawScale * 0.8F;
+            cardsToPreview.render(sb);
         }
     }
 
-    @SpireOverride
-    protected void renderBack(SpriteBatch sb, boolean hovered, boolean selected)
+    public void renderCard(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
     {
-        SpireSuper.call(sb, hovered, selected);
-    }
+        if (Settings.hideCards || !IsOnScreen())
+        {
+            return;
+        }
 
-    @SpireOverride
-    public void renderTint(SpriteBatch sb)
-    {
-        SpireSuper.call(sb);
-    }
+        if (flashVfx != null)
+        {
+            flashVfx.render(sb);
+        }
 
-    @SpireOverride
-    public void renderDescription(SpriteBatch sb)
-    {
-        SpireSuper.call(sb);
-    }
+        if (isFlipped)
+        {
+            renderBack(sb, hovered, selected);
+            return;
+        }
 
-    @SpireOverride
-    public void renderDescriptionCN(SpriteBatch sb)
-    {
-        throw new RuntimeException("Not Implemented");
-    }
+        if (SingleCardViewPopup.isViewingUpgrade && !isPreview && !isPopup && (library || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD) && canUpgrade())
+        {
+            renderUpgradePreview(sb);
+            return;
+        }
 
-    @SpireOverride
-    protected void renderType(SpriteBatch sb)
-    {
-        SpireSuper.call(sb);
+        updateGlow();
+        renderGlow(sb);
+        renderImage(sb, hovered, selected);
+        renderTitle(sb);
+        renderType(sb);
+        renderDescription(sb);
+        renderTint(sb);
+        renderEnergy(sb);
     }
 
     @SpireOverride
     protected void renderTitle(SpriteBatch sb)
     {
-        SpireSuper.call(sb);
+        final BitmapFont font = RenderHelpers.GetTitleFont(this);
+
+        Color color;
+        String text;
+        if (isLocked || !isSeen)
+        {
+            color = Color.WHITE.cpy();
+            text = isLocked ? LOCKED_STRING : UNKNOWN_STRING;
+        }
+        else
+        {
+            color = upgraded ? Settings.GREEN_TEXT_COLOR.cpy() : Color.WHITE.cpy();
+            text = name;
+        }
+
+        RenderHelpers.WriteOnCard(sb, this, font, text, 0, RAW_H * 0.416f, color, false);
+        RenderHelpers.ResetFont(font);
     }
 
     @SpireOverride
     protected void renderImage(SpriteBatch sb, boolean hovered, boolean selected)
     {
-        if (AbstractDungeon.player != null)
+        if (player != null)
         {
             if (selected)
             {
-                RenderAtlas(sb, Color.SKY, this.getCardBgAtlas(), this.current_x, this.current_y, 1.03F);
+                RenderAtlas(sb, Color.SKY, getCardBgAtlas(), current_x, current_y, 1.03F);
             }
 
-            RenderAtlas(sb, new Color(0, 0, 0, transparency * 0.25f), this.getCardBgAtlas(), this.current_x + SHADOW_OFFSET_X * this.drawScale, this.current_y - SHADOW_OFFSET_Y * this.drawScale);
-            if (AbstractDungeon.player.hoveredCard == this && (AbstractDungeon.player.isDraggingCard && AbstractDungeon.player.isHoveringDropZone || AbstractDungeon.player.inSingleTargetMode))
+            RenderAtlas(sb, new Color(0, 0, 0, transparency * 0.25f), getCardBgAtlas(), current_x + SHADOW_OFFSET_X * drawScale, current_y - SHADOW_OFFSET_Y * drawScale);
+            if (player.hoveredCard == this && (player.isDraggingCard && player.isHoveringDropZone || player.inSingleTargetMode))
             {
-                RenderAtlas(sb, HOVER_IMG_COLOR, this.getCardBgAtlas(), this.current_x, this.current_y);
+                RenderAtlas(sb, HOVER_IMG_COLOR, getCardBgAtlas(), current_x, current_y);
             }
             else if (selected)
             {
-                RenderAtlas(sb, SELECTED_CARD_COLOR, this.getCardBgAtlas(), this.current_x, this.current_y);
+                RenderAtlas(sb, SELECTED_CARD_COLOR, getCardBgAtlas(), current_x, current_y);
             }
         }
 
-        this.renderPortrait(sb);
-        this.renderCardBg(sb, this.current_x, this.current_y);
-        this.renderPortraitFrame(sb, this.current_x, this.current_y);
-        this.renderBannerImage(sb, this.current_x, this.current_y);
-    }
-
-    @SpireOverride
-    protected void renderGlow(SpriteBatch sb)
-    {
-        SpireSuper.call(sb);
-    }
-
-    @SpireOverride
-    protected void updateGlow()
-    {
-        SpireSuper.call();
+        renderPortrait(sb);
+        renderCardBg(sb, current_x, current_y);
+        renderPortraitFrame(sb, current_x, current_y);
+        renderBannerImage(sb, current_x, current_y);
     }
 
     @SpireOverride
     protected void renderPortrait(SpriteBatch sb)
     {
         final float scale = drawScale * Settings.scale;
-        final Texture img = this.portraitImg;
-        float drawX = this.current_x - 125.0F;
-        float drawY = this.current_y - 95.0F;
+        final Texture img = portraitImg;
+        float half_w = img.getWidth() * 0.5f;
+        float half_h = img.getHeight() * 0.5f;
 
-        if (!this.isLocked)
+        sb.setColor(_renderColor.Get(this));
+        if (isPopup)
         {
-            sb.setColor(_renderColor.Get(this));
-            if (isPopup)
-            {
-                sb.draw(img, (float)Settings.WIDTH / 2.0F - 250.0F, (float)Settings.HEIGHT / 2.0F - 190.0F + 136.0F * Settings.scale, 250.0F, 190.0F, 500.0F, 380.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 500, 380, false, false);
-            }
-            else
-            {
-                sb.draw(img, drawX, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, scale, scale, this.angle,
-                        0, 0, 250, 190, false, false);
-            }
+            sb.draw(img, (float) Settings.WIDTH / 2.0F - half_w, (float) Settings.HEIGHT / 2.0F - half_h + 136.0F * Settings.scale, 250.0F, 190.0F, 500.0F, 380.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 500, 380, false, false);
         }
         else
         {
-            sb.draw(img, drawX, drawY + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, scale, scale, this.angle, 0, 0, 250, 190, false, false);
+            sb.draw(img, current_x - half_w, current_y - half_h + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, scale, scale, this.angle,
+                    0, 0, 250, 190, false, false);
         }
-    }
-
-    @SpireOverride
-    protected void renderJokePortrait(SpriteBatch sb)
-    {
-        renderPortrait(sb);
     }
 
     @SpireOverride
@@ -283,11 +295,9 @@ public abstract class EYBCardBase extends AbstractCard
             ColoredString costString = GetCostString();
             if (costString != null)
             {
-                final float scale = this.drawScale * Settings.scale;
-                final BitmapFont font = FontHelper.cardEnergyFont_L;
-
-                font.getData().setScale(drawScale);
-                FontHelper.renderRotatedText(sb, font, costString.text, this.current_x, this.current_y, -132.0F * scale, 192.0F * scale, this.angle, false, costString.color);
+                BitmapFont font = RenderHelpers.GetEnergyFont(this);
+                RenderHelpers.WriteOnCard(sb, this, font, costString.text, -132.0F, 192.0F, costString.color);
+                RenderHelpers.ResetFont(font);
             }
         }
     }

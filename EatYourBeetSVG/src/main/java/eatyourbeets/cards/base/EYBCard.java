@@ -3,13 +3,11 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
@@ -29,8 +27,6 @@ public abstract class EYBCard extends EYBCardBase
     public abstract ColoredString GetHeaderText();
 
     public EYBAttackType attackType = EYBAttackType.Normal;
-    public boolean hovered = false;
-    public boolean hoveredInHand = false;
     public float forceScaling = 0;
     public float intellectScaling = 0;
     public float agilityScaling = 0;
@@ -64,8 +60,6 @@ public abstract class EYBCard extends EYBCardBase
         this.cardText = new EYBCardText(this, cardData.strings);
         this.cardText.ForceRefresh();
     }
-
-
 
     @Override
     public AbstractCard makeCopy()
@@ -108,73 +102,22 @@ public abstract class EYBCard extends EYBCardBase
     }
 
     @Override
-    public void hover()
+    public void renderUpgradePreview(SpriteBatch sb)
     {
-        super.hover();
+        EYBCard upgrade = cardData.tempCard;
 
-        hovered = true;
-    }
-
-    @Override
-    public void unhover()
-    {
-        super.unhover();
-
-        hovered = false;
-    }
-
-    @Override
-    public void renderInLibrary(SpriteBatch sb)
-    {
-        if (isOnScreen())
+        if (upgrade == null || upgrade.uuid != this.uuid || (upgrade.timesUpgraded != (timesUpgraded + 1)))
         {
-            render(sb);
+            upgrade = cardData.tempCard = (EYBCard) this.makeSameInstanceOf();
+            upgrade.isPreview = true;
+            upgrade.upgrade();
+            upgrade.displayUpgrades();
         }
-    }
 
-    @Override
-    public void render(SpriteBatch sb)
-    {
-        if (!Settings.hideCards && transparency >= 0.1f && isOnScreen())
-        {
-            if (!isPreview && SingleCardViewPopup.isViewingUpgrade && !CardCrawlGame.isPopupOpen && canUpgrade())
-            {
-                EYBCard upgrade = cardData.tempCard;
-
-                if (upgrade == null || upgrade.uuid != this.uuid || (upgrade.timesUpgraded != (timesUpgraded + 1)))
-                {
-                    upgrade = cardData.tempCard = (EYBCard) this.makeSameInstanceOf();
-                    upgrade.isPreview = true;
-                    upgrade.upgrade();
-                    upgrade.displayUpgrades();
-                }
-
-                upgrade.current_x = this.current_x;
-                upgrade.current_y = this.current_y;
-                upgrade.drawScale = this.drawScale;
-                upgrade.render(sb, false);
-            }
-            else
-            {
-                super.render(sb, false);
-            }
-        }
-    }
-
-    @Override
-    public void renderCardPreview(SpriteBatch sb)
-    {
-        if (isPopup)
-        {
-            cardsToPreview.current_x = (float) Settings.WIDTH * 0.2f - 10.0F * Settings.scale;
-            cardsToPreview.current_y = (float) Settings.HEIGHT * 0.25f;
-            cardsToPreview.drawScale = 1f;
-            cardsToPreview.render(sb);
-        }
-        else
-        {
-            super.renderCardPreview(sb);
-        }
+        upgrade.current_x = this.current_x;
+        upgrade.current_y = this.current_y;
+        upgrade.drawScale = this.drawScale;
+        upgrade.render(sb, false);
     }
 
     @Override

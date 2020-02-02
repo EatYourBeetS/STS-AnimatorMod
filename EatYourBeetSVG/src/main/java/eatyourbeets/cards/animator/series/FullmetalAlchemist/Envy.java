@@ -2,10 +2,12 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.animator.EnvyPower;
+import eatyourbeets.utilities.GameActions;
 
 public class Envy extends AnimatorCard
 {
@@ -19,6 +21,17 @@ public class Envy extends AnimatorCard
 
         SetEthereal(true);
         SetSynergy(Synergies.FullmetalAlchemist, true);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        if (magicNumber > 0)
+        {
+            return TempHPAttribute.Instance.SetCard(this, true);
+        }
+
+        return null;
     }
 
     @Override
@@ -37,5 +50,13 @@ public class Envy extends AnimatorCard
         {
             GameActions.Bottom.GainTemporaryHP(tempHP);
         }
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        baseMagicNumber = magicNumber = Math.floorDiv(player.maxHealth - player.currentHealth, 5);
     }
 }

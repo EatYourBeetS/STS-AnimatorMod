@@ -3,12 +3,11 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.interfaces.markers.Hidden;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
-public class ElricAlphonseAlt extends AnimatorCard implements Hidden
+public class ElricAlphonseAlt extends AnimatorCard
 {
     public static final String ID = Register(ElricAlphonseAlt.class);
 

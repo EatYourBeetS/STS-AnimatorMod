@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
@@ -18,10 +20,16 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
     {
         super(ID, 2, CardRarity.RARE, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 8);
+        Initialize(0, 0, 7);
 
         SetExhaust(true);
         SetSynergy(Synergies.GoblinSlayer);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override

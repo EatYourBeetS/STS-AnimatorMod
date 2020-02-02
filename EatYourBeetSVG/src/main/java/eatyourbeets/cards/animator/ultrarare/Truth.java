@@ -29,8 +29,8 @@ public class Truth extends AnimatorCard_UltraRare
     {
         super(ID, 1, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }

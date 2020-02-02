@@ -13,8 +13,9 @@ public class MelzalgaldAlt_2 extends MelzalgaldAlt
     {
         super(ID);
 
-        Initialize(7, 0, 2);
+        Initialize(6, 0, 2);
         SetUpgrade(0, 0, 1);
+        SetScaling(2, 0, 0);
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.ScarUpgradeAction;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -16,12 +17,11 @@ public class Scar extends AnimatorCard
 
     public Scar()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
 
         Initialize(12, 0, 0, 30);
         SetUpgrade(4, 0);
 
-        SetPiercing(true);
         SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }

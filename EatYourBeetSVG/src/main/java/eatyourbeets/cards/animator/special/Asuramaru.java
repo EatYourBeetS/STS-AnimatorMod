@@ -3,13 +3,12 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
-import eatyourbeets.interfaces.markers.Hidden;
+import com.megacrit.cardcrawl.powers.DemonFormPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-public class Asuramaru extends AnimatorCard implements Hidden
+public class Asuramaru extends AnimatorCard
 {
     public static final String ID = Register(Asuramaru.class);
 

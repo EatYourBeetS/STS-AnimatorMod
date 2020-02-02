@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -23,6 +24,7 @@ public class Cirno extends AnimatorCard
         Initialize(4, 0);
         SetUpgrade(3, 0);
 
+        SetAttackType(EYBAttackType.Elemental);
         SetEthereal(true);
         SetMultiDamage(true);
         SetSynergy(Synergies.TouhouProject);

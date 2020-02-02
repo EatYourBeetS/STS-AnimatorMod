@@ -12,16 +12,21 @@ public class TakanashiRikka extends AnimatorCard
 {
     public static final String ID = Register(TakanashiRikka.class);
 
-    // TODO: Different upgrade
     public TakanashiRikka()
     {
         super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 
         Initialize(0, 0, 0);
-        SetUpgrade(0, 0, 2);
 
+        SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.Chuunibyou);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override

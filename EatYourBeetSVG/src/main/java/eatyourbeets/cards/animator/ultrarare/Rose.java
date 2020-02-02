@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.RoseDamageAction;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -20,7 +21,7 @@ public class Rose extends AnimatorCard_UltraRare
         Initialize(8, 0, 2, 40);
         SetUpgrade(0, 0, 1, 0);
 
-        SetPiercing(true);
+        SetAttackType(EYBAttackType.Ranged);
         SetSynergy(Synergies.Elsword);
     }
 

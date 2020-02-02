@@ -13,6 +13,10 @@ import eatyourbeets.utilities.GameActions;
 public class Eve extends AnimatorCard
 {
     public static final String ID = Register(Eve.class);
+    static
+    {
+        GetStaticData(ID).InitializePreview(OrbCore.GetCardForPreview(), false);
+    }
 
     public Eve()
     {

@@ -4,10 +4,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AdrenalineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
-public class DarknessAdrenaline extends AnimatorCard implements Hidden
+public class DarknessAdrenaline extends AnimatorCard
 {
     public static final String ID = Register(DarknessAdrenaline.class);
 
@@ -19,6 +19,7 @@ public class DarknessAdrenaline extends AnimatorCard implements Hidden
         SetUpgrade(0, 0, 0, 1);
 
         SetExhaust(true);
+        SetSynergy(Synergies.Konosuba);
     }
 
     @Override

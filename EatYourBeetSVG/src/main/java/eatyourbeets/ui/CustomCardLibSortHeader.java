@@ -1,5 +1,6 @@
 package eatyourbeets.ui;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.CardSeriesComparator;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.resources.GR;
 
 import java.util.Collections;
 
@@ -83,6 +85,11 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     public void setGroup(CardGroup group)
     {
         super.setGroup(group);
+
+        if (!GR.TEST_MODE)
+        {
+            group.group.removeIf(card -> card.rarity == AbstractCard.CardRarity.SPECIAL);
+        }
 
         for (AnimatorCard_UltraRare card : AnimatorCard_UltraRare.GetCards().values())
         {

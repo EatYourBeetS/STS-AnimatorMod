@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
@@ -24,7 +25,9 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
 
         Initialize(24, 0, 4);
         SetUpgrade(6, 0, 0);
+        SetScaling(0, 1, 2);
 
+        SetAttackType(EYBAttackType.Elemental);
         SetSynergy(Synergies.Gate);
     }
 

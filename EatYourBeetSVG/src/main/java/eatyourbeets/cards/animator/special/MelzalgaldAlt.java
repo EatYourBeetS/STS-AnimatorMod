@@ -1,11 +1,10 @@
 package eatyourbeets.cards.animator.special;
 
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.interfaces.markers.Hidden;
 
-public abstract class MelzalgaldAlt extends AnimatorCard implements Hidden
+public abstract class MelzalgaldAlt extends AnimatorCard
 {
     public static final String ID = Register(MelzalgaldAlt.class);
 

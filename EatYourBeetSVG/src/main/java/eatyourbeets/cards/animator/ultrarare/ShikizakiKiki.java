@@ -17,16 +17,11 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     {
         super(ID, 2, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 0, 3);
+        Initialize(0, 0, 2, 2);
+        SetUpgrade(0, 0, 1, 1);
 
         SetEthereal(true);
         SetSynergy(Synergies.Katanagatari);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
     }
 
     @Override

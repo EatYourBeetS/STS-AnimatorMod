@@ -19,7 +19,7 @@ public class Greed extends AnimatorCard
         super(ID, 2, CardRarity.RARE, CardType.POWER, CardTarget.SELF);
 
         Initialize(0, 0, 2, 150);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 4, 0, 0);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }

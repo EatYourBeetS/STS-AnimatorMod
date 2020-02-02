@@ -82,8 +82,9 @@ public abstract class AbstractAttribute
 
     public void Render(SpriteBatch sb, EYBCard card, boolean leftAlign)
     {
-        final BitmapFont font = RenderHelpers.CardIconFont_Large;
+        final BitmapFont largeFont = RenderHelpers.GetLargeAttributeFont(card);
         final float scale = Settings.scale * card.drawScale;
+        float base_x = card.current_x;
         float base_y = card.current_y - (DESC_OFFSET_Y * card.drawScale);
 
         if (card.angle != 0)
@@ -91,61 +92,44 @@ public abstract class AbstractAttribute
             base_y += Math.abs(card.angle * scale);
         }
 
-        font.getData().setScale(card.drawScale);
+        layout.setText(largeFont, mainText.text);
+        final float width = layout.width;
 
         if (leftAlign)
         {
-            float base_x = card.current_x - (DESC_OFFSET_X * card.drawScale);
+            base_x -= (DESC_OFFSET_X * card.drawScale);
 
             RenderHelpers.DrawOnCard(sb, card, icon, base_x, base_y, 48);
-
-            layout.setText(font, mainText.text);
-            FontHelper.renderFont(sb, font, mainText.text, base_x + 42 * scale, base_y + 20 * scale + layout.height / 2f, mainText.color);
+            FontHelper.renderFont(sb, largeFont, mainText.text, base_x + 42 * scale, base_y + 20 * scale + layout.height / 2f, mainText.color);
 
             if (suffix != null)
             {
-                float width = layout.width;
-                font.getData().setScale(card.drawScale * 0.6f);
-                layout.setText(font, suffix);
-                FontHelper.renderFont(sb, font, suffix, base_x + 42 * scale + width, base_y + 14 * scale + layout.height / 2f, mainText.color);
-            }
-
-            //FontHelper.renderFontLeft(sb, font, text, base_x + 42 * scale, base_y + 20 * scale, textColor);
-
-            if (iconTag != null)
-            {
-                RenderHelpers.CardIconFont_Small.getData().setScale(card.drawScale);
-                FontHelper.renderFontLeft(sb, RenderHelpers.CardIconFont_Small, iconTag, base_x + 10 * scale, base_y + 8 * scale, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
-                RenderHelpers.CardIconFont_Small.getData().setScale(1);
+                largeFont.getData().setScale(largeFont.getScaleX() * 0.6f);
+                layout.setText(largeFont, suffix);
+                FontHelper.renderFont(sb, largeFont, suffix, base_x + 42 * scale + width, base_y + 14 * scale + layout.height / 2f, mainText.color);
             }
         }
         else
         {
-            float base_x = card.current_x + (DESC_OFFSET_X * card.drawScale) - (48 * scale);
+            base_x += (DESC_OFFSET_X * card.drawScale) - (48 * scale);
 
             RenderHelpers.DrawOnCard(sb, card, icon, base_x, base_y, 48);
-
-            layout.setText(font, mainText.text);
-            float width = layout.width;
-
-            FontHelper.renderFont(sb, font, mainText.text, base_x + 10 * scale - width, base_y + 20 * scale + layout.height / 2f, mainText.color);
-            //FontHelper.renderFontRightAligned(sb, font, mainText, base_x + 10 * scale, base_y + 20 * scale, mainTextColor);
+            FontHelper.renderFont(sb, largeFont, mainText.text, base_x + 10 * scale - width, base_y + 20 * scale + layout.height / 2f, mainText.color);
 
             if (suffix != null)
             {
-                font.getData().setScale(card.drawScale * 0.6f);
-                layout.setText(font, suffix);
-                FontHelper.renderFont(sb, font, suffix, base_x + 10 * scale - width - layout.width, base_y + 14 * scale + layout.height / 2f, mainText.color);
-            }
-
-            if (iconTag != null)
-            {
-                RenderHelpers.CardIconFont_Small.getData().setScale(card.drawScale);
-                FontHelper.renderFontLeft(sb, RenderHelpers.CardIconFont_Small, iconTag, base_x + 10 * scale, base_y + 8 * scale, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
-                RenderHelpers.CardIconFont_Small.getData().setScale(1);
+                largeFont.getData().setScale(largeFont.getScaleX() * 0.6f);
+                layout.setText(largeFont, suffix);
+                FontHelper.renderFont(sb, largeFont, suffix, base_x + 10 * scale - width - layout.width, base_y + 14 * scale + layout.height / 2f, mainText.color);
             }
         }
+        RenderHelpers.ResetFont(largeFont);
 
-        font.getData().setScale(1);
+        if (iconTag != null)
+        {
+            BitmapFont smallFont = RenderHelpers.GetSmallAttributeFont(card);
+            FontHelper.renderFontLeft(sb, smallFont, iconTag, base_x + 10 * scale, base_y + 8 * scale, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
+            RenderHelpers.ResetFont(smallFont);
+        }
     }
 }

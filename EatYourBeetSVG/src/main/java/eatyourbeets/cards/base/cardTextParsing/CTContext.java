@@ -54,7 +54,11 @@ public class CTContext
         {
             if (text.length() > 100)
             {
-                scaleModifier -= (0.12f * (text.length() / 100f));
+                int actualLength = text.replace(" NL ", "").length();
+                if (actualLength > 100)
+                {
+                    scaleModifier -= (0.12f * (actualLength / 100f));
+                }
             }
 
             font.getData().setScale(scaleModifier);
@@ -81,24 +85,15 @@ public class CTContext
 
         this.lines.get(lineIndex).TrimEnd(); // Remove possible whitespace from the last line
 
-        if (card != null && font.getScaleX() != 0)
+        if (card != null)
         {
-            font.getData().setScale(1);
+            RenderHelpers.ResetFont(font);
         }
     }
 
     public void Render(SpriteBatch sb)
     {
-        if (card.angle != 0.0F || card.drawScale <= 1f)
-        {
-            font = RenderHelpers.CardDescriptionFont_Normal;
-            font.getData().setScale(card.drawScale * scaleModifier);
-        }
-        else
-        {
-            font = RenderHelpers.CardDescriptionFont_Large;
-            font.getData().setScale(card.drawScale * scaleModifier * 0.5f);
-        }
+        font = RenderHelpers.GetDescriptionFont(card, scaleModifier);
 
         float height = 0;
         for (CTLine line : lines)
@@ -116,10 +111,7 @@ public class CTContext
             lines.get(lineIndex).Render(sb);
         }
 
-        if (font.getScaleX() != 1)
-        {
-            font.getData().setScale(1);
-        }
+        RenderHelpers.ResetFont(font);
     }
 
     protected boolean CompareNext(int amount, char character)

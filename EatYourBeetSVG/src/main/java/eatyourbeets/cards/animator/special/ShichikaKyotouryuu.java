@@ -5,13 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import eatyourbeets.interfaces.markers.Hidden;
-import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.interfaces.markers.MartialArtist;
+import eatyourbeets.utilities.GameActions;
 
-public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, Hidden
+public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(ShichikaKyotouryuu.class);
 
@@ -25,6 +25,12 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist, H
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override

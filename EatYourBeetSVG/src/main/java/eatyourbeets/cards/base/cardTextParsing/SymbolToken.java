@@ -30,7 +30,7 @@ public class SymbolToken extends CTToken
     private SymbolToken(String text)
     {
         super(CTTokenType.Symbol, text);
-        tooltip = GR.GetTooltip(text);
+        tooltip = GR.Tooltips.FindByName(text);
     }
 
     @Override

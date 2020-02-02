@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -20,14 +22,25 @@ public class Ain extends AnimatorCard implements Spellcaster
 
     public Ain()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL);
+        super(ID, 2, CardRarity.UNCOMMON, EYBAttackType.Elemental, true);
 
         Initialize(3, 0, 2, 1);
         SetUpgrade(0, 0, 1, 0);
         SetScaling(1, 0, 0);
 
-        SetMultiDamage(true);
         SetSynergy(Synergies.Elsword);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        upgradedDamage = true;
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override

@@ -11,41 +11,19 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 
 public class EYBCardTooltip
 {
-    private static float drawX;
-    private static float drawY;
-    private static final Color BASE_COLOR;
-    private static final float CARD_TIP_PAD;
-    private static final float SHADOW_DIST_Y;
-    private static final float SHADOW_DIST_X;
-    private static final float BOX_EDGE_H;
-    private static final float BOX_BODY_H;
-    private static final float BOX_W;
-    private static float textHeight;
-    private static final float TEXT_OFFSET_X;
-    private static final float HEADER_OFFSET_Y;
-    private static final float ORB_OFFSET_Y;
-    private static final float BODY_OFFSET_Y;
-    private static final float BODY_TEXT_WIDTH;
-    private static final float TIP_DESC_LINE_SPACING;
-    private static final float POWER_ICON_OFFSET_X;
-
-    static
-    {
-        BASE_COLOR = new Color(1.0F, 0.9725F, 0.8745F, 1.0F);
-        CARD_TIP_PAD = 12.0F * Settings.scale;
-        SHADOW_DIST_Y = 14.0F * Settings.scale;
-        SHADOW_DIST_X = 9.0F * Settings.scale;
-        BOX_EDGE_H = 32.0F * Settings.scale;
-        BOX_BODY_H = 64.0F * Settings.scale;
-        BOX_W = 320.0F * Settings.scale;
-        TEXT_OFFSET_X = 22.0F * Settings.scale;
-        HEADER_OFFSET_Y = 12.0F * Settings.scale;
-        ORB_OFFSET_Y = -8.0F * Settings.scale;
-        BODY_OFFSET_Y = -20.0F * Settings.scale;
-        BODY_TEXT_WIDTH = 280.0F * Settings.scale;
-        TIP_DESC_LINE_SPACING = 26.0F * Settings.scale;
-        POWER_ICON_OFFSET_X = 40.0F * Settings.scale;
-    }
+    private static final Color BASE_COLOR = new Color(1.0F, 0.9725F, 0.8745F, 1.0F);
+    private static final float SHADOW_DIST_Y = 14.0F * Settings.scale;
+    private static final float SHADOW_DIST_X = 9.0F * Settings.scale;
+    private static final float BOX_EDGE_H = 32.0F * Settings.scale;
+    private static final float BOX_BODY_H = 64.0F * Settings.scale;
+    private static final float BOX_W = 320.0F * Settings.scale;
+    private static final float TEXT_OFFSET_X = 22.0F * Settings.scale;
+    private static final float HEADER_OFFSET_Y = 12.0F * Settings.scale;
+    private static final float ORB_OFFSET_Y = -8.0F * Settings.scale;
+    private static final float BODY_OFFSET_Y = -20.0F * Settings.scale;
+    private static final float BODY_TEXT_WIDTH = 280.0F * Settings.scale;
+    private static final float TIP_DESC_LINE_SPACING = 26.0F * Settings.scale;
+    private static final float POWER_ICON_OFFSET_X = 40.0F * Settings.scale;
 
     public TextureAtlas.AtlasRegion icon;
     public String title;

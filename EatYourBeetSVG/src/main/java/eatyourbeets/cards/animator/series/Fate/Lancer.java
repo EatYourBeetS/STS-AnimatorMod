@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -16,7 +17,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
 
     public Lancer()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.UNCOMMON, EYBAttackType.Piercing);
 
         Initialize(6, 0, 1);
         SetUpgrade(3, 0, 0);

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.TanyaDegurechaff_Type95;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -26,6 +27,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
         Initialize(4, 7);
         SetUpgrade(3, 0);
 
+        SetAttackType(EYBAttackType.Ranged);
         SetSynergy(Synergies.YoujoSenki);
     }
 

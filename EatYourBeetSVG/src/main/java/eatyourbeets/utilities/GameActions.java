@@ -43,6 +43,7 @@ import eatyourbeets.actions.special.GainGold;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.BurningPower;
@@ -224,14 +225,16 @@ public final class GameActions
         return Add(new DealDamage(target, new DamageInfo(source, amount, damageType), effect));
     }
 
-    public DealDamage DealDamage(AbstractCard card, AbstractCreature target, AbstractGameAction.AttackEffect effect)
+    public DealDamage DealDamage(EYBCard card, AbstractCreature target, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamage(target, new DamageInfo(AbstractDungeon.player, card.damage, card.damageTypeForTurn), effect));
+        return Add(new DealDamage(target, new DamageInfo(AbstractDungeon.player, card.damage, card.damageTypeForTurn), effect))
+        .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
     }
 
-    public DealDamageToAll DealDamageToAll(AbstractCard card, AbstractGameAction.AttackEffect effect)
+    public DealDamageToAll DealDamageToAll(EYBCard card, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToAll(AbstractDungeon.player, card.multiDamage, card.damageTypeForTurn, effect));
+        return Add(new DealDamageToAll(AbstractDungeon.player, card.multiDamage, card.damageTypeForTurn, effect))
+        .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
     }
 
     public DealDamageToAll DealDamageToAll(int[] damageMatrix, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
@@ -244,9 +247,10 @@ public final class GameActions
         return Add(new DealDamageToRandomEnemy(new DamageInfo(AbstractDungeon.player, baseDamage, damageType), effect));
     }
 
-    public DealDamageToRandomEnemy DealDamageToRandomEnemy(AbstractCard card, AbstractGameAction.AttackEffect effect)
+    public DealDamageToRandomEnemy DealDamageToRandomEnemy(EYBCard card, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToRandomEnemy(new DamageInfo(AbstractDungeon.player, card.baseDamage, card.damageTypeForTurn), effect));
+        return Add(new DealDamageToRandomEnemy(new DamageInfo(AbstractDungeon.player, card.baseDamage, card.damageTypeForTurn), effect))
+        .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
     }
 
     public MoveCard Discard(AbstractCard card, CardGroup group)

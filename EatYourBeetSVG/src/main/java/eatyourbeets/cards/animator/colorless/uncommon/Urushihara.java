@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -26,6 +27,8 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
         Initialize(23, 0);
 
         this.lazyCounter = 0;
+
+        SetAttackType(EYBAttackType.Elemental);
         SetMultiDamage(true);
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.HatarakuMaouSama);

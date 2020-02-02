@@ -23,7 +23,7 @@ public class Saber extends AnimatorCard
 
         Initialize(9, 0, 0);
         SetUpgrade(2, 0, 0);
-        SetScaling(0, 1, 0);
+        SetScaling(0, 1, 1);
 
         SetCooldown(8, 0, this::OnCooldownCompleted);
         SetLoyal(true);

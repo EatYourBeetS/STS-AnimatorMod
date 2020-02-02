@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -14,10 +15,11 @@ public class Chris extends AnimatorCard
 
     public Chris()
     {
-        super(ID, 0, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 0, CardRarity.UNCOMMON, EYBAttackType.Normal);
 
         Initialize(4, 0, 4);
         SetUpgrade(2, 0, 2);
+        SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Konosuba);
     }

@@ -4,7 +4,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.animator.PoisonAffinityPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -14,13 +16,18 @@ public class AcuraShin extends AnimatorCard
 
     public AcuraShin()
     {
-        super(ID, 2, CardRarity.RARE, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.RARE, EYBAttackType.Piercing);
 
         Initialize(3,2,2);
 
         SetCostUpgrade(-1);
-        SetPiercing(true);
         SetSynergy(Synergies.Chaika);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(2);
     }
 
     @Override

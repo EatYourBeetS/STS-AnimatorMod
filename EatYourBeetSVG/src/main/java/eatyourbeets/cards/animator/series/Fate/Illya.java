@@ -47,11 +47,14 @@ public class Illya extends AnimatorCard
     }
 
     @Override
-    public void render(SpriteBatch sb)
+    public void renderCard(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
     {
-        super.render(sb);
+        super.renderCard(sb, hovered, selected, library);
 
-        drawPileCardPreview.Render(sb);
+        if (!library)
+        {
+            drawPileCardPreview.Render(sb);
+        }
     }
 
     @Override

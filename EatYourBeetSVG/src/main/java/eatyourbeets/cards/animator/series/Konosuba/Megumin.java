@@ -25,7 +25,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
     {
         super(ID, 2, CardRarity.UNCOMMON, EYBAttackType.Elemental, true);
 
-        Initialize(12, 0);
+        Initialize(10, 0);
         SetUpgrade( 2, 0);
         SetScaling(4, 0, 0);
 
@@ -63,7 +63,7 @@ public class Megumin extends AnimatorCard implements Spellcaster
             GameActions.Bottom.VFX(new ExplosionSmallEffect(m1.hb_x, m1.hb_y));
         }
 
-        DealDamageToALL(AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
 
         if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {

@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryEnvenomPower;
@@ -11,6 +12,10 @@ import eatyourbeets.utilities.GameActions;
 public class AcuraAkari extends AnimatorCard
 {
     public static final String ID = Register(AcuraAkari.class);
+    static
+    {
+        GetStaticData(ID).InitializePreview(ThrowingKnife.GetCardForPreview(), false);
+    }
 
     public AcuraAkari()
     {

@@ -10,18 +10,14 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Fredrika extends AnimatorCard
 {
-    private enum Form
-    {
-        Default,
-        Cat,
-        Dominica,
-        Dragoon
-    }
+    private enum Form { Default, Cat, Dominica, Dragoon }
+    private Form currentForm = Form.Default;
 
     public static final String ID = Register(Fredrika.class);
     static
@@ -29,7 +25,6 @@ public class Fredrika extends AnimatorCard
         GetStaticData(ID).InitializePreview(new Fredrika(Form.Dragoon), true);
     }
 
-    private Form currentForm = Form.Default;
     private Fredrika(Form form)
     {
         this();
@@ -45,6 +40,32 @@ public class Fredrika extends AnimatorCard
         SetUpgrade(2, 2, 0);
 
         SetSynergy(Synergies.Chaika, true);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        if (currentForm == Form.Dominica)
+        {
+            return super.GetDamageInfo();
+        }
+        else if (currentForm == Form.Dragoon)
+        {
+            return super.GetDamageInfo().AddMultiplier(2);
+        }
+
+        return null;
+    }
+
+    @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        if (currentForm == Form.Default || currentForm == Form.Cat)
+        {
+            return super.GetBlockInfo();
+        }
+
+        return null;
     }
 
     @Override

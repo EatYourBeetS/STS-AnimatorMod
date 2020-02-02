@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.animator.Readme;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
@@ -29,13 +31,19 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 
     public Gilgamesh()
     {
-        super(ID, 2, CardRarity.RARE, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.RARE, EYBAttackType.Ranged);
 
         Initialize(3, 0, 3, GOLD_REWARD);
         SetUpgrade(1, 0);
 
         SetUnique(true, true);
         SetSynergy(Synergies.Fate);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     public void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)

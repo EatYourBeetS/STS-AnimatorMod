@@ -11,12 +11,11 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class IchigoBankai extends AnimatorCard implements MartialArtist, Hidden
+public class IchigoBankai extends AnimatorCard implements MartialArtist
 {
     public static final String ID = Register(IchigoBankai.class);
 

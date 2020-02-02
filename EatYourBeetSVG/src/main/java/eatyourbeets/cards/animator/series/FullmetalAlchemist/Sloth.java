@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.powers.common.TemporaryDrawReductionPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -17,10 +18,11 @@ public class Sloth extends AnimatorCard
 
     public Sloth()
     {
-        super(ID, 2, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.COMMON, EYBAttackType.Normal);
 
         Initialize(12, 12, 0, 3);
         SetUpgrade(3, 3);
+        SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }

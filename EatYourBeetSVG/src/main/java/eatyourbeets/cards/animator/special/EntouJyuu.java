@@ -2,13 +2,12 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.markers.Hidden;
-import eatyourbeets.powers.animator.FlamingWeaponPower;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.animator.FlamingWeaponPower;
+import eatyourbeets.utilities.GameActions;
 
-public class EntouJyuu extends AnimatorCard implements Hidden
+public class EntouJyuu extends AnimatorCard
 {
     public static final String ID = Register(EntouJyuu.class);
 

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FlameBarrierPower;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -17,13 +18,12 @@ public class RoyMustang extends AnimatorCard
 
     public RoyMustang()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL_ENEMY);
+        super(ID, 2, CardRarity.UNCOMMON, EYBAttackType.Elemental, true);
 
         Initialize(7, 0, 4);
         SetUpgrade(4, 0, 0);
 
         SetEvokeOrbCount(1);
-        SetMultiDamage(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 

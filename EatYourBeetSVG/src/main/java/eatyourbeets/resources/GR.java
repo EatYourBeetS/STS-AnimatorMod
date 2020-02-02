@@ -42,11 +42,10 @@ public class GR
     protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.cards.");
     protected static final ArrayList<String> relicClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.relics.");
     protected static final ArrayList<String> powerClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.powers.");
-    protected static final HashMap<String, EYBCardTooltip> tooltipIDs = new HashMap<>();
-    protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
     protected static final HashMap<String, Texture> textures = new HashMap<>();
 
-    public static UIManager UI;
+    public static CardTooltips Tooltips = new CardTooltips();
+    public static UIManager UI = new UIManager();
     public static AnimatorResources Animator;
     public static UnnamedResources Unnamed;
     public static CommonResources Common;
@@ -59,7 +58,6 @@ public class GR
             throw new RuntimeException("Already Initialized");
         }
 
-        UI = new UIManager();
         Common = new CommonResources();
         Animator = new AnimatorResources();
         Unnamed = new UnnamedResources();
@@ -163,16 +161,6 @@ public class GR
     public static String CreateID(String prefix, String suffix)
     {
         return prefix + ":" + suffix;
-    }
-
-    public static EYBCardTooltip GetTooltip(String name)
-    {
-        return tooltips.get(name);
-    }
-
-    public static EYBCardTooltip GetTooltipByID(String id)
-    {
-        return tooltipIDs.get(id);
     }
 
     protected void LoadCustomRelics(String character)
@@ -311,13 +299,15 @@ public class GR
             Keyword keyword = pair.getValue();
             EYBCardTooltip tooltip = new EYBCardTooltip(keyword);
 
-            tooltipIDs.put(id, tooltip);
+            Tooltips.RegisterID(id, tooltip);
 
             for (String name : keyword.NAMES)
             {
-                tooltips.put(name, tooltip);
+                Tooltips.RegisterName(name, tooltip);
             }
         }
+
+        Tooltips.Initialize();
     }
 
     protected void LoadCustomStrings(Class<?> type, String path)

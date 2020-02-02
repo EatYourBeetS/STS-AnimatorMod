@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
 import eatyourbeets.utilities.GameActions;
@@ -19,7 +20,7 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
 
     public CrowleyEusford()
     {
-        super(ID, 3, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL_ENEMY);
+        super(ID, 3, CardRarity.UNCOMMON, EYBAttackType.Normal, CardTarget.ALL);
 
         Initialize(18, 0, 4);
         SetUpgrade(3, 0, 1);

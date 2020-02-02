@@ -6,11 +6,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Respite extends AnimatorCard implements Hidden
+public class Respite extends AnimatorCard
 {
     public static final String ID = Register(Respite.class);
 
@@ -23,6 +24,12 @@ public class Respite extends AnimatorCard implements Hidden
 
         SetRetain(true);
         SetPurge(true);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override

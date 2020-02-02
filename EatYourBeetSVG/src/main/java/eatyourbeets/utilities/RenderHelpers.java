@@ -13,51 +13,133 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.ui.controls.GUI_Image;
 
 public class RenderHelpers
 {
     public static final BitmapFont CardDescriptionFont_Normal = GenerateFont(FontHelper.cardDescFont_L, 23, 0, 1);
     public static final BitmapFont CardDescriptionFont_Large = FontHelper.SCP_cardDescFont;
+    public static final BitmapFont CardIconFont_VeryLarge = GenerateFont(FontHelper.cardDescFont_L, 76, 4.5f, 1.4f);
     public static final BitmapFont CardIconFont_Large = GenerateFont(FontHelper.cardDescFont_L, 38, 2.25f, 0.7f);
     public static final BitmapFont CardIconFont_Small = GenerateFont(FontHelper.cardDescFont_L, 19, 1f, 0.3f);
 
-
-    public static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, float shadowOffset)
+    public static void ResetFont(BitmapFont font)
     {
-        return GenerateFont(source, size, borderWidth, new Color(0F, 0F, 0F, 1F), shadowOffset, new Color(0.0F, 0.0F, 0.0F, 0.5F));
+        font.getData().setScale(1);
     }
 
-    public static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, Color borderColor, float shadowOffset, Color shadowColor)
+    public static BitmapFont GetLargeAttributeFont(EYBCard card)
     {
-        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        param.minFilter = Texture.TextureFilter.Linear;
-        param.magFilter = Texture.TextureFilter.Linear;
-        param.hinting = FreeTypeFontGenerator.Hinting.Slight;
-        param.spaceX = 0;
-        param.kerning = true;
-        param.borderColor = borderColor;
-        param.borderWidth = borderWidth * Settings.scale;
-        param.gamma = 0.9F;
-        param.borderGamma = 0.9F;
-        param.shadowColor = shadowColor;
-        param.shadowOffsetX = Math.round(shadowOffset * Settings.scale);
-        param.shadowOffsetY = Math.round(shadowOffset * Settings.scale);
-        param.borderStraight = false;
-        param.characters = "";
-        param.incremental = true;
-        param.size = Math.round(size * Settings.scale);
-        FreeTypeFontGenerator g = new FreeTypeFontGenerator(source.getData().fontFile); // TitleFontSize.fontFile
-        g.scaleForPixelHeight(param.size);
-        BitmapFont font = g.generateFont(param);
-        font.setUseIntegerPositions(false);
-        font.getData().markupEnabled = false;
-        if (LocalizedStrings.break_chars != null)
+        BitmapFont result;
+        if (card.isPopup)
         {
-            font.getData().breakChars = LocalizedStrings.break_chars.toCharArray();
+            result = RenderHelpers.CardIconFont_VeryLarge;
+            result.getData().setScale(card.drawScale * 0.5f);
+        }
+        else
+        {
+            result = RenderHelpers.CardIconFont_Large;
+            result.getData().setScale(card.drawScale);
         }
 
-        return font;
+        return result;
+    }
+
+    public static BitmapFont GetSmallAttributeFont(EYBCard card)
+    {
+        BitmapFont result;
+        if (card.isPopup)
+        {
+            result = RenderHelpers.CardIconFont_Large;
+            result.getData().setScale(card.drawScale * 0.45f);
+        }
+        else
+        {
+            result = RenderHelpers.CardIconFont_Small;
+            result.getData().setScale(card.drawScale * 0.9f);
+        }
+
+        return result;
+    }
+
+    public static BitmapFont GetSmallTextFont(EYBCardBase card, String text)
+    {
+        float scaleModifier = 0.8f;
+        int length = text.length();
+        if (length > 20)
+        {
+            scaleModifier -= 0.02f * (length - 20);
+            if (scaleModifier < 0.5f)
+            {
+                scaleModifier = 0.5f;
+            }
+        }
+
+        BitmapFont result;
+        if (card.isPopup)
+        {
+            result = FontHelper.SCP_cardTitleFont_small;
+            result.getData().setScale(card.drawScale * scaleModifier * 0.5f);
+        }
+        else
+        {
+            result = FontHelper.cardTitleFont_small;
+            result.getData().setScale(card.drawScale * scaleModifier);
+        }
+
+        return result;
+    }
+
+    public static BitmapFont GetDescriptionFont(EYBCardBase card, float scaleModifier)
+    {
+        BitmapFont result;
+        if (card.isPopup)
+        {
+            result = CardDescriptionFont_Large;
+            result.getData().setScale(card.drawScale * scaleModifier * 0.5f);
+        }
+        else
+        {
+            result = CardDescriptionFont_Normal;
+            result.getData().setScale(card.drawScale * scaleModifier);
+        }
+
+        return result;
+    }
+
+    public static BitmapFont GetTitleFont(EYBCardBase card)
+    {
+        BitmapFont result;
+        if (card.isPopup)
+        {
+            result = FontHelper.SCP_cardTitleFont_small;
+            result.getData().setScale(card.drawScale * 0.5f);
+        }
+        else
+        {
+            result = (card.name.length() > 14) ? FontHelper.cardTitleFont_small : FontHelper.cardTitleFont;
+            result.getData().setScale(card.drawScale);
+        }
+
+        return result;
+    }
+
+    public static BitmapFont GetEnergyFont(EYBCardBase card)
+    {
+        BitmapFont result;
+        if (card.isPopup)
+        {
+            result = FontHelper.SCP_cardEnergyFont;
+            result.getData().setScale(card.drawScale * 0.5f);
+        }
+        else
+        {
+            result = FontHelper.cardEnergyFont_L;
+            result.getData().setScale(card.drawScale);
+        }
+
+        return result;
     }
 
     public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY)
@@ -108,8 +190,6 @@ public class RenderHelpers
 
         DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height);
     }
-
-
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float size)
     {
@@ -206,5 +286,42 @@ public class RenderHelpers
             case 'S': return card.GetSecondaryValueString();
             default: return new ColoredString("?", Settings.RED_TEXT_COLOR);
         }
+    }
+
+    private static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, float shadowOffset)
+    {
+        return GenerateFont(source, size, borderWidth, new Color(0F, 0F, 0F, 1F), shadowOffset, new Color(0.0F, 0.0F, 0.0F, 0.5F));
+    }
+
+    private static BitmapFont GenerateFont(BitmapFont source, float size, float borderWidth, Color borderColor, float shadowOffset, Color shadowColor)
+    {
+        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        param.minFilter = Texture.TextureFilter.Linear;
+        param.magFilter = Texture.TextureFilter.Linear;
+        param.hinting = FreeTypeFontGenerator.Hinting.Slight;
+        param.spaceX = 0;
+        param.kerning = true;
+        param.borderColor = borderColor;
+        param.borderWidth = borderWidth * Settings.scale;
+        param.gamma = 0.9F;
+        param.borderGamma = 0.9F;
+        param.shadowColor = shadowColor;
+        param.shadowOffsetX = Math.round(shadowOffset * Settings.scale);
+        param.shadowOffsetY = Math.round(shadowOffset * Settings.scale);
+        param.borderStraight = false;
+        param.characters = "";
+        param.incremental = true;
+        param.size = Math.round(size * Settings.scale);
+        FreeTypeFontGenerator g = new FreeTypeFontGenerator(source.getData().fontFile); // TitleFontSize.fontFile
+        g.scaleForPixelHeight(param.size);
+        BitmapFont font = g.generateFont(param);
+        font.setUseIntegerPositions(false);
+        font.getData().markupEnabled = false;
+        if (LocalizedStrings.break_chars != null)
+        {
+            font.getData().breakChars = LocalizedStrings.break_chars.toCharArray();
+        }
+
+        return font;
     }
 }

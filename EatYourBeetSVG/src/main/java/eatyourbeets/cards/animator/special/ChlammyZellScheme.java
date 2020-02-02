@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlickCoinEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.ChlammyZellPower;
 import eatyourbeets.utilities.GameActions;
 
-public class ChlammyZellScheme extends AnimatorCard implements Hidden
+public class ChlammyZellScheme extends AnimatorCard
 {
     public static final String ID = Register(ChlammyZellScheme.class);
 
@@ -21,6 +21,7 @@ public class ChlammyZellScheme extends AnimatorCard implements Hidden
 
         SetRetain(true);
         SetExhaust(true);
+        SetSynergy(Synergies.NoGameNoLife);
     }
 
     @Override

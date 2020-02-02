@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.csharp.ActionT0;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
@@ -34,11 +36,18 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
     {
         super(ID, 3, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
 
-        Initialize(11, 0, 0, 2);
+        Initialize(8, 0, 0, 2);
         SetUpgrade(3, 0, 0, 0);
         SetScaling(2, 0, 0);
 
+        SetAttackType(EYBAttackType.Elemental);
         SetSynergy(Synergies.TouhouProject);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(1 + magicNumber);
     }
 
     @Override

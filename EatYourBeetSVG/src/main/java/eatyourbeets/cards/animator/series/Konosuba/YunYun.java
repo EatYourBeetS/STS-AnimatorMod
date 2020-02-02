@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
 import eatyourbeets.interfaces.markers.Spellcaster;
@@ -25,7 +26,7 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
 
     public YunYun()
     {
-        super(ID, 0, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ALL_ENEMY);
+        super(ID, 0, CardRarity.UNCOMMON, EYBAttackType.Elemental, true);
 
         Initialize(8, 0);
         SetUpgrade(4, 0);

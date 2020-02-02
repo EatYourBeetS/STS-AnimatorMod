@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -16,12 +17,12 @@ public class HighElfArcher extends AnimatorCard
 
     public HighElfArcher()
     {
-        super(ID, 0, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 0, CardRarity.UNCOMMON, EYBAttackType.Ranged);
 
-        Initialize(3, 0, 2);
+        Initialize(2, 0, 2);
         SetUpgrade(0, 0, 1);
+        SetScaling(0, 1, 0);
 
-        SetPiercing(true);
         SetSynergy(Synergies.GoblinSlayer);
     }
 

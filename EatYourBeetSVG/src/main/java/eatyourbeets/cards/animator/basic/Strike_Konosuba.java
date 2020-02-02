@@ -14,7 +14,7 @@ public class Strike_Konosuba extends Strike
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6, 2);
+        Initialize(5, 2);
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Konosuba);

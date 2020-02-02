@@ -33,6 +33,8 @@ import eatyourbeets.utilities.JavaUtilities;
 import patches.CardGlowBorderPatches;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 {
@@ -66,6 +68,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static final Void Void = new Void();
     public static boolean LoadingPlayerSave;
 
+    private static final Map<String, Object> combatData = new HashMap<>();
     private static final EffectHistory effectHistory = new EffectHistory();
     private static GameActionManager.Phase currentPhase;
     private static int turnDamageMultiplier = 0;
@@ -100,6 +103,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
 
         CardGlowBorderPatches.overrideColor = null;
         Synergies.SetLastCardPlayed(null);
+        combatData.clear();
         turnDamageMultiplier = 0;
         turnCount = 0;
         cardsDrawnThisTurn = 0;
@@ -282,6 +286,24 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         }
     }
 
+    public static <T> T SetCombatData(String key, T data)
+    {
+        combatData.put(key, data);
+        return (T)data;
+    }
+
+    public static <T> T GetCombatData(String key, T defaultData)
+    {
+        if (combatData.containsKey(key))
+        {
+            return (T)combatData.get(key);
+        }
+        else
+        {
+            return SetCombatData(key, defaultData);
+        }
+    }
+
     public static void AddTurnDamageMultiplier(int value)
     {
         turnDamageMultiplier += value;
@@ -378,19 +400,19 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         {
             power.priority = -2100;
         }
-        else if (StrengthPower.POWER_ID.equals(power.ID))
+        else if (AgilityPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2099;
         }
-        else if (AgilityPower.POWER_ID.equals(power.ID))
+        else if (IntellectPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2098;
         }
-        else if (DexterityPower.POWER_ID.equals(power.ID))
+        else if (StrengthPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2097;
         }
-        else if (IntellectPower.POWER_ID.equals(power.ID))
+        else if (DexterityPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2096;
         }

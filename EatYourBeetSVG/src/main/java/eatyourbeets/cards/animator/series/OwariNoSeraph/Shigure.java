@@ -31,8 +31,6 @@ public class Shigure extends AnimatorCard
     @Override
     public void triggerOnExhaust()
     {
-        super.triggerOnExhaust();
-
         if (EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -20,7 +21,6 @@ public class CTContext
     protected final static float CN_DESC_BOX_WIDTH = IMG_WIDTH * 0.72F;
     protected final static Color DEFAULT_COLOR = Settings.CREAM_COLOR.cpy();
 
-    public final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
     public final ArrayList<CTLine> lines = new ArrayList<>();
 
     protected Character character;
@@ -42,7 +42,6 @@ public class CTContext
         this.card = card;
         this.text = text;
         this.lines.clear();
-        this.tooltips.clear();
         this.scaleModifier = 1;
 
         AddLine();
@@ -52,6 +51,8 @@ public class CTContext
 
         if (card != null)
         {
+            this.card.tooltips.clear();
+
             if (text.length() > 100)
             {
                 int actualLength = text.replace(" NL ", "").length();
@@ -172,9 +173,9 @@ public class CTContext
 
     protected void AddTooltip(EYBCardTooltip tooltip)
     {
-        if (!tooltips.contains(tooltip) && !tooltip.title.equals("channel")) // TODO: Create another way to ignore certain tooltips
+        if (card != null && !card.tooltips.contains(tooltip) && GR.Tooltips.CanAdd(tooltip))
         {
-            tooltips.add(tooltip);
+            card.tooltips.add(tooltip);
         }
     }
 }

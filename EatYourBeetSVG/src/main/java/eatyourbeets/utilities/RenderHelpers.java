@@ -23,6 +23,7 @@ public class RenderHelpers
     public static final BitmapFont CardIconFont_VeryLarge = GenerateFont(FontHelper.cardDescFont_L, 76, 4.5f, 1.4f);
     public static final BitmapFont CardIconFont_Large = GenerateFont(FontHelper.cardDescFont_L, 38, 2.25f, 0.7f);
     public static final BitmapFont CardIconFont_Small = GenerateFont(FontHelper.cardDescFont_L, 19, 1f, 0.3f);
+    public static final BitmapFont CardTooltipFont = GenerateFont(FontHelper.tipBodyFont, 19, 0f, 2f);
 
     public static void ResetFont(BitmapFont font)
     {

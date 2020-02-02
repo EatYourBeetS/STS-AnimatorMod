@@ -108,6 +108,7 @@ public class CTLine
         if (size > 0 && tokens.get(size - 1).type == CTTokenType.Whitespace)
         {
             width -= tokens.remove(size - 1).GetWidth(context.font);
+            TrimEnd();
         }
     }
 }

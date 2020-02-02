@@ -26,6 +26,7 @@ public abstract class EYBCard extends EYBCardBase
     public abstract ColoredString GetBottomText();
     public abstract ColoredString GetHeaderText();
 
+    public final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
     public EYBAttackType attackType = EYBAttackType.Normal;
     public float forceScaling = 0;
     public float intellectScaling = 0;
@@ -130,24 +131,21 @@ public abstract class EYBCard extends EYBCardBase
     }
 
     @Override
-    public void initializeDescriptionCN()
-    {
-        if (cardText != null)
-        {
-            this.cardText.ForceRefresh();
-        }
-    }
-
-    @Override
     public void renderDescription(SpriteBatch sb)
     {
-        this.cardText.RenderDescription(sb);
+        if (!Settings.hideCards && !isFlipped)
+        {
+            this.cardText.RenderDescription(sb);
+        }
     }
 
     @Override
     public void renderCardTip(SpriteBatch sb)
     {
-        this.cardText.RenderTooltips(sb);
+        if (!Settings.hideCards && !isFlipped && !isLocked && isSeen && (isPopup || CanRenderTip()))
+        {
+            this.cardText.RenderTooltips(sb);
+        }
     }
 
     @Override
@@ -161,6 +159,41 @@ public abstract class EYBCard extends EYBCardBase
     public boolean IsAoE()
     {
         return isMultiDamage;
+    }
+
+    public void GenerateDynamicTooltips(ArrayList<EYBCardTooltip> dynamicTooltips)
+    {
+        if (isInnate)
+        {
+            dynamicTooltips.add(GR.Tooltips.Innate);
+        }
+        if (isEthereal)
+        {
+            dynamicTooltips.add(GR.Tooltips.Ethereal);
+        }
+        if (retain || selfRetain)
+        {
+            dynamicTooltips.add(GR.Tooltips.Retain);
+        }
+        if (exhaust)
+        {
+            dynamicTooltips.add(GR.Tooltips.Exhaust);
+        }
+
+        switch (attackType)
+        {
+            case Elemental:
+                dynamicTooltips.add(GR.Tooltips.Elemental);
+                break;
+
+            case Piercing:
+                dynamicTooltips.add(GR.Tooltips.Piercing);
+                break;
+
+            case Ranged:
+                dynamicTooltips.add(GR.Tooltips.Ranged);
+                break;
+        }
     }
 
     public AbstractAttribute GetDamageInfo()

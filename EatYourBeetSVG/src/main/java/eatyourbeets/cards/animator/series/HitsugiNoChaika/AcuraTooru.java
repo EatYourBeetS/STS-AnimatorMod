@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraTooru extends AnimatorCard
@@ -24,6 +25,12 @@ public class AcuraTooru extends AnimatorCard
         SetUpgrade(0, 0, 0, 1);
 
         SetSynergy(Synergies.Chaika);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(2);
     }
 
     @Override

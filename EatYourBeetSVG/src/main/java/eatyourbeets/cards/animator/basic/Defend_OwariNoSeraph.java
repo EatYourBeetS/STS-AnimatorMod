@@ -24,8 +24,6 @@ public class Defend_OwariNoSeraph extends Defend
     @Override
     public void triggerOnExhaust()
     {
-        super.triggerOnExhaust();
-
         AbstractPlayer p = AbstractDungeon.player;
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {

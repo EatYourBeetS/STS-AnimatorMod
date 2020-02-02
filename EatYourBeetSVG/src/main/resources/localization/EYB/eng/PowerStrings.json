@@ -7,17 +7,17 @@
 	},
 	"EYB:ForcePower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, lose #b1 #yForce and #yStrength."],
+		"DESCRIPTIONS": ["Lose #b1 #yForce at the start of each turn.", " If you reach #b{0} #yForce, gain #b{1} #yStrength."],
 		"NAME": "Force"
 	},
 	"EYB:AgilityPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, lose #b1 #yAgility and #yDexterity."],
+		"DESCRIPTIONS": ["Lose #b1 #yAgility at the start of each turn.", " If you reach #b{0} #yAgility, gain #b{1} #yDexterity."],
 		"NAME": "Agility"
 	},
 	"EYB:IntellectPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, lose #b1 #yIntellect and #yFocus."],
+		"DESCRIPTIONS": ["Lose #b1 #yIntellect at the start of each turn.", " If you reach #b{0} #yIntellect, gain #b{1} #yFocus."],
 		"NAME": "Intellect"
 	}
 }

@@ -1,52 +1,10 @@
 
 {
-	"Augmentable":
-	{
-		"DESCRIPTION": "Can be upgraded any number of times.",
-		"NAMES": ["augmentable"],
-		"PROPER_NAME": "Augmentable"
-	},
-	"Boost":
-	{
-		"DESCRIPTION": "This effect activates a limited number of times.",
-		"NAMES": ["boost"],
-		"PROPER_NAME": "Boost"
-	},
 	"Cooldown":
 	{
 		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by 1. If the #yCooldown is at 0, activate its effect instead.",
 		"NAMES": ["cooldown"],
 		"PROPER_NAME": "Cooldown"
-	},
-	"Flaming Weapon":
-	{
-		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yBurning.",
-		"NAMES": ["flaming weapon"],
-		"PROPER_NAME": "Flaming Weapon"
-	},
-	"Heartseeker":
-	{
-		"DESCRIPTION": "If the target has less than #b50% HP, deal double damage.",
-		"NAMES": ["heartseeker"],
-		"PROPER_NAME": "Heartseeker"
-	},
-	"Lazy":
-	{
-		"DESCRIPTION": "This card's damage will be delayed by a random number of turns.",
-		"NAMES": ["lazy"],
-		"PROPER_NAME": "Lazy"
-	},
-	"Legacy":
-	{
-		"DESCRIPTION": "Triggers when this card is exhausted.",
-		"NAMES": ["legacy"],
-		"PROPER_NAME": "Legacy"
-	},
-	"Loyal":
-	{
-		"DESCRIPTION": "Whenever this card would enter your discard pile, shuffle it into your draw pile.",
-		"NAMES": ["loyal"],
-		"PROPER_NAME": "Loyal"
 	},
 	"Martial Artist":
 	{
@@ -65,24 +23,6 @@
 		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
 		"NAMES": ["~orb core", "~orb cores"],
 		"PROPER_NAME": "Orb Core"
-	},
-	"Overrun":
-	{
-		"DESCRIPTION": "Activates for each enemy that loses its block during this attack.",
-		"NAMES": ["overrun"],
-		"PROPER_NAME": "Overrun"
-	},
-	"Persistent":
-	{
-		"DESCRIPTION": "Whenever this card would enter your discard pile, shuffle it into your draw pile.",
-		"NAMES": ["persistent"],
-		"PROPER_NAME": "Persistent"
-	},
-	"Recall":
-	{
-		"DESCRIPTION": "Trigger when this card is manually discarded or cycled.",
-		"NAMES": ["recall"],
-		"PROPER_NAME": "Recall"
 	},
 	"Reload":
 	{
@@ -116,7 +56,7 @@
 	},
 	"Synergy":
 	{
-		"DESCRIPTION": "A card #ySynergizes if the card previously played this turn was from the same series.",
+		"DESCRIPTION": "A card #ySynergizes if the previous card played this turn was of the same series.",
 		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized"],
 		"PROPER_NAME": "Synergy"
 	}

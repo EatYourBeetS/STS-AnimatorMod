@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.basic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_TenSura extends Defend
@@ -17,6 +18,12 @@ public class Defend_TenSura extends Defend
         SetUpgrade(0, 1);
 
         SetSynergy(Synergies.TenSura);
+    }
+
+    @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        return super.GetBlockInfo().AddMultiplier(2);
     }
 
     @Override

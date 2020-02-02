@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Every #b3 points of #yAgility, gain #b1 #yDexterity. Lose #b1 #yAgility at the start of turn.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b3, #b5, #b7, and #b9 #yAgility, gain #yDexterity.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
@@ -56,7 +56,7 @@
 	},
 	"Earth":
 	{
-		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage randomly split amongst ALL enemies.",
+		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage split randomly amongst ALL enemies.",
 		"NAMES": ["earth", "earth+"],
 		"PROPER_NAME": "Earth"
 	},
@@ -68,7 +68,7 @@
 	},
 	"Envenom":
 	{
-		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison per stack.",
+		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison.",
 		"NAMES": ["envenom"],
 		"PROPER_NAME": "Envenom"
 	},
@@ -92,7 +92,7 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "Every #b3 points of #yForce, gain #b1 #yStrength. Lose #b1 #yForce at the start of turn.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b3, #b5, #b7, and #b9 #yForce, gain #yStrength.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
@@ -104,7 +104,7 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Every #b3 points of #yIntellect, gain #b1 #yFocus. Lose #b1 #yIntellect at the start of turn.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b3, #b5, #b7, and #b9 #yIntellect, gain #yFocus.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
@@ -122,7 +122,7 @@
 	},
 	"Malleable":
 	{
-		"DESCRIPTION": "Upon receiving attack damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of your turn.",
+		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of your turn.",
 		"NAMES": ["malleable"],
 		"PROPER_NAME": "Malleable"
 	},
@@ -134,7 +134,7 @@
 	},
 	"Plated Armor":
 	{
-		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving unblocked damage.",
+		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving damage.",
 		"NAMES": ["plated armor", "plated_armor", "plat. armor", "plat._armor"],
 		"PROPER_NAME": "Plated Armor"
 	},
@@ -170,7 +170,7 @@
 	},
 	"Temporary HP":
 	{
-		"DESCRIPTION": "Temporary HP disappears at the end of combat.",
+		"DESCRIPTION": "Temporary HP last until end of combat.",
 		"NAMES": ["temporary hp", "temp. hp"],
 		"PROPER_NAME": "Temporary HP"
 	},
@@ -182,21 +182,27 @@
 	},
 	"~Elemental":
 	{
-		"DESCRIPTION": "Ignores the target's #yBlock and #yThorns.",
+		"DESCRIPTION": "Ignores #yBlock and #yThorns.",
 		"NAMES": ["~elemental"],
 		"PROPER_NAME": "Elemental Damage"
 	},
 	"~Piercing":
 	{
-		"DESCRIPTION": "Ignores the target's #yBlock and #yThorns.",
+		"DESCRIPTION": "Ignores #yBlock and #yThorns.",
 		"NAMES": ["~piercing"],
 		"PROPER_NAME": "Piercing Damage"
 	},
 	"~Ranged":
 	{
-		"DESCRIPTION": "Ignores the target's #yThorns.",
+		"DESCRIPTION": "Ignores #yThorns.",
 		"NAMES": ["~ranged"],
 		"PROPER_NAME": "Ranged Damage"
+	},
+	"~Ethereal":
+	{
+		"DESCRIPTION": "#yExhausted if in hand at the end of turn.",
+		"NAMES": ["~ethereal"],
+		"PROPER_NAME": "Ethereal"
 	},
 	"~Steal":
 	{

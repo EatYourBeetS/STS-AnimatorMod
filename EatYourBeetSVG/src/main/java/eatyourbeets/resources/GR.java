@@ -306,8 +306,6 @@ public class GR
                 Tooltips.RegisterName(name, tooltip);
             }
         }
-
-        Tooltips.Initialize();
     }
 
     protected void LoadCustomStrings(Class<?> type, String path)

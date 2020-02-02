@@ -1,6 +1,5 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.PlayerStatistics;
@@ -23,11 +22,11 @@ public class LivingPicture extends AnimatorRelic implements OnSynergySubscriber
     {
         super.atBattleStart();
 
-        if (hasShownTip1 == null && AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y == 0)
-        {
-            Readme.SpawnAll();
-            hasShownTip1 = true;
-        }
+//        if (hasShownTip1 == null && AbstractDungeon.actNum == 1 && AbstractDungeon.getCurrMapNode().y == 0)
+//        {
+//            Readme.SpawnAll();
+//            hasShownTip1 = true;
+//        }
     }
 
     @Override

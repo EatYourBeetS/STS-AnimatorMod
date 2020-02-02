@@ -85,6 +85,7 @@ public class CommonResources extends AbstractResources
     protected void InitializeCards()
     {
         Strings.Initialize();
+        GR.Tooltips.Initialize();
     }
 
     @Override
@@ -97,6 +98,7 @@ public class CommonResources extends AbstractResources
     protected void PostInitialize()
     {
         CommandsManager.RegisterCommands();
+        GR.Tooltips.InitializeIcons();
         GR.UI.Initialize();
         GR.IsLoaded = true;
     }

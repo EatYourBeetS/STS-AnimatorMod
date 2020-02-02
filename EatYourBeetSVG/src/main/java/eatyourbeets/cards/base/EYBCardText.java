@@ -10,27 +10,18 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.cardTextParsing.CTContext;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
-
-import java.util.ArrayList;
 
 public class EYBCardText
 {
-    private final static FieldInfo<ArrayList> _keywords = JavaUtilities.GetField("KEYWORDS", TipHelper.class);
-    private final static FieldInfo<ArrayList> _powerTips = JavaUtilities.GetField("POWER_TIPS", TipHelper.class);
-    private final static FieldInfo<Boolean> _renderedTipsThisFrame = JavaUtilities.GetField("renderedTipThisFrame", TipHelper.class);
-    private static final float CARD_TIP_PAD = 12.0F * Settings.scale;
-    private static final float BOX_EDGE_H = 32.0F * Settings.scale;
-    private static final float BOX_W = 320.0F * Settings.scale;
+
+
     private static final CommonImages.Badges BADGES = GR.Common.Images.Badges;
     private static final CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
     private float badgeAlphaTargetOffset = 1f;
@@ -79,85 +70,46 @@ public class EYBCardText
 
     public void RenderDescription(SpriteBatch sb)
     {
-        if (card.isFlipped || card.isSeen && !card.isLocked || card.transparency <= 0.1f)
-        {
-            context.Render(sb);
-
-            RenderAttributes(sb);
-
-            if (card.drawScale > 0.3f)
-            {
-                RenderBadges(sb);
-
-                ColoredString header = card.GetHeaderText();
-                if (header != null)
-                {
-                    BitmapFont font = RenderHelpers.GetSmallTextFont(card, header.text);
-                    RenderHelpers.WriteOnCard(sb, card, font, header.text, 0, AbstractCard.RAW_H * 0.48f, header.color, true);
-                    RenderHelpers.ResetFont(font);
-                }
-
-                ColoredString bottom = card.GetBottomText();
-                if (bottom != null)
-                {
-                    BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
-                    RenderHelpers.WriteOnCard(sb, card, RenderHelpers.GetSmallTextFont(card, bottom.text), bottom.text, 0, -AbstractCard.RAW_H * 0.47f, bottom.color, true);
-                    RenderHelpers.ResetFont(font);
-                }
-            }
-        }
-        else
+        if (card.isLocked || !card.isSeen)
         {
             FontHelper.menuBannerFont.getData().setScale(card.drawScale * 1.25F);
-            FontHelper.renderRotatedText(sb, FontHelper.menuBannerFont, "? ? ?", card.current_x, card.current_y, 0.0F, -200.0F * Settings.scale * card.drawScale / 2.0F, card.angle, true, Settings.CREAM_COLOR.cpy());
+            FontHelper.renderRotatedText(sb, FontHelper.menuBannerFont, "? ? ?", card.current_x, card.current_y,
+            0, -200 * Settings.scale * card.drawScale * 0.5f, card.angle, true, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
             FontHelper.menuBannerFont.getData().setScale(1.0F);
+            return;
+        }
+
+        context.Render(sb);
+
+        RenderAttributes(sb);
+
+        if (card.drawScale > 0.3f)
+        {
+            RenderBadges(sb);
+
+            ColoredString header = card.GetHeaderText();
+            if (header != null)
+            {
+                BitmapFont font = RenderHelpers.GetSmallTextFont(card, header.text);
+                RenderHelpers.WriteOnCard(sb, card, font, header.text, 0, AbstractCard.RAW_H * 0.48f, header.color, true);
+                RenderHelpers.ResetFont(font);
+            }
+
+            ColoredString bottom = card.GetBottomText();
+            if (bottom != null)
+            {
+                BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
+                RenderHelpers.WriteOnCard(sb, card, RenderHelpers.GetSmallTextFont(card, bottom.text), bottom.text, 0, -AbstractCard.RAW_H * 0.47f, bottom.color, true);
+                RenderHelpers.ResetFont(font);
+            }
         }
     }
 
     public void RenderTooltips(SpriteBatch sb)
     {
-        if (!Settings.hideCards && (card.isPopup || card.CanRenderTip()) && !_renderedTipsThisFrame.Get(null))
+        if (EYBCardTooltip.CanRenderTooltips() && (AbstractDungeon.player == null || !AbstractDungeon.player.isDraggingCard || Settings.isTouchScreen))
         {
-            if (card.isLocked || !card.isSeen || (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard && !Settings.isTouchScreen))
-            {
-                return;
-            }
-
-            _keywords.Get(null).clear();
-            _powerTips.Get(null).clear();
-            _renderedTipsThisFrame.Set(null, true);
-
-            float x;
-            float y;
-
-            if (card.isPopup)
-            {
-                x = 0.78f * Settings.WIDTH;
-                y = 0.85f * Settings.HEIGHT;
-            }
-            else
-            {
-                x = card.current_x;
-                if (card.current_x < (float) Settings.WIDTH * 0.75F)
-                {
-                    x += AbstractCard.IMG_WIDTH / 2.0F + CARD_TIP_PAD;
-                }
-                else
-                {
-                    x -= AbstractCard.IMG_WIDTH / 2.0F + CARD_TIP_PAD + BOX_W;
-                }
-
-                y = card.current_y + AbstractCard.IMG_HEIGHT / 2.0F - BOX_EDGE_H;
-                if (context.tooltips.size() >= 4)
-                {
-                    y += (float) (context.tooltips.size() - 1) * 62.0F * Settings.scale;
-                }
-            }
-
-            for (EYBCardTooltip tooltip : context.tooltips)
-            {
-                y -= tooltip.Render(sb, x, y) + BOX_EDGE_H * 3.15F;
-            }
+            EYBCardTooltip.RenderAll(sb, card);
 
             if (card.cardData.previewInitialized)
             {

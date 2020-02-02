@@ -13,6 +13,8 @@ import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.ColoredString;
 
+import java.util.ArrayList;
+
 public abstract class AnimatorCard extends EYBCard
 {
     protected static final AnimatorImages IMAGES = GR.Animator.Images;
@@ -120,6 +122,25 @@ public abstract class AnimatorCard extends EYBCard
         copy.synergy = synergy;
         copy.anySynergy = anySynergy;
         return copy;
+    }
+
+    @Override
+    public void GenerateDynamicTooltips(ArrayList<EYBCardTooltip> dynamicTooltips)
+    {
+        super.GenerateDynamicTooltips(dynamicTooltips);
+
+        if (this.anySynergy)
+        {
+            dynamicTooltips.add(GR.Tooltips.Shapeshifter);
+        }
+        else if (this instanceof MartialArtist)
+        {
+            dynamicTooltips.add(GR.Tooltips.MartialArtist);
+        }
+        else if (this instanceof Spellcaster)
+        {
+            dynamicTooltips.add(GR.Tooltips.Spellcaster);
+        }
     }
 
     @Override

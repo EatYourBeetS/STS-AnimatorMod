@@ -22,8 +22,6 @@ public class Defend_AccelWorld extends Defend
     @Override
     public void triggerOnManualDiscard()
     {
-        super.triggerOnManualDiscard();
-
         GameActions.Bottom.GainBlock(this.magicNumber);
     }
 

@@ -37,6 +37,7 @@ public abstract class EYBCardBase extends AbstractCard
     @Override public final void renderWithSelections(SpriteBatch sb) { renderCard(sb, false, true, false); }
     @Override public final void renderSmallEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y) { throw new RuntimeException("Not Implemented"); }
     @Override public final void renderCardPreviewInSingleView(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
+    @Override public final void initializeDescriptionCN() { initializeDescription(); }
     @Override public abstract void renderUpgradePreview(SpriteBatch sb);
     //@Formatter: On
 

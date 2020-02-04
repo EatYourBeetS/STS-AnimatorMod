@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Asuramaru extends AnimatorCard
 {
-    public static final String ID = Register(Asuramaru.class);
+    public static final String ID = Register_Old(Asuramaru.class);
 
     public Asuramaru()
     {

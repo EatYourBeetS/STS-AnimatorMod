@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class LeleiLaLalena extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(LeleiLaLalena.class);
+    public static final String ID = Register_Old(LeleiLaLalena.class);
 
     public LeleiLaLalena()
     {

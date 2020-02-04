@@ -13,7 +13,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register(MumenRider.class);
+    public static final String ID = Register_Old(MumenRider.class);
 
     private int turns;
 

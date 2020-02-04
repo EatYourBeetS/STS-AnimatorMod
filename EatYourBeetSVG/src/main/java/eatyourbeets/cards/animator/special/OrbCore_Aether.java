@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Aether extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Aether.class);
+    public static final String ID = Register_Old(OrbCore_Aether.class);
 
     public static final int VALUE = 3;
 

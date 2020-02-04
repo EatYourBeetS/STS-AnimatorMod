@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ZankiKiguchi extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(ZankiKiguchi.class);
+    public static final String ID = Register_Old(ZankiKiguchi.class);
 
     public ZankiKiguchi()
     {

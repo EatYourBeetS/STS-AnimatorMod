@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Hakurou extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Hakurou.class);
+    public static final String ID = Register_Old(Hakurou.class);
 
     public Hakurou()
     {
@@ -52,7 +52,7 @@ public class Hakurou extends AnimatorCard implements MartialArtist
     {
         GameActions.Bottom.VFX(new DieDieDieEffect());
 
-        for (int i = 0; i < this.magicNumber; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         }

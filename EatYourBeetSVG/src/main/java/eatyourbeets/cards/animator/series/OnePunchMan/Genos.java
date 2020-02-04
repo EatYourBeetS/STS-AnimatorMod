@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Genos extends AnimatorCard
 {
-    public static final String ID = Register(Genos.class);
+    public static final String ID = Register_Old(Genos.class);
 
     public Genos()
     {

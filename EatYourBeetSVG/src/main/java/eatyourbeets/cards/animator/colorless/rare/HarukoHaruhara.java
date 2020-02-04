@@ -12,7 +12,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class HarukoHaruhara extends AnimatorCard
 {
-    public static final String ID = Register(HarukoHaruhara.class);
+    public static final String ID = Register_Old(HarukoHaruhara.class);
 
     public HarukoHaruhara()
     {

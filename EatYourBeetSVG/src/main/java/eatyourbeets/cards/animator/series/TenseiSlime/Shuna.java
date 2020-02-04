@@ -8,13 +8,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shuna extends AnimatorCard
 {
-    public static final String ID = Register(Shuna.class);
+    public static final String ID = Register_Old(Shuna.class);
 
     public Shuna()
     {
         super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 2, 2);
+        Initialize(0, 3, 2);
         SetUpgrade(0, 2, 0);
 
         SetSynergy(Synergies.TenSura);
@@ -34,10 +34,5 @@ public class Shuna extends AnimatorCard
     {
         GameActions.Bottom.Draw(1);
         GameActions.Bottom.GainBlock(block);
-
-        if (HasSynergy())
-        {
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
-        }
     }
 }

@@ -19,7 +19,7 @@ public class Fredrika extends AnimatorCard
     private enum Form { Default, Cat, Dominica, Dragoon }
     private Form currentForm = Form.Default;
 
-    public static final String ID = Register(Fredrika.class);
+    public static final String ID = Register_Old(Fredrika.class);
     static
     {
         GetStaticData(ID).InitializePreview(new Fredrika(Form.Dragoon), true);
@@ -200,7 +200,7 @@ public class Fredrika extends AnimatorCard
             {
                 LoadImage("_Cat");
 
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 this.type = CardType.SKILL;
                 this.target = CardTarget.NONE;
                 this.cost = 0;
@@ -212,7 +212,7 @@ public class Fredrika extends AnimatorCard
             {
                 LoadImage("_Dragoon");
 
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[1], true);
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
@@ -224,7 +224,7 @@ public class Fredrika extends AnimatorCard
             {
                 LoadImage("_Dominica");
 
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[2], true);
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;

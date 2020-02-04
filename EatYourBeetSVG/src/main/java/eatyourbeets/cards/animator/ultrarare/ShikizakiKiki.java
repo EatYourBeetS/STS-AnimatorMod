@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ShikizakiKiki extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(ShikizakiKiki.class);
+    public static final String ID = Register_Old(ShikizakiKiki.class);
 
     public ShikizakiKiki()
     {

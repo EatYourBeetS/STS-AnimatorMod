@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ChlammyZell extends AnimatorCard
 {
-    public static final String ID = Register(ChlammyZell.class);
+    public static final String ID = Register_Old(ChlammyZell.class);
     static
     {
         GetStaticData(ID).InitializePreview(new ChlammyZellScheme(), false);
@@ -35,9 +35,14 @@ public class ChlammyZell extends AnimatorCard
         GameActions.Bottom.Draw(2);
         GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
 
-        if (GameUtilities.GetPowerAmount(IntellectPower.POWER_ID) >= 3 && EffectHistory.TryActivateLimited(cardID))
+        if (!EffectHistory.HasActivatedLimited(cardID))
         {
-            GameActions.Bottom.MakeCardInHand(cardData.defaultPreview).SetOptions(false, true);
+            IntellectPower intellect = GameUtilities.GetPower(player, IntellectPower.class);
+            if (intellect != null && intellect.GetCurrentLevel() > 1)
+            {
+                GameActions.Bottom.MakeCardInHand(cardData.defaultPreview).SetOptions(false, true);
+                EffectHistory.TryActivateLimited(cardID);
+            }
         }
     }
 }

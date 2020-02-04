@@ -13,6 +13,7 @@ import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.animator.series.NoGameNoLife.Sora;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCardBuilder;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 
 public class SoraAction extends EYBAction
 {
+    private static final String[] EFFECT_NAMES = GR.GetCardStrings(Sora.ID).EXTENDED_DESCRIPTION;
+    private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
     private static final ArrayList<AnimatorCardBuilder> attackPool = new ArrayList<>();
     private static final ArrayList<AnimatorCardBuilder> defendPool = new ArrayList<>();
     private static final ArrayList<AnimatorCardBuilder> preparePool = new ArrayList<>();
@@ -114,29 +117,31 @@ public class SoraAction extends EYBAction
 
     private enum SoraEffect
     {
-        DamageRandomTwice(0, 4, 5),
-        DamageAll(0, 5, 6),
-        GainForce(0, 7, 2),
-        ApplyVulnerable(0, 12, 2),
+        DamageRandomTwice(0, "", 5),
+        DamageAll(0, "", 6),
+        GainForce(0, ACTIONS.GainAmount(2, GR.Tooltips.Force, true), 2),
+        ApplyVulnerable(0, ACTIONS.ApplyToALL(2, GR.Tooltips.Vulnerable, true), 2),
 
-        GainBlock(1, 6, 7),
-        GainAgility(1, 8, 2),
-        ApplyWeak(1, 11, 2),
-        GainTemporaryHP(1, 15, 5),
+        GainBlock(1, "", 7),
+        GainAgility(1, ACTIONS.GainAmount(2, GR.Tooltips.Force, true), 2),
+        ApplyWeak(1, ACTIONS.ApplyToALL(2, GR.Tooltips.Weak, true), 2),
+        GainTemporaryHP(1, ACTIONS.GainAmount(5, "{" + GR.Tooltips.TempHP + "}", true), 5),
 
-        UpgradeAll(2, 3, 0),
-        Motivate(2, 10, 1),
-        CycleCards(2, 13, 3),
-        DrawCards(2, 14, 2);
+        UpgradeAll(2, ACTIONS.UpgradeALLCardsInHand(true), 0),
+        Motivate(2, ACTIONS.Motivate(1, true), 1),
+        CycleCards(2, ACTIONS.Cycle(3, true), 3),
+        GainIntellect(2, ACTIONS.GainAmount(2, GR.Tooltips.Intellect, true), 2);
 
-        private int descriptionIndex;
-        private int nameIndex;
+        private int group;
+        private String cardDescription;
+        private String cardName;
         private int number;
 
-        SoraEffect(int nameIndex, int descriptionIndex, int number)
+        SoraEffect(int nameIndex, String description, int number)
         {
-            this.descriptionIndex = descriptionIndex;
-            this.nameIndex = nameIndex;
+            this.group = nameIndex;
+            this.cardDescription = description;
+            this.cardName = EFFECT_NAMES[nameIndex];
             this.number = number;
         }
 
@@ -144,11 +149,11 @@ public class SoraAction extends EYBAction
         {
             for (SoraEffect effect : SoraEffect.class.getEnumConstants())
             {
-                if (effect.nameIndex == 0)
+                if (effect.group == 0)
                 {
                     attackPool.add(GenerateEffect(effect));
                 }
-                else if (effect.nameIndex == 1)
+                else if (effect.group == 1)
                 {
                     defendPool.add(GenerateEffect(effect));
                 }
@@ -194,11 +199,11 @@ public class SoraAction extends EYBAction
                     });
                 }
 
-                case DrawCards:
+                case GainIntellect:
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        GameActions.Bottom.Draw(c.magicNumber);
+                        GameActions.Bottom.GainIntellect(c.magicNumber);
                     });
                 }
 
@@ -281,20 +286,27 @@ public class SoraAction extends EYBAction
         protected AnimatorCardBuilder GenerateInternal(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
             AnimatorCardBuilder builder = new AnimatorCardBuilder(Sora.ID + "Alt");
-            AnimatorStrings.Special text = GR.Animator.Strings.Special;
 
-            builder.SetText(text.Get(nameIndex), text.Get(descriptionIndex), "");
+            builder.SetText(cardName, cardDescription, "");
             builder.SetProperties(AbstractCard.CardType.SKILL, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
             builder.SetNumbers(number, number, number, number);
             builder.SetOnUse(onUseAction);
 
-            if (this == SoraEffect.DamageAll)
+            if (this == GainBlock)
             {
-                builder.isMultiDamage = true;
+                builder.SetNumbers(0, number, 0, 0);
             }
-            else if (this == SoraEffect.DamageRandomTwice)
+            else if (this == DamageAll)
             {
-                builder.magicNumber = 2;
+                builder.SetAttackType(EYBAttackType.Normal, true);
+                builder.SetNumbers(number, 0, 0, 0);
+                builder.cardType = AbstractCard.CardType.ATTACK;
+            }
+            else if (this == DamageRandomTwice)
+            {
+                builder.SetAttackType(EYBAttackType.Normal, false);
+                builder.SetNumbers(number, 0, 2, 0);
+                builder.cardType = AbstractCard.CardType.ATTACK;
             }
 
             return builder;

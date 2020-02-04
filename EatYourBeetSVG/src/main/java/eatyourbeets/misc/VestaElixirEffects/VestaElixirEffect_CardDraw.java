@@ -6,9 +6,15 @@ import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_CardDraw extends VestaElixirEffect
 {
-    public VestaElixirEffect_CardDraw(int index)
+    public VestaElixirEffect_CardDraw()
     {
-        super(index, 3);
+        super(3);
+    }
+
+    @Override
+    public String GetDescription()
+    {
+        return ACTIONS.Draw(amount, true);
     }
 
     @Override

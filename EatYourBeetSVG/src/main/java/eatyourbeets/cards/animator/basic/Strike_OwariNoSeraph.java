@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Strike_OwariNoSeraph extends Strike
 {
-    public static final String ID = Register(Strike_OwariNoSeraph.class);
+    public static final String ID = Register_Old(Strike_OwariNoSeraph.class);
 
     public Strike_OwariNoSeraph()
     {

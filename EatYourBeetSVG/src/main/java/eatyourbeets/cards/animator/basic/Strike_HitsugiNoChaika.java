@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Strike_HitsugiNoChaika extends Strike
 {
-    public static final String ID = Register(Strike_HitsugiNoChaika.class);
+    public static final String ID = Register_Old(Strike_HitsugiNoChaika.class);
 
     public Strike_HitsugiNoChaika()
     {

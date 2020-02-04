@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Kuribayashi extends AnimatorCard
 {
-    public static final String ID = Register(Kuribayashi.class);
+    public static final String ID = Register_Old(Kuribayashi.class);
 
     private static final int STRENGTH_DOWN = 4;
 

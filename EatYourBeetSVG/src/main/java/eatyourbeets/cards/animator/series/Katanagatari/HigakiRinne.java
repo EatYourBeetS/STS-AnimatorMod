@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class HigakiRinne extends AnimatorCard
 {
-    public static final String ID = Register(HigakiRinne.class);
+    public static final String ID = Register_Old(HigakiRinne.class);
 
     public HigakiRinne()
     {

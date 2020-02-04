@@ -43,9 +43,9 @@ public class VestaElixirEffects
         effects2.add(effectPool.Retrieve(rng));
         effects2.add(effectPool.Retrieve(rng));
 
-        effects3.add(new VestaElixirEffect_Exhaust(9, effectPool.Retrieve(rng)));
-        effects3.add(new VestaElixirEffect_Discard(10, effectPool.Retrieve(rng)));
-        effects3.add(new VestaElixirEffect_CompleteFaster(0));
+        effects3.add(effectPool.Retrieve(rng)); // new VestaElixirEffect_Exhaust()
+        effects3.add(effectPool.Retrieve(rng)); // new VestaElixirEffect_Discard()
+        effects3.add(new VestaElixirEffect_CompleteFaster());
     }
 
     public static void BeginCreateElixir(Vesta vesta)
@@ -115,14 +115,14 @@ public class VestaElixirEffects
     {
         RandomizedList<VestaElixirEffect> effectPool = new RandomizedList<>();
 
-        effectPool.Add(new VestaElixirEffect_CardDraw(1));
-        effectPool.Add(new VestaElixirEffect_Intellect(2));
-        effectPool.Add(new VestaElixirEffect_Force(3));
-        effectPool.Add(new VestaElixirEffect_Agility(4));
-        effectPool.Add(new VestaElixirEffect_OrbSlots(5));
-        effectPool.Add(new VestaElixirEffect_TempHP(6));
-        effectPool.Add(new VestaElixirEffect_Metallicize(7));
-        effectPool.Add(new VestaElixirEffect_Energy(8));
+        effectPool.Add(new VestaElixirEffect_CardDraw());
+        effectPool.Add(new VestaElixirEffect_Intellect());
+        effectPool.Add(new VestaElixirEffect_Force());
+        effectPool.Add(new VestaElixirEffect_Agility());
+        effectPool.Add(new VestaElixirEffect_OrbSlots());
+        effectPool.Add(new VestaElixirEffect_TempHP());
+        effectPool.Add(new VestaElixirEffect_Metallicize());
+        effectPool.Add(new VestaElixirEffect_Energy());
 
         return effectPool;
     }

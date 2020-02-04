@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Azekura extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Azekura.class);
+    public static final String ID = Register_Old(Azekura.class);
 
     public Azekura()
     {

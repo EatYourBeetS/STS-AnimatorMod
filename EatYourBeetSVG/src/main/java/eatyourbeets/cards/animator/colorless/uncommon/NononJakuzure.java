@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 {
-    public static final String ID = Register(NononJakuzure.class);
+    public static final String ID = Register_Old(NononJakuzure.class);
 
     public NononJakuzure()
     {

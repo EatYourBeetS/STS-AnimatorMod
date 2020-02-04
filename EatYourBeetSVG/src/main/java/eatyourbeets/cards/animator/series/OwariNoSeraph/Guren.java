@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
 {
-    public static final String ID = Register(Guren.class);
+    public static final String ID = Register_Old(Guren.class);
 
     private boolean alreadyPlayed = false;
 

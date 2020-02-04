@@ -14,7 +14,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class ThrowingKnife extends AnimatorCard
 {
-    public static final String ID = Register(ThrowingKnife.class);
+    public static final String ID = Register_Old(ThrowingKnife.class);
 
     private static ThrowingKnife preview;
     private int index;
@@ -92,13 +92,13 @@ public class ThrowingKnife extends AnimatorCard
             switch (index)
             {
                 case 1:
-                    GameActions.Top.ApplyPoison(p, m, secondaryValue);
+                    GameActions.Top.ApplyWeak(p, m, magicNumber);
                     break;
                 case 2:
                     GameActions.Top.ApplyVulnerable(p, m, magicNumber);
                     break;
                 case 3:
-                    GameActions.Top.ApplyWeak(p, m, magicNumber);
+                    GameActions.Top.ApplyPoison(p, m, secondaryValue);
                     break;
                 default:
                     throw new RuntimeException("This class is only for preview. You are not supposed to use it.");
@@ -116,6 +116,6 @@ public class ThrowingKnife extends AnimatorCard
     private void ChangeIndex(int index)
     {
         this.index = index;
-        this.cardText.OverrideDescription(JavaUtilities.Format(rawDescription, cardData.strings.EXTENDED_DESCRIPTION[index]), true);
+        this.cardText.OverrideDescription(JavaUtilities.Format(rawDescription, cardData.Strings.EXTENDED_DESCRIPTION[index]), true);
     }
 }

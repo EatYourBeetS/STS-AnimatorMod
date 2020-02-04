@@ -1,5 +1,7 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -9,14 +11,15 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Sebas extends AnimatorCard
 {
-    public static final String ID = Register(Sebas.class);
+    public static final String ID = Register_Old(Sebas.class);
 
     public Sebas()
     {
         super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 7, 2, 3);
-        SetUpgrade(0, 4, 0, 0);
+        Initialize(0, 6, 3);
+        SetUpgrade(0, 3);
+        SetScaling(0, 1, 2);
 
         SetExhaust(true);
         SetSynergy(Synergies.Overlord);
@@ -27,19 +30,21 @@ public class Sebas extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainTemporaryHP(secondaryValue);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+        GameActions.Bottom.GainBlock(block).AddCallback(__ ->
         {
-            if (GameUtilities.IsAttacking(enemy.intent))
+            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
             {
-                GameActions.Bottom.GainBlock(block);
-                GameActions.Bottom.GainThorns(magicNumber);
+                if (GameUtilities.IsAttacking(enemy.intent))
+                {
+                    GameActions.Bottom.DealDamage(player, enemy, player.currentBlock, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+                }
             }
-        }
+        });
     }
 }

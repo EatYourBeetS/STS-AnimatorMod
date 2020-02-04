@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DarknessAdrenaline extends AnimatorCard
 {
-    public static final String ID = Register(DarknessAdrenaline.class);
+    public static final String ID = Register_Old(DarknessAdrenaline.class);
 
     public DarknessAdrenaline()
     {

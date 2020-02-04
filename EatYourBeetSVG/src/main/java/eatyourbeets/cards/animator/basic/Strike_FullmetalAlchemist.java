@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Strike_FullmetalAlchemist extends Strike
 {
-    public static final String ID = Register(Strike_FullmetalAlchemist.class);
+    public static final String ID = Register_Old(Strike_FullmetalAlchemist.class);
 
     public Strike_FullmetalAlchemist()
     {

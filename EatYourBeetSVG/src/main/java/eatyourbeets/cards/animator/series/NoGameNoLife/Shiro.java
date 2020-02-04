@@ -12,7 +12,7 @@ import eatyourbeets.powers.animator.ShiroPower;
 
 public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
 {
-    public static final String ID = Register(Shiro.class);
+    public static final String ID = Register_Old(Shiro.class);
 
     private int costModifier = 0;
 

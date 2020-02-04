@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class MisaKurobane extends AnimatorCard
 {
-    public static final String ID = Register(MisaKurobane.class);
+    public static final String ID = Register_Old(MisaKurobane.class);
     static
     {
         GetStaticData(ID).InitializePreview(new Yusarin(), false);

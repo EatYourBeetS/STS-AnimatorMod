@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class PandorasActor extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(PandorasActor.class);
+    public static final String ID = Register_Old(PandorasActor.class);
 
     public PandorasActor()
     {

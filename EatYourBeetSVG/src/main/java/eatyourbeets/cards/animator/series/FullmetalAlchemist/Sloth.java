@@ -14,7 +14,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Sloth extends AnimatorCard
 {
-    public static final String ID = Register(Sloth.class);
+    public static final String ID = Register_Old(Sloth.class);
 
     public Sloth()
     {

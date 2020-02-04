@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SeriousSaitama extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(SeriousSaitama.class);
+    public static final String ID = Register_Old(SeriousSaitama.class);
 
     public SeriousSaitama()
     {
@@ -26,7 +26,7 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int amount = GameUtilities.UseEnergyXCost(this);
+        int amount = GameUtilities.UseXCostEnergy(this);
         if (upgraded)
         {
             amount += 1;

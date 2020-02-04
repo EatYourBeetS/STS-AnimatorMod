@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_GoblinSlayer extends Defend
 {
-    public static final String ID = Register(Defend_GoblinSlayer.class);
+    public static final String ID = Register_Old(Defend_GoblinSlayer.class);
 
     public Defend_GoblinSlayer()
     {

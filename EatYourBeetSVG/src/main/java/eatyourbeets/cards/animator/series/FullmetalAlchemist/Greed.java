@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Greed extends AnimatorCard
 {
-    public static final String ID = Register(Greed.class);
+    public static final String ID = Register_Old(Greed.class);
 
     public Greed()
     {

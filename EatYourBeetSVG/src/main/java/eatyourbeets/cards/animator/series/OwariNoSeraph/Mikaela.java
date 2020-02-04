@@ -12,13 +12,13 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Mikaela extends AnimatorCard
 {
-    public static final String ID = Register(Mikaela.class);
+    public static final String ID = Register_Old(Mikaela.class);
 
     public Mikaela()
     {
         super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(7, 0, 2, 2);
+        Initialize(6, 0, 2, 2);
         SetUpgrade(2, 0, 1, 0);
         SetScaling(0, 0, 1);
 

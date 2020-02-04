@@ -19,7 +19,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Megumin extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Megumin.class);
+    public static final String ID = Register_Old(Megumin.class);
 
     public Megumin()
     {

@@ -26,6 +26,7 @@ public abstract class PlayerAttributePower extends CommonPower
         super(owner, powerID);
 
         this.amount = amount;
+        this.threshold = 3;
 
         updateDescription();
     }
@@ -98,10 +99,21 @@ public abstract class PlayerAttributePower extends CommonPower
         return damage;
     }
 
+    public int GetCurrentLevel()
+    {
+        switch (threshold)
+        {
+            case 0: return 0;
+            case 3: return 1;
+            case 5: return 2;
+            case 7: return 3;
+            case 9: return 4;
+            default: return 5;
+        }
+    }
+
     protected void UpdateThreshold()
     {
-        threshold = PlayerStatistics.GetCombatData(ID, 3);
-
         int powerGain = 0;
         if (threshold == 3 && amount >= threshold)
         {
@@ -124,7 +136,6 @@ public abstract class PlayerAttributePower extends CommonPower
             threshold = -1;
         }
 
-        PlayerStatistics.SetCombatData(ID, threshold);
         updateDescription();
     }
 

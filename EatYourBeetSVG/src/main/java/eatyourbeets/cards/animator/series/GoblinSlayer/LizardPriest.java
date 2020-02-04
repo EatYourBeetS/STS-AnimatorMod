@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class LizardPriest extends AnimatorCard
 {
-    public static final String ID = Register(LizardPriest.class);
+    public static final String ID = Register_Old(LizardPriest.class);
 
     public LizardPriest()
     {

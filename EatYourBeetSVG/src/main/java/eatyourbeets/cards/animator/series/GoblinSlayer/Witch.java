@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Witch extends AnimatorCard implements Spellcaster, StartupCard
 {
-    public static final String ID = Register(Witch.class);
+    public static final String ID = Register_Old(Witch.class);
 
     public Witch()
     {

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Ara extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Ara.class);
+    public static final String ID = Register_Old(Ara.class);
 
     public Ara()
     {

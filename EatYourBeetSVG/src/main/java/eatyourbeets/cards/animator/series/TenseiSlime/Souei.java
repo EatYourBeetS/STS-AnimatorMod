@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Souei extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Souei.class);
+    public static final String ID = Register_Old(Souei.class);
 
     public Souei()
     {

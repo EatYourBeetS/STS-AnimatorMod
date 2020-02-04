@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_TenSura extends Defend
 {
-    public static final String ID = Register(Defend_TenSura.class);
+    public static final String ID = Register_Old(Defend_TenSura.class);
 
     public Defend_TenSura()
     {

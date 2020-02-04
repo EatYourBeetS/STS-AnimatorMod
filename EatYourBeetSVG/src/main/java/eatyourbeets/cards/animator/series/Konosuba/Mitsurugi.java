@@ -6,15 +6,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.ui.cards.TargetEffectPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsurugi extends AnimatorCard
 {
-    public static final String ID = Register(Mitsurugi.class);
+    public static final String ID = Register_Old(Mitsurugi.class);
 
-    private final TargetEffectPreview targetEffectPreview = new TargetEffectPreview(this::updateCurrentEffect);
+    private final TargetEffectPreview targetEffectPreview = new TargetEffectPreview(this::OnTargetChanged);
+    private boolean showDamage = true;
 
     public Mitsurugi()
     {
@@ -28,11 +30,14 @@ public class Mitsurugi extends AnimatorCard
     }
 
     @Override
-    public void calculateCardDamage(AbstractMonster mo)
+    public AbstractAttribute GetDamageInfo()
     {
-        super.calculateCardDamage(mo);
+        if (showDamage)
+        {
+            return super.GetDamageInfo();
+        }
 
-        targetEffectPreview.SetCurrentTarget(mo);
+        return null;
     }
 
     @Override
@@ -54,22 +59,16 @@ public class Mitsurugi extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainForce(magicNumber);
+
         if (GameUtilities.IsAttacking(m.intent))
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-            GameActions.Bottom.GainForce(magicNumber);
         }
     }
 
-    private void updateCurrentEffect(AbstractMonster monster)
+    private void OnTargetChanged(AbstractMonster monster)
     {
-        if (monster == null || GameUtilities.IsAttacking(monster.intent))
-        {
-            cardText.OverrideDescription(null, true);
-        }
-        else
-        {
-            cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
-        }
+        showDamage = (monster == null || !GameUtilities.IsAttacking(monster.intent));
     }
 }

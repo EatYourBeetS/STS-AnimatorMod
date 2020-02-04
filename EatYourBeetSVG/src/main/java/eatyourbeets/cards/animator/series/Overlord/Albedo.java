@@ -4,17 +4,18 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Albedo extends AnimatorCard
 {
-    public static final String ID = Register(Albedo.class);
+    public static final String ID = Register_Old(Albedo.class);
 
     public Albedo()
     {
-        super(ID, 2, CardRarity.RARE, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
+        super(ID, 2, CardRarity.RARE, EYBAttackType.Normal);
 
         Initialize(8, 0);
         SetUpgrade(3, 0);

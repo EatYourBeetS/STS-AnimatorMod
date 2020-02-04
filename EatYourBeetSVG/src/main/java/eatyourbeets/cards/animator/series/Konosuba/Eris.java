@@ -20,7 +20,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber, OnBattleStartSubscriber
 {
-    public static final String ID = Register(Eris.class);
+    public static final String ID = Register_Old(Eris.class);
 
     public Eris()
     {

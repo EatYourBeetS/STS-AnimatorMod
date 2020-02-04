@@ -10,7 +10,7 @@ import eatyourbeets.orbs.animator.Fire;
 
 public class Elsword extends AnimatorCard
 {
-    public static final String ID = Register(Elsword.class);
+    public static final String ID = Register_Old(Elsword.class);
 
     public Elsword()
     {

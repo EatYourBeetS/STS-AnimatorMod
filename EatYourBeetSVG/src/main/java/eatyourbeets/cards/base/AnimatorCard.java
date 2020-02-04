@@ -25,28 +25,49 @@ public abstract class AnimatorCard extends EYBCard
     public Synergy synergy;
     public boolean anySynergy;
 
-    protected static String Register(Class<? extends AnimatorCard> type)
+    protected static EYBCardData Register(Class<? extends AnimatorCard> type)
+    {
+        return RegisterCardImproved(type, GR.Animator.CreateID(type.getSimpleName())).SetColor(GR.Animator.CardColor);
+    }
+
+    protected static String Register_Old(Class<? extends AnimatorCard> type)
     {
         return RegisterCard(type, GR.Animator.CreateID(type.getSimpleName()));
     }
 
-    protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType)
+    protected AnimatorCard(EYBCardData cardData)
     {
-        this(id, cost, rarity, attackType, false);
+        super(cardData, cardData.ID, GR.GetCardImage(cardData.ID), cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
+
+        SetMultiDamage(cardData.CardTarget == EYBCardTarget.ALL);
+        SetAttackTarget(cardData.CardTarget);
+        SetAttackType(cardData.AttackType);
     }
 
-    protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType, CardTarget target)
+    protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType)
     {
-        this(GetStaticData(id), id, AnimatorResources.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, target);
+        this(GetStaticData(id), id, GR.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, CardTarget.ENEMY);
 
+        SetMultiDamage(attackTarget == EYBCardTarget.ALL);
+        SetAttackTarget(attackTarget);
         SetAttackType(attackType);
     }
 
     protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType, boolean isAoE)
     {
-        this(GetStaticData(id), id, AnimatorResources.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, isAoE ? CardTarget.ALL_ENEMY : CardTarget.ENEMY);
+        this(GetStaticData(id), id, GR.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, isAoE ? CardTarget.ALL : CardTarget.ENEMY);
 
-        SetMultiDamage(isAoE);
+        SetMultiDamage(attackTarget == EYBCardTarget.ALL);
+        SetAttackTarget(attackTarget);
+        SetAttackType(attackType);
+    }
+
+    protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType, EYBCardTarget attackTarget)
+    {
+        this(GetStaticData(id), id, GR.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, attackTarget.ToCardTarget());
+
+        SetMultiDamage(attackTarget == EYBCardTarget.ALL);
+        SetAttackTarget(attackTarget);
         SetAttackType(attackType);
     }
 

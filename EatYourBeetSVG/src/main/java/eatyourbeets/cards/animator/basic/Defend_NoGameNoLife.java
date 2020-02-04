@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_NoGameNoLife extends Defend
 {
-    public static final String ID = Register(Defend_NoGameNoLife.class);
+    public static final String ID = Register_Old(Defend_NoGameNoLife.class);
 
     public Defend_NoGameNoLife()
     {

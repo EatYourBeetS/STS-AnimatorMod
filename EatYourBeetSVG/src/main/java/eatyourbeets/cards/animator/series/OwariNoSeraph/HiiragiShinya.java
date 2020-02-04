@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HiiragiShinya extends AnimatorCard
 {
-    public static final String ID = Register(HiiragiShinya.class);
+    public static final String ID = Register_Old(HiiragiShinya.class);
 
     public HiiragiShinya()
     {

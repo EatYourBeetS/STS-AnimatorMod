@@ -4,6 +4,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.EffectHistory;
@@ -11,18 +13,16 @@ import eatyourbeets.utilities.GameActions;
 
 public class Tet extends AnimatorCard
 {
-    public static final String ID = Register(Tet.class);
+    public static final EYBCardData DATA = Register(Tet.class).SetSkill(CardRarity.UNCOMMON, EYBCardTarget.None, 0);
 
     public Tet()
     {
-        super(ID, 0, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.NONE);
+        super(DATA);
 
         Initialize(0, 0);
-
         SetInnate(true);
         SetRetain(true);
         SetExhaust(true);
-
         SetSynergy(Synergies.NoGameNoLife);
     }
 
@@ -46,9 +46,9 @@ public class Tet extends AnimatorCard
 
     private void DiscardFromDrawPile()
     {
-        GameActions.Top.SelectFromPile(name, magicNumber, player.drawPile)
-        .SetMessage(GR.Common.Strings.GridSelection.DiscardUpTo(magicNumber))
-        .SetOptions(false, true)
+        GameActions.Top.SelectFromPile(name, 1, player.hand, player.drawPile)
+        .SetMessage(GR.Common.Strings.GridSelection.Discard)
+        .SetOptions(false, false)
         .AddCallback(cards ->
         {
             for (AbstractCard card : cards)
@@ -60,8 +60,8 @@ public class Tet extends AnimatorCard
 
     private void ShuffleFromDiscardPile()
     {
-        GameActions.Top.SelectFromPile(name, magicNumber, player.discardPile)
-        .SetMessage(GR.Common.Strings.GridSelection.MoveToDrawPile(magicNumber))
+        GameActions.Top.SelectFromPile(name, 1, player.discardPile)
+        .SetMessage(GR.Common.Strings.GridSelection.MoveToDrawPile(1))
         .SetOptions(false, true)
         .AddCallback(cards ->
         {

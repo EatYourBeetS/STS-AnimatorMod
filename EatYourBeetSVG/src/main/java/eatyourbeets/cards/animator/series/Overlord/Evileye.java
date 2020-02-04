@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Evileye extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Evileye.class);
+    public static final String ID = Register_Old(Evileye.class);
 
     public Evileye()
     {

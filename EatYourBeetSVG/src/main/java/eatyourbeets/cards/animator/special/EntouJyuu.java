@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class EntouJyuu extends AnimatorCard
 {
-    public static final String ID = Register(EntouJyuu.class);
+    public static final String ID = Register_Old(EntouJyuu.class);
 
     public EntouJyuu()
     {

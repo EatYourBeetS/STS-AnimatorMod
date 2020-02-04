@@ -149,4 +149,10 @@ public class EYBCardTooltip
         sb.draw(region.getTexture(), x + region.offsetX * Settings.scale, y + region.offsetY * Settings.scale, 0.0F, 0.0F,
         width, height, Settings.scale, Settings.scale, 0.0F, region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight(), false, false);
     }
+
+    @Override
+    public String toString()
+    {
+        return title;
+    }
 }

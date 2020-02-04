@@ -8,7 +8,7 @@ import eatyourbeets.powers.animator.OrbCore_PlasmaPower;
 
 public class OrbCore_Plasma extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Plasma.class);
+    public static final String ID = Register_Old(OrbCore_Plasma.class);
 
     public static final int VALUE = 3;
 

@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YaoHaDucy extends AnimatorCard
 {
-    public static final String ID = Register(YaoHaDucy.class);
+    public static final String ID = Register_Old(YaoHaDucy.class);
 
     public YaoHaDucy()
     {

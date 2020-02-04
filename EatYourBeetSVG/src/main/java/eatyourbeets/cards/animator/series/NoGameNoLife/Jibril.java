@@ -1,19 +1,20 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.defect.TriggerPassiveAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.interfaces.markers.Spellcaster;
-import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActions;
+import com.megacrit.cardcrawl.orbs.Dark;
+import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.utilities.GameActions;
 
 public class Jibril extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Jibril.class);
+    public static final String ID = Register_Old(Jibril.class);
 
     public Jibril()
     {
@@ -23,24 +24,20 @@ public class Jibril extends AnimatorCard implements Spellcaster
         SetUpgrade(4, 0);
         SetScaling(2, 0, 0);
 
+        SetEvokeOrbCount(1);
         SetSynergy(Synergies.NoGameNoLife);
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        if (EffectHistory.TryActivateSemiLimited(cardID))
-        {
-            GameActions.Bottom.Add(new TriggerPassiveAction(1));
-            GameActions.Bottom.Flash(this);
-        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.ChannelOrb(new Dark(), true);
+        GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.VIOLET, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.3F);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+
+        if (HasSynergy())
+        {
+            GameActions.Bottom.GainIntellect(1);
+        }
     }
 }

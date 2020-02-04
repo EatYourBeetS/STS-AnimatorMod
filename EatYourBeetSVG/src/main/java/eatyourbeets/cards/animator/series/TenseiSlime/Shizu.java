@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
@@ -11,13 +12,13 @@ import eatyourbeets.powers.animator.FlamingWeaponPower;
 
 public class Shizu extends AnimatorCard
 {
-    public static final String ID = Register(Shizu.class);
+    public static final String ID = Register_Old(Shizu.class);
 
     public Shizu()
     {
-        super(ID, 2, CardRarity.RARE, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 2, CardRarity.RARE, EYBAttackType.Normal);
 
-        Initialize(13, 0, 1);
+        Initialize(13, 0);
         SetScaling(0, 1, 0);
 
         SetExhaust(true);

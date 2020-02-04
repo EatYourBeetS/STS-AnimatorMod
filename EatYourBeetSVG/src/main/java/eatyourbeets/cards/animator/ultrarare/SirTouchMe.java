@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class SirTouchMe extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register(SirTouchMe.class);
+    public static final String ID = Register_Old(SirTouchMe.class);
 
     public SirTouchMe()
     {

@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TukaLunaMarceau extends AnimatorCard
 {
-    public static final String ID = Register(TukaLunaMarceau.class);
+    public static final String ID = Register_Old(TukaLunaMarceau.class);
 
     public TukaLunaMarceau()
     {

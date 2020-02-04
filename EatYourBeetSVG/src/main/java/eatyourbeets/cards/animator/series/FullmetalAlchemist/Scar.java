@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Scar extends AnimatorCard
 {
-    public static final String ID = Register(Scar.class);
+    public static final String ID = Register_Old(Scar.class);
 
     public Scar()
     {

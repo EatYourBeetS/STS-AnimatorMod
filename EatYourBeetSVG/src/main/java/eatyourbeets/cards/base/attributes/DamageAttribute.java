@@ -31,13 +31,9 @@ public class DamageAttribute extends AbstractAttribute
                 break;
         }
 
-        if (card.IsAoE())
+        if (card.attackTarget != null)
         {
-            iconTag = "AoE";
-        }
-        else
-        {
-            iconTag = null;
+            iconTag = card.attackTarget.tag;
         }
 
         mainText = card.GetDamageString();

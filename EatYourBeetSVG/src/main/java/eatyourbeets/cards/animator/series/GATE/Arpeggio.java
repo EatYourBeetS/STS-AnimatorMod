@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Arpeggio.class);
+    public static final String ID = Register_Old(Arpeggio.class);
 
     public Arpeggio()
     {

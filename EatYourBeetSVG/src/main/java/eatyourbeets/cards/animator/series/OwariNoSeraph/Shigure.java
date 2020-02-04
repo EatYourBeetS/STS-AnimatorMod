@@ -5,17 +5,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class Shigure extends AnimatorCard
 {
-    public static final String ID = Register(Shigure.class);
+    public static final String ID = Register_Old(Shigure.class);
 
     public Shigure()
     {
@@ -31,10 +30,7 @@ public class Shigure extends AnimatorCard
     @Override
     public void triggerOnExhaust()
     {
-        if (EffectHistory.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
-        }
+        GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
     }
 
     @Override

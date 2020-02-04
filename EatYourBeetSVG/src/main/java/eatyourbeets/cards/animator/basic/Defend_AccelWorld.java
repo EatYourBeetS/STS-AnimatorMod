@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_AccelWorld extends Defend
 {
-    public static final String ID = Register(Defend_AccelWorld.class);
+    public static final String ID = Register_Old(Defend_AccelWorld.class);
 
     public Defend_AccelWorld()
     {

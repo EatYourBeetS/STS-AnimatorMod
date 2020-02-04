@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HiiragiTenri extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(HiiragiTenri.class);
+    public static final String ID = Register_Old(HiiragiTenri.class);
 
     public HiiragiTenri()
     {

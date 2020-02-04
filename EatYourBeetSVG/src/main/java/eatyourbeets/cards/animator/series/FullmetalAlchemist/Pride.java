@@ -11,7 +11,7 @@ import eatyourbeets.powers.animator.PridePower;
 
 public class Pride extends AnimatorCard
 {
-    public static final String ID = Register(Pride.class);
+    public static final String ID = Register_Old(Pride.class);
 
     public Pride()
     {

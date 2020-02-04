@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Excalibur extends AnimatorCard
 {
-    public static final String ID = Register(Excalibur.class);
+    public static final String ID = Register_Old(Excalibur.class);
 
     public Excalibur()
     {

@@ -6,7 +6,7 @@ import eatyourbeets.resources.animator.AnimatorResources;
 
 public abstract class MelzalgaldAlt extends AnimatorCard
 {
-    public static final String ID = Register(MelzalgaldAlt.class);
+    public static final String ID = Register_Old(MelzalgaldAlt.class);
 
     public MelzalgaldAlt(String id)
     {

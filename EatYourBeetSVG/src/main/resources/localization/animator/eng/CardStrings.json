@@ -2,7 +2,7 @@
 {
 	"animator:AcuraAkari":
 	{
-		"DESCRIPTION": "Discard 2 cards to ** obtain !M! {Throw. Knives}. || <SLM>. Synergy: Gain !S! {Temp}. Envenom.",
+		"DESCRIPTION": "Discard 2 cards to ** obtain !M! {Throw. Knives}. || <SLM>. Synergy: ** Gain !S! {Temp}. Envenom.",
 		"NAME": "Akari"
 	},
 	"animator:AcuraShin":
@@ -27,7 +27,7 @@
 	},
 	"animator:Ainz":
 	{
-		"DESCRIPTION": "At the start of your turn, choose and execute 1 of 4 random {Effects}. || When Drawn: Reduce this ** card's cost by 1, then ** randomly gain [I], [F] or [A].",
+		"DESCRIPTION": "At the start of your turn, choose and execute 1 of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** randomly gain [I], [F] or [A].",
 		"NAME": "Ainz Ooal Gown"
 	},
 	"animator:Aisha":
@@ -84,12 +84,12 @@
 	},
 	"animator:Benimaru":
 	{
-		"DESCRIPTION": "Channel 1 Fire. || Gain !M! {Temp. HP} for ** each enemy with ** Burning.",
+		"DESCRIPTION": "Apply !M! Burning. || <SLM>. When ** Drawn: {Channel} 1 Fire.",
 		"NAME": "Benimaru"
 	},
 	"animator:Berserker":
 	{
-		"DESCRIPTION": "Gain !M! <FOR>. || If the enemy dies ** or loses its Block, ** gain !S! Block.",
+		"DESCRIPTION": "Gain !M! <FOR>. || If the enemy dies ** or loses its Block: ** Gain !S! Block.",
 		"NAME": "Berserker"
 	},
 	"animator:Biyorigo":
@@ -104,7 +104,7 @@
 	},
 	"animator:Boros":
 	{
-		"DESCRIPTION": "Every {Power} is ** played twice. || When Drawn, gain !M! {Temp. HP} and !S! <FOR>.",
+		"DESCRIPTION": "Every {Power} is ** played twice. || When Exhausted: Gain ** !M! [F] and {Temp. HP}.",
 		"NAME": "Boros"
 	},
 	"animator:Bozes":
@@ -129,7 +129,7 @@
 	},
 	"animator:ChlammyZell":
 	{
-		"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. If you have !S! or ** more Intellect: Add a ** {Scheme} to your hand.",
+		"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. If you reached ** 3 [I] this combat: Add a ** {Scheme} to your hand.",
 		"NAME": "Kurami"
 	},
 	"animator:ChlammyZellScheme":
@@ -281,9 +281,9 @@
 	},
 	"animator:Demiurge":
 	{
-		"DESCRIPTION": "Gain [E]. Take !M! damage ** at the end of turn. || Synergy: Raise by 1 your lowest stat between ** [F], [A] and [I].",
+		"DESCRIPTION": "Gain [E]. Take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn.",
 		"NAME": "Demiurge",
-		"UPGRADE_DESCRIPTION": "Gain [E]. Discard 1 ** card or take !M! damage ** at the end of turn. || Synergy: Raise by 1 your lowest stat between ** [F], [A] and [I]."
+		"UPGRADE_DESCRIPTION": "Gain [E]. Discard 1 ** card or take !M! damage ** at the end of turn. || Synergy: Conserve ** your [E] next turn."
 	},
 	"animator:DolaCouronne":
 	{
@@ -292,7 +292,7 @@
 	},
 	"animator:DolaRiku":
 	{
-		"DESCRIPTION": "Exhaust a card in your hand, ** choose and obtain 1 of !M! cards ** of the same rarity, it costs 1 ** less this combat. || <SLM>. Synergy: ** draw a {0-Cost} card.",
+		"DESCRIPTION": "Exhaust a card in your hand, ** choose and obtain 1 of !M! cards ** of the same rarity, it costs 1 ** less this combat. || <SLM>. Synergy: ** Draw a {0-Cost} card.",
 		"NAME": "Riku"
 	},
 	"animator:DolaSchwi":
@@ -404,7 +404,7 @@
 	},
 	"animator:Genos":
 	{
-		"DESCRIPTION": "Take !S! damage at ** the end of turn. || Synergy: Apply !M! ** Burning.",
+		"DESCRIPTION": "Take !S! damage at ** the end of turn. || On Synergy: ** Apply !M! Burning.",
 		"NAME": "Genos"
 	},
 	"animator:Geryuganshoop":
@@ -568,7 +568,7 @@
 	},
 	"animator:Jibril":
 	{
-		"DESCRIPTION": "Lose no [I] next turn. || <SLM>. When ** Drawn: trigger the ** passive ability of ** your next Orb.",
+		"DESCRIPTION": "Channel 1 Dark. || Synergy: Gain [I]",
 		"NAME": "Jibril"
 	},
 	"animator:Kaijin":
@@ -638,6 +638,11 @@
 		"DESCRIPTION": "Reload: Gain !M! {Temporary HP}.",
 		"NAME": "Lime Bell"
 	},
+	"animator:Canti":
+	{
+		"DESCRIPTION": "Deal additional damage equal to the enemy's attack.",
+		"NAME": "Canti"
+	},
 	"animator:LizardPriest":
 	{
 		"DESCRIPTION": "Set the Block of the enemy to 1. || On Synergy, Retain 2 cards.",
@@ -661,9 +666,9 @@
 	},
 	"animator:Melzalgald":
 	{
-		"DESCRIPTION": "Separates into 3 ** {Attacks}, then add ** them to your hand.",
+		"DESCRIPTION": "Add 3 {Attacks} ** to your hand.",
 		"NAME": "Melzalgald",
-		"UPGRADE_DESCRIPTION": "Separate into 3 ** Upgraded {Attacks}, ** then add them to ** your hand."
+		"UPGRADE_DESCRIPTION": "Add 3 Upgraded ** {Attacks} to your hand."
 	},
 	"animator:MelzalgaldAlt_1":
 	{
@@ -682,7 +687,7 @@
 	},
 	"animator:MetalKnight":
 	{
-		"DESCRIPTION": "Channel 1 Plasma. Gain !M! ** Metallicize, then reduce ** this number by 1. || When Discarded: Gain 2 ** Block for each of your Orbs.",
+		"DESCRIPTION": "Channel 1 Plasma. ** Gain !M! Metallicize, then ** decrease this number ** by 1 this combat.",
 		"NAME": "Metal Knight"
 	},
 	"animator:Mikaela":
@@ -708,7 +713,7 @@
 	},
 	"animator:Mitsurugi":
 	{
-		"DESCRIPTION": "Gain 1 Force. Can only deal damage if the enemy intends to Attack. || When Exhausted: ** Gain !S! Block.",
+		"DESCRIPTION": "Gain 1 Force. Can only ** deal damage if the ** enemy is attacking. || When Exhausted: ** Gain !S! Block.",
 		"NAME": "Mitsurugi"
 	},
 	"animator:MumenRider":
@@ -720,7 +725,6 @@
 	"animator:Nanami":
 	{
 		"DESCRIPTION": "{Counter} the enemy intent. || This card will have a ** different text based on the ** enemy you are targeting.     ",
-		"EXTENDED_DESCRIPTION": ["Deal # Damage.", "Gain # Block.", "Gain # <FOR>.", "Apply # Weak.", "Apply # Vulnerable.", "Stun the enemy.", "Channel # Random Orb/s.", "UNUSED", "UNUSED", "Apply # Poison.", "Gain [E].", "Gain # Temp._HP.", "Draw # cards."],
 		"NAME": "Nanami",
 		"UPGRADE_DESCRIPTION": "Strongly {Counter} ** the enemy intent. || This card will have a ** different text based on the ** enemy you are targeting."
 	},
@@ -866,12 +870,12 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "Exhaust a random ** card in hand: Gain <FOR> equal to its cost.",
+		"DESCRIPTION": "Exhaust a random ** card in your hand: ** Gain <FOR> equal ** to its cost.",
 		"NAME": "Scar"
 	},
 	"animator:Sebas":
 	{
-		"DESCRIPTION": "For each enemy who intends to attack, <BLK> and !M! Thorns. Exhaust. || When Discarded, gain !S! {Temp. HP}.",
+		"DESCRIPTION": "Deal damage equal to your ** Block to each enemy who ** intends to Attack. || When Discarded: Gain ** !M! {Temporary HP}.",
 		"NAME": "Sebas"
 	},
 	"animator:SeriousSaitama":
@@ -881,7 +885,7 @@
 	},
 	"animator:Shalltear":
 	{
-		"DESCRIPTION": "Apply 1 Weak ** to ALL enemies. || Synergy: Steal 1 Force from a random enemy.",
+		"DESCRIPTION": "Apply 1 Weak ** to ALL enemies. || Synergy: Steal 1 [F] ** from each enemy.",
 		"NAME": "Shalltear"
 	},
 	"animator:Shichika":
@@ -926,12 +930,12 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "<DRW>. || When Drawn: Gain 2 {Temporary HP}.",
+		"DESCRIPTION": "<DRW>. || When Drawn: Gain ** 2 {Temporary HP}.",
 		"NAME": "Shuna"
 	},
 	"animator:SilverFang":
 	{
-		"DESCRIPTION": " Lose no <AGI> ** next turn.",
+		"DESCRIPTION": " Lose no [A] next turn. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling.",
 		"NAME": "Silver Fang"
 	},
 	"animator:SirTouchMe":
@@ -956,7 +960,7 @@
 	},
 	"animator:Souei":
 	{
-		"DESCRIPTION": " Apply !M! Poison. Trigger the ** Poison of ALL enemies. || If this card kills 1 or more ** enemies, gain 1 Intangible.",
+		"DESCRIPTION": "Apply !M! Poison. Trigger the ** Poison of ALL enemies. || If this card kills 1 or more ** enemies, gain 1 Intangible.",
 		"NAME": "Souei"
 	},
 	"animator:Spearman":
@@ -1066,12 +1070,13 @@
 	},
 	"animator:Tatsumaki":
 	{
-		"DESCRIPTION": "Channel 1 Aether. ** Gain !M! <INT>. || <LIM>. If you had 3 or ** more unique Orbs: Draw ** 2 cards and gain [E] [E].",
-		"NAME": "Tatsumaki"
+		"DESCRIPTION": "Gain !M! <INT>. ** Channel 1 Aether. || <slm>. When Drawn, if ** you have 3 or more unique ** Orbs: <DRW>.",
+		"NAME": "Tatsumaki",
+		"UPGRADE_DESCRIPTION": "Gain !M! <INT>. ** Channel 1 Aether. ** Lose no [I] next turn. || <slm>. When Drawn, if ** you have 3 or more unique ** Orbs: <DRW>."
 	},
 	"animator:Tet":
 	{
-		"DESCRIPTION": "Discard 1 card from your hand or draw pile. Move 1 card from your discard pile to your draw pile.",
+		"DESCRIPTION": "Discard 1 card from ** your hand or draw ** pile. Move 1 card from ** your discard pile ** to your draw pile.",
 		"NAME": "Tet"
 	},
 	"animator:TheHaunt":
@@ -1129,12 +1134,12 @@
 	"animator:Vesta_Elixir":
 	{
 		"DESCRIPTION": "Choose and combine ** up to 3 effects. ** Purge.",
-		"EXTENDED_DESCRIPTION": ["Takes 1 less turn ** to complete.", "Draw {0} cards.", "Gain {0} <INT>.", "Gain {0} <FOR>.", "Gain {0} <AGI>.", "Gain {0} Orb slots.", "Gain {0} {Temp. HP}.", "Gain {0} Metallicize.", "Gain {0} Energy.", "Exhaust {0} cards:", "Discard {0} cards:", "Purge."],
+		"EXTENDED_DESCRIPTION": ["Takes 1 less turn ** to complete."],
 		"NAME": "Elixir"
 	},
 	"animator:Viivi":
 	{
-		"DESCRIPTION": "When Discarded: ** Obtain 1 {Throw.-Knife}.",
+		"DESCRIPTION": "When Discarded: ** Obtain 1 {Throw. Knife}.",
 		"NAME": "Viivi"
 	},
 	"animator:Witch":

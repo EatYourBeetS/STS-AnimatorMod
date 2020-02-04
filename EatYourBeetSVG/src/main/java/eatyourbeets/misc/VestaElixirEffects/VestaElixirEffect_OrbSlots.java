@@ -1,15 +1,20 @@
 package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
 import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_OrbSlots extends VestaElixirEffect
 {
-    public VestaElixirEffect_OrbSlots(int index)
+    public VestaElixirEffect_OrbSlots()
     {
-        super(index, AbstractDungeon.cardRandomRng.randomBoolean(0.33f) ? 3 : 2);
+        super(3);
+    }
+
+    @Override
+    public String GetDescription()
+    {
+        return ACTIONS.GainOrbSlots(amount, true);
     }
 
     @Override

@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscriber
 {
-    public static final String ID = Register(QuestionMark.class);
+    public static final String ID = Register_Old(QuestionMark.class);
 
     public AnimatorCard copy = null;
 

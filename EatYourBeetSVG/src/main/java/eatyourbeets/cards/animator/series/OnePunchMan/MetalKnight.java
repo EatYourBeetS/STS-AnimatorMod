@@ -2,39 +2,33 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class MetalKnight extends AnimatorCard
 {
-    public static final String ID = Register(MetalKnight.class);
+    public static final String ID = Register_Old(MetalKnight.class);
 
     public MetalKnight()
     {
-        super(ID, 3, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
+        super(ID, 3, CardRarity.UNCOMMON, EYBAttackType.Normal);
 
         Initialize(11, 0, 3);
-        SetUpgrade(3, 0, 0);
+        SetUpgrade(2, 0, 0);
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
-    public void triggerOnManualDiscard()
+    protected void OnUpgrade()
     {
-        super.triggerOnManualDiscard();
-
-        int orbs = AbstractDungeon.player.filledOrbCount();
-        if (orbs > 0)
-        {
-            GameActions.Bottom.GainBlock(orbs * 2);
-        }
+        SetInnate(true);
     }
 
     @Override

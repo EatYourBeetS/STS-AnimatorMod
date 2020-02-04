@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
-    public static final String ID = Register(ElricAlphonse.class);
+    public static final String ID = Register_Old(ElricAlphonse.class);
     static
     {
         GetStaticData(ID).InitializePreview(new ElricAlphonseAlt(), true);

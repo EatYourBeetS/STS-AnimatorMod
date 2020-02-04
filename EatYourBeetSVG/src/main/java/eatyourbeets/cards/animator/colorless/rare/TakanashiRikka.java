@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TakanashiRikka extends AnimatorCard
 {
-    public static final String ID = Register(TakanashiRikka.class);
+    public static final String ID = Register_Old(TakanashiRikka.class);
 
     public TakanashiRikka()
     {

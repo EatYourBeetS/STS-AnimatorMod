@@ -10,13 +10,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class Alexander extends AnimatorCard
 {
-    public static final String ID = Register(Alexander.class);
+    public static final String ID = Register_Old(Alexander.class);
 
     public Alexander()
     {
         super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ALL_ENEMY);
 
-        Initialize(6, 0);
+        Initialize(5, 0);
         SetUpgrade(2, 0);
         SetScaling(0, 0, 1);
 
@@ -29,8 +29,7 @@ public class Alexander extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.PlayCard(this, null);
-        //GameActions.Bottom.Callback(__ -> GameUtilities.PlayCopy(this, null, true));
+        GameActions.Bottom.PlayCopy(this, null);
     }
 
     @Override

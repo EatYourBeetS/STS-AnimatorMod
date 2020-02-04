@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IzunaHatsuse extends AnimatorCard
 {
-    public static final String ID = Register(IzunaHatsuse.class);
+    public static final String ID = Register_Old(IzunaHatsuse.class);
     static
     {
         GetStaticData(ID).InitializePreview(new IzunaHatsuse(true), true);
@@ -105,7 +105,7 @@ public class IzunaHatsuse extends AnimatorCard
 
                 this.type = CardType.ATTACK;
 
-                cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
+                cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
             }
             else
             {

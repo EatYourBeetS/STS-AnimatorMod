@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Ainz extends AnimatorCard
 {
-    public static final String ID = Register(Ainz.class);
+    public static final String ID = Register_Old(Ainz.class);
     public static final int BASE_COST = 7;
 
     public Ainz()

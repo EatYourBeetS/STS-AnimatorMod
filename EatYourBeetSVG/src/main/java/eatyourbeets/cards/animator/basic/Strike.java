@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Strike extends AnimatorCard
 {
-    public static final String ID = Register(Strike.class);
+    public static final String ID = Register_Old(Strike.class);
 
     public Strike(String id, int cost, CardTarget target)
     {

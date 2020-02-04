@@ -34,10 +34,18 @@ public class CardTooltips
     public EYBCardTooltip Exhaust;
     public EYBCardTooltip Channel;
     public EYBCardTooltip Upgrade;
+    public EYBCardTooltip Energy;
+    public EYBCardTooltip Metallicize;
+    public EYBCardTooltip TempHP;
+    public EYBCardTooltip Weak;
+    public EYBCardTooltip Vulnerable;
+    public EYBCardTooltip Poison;
+    public EYBCardTooltip Burning;
+    public EYBCardTooltip Thorns;
 
     public boolean CanAdd(EYBCardTooltip tooltip)
     {
-        return tooltip != Channel && tooltip != Upgrade && tooltip != Exhaust && tooltip != Retain;
+        return tooltip != Channel && tooltip != Upgrade && tooltip != Exhaust && tooltip != Retain && tooltip != Energy;
     }
 
     public void RegisterID(String id, EYBCardTooltip tooltip)
@@ -67,12 +75,21 @@ public class CardTooltips
         Unique = FindByID("~Unique");
         SemiLimited = FindByID("Semi-Limited");
         Limited = FindByID("Limited");
-        Innate = FindByID("Innate");
+        Innate = FindByID("~Innate");
         Ethereal = FindByID("~Ethereal");
-        Retain = FindByID("Retain");
+        Retain = FindByID("~Retain");
         Exhaust = FindByID("Exhaust");
         Channel = FindByID("Channel");
         Upgrade = FindByID("Upgrade");
+        Metallicize = FindByID("Metallicize");
+        TempHP = FindByID("Temporary HP");
+        Weak = FindByID("Weak");
+        Vulnerable = FindByID("Vulnerable");
+        Poison = FindByID("Poison");
+        Burning = FindByID("Burning");
+        Thorns = FindByID("Thorns");
+
+        Energy = FindByName("[E]");
     }
 
     public void InitializeIcons()

@@ -14,17 +14,17 @@ import eatyourbeets.powers.PlayerStatistics;
 
 public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscriber
 {
-    public static final String ID = Register(CrowleyEusford.class);
+    public static final String ID = Register_Old(CrowleyEusford.class);
 
     private int costModifier = 0;
 
     public CrowleyEusford()
     {
-        super(ID, 3, CardRarity.UNCOMMON, EYBAttackType.Normal, CardTarget.ALL);
+        super(ID, 3, CardRarity.UNCOMMON, EYBAttackType.Normal, true);
 
         Initialize(18, 0, 4);
         SetUpgrade(3, 0, 1);
-        SetScaling(0, 2, 2);
+        SetScaling(0, 2, 1);
 
         SetHealing(true);
         SetExhaust(true);

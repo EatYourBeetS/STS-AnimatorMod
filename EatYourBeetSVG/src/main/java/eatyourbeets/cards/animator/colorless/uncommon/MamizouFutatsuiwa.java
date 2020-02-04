@@ -13,7 +13,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class MamizouFutatsuiwa extends AnimatorCard
 {
-    public static final String ID = Register(MamizouFutatsuiwa.class);
+    public static final String ID = Register_Old(MamizouFutatsuiwa.class);
 
     private static final RandomizedList<AnimatorCard> shapeshifterPool = new RandomizedList<>();
 
@@ -55,7 +55,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
-        .SetMessage(cardData.strings.EXTENDED_DESCRIPTION[0])
+        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
         .SetFilter(c -> c instanceof AnimatorCard && !(((AnimatorCard) c).anySynergy))
         .AddCallback(cards ->
         {

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Respite extends AnimatorCard
 {
-    public static final String ID = Register(Respite.class);
+    public static final String ID = Register_Old(Respite.class);
 
     public Respite()
     {

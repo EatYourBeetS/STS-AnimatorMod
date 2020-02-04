@@ -44,7 +44,15 @@ public class CardSeriesComparator implements Comparator<AbstractCard>
             return thanksJava;
         }
 
-        thanksJava.rank = 3;
+        if (card.rarity == AbstractCard.CardRarity.SPECIAL)
+        {
+            thanksJava.rank = 100;
+        }
+        else
+        {
+            thanksJava.rank = 3;
+        }
+
         thanksJava.synergy = synergy;
         return thanksJava;
     }

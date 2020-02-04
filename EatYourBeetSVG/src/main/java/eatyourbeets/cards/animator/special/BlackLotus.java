@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class BlackLotus extends AnimatorCard
 {
-    public static final String ID = Register(BlackLotus.class);
+    public static final String ID = Register_Old(BlackLotus.class);
 
     public BlackLotus()
     {

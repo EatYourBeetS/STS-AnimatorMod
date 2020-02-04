@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_FullmetalAlchemist extends Defend
 {
-    public static final String ID = Register(Defend_FullmetalAlchemist.class);
+    public static final String ID = Register_Old(Defend_FullmetalAlchemist.class);
 
     public Defend_FullmetalAlchemist()
     {

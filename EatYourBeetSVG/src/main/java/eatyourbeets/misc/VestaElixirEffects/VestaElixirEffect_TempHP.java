@@ -1,15 +1,21 @@
 package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class VestaElixirEffect_TempHP extends VestaElixirEffect
 {
-    public VestaElixirEffect_TempHP(int index)
+    public VestaElixirEffect_TempHP()
     {
-        super(index, AbstractDungeon.cardRandomRng.random(6, 9));
+        super(7);
+    }
+
+    @Override
+    public String GetDescription()
+    {
+        return ACTIONS.GainAmount(amount, "{" + GR.Tooltips.TempHP.title + "}", true);
     }
 
     @Override

@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class HououinKyouma extends AnimatorCard
 {
-    public static final String ID = Register(HououinKyouma.class);
+    public static final String ID = Register_Old(HououinKyouma.class);
 
     public HououinKyouma()
     {

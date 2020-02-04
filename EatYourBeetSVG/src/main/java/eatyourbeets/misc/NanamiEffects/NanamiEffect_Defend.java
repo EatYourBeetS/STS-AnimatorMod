@@ -10,21 +10,22 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class NanamiEffect_Defend extends NanamiEffect
 {
-    public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
+    @Override
+    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(p, m, GetDamage(nanami), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameUtilities.UsePenNib();
     }
 
-    public static String UpdateDescription(Nanami nanami)
+    @Override
+    public int GetDamage(Nanami nanami)
     {
-        return Desc(DAMAGE, GetDamage(nanami));
+        return ModifyDamage((nanami.energyOnUse + 1) * nanami.baseDamage, nanami);
     }
 
-    private static int GetDamage(Nanami nanami)
+    @Override
+    public String GetDescription(Nanami nanami)
     {
-        int diff = (nanami.damage - nanami.baseDamage);
-
-        return ((nanami.energyOnUse + 1) * nanami.baseDamage) + diff;
+        return "";
     }
 }

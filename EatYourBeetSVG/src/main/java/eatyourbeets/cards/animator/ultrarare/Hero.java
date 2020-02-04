@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Hero extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Hero.class);
+    public static final String ID = Register_Old(Hero.class);
 
     public Hero()
     {

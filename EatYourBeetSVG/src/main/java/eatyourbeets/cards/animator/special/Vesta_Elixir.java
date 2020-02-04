@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Vesta_Elixir extends AnimatorCard
 {
-    public static final String ID = Register(Vesta_Elixir.class);
+    public static final String ID = Register_Old(Vesta_Elixir.class);
 
     public final ArrayList<VestaElixirEffect> effects = new ArrayList<>();
 

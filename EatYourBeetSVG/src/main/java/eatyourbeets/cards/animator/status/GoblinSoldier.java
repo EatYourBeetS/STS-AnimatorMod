@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class GoblinSoldier extends AnimatorCard_Status
 {
-    public static final String ID = Register(GoblinSoldier.class);
+    public static final String ID = Register_Old(GoblinSoldier.class);
 
     public GoblinSoldier()
     {

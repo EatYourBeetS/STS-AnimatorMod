@@ -20,7 +20,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Kira extends AnimatorCard
 {
-    public static final String ID = Register(Kira.class);
+    public static final String ID = Register_Old(Kira.class);
     public static final String[] DESCRIPTIONS = AnimatorResources.GetCardStrings(ID).EXTENDED_DESCRIPTION;
 
     private int countdown;
@@ -129,7 +129,7 @@ public class Kira extends AnimatorCard
         {
             updateCountdown(monster);
             baseMagicNumber = magicNumber = countdown;
-            cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
+            cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
         }
     }
 

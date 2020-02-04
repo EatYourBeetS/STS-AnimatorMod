@@ -17,13 +17,17 @@ public class AnimatorCard_Dynamic extends AnimatorCard
 
     public AnimatorCard_Dynamic(AnimatorCardBuilder builder)
     {
-        super(new EYBCardData(AnimatorCard_Dynamic.class, builder.cardStrings), builder.id, builder.imagePath,
+        super(new EYBCardData(AnimatorCard_Dynamic.class, builder.id, builder.cardStrings), builder.id, builder.imagePath,
             builder.cost, builder.cardType, builder.cardColor, builder.cardRarity, builder.cardTarget);
 
         Initialize(builder.damage, builder.block, builder.magicNumber, builder.secondaryValue);
         SetUpgrade(builder.damageUpgrade, builder.blockUpgrade, builder.magicNumberUpgrade, builder.secondaryValueUpgrade);
         SetCostUpgrade(builder.costUpgrade);
 
+        this.intellectScaling = builder.intellectScaling;
+        this.agilityScaling = builder.agilityScaling;
+        this.forceScaling = builder.forceScaling;
+        this.attackType = builder.attackType;
         this.builder = builder;
         this.onUse = builder.onUse;
         this.onUpgrade = builder.onUpgrade;

@@ -2,6 +2,7 @@ package eatyourbeets.cards.base;
 
 public enum EYBAttackType
 {
+    None(false, false),
     Normal(false, false),
     Elemental(true, true),
     Piercing(true, true),

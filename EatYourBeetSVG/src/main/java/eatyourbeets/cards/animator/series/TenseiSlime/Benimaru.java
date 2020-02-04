@@ -8,36 +8,38 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Benimaru extends AnimatorCard
 {
-    public static final String ID = Register(Benimaru.class);
+    public static final String ID = Register_Old(Benimaru.class);
 
     public Benimaru()
     {
-        super(ID, 1, CardRarity.COMMON, EYBAttackType.Elemental, true);
+        super(ID, 1, CardRarity.COMMON, EYBAttackType.Elemental);
 
         Initialize(3, 0, 2);
-        SetUpgrade(3, 0, 0);
+        SetUpgrade(1, 0, 1);
 
-        SetEvokeOrbCount(1);
         SetSynergy(Synergies.TenSura);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        if (EffectHistory.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.ChannelOrb(new Fire(), true);
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Fire(), true);
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
-
-        for (AbstractMonster m1 : GameUtilities.GetCurrentEnemies(true))
-        {
-            if (m1.hasPower(BurningPower.POWER_ID))
-            {
-                GameActions.Bottom.GainTemporaryHP(magicNumber);
-            }
-        }
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
+        .SetDamageEffect(enemy -> GameActions.Top.StackPower(player, new BurningPower(player, enemy, magicNumber)));
     }
 }

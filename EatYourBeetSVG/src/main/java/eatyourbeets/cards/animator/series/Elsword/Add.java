@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Add extends AnimatorCard
 {
-    public static final String ID = Register(Add.class);
+    public static final String ID = Register_Old(Add.class);
     static
     {
         GetStaticData(ID).InitializePreview(new Crystallize(), false);

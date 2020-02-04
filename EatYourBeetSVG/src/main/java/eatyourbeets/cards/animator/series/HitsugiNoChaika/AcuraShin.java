@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AcuraShin extends AnimatorCard
 {
-    public static final String ID = Register(AcuraShin.class);
+    public static final String ID = Register_Old(AcuraShin.class);
 
     public AcuraShin()
     {

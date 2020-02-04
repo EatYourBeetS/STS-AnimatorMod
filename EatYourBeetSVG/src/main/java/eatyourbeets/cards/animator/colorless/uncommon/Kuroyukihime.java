@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Kuroyukihime extends AnimatorCard
 {
-    public static final String ID = Register(Kuroyukihime.class);
+    public static final String ID = Register_Old(Kuroyukihime.class);
     static
     {
         GetStaticData(ID).InitializePreview(new BlackLotus(), false);

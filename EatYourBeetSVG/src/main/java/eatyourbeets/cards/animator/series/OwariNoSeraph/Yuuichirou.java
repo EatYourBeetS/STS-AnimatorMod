@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Yuuichirou extends AnimatorCard
 {
-    public static final String ID = Register(Yuuichirou.class);
+    public static final String ID = Register_Old(Yuuichirou.class);
     static
     {
         GetStaticData(ID).InitializePreview(new Asuramaru(), false);

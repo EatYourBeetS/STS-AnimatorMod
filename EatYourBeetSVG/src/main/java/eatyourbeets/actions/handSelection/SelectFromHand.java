@@ -15,6 +15,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
     protected final ArrayList<AbstractCard> excluded = new ArrayList<>();
     protected final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
     protected Predicate<AbstractCard> filter;
+    protected boolean reAddCards;
     protected boolean isRandom;
     protected boolean canPickLower;
     protected boolean anyNumber;
@@ -141,6 +142,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
         {
             player.hand.group.clear();
             player.hand.group.addAll(cardSource.group);
+            reAddCards = true;
         }
 
         AbstractDungeon.handCardSelectScreen.open(CreateMessage(), amount, anyNumber, canPickZero, forTransform, forUpgrade, upTo);
@@ -174,8 +176,11 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
     {
         super.Complete();
 
-        player.hand.group.addAll(excluded);
-        excluded.clear();
+        if (reAddCards)
+        {
+            player.hand.group.addAll(excluded);
+            excluded.clear();
+        }
 
         GameUtilities.RefreshHandLayout();
     }

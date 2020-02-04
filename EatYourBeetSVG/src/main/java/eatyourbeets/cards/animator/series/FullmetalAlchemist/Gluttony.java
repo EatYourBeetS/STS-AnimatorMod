@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Gluttony extends AnimatorCard
 {
-    public static final String ID = Register(Gluttony.class);
+    public static final String ID = Register_Old(Gluttony.class);
 
     public Gluttony()
     {
@@ -32,7 +32,7 @@ public class Gluttony extends AnimatorCard
             int total = player.drawPile.size() + player.discardPile.size() + player.hand.size();
             if (total < secondaryValue)
             {
-                cantUseMessage = cardData.strings.EXTENDED_DESCRIPTION[0];
+                cantUseMessage = cardData.Strings.EXTENDED_DESCRIPTION[0];
 
                 return false;
             }

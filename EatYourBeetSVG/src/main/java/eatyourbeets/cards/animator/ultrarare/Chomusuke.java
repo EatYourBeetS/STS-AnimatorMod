@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Chomusuke extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Chomusuke.class);
+    public static final String ID = Register_Old(Chomusuke.class);
 
     public Chomusuke()
     {

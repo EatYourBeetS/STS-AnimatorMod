@@ -13,11 +13,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class RoryMercury extends AnimatorCard
 {
-    public static final String ID = Register(RoryMercury.class);
+    public static final String ID = Register_Old(RoryMercury.class);
 
     public RoryMercury()
     {
-        super(ID, 1, CardRarity.UNCOMMON, EYBAttackType.Normal, CardTarget.ALL);
+        super(ID, 1, CardRarity.UNCOMMON, EYBAttackType.Normal, true);
 
         Initialize(2, 0, 0);
         SetUpgrade(2, 0, 0);

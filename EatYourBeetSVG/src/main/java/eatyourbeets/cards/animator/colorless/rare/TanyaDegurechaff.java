@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(TanyaDegurechaff.class);
+    public static final String ID = Register_Old(TanyaDegurechaff.class);
     static
     {
         GetStaticData(ID).InitializePreview(new TanyaDegurechaff_Type95(), false);

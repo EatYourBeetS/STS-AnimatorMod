@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ElricEdward extends AnimatorCard
 {
-    public static final String ID = Register(ElricEdward.class);
+    public static final String ID = Register_Old(ElricEdward.class);
 
     public ElricEdward()
     {

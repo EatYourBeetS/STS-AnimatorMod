@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Cirno extends AnimatorCard
 {
-    public static final String ID = Register(Cirno.class);
+    public static final String ID = Register_Old(Cirno.class);
 
     public Cirno()
     {

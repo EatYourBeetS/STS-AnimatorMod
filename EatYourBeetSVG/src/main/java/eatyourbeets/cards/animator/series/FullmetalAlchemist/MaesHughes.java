@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class MaesHughes extends AnimatorCard
 {
-    public static final String ID = Register(MaesHughes.class);
+    public static final String ID = Register_Old(MaesHughes.class);
 
     public MaesHughes()
     {

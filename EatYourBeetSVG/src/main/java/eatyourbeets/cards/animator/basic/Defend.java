@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Defend extends AnimatorCard
 {
-    public static final String ID = Register(Defend.class);
+    public static final String ID = Register_Old(Defend.class);
 
     public Defend(String id, int cost, CardTarget target)
     {

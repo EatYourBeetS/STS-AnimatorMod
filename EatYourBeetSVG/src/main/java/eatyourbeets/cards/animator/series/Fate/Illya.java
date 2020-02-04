@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Illya extends AnimatorCard
 {
-    public static final String ID = Register(Illya.class);
+    public static final String ID = Register_Old(Illya.class);
 
     private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Illya::FindBestCard);
 

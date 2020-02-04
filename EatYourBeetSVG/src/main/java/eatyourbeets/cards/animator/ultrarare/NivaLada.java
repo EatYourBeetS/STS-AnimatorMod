@@ -21,7 +21,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class NivaLada extends AnimatorCard_UltraRare implements OnBattleStartSubscriber, OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
 {
-    public static final String ID = Register(NivaLada.class);
+    public static final String ID = Register_Old(NivaLada.class);
 
     public NivaLada()
     {

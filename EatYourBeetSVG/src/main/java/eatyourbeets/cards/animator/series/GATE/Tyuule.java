@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Tyuule extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register(Tyuule.class);
+    public static final String ID = Register_Old(Tyuule.class);
 
     public Tyuule()
     {

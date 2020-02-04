@@ -1,13 +1,18 @@
 package eatyourbeets.misc.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 
 public class NanamiEffect_Unknown extends NanamiEffect
 {
-    public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
+    @Override
+    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainEnergy(1);
 
@@ -18,12 +23,19 @@ public class NanamiEffect_Unknown extends NanamiEffect
         }
     }
 
-    public static String UpdateDescription(Nanami nanami)
+    @Override
+    public String GetDescription(Nanami nanami)
     {
-        return Desc(TEMP_HP, GetTempHP(nanami), true) + Desc(ENERGY, 1);
+        return ACTIONS.GainAmount(1, GR.Tooltips.Energy,true);
     }
 
-    private static int GetTempHP(Nanami nanami)
+    @Override
+    public AbstractAttribute GetSpecialInfo(Nanami nanami)
+    {
+        return TempHPAttribute.Instance.SetCard(nanami).SetText(String.valueOf(GetTempHP(nanami)), Settings.CREAM_COLOR);
+    }
+
+    private int GetTempHP(Nanami nanami)
     {
         return nanami.energyOnUse * (nanami.upgraded ? 6 : 5);
     }

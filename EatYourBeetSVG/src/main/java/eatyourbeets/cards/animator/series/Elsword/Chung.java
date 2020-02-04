@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Chung extends AnimatorCard
 {
-    public static final String ID = Register(Chung.class);
+    public static final String ID = Register_Old(Chung.class);
 
     public Chung()
     {

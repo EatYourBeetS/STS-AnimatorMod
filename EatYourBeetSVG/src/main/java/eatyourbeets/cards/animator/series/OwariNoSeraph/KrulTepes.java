@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class KrulTepes extends AnimatorCard
 {
-    public static final String ID = Register(KrulTepes.class);
+    public static final String ID = Register_Old(KrulTepes.class);
 
     private static final AbstractRelic relicReward = new BloodVial();
 
@@ -34,9 +34,9 @@ public class KrulTepes extends AnimatorCard
     {
         super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
 
-        Initialize(14, 0, 2);
+        Initialize(12, 0, 2);
         SetUpgrade(4, 0, 0);
-        SetScaling(0, 2, 2);
+        SetScaling(0, 1, 2);
 
         SetSynergy(Synergies.OwariNoSeraph);
     }

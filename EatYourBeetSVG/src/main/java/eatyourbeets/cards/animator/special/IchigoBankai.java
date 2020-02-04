@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoBankai extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(IchigoBankai.class);
+    public static final String ID = Register_Old(IchigoBankai.class);
 
     public IchigoBankai()
     {
@@ -52,7 +52,7 @@ public class IchigoBankai extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameUtilities.UseEnergyXCost(this);
+        GameUtilities.UseXCostEnergy(this);
 
         if (damage > 0)
         {

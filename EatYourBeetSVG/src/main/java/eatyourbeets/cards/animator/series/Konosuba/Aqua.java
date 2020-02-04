@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
 {
-    public static final String ID = Register(Aqua.class);
+    public static final String ID = Register_Old(Aqua.class);
     static
     {
         GetStaticData(ID).InitializePreview(new Aqua(true), true);
@@ -95,7 +95,7 @@ public class Aqua extends AnimatorCard
         if (transformed)
         {
             LoadImage("2");
-            cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0], true);
+            cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0], true);
         }
         else
         {

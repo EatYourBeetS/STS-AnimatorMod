@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(ShichikaKyotouryuu.class);
+    public static final String ID = Register_Old(ShichikaKyotouryuu.class);
 
     public ShichikaKyotouryuu()
     {

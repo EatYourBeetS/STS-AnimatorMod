@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Wiz extends AnimatorCard
 {
-    public static final String ID = Register(Wiz.class);
+    public static final String ID = Register_Old(Wiz.class);
 
     public Wiz()
     {

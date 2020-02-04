@@ -186,7 +186,7 @@ public class GUI_Toggle extends GUIElement
             }
             else
             {
-                backgroundImage.RenderCentered(sb, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - (tickSize / 2f) * Settings.scale, tickSize, tickSize);
+                backgroundImage.RenderCentered(sb, hb.x + (tickSize / 6f), hb.cY - (tickSize / 2f), tickSize, tickSize);
             }
         }
 
@@ -209,7 +209,7 @@ public class GUI_Toggle extends GUIElement
         GUI_Image image = toggled ? tickedImage : untickedImage;
         if (image != null)
         {
-            image.RenderCentered(sb, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - (tickSize / 2f) * Settings.scale, tickSize, tickSize);
+            image.RenderCentered(sb, hb.x + (tickSize / 6f), hb.cY - (tickSize / 2f), tickSize, tickSize);
 
 //            sb.setColor(fontColor);
 //            sb.draw(image, hb.x + (tickSize / 6f) * Settings.scale, hb.cY - tickSize / 2f, tickSize / 2f, tickSize / 2f, tickSize, tickSize,

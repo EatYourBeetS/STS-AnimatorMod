@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Konayuki extends AnimatorCard
 {
-    public static final String ID = Register(Konayuki.class);
+    public static final String ID = Register_Old(Konayuki.class);
 
     public Konayuki()
     {

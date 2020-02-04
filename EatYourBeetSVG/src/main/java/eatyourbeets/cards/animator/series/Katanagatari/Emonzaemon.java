@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Emonzaemon extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Emonzaemon.class);
+    public static final String ID = Register_Old(Emonzaemon.class);
     static
     {
         GetStaticData(ID).InitializePreview(new EntouJyuu(), true);

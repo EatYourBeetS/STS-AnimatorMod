@@ -7,7 +7,7 @@ import eatyourbeets.powers.animator.OrbCore_ChaosPower;
 
 public class OrbCore_Chaos extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Chaos.class);
+    public static final String ID = Register_Old(OrbCore_Chaos.class);
 
     public static final int VALUE = 1;
 

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DwarfShaman extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(DwarfShaman.class);
+    public static final String ID = Register_Old(DwarfShaman.class);
 
     public DwarfShaman()
     {

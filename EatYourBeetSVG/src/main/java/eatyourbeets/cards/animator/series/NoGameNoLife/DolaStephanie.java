@@ -10,7 +10,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class DolaStephanie extends AnimatorCard
 {
-    public static final String ID = Register(DolaStephanie.class);
+    public static final String ID = Register_Old(DolaStephanie.class);
 
     public DolaStephanie()
     {
@@ -33,7 +33,7 @@ public class DolaStephanie extends AnimatorCard
     {
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
-        .SetMessage(cardData.strings.EXTENDED_DESCRIPTION[0])
+        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
         .SetFilter(c -> c instanceof AnimatorCard)
         .AddCallback(cards ->
         {

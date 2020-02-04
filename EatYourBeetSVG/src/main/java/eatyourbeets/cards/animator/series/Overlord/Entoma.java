@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -18,13 +19,13 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Entoma extends AnimatorCard
 {
-    public static final String ID = Register(Entoma.class);
+    public static final String ID = Register_Old(Entoma.class);
 
     public Entoma()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(ID, 1, CardRarity.COMMON, EYBAttackType.Normal);
 
-        Initialize(6, 0, 3);
+        Initialize(6, 0, 2);
         SetUpgrade(1, 0, 0);
 
         SetUnique(true, true);

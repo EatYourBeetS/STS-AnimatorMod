@@ -11,13 +11,13 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Millim extends AnimatorCard
 {
-    public static final String ID = Register(Millim.class);
+    public static final String ID = Register_Old(Millim.class);
 
     public Millim()
     {
         super(ID, 2, CardRarity.COMMON, EYBAttackType.Elemental);
 
-        Initialize(6, 0, 2);
+        Initialize(5, 0, 2);
         SetUpgrade(1, 0, 1);
         SetScaling(1, 1, 1);
 

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class RinTohsaka extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(RinTohsaka.class);
+    public static final String ID = Register_Old(RinTohsaka.class);
 
     public RinTohsaka()
     {

@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Overheat extends AnimatorCard_Status
 {
-    public static final String ID = Register(Overheat.class);
+    public static final String ID = Register_Old(Overheat.class);
 
     public Overheat()
     {

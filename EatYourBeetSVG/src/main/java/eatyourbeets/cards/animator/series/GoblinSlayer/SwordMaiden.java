@@ -14,13 +14,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class SwordMaiden extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(SwordMaiden.class);
+    public static final String ID = Register_Old(SwordMaiden.class);
 
     public SwordMaiden()
     {
         super(ID, 2, CardRarity.RARE, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 7);
+        Initialize(0, 0, 6);
 
         SetExhaust(true);
         SetSynergy(Synergies.GoblinSlayer);

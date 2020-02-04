@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Hitei extends AnimatorCard
 {
-    public static final String ID = Register(Hitei.class);
+    public static final String ID = Register_Old(Hitei.class);
 
     public Hitei()
     {

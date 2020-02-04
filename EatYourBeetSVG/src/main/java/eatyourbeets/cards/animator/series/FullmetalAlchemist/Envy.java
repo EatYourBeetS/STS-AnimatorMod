@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Envy extends AnimatorCard
 {
-    public static final String ID = Register(Envy.class);
+    public static final String ID = Register_Old(Envy.class);
 
     public Envy()
     {

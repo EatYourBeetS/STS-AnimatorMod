@@ -10,7 +10,7 @@ import eatyourbeets.utilities.*;
 
 public class DolaRiku extends AnimatorCard
 {
-    public static final String ID = Register(DolaRiku.class);
+    public static final String ID = Register_Old(DolaRiku.class);
 
     public DolaRiku()
     {

@@ -1,10 +1,8 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
@@ -12,13 +10,11 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.attack.Hemokinesis2Effect;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
+import eatyourbeets.utilities.GameEffects;
 
 public class Shalltear extends AnimatorCard
 {
-    public static final String ID = Register(Shalltear.class);
+    public static final String ID = Register_Old(Shalltear.class);
 
     public Shalltear()
     {
@@ -28,7 +24,14 @@ public class Shalltear extends AnimatorCard
         SetUpgrade(1, 0, 1);
         SetScaling(1, 1, 1);
 
+        SetEthereal(true);
         SetSynergy(Synergies.Overlord);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override
@@ -40,37 +43,17 @@ public class Shalltear extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        ArrayList<AbstractMonster> enemies = GameUtilities.GetCurrentEnemies(true);
-        if (enemies.size() == 0)
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
+        .SetDamageEffect((enemy, aBoolean) ->
         {
-            return;
-        }
-
-        // Only calculate player powers...
-        DamageInfo info = new DamageInfo(p, baseDamage);
-        AbstractMonster sample = enemies.get(0);
-        ArrayList<AbstractPower> temp = new ArrayList<>(sample.powers);
-        sample.powers.clear();
-        info.applyPowers(p, sample);
-        sample.powers.addAll(temp);
-        this.damage = info.output;
-        //
-
-        for (AbstractMonster enemy : enemies)
-        {
-            if (enemies.size() <= 4)
-            {
-                GameActions.Bottom.VFX(new Hemokinesis2Effect(enemy.hb.cX, enemy.hb.cY, p.hb.cX, p.hb.cY), 0.1f);
-            }
-
-            GameActions.Bottom.Add(new LoseHPAction(enemy, p, damage));
+            GameEffects.List.Add(new Hemokinesis2Effect(enemy.hb.cX, enemy.hb.cY, player.hb.cX, player.hb.cY));
+            GameActions.Bottom.ApplyWeak(player, enemy, 1);
 
             if (HasSynergy())
             {
-                GameActions.Bottom.StealStrength(enemy, 1, false);
+                GameActions.Bottom.ReduceStrength(enemy, 1, true).SetForceGain(true);
             }
-        }
-
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        });
     }
 }

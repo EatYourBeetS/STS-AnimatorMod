@@ -2,26 +2,20 @@ package eatyourbeets.misc.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
-import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorStrings;
 
 public abstract class VestaElixirEffect
 {
-    private final static String[] TEXT = AnimatorResources.GetCardStrings(Vesta_Elixir.ID).EXTENDED_DESCRIPTION;
+    protected final static String NEWLINE = " NL ";
+    protected final static AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
+    protected final int amount;
 
-    public final int amount;
-    public final String rawDescription;
-
-    protected VestaElixirEffect(int descriptionIndex, int amount)
+    protected VestaElixirEffect(int amount)
     {
         this.amount = amount;
-        this.rawDescription = TEXT[descriptionIndex];
     }
 
-    public String GetDescription()
-    {
-        return JavaUtilities.Format(rawDescription, String.valueOf(amount));
-    }
-
+    public abstract String GetDescription();
     public abstract void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player);
 }

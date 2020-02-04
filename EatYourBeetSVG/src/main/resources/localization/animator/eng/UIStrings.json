@@ -61,35 +61,28 @@
 		]
 	},
 
-	"animator:SpecialEffects":
+	"animator:Actions":
 	{
 		"TEXT":
 		[
-			"Attack",
-			"Defend",
-			"Prepare",
-			"Upgrade all cards NL in your hand.",
-			"Deal !D! damage NL to a random NL enemy !M! times.",
-			"Deal !D! damage NL to ALL enemies.",
-			"Gain !B! Block.",
-			"Gain !M! Force.",
-			"Gain !M! Agility.",
-			"Gain !M! Thorns.",
-			"Motivate !M!.",
-			"Apply !M! Weak NL to ALL enemies.",
-			"Apply !M! Vulnerable NL to ALL enemies.",
-			"Cycle !M! cards",
-			"Draw !M! cards.",
-			"Gain !M! Temp._HP.",
-			"Gain !M! Intellect.",
-			"Gain !M! Energy.",
-			"Apply !M! Poison NL to ALL enemies.",
-			"Apply !M! Burning NL to ALL enemies.",
-			"Gain !M! Intangible. NL Lose this Power.",
-			"Gain !M! Artifact. NL Remove all of NL your debuffs.",
-			"Play the top NL card of your NL draw pile.",
-			"Channel !M! NL random Orbs.",
-			"Play the top NL card of your NL draw pile twice."
+			"Gain {0} {1}",
+			"Apply {0} {1}",
+			"Apply {0} {1} to ALL enemies",
+			"Cycle {0} card(s)",
+			"Draw {0} card(s)",
+			"Discard {0} card(s)",
+			"Exhaust {0} card(s)",
+			
+			"Gain {0} Orb Slot(s)",		
+			"Channel {0} random Orb(s)",
+			"Channel {0} {1}",
+			
+			"Motivate {0}",
+			"Upgrade all cards NL in your hand",
+			"Gain !M! Intangible. NL Lose this Power",
+			"Remove all of NL your debuffs",
+			"Play the top card of your draw pile",
+			"Stun the enemy"
 		]
 	},
 

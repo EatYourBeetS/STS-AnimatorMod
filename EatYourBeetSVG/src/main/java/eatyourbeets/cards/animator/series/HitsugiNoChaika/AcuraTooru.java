@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AcuraTooru extends AnimatorCard
 {
-    public static final String ID = Register(AcuraTooru.class);
+    public static final String ID = Register_Old(AcuraTooru.class);
     static
     {
         GetStaticData(ID).InitializePreview(ThrowingKnife.GetCardForPreview(), false);

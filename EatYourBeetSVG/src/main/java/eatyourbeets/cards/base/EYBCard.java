@@ -26,14 +26,15 @@ public abstract class EYBCard extends EYBCardBase
     public abstract ColoredString GetBottomText();
     public abstract ColoredString GetHeaderText();
 
+    public final EYBCardText cardText;
+    public final EYBCardData cardData;
     public final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
+    public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public EYBAttackType attackType = EYBAttackType.Normal;
     public float forceScaling = 0;
     public float intellectScaling = 0;
     public float agilityScaling = 0;
 
-    protected final EYBCardText cardText;
-    protected final EYBCardData cardData;
     protected boolean isMultiUpgrade;
     protected int upgrade_damage;
     protected int upgrade_magicNumber;
@@ -46,19 +47,31 @@ public abstract class EYBCard extends EYBCardBase
         return staticCardData.get(cardID);
     }
 
+    public static EYBCardData RegisterCardImproved(Class<? extends EYBCard> type, String cardID)
+    {
+        EYBCardData cardData = new EYBCardData(type, cardID);
+        staticCardData.put(cardID, cardData);
+        return cardData;
+    }
+
     public static String RegisterCard(Class<? extends EYBCard> type, String cardID)
     {
-        staticCardData.put(cardID, new EYBCardData(type, GR.GetCardStrings(cardID)));
+        staticCardData.put(cardID, new EYBCardData(type, cardID));
 
         return cardID;
     }
 
+    protected EYBCard(EYBCardData cardData)
+    {
+        this(cardData, cardData.ID, GR.GetCardImage(cardData.ID), cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
+    }
+
     protected EYBCard(EYBCardData cardData, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        super(id, cardData.strings.NAME, imagePath, cost, "", type, color, rarity, target);
+        super(id, cardData.Strings.NAME, imagePath, cost, "", type, color, rarity, target);
 
         this.cardData = cardData;
-        this.cardText = new EYBCardText(this, cardData.strings);
+        this.cardText = new EYBCardText(this, cardData.Strings);
         this.cardText.ForceRefresh();
     }
 
@@ -72,6 +85,10 @@ public abstract class EYBCard extends EYBCardBase
     public AbstractCard makeStatEquivalentCopy()
     {
         EYBCard copy = (EYBCard) super.makeStatEquivalentCopy();
+
+        copy.forceScaling = this.forceScaling;
+        copy.agilityScaling = this.agilityScaling;
+        copy.intellectScaling = this.intellectScaling;
 
         copy.magicNumber = this.magicNumber;
         copy.isMagicNumberModified = this.isMagicNumberModified;
@@ -180,19 +197,17 @@ public abstract class EYBCard extends EYBCardBase
             dynamicTooltips.add(GR.Tooltips.Exhaust);
         }
 
-        switch (attackType)
+        if (attackType == EYBAttackType.Elemental)
         {
-            case Elemental:
-                dynamicTooltips.add(GR.Tooltips.Elemental);
-                break;
-
-            case Piercing:
-                dynamicTooltips.add(GR.Tooltips.Piercing);
-                break;
-
-            case Ranged:
-                dynamicTooltips.add(GR.Tooltips.Ranged);
-                break;
+            dynamicTooltips.add(GR.Tooltips.Elemental);
+        }
+        else if (attackType == EYBAttackType.Piercing)
+        {
+            dynamicTooltips.add(GR.Tooltips.Piercing);
+        }
+        else if (attackType == EYBAttackType.Ranged)
+        {
+            dynamicTooltips.add(GR.Tooltips.Ranged);
         }
     }
 
@@ -228,6 +243,11 @@ public abstract class EYBCard extends EYBCardBase
     public void SetAttackType(EYBAttackType attackType)
     {
         this.attackType = attackType;
+    }
+
+    public void SetAttackTarget(EYBCardTarget attackTarget)
+    {
+        this.attackTarget = attackTarget;
     }
 
     public void SetMultiDamage(boolean value)
@@ -357,11 +377,11 @@ public abstract class EYBCard extends EYBCardBase
 
             if (isMultiUpgrade)
             {
-                this.name = cardData.strings.NAME + "+" + this.timesUpgraded;
+                this.name = cardData.Strings.NAME + "+" + this.timesUpgraded;
             }
             else
             {
-                this.name = cardData.strings.NAME + "+";
+                this.name = cardData.Strings.NAME + "+";
             }
 
             initializeTitle();
@@ -506,13 +526,14 @@ public abstract class EYBCard extends EYBCardBase
     @Override
     public final void applyPowers()
     {
-        calculateCardDamage(null);
-    }
-
-    @Override
-    public void calculateDamageDisplay(AbstractMonster mo)
-    {
-        calculateCardDamage(mo);
+        if (isMultiDamage)
+        {
+            calculateCardDamage(null);
+        }
+        else
+        {
+            Refresh(null);
+        }
     }
 
     @Override
@@ -526,13 +547,13 @@ public abstract class EYBCard extends EYBCardBase
             int best = -999;
             for (int i = 0; i < multiDamage.length; i++)
             {
+                Refresh(m.get(i));
+                multiDamage[i] = damage;
+
                 if (damage > best)
                 {
                     best = damage;
                 }
-
-                Refresh(m.get(i));
-                multiDamage[i] = damage;
             }
 
             if (best > 0)

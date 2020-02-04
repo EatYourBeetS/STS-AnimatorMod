@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubscriber
 {
-    public static final String ID = Register(HolyGrail.class);
+    public static final String ID = Register_Old(HolyGrail.class);
 
     public HolyGrail()
     {

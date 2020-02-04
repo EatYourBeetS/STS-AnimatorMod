@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Vanir extends AnimatorCard
 {
-    public static final String ID = Register(Vanir.class);
+    public static final String ID = Register_Old(Vanir.class);
 
     public Vanir()
     {

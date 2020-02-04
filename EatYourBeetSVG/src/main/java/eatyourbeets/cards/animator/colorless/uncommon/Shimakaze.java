@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Shimakaze extends AnimatorCard
 {
-    public static final String ID = Register(Shimakaze.class);
+    public static final String ID = Register_Old(Shimakaze.class);
 
     public Shimakaze()
     {

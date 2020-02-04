@@ -8,7 +8,7 @@ import eatyourbeets.powers.animator.OrbCore_DarkPower;
 
 public class OrbCore_Dark extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Dark.class);
+    public static final String ID = Register_Old(OrbCore_Dark.class);
 
     public static final int VALUE = 1;
 

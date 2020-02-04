@@ -14,7 +14,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Viivi extends AnimatorCard
 {
-    public static final String ID = Register(Viivi.class);
+    public static final String ID = Register_Old(Viivi.class);
     static
     {
         GetStaticData(ID).InitializePreview(ThrowingKnife.GetCardForPreview(), false);
@@ -22,13 +22,19 @@ public class Viivi extends AnimatorCard
 
     public Viivi()
     {
-        super(ID, 1, CardRarity.COMMON, EYBAttackType.Ranged, CardTarget.ALL);
+        super(ID, 1, CardRarity.COMMON, EYBAttackType.Ranged, true);
 
         Initialize(3, 0, 3);
         SetUpgrade(0, 0, 1);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Chaika);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        upgradedDamage = true;
     }
 
     @Override

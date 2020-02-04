@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class GoblinChampion extends AnimatorCard_Status
 {
-    public static final String ID = Register(GoblinChampion.class);
+    public static final String ID = Register_Old(GoblinChampion.class);
 
     public GoblinChampion()
     {

@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoKurosaki extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(IchigoKurosaki.class);
+    public static final String ID = Register_Old(IchigoKurosaki.class);
     static
     {
         GetStaticData(ID).InitializePreview(new IchigoBankai(), false);

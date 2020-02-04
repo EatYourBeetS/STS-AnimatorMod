@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ChlammyZellScheme extends AnimatorCard
 {
-    public static final String ID = Register(ChlammyZellScheme.class);
+    public static final String ID = Register_Old(ChlammyZellScheme.class);
 
     public ChlammyZellScheme()
     {

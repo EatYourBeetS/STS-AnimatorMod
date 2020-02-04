@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class RoyMustang extends AnimatorCard
 {
-    public static final String ID = Register(RoyMustang.class);
+    public static final String ID = Register_Old(RoyMustang.class);
 
     public RoyMustang()
     {

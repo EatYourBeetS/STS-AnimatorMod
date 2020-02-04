@@ -12,7 +12,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Rose extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Rose.class);
+    public static final String ID = Register_Old(Rose.class);
 
     public Rose()
     {

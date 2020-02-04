@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class CowGirl extends AnimatorCard
 {
-    public static final String ID = Register(CowGirl.class);
+    public static final String ID = Register_Old(CowGirl.class);
 
     public CowGirl()
     {

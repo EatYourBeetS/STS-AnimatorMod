@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Hibiki extends AnimatorCard
 {
-    public static final String ID = Register(Hibiki.class);
+    public static final String ID = Register_Old(Hibiki.class);
 
     public Hibiki()
     {

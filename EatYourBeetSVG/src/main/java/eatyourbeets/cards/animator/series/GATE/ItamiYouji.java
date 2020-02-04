@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class ItamiYouji extends AnimatorCard
 {
-    public static final String ID = Register(ItamiYouji.class);
+    public static final String ID = Register_Old(ItamiYouji.class);
 
     public ItamiYouji()
     {

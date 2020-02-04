@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Ain extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Ain.class);
+    public static final String ID = Register_Old(Ain.class);
 
     public Ain()
     {

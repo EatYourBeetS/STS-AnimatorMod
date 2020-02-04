@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_Kancolle extends Defend
 {
-    public static final String ID = Register(Defend_Kancolle.class);
+    public static final String ID = Register_Old(Defend_Kancolle.class);
 
     public Defend_Kancolle()
     {

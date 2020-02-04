@@ -1,11 +1,11 @@
 package eatyourbeets.actions.cardManipulation;
 
 import com.badlogic.gdx.math.Vector2;
-import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -27,12 +27,21 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
     protected Vector2 currentPosition;
     protected Vector2 targetPosition;
 
-    public PlayCard(AbstractCard card, AbstractCreature target)
+    public PlayCard(AbstractCard card, AbstractCreature target, boolean copy)
     {
         super(ActionType.WAIT, Settings.ACTION_DUR_FAST);
 
         this.isRealtime = true;
-        this.card = card;
+
+        if (copy)
+        {
+            this.card = card.makeSameInstanceOf();
+            this.card.energyOnUse = card.energyOnUse;
+        }
+        else
+        {
+            this.card = card;
+        }
 
         Initialize(target, 1);
     }
@@ -175,23 +184,24 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
 
     protected void QueueCardItem()
     {
+        AbstractMonster enemy = (AbstractMonster) target;
+
         card.freeToPlayOnce = true;
         card.exhaustOnUseOnce = exhaust;
         card.purgeOnUse = purge;
-        card.applyPowers();
+        card.calculateCardDamage(enemy);
 
-        GameActions.Top.Add(new NewQueueCardAction(card, target, false, true));
-        GameActions.Top.Add(new UnlimboAction(card));
+        AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, card.energyOnUse, true, true), true);
+//        GameActions.Top.Add(new UnlimboAction(card));
+//        if (Settings.FAST_MODE)
+//        {
+//            GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_FASTER));
+//        }
+//        else
+//        {
+//            GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_MED));
+//        }
 
-        if (Settings.FAST_MODE)
-        {
-            GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_FASTER));
-        }
-        else
-        {
-            GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_MED));
-        }
-
-        Complete((AbstractMonster) target);
+        Complete(enemy);
     }
 }

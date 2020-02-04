@@ -2,24 +2,25 @@ package eatyourbeets.misc.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 
 public class NanamiEffect_Sleep extends NanamiEffect
 {
-    public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
+    @Override
+    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
-        int poison = GetPoison(nanami);
-
-        GameActions.Bottom.ApplyPoison(p, m, poison);
+        GameActions.Bottom.ApplyPoison(p, m, GetPoison(nanami));
     }
 
-    public static String UpdateDescription(Nanami nanami)
+    @Override
+    public String GetDescription(Nanami nanami)
     {
-        return Desc(POISON, GetPoison(nanami));
+        return ACTIONS.Apply(GetPoison(nanami), GR.Tooltips.Poison, true);
     }
 
-    private static int GetPoison(Nanami nanami)
+    private int GetPoison(Nanami nanami)
     {
         return 3 * (nanami.energyOnUse + (nanami.upgraded ? 2 : 1));
     }

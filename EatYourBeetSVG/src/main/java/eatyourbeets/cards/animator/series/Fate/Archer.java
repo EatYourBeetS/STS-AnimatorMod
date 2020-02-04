@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Archer extends AnimatorCard
 {
-    public static final String ID = Register(Archer.class);
+    public static final String ID = Register_Old(Archer.class);
 
     public Archer()
     {

@@ -9,7 +9,7 @@ import eatyourbeets.powers.animator.GuildGirlPower;
 
 public class GuildGirl extends AnimatorCard
 {
-    public static final String ID = Register(GuildGirl.class);
+    public static final String ID = Register_Old(GuildGirl.class);
 
     public GuildGirl()
     {

@@ -23,7 +23,7 @@ public class Truth extends AnimatorCard_UltraRare
 {
     private static final Wound wound = new Wound();
 
-    public static final String ID = Register(Truth.class);
+    public static final String ID = Register_Old(Truth.class);
 
     public Truth()
     {

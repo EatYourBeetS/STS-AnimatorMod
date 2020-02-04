@@ -9,7 +9,7 @@ import eatyourbeets.powers.animator.PinaCoLadaPower;
 
 public class PinaCoLada extends AnimatorCard
 {
-    public static final String ID = Register(PinaCoLada.class);
+    public static final String ID = Register_Old(PinaCoLada.class);
 
     public PinaCoLada()
     {

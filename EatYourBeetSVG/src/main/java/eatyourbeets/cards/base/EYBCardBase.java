@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
@@ -38,6 +39,7 @@ public abstract class EYBCardBase extends AbstractCard
     @Override public final void renderSmallEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y) { throw new RuntimeException("Not Implemented"); }
     @Override public final void renderCardPreviewInSingleView(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
     @Override public final void initializeDescriptionCN() { initializeDescription(); }
+    @Override public void calculateDamageDisplay(AbstractMonster mo) { calculateCardDamage(mo); }
     @Override public abstract void renderUpgradePreview(SpriteBatch sb);
     //@Formatter: On
 

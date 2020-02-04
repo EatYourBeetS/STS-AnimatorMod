@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Berserker extends AnimatorCard
 {
-    public static final String ID = Register(Berserker.class);
+    public static final String ID = Register_Old(Berserker.class);
 
     public Berserker()
     {

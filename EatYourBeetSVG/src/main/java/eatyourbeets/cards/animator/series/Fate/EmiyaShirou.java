@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class EmiyaShirou extends AnimatorCard
 {
-    public static final String ID = Register(EmiyaShirou.class);
+    public static final String ID = Register_Old(EmiyaShirou.class);
 
     public EmiyaShirou()
     {

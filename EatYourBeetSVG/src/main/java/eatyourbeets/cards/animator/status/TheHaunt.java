@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TheHaunt extends AnimatorCard_Status implements Hidden
 {
-    public static final String ID = Register(TheHaunt.class);
+    public static final String ID = Register_Old(TheHaunt.class);
 
     public TheHaunt()
     {

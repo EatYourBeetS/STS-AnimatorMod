@@ -30,7 +30,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
 {
     private int cachedOrbAmount;
 
-    public static final String ID = Register(Patchouli.class);
+    public static final String ID = Register_Old(Patchouli.class);
 
     public Patchouli()
     {

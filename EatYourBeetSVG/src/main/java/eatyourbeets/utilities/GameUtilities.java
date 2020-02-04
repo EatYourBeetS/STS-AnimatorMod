@@ -609,23 +609,41 @@ public class GameUtilities
         }
     }
 
-    public static int UseEnergyXCost(AbstractCard card)
+    public static int GetXCostEnergy(AbstractCard card)
     {
         int amount = EnergyPanel.getCurrentEnergy();
 
-        if (card.freeToPlayOnce || card.ignoreEnergyOnUse)
+        if (card.energyOnUse != -1)
         {
             amount = card.energyOnUse;
-        }
-        else
-        {
-            card.energyOnUse = amount;
-            EnergyPanel.useEnergy(card.energyOnUse);
         }
 
         if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
         {
             amount += ChemicalX.BOOST;
+        }
+
+        return amount;
+    }
+
+    public static int UseXCostEnergy(AbstractCard card)
+    {
+        int amount = EnergyPanel.getCurrentEnergy();
+
+        if (card.energyOnUse != -1)
+        {
+            amount = card.energyOnUse;
+        }
+
+        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
+        {
+            amount += ChemicalX.BOOST;
+            AbstractDungeon.player.getRelic(ChemicalX.ID).flash();
+        }
+
+        if (!card.freeToPlayOnce)
+        {
+            EnergyPanel.useEnergy(card.energyOnUse);
         }
 
         RefreshHandLayout();

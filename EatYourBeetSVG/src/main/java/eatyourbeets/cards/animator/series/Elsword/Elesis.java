@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Elesis extends AnimatorCard
 {
-    public static final String ID = Register(Elesis.class);
+    public static final String ID = Register_Old(Elesis.class);
 
     public Elesis()
     {

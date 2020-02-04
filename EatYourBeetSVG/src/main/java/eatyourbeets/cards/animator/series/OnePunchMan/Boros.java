@@ -9,26 +9,26 @@ import eatyourbeets.utilities.GameActions;
 
 public class Boros extends AnimatorCard
 {
-    public static final String ID = Register(Boros.class);
+    public static final String ID = Register_Old(Boros.class);
 
     public Boros()
     {
         super(ID, 4, CardRarity.RARE, CardType.POWER, CardTarget.SELF);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 3);
         SetCostUpgrade(-1);
 
+        SetEthereal(true);
         SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
-    public void triggerWhenDrawn()
+    public void triggerOnExhaust()
     {
-        super.triggerWhenDrawn();
+        super.triggerOnExhaust();
 
-        GameActions.Bottom.GainForce(secondaryValue);
+        GameActions.Bottom.GainForce(magicNumber);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.Flash(this);
     }
 
     @Override

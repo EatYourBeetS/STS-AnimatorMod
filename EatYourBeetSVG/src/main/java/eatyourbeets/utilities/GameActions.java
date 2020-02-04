@@ -518,17 +518,17 @@ public final class GameActions
 
     public PlayCard PlayCard(AbstractCard card, CardGroup sourcePile, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target)).SetSourcePile(sourcePile);
+        return Add(new PlayCard(card, target, false)).SetSourcePile(sourcePile);
     }
 
     public PlayCard PlayCard(AbstractCard card, AbstractMonster target)
     {
-        return Add(new PlayCard(card, target));
+        return Add(new PlayCard(card, target, false));
     }
 
     public PlayCard PlayCopy(AbstractCard card, AbstractMonster target)
     {
-        return Add(new PlayCard(card.makeSameInstanceOf(), target))
+        return Add(new PlayCard(card, target, true))
         .SetCurrentPosition(card.current_x, card.current_y)
         .SetPurge(true);
     }
@@ -615,11 +615,6 @@ public final class GameActions
     public ApplyPower StackPower(AbstractPower power)
     {
         return StackPower(power.owner, power);
-    }
-
-    public ReduceStrength StealStrength(AbstractCreature target, int amount, boolean temporary)
-    {
-        return ReduceStrength(target, amount, temporary).SetOptions(true);
     }
 
     public TalkAction Talk(AbstractCreature source, String text)

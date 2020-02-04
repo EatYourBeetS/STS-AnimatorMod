@@ -10,20 +10,18 @@ import eatyourbeets.utilities.GameActions;
 
 public class Sonic extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Sonic.class);
+    public static final String ID = Register_Old(Sonic.class);
     static
     {
         GetStaticData(ID).InitializePreview(ThrowingKnife.GetCardForPreview(), false);
     }
 
-    private static final int BLOCK_ON_SYNERGY = 3;
-
     public Sonic()
     {
         super(ID, 1, CardRarity.UNCOMMON, CardType.POWER, CardTarget.SELF);
 
-        Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 0);
 
         SetSynergy(Synergies.OnePunchMan);
     }
@@ -31,13 +29,12 @@ public class Sonic extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlur(magicNumber);
         GameActions.Bottom.GainAgility(secondaryValue);
-        GameActions.Bottom.CreateThrowingKnives(magicNumber);
 
         if (HasSynergy())
         {
-            GameActions.Bottom.GainBlock(BLOCK_ON_SYNERGY);
-            GameActions.Bottom.GainBlur(1);
+            GameActions.Bottom.CreateThrowingKnives(1);
         }
     }
 }

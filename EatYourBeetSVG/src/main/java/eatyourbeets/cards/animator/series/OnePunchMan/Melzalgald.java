@@ -7,12 +7,13 @@ import eatyourbeets.cards.animator.special.MelzalgaldAlt_1;
 import eatyourbeets.cards.animator.special.MelzalgaldAlt_2;
 import eatyourbeets.cards.animator.special.MelzalgaldAlt_3;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Melzalgald extends AnimatorCard
 {
-    public static final String ID = Register(Melzalgald.class);
+    public static final String ID = Register_Old(Melzalgald.class);
     static
     {
         GetStaticData(ID).InitializePreview(new MelzalgaldAlt_1(), true);
@@ -20,7 +21,7 @@ public class Melzalgald extends AnimatorCard
 
     public Melzalgald()
     {
-        super(ID, 3, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
+        super(ID, 3, CardRarity.UNCOMMON, EYBAttackType.Normal);
 
         Initialize(21, 0);
         SetScaling(2, 2, 2);

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Caster extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Caster.class);
+    public static final String ID = Register_Old(Caster.class);
 
     public Caster()
     {
@@ -44,6 +44,6 @@ public class Caster extends AnimatorCard implements Spellcaster
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ChannelOrb(new Dark(), true);
-        GameActions.Bottom.StealStrength(m, magicNumber, true);
+        GameActions.Bottom.ReduceStrength(m, magicNumber, true).SetForceGain(true);
     }
 }

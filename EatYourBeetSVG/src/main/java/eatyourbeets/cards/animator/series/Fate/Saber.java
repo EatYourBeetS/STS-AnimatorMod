@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Saber extends AnimatorCard
 {
-    public static final String ID = Register(Saber.class);
+    public static final String ID = Register_Old(Saber.class);
     static
     {
         GetStaticData(ID).InitializePreview(new Excalibur(), false);

@@ -96,6 +96,11 @@ public class JavaUtilities
         int index = 0;
         for (Object val : args)
         {
+            if (val == null)
+            {
+                val = "";
+            }
+
             format = format.replace("{" + index + "}", val.toString());
             index += 1;
         }

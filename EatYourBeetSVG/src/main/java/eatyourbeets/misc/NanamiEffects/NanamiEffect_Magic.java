@@ -7,7 +7,8 @@ import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 
 public class NanamiEffect_Magic extends NanamiEffect
 {
-    public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
+    @Override
+    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
         int orbs = GetOrbs(nanami);
 
@@ -17,12 +18,13 @@ public class NanamiEffect_Magic extends NanamiEffect
         }
     }
 
-    public static String UpdateDescription(Nanami nanami)
+    @Override
+    public String GetDescription(Nanami nanami)
     {
-        return Desc(RANDOM_ORB, GetOrbs(nanami));
+        return ACTIONS.ChannelRandomOrbs(GetOrbs(nanami), true);
     }
 
-    private static int GetOrbs(Nanami nanami)
+    private int GetOrbs(Nanami nanami)
     {
         return nanami.energyOnUse + (nanami.upgraded ? 2 : 1);
     }

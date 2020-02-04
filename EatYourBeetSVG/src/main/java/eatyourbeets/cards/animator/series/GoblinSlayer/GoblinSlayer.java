@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class GoblinSlayer extends AnimatorCard
 {
-    public static final String ID = Register(GoblinSlayer.class);
+    public static final String ID = Register_Old(GoblinSlayer.class);
 
     public GoblinSlayer()
     {

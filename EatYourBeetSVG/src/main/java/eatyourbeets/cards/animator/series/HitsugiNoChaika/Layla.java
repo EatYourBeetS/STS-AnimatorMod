@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 @SuppressWarnings("SuspiciousNameCombination")
 public class Layla extends AnimatorCard
 {
-    public static final String ID = Register(Layla.class);
+    public static final String ID = Register_Old(Layla.class);
 
     public Layla()
     {

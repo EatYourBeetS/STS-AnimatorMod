@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Gillette extends AnimatorCard
 {
-    public static final String ID = Register(Gillette.class);
+    public static final String ID = Register_Old(Gillette.class);
 
     public Gillette()
     {

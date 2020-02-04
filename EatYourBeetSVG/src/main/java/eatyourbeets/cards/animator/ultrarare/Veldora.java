@@ -12,14 +12,14 @@ import eatyourbeets.cards.base.Synergies;
 
 public class Veldora extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Veldora.class);
+    public static final String ID = Register_Old(Veldora.class);
 
     public Veldora()
     {
         super(ID, 4, CardType.SKILL, CardTarget.SELF);
 
-        Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 1, 0);
 
         showEvokeValue = true;
 

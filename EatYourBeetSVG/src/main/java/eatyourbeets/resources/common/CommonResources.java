@@ -131,7 +131,7 @@ public class CommonResources extends AbstractResources
                 try
                 {
                     Keyword k = (Keyword) field.get(null);
-                    EYBCardTooltip tooltip = new EYBCardTooltip(k.NAMES[0], k.DESCRIPTION);
+                    EYBCardTooltip tooltip = new EYBCardTooltip(TipHelper.capitalize(k.NAMES[0]), k.DESCRIPTION);
 
                     Tooltips.RegisterID(TipHelper.capitalize(field.getName()), tooltip);
 
@@ -178,7 +178,7 @@ public class CommonResources extends AbstractResources
         int size = power.img.getWidth(); // width should always be equal to height
 
         EYBCardTooltip tooltip = Tooltips.FindByName(power.name.toLowerCase());
-        tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 2, size-4, size-4);
+        tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
         Tooltips.RegisterName(symbol, tooltip);
     }
 }

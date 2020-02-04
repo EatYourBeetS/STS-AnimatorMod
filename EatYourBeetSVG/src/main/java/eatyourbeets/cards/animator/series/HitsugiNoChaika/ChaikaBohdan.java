@@ -14,7 +14,7 @@ import eatyourbeets.cards.base.Synergies;
 
 public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 {
-    public static final String ID = Register(ChaikaBohdan.class);
+    public static final String ID = Register_Old(ChaikaBohdan.class);
 
     private int bonusDamage = 0;
 

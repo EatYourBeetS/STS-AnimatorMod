@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Darkness extends AnimatorCard
 {
-    public static final String ID = Register(Darkness.class);
+    public static final String ID = Register_Old(Darkness.class);
     static
     {
         GetStaticData(ID).InitializePreview(new DarknessAdrenaline(), false);

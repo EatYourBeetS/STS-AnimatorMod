@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Geryuganshoop extends AnimatorCard
 {
-    public static final String ID = Register(Geryuganshoop.class);
+    public static final String ID = Register_Old(Geryuganshoop.class);
 
     public Geryuganshoop()
     {
@@ -31,7 +31,7 @@ public class Geryuganshoop extends AnimatorCard
     {
         GameActions.Bottom.Cycle(name, magicNumber)
         .AddCallback(__ -> GameActions.Bottom.SelectFromPile(name, secondaryValue, player.exhaustPile)
-                           .SetMessage(JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[0], secondaryValue))
+                           .SetMessage(JavaUtilities.Format(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue))
                            .SetOptions(false, true)
                            .AddCallback(this::OnCardChosen));
     }

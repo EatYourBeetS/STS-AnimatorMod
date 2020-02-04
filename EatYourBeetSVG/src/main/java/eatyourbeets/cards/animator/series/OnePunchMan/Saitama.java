@@ -23,7 +23,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Saitama extends AnimatorCard
 {
-    public static final String ID = Register(Saitama.class);
+    public static final String ID = Register_Old(Saitama.class);
 
     private int stage;
 
@@ -180,7 +180,7 @@ public class Saitama extends AnimatorCard
             case 1:
             {
                 // Draw !M! Cards. NL Gain !SV! Agility.
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
 
                 Initialize(0, 0, 3, 2);
 
@@ -195,7 +195,7 @@ public class Saitama extends AnimatorCard
             case 2:
             {
                 // Prevent the next time you would lose HP
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[1], true);
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
 
                 Initialize(0, 0, 0, 0);
 
@@ -210,7 +210,7 @@ public class Saitama extends AnimatorCard
             case 3:
             {
                 // Gain !M! Force. Gain !B! Block
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[2], true);
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
 
                 Initialize(0, 9, 6, 0);
 
@@ -225,7 +225,7 @@ public class Saitama extends AnimatorCard
             case 4:
             {
                 // Deal !D! damage !M! times.
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[3], true);
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[3], true);
 
                 Initialize(6, 0, 8, 0);
                 SetScaling(0, 3, 3);
@@ -242,7 +242,7 @@ public class Saitama extends AnimatorCard
             case 5:
             {
                 // Remove Intangible. Stun the enemy.
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[4], true);
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[4], true);
 
                 Initialize(999, 0, 0, 0);
                 SetScaling(0, 99, 99);

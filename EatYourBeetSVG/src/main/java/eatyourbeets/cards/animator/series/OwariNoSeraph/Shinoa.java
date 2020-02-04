@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Shinoa extends AnimatorCard
 {
-    public static final String ID = Register(Shinoa.class);
+    public static final String ID = Register_Old(Shinoa.class);
 
     public Shinoa()
     {

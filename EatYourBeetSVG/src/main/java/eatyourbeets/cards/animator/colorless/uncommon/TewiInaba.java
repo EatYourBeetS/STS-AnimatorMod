@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TewiInaba extends AnimatorCard implements Hidden // TODO:
 {
-    public static final String ID = Register(TewiInaba.class);
+    public static final String ID = Register_Old(TewiInaba.class);
 
     public TewiInaba()
     {

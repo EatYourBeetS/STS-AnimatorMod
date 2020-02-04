@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class HighElfArcher extends AnimatorCard
 {
-    public static final String ID = Register(HighElfArcher.class);
+    public static final String ID = Register_Old(HighElfArcher.class);
 
     public HighElfArcher()
     {

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Spearman extends AnimatorCard
 {
-    public static final String ID = Register(Spearman.class);
+    public static final String ID = Register_Old(Spearman.class);
 
     public Spearman()
     {

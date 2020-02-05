@@ -8,12 +8,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.*;
+import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
+import com.megacrit.cardcrawl.vfx.combat.FireballEffect;
+import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
 import eatyourbeets.cards.animator.special.OrbCore;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.csharp.ActionT0;
 import eatyourbeets.interfaces.markers.Spellcaster;
@@ -28,13 +29,13 @@ import java.util.HashSet;
 
 public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
 {
-    private int cachedOrbAmount;
+    public static final EYBCardData DATA = Register(Patchouli.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
 
-    public static final String ID = Register_Old(Patchouli.class);
+    private int cachedOrbAmount;
 
     public Patchouli()
     {
-        super(ID, 3, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
         Initialize(8, 0, 0, 2);
         SetUpgrade(3, 0, 0, 0);

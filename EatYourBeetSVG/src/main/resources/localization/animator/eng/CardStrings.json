@@ -956,6 +956,7 @@
 	"animator:Sora":
 	{
 		"DESCRIPTION": "Choose 1 out of 3 ** random Effects !M! times. || Add {Shiro} from your ** draw pile to your hand.",
+		"EXTENDED_DESCRIPTION": ["Attack", "Defend", "Prepare"],
 		"NAME": "Sora"
 	},
 	"animator:Souei":

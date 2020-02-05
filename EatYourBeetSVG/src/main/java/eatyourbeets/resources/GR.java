@@ -258,7 +258,6 @@ public class GR
         BaseMod.addCard(card);
     }
 
-    @SuppressWarnings("unchecked") // I miss C# ...
     protected void LoadCustomPowers(String character)
     {
         final String prefix = "eatyourbeets.cards." + character;

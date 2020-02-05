@@ -4,17 +4,18 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.BozesPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Bozes extends AnimatorCard
 {
-    public static final String ID = Register_Old(Bozes.class);
+    public static final EYBCardData DATA = Register(Bozes.class).SetAttack(2, CardRarity.UNCOMMON);
 
     public Bozes()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(7, 0, 2, 1);
         SetUpgrade(0, 0, 1);

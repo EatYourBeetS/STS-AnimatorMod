@@ -4,17 +4,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class DolaStephanie extends AnimatorCard
 {
-    public static final String ID = Register_Old(DolaStephanie.class);
+    public static final EYBCardData DATA = Register(DolaStephanie.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public DolaStephanie()
     {
-        super(ID, 0, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0);
 

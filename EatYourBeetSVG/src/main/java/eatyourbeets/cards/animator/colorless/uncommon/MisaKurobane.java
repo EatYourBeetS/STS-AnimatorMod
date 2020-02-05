@@ -4,21 +4,23 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Yusarin;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class MisaKurobane extends AnimatorCard
 {
-    public static final String ID = Register_Old(MisaKurobane.class);
+    public static final EYBCardData DATA = Register(MisaKurobane.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
     static
     {
-        GetStaticData(ID).InitializePreview(new Yusarin(), false);
+        DATA.InitializePreview(new Yusarin(), false);
     }
 
     public MisaKurobane()
     {
-        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0,1);
 

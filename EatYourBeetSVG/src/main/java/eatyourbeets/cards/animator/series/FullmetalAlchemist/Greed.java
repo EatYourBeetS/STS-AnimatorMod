@@ -6,17 +6,18 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import com.megacrit.cardcrawl.powers.MalleablePower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Greed extends AnimatorCard
 {
-    public static final String ID = Register_Old(Greed.class);
+    public static final EYBCardData DATA = Register(Greed.class).SetPower(2, CardRarity.RARE);
 
     public Greed()
     {
-        super(ID, 2, CardRarity.RARE, CardType.POWER, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 150);
         SetUpgrade(0, 4, 0, 0);

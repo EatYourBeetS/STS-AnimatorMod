@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
@@ -13,11 +15,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Witch extends AnimatorCard implements Spellcaster, StartupCard
 {
-    public static final String ID = Register_Old(Witch.class);
+    public static final EYBCardData DATA = Register(Witch.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL);
 
     public Witch()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.ALL);
+        super(DATA);
 
         Initialize(0, 10,2);
         SetUpgrade(0, 3, 1);

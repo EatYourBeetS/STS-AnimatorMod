@@ -22,6 +22,8 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public Consumer<AnimatorCard> onUpgrade;
     public TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
     public EYBAttackType attackType = EYBAttackType.Normal;
+    public EYBCardTarget attackTarget = EYBCardTarget.Normal;
+    public int attributeMultiplier = 1;
     public boolean isShapeshifter;
     public Synergy synergy;
     public float intellectScaling;
@@ -115,10 +117,19 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public AnimatorCardBuilder SetAttackType(EYBAttackType attackType, boolean multiDamage)
+    public AnimatorCardBuilder SetAttackType(EYBAttackType attackType, EYBCardTarget attackTarget)
     {
         this.attackType = attackType;
-        this.isMultiDamage = multiDamage;
+        this.attackTarget = attackTarget;
+
+        return this;
+    }
+
+    public AnimatorCardBuilder SetAttackType(EYBAttackType attackType, EYBCardTarget attackTarget, int multiplier)
+    {
+        this.attackType = attackType;
+        this.attackTarget = attackTarget;
+        this.attributeMultiplier = multiplier;
 
         return this;
     }

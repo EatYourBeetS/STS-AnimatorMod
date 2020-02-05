@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
@@ -12,10 +14,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IzunaHatsuse extends AnimatorCard
 {
-    public static final String ID = Register_Old(IzunaHatsuse.class);
+    public static final EYBCardData DATA = Register(IzunaHatsuse.class).SetSkill(0, CardRarity.UNCOMMON);
     static
     {
-        GetStaticData(ID).InitializePreview(new IzunaHatsuse(true), true);
+        DATA.InitializePreview(new IzunaHatsuse(true), true);
     }
 
     private boolean transformed;
@@ -28,7 +30,7 @@ public class IzunaHatsuse extends AnimatorCard
 
     public IzunaHatsuse()
     {
-        super(ID, 0, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(4, 2, 4);
         SetUpgrade(2, 2, 2);
@@ -102,6 +104,7 @@ public class IzunaHatsuse extends AnimatorCard
             if (transformed)
             {
                 LoadImage("Alt");
+                SetAttackType(EYBAttackType.Normal);
 
                 this.type = CardType.ATTACK;
 

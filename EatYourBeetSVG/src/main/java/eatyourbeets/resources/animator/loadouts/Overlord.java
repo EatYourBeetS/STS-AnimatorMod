@@ -28,14 +28,14 @@ public class Overlord extends AnimatorLoadout
         {
             startingDeck.add(Strike_Overlord.ID);
             startingDeck.add(Defend_Overlord.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Cocytus.ID);
-            startingDeck.add(Demiurge.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Cocytus.DATA.ID);
+            startingDeck.add(Demiurge.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class Overlord extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Ainz.ID;
+        return Ainz.DATA.ID;
     }
 
     @Override

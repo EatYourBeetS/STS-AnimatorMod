@@ -5,17 +5,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Canti extends AnimatorCard
 {
-    public static final String ID = Register_Old(Canti.class);
+    public static final EYBCardData DATA = Register(Canti.class).SetAttack(1, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
 
     public Canti()
     {
-        super(ID, 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(5, 3);
         SetUpgrade(2, 1);

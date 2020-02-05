@@ -4,16 +4,17 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Elesis extends AnimatorCard
 {
-    public static final String ID = Register_Old(Elesis.class);
+    public static final EYBCardData DATA = Register(Elesis.class).SetAttack(3, CardRarity.RARE);
 
     public Elesis()
     {
-        super(ID, 3, CardRarity.RARE, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(4, 0, 3, 8);
         SetUpgrade(6, 0);

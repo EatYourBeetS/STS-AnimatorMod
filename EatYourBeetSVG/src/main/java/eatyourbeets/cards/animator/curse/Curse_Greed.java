@@ -4,16 +4,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.RandomCostIncrease;
 import eatyourbeets.cards.base.AnimatorCard_Curse;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Curse_Greed extends AnimatorCard_Curse
 {
-    public static final String ID = Register_Old(Curse_Greed.class);
+    public static final EYBCardData DATA = Register(Curse_Greed.class).SetCurse(-2, EYBCardTarget.None);
 
     public Curse_Greed()
     {
-        super(ID, -2, CardRarity.COMMON, CardTarget.NONE);
+        super(DATA);
 
         Initialize(0, 0, 2);
 

@@ -3,6 +3,7 @@ package eatyourbeets.cards.base;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import org.apache.logging.log4j.util.TriConsumer;
 
 import java.util.function.Consumer;
@@ -12,6 +13,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     protected final AnimatorCardBuilder builder;
 
     public boolean canSelect;
+    public int attributeMultiplier;
     public final Consumer<AnimatorCard> onUpgrade;
     public final TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
 
@@ -24,6 +26,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         SetUpgrade(builder.damageUpgrade, builder.blockUpgrade, builder.magicNumberUpgrade, builder.secondaryValueUpgrade);
         SetCostUpgrade(builder.costUpgrade);
 
+        this.attributeMultiplier = builder.attributeMultiplier;
         this.intellectScaling = builder.intellectScaling;
         this.agilityScaling = builder.agilityScaling;
         this.forceScaling = builder.forceScaling;
@@ -35,6 +38,30 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         this.tags.addAll(builder.tags);
 
         SetSynergy(builder.synergy, builder.isShapeshifter);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        AbstractAttribute info = super.GetDamageInfo();
+        if (info != null && attributeMultiplier > 1)
+        {
+            info.AddMultiplier(attributeMultiplier);
+        }
+
+        return info;
+    }
+
+    @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        AbstractAttribute info = super.GetBlockInfo();
+        if (info != null && attributeMultiplier > 1)
+        {
+            info.AddMultiplier(attributeMultiplier);
+        }
+
+        return info;
     }
 
     @Override

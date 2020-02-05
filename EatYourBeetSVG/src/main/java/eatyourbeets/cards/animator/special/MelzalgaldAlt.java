@@ -1,16 +1,14 @@
 package eatyourbeets.cards.animator.special;
 
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.AnimatorResources;
 
 public abstract class MelzalgaldAlt extends AnimatorCard
 {
-    public static final String ID = Register_Old(MelzalgaldAlt.class);
-
-    public MelzalgaldAlt(String id)
+    public MelzalgaldAlt(EYBCardData data)
     {
-        super(GetStaticData(id), id, AnimatorResources.GetCardImage(id), 1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF_AND_ENEMY);
+        super(data);
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan, true);

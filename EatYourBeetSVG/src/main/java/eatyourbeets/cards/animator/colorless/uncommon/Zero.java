@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
@@ -12,11 +13,11 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Zero extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register_Old(Zero.class);
+    public static final EYBCardData DATA = Register(Zero.class).SetSkill(0, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
 
     public Zero()
     {
-        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(0, 0, 0);
 

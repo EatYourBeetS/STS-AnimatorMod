@@ -8,22 +8,22 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Entoma extends AnimatorCard
 {
-    public static final String ID = Register_Old(Entoma.class);
+    public static final EYBCardData DATA = Register(Entoma.class).SetAttack(1, CardRarity.COMMON);
 
     public Entoma()
     {
-        super(ID, 1, CardRarity.COMMON, EYBAttackType.Normal);
+        super(DATA);
 
         Initialize(6, 0, 2);
         SetUpgrade(1, 0, 0);

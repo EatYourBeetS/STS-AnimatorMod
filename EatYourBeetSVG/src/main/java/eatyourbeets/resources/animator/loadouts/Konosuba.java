@@ -28,14 +28,14 @@ public class Konosuba extends AnimatorLoadout
         {
             startingDeck.add(Strike_Konosuba.ID);
             startingDeck.add(Defend_Konosuba.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Kazuma.ID);
-            startingDeck.add(Aqua.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Kazuma.DATA.ID);
+            startingDeck.add(Aqua.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class Konosuba extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Megumin.ID;
+        return Megumin.DATA.ID;
     }
 
     @Override

@@ -17,8 +17,7 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.actions.animator.HigakiRinneAction;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.animator.HigakiRinnePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
@@ -27,15 +26,16 @@ import java.util.ArrayList;
 
 public class HigakiRinne extends AnimatorCard
 {
-    public static final String ID = Register_Old(HigakiRinne.class);
+    public static final EYBCardData DATA = Register(HigakiRinne.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
 
     public HigakiRinne()
     {
-        super(ID, 0, CardRarity.RARE, CardType.SKILL, CardTarget.ALL);
+        super(DATA);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
+        SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.Katanagatari, true);
     }
 

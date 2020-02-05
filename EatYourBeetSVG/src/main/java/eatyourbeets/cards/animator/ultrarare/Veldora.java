@@ -6,17 +6,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class Veldora extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register_Old(Veldora.class);
+    public static final EYBCardData DATA = Register(Veldora.class).SetSkill(4, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public Veldora()
     {
-        super(ID, 4, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);

@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
@@ -11,11 +12,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class Envy extends AnimatorCard
 {
-    public static final String ID = Register_Old(Envy.class);
+    public static final EYBCardData DATA = Register(Envy.class).SetPower(2, CardRarity.RARE);
 
     public Envy()
     {
-        super(ID, 2, CardRarity.RARE, CardType.POWER, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0);
 

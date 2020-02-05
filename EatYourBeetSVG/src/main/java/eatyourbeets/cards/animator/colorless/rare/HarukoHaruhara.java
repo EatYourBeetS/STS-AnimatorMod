@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -12,11 +13,11 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class HarukoHaruhara extends AnimatorCard
 {
-    public static final String ID = Register_Old(HarukoHaruhara.class);
+    public static final EYBCardData DATA = Register(HarukoHaruhara.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
 
     public HarukoHaruhara()
     {
-        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(0, 0);
         SetCostUpgrade(-1);

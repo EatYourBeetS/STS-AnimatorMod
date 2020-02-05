@@ -3,17 +3,19 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Shinoa extends AnimatorCard
 {
-    public static final String ID = Register_Old(Shinoa.class);
+    public static final EYBCardData DATA = Register(Shinoa.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL);
 
     public Shinoa()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.ALL);
+        super(DATA);
 
         Initialize(0, 6, 1);
         SetUpgrade(0, 3, 0);

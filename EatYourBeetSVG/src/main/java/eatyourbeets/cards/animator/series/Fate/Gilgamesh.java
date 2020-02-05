@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
@@ -26,12 +27,12 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 {
     private static AbstractRelic lastRelicObtained = null;
 
-    public static final String ID = Register_Old(Gilgamesh.class);
+    public static final EYBCardData DATA = Register(Gilgamesh.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged);
     public static final int GOLD_REWARD = 25;
 
     public Gilgamesh()
     {
-        super(ID, 2, CardRarity.RARE, EYBAttackType.Ranged);
+        super(DATA);
 
         Initialize(3, 0, 3, GOLD_REWARD);
         SetUpgrade(1, 0);

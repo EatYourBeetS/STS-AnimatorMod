@@ -4,21 +4,22 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 
 public class Sonic extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register_Old(Sonic.class);
+    public static final EYBCardData DATA = Register(Sonic.class).SetPower(1, CardRarity.UNCOMMON);
     static
     {
-        GetStaticData(ID).InitializePreview(ThrowingKnife.GetCardForPreview(), false);
+        DATA.InitializePreview(ThrowingKnife.GetCardForPreview(), false);
     }
 
     public Sonic()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.POWER, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1, 0);

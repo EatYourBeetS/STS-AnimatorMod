@@ -5,21 +5,22 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.basic.MoveCard;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.animator.CreateRandomGoblins;
+import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class GoblinSlayer extends AnimatorCard
 {
-    public static final String ID = Register_Old(GoblinSlayer.class);
+    public static final EYBCardData DATA = Register(GoblinSlayer.class).SetAttack(1, CardRarity.RARE);
 
     public GoblinSlayer()
     {
-        super(ID, 1, CardRarity.RARE, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(4, 4);
         SetUpgrade(3, 3);

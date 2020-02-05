@@ -3,6 +3,8 @@ package eatyourbeets.cards.animator.series.Katanagatari;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -10,11 +12,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Togame extends AnimatorCard
 {
-    public static final String ID = Register_Old(Togame.class);
+    public static final EYBCardData DATA = Register(Togame.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Togame()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);

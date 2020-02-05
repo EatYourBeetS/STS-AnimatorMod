@@ -8,13 +8,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class ThrowingKnife extends AnimatorCard
 {
-    public static final String ID = Register_Old(ThrowingKnife.class);
+    public static final EYBCardData DATA = Register(ThrowingKnife.class).SetAttack(0, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     private static ThrowingKnife preview;
     private int index;
@@ -41,7 +42,7 @@ public class ThrowingKnife extends AnimatorCard
 
     private ThrowingKnife(int index)
     {
-        super(ID, 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(2, 0, 1, 2);
         SetUpgrade(3, 0);

@@ -28,14 +28,14 @@ public class OwariNoSeraph extends AnimatorLoadout
         {
             startingDeck.add(Strike_OwariNoSeraph.ID);
             startingDeck.add(Defend_OwariNoSeraph.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Shinoa.ID);
-            startingDeck.add(Mikaela.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Shinoa.DATA.ID);
+            startingDeck.add(Mikaela.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class OwariNoSeraph extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Yuuichirou.ID;
+        return Yuuichirou.DATA.ID;
     }
 
     @Override

@@ -8,8 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.special.RefreshHandLayout;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -19,10 +18,10 @@ public class Fredrika extends AnimatorCard
     private enum Form { Default, Cat, Dominica, Dragoon }
     private Form currentForm = Form.Default;
 
-    public static final String ID = Register_Old(Fredrika.class);
+    public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        GetStaticData(ID).InitializePreview(new Fredrika(Form.Dragoon), true);
+        DATA.InitializePreview(new Fredrika(Form.Dragoon), true);
     }
 
     private Fredrika(Form form)
@@ -34,11 +33,12 @@ public class Fredrika extends AnimatorCard
 
     public Fredrika()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(9, 2, 2);
         SetUpgrade(2, 2, 0);
 
+        SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.Chaika, true);
     }
 

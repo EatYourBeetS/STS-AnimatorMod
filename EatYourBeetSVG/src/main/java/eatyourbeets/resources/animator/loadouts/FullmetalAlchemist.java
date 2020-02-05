@@ -28,14 +28,14 @@ public class FullmetalAlchemist extends AnimatorLoadout
         {
             startingDeck.add(Strike_FullmetalAlchemist.ID);
             startingDeck.add(Defend_FullmetalAlchemist.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(ElricEdward.ID);
-            startingDeck.add(ElricAlphonse.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(ElricEdward.DATA.ID);
+            startingDeck.add(ElricAlphonse.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class FullmetalAlchemist extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return RoyMustang.ID;
+        return RoyMustang.DATA.ID;
     }
 
     @Override

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Tet extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Tet.class).SetSkill(CardRarity.UNCOMMON, EYBCardTarget.None, 0);
+    public static final EYBCardData DATA = Register(Tet.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Tet()
     {

@@ -5,16 +5,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DemonFormPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Asuramaru extends AnimatorCard
 {
-    public static final String ID = Register_Old(Asuramaru.class);
+    public static final EYBCardData DATA = Register(Asuramaru.class).SetAttack(2, CardRarity.SPECIAL);
 
     public Asuramaru()
     {
-        super(ID, 2, CardRarity.SPECIAL, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(12, 0, 2);
         SetUpgrade(6, 0, 0);

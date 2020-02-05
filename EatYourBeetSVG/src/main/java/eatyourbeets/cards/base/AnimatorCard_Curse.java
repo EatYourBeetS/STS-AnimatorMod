@@ -9,9 +9,9 @@ import eatyourbeets.utilities.RenderHelpers;
 
 public abstract class AnimatorCard_Curse extends AnimatorCard
 {
-    protected AnimatorCard_Curse(String id, int cost, CardRarity rarity, CardTarget target)
+    protected AnimatorCard_Curse(EYBCardData data)
     {
-        super(id, cost, CardType.CURSE, CardColor.CURSE, rarity, target);
+        super(data);
     }
 
     @Override

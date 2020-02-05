@@ -28,14 +28,14 @@ public class NoGameNoLife extends AnimatorLoadout
         {
             startingDeck.add(Strike_NoGameNoLife.ID);
             startingDeck.add(Defend_NoGameNoLife.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(DolaSchwi.ID);
-            startingDeck.add(DolaCouronne.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(DolaSchwi.DATA.ID);
+            startingDeck.add(DolaCouronne.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class NoGameNoLife extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Sora.ID;
+        return Sora.DATA.ID;
     }
 
     @Override

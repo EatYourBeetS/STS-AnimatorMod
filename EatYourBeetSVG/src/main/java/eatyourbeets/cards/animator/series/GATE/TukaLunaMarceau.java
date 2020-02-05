@@ -3,16 +3,18 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class TukaLunaMarceau extends AnimatorCard
 {
-    public static final String ID = Register_Old(TukaLunaMarceau.class);
+    public static final EYBCardData DATA = Register(TukaLunaMarceau.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
     public TukaLunaMarceau()
     {
-        super(ID, 0, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 2, 3);
         SetUpgrade(0, 2, 0);

@@ -4,18 +4,20 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class EmiyaShirou extends AnimatorCard
 {
-    public static final String ID = Register_Old(EmiyaShirou.class);
+    public static final EYBCardData DATA = Register(EmiyaShirou.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public EmiyaShirou()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.ALL);
+        super(DATA);
 
         Initialize(0, 5, 2);
         SetUpgrade(0, 1, 1);

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.animator.PoisonAffinityPower;
@@ -12,11 +13,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class AcuraShin extends AnimatorCard
 {
-    public static final String ID = Register_Old(AcuraShin.class);
+    public static final EYBCardData DATA = Register(AcuraShin.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing);
 
     public AcuraShin()
     {
-        super(ID, 2, CardRarity.RARE, EYBAttackType.Piercing);
+        super(DATA);
 
         Initialize(3,2,2);
 

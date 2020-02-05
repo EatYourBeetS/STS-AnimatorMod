@@ -6,21 +6,22 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 {
-    public static final String ID = Register_Old(ChaikaBohdan.class);
+    public static final EYBCardData DATA = Register(ChaikaBohdan.class).SetAttack(1, CardRarity.COMMON);
 
     private int bonusDamage = 0;
 
     public ChaikaBohdan()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(5, 0, 3, 2);
         SetUpgrade(3, 0, 0, 0);

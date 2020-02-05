@@ -13,6 +13,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -23,11 +25,11 @@ public class Truth extends AnimatorCard_UltraRare
 {
     private static final Wound wound = new Wound();
 
-    public static final String ID = Register_Old(Truth.class);
+    public static final EYBCardData DATA = Register(Truth.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public Truth()
     {
-        super(ID, 1, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 1);

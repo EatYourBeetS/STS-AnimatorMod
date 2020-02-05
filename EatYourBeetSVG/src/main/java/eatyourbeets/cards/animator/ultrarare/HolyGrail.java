@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
@@ -15,11 +17,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubscriber
 {
-    public static final String ID = Register_Old(HolyGrail.class);
+    public static final EYBCardData DATA = Register(HolyGrail.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public HolyGrail()
     {
-        super(ID, 1, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 3, 3);
         SetUpgrade(0, 0, 0, -1);

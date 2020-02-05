@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.ui.EffectHistory;
@@ -11,11 +12,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class ZankiKiguchi extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register_Old(ZankiKiguchi.class);
+    public static final EYBCardData DATA = Register(ZankiKiguchi.class).SetAttack(0, CardRarity.COMMON);
 
     public ZankiKiguchi()
     {
-        super(ID, 0, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(2, 0, 2);
         SetUpgrade(3, 0, 0);

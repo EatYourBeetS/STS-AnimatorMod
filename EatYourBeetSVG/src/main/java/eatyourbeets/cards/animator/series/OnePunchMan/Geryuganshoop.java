@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -14,11 +16,11 @@ import java.util.ArrayList;
 
 public class Geryuganshoop extends AnimatorCard
 {
-    public static final String ID = Register_Old(Geryuganshoop.class);
+    public static final EYBCardData DATA = Register(Geryuganshoop.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Geryuganshoop()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 1, 1);
@@ -44,7 +46,7 @@ public class Geryuganshoop extends AnimatorCard
         {
             for (AbstractCard card : cards)
             {
-                if (!limited && (card.cardID.equals(Boros.ID) || card.cardID.startsWith(Melzalgald.ID)))
+                if (!limited && (card.cardID.equals(Boros.DATA.ID) || card.cardID.startsWith(Melzalgald.DATA.ID)))
                 {
                     EffectHistory.TryActivateLimited(this.cardID);
                     GameActions.Bottom.MoveCard(card, player.exhaustPile, player.hand)

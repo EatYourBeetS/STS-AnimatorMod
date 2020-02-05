@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
@@ -13,11 +15,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class Kazuma extends AnimatorCard
 {
-    public static final String ID = Register_Old(Kazuma.class);
+    public static final EYBCardData DATA = Register(Kazuma.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public Kazuma()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 6, 4);
         SetUpgrade(0, 3, 0);
@@ -30,7 +32,7 @@ public class Kazuma extends AnimatorCard
     {
         if (HasSynergy())
         {
-            return DamageAttribute.Instance.SetCard(this).SetText(String.valueOf(magicNumber), Settings.CREAM_COLOR).SetIconTag("???");
+            return DamageAttribute.Instance.SetCard(this).SetText(String.valueOf(magicNumber), Settings.CREAM_COLOR).SetIconTag(EYBCardTarget.Random.tag);
         }
 
         return null;

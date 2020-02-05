@@ -4,6 +4,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ElricAlphonseAlt;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
@@ -11,15 +13,15 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
-    public static final String ID = Register_Old(ElricAlphonse.class);
+    public static final EYBCardData DATA = Register(ElricAlphonse.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
     static
     {
-        GetStaticData(ID).InitializePreview(new ElricAlphonseAlt(), true);
+        DATA.InitializePreview(new ElricAlphonseAlt(), true);
     }
 
     public ElricAlphonse()
     {
-        super(ID, 0, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);

@@ -5,17 +5,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
 
 public class Genos extends AnimatorCard
 {
-    public static final String ID = Register_Old(Genos.class);
+    public static final EYBCardData DATA = Register(Genos.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
 
     public Genos()
     {
-        super(ID, 1, CardRarity.COMMON, EYBAttackType.Ranged);
+        super(DATA);
 
         Initialize(14, 0, 3, 4);
         SetUpgrade(4, 0, 0, 0);

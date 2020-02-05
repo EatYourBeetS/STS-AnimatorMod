@@ -1,10 +1,11 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -13,13 +14,13 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class MamizouFutatsuiwa extends AnimatorCard
 {
-    public static final String ID = Register_Old(MamizouFutatsuiwa.class);
+    public static final EYBCardData DATA = Register(MamizouFutatsuiwa.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     private static final RandomizedList<AnimatorCard> shapeshifterPool = new RandomizedList<>();
 
     public MamizouFutatsuiwa()
     {
-        super(ID, 1, CardType.SKILL, AbstractCard.CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 2);

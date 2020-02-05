@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Strike_GATE extends Strike
 {
-    public static final String ID = Register_Old(Strike_GATE.class);
+    public static final String ID = Register(Strike_GATE.class).ID;
 
     public Strike_GATE()
     {

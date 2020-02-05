@@ -100,66 +100,66 @@ public class BundledRelicProvider
 
     private static void AddElsword()
     {
-        AddBundle(Rose.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(Rose.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddFate()
     {
-        AddBundle(JeanneDArc.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(JeanneDArc.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddFullmetalAlchemist()
     {
-        AddBundle(Truth.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(Truth.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddGATE()
     {
-        AddBundle(Giselle.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(Giselle.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddGoblinSlayer()
     {
-        AddBundle(Hero.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(Hero.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddHitsugiNoChaika()
     {
-        AddBundle(NivaLada.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(NivaLada.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddKatanagatari()
     {
-        AddBundle(ShikizakiKiki.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(ShikizakiKiki.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddKonosuba()
     {
-        AddBundle(Chomusuke.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(Chomusuke.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddNoGameNoLife()
     {
-        AddBundle(Azriel.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(Azriel.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddOverlord()
     {
-        AddBundle(SirTouchMe.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(SirTouchMe.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddOwariNoSeraph()
     {
-        AddBundle(HiiragiTenri.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(HiiragiTenri.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddOnePunchMan()
     {
-        AddBundle(SeriousSaitama.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(SeriousSaitama.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 
     private static void AddTenSura()
     {
-        AddBundle(Veldora.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
+        AddBundle(Veldora.DATA.ID, CursedGlyph.ID, AbstractRelic.RelicTier.SPECIAL, 100);
     }
 }

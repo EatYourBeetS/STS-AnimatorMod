@@ -7,22 +7,23 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
-import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class Illya extends AnimatorCard
 {
-    public static final String ID = Register_Old(Illya.class);
+    public static final EYBCardData DATA = Register(Illya.class).SetSkill(1, CardRarity.UNCOMMON);
 
     private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Illya::FindBestCard);
 
     public Illya()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -2);
@@ -93,7 +94,7 @@ public class Illya extends AnimatorCard
     {
         for (AbstractCard c : group.group)
         {
-            if (Berserker.ID.equals(c.cardID))
+            if (Berserker.DATA.ID.equals(c.cardID))
             {
                 if (group.type != CardGroup.CardGroupType.HAND)
                 {

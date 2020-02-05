@@ -6,16 +6,18 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.blights.animator.Haunted;
 import eatyourbeets.cards.base.AnimatorCard_Status;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
 public class TheHaunt extends AnimatorCard_Status implements Hidden
 {
-    public static final String ID = Register_Old(TheHaunt.class);
+    public static final EYBCardData DATA = Register(TheHaunt.class).SetStatus(1, CardRarity.RARE, EYBCardTarget.None);
 
     public TheHaunt()
     {
-        super(ID, 1, CardRarity.RARE, CardTarget.NONE);
+        super(DATA);
 
         int goldBonus = 0;
         Haunted blight = GetBlight();

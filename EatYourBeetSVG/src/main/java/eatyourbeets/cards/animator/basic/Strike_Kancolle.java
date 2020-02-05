@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Strike_Kancolle extends Strike
 {
-    public static final String ID = Register_Old(Strike_Kancolle.class);
+    public static final String ID = Register(Strike_Kancolle.class).ID;
 
     public Strike_Kancolle()
     {

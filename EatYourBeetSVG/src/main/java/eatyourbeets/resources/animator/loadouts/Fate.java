@@ -28,14 +28,14 @@ public class Fate extends AnimatorLoadout
         {
             startingDeck.add(Strike_Fate.ID);
             startingDeck.add(Defend_Fate.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Caster.ID);
-            startingDeck.add(Alexander.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Caster.DATA.ID);
+            startingDeck.add(Alexander.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class Fate extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Saber.ID;
+        return Saber.DATA.ID;
     }
 
     @Override

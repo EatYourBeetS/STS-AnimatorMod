@@ -28,14 +28,14 @@ public class Chaika extends AnimatorLoadout
         {
             startingDeck.add(Strike_HitsugiNoChaika.ID);
             startingDeck.add(Defend_HitsugiNoChaika.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(AcuraAkari.ID);
-            startingDeck.add(Gillette.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(AcuraAkari.DATA.ID);
+            startingDeck.add(Gillette.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class Chaika extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return ChaikaTrabant.ID;
+        return ChaikaTrabant.DATA.ID;
     }
 
     @Override

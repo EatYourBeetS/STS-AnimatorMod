@@ -47,7 +47,7 @@ public class DynamicCardData
 
         if (builder.imagePath == null || !Gdx.files.internal(builder.imagePath).exists())
         {
-            builder.imagePath = AnimatorResources.GetCardImage(QuestionMark.ID);
+            builder.imagePath = AnimatorResources.GetCardImage(QuestionMark.DATA.ID);
         }
 
         return builder.Build();

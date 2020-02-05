@@ -7,17 +7,18 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.ScarUpgradeAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Scar extends AnimatorCard
 {
-    public static final String ID = Register_Old(Scar.class);
+    public static final EYBCardData DATA = Register(Scar.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
 
     public Scar()
     {
-        super(ID, 1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+        super(DATA);
 
         Initialize(12, 0, 0, 30);
         SetUpgrade(4, 0);

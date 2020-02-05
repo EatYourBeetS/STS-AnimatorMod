@@ -4,20 +4,20 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 public class Hakurou extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register_Old(Hakurou.class);
+    public static final EYBCardData DATA = Register(Hakurou.class).SetAttack(2, CardRarity.COMMON);
 
     public Hakurou()
     {
-        super(ID, 2, CardRarity.COMMON, EYBAttackType.Normal);
+        super(DATA);
 
         Initialize(1, 0, 3);
         SetUpgrade(0, 0, 1);

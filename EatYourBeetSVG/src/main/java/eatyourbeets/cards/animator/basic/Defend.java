@@ -3,6 +3,8 @@ package eatyourbeets.cards.animator.basic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
@@ -11,11 +13,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Defend extends AnimatorCard
 {
-    public static final String ID = Register_Old(Defend.class);
+    public static final EYBCardData DATA = Register(Defend.class).SetSkill(1, CardRarity.BASIC, EYBCardTarget.None);
 
     public Defend(String id, int cost, CardTarget target)
     {
-        super(GetStaticData(id), id, AnimatorResources.GetCardImage(ID + "Alt"), cost, CardType.SKILL, CardColor.COLORLESS,
+        super(GetStaticData(id), id, AnimatorResources.GetCardImage(DATA.ID + "Alt"), cost, CardType.SKILL, CardColor.COLORLESS,
                 CardRarity.BASIC, target);
 
         //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");
@@ -26,7 +28,7 @@ public class Defend extends AnimatorCard
 
     public Defend()
     {
-        super(ID, 1, CardRarity.BASIC, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 5);
         SetUpgrade(0, 3);

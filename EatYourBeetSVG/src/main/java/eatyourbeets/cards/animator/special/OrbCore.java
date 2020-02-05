@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RandomizedList;
@@ -21,9 +22,9 @@ public abstract class OrbCore extends AnimatorCard
     private static final RandomizedList<AbstractCard> cores1 = new RandomizedList<>();
     private static final RandomizedList<AbstractCard> cores2 = new RandomizedList<>();
 
-    public OrbCore(String ID, int cost)
+    public OrbCore(EYBCardData data)
     {
-        super(ID, cost, CardType.POWER, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(data);
     }
 
     @Override

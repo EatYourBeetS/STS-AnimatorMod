@@ -3,18 +3,18 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.AinzPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Ainz extends AnimatorCard
 {
-    public static final String ID = Register_Old(Ainz.class);
-    public static final int BASE_COST = 7;
+    public static final EYBCardData DATA = Register(Ainz.class).SetPower(7, CardRarity.RARE);
 
     public Ainz()
     {
-        super(ID, BASE_COST, CardRarity.RARE, CardType.POWER, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, AinzPower.CHOICES);
         SetCostUpgrade(-1);

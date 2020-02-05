@@ -4,16 +4,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff_Type95 extends AnimatorCard
 {
-    public static final String ID = Register_Old(TanyaDegurechaff_Type95.class);
+    public static final EYBCardData DATA = Register(TanyaDegurechaff_Type95.class).SetSkill(4, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public TanyaDegurechaff_Type95()
     {
-        super(ID, 4, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.NONE);
+        super(DATA);
 
         Initialize(0, 0);
 

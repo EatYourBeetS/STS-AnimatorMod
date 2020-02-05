@@ -4,18 +4,19 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryRetainPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 public class LizardPriest extends AnimatorCard
 {
-    public static final String ID = Register_Old(LizardPriest.class);
+    public static final EYBCardData DATA = Register(LizardPriest.class).SetSkill(1, CardRarity.UNCOMMON);
 
     public LizardPriest()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(0, 8, 1, 2);
         SetUpgrade(0, 3, 0, 0);

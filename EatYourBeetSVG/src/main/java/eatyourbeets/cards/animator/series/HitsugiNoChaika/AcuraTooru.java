@@ -5,21 +5,22 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraTooru extends AnimatorCard
 {
-    public static final String ID = Register_Old(AcuraTooru.class);
+    public static final EYBCardData DATA = Register(AcuraTooru.class).SetAttack(2, CardRarity.UNCOMMON);
     static
     {
-        GetStaticData(ID).InitializePreview(ThrowingKnife.GetCardForPreview(), false);
+        DATA.InitializePreview(ThrowingKnife.GetCardForPreview(), false);
     }
 
     public AcuraTooru()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(4, 0, 4, 2);
         SetUpgrade(0, 0, 0, 1);

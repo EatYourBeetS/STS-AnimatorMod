@@ -4,17 +4,19 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_Status;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.common.SelfDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Overheat extends AnimatorCard_Status
 {
-    public static final String ID = Register_Old(Overheat.class);
+    public static final EYBCardData DATA = Register(Overheat.class).SetStatus(0, CardRarity.COMMON, EYBCardTarget.None);
 
     public Overheat()
     {
-        super(ID, 0, CardRarity.COMMON, CardTarget.NONE);
+        super(DATA);
 
         Initialize(0, 0, 3);
     }

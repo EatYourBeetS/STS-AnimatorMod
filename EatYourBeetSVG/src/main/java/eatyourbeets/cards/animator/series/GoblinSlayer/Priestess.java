@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
@@ -11,11 +12,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Priestess extends AnimatorCard
 {
-    public static final String ID = Register_Old(Priestess.class);
+    public static final EYBCardData DATA = Register(Priestess.class).SetSkill(1, CardRarity.COMMON);
 
     public Priestess()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(0, 0, 4, 1);
 

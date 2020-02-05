@@ -3,17 +3,18 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class Mitsuba extends AnimatorCard
 {
-    public static final String ID = Register_Old(Mitsuba.class);
+    public static final EYBCardData DATA = Register(Mitsuba.class).SetAttack(1, CardRarity.COMMON);
 
     public Mitsuba()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(7, 2, 2, 6);
         SetUpgrade(3, 0, 0, 0);

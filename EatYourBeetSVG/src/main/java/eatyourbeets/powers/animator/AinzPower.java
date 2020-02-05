@@ -11,10 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCardBuilder;
-import eatyourbeets.cards.base.AnimatorCard_Dynamic;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
@@ -27,7 +24,7 @@ import java.util.ArrayList;
 
 public class AinzPower extends AnimatorPower
 {
-    private static final String NAME = GR.GetCardStrings(Ainz.ID).NAME;
+    private static final String NAME = Ainz.DATA.Strings.NAME;
     private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
     private final static WeightedList<AnimatorCardBuilder> effectList = new WeightedList<>();
 
@@ -139,7 +136,7 @@ public class AinzPower extends AnimatorPower
 
         public AnimatorCardBuilder Generate(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
-            AnimatorCardBuilder builder = new AnimatorCardBuilder(Ainz.ID + "Alt");
+            AnimatorCardBuilder builder = new AnimatorCardBuilder(Ainz.DATA.ID + "Alt");
 
             builder.SetText(NAME, text, "");
             builder.SetProperties(AbstractCard.CardType.SKILL, GR.Animator.CardColor, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
@@ -148,7 +145,7 @@ public class AinzPower extends AnimatorPower
             if (this == DamageAll)
             {
                 builder.SetNumbers(number, 0, 0, 0);
-                builder.SetAttackType(EYBAttackType.Elemental, true);
+                builder.SetAttackType(EYBAttackType.Elemental, EYBCardTarget.ALL);
                 builder.SetScaling(3, 0, 0);
                 builder.cardType = AbstractCard.CardType.ATTACK;
             }

@@ -28,14 +28,14 @@ public class Elsword extends AnimatorLoadout
         {
             startingDeck.add(Strike_Elsword.ID);
             startingDeck.add(Defend_Elsword.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Chung.ID);
-            startingDeck.add(Raven.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Chung.DATA.ID);
+            startingDeck.add(Raven.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class Elsword extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Eve.ID;
+        return Eve.DATA.ID;
     }
 
     @Override

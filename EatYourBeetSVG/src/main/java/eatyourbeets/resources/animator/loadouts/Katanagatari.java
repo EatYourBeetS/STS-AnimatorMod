@@ -28,14 +28,14 @@ public class Katanagatari extends AnimatorLoadout
         {
             startingDeck.add(Strike_Katanagatari.ID);
             startingDeck.add(Defend_Katanagatari.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Azekura.ID);
-            startingDeck.add(Emonzaemon.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Azekura.DATA.ID);
+            startingDeck.add(Emonzaemon.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class Katanagatari extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return HigakiRinne.ID;
+        return HigakiRinne.DATA.ID;
     }
 
     @Override

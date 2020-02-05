@@ -8,20 +8,22 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Tyuule extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register_Old(Tyuule.class);
+    public static final EYBCardData DATA = Register(Tyuule.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL);
 
     public Tyuule()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.ALL_ENEMY);
+        super(DATA);
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 2);

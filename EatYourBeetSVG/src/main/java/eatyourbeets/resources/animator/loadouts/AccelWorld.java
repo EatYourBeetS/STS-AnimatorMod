@@ -30,14 +30,14 @@ public class AccelWorld extends AnimatorLoadout
         {
             startingDeck.add(Strike_AccelWorld.ID);
             startingDeck.add(Defend_AccelWorld.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Kuroyukihime.ID);
-            startingDeck.add(LimeBell.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Kuroyukihime.DATA.ID);
+            startingDeck.add(LimeBell.DATA.ID);
         }
 
         return startingDeck;
@@ -46,7 +46,7 @@ public class AccelWorld extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Kuroyukihime.ID;
+        return Kuroyukihime.DATA.ID;
     }
 
     @Override

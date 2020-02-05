@@ -6,17 +6,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class MaesHughes extends AnimatorCard
 {
-    public static final String ID = Register_Old(MaesHughes.class);
+    public static final EYBCardData DATA = Register(MaesHughes.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public MaesHughes()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -1);
@@ -56,7 +58,7 @@ public class MaesHughes extends AnimatorCard
     {
         for (AbstractCard c : group.group)
         {
-            if (RoyMustang.ID.equals(c.cardID))
+            if (RoyMustang.DATA.ID.equals(c.cardID))
             {
                 if (group.type != CardGroup.CardGroupType.HAND)
                 {

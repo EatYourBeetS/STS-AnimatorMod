@@ -6,11 +6,11 @@ import eatyourbeets.cards.base.UnnamedCard;
 
 public class Strike extends UnnamedCard
 {
-    public static final String ID = Register(Strike.class);
+    public static final String ID_ = Register(Strike.class);
 
     public Strike()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
+        super(ID_, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
 
         Initialize(6,0);
 

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.animator.Earth;
@@ -13,11 +14,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class DwarfShaman extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register_Old(DwarfShaman.class);
+    public static final EYBCardData DATA = Register(DwarfShaman.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public DwarfShaman()
     {
-        super(ID, 1, CardRarity.COMMON, EYBAttackType.Elemental);
+        super(DATA);
 
         Initialize(2, 0, 0);
         SetUpgrade(4, 0, 0);

@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_Fate extends Defend
 {
-    public static final String ID = Register_Old(Defend_Fate.class);
+    public static final String ID = Register(Defend_Fate.class).ID;
 
     public Defend_Fate()
     {

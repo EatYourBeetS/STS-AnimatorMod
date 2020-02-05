@@ -9,19 +9,18 @@ import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoBankai extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register_Old(IchigoBankai.class);
+    public static final EYBCardData DATA = Register(IchigoBankai.class).SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Ranged, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
 
     public IchigoBankai()
     {
-        super(ID, -1, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super(DATA);
 
         Initialize(8, 0);
         SetUpgrade(3, 0);

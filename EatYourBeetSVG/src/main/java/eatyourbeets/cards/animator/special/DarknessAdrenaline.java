@@ -4,16 +4,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AdrenalineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class DarknessAdrenaline extends AnimatorCard
 {
-    public static final String ID = Register_Old(DarknessAdrenaline.class);
+    public static final EYBCardData DATA = Register(DarknessAdrenaline.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None);
 
     public DarknessAdrenaline()
     {
-        super(ID, 0, CardRarity.SPECIAL, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0, 1);

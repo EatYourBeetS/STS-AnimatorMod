@@ -98,7 +98,7 @@ public abstract class AnimatorLoadout
             StringJoiner sj = new StringJoiner(", ");
             for (String s : GetStartingDeck())
             {
-                if (!s.contains(Strike.ID) && !s.contains(Defend.ID))
+                if (!s.contains(Strike.DATA.ID) && !s.contains(Defend.DATA.ID))
                 {
                     sj.add(CardLibrary.getCard(s).originalName);
                 }

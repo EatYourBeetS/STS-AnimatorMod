@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
@@ -13,11 +14,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register_Old(ShichikaKyotouryuu.class);
+    public static final EYBCardData DATA = Register(ShichikaKyotouryuu.class).SetAttack(1, CardRarity.SPECIAL);
 
     public ShichikaKyotouryuu()
     {
-        super(ID, 1, CardRarity.SPECIAL, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(1, 0, 4);
         SetUpgrade(1, 0, 0);

@@ -6,23 +6,21 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 public class Viivi extends AnimatorCard
 {
-    public static final String ID = Register_Old(Viivi.class);
+    public static final EYBCardData DATA = Register(Viivi.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random);
     static
     {
-        GetStaticData(ID).InitializePreview(ThrowingKnife.GetCardForPreview(), false);
+        DATA.InitializePreview(ThrowingKnife.GetCardForPreview(), false);
     }
 
     public Viivi()
     {
-        super(ID, 1, CardRarity.COMMON, EYBAttackType.Ranged, true);
+        super(DATA);
 
         Initialize(3, 0, 3);
         SetUpgrade(0, 0, 1);
@@ -40,7 +38,7 @@ public class Viivi extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().SetIconTag("???").AddMultiplier(magicNumber);
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override

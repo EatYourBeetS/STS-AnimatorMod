@@ -6,19 +6,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 
 public class Jibril extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register_Old(Jibril.class);
+    public static final EYBCardData DATA = Register(Jibril.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     public Jibril()
     {
-        super(ID, 2, CardRarity.COMMON, EYBAttackType.Elemental, true);
+        super(DATA);
 
         Initialize(8, 0);
         SetUpgrade(4, 0);

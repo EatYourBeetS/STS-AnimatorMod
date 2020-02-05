@@ -3,16 +3,18 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Gluttony extends AnimatorCard
 {
-    public static final String ID = Register_Old(Gluttony.class);
+    public static final EYBCardData DATA = Register(Gluttony.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Gluttony()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 4, 16);
         SetCostUpgrade(-1);

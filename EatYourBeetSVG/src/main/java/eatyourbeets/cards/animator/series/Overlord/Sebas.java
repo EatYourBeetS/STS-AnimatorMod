@@ -5,17 +5,19 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Sebas extends AnimatorCard
 {
-    public static final String ID = Register_Old(Sebas.class);
+    public static final EYBCardData DATA = Register(Sebas.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Sebas()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 6, 3);
         SetUpgrade(0, 3);

@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
@@ -14,11 +16,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class SwordMaiden extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register_Old(SwordMaiden.class);
+    public static final EYBCardData DATA = Register(SwordMaiden.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
 
     public SwordMaiden()
     {
-        super(ID, 2, CardRarity.RARE, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 6);
 

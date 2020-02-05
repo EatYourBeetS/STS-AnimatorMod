@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -15,11 +16,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Hero extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register_Old(Hero.class);
+    public static final EYBCardData DATA = Register(Hero.class).SetAttack(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public Hero()
     {
-        super(ID, 1, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(8, 0, 2);
         SetUpgrade(4, 0, 0);

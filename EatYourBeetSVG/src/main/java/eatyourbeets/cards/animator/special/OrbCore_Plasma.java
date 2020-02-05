@@ -3,18 +3,19 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.animator.OrbCore_PlasmaPower;
+import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Plasma extends OrbCore
 {
-    public static final String ID = Register_Old(OrbCore_Plasma.class);
+    public static final EYBCardData DATA = Register(OrbCore_Plasma.class).SetPower(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public static final int VALUE = 3;
 
     public OrbCore_Plasma()
     {
-        super(ID, 1);
+        super(DATA);
 
         Initialize(0, 0, VALUE, 1);
 

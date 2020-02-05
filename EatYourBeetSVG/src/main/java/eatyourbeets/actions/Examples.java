@@ -18,9 +18,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public final class Examples extends AnimatorCard
 {
-    private Examples(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
+    private Examples()
     {
-        super(id, cost, type, CardColor.COLORLESS, rarity, target);
+        super(null);
+
+        throw new RuntimeException("Do not instantiate this class");
     }
 
     @Override

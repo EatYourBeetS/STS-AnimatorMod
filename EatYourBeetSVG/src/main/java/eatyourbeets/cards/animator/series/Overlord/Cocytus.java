@@ -5,17 +5,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Cocytus extends AnimatorCard
 {
-    public static final String ID = Register_Old(Cocytus.class);
+    public static final EYBCardData DATA = Register(Cocytus.class).SetAttack(1, CardRarity.COMMON);
 
     public Cocytus()
     {
-        super(ID, 1, CardRarity.COMMON, EYBAttackType.Normal);
+        super(DATA);
 
         Initialize(7, 0);
         SetUpgrade(3, 0);

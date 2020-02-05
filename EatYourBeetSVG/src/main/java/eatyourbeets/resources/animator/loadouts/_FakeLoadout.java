@@ -19,10 +19,10 @@ public class _FakeLoadout extends AnimatorLoadout
     {
         if (startingDeck.isEmpty())
         {
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
         }
 
         return startingDeck;

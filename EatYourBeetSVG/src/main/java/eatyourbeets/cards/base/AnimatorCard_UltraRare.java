@@ -19,9 +19,9 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     private static final byte[] whatever = {0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x6f, 0x72, 0x3a, 0x75, 0x72};
     private static final String idPrefix = new String(whatever);
 
-    protected AnimatorCard_UltraRare(String id, int cost, CardType type, CardTarget target)
+    protected AnimatorCard_UltraRare(EYBCardData data)
     {
-        super(id, cost, type, CardColor.COLORLESS, CardRarity.SPECIAL, target);
+        super(data);
 
         SetUnique(true, false);
     }
@@ -30,19 +30,20 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     {
         if (cards.isEmpty())
         {
-            cards.put(Chomusuke.ID, new Chomusuke());
-            cards.put(Giselle.ID, new Giselle());
-            cards.put(Veldora.ID, new Veldora());
-            cards.put(Rose.ID, new Rose());
-            cards.put(Truth.ID, new Truth());
-            cards.put(Azriel.ID, new Azriel());
-            cards.put(Hero.ID, new Hero());
-            cards.put(SirTouchMe.ID, new SirTouchMe());
-            cards.put(ShikizakiKiki.ID, new ShikizakiKiki());
-            cards.put(HiiragiTenri.ID, new HiiragiTenri());
-            cards.put(JeanneDArc.ID, new JeanneDArc());
-            cards.put(NivaLada.ID, new NivaLada());
-            cards.put(SeriousSaitama.ID, new SeriousSaitama());
+            cards.put(Chomusuke.DATA.ID, new Chomusuke());
+            cards.put(Giselle.DATA.ID, new Giselle());
+            cards.put(Veldora.DATA.ID, new Veldora());
+            cards.put(Rose.DATA.ID, new Rose());
+            cards.put(Truth.DATA.ID, new Truth());
+            cards.put(Azriel.DATA.ID, new Azriel());
+            cards.put(Hero.DATA.ID, new Hero());
+            cards.put(SirTouchMe.DATA.ID, new SirTouchMe());
+            cards.put(ShikizakiKiki.DATA.ID, new ShikizakiKiki());
+            cards.put(HiiragiTenri.DATA.ID, new HiiragiTenri());
+            cards.put(JeanneDArc.DATA.ID, new JeanneDArc());
+            cards.put(NivaLada.DATA.ID, new NivaLada());
+            cards.put(SeriousSaitama.DATA.ID, new SeriousSaitama());
+            cards.put(HolyGrail.DATA.ID, new HolyGrail());
             //Cards.put(Cthulhu.ID, new Cthulhu());
             //Cards.put(InfinitePower.ID, new InfinitePower());
         }

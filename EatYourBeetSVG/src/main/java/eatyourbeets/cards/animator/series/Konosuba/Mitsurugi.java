@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.ui.cards.TargetEffectPreview;
@@ -13,14 +13,14 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsurugi extends AnimatorCard
 {
-    public static final String ID = Register_Old(Mitsurugi.class);
+    public static final EYBCardData DATA = Register(Mitsurugi.class).SetAttack(0, CardRarity.COMMON);
 
     private final TargetEffectPreview targetEffectPreview = new TargetEffectPreview(this::OnTargetChanged);
     private boolean showDamage = true;
 
     public Mitsurugi()
     {
-        super(ID, 0, CardRarity.COMMON, EYBAttackType.Normal);
+        super(DATA);
 
         Initialize(8, 0, 1, 4);
         SetUpgrade(3, 0, 0, 0);

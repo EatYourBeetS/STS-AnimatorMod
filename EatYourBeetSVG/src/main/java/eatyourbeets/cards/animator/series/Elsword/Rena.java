@@ -3,21 +3,23 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class Rena extends AnimatorCard
 {
-    public static final String ID = Register_Old(Rena.class);
+    public static final EYBCardData DATA = Register(Rena.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        GetStaticData(ID).InitializePreview(ThrowingKnife.GetCardForPreview(), false);
+        DATA.InitializePreview(ThrowingKnife.GetCardForPreview(), false);
     }
 
     public Rena()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 3, 0, 2);
         SetUpgrade(0, 3);

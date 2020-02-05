@@ -7,17 +7,18 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Berserker extends AnimatorCard
 {
-    public static final String ID = Register_Old(Berserker.class);
+    public static final EYBCardData DATA = Register(Berserker.class).SetAttack(3, CardRarity.COMMON);
 
     public Berserker()
     {
-        super(ID, 3, CardRarity.COMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(24, 0, 2, 12);
         SetUpgrade(0, 0, 1);

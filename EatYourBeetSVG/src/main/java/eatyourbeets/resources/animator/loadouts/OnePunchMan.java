@@ -28,14 +28,14 @@ public class OnePunchMan extends AnimatorLoadout
         {
             startingDeck.add(Strike_OnePunchMan.ID);
             startingDeck.add(Defend_OnePunchMan.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Genos.ID);
-            startingDeck.add(MumenRider.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Genos.DATA.ID);
+            startingDeck.add(MumenRider.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class OnePunchMan extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Saitama.ID;
+        return Saitama.DATA.ID;
     }
 
     @Override

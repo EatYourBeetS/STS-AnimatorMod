@@ -218,7 +218,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
                 case "infinitespire:Virus":
                 {
                     ReplaceCard(replacement, Anger.ID);
-                    ReplaceCard(replacement, HigakiRinne.ID);
+                    ReplaceCard(replacement, HigakiRinne.DATA.ID);
                     break;
                 }
 
@@ -342,7 +342,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
                 case "ReplayTheSpireMod:??????????????????????":
                 {
-                    ReplaceCard(replacement, HigakiRinne.ID);
+                    ReplaceCard(replacement, HigakiRinne.DATA.ID);
                     break;
                 }
 

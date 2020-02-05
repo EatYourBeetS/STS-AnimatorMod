@@ -4,18 +4,19 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class Millim extends AnimatorCard
 {
-    public static final String ID = Register_Old(Millim.class);
+    public static final EYBCardData DATA = Register(Millim.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public Millim()
     {
-        super(ID, 2, CardRarity.COMMON, EYBAttackType.Elemental);
+        super(DATA);
 
         Initialize(5, 0, 2);
         SetUpgrade(1, 0, 1);

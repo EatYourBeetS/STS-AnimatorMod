@@ -4,22 +4,22 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActions;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register_Old(MumenRider.class);
+    public static final EYBCardData DATA = Register(MumenRider.class).SetAttack(0, CardRarity.COMMON);
 
     private int turns;
 
     public MumenRider()
     {
-        super(ID, 0, CardRarity.COMMON, EYBAttackType.Normal);
+        super(DATA);
 
         Initialize(3, 0, 20);
 

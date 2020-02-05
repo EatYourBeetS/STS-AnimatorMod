@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
@@ -13,11 +15,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Respite extends AnimatorCard
 {
-    public static final String ID = Register_Old(Respite.class);
+    public static final EYBCardData DATA = Register(Respite.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public Respite()
     {
-        super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 6 + (GameUtilities.GetAscensionLevel() / 2));
         SetUpgrade(0, 0, magicNumber / 2);

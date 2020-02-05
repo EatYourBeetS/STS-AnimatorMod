@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -15,11 +16,11 @@ import eatyourbeets.utilities.GameUtilities;
 @SuppressWarnings("SuspiciousNameCombination")
 public class Layla extends AnimatorCard
 {
-    public static final String ID = Register_Old(Layla.class);
+    public static final EYBCardData DATA = Register(Layla.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged);
 
     public Layla()
     {
-        super(ID, 2, CardRarity.UNCOMMON, EYBAttackType.Ranged);
+        super(DATA);
 
         Initialize(7, 0, 2, 2);
         SetUpgrade(0, 0, 1, 0);

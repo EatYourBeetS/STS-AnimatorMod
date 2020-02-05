@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
@@ -12,11 +13,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class HiiragiTenri extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register_Old(HiiragiTenri.class);
+    public static final EYBCardData DATA = Register(HiiragiTenri.class).SetSkill(4, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public HiiragiTenri()
     {
-        super(ID, 4, CardType.SKILL, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(0, 0, 20);
         SetUpgrade(0, 0, 10);

@@ -10,7 +10,6 @@ import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
-import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.ColoredString;
 
 import java.util.ArrayList;
@@ -30,55 +29,13 @@ public abstract class AnimatorCard extends EYBCard
         return RegisterCardImproved(type, GR.Animator.CreateID(type.getSimpleName())).SetColor(GR.Animator.CardColor);
     }
 
-    protected static String Register_Old(Class<? extends AnimatorCard> type)
-    {
-        return RegisterCard(type, GR.Animator.CreateID(type.getSimpleName()));
-    }
-
     protected AnimatorCard(EYBCardData cardData)
     {
-        super(cardData, cardData.ID, GR.GetCardImage(cardData.ID), cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
+        super(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
 
         SetMultiDamage(cardData.CardTarget == EYBCardTarget.ALL);
         SetAttackTarget(cardData.CardTarget);
         SetAttackType(cardData.AttackType);
-    }
-
-    protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType)
-    {
-        this(GetStaticData(id), id, GR.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, CardTarget.ENEMY);
-
-        SetMultiDamage(attackTarget == EYBCardTarget.ALL);
-        SetAttackTarget(attackTarget);
-        SetAttackType(attackType);
-    }
-
-    protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType, boolean isAoE)
-    {
-        this(GetStaticData(id), id, GR.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, isAoE ? CardTarget.ALL : CardTarget.ENEMY);
-
-        SetMultiDamage(attackTarget == EYBCardTarget.ALL);
-        SetAttackTarget(attackTarget);
-        SetAttackType(attackType);
-    }
-
-    protected AnimatorCard(String id, int cost, CardRarity rarity, EYBAttackType attackType, EYBCardTarget attackTarget)
-    {
-        this(GetStaticData(id), id, GR.GetCardImage(id), cost, CardType.ATTACK, GR.Animator.CardColor, rarity, attackTarget.ToCardTarget());
-
-        SetMultiDamage(attackTarget == EYBCardTarget.ALL);
-        SetAttackTarget(attackTarget);
-        SetAttackType(attackType);
-    }
-
-    protected AnimatorCard(String id, int cost, CardRarity rarity, CardType type, CardTarget target)
-    {
-        this(GetStaticData(id), id, AnimatorResources.GetCardImage(id), cost, type, GR.Animator.CardColor, rarity, target);
-    }
-
-    protected AnimatorCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
-    {
-        this(GetStaticData(id), id, AnimatorResources.GetCardImage(id), cost, type, color, rarity, target);
     }
 
     protected AnimatorCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)

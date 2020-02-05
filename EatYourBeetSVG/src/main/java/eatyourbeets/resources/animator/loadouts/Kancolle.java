@@ -34,13 +34,13 @@ public class Kancolle extends AnimatorLoadout
         {
             startingDeck.add(Strike_Kancolle.ID);
             startingDeck.add(Defend_Kancolle.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Shimakaze.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Shimakaze.DATA.ID);
         }
 
         return startingDeck;
@@ -49,7 +49,7 @@ public class Kancolle extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Shimakaze.ID;
+        return Shimakaze.DATA.ID;
     }
 
     @Override

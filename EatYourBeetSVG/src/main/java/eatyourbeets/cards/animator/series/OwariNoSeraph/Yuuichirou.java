@@ -7,20 +7,21 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Asuramaru;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Yuuichirou extends AnimatorCard
 {
-    public static final String ID = Register_Old(Yuuichirou.class);
+    public static final EYBCardData DATA = Register(Yuuichirou.class).SetAttack(1, CardRarity.UNCOMMON);
     static
     {
-        GetStaticData(ID).InitializePreview(new Asuramaru(), false);
+        DATA.InitializePreview(new Asuramaru(), false);
     }
 
     public Yuuichirou()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(8, 0);
         SetUpgrade(4, 0);

@@ -4,17 +4,19 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class TakanashiRikka extends AnimatorCard
 {
-    public static final String ID = Register_Old(TakanashiRikka.class);
+    public static final EYBCardData DATA = Register(TakanashiRikka.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public TakanashiRikka()
     {
-        super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 0);
 

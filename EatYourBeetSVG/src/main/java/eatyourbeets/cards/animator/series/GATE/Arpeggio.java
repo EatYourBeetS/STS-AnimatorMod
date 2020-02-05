@@ -2,19 +2,21 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register_Old(Arpeggio.class);
+    public static final EYBCardData DATA = Register(Arpeggio.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Arpeggio()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 0);
         SetUpgrade(0, 0, 0, 1);

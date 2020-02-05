@@ -14,27 +14,26 @@ import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class Saitama extends AnimatorCard
 {
-    public static final String ID = Register_Old(Saitama.class);
+    public static final EYBCardData DATA = Register(Saitama.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
 
     private int stage;
 
     public Saitama()
     {
-        super(ID, 0, CardRarity.RARE, CardType.SKILL, CardTarget.NONE);
+        super(DATA);
 
         Initialize(0, 0);
 
         this.misc = 0;
 
+        SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.OnePunchMan);
     }
 

@@ -4,20 +4,21 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Lancer extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register_Old(Lancer.class);
+    public static final EYBCardData DATA = Register(Lancer.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing);
 
     public Lancer()
     {
-        super(ID, 1, CardRarity.UNCOMMON, EYBAttackType.Piercing);
+        super(DATA);
 
         Initialize(6, 0, 1);
         SetUpgrade(3, 0, 0);

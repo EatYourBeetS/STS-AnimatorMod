@@ -3,9 +3,7 @@ package eatyourbeets.cards.animator.series.TenseiSlime;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.ui.EffectHistory;
@@ -13,11 +11,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class Benimaru extends AnimatorCard
 {
-    public static final String ID = Register_Old(Benimaru.class);
+    public static final EYBCardData DATA = Register(Benimaru.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     public Benimaru()
     {
-        super(ID, 1, CardRarity.COMMON, EYBAttackType.Elemental);
+        super(DATA);
 
         Initialize(3, 0, 2);
         SetUpgrade(1, 0, 1);

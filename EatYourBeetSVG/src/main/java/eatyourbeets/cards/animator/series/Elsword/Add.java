@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
@@ -18,15 +20,15 @@ import java.util.ArrayList;
 
 public class Add extends AnimatorCard
 {
-    public static final String ID = Register_Old(Add.class);
+    public static final EYBCardData DATA = Register(Add.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        GetStaticData(ID).InitializePreview(new Crystallize(), false);
+        DATA.InitializePreview(new Crystallize(), false);
     }
 
     public Add()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);

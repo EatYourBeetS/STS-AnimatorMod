@@ -8,13 +8,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.utilities.*;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.animator.BurningPower;
-import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.WeightedList;
 
 // TODO:
 //"EXTENDED_DESCRIPTION":
@@ -28,13 +31,13 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 
 public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register_Old(ChaikaTrabant.class);
+    public static final EYBCardData DATA = Register(ChaikaTrabant.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental);
 
     private AbstractMonster target;
 
     public ChaikaTrabant()
     {
-        super(ID, 2, CardRarity.RARE, EYBAttackType.Elemental);
+        super(DATA);
 
         Initialize(21, 0, 6, 2);
         SetUpgrade(6, 0, 0, 0);

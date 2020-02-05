@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
@@ -15,11 +16,11 @@ import java.util.ArrayList;
 
 public class Vanir extends AnimatorCard
 {
-    public static final String ID = Register_Old(Vanir.class);
+    public static final EYBCardData DATA = Register(Vanir.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public Vanir()
     {
-        super(ID, 1, CardRarity.COMMON, EYBAttackType.Elemental);
+        super(DATA);
 
         Initialize(12, 0, 3);
         SetUpgrade(1, 0, -1);

@@ -63,7 +63,7 @@ public abstract class EYBCard extends EYBCardBase
 
     protected EYBCard(EYBCardData cardData)
     {
-        this(cardData, cardData.ID, GR.GetCardImage(cardData.ID), cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
+        this(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
     }
 
     protected EYBCard(EYBCardData cardData, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)

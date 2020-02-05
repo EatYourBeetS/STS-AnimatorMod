@@ -2,18 +2,19 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.GuildGirlPower;
+import eatyourbeets.utilities.GameActions;
 
 public class GuildGirl extends AnimatorCard
 {
-    public static final String ID = Register_Old(GuildGirl.class);
+    public static final EYBCardData DATA = Register(GuildGirl.class).SetPower(1, CardRarity.COMMON);
 
     public GuildGirl()
     {
-        super(ID, 1, CardRarity.COMMON, CardType.POWER, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0,0, 4);
         SetCostUpgrade(-1);

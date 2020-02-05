@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public enum EYBCardTarget
 {
+    Self(null),
     None(null),
     Normal(null),
     ALL("AoE"),
@@ -20,6 +21,9 @@ public enum EYBCardTarget
     {
         switch (this)
         {
+            case Self:
+                return AbstractCard.CardTarget.SELF;
+
             case ALL:
             case Random:
                 return AbstractCard.CardTarget.ALL_ENEMY;

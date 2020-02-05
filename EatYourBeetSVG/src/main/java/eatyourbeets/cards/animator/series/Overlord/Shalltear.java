@@ -3,9 +3,7 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.attack.Hemokinesis2Effect;
@@ -14,11 +12,11 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Shalltear extends AnimatorCard
 {
-    public static final String ID = Register_Old(Shalltear.class);
+    public static final EYBCardData DATA = Register(Shalltear.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     public Shalltear()
     {
-        super(ID, 2, CardRarity.UNCOMMON, EYBAttackType.Elemental, true);
+        super(DATA);
 
         Initialize(3, 0, 3);
         SetUpgrade(1, 0, 1);

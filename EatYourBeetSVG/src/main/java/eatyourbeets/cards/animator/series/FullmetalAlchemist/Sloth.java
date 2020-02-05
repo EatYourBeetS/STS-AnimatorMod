@@ -5,20 +5,20 @@ import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryDrawReductionPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 public class Sloth extends AnimatorCard
 {
-    public static final String ID = Register_Old(Sloth.class);
+    public static final EYBCardData DATA = Register(Sloth.class).SetAttack(2, CardRarity.COMMON);
 
     public Sloth()
     {
-        super(ID, 2, CardRarity.COMMON, EYBAttackType.Normal);
+        super(DATA);
 
         Initialize(12, 12, 0, 3);
         SetUpgrade(3, 3);

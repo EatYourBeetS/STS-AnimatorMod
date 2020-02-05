@@ -14,6 +14,7 @@ import eatyourbeets.cards.animator.series.NoGameNoLife.Sora;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCardBuilder;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 
 public class SoraAction extends EYBAction
 {
-    private static final String[] EFFECT_NAMES = GR.GetCardStrings(Sora.ID).EXTENDED_DESCRIPTION;
+    private static final String[] EFFECT_NAMES = Sora.DATA.Strings.EXTENDED_DESCRIPTION;
     private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
     private static final ArrayList<AnimatorCardBuilder> attackPool = new ArrayList<>();
     private static final ArrayList<AnimatorCardBuilder> defendPool = new ArrayList<>();
@@ -123,7 +124,7 @@ public class SoraAction extends EYBAction
         ApplyVulnerable(0, ACTIONS.ApplyToALL(2, GR.Tooltips.Vulnerable, true), 2),
 
         GainBlock(1, "", 7),
-        GainAgility(1, ACTIONS.GainAmount(2, GR.Tooltips.Force, true), 2),
+        GainAgility(1, ACTIONS.GainAmount(2, GR.Tooltips.Agility, true), 2),
         ApplyWeak(1, ACTIONS.ApplyToALL(2, GR.Tooltips.Weak, true), 2),
         GainTemporaryHP(1, ACTIONS.GainAmount(5, "{" + GR.Tooltips.TempHP + "}", true), 5),
 
@@ -285,11 +286,10 @@ public class SoraAction extends EYBAction
 
         protected AnimatorCardBuilder GenerateInternal(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
-            AnimatorCardBuilder builder = new AnimatorCardBuilder(Sora.ID + "Alt");
+            AnimatorCardBuilder builder = new AnimatorCardBuilder(Sora.DATA.ID + "Alt");
 
             builder.SetText(cardName, cardDescription, "");
             builder.SetProperties(AbstractCard.CardType.SKILL, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
-            builder.SetNumbers(number, number, number, number);
             builder.SetOnUse(onUseAction);
 
             if (this == GainBlock)
@@ -298,15 +298,19 @@ public class SoraAction extends EYBAction
             }
             else if (this == DamageAll)
             {
-                builder.SetAttackType(EYBAttackType.Normal, true);
+                builder.SetAttackType(EYBAttackType.Normal, EYBCardTarget.ALL);
                 builder.SetNumbers(number, 0, 0, 0);
                 builder.cardType = AbstractCard.CardType.ATTACK;
             }
             else if (this == DamageRandomTwice)
             {
-                builder.SetAttackType(EYBAttackType.Normal, false);
+                builder.SetAttackType(EYBAttackType.Normal, EYBCardTarget.Random, 2);
                 builder.SetNumbers(number, 0, 2, 0);
                 builder.cardType = AbstractCard.CardType.ATTACK;
+            }
+            else
+            {
+                builder.SetNumbers(0, 0, number, number);
             }
 
             return builder;

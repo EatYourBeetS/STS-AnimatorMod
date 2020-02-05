@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -13,11 +15,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Konayuki extends AnimatorCard
 {
-    public static final String ID = Register_Old(Konayuki.class);
+    public static final EYBCardData DATA = Register(Konayuki.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
 
     public Konayuki()
     {
-        super(ID, 2, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 4, 2, 1);
         SetUpgrade(0, 0, 0, 1);

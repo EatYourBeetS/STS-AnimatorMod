@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
@@ -12,11 +13,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Strike extends AnimatorCard
 {
-    public static final String ID = Register_Old(Strike.class);
+    public static final EYBCardData DATA = Register(Strike.class).SetAttack(1, CardRarity.BASIC);
 
     public Strike(String id, int cost, CardTarget target)
     {
-        super(GetStaticData(id), id, AnimatorResources.GetCardImage(ID + "Alt"), cost, CardType.ATTACK, CardColor.COLORLESS,
+        super(GetStaticData(id), id, AnimatorResources.GetCardImage(DATA.ID + "Alt"), cost, CardType.ATTACK, CardColor.COLORLESS,
                 CardRarity.BASIC, target);
 
         //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");
@@ -28,7 +29,7 @@ public class Strike extends AnimatorCard
 
     public Strike()
     {
-        super(ID, 1, CardRarity.BASIC, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(6, 0);
         SetUpgrade(3, 0);

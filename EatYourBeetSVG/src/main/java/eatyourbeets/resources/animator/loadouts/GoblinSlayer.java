@@ -27,14 +27,14 @@ public class GoblinSlayer extends AnimatorLoadout
         {
             startingDeck.add(Strike_GoblinSlayer.ID);
             startingDeck.add(Defend_GoblinSlayer.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(LizardPriest.ID);
-            startingDeck.add(DwarfShaman.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(LizardPriest.DATA.ID);
+            startingDeck.add(DwarfShaman.DATA.ID);
         }
 
         return startingDeck;
@@ -43,7 +43,7 @@ public class GoblinSlayer extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return eatyourbeets.cards.animator.series.GoblinSlayer.GoblinSlayer.ID;
+        return eatyourbeets.cards.animator.series.GoblinSlayer.GoblinSlayer.DATA.ID;
     }
 
     @Override

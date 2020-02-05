@@ -7,17 +7,18 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
 public class ElricEdward extends AnimatorCard
 {
-    public static final String ID = Register_Old(ElricEdward.class);
+    public static final EYBCardData DATA = Register(ElricEdward.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public ElricEdward()
     {
-        super(ID, 1, CardRarity.COMMON, EYBAttackType.Elemental);
+        super(DATA);
 
         Initialize(4, 0, 1);
         SetUpgrade(4, 0, 0);

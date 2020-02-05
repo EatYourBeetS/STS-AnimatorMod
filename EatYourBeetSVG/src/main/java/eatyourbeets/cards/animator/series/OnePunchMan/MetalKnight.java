@@ -6,17 +6,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class MetalKnight extends AnimatorCard
 {
-    public static final String ID = Register_Old(MetalKnight.class);
+    public static final EYBCardData DATA = Register(MetalKnight.class).SetAttack(3, CardRarity.UNCOMMON);
 
     public MetalKnight()
     {
-        super(ID, 3, CardRarity.UNCOMMON, EYBAttackType.Normal);
+        super(DATA);
 
         Initialize(11, 0, 3);
         SetUpgrade(2, 0, 0);

@@ -4,24 +4,26 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
 
 import java.util.ArrayList;
 
 public class Vesta_Elixir extends AnimatorCard
 {
-    public static final String ID = Register_Old(Vesta_Elixir.class);
+    public static final EYBCardData DATA = Register(Vesta_Elixir.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public final ArrayList<VestaElixirEffect> effects = new ArrayList<>();
 
     public Vesta_Elixir()
     {
-        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(DATA);
     }
 
     public Vesta_Elixir(ArrayList<VestaElixirEffect> effects)
     {
-        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(DATA);
 
         ApplyEffects(effects);
     }

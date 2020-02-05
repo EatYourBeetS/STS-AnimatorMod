@@ -4,20 +4,18 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
 public class RoryMercury extends AnimatorCard
 {
-    public static final String ID = Register_Old(RoryMercury.class);
+    public static final EYBCardData DATA = Register(RoryMercury.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random);
 
     public RoryMercury()
     {
-        super(ID, 1, CardRarity.UNCOMMON, EYBAttackType.Normal, true);
+        super(DATA);
 
         Initialize(2, 0, 0);
         SetUpgrade(2, 0, 0);
@@ -29,7 +27,7 @@ public class RoryMercury extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().SetIconTag("???").AddMultiplier(2);
+        return super.GetDamageInfo().AddMultiplier(2);
     }
 
     @Override

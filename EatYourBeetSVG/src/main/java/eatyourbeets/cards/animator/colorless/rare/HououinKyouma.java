@@ -6,17 +6,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class HououinKyouma extends AnimatorCard
 {
-    public static final String ID = Register_Old(HououinKyouma.class);
+    public static final EYBCardData DATA = Register(HououinKyouma.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public HououinKyouma()
     {
-        super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0);
         SetCostUpgrade(-1);

@@ -28,14 +28,14 @@ public class TenSura extends AnimatorLoadout
         {
             startingDeck.add(Strike_TenSura.ID);
             startingDeck.add(Defend_TenSura.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Benimaru.ID);
-            startingDeck.add(Shuna.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Benimaru.DATA.ID);
+            startingDeck.add(Shuna.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class TenSura extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return Rimuru.ID;
+        return Rimuru.DATA.ID;
     }
 
     @Override

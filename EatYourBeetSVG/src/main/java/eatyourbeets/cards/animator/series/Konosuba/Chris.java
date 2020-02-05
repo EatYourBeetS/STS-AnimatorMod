@@ -4,18 +4,18 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Chris extends AnimatorCard
 {
-    public static final String ID = Register_Old(Chris.class);
+    public static final EYBCardData DATA = Register(Chris.class).SetAttack(0, CardRarity.UNCOMMON);
 
     public Chris()
     {
-        super(ID, 0, CardRarity.UNCOMMON, EYBAttackType.Normal);
+        super(DATA);
 
         Initialize(4, 0, 4);
         SetUpgrade(2, 0, 2);

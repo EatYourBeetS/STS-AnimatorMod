@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.PlayerStatistics;
@@ -12,11 +14,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 {
-    public static final String ID = Register_Old(NononJakuzure.class);
+    public static final EYBCardData DATA = Register(NononJakuzure.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public NononJakuzure()
     {
-        super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0, 1);

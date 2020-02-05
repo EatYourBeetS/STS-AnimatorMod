@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.GeassPower;
 import eatyourbeets.utilities.GameActions;
@@ -12,11 +14,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Lelouch extends AnimatorCard
 {
-    public static final String ID = Register_Old(Lelouch.class);
+    public static final EYBCardData DATA = Register(Lelouch.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
 
     public Lelouch()
     {
-        super(ID, 3, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.ALL_ENEMY);
+        super(DATA);
 
         Initialize(0, 0, 3);
         SetCostUpgrade(-1);

@@ -3,6 +3,8 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.powers.common.IntellectPower;
@@ -12,11 +14,11 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Tatsumaki extends AnimatorCard
 {
-    public static final String ID = Register_Old(Tatsumaki.class);
+    public static final EYBCardData DATA = Register(Tatsumaki.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
 
     public Tatsumaki()
     {
-        super(ID, 2, CardRarity.COMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 1);
 

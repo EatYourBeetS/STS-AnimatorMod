@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.animator.special.ChlammyZellScheme;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.ui.EffectHistory;
@@ -13,15 +15,15 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ChlammyZell extends AnimatorCard
 {
-    public static final String ID = Register_Old(ChlammyZell.class);
+    public static final EYBCardData DATA = Register(ChlammyZell.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        GetStaticData(ID).InitializePreview(new ChlammyZellScheme(), false);
+        DATA.InitializePreview(new ChlammyZellScheme(), false);
     }
 
     public ChlammyZell()
     {
-        super(ID, 1, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.ALL);
+        super(DATA);
 
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 1, 0);

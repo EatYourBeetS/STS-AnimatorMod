@@ -28,14 +28,14 @@ public class Gate extends AnimatorLoadout
         {
             startingDeck.add(Strike_GATE.ID);
             startingDeck.add(Defend_GATE.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(TukaLunaMarceau.ID);
-            startingDeck.add(Kuribayashi.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(TukaLunaMarceau.DATA.ID);
+            startingDeck.add(Kuribayashi.DATA.ID);
         }
 
         return startingDeck;
@@ -44,7 +44,7 @@ public class Gate extends AnimatorLoadout
     @Override
     public String GetSymbolicCardID()
     {
-        return RoryMercury.ID;
+        return RoryMercury.DATA.ID;
     }
 
     @Override

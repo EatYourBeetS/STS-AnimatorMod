@@ -4,21 +4,23 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 import java.util.ArrayList;
 
 public class Evileye extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register_Old(Evileye.class);
+    public static final EYBCardData DATA = Register(Evileye.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Evileye()
     {
-        super(ID, 2, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0,0, 1);
         SetCostUpgrade(-1);

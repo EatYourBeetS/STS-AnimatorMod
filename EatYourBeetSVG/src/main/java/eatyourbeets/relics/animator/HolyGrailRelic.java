@@ -2,6 +2,7 @@ package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.animator.ultrarare.HolyGrail;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 
@@ -35,6 +36,8 @@ public class HolyGrailRelic extends AnimatorRelic
         super.atBattleStartPreDraw();
 
         GameActions.Bottom.MakeCardInHand(new HolyGrail());
+        AnimatorCard_UltraRare.MarkAsSeen(HolyGrail.DATA.ID);
+
         this.flash();
     }
 }

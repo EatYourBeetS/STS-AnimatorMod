@@ -5,15 +5,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
 {
-    public static final String ID = Register_Old(Aqua.class);
+    public static final EYBCardData DATA = Register(Aqua.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        GetStaticData(ID).InitializePreview(new Aqua(true), true);
+        DATA.InitializePreview(new Aqua(true), true);
     }
 
     private boolean transformed = false;
@@ -26,7 +28,7 @@ public class Aqua extends AnimatorCard
 
     public Aqua()
     {
-        super(ID, 0, CardRarity.UNCOMMON, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);

@@ -8,20 +8,18 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Giselle extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register_Old(Giselle.class);
+    public static final EYBCardData DATA = Register(Giselle.class).SetAttack(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public Giselle()
     {
-        super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(24, 0, 4);
         SetUpgrade(6, 0, 0);

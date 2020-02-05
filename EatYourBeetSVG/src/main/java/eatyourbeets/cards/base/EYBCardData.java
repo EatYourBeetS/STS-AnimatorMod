@@ -14,6 +14,7 @@ public class EYBCardData
     public final Class<? extends EYBCard> type;
     public final CardStrings Strings;
 
+    public String ImagePath;
     public String ID;
     public AbstractCard.CardType CardType;
     public int BaseCost;
@@ -31,6 +32,7 @@ public class EYBCardData
     {
         this.type = type;
         this.Strings = GR.GetCardStrings(cardID);
+        this.ImagePath = GR.GetCardImage(cardID);
         this.ID = cardID;
     }
 
@@ -98,7 +100,17 @@ public class EYBCardData
         return this;
     }
 
-    public EYBCardData SetAttack(AbstractCard.CardRarity rarity, EYBCardTarget target, EYBAttackType attackType, int cost)
+    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity)
+    {
+        return SetAttack(cost, rarity, EYBAttackType.Normal, EYBCardTarget.Normal);
+    }
+
+    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType)
+    {
+        return SetAttack(cost, rarity, attackType, EYBCardTarget.Normal);
+    }
+
+    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target)
     {
         CardRarity = rarity;
         CardTarget = target;
@@ -109,46 +121,51 @@ public class EYBCardData
         return this;
     }
 
-    public EYBCardData SetSkill(AbstractCard.CardRarity rarity, EYBCardTarget target, int cost)
+    public EYBCardData SetSkill(int cost, AbstractCard.CardRarity rarity)
+    {
+        return SetSkill(cost, rarity, EYBCardTarget.Normal);
+    }
+
+    public EYBCardData SetSkill(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target)
     {
         CardRarity = rarity;
         CardTarget = target;
         CardType = AbstractCard.CardType.SKILL;
-        AttackType = EYBAttackType.Normal;
+        AttackType = EYBAttackType.None;
         BaseCost = cost;
 
         return this;
     }
 
-    public EYBCardData SetPower(AbstractCard.CardRarity rarity, int cost)
+    public EYBCardData SetPower(int cost, AbstractCard.CardRarity rarity)
     {
         CardRarity = rarity;
-        CardTarget = EYBCardTarget.None;
+        CardTarget = EYBCardTarget.Self;
         CardType = AbstractCard.CardType.POWER;
-        AttackType = EYBAttackType.Normal;
+        AttackType = EYBAttackType.None;
         BaseCost = cost;
 
         return this;
     }
 
-    public EYBCardData SetCurse(EYBCardTarget target, int cost)
+    public EYBCardData SetCurse(int cost, EYBCardTarget target)
     {
         CardRarity = AbstractCard.CardRarity.CURSE;
         CardColor = AbstractCard.CardColor.CURSE;
         CardType = AbstractCard.CardType.CURSE;
-        AttackType = EYBAttackType.Normal;
+        AttackType = EYBAttackType.None;
         CardTarget = target;
         BaseCost = cost;
 
         return this;
     }
 
-    public EYBCardData SetStatus(AbstractCard.CardRarity rarity, EYBCardTarget target, int cost)
+    public EYBCardData SetStatus(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target)
     {
         CardRarity = rarity;
         CardColor = AbstractCard.CardColor.COLORLESS;
         CardType = AbstractCard.CardType.STATUS;
-        AttackType = EYBAttackType.Normal;
+        AttackType = EYBAttackType.None;
         CardTarget = target;
         BaseCost = cost;
 

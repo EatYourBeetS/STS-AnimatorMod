@@ -5,20 +5,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FlameBarrierPower;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class RoyMustang extends AnimatorCard
 {
-    public static final String ID = Register_Old(RoyMustang.class);
+    public static final EYBCardData DATA = Register(RoyMustang.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     public RoyMustang()
     {
-        super(ID, 2, CardRarity.UNCOMMON, EYBAttackType.Elemental, true);
+        super(DATA);
 
         Initialize(7, 0, 4);
         SetUpgrade(4, 0, 0);

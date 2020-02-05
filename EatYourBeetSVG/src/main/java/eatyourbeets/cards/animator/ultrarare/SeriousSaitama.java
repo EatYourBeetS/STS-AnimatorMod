@@ -3,18 +3,20 @@ package eatyourbeets.cards.animator.ultrarare;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class SeriousSaitama extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register_Old(SeriousSaitama.class);
+    public static final EYBCardData DATA = Register(SeriousSaitama.class).SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
 
     public SeriousSaitama()
     {
-        super(ID, -1, CardType.SKILL, CardTarget.ALL);
+        super(DATA);
 
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);

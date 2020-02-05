@@ -10,17 +10,18 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class DolaSchwi extends AnimatorCard
 {
-    public static final String ID = Register_Old(DolaSchwi.class);
+    public static final EYBCardData DATA = Register(DolaSchwi.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Ranged);
 
     public DolaSchwi()
     {
-        super(ID, 0, CardRarity.COMMON, EYBAttackType.Ranged);
+        super(DATA);
 
         Initialize(12, 0, 1);
         SetUpgrade(4, 0, 1);

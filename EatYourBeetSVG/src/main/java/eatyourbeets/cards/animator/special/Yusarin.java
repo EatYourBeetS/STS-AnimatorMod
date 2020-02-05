@@ -2,17 +2,19 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class Yusarin extends AnimatorCard
 {
-    public static final String ID = Register_Old(Yusarin.class);
+    public static final EYBCardData DATA = Register(Yusarin.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public Yusarin()
     {
-        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 1, 0);

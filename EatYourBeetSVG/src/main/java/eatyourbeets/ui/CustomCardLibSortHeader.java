@@ -21,13 +21,14 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     private SortHeaderButton typeButton;
     private SortHeaderButton nameButton;
     private SortHeaderButton costButton;
+    private boolean isColorless;
 
     public CustomCardLibSortHeader(CardGroup group)
     {
         super(group);
     }
 
-    public void SetupButtons()
+    public void SetupButtons(boolean isColorless)
     {
         if (override == null)
         {
@@ -69,7 +70,8 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             }
         }
 
-        buttons = override;
+        this.isColorless = isColorless;
+        this.buttons = override;
     }
 
     private void SetupButton(SortHeaderButton button, float offsetX, int index)
@@ -89,6 +91,11 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
         if (!GR.TEST_MODE)
         {
             group.group.removeIf(card -> card.rarity == AbstractCard.CardRarity.SPECIAL);
+        }
+
+        if (isColorless)
+        {
+            return;
         }
 
         for (AnimatorCard_UltraRare card : AnimatorCard_UltraRare.GetCards().values())

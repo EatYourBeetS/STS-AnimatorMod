@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.Spellcaster;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -46,15 +45,14 @@ public class Ain extends AnimatorCard implements Spellcaster
     {
         super.triggerOnManualDiscard();
 
-        if (EffectHistory.TryActivateSemiLimited(cardID))
-        {
-            GameActions.Bottom.GainIntellect(secondaryValue);
-        }
+        GameActions.Bottom.GainIntellect(secondaryValue);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.ChannelRandomOrb(true);
+
         //GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
         GameActions.Bottom.Callback(__ ->
         {
@@ -74,7 +72,7 @@ public class Ain extends AnimatorCard implements Spellcaster
             .SetOptions(true, false);
         }
 
-        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        if (HasSynergy())
         {
             GameActions.Bottom.GainIntellect(secondaryValue);
         }

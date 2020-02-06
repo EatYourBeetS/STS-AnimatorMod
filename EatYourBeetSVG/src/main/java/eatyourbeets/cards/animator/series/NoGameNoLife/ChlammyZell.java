@@ -42,7 +42,7 @@ public class ChlammyZell extends AnimatorCard
             IntellectPower intellect = GameUtilities.GetPower(player, IntellectPower.class);
             if (intellect != null && intellect.GetCurrentLevel() > 1)
             {
-                GameActions.Bottom.MakeCardInHand(cardData.defaultPreview).SetOptions(false, true);
+                GameActions.Bottom.MakeCardInHand(new ChlammyZellScheme());
                 EffectHistory.TryActivateLimited(cardID);
             }
         }

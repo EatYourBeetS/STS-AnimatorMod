@@ -33,12 +33,12 @@ public class Shichika extends AnimatorCard implements MartialArtist
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainForce(magicNumber);
-        GameActions.Bottom.MakeCardInHand(new ShichikaKyotouryuu());
 
         if (HasSynergy())
         {
             GameActions.Bottom.GainAgility(1);
-            GameActions.Bottom.GainThorns(2);
         }
+
+        GameActions.Bottom.MakeCardInHand(new ShichikaKyotouryuu());
     }
 }

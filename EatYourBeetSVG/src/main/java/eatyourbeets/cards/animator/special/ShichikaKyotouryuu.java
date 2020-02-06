@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,6 +11,8 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
 
 public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
@@ -22,10 +25,16 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
 
         Initialize(1, 0, 4);
         SetUpgrade(1, 0, 0);
-        SetScaling(0, 2, 1);
+        SetScaling(0, 1, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
     }
 
     @Override
@@ -37,6 +46,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.Add(new RemoveAllBlockAction(m, player));
         GameActions.Bottom.VFX(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale,
         AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F);
 
@@ -55,7 +65,10 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
 
         if (HasSynergy())
         {
-            GameActions.Bottom.GainForce(1);
+            ForcePower.PreserveOnce();
+            AgilityPower.PreserveOnce();
         }
+
+        GameActions.Last.Add(new RemoveAllBlockAction(m, player));
     }
 }

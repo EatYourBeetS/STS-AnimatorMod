@@ -1,23 +1,18 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.animator.BurningPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.WeightedList;
 
 // TODO:
 //"EXTENDED_DESCRIPTION":
@@ -40,7 +35,8 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         super(DATA);
 
         Initialize(21, 0, 6, 2);
-        SetUpgrade(6, 0, 0, 0);
+        SetUpgrade(7, 0, 0, 0);
+        SetScaling(2, 0, 0);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -64,47 +60,22 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         PlayerStatistics.onStartOfTurnPostDraw.Subscribe(other);
     }
 
-
-    private static WeightedList<AbstractPower> GetRandomDebuffs(AbstractPlayer p, AbstractMonster m)
-    {
-        WeightedList<AbstractPower> result = new WeightedList<>();
-        result.Add(new WeakPower(m, 1, false), 4);
-        result.Add(new VulnerablePower(m, 1, false), 4);
-        result.Add(new PoisonPower(m, p, 3), 3);
-        result.Add(new ConstrictedPower(m, p, 2), 3);
-        result.Add(new BurningPower(p, m, 3), 2);
-        result.Add(new StrengthPower(m, -1), 2);
-
-        if (m.type != AbstractMonster.EnemyType.BOSS)
-        {
-            result.Add(new StunMonsterPower(m, 1), 1);
-        }
-
-        return result;
-    }
-
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        if (target == null || target.isDeadOrEscaped())
+        if (target == null || GameUtilities.IsDeadOrEscaped(target))
         {
             target = GameUtilities.GetRandomEnemy(true);
         }
 
-        AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(this.makeStatEquivalentCopy()));
+        GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
         PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);
 
         this.applyPowers();
         this.calculateCardDamage(target);
 
-        GameActions.Bottom.DealDamage(this, target, AbstractGameAction.AttackEffect.FIRE)
-                .SetPiercing(true, false);
-
-        WeightedList<AbstractPower> debuffs = GetRandomDebuffs(player, target);
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            AbstractPower debuff = debuffs.Retrieve(AbstractDungeon.cardRandomRng);
-            GameActions.Bottom.ApplyPower(player, target, debuff, debuff.amount);
-        }
+        GameActions.Bottom.DealDamage(this, target, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.ApplyWeak(player, target, 1);
+        GameActions.Bottom.ApplyVulnerable(player, target, 1);
     }
 }

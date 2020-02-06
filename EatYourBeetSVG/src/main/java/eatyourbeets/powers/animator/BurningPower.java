@@ -40,6 +40,7 @@ public class BurningPower extends AnimatorPower implements HealthBarRenderPower
         }
 
         this.type = PowerType.DEBUFF;
+        this.isTurnBased = true;
 
         updateDescription();
     }

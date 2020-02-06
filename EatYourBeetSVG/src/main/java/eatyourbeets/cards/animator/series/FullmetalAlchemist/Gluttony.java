@@ -10,18 +10,23 @@ import eatyourbeets.utilities.GameActions;
 
 public class Gluttony extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Gluttony.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Gluttony.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Gluttony()
     {
         super(DATA);
 
         Initialize(0, 0, 4, 16);
-        SetCostUpgrade(-1);
 
         SetHealing(true);
         SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
     }
 
     @Override

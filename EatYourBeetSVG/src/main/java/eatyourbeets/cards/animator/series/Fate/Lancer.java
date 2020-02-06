@@ -53,7 +53,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
             attackEffect = AbstractGameAction.AttackEffect.SLASH_VERTICAL;
         }
 
-        GameActions.Bottom.DealDamage(this, m, attackEffect).SetPiercing(true, true);
+        GameActions.Bottom.DealDamage(this, m, attackEffect);
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
     }
 }

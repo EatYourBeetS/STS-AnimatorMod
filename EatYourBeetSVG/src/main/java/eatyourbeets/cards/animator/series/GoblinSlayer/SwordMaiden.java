@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,10 +10,12 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 
-public class SwordMaiden extends AnimatorCard implements StartupCard
+public class SwordMaiden extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SwordMaiden.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
 
@@ -43,6 +44,10 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        ForcePower.PreserveOnce();
+        AgilityPower.PreserveOnce();
+        IntellectPower.PreserveOnce();
+
         GameActions.Bottom.GainTemporaryHP(this.magicNumber);
         GameActions.Bottom.Callback(__ ->
         {
@@ -57,18 +62,5 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
                 }
             }
         });
-    }
-
-    @Override
-    public boolean atBattleStartPreDraw()
-    {
-        if (EffectHistory.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.GainRandomStat(2);
-
-            return true;
-        }
-
-        return false;
     }
 }

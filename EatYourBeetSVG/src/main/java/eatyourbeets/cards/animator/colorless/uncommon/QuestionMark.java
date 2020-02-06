@@ -9,7 +9,6 @@ import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
@@ -26,7 +25,7 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
 
         Initialize(0, 0);
 
-        SetSynergy(Synergies.ANY);
+        SetSynergy(null, true);
     }
 
     @Override

@@ -30,22 +30,16 @@ public class HighElfArcher extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT)
-        .SetPiercing(true, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        int agility = 0;
         if (GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID) <= magicNumber)
         {
-            agility += 1;
+            GameActions.Bottom.GainAgility(1);
         }
-        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
+
+        if (HasSynergy() && EffectHistory.HasActivatedSemiLimited(cardID))
         {
-            agility += 1;
             GameActions.Bottom.Draw(1);
-        }
-        if (agility > 0)
-        {
-            GameActions.Bottom.GainAgility(agility);
         }
     }
 }

@@ -21,8 +21,8 @@ public class Konayuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 2, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 6, 2, 1);
+        SetUpgrade(0, 0, 1, 0);
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.Katanagatari);

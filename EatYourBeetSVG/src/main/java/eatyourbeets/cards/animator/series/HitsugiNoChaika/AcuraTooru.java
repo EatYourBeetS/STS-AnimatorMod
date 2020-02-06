@@ -22,8 +22,9 @@ public class AcuraTooru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 0, 4, 2);
+        Initialize(3, 0, 4, 2);
         SetUpgrade(0, 0, 0, 1);
+        SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Chaika);
     }

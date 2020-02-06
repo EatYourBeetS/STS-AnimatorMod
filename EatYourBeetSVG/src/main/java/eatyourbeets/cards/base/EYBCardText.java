@@ -20,8 +20,6 @@ import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBCardText
 {
-
-
     private static final CommonImages.Badges BADGES = GR.Common.Images.Badges;
     private static final CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
     private float badgeAlphaTargetOffset = 1f;
@@ -123,12 +121,12 @@ public class EYBCardText
     {
         boolean leftAlign = true;
         AbstractAttribute temp;
-        if ((temp = card.GetDamageInfo()) != null)
+        if ((temp = GetInfo1()) != null)
         {
             temp.Render(sb, card, leftAlign);
             leftAlign = false;
         }
-        if ((temp = card.GetBlockInfo()) != null)
+        if ((temp = GetInfo2()) != null)
         {
             temp.Render(sb, card, leftAlign);
             leftAlign = false;
@@ -136,8 +134,17 @@ public class EYBCardText
         if ((temp = card.GetSpecialInfo()) != null)
         {
             temp.Render(sb, card, leftAlign);
-            //leftAlign = false;
         }
+    }
+
+    private AbstractAttribute GetInfo1()
+    {
+        return card.type == AbstractCard.CardType.ATTACK ? card.GetDamageInfo() : card.GetBlockInfo();
+    }
+
+    private AbstractAttribute GetInfo2()
+    {
+        return card.type == AbstractCard.CardType.ATTACK ? card.GetBlockInfo() : card.GetDamageInfo();
     }
 
     protected void RenderBadges(SpriteBatch sb)

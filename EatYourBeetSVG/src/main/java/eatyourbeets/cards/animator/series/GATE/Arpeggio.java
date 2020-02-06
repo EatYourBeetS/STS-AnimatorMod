@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard implements Spellcaster
@@ -35,7 +36,7 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
 
         GameActions.Bottom.GainIntellect(magicNumber);
 
-        if (HasSynergy())
+        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Earth(), true);
         }

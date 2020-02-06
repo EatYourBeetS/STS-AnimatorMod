@@ -28,7 +28,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public final EYBCardText cardText;
     public final EYBCardData cardData;
-    public final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
+    public final ArrayList<EYBCardTooltip> tooltips;
     public EYBCardTarget attackTarget = EYBCardTarget.Normal;
     public EYBAttackType attackType = EYBAttackType.Normal;
     public float forceScaling = 0;
@@ -71,8 +71,9 @@ public abstract class EYBCard extends EYBCardBase
         super(id, cardData.Strings.NAME, imagePath, cost, "", type, color, rarity, target);
 
         this.cardData = cardData;
+        this.tooltips = new ArrayList<>();
         this.cardText = new EYBCardText(this, cardData.Strings);
-        this.cardText.ForceRefresh();
+        initializeDescription();
     }
 
     @Override
@@ -208,6 +209,30 @@ public abstract class EYBCard extends EYBCardBase
         else if (attackType == EYBAttackType.Ranged)
         {
             dynamicTooltips.add(GR.Tooltips.Ranged);
+        }
+    }
+
+    public AbstractAttribute GetPrimaryInfo()
+    {
+        if (type == CardType.ATTACK)
+        {
+            return GetDamageInfo();
+        }
+        else
+        {
+            return GetBlockInfo();
+        }
+    }
+
+    public AbstractAttribute GetSecondaryInfo()
+    {
+        if (type == CardType.ATTACK)
+        {
+            return GetBlockInfo();
+        }
+        else
+        {
+            return GetDamageInfo();
         }
     }
 

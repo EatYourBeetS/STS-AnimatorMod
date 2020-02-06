@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -135,6 +136,11 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
         {
             FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, amount2.text, x, y + 15.0F * Settings.scale, 1, amount2.color);
         }
+    }
+
+    protected String FormatDescription(int index, Object... args)
+    {
+        return JavaUtilities.Format(powerStrings.DESCRIPTIONS[index], args);
     }
 
     protected ColoredString GetPrimaryAmount(Color c)

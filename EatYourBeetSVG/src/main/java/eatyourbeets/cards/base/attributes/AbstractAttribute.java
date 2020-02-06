@@ -114,13 +114,13 @@ public abstract class AbstractAttribute
             base_x += (DESC_OFFSET_X * card.drawScale) - (48 * scale);
 
             RenderHelpers.DrawOnCard(sb, card, icon, base_x, base_y, 48);
-            FontHelper.renderFont(sb, largeFont, mainText.text, base_x + 10 * scale - width, base_y + 20 * scale + layout.height / 2f, mainText.color);
+            FontHelper.renderFont(sb, largeFont, mainText.text, base_x + 7 * scale - width, base_y + 20 * scale + layout.height / 2f, mainText.color);
 
             if (suffix != null)
             {
                 largeFont.getData().setScale(largeFont.getScaleX() * 0.6f);
                 layout.setText(largeFont, suffix);
-                FontHelper.renderFont(sb, largeFont, suffix, base_x + 10 * scale - width - layout.width, base_y + 14 * scale + layout.height / 2f, mainText.color);
+                FontHelper.renderFont(sb, largeFont, suffix, base_x + 7 * scale - width - layout.width, base_y + 14 * scale + layout.height / 2f, mainText.color);
             }
         }
         RenderHelpers.ResetFont(largeFont);

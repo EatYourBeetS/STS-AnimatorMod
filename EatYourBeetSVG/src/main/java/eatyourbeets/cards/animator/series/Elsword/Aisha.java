@@ -13,8 +13,10 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.attack.SmallLaser2Effect;
 import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard implements Spellcaster
 {
@@ -65,12 +67,13 @@ public class Aisha extends AnimatorCard implements Spellcaster
             enemy.hb.cY + MathUtils.random(-0.05F, 0.05F), Color.VIOLET)));
         }
 
-        if (!EffectHistory.HasActivatedLimited(cardID))
+        if (!EffectHistory.HasActivatedSemiLimited(cardID))
         {
-            if (p.filledOrbCount() == p.orbs.size())
+            IntellectPower intellect = GameUtilities.GetPower(player, IntellectPower.class);
+            if (intellect != null && intellect.GetCurrentLevel() > 1)
             {
                 GameActions.Bottom.GainOrbSlots(1);
-                EffectHistory.TryActivateLimited(cardID);
+                EffectHistory.TryActivateSemiLimited(cardID);
             }
         }
     }

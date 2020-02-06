@@ -8,9 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Spearman extends AnimatorCard
 {
@@ -22,6 +20,7 @@ public class Spearman extends AnimatorCard
 
         Initialize(9, 0, 1);
         SetUpgrade(4, 0);
+        SetScaling(0, 1, 1);
 
         SetPiercing(true);
         SetSynergy(Synergies.GoblinSlayer);
@@ -30,17 +29,13 @@ public class Spearman extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL)
-        .SetPiercing(true, true)
-        .AddCallback(enemy ->
-        {
-            if (GameUtilities.TriggerOnKill(enemy, true) && EffectHistory.TryActivateLimited(cardID))
-            {
-                GameActions.Bottom.Motivate(2);
-            }
-        });
-
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Bottom.GainAgility(magicNumber);
         GameActions.Bottom.MakeCardInHand(new Wound());
+
+        if (HasSynergy())
+        {
+            GameActions.Bottom.GainForce(1);
+        }
     }
 }

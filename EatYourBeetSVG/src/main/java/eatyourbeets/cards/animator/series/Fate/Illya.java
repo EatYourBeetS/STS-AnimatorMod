@@ -103,8 +103,7 @@ public class Illya extends AnimatorCard
                     .ShowEffect(true, true);
                 }
 
-                GameActions.Bottom.GainEnergy(1);
-
+                c.retain = true;
                 return true;
             }
         }

@@ -18,8 +18,8 @@ public class Canti extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 3);
-        SetUpgrade(2, 1);
+        Initialize(4, 3);
+        SetUpgrade(3, 0);
 
         SetSynergy(Synergies.FLCL);
     }

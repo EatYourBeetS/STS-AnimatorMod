@@ -1,9 +1,7 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -21,7 +19,7 @@ public class Azekura extends AnimatorCard implements MartialArtist
     {
         super(DATA);
 
-        Initialize(0, 6, 2, 2);
+        Initialize(0, 6, 2, 3);
         SetUpgrade(0, 1, 2, 0);
         SetScaling(0, 0, 1);
 
@@ -39,19 +37,14 @@ public class Azekura extends AnimatorCard implements MartialArtist
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.StackPower(new PlatedArmorPower(AbstractDungeon.player, secondaryValue));
+        GameActions.Bottom.GainPlatedArmor(secondaryValue);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(this.block);
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new EarthenThornsPower(p, magicNumber));
-
-        if (HasSynergy())
-        {
-            GameActions.Bottom.StackPower(new PlatedArmorPower(p, secondaryValue));
-        }
     }
 }

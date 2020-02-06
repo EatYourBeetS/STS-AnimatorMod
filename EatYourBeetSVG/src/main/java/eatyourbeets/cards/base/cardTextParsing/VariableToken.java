@@ -2,7 +2,6 @@ package eatyourbeets.cards.base.cardTextParsing;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -53,7 +52,7 @@ public class VariableToken extends CTToken
     {
         if (text == null)
         {
-            return 20f * Settings.scale * font.getScaleX(); // AbstractCard.MAGIC_NUM_W
+            return super.GetWidth(font, ".."); //20f * Settings.scale * font.getScaleX(); // AbstractCard.MAGIC_NUM_W
         }
         else
         {

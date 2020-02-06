@@ -57,5 +57,16 @@ public class Viivi extends AnimatorCard
             GameActions.Bottom.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F);
             GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE);
         }
+
+        GameActions.Bottom.SelectFromHand(name, 1, true)
+        .SetFilter(c -> c.type == CardType.ATTACK && !c.retain && !c.selfRetain)
+        .AddCallback(cards ->
+        {
+            if (cards.size() > 0)
+            {
+                cards.get(0).retain = true;
+                cards.get(0).flash();
+            }
+        });
     }
 }

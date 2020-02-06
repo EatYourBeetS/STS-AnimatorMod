@@ -87,7 +87,7 @@ public class AnimatorResources extends AbstractResources
         LoadCustomStrings(OrbStrings.class);
         LoadCustomStrings(CharacterStrings.class);
 
-        LoadCardStrings();
+        BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(Gdx.files.internal(GetLanguagePath() + "CardStrings.json").readString(StandardCharsets.UTF_8.name())));
 
         LoadCustomStrings(RelicStrings.class);
         LoadCustomStrings(PowerStrings.class);
@@ -177,9 +177,8 @@ public class AnimatorResources extends AbstractResources
         return super.GetLanguagePath(language);
     }
 
-    protected void LoadCardStrings()
+    public String ProcessJson(String originalString)
     {
-        String cardStringsJson = Gdx.files.internal(GetLanguagePath() + "CardStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
         String shortcutsJson = Gdx.files.internal(GetLanguagePath() + "CardStringsShortcuts.json").readString(String.valueOf(StandardCharsets.UTF_8));
 
         Map<String, String> items = new Gson().fromJson(shortcutsJson, new TypeToken<Map<String, String>>(){}.getType());
@@ -188,6 +187,6 @@ public class AnimatorResources extends AbstractResources
         String[] shortcuts = items.keySet().toArray(new String[size]);
         String[] replacement = items.values().toArray(new String[size]);
 
-        BaseMod.loadCustomStrings(CardStrings.class, StringUtils.replaceEach(cardStringsJson, shortcuts, replacement));
+        return StringUtils.replaceEach(originalString, shortcuts, replacement);
     }
 }

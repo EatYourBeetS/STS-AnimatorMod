@@ -15,6 +15,7 @@ import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
@@ -88,10 +89,15 @@ public class AnimatorPurgingStoneUI extends GUIElement
 
             if (toBan != null)
             {
+                int index = rewardItem.cards.indexOf(toBan.card);
+                if (index == -1)
+                {
+                    JavaUtilities.GetLogger(this).error("Could not find " + toBan.card.cardID + " in the current card reward.");
+                    continue;
+                }
+
                 AbstractDungeon.effectsQueue.add(new ExhaustCardEffect(toBan.card));
                 AbstractDungeon.effectsQueue.add(new HideCardEffect(toBan.card));
-
-                int index = rewardItem.cards.indexOf(toBan.card);
                 rewardItem.cards.remove(index);
 
                 if (onCardBanned != null)

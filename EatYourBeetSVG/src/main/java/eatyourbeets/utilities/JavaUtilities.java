@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 import java.util.function.Predicate;
@@ -21,6 +22,7 @@ public class JavaUtilities
 {
     public static final Logger Logger = LogManager.getLogger(JavaUtilities.class.getName());
 
+    private static final MessageFormat formatter = new MessageFormat("");
     private static final ArrayList<String> classNames = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
@@ -93,19 +95,8 @@ public class JavaUtilities
 
     public static String Format(String format, Object... args)
     {
-        int index = 0;
-        for (Object val : args)
-        {
-            if (val == null)
-            {
-                val = "";
-            }
-
-            format = format.replace("{" + index + "}", val.toString());
-            index += 1;
-        }
-
-        return format;
+        formatter.applyPattern(format);
+        return formatter.format(args);
     }
 
     public static ArrayList<String> GetClassNamesFromJarFile(String prefix)

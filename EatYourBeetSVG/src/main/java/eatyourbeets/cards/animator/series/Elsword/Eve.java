@@ -23,8 +23,8 @@ public class Eve extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 0);
-        SetUpgrade(0, 0, 0, 2);
+        Initialize(0, 0, 0);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -37,11 +37,9 @@ public class Eve extends AnimatorCard
             GameActions.Bottom.StackPower(new EvePower(p, 1));
         }
 
-        GameActions.Bottom.GainOrbSlots(magicNumber);
-
-        if (secondaryValue > 0)
+        if (magicNumber > 0)
         {
-            GameActions.Bottom.GainMetallicize(secondaryValue);
+            GameActions.Bottom.GainOrbSlots(magicNumber);
         }
 
         GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)

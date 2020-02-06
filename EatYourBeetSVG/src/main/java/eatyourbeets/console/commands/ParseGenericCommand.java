@@ -3,10 +3,13 @@
  import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.FieldInfo;
- import eatyourbeets.utilities.Testing;
+import eatyourbeets.utilities.Testing;
 
- import java.util.ArrayList;
+import java.util.ArrayList;
 
  public class ParseGenericCommand extends ConsoleCommand
  {
@@ -27,6 +30,12 @@ import eatyourbeets.utilities.FieldInfo;
      {
          if (tokens.length > 1)
          {
+             if (tokens[1].equals("remove-colorless"))
+             {
+                 CardLibrary.getAllCards().removeIf(card -> card.color == AbstractCard.CardColor.COLORLESS && !(card instanceof EYBCard));
+                 return;
+             }
+
              try
              {
                 Test(tokens);

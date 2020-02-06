@@ -28,6 +28,11 @@ public class Greed extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        if (block > 0)
+        {
+            GameActions.Bottom.GainBlock(block);
+        }
+
         GameActions.Bottom.GainPlatedArmor(magicNumber);
         GameActions.Bottom.GainMetallicize(magicNumber);
         GameActions.Bottom.StackPower(new MalleablePower(p, magicNumber));

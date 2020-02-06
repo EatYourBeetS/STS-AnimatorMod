@@ -46,9 +46,9 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetPiercing(true, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetPiercing(true, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
 
         if (!EffectHistory.HasActivatedLimited(cardID))
         {

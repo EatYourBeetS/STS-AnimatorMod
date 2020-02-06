@@ -37,13 +37,14 @@ public class CardLibraryScreenPatches
                 //upgradeHitbox.move(upgradeHitbox.cX + (offsetX * 2), upgradeHitbox.cY);
             }
 
-            if (newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_ANIMATOR))
+            if (newSelection == ColorTabBar.CurrentTab.COLORLESS || newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_ANIMATOR))
             {
                 if (_sortHeader.Get(screen) != customHeader)
                 {
                     _sortHeader.Set(screen, customHeader);
-                    customHeader.SetupButtons();
                 }
+
+                customHeader.SetupButtons(newSelection == ColorTabBar.CurrentTab.COLORLESS);
             }
             else
             {

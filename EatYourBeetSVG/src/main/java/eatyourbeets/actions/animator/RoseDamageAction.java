@@ -65,7 +65,7 @@ public class RoseDamageAction extends EYBAction
             Explosion(target.hb);
 
             action = new DealDamage(target, new DamageInfo(player, damage, rose.damageTypeForTurn))
-            .SetPiercing(true, true).SetOptions(true, false);
+            .SetPiercing(true, false).SetOptions(true, false);
         }
     }
 

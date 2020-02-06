@@ -46,7 +46,7 @@ public class Ara extends AnimatorCard implements MartialArtist
             if (cards.get(0).type.equals(CardType.POWER) && EffectHistory.TryActivateSemiLimited(cardID))
             {
                 GameActions.Bottom.GainAgility(1);
-                GameActions.Bottom.GainForce(2);
+                GameActions.Bottom.GainForce(1);
             }
         });
     }

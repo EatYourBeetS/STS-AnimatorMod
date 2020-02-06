@@ -36,10 +36,6 @@ public class Alexander extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.GainForce(1);
-
-        if (upgraded)
-        {
-            ForcePower.PreserveOnce();
-        }
+        ForcePower.PreserveOnce();
     }
 }

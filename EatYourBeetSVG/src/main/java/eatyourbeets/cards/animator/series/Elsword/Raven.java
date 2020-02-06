@@ -26,6 +26,7 @@ public class Raven extends AnimatorCard
 
         Initialize(5, 0, 1);
         SetUpgrade(3, 0);
+        SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Elsword);
     }

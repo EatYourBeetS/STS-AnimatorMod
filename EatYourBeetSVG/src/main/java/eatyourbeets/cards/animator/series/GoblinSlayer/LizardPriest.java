@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryRetainPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class LizardPriest extends AnimatorCard
 {
@@ -18,8 +19,9 @@ public class LizardPriest extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 8, 1, 2);
-        SetUpgrade(0, 3, 0, 0);
+        Initialize(0, 7, 1);
+        SetUpgrade(0, 2, 1);
+        SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
     }
@@ -27,17 +29,16 @@ public class LizardPriest extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (m != null)
-        {
-            GameActions.Bottom.Add(new RemoveAllBlockAction(m, p));
-            GameActions.Bottom.Add(new GainBlockAction(m, p, this.magicNumber, true));
-        }
-
-        GameActions.Bottom.GainBlock(this.block);
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.StackPower(new TemporaryRetainPower(p, magicNumber));
 
         if (HasSynergy())
         {
-            GameActions.Bottom.StackPower(new TemporaryRetainPower(p, secondaryValue));
+            for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
+            {
+                GameActions.Bottom.Add(new RemoveAllBlockAction(enemy, p));
+                GameActions.Bottom.Add(new GainBlockAction(enemy, p, 1, true));
+            }
         }
     }
 }

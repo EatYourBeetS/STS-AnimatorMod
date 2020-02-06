@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.TemporaryDrawReductionPower;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Sloth extends AnimatorCard
@@ -20,7 +19,7 @@ public class Sloth extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 12, 0, 3);
+        Initialize(12, 12, 0, 11);
         SetUpgrade(3, 3);
         SetScaling(0, 0, 2);
 
@@ -32,10 +31,7 @@ public class Sloth extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        if (EffectHistory.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.GainForce(secondaryValue);
-        }
+        GameActions.Bottom.GainBlock(secondaryValue);
     }
 
     @Override

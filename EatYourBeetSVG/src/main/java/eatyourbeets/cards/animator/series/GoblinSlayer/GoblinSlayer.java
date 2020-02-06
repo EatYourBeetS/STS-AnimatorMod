@@ -24,6 +24,7 @@ public class GoblinSlayer extends AnimatorCard
 
         Initialize(4, 4);
         SetUpgrade(3, 3);
+        SetScaling(1, 0, 1);
 
         SetRetain(true);
         SetSynergy(Synergies.GoblinSlayer);
@@ -64,6 +65,7 @@ public class GoblinSlayer extends AnimatorCard
         MoveCards(p.hand, p.exhaustPile);
 
         GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActions.Top.GainBlock(block);
     }
 
     private void MoveCards(CardGroup source, CardGroup destination)

@@ -2,12 +2,10 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class RoryMercury extends AnimatorCard
 {
@@ -17,7 +15,7 @@ public class RoryMercury extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 0);
+        Initialize(3, 0, 0);
         SetUpgrade(2, 0, 0);
         SetScaling(0, 0, 1);
 
@@ -42,15 +40,7 @@ public class RoryMercury extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).AddCallback(this::OnDamageDealt);
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).AddCallback(this::OnDamageDealt);
-    }
-
-    private void OnDamageDealt(AbstractCreature enemy)
-    {
-        if (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy) && enemy.lastDamageTaken > 0)
-        {
-            GameActions.Bottom.ApplyVulnerable(player, enemy, 1);
-        }
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).AddCallback(e -> GameActions.Bottom.ApplyVulnerable(player, e, 1));
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 }

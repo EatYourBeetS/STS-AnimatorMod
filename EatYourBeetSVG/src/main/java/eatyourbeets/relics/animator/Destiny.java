@@ -1,7 +1,7 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import eatyourbeets.interfaces.OnReceiveRewardsSubscriber;
+import eatyourbeets.interfaces.subscribers.OnReceiveRewardsSubscriber;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameEffects;

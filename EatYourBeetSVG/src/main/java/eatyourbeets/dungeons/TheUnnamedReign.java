@@ -7,14 +7,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.map.DungeonMap;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EmptyRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
@@ -31,19 +29,6 @@ public class TheUnnamedReign extends AbstractDungeon
     public static final String ID = GR.Common.CreateID("TheUnnamedReign");
 
     protected ArrayList<String> MONSTER_LIST_WHICH_ACTUALLY_WORKS;
-
-    public static void EnterDungeon()
-    {
-        AbstractDungeon.rs = AbstractDungeon.RenderScene.NORMAL;
-
-        CardCrawlGame.nextDungeon = TheUnnamedReign.ID;
-        AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-
-        GenericEventDialog.hide();
-        CardCrawlGame.music.fadeAll();
-        AbstractDungeon.fadeOut();
-        AbstractDungeon.isDungeonBeaten = true;
-    }
 
     public TheUnnamedReign(AbstractPlayer p, ArrayList<String> specialOneTimeEventList)
     {
@@ -127,8 +112,6 @@ public class TheUnnamedReign extends AbstractDungeon
 
     protected void initializeLevelSpecificChances()
     {
-        GR.Common.CurrentGameData.EnteredUnnamedReign = true;
-
         shopRoomChance = 0.12F;
         restRoomChance = 0.10F;
         treasureRoomChance = 0.0F;

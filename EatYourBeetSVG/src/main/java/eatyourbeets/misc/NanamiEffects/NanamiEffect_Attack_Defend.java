@@ -8,28 +8,28 @@ import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 
 public class NanamiEffect_Attack_Defend extends NanamiEffect
 {
-    public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
+    @Override
+    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(GetBlock(nanami));
         GameActions.Bottom.DealDamage(p, m, GetDamage(nanami), nanami.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE);
     }
 
-    public static String UpdateDescription(Nanami nanami)
+    @Override
+    public String GetDescription(Nanami nanami)
     {
-        return Desc(DAMAGE, GetDamage(nanami), true) + Desc(BLOCK, GetBlock(nanami));
+        return "";
     }
 
-    private static int GetBlock(Nanami nanami)
+    @Override
+    public int GetBlock(Nanami nanami)
     {
-        int diff = (nanami.block - nanami.baseBlock);
-
-        return ((nanami.energyOnUse + 1) * nanami.baseBlock) + diff;
+        return ModifyBlock((nanami.energyOnUse + 1) * nanami.baseBlock, nanami);
     }
 
-    private static int GetDamage(Nanami nanami)
+    @Override
+    public int GetDamage(Nanami nanami)
     {
-        int diff = (nanami.damage - nanami.baseDamage);
-
-        return ((nanami.energyOnUse + 1) * nanami.baseDamage) + diff;
+        return ModifyDamage((nanami.energyOnUse + 1) * nanami.baseDamage, nanami);
     }
 }

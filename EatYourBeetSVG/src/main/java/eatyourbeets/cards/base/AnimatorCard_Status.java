@@ -10,9 +10,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public abstract class AnimatorCard_Status extends AnimatorCard
 {
-    protected AnimatorCard_Status(String id, int cost, CardRarity rarity, CardTarget target)
+    protected AnimatorCard_Status(EYBCardData data)
     {
-        super(id, cost, CardType.STATUS, CardColor.COLORLESS, rarity, target);
+        super(data);
     }
 
     @Override

@@ -9,11 +9,17 @@ public class VestaElixirEffect_Discard extends VestaElixirEffect
 {
     private final VestaElixirEffect linkedEffect;
 
-    public VestaElixirEffect_Discard(int index, VestaElixirEffect linkedEffect)
+    public VestaElixirEffect_Discard(VestaElixirEffect linkedEffect)
     {
-        super(index, 2);
+        super(2);
 
         this.linkedEffect = linkedEffect;
+    }
+
+    @Override
+    public String GetDescription()
+    {
+        return ACTIONS.Discard(amount, true) + NEWLINE + linkedEffect.GetDescription();
     }
 
     @Override
@@ -26,11 +32,5 @@ public class VestaElixirEffect_Discard extends VestaElixirEffect
 
             linkedEffect.EnqueueAction(elixir, player);
         }
-    }
-
-    @Override
-    public String GetDescription()
-    {
-        return super.GetDescription() + " NL " + linkedEffect.GetDescription();
     }
 }

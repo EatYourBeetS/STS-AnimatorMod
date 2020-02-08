@@ -54,6 +54,8 @@ public class HiteiPower extends AnimatorPower
             GameActions.Bottom.Add(new HiteiAction(3));
         }
 
+        GameActions.Bottom.Draw(1);
+
         this.flash();
     }
 

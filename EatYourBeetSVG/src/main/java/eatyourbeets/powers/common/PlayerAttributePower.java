@@ -1,25 +1,45 @@
 package eatyourbeets.powers.common;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.interfaces.OnStatsClearedSubscriber;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.HashSet;
 
 public abstract class PlayerAttributePower extends CommonPower
 {
     protected static final PreservedPowers preservedPowers = new PreservedPowers();
+    protected int threshold = 0;
 
     public PlayerAttributePower(String powerID, AbstractCreature owner, int amount)
     {
         super(owner, powerID);
 
         this.amount = amount;
+        this.threshold = 3;
 
         updateDescription();
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        this.description = powerStrings.DESCRIPTIONS[0];
+
+        if (threshold > 0)
+        {
+            this.description += JavaUtilities.Format(powerStrings.DESCRIPTIONS[1], threshold, 1);
+        }
     }
 
     @Override
@@ -27,7 +47,7 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.onInitialApplication();
 
-        GainPower(amount);
+        UpdateThreshold();
     }
 
     @Override
@@ -35,7 +55,7 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.stackPower(stackAmount);
 
-        GainPower(stackAmount);
+        UpdateThreshold();
     }
 
     @Override
@@ -43,10 +63,9 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.atStartOfTurn();
 
-        if (enabled)
+        if (enabled && amount > 0)
         {
-            ReducePower(1);
-            GameActions.Bottom.ReducePower(this, 1);
+            reducePower(1);
         }
     }
 
@@ -55,11 +74,94 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         super.update(slot);
 
-        enabled = (!preservedPowers.contains(ID));
+        this.enabled = (!preservedPowers.contains(ID));
     }
 
-    protected abstract void GainPower(int amount);
-    protected abstract void ReducePower(int amount);
+    @Override
+    public float modifyBlock(float blockAmount, AbstractCard card)
+    {
+        if (amount > 0 && card.baseBlock >= 0 && card.type != AbstractCard.CardType.ATTACK && card instanceof EYBCard)
+        {
+            return blockAmount + GetScaling((EYBCard) card);
+        }
+
+        return blockAmount;
+    }
+
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card)
+    {
+        if (amount > 0 && card.baseDamage >= 0 && card.type == AbstractCard.CardType.ATTACK && card instanceof EYBCard)
+        {
+            return damage + GetScaling((EYBCard) card);
+        }
+
+        return damage;
+    }
+
+    public int GetCurrentLevel()
+    {
+        switch (threshold)
+        {
+            case 0: return 0;
+            case 3: return 1;
+            case 5: return 2;
+            case 7: return 3;
+            case 9: return 4;
+            default: return 5;
+        }
+    }
+
+    protected void UpdateThreshold()
+    {
+        int powerGain = 0;
+        if (threshold == 3 && amount >= threshold)
+        {
+            OnThresholdReached();
+            threshold = 5;
+        }
+        if (threshold == 5 && amount >= threshold)
+        {
+            OnThresholdReached();
+            threshold = 7;
+        }
+        if (threshold == 7 && amount >= threshold)
+        {
+            OnThresholdReached();
+            threshold = 9;
+        }
+        if (threshold == 9 && amount >= threshold)
+        {
+            OnThresholdReached();
+            threshold = -1;
+        }
+
+        updateDescription();
+    }
+
+    @Override
+    public void renderAmount(SpriteBatch sb, float x, float y, Color c)
+    {
+        if (threshold > 0)
+        {
+            final float offset_x  = -24 * Settings.scale;
+            final float offset_y  = -5 * Settings.scale;
+            final float offset_x2 = 0 * Settings.scale;
+            final float offset_y2 = -5 * Settings.scale;
+            final Color c1 = Color.GREEN.cpy();
+            final Color c2 = Settings.CREAM_COLOR.cpy();
+            c1.a = c2.a = c.a;
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x + offset_x, y + offset_y, fontScale, c1);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + this.threshold, x + offset_x2, y + offset_y2, 1, c2);
+        }
+        else
+        {
+            super.renderAmount(sb, x, y, c);
+        }
+    }
+
+    protected abstract float GetScaling(EYBCard card);
+    protected abstract void OnThresholdReached();
 
     public static class PreservedPowers extends HashSet<String> implements OnStatsClearedSubscriber, OnStartOfTurnPostDrawSubscriber
     {

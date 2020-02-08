@@ -3,23 +3,23 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.interfaces.OnCostRefreshSubscriber;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.ShiroPower;
+import eatyourbeets.utilities.GameActions;
 
 public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
 {
-    public static final String ID = Register(Shiro.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Shiro.class).SetPower(4, CardRarity.RARE);
 
     private int costModifier = 0;
 
     public Shiro()
     {
-        super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0);
         SetCostUpgrade(-1);
@@ -70,9 +70,9 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         OnCostRefresh(this);
     }
@@ -82,7 +82,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     {
         GameActions.Top.Draw(1)
         .ShuffleIfEmpty(false)
-        .SetFilter(c -> Sora.ID.equals(c.cardID), false);
+        .SetFilter(c -> Sora.DATA.ID.equals(c.cardID), false);
 
         GameActions.Bottom.StackPower(new ShiroPower(p, 1));
     }

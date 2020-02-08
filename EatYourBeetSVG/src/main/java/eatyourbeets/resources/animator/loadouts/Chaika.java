@@ -10,7 +10,7 @@ import eatyourbeets.cards.animator.series.HitsugiNoChaika.Gillette;
 import eatyourbeets.cards.animator.ultrarare.NivaLada;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
 
@@ -28,23 +28,23 @@ public class Chaika extends AnimatorLoadout
         {
             startingDeck.add(Strike_HitsugiNoChaika.ID);
             startingDeck.add(Defend_HitsugiNoChaika.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(AcuraAkari.ID);
-            startingDeck.add(Gillette.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(AcuraAkari.DATA.ID);
+            startingDeck.add(Gillette.DATA.ID);
         }
 
         return startingDeck;
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
-        return ChaikaTrabant.ID;
+        return ChaikaTrabant.DATA.ID;
     }
 
     @Override

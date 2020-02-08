@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,10 +14,10 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
-import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -105,16 +104,9 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
             return;
         }
 
-//        if (turnCount != PlayerStatistics.getTurnCount())
-//        {
-//            turnCount = PlayerStatistics.getTurnCount();
-//            this.turns -= 1;
-//        }
-
         if (turns > 0)
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActions.Bottom.ApplyPowerSilently(p, p, new EarthenThornsPower(p, this.passiveAmount), this.passiveAmount);
+            GameActions.Bottom.Add(new EarthOrbPassiveAction(passiveAmount));
         }
 
         this.updateDescription();
@@ -133,15 +125,14 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         int focus = GameUtilities.GetFocus(AbstractDungeon.player);
         if (focus > 0)
         {
-            //this.passiveAmount = Math.max(0, this.basePassiveAmount + Math.floorDiv(focus, 6));
+            this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
             this.evokeAmount = Math.max(0, this.baseEvokeAmount + (focus * 2));
         }
         else
         {
             this.evokeAmount = this.baseEvokeAmount;
+            this.passiveAmount = this.basePassiveAmount;
         }
-
-        this.passiveAmount = this.basePassiveAmount;
     }
 
     public void updateAnimation()

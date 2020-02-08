@@ -4,7 +4,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.IchigoBankai;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
@@ -12,30 +13,21 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoKurosaki extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(IchigoKurosaki.class, EYBCardBadge.Exhaust);
+    public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    static
+    {
+        DATA.InitializePreview(new IchigoBankai(), false);
+    }
 
     public IchigoKurosaki()
     {
-        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 1, 5);
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.Bleach);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new IchigoBankai(), false);
-        }
-    }
-
-    @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        MartialArtist.ApplyScaling(this, 4);
     }
 
     @Override

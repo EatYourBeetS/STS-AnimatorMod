@@ -4,39 +4,39 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Lancer extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Lancer.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Lancer.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing);
 
     public Lancer()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(6, 0, 1);
         SetUpgrade(3, 0, 0);
+        SetScaling(0, 1, 1);
 
         SetPiercing(true);
         SetSynergy(Synergies.Fate);
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    protected float ModifyDamage(AbstractMonster enemy, float damage)
     {
-        tmp += MartialArtist.GetScaling();
-
-        if (mo != null)
+        if (enemy != null)
         {
-            tmp += (tmp * (1 - GameUtilities.GetHealthPercentage(mo)));
+            damage += (damage * (1 - GameUtilities.GetHealthPercentage(enemy)));
         }
 
-        return super.calculateModifiedCardDamage(player, mo, tmp);
+        return super.ModifyDamage(enemy, damage);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Lancer extends AnimatorCard implements MartialArtist
             attackEffect = AbstractGameAction.AttackEffect.SLASH_VERTICAL;
         }
 
-        GameActions.Bottom.DealDamage(this, m, attackEffect).SetPiercing(true, true);
+        GameActions.Bottom.DealDamage(this, m, attackEffect);
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
     }
 }

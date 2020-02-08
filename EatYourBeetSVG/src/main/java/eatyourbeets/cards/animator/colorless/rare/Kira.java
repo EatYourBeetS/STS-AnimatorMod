@@ -10,19 +10,18 @@ import com.megacrit.cardcrawl.powers.FadingPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
-import eatyourbeets.effects.utility.CallbackEffect;
-import eatyourbeets.powers.common.GenericFadingPower;
-import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.powers.common.GenericFadingPower;
+import eatyourbeets.utilities.GameActions;
 
 public class Kira extends AnimatorCard
 {
-    public static final String ID = Register(Kira.class);
-    public static final String[] DESCRIPTIONS = AnimatorResources.GetCardStrings(ID).EXTENDED_DESCRIPTION;
+    public static final EYBCardData DATA = Register(Kira.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    public static final String[] DESCRIPTIONS = DATA.Strings.EXTENDED_DESCRIPTION;
 
     private int countdown;
     private AbstractMonster lastTargetEnemy = null;
@@ -30,12 +29,10 @@ public class Kira extends AnimatorCard
 
     public Kira()
     {
-        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, -1);
-
-        AddExtendedDescription();
+        Initialize(0, 0, 0, 2);
+        SetUpgrade(0, 0, 0, -1);
 
         SetExhaust(true);
         SetEthereal(true);
@@ -78,7 +75,7 @@ public class Kira extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ApplyPower(p, m, new StrengthPower(m, magicNumber), magicNumber);
+        GameActions.Bottom.ApplyPower(p, m, new StrengthPower(m, secondaryValue), secondaryValue);
 
         updateCountdown(m);
 
@@ -131,7 +128,8 @@ public class Kira extends AnimatorCard
         else
         {
             updateCountdown(monster);
-            cardText.OverrideDescription(JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[2], countdown), true);
+            baseMagicNumber = magicNumber = countdown;
+            cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
         }
     }
 

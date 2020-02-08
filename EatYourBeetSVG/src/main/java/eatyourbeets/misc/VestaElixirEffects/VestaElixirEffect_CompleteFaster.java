@@ -5,9 +5,15 @@ import eatyourbeets.cards.animator.special.Vesta_Elixir;
 
 public class VestaElixirEffect_CompleteFaster extends VestaElixirEffect
 {
-    public VestaElixirEffect_CompleteFaster(int index)
+    public VestaElixirEffect_CompleteFaster()
     {
-        super(index, 0);
+        super(0);
+    }
+
+    @Override
+    public String GetDescription()
+    {
+        return Vesta_Elixir.DATA.Strings.EXTENDED_DESCRIPTION[0];
     }
 
     @Override

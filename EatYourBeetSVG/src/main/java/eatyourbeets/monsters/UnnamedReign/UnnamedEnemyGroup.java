@@ -202,7 +202,7 @@ public class UnnamedEnemyGroup
 
     protected static <T> T Retrieve(RandomizedList<T> list)
     {
-        return list.Retrieve(GR.Common.CurrentGameData.GetRNG());
+        return list.Retrieve(GR.Common.Dungeon.GetRNG());
     }
 
     private static UnnamedShape Create(int index, MonsterShape shape, MonsterTier tier, MonsterElement element)

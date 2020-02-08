@@ -1,7 +1,9 @@
 package eatyourbeets.actions.basic;
 
 import basemod.BaseMod;
+import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.effects.card.RenderCardEffect;
+import eatyourbeets.effects.card.UnfadeOutEffect;
 import eatyourbeets.utilities.*;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
@@ -20,8 +23,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     protected CardGroup targetPile;
     protected CardGroup sourcePile;
     protected boolean showEffect;
-    protected Float card_X;
-    protected Float card_Y;
+    protected Vector2 targetPosition;
 
     public MoveCard(AbstractCard card, CardGroup targetPile)
     {
@@ -41,8 +43,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
     public MoveCard SetCardPosition(float x, float y)
     {
-        card_X = x;
-        card_Y = y;
+        targetPosition = new Vector2(x, y);
 
         return this;
     }
@@ -77,7 +78,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
             if (sourcePile == null)
             {
-                JavaUtilities.GetLogger(getClass()).warn("Could not find card source.");
+                JavaUtilities.GetLogger(getClass()).warn("Could not find card source pile.");
                 Complete();
                 return;
             }
@@ -96,52 +97,25 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             return;
         }
 
-        if (this.sourcePile.type == CardGroup.CardGroupType.EXHAUST_PILE)
+        if (GameUtilities.TrySetPosition(sourcePile, card) && showEffect)
         {
-            card.current_x = CardGroup.DISCARD_PILE_X;
-            card.current_y = CardGroup.DISCARD_PILE_Y + Settings.scale * 30f;
-
-            if (showEffect)
-            {
-                GameEffects.TopLevelList.Add(new RenderCardEffect(card, duration, isRealtime));
-            }
-        }
-        else if (this.sourcePile.type == CardGroup.CardGroupType.DRAW_PILE)
-        {
-            card.current_x = CardGroup.DRAW_PILE_X;
-            card.current_y = CardGroup.DRAW_PILE_Y;
-
-            if (showEffect)
-            {
-                GameEffects.TopLevelList.Add(new RenderCardEffect(card, duration, isRealtime));
-            }
-        }
-        else if (this.sourcePile.type == CardGroup.CardGroupType.DISCARD_PILE)
-        {
-            card.current_x = CardGroup.DISCARD_PILE_X;
-            card.current_y = CardGroup.DISCARD_PILE_Y;
-
-            if (showEffect)
-            {
-                GameEffects.TopLevelList.Add(new RenderCardEffect(card, duration, isRealtime));
-            }
+            GameEffects.TopLevelList.Add(new RenderCardEffect(card, duration, isRealtime));
         }
 
-        if (showEffect && card_X == null)
+        if (showEffect && targetPosition == null)
         {
+            targetPosition = new Vector2();
+
             if (card.current_x < Settings.WIDTH / 2f)
             {
-                card_X = DEFAULT_CARD_X_LEFT;
+                targetPosition.x = DEFAULT_CARD_X_LEFT;
             }
             else
             {
-                card_X = DEFAULT_CARD_X_RIGHT;
+                targetPosition.x = DEFAULT_CARD_X_RIGHT;
             }
 
-            if (card_Y == null)
-            {
-                card_Y = DEFAULT_CARD_Y;
-            }
+            targetPosition.y = DEFAULT_CARD_Y;
         }
 
         switch (targetPile.type)
@@ -191,7 +165,13 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
             if (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.EXHAUST_PILE)
             {
-                card.unfadeOut();
+                GameEffects.Queue.Add(new UnfadeOutEffect(card));
+                GameActions.Bottom.Callback(__ -> GameEffects.Queue.Add(new UnfadeOutEffect(card)));
+            }
+
+            if (targetPile != player.limbo && player.limbo.contains(card))
+            {
+                GameActions.Bottom.Add(new UnlimboAction(card, false));
             }
         }
     }
@@ -326,8 +306,8 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         card.untip();
         card.unhover();
         card.unfadeOut();
-        card.target_x = card_X;
-        card.target_y = card_Y;
+        card.target_x = targetPosition.x;
+        card.target_y = targetPosition.y;
         card.targetAngle = 0;
         UpdateCard();
     }
@@ -339,8 +319,8 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             player.releaseCard();
         }
 
-        card.target_x = card_X;
-        card.target_y = card_Y;
+        card.target_x = targetPosition.x;
+        card.target_y = targetPosition.y;
         card.targetAngle = 0;
         card.hoverTimer = 0.5f;
         card.update();

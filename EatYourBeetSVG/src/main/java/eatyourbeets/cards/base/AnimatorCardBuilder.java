@@ -19,11 +19,16 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public int magicNumberUpgrade;
     public int secondaryValueUpgrade;
 
-    public EYBCardBadge[] cardBadges;
     public Consumer<AnimatorCard> onUpgrade;
     public TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
+    public EYBAttackType attackType = EYBAttackType.Normal;
+    public EYBCardTarget attackTarget = EYBCardTarget.Normal;
+    public int attributeMultiplier = 1;
     public boolean isShapeshifter;
     public Synergy synergy;
+    public float intellectScaling;
+    public float agilityScaling;
+    public float forceScaling;
 
     public AnimatorCardBuilder(String id)
     {
@@ -34,11 +39,6 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
     public AnimatorCard_Dynamic Build()
     {
-        if (cardBadges == null)
-        {
-            SetBadges();
-        }
-
         if (cardStrings == null)
         {
             SetText("", "", "");
@@ -95,6 +95,15 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
+    public AnimatorCardBuilder SetScaling(float intellect, float agility, float force)
+    {
+        this.intellectScaling = intellect;
+        this.agilityScaling = agility;
+        this.forceScaling = force;
+
+        return this;
+    }
+
     public AnimatorCardBuilder SetTags(AbstractCard.CardTags... tags)
     {
         for (AbstractCard.CardTags t : tags)
@@ -108,9 +117,21 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public AnimatorCardBuilder SetMultiDamage(boolean multiDamage)
+    public AnimatorCardBuilder SetAttackType(EYBAttackType attackType, EYBCardTarget attackTarget)
     {
-        this.isMultiDamage = multiDamage;
+        this.attackType = attackType;
+        this.attackTarget = attackTarget;
+        this.isMultiDamage = (attackTarget == EYBCardTarget.ALL);
+
+        return this;
+    }
+
+    public AnimatorCardBuilder SetAttackType(EYBAttackType attackType, EYBCardTarget attackTarget, int multiplier)
+    {
+        this.attackType = attackType;
+        this.attackTarget = attackTarget;
+        this.attributeMultiplier = multiplier;
+        this.isMultiDamage = (attackTarget == EYBCardTarget.ALL);
 
         return this;
     }
@@ -118,13 +139,6 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     public AnimatorCardBuilder SetImage(String imagePath)
     {
         this.imagePath = imagePath;
-
-        return this;
-    }
-
-    public AnimatorCardBuilder SetBadges(EYBCardBadge... badges)
-    {
-        this.cardBadges = badges;
 
         return this;
     }

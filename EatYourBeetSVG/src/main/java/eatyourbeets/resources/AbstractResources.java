@@ -85,6 +85,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     protected void InitializeCards()     { }
     protected void InitializePowers()    { }
     protected void InitializeStrings()   { }
+    protected void InitializeTextures()  { }
     protected void InitializeRelics()    { }
     protected void InitializePotions()   { }
     protected void InitializeCharacter() { }
@@ -117,11 +118,6 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     protected void LoadKeywords()
     {
         super.LoadKeywords(GetLanguagePath() + "KeywordStrings.json");
-    }
-
-    protected void LoadDynamicKeywords()
-    {
-        super.LoadDynamicKeywords(GetLanguagePath() + "DynamicKeywordStrings.json");
     }
 
     protected void LoadCustomRelics()

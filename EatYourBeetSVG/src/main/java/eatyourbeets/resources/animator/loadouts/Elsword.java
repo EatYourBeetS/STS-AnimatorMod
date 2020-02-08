@@ -10,7 +10,7 @@ import eatyourbeets.cards.animator.series.Elsword.Raven;
 import eatyourbeets.cards.animator.ultrarare.Rose;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
 
@@ -28,23 +28,23 @@ public class Elsword extends AnimatorLoadout
         {
             startingDeck.add(Strike_Elsword.ID);
             startingDeck.add(Defend_Elsword.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Chung.ID);
-            startingDeck.add(Raven.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Chung.DATA.ID);
+            startingDeck.add(Raven.DATA.ID);
         }
 
         return startingDeck;
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
-        return Eve.ID;
+        return Eve.DATA.ID;
     }
 
     @Override

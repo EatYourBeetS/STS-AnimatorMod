@@ -3,19 +3,19 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.interfaces.markers.Hidden;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
-public class ElricAlphonseAlt extends AnimatorCard implements Hidden
+public class ElricAlphonseAlt extends AnimatorCard
 {
-    public static final String ID = Register(ElricAlphonseAlt.class, EYBCardBadge.Synergy);
+    public static final EYBCardData DATA = Register(ElricAlphonseAlt.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
 
     public ElricAlphonseAlt()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);

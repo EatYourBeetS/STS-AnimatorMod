@@ -4,17 +4,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Chung extends AnimatorCard
 {
-    public static final String ID = Register(Chung.class, EYBCardBadge.Exhaust);
+    public static final EYBCardData DATA = Register(Chung.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public Chung()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
+        super(DATA);
 
         Initialize(0, 11, 3);
         SetUpgrade(0, 2, -1);

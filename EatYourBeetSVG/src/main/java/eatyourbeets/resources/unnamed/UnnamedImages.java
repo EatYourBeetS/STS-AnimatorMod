@@ -28,14 +28,14 @@ public class UnnamedImages
 
     public static final String ORB_VFX_PNG = "images/characters/unnamed/energy/orbVfx.png";
     public static final String[] ORB_TEXTURES =
-            {
-                    "images/characters/unnamed/energy/layer1.png", "images/characters/unnamed/energy/layer2.png",
-                    "images/characters/unnamed/energy/layer3.png", "images/characters/unnamed/energy/layer4.png",
-                    "images/characters/unnamed/energy/layer5.png", "images/characters/unnamed/energy/layer6.png",
-                    "images/characters/unnamed/energy/layer1d.png", "images/characters/unnamed/energy/layer2d.png",
-                    "images/characters/unnamed/energy/layer3d.png", "images/characters/unnamed/energy/layer4d.png",
-                    "images/characters/unnamed/energy/layer5d.png"
-            };
+    {
+            "images/characters/unnamed/energy/layer1.png", "images/characters/unnamed/energy/layer2.png",
+            "images/characters/unnamed/energy/layer3.png", "images/characters/unnamed/energy/layer4.png",
+            "images/characters/unnamed/energy/layer5.png", "images/characters/unnamed/energy/layer6.png",
+            "images/characters/unnamed/energy/layer1d.png", "images/characters/unnamed/energy/layer2d.png",
+            "images/characters/unnamed/energy/layer3d.png", "images/characters/unnamed/energy/layer4d.png",
+            "images/characters/unnamed/energy/layer5d.png"
+    };
 
     public static final String CHARACTER_PNG = "images/characters/unnamed/idle/unnamed.png";
     public static final String SKELETON_ATLAS = "images/characters/unnamed/idle/unnamed.atlas";

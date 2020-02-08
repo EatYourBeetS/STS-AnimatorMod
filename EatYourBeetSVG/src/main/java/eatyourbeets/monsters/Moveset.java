@@ -92,7 +92,7 @@ public class Moveset
 
             if (mode == Mode.Random)
             {
-                Collections.shuffle(sequence, new Random((long) roll));
+                Collections.shuffle(sequence, new Random(roll));
             }
         }
 

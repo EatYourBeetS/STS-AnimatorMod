@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_GATE extends Defend
 {
-    public static final String ID = Register(Defend_GATE.class);
+    public static final String ID = Register(Defend_GATE.class).ID;
 
     public Defend_GATE()
     {
@@ -18,14 +18,6 @@ public class Defend_GATE extends Defend
 
         SetRetain(true);
         SetSynergy(Synergies.Gate);
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        super.triggerOnEndOfTurnForPlayingCard();
-
-        SetRetain(true);
     }
 
     @Override

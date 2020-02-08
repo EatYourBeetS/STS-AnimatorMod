@@ -2,12 +2,14 @@ package eatyourbeets.misc.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 
 public class NanamiEffect_Attack_Debuff extends NanamiEffect
 {
-    public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
+    @Override
+    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
         int block = GetBlock(nanami);
         if (block > 0)
@@ -18,29 +20,27 @@ public class NanamiEffect_Attack_Debuff extends NanamiEffect
         GameActions.Bottom.ApplyWeak(p, m, GetWeak(nanami));
     }
 
-    public static String UpdateDescription(Nanami nanami)
+    @Override
+    public String GetDescription(Nanami nanami)
     {
-        return Desc(BLOCK, GetBlock(nanami), true) + Desc(WEAK, GetWeak(nanami));
+        return ACTIONS.Apply(GetWeak(nanami), GR.Tooltips.Weak.title, true);
     }
 
-    private static int GetWeak(Nanami nanami)
+    @Override
+    public int GetBlock(Nanami nanami)
     {
-        return nanami.energyOnUse + 1;
-    }
-
-    private static int GetBlock(Nanami nanami)
-    {
-        int modifier = nanami.energyOnUse;
-
-        if (modifier > 0)
+        if (nanami.energyOnUse > 0)
         {
-            int diff = (nanami.block - nanami.baseBlock);
-
-            return ((nanami.energyOnUse + 1) * nanami.baseBlock) + diff;
+            return ModifyBlock ((nanami.energyOnUse + 1) * nanami.baseBlock, nanami);
         }
         else
         {
-            return -1;
+            return 0;
         }
+    }
+
+    private int GetWeak(Nanami nanami)
+    {
+        return nanami.energyOnUse + 1;
     }
 }

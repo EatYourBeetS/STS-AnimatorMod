@@ -2,25 +2,26 @@ package eatyourbeets.misc.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
+import eatyourbeets.utilities.GameActions;
 
 public class NanamiEffect_Attack extends NanamiEffect
 {
-    public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
+    @Override
+    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(GetBlock(nanami));
     }
 
-    public static String UpdateDescription(Nanami nanami)
+    @Override
+    public int GetBlock(Nanami nanami)
     {
-        return Desc(BLOCK, GetBlock(nanami));
+        return ModifyBlock((nanami.energyOnUse + 1) * nanami.baseBlock, nanami);
     }
 
-    private static int GetBlock(Nanami nanami)
+    @Override
+    public String GetDescription(Nanami nanami)
     {
-        int diff = (nanami.block - nanami.baseBlock);
-
-        return ((nanami.energyOnUse + 1) * nanami.baseBlock) + diff;
+        return "";
     }
 }

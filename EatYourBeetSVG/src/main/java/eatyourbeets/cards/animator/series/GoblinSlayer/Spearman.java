@@ -5,22 +5,22 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GameActions;
 
 public class Spearman extends AnimatorCard
 {
-    public static final String ID = Register(Spearman.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Spearman.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing);
 
     public Spearman()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(9, 0, 1);
         SetUpgrade(4, 0);
+        SetScaling(0, 1, 1);
 
         SetPiercing(true);
         SetSynergy(Synergies.GoblinSlayer);
@@ -29,17 +29,13 @@ public class Spearman extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL)
-        .SetPiercing(true, true)
-        .AddCallback(enemy ->
-        {
-            if (GameUtilities.TriggerOnKill(enemy, true) && EffectHistory.TryActivateLimited(cardID))
-            {
-                GameActions.Bottom.Motivate(2);
-            }
-        });
-
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Bottom.GainAgility(magicNumber);
         GameActions.Bottom.MakeCardInHand(new Wound());
+
+        if (HasSynergy())
+        {
+            GameActions.Bottom.GainForce(1);
+        }
     }
 }

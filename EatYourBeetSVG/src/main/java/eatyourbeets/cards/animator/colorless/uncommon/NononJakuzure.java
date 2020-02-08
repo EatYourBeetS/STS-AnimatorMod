@@ -5,31 +5,32 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnSynergySubscriber;
+import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 
 public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 {
-    public static final String ID = Register(NononJakuzure.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(NononJakuzure.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public NononJakuzure()
     {
-        super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
-        Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.KillLaKill);
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         if (AbstractDungeon.player.hand.contains(this))
         {
@@ -46,7 +47,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
         }
         else
         {
-            baseMagicNumber = (magicNumber += 1);
+            baseSecondaryValue = (secondaryValue += 1);
 
             flash();
         }
@@ -55,12 +56,12 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Cycle(name, secondaryValue)
+        GameActions.Bottom.Cycle(name, magicNumber)
         .AddCallback(__ ->
         { //
             GameActions.Top.Motivate()
             .MotivateZeroCost(false)
-            .AddCallback(magicNumber, this::OnMotivate);
+            .AddCallback(secondaryValue, this::OnMotivate);
         });
     }
 

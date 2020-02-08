@@ -5,12 +5,12 @@ import eatyourbeets.cards.animator.basic.Defend_TenSura;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_TenSura;
 import eatyourbeets.cards.animator.series.TenseiSlime.Benimaru;
-import eatyourbeets.cards.animator.series.TenseiSlime.Shizu;
+import eatyourbeets.cards.animator.series.TenseiSlime.Rimuru;
 import eatyourbeets.cards.animator.series.TenseiSlime.Shuna;
 import eatyourbeets.cards.animator.ultrarare.Veldora;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
 
@@ -28,23 +28,23 @@ public class TenSura extends AnimatorLoadout
         {
             startingDeck.add(Strike_TenSura.ID);
             startingDeck.add(Defend_TenSura.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Benimaru.ID);
-            startingDeck.add(Shuna.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Benimaru.DATA.ID);
+            startingDeck.add(Shuna.DATA.ID);
         }
 
         return startingDeck;
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
-        return Shizu.ID;
+        return Rimuru.DATA.ID;
     }
 
     @Override

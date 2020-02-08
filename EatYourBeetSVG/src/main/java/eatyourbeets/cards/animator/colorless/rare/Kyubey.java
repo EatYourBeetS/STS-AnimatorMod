@@ -7,23 +7,24 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.curse.Curse_Greed;
 import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 import java.util.ArrayList;
 
 public class Kyubey extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(Kyubey.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Kyubey.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     private static ArrayList<AbstractCard> curses;
 
     public Kyubey()
     {
-        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2);
         SetCostUpgrade(-1);

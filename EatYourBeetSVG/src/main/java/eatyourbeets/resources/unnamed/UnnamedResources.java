@@ -40,6 +40,12 @@ public class UnnamedResources extends AbstractResources
     }
 
     @Override
+    protected void PostInitialize()
+    {
+        throw new RuntimeException("Not Implemented");
+    }
+
+    @Override
     protected void InitializeColor()
     {
         Color color = CardHelper.getColor(60, 77, 106);
@@ -85,18 +91,5 @@ public class UnnamedResources extends AbstractResources
     protected void InitializeKeywords()
     {
         LoadKeywords(languagePath + "KeywordStrings.json");
-    }
-
-    @Override
-    protected void PostInitialize()
-    {
-        super.PostInitialize();
-
-        //TODO: Remove this
-//        for (AbstractCard card : CardLibrary.getAllCards())
-//        {
-//            UnlockTracker.markCardAsSeen(card.cardID);
-//        }
-        //
     }
 }

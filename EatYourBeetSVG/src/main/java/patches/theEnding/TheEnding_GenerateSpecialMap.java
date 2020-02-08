@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import eatyourbeets.events.TheMaskedTraveler2;
+import eatyourbeets.events.animator.TheMaskedTraveler2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.rooms.AnimatorCustomEventRoom;
 
@@ -16,14 +16,14 @@ public class TheEnding_GenerateSpecialMap
     @SpirePostfixPatch
     public static void Postfix(TheEnding __instance)
     {
-        if (GR.Animator.Metrics.SpecialTrophies.Trophy1 > 0 || AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass)
+        if (GR.Animator.Data.SpecialTrophies.Trophy1 > 0 || AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass)
         {
             MapRoomNode rest = __instance.getMap().get(0).get(3);
             MapRoomNode shop = __instance.getMap().get(1).get(3);
             MapRoomNode node = __instance.getMap().get(1).get(5);
 
             node.room = new AnimatorCustomEventRoom(TheMaskedTraveler2::new);
-            node.room.setMapImg(GR.Common.Textures.UnnamedReignEntrance, GR.Common.Textures.UnnamedReignEntranceOutline);
+            node.room.setMapImg(GR.Common.Images.UnnamedReignEntrance.Texture(), GR.Common.Images.UnnamedReignEntranceOutline.Texture());
 
             connectNode(rest, node);
             connectNode(node, shop);

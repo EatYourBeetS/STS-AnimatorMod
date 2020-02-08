@@ -4,19 +4,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.PridePower;
+import eatyourbeets.utilities.GameActions;
 
 public class Pride extends AnimatorCard
 {
-    public static final String ID = Register(Pride.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Pride.class).SetSkill(2, CardRarity.UNCOMMON);
 
     public Pride()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(0,0, 1, 3);
         SetUpgrade(0, 0, 1);

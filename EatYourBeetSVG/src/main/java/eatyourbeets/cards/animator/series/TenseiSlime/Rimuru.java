@@ -6,22 +6,24 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.RimuruAction;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.interfaces.OnAfterCardPlayedSubscriber;
-import eatyourbeets.interfaces.OnBattleStartSubscriber;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnAfterCardPlayedSubscriber
 {
-    public static final String ID = Register(Rimuru.class);
+    public static final EYBCardData DATA = Register(Rimuru.class).SetSkill(-2, CardRarity.RARE, EYBCardTarget.ALL);
 
     public AbstractCard copy;
 
     public Rimuru()
     {
-        super(ID, -2, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
+        super(DATA);
 
         Initialize(0, 0);
 
@@ -62,7 +64,7 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
     @Override
     public void OnAfterCardPlayed(AbstractCard card)
     {
-        if (card == copy || card instanceof Rimuru || card.purgeOnUse)
+        if (card == copy || card instanceof Rimuru || card.purgeOnUse || card.isInAutoplay)
         {
             return;
         }

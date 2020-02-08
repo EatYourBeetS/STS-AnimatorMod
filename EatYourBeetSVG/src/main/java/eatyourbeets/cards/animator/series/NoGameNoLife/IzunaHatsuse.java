@@ -1,45 +1,71 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class IzunaHatsuse extends AnimatorCard
 {
-    public static final String ID = Register(IzunaHatsuse.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(IzunaHatsuse.class).SetSkill(0, CardRarity.UNCOMMON);
+    static
+    {
+        DATA.InitializePreview(new IzunaHatsuse(true), true);
+    }
 
     private boolean transformed;
+    private IzunaHatsuse(boolean transformed)
+    {
+        this();
+
+        SetTransformed(transformed);
+    }
 
     public IzunaHatsuse()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(4, 2, 4);
         SetUpgrade(2, 2, 2);
 
         SetTransformed(false);
         SetSynergy(Synergies.NoGameNoLife);
-
-        if (InitializingPreview())
-        {
-            // InitializingPreview will only be true once
-            IzunaHatsuse copy = new IzunaHatsuse();
-            copy.SetTransformed(true);
-            cardData.InitializePreview(copy, true);
-        }
     }
 
     @Override
-    public void applyPowers()
+    public AbstractAttribute GetBlockInfo()
     {
-        super.applyPowers();
+        if (transformed)
+        {
+            return null;
+        }
+
+        return super.GetBlockInfo();
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        if (!transformed)
+        {
+            return null;
+        }
+
+        return super.GetDamageInfo().AddMultiplier(2);
+    }
+
+    @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
 
         SetTransformed(GameUtilities.GetHealthPercentage(player) < 0.25f);
     }
@@ -70,6 +96,24 @@ public class IzunaHatsuse extends AnimatorCard
         }
     }
 
+    @Override
+    public void renderUpgradePreview(SpriteBatch sb)
+    {
+        if (!transformed)
+        {
+            super.renderUpgradePreview(sb);
+        }
+    }
+
+    @Override
+    public void renderCardPreview(SpriteBatch sb)
+    {
+        if (!transformed)
+        {
+            super.renderCardPreview(sb);
+        }
+    }
+
     private void SetTransformed(boolean value)
     {
         if (transformed != value)
@@ -78,14 +122,17 @@ public class IzunaHatsuse extends AnimatorCard
 
             if (transformed)
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "Alt"));
+                LoadImage("Alt");
+                SetAttackType(EYBAttackType.Normal);
+
                 this.type = CardType.ATTACK;
 
-                cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
+                cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
             }
             else
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID));
+                LoadImage(null);
+
                 this.type = CardType.SKILL;
 
                 cardText.OverrideDescription(null, true);

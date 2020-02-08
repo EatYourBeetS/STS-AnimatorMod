@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Strike_NoGameNoLife extends Strike
 {
-    public static final String ID = Register(Strike_NoGameNoLife.class);
+    public static final String ID = Register(Strike_NoGameNoLife.class).ID;
 
     public Strike_NoGameNoLife()
     {

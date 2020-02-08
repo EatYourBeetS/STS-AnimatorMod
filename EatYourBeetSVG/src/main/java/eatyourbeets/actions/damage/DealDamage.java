@@ -82,8 +82,6 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
             return;
         }
 
-        this.target.damageFlash = true;
-        this.target.damageFlashFrames = 4;
         GameEffects.List.Add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, this.muteSfx));
 
         if (onDamageEffect != null)

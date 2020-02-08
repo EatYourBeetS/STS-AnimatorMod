@@ -3,31 +3,31 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ElricAlphonseAlt;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
-    public static final String ID = Register(ElricAlphonse.class, EYBCardBadge.Exhaust);
+    public static final EYBCardData DATA = Register(ElricAlphonse.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    static
+    {
+        DATA.InitializePreview(new ElricAlphonseAlt(), true);
+    }
 
     public ElricAlphonse()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
         SetEthereal(true);
         SetSynergy(Synergies.FullmetalAlchemist);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new ElricAlphonseAlt(), true);
-        }
     }
 
 //    @Override

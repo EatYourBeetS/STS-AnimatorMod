@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Strike_OnePunchMan extends Strike
 {
-    public static final String ID = Register(Strike_OnePunchMan.class);
+    public static final String ID = Register(Strike_OnePunchMan.class).ID;
 
     public Strike_OnePunchMan()
     {
@@ -30,7 +30,7 @@ public class Strike_OnePunchMan extends Strike
         {
             if (c.tags.contains(CardTags.STRIKE))
             {
-                GameActions.Top.MoveCard(c, p.hand, p.drawPile);
+                GameActions.Top.MoveCard(c, p.drawPile, p.hand);
                 return;
             }
         }

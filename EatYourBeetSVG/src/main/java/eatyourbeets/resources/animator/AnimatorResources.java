@@ -1,8 +1,11 @@
 package eatyourbeets.resources.animator;
 
 import basemod.BaseMod;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -15,9 +18,12 @@ import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
-import eatyourbeets.screens.AnimatorCustomScreen;
+import eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 public class AnimatorResources extends AbstractResources
 {
@@ -26,11 +32,10 @@ public class AnimatorResources extends AbstractResources
     public final static String ID = "animator";
     public final AbstractCard.CardColor CardColor = Enums.Cards.THE_ANIMATOR;
     public final AbstractPlayer.PlayerClass PlayerClass = Enums.Characters.THE_ANIMATOR;
+    public final AnimatorDungeonData Dungeon = AnimatorDungeonData.Register(CreateID("Data"));
+    public final AnimatorPlayerData Data = new AnimatorPlayerData();
+    public final AnimatorStrings Strings = new AnimatorStrings();
     public final AnimatorImages Images = new AnimatorImages();
-    public final AnimatorStrings Text = new AnimatorStrings();
-    public final AnimatorMetrics Metrics = new AnimatorMetrics();
-    public final AnimatorCustomScreen Screen = new AnimatorCustomScreen();
-    public AnimatorImages.Textures Textures;
 
     public AnimatorResources()
     {
@@ -81,7 +86,9 @@ public class AnimatorResources extends AbstractResources
     {
         LoadCustomStrings(OrbStrings.class);
         LoadCustomStrings(CharacterStrings.class);
-        LoadCustomStrings(CardStrings.class);
+
+        BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(Gdx.files.internal(GetLanguagePath() + "CardStrings.json").readString(StandardCharsets.UTF_8.name())));
+
         LoadCustomStrings(RelicStrings.class);
         LoadCustomStrings(PowerStrings.class);
         LoadCustomStrings(UIStrings.class);
@@ -110,9 +117,7 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeCards()
     {
-        Textures = Images.InitializeTextures();
-        Text.LoadStrings();
-
+        Strings.Initialize();
         LoadCustomCards();
     }
 
@@ -126,7 +131,6 @@ public class AnimatorResources extends AbstractResources
     protected void InitializeKeywords()
     {
         LoadKeywords();
-        LoadDynamicKeywords();
     }
 
     @Override
@@ -158,7 +162,8 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void PostInitialize()
     {
-        Metrics.Initialize();
+        Data.Initialize();
+        AnimatorLoadoutsContainer.PreloadResources();
     }
 
     @Override
@@ -170,5 +175,18 @@ public class AnimatorResources extends AbstractResources
         }
 
         return super.GetLanguagePath(language);
+    }
+
+    public String ProcessJson(String originalString)
+    {
+        String shortcutsJson = Gdx.files.internal(GetLanguagePath() + "CardStringsShortcuts.json").readString(String.valueOf(StandardCharsets.UTF_8));
+
+        Map<String, String> items = new Gson().fromJson(shortcutsJson, new TypeToken<Map<String, String>>(){}.getType());
+
+        int size = items.size();
+        String[] shortcuts = items.keySet().toArray(new String[size]);
+        String[] replacement = items.values().toArray(new String[size]);
+
+        return StringUtils.replaceEach(originalString, shortcuts, replacement);
     }
 }

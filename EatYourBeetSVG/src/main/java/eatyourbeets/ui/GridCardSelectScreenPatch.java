@@ -11,15 +11,15 @@ import java.util.ArrayList;
 
 public class GridCardSelectScreenPatch
 {
-    private static final FieldInfo<Float> Field_drawStartX = JavaUtilities.GetPrivateField("drawStartX", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> Field_padX = JavaUtilities.GetPrivateField("padX", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> Field_padY = JavaUtilities.GetPrivateField("padY", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> Field_drawStartY = JavaUtilities.GetPrivateField("drawStartY", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> Field_currentDiffY = JavaUtilities.GetPrivateField("currentDiffY", GridCardSelectScreen.class);
-    private static final FieldInfo<AbstractCard> Field_hoveredCard = JavaUtilities.GetPrivateField("hoveredCard", GridCardSelectScreen.class);
-    private static final FieldInfo<CardGroup> Field_targetGroup = JavaUtilities.GetPrivateField("targetGroup", GridCardSelectScreen.class);
-    private static final FieldInfo<Integer> Field_prevDeckSize = JavaUtilities.GetPrivateField("prevDeckSize", GridCardSelectScreen.class);
-    private static final FieldInfo<Float> Field_scrollUpperBound = JavaUtilities.GetPrivateField("scrollUpperBound", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _drawStartX = JavaUtilities.GetField("drawStartX", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _padX = JavaUtilities.GetField("padX", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _padY = JavaUtilities.GetField("padY", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _drawStartY = JavaUtilities.GetField("drawStartY", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _currentDiffY = JavaUtilities.GetField("currentDiffY", GridCardSelectScreen.class);
+    private static final FieldInfo<AbstractCard> _hoveredCard = JavaUtilities.GetField("hoveredCard", GridCardSelectScreen.class);
+    private static final FieldInfo<CardGroup> _targetGroup = JavaUtilities.GetField("targetGroup", GridCardSelectScreen.class);
+    private static final FieldInfo<Integer> _prevDeckSize = JavaUtilities.GetField("prevDeckSize", GridCardSelectScreen.class);
+    private static final FieldInfo<Float> _scrollUpperBound = JavaUtilities.GetField("scrollUpperBound", GridCardSelectScreen.class);
 
     private static final CardGroup mergedGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static final ArrayList<CardGroup> cardGroups = new ArrayList<>();
@@ -57,7 +57,7 @@ public class GridCardSelectScreenPatch
         {
             if (cardGroups.size() == 1)
             {
-                Field_targetGroup.Set(selectScreen, cardGroups.get(0));
+                _targetGroup.Set(selectScreen, cardGroups.get(0));
                 Clear();
             }
 
@@ -74,13 +74,13 @@ public class GridCardSelectScreenPatch
 
         float lineNum = 0;
 
-        float drawStartX = Field_drawStartX.Get(selectScreen);
-        float drawStartY = Field_drawStartY.Get(selectScreen);
-        float padX = Field_padX.Get(selectScreen);
-        float padY = Field_padY.Get(selectScreen);
-        float currentDiffY = Field_currentDiffY.Get(selectScreen);
+        float drawStartX = _drawStartX.Get(selectScreen);
+        float drawStartY = _drawStartY.Get(selectScreen);
+        float padX = _padX.Get(selectScreen);
+        float padY = _padY.Get(selectScreen);
+        float currentDiffY = _currentDiffY.Get(selectScreen);
 
-        Field_hoveredCard.Set(selectScreen, null);
+        _hoveredCard.Set(selectScreen, null);
 
         for (CardGroup cardGroup : cardGroups)
         {
@@ -104,7 +104,7 @@ public class GridCardSelectScreenPatch
 
                 if (card.hb.hovered)
                 {
-                    Field_hoveredCard.Set(selectScreen, card);
+                    _hoveredCard.Set(selectScreen, card);
                 }
             }
 
@@ -121,7 +121,7 @@ public class GridCardSelectScreenPatch
             return false;
         }
 
-        CardGroup targetCardGroup = Field_targetGroup.Get(instance);
+        CardGroup targetCardGroup = _targetGroup.Get(instance);
 
         float scrollTmp = (mergedGroup.size() + 2.6f * cardGroups.size()) / 5f - 2;
         if (targetCardGroup.size() % 5 != 0)
@@ -129,8 +129,8 @@ public class GridCardSelectScreenPatch
             scrollTmp += 1;
         }
 
-        Field_scrollUpperBound.Set(instance, Settings.DEFAULT_SCROLL_LIMIT + scrollTmp * Field_padY.Get(instance));
-        Field_prevDeckSize.Set(instance, targetCardGroup.size());
+        _scrollUpperBound.Set(instance, Settings.DEFAULT_SCROLL_LIMIT + scrollTmp * _padY.Get(instance));
+        _prevDeckSize.Set(instance, targetCardGroup.size());
 
         return true;
     }

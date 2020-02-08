@@ -6,20 +6,21 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class PandorasActor extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(PandorasActor.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(PandorasActor.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public PandorasActor()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(DATA);
 
-        Initialize(0, 5);
-        SetUpgrade(0, 3);
+        Initialize(0, 4);
+        SetUpgrade(0, 2);
 
         SetSynergy(Synergies.Overlord, true);
     }

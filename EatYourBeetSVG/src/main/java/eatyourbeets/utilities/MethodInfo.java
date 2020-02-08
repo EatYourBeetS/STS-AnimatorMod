@@ -7,11 +7,11 @@ public class MethodInfo
 {
     private final Method method;
 
-    public void Invoke(Object instance, Object... args) throws RuntimeException
+    public Object Invoke(Object instance, Object... args) throws RuntimeException
     {
         try
         {
-            method.invoke(instance, args);
+            return method.invoke(instance, args);
         }
         catch (InvocationTargetException | IllegalAccessException e)
         {

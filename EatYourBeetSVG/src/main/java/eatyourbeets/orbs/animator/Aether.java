@@ -34,7 +34,7 @@ public class Aether extends AnimatorOrb
         this.hFlip1 = MathUtils.randomBoolean();
 
         this.baseEvokeAmount = this.evokeAmount = 3;
-        this.basePassiveAmount = this.passiveAmount = 3;
+        this.basePassiveAmount = this.passiveAmount = 4;
 
         this.updateDescription();
         this.channelAnimTimer = 0.5F;

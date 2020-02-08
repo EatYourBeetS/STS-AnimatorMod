@@ -2,20 +2,20 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.animator.OrbCore_FirePower;
+import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Fire extends OrbCore
 {
-    public static final String ID = Register(OrbCore_Fire.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(OrbCore_Fire.class).SetPower(0, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public static final int VALUE = 3;
 
     public OrbCore_Fire()
     {
-        super(ID, 0);
+        super(DATA);
 
         Initialize(0, 0, VALUE, 2);
 

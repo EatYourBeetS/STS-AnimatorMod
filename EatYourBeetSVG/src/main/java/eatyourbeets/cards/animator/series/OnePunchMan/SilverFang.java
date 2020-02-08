@@ -3,43 +3,46 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 public class SilverFang extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(SilverFang.class, EYBCardBadge.Synergy);
+    public static final EYBCardData DATA = Register(SilverFang.class).SetAttack(2, CardRarity.COMMON);
 
     public SilverFang()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
-        Initialize(12, 0, 4);
-        SetUpgrade(4, 0, 0);
+        Initialize(8, 3, 1);
+        SetUpgrade(3, 1, 0);
+        SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + MartialArtist.GetScaling());
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-
         AgilityPower.PreserveOnce();
 
         if (HasSynergy())
         {
-            GameActions.Bottom.GainBlock(magicNumber);
+            GameActions.Bottom.SelectFromHand(name, 1, true)
+            .SetFilter(c -> c instanceof EYBCard && c.type == CardType.ATTACK)
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    EYBCard card = (EYBCard)cards.get(0);
+                    card.agilityScaling += 1;
+                    card.flash();
+                }
+            });
         }
     }
 }

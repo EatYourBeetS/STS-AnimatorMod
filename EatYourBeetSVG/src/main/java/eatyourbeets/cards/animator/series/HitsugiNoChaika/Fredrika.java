@@ -1,78 +1,82 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.special.RefreshHandLayout;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Fredrika extends AnimatorCard
 {
-    public static final String ID = Register(Fredrika.class, EYBCardBadge.Discard);
+    private enum Form { Default, Cat, Dominica, Dragoon }
+    private Form currentForm = Form.Default;
 
-    private static final int FORM_DEFAULT = 0;
-    private static final int FORM_CAT = 1;
-    private static final int FORM_DOMINICA = 2;
-    private static final int FORM_DRAGOON = 3;
+    public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    static
+    {
+        DATA.InitializePreview(new Fredrika(Form.Dragoon), true);
+    }
 
-    private int currentForm = 0;
+    private Fredrika(Form form)
+    {
+        this();
+
+        ChangeForm(form);
+    }
 
     public Fredrika()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(9, 2, 2);
         SetUpgrade(2, 2, 0);
 
-        if (InitializingPreview())
-        {
-            Fredrika c1 = new Fredrika();
-            Fredrika c2 = new Fredrika();
-
-            c1.ChangeForm(FORM_DRAGOON);
-            c2.ChangeForm(FORM_DRAGOON);
-            c2.upgrade();
-
-            cardData.InitializePreview(c1, c2);
-        }
-
+        SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.Chaika, true);
     }
 
-    @SpireOverride
-    protected void applyPowersToBlock()
+    @Override
+    public AbstractAttribute GetDamageInfo()
     {
-        float tmp = (float) this.baseBlock;
-
-        if (currentForm == FORM_DEFAULT)
+        if (currentForm == Form.Dominica)
         {
-            tmp += GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
+            return super.GetDamageInfo();
+        }
+        else if (currentForm == Form.Dragoon)
+        {
+            return super.GetDamageInfo().AddMultiplier(2);
         }
 
-        for (AbstractPower p : AbstractDungeon.player.powers)
+        return null;
+    }
+
+    @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        if (currentForm == Form.Default || currentForm == Form.Cat)
         {
-            tmp = p.modifyBlock(tmp);
+            return super.GetBlockInfo();
         }
 
-        if (tmp < 0.0F)
+        return null;
+    }
+
+    @Override
+    protected float GetInitialBlock()
+    {
+        if (currentForm == Form.Default)
         {
-            tmp = 0.0F;
+            return super.GetInitialBlock() + GameUtilities.GetCurrentEnemies(true).size() * magicNumber;
         }
 
-        this.block = MathUtils.floor(tmp);
-        this.isBlockModified = (this.baseBlock != this.block);
+        return super.GetInitialBlock();
     }
 
     @Override
@@ -80,7 +84,7 @@ public class Fredrika extends AnimatorCard
     {
         super.triggerOnEndOfTurnForPlayingCard();
 
-        this.ChangeForm(FORM_DEFAULT);
+        this.ChangeForm(Form.Default);
     }
 
     @Override
@@ -88,7 +92,7 @@ public class Fredrika extends AnimatorCard
     {
         super.onMoveToDiscard();
 
-        this.ChangeForm(FORM_DEFAULT);
+        this.ChangeForm(Form.Default);
     }
 
     @Override
@@ -96,14 +100,14 @@ public class Fredrika extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (this.currentForm == FORM_DEFAULT)
+        if (this.currentForm == Form.Default)
         {
             CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
             for (int i = 1; i <= 3; i++)
             {
                 Fredrika other = (Fredrika) makeStatEquivalentCopy();
-                other.ChangeForm(i);
+                other.ChangeForm(Form.values()[i]);
                 cardGroup.addToTop(other);
             }
 
@@ -125,21 +129,21 @@ public class Fredrika extends AnimatorCard
     {
         switch (currentForm)
         {
-            case FORM_DEFAULT:
+            case Default:
             {
                 GameActions.Bottom.GainBlock(block);
 
                 break;
             }
 
-            case FORM_CAT:
+            case Cat:
             {
                 GameActions.Bottom.GainBlock(block);
 
                 break;
             }
 
-            case FORM_DOMINICA:
+            case Dominica:
             {
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
                 GameActions.Bottom.ApplyVulnerable(p, m, 1);
@@ -148,7 +152,7 @@ public class Fredrika extends AnimatorCard
                 break;
             }
 
-            case FORM_DRAGOON:
+            case Dragoon:
             {
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
                 GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
@@ -169,7 +173,7 @@ public class Fredrika extends AnimatorCard
         return other;
     }
 
-    private void ChangeForm(int formID)
+    private void ChangeForm(Form formID)
     {
         if (this.currentForm == formID)
         {
@@ -180,9 +184,10 @@ public class Fredrika extends AnimatorCard
 
         switch (formID)
         {
-            case FORM_DEFAULT:
+            case Default:
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID));
+                LoadImage(null);
+
                 this.cardText.OverrideDescription(null, true);
                 this.type = CardType.SKILL;
                 this.target = CardTarget.SELF;
@@ -191,10 +196,11 @@ public class Fredrika extends AnimatorCard
                 break;
             }
 
-            case FORM_CAT:
+            case Cat:
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Cat"));
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[0], true);
+                LoadImage("_Cat");
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 this.type = CardType.SKILL;
                 this.target = CardTarget.NONE;
                 this.cost = 0;
@@ -202,10 +208,11 @@ public class Fredrika extends AnimatorCard
                 break;
             }
 
-            case FORM_DRAGOON:
+            case Dragoon:
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Dragoon"));
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[1], true);
+                LoadImage("_Dragoon");
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
@@ -213,10 +220,11 @@ public class Fredrika extends AnimatorCard
                 break;
             }
 
-            case FORM_DOMINICA:
+            case Dominica:
             {
-                this.loadCardImage(AnimatorResources.GetCardImage(ID + "_Dominica"));
-                this.cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[2], true);
+                LoadImage("_Dominica");
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;

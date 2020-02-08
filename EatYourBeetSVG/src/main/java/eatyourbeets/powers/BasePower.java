@@ -3,14 +3,17 @@ package eatyourbeets.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,14 +33,13 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
         this.owner = owner;
         this.ID = id;
 
-        String imagePath = AnimatorResources.GetPowerImage(ID);
+        String imagePath = GR.GetPowerImage(ID);
         if (Gdx.files.internal(imagePath).exists())
         {
-            this.img = new Texture(imagePath);
+            this.img = GR.GetTexture(imagePath);
         }
 
-        powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
-
+        this.powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
         this.name = powerStrings.NAME;
     }
 
@@ -119,5 +121,53 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
         {
             super.renderIcons(sb, x, y, disabledColor);
         }
+    }
+
+    public void renderAmount(SpriteBatch sb, float x, float y, Color c)
+    {
+        ColoredString amount = GetPrimaryAmount(c);
+        if (amount != null)
+        {
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, amount.text, x, y, fontScale, amount.color);
+        }
+
+        ColoredString amount2 = GetSecondaryAmount(c);
+        if (amount2 != null)
+        {
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, amount2.text, x, y + 15.0F * Settings.scale, 1, amount2.color);
+        }
+    }
+
+    protected String FormatDescription(int index, Object... args)
+    {
+        return JavaUtilities.Format(powerStrings.DESCRIPTIONS[index], args);
+    }
+
+    protected ColoredString GetPrimaryAmount(Color c)
+    {
+        if (this.amount > 0)
+        {
+            if (this.isTurnBased)
+            {
+                return new ColoredString(amount, Color.WHITE, c.a);
+            }
+            else
+            {
+                return new ColoredString(amount, Color.GREEN, c.a);
+            }
+        }
+        else if (this.amount < 0 && this.canGoNegative)
+        {
+            return new ColoredString(amount, Color.RED, c.a);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    protected ColoredString GetSecondaryAmount(Color c)
+    {
+        return null;
     }
 }

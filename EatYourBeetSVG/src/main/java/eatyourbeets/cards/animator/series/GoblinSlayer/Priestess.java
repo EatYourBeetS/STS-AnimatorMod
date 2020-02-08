@@ -3,22 +3,30 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Priestess extends AnimatorCard
 {
-    public static final String ID = Register(Priestess.class, EYBCardBadge.Synergy);
+    public static final EYBCardData DATA = Register(Priestess.class).SetSkill(1, CardRarity.COMMON);
 
     public Priestess()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(0, 0, 4, 1);
 
         SetSynergy(Synergies.GoblinSlayer);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
@@ -28,9 +36,9 @@ public class Priestess extends AnimatorCard
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         if (upgraded)
         {

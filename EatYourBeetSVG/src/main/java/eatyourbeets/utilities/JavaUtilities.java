@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.StringJoiner;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
@@ -20,6 +22,7 @@ public class JavaUtilities
 {
     public static final Logger Logger = LogManager.getLogger(JavaUtilities.class.getName());
 
+    private static final MessageFormat formatter = new MessageFormat("");
     private static final ArrayList<String> classNames = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
@@ -44,7 +47,7 @@ public class JavaUtilities
         return null;
     }
 
-    public static MethodInfo GetPrivateMethod(String methodName, Class<?> type, Class<?>... parameterTypes) throws RuntimeException
+    public static MethodInfo GetMethod(String methodName, Class<?> type, Class<?>... parameterTypes) throws RuntimeException
     {
         try
         {
@@ -60,7 +63,7 @@ public class JavaUtilities
         }
     }
 
-    public static <T> FieldInfo<T> GetPrivateField(String fieldName, Class<?> type) throws RuntimeException
+    public static <T> FieldInfo<T> GetField(String fieldName, Class<?> type) throws RuntimeException
     {
         try
         {
@@ -92,14 +95,8 @@ public class JavaUtilities
 
     public static String Format(String format, Object... args)
     {
-        int index = 0;
-        for (Object val : args)
-        {
-            format = format.replace("{" + index + "}", val.toString());
-            index += 1;
-        }
-
-        return format;
+        formatter.applyPattern(format);
+        return formatter.format(args);
     }
 
     public static ArrayList<String> GetClassNamesFromJarFile(String prefix)
@@ -154,6 +151,21 @@ public class JavaUtilities
         return GetLogger(instance.getClass());
     }
 
+    public static void Log(Class source, Object message)
+    {
+        GetLogger(source).info(message);
+    }
+
+    public static void Log(Object source, Object message)
+    {
+        GetLogger(source).info(message);
+    }
+
+    public static void Log(Object source, String format, Object... values)
+    {
+        GetLogger(source).info(Format(format, values));
+    }
+
     public static int ParseInt(String value, int defaultValue)
     {
         try
@@ -164,5 +176,16 @@ public class JavaUtilities
         {
             return defaultValue;
         }
+    }
+
+    public static <T> String JoinStrings(String delimiter, T[] values)
+    {
+        StringJoiner sj = new StringJoiner(delimiter);
+        for (T value : values)
+        {
+            sj.add(value.toString());
+        }
+
+        return sj.toString();
     }
 }

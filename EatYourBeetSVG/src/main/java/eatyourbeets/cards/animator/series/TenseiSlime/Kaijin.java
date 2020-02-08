@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
+import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
 import eatyourbeets.powers.animator.KaijinPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -18,11 +18,11 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
 {
-    public static final String ID = Register(Kaijin.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Kaijin.class).SetPower(1, CardRarity.UNCOMMON);
 
     public Kaijin()
     {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 1);
         SetCostUpgrade(-1);
@@ -56,8 +56,11 @@ public class Kaijin extends AnimatorCard implements OnAddedToDeckSubscriber
                 card.upgrade();
                 player.bottledCardUpgradeCheck(card);
 
-                GameEffects.TopLevelList.ShowCardBriefly(card.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F);
-                GameEffects.TopLevelList.Add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+                final float x = Settings.WIDTH * 0.5f;
+                final float y = Settings.HEIGHT * 0.5f;
+
+                GameEffects.TopLevelList.ShowCardBriefly(card.makeStatEquivalentCopy(), x + AbstractCard.IMG_WIDTH * 0.5f + 20.0f * Settings.scale, y);
+                GameEffects.TopLevelList.Add(new UpgradeShineEffect(x, y));
             }
         });
     }

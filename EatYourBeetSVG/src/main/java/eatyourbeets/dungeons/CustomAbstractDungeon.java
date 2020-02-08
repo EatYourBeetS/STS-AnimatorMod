@@ -84,7 +84,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
         }
         else
         {
-            animatorCards = Synergies.GetCardsWithSynergy(synergy);
+            animatorCards = Synergies.GetNonColorlessCard(synergy);
         }
 
         ArrayList<AnimatorCard> common = new ArrayList<>();
@@ -227,7 +227,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
     public static float GetUltraRareChance()
     {
         float bonus = 1;
-        int level = GR.Animator.Metrics.SpecialTrophies.Trophy1;
+        int level = GR.Animator.Data.SpecialTrophies.Trophy1;
         if (level > 0)
         {
             bonus += level / (level + 100f);
@@ -320,7 +320,7 @@ public class CustomAbstractDungeon extends AbstractDungeon
         {
             card = new SeriousSaitama();
         }
-//        else if (synergy == Synergies.ANY)
+//        else if (Synergy == Synergies.ANY)
 //        {
 //            card = new InfinitePower();
 //        }

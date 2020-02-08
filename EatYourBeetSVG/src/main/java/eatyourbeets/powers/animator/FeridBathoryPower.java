@@ -43,7 +43,7 @@ public class FeridBathoryPower extends AnimatorPower
     {
         super.atStartOfTurnPostDraw();
 
-        if (AbstractDungeon.player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && EffectHistory.TryActivateLimited(FeridBathory.ID))
+        if (AbstractDungeon.player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && EffectHistory.TryActivateLimited(FeridBathory.DATA.ID))
         {
             GameEffects.Queue.ShowCardBriefly(new FeridBathory());
             GameActions.Bottom.GainForce(FORCE_AMOUNT);

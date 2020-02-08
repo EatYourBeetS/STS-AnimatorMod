@@ -10,7 +10,7 @@ import eatyourbeets.cards.animator.series.Konosuba.Megumin;
 import eatyourbeets.cards.animator.ultrarare.Chomusuke;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
 
@@ -28,23 +28,23 @@ public class Konosuba extends AnimatorLoadout
         {
             startingDeck.add(Strike_Konosuba.ID);
             startingDeck.add(Defend_Konosuba.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Kazuma.ID);
-            startingDeck.add(Aqua.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Kazuma.DATA.ID);
+            startingDeck.add(Aqua.DATA.ID);
         }
 
         return startingDeck;
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
-        return Megumin.ID;
+        return Megumin.DATA.ID;
     }
 
     @Override

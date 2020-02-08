@@ -7,25 +7,25 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.QuestionMarkAction;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnStartOfTurnSubscriber;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 
 public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscriber
 {
-    public static final String ID = Register(QuestionMark.class, EYBCardBadge.Drawn);
+    public static final EYBCardData DATA = Register(QuestionMark.class).SetSkill(-2, CardRarity.UNCOMMON, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
 
     public AnimatorCard copy = null;
 
     public QuestionMark()
     {
-        super(ID, -2, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ALL);
+        super(DATA);
 
         Initialize(0, 0);
 
-        SetSynergy(Synergies.ANY);
+        SetSynergy(null, true);
     }
 
     @Override

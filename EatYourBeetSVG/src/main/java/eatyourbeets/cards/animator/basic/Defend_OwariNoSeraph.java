@@ -3,14 +3,13 @@ package eatyourbeets.cards.animator.basic;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Defend_OwariNoSeraph extends Defend
 {
-    public static final String ID = Register(Defend_OwariNoSeraph.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Defend_OwariNoSeraph.class).ID;
 
     public Defend_OwariNoSeraph()
     {
@@ -25,8 +24,6 @@ public class Defend_OwariNoSeraph extends Defend
     @Override
     public void triggerOnExhaust()
     {
-        super.triggerOnExhaust();
-
         AbstractPlayer p = AbstractDungeon.player;
         for (AbstractMonster m : GameUtilities.GetCurrentEnemies(true))
         {

@@ -6,27 +6,28 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.MelzalgaldAlt_1;
 import eatyourbeets.cards.animator.special.MelzalgaldAlt_2;
 import eatyourbeets.cards.animator.special.MelzalgaldAlt_3;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class Melzalgald extends AnimatorCard
 {
-    public static final String ID = Register(Melzalgald.class);
+    public static final EYBCardData DATA = Register(Melzalgald.class).SetAttack(3, CardRarity.UNCOMMON);
+    static
+    {
+        DATA.InitializePreview(new MelzalgaldAlt_1(), true);
+    }
 
     public Melzalgald()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(21, 0);
+        SetScaling(2, 2, 2);
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan, true);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new MelzalgaldAlt_1(), true);
-        }
     }
 
     @Override

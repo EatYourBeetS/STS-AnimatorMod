@@ -1,36 +1,41 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
 {
-    private boolean transformed = false;
+    public static final EYBCardData DATA = Register(Aqua.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    static
+    {
+        DATA.InitializePreview(new Aqua(true), true);
+    }
 
-    public static final String ID = Register(Aqua.class);
+    private boolean transformed = false;
+    private Aqua(boolean transformed)
+    {
+        this();
+
+        SetTransformed(transformed);
+    }
 
     public Aqua()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);
 
         SetHealing(true);
         SetSynergy(Synergies.Konosuba);
-
-        if (InitializingPreview())
-        {
-            Aqua copy = new Aqua(); // InitializingPreview will be true only once
-            copy.SetTransformed(true);
-            cardData.InitializePreview(copy, true);
-        }
     }
 
     @Override
@@ -86,21 +91,37 @@ public class Aqua extends AnimatorCard
         return other;
     }
 
+    @Override
+    public void renderUpgradePreview(SpriteBatch sb)
+    {
+        if (!transformed)
+        {
+            super.renderUpgradePreview(sb);
+        }
+    }
+
+    @Override
+    public void renderCardPreview(SpriteBatch sb)
+    {
+        if (!transformed)
+        {
+            super.renderCardPreview(sb);
+        }
+    }
+
     private void SetTransformed(boolean value)
     {
         transformed = value;
 
         if (transformed)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID + "2"));
-            cardText.OverrideDescription(cardData.strings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0], true);
-            transformed = true;
+            LoadImage("2");
+            cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0], true);
         }
         else
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID));
+            LoadImage(null);
             cardText.OverrideDescription(null, true);
-            transformed = false;
         }
     }
 }

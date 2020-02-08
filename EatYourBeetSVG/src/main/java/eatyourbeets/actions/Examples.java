@@ -12,15 +12,21 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public final class Examples extends AnimatorCard
 {
-    private Examples(String id, int cost, CardType type, CardRarity rarity, CardTarget target)
+    private static EYBCardData Throw()
     {
-        super(null, 0, null, null, null);
+        throw new RuntimeException("Do not instantiate this class");
+    }
+
+    private Examples()
+    {
+        super(Throw());
     }
 
     @Override

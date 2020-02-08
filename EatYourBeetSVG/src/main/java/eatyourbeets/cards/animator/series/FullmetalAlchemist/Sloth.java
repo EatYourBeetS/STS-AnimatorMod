@@ -5,23 +5,23 @@ import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.powers.common.TemporaryDrawReductionPower;
-import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.common.TemporaryDrawReductionPower;
+import eatyourbeets.utilities.GameActions;
 
 public class Sloth extends AnimatorCard
 {
-    public static final String ID = Register(Sloth.class, EYBCardBadge.Exhaust);
+    public static final EYBCardData DATA = Register(Sloth.class).SetAttack(2, CardRarity.COMMON);
 
     public Sloth()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(DATA);
 
-        Initialize(12, 12, 0, 3);
+        Initialize(12, 12, 0, 11);
         SetUpgrade(3, 3);
+        SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -31,10 +31,7 @@ public class Sloth extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        if (EffectHistory.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.GainForce(secondaryValue);
-        }
+        GameActions.Bottom.GainBlock(secondaryValue);
     }
 
     @Override

@@ -2,34 +2,34 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.BorosPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Boros extends AnimatorCard
 {
-    public static final String ID = Register(Boros.class, EYBCardBadge.Drawn);
+    public static final EYBCardData DATA = Register(Boros.class).SetPower(4, CardRarity.RARE);
 
     public Boros()
     {
-        super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 3);
         SetCostUpgrade(-1);
 
+        SetEthereal(true);
         SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
-    public void triggerWhenDrawn()
+    public void triggerOnExhaust()
     {
-        super.triggerWhenDrawn();
+        super.triggerOnExhaust();
 
-        GameActions.Bottom.GainForce(secondaryValue);
+        GameActions.Bottom.GainForce(magicNumber);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.Flash(this);
     }
 
     @Override

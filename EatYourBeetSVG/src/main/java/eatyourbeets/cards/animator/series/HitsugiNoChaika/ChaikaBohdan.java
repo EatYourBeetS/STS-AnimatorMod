@@ -6,33 +6,33 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.interfaces.OnAttackSubscriber;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 {
-    public static final String ID = Register(ChaikaBohdan.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(ChaikaBohdan.class).SetAttack(1, CardRarity.COMMON);
 
     private int bonusDamage = 0;
 
     public ChaikaBohdan()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(DATA);
 
-        Initialize(5, 0, 3, 2);
+        Initialize(6, 0, 3, 2);
         SetUpgrade(3, 0, 0, 0);
 
         SetSynergy(Synergies.Chaika);
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         if (AbstractDungeon.player.hand.contains(this))
         {
@@ -61,17 +61,6 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-
-        int handSize = p.hand.size();
-        if (p.hand.contains(this))
-        {
-            handSize -= 1;
-        }
-
-        if (handSize <= 0)
-        {
-            GameActions.Bottom.Draw(magicNumber);
-        }
 
         AddDamageBonus(-bonusDamage);
     }

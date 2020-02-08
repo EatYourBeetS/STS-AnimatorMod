@@ -2,46 +2,40 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.utilities.GameActions;
 
 public class Sonic extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Sonic.class, EYBCardBadge.Synergy);
-
-    private static final int BLOCK_ON_SYNERGY = 3;
+    public static final EYBCardData DATA = Register(Sonic.class).SetPower(1, CardRarity.UNCOMMON);
+    static
+    {
+        DATA.InitializePreview(ThrowingKnife.GetCardForPreview(), false);
+    }
 
     public Sonic()
     {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
-        Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 0);
 
         SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        MartialArtist.ApplyScaling(this, 6);
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlur(magicNumber);
         GameActions.Bottom.GainAgility(secondaryValue);
-        GameActions.Bottom.CreateThrowingKnives(magicNumber);
 
         if (HasSynergy())
         {
-            GameActions.Bottom.GainBlock(BLOCK_ON_SYNERGY);
-            GameActions.Bottom.GainBlur(1);
+            GameActions.Bottom.CreateThrowingKnives(1);
         }
     }
 }

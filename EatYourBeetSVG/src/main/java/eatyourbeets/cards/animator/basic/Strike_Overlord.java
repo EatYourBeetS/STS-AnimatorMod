@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Strike_Overlord extends Strike
 {
-    public static final String ID = Register(Strike_Overlord.class);
+    public static final String ID = Register(Strike_Overlord.class).ID;
 
     public Strike_Overlord()
     {

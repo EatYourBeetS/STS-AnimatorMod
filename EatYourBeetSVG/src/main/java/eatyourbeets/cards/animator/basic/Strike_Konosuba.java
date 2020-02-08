@@ -8,13 +8,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class Strike_Konosuba extends Strike
 {
-    public static final String ID = Register(Strike_Konosuba.class);
+    public static final String ID = Register(Strike_Konosuba.class).ID;
 
     public Strike_Konosuba()
     {
         super(ID, 1, CardTarget.ENEMY);
 
-        Initialize(6, 2);
+        Initialize(5, 2);
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.Konosuba);

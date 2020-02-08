@@ -5,19 +5,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Gillette extends AnimatorCard
 {
-    public static final String ID = Register(Gillette.class, EYBCardBadge.Discard);
+    public static final EYBCardData DATA = Register(Gillette.class).SetAttack(1, CardRarity.COMMON);
 
     public Gillette()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(7, 0, 1);
         SetUpgrade(3, 0, 0);

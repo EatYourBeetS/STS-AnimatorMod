@@ -7,28 +7,28 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.TanyaDegurechaff_Type95;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
-    public static final String ID = Register(TanyaDegurechaff.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(TanyaDegurechaff.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
+    static
+    {
+        DATA.InitializePreview(new TanyaDegurechaff_Type95(), false);
+    }
 
     public TanyaDegurechaff()
     {
-        super(ID, 2, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(4, 7);
         SetUpgrade(3, 0);
 
         SetSynergy(Synergies.YoujoSenki);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new TanyaDegurechaff_Type95(), false);
-        }
     }
 
     @Override

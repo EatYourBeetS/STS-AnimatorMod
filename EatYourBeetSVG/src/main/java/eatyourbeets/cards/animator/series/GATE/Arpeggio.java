@@ -2,34 +2,28 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Arpeggio.class, EYBCardBadge.Synergy);
+    public static final EYBCardData DATA = Register(Arpeggio.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Arpeggio()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 0);
         SetUpgrade(0, 0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.Gate);
-    }
-
-    @Override
-    public void applyPowers()
-    {
-        super.applyPowers();
-
-        Spellcaster.ApplyScaling(this, 6);
     }
 
     @Override
@@ -42,7 +36,7 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
 
         GameActions.Bottom.GainIntellect(magicNumber);
 
-        if (HasSynergy())
+        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Earth(), true);
         }

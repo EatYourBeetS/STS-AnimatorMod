@@ -4,26 +4,27 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.BlackLotus;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Kuroyukihime extends AnimatorCard
 {
-    public static final String ID = Register(Kuroyukihime.class);
+    public static final EYBCardData DATA = Register(Kuroyukihime.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    static
+    {
+        DATA.InitializePreview(new BlackLotus(), false);
+    }
 
     public Kuroyukihime()
     {
-        super(ID, 1, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2);
         SetCostUpgrade(-1);
 
         SetSynergy(Synergies.AccelWorld);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new BlackLotus(), false);
-        }
     }
 
     @Override

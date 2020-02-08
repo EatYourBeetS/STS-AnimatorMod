@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "When you gain or lose #yAgility, gain or lose that much #yDexterity. Lose #b1 #yAgility at the start of each turn.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b5, #b7, and #b9 #yAgility, gain #yDexterity.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
@@ -56,7 +56,7 @@
 	},
 	"Earth":
 	{
-		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage randomly split amongst ALL enemies.",
+		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. It is automatically #yEvoked after 3 turns and deals damage split randomly amongst ALL enemies.",
 		"NAMES": ["earth", "earth+"],
 		"PROPER_NAME": "Earth"
 	},
@@ -68,7 +68,7 @@
 	},
 	"Envenom":
 	{
-		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison per stack.",
+		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison.",
 		"NAMES": ["envenom"],
 		"PROPER_NAME": "Envenom"
 	},
@@ -92,13 +92,19 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "When you gain or lose #yForce, gain or lose that much #yStrength. Lose #b1 #yForce at the start of each turn.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b5, #b7, and #b9 #yForce, gain #yStrength.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
+	"Hindrance":
+	{
+		"DESCRIPTION": "A #yStatus or #yCurse card.",
+		"NAMES": ["hindrance", "hindrances"],
+		"PROPER_NAME": "Hindrance"
+	},
 	"Intellect":
 	{
-		"DESCRIPTION": "When you gain or lose #yIntellect, gain or lose that much #yFocus. Lose #b1 #yIntellect at the start of each turn.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b5, #b7, and #b9 #yIntellect, gain #yFocus.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
@@ -116,7 +122,7 @@
 	},
 	"Malleable":
 	{
-		"DESCRIPTION": "Upon receiving attack damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of your turn.",
+		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of turn.",
 		"NAMES": ["malleable"],
 		"PROPER_NAME": "Malleable"
 	},
@@ -126,17 +132,17 @@
 		"NAMES": ["metallicize"],
 		"PROPER_NAME": "Metallicize"
 	},
-	"Piercing":
-	{
-		"DESCRIPTION": "Ignore the target's #yBlock and #yThorns.",
-		"NAMES": ["piercing"],
-		"PROPER_NAME": "Piercing"
-	},
 	"Plated Armor":
 	{
-		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving unblocked damage.",
+		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving damage.",
 		"NAMES": ["plated armor", "plated_armor", "plat. armor", "plat._armor"],
 		"PROPER_NAME": "Plated Armor"
+	},
+	"Purge":
+	{
+		"DESCRIPTION": "Removed from combat.",
+		"NAMES": ["purge", "purged", "purges"],
+		"PROPER_NAME": "Purge"
 	},
 	"Rebound":
 	{
@@ -147,7 +153,7 @@
 	"Semi-Limited":
 	{
 		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",
-		"NAMES": ["semi-limited"],
+		"NAMES": ["semi-limited", "semi-lim"],
 		"PROPER_NAME": "Semi-Limited"
 	},
 	"Slow":
@@ -164,20 +170,62 @@
 	},
 	"Temporary HP":
 	{
-		"DESCRIPTION": "Temporary HP disappears at the end of combat.",
-		"NAMES": ["temporary hp", "temporary_hp", "temp. hp", "temp._hp"],
+		"DESCRIPTION": "Temporary HP last until end of combat.",
+		"NAMES": ["temporary hp", "temp. hp"],
 		"PROPER_NAME": "Temporary HP"
 	},
-	"~Preview":
+	"~Damage":
 	{
-		"DESCRIPTION": "Press #pSHIFT to view related cards (outside combat).",
-		"NAMES": ["~"],
-		"PROPER_NAME": "Card Preview"
+		"DESCRIPTION": "-",
+		"NAMES": ["~damage"],
+		"PROPER_NAME": "Normal Damage"
+	},
+	"~Elemental":
+	{
+		"DESCRIPTION": "Ignores #yBlock and #yThorns.",
+		"NAMES": ["~elemental"],
+		"PROPER_NAME": "Elemental Damage"
+	},
+	"~Piercing":
+	{
+		"DESCRIPTION": "Ignores #yBlock and #yThorns.",
+		"NAMES": ["~piercing"],
+		"PROPER_NAME": "Piercing Damage"
+	},
+	"~Ranged":
+	{
+		"DESCRIPTION": "Ignores #yThorns.",
+		"NAMES": ["~ranged"],
+		"PROPER_NAME": "Ranged Damage"
+	},
+	"~Innate":
+	{
+		"DESCRIPTION": "Start each combat with this card in hand.",
+		"NAMES": ["~innate"],
+		"PROPER_NAME": "Innate"
+	},
+	"~Retain":
+	{
+		"DESCRIPTION": "Not discarded at the end of turn.",
+		"NAMES": ["~retain"],
+		"PROPER_NAME": "Retain"
+	},
+	"~Ethereal":
+	{
+		"DESCRIPTION": "#yExhausted if in hand at the end of turn.",
+		"NAMES": ["~ethereal"],
+		"PROPER_NAME": "Ethereal"
+	},
+	"~Steal":
+	{
+		"DESCRIPTION": "You can steal up to #b50 #yGold from a boss, #b25 #yGold from an elite, or #b10 #yGold from other non-minion enemies.",
+		"NAMES": ["~steal"],
+		"PROPER_NAME": "Steal"
 	},
 	"~Unique":
 	{
-		"DESCRIPTION": "Can be upgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead.",
-		"NAMES": ["~"],
+		"DESCRIPTION": "Can be #yUpgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead.",
+		"NAMES": ["~unique"],
 		"PROPER_NAME": "Unique"
 	}
 }

@@ -1,24 +1,18 @@
 package eatyourbeets.actions.animator;
 
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
-import com.megacrit.cardcrawl.actions.utility.QueueCardAction;
-import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.cardManipulation.PlayCard;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.Guren;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 
-public class GurenAction extends EYBAction
+public class GurenAction extends PlayCard
 {
     public GurenAction(AbstractCreature target)
     {
-        super(ActionType.WAIT);
+        super(null, target, false);
 
         Initialize(player, target, 1);
     }
@@ -38,72 +32,38 @@ public class GurenAction extends EYBAction
             return;
         }
 
-        AbstractCard card = player.drawPile.getTopCard();
-        player.drawPile.group.remove(card);
-        AbstractDungeon.getCurrRoom().souls.remove(card);
+        card = player.drawPile.getTopCard();
+        SetSourcePile(player.drawPile);
+        sourcePile.removeCard(card);
 
-        boolean skip = false;
-        Guren guren = JavaUtilities.SafeCast(card, Guren.class);
-        if (guren == null || guren.CanAutoPlay(this))
+        if (targetPosition == null)
         {
-            card.freeToPlayOnce = true;
-        }
-        else
-        {
-            skip = true;
+            SetTargetPosition(DEFAULT_TARGET_X_RIGHT, DEFAULT_TARGET_Y);
         }
 
-        AbstractDungeon.player.limbo.group.add(card);
-        card.current_y = -200.0F * Settings.scale;
-        card.target_x = (float) Settings.WIDTH / 2.0F + 200 * Settings.scale;
-        card.target_y = (float) Settings.HEIGHT / 2.0F;
-        card.targetAngle = 0.0F;
-        card.lighten(false);
-        card.drawScale = 0.12F;
-        card.targetDrawScale = 0.75F;
+        ShowCard();
+    }
 
-        if (card.target == AbstractCard.CardTarget.ENEMY || card.target == AbstractCard.CardTarget.SELF_AND_ENEMY)
+    @Override
+    protected boolean CanUse()
+    {
+        boolean canUse = super.CanUse();
+
+        if (card.type == AbstractCard.CardType.ATTACK)
         {
-            if (this.target == null || this.target.isDeadOrEscaped())
-            {
-                this.target = GameUtilities.GetRandomEnemy(true);
-            }
+            SetExhaust(true);
         }
-        else
+        else if (GameUtilities.IsCurseOrStatus(card))
         {
-            this.target = null;
+            SetExhaust(true);
+            canUse = false;
+        }
+        else if (card instanceof Guren && !((Guren)card).CanAutoPlay(this))
+        {
+            SetExhaust(false);
+            canUse = false;
         }
 
-        if (GameUtilities.IsCurseOrStatus(card))
-        {
-            GameActions.Top.Add(new UnlimboAction(card));
-            GameActions.Top.Exhaust(card, AbstractDungeon.player.limbo).SetRealtime(true);
-        }
-        else if (skip || !card.canUse(AbstractDungeon.player, (AbstractMonster) this.target))
-        {
-            GameActions.Top.Add(new UnlimboAction(card));
-            GameActions.Top.Discard(card, AbstractDungeon.player.limbo).SetRealtime(true);
-        }
-        else
-        {
-            if (card.type == AbstractCard.CardType.ATTACK)
-            {
-                card.exhaustOnUseOnce = true;
-            }
-
-            card.applyPowers();
-
-            GameActions.Top.Add(new QueueCardAction(card, this.target));
-            GameActions.Top.Add(new UnlimboAction(card));
-
-            if (!Settings.FAST_MODE)
-            {
-                GameActions.Top.WaitRealtime(Settings.ACTION_DUR_MED);
-            }
-            else
-            {
-                GameActions.Top.WaitRealtime(Settings.ACTION_DUR_FAST);
-            }
-        }
+        return canUse;
     }
 }

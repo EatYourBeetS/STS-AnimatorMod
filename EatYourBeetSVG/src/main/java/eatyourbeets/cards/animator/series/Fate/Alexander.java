@@ -3,22 +3,21 @@ package eatyourbeets.cards.animator.series.Fate;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Alexander extends AnimatorCard
 {
-    public static final String ID = Register(Alexander.class, EYBCardBadge.Exhaust);
+    public static final EYBCardData DATA = Register(Alexander.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL);
 
     public Alexander()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        super(DATA);
 
-        Initialize(6,0);
+        Initialize(5, 0);
+        SetUpgrade(2, 0);
+        SetScaling(0, 0, 1);
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Fate);
@@ -29,18 +28,14 @@ public class Alexander extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.Callback(__ -> GameUtilities.PlayCopy(this, null, true));
+        GameActions.Bottom.PlayCopy(this, null);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.GainForce(1);
-
-        if (upgraded)
-        {
-            ForcePower.PreserveOnce();
-        }
+        ForcePower.PreserveOnce();
     }
 }

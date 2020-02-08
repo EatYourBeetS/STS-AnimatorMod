@@ -5,46 +5,62 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
-import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.interfaces.markers.Hidden;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.JavaUtilities;
 
-public abstract class ThrowingKnife extends AnimatorCard implements Hidden
+public class ThrowingKnife extends AnimatorCard
 {
-    public static final String ID = Register(ThrowingKnife.class);
+    public static final EYBCardData DATA = Register(ThrowingKnife.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
 
-    private static RandomizedList<ThrowingKnife> subTypes = null;
+    private static ThrowingKnife preview;
+    private int index;
 
-    public ThrowingKnife(String id)
+    public static ThrowingKnife GetCardForPreview()
     {
-        super(staticCardData.get(id), id, AnimatorResources.GetCardImage(ID), 0, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ENEMY);
+        if (preview == null)
+        {
+            preview = new ThrowingKnife(0);
+        }
 
-        this.tags.add(GR.Enums.CardTags.PURGE);
+        return preview;
     }
 
     public static AbstractCard GetRandomCard()
     {
-        if (subTypes == null)
-        {
-            subTypes = new RandomizedList<>();
-            subTypes.Add(new ThrowingKnife_0());
-            subTypes.Add(new ThrowingKnife_1());
-            subTypes.Add(new ThrowingKnife_2());
-        }
+        return new ThrowingKnife(AbstractDungeon.cardRandomRng.random(1, 3));
+    }
 
-        if (AbstractDungeon.cardRandomRng != null)
+    public ThrowingKnife()
+    {
+        this(0);
+    }
+
+    private ThrowingKnife(int index)
+    {
+        super(DATA);
+
+        Initialize(2, 0, 1, 2);
+        SetUpgrade(3, 0);
+
+        SetPurge(true);
+        ChangeIndex(index);
+    }
+
+    @Override
+    public AbstractCard makeCopy()
+    {
+        if (index == 0 && GameUtilities.InBattle())
         {
-            return subTypes.Retrieve(AbstractDungeon.cardRandomRng, false).makeCopy();
+            return GetRandomCard();
         }
         else
         {
-            return subTypes.Retrieve(new Random(), false).makeCopy();
+            return new ThrowingKnife(index);
         }
     }
 
@@ -73,10 +89,22 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
 
         if (m != null)
         {
-            AddSecondaryEffect(p, m);
+            switch (index)
+            {
+                case 1:
+                    GameActions.Top.ApplyWeak(p, m, magicNumber);
+                    break;
+                case 2:
+                    GameActions.Top.ApplyVulnerable(p, m, magicNumber);
+                    break;
+                case 3:
+                    GameActions.Top.ApplyPoison(p, m, secondaryValue);
+                    break;
+                default:
+                    throw new RuntimeException("This class is only for preview. You are not supposed to use it.");
+            }
 
-            GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-                    .SetOptions(true, false);
+            GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
 
             if (m.hb != null)
             {
@@ -85,5 +113,9 @@ public abstract class ThrowingKnife extends AnimatorCard implements Hidden
         }
     }
 
-    protected abstract void AddSecondaryEffect(AbstractPlayer p, AbstractMonster m);
+    private void ChangeIndex(int index)
+    {
+        this.index = index;
+        this.cardText.OverrideDescription(JavaUtilities.Format(rawDescription, cardData.Strings.EXTENDED_DESCRIPTION[index]), true);
+    }
 }

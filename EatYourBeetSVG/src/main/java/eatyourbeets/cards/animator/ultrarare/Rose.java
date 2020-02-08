@@ -3,25 +3,22 @@ package eatyourbeets.cards.animator.ultrarare;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.RoseDamageAction;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
 public class Rose extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Rose.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Rose.class).SetAttack(3, CardRarity.SPECIAL, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
 
     public Rose()
     {
-        super(ID, 3, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(8, 0, 2, 40);
         SetUpgrade(0, 0, 1, 0);
 
-        SetPiercing(true);
         SetSynergy(Synergies.Elsword);
     }
 

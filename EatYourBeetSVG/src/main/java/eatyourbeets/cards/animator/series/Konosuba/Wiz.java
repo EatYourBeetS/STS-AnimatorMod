@@ -4,18 +4,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Wiz extends AnimatorCard
 {
-    public static final String ID = Register(Wiz.class, EYBCardBadge.Synergy);
+    public static final EYBCardData DATA = Register(Wiz.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None);
 
     public Wiz()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0);
         SetCostUpgrade(-1);
@@ -31,15 +32,15 @@ public class Wiz extends AnimatorCard
         .AddCallback(__ ->
         { //
             GameActions.Top.SelectFromPile(name, 1, AbstractDungeon.player.exhaustPile)
-                    .SetOptions(false, false)
-                    .SetFilter(c -> !c.cardID.equals(Wiz.ID))
-                    .AddCallback(cards ->
-                    {
-                        if (cards.size() > 0)
-                        {
-                            GameActions.Bottom.MakeCardInHand(cards.get(0).makeStatEquivalentCopy());
-                        }
-                    });
+            .SetOptions(false, false)
+            .SetFilter(c -> !c.cardID.equals(Wiz.DATA.ID))
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    GameActions.Bottom.MakeCardInHand(cards.get(0).makeStatEquivalentCopy());
+                }
+            });
         });
 
         if (!(HasSynergy() && EffectHistory.TryActivateLimited(cardID)))

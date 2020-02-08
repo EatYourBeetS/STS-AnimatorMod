@@ -2,12 +2,14 @@ package eatyourbeets.misc.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameActions;
 
 public class NanamiEffect_Attack_Buff extends NanamiEffect
 {
-    public static void Execute(AbstractPlayer p, AbstractMonster m, Nanami nanami)
+    @Override
+    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
         int block = GetBlock(nanami);
         if (block > 0)
@@ -15,36 +17,30 @@ public class NanamiEffect_Attack_Buff extends NanamiEffect
             GameActions.Bottom.GainBlock(block);
         }
 
-        int strength = GetStrength(nanami);
-        if (strength > 0)
+        GameActions.Bottom.GainForce(GetForce(nanami));
+    }
+
+    @Override
+    public String GetDescription(Nanami nanami)
+    {
+        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Force.title, true);
+    }
+
+    @Override
+    public int GetBlock(Nanami nanami)
+    {
+        if (nanami.energyOnUse > 0)
         {
-            GameActions.Bottom.GainForce(strength);
-        }
-    }
-
-    public static String UpdateDescription(Nanami nanami)
-    {
-        return Desc(BLOCK, GetBlock(nanami), true) + Desc(STRENGTH, GetStrength(nanami));
-    }
-
-    private static int GetStrength(Nanami nanami)
-    {
-        return nanami.energyOnUse + 1;
-    }
-
-    private static int GetBlock(Nanami nanami)
-    {
-        int modifier = nanami.energyOnUse;
-
-        if (modifier > 0)
-        {
-            int diff = (nanami.block - nanami.baseBlock);
-
-            return ((nanami.energyOnUse + 1) * nanami.baseBlock) + diff;
+            return ModifyBlock ((nanami.energyOnUse + 1) * nanami.baseBlock, nanami);
         }
         else
         {
-            return -1;
+            return 0;
         }
+    }
+
+    private int GetForce(Nanami nanami)
+    {
+        return nanami.energyOnUse + 1;
     }
 }

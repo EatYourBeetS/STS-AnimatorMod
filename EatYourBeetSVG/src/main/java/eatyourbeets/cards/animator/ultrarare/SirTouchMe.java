@@ -5,21 +5,22 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.JuggernautPower;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class SirTouchMe extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register(SirTouchMe.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(SirTouchMe.class).SetAttack(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public SirTouchMe()
     {
-        super(ID, 2, CardType.ATTACK, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(4, 4, 4, 3);
         SetUpgrade(2, 2, 2, 0);
+        SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.Overlord);
     }

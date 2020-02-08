@@ -5,45 +5,39 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.ui.EffectHistory;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class Shigure extends AnimatorCard
 {
-    public static final String ID = Register(Shigure.class, EYBCardBadge.Exhaust);
+    public static final EYBCardData DATA = Register(Shigure.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing);
 
     public Shigure()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(7, 0, 2, 3);
         SetUpgrade(2, 0, 1, 0);
+        SetScaling(0, 1, 0);
 
-        SetPiercing(true);
         SetSynergy(Synergies.OwariNoSeraph);
     }
 
     @Override
     public void triggerOnExhaust()
     {
-        super.triggerOnExhaust();
-
-        if (EffectHistory.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
-        }
+        GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetPiercing(true, true)
         .SetDamageEffect(enemy ->
         {
             GameEffects.List.Add(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()));

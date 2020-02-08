@@ -5,13 +5,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.RegrowPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import eatyourbeets.cards.animator.series.GoblinSlayer.GuildGirl;
+import eatyourbeets.interfaces.subscribers.OnEnemyDyingSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.series.GoblinSlayer.GuildGirl;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
-import eatyourbeets.interfaces.OnEnemyDyingSubscriber;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscriber
@@ -27,7 +26,7 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     {
         super(owner, POWER_ID);
 
-        this.rewardName =  AnimatorResources.GetCardStrings(GuildGirl.ID).NAME.replace("'", "");
+        this.rewardName = GuildGirl.DATA.Strings.NAME;
         this.amount = amount;
         this.goldReward = 0;
         this.goldGain = goldGain;

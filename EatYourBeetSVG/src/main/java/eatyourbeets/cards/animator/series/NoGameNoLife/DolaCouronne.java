@@ -2,19 +2,20 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 public class DolaCouronne extends AnimatorCard
 {
-    public static final String ID = Register(DolaCouronne.class, EYBCardBadge.Exhaust);
+    public static final EYBCardData DATA = Register(DolaCouronne.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public DolaCouronne()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 9, 10);
         SetUpgrade(0, 3, 0);

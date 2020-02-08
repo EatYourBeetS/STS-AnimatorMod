@@ -3,15 +3,15 @@ package eatyourbeets.actions.powers;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
 
 public class ReduceStrength extends EYBActionWithCallback<Boolean>
 {
     protected boolean temporary;
-    protected boolean onlyReduceStrength;
+    protected boolean giveForceToSource;
 
     public ReduceStrength(AbstractCreature source, AbstractCreature target, int amount, boolean temporary)
     {
@@ -22,9 +22,9 @@ public class ReduceStrength extends EYBActionWithCallback<Boolean>
         Initialize(source, target, amount);
     }
 
-    public ReduceStrength SetOptions(boolean giveStrengthToSource)
+    public ReduceStrength SetForceGain(boolean giveForceToSource)
     {
-        this.onlyReduceStrength = giveStrengthToSource;
+        this.giveForceToSource = giveForceToSource;
 
         return this;
     }
@@ -43,14 +43,9 @@ public class ReduceStrength extends EYBActionWithCallback<Boolean>
                 GameActions.Top.ApplyPower(source, target, new GainStrengthPower(target, amount), amount);
             }
 
-            if (onlyReduceStrength)
+            if (giveForceToSource)
             {
-                if (temporary)
-                {
-                    GameActions.Top.ApplyPower(source, source, new LoseStrengthPower(source, amount), amount);
-                }
-
-                GameActions.Top.StackPower(new StrengthPower(source, amount));
+                GameActions.Top.StackPower(new ForcePower(source, amount));
             }
 
             Complete(true);

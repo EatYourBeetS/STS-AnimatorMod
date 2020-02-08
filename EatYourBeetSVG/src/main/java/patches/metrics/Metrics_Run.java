@@ -23,7 +23,6 @@ import java.util.HashMap;
 @SpirePatch(clz= Metrics.class, method="run")
 public class Metrics_Run
 {
-    private static final ArrayList<Integer> bannedSeries = new ArrayList<>();
     private static final ArrayList<HashMap> cardsData = new ArrayList<>();
     private static final HashMap<Object, Object> params = new HashMap<>();
     private static final HashMap<Object, Object> params2 = new HashMap<>();
@@ -56,24 +55,12 @@ public class Metrics_Run
                     return;
                 }
 
-//                    bannedSeries.clear();
-//                    PurgingStone_Series purgingStone = PurgingStone_Series.GetInstance();
-//                    if (purgingStone != null)
-//                    {
-//                        ArrayList<Synergy> series = purgingStone.GetBannedSeries();
-//                        for (Synergy s : series)
-//                        {
-//                            bannedSeries.add(s.ID);
-//                        }
-//                    }
-//                    params.put("bannedSeries", bannedSeries);
-
                 params.clear();
                 params.put("ascension", AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0);
                 params.put("cards", cardsData);
-                params.put("enteredAct5", GR.Common.CurrentGameData.EnteredUnnamedReign);
+                params.put("enteredAct5", GR.Common.Dungeon.IsUnnamedReign());
                 params.put("isVictory", AbstractDungeon.is_victory);
-                params.put("startingSeries", GR.Animator.Metrics.SelectedLoadout.ID);
+                //params.put("startingSeries", GR.Animator.Data.SelectedLoadout.ID);
                 params.put("language", Settings.language.name());
 
                 String data = gson.toJson(params);
@@ -93,7 +80,7 @@ public class Metrics_Run
                     public void cancelled() {  }
                 });
             }
-            else if (GR.Common.CurrentGameData.EnteredUnnamedReign)
+            else if (GR.Common.Dungeon.IsUnnamedReign())
             {
                 params.clear();
                 params.put("playerClass", AbstractDungeon.player.chosenClass.name());
@@ -101,8 +88,6 @@ public class Metrics_Run
 
                 String data = gson.toJson(params);
                 String url = "https://us-central1-sts-theanimator-api.cloudfunctions.net/addAlternativeMetrics";
-
-                //JavaUtilities.Logger.info(data);
 
                 HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
                 Net.HttpRequest httpRequest = requestBuilder.newRequest().method("POST").url(url).header("Content-Type", "text/plain").header("Accept", "text/plain").header("User-Agent", "curl/7.43.0").build();

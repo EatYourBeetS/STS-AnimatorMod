@@ -5,29 +5,23 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Cocytus extends AnimatorCard
 {
-    public static final String ID = Register(Cocytus.class, EYBCardBadge.Synergy);
+    public static final EYBCardData DATA = Register(Cocytus.class).SetAttack(1, CardRarity.COMMON);
 
     public Cocytus()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(DATA);
 
-        Initialize(8, 0, 2);
-        SetUpgrade(1, 0, 1);
+        Initialize(7, 0);
+        SetUpgrade(3, 0);
+        SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.Overlord);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (GameUtilities.GetStrength() * (magicNumber - 1)));
     }
 
     @Override

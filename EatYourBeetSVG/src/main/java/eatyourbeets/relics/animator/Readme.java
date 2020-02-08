@@ -13,7 +13,6 @@ import eatyourbeets.utilities.InputManager;
 
 public class Readme extends AnimatorRelic
 {
-    private static final AnimatorStrings.Tips Text = GR.Animator.Text.Tips;
     public static final String ID = CreateFullID(Readme.class.getSimpleName());
 
     private final String key;
@@ -72,9 +71,11 @@ public class Readme extends AnimatorRelic
 
     private static void SpawnRelic(String key, int index)
     {
+        AnimatorStrings.Tips Tips = GR.Animator.Strings.Tips;
+
         if (!GR.Animator.GetConfig().getBool(key))
         {
-            GameEffects.Queue.Add(new SpawnRelicEffect(new Readme(key, Text.Header(index), Text.Content(index)),
+            GameEffects.Queue.Add(new SpawnRelicEffect(new Readme(key, Tips.Header(index), Tips.Content(index)),
             Settings.WIDTH / 2f, Settings.HEIGHT / 2f));
         }
     }

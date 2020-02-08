@@ -1,119 +1,65 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import eatyourbeets.utilities.JavaUtilities;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.regex.Pattern;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.cardTextParsing.CTContext;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.common.CommonImages;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBCardText
 {
-    public static boolean Toggled;
-    public static boolean ToggledOnce;
-    public static int NewIndex;
-    public boolean canUpdate;
-    public int index;
+    private static final CommonImages.Badges BADGES = GR.Common.Images.Badges;
+    private static final CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
+    private float badgeAlphaTargetOffset = 1f;
+    private float badgeAlphaOffset = -0.2f;
 
-    protected final String[] descriptions;
-    protected final String[] upgradedDescriptions;
+    protected final CTContext context = new CTContext();
+    protected final String description;
+    protected final String upgradedDescription;
+    protected final EYBCard card;
     protected String overrideDescription;
-    protected String overrideSecondaryDescription;
-
-    private final EYBCard card;
 
     public EYBCardText(EYBCard card, CardStrings cardStrings)
     {
         this.card = card;
-        this.index = NewIndex;
-        this.descriptions = ConvertColorCode(cardStrings.DESCRIPTION).split(Pattern.quote(" || "));
-        this.canUpdate = true;
-
-//        String[] ext = cardStrings.EXTENDED_DESCRIPTION;
-//        if (ext != null && ext.length > 2 && ext[0].equals("~TIP~"))
-//        {
-//            this.card.AddExtendedDescription(1, 2);
-//        }
-
-        if (StringUtils.isNotEmpty(cardStrings.UPGRADE_DESCRIPTION))
-        {
-            String[] temp = ConvertColorCode(cardStrings.UPGRADE_DESCRIPTION).split(Pattern.quote(" || "));
-            this.upgradedDescriptions = new String[2];
-            this.upgradedDescriptions[0] = temp[0];
-
-            if (temp.length > 1)
-            {
-                this.upgradedDescriptions[1] = temp[1];
-            }
-            else if (descriptions.length > 1)
-            {
-                this.upgradedDescriptions[1] = descriptions[1];
-            }
-            else
-            {
-                this.upgradedDescriptions[1] = "-";
-            }
-        }
-        else
-        {
-            this.upgradedDescriptions = null;
-        }
-    }
-
-    public void Update(boolean forceUpdate)
-    {
-        if (forceUpdate || this.index != NewIndex)
-        {
-            this.index = NewIndex;
-
-            if (index == 0 && overrideDescription != null)
-            {
-                card.rawDescription = overrideDescription;
-            }
-            else if (overrideSecondaryDescription != null)
-            {
-                card.rawDescription = overrideSecondaryDescription;
-            }
-            else if (card.upgraded && upgradedDescriptions != null)
-            {
-                if (upgradedDescriptions.length > index)
-                {
-                    card.rawDescription = upgradedDescriptions[index];
-                }
-                else
-                {
-                    card.rawDescription = "-";
-                }
-            }
-            else
-            {
-                if (descriptions.length > index)
-                {
-                    card.rawDescription = descriptions[index];
-                }
-                else
-                {
-                    card.rawDescription = "-";
-                }
-            }
-
-            card.initializeDescription();
-        }
+        this.description = cardStrings.DESCRIPTION;
+        this.upgradedDescription = cardStrings.UPGRADE_DESCRIPTION;
     }
 
     public void ForceRefresh()
     {
-        Update(true);
+        if (overrideDescription != null)
+        {
+            card.rawDescription = overrideDescription;
+        }
+        else if (card.upgraded && upgradedDescription != null)
+        {
+            card.rawDescription = upgradedDescription;
+        }
+        else
+        {
+            card.rawDescription = description;
+        }
+
+        context.Initialize(card, card.rawDescription);
     }
 
     public void OverrideDescription(String description, boolean forceRefresh)
     {
-        OverrideDescription(description, null, forceRefresh);
-    }
-
-    public void OverrideDescription(String description, String secondaryDescription, boolean forceRefresh)
-    {
-        overrideDescription = ConvertColorCode(description);
-        overrideSecondaryDescription = ConvertColorCode(secondaryDescription);
+        overrideDescription = description;
 
         if (forceRefresh)
         {
@@ -121,54 +67,193 @@ public class EYBCardText
         }
     }
 
-    protected String ConvertColorCode(String string)
+    public void RenderDescription(SpriteBatch sb)
     {
-        if (string == null || string.equals(""))
+        if (card.isLocked || !card.isSeen)
         {
-            return string;
+            FontHelper.menuBannerFont.getData().setScale(card.drawScale * 1.25F);
+            FontHelper.renderRotatedText(sb, FontHelper.menuBannerFont, "? ? ?", card.current_x, card.current_y,
+            0, -200 * Settings.scale * card.drawScale * 0.5f, card.angle, true, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
+            FontHelper.menuBannerFont.getData().setScale(1.0F);
+            return;
         }
 
-        StringBuilder sb = new StringBuilder(string.length());
+        context.Render(sb);
 
-        for (int i = 0; i < string.length(); i++)
+        RenderAttributes(sb);
+
+        if (card.drawScale > 0.3f)
         {
-            char character = string.charAt(i);
-            if ((character == '#') && (i == 0 || string.charAt(i-1) == ' ') && ((i + 1) < string.length()))
+            RenderBadges(sb);
+
+            ColoredString header = card.GetHeaderText();
+            if (header != null)
             {
-                switch(string.charAt(i + 1))
+                BitmapFont font = RenderHelpers.GetSmallTextFont(card, header.text);
+                RenderHelpers.WriteOnCard(sb, card, font, header.text, 0, AbstractCard.RAW_H * 0.48f, header.color, true);
+                RenderHelpers.ResetFont(font);
+            }
+
+            ColoredString bottom = card.GetBottomText();
+            if (bottom != null)
+            {
+                BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
+                RenderHelpers.WriteOnCard(sb, card, RenderHelpers.GetSmallTextFont(card, bottom.text), bottom.text, 0, -AbstractCard.RAW_H * 0.47f, bottom.color, true);
+                RenderHelpers.ResetFont(font);
+            }
+        }
+    }
+
+    public void RenderTooltips(SpriteBatch sb)
+    {
+        if (EYBCardTooltip.CanRenderTooltips() && (AbstractDungeon.player == null || !AbstractDungeon.player.isDraggingCard || Settings.isTouchScreen))
+        {
+            EYBCardTooltip.RenderAll(sb, card);
+
+            if (card.cardData.previewInitialized)
+            {
+                boolean showUpgrade = SingleCardViewPopup.isViewingUpgrade && (AbstractDungeon.player == null || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD);
+                card.cardsToPreview = card.cardData.GetCardPreview(card.upgraded || showUpgrade);
+                card.renderCardPreview(sb);
+            }
+        }
+    }
+
+    protected void RenderAttributes(SpriteBatch sb)
+    {
+        boolean leftAlign = true;
+        AbstractAttribute temp;
+        if ((temp = GetInfo1()) != null)
+        {
+            temp.Render(sb, card, leftAlign);
+            leftAlign = false;
+        }
+        if ((temp = GetInfo2()) != null)
+        {
+            temp.Render(sb, card, leftAlign);
+            leftAlign = false;
+        }
+        if ((temp = card.GetSpecialInfo()) != null)
+        {
+            temp.Render(sb, card, leftAlign);
+        }
+    }
+
+    private AbstractAttribute GetInfo1()
+    {
+        return card.type == AbstractCard.CardType.ATTACK ? card.GetDamageInfo() : card.GetBlockInfo();
+    }
+
+    private AbstractAttribute GetInfo2()
+    {
+        return card.type == AbstractCard.CardType.ATTACK ? card.GetBlockInfo() : card.GetDamageInfo();
+    }
+
+    protected void RenderBadges(SpriteBatch sb)
+    {
+        final float alpha = UpdateBadgeAlpha();
+
+        int offset_y = 0;
+        if (card.isInnate)
+        {
+            offset_y -= RenderBadge(sb, BADGES.Innate.Texture(), offset_y, alpha);
+        }
+        if (card.isEthereal)
+        {
+            offset_y -= RenderBadge(sb, BADGES.Ethereal.Texture(), offset_y, alpha);
+        }
+        if (card.retain || card.selfRetain)
+        {
+            offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), offset_y, alpha);
+        }
+        if (card.exhaust)
+        {
+            RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y, alpha);
+        }
+
+        offset_y = 0;
+        if (card.intellectScaling > 0)
+        {
+            offset_y -= RenderScaling(sb, ICONS.Intellect.Texture(), card.intellectScaling, offset_y);
+        }
+        if (card.forceScaling > 0)
+        {
+            offset_y -= RenderScaling(sb, ICONS.Force.Texture(), card.forceScaling, offset_y);
+        }
+        if (card.agilityScaling > 0)
+        {
+            RenderScaling(sb, ICONS.Agility.Texture(), card.agilityScaling, offset_y);
+        }
+    }
+
+    private float RenderScaling(SpriteBatch sb, Texture texture, float scaling, float y)
+    {
+        final float offset_x = -AbstractCard.RAW_W * 0.46f;
+        final float offset_y = AbstractCard.RAW_H * 0.28f;
+        final BitmapFont font = RenderHelpers.CardIconFont_Large;
+
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y), 38, 38);
+
+        font.getData().setScale(0.6f * card.drawScale);
+        RenderHelpers.WriteOnCard(sb, card, font, "x" + (int) scaling, (offset_x + 9), (offset_y + y - 12), Settings.CREAM_COLOR.cpy(), true);
+        font.getData().setScale(1);
+
+        return 36;
+    }
+
+    private float RenderBadge(SpriteBatch sb, Texture texture, float offset_y, float alpha)
+    {
+        final Vector2 offset = new Vector2(AbstractCard.RAW_W * 0.45f, AbstractCard.RAW_H * 0.45f + offset_y);
+
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, offset, 64, 64, Color.WHITE, alpha);
+
+        return 38;
+    }
+
+    protected float UpdateBadgeAlpha()
+    {
+        if (card.isPreview)
+        {
+            return card.transparency - badgeAlphaOffset;
+        }
+
+        if (card.cardsToPreview instanceof EYBCard)
+        {
+            ((EYBCard)card.cardsToPreview).cardText.badgeAlphaOffset = badgeAlphaOffset;
+        }
+
+        if (card.CanRenderTip() && !card.isPopup)
+        {
+            if (badgeAlphaOffset < badgeAlphaTargetOffset)
+            {
+                badgeAlphaOffset += Gdx.graphics.getRawDeltaTime() * 0.33f;
+                if (badgeAlphaOffset > badgeAlphaTargetOffset)
                 {
-                    case 'b':
-                        sb.append("[#87ceeb]");
-                        i += 1;
-                        break;
-
-                    case 'g':
-                        sb.append("[#7fff00]");
-                        i += 1;
-                        break;
-
-                    case 'r':
-                        sb.append("[#ff6563]");
-                        i += 1;
-                        break;
-
-                    case 'y':
-                        sb.append("[#efc851]");
-                        i += 1;
-                        break;
-
-                    default:
-                        JavaUtilities.Logger.warn("Unknown Color Code for " + card.cardID + " (#" + string.charAt(i+1) + ")");
-                        sb.append(character);
-                        break;
+                    badgeAlphaOffset = badgeAlphaTargetOffset;
+                    badgeAlphaTargetOffset = -0.9f;
                 }
             }
             else
             {
-                sb.append(character);
+                badgeAlphaOffset -= Gdx.graphics.getRawDeltaTime() * 0.5f;
+                if (badgeAlphaOffset < badgeAlphaTargetOffset)
+                {
+                    badgeAlphaOffset = badgeAlphaTargetOffset;
+                    badgeAlphaTargetOffset = 0.5f;
+                }
+            }
+
+            if (card.transparency >= 1 && badgeAlphaOffset > 0)
+            {
+                return card.transparency - badgeAlphaOffset;
             }
         }
+        else
+        {
+            badgeAlphaOffset = -0.2f;
+            badgeAlphaTargetOffset = 0.5f;
+        }
 
-        return sb.toString();
+        return card.transparency;
     }
 }

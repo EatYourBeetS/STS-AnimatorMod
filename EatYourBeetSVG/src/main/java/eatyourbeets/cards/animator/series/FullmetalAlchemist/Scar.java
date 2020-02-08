@@ -6,23 +6,23 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.ScarUpgradeAction;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Scar extends AnimatorCard
 {
-    public static final String ID = Register(Scar.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Scar.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
 
     public Scar()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(DATA);
 
-        Initialize(12, 0, 0, 30);
+        Initialize(12, 0, 2, 30);
         SetUpgrade(4, 0);
 
-        SetPiercing(true);
         SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -34,8 +34,7 @@ public class Scar extends AnimatorCard
         .ShowEffect(true, true);
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F))
-        .SetPiercing(true, true);
+        .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F));
 
         if (p.masterDeck.size() >= secondaryValue && EffectHistory.TryActivateLimited(cardID))
         {

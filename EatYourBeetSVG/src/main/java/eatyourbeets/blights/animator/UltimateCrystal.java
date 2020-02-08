@@ -31,7 +31,7 @@ public class UltimateCrystal extends AnimatorBlight
             AbstractPlayer p = AbstractDungeon.player;
             for (AbstractCard c : cards)
             {
-                GameActions.Top.MoveCard(c, p.drawPile, p.hand);
+                GameActions.Top.MoveCard(c, p.hand, p.drawPile);
             }
 
             GameActions.Bottom.Add(new RefreshHandLayout());

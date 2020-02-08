@@ -1,0 +1,18 @@
+
+{
+	"<LIM>": "Limited",
+	"<SLM>": "{Semi-Limited}",
+	"<slm>": "{Semi-Lim}",
+	
+	"<AGI>": "Agility",
+	"<FOR>": "Force",
+	"<INT>": "Intellect",
+	"<MAR>": "{Martial Artist}",
+	"<SPE>": "Spellcaster",
+
+	"<DRW>": "Draw 1 card",
+	"<DRW-M>": "Draw !M! card(s)",
+
+	" ** ": " NL ",
+	" || ": " NL  NL "
+}

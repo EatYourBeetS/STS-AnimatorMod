@@ -9,9 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -19,17 +17,17 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Megumin extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Megumin.class, EYBCardBadge.Synergy);
+    public static final EYBCardData DATA = Register(Megumin.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     public Megumin()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        super(DATA);
 
-        Initialize(12, 0);
+        Initialize(10, 0);
         SetUpgrade( 2, 0);
+        SetScaling(4, 0, 0);
 
         SetUnique(true, true);
-        SetMultiDamage(true);
         SetExhaust(true);
 
         SetSynergy(Synergies.Konosuba);
@@ -42,12 +40,6 @@ public class Megumin extends AnimatorCard implements Spellcaster
         {
             upgradeDamage(1);
         }
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (Spellcaster.GetScaling() * 4));
     }
 
     @Override

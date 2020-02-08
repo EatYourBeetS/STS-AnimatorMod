@@ -4,8 +4,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Vesta_Elixir;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffects;
@@ -17,19 +19,21 @@ import java.util.ArrayList;
 
 public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final String ID = Register(Vesta.class);
+    public static final EYBCardData DATA = Register(Vesta.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    static
+    {
+        DATA.InitializePreview(new Vesta_Elixir(), false);
+    }
 
     private int timer;
     private Vesta_Elixir elixir;
 
     public Vesta()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, -1);
-
-        AddExtendedDescription();
 
         SetExhaust(true);
         SetSynergy(Synergies.TenSura);

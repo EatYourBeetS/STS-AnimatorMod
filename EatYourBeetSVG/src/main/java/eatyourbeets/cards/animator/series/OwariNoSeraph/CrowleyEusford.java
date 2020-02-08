@@ -4,25 +4,24 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.interfaces.OnCostRefreshSubscriber;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActions;
 
 public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscriber
 {
-    public static final String ID = Register(CrowleyEusford.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(CrowleyEusford.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random);
 
     private int costModifier = 0;
 
     public CrowleyEusford()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        super(DATA);
 
         Initialize(18, 0, 4);
-        SetUpgrade( 3, 0, 1);
+        SetUpgrade(3, 0, 1);
+        SetScaling(0, 2, 1);
 
         SetHealing(true);
         SetExhaust(true);
@@ -72,9 +71,9 @@ public class CrowleyEusford extends AnimatorCard implements OnCostRefreshSubscri
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         OnCostRefresh(this);
     }

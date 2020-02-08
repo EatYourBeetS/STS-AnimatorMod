@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import eatyourbeets.interfaces.OnAddedToDeckSubscriber;
+import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 

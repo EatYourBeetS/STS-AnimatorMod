@@ -1,5 +1,6 @@
 package eatyourbeets.ui;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.CardSeriesComparator;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.resources.GR;
 
 import java.util.Collections;
 
@@ -19,13 +21,14 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     private SortHeaderButton typeButton;
     private SortHeaderButton nameButton;
     private SortHeaderButton costButton;
+    private boolean isColorless;
 
     public CustomCardLibSortHeader(CardGroup group)
     {
         super(group);
     }
 
-    public void SetupButtons()
+    public void SetupButtons(boolean isColorless)
     {
         if (override == null)
         {
@@ -67,7 +70,8 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             }
         }
 
-        buttons = override;
+        this.isColorless = isColorless;
+        this.buttons = override;
     }
 
     private void SetupButton(SortHeaderButton button, float offsetX, int index)
@@ -83,6 +87,16 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     public void setGroup(CardGroup group)
     {
         super.setGroup(group);
+
+        if (!GR.TEST_MODE)
+        {
+            group.group.removeIf(card -> card.rarity == AbstractCard.CardRarity.SPECIAL);
+        }
+
+        if (isColorless)
+        {
+            return;
+        }
 
         for (AnimatorCard_UltraRare card : AnimatorCard_UltraRare.GetCards().values())
         {

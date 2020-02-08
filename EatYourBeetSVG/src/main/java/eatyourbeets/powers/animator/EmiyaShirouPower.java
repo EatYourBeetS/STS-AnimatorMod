@@ -11,7 +11,7 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.interfaces.OnBlockBrokenSubscriber;
+import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
 
 public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubscriber
 {

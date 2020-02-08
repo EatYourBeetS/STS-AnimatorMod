@@ -2,6 +2,7 @@ package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,6 +10,7 @@ import eatyourbeets.actions.unnamed.MoveToVoidAction;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.unnamed.UnnamedResources;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import org.apache.logging.log4j.LogManager;
@@ -25,9 +27,9 @@ public abstract class UnnamedCard extends EYBCard
     public boolean enteredVoid = false;
     public int masteryCost = -2;
 
-    protected static String Register(Class<? extends UnnamedCard> type, EYBCardBadge... badges)
+    protected static String Register(Class<? extends UnnamedCard> type)
     {
-        return RegisterCard(type,"unnamed:" + type.getSimpleName(), badges);
+        return RegisterCard(type,"unnamed:" + type.getSimpleName());
     }
 
     private static String GetCardImage(String cardID)
@@ -50,7 +52,7 @@ public abstract class UnnamedCard extends EYBCard
 
     protected UnnamedCard(String id, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        this(staticCardData.get(id), id, GetCardImage(id), cost, type, color, rarity, target);
+        this(GetStaticData(id), id, GetCardImage(id), cost, type, color, rarity, target);
     }
 
     protected UnnamedCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
@@ -156,38 +158,32 @@ public abstract class UnnamedCard extends EYBCard
     }
 
     @Override
-    protected String GetHeaderText()
+    public ColoredString GetHeaderText()
     {
-        String text = null;
+        ColoredString result = new ColoredString();
         if (isVoidbound())
         {
-            text = "Voidbound";
+            result.text = "Voidbound";
 
             if (GameUtilities.InBattle())
             {
                 if (enteredVoid)
                 {
-                    headerTextColor = Settings.GOLD_COLOR.cpy();
+                    result.color = Settings.GOLD_COLOR.cpy();
                 }
                 else
                 {
-                    text = "Voidbound, Depleted";
-                    headerTextColor = new Color(1.0F, 1.0F, 1.0F, 0.7F);
+                    result.text = "Voidbound, Depleted";
+                    result.color = new Color(1.0F, 1.0F, 1.0F, 0.7F);
                 }
             }
             else
             {
-                headerTextColor = super.GetHeaderColor();
+                result.color = Settings.CREAM_COLOR.cpy();
             }
         }
 
-        return text;
-    }
-
-    @Override
-    protected Color GetHeaderColor()
-    {
-        return headerTextColor;
+        return result;
     }
 
     public String getMasteryCostString()
@@ -204,5 +200,17 @@ public abstract class UnnamedCard extends EYBCard
         {
             return "";
         }
+    }
+
+    @Override
+    protected Texture GetEnergyOrb()
+    {
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public ColoredString GetBottomText()
+    {
+        return null;
     }
 }

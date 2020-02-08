@@ -1,52 +1,42 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.defect.TriggerPassiveAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
+import com.megacrit.cardcrawl.orbs.Dark;
+import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
+import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.markers.Spellcaster;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 public class Jibril extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Jibril.class, EYBCardBadge.Drawn);
+    public static final EYBCardData DATA = Register(Jibril.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     public Jibril()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        super(DATA);
 
-        Initialize(10, 0);
-        SetUpgrade( 4, 0);
+        Initialize(7, 0, 2);
+        SetUpgrade(0, 0, 1);
+        SetScaling(3, 0, 0);
 
-        SetMultiDamage(true);
+        SetEvokeOrbCount(1);
         SetSynergy(Synergies.NoGameNoLife);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        if (EffectHistory.TryActivateSemiLimited(cardID))
-        {
-            GameActions.Bottom.Add(new TriggerPassiveAction(1));
-            GameActions.Bottom.Flash(this);
-        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.ChannelOrb(new Dark(), true);
+        GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.VIOLET, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.3F);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+
+        if (HasSynergy())
+        {
+            GameActions.Bottom.Add(new TriggerOrbPassiveAbility(magicNumber, true));
+        }
     }
 }

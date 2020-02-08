@@ -1,28 +1,38 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.EffectHistory;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 
-public class SwordMaiden extends AnimatorCard implements StartupCard
+public class SwordMaiden extends AnimatorCard
 {
-    public static final String ID = Register(SwordMaiden.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(SwordMaiden.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
 
     public SwordMaiden()
     {
-        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
-        Initialize(0, 0, 8);
+        Initialize(0, 0, 6);
 
         SetExhaust(true);
         SetSynergy(Synergies.GoblinSlayer);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
@@ -34,6 +44,10 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        ForcePower.PreserveOnce();
+        AgilityPower.PreserveOnce();
+        IntellectPower.PreserveOnce();
+
         GameActions.Bottom.GainTemporaryHP(this.magicNumber);
         GameActions.Bottom.Callback(__ ->
         {
@@ -48,18 +62,5 @@ public class SwordMaiden extends AnimatorCard implements StartupCard
                 }
             }
         });
-    }
-
-    @Override
-    public boolean atBattleStartPreDraw()
-    {
-        if (EffectHistory.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.GainRandomStat(2);
-
-            return true;
-        }
-
-        return false;
     }
 }

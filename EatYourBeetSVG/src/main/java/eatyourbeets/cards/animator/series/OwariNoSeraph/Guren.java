@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.GurenAction;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnPhaseChangedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.ui.EffectHistory;
@@ -16,13 +16,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
 {
-    public static final String ID = Register(Guren.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Guren.class).SetSkill(3, CardRarity.RARE);
 
     private boolean alreadyPlayed = false;
 
     public Guren()
     {
-        super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(0, 0,3);
 

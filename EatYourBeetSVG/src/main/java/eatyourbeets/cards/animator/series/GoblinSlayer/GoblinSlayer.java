@@ -5,25 +5,26 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.basic.MoveCard;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.actions.animator.CreateRandomGoblins;
+import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.PlayerStatistics;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class GoblinSlayer extends AnimatorCard
 {
-    public static final String ID = Register(GoblinSlayer.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(GoblinSlayer.class).SetAttack(1, CardRarity.RARE);
 
     public GoblinSlayer()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(DATA);
 
-        Initialize(7, 0);
-        SetCostUpgrade(-1);
+        Initialize(4, 4);
+        SetUpgrade(3, 3);
+        SetScaling(1, 0, 1);
 
         SetRetain(true);
         SetSynergy(Synergies.GoblinSlayer);
@@ -52,17 +53,9 @@ public class GoblinSlayer extends AnimatorCard
     }
 
     @Override
-    public void triggerOnEndOfTurnForPlayingCard()
+    protected float GetInitialDamage()
     {
-        super.triggerOnEndOfTurnForPlayingCard();
-
-        SetRetain(true);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + (player.exhaustPile.size() * 3));
+        return super.GetInitialDamage() + (player.exhaustPile.size() * 3);
     }
 
     @Override
@@ -72,6 +65,7 @@ public class GoblinSlayer extends AnimatorCard
         MoveCards(p.hand, p.exhaustPile);
 
         GameActions.Top.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActions.Top.GainBlock(block);
     }
 
     private void MoveCards(CardGroup source, CardGroup destination)
@@ -82,7 +76,7 @@ public class GoblinSlayer extends AnimatorCard
         {
             if (GameUtilities.IsCurseOrStatus(card))
             {
-                GameActions.Top.MoveCard(card, destination, source)
+                GameActions.Top.MoveCard(card, source, destination)
                         .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
                         .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
             }

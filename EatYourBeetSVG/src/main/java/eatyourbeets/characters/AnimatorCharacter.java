@@ -20,8 +20,8 @@ import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
-import eatyourbeets.resources.animator.loadouts.Random;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.loadouts._Random;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -92,14 +92,14 @@ public class AnimatorCharacter extends CustomPlayer
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect()
     {
         return new AbstractGameAction.AttackEffect[]
-                {
-                        AbstractGameAction.AttackEffect.SLASH_HEAVY,
-                        AbstractGameAction.AttackEffect.FIRE,
-                        AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
-                        AbstractGameAction.AttackEffect.SLASH_HEAVY,
-                        AbstractGameAction.AttackEffect.FIRE,
-                        AbstractGameAction.AttackEffect.SLASH_DIAGONAL
-                };
+        {
+                AbstractGameAction.AttackEffect.SLASH_HEAVY,
+                AbstractGameAction.AttackEffect.FIRE,
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
+                AbstractGameAction.AttackEffect.SLASH_HEAVY,
+                AbstractGameAction.AttackEffect.FIRE,
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL
+        };
     }
 
     @Override
@@ -117,7 +117,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public int getAscensionMaxHPLoss()
     {
-        return 4;
+        return maxHealth / 10;
     }
 
     @Override
@@ -129,7 +129,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public void doCharSelectScreenSelectEffect()
     {
-        CardCrawlGame.sound.playA("TINGSHA", MathUtils.random(-0.1F, 0.2F));
+        CardCrawlGame.sound.playA(getCustomModeCharacterButtonSoundKey(), MathUtils.random(-0.1F, 0.2F));
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
     }
 
@@ -137,6 +137,12 @@ public class AnimatorCharacter extends CustomPlayer
     public String getCustomModeCharacterButtonSoundKey()
     {
         return "TINGSHA";
+    }
+
+    @Override
+    public String getPortraitImageName()
+    {
+        return null; // Updated in AnimatorCharacterSelectScreen
     }
 
     @Override
@@ -172,7 +178,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public AbstractCard.CardColor getCardColor()
     {
-        return GR.Enums.Cards.THE_ANIMATOR;
+        return GR.Animator.CardColor;
     }
 
     @Override
@@ -190,15 +196,15 @@ public class AnimatorCharacter extends CustomPlayer
 
     protected AnimatorLoadout GetCurrentLoadout()
     {
-        AnimatorLoadout current = GR.Animator.Metrics.SelectedLoadout;
-        if (current instanceof Random)
-        {
-            int currentLevel = GR.Animator.GetUnlockLevel();
+        int level = GR.Animator.GetUnlockLevel();
+        AnimatorLoadout current = GR.Animator.Data.SelectedLoadout;
 
+        if (current instanceof _Random || level < current.UnlockLevel)
+        {
             RandomizedList<AnimatorLoadout> list = new RandomizedList<>();
-            for (AnimatorLoadout loadout : GR.Animator.Metrics.BaseLoadouts)
+            for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
             {
-                if (currentLevel >= loadout.UnlockLevel)
+                if (level >= loadout.UnlockLevel)
                 {
                     list.Add(loadout);
                 }

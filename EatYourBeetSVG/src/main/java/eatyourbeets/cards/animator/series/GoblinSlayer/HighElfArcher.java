@@ -4,47 +4,42 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.common.AgilityPower;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameUtilities;
 
 public class HighElfArcher extends AnimatorCard
 {
-    public static final String ID = Register(HighElfArcher.class, EYBCardBadge.Synergy);
+    public static final EYBCardData DATA = Register(HighElfArcher.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Ranged);
 
     public HighElfArcher()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(DATA);
 
-        Initialize(3, 0, 2);
+        Initialize(2, 0, 2);
         SetUpgrade(0, 0, 1);
+        SetScaling(0, 1, 0);
 
-        SetPiercing(true);
         SetSynergy(Synergies.GoblinSlayer);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT)
-        .SetPiercing(true, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
 
-        int agility = 0;
         if (GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID) <= magicNumber)
         {
-            agility += 1;
+            GameActions.Bottom.GainAgility(1);
         }
-        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
+
+        if (HasSynergy() && EffectHistory.HasActivatedSemiLimited(cardID))
         {
-            agility += 1;
             GameActions.Bottom.Draw(1);
-        }
-        if (agility > 0)
-        {
-            GameActions.Bottom.GainAgility(agility);
         }
     }
 }

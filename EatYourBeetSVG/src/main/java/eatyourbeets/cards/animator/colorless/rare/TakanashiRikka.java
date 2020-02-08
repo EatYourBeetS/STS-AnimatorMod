@@ -4,24 +4,31 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class TakanashiRikka extends AnimatorCard
 {
-    public static final String ID = Register(TakanashiRikka.class);
+    public static final EYBCardData DATA = Register(TakanashiRikka.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
-    // TODO: Different upgrade
     public TakanashiRikka()
     {
-        super(ID, 2, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 0);
-        SetUpgrade(0, 0, 2);
 
+        SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.Chuunibyou);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override
@@ -38,7 +45,7 @@ public class TakanashiRikka extends AnimatorCard
                 copy.isCostModified = true;
             }
 
-            copy.baseDamage = magicNumber;
+            copy.baseDamage = 0;
             copy.tags.add(GR.Enums.CardTags.PURGE);
 
             GameActions.Top.MakeCardInHand(copy);

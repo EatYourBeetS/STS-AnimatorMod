@@ -6,48 +6,49 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.EntouJyuu;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 import java.util.ArrayList;
 
 public class Emonzaemon extends AnimatorCard implements MartialArtist
 {
-    public static final String ID = Register(Emonzaemon.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Emonzaemon.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
+    static
+    {
+        DATA.InitializePreview(new EntouJyuu(), true);
+    }
 
     public Emonzaemon()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(4, 0);
         SetUpgrade(2, 0);
+        SetScaling(0, 1, 0);
 
-        SetPiercing(true);
         SetSynergy(Synergies.Katanagatari);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new EntouJyuu(), true);
-        }
     }
 
     @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+    public AbstractAttribute GetDamageInfo()
     {
-        return super.calculateModifiedCardDamage(player, mo, tmp + MartialArtist.GetScaling());
+        return super.GetDamageInfo().AddMultiplier(2);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetPiercing(true, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetPiercing(true, true);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
 
         if (!EffectHistory.HasActivatedLimited(cardID))
         {

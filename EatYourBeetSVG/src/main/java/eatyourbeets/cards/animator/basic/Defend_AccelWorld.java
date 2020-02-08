@@ -2,13 +2,12 @@ package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend_AccelWorld extends Defend
 {
-    public static final String ID = Register(Defend_AccelWorld.class, EYBCardBadge.Discard);
+    public static final String ID = Register(Defend_AccelWorld.class).ID;
 
     public Defend_AccelWorld()
     {
@@ -23,8 +22,6 @@ public class Defend_AccelWorld extends Defend
     @Override
     public void triggerOnManualDiscard()
     {
-        super.triggerOnManualDiscard();
-
         GameActions.Bottom.GainBlock(this.magicNumber);
     }
 

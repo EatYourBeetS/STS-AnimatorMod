@@ -8,12 +8,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.*;
+import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
+import com.megacrit.cardcrawl.vfx.combat.FireballEffect;
+import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
 import eatyourbeets.cards.animator.special.OrbCore;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.csharp.ActionT0;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
@@ -27,24 +29,31 @@ import java.util.HashSet;
 
 public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
 {
-    private int cachedOrbAmount;
+    public static final EYBCardData DATA = Register(Patchouli.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
 
-    public static final String ID = Register(Patchouli.class, EYBCardBadge.Special);
+    private int cachedOrbAmount;
 
     public Patchouli()
     {
-        super(ID, 3, CardType.ATTACK, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
-        Initialize(11, 0, 0, 2);
+        Initialize(8, 0, 1, 2);
         SetUpgrade(3, 0, 0, 0);
+        SetScaling(2, 0, 0);
 
         SetSynergy(Synergies.TouhouProject);
     }
 
     @Override
-    public void applyPowers()
+    public AbstractAttribute GetDamageInfo()
     {
-        super.applyPowers();
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
+    }
+
+    @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
 
         ArrayList<AbstractOrb> orbs = AbstractDungeon.actionManager.orbsChanneledThisCombat;
         if (cachedOrbAmount != orbs.size())
@@ -55,16 +64,10 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
                 uniqueOrbs.add(orb.ID);
             }
 
-            magicNumber = uniqueOrbs.size();
+            magicNumber = baseMagicNumber + uniqueOrbs.size();
             isMagicNumberModified = (magicNumber != baseMagicNumber);
             cachedOrbAmount = orbs.size();
         }
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
     }
 
     @Override
@@ -134,8 +137,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
 
     private DealDamageToRandomEnemy CreateDamageAction()
     {
-        return GameActions.Bottom.DealDamageToRandomEnemy(baseDamage + Spellcaster.GetScaling(),
-        damageTypeForTurn, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
+        return GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
     }
 
     @Override

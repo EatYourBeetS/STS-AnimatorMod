@@ -173,10 +173,6 @@ public class VoidViewScreen implements ScrollBarListener
                     else
                     {
                         index -= 4;
-                        if (index < 0)
-                        {
-                            index = 0;
-                        }
                     }
 
                     Gdx.input.setCursorPosition((int) this.voidCopy.group.get(index).hb.cX, Settings.HEIGHT - (int) this.voidCopy.group.get(index).hb.cY);

@@ -4,19 +4,19 @@ import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.Synergies;
 
 public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final String ID = Register(JeanneDArc.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(JeanneDArc.class).SetAttack(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public JeanneDArc()
     {
-        super(ID, 1, CardType.ATTACK, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(12, 4, 8);
         SetUpgrade(4, 0, 0);

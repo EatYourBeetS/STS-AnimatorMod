@@ -2,19 +2,19 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.FlamingWeaponPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
-public class EntouJyuu extends AnimatorCard implements Hidden
+public class EntouJyuu extends AnimatorCard
 {
-    public static final String ID = Register(EntouJyuu.class);
+    public static final EYBCardData DATA = Register(EntouJyuu.class).SetPower(1, CardRarity.SPECIAL);
 
     public EntouJyuu()
     {
-        super(ID, 1, CardType.POWER, CardRarity.SPECIAL, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2);
         SetCostUpgrade(-1);

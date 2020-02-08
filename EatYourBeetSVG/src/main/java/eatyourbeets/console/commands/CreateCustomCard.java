@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.AnimatorCard_Dynamic;
 import eatyourbeets.console.DynamicCardData;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -106,7 +107,7 @@ public class CreateCustomCard extends ConsoleCommand
         try
         {
             jsonString = new String(Files.readAllBytes(Paths.get("C:/temp/Animator-DynamicCards.json")));
-            cardPool.putAll(new Gson().fromJson(jsonString, typeToken));
+            cardPool.putAll(new Gson().fromJson(GR.Animator.ProcessJson(jsonString), typeToken));
         }
         catch (Exception e)
         {

@@ -10,7 +10,7 @@ import eatyourbeets.cards.animator.series.Overlord.Demiurge;
 import eatyourbeets.cards.animator.ultrarare.SirTouchMe;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
 
@@ -28,23 +28,23 @@ public class Overlord extends AnimatorLoadout
         {
             startingDeck.add(Strike_Overlord.ID);
             startingDeck.add(Defend_Overlord.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Cocytus.ID);
-            startingDeck.add(Demiurge.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Cocytus.DATA.ID);
+            startingDeck.add(Demiurge.DATA.ID);
         }
 
         return startingDeck;
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
-        return Ainz.ID;
+        return Ainz.DATA.ID;
     }
 
     @Override

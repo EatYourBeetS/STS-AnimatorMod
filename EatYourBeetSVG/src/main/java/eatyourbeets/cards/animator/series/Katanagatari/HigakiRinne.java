@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
-import com.megacrit.cardcrawl.cards.colorless.Shiv;
 import com.megacrit.cardcrawl.cards.status.Slimed;
+import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -16,28 +16,26 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.actions.animator.HigakiRinneAction;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.animator.HigakiRinnePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions.animator.HigakiRinneAction;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.animator.HigakiRinnePower;
 
 import java.util.ArrayList;
 
 public class HigakiRinne extends AnimatorCard
 {
-    public static final String ID = Register(HigakiRinne.class, EYBCardBadge.Synergy, EYBCardBadge.Drawn, EYBCardBadge.Discard, EYBCardBadge.Exhaust);
+    public static final EYBCardData DATA = Register(HigakiRinne.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
 
     public HigakiRinne()
     {
-        super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ALL);
+        super(DATA);
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
+        SetAttackType(EYBAttackType.Normal);
         SetSynergy(Synergies.Katanagatari, true);
     }
 
@@ -77,7 +75,7 @@ public class HigakiRinne extends AnimatorCard
         else if (n < 38)
         {
             GameActions.Top.Draw(1);
-            GameActions.Top.MoveCard(this, player.discardPile, player.hand);
+            GameActions.Top.MoveCard(this, player.hand, player.discardPile);
             GameActions.Top.WaitRealtime(0.3f);
         }
         else if (n < 45)
@@ -186,19 +184,19 @@ public class HigakiRinne extends AnimatorCard
     {
         if (type == CardType.ATTACK)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID + "Attack"));
+            LoadImage("Attack");
             this.type = CardType.ATTACK;
             this.target = CardTarget.ENEMY;
         }
         else if (type == CardType.POWER)
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID + "Power"));
+            LoadImage("Power");
             this.type = CardType.POWER;
             this.target = CardTarget.ALL;
         }
         else
         {
-            this.loadCardImage(AnimatorResources.GetCardImage(ID));
+            LoadImage(null);
             this.type = CardType.SKILL;
             this.target = CardTarget.ALL;
         }

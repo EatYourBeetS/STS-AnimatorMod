@@ -10,7 +10,7 @@ import eatyourbeets.cards.animator.series.FullmetalAlchemist.RoyMustang;
 import eatyourbeets.cards.animator.ultrarare.Truth;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
 
@@ -28,23 +28,23 @@ public class FullmetalAlchemist extends AnimatorLoadout
         {
             startingDeck.add(Strike_FullmetalAlchemist.ID);
             startingDeck.add(Defend_FullmetalAlchemist.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(ElricEdward.ID);
-            startingDeck.add(ElricAlphonse.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(ElricEdward.DATA.ID);
+            startingDeck.add(ElricAlphonse.DATA.ID);
         }
 
         return startingDeck;
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
-        return RoyMustang.ID;
+        return RoyMustang.DATA.ID;
     }
 
     @Override

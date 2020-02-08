@@ -4,20 +4,20 @@ import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
 
 public class Zero extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(Zero.class);
+    public static final EYBCardData DATA = Register(Zero.class).SetSkill(0, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
 
     public Zero()
     {
-        super(ID, 0, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(DATA);
 
         Initialize(0, 0, 0);
 
@@ -42,15 +42,6 @@ public class Zero extends AnimatorCard implements Spellcaster
             skill.applyPowers();
 
             GameActions.Top.Add(new PlayTopCardAction(m, false));
-
-            if (!this.purgeOnUse)
-            {
-                Spellcaster.ApplyScaling(this, 6);
-                for (int i = 0; i < magicNumber; i++)
-                {
-                    GameUtilities.PlayCopy(this, m, false);
-                }
-            }
         }
     }
 }

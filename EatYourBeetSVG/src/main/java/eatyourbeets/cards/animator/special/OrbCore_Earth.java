@@ -2,21 +2,21 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.markers.Hidden;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.animator.OrbCore_EarthPower;
+import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Earth extends OrbCore implements Hidden
 {
-    public static final String ID = Register(OrbCore_Earth.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(OrbCore_Earth.class).SetPower(0, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public static final int VALUE = 3;
 
     public OrbCore_Earth()
     {
-        super(ID, 0);
+        super(DATA);
 
         Initialize(0, 0, VALUE, 2);
 

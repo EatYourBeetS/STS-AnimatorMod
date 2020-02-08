@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Strike_OwariNoSeraph extends Strike
 {
-    public static final String ID = Register(Strike_OwariNoSeraph.class, EYBCardBadge.Exhaust);
+    public static final String ID = Register(Strike_OwariNoSeraph.class).ID;
 
     public Strike_OwariNoSeraph()
     {

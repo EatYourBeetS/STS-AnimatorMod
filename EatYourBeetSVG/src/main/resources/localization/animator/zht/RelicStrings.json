@@ -78,9 +78,9 @@
 	},
 	"animator:HolyGrailRelic":
 	{
-		"DESCRIPTIONS": ["Upon pickup, gain #b{0} Max HP. At the start of each combat, add #yThe #yGrail to your hand."],
-		"FLAVOR": "'Reaching Akasha'. There is no greater purpose than this to us Tohsaka.",
-		"NAME": "Ancient Chalice"
+		"DESCRIPTIONS": ["拾起時， 獲得 #b{0} 點最大生命。每場戰鬥開始時， 增加 #y聖杯 到你的手牌中。"],
+		"FLAVOR": "'抵達根源'， 是遠坂家唯一的悲願。",
+		"NAME": "原初聖杯"
 	},
 	"animator:Hoodie":
 	{
@@ -106,17 +106,11 @@
 		"FLAVOR": "震驚的真相！",
 		"NAME": "舊棺材"
 	},
-	"animator:PurgingStone_Cards":
+	"animator:PurgingStone":
 	{
 		"DESCRIPTIONS": ["在 #y一般 卡牌獎勵中，你可以放逐掉某些牌使它們不再在獎勵和商店出現。每次戰鬥後獲得 #b1 次，擊敗精英或者Boss後獲得 #b2 次。可以存儲 #b{0} 次。"],
 		"FLAVOR": "人類無法對抗詛咒，但可以利用它。",
 		"NAME": "解咒石"
-	},
-	"animator:PurgingStone_Series":
-	{
-		"DESCRIPTIONS": ["你可以放逐 #y系列 使它們不再在獎勵和商店出現。擊敗Boss後獲得額外使用次數。", " 已放逐的系列："],
-		"FLAVOR": "人類無法對抗詛咒，但可以利用它。",
-		"NAME": "解咒石（變種）"
 	},
 	"animator:RacePiece":
 	{

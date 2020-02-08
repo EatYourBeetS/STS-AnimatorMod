@@ -4,20 +4,21 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Elesis extends AnimatorCard
 {
-    public static final String ID = Register(Elesis.class, EYBCardBadge.Drawn, EYBCardBadge.Discard);
+    public static final EYBCardData DATA = Register(Elesis.class).SetAttack(3, CardRarity.RARE);
 
     public Elesis()
     {
-        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(DATA);
 
-        Initialize(4, 0, 3, 8);
-        SetUpgrade(6, 0);
+        Initialize(3, 0, 2, 9);
+        SetUpgrade(0, 0, 1, 0);
+        SetScaling(0, 1, 2);
 
         SetExhaust(true);
         SetSynergy(Synergies.Elsword);
@@ -48,6 +49,7 @@ public class Elesis extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
         GameActions.Bottom.GainForce(magicNumber);
         GameActions.Bottom.GainAgility(magicNumber);
     }

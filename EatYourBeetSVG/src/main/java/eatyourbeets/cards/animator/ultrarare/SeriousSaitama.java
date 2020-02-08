@@ -3,20 +3,23 @@ package eatyourbeets.cards.animator.ultrarare;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class SeriousSaitama extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(SeriousSaitama.class);
+    public static final EYBCardData DATA = Register(SeriousSaitama.class).SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
 
     public SeriousSaitama()
     {
-        super(ID, -1, CardType.SKILL, CardTarget.ALL);
+        super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
         SetPurge(true);
         SetSynergy(Synergies.OnePunchMan);
@@ -25,14 +28,10 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int amount = GameUtilities.UseEnergyXCost(this);
-        if (upgraded)
-        {
-            amount += 1;
-        }
+        int amount = GameUtilities.UseXCostEnergy(this) + magicNumber;
         if (amount > 0)
         {
-            GameActions.Bottom.GainStrength(amount);
+            GameActions.Bottom.GainForce(amount);
         }
 
         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))

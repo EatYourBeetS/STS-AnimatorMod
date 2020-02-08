@@ -2,27 +2,33 @@ package eatyourbeets.cards.animator.ultrarare;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class HiiragiTenri extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(HiiragiTenri.class, EYBCardBadge.Exhaust);
+    public static final EYBCardData DATA = Register(HiiragiTenri.class).SetSkill(4, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public HiiragiTenri()
     {
-        super(ID, 4, CardType.SKILL, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(0, 0, 20);
         SetUpgrade(0, 0, 10);
 
         SetSynergy(Synergies.OwariNoSeraph);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
@@ -32,21 +38,18 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            AbstractPlayer p = AbstractDungeon.player;
-            GameActions.Bottom.MoveCards(p.drawPile, p.exhaustPile);
+            GameActions.Bottom.MoveCards(player.exhaustPile, player.drawPile).ShowEffect(false, false);
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainTemporaryHP(this.magicNumber);
-
         for (AbstractCard c : p.discardPile.group)
         {
             GameActions.Top.PlayCard(c, p.discardPile, m).SetExhaust(true);
         }
 
-        GameActions.Top.VFX(new OfferingEffect(), 0.1F);
+        GameActions.Top.GainTemporaryHP(this.magicNumber);
     }
 }

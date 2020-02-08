@@ -18,14 +18,14 @@ import eatyourbeets.utilities.JavaUtilities;
 @SpirePatch(clz= AbstractCard.class, method="renderEnergy")
 public class AbstractCard_RenderEnergy
 {
-    private static final FieldInfo<Boolean> DarkenField = JavaUtilities.GetPrivateField("darken", AbstractCard.class);
+    private static final FieldInfo<Boolean> _darken = JavaUtilities.GetField("darken", AbstractCard.class);
     private static final TextureAtlas.AtlasRegion Orb2A = UnnamedImages.ORB_2_ATLAS.findRegion(UnnamedImages.ORB_2A_PNG);
 
     @SpirePostfixPatch
     public static void Method(AbstractCard __instance, SpriteBatch sb)
     {
         UnnamedCard card = JavaUtilities.SafeCast(__instance, UnnamedCard.class);
-        if (card != null && card.masteryCost > -2 && !DarkenField.Get(card) && !card.isLocked && card.isSeen)
+        if (card != null && card.masteryCost > -2 && !_darken.Get(card) && !card.isLocked && card.isSeen)
         {
             Color costColor = Color.WHITE.cpy();
 

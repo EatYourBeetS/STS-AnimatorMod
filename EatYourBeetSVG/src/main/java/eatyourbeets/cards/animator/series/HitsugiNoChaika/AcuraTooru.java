@@ -3,23 +3,36 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraTooru extends AnimatorCard
 {
-    public static final String ID = Register(AcuraTooru.class, EYBCardBadge.Synergy, EYBCardBadge.Discard);
+    public static final EYBCardData DATA = Register(AcuraTooru.class).SetAttack(2, CardRarity.UNCOMMON);
+    static
+    {
+        DATA.InitializePreview(ThrowingKnife.GetCardForPreview(), false);
+    }
 
     public AcuraTooru()
     {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(DATA);
 
-        Initialize(4, 0, 4, 2);
+        Initialize(3, 0, 4, 2);
         SetUpgrade(0, 0, 0, 1);
+        SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.Chaika);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(2);
     }
 
     @Override

@@ -3,23 +3,18 @@ package eatyourbeets.powers.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
-import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCardBuilder;
-import eatyourbeets.cards.base.AnimatorCard_Dynamic;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.WeightedList;
@@ -29,6 +24,8 @@ import java.util.ArrayList;
 
 public class AinzPower extends AnimatorPower
 {
+    private static final String NAME = Ainz.DATA.Strings.NAME;
+    private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
     private final static WeightedList<AnimatorCardBuilder> effectList = new WeightedList<>();
 
     public static final String POWER_ID = CreateFullID(AinzPower.class.getSimpleName());
@@ -86,7 +83,7 @@ public class AinzPower extends AnimatorPower
         {
             if (card != null)
             {
-                card.applyPowers();
+                card.calculateCardDamage(null);
                 group.addToTop(card);
             }
         }
@@ -105,30 +102,26 @@ public class AinzPower extends AnimatorPower
 
     private enum AinzEffect
     {
-        PlayTopCard(22, 10, 1),
-        ChannelRandomOrbs(23, 10, 2),
-        GainTemporaryHP(15, 10, 8),
-        ApplyBurning(19, 10, 4),
-        ApplyPoison(18, 10, 6),
-        DrawCards(14, 10, 2),
-        GainThorns(9, 10, 3),
-        DamageAll(5, 10, 12),
-        GainIntellect(16, 8, 2),
-        GainEnergy(17, 8, 2),
-        GainAgility(8, 8, 2),
-        GainForce(7, 8, 3),
-        GainIntangibleLosePower(20, 4, 1),
-        GainArtifactRemoveDebuffs(21, 4, 1);
+        PlayTopCard(ACTIONS.PlayTopCard(true), 10, 1),
+        ChannelRandomOrbs(ACTIONS.ChannelRandomOrbs(2, true), 10, 2),
+        GainTemporaryHP(ACTIONS.GainAmount(8, "{" + GR.Tooltips.TempHP + "}", true), 10, 8),
+        ApplyBurning(ACTIONS.ApplyToALL(4, GR.Tooltips.Burning, true), 10, 4),
+        ApplyPoison(ACTIONS.ApplyToALL(6, GR.Tooltips.Poison, true), 10, 6),
+        DrawCards(ACTIONS.Draw(2, true), 10, 2),
+        GainThorns(ACTIONS.GainAmount(3, GR.Tooltips.Thorns, true), 10, 3),
+        DamageAll("", 10, 12),
+        GainIntellect(ACTIONS.GainAmount(2, GR.Tooltips.Intellect, true), 8, 2),
+        GainEnergy(ACTIONS.GainAmount(2, GR.Tooltips.Energy, true), 8, 2),
+        GainAgility(ACTIONS.GainAmount(2, GR.Tooltips.Agility, true), 8, 2),
+        GainForce(ACTIONS.GainAmount(2, GR.Tooltips.Force, true), 8, 2);
 
-        private static final CardStrings CARD_STRINGS = AnimatorResources.GetCardStrings(Ainz.ID);
-
-        private final int index;
+        private final String text;
         private final int weight;
         private final int number;
 
-        AinzEffect(int index, int weight, int number)
+        AinzEffect(String text, int weight, int number)
         {
-            this.index = index;
+            this.text = text;
             this.weight = weight;
             this.number = number;
         }
@@ -143,16 +136,22 @@ public class AinzPower extends AnimatorPower
 
         public AnimatorCardBuilder Generate(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
-            AnimatorCardBuilder builder = new AnimatorCardBuilder(Ainz.ID + "Alt");
+            AnimatorCardBuilder builder = new AnimatorCardBuilder(Ainz.DATA.ID + "Alt");
 
-            builder.SetText(CARD_STRINGS.NAME, GR.Animator.Text.Special.Get(index), "");
-            builder.SetProperties(AbstractCard.CardType.SKILL, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
-            builder.SetNumbers(number, number, number, number);
+            builder.SetText(NAME, text, "");
+            builder.SetProperties(AbstractCard.CardType.SKILL, GR.Animator.CardColor, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
             builder.SetOnUse(onUseAction);
 
             if (this == DamageAll)
             {
-                builder.SetMultiDamage(true);
+                builder.SetNumbers(number, 0, 0, 0);
+                builder.SetAttackType(EYBAttackType.Elemental, EYBCardTarget.ALL);
+                builder.SetScaling(3, 0, 0);
+                builder.cardType = AbstractCard.CardType.ATTACK;
+            }
+            else
+            {
+                builder.SetNumbers(0, 0, number, number);
             }
 
             return builder;
@@ -232,8 +231,7 @@ public class AinzPower extends AnimatorPower
                 {
                     return effect.Generate((c, p, m) ->
                     {
-                        GameActions.Bottom.DealDamageToAll(c, AbstractGameAction.AttackEffect.FIRE)
-                        .SetPiercing(true, false);
+                        GameActions.Bottom.DealDamageToAll(c, AbstractGameAction.AttackEffect.FIRE);
                         GameUtilities.UsePenNib();
                     });
                 }
@@ -270,23 +268,23 @@ public class AinzPower extends AnimatorPower
                     });
                 }
 
-                case GainIntangibleLosePower:
-                {
-                    return effect.Generate((c, p, m) ->
-                    {
-                        GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, c.magicNumber));
-                        GameActions.Bottom.ReducePower(p, AinzPower.POWER_ID, 1);
-                    });
-                }
-
-                case GainArtifactRemoveDebuffs:
-                {
-                    return effect.Generate((c, p, m) ->
-                    {
-                        GameActions.Bottom.Add(new RemoveDebuffsAction(p));
-                        GameActions.Bottom.GainArtifact(c.magicNumber);
-                    });
-                }
+//                case GainIntangibleLosePower:
+//                {
+//                    return effect.Generate((c, p, m) ->
+//                    {
+//                        GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, c.magicNumber));
+//                        GameActions.Bottom.ReducePower(p, AinzPower.POWER_ID, 1);
+//                    });
+//                }
+//
+//                case GainArtifactRemoveDebuffs:
+//                {
+//                    return effect.Generate((c, p, m) ->
+//                    {
+//                        GameActions.Bottom.Add(new RemoveDebuffsAction(p));
+//                        GameActions.Bottom.GainArtifact(c.magicNumber);
+//                    });
+//                }
             }
 
             return null;

@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -15,11 +16,11 @@ import java.util.ArrayList;
 
 public class Geryuganshoop extends AnimatorCard
 {
-    public static final String ID = Register(Geryuganshoop.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Geryuganshoop.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Geryuganshoop()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 1, 1);
@@ -30,9 +31,9 @@ public class Geryuganshoop extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Cycle(name, secondaryValue)
-        .AddCallback(__ -> GameActions.Bottom.SelectFromPile(name, magicNumber, player.exhaustPile)
-                           .SetMessage(JavaUtilities.Format(cardData.strings.EXTENDED_DESCRIPTION[0], magicNumber))
+        GameActions.Bottom.Cycle(name, magicNumber)
+        .AddCallback(__ -> GameActions.Bottom.SelectFromPile(name, secondaryValue, player.exhaustPile)
+                           .SetMessage(JavaUtilities.Format(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue))
                            .SetOptions(false, true)
                            .AddCallback(this::OnCardChosen));
     }
@@ -45,10 +46,10 @@ public class Geryuganshoop extends AnimatorCard
         {
             for (AbstractCard card : cards)
             {
-                if (!limited && (card.cardID.equals(Boros.ID) || card.cardID.startsWith(Melzalgald.ID)))
+                if (!limited && (card.cardID.equals(Boros.DATA.ID) || card.cardID.startsWith(Melzalgald.DATA.ID)))
                 {
                     EffectHistory.TryActivateLimited(this.cardID);
-                    GameActions.Bottom.MoveCard(card, player.hand, player.exhaustPile)
+                    GameActions.Bottom.MoveCard(card, player.exhaustPile, player.hand)
                             .ShowEffect(true, false);
                 }
                 else

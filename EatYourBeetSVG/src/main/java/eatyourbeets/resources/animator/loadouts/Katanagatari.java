@@ -6,11 +6,11 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.basic.Strike_Katanagatari;
 import eatyourbeets.cards.animator.series.Katanagatari.Azekura;
 import eatyourbeets.cards.animator.series.Katanagatari.Emonzaemon;
-import eatyourbeets.cards.animator.series.Katanagatari.Togame;
+import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.animator.ultrarare.ShikizakiKiki;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 
 import java.util.ArrayList;
 
@@ -28,23 +28,23 @@ public class Katanagatari extends AnimatorLoadout
         {
             startingDeck.add(Strike_Katanagatari.ID);
             startingDeck.add(Defend_Katanagatari.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Azekura.ID);
-            startingDeck.add(Emonzaemon.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Azekura.DATA.ID);
+            startingDeck.add(Emonzaemon.DATA.ID);
         }
 
         return startingDeck;
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
-        return Togame.ID;
+        return HigakiRinne.DATA.ID;
     }
 
     @Override

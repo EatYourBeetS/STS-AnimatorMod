@@ -6,28 +6,28 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Asuramaru;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.utilities.GameActions;
 
 public class Yuuichirou extends AnimatorCard
 {
-    public static final String ID = Register(Yuuichirou.class, EYBCardBadge.Exhaust);
+    public static final EYBCardData DATA = Register(Yuuichirou.class).SetAttack(1, CardRarity.UNCOMMON);
+    static
+    {
+        DATA.InitializePreview(new Asuramaru(), false);
+    }
 
     public Yuuichirou()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(8, 0);
         SetUpgrade(4, 0);
+        SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.OwariNoSeraph);
-
-        if (InitializingPreview())
-        {
-            cardData.InitializePreview(new Asuramaru(), false);
-        }
     }
 
     @Override

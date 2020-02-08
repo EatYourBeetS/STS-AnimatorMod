@@ -13,7 +13,7 @@ public class BiyorigoPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        this.amount = 1;
+        this.amount = amount;
 
         updateDescription();
     }
@@ -21,10 +21,7 @@ public class BiyorigoPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        this.description =
-                powerStrings.DESCRIPTIONS[0] + (amount) +
-                powerStrings.DESCRIPTIONS[1] + (amount * 2) +
-                powerStrings.DESCRIPTIONS[2];
+        this.description = FormatDescription(0, amount, amount*2);
     }
 
     @Override
@@ -37,6 +34,7 @@ public class BiyorigoPower extends AnimatorPower
         {
             EnergyPanel.useEnergy(energy);
             GameActions.Bottom.GainForce(energy * 2);
+            GameActions.Bottom.GainAgility(energy * 2);
             flash();
         }
     }

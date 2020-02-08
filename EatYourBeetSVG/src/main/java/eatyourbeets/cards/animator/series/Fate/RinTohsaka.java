@@ -1,15 +1,12 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.ui.EffectHistory;
@@ -17,14 +14,15 @@ import eatyourbeets.utilities.GameActions;
 
 public class RinTohsaka extends AnimatorCard implements Spellcaster
 {
-    public static final String ID = Register(RinTohsaka.class, EYBCardBadge.Drawn);
+    public static final EYBCardData DATA = Register(RinTohsaka.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public RinTohsaka()
     {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 2, 1);
         SetUpgrade(0, 4, 0);
+        SetScaling(1, 0, 0);
 
         SetEvokeOrbCount(1);
         SetExhaust(true);
@@ -41,27 +39,6 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
             GameActions.Bottom.GainTemporaryArtifact(1);
             GameActions.Bottom.Flash(this);
         }
-    }
-
-    @SpireOverride
-    protected void applyPowersToBlock()
-    {
-        float tmp = (float) this.baseBlock;
-
-        tmp += Spellcaster.GetScaling();
-
-        for (AbstractPower p : AbstractDungeon.player.powers)
-        {
-            tmp = p.modifyBlock(tmp);
-        }
-
-        if (tmp < 0.0F)
-        {
-            tmp = 0.0F;
-        }
-
-        this.block = MathUtils.floor(tmp);
-        this.isBlockModified = this.block != this.baseBlock;
     }
 
     @Override

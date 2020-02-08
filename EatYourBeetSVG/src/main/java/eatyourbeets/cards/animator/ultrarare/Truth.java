@@ -13,7 +13,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -22,16 +23,24 @@ import java.util.ArrayList;
 
 public class Truth extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Truth.class, EYBCardBadge.Special);
+    private static final Wound wound = new Wound();
+
+    public static final EYBCardData DATA = Register(Truth.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public Truth()
     {
-        super(ID, 1, CardType.SKILL, CardTarget.SELF);
+        super(DATA);
 
-        Initialize(0, 0);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 4);
+        SetUpgrade(0, 0, 0);
 
         SetSynergy(Synergies.FullmetalAlchemist);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
     }
 
     @Override
@@ -39,10 +48,10 @@ public class Truth extends AnimatorCard_UltraRare
     {
         int amount = 1;
 
-        GameActions.Bottom.GainFocus(amount);
-        GameActions.Bottom.GainEnergy(amount + 1);
-        GameActions.Bottom.Draw(amount + 2);
-        GameActions.Bottom.GainStrength(amount + 3);
+        GameActions.Bottom.GainForce(magicNumber);
+        GameActions.Bottom.GainAgility(magicNumber);
+        GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.GainStrength(magicNumber);
 
         int count = 0;
         ArrayList<String> orbs = new ArrayList<>();
@@ -70,7 +79,7 @@ public class Truth extends AnimatorCard_UltraRare
         CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
-            if (!c.cardID.equals(Wound.ID) && !c.cardID.equals(this.cardID)
+            if (!c.cardID.equals(wound.cardID) && !c.cardID.equals(this.cardID)
                     && !c.cardID.equals(Necronomicurse.ID)
                     && !c.cardID.equals(AscendersBane.ID)
                     && !SoulboundField.soulbound.get(c))
@@ -83,12 +92,12 @@ public class Truth extends AnimatorCard_UltraRare
         {
             GameActions.Bottom.SelectFromPile(name, 1, temp)
             .SetOptions(false, false)
-            .SetMessage(GR.Common.Strings.GridSelection.TransformInto(Wound.NAME))
+            .SetMessage(GR.Common.Strings.GridSelection.TransformInto(wound.name))
             .AddCallback(cards ->
             {
                 AbstractCard card = cards.get(0);
                 AbstractDungeon.player.masterDeck.removeCard(card);
-                AbstractDungeon.player.masterDeck.addToTop(new Wound());
+                AbstractDungeon.player.masterDeck.addToTop(wound.makeCopy());
             });
         }
     }

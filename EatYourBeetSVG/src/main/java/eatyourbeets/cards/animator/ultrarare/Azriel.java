@@ -2,8 +2,8 @@ package eatyourbeets.cards.animator.ultrarare;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardBadge;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.AzrielPower;
 import eatyourbeets.powers.common.PlayerFlightPower;
@@ -11,11 +11,11 @@ import eatyourbeets.utilities.GameActions;
 
 public class Azriel extends AnimatorCard_UltraRare
 {
-    public static final String ID = Register(Azriel.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Azriel.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public Azriel()
     {
-        super(ID, 3, CardType.POWER, CardTarget.SELF);
+        super(DATA);
 
         Initialize(0, 0, 1);
 

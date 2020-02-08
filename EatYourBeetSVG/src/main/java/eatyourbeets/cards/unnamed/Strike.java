@@ -1,23 +1,21 @@
 package eatyourbeets.cards.unnamed;
 
-import basemod.helpers.BaseModCardTags;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.UnnamedCard;
 
 public class Strike extends UnnamedCard
 {
-    public static final String ID = Register(Strike.class);
+    public static final String ID_ = Register(Strike.class);
 
     public Strike()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
+        super(ID_, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
 
         Initialize(6,0);
 
-        this.tags.add(BaseModCardTags.BASIC_STRIKE);
-        this.tags.add(AbstractCard.CardTags.STRIKE);
+        this.tags.add(CardTags.STARTER_STRIKE);
+        this.tags.add(CardTags.STRIKE);
     }
 
     @Override

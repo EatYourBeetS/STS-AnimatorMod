@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Defend_OnePunchMan extends Defend
 {
-    public static final String ID = Register(Defend_OnePunchMan.class);
+    public static final String ID = Register(Defend_OnePunchMan.class).ID;
 
     public Defend_OnePunchMan()
     {

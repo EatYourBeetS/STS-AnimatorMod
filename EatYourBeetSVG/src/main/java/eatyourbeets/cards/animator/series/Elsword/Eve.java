@@ -6,21 +6,25 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.EvePower;
 import eatyourbeets.utilities.GameActions;
 
 public class Eve extends AnimatorCard
 {
-    public static final String ID = Register(Eve.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Eve.class).SetPower(3, CardRarity.RARE);
+    static
+    {
+        DATA.InitializePreview(OrbCore.GetCardForPreview(), false);
+    }
 
     public Eve()
     {
-        super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(DATA);
 
-        Initialize(0, 0, 1, 0);
-        SetUpgrade(0, 0, 0, 2);
+        Initialize(0, 0, 0);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -33,11 +37,9 @@ public class Eve extends AnimatorCard
             GameActions.Bottom.StackPower(new EvePower(p, 1));
         }
 
-        GameActions.Bottom.GainOrbSlots(magicNumber);
-
-        if (secondaryValue > 0)
+        if (magicNumber > 0)
         {
-            GameActions.Bottom.GainMetallicize(secondaryValue);
+            GameActions.Bottom.GainOrbSlots(magicNumber);
         }
 
         GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)

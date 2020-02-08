@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
@@ -16,16 +16,17 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Raven extends AnimatorCard
 {
-    public static final String ID = Register(Raven.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(Raven.class).SetAttack(1, CardRarity.COMMON);
 
     private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Raven::FindBestCard);
 
     public Raven()
     {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(DATA);
 
         Initialize(5, 0, 1);
         SetUpgrade(3, 0);
+        SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Elsword);
     }
@@ -47,11 +48,14 @@ public class Raven extends AnimatorCard
     }
 
     @Override
-    public void render(SpriteBatch sb)
+    public void renderCard(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
     {
-        super.render(sb);
+        super.renderCard(sb, hovered, selected, library);
 
-        drawPileCardPreview.Render(sb);
+        if (!library)
+        {
+            drawPileCardPreview.Render(sb);
+        }
     }
 
     @Override

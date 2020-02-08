@@ -1,44 +1,34 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardBadge;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.OnCostRefreshSubscriber;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.interfaces.subscribers.OnCostRefreshSubscriber;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSubscriber, StartupCard
+public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSubscriber
 {
-    public static final String ID = Register(YunYun.class, EYBCardBadge.Special);
+    public static final EYBCardData DATA = Register(YunYun.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     private int costModifier = 0;
 
     public YunYun()
     {
-        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        super(DATA);
 
         Initialize(8, 0);
         SetUpgrade(4, 0);
+        SetScaling(1, 0, 0);
 
-        SetMultiDamage(true);
         SetSynergy(Synergies.Konosuba);
-    }
-
-    @Override
-    public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
-    {
-        return super.calculateModifiedCardDamage(player, mo, tmp + Spellcaster.GetScaling());
     }
 
     @Override
@@ -53,6 +43,12 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
+
+        if (EffectHistory.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.ChannelOrb(new Lightning(), true);
+            GameActions.Bottom.Flash(this);
+        }
 
         costModifier = 0;
     }
@@ -76,9 +72,9 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     }
 
     @Override
-    public void applyPowers()
+    public void Refresh(AbstractMonster enemy)
     {
-        super.applyPowers();
+        super.Refresh(enemy);
 
         OnCostRefresh(this);
     }
@@ -94,24 +90,6 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
         }
 
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
-
-        if (!EffectHistory.HasActivatedSemiLimited(cardID))
-        {
-            int lightning = 0;
-            for (AbstractOrb orb : AbstractDungeon.player.orbs)
-            {
-                if (Lightning.ORB_ID.equals(orb.ID))
-                {
-                    lightning += 1;
-                }
-            }
-
-            if (lightning >= 3)
-            {
-                GameActions.Bottom.GainIntellect(1);
-                EffectHistory.TryActivateSemiLimited(cardID);
-            }
-        }
     }
 
     @Override
@@ -137,18 +115,5 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
                 this.setCostForTurn(currentCost + costModifier);
             }
         }
-    }
-
-    @Override
-    public boolean atBattleStartPreDraw()
-    {
-        if (GameUtilities.IsEliteRoom())
-        {
-            GameActions.Bottom.ChannelOrb(new Lightning(), false);
-
-            return true;
-        }
-
-        return false;
     }
 }

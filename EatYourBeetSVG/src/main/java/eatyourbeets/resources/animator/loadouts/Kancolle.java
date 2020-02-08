@@ -12,8 +12,8 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.metrics.AnimatorLoadout;
-import eatyourbeets.resources.animator.metrics.AnimatorTrophies;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -34,22 +34,22 @@ public class Kancolle extends AnimatorLoadout
         {
             startingDeck.add(Strike_Kancolle.ID);
             startingDeck.add(Defend_Kancolle.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Strike.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Defend.ID);
-            startingDeck.add(Shimakaze.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Strike.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Shimakaze.DATA.ID);
         }
 
         return startingDeck;
     }
 
     @Override
-    public String GetRepresentativeCard()
+    public String GetSymbolicCardID()
     {
-        return Shimakaze.ID;
+        return Shimakaze.DATA.ID;
     }
 
     @Override
@@ -63,15 +63,15 @@ public class Kancolle extends AnimatorLoadout
     {
         if (trophy == 1)
         {
-            return GR.Animator.Text.Trophies.BronzeDescription;
+            return GR.Animator.Strings.Trophies.BronzeDescription;
         }
         else if (trophy == 2)
         {
-            return GR.Animator.Text.Trophies.SilverKancolle;
+            return GR.Animator.Strings.Trophies.SilverKancolle;
         }
         else if (trophy == 3)
         {
-            return GR.Animator.Text.Trophies.GoldKancolle;
+            return GR.Animator.Strings.Trophies.GoldKancolle;
         }
 
         return null;
@@ -81,7 +81,7 @@ public class Kancolle extends AnimatorLoadout
     {
         AnimatorTrophies trophies = GetTrophies();
 
-        if (GR.Animator.Metrics.SelectedLoadout.ID == ID)
+        if (GR.Animator.Dungeon.StartingSeries == this)
         {
             trophies.Trophy1 = Math.max(trophies.Trophy1, ascensionLevel);
         }

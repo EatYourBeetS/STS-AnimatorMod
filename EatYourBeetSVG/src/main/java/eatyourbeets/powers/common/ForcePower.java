@@ -1,9 +1,8 @@
 package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ForcePower extends PlayerAttributePower
 {
@@ -20,17 +19,14 @@ public class ForcePower extends PlayerAttributePower
     }
 
     @Override
-    protected void GainPower(int amount)
+    public float GetScaling(EYBCard card)
     {
-        GameActions.Top.GainStrength(amount);
+        return card.forceScaling * amount;
     }
 
     @Override
-    protected void ReducePower(int amount)
+    protected void OnThresholdReached()
     {
-        if (GameUtilities.GetStrength() > 0)
-        {
-            GameActions.Top.ReducePower(owner, StrengthPower.POWER_ID, 1);
-        }
+        GameActions.Top.GainStrength(1);
     }
 }

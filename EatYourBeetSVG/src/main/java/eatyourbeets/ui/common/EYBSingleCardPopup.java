@@ -22,13 +22,12 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Toggle;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.MethodInfo;
 import eatyourbeets.utilities.RenderHelpers;
 
 // TODO: Improve this
 public class EYBSingleCardPopup extends GUIElement
 {
-    private static final MethodInfo _canToggleBetaArt = JavaUtilities.GetMethod("canToggleBetaArt", SingleCardViewPopup.class);
+    //private static final MethodInfo _canToggleBetaArt = JavaUtilities.GetMethod("canToggleBetaArt", SingleCardViewPopup.class);
     private static final String[] TEXT = SingleCardViewPopup.TEXT;
 
     private final GUI_Toggle upgradeToggle;
@@ -116,7 +115,7 @@ public class EYBSingleCardPopup extends GUIElement
         this.fadeTimer = 0.25F;
         this.fadeColor.a = 0.0F;
 
-        this.betaArtToggle.SetActive((boolean)_canToggleBetaArt.Invoke(CardCrawlGame.cardPopup));
+        this.betaArtToggle.SetActive(false);// (boolean)_canToggleBetaArt.Invoke(CardCrawlGame.cardPopup));
         this.upgradeToggle.SetActive(SingleCardViewPopup.enableUpgradeToggle && card.canUpgrade());
 
         if (betaArtToggle.isActive)

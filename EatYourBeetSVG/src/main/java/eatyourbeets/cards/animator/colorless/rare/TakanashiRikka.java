@@ -45,7 +45,7 @@ public class TakanashiRikka extends AnimatorCard
                 copy.isCostModified = true;
             }
 
-            copy.baseDamage = magicNumber;
+            copy.baseDamage = 0;
             copy.tags.add(GR.Enums.CardTags.PURGE);
 
             GameActions.Top.MakeCardInHand(copy);

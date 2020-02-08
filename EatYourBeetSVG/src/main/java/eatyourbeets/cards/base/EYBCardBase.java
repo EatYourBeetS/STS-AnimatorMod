@@ -169,6 +169,7 @@ public abstract class EYBCardBase extends AbstractCard
         renderDescription(sb);
         renderTint(sb);
         renderEnergy(sb);
+        hb.render(sb);
     }
 
     @SpireOverride

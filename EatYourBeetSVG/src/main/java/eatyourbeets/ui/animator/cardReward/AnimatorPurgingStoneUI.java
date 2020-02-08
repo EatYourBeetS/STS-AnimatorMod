@@ -14,6 +14,7 @@ import eatyourbeets.effects.card.HideCardEffect;
 import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -25,13 +26,15 @@ public class AnimatorPurgingStoneUI extends GUIElement
     protected final ArrayList<BanCardButton> buttons = new ArrayList<>();
 
     protected ActionT1<AbstractCard> onCardBanned;
+    protected ActionT1<AbstractCard> onCardAdded;
     protected PurgingStone purgingStone;
     protected boolean canBan;
     protected RewardItem rewardItem;
 
-    public AnimatorPurgingStoneUI(ActionT1<AbstractCard> onCardBanned)
+    public AnimatorPurgingStoneUI(ActionT1<AbstractCard> onCardBanned, ActionT1<AbstractCard> onCardAdded)
     {
         this.onCardBanned = onCardBanned;
+        this.onCardAdded = onCardAdded;
     }
 
     public void Open(RewardItem rItem, ArrayList<AbstractCard> cards)
@@ -46,6 +49,8 @@ public class AnimatorPurgingStoneUI extends GUIElement
             {
                 if (purgingStone.CanBan(card))
                 {
+                    OnCardAdded(card);
+
                     BanCardButton banButton = new BanCardButton(card);
                     banButton.show();
                     buttons.add(banButton);
@@ -96,14 +101,11 @@ public class AnimatorPurgingStoneUI extends GUIElement
                     continue;
                 }
 
-                AbstractDungeon.effectsQueue.add(new ExhaustCardEffect(toBan.card));
-                AbstractDungeon.effectsQueue.add(new HideCardEffect(toBan.card));
+                GameEffects.Queue.Add(new ExhaustCardEffect(toBan.card));
+                GameEffects.Queue.Add(new HideCardEffect(toBan.card));
                 rewardItem.cards.remove(index);
 
-                if (onCardBanned != null)
-                {
-                    onCardBanned.Invoke(toBan.card);
-                }
+                OnCardBanned(toBan.card);
 
                 toBan.hideInstantly();
 
@@ -151,6 +153,8 @@ public class AnimatorPurgingStoneUI extends GUIElement
                 replacement.target_y = replacement.current_y = toBan.card.target_y;
                 rewardItem.cards.add(index, replacement);
 
+                OnCardAdded(replacement);
+
                 if (purgingStone.CanBan(replacement))
                 {
                     BanCardButton banButton = new BanCardButton(replacement);
@@ -190,7 +194,7 @@ public class AnimatorPurgingStoneUI extends GUIElement
         }
     }
 
-    public AbstractCard returnRandomCard()
+    private AbstractCard returnRandomCard()
     {
         ArrayList<AbstractCard> list;
         if (AbstractDungeon.cardRng.randomBoolean(0.4f))
@@ -209,6 +213,22 @@ public class AnimatorPurgingStoneUI extends GUIElement
         else
         {
             return null;
+        }
+    }
+
+    private void OnCardBanned(AbstractCard card)
+    {
+        if (onCardBanned != null)
+        {
+            onCardBanned.Invoke(card);
+        }
+    }
+
+    private void OnCardAdded(AbstractCard card)
+    {
+        if (onCardAdded != null)
+        {
+            onCardAdded.Invoke(card);
         }
     }
 }

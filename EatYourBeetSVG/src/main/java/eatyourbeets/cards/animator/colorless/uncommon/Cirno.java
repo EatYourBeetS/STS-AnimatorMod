@@ -22,7 +22,6 @@ public class Cirno extends AnimatorCard
         Initialize(4, 0);
         SetUpgrade(3, 0);
 
-        SetAttackType(EYBAttackType.Elemental);
         SetEthereal(true);
         SetMultiDamage(true);
         SetSynergy(Synergies.TouhouProject);

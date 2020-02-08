@@ -18,6 +18,11 @@ import java.util.ArrayList;
 
 public class EYBCardTooltip
 {
+    private final static ArrayList EMPTY_LIST = new ArrayList();
+
+    private final static FieldInfo<String> _body = JavaUtilities.GetField("BODY", TipHelper.class);
+    private final static FieldInfo<String> _header = JavaUtilities.GetField("HEADER", TipHelper.class);
+    private final static FieldInfo<ArrayList> _card = JavaUtilities.GetField("card", TipHelper.class);
     private final static FieldInfo<ArrayList> _keywords = JavaUtilities.GetField("KEYWORDS", TipHelper.class);
     private final static FieldInfo<ArrayList> _powerTips = JavaUtilities.GetField("POWER_TIPS", TipHelper.class);
     private final static FieldInfo<Boolean> _renderedTipsThisFrame = JavaUtilities.GetField("renderedTipThisFrame", TipHelper.class);
@@ -61,8 +66,11 @@ public class EYBCardTooltip
 
     public static void RenderAll(SpriteBatch sb, EYBCard card)
     {
-        _keywords.Get(null).clear();
-        _powerTips.Get(null).clear();
+        _body.Set(null, null);
+        _header.Set(null, null);
+        _card.Set(null, null);
+        _keywords.Set(null, EMPTY_LIST);
+        _powerTips.Set(null, EMPTY_LIST);
         _renderedTipsThisFrame.Set(null, true);
 
         tooltips.clear();

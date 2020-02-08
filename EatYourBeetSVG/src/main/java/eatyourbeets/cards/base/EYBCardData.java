@@ -81,6 +81,18 @@ public class EYBCardData
         }
     }
 
+    public EYBCard GetCardPreview(boolean upgraded)
+    {
+        if (upgradedPreview != null && upgraded)
+        {
+            return upgradedPreview;
+        }
+        else
+        {
+            return defaultPreview;
+        }
+    }
+
     public EYBCard GetCardPreview(EYBCard card)
     {
         if (upgradedPreview != null && card.upgraded)

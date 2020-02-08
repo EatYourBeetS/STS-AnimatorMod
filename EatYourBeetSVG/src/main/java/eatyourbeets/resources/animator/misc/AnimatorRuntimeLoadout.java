@@ -2,10 +2,7 @@ package eatyourbeets.resources.animator.misc;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCardBuilder;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -14,11 +11,14 @@ import java.util.Map;
 
 public class AnimatorRuntimeLoadout
 {
+    private final static EYBCardTooltip PromotedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.PickupBonusHeader, GR.Animator.Strings.SeriesSelection.PickupBonusBody);
+
     public final int ID;
     public final Map<String, AbstractCard> Cards;
     public final boolean IsBeta;
     public final AnimatorLoadout Loadout;
 
+    public int bonus;
     public AnimatorCard card;
     public boolean promoted;
 
@@ -73,6 +73,7 @@ public class AnimatorRuntimeLoadout
             card = builder
             .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards_Promoted(Cards.size()), "")
             .SetProperties(temp.type, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.NONE).Build();
+            card.tooltips.add(PromotedTooltip);
         }
         else if (Loadout.IsBeta)
         {
@@ -99,7 +100,9 @@ public class AnimatorRuntimeLoadout
             for (AbstractCard card : CardLibrary.getAllCards())
             {
                 AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
-                if (c != null && card.color == GR.Animator.CardColor && synergy.equals(c.synergy))
+                if (c != null && card.color == GR.Animator.CardColor && synergy.equals(c.synergy)
+                    && card.rarity != AbstractCard.CardRarity.SPECIAL
+                    && card.rarity != AbstractCard.CardRarity.BASIC)
                 {
                     cards.put(c.cardID, c);
                 }

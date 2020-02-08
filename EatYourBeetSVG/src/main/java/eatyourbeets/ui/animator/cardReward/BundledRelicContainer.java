@@ -1,16 +1,36 @@
 package eatyourbeets.ui.animator.cardReward;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.relics.animator.CursedGlyph;
+import eatyourbeets.relics.animator.TheMissingPiece;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorStrings;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
 public class BundledRelicContainer extends GUIElement
 {
-    public final ArrayList<BundledRelic> bundledRelics;
-    public RewardItem rewardItem;
+    private static final CursedGlyph CURSED_GLYPH = new CursedGlyph();
+
+    private final AnimatorStrings.Rewards REWARDS = GR.Animator.Strings.Rewards;
+    private final ArrayList<BundledRelic> bundledRelics;
+    private RewardItem rewardItem;
+    private Random RNG;
 
     public BundledRelicContainer()
     {
@@ -25,19 +45,9 @@ public class BundledRelicContainer extends GUIElement
 
     public void Open(RewardItem rewardItem, ArrayList<AbstractCard> cards)
     {
-        BundledRelicProvider.SetupBundledRelics(this, rewardItem, cards);
-
-        for (BundledRelic bundledRelic : bundledRelics)
-        {
-            for (AbstractCard card : cards)
-            {
-                if (bundledRelic.cardID.equals(card.cardID))
-                {
-                    bundledRelic.card = card;
-                    bundledRelic.Open();
-                }
-            }
-        }
+        this.RNG = new Random(Settings.seed + (AbstractDungeon.actNum * 23) + (AbstractDungeon.floorNum * 17));
+        this.rewardItem = rewardItem;
+        this.bundledRelics.clear();
     }
 
     public void Close()
@@ -73,6 +83,15 @@ public class BundledRelicContainer extends GUIElement
         }
     }
 
+    public void Add(AbstractCard card)
+    {
+        BundledRelic bundledRelic = GetBundle(card);
+        if (bundledRelic != null)
+        {
+            bundledRelics.add(bundledRelic);
+        }
+    }
+
     public void Remove(AbstractCard card)
     {
         for (int i = 0; i < bundledRelics.size(); i++)
@@ -80,6 +99,91 @@ public class BundledRelicContainer extends GUIElement
             if (bundledRelics.get(i).card == card)
             {
                 bundledRelics.remove(i);
+                return;
+            }
+        }
+    }
+
+    private BundledRelic GetBundle(AbstractCard card)
+    {
+        if (card instanceof AnimatorCard_UltraRare)
+        {
+            return GetCursedRelicBundle(card);
+        }
+
+        if (card instanceof AnimatorCard)
+        {
+            for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
+            {
+                if (series.promoted && series.bonus < 6)
+                {
+                    if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckInstance(card.cardID) == null)
+                    {
+                        if (RNG.randomBoolean())
+                        {
+                            return GetGoldBundle(card, series.bonus > 4 ? 24 : 12);
+                        }
+                        else
+                        {
+                            return GetMaxHPBundle(card, series.bonus > 4 ? 2 : 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private BundledRelic GetCursedRelicBundle(AbstractCard card)
+    {
+        return new BundledRelic(card, c -> GameEffects.Queue.ObtainRelic(new CursedGlyph()))
+                .SetIcon(CURSED_GLYPH.img, -AbstractCard.RAW_W * 0.45f, -AbstractCard.RAW_H * 0.52f)
+                .SetText(REWARDS.CursedRelic, Settings.RED_TEXT_COLOR, -AbstractCard.RAW_W * 0.10f, -AbstractCard.RAW_H * 0.54f);
+    }
+
+    private BundledRelic GetGoldBundle(AbstractCard card, int gold)
+    {
+        return new BundledRelic(card, this::ReceiveGold).SetAmount(gold)
+                .SetIcon(ImageMaster.UI_GOLD, -AbstractCard.RAW_W * 0.45f, -AbstractCard.RAW_H * 0.545f)
+                .SetText(REWARDS.GoldBonus(gold), Color.WHITE, -AbstractCard.RAW_W * 0.165f, -AbstractCard.RAW_H * 0.54f);
+    }
+
+    private BundledRelic GetMaxHPBundle(AbstractCard card, int maxHP)
+    {
+        return new BundledRelic(card, this::ReceiveMaxHP).SetAmount(maxHP)
+                .SetIcon(ImageMaster.TP_HP, -AbstractCard.RAW_W * 0.45f, -AbstractCard.RAW_H * 0.545f)
+                .SetText(REWARDS.MaxHPBonus(maxHP), Color.WHITE, -AbstractCard.RAW_W * 0.165f, -AbstractCard.RAW_H * 0.54f);
+    }
+
+    private void ReceiveGold(BundledRelic bundle)
+    {
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
+        {
+            if (series.Cards.containsKey(bundle.card.cardID))
+            {
+                CardCrawlGame.sound.play("GOLD_GAIN");
+                AbstractDungeon.player.gainGold(bundle.amount);
+                series.bonus += 1;
+
+                TheMissingPiece.RefreshDescription();
+                JavaUtilities.Log(this, "Obtained Gold Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
+                return;
+            }
+        }
+    }
+
+    private void ReceiveMaxHP(BundledRelic bundle)
+    {
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
+        {
+            if (series.Cards.containsKey(bundle.card.cardID))
+            {
+                AbstractDungeon.player.increaseMaxHp(bundle.amount, true);
+                series.bonus += 1;
+
+                TheMissingPiece.RefreshDescription();
+                JavaUtilities.Log(this, "Obtained Max HP Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
                 return;
             }
         }

@@ -1,177 +1,113 @@
 package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import eatyourbeets.relics.animator.CursedGlyph;
-import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
-import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
+import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
-
-import java.util.ArrayList;
+import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.Testing;
 
 public class BundledRelic
 {
-    public final String cardID;
-    public AbstractCard card;
-
     private static final AnimatorStrings.Rewards text = GR.Animator.Strings.Rewards;
+    public final AbstractCard card;
+    public final ActionT1<BundledRelic> onSelect;
+    public float textOffsetX;
+    public float textOffsetY;
+    public float iconOffsetX;
+    public float iconOffsetY;
+    public Color textColor;
+    public String title;
+    public Texture icon;
+    public String tooltipHeader;
+    public String tooltipBody;
+    public Hitbox tooltipHB;
+    public int amount;
 
-    private final AbstractRelic.RelicTier relicTier;
-    private final String relicID;
-    private final float chance;
-
-    private float roll;
-    private AbstractRelic relic;
-
-    public BundledRelic(String cardID, String relicID, AbstractRelic.RelicTier tier, float chance)
+    public BundledRelic(AbstractCard card, ActionT1<BundledRelic> onSelect)
     {
-        this.chance = chance;
-        this.cardID = cardID;
-        this.relicTier = tier;
-        this.relicID = relicID;
+        this.card = card;
+        this.onSelect = onSelect;
+        this.tooltipHB = new Hitbox(0, 0, AbstractCard.RAW_W, AbstractCard.RAW_H);
     }
 
-    public BundledRelic Clone(float roll)
+    public BundledRelic SetIcon(Texture icon, float iconOffsetX, float iconOffsetY)
     {
-        float chance = this.chance;
+        this.icon = icon;
+        this.iconOffsetX = iconOffsetX;
+        this.iconOffsetY = iconOffsetY;
 
-        if (GameUtilities.GetActualAscensionLevel() > 6 && chance < 50)
-        {
-            chance = 0;
-        }
+        return this;
+    }
 
-        //JavaUtilities.Logger.info(cardID + ", Rolled: " + roll + " (" + chance + ")");
-        BundledRelic bundledRelic = new BundledRelic(cardID, relicID, relicTier, chance);
-        bundledRelic.roll = roll;
+    public BundledRelic SetText(String text, Color textColor, float textOffsetX, float textOffsetY)
+    {
+        this.title = text;
+        this.textColor = textColor;
+        this.textOffsetX = textOffsetX;
+        this.textOffsetY = textOffsetY;
 
-        return bundledRelic;
+        return this;
+    }
+
+    public BundledRelic SetTooltip(String header, String body)
+    {
+        this.tooltipHeader = header;
+        this.tooltipBody = body;
+
+        return this;
+    }
+
+    public BundledRelic SetAmount(int amount)
+    {
+        this.amount = amount;
+
+        return this;
     }
 
     public void Open()
     {
-        relic = null;
 
-        if (roll < chance)
-        {
-            if (UnnamedReignRelic.IsEquipped())
-            {
-                relic = new AncientMedallion();
-                relic.flash();
-                return;
-            }
-
-            if (relicID.equals(CursedGlyph.ID))
-            {
-                relic = new CursedGlyph();
-                relic.flash();
-                return;
-            }
-
-            ArrayList<String> relicPool = GetRelicPool();
-            if (relicPool == null || relicPool.contains(relicID))
-            {
-                for (AbstractRelic r : AbstractDungeon.player.relics)
-                {
-                    if (r.relicId.equals(relicID))
-                    {
-                        JavaUtilities.Logger.info(relicID + " Skipped");
-                        return;
-                    }
-                }
-
-                JavaUtilities.Logger.info(relicID + " Created");
-                relic = RelicLibrary.getRelic(relicID).makeCopy();
-                relic.flash();
-            }
-        }
     }
 
     public void Update()
     {
-        if (relic != null)
+        if (tooltipBody != null)
         {
-            card.hb.height = AbstractCard.IMG_HEIGHT * 0.6f;
-            relic.hb.width = AbstractCard.IMG_WIDTH * 0.8f;
-            relic.update();
+            tooltipHB.resize(card.drawScale * AbstractCard.IMG_WIDTH, (card.drawScale * AbstractCard.IMG_HEIGHT) * Testing.TryGetValue(0, 0.15f));
+            tooltipHB.move(card.current_x, card.current_y + (textOffsetY * card.drawScale * Settings.scale));
+            tooltipHB.update();
+
+            if (tooltipHB.hovered)
+            {
+                TipHelper.renderGenericTip(tooltipHB.x + tooltipHB.width * 0.7f, tooltipHB.cY, tooltipHeader, tooltipBody);
+            }
         }
     }
 
     public void Render(SpriteBatch sb)
     {
-        if (relic != null)
-        {
-            float offset_y = (-(AbstractCard.IMG_HEIGHT * 0.45f) * card.drawScale);
-            float offset_x = (-(AbstractCard.IMG_WIDTH * 0.45f) * card.drawScale);
-
-            relic.currentX = card.current_x + offset_x;
-            relic.currentY = card.current_y + offset_y;
-            relic.scale = card.drawScale;
-            relic.render(sb);
-
-            BitmapFont font = FontHelper.buttonLabelFont;
-            font.getData().setScale(relic.scale * 0.8f);
-            if (relicID.equals(CursedGlyph.ID))
-            {
-                FontHelper.renderFontLeft(sb, font, text.CursedRelic, card.current_x + (offset_x * 0.66f), card.current_y + offset_y, Color.RED);
-            }
-            else
-            {
-                FontHelper.renderFontLeft(sb, font, text.BonusRelic, card.current_x + (offset_x * 0.66f), card.current_y + offset_y, Color.WHITE);
-            }
-            font.getData().setScale(1f);
-
-            relic.hb.move(card.current_x, relic.currentY);
-            if (relic.hb.hovered)
-            {
-                relic.renderTip(sb);
-            }
-        }
+        BitmapFont font = FontHelper.buttonLabelFont;
+        font.getData().setScale(card.drawScale * 0.8f);
+        RenderHelpers.DrawOnCardAuto(sb, card, icon, iconOffsetX, iconOffsetY, icon.getWidth(), icon.getHeight());
+        RenderHelpers.WriteOnCard(sb, card, font, title, textOffsetX, textOffsetY, textColor);
+        RenderHelpers.ResetFont(font);
+        tooltipHB.render(sb);
     }
 
     public void Acquired()
     {
-        if (relic != null)
+        if (onSelect != null)
         {
-            ArrayList<String> relicPool = GetRelicPool();
-            if (relicPool != null)
-            {
-                relicPool.remove(relic.relicId);
-            }
-
-            relic.hb.resize(AbstractRelic.PAD_X, AbstractRelic.PAD_X);
-            GameEffects.Queue.ObtainRelic(relic);
-        }
-    }
-
-    private ArrayList<String> GetRelicPool()
-    {
-        switch (relicTier)
-        {
-            case COMMON: return AbstractDungeon.commonRelicPool;
-
-            case UNCOMMON: return AbstractDungeon.uncommonRelicPool;
-
-            case RARE: return AbstractDungeon.rareRelicPool;
-
-            case BOSS: return AbstractDungeon.bossRelicPool;
-
-            case SHOP: return AbstractDungeon.shopRelicPool;
-
-            case DEPRECATED:
-            case STARTER:
-            case SPECIAL:
-                default:
-                return null;
+            onSelect.Invoke(this);
         }
     }
 }

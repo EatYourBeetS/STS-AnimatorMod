@@ -16,7 +16,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     protected final BundledRelicContainer rewardBundle = new BundledRelicContainer();
     protected final AnimatorCardBadgeLegend cardBadgeLegend = new AnimatorCardBadgeLegend();
-    protected final AnimatorPurgingStoneUI purgingStoneUI = new AnimatorPurgingStoneUI(rewardBundle::Remove);
+    protected final AnimatorPurgingStoneUI purgingStoneUI = new AnimatorPurgingStoneUI(rewardBundle::Remove, rewardBundle::Add);
 
     public void Open(ArrayList<AbstractCard> cards, RewardItem rItem, String header)
     {
@@ -26,8 +26,8 @@ public class AnimatorCardRewardScreen extends GUIElement
             return;
         }
 
-        purgingStoneUI.Open(rItem, cards);
         rewardBundle.Open(rItem, cards);
+        purgingStoneUI.Open(rItem, cards);
         cardBadgeLegend.Open();
     }
 

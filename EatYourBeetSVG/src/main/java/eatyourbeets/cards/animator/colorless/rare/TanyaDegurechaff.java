@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 {
-    public static final EYBCardData DATA = Register(TanyaDegurechaff.class).SetAttack(2, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(TanyaDegurechaff.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
     static
     {
         DATA.InitializePreview(new TanyaDegurechaff_Type95(), false);
@@ -28,7 +28,6 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
         Initialize(4, 7);
         SetUpgrade(3, 0);
 
-        SetAttackType(EYBAttackType.Ranged);
         SetSynergy(Synergies.YoujoSenki);
     }
 

@@ -64,7 +64,7 @@ public class Rimuru extends AnimatorCard implements OnBattleStartSubscriber, OnA
     @Override
     public void OnAfterCardPlayed(AbstractCard card)
     {
-        if (card == copy || card instanceof Rimuru || card.purgeOnUse)
+        if (card == copy || card instanceof Rimuru || card.purgeOnUse || card.isInAutoplay)
         {
             return;
         }

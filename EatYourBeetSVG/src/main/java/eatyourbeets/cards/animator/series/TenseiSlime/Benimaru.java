@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Benimaru extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Benimaru.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Benimaru.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.Normal);
 
     public Benimaru()
     {

@@ -31,13 +31,13 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         super(id, tier, sfx);
     }
 
+    protected abstract int GetRewardInterval();
+
     @Override
     public String getUpdatedDescription()
     {
-        return JavaUtilities.Format(DESCRIPTIONS[0], GetRewardInterval());
+        return FormatDescription(GetRewardInterval());
     }
-
-    protected abstract int GetRewardInterval();
 
     @Override
     public void onEquip()

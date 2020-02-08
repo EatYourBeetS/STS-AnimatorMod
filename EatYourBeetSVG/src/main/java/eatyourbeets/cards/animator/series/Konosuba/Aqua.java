@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -88,6 +89,24 @@ public class Aqua extends AnimatorCard
         other.SetTransformed(transformed);
 
         return other;
+    }
+
+    @Override
+    public void renderUpgradePreview(SpriteBatch sb)
+    {
+        if (!transformed)
+        {
+            super.renderUpgradePreview(sb);
+        }
+    }
+
+    @Override
+    public void renderCardPreview(SpriteBatch sb)
+    {
+        if (!transformed)
+        {
+            super.renderCardPreview(sb);
+        }
     }
 
     private void SetTransformed(boolean value)

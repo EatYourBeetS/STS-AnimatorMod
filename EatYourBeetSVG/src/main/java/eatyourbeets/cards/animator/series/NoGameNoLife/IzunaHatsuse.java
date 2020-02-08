@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -92,6 +93,24 @@ public class IzunaHatsuse extends AnimatorCard
         {
             GameActions.Bottom.ApplyWeak(p, m, 1);
             GameActions.Bottom.GainBlock(this.block);
+        }
+    }
+
+    @Override
+    public void renderUpgradePreview(SpriteBatch sb)
+    {
+        if (!transformed)
+        {
+            super.renderUpgradePreview(sb);
+        }
+    }
+
+    @Override
+    public void renderCardPreview(SpriteBatch sb)
+    {
+        if (!transformed)
+        {
+            super.renderCardPreview(sb);
         }
     }
 

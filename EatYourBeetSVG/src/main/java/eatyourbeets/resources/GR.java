@@ -382,6 +382,9 @@ public class GR
             public static AbstractCard.CardTags VOIDBOUND;
 
             @SpireEnum
+            public static AbstractCard.CardTags IGNORE_PEN_NIB;
+
+            @SpireEnum
             public static AbstractCard.CardTags ECHO;
 
             @SpireEnum

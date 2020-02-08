@@ -10,7 +10,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class Rose extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Rose.class).SetAttack(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Rose.class).SetAttack(3, CardRarity.SPECIAL, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
 
     public Rose()
     {
@@ -19,7 +19,6 @@ public class Rose extends AnimatorCard_UltraRare
         Initialize(8, 0, 2, 40);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAttackType(EYBAttackType.Ranged);
         SetSynergy(Synergies.Elsword);
     }
 

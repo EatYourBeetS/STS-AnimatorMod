@@ -3,6 +3,7 @@ package eatyourbeets.actions.basic;
 import basemod.BaseMod;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,10 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.effects.card.RenderCardEffect;
 import eatyourbeets.effects.card.UnfadeOutEffect;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.GenericCallback;
-import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.*;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
 {
@@ -168,6 +166,12 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             if (sourcePile != null && sourcePile.type == CardGroup.CardGroupType.EXHAUST_PILE)
             {
                 GameEffects.Queue.Add(new UnfadeOutEffect(card));
+                GameActions.Bottom.Callback(__ -> GameEffects.Queue.Add(new UnfadeOutEffect(card)));
+            }
+
+            if (targetPile != player.limbo && player.limbo.contains(card))
+            {
+                GameActions.Bottom.Add(new UnlimboAction(card, false));
             }
         }
     }

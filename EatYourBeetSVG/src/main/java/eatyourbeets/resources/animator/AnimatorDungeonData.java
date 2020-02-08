@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator;
 
 import basemod.BaseMod;
+import basemod.abstracts.CustomCard;
 import basemod.abstracts.CustomSavable;
 import basemod.interfaces.StartActSubscriber;
 import basemod.interfaces.StartGameSubscriber;
@@ -9,8 +10,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Ghosts;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.events.animator.TheMaskedTraveler1;
 import eatyourbeets.relics.animator.PurgingStone;
+import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -82,6 +85,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             surrogate.id = loadout.ID;
             surrogate.isBeta = loadout.IsBeta;
             surrogate.promoted = loadout.promoted;
+            surrogate.bonus = loadout.bonus;
             loadouts.add(surrogate);
         }
 
@@ -120,6 +124,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
                         loadout.Promote();
                     }
 
+                    loadout.bonus = proxy.bonus;
                     loadout.BuildCard();
                     Series.add(loadout);
                 }
@@ -173,7 +178,17 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             return;
         }
 
+        TheMissingPiece.RefreshDescription();
         PurgingStone.UpdateBannedCards();
+
+        ArrayList<CardGroup> colorless = new ArrayList<>();
+        colorless.add(AbstractDungeon.colorlessCardPool);
+        colorless.add(AbstractDungeon.srcColorlessCardPool);
+
+        for (CardGroup group : colorless)
+        {
+            group.group.removeIf(card -> !(card instanceof CustomCard) && !(card instanceof EYBCard));
+        }
 
         ArrayList<CardGroup> groups = new ArrayList<>();
         groups.add(AbstractDungeon.commonCardPool);
@@ -224,6 +239,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     protected static class AnimatorLoadoutProxy
     {
         public int id;
+        public int bonus;
         public boolean isBeta;
         public boolean promoted;
     }

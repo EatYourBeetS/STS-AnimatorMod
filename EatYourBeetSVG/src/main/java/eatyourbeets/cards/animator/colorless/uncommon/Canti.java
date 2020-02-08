@@ -1,9 +1,10 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
+import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -40,10 +41,11 @@ public class Canti extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (damage > 15)
+        if (damage > 16)
         {
-            GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
-            GameActions.Bottom.Wait(0.8F);
+            //GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
+            //GameActions.Bottom.Wait(0.8F);
+            GameActions.Bottom.VFX(new ViolentAttackEffect(m.hb.cX, m.hb.cY, Color.SKY));
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         }
         else

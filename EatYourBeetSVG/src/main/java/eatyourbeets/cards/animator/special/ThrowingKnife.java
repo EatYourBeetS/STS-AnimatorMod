@@ -15,7 +15,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class ThrowingKnife extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ThrowingKnife.class).SetAttack(0, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(ThrowingKnife.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
 
     private static ThrowingKnife preview;
     private int index;
@@ -47,7 +47,6 @@ public class ThrowingKnife extends AnimatorCard
         Initialize(2, 0, 1, 2);
         SetUpgrade(3, 0);
 
-        SetAttackType(EYBAttackType.Ranged);
         SetPurge(true);
         ChangeIndex(index);
     }

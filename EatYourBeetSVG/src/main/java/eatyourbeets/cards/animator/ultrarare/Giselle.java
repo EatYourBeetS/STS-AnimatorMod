@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Giselle extends AnimatorCard_UltraRare implements StartupCard
 {
-    public static final EYBCardData DATA = Register(Giselle.class).SetAttack(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Giselle.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental).SetColor(CardColor.COLORLESS);
 
     public Giselle()
     {
@@ -25,7 +25,6 @@ public class Giselle extends AnimatorCard_UltraRare implements StartupCard
         SetUpgrade(6, 0, 0);
         SetScaling(0, 1, 2);
 
-        SetAttackType(EYBAttackType.Elemental);
         SetSynergy(Synergies.Gate);
     }
 

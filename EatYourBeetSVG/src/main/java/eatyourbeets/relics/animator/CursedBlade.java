@@ -9,7 +9,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class CursedBlade extends AnimatorRelic
 {
-    private static final int BUFF_AMOUNT = 4;
+    private static final int BUFF_AMOUNT = 3;
 
     public static final String ID = CreateFullID(CursedBlade.class.getSimpleName());
 
@@ -30,6 +30,8 @@ public class CursedBlade extends AnimatorRelic
         super.atBattleStart();
 
         GameActions.Bottom.GainForce(BUFF_AMOUNT);
+        GameActions.Bottom.GainAgility(BUFF_AMOUNT);
+        this.flash();
     }
 
     @Override
@@ -38,6 +40,7 @@ public class CursedBlade extends AnimatorRelic
         if (info.type == DamageInfo.DamageType.NORMAL && damageAmount > AbstractDungeon.player.currentBlock)
         {
             GameActions.Bottom.MakeCardInHand(new Wound());
+            this.flash();
         }
 
         return super.onAttacked(info, damageAmount);

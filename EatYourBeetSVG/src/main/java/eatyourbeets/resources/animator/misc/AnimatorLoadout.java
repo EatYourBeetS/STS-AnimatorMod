@@ -31,7 +31,7 @@ public abstract class AnimatorLoadout
     public boolean IsBeta;
 
     public int StartingGold = 99;
-    public int MaxHP = 71;
+    public int MaxHP = 66;
     public int CardDraw = 5;
     public int OrbSlots = 3;
     public int UnlockLevel = 0;

@@ -259,6 +259,19 @@ public class GameUtilities
         return creature.currentHealth / (float)creature.maxHealth;
     }
 
+    public static AbstractCard GetMasterDeckInstance(String cardID)
+    {
+        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+        {
+            if (cardID.equals(c.cardID))
+            {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
     public static AbstractCard GetMasterDeckInstance(AbstractCard card)
     {
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
@@ -286,7 +299,6 @@ public class GameUtilities
         return cards;
     }
 
-    @SuppressWarnings("unchecked")
     public static <T extends AbstractRelic> T GetRelic(String relicID)
     {
         for (AbstractRelic relic : AbstractDungeon.player.relics)
@@ -303,6 +315,19 @@ public class GameUtilities
 
                     return null;
                 }
+            }
+        }
+
+        return null;
+    }
+
+    public static <T> T GetRelic(Class<T> relicType)
+    {
+        for (AbstractRelic relic : AbstractDungeon.player.relics)
+        {
+            if (relicType.isInstance(relic))
+            {
+                return relicType.cast(relic);
             }
         }
 
@@ -689,6 +714,11 @@ public class GameUtilities
         }
 
         return null;
+    }
+
+    public static boolean IsPlayerClass(AbstractPlayer.PlayerClass playerClass)
+    {
+        return AbstractDungeon.player != null && AbstractDungeon.player.chosenClass == playerClass;
     }
 
     private static class HandLayoutRefresher implements OnPhaseChangedSubscriber

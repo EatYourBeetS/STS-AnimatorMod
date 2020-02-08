@@ -31,10 +31,16 @@ public class Truth extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 4);
+        SetUpgrade(0, 0, 0);
 
         SetSynergy(Synergies.FullmetalAlchemist);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
     }
 
     @Override
@@ -42,10 +48,10 @@ public class Truth extends AnimatorCard_UltraRare
     {
         int amount = 1;
 
-        GameActions.Bottom.GainFocus(amount);
-        GameActions.Bottom.GainEnergy(amount + 1);
-        GameActions.Bottom.Draw(amount + 2);
-        GameActions.Bottom.GainStrength(amount + 3);
+        GameActions.Bottom.GainForce(magicNumber);
+        GameActions.Bottom.GainAgility(magicNumber);
+        GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.GainStrength(magicNumber);
 
         int count = 0;
         ArrayList<String> orbs = new ArrayList<>();

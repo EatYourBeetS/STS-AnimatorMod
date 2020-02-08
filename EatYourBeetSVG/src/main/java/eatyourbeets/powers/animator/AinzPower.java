@@ -113,7 +113,7 @@ public class AinzPower extends AnimatorPower
         GainIntellect(ACTIONS.GainAmount(2, GR.Tooltips.Intellect, true), 8, 2),
         GainEnergy(ACTIONS.GainAmount(2, GR.Tooltips.Energy, true), 8, 2),
         GainAgility(ACTIONS.GainAmount(2, GR.Tooltips.Agility, true), 8, 2),
-        GainForce(ACTIONS.GainAmount(2, GR.Tooltips.Force, true), 8, 3);
+        GainForce(ACTIONS.GainAmount(2, GR.Tooltips.Force, true), 8, 2);
 
         private final String text;
         private final int weight;

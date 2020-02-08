@@ -67,7 +67,7 @@
 		[
 			"Gain {0} {1}",
 			"Apply {0} {1}",
-			"Apply {0} {1} to ALL enemies",
+			"Apply {0} {1} NL to ALL enemies",
 			"Cycle {0} card(s)",
 			"Draw {0} card(s)",
 			"Discard {0} card(s)",
@@ -113,7 +113,9 @@
 			"Only contains Cards with this synergy. WARNING: once you click on this, the other 2 Card rewards will disappear.",
 			"Bonus Relic",
 			"Cursed Relic",
-			"Banish"
+			"Banish",
+			"+{0} Max HP",
+			"+{0} Gold"
 		]
 	},
 
@@ -122,9 +124,11 @@
 		"TEXT":
 		[
 			"Contains {0} cards.",
-			"Cards from this series NL might have a random NL {Bonus} upon pickup.",
+			"Cards from this series NL may have a random NL {Bonus} upon pickup.",
 			"This series is either NL incomplete or still NL being tested.",
-			"Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards."
+			"Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards.",
+			"Pickup Bonus",
+			"Obtain a bonus for each #ydifferent card you obtain (up to 6). NL The bonus will improve as you obtain more cards."
 		]
 	},
 

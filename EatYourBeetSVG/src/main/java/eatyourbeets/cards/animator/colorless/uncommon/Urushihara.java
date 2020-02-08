@@ -26,7 +26,6 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
         this.lazyCounter = 0;
 
-        SetAttackType(EYBAttackType.Elemental);
         SetMultiDamage(true);
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.HatarakuMaouSama);

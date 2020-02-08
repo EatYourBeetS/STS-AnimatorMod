@@ -37,18 +37,17 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
     {
         super(DATA);
 
-        Initialize(8, 0, 0, 2);
+        Initialize(8, 0, 1, 2);
         SetUpgrade(3, 0, 0, 0);
         SetScaling(2, 0, 0);
 
-        SetAttackType(EYBAttackType.Elemental);
         SetSynergy(Synergies.TouhouProject);
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddMultiplier(1 + magicNumber);
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
@@ -65,7 +64,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
                 uniqueOrbs.add(orb.ID);
             }
 
-            magicNumber = uniqueOrbs.size();
+            magicNumber = baseMagicNumber + uniqueOrbs.size();
             isMagicNumberModified = (magicNumber != baseMagicNumber);
             cachedOrbAmount = orbs.size();
         }
@@ -138,7 +137,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
 
     private DealDamageToRandomEnemy CreateDamageAction()
     {
-        return GameActions.Bottom.DealDamageToRandomEnemy(baseDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
+        return GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
     }
 
     @Override

@@ -28,14 +28,10 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int amount = GameUtilities.UseXCostEnergy(this);
-        if (upgraded)
-        {
-            amount += 1;
-        }
+        int amount = GameUtilities.UseXCostEnergy(this) + magicNumber;
         if (amount > 0)
         {
-            GameActions.Bottom.GainStrength(amount);
+            GameActions.Bottom.GainForce(amount);
         }
 
         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))

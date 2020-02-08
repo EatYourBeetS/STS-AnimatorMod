@@ -8,7 +8,7 @@
 	},
 	"animator:AncientMedallion":
 	{
-		"DESCRIPTIONS": ["At the start of each combat, Heal #b{0} HP. NL Upon pickup, #yUpgrade 2 random cards and a card of your choice. The chosen cards will be upgraded twice."],
+		"DESCRIPTIONS": ["At the start of each combat, Heal #b{0} HP. NL Upon pickup, #yUpgrade 2 random cards and a card of your choice. The chosen card will be upgraded twice."],
 		"FLAVOR": "...",
 		"NAME": "Ancient Medallion"
 	},
@@ -38,7 +38,7 @@
 	},
 	"animator:CursedBlade":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} #yForce. Whenever you take unblocked Attack damage, add a #yWound to your hand."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} #yForce and #yAgility. Whenever you take unblocked Attack damage, add a #yWound to your hand."],
 		"FLAVOR": "Power comes at a price.",
 		"NAME": "Cursed Blade"
 	},
@@ -150,7 +150,7 @@
 	},
 	"animator:TheMissingPiece":
 	{
-		"DESCRIPTIONS": ["Every #b{0} combats, receive improved card rewards. You will have more chances of finding a series if you have multiple cards from that series."],
+		"DESCRIPTIONS": ["Every #b{0} combats, receive improved card rewards.", "Current Series:"],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Missing Piece"
 	},

@@ -16,8 +16,8 @@ public class Shuna extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 2);
-        SetUpgrade(0, 2, 0);
+        Initialize(0, 4, 1, 2);
+        SetUpgrade(0, 0, 1, 0);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -27,14 +27,14 @@ public class Shuna extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.GainTemporaryHP(secondaryValue);
         GameActions.Bottom.Flash(this);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Draw(1);
+        GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.GainBlock(block);
     }
 }

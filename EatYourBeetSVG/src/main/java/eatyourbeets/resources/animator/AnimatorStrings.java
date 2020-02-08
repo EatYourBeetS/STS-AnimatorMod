@@ -49,6 +49,16 @@ public class AnimatorStrings
         public final String BonusRelic = Strings.TEXT[1];
         public final String CursedRelic = Strings.TEXT[2];
         public final String Banish = Strings.TEXT[3];
+
+        public final String MaxHPBonus(int amount)
+        {
+            return JavaUtilities.Format(Strings.TEXT[4], amount);
+        }
+
+        public final String GoldBonus(int amount)
+        {
+            return JavaUtilities.Format(Strings.TEXT[5], amount);
+        }
     }
 
     public class Synergies
@@ -81,6 +91,8 @@ public class AnimatorStrings
         private final UIStrings Strings = GetUIStrings("SeriesSelection");
 
         public final String PurgingStoneRequirement = Strings.TEXT[3];
+        public final String PickupBonusHeader = Strings.TEXT[4];
+        public final String PickupBonusBody = Strings.TEXT[5];
 
         public final String ContainsNCards(int cardCount)
         {

@@ -334,7 +334,7 @@
 	},
 	"animator:Elsword":
 	{
-		"DESCRIPTION": "Apply !S! Burning. ** Cycle !M! card(s). || When Discarded: Channel 1 Fire.",
+		"DESCRIPTION": "Apply !S! Burning. ** Cycle !M! card(s). || When Discarded: ** Channel 1 Fire.",
 		"NAME": "Elsword"
 	},
 	"animator:Emilia":
@@ -401,7 +401,7 @@
 	},
 	"animator:GazelDwargon":
 	{
-		"DESCRIPTION": "Gain X {Plat. Armor}. At the start of each turn, maintain up to !M! Block, multiplied by X.",
+		"DESCRIPTION": "Gain X {Plat. Armor}. At ** the start of each turn, ** maintain up to !M! Block, multiplied by X.",
 		"NAME": "Gazel Dwargon"
 	},
 	"animator:Genos":
@@ -417,7 +417,7 @@
 	},
 	"animator:Gilgamesh":
 	{
-		"DESCRIPTION": "{~Unique}. Whenever you obtain a non-shop {Relic}: permanently Upgrade this card and gain !S! {Gold}.",
+		"DESCRIPTION": "{~Unique}. Whenever you ** obtain a {Relic}, except by ** purchasing it: Gain !S! ** {Gold} and permanently ** Upgrade this card.",
 		"NAME": "Gilgamesh"
 	},
 	"animator:Gillette":
@@ -570,8 +570,9 @@
 	},
 	"animator:Jibril":
 	{
-		"DESCRIPTION": "Channel 1 Dark. || Synergy: Gain [I]",
-		"NAME": "Jibril"
+		"DESCRIPTION": "Channel 1 Dark. || Synergy: Trigger the ** passive ability of !M! ** random orb(s).",
+		"NAME": "Jibril",
+		"UPGRADE_DESCRIPTION": "Channel 1 Dark. ** Lose no [I] next turn. || Synergy: Trigger the ** passive ability of !M! ** random orb(s)."
 	},
 	"animator:Kaijin":
 	{
@@ -637,12 +638,12 @@
 	},
 	"animator:LimeBell":
 	{
-		"DESCRIPTION": "Reload: Gain !M! {Temporary HP}.",
+		"DESCRIPTION": "Reload: Gain !M! ** {Temporary HP}.",
 		"NAME": "Lime Bell"
 	},
 	"animator:Canti":
 	{
-		"DESCRIPTION": "Deal additional damage equal to the enemy's attack.",
+		"DESCRIPTION": "Deal additional damage ** equal to the enemy's ** base attack damage.",
 		"NAME": "Canti"
 	},
 	"animator:LizardPriest":
@@ -657,7 +658,7 @@
 	},
 	"animator:MamizouFutatsuiwa":
 	{
-		"DESCRIPTION": "Give Shapeshifter to ** a card in your hand. || <LIM>. When Discarded: ** Add a random Shapeshifter ** to your hand.",
+		"DESCRIPTION": "Give Shapeshifter to ** a card in your hand. || <LIM>. When Discarded: ** Create and add a random ** Shapeshifter to your hand.",
 		"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
 		"NAME": "Mamizou Futatsuiwa"
 	},
@@ -932,7 +933,7 @@
 	},
 	"animator:Shuna":
 	{
-		"DESCRIPTION": "<DRW>. || When Drawn: Gain ** 2 {Temporary HP}.",
+		"DESCRIPTION": "<DRW-M>. || When Drawn: Gain ** !S! {Temporary HP}.",
 		"NAME": "Shuna"
 	},
 	"animator:SilverFang":
@@ -1084,7 +1085,7 @@
 	},
 	"animator:TheHaunt":
 	{
-		"DESCRIPTION": "Gain !M! {Gold}. Become more haunted. Ethereal. Exhaust.",
+		"DESCRIPTION": "Gain !M! {Gold}. ** Become more haunted.",
 		"NAME": "The Haunt"
 	},
 	"animator:ThrowingKnife":
@@ -1095,7 +1096,7 @@
 	},
 	"animator:Togame":
 	{
-		"DESCRIPTION": "<DRW-M>. You may Exhaust a card to draw 1 additional card. || <slm>. If you Exhausted ** a Hindrance: Motivate 1.",
+		"DESCRIPTION": "<DRW-M>. ** You may Exhaust a card ** to draw 1 additional card. || <slm>. If you Exhausted ** a Hindrance: Motivate 1.",
 		"NAME": "Togame"
 	},
 	"animator:Truth":

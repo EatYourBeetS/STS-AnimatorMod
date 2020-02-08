@@ -38,7 +38,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.MoveCards(player.exhaustPile, player.drawPile);
+            GameActions.Bottom.MoveCards(player.exhaustPile, player.drawPile).ShowEffect(false, false);
         }
     }
 

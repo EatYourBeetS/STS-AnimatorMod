@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 @SuppressWarnings("SuspiciousNameCombination")
 public class Layla extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Layla.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Layla.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
 
     public Layla()
     {

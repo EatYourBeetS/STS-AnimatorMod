@@ -121,6 +121,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
     {
         this.attackType = attackType;
         this.attackTarget = attackTarget;
+        this.isMultiDamage = (attackTarget == EYBCardTarget.ALL);
 
         return this;
     }
@@ -130,6 +131,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         this.attackType = attackType;
         this.attackTarget = attackTarget;
         this.attributeMultiplier = multiplier;
+        this.isMultiDamage = (attackTarget == EYBCardTarget.ALL);
 
         return this;
     }

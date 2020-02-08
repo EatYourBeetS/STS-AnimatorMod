@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.cardTextParsing.CTContext;
 import eatyourbeets.resources.GR;
@@ -111,7 +112,8 @@ public class EYBCardText
 
             if (card.cardData.previewInitialized)
             {
-                card.cardsToPreview = card.cardData.GetCardPreview(card);
+                boolean showUpgrade = SingleCardViewPopup.isViewingUpgrade && (AbstractDungeon.player == null || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD);
+                card.cardsToPreview = card.cardData.GetCardPreview(card.upgraded || showUpgrade);
                 card.renderCardPreview(sb);
             }
         }

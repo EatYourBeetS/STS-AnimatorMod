@@ -931,6 +931,27 @@
 		"DESCRIPTION": "Whenever an {Attack} deals ** unblocked damage this ** combat, apply 1 Burning. || Add a Burn to your ** discard pile.",
 		"NAME": "Shizu"
 	},
+	"animator:Lu":
+	{
+		"DESCRIPTION": "Channel 1 Frost. ** Channel 1 Dark. || When Exhausted: ** Evoke ALL Orbs.",
+		"NAME": "Lu"
+	},
+	"animator:Ciel":
+	{
+		"DESCRIPTION": "Your next {Attack} deals ** !M! additional damage. || Synergy: Increase the ** damage of every copy of ** {Lu} in your deck by !S!.",
+		"NAME": "Ciel"
+	},
+	"animator:UneriGinkaku":
+	{
+		"DESCRIPTION": "Unplayable if you ** {Attacked} this turn. || When Drawn: Gain ** !M! {Temp}. Thorns.",
+		"NAME": "Uneri Ginkaku"
+	},
+	"animator:TsurugaMeisai":
+	{
+		"DESCRIPTION": "Exhaust a card in your ** hand. If it was an {Attack}: ** Add !M! copies of it to ** your draw pile.",
+		"NAME": "Meisai",
+		"UPGRADE_DESCRIPTION": "Exhaust a card in your ** hand. If it was an {Attack}: ** Add !M! Upgraded copies ** of it to your draw pile."
+	},
 	"animator:Shuna":
 	{
 		"DESCRIPTION": "<DRW-M>. || When Drawn: Gain ** !S! {Temporary HP}.",

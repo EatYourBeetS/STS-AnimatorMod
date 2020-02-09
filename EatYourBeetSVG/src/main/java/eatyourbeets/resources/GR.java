@@ -36,7 +36,7 @@ import java.util.Map;
 public class GR
 {
     // TODO: Set to false
-    public static final boolean TEST_MODE = false;
+    public static final boolean TEST_MODE = true;
 
     protected static final Logger logger = JavaUtilities.GetLogger(GR.class);
     protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.cards.");
@@ -143,6 +143,19 @@ public class GR
     public static String GetRewardImage(String rewardID)
     {
         return "images/ui/rewards/" + rewardID.replace(":", "/") + ".png";
+    }
+
+    public static Texture GetTextureMipMap(String path)
+    {
+        Texture texture = textures.get(path);
+        if (texture == null)
+        {
+            texture = new Texture(Gdx.files.internal(path), true);
+            texture.setFilter(Texture.TextureFilter.MipMapLinearLinear, Texture.TextureFilter.Linear);
+            textures.put(path, texture);
+        }
+
+        return texture;
     }
 
     public static Texture GetTexture(String path)

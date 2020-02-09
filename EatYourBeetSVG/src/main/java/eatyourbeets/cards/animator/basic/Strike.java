@@ -22,6 +22,7 @@ public class Strike extends AnimatorCard
 
         //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");
 
+        this.cropPortrait = false;
         this.tags.add(CardTags.STARTER_STRIKE);
         this.tags.add(CardTags.STRIKE);
         this.tags.add(GR.Enums.CardTags.IMPROVED_STRIKE);
@@ -34,6 +35,7 @@ public class Strike extends AnimatorCard
         Initialize(6, 0);
         SetUpgrade(3, 0);
 
+        this.cropPortrait = false;
         this.tags.add(CardTags.STARTER_STRIKE);
         this.tags.add(CardTags.STRIKE);
     }

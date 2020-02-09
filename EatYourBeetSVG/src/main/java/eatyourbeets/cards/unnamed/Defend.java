@@ -2,16 +2,17 @@ package eatyourbeets.cards.unnamed;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.utilities.GameActions;
 
 public class Defend extends UnnamedCard
 {
-    public static final String ID_ = Register(Defend.class);
+    public static final EYBCardData DATA = Register(Defend.class);
 
     public Defend()
     {
-        super(ID_, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
+        super(DATA.ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
 
         Initialize(0, 6);
 

@@ -150,14 +150,14 @@ public class UnnamedCharacter extends CustomPlayer
     {
         ArrayList<String> cards = new ArrayList<>();
 
-        cards.add(Strike.ID_);
-        cards.add(Strike.ID_);
-        cards.add(Strike.ID_);
-        cards.add(Strike.ID_);
-        cards.add(Defend.ID_);
-        cards.add(Defend.ID_);
-        cards.add(Defend.ID_);
-        cards.add(Defend.ID_);
+        cards.add(Strike.DATA.ID);
+        cards.add(Strike.DATA.ID);
+        cards.add(Strike.DATA.ID);
+        cards.add(Strike.DATA.ID);
+        cards.add(Defend.DATA.ID);
+        cards.add(Defend.DATA.ID);
+        cards.add(Defend.DATA.ID);
+        cards.add(Defend.DATA.ID);
 
         return cards;
     }

@@ -167,18 +167,8 @@ public class EYBSingleCardPopup extends GUIElement
         InputHelper.justReleasedClickLeft = false;
         CardCrawlGame.isPopupOpen = false;
         this.isActive = false;
-
-        if (this.card != null)
-        {
-            this.card.Dispose();
-            this.card = null;
-        }
-
-        if (this.upgradedCard != null)
-        {
-            this.upgradedCard.Dispose();
-            this.upgradedCard = null;
-        }
+        this.card = null;
+        this.upgradedCard = null;
     }
 
     @Override

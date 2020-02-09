@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.CardSeriesComparator;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
 
@@ -90,7 +91,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
 
         if (!GR.TEST_MODE)
         {
-            group.group.removeIf(card -> card.rarity == AbstractCard.CardRarity.SPECIAL);
+            group.group.removeIf(card -> card instanceof EYBCard && card.rarity == AbstractCard.CardRarity.SPECIAL);
         }
 
         if (isColorless)

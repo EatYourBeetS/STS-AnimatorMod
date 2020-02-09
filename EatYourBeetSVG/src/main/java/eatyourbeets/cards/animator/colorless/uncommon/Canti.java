@@ -19,8 +19,8 @@ public class Canti extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 3);
-        SetUpgrade(3, 0);
+        Initialize(2, 3);
+        SetUpgrade(4, 0);
 
         SetSynergy(Synergies.FLCL);
     }
@@ -41,7 +41,7 @@ public class Canti extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (damage > 16)
+        if (damage >= 23)
         {
             //GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
             //GameActions.Bottom.Wait(0.8F);

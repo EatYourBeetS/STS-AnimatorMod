@@ -26,7 +26,7 @@ public abstract class AnimatorCard extends EYBCard
 
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
-        return RegisterCardImproved(type, GR.Animator.CreateID(type.getSimpleName())).SetColor(GR.Animator.CardColor);
+        return RegisterCardData(type, GR.Animator.CreateID(type.getSimpleName())).SetColor(GR.Animator.CardColor);
     }
 
     protected AnimatorCard(EYBCardData cardData)

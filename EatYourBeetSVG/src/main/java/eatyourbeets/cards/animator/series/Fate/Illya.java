@@ -99,7 +99,7 @@ public class Illya extends AnimatorCard
                 if (group.type != CardGroup.CardGroupType.HAND)
                 {
                     GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
-                    GameActions.Top.MoveCard(c, group, AbstractDungeon.player.hand)
+                    GameActions.Top.MoveCard(c, group, player.hand)
                     .ShowEffect(true, true);
                 }
 
@@ -113,7 +113,6 @@ public class Illya extends AnimatorCard
 
     private static AbstractCard FindBestCard(AbstractMonster target)
     {
-        AbstractPlayer player = AbstractDungeon.player;
         AbstractCard bestCard = null;
         int maxDamage = Integer.MIN_VALUE;
         for (AbstractCard c : player.drawPile.group)

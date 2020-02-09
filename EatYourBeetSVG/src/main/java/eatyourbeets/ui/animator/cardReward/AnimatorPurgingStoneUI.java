@@ -31,7 +31,7 @@ public class AnimatorPurgingStoneUI extends GUIElement
     protected boolean canBan;
     protected RewardItem rewardItem;
 
-    public AnimatorPurgingStoneUI(ActionT1<AbstractCard> onCardBanned, ActionT1<AbstractCard> onCardAdded)
+    public AnimatorPurgingStoneUI(ActionT1<AbstractCard> onCardAdded, ActionT1<AbstractCard> onCardBanned)
     {
         this.onCardBanned = onCardBanned;
         this.onCardAdded = onCardAdded;
@@ -49,8 +49,6 @@ public class AnimatorPurgingStoneUI extends GUIElement
             {
                 if (purgingStone.CanBan(card))
                 {
-                    OnCardAdded(card);
-
                     BanCardButton banButton = new BanCardButton(card);
                     banButton.show();
                     buttons.add(banButton);

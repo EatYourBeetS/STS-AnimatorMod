@@ -48,6 +48,11 @@ public class BundledRelicContainer extends GUIElement
         this.RNG = new Random(Settings.seed + (AbstractDungeon.actNum * 23) + (AbstractDungeon.floorNum * 17));
         this.rewardItem = rewardItem;
         this.bundledRelics.clear();
+
+        for (AbstractCard card : cards)
+        {
+            Add(card);
+        }
     }
 
     public void Close()
@@ -121,11 +126,11 @@ public class BundledRelicContainer extends GUIElement
                     {
                         if (RNG.randomBoolean())
                         {
-                            return GetGoldBundle(card, series.bonus > 4 ? 24 : 12);
+                            return GetGoldBundle(card, series.bonus >= 4 ? 24 : 12);
                         }
                         else
                         {
-                            return GetMaxHPBundle(card, series.bonus > 4 ? 2 : 1);
+                            return GetMaxHPBundle(card, series.bonus >= 4 ? 2 : 1);
                         }
                     }
                 }

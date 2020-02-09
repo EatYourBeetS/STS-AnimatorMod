@@ -449,6 +449,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     {
         super.onAfterUseCard(card, action);
 
+        AbstractDungeon.player.hand.glowCheck();
         Synergies.SetLastCardPlayed(card);
     }
 

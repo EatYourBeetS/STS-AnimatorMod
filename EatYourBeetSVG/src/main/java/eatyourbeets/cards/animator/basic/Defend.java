@@ -22,6 +22,7 @@ public class Defend extends AnimatorCard
 
         //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");
 
+        this.cropPortrait = false;
         this.tags.add(CardTags.STARTER_DEFEND);
         this.tags.add(GR.Enums.CardTags.IMPROVED_DEFEND);
     }
@@ -33,6 +34,7 @@ public class Defend extends AnimatorCard
         Initialize(0, 5);
         SetUpgrade(0, 3);
 
+        this.cropPortrait = false;
         this.tags.add(CardTags.STARTER_DEFEND);
     }
 

@@ -26,6 +26,7 @@ public class GoblinSlayer extends AnimatorCard
         SetUpgrade(3, 3);
         SetScaling(1, 0, 1);
 
+        this.cropPortrait = false;
         SetRetain(true);
         SetSynergy(Synergies.GoblinSlayer);
     }

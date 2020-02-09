@@ -3,13 +3,20 @@
  import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardPersistentData;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.Testing;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Map;
 
  public class ParseGenericCommand extends ConsoleCommand
  {
@@ -28,22 +35,28 @@ import java.util.ArrayList;
      @Override
      protected void execute(String[] tokens, int depth)
      {
-         if (tokens.length > 1)
+         try
          {
-             if (tokens[1].equals("remove-colorless"))
+             if (tokens.length > 1)
              {
-                 CardLibrary.getAllCards().removeIf(card -> card.color == AbstractCard.CardColor.COLORLESS && !(card instanceof EYBCard));
-                 return;
-             }
+                 if (tokens[1].equals("crop"))
+                 {
+                     Crop(tokens[2]);
+                     return;
+                 }
 
-             try
-             {
-                Test(tokens);
+                 if (tokens[1].equals("remove-colorless"))
+                 {
+                     CardLibrary.getAllCards().removeIf(card -> card.color == AbstractCard.CardColor.COLORLESS && !(card instanceof EYBCard));
+                     return;
+                 }
+
+                 Test(tokens);
              }
-             catch (Exception ex)
-             {
-                 DevConsole.log("Error: " + ex.getClass().getSimpleName());
-             }
+         }
+         catch (Exception ex)
+         {
+             DevConsole.log("Error: " + ex.getClass().getSimpleName());
          }
      }
 
@@ -62,5 +75,27 @@ import java.util.ArrayList;
          }
 
          Testing.SetValues(values);
+     }
+
+     private static void Crop(String arg) throws IOException
+     {
+         final String path = "C:/temp/Animator-CardMetadata.json";
+         final String jsonString = new String(Files.readAllBytes(Paths.get(path)));
+
+         EYBCard card = GR.UI.CardPopup.GetCard();
+         if (card != null)
+         {
+             Gson gson = new Gson();
+             Map<String, EYBCardPersistentData> items = GR.Animator.CardData;
+
+             if (!items.containsKey(card.cardID))
+             {
+                 items.put(card.cardID, new EYBCardPersistentData());
+             }
+
+             items.get(card.cardID).cropPortrait = arg.equals("true");
+
+             Files.write(Paths.get(path), new Gson().toJson(items).getBytes());
+         }
      }
  }

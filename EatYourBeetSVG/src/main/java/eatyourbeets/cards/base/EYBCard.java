@@ -47,18 +47,12 @@ public abstract class EYBCard extends EYBCardBase
         return staticCardData.get(cardID);
     }
 
-    public static EYBCardData RegisterCardImproved(Class<? extends EYBCard> type, String cardID)
+    public static EYBCardData RegisterCardData(Class<? extends EYBCard> type, String cardID)
     {
         EYBCardData cardData = new EYBCardData(type, cardID);
+        cardData.Metadata = GR.Animator.CardData.get(cardID);
         staticCardData.put(cardID, cardData);
         return cardData;
-    }
-
-    public static String RegisterCard(Class<? extends EYBCard> type, String cardID)
-    {
-        staticCardData.put(cardID, new EYBCardData(type, cardID));
-
-        return cardID;
     }
 
     protected EYBCard(EYBCardData cardData)
@@ -69,6 +63,15 @@ public abstract class EYBCard extends EYBCardBase
     protected EYBCard(EYBCardData cardData, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
         super(id, cardData.Strings.NAME, imagePath, cost, "", type, color, rarity, target);
+
+        if (cardData.Metadata != null)
+        {
+            this.cropPortrait = cardData.Metadata.cropPortrait;
+        }
+        else
+        {
+            this.cropPortrait = true;
+        }
 
         this.cardData = cardData;
         this.tooltips = new ArrayList<>();
@@ -107,17 +110,9 @@ public abstract class EYBCard extends EYBCardBase
         copy.current_x = (float) Settings.WIDTH / 2.0F;
         copy.current_y = (float) Settings.HEIGHT / 2.0F;
         copy.drawScale = copy.targetDrawScale = 2f;
-        copy.LoadImage("_p");
+        //copy.LoadImage("_p");
         copy.isPopup = true;
         return copy;
-    }
-
-    public void Dispose()
-    {
-        if (isPopup)
-        {
-            this.portraitImg.dispose();
-        }
     }
 
     @Override
@@ -273,6 +268,7 @@ public abstract class EYBCard extends EYBCardBase
     public void SetAttackTarget(EYBCardTarget attackTarget)
     {
         this.attackTarget = attackTarget;
+        this.target = attackTarget.ToCardTarget();
     }
 
     public void SetMultiDamage(boolean value)

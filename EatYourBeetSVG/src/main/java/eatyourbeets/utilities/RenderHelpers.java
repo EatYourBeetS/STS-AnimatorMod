@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -162,25 +163,34 @@ public class RenderHelpers
                 card.angle, 0, 0, width, height, false, false);
     }
 
-    public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height)
+    public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, TextureRegion img, float drawX, float drawY, float width, float height, float scaleModifier)
     {
+        final float scale = card.drawScale * Settings.scale * scaleModifier;
+
+        sb.setColor(color);
+        sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height, scale, scale, card.angle);
+    }
+
+    public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height, float scaleModifier)
+    {
+        final float scale = card.drawScale * Settings.scale * scaleModifier;
+
         sb.setColor(color);
         sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height,
-                card.drawScale * Settings.scale, card.drawScale * Settings.scale,
-                card.angle, 0, 0, img.getWidth(), img.getHeight(), false, false);
+                scale, scale, card.angle, 0, 0, img.getWidth(), img.getHeight(), false, false);
     }
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float width, float height)
     {
-        DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height, Color.WHITE, card.transparency);
+        DrawOnCardAuto(sb, card, img, new Vector2(drawX, drawY), width, height, Color.WHITE, card.transparency, 1);
     }
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height)
     {
-        DrawOnCardAuto(sb, card, img, offset, width, height, Color.WHITE, card.transparency);
+        DrawOnCardAuto(sb, card, img, offset, width, height, Color.WHITE, card.transparency, 1);
     }
 
-    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height, Color color, float alpha)
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height, Color color, float alpha, float scaleModifier)
     {
         if (card.angle != 0)
         {
@@ -189,7 +199,19 @@ public class RenderHelpers
 
         offset.scl(Settings.scale * card.drawScale);
 
-        DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height);
+        DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height, scaleModifier);
+    }
+
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, TextureRegion img, Vector2 offset, float width, float height, Color color, float alpha, float scaleModifier)
+    {
+        if (card.angle != 0)
+        {
+            offset.rotate(card.angle);
+        }
+
+        offset.scl(Settings.scale * card.drawScale);
+
+        DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height, scaleModifier);
     }
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float size)

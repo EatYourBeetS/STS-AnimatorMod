@@ -63,6 +63,7 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializeAudio()
     {
+        BaseMod.addAudio("ANIMATOR_REAPER", "audio/sound/STS_SFX_Reaper_v1.ogg");
         BaseMod.addAudio("ANIMATOR_ORB_EARTH_EVOKE", "audio/sound/ANIMATOR_ORB_EARTH_EVOKE.ogg");
         BaseMod.addAudio("ANIMATOR_ORB_EARTH_CHANNEL", "audio/sound/ANIMATOR_ORB_EARTH_CHANNEL.ogg");
         BaseMod.addAudio("ANIMATOR_KIRA_POWER", "audio/sound/ANIMATOR_KIRA_POWER.ogg");

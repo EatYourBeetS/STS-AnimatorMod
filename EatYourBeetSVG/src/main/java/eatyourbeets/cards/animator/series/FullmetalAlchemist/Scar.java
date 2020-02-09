@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.ScarUpgradeAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -20,7 +19,7 @@ public class Scar extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 0, 2, 30);
+        Initialize(12, 0, 2);
         SetUpgrade(4, 0);
 
         SetExhaust(true);
@@ -36,9 +35,9 @@ public class Scar extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
         .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F));
 
-        if (p.masterDeck.size() >= secondaryValue && EffectHistory.TryActivateLimited(cardID))
+        if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.Add(new ScarUpgradeAction());
+            GameActions.Bottom.ReduceStrength(m, magicNumber, false);
         }
     }
 }

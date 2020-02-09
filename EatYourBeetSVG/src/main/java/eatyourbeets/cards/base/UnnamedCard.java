@@ -27,9 +27,9 @@ public abstract class UnnamedCard extends EYBCard
     public boolean enteredVoid = false;
     public int masteryCost = -2;
 
-    protected static String Register(Class<? extends UnnamedCard> type)
+    protected static EYBCardData Register(Class<? extends UnnamedCard> type)
     {
-        return RegisterCard(type,"unnamed:" + type.getSimpleName());
+        return RegisterCardData(type,"unnamed:" + type.getSimpleName());
     }
 
     private static String GetCardImage(String cardID)

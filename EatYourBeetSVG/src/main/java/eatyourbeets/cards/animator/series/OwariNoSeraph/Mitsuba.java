@@ -33,7 +33,7 @@ public class Mitsuba extends AnimatorCard
     @Override
     protected float ModifyBlock(AbstractMonster enemy, float amount)
     {
-        if (enemy.currentHealth > player.currentHealth)
+        if (enemy != null && enemy.currentHealth > player.currentHealth)
         {
             return super.ModifyBlock(enemy, amount + secondaryValue);
         }

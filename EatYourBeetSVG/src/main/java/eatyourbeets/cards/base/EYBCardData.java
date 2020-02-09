@@ -14,6 +14,7 @@ public class EYBCardData
     public final Class<? extends EYBCard> type;
     public final CardStrings Strings;
 
+    public EYBCardPersistentData Metadata;
     public String ImagePath;
     public String ID;
     public AbstractCard.CardType CardType;

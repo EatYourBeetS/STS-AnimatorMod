@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -52,6 +54,7 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final float SHADOW_OFFSET_X = 18.0F * Settings.scale;
     protected static final float SHADOW_OFFSET_Y = 14.0F * Settings.scale;
     protected static AbstractPlayer player = null;
+    protected boolean cropPortrait = true;
 
     public boolean isPopup = false;
     public boolean isPreview = false;
@@ -77,27 +80,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     public void LoadImage(String suffix)
     {
-        if (suffix == null)
-        {
-            if (isPopup)
-            {
-                // Do not cache high res picture
-                portraitImg = ImageMaster.loadImage(assetUrl.replace(".png", "_p.png"));
-            }
-            else
-            {
-                portraitImg = GR.GetTexture(assetUrl);
-            }
-        }
-        else if (suffix.equals("_p"))
-        {
-            // Do not cache high res picture
-            portraitImg = ImageMaster.loadImage(assetUrl.replace(".png", "_p.png"));
-        }
-        else
-        {
-            portraitImg = GR.GetTexture(assetUrl.replace(".png", suffix + ".png"));
-        }
+        portraitImg = GR.GetTexture(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"));
     }
 
     public boolean IsHovered()
@@ -224,20 +207,24 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderPortrait(SpriteBatch sb)
     {
-        final float scale = drawScale * Settings.scale;
-        final Texture img = portraitImg;
-        float half_w = img.getWidth() * 0.5f;
-        float half_h = img.getHeight() * 0.5f;
-
-        sb.setColor(_renderColor.Get(this));
+        if (cropPortrait && drawScale > 0.6f && drawScale < 1)
+        {
+            int width = portraitImg.getWidth();
+            int height = portraitImg.getHeight();
+            int offset_x = (int) ((1-drawScale) * (0.5f * width));
+            int offset_y1 = (int) ((1-drawScale) * (0f * height));
+            int offset_y2 = (int) ((1-drawScale) * (1f * height));
+            TextureRegion region = new TextureRegion(portraitImg, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
+            RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), 250, 190, _renderColor.Get(this), transparency, 1);
+        }
+        else
         if (isPopup)
         {
-            sb.draw(img, (float) Settings.WIDTH / 2.0F - half_w, (float) Settings.HEIGHT / 2.0F - half_h + 136.0F * Settings.scale, 250.0F, 190.0F, 500.0F, 380.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 500, 380, false, false);
+            RenderHelpers.DrawOnCardAuto(sb, this, portraitImg, new Vector2(0, 72), 500, 380, _renderColor.Get(this), transparency, 0.5f);
         }
         else
         {
-            sb.draw(img, current_x - half_w, current_y - half_h + 72.0F, 125.0F, 23.0F, 250.0F, 190.0F, scale, scale, this.angle,
-                    0, 0, 250, 190, false, false);
+            RenderHelpers.DrawOnCardAuto(sb, this, portraitImg, new Vector2(0, 72), 250, 190, _renderColor.Get(this), transparency, 1f);
         }
     }
 

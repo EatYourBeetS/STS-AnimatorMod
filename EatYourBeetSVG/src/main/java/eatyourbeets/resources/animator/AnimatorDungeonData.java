@@ -5,6 +5,7 @@ import basemod.abstracts.CustomCard;
 import basemod.abstracts.CustomSavable;
 import basemod.interfaces.StartActSubscriber;
 import basemod.interfaces.StartGameSubscriber;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.events.city.Ghosts;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.events.animator.TheMaskedTraveler1;
+import eatyourbeets.interfaces.subscribers.OnCardPoolChangedSubscriber;
 import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
@@ -220,6 +222,17 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
                 return true;
             });
+        }
+
+        if (AbstractDungeon.player != null && AbstractDungeon.player.masterDeck != null)
+        {
+            for (AbstractCard card : AbstractDungeon.player.masterDeck.group)
+            {
+                if (card instanceof OnCardPoolChangedSubscriber)
+                {
+                    ((OnCardPoolChangedSubscriber)card).OnCardPoolChanged();
+                }
+            }
         }
     }
 

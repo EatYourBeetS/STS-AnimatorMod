@@ -192,15 +192,15 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
         card.calculateCardDamage(enemy);
 
         AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(card, enemy, card.energyOnUse, true, true), true);
-//        GameActions.Top.Add(new UnlimboAction(card));
-//        if (Settings.FAST_MODE)
-//        {
-//            GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_FASTER));
-//        }
-//        else
-//        {
-//            GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_MED));
-//        }
+        GameActions.Top.Add(new UnlimboAction(card));
+        if (Settings.FAST_MODE)
+        {
+            GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_FASTER));
+        }
+        else
+        {
+            GameActions.Top.Add(new WaitAction(Settings.ACTION_DUR_MED));
+        }
 
         Complete(enemy);
     }

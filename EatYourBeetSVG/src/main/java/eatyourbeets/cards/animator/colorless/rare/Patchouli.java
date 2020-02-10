@@ -73,24 +73,23 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (magicNumber > 0)
+        RandomizedList<ActionT0> actions = new RandomizedList<>();
+
+        for (int i = 0; i < magicNumber; i++)
         {
-            RandomizedList<ActionT0> actions = new RandomizedList<>();
-
-            for (int i = 0; i < magicNumber; i++)
+            if (actions.Count() == 0)
             {
-                if (actions.Count() == 0)
-                {
-                    actions.Add(this::Aether);
-                    actions.Add(this::Fire);
-                    actions.Add(this::Frost);
-                    actions.Add(this::Lightning);
-                }
-
-                actions.Retrieve(AbstractDungeon.cardRandomRng).Invoke();
-                GameActions.Bottom.WaitRealtime(0.2f);
+                actions.Add(this::Aether);
+                actions.Add(this::Fire);
+                actions.Add(this::Frost);
+                actions.Add(this::Lightning);
             }
+
+            actions.Retrieve(AbstractDungeon.cardRandomRng).Invoke();
+            GameActions.Bottom.WaitRealtime(0.2f);
         }
+
+        cachedOrbAmount = -1;
     }
 
     private void Lightning()

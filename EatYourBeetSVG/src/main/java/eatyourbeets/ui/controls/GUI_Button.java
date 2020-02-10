@@ -23,12 +23,12 @@ public class GUI_Button extends GUIElement
 
     public float targetAlpha = 1f;
     public float currentAlpha = 1f;
+    public boolean interactable;
+    public String text;
 
-    private Color textColor = Color.WHITE.cpy();
-    private Color buttonColor = Color.WHITE.cpy();
-    private boolean interactable;
-    private ActionT0 onClick;
-    private String text;
+    protected Color textColor = Color.WHITE.cpy();
+    protected Color buttonColor = Color.WHITE.cpy();
+    protected ActionT0 onClick;
 
     public GUI_Button(Texture buttonTexture, float x, float y)
     {

@@ -162,6 +162,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             AbstractDungeon.srcColorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
             AbstractDungeon.colorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
             AbstractDungeon.eventList.remove(TheMaskedTraveler1.ID);
+
             return;
         }
 
@@ -186,7 +187,6 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         ArrayList<CardGroup> colorless = new ArrayList<>();
         colorless.add(AbstractDungeon.colorlessCardPool);
         colorless.add(AbstractDungeon.srcColorlessCardPool);
-
         for (CardGroup group : colorless)
         {
             group.group.removeIf(card -> !(card instanceof CustomCard) && !(card instanceof EYBCard));

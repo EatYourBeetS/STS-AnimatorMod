@@ -36,6 +36,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         this.onUpgrade = builder.onUpgrade;
         this.isMultiDamage = builder.isMultiDamage;
         this.tags.addAll(builder.tags);
+        this.cropPortrait = false;
 
         SetSynergy(builder.synergy, builder.isShapeshifter);
     }

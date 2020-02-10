@@ -36,7 +36,7 @@ import java.util.Map;
 public class GR
 {
     // TODO: Set to false
-    public static final boolean TEST_MODE = true;
+    public static final boolean TEST_MODE = false;
 
     protected static final Logger logger = JavaUtilities.GetLogger(GR.class);
     protected static final ArrayList<String> cardClassNames = JavaUtilities.GetClassNamesFromJarFile("eatyourbeets.cards.");

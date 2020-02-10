@@ -1,27 +1,49 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
+import basemod.abstracts.CustomSavable;
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import eatyourbeets.actions.special.SpendEnergy;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Elesis extends AnimatorCard
+public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, StartupCard
 {
-    public static final EYBCardData DATA = Register(Elesis.class).SetAttack(3, CardRarity.RARE);
+    public enum Form
+    {
+        None,
+        Saber,
+        Pyro,
+        Dark,
+    }
 
-    public Elesis()
+    public static final EYBCardData DATA = Register(Elesis.class).SetAttack(-2, CardRarity.RARE);
+
+    private Form currentForm;
+    private int bonusDamage = 0;
+
+    private Elesis(Form form, boolean upgraded)
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 9);
-        SetUpgrade(0, 0, 1, 0);
-        SetScaling(0, 1, 2);
-
-        SetExhaust(true);
         SetSynergy(Synergies.Elsword);
+        this.upgraded = upgraded;
+        ChangeForm(form);
+    }
+
+    public Elesis()
+    {
+        this(Form.None, false);
     }
 
     @Override
@@ -29,12 +51,15 @@ public class Elesis extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.ModifyAllCombatInstances(uuid, c ->
+        if (currentForm == Form.Saber)
         {
-            c.baseDamage += secondaryValue;
-            c.applyPowers();
-        });
-        GameActions.Bottom.Flash(this);
+            GameActions.Bottom.ModifyAllCombatInstances(uuid, c ->
+            {
+                ((Elesis)c).AddDamageBonus(magicNumber);
+                c.applyPowers();
+            });
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override
@@ -42,15 +67,204 @@ public class Elesis extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> c.baseDamage += secondaryValue);
+        if (currentForm == Form.Saber)
+        {
+            GameActions.Bottom.ModifyAllCombatInstances(uuid, c -> ((Elesis)c).AddDamageBonus(magicNumber));
+        }
+        else if (currentForm == Form.Pyro && EffectHistory.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.Draw(1);
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
-        GameActions.Bottom.GainForce(magicNumber);
-        GameActions.Bottom.GainAgility(magicNumber);
+
+        switch (currentForm)
+        {
+            case Saber:
+            {
+                GameActions.Bottom.Add(new SpendEnergy(999)).AddCallback(amount ->
+                {
+                    GameActions.Bottom.GainForce(amount);
+                    GameActions.Bottom.GainAgility(amount);
+                });
+                AddDamageBonus(-bonusDamage);
+                break;
+            }
+            case Pyro:
+            {
+                GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers));
+                if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+                {
+                    GameActions.Bottom.Draw(1);
+                }
+                break;
+            }
+            case Dark:
+            {
+                GameActions.Bottom.ApplyVulnerable(p, m, 1);
+                break;
+            }
+        }
+    }
+
+    protected void ChangeForm(Form form)
+    {
+        if (this.currentForm == form)
+        {
+            return;
+        }
+
+        this.currentForm = form;
+
+        switch (form)
+        {
+            case None:
+            {
+                LoadImage(null);
+
+                cardText.OverrideDescription(null, true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = -2;
+
+                break;
+            }
+
+            case Saber:
+            {
+                LoadImage("_Saber");
+
+                Initialize(6, 0, 3);
+                SetUpgrade(0, 0, 1);
+                SetScaling(0, 1, 1);
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = 1;
+
+                break;
+            }
+
+            case Pyro:
+            {
+                LoadImage("_Pyro");
+
+                Initialize(6, 0, 0);
+                SetUpgrade(4, 0, 0);
+                SetScaling(0, 1, 0);
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = 1;
+
+                break;
+            }
+
+            case Dark:
+            {
+                LoadImage("_Dark");
+
+                Initialize(9, 0, 3);
+                SetUpgrade(0, 0, -1);
+                SetScaling(0, 0, 2);
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = 0;
+
+                break;
+            }
+        }
+
+        if (upgraded)
+        {
+            upgraded = false;
+            upgrade();
+        }
+    }
+
+    @Override
+    public AbstractCard makeCopy()
+    {
+        if (currentForm == Form.None && GameUtilities.InBattle() && GameUtilities.GetMasterDeckInstance(this) == null)
+        {
+            int roll = AbstractDungeon.cardRandomRng.random(0, 2);
+            if (roll == 0)
+            {
+                return new Elesis(Form.Saber, upgraded);
+            }
+            else if (roll == 1)
+            {
+                return new Elesis(Form.Pyro, upgraded);
+            }
+            else
+            {
+                return new Elesis(Form.Dark, upgraded);
+            }
+        }
+
+        return new Elesis(currentForm, upgraded);
+    }
+
+    @Override
+    public Form onSave()
+    {
+        return currentForm;
+    }
+
+    @Override
+    public void onLoad(Form form)
+    {
+        ChangeForm(form == null ? Form.None : form);
+    }
+
+    @Override
+    public boolean atBattleStartPreDraw()
+    {
+        if (currentForm == Form.Dark)
+        {
+            GameActions.Bottom.LoseHP(magicNumber, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+
+            return true;
+        }
+        else if (currentForm == Form.None)
+        {
+            CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            group.group.add(new Elesis(Form.Saber, upgraded));
+            group.group.add(new Elesis(Form.Pyro, upgraded));
+            group.group.add(new Elesis(Form.Dark, upgraded));
+
+            GameActions.Bottom.SelectFromPile(name, 1, group)
+            .SetOptions(false, false)
+            .SetMessage(CardRewardScreen.TEXT[1])
+            .AddCallback(cards ->
+            {
+                if (cards != null && cards.size() > 0)
+                {
+                    Elesis card = (Elesis) cards.get(0);
+
+                    ChangeForm(card.currentForm);
+
+                    AbstractCard inDeck = GameUtilities.GetMasterDeckInstance(this);
+                    if (inDeck != null)
+                    {
+                        ((Elesis) inDeck).ChangeForm(currentForm);
+                    }
+                }
+            });
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private void AddDamageBonus(int amount)
+    {
+        bonusDamage += amount;
+        baseDamage += amount;
     }
 }

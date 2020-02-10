@@ -2,10 +2,12 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.RegenPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.BorosPower;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Boros extends AnimatorCard
@@ -28,8 +30,10 @@ public class Boros extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.GainForce(magicNumber);
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        if (EffectHistory.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.StackPower(new RegenPower(player, magicNumber));
+        }
     }
 
     @Override

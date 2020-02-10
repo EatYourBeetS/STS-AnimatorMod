@@ -43,16 +43,24 @@ public class DamageHelper
 
     public static ArrayList<AbstractPower> RemovePowers(AbstractCreature target)
     {
-        ArrayList<AbstractPower> powers = new ArrayList<>();
+        ArrayList<AbstractPower> toReAdd = new ArrayList<>();
 
-        AddIgnoredPower(powers, target, ThornsPower.POWER_ID);
-        AddIgnoredPower(powers, target, EarthenThornsPower.POWER_ID);
-        AddIgnoredPower(powers, target, MalleablePower.POWER_ID);
-        AddIgnoredPower(powers, target, FlameBarrierPower.POWER_ID);
-        AddIgnoredPower(powers, target, CurlUpPower.POWER_ID);
-        AddIgnoredPower(powers, target, "infinitespire:TempThorns");
+        AddIgnoredPower(toReAdd, target, ThornsPower.POWER_ID);
+        AddIgnoredPower(toReAdd, target, EarthenThornsPower.POWER_ID);
+        AddIgnoredPower(toReAdd, target, MalleablePower.POWER_ID);
+        AddIgnoredPower(toReAdd, target, FlameBarrierPower.POWER_ID);
+        AddIgnoredPower(toReAdd, target, CurlUpPower.POWER_ID);
 
-        return powers;
+        for (int i = target.powers.size()-1; i >= 0; i--)
+        {
+            if (target.powers.get(i).ID.toLowerCase().contains("thorns"))
+            {
+                toReAdd.add(target.powers.get(i));
+                target.powers.remove(i);
+            }
+        }
+
+        return toReAdd;
     }
 
     public static void ReapplyPowers(ArrayList<AbstractPower> powers, AbstractCreature target)

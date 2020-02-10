@@ -54,8 +54,8 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final float SHADOW_OFFSET_X = 18.0F * Settings.scale;
     protected static final float SHADOW_OFFSET_Y = 14.0F * Settings.scale;
     protected static AbstractPlayer player = null;
-    protected boolean cropPortrait = true;
 
+    public boolean cropPortrait = true;
     public boolean isPopup = false;
     public boolean isPreview = false;
     public boolean isSecondaryValueModified = false;
@@ -212,7 +212,7 @@ public abstract class EYBCardBase extends AbstractCard
             int width = portraitImg.getWidth();
             int height = portraitImg.getHeight();
             int offset_x = (int) ((1-drawScale) * (0.5f * width));
-            int offset_y1 = (int) ((1-drawScale) * (0f * height));
+            int offset_y1 = 0;//(int) ((1-drawScale) * (0.5f * height));
             int offset_y2 = (int) ((1-drawScale) * (1f * height));
             TextureRegion region = new TextureRegion(portraitImg, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
             RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), 250, 190, _renderColor.Get(this), transparency, 1);

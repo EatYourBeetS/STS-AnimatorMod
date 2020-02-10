@@ -2,27 +2,20 @@ package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.FrozenEgg2;
-import com.megacrit.cardcrawl.relics.MoltenEgg2;
-import com.megacrit.cardcrawl.relics.ToxicEgg2;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
-import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.effects.card.HideCardEffect;
 import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
 public class AnimatorPurgingStoneUI extends GUIElement
 {
-
     protected final ArrayList<BanCardButton> buttons = new ArrayList<>();
 
     protected ActionT1<AbstractCard> onCardBanned;
@@ -45,19 +38,26 @@ public class AnimatorPurgingStoneUI extends GUIElement
         purgingStone = GameUtilities.GetRelic(PurgingStone.ID);
         if (purgingStone != null && purgingStone.CanActivate(rItem))
         {
-            for (AbstractCard card : cards)
+            for (AbstractCard card : rItem.cards)
             {
-                if (purgingStone.CanBan(card))
+                if (TryAddButton(card))
                 {
-                    BanCardButton banButton = new BanCardButton(card);
-                    banButton.show();
-                    buttons.add(banButton);
                     canBan = true;
                 }
             }
         }
 
         isActive = canBan;
+    }
+
+    private boolean TryAddButton(AbstractCard card)
+    {
+        BanCardButton banButton = new BanCardButton(card);
+        banButton.SetInteractable(purgingStone.CanBan(card));
+        banButton.isActive = true;
+        buttons.add(banButton);
+
+        return banButton.interactable;
     }
 
     public void Close()
@@ -69,112 +69,49 @@ public class AnimatorPurgingStoneUI extends GUIElement
     @Override
     public void Update()
     {
-        AbstractPlayer player = AbstractDungeon.player;
-        Synergy bannedSynergy = null;
         BanCardButton toBan = null;
-        BanCardButton toRemove = null;
         for (BanCardButton banButton : buttons)
         {
-            banButton.update();
+            banButton.TryUpdate();
 
-            if (banButton.banned)
+            if (banButton.banned && toBan == null)
             {
-                purgingStone.Ban(banButton.card);
                 toBan = banButton;
             }
         }
 
-        buttons.remove(toBan);
-
-        while (toBan != null || toRemove != null)
+        if (toBan != null)
         {
-            buttons.remove(toRemove);
-
-            if (toBan != null)
+            int banIndex = rewardItem.cards.indexOf(toBan.card);
+            if (banIndex > 0)
             {
-                int index = rewardItem.cards.indexOf(toBan.card);
-                if (index == -1)
-                {
-                    JavaUtilities.GetLogger(this).error("Could not find " + toBan.card.cardID + " in the current card reward.");
-                    continue;
-                }
+                purgingStone.Ban(toBan.card);
+                rewardItem.cards.remove(banIndex);
+                buttons.remove(toBan);
 
                 GameEffects.Queue.Add(new ExhaustCardEffect(toBan.card));
                 GameEffects.Queue.Add(new HideCardEffect(toBan.card));
-                rewardItem.cards.remove(index);
-
                 OnCardBanned(toBan.card);
 
-                toBan.hideInstantly();
-
-                AbstractCard replacement = null;
-                boolean searchingCard = true;
-                while (searchingCard)
+                AbstractCard replacement = FindReplacement();
+                if (replacement != null)
                 {
-                    searchingCard = false;
-
-                    AbstractCard temp = returnRandomCard();
-                    if (temp == null)
-                    {
-                        break;
-                    }
-
-                    for (AbstractCard c : rewardItem.cards)
-                    {
-                        if (temp.cardID.equals(c.cardID))
-                        {
-                            searchingCard = true;
-                        }
-                    }
-
-                    if (!searchingCard)
-                    {
-                        replacement = temp.makeCopy();
-                    }
-                }
-
-                if (replacement == null)
-                {
-                    break;
-                }
-
-                if (replacement.type == AbstractCard.CardType.ATTACK && player.hasRelic(MoltenEgg2.ID) ||
-                        (replacement.type == AbstractCard.CardType.SKILL && player.hasRelic(ToxicEgg2.ID)) ||
-                        (replacement.type == AbstractCard.CardType.POWER && player.hasRelic(FrozenEgg2.ID)))
-                {
-                    replacement.upgrade();
-                }
-
-                replacement.drawScale = replacement.targetDrawScale = 0.75f;
-                replacement.isSeen = true;
-                replacement.target_x = replacement.current_x = toBan.card.target_x;
-                replacement.target_y = replacement.current_y = toBan.card.target_y;
-                rewardItem.cards.add(index, replacement);
-
-                OnCardAdded(replacement);
-
-                if (purgingStone.CanBan(replacement))
-                {
-                    BanCardButton banButton = new BanCardButton(replacement);
-                    banButton.show();
-                    buttons.add(banButton);
+                    replacement.current_x = replacement.target_x = toBan.card.current_x;
+                    replacement.current_y = replacement.target_y = toBan.card.current_y;
+                    replacement.drawScale = replacement.targetDrawScale = toBan.card.drawScale;
+                    rewardItem.cards.add(banIndex, replacement);
+                    OnCardAdded(replacement);
+                    TryAddButton(replacement);
                 }
             }
 
-            toRemove = null;
-            toBan = null;
-            for (BanCardButton banButton : buttons)
+            canBan = false;
+            for (BanCardButton button : buttons)
             {
-                if (purgingStone.IsBanned(banButton.card))
+                button.SetInteractable(purgingStone.CanBan(button.card));
+                if (button.interactable)
                 {
-                    toRemove = banButton;
-                    toBan = banButton;
-                    break;
-                }
-                else if (!purgingStone.CanBan(banButton.card))
-                {
-                    toRemove = banButton;
-                    break;
+                    canBan = true;
                 }
             }
         }
@@ -187,9 +124,40 @@ public class AnimatorPurgingStoneUI extends GUIElement
         {
             for (BanCardButton banButton : buttons)
             {
-                banButton.render(sb);
+                banButton.TryRender(sb);
             }
         }
+    }
+
+    private AbstractCard FindReplacement()
+    {
+        AbstractCard replacement = null;
+        boolean searchingCard = true;
+        while (searchingCard)
+        {
+            searchingCard = false;
+
+            AbstractCard temp = returnRandomCard();
+            if (temp == null)
+            {
+                break;
+            }
+
+            for (AbstractCard c : rewardItem.cards)
+            {
+                if (temp.cardID.equals(c.cardID))
+                {
+                    searchingCard = true;
+                }
+            }
+
+            if (!searchingCard)
+            {
+                replacement = temp.makeCopy();
+            }
+        }
+
+        return replacement;
     }
 
     private AbstractCard returnRandomCard()

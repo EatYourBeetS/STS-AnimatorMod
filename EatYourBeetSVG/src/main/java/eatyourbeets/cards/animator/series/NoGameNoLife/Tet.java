@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Tet extends AnimatorCard
@@ -37,11 +36,6 @@ public class Tet extends AnimatorCard
     {
         ShuffleFromDiscardPile();
         DiscardFromDrawPile();
-
-        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
-        {
-            GameActions.Bottom.GainEnergy(1);
-        }
     }
 
     private void DiscardFromDrawPile()

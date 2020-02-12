@@ -21,7 +21,9 @@ public class Fredrika extends AnimatorCard
     public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        DATA.InitializePreview(new Fredrika(Form.Dragoon), true);
+        DATA.AddPreview(new Fredrika(Form.Cat), true);
+        DATA.AddPreview(new Fredrika(Form.Dominica), true);
+        DATA.AddPreview(new Fredrika(Form.Dragoon), true);
     }
 
     private Fredrika(Form form)

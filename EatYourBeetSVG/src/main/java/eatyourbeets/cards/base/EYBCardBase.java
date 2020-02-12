@@ -40,6 +40,7 @@ public abstract class EYBCardBase extends AbstractCard
     @Override public final void renderWithSelections(SpriteBatch sb) { renderCard(sb, false, true, false); }
     @Override public final void renderSmallEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y) { throw new RuntimeException("Not Implemented"); }
     @Override public final void renderCardPreviewInSingleView(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
+    @Override public final void renderCardPreview(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
     @Override public final void initializeDescriptionCN() { initializeDescription(); }
     @Override public void calculateDamageDisplay(AbstractMonster mo) { calculateCardDamage(mo); }
     @Override public abstract void renderUpgradePreview(SpriteBatch sb);
@@ -80,7 +81,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     public void LoadImage(String suffix)
     {
-        portraitImg = GR.GetTexture(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"));
+        portraitImg = GR.GetTextureMipMap(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"));
     }
 
     public boolean IsHovered()
@@ -96,28 +97,6 @@ public abstract class EYBCardBase extends AbstractCard
     public boolean CanRenderTip()
     {
         return _renderTip.Get(this);
-    }
-
-    @Override
-    public void renderCardPreview(SpriteBatch sb)
-    {
-        if (isPopup)
-        {
-            cardsToPreview.current_x = (float) Settings.WIDTH * 0.2f - 10.0F * Settings.scale;
-            cardsToPreview.current_y = (float) Settings.HEIGHT * 0.25f;
-            cardsToPreview.drawScale = 1f;
-            cardsToPreview.render(sb);
-        }
-        else if (AbstractDungeon.player == null || !AbstractDungeon.player.isDraggingCard)
-        {
-            final float offset_y = (IMG_HEIGHT / 2.0F - IMG_HEIGHT / 2.0F * 0.8F) * this.drawScale;
-            final float offset_x = (IMG_WIDTH / 2.0F + IMG_WIDTH / 2.0F * 0.8F + 16.0F) * ((this.current_x > Settings.WIDTH * 0.75F) ? this.drawScale : -this.drawScale);
-
-            cardsToPreview.current_x = this.current_x + offset_x;
-            cardsToPreview.current_y = this.current_y + offset_y;
-            cardsToPreview.drawScale = this.drawScale * 0.8F;
-            cardsToPreview.render(sb);
-        }
     }
 
     public void renderCard(SpriteBatch sb, boolean hovered, boolean selected, boolean library)

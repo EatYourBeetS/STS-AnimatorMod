@@ -22,14 +22,14 @@ public class Caster extends AnimatorCard implements Spellcaster
         SetUpgrade(0, 0, 0, 0);
 
         SetEvokeOrbCount(1);
-        SetExhaust(true);
+        SetEthereal(true);
         SetSynergy(Synergies.Fate);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetExhaust(false);
+        SetEthereal(false);
     }
 
     @Override

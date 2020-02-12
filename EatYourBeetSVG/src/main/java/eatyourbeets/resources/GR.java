@@ -163,7 +163,7 @@ public class GR
         Texture texture = textures.get(path);
         if (texture == null)
         {
-            texture = new Texture(path);
+            texture = new Texture(Gdx.files.internal(path), false);
             texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
             textures.put(path, texture);
         }

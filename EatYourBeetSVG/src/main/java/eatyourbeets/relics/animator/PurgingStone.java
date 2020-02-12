@@ -185,7 +185,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
         RemoveCard(card);
         bannedCards.add(card.cardID);
 
-        //counter -= 1;
+        counter -= 1;
         this.flash();
     }
 

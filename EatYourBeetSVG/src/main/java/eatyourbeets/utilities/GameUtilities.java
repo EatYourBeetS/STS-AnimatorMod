@@ -721,6 +721,20 @@ public class GameUtilities
         return AbstractDungeon.player != null && AbstractDungeon.player.chosenClass == playerClass;
     }
 
+    public static void CopyVisualProperties(AbstractCard copy, AbstractCard original)
+    {
+        copy.current_y = original.current_y;
+        copy.current_x = original.current_x;
+        copy.target_x = original.target_x;
+        copy.target_y = original.target_y;
+        copy.targetDrawScale = original.targetDrawScale;
+        copy.drawScale = original.drawScale;
+        copy.transparency = original.transparency;
+        copy.targetTransparency = original.targetTransparency;
+        copy.angle = original.angle;
+        copy.targetAngle = original.targetAngle;
+    }
+
     private static class HandLayoutRefresher implements OnPhaseChangedSubscriber
     {
         @Override

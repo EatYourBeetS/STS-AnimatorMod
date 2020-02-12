@@ -15,7 +15,7 @@ public class AcuraTooru extends AnimatorCard
     public static final EYBCardData DATA = Register(AcuraTooru.class).SetAttack(2, CardRarity.UNCOMMON);
     static
     {
-        DATA.InitializePreview(ThrowingKnife.GetCardForPreview(), false);
+        DATA.AddPreview(ThrowingKnife.GetCardForPreview(), false);
     }
 
     public AcuraTooru()
@@ -40,7 +40,7 @@ public class AcuraTooru extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainBlock(magicNumber);
+        GameActions.Bottom.GainAgility(1);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class AcuraTooru extends AnimatorCard
 
         if (HasSynergy())
         {
-            GameActions.Bottom.GainBlock(magicNumber);
+            GameActions.Bottom.GainAgility(1);
         }
     }
 }

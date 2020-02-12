@@ -1,9 +1,7 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Asuramaru;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -16,7 +14,7 @@ public class Yuuichirou extends AnimatorCard
     public static final EYBCardData DATA = Register(Yuuichirou.class).SetAttack(1, CardRarity.UNCOMMON);
     static
     {
-        DATA.InitializePreview(new Asuramaru(), false);
+        DATA.AddPreview(new Asuramaru(), true);
     }
 
     public Yuuichirou()
@@ -24,7 +22,7 @@ public class Yuuichirou extends AnimatorCard
         super(DATA);
 
         Initialize(8, 0);
-        SetUpgrade(4, 0);
+        SetUpgrade(3, 0);
         SetScaling(0, 1, 1);
 
         SetSynergy(Synergies.OwariNoSeraph);
@@ -42,9 +40,6 @@ public class Yuuichirou extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.MakeCardInDiscardPile(new Asuramaru());
-
-        AbstractDungeon.player.discardPile.addToTop(new Wound());
-        AbstractDungeon.player.discardPile.addToTop(new Wound());
+        GameActions.Bottom.MakeCardInDiscardPile(new Asuramaru()).SetOptions(upgraded, false);
     }
 }

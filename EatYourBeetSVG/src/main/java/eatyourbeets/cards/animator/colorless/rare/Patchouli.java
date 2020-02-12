@@ -24,14 +24,13 @@ import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
 {
     public static final EYBCardData DATA = Register(Patchouli.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
 
-    private int cachedOrbAmount;
+    private final HashSet<String> uniqueOrbs = new HashSet<>();
 
     public Patchouli()
     {
@@ -55,26 +54,21 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
     {
         super.Refresh(enemy);
 
-        ArrayList<AbstractOrb> orbs = AbstractDungeon.actionManager.orbsChanneledThisCombat;
-        if (cachedOrbAmount != orbs.size())
-        {
-            HashSet<String> uniqueOrbs = new HashSet<>();
-            for (AbstractOrb orb : orbs)
-            {
-                uniqueOrbs.add(orb.ID);
-            }
+        uniqueOrbs.clear();
 
-            magicNumber = baseMagicNumber + uniqueOrbs.size();
-            isMagicNumberModified = (magicNumber != baseMagicNumber);
-            cachedOrbAmount = orbs.size();
+        for (AbstractOrb orb : AbstractDungeon.actionManager.orbsChanneledThisCombat)
+        {
+            uniqueOrbs.add(orb.ID);
         }
+
+        magicNumber = baseMagicNumber + uniqueOrbs.size();
+        isMagicNumberModified = (magicNumber != baseMagicNumber);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         RandomizedList<ActionT0> actions = new RandomizedList<>();
-
         for (int i = 0; i < magicNumber; i++)
         {
             if (actions.Count() == 0)
@@ -88,8 +82,6 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
             actions.Retrieve(AbstractDungeon.cardRandomRng).Invoke();
             GameActions.Bottom.WaitRealtime(0.2f);
         }
-
-        cachedOrbAmount = -1;
     }
 
     private void Lightning()

@@ -1,19 +1,24 @@
 package eatyourbeets.actions.damage;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.function.Consumer;
 
 public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreature>
 {
+    protected boolean applyPowers;
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean skipWait;
@@ -26,6 +31,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     {
         this(other.info, other.attackEffect);
 
+        this.card = other.card;
         this.isOrb = other.isOrb;
         this.skipWait = other.skipWait;
         this.bypassBlock = other.bypassBlock;
@@ -34,10 +40,22 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         this.callbacks = other.callbacks;
     }
 
+    public DealDamageToRandomEnemy(AbstractCard card, AttackEffect effect)
+    {
+        super(ActionType.DAMAGE);
+
+        this.card = card;
+        this.info = new DamageInfo(player, card.baseDamage, card.damageTypeForTurn);
+        this.attackEffect = effect;
+
+        Initialize(player, GameUtilities.GetRandomEnemy(true), info.output);
+    }
+
     public DealDamageToRandomEnemy(DamageInfo info, AttackEffect effect)
     {
         super(ActionType.DAMAGE);
 
+        this.card = null;
         this.info = info;
         this.attackEffect = effect;
 
@@ -61,6 +79,16 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
     public DealDamageToRandomEnemy SetOptions(boolean superFast, boolean isOrb)
     {
+        this.skipWait = superFast;
+        this.isOrb = isOrb;
+        this.applyPowers = true;
+
+        return this;
+    }
+
+    public DealDamageToRandomEnemy SetOptions(boolean superFast, boolean isOrb, boolean applyPowers)
+    {
+        this.applyPowers = applyPowers;
         this.skipWait = superFast;
         this.isOrb = isOrb;
 
@@ -125,7 +153,18 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
                 this.target.tint.changeColor(Color.WHITE.cpy());
             }
 
-            this.info.applyPowers(this.info.owner, target);
+            if (applyPowers)
+            {
+                if (card != null)
+                {
+                    card.calculateCardDamage((AbstractMonster) target);
+                    this.info.output = card.damage;
+                }
+                else
+                {
+                    this.info.applyPowers(this.info.owner, target);
+                }
+            }
 
             if (isOrb)
             {

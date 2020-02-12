@@ -15,7 +15,7 @@ public class Viivi extends AnimatorCard
     public static final EYBCardData DATA = Register(Viivi.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random);
     static
     {
-        DATA.InitializePreview(ThrowingKnife.GetCardForPreview(), false);
+        DATA.AddPreview(ThrowingKnife.GetCardForPreview(), false);
     }
 
     public Viivi()

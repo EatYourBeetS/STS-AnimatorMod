@@ -2,7 +2,6 @@ package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -166,7 +165,8 @@ public class AinzPower extends AnimatorPower
                 {
                     return effect.Generate((c, p, m) ->
                     {
-                        GameActions.Bottom.Add(new PlayTopCardAction(m, false));
+                        GameActions.Bottom.ReshuffleDiscardPile(true);
+                        GameActions.Bottom.PlayCard(p.drawPile, m, CardGroup::getTopCard);
                     });
                 }
 

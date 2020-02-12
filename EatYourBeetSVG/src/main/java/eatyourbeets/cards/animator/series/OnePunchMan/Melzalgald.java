@@ -16,7 +16,9 @@ public class Melzalgald extends AnimatorCard
     public static final EYBCardData DATA = Register(Melzalgald.class).SetAttack(3, CardRarity.UNCOMMON);
     static
     {
-        DATA.InitializePreview(new MelzalgaldAlt_1(), true);
+        DATA.AddPreview(new MelzalgaldAlt_1(), true);
+        DATA.AddPreview(new MelzalgaldAlt_2(), true);
+        DATA.AddPreview(new MelzalgaldAlt_3(), true);
     }
 
     public Melzalgald()

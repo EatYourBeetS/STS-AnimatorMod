@@ -73,7 +73,7 @@ public class EYBCardText
         {
             FontHelper.menuBannerFont.getData().setScale(card.drawScale * 1.25F);
             FontHelper.renderRotatedText(sb, FontHelper.menuBannerFont, "? ? ?", card.current_x, card.current_y,
-            0, -200 * Settings.scale * card.drawScale * 0.5f, card.angle, true, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
+                    0, -200 * Settings.scale * card.drawScale * 0.5f, card.angle, true, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
             FontHelper.menuBannerFont.getData().setScale(1.0F);
             return;
         }
@@ -110,11 +110,11 @@ public class EYBCardText
         {
             EYBCardTooltip.RenderAll(sb, card);
 
-            if (card.cardData.previewInitialized)
+            EYBCardPreview preview = card.GetCardPreview();
+            if (preview != null)
             {
                 boolean showUpgrade = SingleCardViewPopup.isViewingUpgrade && (AbstractDungeon.player == null || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD);
-                card.cardsToPreview = card.cardData.GetCardPreview(card.upgraded || showUpgrade);
-                card.renderCardPreview(sb);
+                preview.Render(sb, card, card.upgraded || showUpgrade);
             }
         }
     }
@@ -219,7 +219,7 @@ public class EYBCardText
 
         if (card.cardsToPreview instanceof EYBCard)
         {
-            ((EYBCard)card.cardsToPreview).cardText.badgeAlphaOffset = badgeAlphaOffset;
+            ((EYBCard) card.cardsToPreview).cardText.badgeAlphaOffset = badgeAlphaOffset;
         }
 
         if (card.CanRenderTip() && !card.isPopup)

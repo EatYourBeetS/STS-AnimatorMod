@@ -23,7 +23,8 @@ public class Add extends AnimatorCard
     public static final EYBCardData DATA = Register(Add.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        DATA.InitializePreview(new Crystallize(), false);
+        DATA.AddPreview(new Crystallize(), false);
+        DATA.AddPreview(OrbCore.GetCardForPreview(), false);
     }
 
     public Add()

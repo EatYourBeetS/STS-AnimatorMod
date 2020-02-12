@@ -21,9 +21,8 @@ public class Konayuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 2, 1);
-        SetUpgrade(0, 1, 1, 0);
-        SetScaling(0, 0, 1);
+        Initialize(0, 3, 3, 1);
+        SetUpgrade(0, 3, 0, 0);
 
         SetSynergy(Synergies.Katanagatari);
     }
@@ -39,6 +38,7 @@ public class Konayuki extends AnimatorCard
             {
                 GameEffects.Queue.ShowCardBriefly(this.makeStatEquivalentCopy());
                 GameActions.Bottom.DealDamageToRandomEnemy(40, damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_HEAVY)
+                .SetOptions(false, false, false)
                 .SetPiercing(true, false);
             }
         });

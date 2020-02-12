@@ -16,6 +16,8 @@ import java.util.Collections;
 
 public class CustomCardLibSortHeader extends CardLibSortHeader
 {
+    public static boolean ShowSpecial = GR.TEST_MODE;
+
     private SortHeaderButton[] override = null;
     private SortHeaderButton seriesButton = null;
     private SortHeaderButton rarityButton;
@@ -89,7 +91,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     {
         super.setGroup(group);
 
-        if (!GR.TEST_MODE)
+        if (!ShowSpecial)
         {
             group.group.removeIf(card -> card instanceof EYBCard && card.rarity == AbstractCard.CardRarity.SPECIAL);
         }

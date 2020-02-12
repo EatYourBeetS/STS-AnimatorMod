@@ -40,10 +40,13 @@ import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.actions.powers.ReduceStrength;
 import eatyourbeets.actions.special.GainGold;
+import eatyourbeets.actions.special.ReplaceCard;
+import eatyourbeets.actions.special.ReshuffleDiscardPile;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.interfaces.csharp.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.BurningPower;
@@ -249,7 +252,7 @@ public final class GameActions
 
     public DealDamageToRandomEnemy DealDamageToRandomEnemy(EYBCard card, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToRandomEnemy(new DamageInfo(AbstractDungeon.player, card.baseDamage, card.damageTypeForTurn), effect))
+        return Add(new DealDamageToRandomEnemy(card, effect))
         .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
     }
 
@@ -516,6 +519,11 @@ public final class GameActions
         return Add(new MoveCards(destination, source, amount));
     }
 
+    public PlayCard PlayCard(CardGroup sourcePile, AbstractMonster target, FuncT1<AbstractCard, CardGroup> findCard)
+    {
+        return Add(new PlayCard(findCard, sourcePile, target));
+    }
+
     public PlayCard PlayCard(AbstractCard card, CardGroup sourcePile, AbstractMonster target)
     {
         return Add(new PlayCard(card, target, false)).SetSourcePile(sourcePile);
@@ -580,6 +588,16 @@ public final class GameActions
     public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractCreature target, String powerID)
     {
         return Add(new RemoveSpecificPowerAction(source, source, powerID));
+    }
+
+    public ReplaceCard ReplaceCard(UUID uuid, AbstractCard replacement)
+    {
+        return Add(new ReplaceCard(uuid, replacement));
+    }
+
+    public ReshuffleDiscardPile ReshuffleDiscardPile(boolean onlyIfEmpty)
+    {
+        return Add(new ReshuffleDiscardPile(onlyIfEmpty));
     }
 
     public SFXAction SFX(String key)

@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.base.EYBCardPersistentData;
+import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
@@ -37,7 +37,7 @@ public class AnimatorResources extends AbstractResources
     public final AnimatorPlayerData Data = new AnimatorPlayerData();
     public final AnimatorStrings Strings = new AnimatorStrings();
     public final AnimatorImages Images = new AnimatorImages();
-    public Map<String, EYBCardPersistentData> CardData;
+    public Map<String, EYBCardMetadata> CardData;
 
     public AnimatorResources()
     {
@@ -92,7 +92,7 @@ public class AnimatorResources extends AbstractResources
         BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(Gdx.files.internal(GetLanguagePath() + "CardStrings.json").readString(StandardCharsets.UTF_8.name())));
 
         String jsonString = new String(Gdx.files.internal("Animator-CardMetadata.json").readBytes());
-        CardData = new Gson().fromJson(jsonString, new TypeToken<Map<String, EYBCardPersistentData>>(){}.getType());
+        CardData = new Gson().fromJson(jsonString, new TypeToken<Map<String, EYBCardMetadata>>(){}.getType());
 
         LoadCustomStrings(RelicStrings.class);
         LoadCustomStrings(PowerStrings.class);

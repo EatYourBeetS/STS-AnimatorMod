@@ -18,7 +18,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     public static final EYBCardData DATA = Register(TanyaDegurechaff.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
     static
     {
-        DATA.InitializePreview(new TanyaDegurechaff_Type95(), false);
+        DATA.AddPreview(new TanyaDegurechaff_Type95(), false);
     }
 
     public TanyaDegurechaff()

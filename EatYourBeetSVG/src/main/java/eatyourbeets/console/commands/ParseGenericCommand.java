@@ -7,9 +7,10 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardPersistentData;
+import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.FieldInfo;
+ import eatyourbeets.ui.CustomCardLibSortHeader;
+ import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.Testing;
 
 import java.io.IOException;
@@ -42,6 +43,12 @@ import java.util.Map;
                  if (tokens[1].equals("crop"))
                  {
                      Crop(tokens[2]);
+                     return;
+                 }
+
+                 if (tokens[1].equals("show-special"))
+                 {
+                     CustomCardLibSortHeader.ShowSpecial = tokens.length > 2 && tokens[2].equals("true");
                      return;
                  }
 
@@ -86,11 +93,11 @@ import java.util.Map;
          if (card != null)
          {
              Gson gson = new Gson();
-             Map<String, EYBCardPersistentData> items = GR.Animator.CardData;
+             Map<String, EYBCardMetadata> items = GR.Animator.CardData;
 
              if (!items.containsKey(card.cardID))
              {
-                 items.put(card.cardID, new EYBCardPersistentData());
+                 items.put(card.cardID, new EYBCardMetadata());
              }
 
              items.get(card.cardID).cropPortrait = arg.equals("true");

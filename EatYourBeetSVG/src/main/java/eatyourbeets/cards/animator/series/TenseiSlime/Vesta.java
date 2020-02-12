@@ -22,7 +22,7 @@ public class Vesta extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     public static final EYBCardData DATA = Register(Vesta.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        DATA.InitializePreview(new Vesta_Elixir(), false);
+        DATA.AddPreview(new Vesta_Elixir(), false);
     }
 
     private int timer;

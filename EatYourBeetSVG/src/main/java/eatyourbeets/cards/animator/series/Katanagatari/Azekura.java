@@ -19,9 +19,8 @@ public class Azekura extends AnimatorCard implements MartialArtist
     {
         super(DATA);
 
-        Initialize(0, 6, 2, 2);
-        SetUpgrade(0, 0, 2, 1);
-        SetScaling(0, 0, 1);
+        Initialize(0, 6, 3, 3);
+        SetUpgrade(0, 2, 1, 0);
 
         SetSynergy(Synergies.Katanagatari);
     }

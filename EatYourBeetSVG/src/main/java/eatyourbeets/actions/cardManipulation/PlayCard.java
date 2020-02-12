@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.csharp.FuncT1;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
@@ -21,11 +22,23 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
     public static final float DEFAULT_TARGET_X_RIGHT = (Settings.WIDTH / 2.0F) + (200.0F * Settings.scale);
     public static final float DEFAULT_TARGET_Y = (Settings.HEIGHT / 2.0F);
 
+    protected FuncT1<AbstractCard, CardGroup> findCard;
     protected CardGroup sourcePile;
     protected boolean purge;
     protected boolean exhaust;
     protected Vector2 currentPosition;
     protected Vector2 targetPosition;
+
+    public PlayCard(FuncT1<AbstractCard, CardGroup> findCard, CardGroup sourcePile, AbstractCreature target)
+    {
+        super(ActionType.WAIT, Settings.ACTION_DUR_FAST);
+
+        this.isRealtime = true;
+        this.findCard = findCard;
+        this.sourcePile = sourcePile;
+
+        Initialize(target, 1);
+    }
 
     public PlayCard(AbstractCard card, AbstractCreature target, boolean copy)
     {
@@ -60,7 +73,7 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
 
     public PlayCard SetCurrentPosition(float x, float y)
     {
-        this.currentPosition = new Vector2(x, y);
+        currentPosition = new Vector2(x, y);
 
         return this;
     }
@@ -96,6 +109,24 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
     protected void FirstUpdate()
     {
         super.FirstUpdate();
+
+        if (findCard != null)
+        {
+            if (sourcePile.size() > 0)
+            {
+                card = findCard.Invoke(sourcePile);
+            }
+
+            if (card == null)
+            {
+                Complete();
+                return;
+            }
+            else
+            {
+                GameUtilities.TrySetPosition(sourcePile, card);
+            }
+        }
 
         if (sourcePile != null)
         {

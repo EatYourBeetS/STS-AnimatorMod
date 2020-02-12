@@ -16,7 +16,7 @@ public class ElricAlphonse extends AnimatorCard
     public static final EYBCardData DATA = Register(ElricAlphonse.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
     static
     {
-        DATA.InitializePreview(new ElricAlphonseAlt(), true);
+        DATA.AddPreview(new ElricAlphonseAlt(), true);
     }
 
     public ElricAlphonse()

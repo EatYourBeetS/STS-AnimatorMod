@@ -32,6 +32,7 @@ public class AnimatorPurgingStoneUI extends GUIElement
 
     public void Open(RewardItem rItem, ArrayList<AbstractCard> cards)
     {
+        buttons.clear();
         rewardItem = rItem;
         canBan = false;
 
@@ -83,7 +84,7 @@ public class AnimatorPurgingStoneUI extends GUIElement
         if (toBan != null)
         {
             int banIndex = rewardItem.cards.indexOf(toBan.card);
-            if (banIndex > 0)
+            if (banIndex >= 0)
             {
                 purgingStone.Ban(toBan.card);
                 rewardItem.cards.remove(banIndex);

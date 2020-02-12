@@ -37,7 +37,7 @@ public class HighElfArcher extends AnimatorCard
             GameActions.Bottom.GainAgility(1);
         }
 
-        if (HasSynergy() && EffectHistory.HasActivatedSemiLimited(cardID))
+        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Draw(1);
         }

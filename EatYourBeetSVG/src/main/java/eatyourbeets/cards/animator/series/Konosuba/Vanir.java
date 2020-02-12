@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
@@ -11,8 +10,6 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-
-import java.util.ArrayList;
 
 public class Vanir extends AnimatorCard
 {
@@ -41,26 +38,7 @@ public class Vanir extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                ArrayList<AbstractCard> temp = AbstractDungeon.player.drawPile.group;
-
-                AbstractCard card = cards.get(0);
-                for (int i = 0; i < temp.size(); i++)
-                {
-                    if (temp.get(i) == card)
-                    {
-                        AbstractCard vanir = makeCopy();
-
-                        if (upgraded)
-                        {
-                            vanir.upgrade();
-                        }
-
-                        temp.remove(i);
-                        temp.add(i, vanir);
-
-                        return;
-                    }
-                }
+                GameActions.Top.ReplaceCard(cards.get(0).uuid, makeCopy()).SetUpgrade(upgraded);
             }
         });
     }

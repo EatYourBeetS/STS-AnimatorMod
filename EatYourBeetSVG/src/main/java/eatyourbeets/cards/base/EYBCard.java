@@ -115,6 +115,11 @@ public abstract class EYBCard extends EYBCardBase
         return copy;
     }
 
+    public EYBCardPreview GetCardPreview()
+    {
+        return cardData.GetCardPreview();
+    }
+
     @Override
     public void renderUpgradePreview(SpriteBatch sb)
     {

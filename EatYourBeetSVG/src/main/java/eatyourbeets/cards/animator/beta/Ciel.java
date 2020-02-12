@@ -16,15 +16,15 @@ public class Ciel extends AnimatorCard
     public static final EYBCardData DATA = Register(Ciel.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
     static
     {
-        DATA.InitializePreview(new Lu(), false);
+        DATA.AddPreview(new Lu(), false);
     }
 
     public Ciel()
     {
         super(DATA);
 
-        Initialize(0, 7, 3, 7);
-        SetUpgrade(0, 2, 1, 2);
+        Initialize(0, 8, 3, 8);
+        SetUpgrade(0, 2, 1, 0);
         SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Elsword);

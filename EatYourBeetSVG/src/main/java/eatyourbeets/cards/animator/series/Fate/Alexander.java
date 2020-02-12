@@ -15,8 +15,8 @@ public class Alexander extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0);
-        SetUpgrade(2, 0);
+        Initialize(7, 0);
+        SetUpgrade(0, 0);
         SetScaling(0, 0, 1);
 
         SetMultiDamage(true);
@@ -35,7 +35,11 @@ public class Alexander extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActions.Bottom.GainForce(1);
         ForcePower.PreserveOnce();
+
+        if (upgraded)
+        {
+            GameActions.Bottom.GainForce(1);
+        }
     }
 }

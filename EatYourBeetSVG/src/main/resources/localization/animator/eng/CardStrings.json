@@ -12,7 +12,7 @@
 	},
 	"animator:AcuraTooru":
 	{
-		"DESCRIPTION": "Add !S! {Throwing-} ** {Knives} to your hand. || Synergy or Discard: ** Gain !M! Block.",
+		"DESCRIPTION": "Add !S! {Throwing-} ** {Knives} to your hand. || On Synergy or when Discarded: Gain [A].",
 		"NAME": "Tooru"
 	},
 	"animator:Add":
@@ -42,8 +42,9 @@
 	},
 	"animator:Alexander":
 	{
-		"DESCRIPTION": "Gain 1 <FOR>. Lose ** no <FOR> next turn. || When Exhausted: ** Play this card.",
-		"NAME": "Alexander"
+		"DESCRIPTION": "Lose no [F] next turn. || When Exhausted: ** Play this card.",
+		"NAME": "Alexander",
+		"UPGRADE_DESCRIPTION": "Gain 1 <FOR>. ** Lose no [F] next turn. || When Exhausted: ** Play this card."
 	},
 	"animator:Aqua":
 	{
@@ -70,7 +71,7 @@
 	},
 	"animator:Asuramaru":
 	{
-		"DESCRIPTION": "Gain !M! {Demon Form}. ** Gain !M! <INT>. ** Gain !M! <AGI>.",
+		"DESCRIPTION": "Gain !M! [F] [A] [I]. ** Gain 2 {Demon Form}. ** Add 2 {Wounds} to ** your hand.",
 		"NAME": "Asuramaru"
 	},
 	"animator:Azekura":
@@ -171,7 +172,7 @@
 	},
 	"animator:CrowleyEusford":
 	{
-		"DESCRIPTION": "Heal !M! HP. || Costs 1 less for ** each card that was ** Exhausted this turn.",
+		"DESCRIPTION": "Gain [F] [A]. || If you Exhausted ** a card this turn: ** Motivate 1.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator:Crystallize":
@@ -880,7 +881,7 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "Exhaust a random ** card in hand. || Limited. On Synergy: ** The enemy loses ** !M! Strength.",
+		"DESCRIPTION": "Exhaust a random ** card in hand: The ** enemy loses Strength ** equal to its cost.",
 		"NAME": "Scar"
 	},
 	"animator:Sebas":
@@ -947,6 +948,11 @@
 	{
 		"DESCRIPTION": "Your next {Attack} deals ** !M! additional damage. || Synergy: Increase the ** damage of every copy of ** {Lu} in your deck by !S!.",
 		"NAME": "Ciel"
+	}, 
+	"animator:Yoichi":
+	{
+		"DESCRIPTION": "Discard 1 card. ** Gain 1 {Support Damage}. || <SLM>. On ** Synergy: Activate your ** {Support Damage}.",
+		"NAME": "Yoichi"
 	},
 	"animator:Verdia":
 	{
@@ -1207,7 +1213,7 @@
 	},
 	"animator:Yuuichirou":
 	{
-		"DESCRIPTION": "<DRW>. || When Exhausted: ** Add {Asuramaru} and ** 2 Wounds to your ** discard pile.",
+		"DESCRIPTION": "<DRW>. || When Exhausted: ** Add {Asuramaru} to ** your discard pile.",
 		"NAME": "Yuuichirou"
 	},
 	"animator:ZankiKiguchi":

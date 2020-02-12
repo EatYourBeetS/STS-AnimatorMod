@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -18,7 +15,7 @@ public class IzunaHatsuse extends AnimatorCard
     public static final EYBCardData DATA = Register(IzunaHatsuse.class).SetSkill(0, CardRarity.UNCOMMON);
     static
     {
-        DATA.InitializePreview(new IzunaHatsuse(true), true);
+        DATA.AddPreview(new IzunaHatsuse(true), true);
     }
 
     private boolean transformed;
@@ -106,12 +103,14 @@ public class IzunaHatsuse extends AnimatorCard
     }
 
     @Override
-    public void renderCardPreview(SpriteBatch sb)
+    public EYBCardPreview GetCardPreview()
     {
-        if (!transformed)
+        if (transformed)
         {
-            super.renderCardPreview(sb);
+            return null;
         }
+
+        return super.GetCardPreview();
     }
 
     private void SetTransformed(boolean value)

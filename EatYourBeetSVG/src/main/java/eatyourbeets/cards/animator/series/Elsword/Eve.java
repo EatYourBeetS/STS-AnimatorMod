@@ -16,7 +16,7 @@ public class Eve extends AnimatorCard
     public static final EYBCardData DATA = Register(Eve.class).SetPower(3, CardRarity.RARE);
     static
     {
-        DATA.InitializePreview(OrbCore.GetCardForPreview(), false);
+        DATA.AddPreview(OrbCore.GetCardForPreview(), false);
     }
 
     public Eve()

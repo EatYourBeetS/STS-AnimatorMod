@@ -18,7 +18,7 @@ public class ChlammyZell extends AnimatorCard
     public static final EYBCardData DATA = Register(ChlammyZell.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        DATA.InitializePreview(new ChlammyZellScheme(), false);
+        DATA.AddPreview(new ChlammyZellScheme(), false);
     }
 
     public ChlammyZell()

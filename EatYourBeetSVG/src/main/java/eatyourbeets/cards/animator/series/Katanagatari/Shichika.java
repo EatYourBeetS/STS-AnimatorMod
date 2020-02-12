@@ -15,7 +15,7 @@ public class Shichika extends AnimatorCard implements MartialArtist
     public static final EYBCardData DATA = Register(Shichika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        DATA.InitializePreview(new ShichikaKyotouryuu(), false);
+        DATA.AddPreview(new ShichikaKyotouryuu(), false);
     }
 
     public Shichika()

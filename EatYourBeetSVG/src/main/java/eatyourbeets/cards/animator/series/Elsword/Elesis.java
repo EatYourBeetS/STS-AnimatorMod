@@ -28,6 +28,12 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
     }
 
     public static final EYBCardData DATA = Register(Elesis.class).SetAttack(-2, CardRarity.RARE);
+    static
+    {
+        DATA.AddPreview(new Elesis(Form.Saber, false), true);
+        DATA.AddPreview(new Elesis(Form.Pyro, false), true);
+        DATA.AddPreview(new Elesis(Form.Dark, false), true);
+    }
 
     private Form currentForm;
     private int bonusDamage = 0;
@@ -94,6 +100,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
                 AddDamageBonus(-bonusDamage);
                 break;
             }
+
             case Pyro:
             {
                 GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers));
@@ -103,6 +110,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
                 }
                 break;
             }
+
             case Dark:
             {
                 GameActions.Bottom.ApplyVulnerable(p, m, 1);
@@ -137,8 +145,8 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
             {
                 LoadImage("_Saber");
 
-                Initialize(6, 0, 3);
-                SetUpgrade(0, 0, 1);
+                Initialize(3, 0, 5);
+                SetUpgrade(0, 0, 2);
                 SetScaling(0, 1, 1);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);

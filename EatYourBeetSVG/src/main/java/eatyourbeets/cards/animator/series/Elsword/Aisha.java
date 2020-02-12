@@ -56,8 +56,7 @@ public class Aisha extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int max = p.filledOrbCount();
-        for (int i = 0; i < max; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
             .SetOptions(true, false)

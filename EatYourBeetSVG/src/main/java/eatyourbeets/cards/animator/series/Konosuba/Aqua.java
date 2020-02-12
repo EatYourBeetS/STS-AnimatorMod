@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
@@ -16,7 +13,7 @@ public class Aqua extends AnimatorCard
     public static final EYBCardData DATA = Register(Aqua.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        DATA.InitializePreview(new Aqua(true), true);
+        DATA.AddPreview(new Aqua(true), true);
     }
 
     private boolean transformed = false;
@@ -101,12 +98,14 @@ public class Aqua extends AnimatorCard
     }
 
     @Override
-    public void renderCardPreview(SpriteBatch sb)
+    public EYBCardPreview GetCardPreview()
     {
-        if (!transformed)
+        if (transformed)
         {
-            super.renderCardPreview(sb);
+            return null;
         }
+
+        return super.GetCardPreview();
     }
 
     private void SetTransformed(boolean value)

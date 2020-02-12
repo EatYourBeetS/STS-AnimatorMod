@@ -1,6 +1,6 @@
 package eatyourbeets.cards.base;
 
-public class EYBCardPersistentData
+public class EYBCardMetadata
 {
     public boolean cropPortrait;
 }

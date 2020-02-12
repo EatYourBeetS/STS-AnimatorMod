@@ -1,9 +1,7 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -21,7 +19,7 @@ public class Kazuma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 4);
+        Initialize(4, 6, 4);
         SetUpgrade(0, 3, 0);
 
         SetSynergy(Synergies.Konosuba);
@@ -32,7 +30,7 @@ public class Kazuma extends AnimatorCard
     {
         if (HasSynergy())
         {
-            return DamageAttribute.Instance.SetCard(this).SetText(String.valueOf(magicNumber), Settings.CREAM_COLOR).SetIconTag(EYBCardTarget.Random.tag);
+            return DamageAttribute.Instance.SetCard(this).SetIconTag(EYBCardTarget.Random.tag);
         }
 
         return null;
@@ -46,7 +44,7 @@ public class Kazuma extends AnimatorCard
 
         if (HasSynergy())
         {
-            GameActions.Bottom.DealDamageToRandomEnemy(magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+            GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
     }
 }

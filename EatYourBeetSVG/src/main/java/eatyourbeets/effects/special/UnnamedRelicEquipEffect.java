@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
 import com.megacrit.cardcrawl.cards.colorless.*;
+import com.megacrit.cardcrawl.cards.curses.CurseOfTheBell;
 import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.cards.green.*;
 import com.megacrit.cardcrawl.cards.red.*;
@@ -340,12 +341,6 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
                     break;
                 }
 
-                case "ReplayTheSpireMod:??????????????????????":
-                {
-                    ReplaceCard(replacement, HigakiRinne.DATA.ID);
-                    break;
-                }
-
                 case GeneticAlgorithm.ID:
                 {
                     AbstractCard copy = card.makeCopy();
@@ -364,6 +359,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
                     break;
                 }
 
+                case CurseOfTheBell.ID:
                 case Necronomicurse.ID:
                 {
                     break;
@@ -371,7 +367,15 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
                 default:
                 {
-                    replacement.add(card.makeCopy());
+                    if (card.cardID.startsWith("hubris") || card.cardID.startsWith("ReplayTheSpireMod")
+                    ||  card.cardID.startsWith("infinitespire") || card.cardID.startsWith("StuffTheSpire"))
+                    {
+                        replacement.add(new HigakiRinne());
+                    }
+                    else
+                    {
+                        replacement.add(card.makeCopy());
+                    }
                 }
             }
         }

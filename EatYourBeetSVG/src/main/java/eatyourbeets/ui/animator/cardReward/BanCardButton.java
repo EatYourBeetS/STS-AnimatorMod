@@ -20,7 +20,7 @@ public class BanCardButton extends GUI_Button
         this.hitbox = (AdvancedHitbox) hb;
         this.card = card;
 
-        SetDimensions(AbstractCard.IMG_WIDTH, AbstractCard.IMG_HEIGHT * 0.35f);
+        SetDimensions(AbstractCard.IMG_WIDTH, AbstractCard.IMG_HEIGHT * 0.4f);
         SetColor(Color.RED);
         SetText(GR.Animator.Strings.Rewards.Banish);
         SetOnClick(() -> banned = true);

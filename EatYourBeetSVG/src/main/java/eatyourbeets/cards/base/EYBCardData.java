@@ -1,8 +1,11 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.RotatingList;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -14,12 +17,13 @@ public class EYBCardData
     public final Class<? extends EYBCard> type;
     public final CardStrings Strings;
 
-    public EYBCardPersistentData Metadata;
+    public EYBCardMetadata Metadata;
     public String ImagePath;
     public String ID;
     public AbstractCard.CardType CardType;
     public int BaseCost;
 
+    public final RotatingList<EYBCardPreview> previews = new RotatingList<>();
     public AbstractCard.CardRarity CardRarity;
     public AbstractCard.CardColor CardColor;
     public EYBCardTarget CardTarget;
@@ -27,7 +31,6 @@ public class EYBCardData
     public EYBCard tempCard = null;
     public EYBCard defaultPreview;
     public EYBCard upgradedPreview;
-    public boolean previewInitialized;
 
     public EYBCardData(Class<? extends EYBCard> type, String cardID)
     {
@@ -62,47 +65,31 @@ public class EYBCardData
         }
     }
 
-    public void InitializePreview(EYBCard defaultPreview, boolean upgrade)
+    public void AddPreview(EYBCard card, boolean addUpgrade)
     {
-        if (previewInitialized)
-        {
-            throw new RuntimeException("The preview was already initialized");
-        }
-
-        this.previewInitialized = true;
-        this.defaultPreview = defaultPreview;
-        this.defaultPreview.isPreview = true;
-
-        if (upgrade)
-        {
-            this.upgradedPreview = (EYBCard) defaultPreview.makeStatEquivalentCopy();
-            this.upgradedPreview.isPreview = true;
-            this.upgradedPreview.upgrade();
-            this.upgradedPreview.displayUpgrades();
-        }
+        previews.Add(new EYBCardPreview(card, addUpgrade));
     }
 
-    public EYBCard GetCardPreview(boolean upgraded)
+    public EYBCardPreview GetCardPreview()
     {
-        if (upgradedPreview != null && upgraded)
+        if (previews.Count() > 1)
         {
-            return upgradedPreview;
+            EYBCardPreview preview;
+            if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT))
+            {
+                preview = previews.Next(true);
+            }
+            else
+            {
+                preview = previews.Current();
+            }
+
+            preview.isMultiPreview = true;
+            return preview;
         }
         else
         {
-            return defaultPreview;
-        }
-    }
-
-    public EYBCard GetCardPreview(EYBCard card)
-    {
-        if (upgradedPreview != null && card.upgraded)
-        {
-            return upgradedPreview;
-        }
-        else
-        {
-            return defaultPreview;
+            return previews.Current();
         }
     }
 

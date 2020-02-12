@@ -1,7 +1,5 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
-import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -34,14 +32,6 @@ public class Zero extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        AbstractCard skill = JavaUtilities.GetRandomElement(p.drawPile.getSkills().group);
-        if (skill != null)
-        {
-            p.drawPile.removeCard(skill);
-            p.drawPile.addToTop(skill);
-            skill.applyPowers();
-
-            GameActions.Top.Add(new PlayTopCardAction(m, false));
-        }
+        GameActions.Top.PlayCard(p.drawPile, m, g -> JavaUtilities.GetRandomElement(g.getSkills().group));
     }
 }

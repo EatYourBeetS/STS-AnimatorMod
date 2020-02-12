@@ -64,17 +64,18 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
 
         HardCodedStuff_SneckoSkull();
 
+        if (amount == 0 || AbstractDungeon.getMonsters().areMonstersBasicallyDead())
+        {
+            Complete();
+            return;
+        }
+
         if (powerToApply.ID.equals(CorruptionPower.POWER_ID))
         {
             HardCodedStuff_Corruption(player.hand);
             HardCodedStuff_Corruption(player.drawPile);
             HardCodedStuff_Corruption(player.discardPile);
             HardCodedStuff_Corruption(player.exhaustPile);
-        }
-
-        if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
-        {
-            Complete();
         }
     }
 

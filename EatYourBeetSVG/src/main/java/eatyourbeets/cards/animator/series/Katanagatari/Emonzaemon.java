@@ -22,7 +22,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
     public static final EYBCardData DATA = Register(Emonzaemon.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
     static
     {
-        DATA.InitializePreview(new EntouJyuu(), true);
+        DATA.AddPreview(new EntouJyuu(), true);
     }
 
     public Emonzaemon()

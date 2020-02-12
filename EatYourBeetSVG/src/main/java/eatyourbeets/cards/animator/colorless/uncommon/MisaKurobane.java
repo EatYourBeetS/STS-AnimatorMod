@@ -15,7 +15,7 @@ public class MisaKurobane extends AnimatorCard
     public static final EYBCardData DATA = Register(MisaKurobane.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
     static
     {
-        DATA.InitializePreview(new Yusarin(), false);
+        DATA.AddPreview(new Yusarin(), false);
     }
 
     public MisaKurobane()

@@ -18,6 +18,10 @@ import eatyourbeets.utilities.GameEffects;
 public class Illya extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Illya.class).SetSkill(1, CardRarity.UNCOMMON);
+    static
+    {
+        DATA.AddPreview(new Berserker(), false);
+    }
 
     private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Illya::FindBestCard);
 

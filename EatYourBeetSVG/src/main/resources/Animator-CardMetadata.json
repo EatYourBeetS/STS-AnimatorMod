@@ -1,6 +1,10 @@
 
 {
-	"animator:ChlammyZellScheme":
+	"animator:Ain":
+	{
+		"cropPortrait": false
+	},
+	"animator:Aqua":
 	{
 		"cropPortrait": false
 	},
@@ -12,7 +16,19 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:ChlammyZellScheme":
+	{
+		"cropPortrait": false
+	},
 	"animator:Cocytus":
+	{
+		"cropPortrait": false
+	},
+	"animator:DolaRiku":
+	{
+		"cropPortrait": false
+	},
+	"animator:DolaSchwi":
 	{
 		"cropPortrait": false
 	},
@@ -24,51 +40,7 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:Mitsuba":
-	{
-		"cropPortrait": false
-	},
-	"animator:Kazuma":
-	{
-		"cropPortrait": false
-	},
-	"animator:DolaSchwi":
-	{
-		"cropPortrait": false
-	},
-	"animator:DolaRiku":
-	{
-		"cropPortrait": false
-	},
-	"animator:Tatsumaki":
-	{
-		"cropPortrait": false
-	},
-	"animator:Sloth":
-	{
-		"cropPortrait": false
-	},
-	"animator:Tyuule":
-	{
-		"cropPortrait": false
-	},
-	"animator:Ain":
-	{
-		"cropPortrait": false
-	},
-	"animator:Aqua":
-	{
-		"cropPortrait": false
-	},
-	"animator:Layla":
-	{
-		"cropPortrait": false
-	},
 	"animator:GoblinSlayer":
-	{
-		"cropPortrait": false
-	},
-	"animator:Veldora":
 	{
 		"cropPortrait": false
 	},
@@ -76,19 +48,7 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:SeriousSaitama":
-	{
-		"cropPortrait": false
-	},
-	"animator:Vesta_Elixir":
-	{
-		"cropPortrait": false
-	},
-	"animator:ThrowingKnife":
-	{
-		"cropPortrait": false
-	},
-	"animator:MisaKurobane":
+	"animator:Kazuma":
 	{
 		"cropPortrait": false
 	},
@@ -97,6 +57,46 @@
 		"cropPortrait": false
 	},
 	"animator:Kyubey":
+	{
+		"cropPortrait": false
+	},
+	"animator:Layla":
+	{
+		"cropPortrait": false
+	},
+	"animator:Jibril":
+	{
+		"cropPortrait": false
+	},
+	"animator:MisaKurobane":
+	{
+		"cropPortrait": false
+	},
+	"animator:SeriousSaitama":
+	{
+		"cropPortrait": false
+	},
+	"animator:Sloth":
+	{
+		"cropPortrait": false
+	},
+	"animator:Tatsumaki":
+	{
+		"cropPortrait": false
+	},
+	"animator:ThrowingKnife":
+	{
+		"cropPortrait": false
+	},
+	"animator:Tyuule":
+	{
+		"cropPortrait": false
+	},
+	"animator:Veldora":
+	{
+		"cropPortrait": false
+	},
+	"animator:Vesta_Elixir":
 	{
 		"cropPortrait": false
 	}

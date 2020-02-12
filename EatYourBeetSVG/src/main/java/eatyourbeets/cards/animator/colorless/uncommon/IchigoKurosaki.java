@@ -16,7 +16,7 @@ public class IchigoKurosaki extends AnimatorCard implements MartialArtist
     public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
     static
     {
-        DATA.InitializePreview(new IchigoBankai(), false);
+        DATA.AddPreview(new IchigoBankai(), false);
     }
 
     public IchigoKurosaki()

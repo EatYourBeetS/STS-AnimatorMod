@@ -152,7 +152,7 @@ public class TheMaskedTraveler2 extends AnimatorEvent
         {
             AbstractDungeon.player.decreaseMaxHealth(currentHPLoss);
 
-            for (String relicID : AbstractDungeon.player.getLoadout().relics)
+            for (String relicID : AbstractDungeon.player.getStartingRelics())
             {
                 if (!RecoverPreviousRelic(relicID))
                 {

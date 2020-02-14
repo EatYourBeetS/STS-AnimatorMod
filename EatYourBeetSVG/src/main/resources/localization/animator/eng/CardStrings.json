@@ -55,7 +55,7 @@
 	},
 	"animator:Ara":
 	{
-		"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || If you discarded a ** {Power}: Gain [A] [F].",
+		"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || If you discarded a ** {Power}: Gain [F] [A].",
 		"NAME": "Ara"
 	},
 	"animator:Archer":
@@ -318,8 +318,8 @@
 		"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
 		"EXTENDED_DESCRIPTION":
 		[
-			"Spend your remaining [E]: ** Gain that much [F] and [A]. || When Drawn or Discarded: Increase this card's damage by !M! until played.",
-			"Apply 1 Burning ** for every {Debuff} ** on the enemy. || <slm>. Synergy or Discard: <DRW>.",
+			"Spend your remaining [E]: ** Gain that much [F] and [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.",
+			"Apply 1 Burning ** for every {Debuff} ** on the enemy. || <slm>. Synergy or ** Discard: <DRW>.",
 			"Apply 1 Vulnerable. || At the start of each ** combat: Lose !M! HP."
 		],
 		"NAME": "Elesis",
@@ -589,7 +589,7 @@
 	},
 	"animator:Kazuma":
 	{
-		"DESCRIPTION": "Cycle 1 card. || On Synergy: Deal !M! ** damage to a random ** enemy.",
+		"DESCRIPTION": "Cycle 1 card. || Synergy: Gain !M! ** additional Block.",
 		"NAME": "Kazuma"
 	},
 	"animator:Kira":
@@ -610,7 +610,7 @@
 	},
 	"animator:Kuribayashi":
 	{
-		"DESCRIPTION": "Apply !S! Choked. ** Apply !M! Vulnerable. || <slm>. Synergy: ** The enemy loses 4 ** Strength this turn.",
+		"DESCRIPTION": "Apply !S! Choked. ** Apply !M! Vulnerable. || On Synergy: Gain 1 ** {Support Damage}.",
 		"NAME": "Kuribayashi"
 	},
 	"animator:Kuroyukihime":
@@ -881,7 +881,7 @@
 	},
 	"animator:Scar":
 	{
-		"DESCRIPTION": "Exhaust a random ** card in hand: The ** enemy loses Strength ** equal to its cost.",
+		"DESCRIPTION": "Exhaust a random ** card in hand. || The enemy loses !M! ** Strength this turn.",
 		"NAME": "Scar"
 	},
 	"animator:Sebas":
@@ -959,6 +959,12 @@
 		"DESCRIPTION": "<DRW-M>. ** Apply !S! Vulnerable. || When Discarded: ** Gain 1 {Plat. Armor}.",
 		"NAME": "Verdia"
 	},
+	"animator:WinryRockbell":
+	{
+		"DESCRIPTION": "Once per turn, when ** you discard a card: ** Gain !M! Block. || Synergy: Upgrade a ** card in your hand.",
+		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you discard a card this turn, gain #b{1} #yBlock."],
+		"NAME": "Winry Rockbell"
+	},
 	"animator:UneriGinkaku":
 	{
 		"DESCRIPTION": "Unplayable if you ** {Attacked} this turn. || When Drawn: Gain ** !M! {Temp}. Thorns.",
@@ -977,8 +983,9 @@
 	},
 	"animator:SilverFang":
 	{
-		"DESCRIPTION": " Lose no [A] next turn. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling.",
-		"NAME": "Silver Fang"
+		"DESCRIPTION": "Gain !M! Agility. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling.",
+		"NAME": "Silver Fang",
+		"UPGRADE_DESCRIPTION": "Gain !M! Agility. ** Lose no [A] next turn. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling."
 	},
 	"animator:SirTouchMe":
 	{
@@ -1145,13 +1152,13 @@
 	},
 	"animator:TukaLunaMarceau":
 	{
-		"DESCRIPTION": "If you have no Block: ** <DRW>. || When Discarded: ** Gain !M! Block.",
+		"DESCRIPTION": "If you have no Block: ** <DRW>. || When Discarded: ** Gain !B! Block.",
 		"NAME": "Tuka"
 	},
 	"animator:Tyuule":
 	{
 		"DESCRIPTION": "Apply !M! Poison to ** ALL enemies and ** increase each of their ** {Common Debuffs} by 1.",
-		"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, Temporary #yStrength Loss."],
+		"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning."],
 		"NAME": "Tyuule"
 	},
 	"animator:Urushihara":

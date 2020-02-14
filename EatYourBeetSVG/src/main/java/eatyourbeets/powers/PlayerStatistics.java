@@ -75,6 +75,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     private static int turnCount = 0;
     private static int cardsDrawnThisTurn = 0;
     private static int cardsExhaustedThisTurn = 0;
+    private static int orbsEvokedThisCombat = 0;
     private static int orbsEvokedThisTurn = 0;
     private static int synergiesThisTurn = 0;
 
@@ -108,6 +109,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         turnCount = 0;
         cardsDrawnThisTurn = 0;
         cardsExhaustedThisTurn = 0;
+        orbsEvokedThisCombat = 0;
         orbsEvokedThisTurn = 0;
         synergiesThisTurn = 0;
         currentPhase = null;
@@ -324,6 +326,11 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         return cardsDrawnThisTurn;
     }
 
+    public static int getOrbsEvokedThisCombat()
+    {
+        return orbsEvokedThisCombat;
+    }
+
     public static int getOrbsEvokedThisTurn()
     {
         return orbsEvokedThisTurn;
@@ -345,6 +352,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
             {
                 p.OnEvokeOrb(orb);
             }
+            orbsEvokedThisCombat += 1;
             orbsEvokedThisTurn += 1;
         }
     }

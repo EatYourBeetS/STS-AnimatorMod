@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Ghosts;
+import com.megacrit.cardcrawl.relics.*;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.events.animator.TheMaskedTraveler1;
@@ -166,6 +167,18 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             return;
         }
 
+        AddRelicToPool(MarkOfPain.ID, AbstractRelic.RelicTier.BOSS);
+        AddRelicToPool(RunicCapacitor.ID, AbstractRelic.RelicTier.SHOP);
+        AddRelicToPool(TwistedFunnel.ID, AbstractRelic.RelicTier.SHOP);
+        AddRelicToPool(Brimstone.ID, AbstractRelic.RelicTier.SHOP);
+        AddRelicToPool(DataDisk.ID, AbstractRelic.RelicTier.SHOP);
+        AddRelicToPool(CharonsAshes.ID , AbstractRelic.RelicTier.RARE);
+        AddRelicToPool(ChampionsBelt.ID, AbstractRelic.RelicTier.RARE);
+        AddRelicToPool(PaperCrane.ID, AbstractRelic.RelicTier.UNCOMMON);
+        AddRelicToPool(PaperFrog.ID, AbstractRelic.RelicTier.UNCOMMON);
+        AddRelicToPool(CloakClasp.ID, AbstractRelic.RelicTier.UNCOMMON);
+        AddRelicToPool(RedSkull.ID, AbstractRelic.RelicTier.COMMON);
+
         if (startGame && Settings.isStandardRun())
         {
             GR.Animator.Data.SaveTrophies(true);
@@ -232,6 +245,54 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
                 {
                     ((OnCardPoolChangedSubscriber)card).OnCardPoolChanged();
                 }
+            }
+        }
+    }
+
+
+    private void AddRelicToPool(String relicID, AbstractRelic.RelicTier tier)
+    {
+        if (!AbstractDungeon.player.hasRelic(relicID))
+        {
+            switch (tier)
+            {
+                case COMMON:
+                    if (AbstractDungeon.commonRelicPool.contains(relicID))
+                    {
+                        AbstractDungeon.commonRelicPool.add(relicID);
+                    }
+                    break;
+                case UNCOMMON:
+                    if (AbstractDungeon.uncommonRelicPool.contains(relicID))
+                    {
+                        AbstractDungeon.uncommonRelicPool.add(relicID);
+                    }
+                    break;
+                case RARE:
+                    if (AbstractDungeon.rareRelicPool.contains(relicID))
+                    {
+                        AbstractDungeon.rareRelicPool.add(relicID);
+                    }
+                    break;
+                case BOSS:
+                    if (AbstractDungeon.bossRelicPool.contains(relicID))
+                    {
+                        AbstractDungeon.bossRelicPool.add(relicID);
+                    }
+                    break;
+                case SHOP:
+                    if (AbstractDungeon.shopRelicPool.contains(relicID))
+                    {
+                        AbstractDungeon.shopRelicPool.add(relicID);
+                    }
+                    break;
+
+                case DEPRECATED:
+                    break;
+                case STARTER:
+                    break;
+                case SPECIAL:
+                    break;
             }
         }
     }

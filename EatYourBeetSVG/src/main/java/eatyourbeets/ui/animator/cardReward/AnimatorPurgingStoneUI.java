@@ -3,8 +3,10 @@ package eatyourbeets.ui.animator.cardReward;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.SpiritPoop;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
+import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.effects.card.HideCardEffect;
 import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.relics.animator.PurgingStone;
@@ -86,6 +88,11 @@ public class AnimatorPurgingStoneUI extends GUIElement
             int banIndex = rewardItem.cards.indexOf(toBan.card);
             if (banIndex >= 0)
             {
+                if (toBan.card.cardID.equals(HigakiRinne.DATA.ID))
+                {
+                    GameEffects.TopLevelList.SpawnRelic(new SpiritPoop(), toBan.hb.cX, toBan.hb.cY);
+                }
+
                 purgingStone.Ban(toBan.card);
                 rewardItem.cards.remove(banIndex);
                 buttons.remove(toBan);

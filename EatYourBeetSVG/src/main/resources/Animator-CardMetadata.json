@@ -4,11 +4,11 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:Aqua":
+	"animator:Archer":
 	{
 		"cropPortrait": false
 	},
-	"animator:Archer":
+	"animator:Benimaru":
 	{
 		"cropPortrait": false
 	},
@@ -48,7 +48,7 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:Kazuma":
+	"animator:Kaijin":
 	{
 		"cropPortrait": false
 	},
@@ -68,11 +68,27 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:Kuribayashi":
+	{
+		"cropPortrait": false
+	},
+	"animator:ItamiYouji":
+	{
+		"cropPortrait": false
+	},
 	"animator:MisaKurobane":
 	{
 		"cropPortrait": false
 	},
+	"animator:QuestionMark":
+	{
+		"cropPortrait": false
+	},
 	"animator:SeriousSaitama":
+	{
+		"cropPortrait": false
+	},
+	"animator:Scar":
 	{
 		"cropPortrait": false
 	},

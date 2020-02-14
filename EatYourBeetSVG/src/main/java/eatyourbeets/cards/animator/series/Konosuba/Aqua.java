@@ -116,11 +116,13 @@ public class Aqua extends AnimatorCard
         {
             LoadImage("2");
             cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0], true);
+            type = CardType.STATUS;
         }
         else
         {
             LoadImage(null);
             cardText.OverrideDescription(null, true);
+            type = CardType.SKILL;
         }
     }
 }

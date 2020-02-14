@@ -17,7 +17,7 @@ public class GrowthPotion extends AbstractPotion
 
     public GrowthPotion()
     {
-        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.S, PotionColor.NONE);
+        super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.S, PotionColor.NONE);
         this.potency = this.getPotency();
         this.description = JavaUtilities.Format(DESCRIPTIONS[0], this.potency);
         this.isThrown = false;
@@ -38,7 +38,7 @@ public class GrowthPotion extends AbstractPotion
 
     public int getPotency(int ascensionLevel)
     {
-        return 2;
+        return 3;
     }
 
     static

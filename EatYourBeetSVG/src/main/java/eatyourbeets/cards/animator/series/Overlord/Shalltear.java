@@ -18,8 +18,8 @@ public class Shalltear extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2);
-        SetUpgrade(1, 0, 1);
+        Initialize(3, 0, 3);
+        SetUpgrade(0, 0, 0);
         SetScaling(1, 1, 1);
 
         SetEthereal(true);

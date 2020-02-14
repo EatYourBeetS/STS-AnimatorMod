@@ -11,13 +11,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class ElricAlphonseAlt extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ElricAlphonseAlt.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ElricAlphonseAlt.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None);
 
     public ElricAlphonseAlt()
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 4);
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);

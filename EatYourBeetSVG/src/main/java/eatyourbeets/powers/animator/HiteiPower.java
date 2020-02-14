@@ -2,11 +2,11 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import eatyourbeets.actions.animator.HiteiAction;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.actions.animator.HiteiAction;
 
 public class HiteiPower extends AnimatorPower
 {

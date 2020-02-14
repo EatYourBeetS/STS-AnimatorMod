@@ -2,6 +2,8 @@ package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import eatyourbeets.resources.GR;
@@ -29,8 +31,8 @@ public class EYBCardData
     public EYBCardTarget CardTarget;
     public EYBAttackType AttackType;
     public EYBCard tempCard = null;
-    public EYBCard defaultPreview;
-    public EYBCard upgradedPreview;
+
+    private TextureAtlas.AtlasRegion cardIcon = null;
 
     public EYBCardData(Class<? extends EYBCard> type, String cardID)
     {
@@ -68,6 +70,20 @@ public class EYBCardData
     public void AddPreview(EYBCard card, boolean addUpgrade)
     {
         previews.Add(new EYBCardPreview(card, addUpgrade));
+    }
+
+    public TextureAtlas.AtlasRegion GetCardIcon()
+    {
+        if (cardIcon == null)
+        {
+            Texture texture = GR.GetTexture(ImagePath);
+            int h = texture.getHeight();
+            int w = texture.getWidth();
+            int section = h / 2;
+            cardIcon = new TextureAtlas.AtlasRegion(texture, (w / 2) - (section / 2), 0, section, section);
+        }
+
+        return cardIcon;
     }
 
     public EYBCardPreview GetCardPreview()

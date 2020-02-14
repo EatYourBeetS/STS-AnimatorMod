@@ -12,16 +12,16 @@ import eatyourbeets.utilities.GameActions;
 
 public class Scar extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Scar.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Scar.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental);
 
     public Scar()
     {
         super(DATA);
 
-        Initialize(12, 0, 2);
-        SetUpgrade(4, 0);
+        Initialize(14, 0, 6, 0);
+        SetUpgrade(2, 0, 2, 0);
+        SetScaling(1, 0, 1);
 
-        SetExhaust(true);
         SetSynergy(Synergies.FullmetalAlchemist);
     }
 
@@ -29,16 +29,13 @@ public class Scar extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Top.ExhaustFromHand(name, 1, true)
-        .ShowEffect(true, true)
-        .AddCallback(m, (enemy, cards) ->
-        {
-            if (cards != null && cards.size() > 0)
-            {
-                GameActions.Bottom.ReduceStrength((AbstractMonster)enemy, cards.get(0).cost, false);
-            }
-        });
+        .ShowEffect(true, true);
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F));
+        .SetDamageEffect(enemy ->
+        {
+            CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3F);
+            GameActions.Bottom.ReduceStrength(enemy, magicNumber, true);
+        });
     }
 }

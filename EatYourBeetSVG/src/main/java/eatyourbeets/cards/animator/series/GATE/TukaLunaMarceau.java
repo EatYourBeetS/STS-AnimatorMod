@@ -16,8 +16,8 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 3);
-        SetUpgrade(0, 2, 0);
+        Initialize(0, 2);
+        SetUpgrade(0, 2);
 
         SetSynergy(Synergies.Gate);
     }
@@ -27,7 +27,9 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainBlock(magicNumber);
+        Refresh(null);
+
+        GameActions.Bottom.GainBlock(block);
     }
 
     @Override

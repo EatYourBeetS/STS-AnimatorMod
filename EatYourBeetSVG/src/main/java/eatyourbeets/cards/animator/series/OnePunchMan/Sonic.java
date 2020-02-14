@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Sonic extends AnimatorCard implements MartialArtist
 {
-    public static final EYBCardData DATA = Register(Sonic.class).SetPower(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Sonic.class).SetSkill(1, CardRarity.UNCOMMON);
     static
     {
         DATA.AddPreview(ThrowingKnife.GetCardForPreview(), false);
@@ -21,9 +21,10 @@ public class Sonic extends AnimatorCard implements MartialArtist
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 2);
+        SetUpgrade(0, 0, 0, 1);
 
+        SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);
     }
 

@@ -4,32 +4,58 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.powers.FlashPowerEffect;
+import eatyourbeets.effects.powers.GainPowerEffect;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JavaUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.StringJoiner;
 
 public abstract class BasePower extends AbstractPower implements CloneablePowerInterface
 {
+    public TextureAtlas.AtlasRegion powerIcon;
+
     protected static final Logger logger = LogManager.getLogger(BasePower.class.getName());
     protected static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
     protected boolean enabled = true;
 
+    protected final ArrayList<AbstractGameEffect> effects;
     protected final PowerStrings powerStrings;
+
+    public BasePower(AbstractCreature owner, EYBCardData cardData)
+    {
+        this.effects = (ArrayList<AbstractGameEffect>)JavaUtilities.GetField("effect", AbstractPower.class).Get(this);
+        this.owner = owner;
+        this.ID = cardData.ID + "Power";
+
+        this.powerIcon = cardData.GetCardIcon();
+        this.img = null;
+
+        this.powerStrings = new PowerStrings();
+        this.powerStrings.NAME = cardData.Strings.NAME;
+        this.powerStrings.DESCRIPTIONS = cardData.Strings.EXTENDED_DESCRIPTION;
+        this.name = powerStrings.NAME;
+    }
 
     public BasePower(AbstractCreature owner, String id)
     {
+        this.effects = (ArrayList<AbstractGameEffect>)JavaUtilities.GetField("effect", AbstractPower.class).Get(this);
         this.owner = owner;
         this.ID = id;
 
@@ -111,18 +137,40 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
     }
 
     @Override
+    public void flash()
+    {
+        this.effects.add(new GainPowerEffect(this, true));
+        GameEffects.List.Add(new FlashPowerEffect(this));
+    }
+
+    @Override
+    public void flashWithoutSound()
+    {
+        this.effects.add(new GainPowerEffect(this, false));
+        GameEffects.List.Add(new FlashPowerEffect(this));
+    }
+
+    @Override
     public void renderIcons(SpriteBatch sb, float x, float y, Color c)
     {
-        if (enabled)
+        sb.setColor(enabled ? c : disabledColor);
+
+        if (this.powerIcon != null)
         {
-            super.renderIcons(sb, x, y, c);
+            sb.draw(this.powerIcon, x - 12f, y - 16f, 16f, 16f, 32.0F, 32.0F, Settings.scale, Settings.scale, 0.0F);
         }
         else
         {
-            super.renderIcons(sb, x, y, disabledColor);
+            sb.draw(this.img, x - 12.0F, y - 12.0F, 16.0F, 16.0F, 32.0F, 32.0F, Settings.scale * 1.5F, Settings.scale * 1.5F, 0.0F, 0, 0, 32, 32, false, false);
+        }
+
+        for (AbstractGameEffect e : effects)
+        {
+            e.render(sb, x, y);
         }
     }
 
+    @Override
     public void renderAmount(SpriteBatch sb, float x, float y, Color c)
     {
         ColoredString amount = GetPrimaryAmount(c);

@@ -23,7 +23,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 2, 2);
         SetUpgrade(0, 0, 1);
 
         SetEthereal(true);
@@ -52,6 +52,8 @@ public class ElricAlphonse extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
+
         if (GameUtilities.GetPowerAmount(p, IntellectPower.POWER_ID) <= magicNumber)
         {
             GameActions.Bottom.GainIntellect(1);

@@ -117,7 +117,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         {
             RandomizedList<AbstractCard> temp = new RandomizedList<>(mergedGroup.group);
 
-            int max = Math.min(temp.Count(), amount);
+            int max = Math.min(temp.Size(), amount);
             for (int i = 0; i < max; i++)
             {
                 selectedCards.add(temp.Retrieve(AbstractDungeon.cardRandomRng));

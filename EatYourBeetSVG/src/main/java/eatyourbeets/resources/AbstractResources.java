@@ -2,9 +2,6 @@ package eatyourbeets.resources;
 
 import basemod.interfaces.*;
 import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.resources.animator.AnimatorResources;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
@@ -13,11 +10,8 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
            EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
            AddAudioSubscriber
 {
-
-    protected static final Logger logger = LogManager.getLogger(AnimatorResources.class.getName());
-
+    protected final String prefix;
     protected String languagePath;
-    protected String prefix;
 
     protected AbstractResources(String prefix)
     {

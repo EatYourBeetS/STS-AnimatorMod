@@ -34,7 +34,7 @@ public class RandomizedList<T>
         items.clear();
     }
 
-    public int Count() { return items.size(); }
+    public int Size() { return items.size(); }
 
     public boolean Remove(T item)
     {

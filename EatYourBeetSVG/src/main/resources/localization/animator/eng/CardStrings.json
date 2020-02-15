@@ -12,7 +12,7 @@
 	},
 	"animator:AcuraTooru":
 	{
-		"DESCRIPTION": "Add !S! {Throwing-} ** {Knives} to your hand. || On Synergy or when Discarded: Gain [A].",
+		"DESCRIPTION": "Add !S! {Throwing-} ** {Knives} to your hand. || Synergy or Discard: ** Gain [A] and !M! Block.",
 		"NAME": "Tooru"
 	},
 	"animator:Add":
@@ -388,7 +388,7 @@
 	},
 	"animator:Evileye":
 	{
-		"DESCRIPTION": "<DRW-M>. ** Reload: Trigger the passive ** ability of your next Orb. || <LIM>. Synergy: Gain ** 2 [I] and 1 Orb Slot.",
+		"DESCRIPTION": "<DRW-M>. Reload: ** Trigger your next Orb. || <LIM>. Synergy: Gain ** 2 [I] and 1 Orb Slot.",
 		"NAME": "Evileye"
 	},
 	"animator:Excalibur":
@@ -578,9 +578,9 @@
 	},
 	"animator:Jibril":
 	{
-		"DESCRIPTION": "Channel 1 Dark. || Synergy: Trigger the ** passive ability of !M! ** random orb(s).",
+		"DESCRIPTION": "Channel 1 Dark. || On Synergy: Shuffle ** your Orbs, then trigger ** your first !M! Orbs.",
 		"NAME": "Jibril",
-		"UPGRADE_DESCRIPTION": "Channel 1 Dark. ** Lose no [I] next turn. || Synergy: Trigger the ** passive ability of !M! ** random orb(s)."
+		"UPGRADE_DESCRIPTION": "Channel 1 Dark. ** Lose no [I] next turn. || On Synergy: Shuffle ** your Orbs, then trigger ** your first !M! Orbs."
 	},
 	"animator:Kaijin":
 	{

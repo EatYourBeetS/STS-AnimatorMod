@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
+import eatyourbeets.resources.GR;
 
 import java.util.ArrayList;
 
@@ -19,11 +20,13 @@ public class Vesta_Elixir extends AnimatorCard
     public Vesta_Elixir()
     {
         super(DATA);
+
+        tags.add(GR.Enums.CardTags.TEMPORARY);
     }
 
     public Vesta_Elixir(ArrayList<VestaElixirEffect> effects)
     {
-        super(DATA);
+        this();
 
         ApplyEffects(effects);
     }

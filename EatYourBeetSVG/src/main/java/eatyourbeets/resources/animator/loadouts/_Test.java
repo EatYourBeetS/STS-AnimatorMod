@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class _Test extends AnimatorLoadout
 {
-    private String cardID;
+    private final String cardID;
 
     public _Test(eatyourbeets.cards.base.Synergy synergy, String cardID, int amount)
     {

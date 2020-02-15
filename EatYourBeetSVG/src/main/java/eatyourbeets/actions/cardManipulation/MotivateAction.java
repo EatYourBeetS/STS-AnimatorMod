@@ -50,11 +50,11 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
             }
         }
 
-        if (betterPossible.Count() > 0)
+        if (betterPossible.Size() > 0)
         {
             this.card = betterPossible.Retrieve(AbstractDungeon.cardRng);
         }
-        else if (motivateZeroCost && possible.Count() > 0)
+        else if (motivateZeroCost && possible.Size() > 0)
         {
             this.card = possible.Retrieve(AbstractDungeon.cardRng);
         }

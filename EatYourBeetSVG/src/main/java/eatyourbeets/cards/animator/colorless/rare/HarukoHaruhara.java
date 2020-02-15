@@ -52,11 +52,11 @@ public class HarukoHaruhara extends AnimatorCard
             }
 
             AbstractCard card = null;
-            if (playable.Count() > 0)
+            if (playable.Size() > 0)
             {
                 card = playable.Retrieve(AbstractDungeon.cardRandomRng);
             }
-            else if (unplayable.Count() > 0)
+            else if (unplayable.Size() > 0)
             {
                 card = unplayable.Retrieve(AbstractDungeon.cardRandomRng);
             }

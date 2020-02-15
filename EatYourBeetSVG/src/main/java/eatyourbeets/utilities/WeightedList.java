@@ -38,7 +38,7 @@ public class WeightedList<T>
         }
     }
 
-    public int Count()
+    public int Size()
     {
         return items.size();
     }

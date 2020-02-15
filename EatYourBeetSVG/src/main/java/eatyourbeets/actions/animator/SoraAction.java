@@ -95,17 +95,17 @@ public class SoraAction extends EYBAction
             prepareList.AddAll(copy.prepareList.GetInnerList());
         }
 
-        if (attackList.Count() == 0)
+        if (attackList.Size() == 0)
         {
             attackList.AddAll(attackPool);
         }
 
-        if (defendList.Count() == 0)
+        if (defendList.Size() == 0)
         {
             defendList.AddAll(defendPool);
         }
 
-        if (prepareList.Count() == 0)
+        if (prepareList.Size() == 0)
         {
             prepareList.AddAll(preparePool);
         }

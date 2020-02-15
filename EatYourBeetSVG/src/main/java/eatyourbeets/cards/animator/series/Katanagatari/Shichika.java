@@ -22,7 +22,7 @@ public class Shichika extends AnimatorCard implements MartialArtist
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 3, 1);
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
@@ -32,6 +32,7 @@ public class Shichika extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainForce(magicNumber);
 
         if (HasSynergy())

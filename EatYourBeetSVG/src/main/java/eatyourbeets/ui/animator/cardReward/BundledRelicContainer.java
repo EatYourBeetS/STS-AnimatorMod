@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
@@ -30,7 +29,6 @@ public class BundledRelicContainer extends GUIElement
     private final AnimatorStrings.Rewards REWARDS = GR.Animator.Strings.Rewards;
     private final ArrayList<BundledRelic> bundledRelics;
     private RewardItem rewardItem;
-    private Random RNG;
 
     public BundledRelicContainer()
     {
@@ -45,7 +43,6 @@ public class BundledRelicContainer extends GUIElement
 
     public void Open(RewardItem rewardItem, ArrayList<AbstractCard> cards)
     {
-        this.RNG = new Random(Settings.seed + (AbstractDungeon.actNum * 23) + (AbstractDungeon.floorNum * 17));
         this.rewardItem = rewardItem;
         this.bundledRelics.clear();
 
@@ -124,7 +121,7 @@ public class BundledRelicContainer extends GUIElement
                 {
                     if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckInstance(card.cardID) == null)
                     {
-                        if (RNG.randomBoolean())
+                        if (series.bonus % 2 == 0)
                         {
                             return GetGoldBundle(card, series.bonus >= 4 ? 24 : 12);
                         }

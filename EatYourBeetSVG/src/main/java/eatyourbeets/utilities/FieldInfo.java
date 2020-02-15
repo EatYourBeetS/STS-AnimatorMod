@@ -18,7 +18,6 @@ public class FieldInfo<T>
         }
     }
 
-    @SuppressWarnings("unchecked")
     public T Get(Object instance) throws RuntimeException
     {
         try

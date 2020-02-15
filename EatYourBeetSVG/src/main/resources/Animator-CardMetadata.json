@@ -92,6 +92,14 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:Nanami":
+	{
+		"cropPortrait": false
+	},
+	"animator:Shichika":
+	{
+		"cropPortrait": false
+	},
 	"animator:Sloth":
 	{
 		"cropPortrait": false

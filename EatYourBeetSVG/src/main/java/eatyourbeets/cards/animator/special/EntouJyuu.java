@@ -10,14 +10,14 @@ import eatyourbeets.utilities.GameActions;
 
 public class EntouJyuu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(EntouJyuu.class).SetPower(1, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(EntouJyuu.class).SetPower(0, CardRarity.SPECIAL);
 
     public EntouJyuu()
     {
         super(DATA);
 
         Initialize(0, 0, 2);
-        SetCostUpgrade(-1);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.Katanagatari);
     }

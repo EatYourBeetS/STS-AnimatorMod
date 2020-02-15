@@ -347,7 +347,6 @@ public class GameUtilities
         return null;
     }
 
-    @SuppressWarnings("unchecked")
     public static <T extends AbstractPower> T GetPower(AbstractCreature creature, String powerID)
     {
         for (AbstractPower p : creature.powers)
@@ -408,7 +407,7 @@ public class GameUtilities
 
     public static AbstractOrb GetRandomOrb()
     {
-        if (orbs.Count() == 0)
+        if (orbs.Size() == 0)
         {
             orbs.Add(new Lightning(), 7);
             orbs.Add(new Frost(), 7);
@@ -733,6 +732,11 @@ public class GameUtilities
         copy.targetTransparency = original.targetTransparency;
         copy.angle = original.angle;
         copy.targetAngle = original.targetAngle;
+    }
+
+    public static boolean IsValidOrb(AbstractOrb orb)
+    {
+        return orb != null && !(orb instanceof EmptyOrbSlot);
     }
 
     private static class HandLayoutRefresher implements OnPhaseChangedSubscriber

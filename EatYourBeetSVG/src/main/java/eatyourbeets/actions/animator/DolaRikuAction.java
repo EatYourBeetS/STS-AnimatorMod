@@ -6,7 +6,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.animator.series.NoGameNoLife.DolaRiku;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -28,7 +30,7 @@ public class DolaRikuAction extends EYBAction
     {
         boolean status = card.type == AbstractCard.CardType.STATUS;
         boolean curse = card.type == AbstractCard.CardType.CURSE;
-        boolean special = card.rarity == AbstractCard.CardRarity.SPECIAL;
+        boolean special = !curse && card.rarity == AbstractCard.CardRarity.SPECIAL;
         boolean colorless = card.color == AbstractCard.CardColor.COLORLESS;
 
         AbstractCard.CardColor mainColor;
@@ -45,7 +47,7 @@ public class DolaRikuAction extends EYBAction
         ArrayList<AbstractCard> allCards = CardLibrary.getAllCards();
         for (AbstractCard temp : allCards)
         {
-            if (temp.cardID.equals(card.cardID) || temp.tags.contains(AbstractCard.CardTags.HEALING))
+            if (temp.cardID.equals(card.cardID) || temp.tags.contains(AbstractCard.CardTags.HEALING) || temp.tags.contains(GR.Enums.CardTags.TEMPORARY))
             {
                 continue;
             }
@@ -75,7 +77,8 @@ public class DolaRikuAction extends EYBAction
 
         CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-        int max = Math.min(amount, sameRarity.Count());
+        boolean addedRinne = false;
+        int max = Math.min(amount, sameRarity.Size());
         for (int i = 0; i < max; i++)
         {
             AbstractCard toAdd = sameRarity.Retrieve(AbstractDungeon.cardRandomRng).makeCopy();
@@ -83,7 +86,22 @@ public class DolaRikuAction extends EYBAction
             {
                 toAdd.upgrade();
             }
+            if (HigakiRinne.DATA.ID.equals(toAdd.cardID))
+            {
+                addedRinne = true;
+            }
             cardGroup.group.add(toAdd);
+        }
+
+        if (!addedRinne && cardGroup.size() > 0 && AbstractDungeon.cardRandomRng.randomBoolean(0.05f))
+        {
+            cardGroup.group.remove(0);
+            HigakiRinne rinne = new HigakiRinne();
+            if (card.upgraded)
+            {
+                rinne.upgrade();
+            }
+            cardGroup.group.add(rinne);
         }
 
         AbstractDungeon.gridSelectScreen.open(cardGroup, 1, CreateMessage(), false);

@@ -24,7 +24,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 0, 3);
 
         SetExhaust(true);
@@ -49,7 +49,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            if (shapeshifterPool.Count() == 0)
+            if (shapeshifterPool.Size() == 0)
             {
                 shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetNonColorlessCard(), c -> c.anySynergy));
                 shapeshifterPool.AddAll(JavaUtilities.Filter(Synergies.GetColorlessCards(), c -> c.anySynergy));

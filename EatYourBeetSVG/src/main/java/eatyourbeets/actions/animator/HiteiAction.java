@@ -28,7 +28,7 @@ public class HiteiAction extends EYBAction
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (int i = 0; i < amount; i++)
         {
-            if (randomizedList.Count() > 0)
+            if (randomizedList.Size() > 0)
             {
                 group.addToTop(randomizedList.Retrieve(AbstractDungeon.cardRandomRng));
             }

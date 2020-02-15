@@ -11,29 +11,37 @@ import eatyourbeets.utilities.JavaUtilities;
 public class FalseLifePotion extends AbstractPotion
 {
     public static final String POTION_ID = "animator:FalseLifePotion";
-    private static final PotionStrings potionStrings;
-    public static final String NAME;
-    public static final String[] DESCRIPTIONS;
+    private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
+    public static final String NAME = potionStrings.NAME;
+    public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
     public FalseLifePotion()
     {
         super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.HEART, PotionColor.ANCIENT);
+    }
+
+    @Override
+    public void initializeData()
+    {
         this.potency = this.getPotency();
         this.description = JavaUtilities.Format(DESCRIPTIONS[0], this.potency);
         this.isThrown = false;
         this.tips.add(new PowerTip(this.name, this.description));
     }
 
+    @Override
     public void use(AbstractCreature target)
     {
         GameActions.Bottom.GainTemporaryHP(this.potency);
     }
 
+    @Override
     public AbstractPotion makeCopy()
     {
         return new FalseLifePotion();
     }
 
+    @Override
     public int getPotency(int ascensionLevel)
     {
         if (ascensionLevel < 7)
@@ -48,12 +56,5 @@ public class FalseLifePotion extends AbstractPotion
         {
             return 12;
         }
-    }
-
-    static
-    {
-        potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
-        NAME = potionStrings.NAME;
-        DESCRIPTIONS = potionStrings.DESCRIPTIONS;
     }
 }

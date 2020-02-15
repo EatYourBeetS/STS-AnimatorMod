@@ -2,27 +2,42 @@ package eatyourbeets.actions.orbs;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class TriggerOrbPassiveAbility extends EYBAction
 {
     protected boolean isRandom;
+    protected boolean isSequential;
 
     public TriggerOrbPassiveAbility(int times)
     {
-        this(times, false);
+        this(times, false, false);
     }
 
-    public TriggerOrbPassiveAbility(int times, boolean random)
+    public TriggerOrbPassiveAbility(int times, boolean random, boolean sequential)
     {
         super(ActionType.WAIT);
 
         isRandom = random;
+        isSequential = sequential;
 
         Initialize(times);
+    }
+
+    public TriggerOrbPassiveAbility SetRandom(boolean random)
+    {
+        this.isRandom = random;
+
+        return this;
+    }
+
+    public TriggerOrbPassiveAbility SetSequential(boolean sequential)
+    {
+        this.isSequential = sequential;
+
+        return this;
     }
 
     @Override
@@ -40,27 +55,42 @@ public class TriggerOrbPassiveAbility extends EYBAction
             RandomizedList<AbstractOrb> randomOrbs = new RandomizedList<>();
             for (AbstractOrb temp : player.orbs)
             {
-                if (temp != null && !EmptyOrbSlot.ORB_ID.equals(temp.ID))
+                if (GameUtilities.IsValidOrb(temp))
                 {
                     randomOrbs.Add(temp);
                 }
             }
 
-            orb = randomOrbs.Retrieve(AbstractDungeon.cardRandomRng);
+            for (int i = 0; i < amount; i++)
+            {
+                orb = randomOrbs.Retrieve(AbstractDungeon.cardRandomRng);
+                orb.onStartOfTurn();
+                orb.onEndOfTurn();
+            }
+        }
+        else if (isSequential)
+        {
+            int max = Math.min(player.orbs.size(), amount);
+            for (int i = 1; i <= max; i++)
+            {
+                orb = player.orbs.get(i-1);
+                if (GameUtilities.IsValidOrb(orb))
+                {
+                    orb.onStartOfTurn();
+                    orb.onEndOfTurn();
+                }
+            }
         }
         else
         {
             orb = player.orbs.get(0);
-        }
-
-        if (orb != null && !EmptyOrbSlot.ORB_ID.equals(orb.ID))
-        {
-            orb.onStartOfTurn();
-            orb.onEndOfTurn();
-
-            if (amount > 1)
+            if (GameUtilities.IsValidOrb(orb))
             {
-                GameActions.Bottom.Add(new TriggerOrbPassiveAbility(amount - 1, isRandom));
+                for (int i = 0; i < amount; i++)
+                {
+                    orb.onStartOfTurn();
+                    orb.onEndOfTurn();
+                }
             }
         }
 

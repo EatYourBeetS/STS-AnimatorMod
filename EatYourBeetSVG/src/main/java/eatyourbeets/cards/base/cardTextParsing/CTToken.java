@@ -13,8 +13,8 @@ public abstract class CTToken
     protected static final StringBuilder builder = new StringBuilder();
     protected static final StringBuilder tempBuilder = new StringBuilder();
 
-    public CTTokenType type;
-    public String text;
+    public final CTTokenType type;
+    public final String text;
 
     protected CTToken(CTTokenType type, String text)
     {

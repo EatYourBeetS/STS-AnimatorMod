@@ -34,11 +34,11 @@ public class RandomCardUpgrade extends EYBActionWithCallback<AbstractCard>
             }
         }
 
-        if (betterPossible.Count() > 0)
+        if (betterPossible.Size() > 0)
         {
             card = betterPossible.Retrieve(AbstractDungeon.cardRng);
         }
-        else if (possible.Count() > 0)
+        else if (possible.Size() > 0)
         {
             card = possible.Retrieve(AbstractDungeon.cardRng);
         }

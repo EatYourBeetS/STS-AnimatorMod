@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.special.SpendEnergy;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardPreview;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
@@ -50,6 +51,17 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
     public Elesis()
     {
         this(Form.None, false);
+    }
+
+    @Override
+    public EYBCardPreview GetCardPreview()
+    {
+        if (currentForm != Form.None)
+        {
+            return null;
+        }
+
+        return super.GetCardPreview();
     }
 
     @Override

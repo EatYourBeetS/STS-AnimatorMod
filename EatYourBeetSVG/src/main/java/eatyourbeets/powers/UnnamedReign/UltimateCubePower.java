@@ -107,14 +107,14 @@ public class UltimateCubePower extends AnimatorPower
 
     private void GainRandomBuff(AbstractCreature c)
     {
-        if (buffs1.Count() == 0)
+        if (buffs1.Size() == 0)
         {
             buffs1.Add(this::BuffLightning);
             buffs1.Add(this::BuffFire);
             buffs1.Add(this::BuffDark);
         }
 
-        if (buffs2.Count() == 0)
+        if (buffs2.Size() == 0)
         {
             buffs2.Add(this::BuffHealing);
             buffs2.Add(this::BuffFrost);

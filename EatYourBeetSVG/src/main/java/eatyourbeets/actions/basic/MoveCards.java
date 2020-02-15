@@ -75,9 +75,9 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
             }
 
             int max = amount;
-            if (amount == -1 || temp.Count() < amount)
+            if (amount == -1 || temp.Size() < amount)
             {
-                max = temp.Count();
+                max = temp.Size();
             }
 
             for (int i = 0; i < max; i++)

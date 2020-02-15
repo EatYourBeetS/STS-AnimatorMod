@@ -15,16 +15,6 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-// TODO:
-//"EXTENDED_DESCRIPTION":
-//[
-//"The Ripper", "Next turn, deal NL !D! Piercing NL damage.",
-//"The Burner", "Deal !D! damage. NL Apply !M! Burning.",
-//"The Intruder", "Deal !D! damage. NL Apply !M! Poison NL to ALL enemies.",
-//"The Blinder", "Deal !D! damage. NL Apply !M! Weak.",
-//"The Slugger ", "Next turn, deal !D! NL damage and apply NL !M! Vulnerable."
-//],
-
 public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(ChaikaTrabant.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental);

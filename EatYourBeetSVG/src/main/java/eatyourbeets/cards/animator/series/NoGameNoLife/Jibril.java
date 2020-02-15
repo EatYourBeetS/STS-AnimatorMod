@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
+import eatyourbeets.actions.orbs.ShuffleOrbs;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.markers.Spellcaster;
@@ -37,7 +38,8 @@ public class Jibril extends AnimatorCard implements Spellcaster
 
         if (HasSynergy())
         {
-            GameActions.Bottom.Add(new TriggerOrbPassiveAbility(magicNumber, true));
+            GameActions.Bottom.Add(new ShuffleOrbs(1));
+            GameActions.Bottom.Add(new TriggerOrbPassiveAbility(magicNumber, false, true));
         }
 
         if (upgraded)

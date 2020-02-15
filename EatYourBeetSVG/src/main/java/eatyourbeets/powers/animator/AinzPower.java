@@ -64,7 +64,7 @@ public class AinzPower extends AnimatorPower
 
     private void ChooseEffect()
     {
-        if (effectList.Count() == 0)
+        if (effectList.Size() == 0)
         {
             AinzEffect.GenerateAllEffects(effectList);
         }

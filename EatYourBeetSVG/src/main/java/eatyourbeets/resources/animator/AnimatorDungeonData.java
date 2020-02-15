@@ -69,7 +69,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     public void Reset()
     {
-        FullLog( "RESETTING...");
+        FullLog("RESETTING...");
 
         Series.clear();
         StartingSeries = new _FakeLoadout();
@@ -172,7 +172,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         AddRelicToPool(TwistedFunnel.ID, AbstractRelic.RelicTier.SHOP);
         AddRelicToPool(Brimstone.ID, AbstractRelic.RelicTier.SHOP);
         AddRelicToPool(DataDisk.ID, AbstractRelic.RelicTier.SHOP);
-        AddRelicToPool(CharonsAshes.ID , AbstractRelic.RelicTier.RARE);
+        AddRelicToPool(CharonsAshes.ID, AbstractRelic.RelicTier.RARE);
         AddRelicToPool(ChampionsBelt.ID, AbstractRelic.RelicTier.RARE);
         AddRelicToPool(PaperCrane.ID, AbstractRelic.RelicTier.UNCOMMON);
         AddRelicToPool(PaperFrog.ID, AbstractRelic.RelicTier.UNCOMMON);
@@ -243,7 +243,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             {
                 if (card instanceof OnCardPoolChangedSubscriber)
                 {
-                    ((OnCardPoolChangedSubscriber)card).OnCardPoolChanged();
+                    ((OnCardPoolChangedSubscriber) card).OnCardPoolChanged();
                 }
             }
         }
@@ -254,45 +254,35 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     {
         if (!AbstractDungeon.player.hasRelic(relicID))
         {
+            ArrayList<String> pool = null;
+
             switch (tier)
             {
                 case COMMON:
-                    if (AbstractDungeon.commonRelicPool.contains(relicID))
-                    {
-                        AbstractDungeon.commonRelicPool.add(relicID);
-                    }
+                    pool = AbstractDungeon.commonRelicPool;
                     break;
                 case UNCOMMON:
-                    if (AbstractDungeon.uncommonRelicPool.contains(relicID))
-                    {
-                        AbstractDungeon.uncommonRelicPool.add(relicID);
-                    }
+                    pool = AbstractDungeon.uncommonRelicPool;
                     break;
                 case RARE:
-                    if (AbstractDungeon.rareRelicPool.contains(relicID))
-                    {
-                        AbstractDungeon.rareRelicPool.add(relicID);
-                    }
+                    pool = AbstractDungeon.rareRelicPool;
                     break;
                 case BOSS:
-                    if (AbstractDungeon.bossRelicPool.contains(relicID))
-                    {
-                        AbstractDungeon.bossRelicPool.add(relicID);
-                    }
+                    pool = AbstractDungeon.bossRelicPool;
                     break;
                 case SHOP:
-                    if (AbstractDungeon.shopRelicPool.contains(relicID))
-                    {
-                        AbstractDungeon.shopRelicPool.add(relicID);
-                    }
+                    pool = AbstractDungeon.shopRelicPool;
                     break;
 
                 case DEPRECATED:
-                    break;
                 case STARTER:
-                    break;
                 case SPECIAL:
                     break;
+            }
+
+            if (pool != null && !pool.contains(relicID))
+            {
+                pool.add(AbstractDungeon.relicRng.random(pool.size()-1), relicID);
             }
         }
     }

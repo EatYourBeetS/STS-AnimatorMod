@@ -291,7 +291,7 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     public static <T> T SetCombatData(String key, T data)
     {
         combatData.put(key, data);
-        return (T)data;
+        return data;
     }
 
     public static <T> T GetCombatData(String key, T defaultData)

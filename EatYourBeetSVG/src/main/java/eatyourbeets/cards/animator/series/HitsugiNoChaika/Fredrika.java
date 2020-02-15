@@ -45,6 +45,17 @@ public class Fredrika extends AnimatorCard
     }
 
     @Override
+    public EYBCardPreview GetCardPreview()
+    {
+        if (currentForm != Form.Default)
+        {
+            return null;
+        }
+
+        return super.GetCardPreview();
+    }
+
+    @Override
     public AbstractAttribute GetDamageInfo()
     {
         if (currentForm == Form.Dominica)
@@ -182,6 +193,16 @@ public class Fredrika extends AnimatorCard
             return;
         }
 
+        switch (currentForm)
+        {
+            case Dominica:
+                SetScaling(intellectScaling, agilityScaling-1, forceScaling);
+                break;
+            case Dragoon:
+                SetScaling(intellectScaling, agilityScaling, forceScaling-1);
+                break;
+        }
+
         this.currentForm = formID;
 
         switch (formID)
@@ -219,6 +240,8 @@ public class Fredrika extends AnimatorCard
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
 
+                SetScaling(intellectScaling, agilityScaling, forceScaling+1);
+
                 break;
             }
 
@@ -230,6 +253,8 @@ public class Fredrika extends AnimatorCard
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;
+
+                SetScaling(intellectScaling, agilityScaling+1, forceScaling);
 
                 break;
             }

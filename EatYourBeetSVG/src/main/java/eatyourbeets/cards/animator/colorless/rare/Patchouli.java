@@ -71,7 +71,7 @@ public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
         RandomizedList<ActionT0> actions = new RandomizedList<>();
         for (int i = 0; i < magicNumber; i++)
         {
-            if (actions.Count() == 0)
+            if (actions.Size() == 0)
             {
                 actions.Add(this::Aether);
                 actions.Add(this::Fire);

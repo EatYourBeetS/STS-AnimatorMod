@@ -22,9 +22,9 @@ public class AcuraTooru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 4, 2);
+        Initialize(3, 0, 3, 2);
         SetUpgrade(0, 0, 0, 1);
-        SetScaling(0, 1, 1);
+        SetScaling(0, 1, 0);
 
         SetSynergy(Synergies.Chaika);
     }
@@ -40,6 +40,7 @@ public class AcuraTooru extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
+        GameActions.Bottom.GainBlock(magicNumber);
         GameActions.Bottom.GainAgility(1);
     }
 
@@ -52,6 +53,7 @@ public class AcuraTooru extends AnimatorCard
 
         if (HasSynergy())
         {
+            GameActions.Bottom.GainBlock(magicNumber);
             GameActions.Bottom.GainAgility(1);
         }
     }

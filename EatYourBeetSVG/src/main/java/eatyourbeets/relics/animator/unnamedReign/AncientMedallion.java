@@ -155,7 +155,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         }
 
         int upgraded = 0;
-        if (upgradableCards.Count() > 0)
+        if (upgradableCards.Size() > 0)
         {
             upgraded += 1;
             AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
@@ -164,7 +164,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
             AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card1.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F + 20.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
         }
 
-        if (upgradableCards.Count() > 0)
+        if (upgradableCards.Size() > 0)
         {
             upgraded += 1;
             AbstractCard card1 = upgradableCards.Retrieve(AbstractDungeon.cardRandomRng);
@@ -178,7 +178,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
             AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
         }
 
-        return upgradableCards.Count() > 0;
+        return upgradableCards.Size() > 0;
     }
 
     private String GetGridSelectMessage()

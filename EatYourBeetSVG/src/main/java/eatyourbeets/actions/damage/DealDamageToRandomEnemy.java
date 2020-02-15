@@ -34,6 +34,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         this.card = other.card;
         this.isOrb = other.isOrb;
         this.skipWait = other.skipWait;
+        this.applyPowers = other.applyPowers;
         this.bypassBlock = other.bypassBlock;
         this.bypassThorns = other.bypassThorns;
         this.onDamageEffect = other.onDamageEffect;
@@ -44,6 +45,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     {
         super(ActionType.DAMAGE);
 
+        this.applyPowers = true;
         this.card = card;
         this.info = new DamageInfo(player, card.baseDamage, card.damageTypeForTurn);
         this.attackEffect = effect;
@@ -55,6 +57,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     {
         super(ActionType.DAMAGE);
 
+        this.applyPowers = true;
         this.card = null;
         this.info = info;
         this.attackEffect = effect;

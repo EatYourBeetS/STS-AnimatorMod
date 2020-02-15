@@ -19,7 +19,7 @@ import java.util.HashSet;
 public abstract class PlayerAttributePower extends CommonPower
 {
     protected static final PreservedPowers preservedPowers = new PreservedPowers();
-    protected int threshold = 0;
+    protected int threshold;
 
     public PlayerAttributePower(String powerID, AbstractCreature owner, int amount)
     {

@@ -14,7 +14,7 @@ public class HallowedScabbard extends AnimatorRelic
 
     private static final int DAMAGE_THRESHOLD = 12;
     private static final int REGENERATION = 4;
-    private static final int FORCE = 2;
+    private static final int FORCE = 3;
 
     private boolean used = false;
 

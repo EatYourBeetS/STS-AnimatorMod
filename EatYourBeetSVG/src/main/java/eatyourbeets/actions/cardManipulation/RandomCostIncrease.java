@@ -32,7 +32,7 @@ public class RandomCostIncrease extends EYBActionWithCallback<AbstractCard>
             }
         }
 
-        if (possible.Count() > 0)
+        if (possible.Size() > 0)
         {
             card = possible.Retrieve(AbstractDungeon.cardRandomRng);
         }

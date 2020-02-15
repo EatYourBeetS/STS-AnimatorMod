@@ -573,7 +573,7 @@
 	},
 	"animator:JeanneDArc":
 	{
-		"DESCRIPTION": "Exhaust a random ** Hindrance. || At the start of each ** combat, gain !M! ** {Temporary HP}.",
+		"DESCRIPTION": "Exhaust a random ** Hindrance. || At the start of combat: ** Gain !M! {Temporary HP} ** and 1 Artifact.",
 		"NAME": "Jeanne D'Arc"
 	},
 	"animator:Jibril":
@@ -849,7 +849,7 @@
 	},
 	"animator:RinTohsaka":
 	{
-		"DESCRIPTION": "{Channel} a copy ** of your first Orb. || When Drawn: Gain ** 1 {Temp}. Artifact.",
+		"DESCRIPTION": "Gain 1 {Temp}. Artifact. || Limited. On Synergy: ** {Channel} a copy of ** your first Orb.",
 		"NAME": "Rin Tohsaka"
 	},
 	"animator:RoryMercury":
@@ -964,6 +964,18 @@
 		"DESCRIPTION": "Once per turn, when ** you discard a card: ** Gain !M! Block. || Synergy: Upgrade a ** card in your hand.",
 		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you discard a card this turn, gain #b{1} #yBlock."],
 		"NAME": "Winry Rockbell"
+	},
+	"animator:Laby":
+	{
+		"DESCRIPTION": "Gain !M! {Ench. Armor}. || At the start of turn: ** Gain !S! Constricted.",
+		"EXTENDED_DESCRIPTION": ["At the start of each turn, gain #b{0} #yConstricted.", "At the start of each turn, gain #b{0} #yConstricted and apply #b{1} #yConstricted to ALL enemies."],
+		"NAME": "Laby",
+		"UPGRADE_DESCRIPTION": "Gain !M! {Ench. Armor}. || At the start of turn: ** Apply !S! Constricted ** to ALL characters."
+	},
+	"animator:Shion":
+	{
+		"DESCRIPTION": "Discard 1 card. Next ** turn: <DRW>. || Limited. On Synergy: ** Apply !M! Vulnerable.",
+		"NAME": "Shion"
 	},
 	"animator:UneriGinkaku":
 	{

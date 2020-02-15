@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
@@ -42,6 +44,7 @@ public class EYBCardTooltip
     private static final float BODY_TEXT_WIDTH = 320.0F * Settings.scale;
     private static final float TIP_DESC_LINE_SPACING = 26.0F * Settings.scale;
     private static final float POWER_ICON_OFFSET_X = 40.0F * Settings.scale;
+    private static EYBCard card;
 
     public TextureAtlas.AtlasRegion icon;
     public String title;
@@ -64,7 +67,7 @@ public class EYBCardTooltip
         return !_renderedTipsThisFrame.Get(null);
     }
 
-    public static void RenderAll(SpriteBatch sb, EYBCard card)
+    public static void QueueTooltips(EYBCard source)
     {
         _body.Set(null, null);
         _header.Set(null, null);
@@ -73,6 +76,12 @@ public class EYBCardTooltip
         _powerTips.Set(null, EMPTY_LIST);
         _renderedTipsThisFrame.Set(null, true);
 
+        card = source;
+        GR.UI.AddPostRender(EYBCardTooltip::RenderAll);
+    }
+
+    public static void RenderAll(SpriteBatch sb)
+    {
         tooltips.clear();
         card.GenerateDynamicTooltips(tooltips);
         for (EYBCardTooltip tooltip : card.tooltips)
@@ -112,6 +121,13 @@ public class EYBCardTooltip
         for (EYBCardTooltip tooltip : tooltips)
         {
             y -= tooltip.Render(sb, x, y) + BOX_EDGE_H * 3.15F;
+        }
+
+        EYBCardPreview preview = card.GetCardPreview();
+        if (preview != null)
+        {
+            boolean showUpgrade = SingleCardViewPopup.isViewingUpgrade && (AbstractDungeon.player == null || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD);
+            preview.Render(sb, card, card.upgraded || showUpgrade);
         }
     }
 

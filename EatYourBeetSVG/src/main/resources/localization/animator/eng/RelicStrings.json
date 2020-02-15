@@ -32,7 +32,7 @@
 	},
 	"animator:ColorlessFragment":
 	{
-		"DESCRIPTIONS": ["Replaces #yThe #yMissing #yPiece. Every #b{0} combats, receive improved card rewards. Chance to contain colorless cards."],
+		"DESCRIPTIONS": ["Replaces #yThe #yMissing #yPiece. Every #b{0} combats, receive improved card rewards. Chance to contain colorless cards.", "Current Series:"],
 		"FLAVOR": "The colors are slowly fading away...",
 		"NAME": "Colorless Fragment"
 	},

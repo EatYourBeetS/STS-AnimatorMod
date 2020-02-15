@@ -10,13 +10,14 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Ghosts;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.*;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.events.animator.TheMaskedTraveler1;
 import eatyourbeets.interfaces.subscribers.OnCardPoolChangedSubscriber;
+import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.relics.animator.PurgingStone;
-import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -194,7 +195,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             return;
         }
 
-        TheMissingPiece.RefreshDescription();
+        AbstractMissingPiece.RefreshDescription();
         PurgingStone.UpdateBannedCards();
 
         ArrayList<CardGroup> colorless = new ArrayList<>();
@@ -280,9 +281,15 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
                     break;
             }
 
-            if (pool != null && !pool.contains(relicID))
+            if (pool != null && pool.size() > 0 && !pool.contains(relicID))
             {
-                pool.add(AbstractDungeon.relicRng.random(pool.size()-1), relicID);
+                Random rng = AbstractDungeon.relicRng;
+                if (rng == null)
+                {
+                    rng = GR.Common.Dungeon.GetRNG();
+                }
+
+                pool.add(rng.random(pool.size()-1), relicID);
             }
         }
     }

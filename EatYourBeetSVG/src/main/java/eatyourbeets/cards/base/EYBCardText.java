@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.cardTextParsing.CTContext;
 import eatyourbeets.resources.GR;
@@ -108,14 +107,7 @@ public class EYBCardText
     {
         if (EYBCardTooltip.CanRenderTooltips() && (AbstractDungeon.player == null || !AbstractDungeon.player.isDraggingCard || Settings.isTouchScreen))
         {
-            EYBCardTooltip.RenderAll(sb, card);
-
-            EYBCardPreview preview = card.GetCardPreview();
-            if (preview != null)
-            {
-                boolean showUpgrade = SingleCardViewPopup.isViewingUpgrade && (AbstractDungeon.player == null || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD);
-                preview.Render(sb, card, card.upgraded || showUpgrade);
-            }
+            EYBCardTooltip.QueueTooltips(card);
         }
     }
 

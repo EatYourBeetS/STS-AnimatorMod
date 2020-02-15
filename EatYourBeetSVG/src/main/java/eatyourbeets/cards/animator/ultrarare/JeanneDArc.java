@@ -43,6 +43,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare implements StartupCard
     public boolean atBattleStartPreDraw()
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.GainArtifact(1);
 
         return true;
     }

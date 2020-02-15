@@ -14,24 +14,66 @@ import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.animator.SynergyCardsReward;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.WeightedList;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class AbstractMissingPiece extends AnimatorRelic implements OnReceiveRewardsSubscriber
 {
     private boolean skipReward;
+
+    protected abstract int GetRewardInterval();
 
     public AbstractMissingPiece(String id, RelicTier tier, LandingSound sfx)
     {
         super(id, tier, sfx);
     }
 
-    protected abstract int GetRewardInterval();
+    public static void RefreshDescription()
+    {
+        AbstractMissingPiece missingPiece = GameUtilities.GetRelic(AbstractMissingPiece.class);
+        if (missingPiece != null)
+        {
+            if (missingPiece.tips.size() > 0)
+            {
+                missingPiece.tips.get(0).body = missingPiece.getFullDescription();
+                missingPiece.flash();
+            }
+        }
+    }
+
+    public String getFullDescription()
+    {
+        String base = getUpdatedDescription();
+        if (GR.Animator.Dungeon.Series.isEmpty())
+        {
+            return base;
+        }
+
+        StringJoiner joiner = new StringJoiner(" NL ");
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
+        {
+            if (series.promoted)
+            {
+                String line = "- #y" + StringUtils.replace(series.Loadout.Name," ", " #y");
+                if (series.bonus > 0)
+                {
+                    line += " #y( " + series.bonus + "/6 #y)";
+                }
+
+                joiner.add(line);
+            }
+            else
+            {
+                joiner.add("- " + series.Loadout.Name);
+            }
+        }
+
+        return base + " NL  NL " + DESCRIPTIONS[1] + " NL " + joiner.toString();
+    }
 
     @Override
     public String getUpdatedDescription()
@@ -44,6 +86,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     {
         super.onEquip();
         this.counter = 1;
+        RefreshDescription();
     }
 
     @Override

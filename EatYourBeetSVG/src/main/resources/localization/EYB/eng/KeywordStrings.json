@@ -62,8 +62,8 @@
 	},
 	"Enchanted Armor":
 	{
-		"DESCRIPTION": "Take less damage from ALL Sources. Further stacks are less effective.",
-		"NAMES": ["enchanted armor", "enchanted_armor", "ench. armor", "ench._armor"],
+		"DESCRIPTION": "Take less damage from Attacks. Further stacks are less effective.",
+		"NAMES": ["enchanted armor", "ench. armor"],
 		"PROPER_NAME": "Enchanted Armor"
 	},
 	"Envenom":

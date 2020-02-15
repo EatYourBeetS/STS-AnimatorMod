@@ -36,6 +36,26 @@ public class CardCrawlGamePatches
         }
     }
 
+    @SpirePatch(clz = CardCrawlGame.class, method = "render")
+    public static class CardCrawlGame_PostRender
+    {
+
+        @SpireInsertPatch(locator = Locator.class, localvars = {"sb"})
+        public static void Insert(Object __obj_instance, SpriteBatch sb)
+        {
+            GR.UI.PostRender(sb);
+        }
+
+        private static class Locator extends SpireInsertLocator
+        {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException
+            {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(SpriteBatch.class.getName(), "end");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
+        }
+    }
+
     @SpirePatch(clz = CardCrawlGame.class, method = "update")
     public static class CardCrawlGame_Update
     {

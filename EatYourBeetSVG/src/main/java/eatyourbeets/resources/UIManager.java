@@ -2,12 +2,16 @@ package eatyourbeets.resources;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorSeriesSelectScreen;
 import eatyourbeets.ui.common.EYBSingleCardPopup;
 
+import java.util.ArrayList;
+
 public class UIManager
 {
+    protected final ArrayList<ActionT1<SpriteBatch>> postRenderList = new ArrayList<>();
     protected boolean isDragging;
 
     public EYBSingleCardPopup CardPopup;
@@ -26,6 +30,7 @@ public class UIManager
         {
             CurrentScreen.Dispose();
         }
+
         CurrentScreen = null;
     }
 
@@ -51,8 +56,23 @@ public class UIManager
         CardPopup.TryRender(sb);
     }
 
+    public void PostRender(SpriteBatch sb)
+    {
+        for (ActionT1<SpriteBatch> postRender : postRenderList)
+        {
+            postRender.Invoke(sb);
+        }
+
+        postRenderList.clear();
+    }
+
     public boolean TryDragging()
     {
         return !CardCrawlGame.isPopupOpen && (CurrentScreen == null || !isDragging) && (isDragging = true);
+    }
+
+    public void AddPostRender(ActionT1<SpriteBatch> postRender)
+    {
+        postRenderList.add(postRender);
     }
 }

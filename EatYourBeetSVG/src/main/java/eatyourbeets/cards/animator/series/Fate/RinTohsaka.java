@@ -20,31 +20,20 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(0, 2, 1);
-        SetUpgrade(0, 4, 0);
+        Initialize(0, 4);
+        SetUpgrade(0, 3);
         SetScaling(1, 0, 0);
 
-        SetEvokeOrbCount(1);
-        SetExhaust(true);
         SetSynergy(Synergies.Fate);
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        if (EffectHistory.TryActivateSemiLimited(cardID))
-        {
-            GameActions.Bottom.GainTemporaryArtifact(1);
-            GameActions.Bottom.Flash(this);
-        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (p.orbs.size() > 0)
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainTemporaryArtifact(1);
+
+        if (HasSynergy() && p.orbs.size() > 0 && EffectHistory.TryActivateLimited(cardID))
         {
             AbstractOrb orb = p.orbs.get(0);
             if (!(orb instanceof EmptyOrbSlot))
@@ -57,7 +46,5 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
                 GameActions.Bottom.ChannelOrb(copy, true);
             }
         }
-
-        GameActions.Bottom.GainBlock(block);
     }
 }

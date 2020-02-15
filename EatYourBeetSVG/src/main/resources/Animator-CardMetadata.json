@@ -8,10 +8,6 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:Benimaru":
-	{
-		"cropPortrait": false
-	},
 	"animator:Boros":
 	{
 		"cropPortrait": false
@@ -48,11 +44,23 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:ItamiYouji":
+	{
+		"cropPortrait": false
+	},
+	"animator:Jibril":
+	{
+		"cropPortrait": false
+	},
 	"animator:Kaijin":
 	{
 		"cropPortrait": false
 	},
 	"animator:Kira":
+	{
+		"cropPortrait": false
+	},
+	"animator:Kuribayashi":
 	{
 		"cropPortrait": false
 	},
@@ -64,19 +72,11 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:Jibril":
-	{
-		"cropPortrait": false
-	},
-	"animator:Kuribayashi":
-	{
-		"cropPortrait": false
-	},
-	"animator:ItamiYouji":
-	{
-		"cropPortrait": false
-	},
 	"animator:MisaKurobane":
+	{
+		"cropPortrait": false
+	},
+	"animator:Nanami":
 	{
 		"cropPortrait": false
 	},
@@ -84,15 +84,11 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:SeriousSaitama":
-	{
-		"cropPortrait": false
-	},
 	"animator:Scar":
 	{
 		"cropPortrait": false
 	},
-	"animator:Nanami":
+	"animator:SeriousSaitama":
 	{
 		"cropPortrait": false
 	},

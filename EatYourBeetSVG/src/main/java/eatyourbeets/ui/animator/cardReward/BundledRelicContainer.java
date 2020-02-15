@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.relics.animator.CursedGlyph;
-import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
@@ -168,7 +168,7 @@ public class BundledRelicContainer extends GUIElement
                 AbstractDungeon.player.gainGold(bundle.amount);
                 series.bonus += 1;
 
-                TheMissingPiece.RefreshDescription();
+                AbstractMissingPiece.RefreshDescription();
                 JavaUtilities.Log(this, "Obtained Gold Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
                 return;
             }
@@ -184,7 +184,7 @@ public class BundledRelicContainer extends GUIElement
                 AbstractDungeon.player.increaseMaxHp(bundle.amount, true);
                 series.bonus += 1;
 
-                TheMissingPiece.RefreshDescription();
+                AbstractMissingPiece.RefreshDescription();
                 JavaUtilities.Log(this, "Obtained Max HP Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
                 return;
             }

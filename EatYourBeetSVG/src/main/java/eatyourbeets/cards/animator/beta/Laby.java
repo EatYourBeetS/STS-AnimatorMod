@@ -1,16 +1,15 @@
 package eatyourbeets.cards.animator.beta;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.animator.LabyPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Laby extends AnimatorCard
 {
@@ -20,72 +19,22 @@ public class Laby extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 33, 1);
+        Initialize(0, 0, 3, 40);
 
         SetSynergy(Synergies.Elsword);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public AbstractAttribute GetSpecialInfo()
     {
-        GameActions.Bottom.StackPower(new EnchantedArmorPower(p, magicNumber));
-        GameActions.Bottom.StackPower(new LabyPower(p, secondaryValue, upgraded));
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
-    public static class LabyPower extends AnimatorPower
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-        protected int upgradedAmount = 0;
-
-        public LabyPower(AbstractCreature owner, int amount, boolean upgraded)
-        {
-            super(owner, Laby.DATA);
-
-            this.amount = amount;
-
-            if (upgraded)
-            {
-                this.upgradedAmount = amount;
-            }
-
-            updateDescription();
-        }
-
-        @Override
-        public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-        {
-            if (ID.equals(power.ID) && target == owner)
-            {
-                this.upgradedAmount += power.amount;
-            }
-
-            super.onApplyPower(power, target, source);
-        }
-
-        @Override
-        public void updateDescription()
-        {
-            if (upgradedAmount > 0)
-            {
-                this.description = FormatDescription(1, amount, upgradedAmount);
-            }
-            else
-            {
-                this.description = FormatDescription(0, amount);
-            }
-        }
-
-        @Override
-        public void atStartOfTurnPostDraw()
-        {
-            GameActions.Bottom.ApplyConstricted(owner, owner, amount);
-
-            if (upgradedAmount > 0)
-            {
-                for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
-                {
-                    GameActions.Bottom.ApplyConstricted(owner, enemy, upgradedAmount);
-                }
-            }
-        }
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.StackPower(new EnchantedArmorPower(p, secondaryValue));
+        GameActions.Bottom.StackPower(new LabyPower(p, 1, upgraded));
     }
 }

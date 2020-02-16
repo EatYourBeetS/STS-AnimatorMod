@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Shion extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shion.class).SetSkill(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Shion.class).SetAttack(2, CardRarity.COMMON);
 
     public Shion()
     {

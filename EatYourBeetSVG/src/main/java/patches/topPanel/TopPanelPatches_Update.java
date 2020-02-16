@@ -13,7 +13,7 @@ public class TopPanelPatches_Update
     @SpirePrefixPatch
     public static SpireReturn Method(TopPanel __instance)
     {
-        // TODO: Render special button
+        // To simulate AbstractDungeon.screen == CurrentScreen.NO_INTERACT
         if (AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN)
         {
             return SpireReturn.Return(null);

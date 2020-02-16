@@ -214,7 +214,7 @@ public class EYBCardText
             ((EYBCard) card.cardsToPreview).cardText.badgeAlphaOffset = badgeAlphaOffset;
         }
 
-        if (card.CanRenderTip() && !card.isPopup)
+        if (card.renderTip && !card.isPopup)
         {
             if (badgeAlphaOffset < badgeAlphaTargetOffset)
             {

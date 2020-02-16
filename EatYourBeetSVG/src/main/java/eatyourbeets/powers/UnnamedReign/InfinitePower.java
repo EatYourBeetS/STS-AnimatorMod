@@ -82,13 +82,13 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
         OnBattleStart();
 
-        GameActions.Bottom.ApplyPowerSilently(owner, owner, enchantedArmorPower, 0);
+        GameActions.Bottom.ApplyPowerSilently(owner, owner, enchantedArmorPower, 0).SkipIfZero(false);
     }
 
     @Override
     public void onRemove()
     {
-        GameActions.Bottom.ApplyPowerSilently(owner, owner, this, 0);
+        GameActions.Bottom.ApplyPowerSilently(owner, owner, this, 0).SkipIfZero(false);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
         if (!found)
         {
-            GameActions.Bottom.ApplyPowerSilently(owner, owner, enchantedArmorPower, enchantedArmorPower.amount);
+            GameActions.Bottom.ApplyPowerSilently(owner, owner, enchantedArmorPower, enchantedArmorPower.amount).SkipIfZero(false);
         }
 
         AbstractPower strengthPower = owner.getPower(StrengthPower.POWER_ID);

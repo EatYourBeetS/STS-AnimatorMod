@@ -31,8 +31,15 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
-
         this.resetAttributes();
+    }
+
+    @Override
+    public void atTurnStart()
+    {
+        super.atTurnStart();
+        this.resetAttributes();
+        Refresh(null);
     }
 
     @Override
@@ -90,7 +97,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     @Override
     public void OnCostRefresh(AbstractCard card)
     {
-        if (card == this)
+        if (card == this && !player.limbo.contains(this))
         {
             int currentCost = (costForTurn + costModifier);
 

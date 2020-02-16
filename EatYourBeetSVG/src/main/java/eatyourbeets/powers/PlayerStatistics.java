@@ -358,14 +358,44 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
     }
 
     @Override
-    public void onAfterCardPlayed(AbstractCard usedCard)
+    public void onPlayCard(AbstractCard card, AbstractMonster m)
     {
-        super.onAfterCardPlayed(usedCard);
+        super.onPlayCard(card, m);
+
+        AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+        if (c != null && c.HasSynergy())
+        {
+            for (OnSynergySubscriber s : onSynergy.GetSubscribers())
+            {
+                s.OnSynergy(c);
+            }
+        }
+    }
+
+    @Override
+    public void onAfterCardPlayed(AbstractCard card)
+    {
+        super.onAfterCardPlayed(card);
+
+        AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
+        if (c != null && c.HasSynergy())
+        {
+            synergiesThisTurn += 1;
+        }
 
         for (OnAfterCardPlayedSubscriber p : onAfterCardPlayed.GetSubscribers())
         {
-            p.OnAfterCardPlayed(usedCard);
+            p.OnAfterCardPlayed(card);
         }
+    }
+
+    @Override
+    public void onAfterUseCard(AbstractCard card, UseCardAction action)
+    {
+        super.onAfterUseCard(card, action);
+
+        AbstractDungeon.player.hand.glowCheck();
+        Synergies.SetLastCardPlayed(card);
     }
 
     @Override
@@ -433,32 +463,6 @@ public class PlayerStatistics extends AnimatorPower implements InvisiblePower
         {
             p.OnApplyPower(power, target, source);
         }
-    }
-
-    @Override
-    public void onPlayCard(AbstractCard card, AbstractMonster m)
-    {
-        super.onPlayCard(card, m);
-
-        AnimatorCard c = JavaUtilities.SafeCast(card, AnimatorCard.class);
-        if (c != null && c.HasSynergy())
-        {
-            synergiesThisTurn += 1;
-
-            for (OnSynergySubscriber s : onSynergy.GetSubscribers())
-            {
-                s.OnSynergy(c);
-            }
-        }
-    }
-
-    @Override
-    public void onAfterUseCard(AbstractCard card, UseCardAction action)
-    {
-        super.onAfterUseCard(card, action);
-
-        AbstractDungeon.player.hand.glowCheck();
-        Synergies.SetLastCardPlayed(card);
     }
 
     @Override

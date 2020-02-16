@@ -50,6 +50,7 @@ public class Lu extends AnimatorCard implements OnAddedToDeckSubscriber, OnCardP
     {
         SetAttackTarget(EYBCardTarget.ALL);
         SetMultiDamage(true);
+        upgradedDamage = true;
     }
 
     @Override
@@ -61,8 +62,6 @@ public class Lu extends AnimatorCard implements OnAddedToDeckSubscriber, OnCardP
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Frost(), true);
-        GameActions.Bottom.ChannelOrb(new Dark(), true);
         if (isMultiDamage)
         {
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
@@ -78,5 +77,8 @@ public class Lu extends AnimatorCard implements OnAddedToDeckSubscriber, OnCardP
         {
             GameActions.Bottom.Add(new ShakeScreenAction(0.8f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
         }
+
+        GameActions.Bottom.ChannelOrb(new Frost(), true);
+        GameActions.Bottom.ChannelOrb(new Dark(), true);
     }
 }

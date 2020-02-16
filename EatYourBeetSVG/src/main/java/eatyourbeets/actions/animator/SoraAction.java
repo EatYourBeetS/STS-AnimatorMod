@@ -298,15 +298,15 @@ public class SoraAction extends EYBAction
             }
             else if (this == DamageAll)
             {
+                builder.cardType = AbstractCard.CardType.ATTACK;
                 builder.SetAttackType(EYBAttackType.Normal, EYBCardTarget.ALL);
                 builder.SetNumbers(number, 0, 0, 0);
-                builder.cardType = AbstractCard.CardType.ATTACK;
             }
             else if (this == DamageRandomTwice)
             {
+                builder.cardType = AbstractCard.CardType.ATTACK;
                 builder.SetAttackType(EYBAttackType.Normal, EYBCardTarget.Random, 2);
                 builder.SetNumbers(number, 0, 2, 0);
-                builder.cardType = AbstractCard.CardType.ATTACK;
             }
             else
             {

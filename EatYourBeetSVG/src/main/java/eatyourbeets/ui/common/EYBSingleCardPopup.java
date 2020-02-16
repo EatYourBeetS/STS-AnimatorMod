@@ -24,9 +24,9 @@ import eatyourbeets.ui.controls.GUI_Toggle;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 
-// TODO: Improve this
 public class EYBSingleCardPopup extends GUIElement
 {
+    // TODO: This method cannot be found in certain unknown circumstances
     //private static final MethodInfo _canToggleBetaArt = JavaUtilities.GetMethod("canToggleBetaArt", SingleCardViewPopup.class);
     private static final String[] TEXT = SingleCardViewPopup.TEXT;
 
@@ -59,7 +59,7 @@ public class EYBSingleCardPopup extends GUIElement
         this.viewBetaArt = false;
         this.isActive = false;
 
-        upgradeToggle = new GUI_Toggle(upgradeHb).SetText(TEXT[6])
+        this.upgradeToggle = new GUI_Toggle(upgradeHb).SetText(TEXT[6])
         .SetBackground(RenderHelpers.ForTexture(ImageMaster.CHECKBOX))
         .SetTickImage(null, RenderHelpers.ForTexture(ImageMaster.TICK), 64)
         .SetFontColors(Settings.GOLD_COLOR, Settings.BLUE_TEXT_COLOR)
@@ -67,7 +67,7 @@ public class EYBSingleCardPopup extends GUIElement
         .SetFont(FontHelper.cardTitleFont)
         .SetOnToggle(this::ToggleUpgrade);
 
-        betaArtToggle = new GUI_Toggle(betaArtHb).SetText(TEXT[14])
+        this.betaArtToggle = new GUI_Toggle(betaArtHb).SetText(TEXT[14])
         .SetBackground(RenderHelpers.ForTexture(ImageMaster.CHECKBOX))
         .SetTickImage(null, RenderHelpers.ForTexture(ImageMaster.TICK), 64)
         .SetFontColors(Settings.GOLD_COLOR, Settings.BLUE_TEXT_COLOR)

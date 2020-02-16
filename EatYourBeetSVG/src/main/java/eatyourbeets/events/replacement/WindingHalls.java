@@ -21,44 +21,46 @@ import java.util.List;
 
 public class WindingHalls extends AbstractImageEvent
 {
-    // TODO: Localize
-    private final static String MadnessMessage_1 = "[Embrace Madness] #gReceive #g2 Higaki Rinne. #rLose #r";
-    private final static String MadnessMessage_2 = " #rHP.";
-
     public static final String ID = GR.Animator.CreateID("Winding Halls");
-    private static final EventStrings eventStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
     public static final String[] OPTIONS;
-    private static final float HP_LOSS_PERCENT = 0.125F;
-    private static final float HP_MAX_LOSS_PERCENT = 0.05F;
-    private static final float A_2_HP_LOSS_PERCENT = 0.18F;
-    private static final float HEAL_AMT = 0.25F;
-    private static final float A_2_HEAL_AMT = 0.2F;
-    private int hpAmt;
-    private int healAmt;
-    private int maxHPAmt;
+
+    // TODO: Localize
+    private final static String MadnessMessage_1 = "[Embrace Madness] #gReceive Higaki Rinne. #rLose #r";
+    private final static String MadnessMessage_2 = " #rHP.";
+
+    private static final float MAX_HP_LOSS_AMOUNT = 0.05F;
+    private static final float HP_LOSS_AMOUNT = 0.125F;
+    private static final float HP_LOSS_AMOUNT_A15 = 0.16F; // 0.18f
+    private static final float HEAL_AMOUNT = 0.25F;
+    private static final float HEAL_AMOUNT_A15 = 0.2F;
+    private static final EventStrings eventStrings;
     private static final String INTRO_BODY1;
     private static final String INTRO_BODY2;
     private static final String CHOICE_1_TEXT;
     private static final String CHOICE_2_TEXT;
+
     private int screenNum = 0;
+    private int hpAmt;
+    private int healAmt;
+    private int maxHPAmt;
 
     public WindingHalls()
     {
         super(NAME, INTRO_BODY1, "images/events/winding.jpg");
         if (AbstractDungeon.ascensionLevel >= 15)
         {
-            this.hpAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * 0.2F);
-            this.healAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * 0.2F);
+            this.hpAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * HP_LOSS_AMOUNT_A15);
+            this.healAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * HEAL_AMOUNT_A15);
         }
         else
         {
-            this.hpAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * 0.15F);
-            this.healAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * 0.25F);
+            this.hpAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * HP_LOSS_AMOUNT);
+            this.healAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * HEAL_AMOUNT);
         }
 
-        this.maxHPAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * 0.05F);
+        this.maxHPAmt = MathUtils.round((float) AbstractDungeon.player.maxHealth * MAX_HP_LOSS_AMOUNT);
         this.imageEventText.setDialogOption(OPTIONS[0]);
     }
 
@@ -93,7 +95,7 @@ public class WindingHalls extends AbstractImageEvent
                         AbstractDungeon.player.damage(new DamageInfo(null, this.hpAmt));
                         CardCrawlGame.sound.play("ATTACK_MAGIC_SLOW_1");
                         AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new HigakiRinne(), (float) Settings.WIDTH / 2.0F - 350.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
-                        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new HigakiRinne(), (float) Settings.WIDTH / 2.0F + 350.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
+                        //AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new HigakiRinne(), (float) Settings.WIDTH / 2.0F + 350.0F * Settings.scale, (float) Settings.HEIGHT / 2.0F));
                         this.screenNum = 2;
                         this.imageEventText.updateDialogOption(0, OPTIONS[4]);
                         this.imageEventText.clearRemainingOptions();

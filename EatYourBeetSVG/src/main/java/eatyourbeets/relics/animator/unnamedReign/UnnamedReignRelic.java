@@ -51,24 +51,14 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
         return false;
     }
 
-    // TODO: Re-Enable this
-
     @Override
     public void update()
     {
         super.update();
 
-        if (GR.TEST_MODE)
-        {
-            return;
-        }
-
         if (isObtained)
         {
-            DevConsole.visible = false;
-            DevConsole.commandPos = -1;
-            DevConsole.currentText = "";
-            DevConsole.infiniteEnergy = false;
+            DisableConsole();
         }
     }
 

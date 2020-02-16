@@ -30,6 +30,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         this.intellectScaling = builder.intellectScaling;
         this.agilityScaling = builder.agilityScaling;
         this.forceScaling = builder.forceScaling;
+        this.attackTarget = builder.attackTarget;
         this.attackType = builder.attackType;
         this.builder = builder;
         this.onUse = builder.onUse;

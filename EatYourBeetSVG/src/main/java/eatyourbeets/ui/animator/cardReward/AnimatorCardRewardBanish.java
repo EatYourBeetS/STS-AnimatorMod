@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
-public class AnimatorPurgingStoneUI extends GUIElement
+public class AnimatorCardRewardBanish extends GUIElement
 {
     protected final ArrayList<BanCardButton> buttons = new ArrayList<>();
 
@@ -26,7 +26,7 @@ public class AnimatorPurgingStoneUI extends GUIElement
     protected boolean canBan;
     protected RewardItem rewardItem;
 
-    public AnimatorPurgingStoneUI(ActionT1<AbstractCard> onCardAdded, ActionT1<AbstractCard> onCardBanned)
+    public AnimatorCardRewardBanish(ActionT1<AbstractCard> onCardAdded, ActionT1<AbstractCard> onCardBanned)
     {
         this.onCardBanned = onCardBanned;
         this.onCardAdded = onCardAdded;

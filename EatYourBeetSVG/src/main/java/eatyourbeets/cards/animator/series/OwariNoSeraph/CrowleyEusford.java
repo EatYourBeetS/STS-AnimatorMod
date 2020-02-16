@@ -15,8 +15,8 @@ public class CrowleyEusford extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(14, 0);
-        SetUpgrade(4, 0);
+        Initialize(16, 0);
+        SetUpgrade(6, 0);
         SetScaling(0, 2, 1);
 
         SetSynergy(Synergies.OwariNoSeraph);

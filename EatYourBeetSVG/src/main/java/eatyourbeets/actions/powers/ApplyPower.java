@@ -30,6 +30,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     protected boolean chooseRandomTarget;
     protected boolean ignoreArtifact;
     protected boolean showEffect = true;
+    protected boolean skipIfZero = true;
     protected boolean faster;
 
     public ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
@@ -64,7 +65,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
 
         HardCodedStuff_SneckoSkull();
 
-        if (amount == 0 || AbstractDungeon.getMonsters().areMonstersBasicallyDead())
+        if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
         {
             Complete();
             return;
@@ -77,6 +78,13 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             HardCodedStuff_Corruption(player.discardPile);
             HardCodedStuff_Corruption(player.exhaustPile);
         }
+    }
+
+    public ApplyPower SkipIfZero(boolean skipIfZero)
+    {
+        this.skipIfZero = skipIfZero;
+
+        return this;
     }
 
     public ApplyPower IgnoreArtifact(boolean ignoreArtifact)
@@ -108,6 +116,12 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         {
             target = GameUtilities.GetRandomEnemy(true);
             powerToApply.owner = target;
+        }
+
+        if (amount == 0 && skipIfZero)
+        {
+            Complete();
+            return;
         }
 
         if (shouldCancelAction() || HardCodedStuff_NoDraw())

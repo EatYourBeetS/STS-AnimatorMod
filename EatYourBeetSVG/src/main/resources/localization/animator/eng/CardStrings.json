@@ -65,9 +65,8 @@
 	},
 	"animator:Arpeggio":
 	{
-		"DESCRIPTION": "Gain !M! Intellect. || Limited. Synergy: ** Channel 1 Earth.",
-		"NAME": "Arpeggio",
-		"UPGRADE_DESCRIPTION": "Gain !M! Intellect. ** Gain !S! Orb Slot. || Limited. Synergy: ** Channel 1 Earth."
+		"DESCRIPTION": "Gain !S! Intellect. ** Gain !M! Orb Slot(s). || Limited. Synergy: ** Channel 1 Earth.",
+		"NAME": "Arpeggio"
 	},
 	"animator:Asuramaru":
 	{
@@ -594,7 +593,7 @@
 	},
 	"animator:Kira":
 	{
-		"DESCRIPTION": "Give the enemy !S! Strength. It will die after a certain number of turns. || This card's text will change while targeting an enemy.",
+		"DESCRIPTION": "Give the enemy !S! Strength. ** It will die after a certain ** number of turns. || This card's text will change ** while targeting an enemy.",
 		"EXTENDED_DESCRIPTION": ["The enemy will die in !M! turn(s)."],
 		"NAME": "Light Yagami"
 	},
@@ -967,10 +966,10 @@
 	},
 	"animator:Laby":
 	{
-		"DESCRIPTION": "Gain !M! {Ench. Armor}. || At the start of turn: ** Gain !S! Constricted.",
+		"DESCRIPTION": "Gain !S! {Ench. Armor}. || At the start of turn: ** Gain 1 Constricted.",
 		"EXTENDED_DESCRIPTION": ["At the start of each turn, gain #b{0} #yConstricted.", "At the start of each turn, gain #b{0} #yConstricted and apply #b{1} #yConstricted to ALL enemies."],
 		"NAME": "Laby",
-		"UPGRADE_DESCRIPTION": "Gain !M! {Ench. Armor}. || At the start of turn: ** Apply !S! Constricted ** to ALL characters."
+		"UPGRADE_DESCRIPTION": "Gain !S! {Ench. Armor}. || At the start of turn: ** Apply 1 Constricted ** to ALL characters."
 	},
 	"animator:Shion":
 	{

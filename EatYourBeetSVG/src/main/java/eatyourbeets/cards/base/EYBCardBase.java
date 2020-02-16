@@ -1,5 +1,6 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -33,11 +34,11 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride protected void renderType(SpriteBatch sb) { SpireSuper.call(sb); }
     @SpireOverride protected void renderJokePortrait(SpriteBatch sb) { renderPortrait(sb); }
     @SpireOverride private void renderDescriptionCN(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
-    @SpireOverride private void renderCard(SpriteBatch sb, boolean hovered, boolean selected) { renderCard(sb, hovered, selected, false); }
-    @Override public final void render(SpriteBatch sb) { renderCard(sb, IsHovered(),false, false); }
-    @Override public final void render(SpriteBatch sb, boolean selected) { renderCard(sb, IsHovered(), selected, false); }
-    @Override public final void renderInLibrary(SpriteBatch sb) { renderCard(sb, IsHovered(), false, true); }
-    @Override public final void renderWithSelections(SpriteBatch sb) { renderCard(sb, false, true, false); }
+    @SpireOverride private void renderCard(SpriteBatch sb, boolean hovered, boolean selected) { Render(sb, hovered, selected, false); }
+    @Override public final void render(SpriteBatch sb) { Render(sb, hovered,false, false); }
+    @Override public final void render(SpriteBatch sb, boolean selected) { Render(sb, hovered, selected, false); }
+    @Override public final void renderInLibrary(SpriteBatch sb) { Render(sb, hovered, false, true); }
+    @Override public final void renderWithSelections(SpriteBatch sb) { Render(sb, false, true, false); }
     @Override public final void renderSmallEnergy(SpriteBatch sb, TextureAtlas.AtlasRegion region, float x, float y) { throw new RuntimeException("Not Implemented"); }
     @Override public final void renderCardPreviewInSingleView(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
     @Override public final void renderCardPreview(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
@@ -46,9 +47,7 @@ public abstract class EYBCardBase extends AbstractCard
     @Override public abstract void renderUpgradePreview(SpriteBatch sb);
     //@Formatter: On
 
-    protected static final FieldInfo<Boolean> _renderTip = JavaUtilities.GetField("renderTip", AbstractCard.class);
     protected static final FieldInfo<Boolean> _darken = JavaUtilities.GetField("darken", AbstractCard.class);
-    protected static final FieldInfo<Boolean> _hovered = JavaUtilities.GetField("hovered", AbstractCard.class);
     protected static final FieldInfo<Color> _renderColor = JavaUtilities.GetField("renderColor", AbstractCard.class);
     protected static final Color HOVER_IMG_COLOR = new Color(1.0F, 0.815F, 0.314F, 0.8F);
     protected static final Color SELECTED_CARD_COLOR = new Color(0.5F, 0.9F, 0.9F, 1.0F);
@@ -56,6 +55,9 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final float SHADOW_OFFSET_Y = 14.0F * Settings.scale;
     protected static AbstractPlayer player = null;
 
+    public float hoverDuration;
+    public boolean renderTip;
+    public boolean hovered;
     public boolean cropPortrait = true;
     public boolean isPopup = false;
     public boolean isPreview = false;
@@ -84,22 +86,66 @@ public abstract class EYBCardBase extends AbstractCard
         portraitImg = GR.GetTextureMipMap(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"));
     }
 
-    public boolean IsHovered()
-    {
-        return _hovered.Get(this);
-    }
-
     public boolean IsOnScreen()
     {
         return current_y >= -200.0F * Settings.scale && current_y <= Settings.HEIGHT + 200.0F * Settings.scale;
     }
 
-    public boolean CanRenderTip()
+    @Override
+    public void update()
     {
-        return _renderTip.Get(this);
+        super.update();
+
+        // Adding this because UPDATEHOVERLOGIC() gets called at arbitrary times...
+        if (player != null && player.hoveredCard != this && !AbstractDungeon.isScreenUp)
+        {
+            unhover();
+        }
     }
 
-    public void renderCard(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
+    @Override
+    public void updateHoverLogic()
+    {
+        this.hb.update();
+
+        if (this.hb.hovered)
+        {
+            hover();
+
+            this.hoverDuration += Gdx.graphics.getRawDeltaTime();
+            this.renderTip = (this.hoverDuration > 0.2F && !Settings.hideCards);
+        }
+        else
+        {
+            unhover();
+        }
+    }
+
+    @Override
+    public void unhover()
+    {
+        this.hovered = false;
+        this.renderTip = false;
+        this.hoverDuration = 0.0F;
+        this.targetDrawScale = 0.75F;
+    }
+
+    @Override
+    public void hover()
+    {
+        this.hovered = true;
+        this.drawScale = 1.0F;
+        this.targetDrawScale = 1.0F;
+    }
+
+    @Override
+    public void untip()
+    {
+        this.hoverDuration = 0.0F;
+        this.renderTip = false;
+    }
+
+    public void Render(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
     {
         if (Settings.hideCards || !IsOnScreen())
         {
@@ -190,14 +236,13 @@ public abstract class EYBCardBase extends AbstractCard
         {
             int width = portraitImg.getWidth();
             int height = portraitImg.getHeight();
-            int offset_x = (int) ((1-drawScale) * (0.5f * width));
+            int offset_x = (int) ((1 - drawScale) * (0.5f * width));
             int offset_y1 = 0;//(int) ((1-drawScale) * (0.5f * height));
-            int offset_y2 = (int) ((1-drawScale) * (1f * height));
+            int offset_y2 = (int) ((1 - drawScale) * (1f * height));
             TextureRegion region = new TextureRegion(portraitImg, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
             RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), 250, 190, _renderColor.Get(this), transparency, 1);
         }
-        else
-        if (isPopup)
+        else if (isPopup)
         {
             RenderHelpers.DrawOnCardAuto(sb, this, portraitImg, new Vector2(0, 72), 500, 380, _renderColor.Get(this), transparency, 0.5f);
         }

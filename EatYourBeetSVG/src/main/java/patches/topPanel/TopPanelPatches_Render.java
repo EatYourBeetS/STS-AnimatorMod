@@ -11,6 +11,6 @@ public class TopPanelPatches_Render
     @SpirePostfixPatch
     public static void Method(TopPanel __instance, SpriteBatch sb)
     {
-        // TODO: Update special button
+
     }
 }

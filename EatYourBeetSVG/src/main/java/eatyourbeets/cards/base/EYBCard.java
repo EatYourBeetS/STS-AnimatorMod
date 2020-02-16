@@ -160,7 +160,7 @@ public abstract class EYBCard extends EYBCardBase
     @Override
     public void renderCardTip(SpriteBatch sb)
     {
-        if (!Settings.hideCards && !isFlipped && !isLocked && isSeen && (isPopup || CanRenderTip()))
+        if (!Settings.hideCards && !isFlipped && !isLocked && isSeen && (isPopup || renderTip))
         {
             this.cardText.RenderTooltips(sb);
         }

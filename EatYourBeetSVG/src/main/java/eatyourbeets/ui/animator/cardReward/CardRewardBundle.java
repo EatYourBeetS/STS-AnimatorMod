@@ -15,11 +15,11 @@ import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.RenderHelpers;
 import eatyourbeets.utilities.Testing;
 
-public class BundledRelic
+public class CardRewardBundle
 {
     private static final AnimatorStrings.Rewards text = GR.Animator.Strings.Rewards;
     public final AbstractCard card;
-    public final ActionT1<BundledRelic> onSelect;
+    public final ActionT1<CardRewardBundle> onSelect;
     public float textOffsetX;
     public float textOffsetY;
     public float iconOffsetX;
@@ -32,14 +32,14 @@ public class BundledRelic
     public Hitbox tooltipHB;
     public int amount;
 
-    public BundledRelic(AbstractCard card, ActionT1<BundledRelic> onSelect)
+    public CardRewardBundle(AbstractCard card, ActionT1<CardRewardBundle> onSelect)
     {
         this.card = card;
         this.onSelect = onSelect;
         this.tooltipHB = new Hitbox(0, 0, AbstractCard.RAW_W, AbstractCard.RAW_H);
     }
 
-    public BundledRelic SetIcon(Texture icon, float iconOffsetX, float iconOffsetY)
+    public CardRewardBundle SetIcon(Texture icon, float iconOffsetX, float iconOffsetY)
     {
         this.icon = icon;
         this.iconOffsetX = iconOffsetX;
@@ -48,7 +48,7 @@ public class BundledRelic
         return this;
     }
 
-    public BundledRelic SetText(String text, Color textColor, float textOffsetX, float textOffsetY)
+    public CardRewardBundle SetText(String text, Color textColor, float textOffsetX, float textOffsetY)
     {
         this.title = text;
         this.textColor = textColor;
@@ -58,7 +58,7 @@ public class BundledRelic
         return this;
     }
 
-    public BundledRelic SetTooltip(String header, String body)
+    public CardRewardBundle SetTooltip(String header, String body)
     {
         this.tooltipHeader = header;
         this.tooltipBody = body;
@@ -66,7 +66,7 @@ public class BundledRelic
         return this;
     }
 
-    public BundledRelic SetAmount(int amount)
+    public CardRewardBundle SetAmount(int amount)
     {
         this.amount = amount;
 

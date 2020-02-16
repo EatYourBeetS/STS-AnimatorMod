@@ -19,8 +19,8 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 0);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.Gate);
@@ -31,10 +31,10 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
     {
         if (secondaryValue > 0)
         {
-            GameActions.Bottom.GainOrbSlots(secondaryValue);
+            GameActions.Bottom.GainOrbSlots(magicNumber);
         }
 
-        GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.GainIntellect(secondaryValue);
 
         if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {

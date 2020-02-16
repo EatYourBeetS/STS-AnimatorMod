@@ -22,29 +22,28 @@ import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
-public class BundledRelicContainer extends GUIElement
+public class AnimatorCardRewardBonus extends GUIElement
 {
     private static final CursedGlyph CURSED_GLYPH = new CursedGlyph();
 
     private final AnimatorStrings.Rewards REWARDS = GR.Animator.Strings.Rewards;
-    private final ArrayList<BundledRelic> bundledRelics;
+    private final ArrayList<CardRewardBundle> bundles = new ArrayList<>();
     private RewardItem rewardItem;
 
-    public BundledRelicContainer()
+    public AnimatorCardRewardBonus()
     {
         this(null);
     }
 
-    public BundledRelicContainer(RewardItem rewardItem)
+    public AnimatorCardRewardBonus(RewardItem rewardItem)
     {
         this.rewardItem = rewardItem;
-        this.bundledRelics = new ArrayList<>();
     }
 
     public void Open(RewardItem rewardItem, ArrayList<AbstractCard> cards)
     {
         this.rewardItem = rewardItem;
-        this.bundledRelics.clear();
+        this.bundles.clear();
 
         for (AbstractCard card : cards)
         {
@@ -55,58 +54,58 @@ public class BundledRelicContainer extends GUIElement
     public void Close()
     {
         rewardItem = null;
-        bundledRelics.clear();
+        bundles.clear();
     }
 
     public void Update()
     {
-        for (BundledRelic bundledRelic : bundledRelics)
+        for (CardRewardBundle cardRewardBundle : bundles)
         {
-            bundledRelic.Update();
+            cardRewardBundle.Update();
         }
     }
 
     public void Render(SpriteBatch sb)
     {
-        for (BundledRelic bundledRelic : bundledRelics)
+        for (CardRewardBundle cardRewardBundle : bundles)
         {
-            bundledRelic.Render(sb);
+            cardRewardBundle.Render(sb);
         }
     }
 
     public void OnCardObtained(AbstractCard hoveredCard)
     {
-        for (BundledRelic bundledRelic : bundledRelics)
+        for (CardRewardBundle cardRewardBundle : bundles)
         {
-            if (bundledRelic.card == hoveredCard)
+            if (cardRewardBundle.card == hoveredCard)
             {
-                bundledRelic.Acquired();
+                cardRewardBundle.Acquired();
             }
         }
     }
 
     public void Add(AbstractCard card)
     {
-        BundledRelic bundledRelic = GetBundle(card);
-        if (bundledRelic != null)
+        CardRewardBundle cardRewardBundle = GetBundle(card);
+        if (cardRewardBundle != null)
         {
-            bundledRelics.add(bundledRelic);
+            bundles.add(cardRewardBundle);
         }
     }
 
     public void Remove(AbstractCard card)
     {
-        for (int i = 0; i < bundledRelics.size(); i++)
+        for (int i = 0; i < bundles.size(); i++)
         {
-            if (bundledRelics.get(i).card == card)
+            if (bundles.get(i).card == card)
             {
-                bundledRelics.remove(i);
+                bundles.remove(i);
                 return;
             }
         }
     }
 
-    private BundledRelic GetBundle(AbstractCard card)
+    private CardRewardBundle GetBundle(AbstractCard card)
     {
         if (card instanceof AnimatorCard_UltraRare)
         {
@@ -137,28 +136,28 @@ public class BundledRelicContainer extends GUIElement
         return null;
     }
 
-    private BundledRelic GetCursedRelicBundle(AbstractCard card)
+    private CardRewardBundle GetCursedRelicBundle(AbstractCard card)
     {
-        return new BundledRelic(card, c -> GameEffects.Queue.ObtainRelic(new CursedGlyph()))
+        return new CardRewardBundle(card, c -> GameEffects.Queue.ObtainRelic(new CursedGlyph()))
                 .SetIcon(CURSED_GLYPH.img, -AbstractCard.RAW_W * 0.45f, -AbstractCard.RAW_H * 0.52f)
                 .SetText(REWARDS.CursedRelic, Settings.RED_TEXT_COLOR, -AbstractCard.RAW_W * 0.10f, -AbstractCard.RAW_H * 0.54f);
     }
 
-    private BundledRelic GetGoldBundle(AbstractCard card, int gold)
+    private CardRewardBundle GetGoldBundle(AbstractCard card, int gold)
     {
-        return new BundledRelic(card, this::ReceiveGold).SetAmount(gold)
+        return new CardRewardBundle(card, this::ReceiveGold).SetAmount(gold)
                 .SetIcon(ImageMaster.UI_GOLD, -AbstractCard.RAW_W * 0.45f, -AbstractCard.RAW_H * 0.545f)
                 .SetText(REWARDS.GoldBonus(gold), Color.WHITE, -AbstractCard.RAW_W * 0.165f, -AbstractCard.RAW_H * 0.54f);
     }
 
-    private BundledRelic GetMaxHPBundle(AbstractCard card, int maxHP)
+    private CardRewardBundle GetMaxHPBundle(AbstractCard card, int maxHP)
     {
-        return new BundledRelic(card, this::ReceiveMaxHP).SetAmount(maxHP)
+        return new CardRewardBundle(card, this::ReceiveMaxHP).SetAmount(maxHP)
                 .SetIcon(ImageMaster.TP_HP, -AbstractCard.RAW_W * 0.45f, -AbstractCard.RAW_H * 0.545f)
                 .SetText(REWARDS.MaxHPBonus(maxHP), Color.WHITE, -AbstractCard.RAW_W * 0.165f, -AbstractCard.RAW_H * 0.54f);
     }
 
-    private void ReceiveGold(BundledRelic bundle)
+    private void ReceiveGold(CardRewardBundle bundle)
     {
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
         {
@@ -175,7 +174,7 @@ public class BundledRelicContainer extends GUIElement
         }
     }
 
-    private void ReceiveMaxHP(BundledRelic bundle)
+    private void ReceiveMaxHP(CardRewardBundle bundle)
     {
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
         {

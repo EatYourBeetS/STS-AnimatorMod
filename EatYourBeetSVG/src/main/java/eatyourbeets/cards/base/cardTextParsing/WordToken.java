@@ -127,7 +127,7 @@ public class WordToken extends CTToken
         if (overrideColor != null)
         {
             if (tooltip == GR.Tooltips.SemiLimited && EffectHistory.HasActivatedSemiLimited(context.card.cardID)
-               || (tooltip == GR.Tooltips.Limited && EffectHistory.HasActivatedLimited(context.card.cardID)))
+            || (tooltip == GR.Tooltips.Limited && EffectHistory.HasActivatedLimited(context.card.cardID)))
             {
                 overrideColor.a = context.card.transparency * 0.6f;// new Color(1f, 0.4f, 0.1f, context.card.transparency));
             }

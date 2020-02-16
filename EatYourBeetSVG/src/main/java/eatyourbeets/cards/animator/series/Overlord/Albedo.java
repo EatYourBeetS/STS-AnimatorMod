@@ -17,7 +17,7 @@ public class Albedo extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0);
+        Initialize(8, 2);
         SetUpgrade(3, 0);
         SetScaling(0, 0, 1);
 
@@ -27,6 +27,7 @@ public class Albedo extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        GameActions.Bottom.GainBlock(2);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.StackPower(new EnchantedArmorPower(p, damage));
 

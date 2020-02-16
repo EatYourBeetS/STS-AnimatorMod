@@ -51,8 +51,6 @@ public class Ain extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelRandomOrb(true);
-
         //GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
         GameActions.Bottom.Callback(__ ->
         {
@@ -69,8 +67,10 @@ public class Ain extends AnimatorCard implements Spellcaster
         for (int i = 0; i < this.magicNumber; i++)
         {
             GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
-            .SetOptions(true, false);
+                    .SetOptions(true, false);
         }
+
+        GameActions.Bottom.ChannelRandomOrb(true);
 
         if (HasSynergy())
         {

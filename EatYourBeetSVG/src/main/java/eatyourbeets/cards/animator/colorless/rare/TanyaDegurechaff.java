@@ -27,6 +27,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
 
         Initialize(4, 7);
         SetUpgrade(3, 0);
+        SetScaling(1, 1, 0);
 
         SetSynergy(Synergies.YoujoSenki);
     }

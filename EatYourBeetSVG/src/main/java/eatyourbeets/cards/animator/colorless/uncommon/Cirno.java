@@ -19,8 +19,9 @@ public class Cirno extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 0);
+        Initialize(3, 0);
         SetUpgrade(3, 0);
+        SetScaling(1, 0, 0);
 
         SetEthereal(true);
         SetMultiDamage(true);

@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -43,10 +42,10 @@ public class Ara extends AnimatorCard implements MartialArtist
         .SetOptions(false, false, false)
         .AddCallback(cards ->
         {
-            if (cards.get(0).type.equals(CardType.POWER) && EffectHistory.TryActivateSemiLimited(cardID))
+            if (cards.get(0).type.equals(CardType.POWER))
             {
-                GameActions.Bottom.GainAgility(1);
-                GameActions.Bottom.GainForce(1);
+                GameActions.Bottom.GainAgility(2);
+                GameActions.Bottom.GainForce(2);
             }
         });
     }

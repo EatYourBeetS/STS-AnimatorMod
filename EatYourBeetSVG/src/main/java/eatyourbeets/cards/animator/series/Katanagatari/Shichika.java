@@ -24,6 +24,7 @@ public class Shichika extends AnimatorCard implements MartialArtist
 
         Initialize(0, 3, 1);
         SetUpgrade(0, 0, 1);
+        SetScaling(0, 1, 0);
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);

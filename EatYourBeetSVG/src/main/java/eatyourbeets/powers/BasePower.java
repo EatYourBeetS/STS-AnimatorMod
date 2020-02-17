@@ -82,7 +82,7 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
 
             case 1:
             {
-                this.description = powerStrings.DESCRIPTIONS[0];
+                this.description = FormatDescription(0, amount);
                 break;
             }
 

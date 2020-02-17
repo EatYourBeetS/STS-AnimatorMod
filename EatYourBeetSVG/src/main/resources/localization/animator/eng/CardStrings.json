@@ -55,7 +55,7 @@
 	},
 	"animator:Ara":
 	{
-		"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || If you discarded a ** {Power}: Gain [F] [A].",
+		"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || If you discarded a ** {Power}: Gain 2 [F][A].",
 		"NAME": "Ara"
 	},
 	"animator:Archer":
@@ -970,6 +970,12 @@
 		"EXTENDED_DESCRIPTION": ["At the start of each turn, gain #b{0} #yConstricted.", "At the start of each turn, gain #b{0} #yConstricted and apply #b{1} #yConstricted to ALL enemies."],
 		"NAME": "Laby",
 		"UPGRADE_DESCRIPTION": "Gain !S! {Ench. Armor}. || At the start of turn: ** Apply 1 Constricted ** to ALL characters."
+	},
+	"animator:Hans":
+	{
+		"DESCRIPTION": "Whenever you apply ** Poison: Gain !S! {Temp. HP}. || At the start of turn: ** Apply !M! Poison to ** ALL enemies.",
+		"EXTENDED_DESCRIPTION": ["Whenever you apply #yPoison, gain #b{0} #yTemporary #yHP."],
+		"NAME": "Hans"
 	},
 	"animator:Shion":
 	{

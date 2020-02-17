@@ -99,7 +99,8 @@ public abstract class EYBCardBase extends AbstractCard
         // Adding this because UPDATEHOVERLOGIC() gets called at arbitrary times...
         if (player != null && player.hoveredCard != this && !AbstractDungeon.isScreenUp)
         {
-            unhover();
+            this.hovered = false;
+            this.renderTip = false;
         }
     }
 
@@ -124,18 +125,26 @@ public abstract class EYBCardBase extends AbstractCard
     @Override
     public void unhover()
     {
+        if (hovered)
+        {
+            this.hoverDuration = 0.0F;
+            this.targetDrawScale = 0.75F;
+        }
+
         this.hovered = false;
         this.renderTip = false;
-        this.hoverDuration = 0.0F;
-        this.targetDrawScale = 0.75F;
     }
 
     @Override
     public void hover()
     {
+        if (!hovered)
+        {
+            this.drawScale = 1.0F;
+            this.targetDrawScale = 1.0F;
+        }
+
         this.hovered = true;
-        this.drawScale = 1.0F;
-        this.targetDrawScale = 1.0F;
     }
 
     @Override

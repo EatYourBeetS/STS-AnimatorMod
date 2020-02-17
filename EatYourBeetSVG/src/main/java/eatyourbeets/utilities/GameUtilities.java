@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.ChemicalX;
+import com.megacrit.cardcrawl.relics.PenNib;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -566,6 +567,14 @@ public class GameUtilities
         if (p.hasPower(PenNibPower.POWER_ID))
         {
             GameActions.Bottom.ReducePower(p, PenNibPower.POWER_ID, 1);
+
+            AbstractRelic relic = p.getRelic(PenNib.ID);
+            if (relic != null)
+            {
+                relic.counter = 0;
+                relic.flash();
+                relic.stopPulse();
+            }
         }
     }
 

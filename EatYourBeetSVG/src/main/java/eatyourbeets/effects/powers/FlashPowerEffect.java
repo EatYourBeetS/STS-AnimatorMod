@@ -29,7 +29,14 @@ public class FlashPowerEffect extends AbstractGameEffect
         }
 
         this.img = power.img;
-        this.region128 = power.powerIcon;
+        if (power.powerIcon != null)
+        {
+            this.region128 = power.powerIcon;
+        }
+        else
+        {
+            this.region128 = power.region128;
+        }
 
         if (this.region128 != null)
         {

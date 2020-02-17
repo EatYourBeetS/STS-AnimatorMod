@@ -2,6 +2,7 @@ package eatyourbeets.effects.powers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Interpolation;
@@ -13,13 +14,20 @@ public class GainPowerEffect extends AbstractGameEffect
 {
     private static final float EFFECT_DUR = 2.0F;
     private float scale;
+    private Texture img;
     private AtlasRegion region48;
 
     public GainPowerEffect(BasePower power, boolean playSfx)
     {
+        this.img = power.img;
+
         if (power.powerIcon != null)
         {
             this.region48 = power.powerIcon;
+        }
+        else
+        {
+            this.region48 = power.region48;
         }
 
         if (playSfx)
@@ -54,6 +62,10 @@ public class GainPowerEffect extends AbstractGameEffect
         if (this.region48 != null)
         {
             sb.draw(this.region48, x - 12f, y - 16f, 16f, 16f, 32.0F, 32.0F, this.scale, this.scale, 0.0F);
+        }
+        else
+        {
+            sb.draw(this.img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, this.scale, this.scale, 0.0F, 0, 0, 32, 32, false, false);
         }
         sb.setBlendFunction(770, 771);
     }

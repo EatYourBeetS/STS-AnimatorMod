@@ -33,7 +33,7 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryArtifact(1);
 
-        if (HasSynergy() && p.orbs.size() > 0 && EffectHistory.TryActivateLimited(cardID))
+        if (HasSynergy() && p.filledOrbCount() > 0 && EffectHistory.TryActivateLimited(cardID))
         {
             AbstractOrb orb = p.orbs.get(0);
             if (!(orb instanceof EmptyOrbSlot))

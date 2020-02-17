@@ -125,7 +125,7 @@ public class TheMaskedTraveler2 extends AnimatorEvent
         int hpLossPercentage = 8;
         if (p instanceof AnimatorCharacter)
         {
-            hpLossPercentage = 16;
+            hpLossPercentage = 12;
         }
 
         currentHPLoss = (int) Math.ceil((UnnamedRelicEquipEffect.CalculateMaxHealth() / 100.0) * hpLossPercentage);

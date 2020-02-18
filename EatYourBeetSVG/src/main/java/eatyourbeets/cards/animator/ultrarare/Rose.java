@@ -16,7 +16,7 @@ public class Rose extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(8, 0, 2, 40);
+        Initialize(10, 0, 2, 40);
         SetUpgrade(0, 0, 1, 0);
 
         SetSynergy(Synergies.Elsword);

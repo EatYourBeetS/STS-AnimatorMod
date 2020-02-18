@@ -80,9 +80,12 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         {
             case DRAW_PILE:
             {
-                 GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
+                ShowCardAndAddToDrawPileEffect effect = GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
                 (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
                 (float) Settings.HEIGHT / 2.0F, randomSpot, true, toBottom));
+
+                // For reasons unknown ShowCardAndAddToDrawPileEffect creates a copy of the card...
+                actualCard = JavaUtilities.<AbstractCard>GetField("card", ShowCardAndAddToDrawPileEffect.class).Get(effect);
 
                 break;
             }

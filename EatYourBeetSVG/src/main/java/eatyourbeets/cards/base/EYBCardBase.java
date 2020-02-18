@@ -55,6 +55,7 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final float SHADOW_OFFSET_Y = 14.0F * Settings.scale;
     protected static AbstractPlayer player = null;
 
+    public static boolean UseCroppedPortrait = true;
     public float hoverDuration;
     public boolean renderTip;
     public boolean hovered;
@@ -241,7 +242,7 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderPortrait(SpriteBatch sb)
     {
-        if (cropPortrait && drawScale > 0.6f && drawScale < 1)
+        if (UseCroppedPortrait && cropPortrait && drawScale > 0.6f && drawScale < 1)
         {
             int width = portraitImg.getWidth();
             int height = portraitImg.getHeight();

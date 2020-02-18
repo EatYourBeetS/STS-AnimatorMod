@@ -115,7 +115,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>, 
 
             case Pyro:
             {
-                GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers));
+                GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers)).SkipIfZero(true);
                 if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
                 {
                     GameActions.Bottom.Draw(1);

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import eatyourbeets.interfaces.csharp.ActionT1;
 import eatyourbeets.ui.AbstractScreen;
+import eatyourbeets.ui.EYBCombatScreen;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorSeriesSelectScreen;
 import eatyourbeets.ui.common.EYBSingleCardPopup;
 
@@ -14,12 +15,14 @@ public class UIManager
     protected final ArrayList<ActionT1<SpriteBatch>> postRenderList = new ArrayList<>();
     protected boolean isDragging;
 
+    public EYBCombatScreen CombatScreen;
     public EYBSingleCardPopup CardPopup;
     public AbstractScreen CurrentScreen;
     public AnimatorSeriesSelectScreen SeriesSelection;
 
     public void Initialize()
     {
+        CombatScreen = new EYBCombatScreen();
         SeriesSelection = new AnimatorSeriesSelectScreen();
         CardPopup = new EYBSingleCardPopup();
     }

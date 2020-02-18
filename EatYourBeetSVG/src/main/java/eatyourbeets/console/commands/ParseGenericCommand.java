@@ -7,10 +7,11 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.resources.GR;
- import eatyourbeets.ui.CustomCardLibSortHeader;
- import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.ui.CustomCardLibSortHeader;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.Testing;
 
 import java.io.IOException;
@@ -40,6 +41,12 @@ import java.util.Map;
          {
              if (tokens.length > 1)
              {
+                 if (tokens[1].equals("use-zoom"))
+                 {
+                     EYBCardBase.UseCroppedPortrait = tokens.length > 2 && tokens[2].equals("true");
+                     return;
+                 }
+
                  if (tokens[1].equals("crop"))
                  {
                      Crop(tokens[2]);

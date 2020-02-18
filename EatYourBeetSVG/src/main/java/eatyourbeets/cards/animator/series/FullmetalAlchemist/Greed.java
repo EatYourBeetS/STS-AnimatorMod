@@ -35,7 +35,7 @@ public class Greed extends AnimatorCard
 
         GameActions.Bottom.GainPlatedArmor(magicNumber);
         GameActions.Bottom.GainMetallicize(magicNumber);
-        GameActions.Bottom.StackPower(new MalleablePower(p, magicNumber));
+        GameActions.Bottom.StackPower(new MalleablePower(p, 0));
 
         if (EffectHistory.TryActivateLimited(cardID))
         {

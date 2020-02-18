@@ -14,6 +14,10 @@ import eatyourbeets.utilities.GameActions;
 public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
 {
     public static final EYBCardData DATA = Register(Shiro.class).SetPower(4, CardRarity.RARE);
+    static
+    {
+        DATA.AddPreview(new Sora(), true);
+    }
 
     private int costModifier = 0;
 

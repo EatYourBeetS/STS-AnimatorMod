@@ -22,7 +22,7 @@ public class Shichika extends AnimatorCard implements MartialArtist
     {
         super(DATA);
 
-        Initialize(0, 3, 1);
+        Initialize(0, 2, 1);
         SetUpgrade(0, 0, 1);
         SetScaling(0, 1, 0);
 

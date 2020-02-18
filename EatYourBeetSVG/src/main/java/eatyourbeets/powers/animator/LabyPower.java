@@ -31,7 +31,7 @@ public class LabyPower extends AnimatorPower
     {
         if (ID.equals(power.ID) && target == owner)
         {
-            this.upgradedAmount += power.amount;
+            this.upgradedAmount += ((LabyPower)power).upgradedAmount;
         }
 
         super.onApplyPower(power, target, source);

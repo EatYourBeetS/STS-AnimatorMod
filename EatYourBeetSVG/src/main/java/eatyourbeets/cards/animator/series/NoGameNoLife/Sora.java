@@ -13,6 +13,10 @@ import eatyourbeets.utilities.GameActions;
 public class Sora extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Sora.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.ALL);
+    static
+    {
+        DATA.AddPreview(new Shiro(), true);
+    }
 
     public Sora()
     {

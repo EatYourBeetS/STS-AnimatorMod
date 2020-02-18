@@ -1,11 +1,15 @@
 package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class BanCardButton extends GUI_Button
 {
@@ -36,6 +40,22 @@ public class BanCardButton extends GUI_Button
         hitbox.target_cY = GetTargetY();
 
         super.Update();
+    }
+
+    @Override
+    public void Render(SpriteBatch sb)
+    {
+        if (!interactable)
+        {
+            final String text = "Not enough cards of this type."; // TODO: Localize
+            BitmapFont font = FontHelper.buttonLabelFont;
+            RenderHelpers.WriteCentered(sb, font, text, hb, Color.WHITE.cpy(), 0.6f);
+            RenderHelpers.ResetFont(font);
+        }
+        else
+        {
+            super.Render(sb);
+        }
     }
 
     private float GetTargetX()

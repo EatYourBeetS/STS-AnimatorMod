@@ -64,7 +64,7 @@ public class EYBSingleCardPopup extends GUIElement
         .SetTickImage(null, RenderHelpers.ForTexture(ImageMaster.TICK), 64)
         .SetFontColors(Settings.GOLD_COLOR, Settings.BLUE_TEXT_COLOR)
         .SetControllerAction(CInputActionSet.proceed)
-        .SetFont(FontHelper.cardTitleFont)
+        .SetFont(FontHelper.cardTitleFont, 1)
         .SetOnToggle(this::ToggleUpgrade);
 
         this.betaArtToggle = new GUI_Toggle(betaArtHb).SetText(TEXT[14])
@@ -72,7 +72,7 @@ public class EYBSingleCardPopup extends GUIElement
         .SetTickImage(null, RenderHelpers.ForTexture(ImageMaster.TICK), 64)
         .SetFontColors(Settings.GOLD_COLOR, Settings.BLUE_TEXT_COLOR)
         .SetControllerAction(CInputActionSet.proceed)
-        .SetFont(FontHelper.cardTitleFont)
+        .SetFont(FontHelper.cardTitleFont, 1)
         .SetOnToggle(this::ToggleBetaArt);
     }
 

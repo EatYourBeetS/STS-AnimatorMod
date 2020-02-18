@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -34,6 +35,7 @@ import eatyourbeets.powers.unnamed.ResonancePower;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 public class GameUtilities
 {
@@ -746,6 +748,20 @@ public class GameUtilities
     public static boolean IsValidOrb(AbstractOrb orb)
     {
         return orb != null && !(orb instanceof EmptyOrbSlot);
+    }
+
+    public static ArrayList<AbstractCard> GenerateCardPool(Predicate<AbstractCard> filter)
+    {
+        ArrayList<AbstractCard> pool = new ArrayList<>();
+        for (AbstractCard c : CardLibrary.getAllCards())
+        {
+            if (filter.test(c))
+            {
+                pool.add(c);
+            }
+        }
+
+        return pool;
     }
 
     private static class HandLayoutRefresher implements OnPhaseChangedSubscriber

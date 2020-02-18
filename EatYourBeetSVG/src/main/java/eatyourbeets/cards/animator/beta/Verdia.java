@@ -15,8 +15,8 @@ public class Verdia extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 12, 2, 2);
-        SetUpgrade(0, 1, 1, 1);
+        Initialize(0, 13, 2, 2);
+        SetUpgrade(0, 0, 1, 1);
         SetScaling(0, 0, 1);
 
         SetSynergy(Synergies.Konosuba);

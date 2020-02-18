@@ -113,6 +113,11 @@
 		"DESCRIPTION": "Motivate !M!. || Until end of turn, whenever a card Synergizes: Gain !S! {Support Damage}.",
 		"NAME": "Bozes"
 	},
+	"animator:Canti":
+	{
+		"DESCRIPTION": "Deal additional damage ** equal to the enemy's ** base attack damage.",
+		"NAME": "Canti"
+	},
 	"animator:Caster":
 	{
 		"DESCRIPTION": "Steal 1 Force. ** {Channel} 1 Dark. || On Synergy: Evoke ** your next Orb.",
@@ -152,6 +157,11 @@
 	{
 		"DESCRIPTION": "Decrease this card's ** Block by !M! this combat. || When Exhausted: ** Channel 1 Frost.",
 		"NAME": "Chung"
+	},
+	"animator:Ciel":
+	{
+		"DESCRIPTION": "Your next {Attack} deals ** !M! additional damage. || Synergy: Increase the ** damage of every copy of ** {Lu} in your deck by !S!.",
+		"NAME": "Ciel"
 	},
 	"animator:Cirno":
 	{
@@ -315,12 +325,7 @@
 	"animator:Elesis":
 	{
 		"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-		"EXTENDED_DESCRIPTION":
-		[
-			"Spend your remaining [E]: ** Gain that much [F] and [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.",
-			"Apply 1 Burning ** for every {Debuff} ** on the enemy. || <slm>. Synergy or ** Discard: <DRW>.",
-			"Apply 1 Vulnerable. || At the start of each ** combat: Lose !M! HP."
-		],
+		"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain that much [F] and [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply 1 Burning ** for every {Debuff} ** on the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 Vulnerable. || At the start of each ** combat: Lose !M! HP."],
 		"NAME": "Elesis",
 		"UPGRADE_DESCRIPTION": "At the start of combat, ** choose 1 of 3 Upgraded ** {Forms} and permanently ** change this card into it."
 	},
@@ -463,6 +468,11 @@
 		"DESCRIPTION": "Exhaust every Hindrance ** in hand and discard pile. || Deal 3 additional damage for every card in Exhaust pile. || {WARNING}: Goblins.",
 		"NAME": "Goblin Slayer"
 	},
+	"animator:MisakiNakahara":
+	{
+		"DESCRIPTION": "Choose and add 1 of !M! ** Colorless cards to ** your draw pile. || The first time you ** draw it: Motivate 1.",
+		"NAME": "Misaki Nakahara"
+	},
 	"animator:GoblinSoldier":
 	{
 		"DESCRIPTION": "When you draw this, ** draw another card. At ** the end of your turn: ** Take 2 damage.",
@@ -470,7 +480,7 @@
 	},
 	"animator:Greed":
 	{
-		"DESCRIPTION": "Gain !M! {Plated Armor}, {Metallicize} and {Malleable}. || <LIM>. For every 150 {Gold} you have: Gain [E] next turn.",
+		"DESCRIPTION": "Gain !M! {Plated Armor}, ** {Metallicize} and {Malleable}. || <LIM>. For every 150 {Gold} ** you have: Gain [E] next turn.",
 		"NAME": "Greed"
 	},
 	"animator:GuildGirl":
@@ -492,6 +502,12 @@
 	{
 		"DESCRIPTION": "On Synergy or when ** Drawn: Gain 1 Agility.",
 		"NAME": "Hakurou"
+	},
+	"animator:Hans":
+	{
+		"DESCRIPTION": "Whenever you apply ** Poison: Gain !S! {Temp. HP}. || At the start of turn: ** Apply !M! Poison to ** ALL enemies.",
+		"EXTENDED_DESCRIPTION": ["Whenever you apply #yPoison, gain #b{0} #yTemporary #yHP."],
+		"NAME": "Hans"
 	},
 	"animator:HarukoHaruhara":
 	{
@@ -622,6 +638,13 @@
 		"DESCRIPTION": "Gain [E] [E]. ** <DRW-M>. || At the start of combat: ** Add 1 random Curse ** to your discard pile.",
 		"NAME": "Kyubey"
 	},
+	"animator:Laby":
+	{
+		"DESCRIPTION": "Gain !S! {Ench. Armor}. || At the start of turn: ** Gain 1 Constricted.",
+		"EXTENDED_DESCRIPTION": ["At the start of each turn, gain #b{0} #yConstricted.", "At the start of each turn, gain #b{0} #yConstricted and apply #b{1} #yConstricted to ALL enemies."],
+		"NAME": "Laby",
+		"UPGRADE_DESCRIPTION": "Gain !S! {Ench. Armor}. || At the start of turn: ** Apply 1 Constricted ** to ALL characters."
+	},
 	"animator:Lancer":
 	{
 		"DESCRIPTION": "Apply !M! Vulnerable. || This card's damage is ** increased by the enemy's ** missing HP percentage.",
@@ -648,15 +671,15 @@
 		"DESCRIPTION": "Reload: Gain !M! ** {Temporary HP}.",
 		"NAME": "Lime Bell"
 	},
-	"animator:Canti":
-	{
-		"DESCRIPTION": "Deal additional damage ** equal to the enemy's ** base attack damage.",
-		"NAME": "Canti"
-	},
 	"animator:LizardPriest":
 	{
 		"DESCRIPTION": "Retain !M! card(s) at ** the end of this turn. || Synergy: Set the Block ** of each enemy to 1.",
 		"NAME": "Lizard Priest"
+	},
+	"animator:Lu":
+	{
+		"DESCRIPTION": "Channel 1 Frost. ** Channel 1 Dark. || When Exhausted: ** Evoke ALL Orbs.",
+		"NAME": "Lu"
 	},
 	"animator:MaesHughes":
 	{
@@ -928,6 +951,11 @@
 		"DESCRIPTION": "Apply !M! Vulnerable ** to ALL enemies. || On Synergy, or when ** Exhausted: Apply !M! ** Weak to ALL enemies.",
 		"NAME": "Shinoa"
 	},
+	"animator:Shion":
+	{
+		"DESCRIPTION": "Discard 1 card. Next ** turn: <DRW>. || Limited. On Synergy: ** Apply !M! Vulnerable.",
+		"NAME": "Shion"
+	},
 	"animator:Shiro":
 	{
 		"DESCRIPTION": "Costs 1 less for each time you ** Synergized this turn. At the ** start of each turn, gain [E] || Add {Sora} from your ** draw pile to your hand.",
@@ -937,61 +965,6 @@
 	{
 		"DESCRIPTION": "Whenever an {Attack} deals ** unblocked damage this ** combat, apply 1 Burning. || Add a Burn to your ** discard pile.",
 		"NAME": "Shizu"
-	},
-	"animator:Lu":
-	{
-		"DESCRIPTION": "Channel 1 Frost. ** Channel 1 Dark. || When Exhausted: ** Evoke ALL Orbs.",
-		"NAME": "Lu"
-	},
-	"animator:Ciel":
-	{
-		"DESCRIPTION": "Your next {Attack} deals ** !M! additional damage. || Synergy: Increase the ** damage of every copy of ** {Lu} in your deck by !S!.",
-		"NAME": "Ciel"
-	}, 
-	"animator:Yoichi":
-	{
-		"DESCRIPTION": "Discard 1 card. ** Gain 1 {Support Damage}. || <SLM>. On ** Synergy: Activate your ** {Support Damage}.",
-		"NAME": "Yoichi"
-	},
-	"animator:Verdia":
-	{
-		"DESCRIPTION": "<DRW-M>. ** Apply !S! Vulnerable. || When Discarded: ** Gain 1 {Plat. Armor}.",
-		"NAME": "Verdia"
-	},
-	"animator:WinryRockbell":
-	{
-		"DESCRIPTION": "Once per turn, when ** you discard a card: ** Gain !M! Block. || Synergy: Upgrade a ** card in your hand.",
-		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you discard a card this turn, gain #b{1} #yBlock."],
-		"NAME": "Winry Rockbell"
-	},
-	"animator:Laby":
-	{
-		"DESCRIPTION": "Gain !S! {Ench. Armor}. || At the start of turn: ** Gain 1 Constricted.",
-		"EXTENDED_DESCRIPTION": ["At the start of each turn, gain #b{0} #yConstricted.", "At the start of each turn, gain #b{0} #yConstricted and apply #b{1} #yConstricted to ALL enemies."],
-		"NAME": "Laby",
-		"UPGRADE_DESCRIPTION": "Gain !S! {Ench. Armor}. || At the start of turn: ** Apply 1 Constricted ** to ALL characters."
-	},
-	"animator:Hans":
-	{
-		"DESCRIPTION": "Whenever you apply ** Poison: Gain !S! {Temp. HP}. || At the start of turn: ** Apply !M! Poison to ** ALL enemies.",
-		"EXTENDED_DESCRIPTION": ["Whenever you apply #yPoison, gain #b{0} #yTemporary #yHP."],
-		"NAME": "Hans"
-	},
-	"animator:Shion":
-	{
-		"DESCRIPTION": "Discard 1 card. Next ** turn: <DRW>. || Limited. On Synergy: ** Apply !M! Vulnerable.",
-		"NAME": "Shion"
-	},
-	"animator:UneriGinkaku":
-	{
-		"DESCRIPTION": "Unplayable if you ** {Attacked} this turn. || When Drawn: Gain ** !M! {Temp}. Thorns.",
-		"NAME": "Uneri Ginkaku"
-	},
-	"animator:TsurugaMeisai":
-	{
-		"DESCRIPTION": "Exhaust a card in your ** hand. If it was an {Attack}: ** Add !M! copies of it to ** your draw pile.",
-		"NAME": "Meisai",
-		"UPGRADE_DESCRIPTION": "Exhaust a card in your ** hand. If it was an {Attack}: ** Add !M! Upgraded copies ** of it to your draw pile."
 	},
 	"animator:Shuna":
 	{
@@ -1167,6 +1140,12 @@
 		"DESCRIPTION": "Gain !M! [F], [A], [I] and [E]. || If you have at least 3 ** unique Orbs: Remove all your Orbs. Otherwise choose and replace a card in your deck with a Wound.",
 		"NAME": "Truth"
 	},
+	"animator:TsurugaMeisai":
+	{
+		"DESCRIPTION": "Exhaust a card in your ** hand. If it was an {Attack}: ** Add !M! copies of it to ** your draw pile.",
+		"NAME": "Meisai",
+		"UPGRADE_DESCRIPTION": "Exhaust a card in your ** hand. If it was an {Attack}: ** Add !M! Upgraded copies ** of it to your draw pile."
+	},
 	"animator:TukaLunaMarceau":
 	{
 		"DESCRIPTION": "If you have no Block: ** <DRW>. || When Discarded: ** Gain !B! Block.",
@@ -1177,6 +1156,11 @@
 		"DESCRIPTION": "Apply !M! Poison to ** ALL enemies and ** increase each of their ** {Common Debuffs} by 1.",
 		"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning."],
 		"NAME": "Tyuule"
+	},
+	"animator:UneriGinkaku":
+	{
+		"DESCRIPTION": "Unplayable if you ** {Attacked} this turn. || When Drawn: Gain ** !M! {Temp}. Thorns.",
+		"NAME": "Uneri Ginkaku"
 	},
 	"animator:Urushihara":
 	{
@@ -1194,6 +1178,11 @@
 		"DESCRIPTION": "Gain !S! <INT>. Evoke ** ALL orbs !M! times. || When Drawn: Channel ** 2 random Orbs.",
 		"NAME": "Veldora"
 	},
+	"animator:Verdia":
+	{
+		"DESCRIPTION": "<DRW-M>. ** Apply !S! Vulnerable. || When Discarded: ** Gain 1 {Plat. Armor}.",
+		"NAME": "Verdia"
+	},
 	"animator:Vesta":
 	{
 		"DESCRIPTION": "Research an {Elixir}. It ** will be completed ** after !M! turns.",
@@ -1210,6 +1199,12 @@
 		"DESCRIPTION": "<DRW>. || When Discarded: Add ** 1 {Throwing-Knife} ** to your hand.",
 		"NAME": "Viivi"
 	},
+	"animator:WinryRockbell":
+	{
+		"DESCRIPTION": "Once per turn, when ** you discard a card: ** Gain !M! Block. || Synergy: Upgrade a ** card in your hand.",
+		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you discard a card this turn, gain #b{1} #yBlock."],
+		"NAME": "Winry Rockbell"
+	},
 	"animator:Witch":
 	{
 		"DESCRIPTION": "Apply !M! Burning ** to ALL enemies. || At the start of each ** {Elite} combat, obtain ** a random Potion.",
@@ -1224,6 +1219,11 @@
 	{
 		"DESCRIPTION": "The enemy loses ** !M! Strength this turn. || On Synergy: If you have ** any {Support Damage}, ** increase it by !S!.",
 		"NAME": "Yao Ha Ducy"
+	},
+	"animator:Yoichi":
+	{
+		"DESCRIPTION": "Discard 1 card. ** Gain 1 {Support Damage}. || <SLM>. On ** Synergy: Activate your ** {Support Damage}.",
+		"NAME": "Yoichi"
 	},
 	"animator:YunYun":
 	{

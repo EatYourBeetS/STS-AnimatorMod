@@ -30,7 +30,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     protected boolean chooseRandomTarget;
     protected boolean ignoreArtifact;
     protected boolean showEffect = true;
-    protected boolean skipIfZero = true;
+    protected boolean skipIfZero;
     protected boolean faster;
 
     public ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)

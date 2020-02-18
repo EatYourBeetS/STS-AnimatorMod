@@ -58,6 +58,7 @@ public class Synergies
     public final static Synergy FLCL = CreateSynergy(36);
     public final static Synergy KillLaKill = CreateSynergy(37);
     public final static Synergy TouhouProject = CreateSynergy(38);
+    public final static Synergy WelcomeToNHK = CreateSynergy(39);
 
     private static Synergy CreateSynergy(int id)
     {

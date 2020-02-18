@@ -93,7 +93,7 @@ public class DolaRikuAction extends EYBAction
             cardGroup.group.add(toAdd);
         }
 
-        if (!addedRinne && cardGroup.size() > 0 && AbstractDungeon.cardRandomRng.randomBoolean(0.05f))
+        if (!addedRinne && cardGroup.size() > 2 && AbstractDungeon.cardRandomRng.randomBoolean(0.05f))
         {
             cardGroup.group.remove(0);
             HigakiRinne rinne = new HigakiRinne();

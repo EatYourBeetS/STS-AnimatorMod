@@ -80,10 +80,11 @@ public class UltimateCubePower extends AnimatorPower
         {
             this.amount -= 1;
             updateDescription();
-        }
-        else
-        {
-            Explode();
+
+            if (amount <= 0)
+            {
+                Explode();
+            }
         }
     }
 

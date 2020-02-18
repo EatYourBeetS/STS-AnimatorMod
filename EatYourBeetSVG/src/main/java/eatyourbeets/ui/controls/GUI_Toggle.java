@@ -30,6 +30,7 @@ public class GUI_Toggle extends GUIElement
     public Color defaultColor = Settings.CREAM_COLOR;
     public Color hoveredColor = Settings.GOLD_COLOR;
     public BitmapFont font = FontHelper.topPanelInfoFont;
+    public float fontSize = 1;
     public float tickSize = 48;
     public ActionT1<Boolean> onToggle = null;
 
@@ -69,9 +70,17 @@ public class GUI_Toggle extends GUIElement
         return this;
     }
 
-    public GUI_Toggle SetFont(BitmapFont font)
+    public GUI_Toggle SetFontSize(float fontSize)
+    {
+        this.fontSize = fontSize;
+
+        return this;
+    }
+
+    public GUI_Toggle SetFont(BitmapFont font, float fontSize)
     {
         this.font = font;
+        this.fontSize = fontSize;
 
         return this;
     }
@@ -204,7 +213,16 @@ public class GUI_Toggle extends GUIElement
             fontColor = defaultColor;
         }
 
-        FontHelper.renderFontLeft(sb, font, text, hb.x + (tickSize * 1.3f * Settings.scale), hb.cY, fontColor);
+        if (fontSize != 1)
+        {
+            font.getData().setScale(fontSize);
+            FontHelper.renderFontLeft(sb, font, text, hb.x + (tickSize * 1.3f * Settings.scale), hb.cY, fontColor);
+            RenderHelpers.ResetFont(font);
+        }
+        else
+        {
+            FontHelper.renderFontLeft(sb, font, text, hb.x + (tickSize * 1.3f * Settings.scale), hb.cY, fontColor);
+        }
 
         GUI_Image image = toggled ? tickedImage : untickedImage;
         if (image != null)

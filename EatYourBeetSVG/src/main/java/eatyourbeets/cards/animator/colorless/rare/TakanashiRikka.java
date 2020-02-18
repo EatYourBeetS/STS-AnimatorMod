@@ -38,11 +38,12 @@ public class TakanashiRikka extends AnimatorCard
         {
             AbstractCard copy = c.makeStatEquivalentCopy();
 
-            if (copy.cost > 0)
+            if (copy.cost > 0 || copy.costForTurn > 0)
             {
                 copy.cost = 0;
                 copy.costForTurn = 0;
                 copy.isCostModified = true;
+                copy.freeToPlayOnce = true;
             }
 
             copy.baseDamage = 0;

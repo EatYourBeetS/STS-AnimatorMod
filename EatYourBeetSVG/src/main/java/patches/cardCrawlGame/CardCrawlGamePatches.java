@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.DrawMaster;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import eatyourbeets.dungeons.TheUnnamedReign;
@@ -39,7 +40,6 @@ public class CardCrawlGamePatches
     @SpirePatch(clz = CardCrawlGame.class, method = "render")
     public static class CardCrawlGame_PostRender
     {
-
         @SpireInsertPatch(locator = Locator.class, localvars = {"sb"})
         public static void Insert(Object __obj_instance, SpriteBatch sb)
         {
@@ -50,7 +50,7 @@ public class CardCrawlGamePatches
         {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException
             {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(SpriteBatch.class.getName(), "end");
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(TipHelper.class, "render");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }

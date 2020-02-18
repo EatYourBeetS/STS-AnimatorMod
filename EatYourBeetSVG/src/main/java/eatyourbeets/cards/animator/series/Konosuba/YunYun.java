@@ -54,6 +54,14 @@ public class YunYun extends AnimatorCard implements Spellcaster, OnCostRefreshSu
     }
 
     @Override
+    public void triggerOnOtherCardPlayed(AbstractCard c)
+    {
+        super.triggerOnOtherCardPlayed(c);
+
+        GameActions.Bottom.Callback(__ -> OnCostRefresh(this));
+    }
+
+    @Override
     public void triggerOnEndOfTurnForPlayingCard()
     {
         super.triggerOnEndOfTurnForPlayingCard();

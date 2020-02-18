@@ -67,7 +67,7 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
         this.timeMaze = new CustomTimeMaze(maxCardsPerTurn);
         this.enchantedArmorPower = new EnchantedArmorPower(owner, 0, true);
 
-        dialog = owner.data.strings.DIALOG;
+        this.dialog = owner.data.strings.DIALOG;
 
         this.priority = 100;
         this.amount = -1;
@@ -82,13 +82,13 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
 
         OnBattleStart();
 
-        GameActions.Bottom.ApplyPowerSilently(owner, owner, enchantedArmorPower, 0).SkipIfZero(false);
+        GameActions.Bottom.ApplyPowerSilently(owner, owner, enchantedArmorPower, enchantedArmorPower.amount);
     }
 
     @Override
     public void onRemove()
     {
-        GameActions.Bottom.ApplyPowerSilently(owner, owner, this, 0).SkipIfZero(false);
+        GameActions.Bottom.ApplyPowerSilently(owner, owner, this, this.amount);
     }
 
     @Override
@@ -121,12 +121,13 @@ public class InfinitePower extends AnimatorPower implements OnBattleStartSubscri
             if (p == enchantedArmorPower)
             {
                 found = true;
+                break;
             }
         }
 
         if (!found)
         {
-            GameActions.Bottom.ApplyPowerSilently(owner, owner, enchantedArmorPower, enchantedArmorPower.amount).SkipIfZero(false);
+            GameActions.Bottom.ApplyPowerSilently(owner, owner, enchantedArmorPower, enchantedArmorPower.amount);
         }
 
         AbstractPower strengthPower = owner.getPower(StrengthPower.POWER_ID);

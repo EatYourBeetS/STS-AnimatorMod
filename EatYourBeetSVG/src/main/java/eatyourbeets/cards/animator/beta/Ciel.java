@@ -18,7 +18,7 @@ public class Ciel extends AnimatorCard
     public static final EYBCardData DATA = Register(Ciel.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
     static
     {
-        DATA.AddPreview(LU, false);
+        DATA.AddPreview(LU, true);
     }
 
     public Ciel()

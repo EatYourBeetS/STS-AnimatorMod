@@ -29,6 +29,10 @@ import java.util.HashSet;
 public class Patchouli extends AnimatorCard implements Spellcaster, StartupCard
 {
     public static final EYBCardData DATA = Register(Patchouli.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
+    static
+    {
+        DATA.AddPreview(OrbCore.GetCardForPreview(), false);
+    }
 
     private final HashSet<String> uniqueOrbs = new HashSet<>();
 

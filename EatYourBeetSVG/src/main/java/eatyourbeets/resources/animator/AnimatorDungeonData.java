@@ -168,6 +168,12 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             return;
         }
 
+        if (AbstractDungeon.ascensionLevel > 5)
+        {
+            AbstractDungeon.bossRelicPool.remove(SneckoEye.ID);
+            AbstractDungeon.bossRelicPool.remove(RunicPyramid.ID);
+        }
+
         AddRelicToPool(MarkOfPain.ID, AbstractRelic.RelicTier.BOSS);
         AddRelicToPool(RunicCapacitor.ID, AbstractRelic.RelicTier.SHOP);
         AddRelicToPool(TwistedFunnel.ID, AbstractRelic.RelicTier.SHOP);

@@ -53,12 +53,13 @@ public class CTContext
         {
             this.card.tooltips.clear();
 
-            if (text.length() > 100)
+            final float max = Settings.language == Settings.GameLanguage.ENG ? 100f : 70f;
+            if (text.length() > max)
             {
                 int actualLength = text.replace(" NL ", "").length();
-                if (actualLength > 100)
+                if (actualLength > max)
                 {
-                    scaleModifier -= (0.12f * (actualLength / 100f));
+                    scaleModifier -= (0.12f * (actualLength / max));
                 }
             }
 

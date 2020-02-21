@@ -12,6 +12,7 @@ import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
+import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
 
 public class AnimatorTrophiesRenderer extends GUIElement
@@ -28,12 +29,12 @@ public class AnimatorTrophiesRenderer extends GUIElement
 
     public AnimatorTrophiesRenderer()
     {
-        trophy1Hb = new Hitbox(48 * Settings.scale, 48 * Settings.scale);
-        trophy2Hb = new Hitbox(48 * Settings.scale, 48 * Settings.scale);
-        trophy3Hb = new Hitbox(48 * Settings.scale, 48 * Settings.scale);
+        trophy1Hb = new AdvancedHitbox(0, 0, 48 * Settings.scale, 48 * Settings.scale,  false);
+        trophy2Hb = new AdvancedHitbox(0, 0, 48 * Settings.scale, 48 * Settings.scale,  false);
+        trophy3Hb = new AdvancedHitbox(0, 0, 48 * Settings.scale, 48 * Settings.scale,  false);
 
         float baseX = 200.0F * Settings.scale;
-        float baseY = (float)Settings.HEIGHT / 2.0F;
+        float baseY = (float) Settings.HEIGHT / 2.0F;
 
         trophy1Hb.move(baseX + 380.0F * Settings.scale, baseY + 94.0F * Settings.scale);
         trophy2Hb.move(baseX + 440.0F * Settings.scale, baseY + 94.0F * Settings.scale);
@@ -107,7 +108,7 @@ public class AnimatorTrophiesRenderer extends GUIElement
 
         sb.setColor(trophyHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(slotTexture, trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale,
-                      0.0F, 0, 0, 64, 64, false, false);
+                0.0F, 0, 0, 64, 64, false, false);
 
         Texture trophyTexture;
         if (trophyLevel < 0)
@@ -121,7 +122,7 @@ public class AnimatorTrophiesRenderer extends GUIElement
 
         sb.setColor(Color.WHITE);
         sb.draw(trophyTexture, trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale,
-                        0.0F, 0, 0, 64, 64, false, false);
+                0.0F, 0, 0, 64, 64, false, false);
 
         if (trophyLevel > 0)
         {

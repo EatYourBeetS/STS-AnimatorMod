@@ -26,8 +26,8 @@ public class CrowleyEusford extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActions.Bottom.GainAgility(1);
-        GameActions.Bottom.GainForce(1);
+        GameActions.Bottom.GainAgility(1, true);
+        GameActions.Bottom.GainForce(1, true);
 
         if (PlayerStatistics.getCardsExhaustedThisTurn() > 0)
         {

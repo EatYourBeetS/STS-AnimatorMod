@@ -12,6 +12,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
+import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
 
 public class AnimatorSpecialTrophiesRenderer extends GUIElement
@@ -24,10 +25,10 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
 
     public AnimatorSpecialTrophiesRenderer()
     {
-        trophySpecialHb = new Hitbox(64 * Settings.scale, 64 * Settings.scale);
+        trophySpecialHb = new AdvancedHitbox(0, 0, 64 * Settings.scale, 64 * Settings.scale, false);
 
         float baseX = 200.0F * Settings.scale;
-        float baseY = (float)Settings.HEIGHT / 2.0F;
+        float baseY = (float) Settings.HEIGHT / 2.0F;
 
         trophySpecialHb.move(baseX + 492.0F * Settings.scale, baseY + 154.0F * Settings.scale);
     }
@@ -71,7 +72,7 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
 
         sb.setColor(trophyHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(images.PLATINUM_TROPHY_SLOT.Texture(), trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale,
-                                    0.0F, 0, 0, 64, 64, false, false);
+                0.0F, 0, 0, 64, 64, false, false);
 
         Texture trophyTexture;
         if (trophyLevel <= 0)
@@ -85,12 +86,12 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
 
         sb.setColor(Color.WHITE);
         sb.draw(trophyTexture, trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale,
-                        0.0F, 0, 0, 64, 64, false, false);
+                0.0F, 0, 0, 64, 64, false, false);
 
         if (trophyLevel > 0)
         {
             FontHelper.renderFontCentered(sb, FontHelper.tipHeaderFont, trophyString,
-            trophyHb.cX + (trophyHb.width * 1.3f * Settings.scale), trophyHb.cY, Settings.GOLD_COLOR);
+                    trophyHb.cX + (trophyHb.width * 1.3f * Settings.scale), trophyHb.cY, Settings.GOLD_COLOR);
         }
     }
 }

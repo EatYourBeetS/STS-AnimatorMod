@@ -16,6 +16,7 @@ import java.util.Collections;
 
 public class CustomCardLibSortHeader extends CardLibSortHeader
 {
+    public static CustomCardLibSortHeader Instance;
     public static boolean ShowSpecial = GR.TEST_MODE;
 
     private SortHeaderButton[] override = null;
@@ -29,6 +30,8 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     public CustomCardLibSortHeader(CardGroup group)
     {
         super(group);
+
+        Instance = this;
     }
 
     public void SetupButtons(boolean isColorless)

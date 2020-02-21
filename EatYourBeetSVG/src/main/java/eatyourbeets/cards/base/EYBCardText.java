@@ -160,7 +160,7 @@ public class EYBCardText
         }
         if (card.exhaust)
         {
-            RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y, alpha);
+            offset_y -= RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y, alpha);
         }
 
         offset_y = 0;

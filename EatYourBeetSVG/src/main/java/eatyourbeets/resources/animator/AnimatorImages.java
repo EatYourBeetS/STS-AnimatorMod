@@ -63,6 +63,7 @@ public class AnimatorImages
     public final TextureCache GOLD_TROPHY_SLOT            = new TextureCache("images/ui/rewards/animator/Slot2.png");
     public final TextureCache PLATINUM_TROPHY_SLOT        = new TextureCache("images/ui/rewards/animator/Slot3.png");
     public final TextureCache SYNERGY_CARD_REWARD         = new TextureCache("images/ui/rewards/animator/SynergyCardsReward.png");
+    public final TextureCache CHARACTER_BUTTON            = new TextureCache("images/ui/charselect/animator_button.png");
 
     public Texture GetCharacterPortrait(int id)
     {

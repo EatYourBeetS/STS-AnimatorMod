@@ -5,11 +5,15 @@ import basemod.devcommands.ConsoleCommand;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.MethodInfo;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
  public class SetGameSpeed extends ConsoleCommand
  {
+     private static MethodInfo _writeConfig;
+     private static FieldInfo<SpireConfig> _config;
      private static FieldInfo<Boolean> _isDeltaMultiplied;
      private static FieldInfo<Float> _deltaMultiplier;
 
@@ -28,6 +32,8 @@ import java.util.ArrayList;
          {
              Class<?> c = Class.forName("skrelpoid.superfastmode.SuperFastMode");
 
+             _config = JavaUtilities.GetField("config", c);
+             _writeConfig = JavaUtilities.GetMethod("writeConfig", c);
              _isDeltaMultiplied = JavaUtilities.GetField("isDeltaMultiplied", c);
              _deltaMultiplier = JavaUtilities.GetField("deltaMultiplier", c);
 
@@ -69,6 +75,13 @@ import java.util.ArrayList;
 
                      DevConsole.log("Set game speed at: " + (speed * 100) + "%");
                  }
+
+                 _writeConfig.Invoke(null);
+                 _config.Get(null).save();
+             }
+             catch (IOException ex)
+             {
+                 DevConsole.log("Could not save config.");
              }
              catch (NumberFormatException ex)
              {

@@ -10,6 +10,8 @@ public class CommonImages
     public final TextureCache UnnamedReignEntrance        = new TextureCache("images/ui/map/act5Entrance.png");
     public final TextureCache UnnamedReignEntranceOutline = new TextureCache("images/ui/map/act5EntranceOutline.png");
     public final TextureCache Panel                       = new TextureCache("images/ui/topPanel/eyb/Panel.png");
+    public final TextureCache Discord                     = new TextureCache("images/ui/topPanel/eyb/Discord.png");
+    public final TextureCache Steam                       = new TextureCache("images/ui/topPanel/eyb/Steam.png");
     public final TextureCache HexagonalButton             = new TextureCache("images/ui/topPanel/eyb/HexagonalButton.png");
     public final TextureCache HexagonalButtonBorder       = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonBorder.png");
     public final TextureCache HexagonalButtonHover        = new TextureCache("images/ui/topPanel/eyb/HexagonalButtonHover.png");
@@ -34,7 +36,5 @@ public class CommonImages
         public final TextureCache Exhaust                 = new TextureCache("images/cardui/eyb/badges/Exhaust.png");
         public final TextureCache Innate                  = new TextureCache("images/cardui/eyb/badges/Innate.png");
         public final TextureCache Retain                  = new TextureCache("images/cardui/eyb/badges/Retain.png");
-        public final TextureCache Spellcaster             = new TextureCache("images/cardui/eyb/badges/Spellcaster.png");
-        public final TextureCache MartialArtist           = new TextureCache("images/cardui/eyb/badges/MartialArtist.png");
     }
 }

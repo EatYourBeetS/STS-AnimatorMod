@@ -21,8 +21,8 @@ public class Jibril extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(8, 0, 2);
-        SetUpgrade(2, 0, 0);
+        Initialize(7, 0, 2);
+        SetUpgrade(3, 0, 0);
         SetScaling(3, 0, 0);
 
         SetEvokeOrbCount(1);
@@ -32,9 +32,9 @@ public class Jibril extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Dark(), true);
         GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.VIOLET, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.3F);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.ChannelOrb(new Dark(), true);
 
         if (HasSynergy())
         {
@@ -42,9 +42,6 @@ public class Jibril extends AnimatorCard implements Spellcaster
             GameActions.Bottom.Add(new TriggerOrbPassiveAbility(magicNumber, false, true));
         }
 
-        if (upgraded)
-        {
-            IntellectPower.PreserveOnce();
-        }
+        IntellectPower.PreserveOnce();
     }
 }

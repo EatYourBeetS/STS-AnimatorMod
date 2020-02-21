@@ -1,15 +1,12 @@
 package eatyourbeets.resources.animator;
 
 import com.badlogic.gdx.utils.Base64Coder;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.Prefs;
-import com.megacrit.cardcrawl.helpers.SaveHelper;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.csharp.ActionT2;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.loadouts.*;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
-import eatyourbeets.resources.animator.loadouts.*;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
@@ -18,8 +15,6 @@ import java.util.regex.Pattern;
 
 public class AnimatorPlayerData
 {
-    private static final String TROPHY_DATA_KEY = "TDAL";
-
     public final ArrayList<AnimatorLoadout> BaseLoadouts = new ArrayList<>(); // Contains starting series
     public final ArrayList<AnimatorLoadout> BetaLoadouts = new ArrayList<>(); // Contains series which cannot be chosen from Character select
     public final ArrayList<AnimatorTrophies> Trophies = new ArrayList<>();
@@ -28,18 +23,8 @@ public class AnimatorPlayerData
 
     public void Initialize()
     {
-        String data = GR.Animator.GetConfig().getString(TROPHY_DATA_KEY);
-        if (data == null)
-        {
-            Prefs prefs = SaveHelper.getPrefs(GR.Animator.PlayerClass.name());
-            data = prefs.getString(TROPHY_DATA_KEY);
-
-            GR.Animator.GetConfig().setString(TROPHY_DATA_KEY, data);
-            GR.Animator.SaveConfig();
-        }
-
         AddBaseLoadouts();
-        DeserializeTrophies(data);
+        DeserializeTrophies(GR.Animator.Config.GetTrophyString());
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
         {
@@ -135,36 +120,7 @@ public class AnimatorPlayerData
     {
         JavaUtilities.GetLogger(AnimatorPlayerData.class).info("Saving Trophies");
 
-        String serialized = SerializeTrophies();
-
-        GR.Animator.GetConfig().setString(TROPHY_DATA_KEY, serialized);
-
-        if (flush)
-        {
-            GR.Animator.SaveConfig();
-        }
-
-        Prefs prefs = null;
-
-        if (AbstractDungeon.player != null)
-        {
-            prefs = AbstractDungeon.player.getPrefs();
-        }
-
-        if (prefs == null)
-        {
-            prefs = SaveHelper.getPrefs(GR.Animator.PlayerClass.name());
-        }
-
-        if (prefs != null)
-        {
-            prefs.putString(TROPHY_DATA_KEY, serialized);
-
-            if (flush)
-            {
-                prefs.flush();
-            }
-        }
+        GR.Animator.Config.SetTrophyString(SerializeTrophies(), flush);
     }
 
     private void AddBaseLoadouts()

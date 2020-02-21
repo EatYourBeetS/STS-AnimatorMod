@@ -2,13 +2,14 @@
 
  import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.cards.base.EYBCardMetadata;
+import eatyourbeets.interfaces.markers.MartialArtist;
+import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.CustomCardLibSortHeader;
 import eatyourbeets.utilities.FieldInfo;
@@ -25,8 +26,6 @@ import java.util.Map;
      private static FieldInfo<Boolean> _isDeltaMultiplied;
      private static FieldInfo<Float> _deltaMultiplier;
 
-     public static SpireConfig config;
-
      public ParseGenericCommand()
      {
          this.minExtraTokens = 1;
@@ -41,9 +40,46 @@ import java.util.Map;
          {
              if (tokens.length > 1)
              {
-                 if (tokens[1].equals("use-zoom"))
+                 if (tokens[1].equals("sort-by-tribe"))
                  {
-                     EYBCardBase.UseCroppedPortrait = tokens.length > 2 && tokens[2].equals("true");
+                     CustomCardLibSortHeader.Instance.group.group.sort((a, b) ->
+                     {
+                         int aValue = 0;
+                         if (a instanceof Spellcaster)
+                         {
+                             aValue = 1;
+                         }
+                         else if (a instanceof MartialArtist)
+                         {
+                             aValue = 2;
+                         }
+                         else if (a instanceof AnimatorCard && ((AnimatorCard)a).anySynergy)
+                         {
+                             aValue = 3;
+                         }
+
+                         int bValue = 0;
+                         if (b instanceof Spellcaster)
+                         {
+                             bValue = 1;
+                         }
+                         else if (b instanceof MartialArtist)
+                         {
+                             bValue = 2;
+                         }
+                         else if (b instanceof AnimatorCard && ((AnimatorCard)b).anySynergy)
+                         {
+                             bValue = 3;
+                         }
+
+                         return Integer.compare(aValue, bValue);
+                     });
+                     return;
+                 }
+
+                 if (tokens[1].equals("set-zoom"))
+                 {
+                     GR.Animator.Config.SetCropCardImages(tokens.length > 2 && tokens[2].equals("true"), true);
                      return;
                  }
 

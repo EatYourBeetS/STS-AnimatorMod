@@ -3,15 +3,13 @@ package eatyourbeets.resources;
 import basemod.interfaces.*;
 import com.megacrit.cardcrawl.core.Settings;
 
-import java.io.File;
-
 public abstract class AbstractResources extends GR
 implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber,
            EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
            AddAudioSubscriber
 {
     protected final String prefix;
-    protected String languagePath;
+    protected String defaultLanguagePath;
 
     protected AbstractResources(String prefix)
     {
@@ -86,32 +84,36 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     protected void InitializeKeywords()  { }
     protected void PostInitialize()      { }
 
-    protected String GetLanguagePath()
+    public String GetFallbackLanguagePath()
     {
-        if (languagePath == null)
-        {
-            File f = new File("c:/temp/" + prefix + "-localization/");
-            if (f.exists() && f.isDirectory())
-            {
-                languagePath = f.getAbsolutePath();
-            }
-            else
-            {
-                languagePath = GetLanguagePath(Settings.language);
-            }
-        }
-
-        return languagePath;
+//        if (defaultLanguagePath == null)
+//        {
+//            File f = new File("c:/temp/" + prefix + "-localization/");
+//            if (f.exists() && f.isDirectory())
+//            {
+//                defaultLanguagePath = f.getAbsolutePath();
+//            }
+//            else
+//            {
+//                defaultLanguagePath = GetLanguagePath(Settings.GameLanguage.ENG);
+//            }
+//        }
+        return GetLanguagePath(Settings.GameLanguage.ENG);
     }
 
-    protected String GetLanguagePath(Settings.GameLanguage language)
+    public String GetLanguagePath(Settings.GameLanguage language)
     {
         return "localization/" + prefix + "/" + language.name().toLowerCase() + "/";
     }
 
     protected void LoadKeywords()
     {
-        super.LoadKeywords(GetLanguagePath() + "KeywordStrings.json");
+        super.LoadKeywords(GetFallbackLanguagePath() + "KeywordStrings.json");
+
+        if (Settings.language != Settings.GameLanguage.ENG)
+        {
+            super.LoadKeywords(GetLanguagePath(Settings.language) + "KeywordStrings.json");
+        }
     }
 
     protected void LoadCustomRelics()
@@ -131,6 +133,11 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     protected void LoadCustomStrings(Class<?> type)
     {
-        super.LoadCustomStrings(type, GetLanguagePath() + type.getSimpleName() + ".json");
+        super.LoadCustomStrings(type, GetFallbackLanguagePath() + type.getSimpleName() + ".json");
+
+//        if (Settings.language != Settings.GameLanguage.ENG)
+//        {
+//            super.LoadCustomStrings(type, GetLanguagePath(Settings.language) + type.getSimpleName() + ".json");
+//        }
     }
 }

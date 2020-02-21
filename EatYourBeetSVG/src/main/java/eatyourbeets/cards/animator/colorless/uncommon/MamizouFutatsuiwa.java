@@ -76,7 +76,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
             AnimatorCard card = JavaUtilities.SafeCast(cards.get(0), AnimatorCard.class);
             if (card != null)
             {
-                card.SetSynergy(card.synergy, true);
+                card.SetSynergy(Synergies.ANY, true);
                 card.flash();
             }
         });

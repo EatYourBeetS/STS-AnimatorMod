@@ -22,7 +22,7 @@
 	},
 	"animator:Ain":
 	{
-		"DESCRIPTION": "Channel 1 random Orb. || On Synergy or when Discarded: Gain [I].",
+		"DESCRIPTION": "Channel 1 random Orb. || On Synergy or when ** Discarded: Gain [I].",
 		"NAME": "Ain"
 	},
 	"animator:Ainz":
@@ -44,7 +44,7 @@
 	{
 		"DESCRIPTION": "Lose no [F] next turn. || When Exhausted: ** Play this card.",
 		"NAME": "Alexander",
-		"UPGRADE_DESCRIPTION": "Gain 1 <FOR>. ** Lose no [F] next turn. || When Exhausted: ** Play this card."
+		"UPGRADE_DESCRIPTION": "Gain [F]. || When Exhausted: ** Play this card."
 	},
 	"animator:Aqua":
 	{
@@ -181,7 +181,7 @@
 	},
 	"animator:CrowleyEusford":
 	{
-		"DESCRIPTION": "Gain [F] [A]. || If you Exhausted ** a card this turn: ** Motivate 1.",
+		"DESCRIPTION": "Boost [F] [A]. || If you Exhausted ** a card this turn: ** Motivate 1.",
 		"NAME": "Crowley Eusford"
 	},
 	"animator:Crystallize":
@@ -331,12 +331,12 @@
 	},
 	"animator:ElricAlphonse":
 	{
-		"DESCRIPTION": "If you have !M! or ** less [I]: Gain [I]. || When Exhausted, add ** {Armored Alphonse} ** to your discard pile.",
+		"DESCRIPTION": "If you have !M! or ** less [I]: Boost [I]. || When Exhausted, add ** {Armored Alphonse} ** to your discard pile.",
 		"NAME": "Alphonse Elric"
 	},
 	"animator:ElricAlphonseAlt":
 	{
-		"DESCRIPTION": "Channel 1 Lightning. ** Gain !M! {Plated Armor}. || Synergy: Gain 1 Orb Slot.",
+		"DESCRIPTION": "Channel !S! Lightning. ** Gain !M! {Plated Armor}. || Synergy: Gain 1 Orb Slot.",
 		"NAME": "Armored Alphonse"
 	},
 	"animator:ElricEdward":
@@ -468,11 +468,6 @@
 		"DESCRIPTION": "Exhaust every Hindrance ** in hand and discard pile. || Deal 3 additional damage for every card in Exhaust pile. || {WARNING}: Goblins.",
 		"NAME": "Goblin Slayer"
 	},
-	"animator:MisakiNakahara":
-	{
-		"DESCRIPTION": "Choose and add 1 of !M! ** Colorless cards to ** your draw pile. || The first time you ** draw it: Motivate 1.",
-		"NAME": "Misaki Nakahara"
-	},
 	"animator:GoblinSoldier":
 	{
 		"DESCRIPTION": "When you draw this, ** draw another card. At ** the end of your turn: ** Take 2 damage.",
@@ -593,9 +588,8 @@
 	},
 	"animator:Jibril":
 	{
-		"DESCRIPTION": "Channel 1 Dark. || On Synergy: Shuffle ** your Orbs, then trigger ** your first !M! Orbs.",
-		"NAME": "Jibril",
-		"UPGRADE_DESCRIPTION": "Channel 1 Dark. ** Lose no [I] next turn. || On Synergy: Shuffle ** your Orbs, then trigger ** your first !M! Orbs."
+		"DESCRIPTION": "Channel 1 Dark. ** Lose no [I] next turn. || On Synergy: Shuffle ** your Orbs, then trigger ** your first !M! Orbs.",
+		"NAME": "Jibril"
 	},
 	"animator:Kaijin":
 	{
@@ -739,6 +733,11 @@
 		"NAME": "Misa Kurobane",
 		"UPGRADE_DESCRIPTION": "<DRW-M>. ** Channel 1 Fire. ** Add {Yusarin} to ** your draw pile."
 	},
+	"animator:MisakiNakahara":
+	{
+		"DESCRIPTION": "Choose and add 1 of !M! ** Colorless cards to ** your draw pile. || The first time you ** draw it: Motivate 1.",
+		"NAME": "Misaki Nakahara"
+	},
 	"animator:Mitsuba":
 	{
 		"DESCRIPTION": "If the enemy has more ** health than you, gain ** !S! additional Block. || When Exhausted: ** <DRW-M>.",
@@ -746,7 +745,7 @@
 	},
 	"animator:Mitsurugi":
 	{
-		"DESCRIPTION": "Gain 1 Force. Can only ** deal damage if the ** enemy is attacking. || When Exhausted: ** Gain !S! Block.",
+		"DESCRIPTION": "Gain/Boost [F]. Can only ** deal damage if the ** enemy is attacking. || When Exhausted: ** Gain !S! Block.",
 		"NAME": "Mitsurugi"
 	},
 	"animator:MumenRider":
@@ -973,9 +972,8 @@
 	},
 	"animator:SilverFang":
 	{
-		"DESCRIPTION": "Gain !M! Agility. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling.",
-		"NAME": "Silver Fang",
-		"UPGRADE_DESCRIPTION": "Gain !M! Agility. ** Lose no [A] next turn. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling."
+		"DESCRIPTION": "Gain/Boost [A]. || On Synergy: Give a ** random {Attack} in your ** hand +1 [A] scaling.",
+		"NAME": "Silver Fang"
 	},
 	"animator:SirTouchMe":
 	{
@@ -1005,7 +1003,7 @@
 	},
 	"animator:Spearman":
 	{
-		"DESCRIPTION": "Gain 1 Agility. Add a ** Wound into your hand. || Synergy: Gain 1 Force.",
+		"DESCRIPTION": "Boost [A]. Add a ** {~Wound} to your hand. || Synergy: Gain 1 Force.",
 		"NAME": "Spearman"
 	},
 	"animator:Strike":
@@ -1090,7 +1088,7 @@
 	},
 	"animator:SwordMaiden":
 	{
-		"DESCRIPTION": "Remove your rightmost Debuff. Lose no [A], [F] and [I] next turn.",
+		"DESCRIPTION": "Remove your ** rightmost {Debuff}. || Boost [F] [A] [I].",
 		"NAME": "Sword Maiden"
 	},
 	"animator:TakanashiRikka":
@@ -1110,9 +1108,8 @@
 	},
 	"animator:Tatsumaki":
 	{
-		"DESCRIPTION": "Gain !M! <INT>. ** Channel 1 Aether. || <slm>. When Drawn, if ** you have 3 or more unique ** Orbs: <DRW>.",
-		"NAME": "Tatsumaki",
-		"UPGRADE_DESCRIPTION": "Gain !M! <INT>. ** Channel 1 Aether. ** Lose no [I] next turn. || <slm>. When Drawn, if ** you have 3 or more unique ** Orbs: <DRW>."
+		"DESCRIPTION": "Gain/Boost [I]. Channel 1 Aether. || <slm>. When Drawn, if ** you have 3 or more unique ** Orbs: <DRW>.",
+		"NAME": "Tatsumaki"
 	},
 	"animator:Tet":
 	{
@@ -1137,7 +1134,7 @@
 	},
 	"animator:Truth":
 	{
-		"DESCRIPTION": "Gain !M! [F], [A], [I] and [E]. || If you have at least 3 ** unique Orbs: Remove all your Orbs. Otherwise choose and replace a card in your deck with a Wound.",
+		"DESCRIPTION": "Gain !M! [F], [A], [I] and [E]. || If you have at least 3 ** unique Orbs: Remove all your ** Orbs. Otherwise choose and ** replace a card in your deck ** with a {~Wound}.",
 		"NAME": "Truth"
 	},
 	"animator:TsurugaMeisai":
@@ -1242,7 +1239,7 @@
 	},
 	"animator:ZankiKiguchi":
 	{
-		"DESCRIPTION": "<LIM>. When ** Exhausted: Move this ** card to your hand ** and gain !M! [A].",
+		"DESCRIPTION": "<LIM>. When ** Exhausted: Move this ** card to your hand ** and Boost [A] [A].",
 		"NAME": "Zanki Kiguchi"
 	},
 	"animator:Zero":

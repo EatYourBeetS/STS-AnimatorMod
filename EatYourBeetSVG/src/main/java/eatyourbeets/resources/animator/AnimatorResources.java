@@ -2,8 +2,8 @@ package eatyourbeets.resources.animator;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -22,14 +22,11 @@ import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class AnimatorResources extends AbstractResources
 {
-    private SpireConfig config;
-
     public final static String ID = "animator";
     public final AbstractCard.CardColor CardColor = Enums.Cards.THE_ANIMATOR;
     public final AbstractPlayer.PlayerClass PlayerClass = Enums.Characters.THE_ANIMATOR;
@@ -37,6 +34,7 @@ public class AnimatorResources extends AbstractResources
     public final AnimatorPlayerData Data = new AnimatorPlayerData();
     public final AnimatorStrings Strings = new AnimatorStrings();
     public final AnimatorImages Images = new AnimatorImages();
+    public final AnimatorConfig Config = new AnimatorConfig();
     public Map<String, EYBCardMetadata> CardData;
 
     public AnimatorResources()
@@ -49,47 +47,24 @@ public class AnimatorResources extends AbstractResources
         return UnlockTracker.getUnlockLevel(PlayerClass);
     }
 
-    public SpireConfig GetConfig()
-    {
-        try
-        {
-            if (config == null)
-            {
-                config = new SpireConfig("TheAnimator", "TheAnimatorConfig");
-            }
-
-            return config;
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public boolean SaveConfig()
-    {
-        SpireConfig config = GetConfig();
-
-        try
-        {
-            config.save();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
-    }
-
     @Override
     protected void InitializeStrings()
     {
         LoadCustomStrings(OrbStrings.class);
         LoadCustomStrings(CharacterStrings.class);
 
-        BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(Gdx.files.internal(GetLanguagePath() + "CardStrings.json").readString(StandardCharsets.UTF_8.name())));
+        if (Settings.language != Settings.GameLanguage.ENG)
+        {
+            String json = Gdx.files.internal(GetFallbackLanguagePath() + "CardStrings.json").readString(StandardCharsets.UTF_8.name());
+            BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(json, GetFallbackLanguagePath()));
+        }
+
+        FileHandle file = Gdx.files.internal(GetLanguagePath(Settings.language) + "CardStrings.json");
+        if (file.exists())
+        {
+            String json = file.readString(StandardCharsets.UTF_8.name());
+            BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(json, GetLanguagePath(Settings.language)));
+        }
 
         String jsonString = new String(Gdx.files.internal("Animator-CardMetadata.json").readBytes());
         CardData = new Gson().fromJson(jsonString, new TypeToken<Map<String, EYBCardMetadata>>(){}.getType());
@@ -167,12 +142,13 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void PostInitialize()
     {
+        Config.Initialize();
         Data.Initialize();
         AnimatorLoadoutsContainer.PreloadResources();
     }
 
     @Override
-    protected String GetLanguagePath(Settings.GameLanguage language)
+    public String GetLanguagePath(Settings.GameLanguage language)
     {
         if (language != Settings.GameLanguage.ZHT && language != Settings.GameLanguage.ZHS)
         {
@@ -182,10 +158,15 @@ public class AnimatorResources extends AbstractResources
         return super.GetLanguagePath(language);
     }
 
-    public String ProcessJson(String originalString)
+    public String ProcessJson(String originalString, String languagePath)
     {
-        String shortcutsJson = Gdx.files.internal(GetLanguagePath() + "CardStringsShortcuts.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        String path = languagePath + "CardStringsShortcuts.json";
+        if (!Gdx.files.internal(path).exists())
+        {
+            return originalString;
+        }
 
+        String shortcutsJson = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
         Map<String, String> items = new Gson().fromJson(shortcutsJson, new TypeToken<Map<String, String>>(){}.getType());
 
         int size = items.size();

@@ -12,6 +12,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -55,7 +56,6 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final float SHADOW_OFFSET_Y = 14.0F * Settings.scale;
     protected static AbstractPlayer player = null;
 
-    public static boolean UseCroppedPortrait = true;
     public float hoverDuration;
     public boolean renderTip;
     public boolean hovered;
@@ -79,7 +79,10 @@ public abstract class EYBCardBase extends AbstractCard
         portrait = null;
         assetUrl = imagePath;
 
-        LoadImage(null);
+        if (imagePath != null)
+        {
+            LoadImage(null);
+        }
     }
 
     public void LoadImage(String suffix)
@@ -98,7 +101,7 @@ public abstract class EYBCardBase extends AbstractCard
         super.update();
 
         // Adding this because UPDATEHOVERLOGIC() gets called at arbitrary times...
-        if (player != null && player.hoveredCard != this && !AbstractDungeon.isScreenUp)
+        if (CardCrawlGame.GameMode.GAMEPLAY.equals(CardCrawlGame.mode) && player != null && player.hoveredCard != this && !AbstractDungeon.isScreenUp)
         {
             this.hovered = false;
             this.renderTip = false;
@@ -242,7 +245,7 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderPortrait(SpriteBatch sb)
     {
-        if (UseCroppedPortrait && cropPortrait && drawScale > 0.6f && drawScale < 1)
+        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.GetCropCardImages())
         {
             int width = portraitImg.getWidth();
             int height = portraitImg.getHeight();

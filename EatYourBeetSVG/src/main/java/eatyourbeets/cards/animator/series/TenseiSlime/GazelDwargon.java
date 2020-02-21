@@ -21,6 +21,7 @@ public class GazelDwargon extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 4);
+        SetUpgrade(0, 1, 0);
 
         SetSynergy(Synergies.TenSura);
     }
@@ -30,7 +31,7 @@ public class GazelDwargon extends AnimatorCard
     {
         if (upgraded)
         {
-            return BlockAttribute.Instance.SetCard(this).SetText("X+1", Settings.CREAM_COLOR);
+            return BlockAttribute.Instance.SetCard(this).SetText("X+" + baseBlock, Settings.CREAM_COLOR);
         }
 
         return super.GetBlockInfo();
@@ -48,7 +49,7 @@ public class GazelDwargon extends AnimatorCard
 
         if (upgraded)
         {
-            GameActions.Bottom.GainBlock(stacks + 1);
+            GameActions.Bottom.GainBlock(stacks + baseBlock);
         }
     }
 }

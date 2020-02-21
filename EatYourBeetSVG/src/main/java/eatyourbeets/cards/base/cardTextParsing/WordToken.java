@@ -44,6 +44,7 @@ public class WordToken extends CTToken
 
             int i = 1;
             boolean mod = false;
+            boolean skip = false;
             while (true)
             {
                 Character next = parser.NextCharacter(i);
@@ -51,6 +52,18 @@ public class WordToken extends CTToken
                 if (next == null)
                 {
                     break;
+                }
+                else if (next == '/')
+                {
+                    if (parser.card.upgraded)
+                    {
+                        builder.setLength(0);
+                        mod = false;
+                    }
+                    else
+                    {
+                        skip = true;
+                    }
                 }
                 else if (next == '(')
                 {
@@ -62,13 +75,16 @@ public class WordToken extends CTToken
                 }
                 else if (IsValidCharacter(next, false))
                 {
-                    if (mod)
+                    if (!skip)
                     {
-                        tempBuilder.append(next);
-                    }
-                    else
-                    {
-                        builder.append(next);
+                        if (mod)
+                        {
+                            tempBuilder.append(next);
+                        }
+                        else
+                        {
+                            builder.append(next);
+                        }
                     }
                 }
                 else

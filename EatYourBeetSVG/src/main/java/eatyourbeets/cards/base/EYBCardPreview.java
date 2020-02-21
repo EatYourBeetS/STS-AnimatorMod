@@ -15,32 +15,32 @@ import static com.megacrit.cardcrawl.cards.AbstractCard.IMG_WIDTH;
 
 public class EYBCardPreview
 {
-    public EYBCard defaultPreview;
-    public EYBCard upgradedPreview;
+    public EYBCardBase defaultPreview;
+    public EYBCardBase upgradedPreview;
     public boolean isMultiPreview;
 
-    public EYBCardPreview(EYBCard card, boolean upgrade)
+    public EYBCardPreview(EYBCardBase card, boolean upgrade)
     {
         this.defaultPreview = card;
         this.defaultPreview.isPreview = true;
 
         if (upgrade)
         {
-            this.upgradedPreview = (EYBCard) defaultPreview.makeStatEquivalentCopy();
+            this.upgradedPreview = (EYBCardBase) defaultPreview.makeStatEquivalentCopy();
             this.upgradedPreview.isPreview = true;
             this.upgradedPreview.upgrade();
             this.upgradedPreview.displayUpgrades();
         }
     }
 
-    public EYBCard GetPreview(boolean upgraded)
+    public EYBCardBase GetPreview(boolean upgraded)
     {
         return upgraded && upgradedPreview != null ? upgradedPreview : defaultPreview;
     }
 
-    public void Render(SpriteBatch sb, EYBCard card, boolean upgraded)
+    public void Render(SpriteBatch sb, EYBCardBase card, boolean upgraded)
     {
-        EYBCard preview = GetPreview(upgraded);
+        EYBCardBase preview = GetPreview(upgraded);
 
         if (card.isPopup)
         {
@@ -65,7 +65,7 @@ public class EYBCardPreview
             String cyclePreviewText = "'CTRL' to cycle"; // TODO: Localization
             BitmapFont font = RenderHelpers.GetDescriptionFont(preview, 0.9f);
             RenderHelpers.DrawOnCardAuto(sb, preview, GR.Common.Images.Panel.Texture(), new Vector2(0, -AbstractCard.RAW_H * 0.55f),
-                    IMG_WIDTH * 0.6f, font.getLineHeight() * 1.8f, Color.DARK_GRAY, 0.75f, 1);
+            IMG_WIDTH * 0.6f, font.getLineHeight() * 1.8f, Color.DARK_GRAY, 0.75f, 1);
             RenderHelpers.WriteOnCard(sb, preview, font, cyclePreviewText, 0, -AbstractCard.RAW_H * 0.55f, Color.MAGENTA);
             RenderHelpers.ResetFont(font);
         }

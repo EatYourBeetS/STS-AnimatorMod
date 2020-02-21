@@ -318,6 +318,16 @@ public final class GameActions
 
     public ApplyPower GainAgility(int amount)
     {
+        return GainAgility(amount, false);
+    }
+
+    public ApplyPower GainAgility(int amount, boolean preserveOnce)
+    {
+        if (preserveOnce)
+        {
+            AgilityPower.PreserveOnce();
+        }
+
         return StackPower(new AgilityPower(AbstractDungeon.player, amount));
     }
 
@@ -358,6 +368,16 @@ public final class GameActions
 
     public ApplyPower GainForce(int amount)
     {
+        return GainForce(amount, false);
+    }
+
+    public ApplyPower GainForce(int amount, boolean preserveOnce)
+    {
+        if (preserveOnce)
+        {
+            ForcePower.PreserveOnce();
+        }
+
         return StackPower(new ForcePower(AbstractDungeon.player, amount));
     }
 
@@ -368,6 +388,16 @@ public final class GameActions
 
     public ApplyPower GainIntellect(int amount)
     {
+        return GainIntellect(amount, false);
+    }
+
+    public ApplyPower GainIntellect(int amount, boolean preserveOnce)
+    {
+        if (preserveOnce)
+        {
+            IntellectPower.PreserveOnce();
+        }
+
         return StackPower(new IntellectPower(AbstractDungeon.player, amount));
     }
 

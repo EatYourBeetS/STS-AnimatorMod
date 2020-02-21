@@ -150,7 +150,7 @@ public class CommonResources extends AbstractResources
     }
 
     @Override
-    protected String GetLanguagePath(Settings.GameLanguage language)
+    public String GetLanguagePath(Settings.GameLanguage language)
     {
         if (language != Settings.GameLanguage.ZHT && language != Settings.GameLanguage.ZHS)
         {

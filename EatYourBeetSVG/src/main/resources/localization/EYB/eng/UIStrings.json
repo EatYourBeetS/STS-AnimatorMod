@@ -20,7 +20,7 @@
 			"Special"
 		]
 	},
-	
+
 	"EYB:HandSelection":
 	{
 		"TEXT":
@@ -28,7 +28,7 @@
 			"move to your draw pile."
 		]
 	},
-	
+
 	"EYB:GridSelection":
 	{
 		"TEXT":
@@ -41,41 +41,9 @@
 
 	"EYB:TheUnnamedReign":
 	{
-		"TEXT": 
+		"TEXT":
 		[
 			"The Unnamed Reign"
 		]
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

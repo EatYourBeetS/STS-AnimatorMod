@@ -67,7 +67,7 @@ public class EYBCardData
         }
     }
 
-    public void AddPreview(EYBCard card, boolean addUpgrade)
+    public void AddPreview(EYBCardBase card, boolean addUpgrade)
     {
         previews.Add(new EYBCardPreview(card, addUpgrade));
     }

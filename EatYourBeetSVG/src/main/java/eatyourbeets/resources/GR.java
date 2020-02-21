@@ -2,6 +2,7 @@ package eatyourbeets.resources;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
@@ -299,8 +300,14 @@ public class GR
 
     protected void LoadKeywords(String path)
     {
-        String json = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
+        FileHandle file = Gdx.files.internal(path);
+        if (!file.exists())
+        {
+            JavaUtilities.GetLogger(this).warn("File not found: " + path);
+            return;
+        }
 
+        String json = file.readString(String.valueOf(StandardCharsets.UTF_8));
         Gson gson = new Gson();
         Type typeToken = new TypeToken<Map<String, Keyword>>(){}.getType();
         Map<String, Keyword> items = gson.fromJson(json, typeToken);
@@ -322,7 +329,14 @@ public class GR
 
     protected void LoadCustomStrings(Class<?> type, String path)
     {
-        BaseMod.loadCustomStringsFile(type, path);
+        if (Gdx.files.internal(path).exists())
+        {
+            BaseMod.loadCustomStringsFile(type, path);
+        }
+        else
+        {
+            JavaUtilities.GetLogger(this).warn("File not found: " + path);
+        }
     }
 
     public static boolean CanInstantiate(Class<?> type)

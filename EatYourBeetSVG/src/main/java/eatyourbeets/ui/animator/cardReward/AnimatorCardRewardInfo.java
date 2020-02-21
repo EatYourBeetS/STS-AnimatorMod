@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Toggle;
@@ -28,7 +27,7 @@ public class AnimatorCardRewardInfo extends GUIElement
         zoomToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48.0F)))
         .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
         .SetPosition(ScreenW(0.9f), ScreenH(0.65f) - (upgradeToggle.hb.height * 1.05f))
-        .SetText("Hovering Animation") // TODO: Localization
+        .SetText("Dynamic Portraits") // TODO: Localization
         .SetFont(RenderHelpers.CardDescriptionFont_Large, 0.475f)
         .SetOnToggle(this::ToggleCardZoom);
     }
@@ -49,7 +48,7 @@ public class AnimatorCardRewardInfo extends GUIElement
     public void Update()
     {
         upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
-        zoomToggle.SetToggle(EYBCardBase.UseCroppedPortrait).Update();
+        zoomToggle.SetToggle(GR.Animator.Config.GetCropCardImages()).Update();
     }
 
     @Override
@@ -66,6 +65,6 @@ public class AnimatorCardRewardInfo extends GUIElement
 
     private void ToggleCardZoom(boolean value)
     {
-        EYBCardBase.UseCroppedPortrait = value;
+        GR.Animator.Config.SetCropCardImages(value, true);
     }
 }

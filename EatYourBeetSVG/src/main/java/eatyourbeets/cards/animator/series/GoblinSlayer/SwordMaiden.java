@@ -10,9 +10,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 
 public class SwordMaiden extends AnimatorCard
@@ -38,16 +35,15 @@ public class SwordMaiden extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetExhaust(false);
+        SetRetain(true);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        ForcePower.PreserveOnce();
-        AgilityPower.PreserveOnce();
-        IntellectPower.PreserveOnce();
-
+        GameActions.Bottom.GainForce(1, true);
+        GameActions.Bottom.GainAgility(1, true);
+        GameActions.Bottom.GainIntellect(1, true);
         GameActions.Bottom.GainTemporaryHP(this.magicNumber);
         GameActions.Bottom.Callback(__ ->
         {
@@ -58,7 +54,7 @@ public class SwordMaiden extends AnimatorCard
                 if (power.type == AbstractPower.PowerType.DEBUFF)
                 {
                     GameActions.Bottom.RemovePower(player, player, power);
-                    break;
+                    return;
                 }
             }
         });

@@ -1,47 +1,63 @@
 package eatyourbeets.ui.animator.characterSelection;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.AdvancedHitbox;
+import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.utilities.GameUtilities;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import java.awt.*;
+import java.net.URI;
 
 public class AnimatorCharacterSelectScreen
 {
-    protected static final Logger logger = LogManager.getLogger(AnimatorCharacterSelectScreen.class.getName());
-
-    public static final AnimatorLoadoutRenderer LoadoutRenderer = new AnimatorLoadoutRenderer();
-    public static final AnimatorTrophiesRenderer TrophiesRenderer = new AnimatorTrophiesRenderer();
-    public static final AnimatorSpecialTrophiesRenderer SpecialTrophiesRenderer = new AnimatorSpecialTrophiesRenderer();
-    public static CharacterOption selectedOption;
+    protected static final AnimatorLoadoutRenderer LoadoutRenderer = new AnimatorLoadoutRenderer();
+    protected static final AnimatorTrophiesRenderer TrophiesRenderer = new AnimatorTrophiesRenderer();
+    protected static final AnimatorSpecialTrophiesRenderer SpecialTrophiesRenderer = new AnimatorSpecialTrophiesRenderer();
+    protected static CharacterOption selectedOption;
+    protected static GUI_Button DiscordButton;
+    protected static GUI_Button SteamButton;
 
     public static void Initialize(CharacterSelectScreen selectScreen)
     {
         GameUtilities.UnlockAllKeys();
         selectedOption = null;
+
+        DiscordButton = new GUI_Button(GR.Common.Images.Discord.Texture(), new AdvancedHitbox(0, 0, 36, 36, false))
+        .SetPosition(Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.95f).SetText("")
+        .SetOnClick(() -> Browse(DiscordButton));
+
+        SteamButton = new GUI_Button(GR.Common.Images.Steam.Texture(), new AdvancedHitbox(0, 0, 36, 36, false))
+        .SetPosition(Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.95f - DiscordButton.hb.height * 1.1f).SetText("")
+        .SetOnClick(() -> Browse(SteamButton));
+
+        DiscordButton.SetActive(SteamButton.SetActive(Desktop.isDesktopSupported()).isActive);
     }
 
     public static void Update(CharacterSelectScreen selectScreen)
     {
         UpdateSelectedCharacter(selectScreen);
-        if (selectedOption != null)
-        {
-            LoadoutRenderer.Update();
-            TrophiesRenderer.Update();
-            SpecialTrophiesRenderer.Update();
-        }
+
+//        if (selectedOption != null && !CardCrawlGame.mainMenuScreen.darken)
+//        {
+//            LoadoutRenderer.Update();
+//            TrophiesRenderer.Update();
+//            SpecialTrophiesRenderer.Update();
+//        }
     }
 
     public static void Render(CharacterSelectScreen selectScreen, SpriteBatch sb)
     {
-        if (selectedOption != null)
-        {
-            LoadoutRenderer.Render(sb);
-            TrophiesRenderer.Render(sb);
-            SpecialTrophiesRenderer.Render(sb);
-        }
+//        if (selectedOption != null && !CardCrawlGame.mainMenuScreen.darken)
+//        {
+//            LoadoutRenderer.Render(sb);
+//            TrophiesRenderer.Render(sb);
+//            SpecialTrophiesRenderer.Render(sb);
+//        }
     }
 
     private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)
@@ -69,6 +85,66 @@ public class AnimatorCharacterSelectScreen
                 }
 
                 return;
+            }
+        }
+    }
+
+    public static void RenderOption(CharacterOption instance, SpriteBatch sb)
+    {
+        LoadoutRenderer.Render(sb);
+        TrophiesRenderer.Render(sb);
+        SpecialTrophiesRenderer.Render(sb);
+        DiscordButton.TryRender(sb);
+        SteamButton.TryRender(sb);
+    }
+
+    public static void UpdateOption(CharacterOption instance)
+    {
+        LoadoutRenderer.Update();
+        TrophiesRenderer.Update();
+        SpecialTrophiesRenderer.Update();
+        DiscordButton.TryUpdate();
+        SteamButton.TryUpdate();
+
+        final float offsetX = 60 * Settings.scale;
+        final float offsetY = 0;
+
+        // TODO: Localization
+        if (DiscordButton.interactable && DiscordButton.hb.hovered)
+        {
+            TipHelper.renderGenericTip(DiscordButton.hb.cX + offsetX, DiscordButton.hb.cY + offsetY, "Discord", "The Animator Discord link.");
+        }
+        else if (SteamButton.interactable && SteamButton.hb.hovered)
+        {
+            TipHelper.renderGenericTip(SteamButton.hb.cX + offsetX, SteamButton.hb.cY + offsetY, "Steam", "The Animator Steam page.");
+        }
+    }
+
+    private static void Browse(GUI_Button button)
+    {
+        if (Desktop.isDesktopSupported())
+        {
+            try
+            {
+                URI uri = null;
+                if (button == SteamButton)
+                {
+                    uri = new URI("https://steamcommunity.com/sharedfiles/filedetails/?id=1638308801");
+                }
+                else if (button == DiscordButton)
+                {
+                    uri = new URI("https://discord.gg/SmHMmJR");
+                }
+
+                if (uri != null)
+                {
+                    Desktop.getDesktop().browse(uri);
+                    button.SetInteractable(false);
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
             }
         }
     }

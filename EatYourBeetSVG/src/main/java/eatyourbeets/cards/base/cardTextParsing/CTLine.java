@@ -69,19 +69,7 @@ public class CTLine
     {
         final EYBCard card = context.card;
 
-        if (!Settings.lineBreakViaCharacter)
-        {
-            context.start_x = card.current_x - (width * card.drawScale * 0.5f);
-        }
-        else if (Settings.leftAlignCards)
-        {
-            context.start_x = card.current_x - (DESC_BOX_WIDTH * card.drawScale * 0.5f) + 2.0F * Settings.scale;
-        }
-        else
-        {
-            context.start_x = card.current_x - (width * card.drawScale * 0.55f);// - 14.0F * Settings.scale;
-        }
-
+        context.start_x = card.current_x - (width * card.drawScale * 0.5f);
         context.start_y = context.start_y - (CalculateHeight(context.font) * 1.45F);
 
         for (CTToken token : tokens)

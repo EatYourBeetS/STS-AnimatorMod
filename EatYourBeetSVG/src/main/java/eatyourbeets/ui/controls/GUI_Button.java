@@ -14,6 +14,7 @@ import eatyourbeets.interfaces.csharp.ActionT0;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.RenderHelpers;
+import org.apache.commons.lang3.StringUtils;
 
 public class GUI_Button extends GUIElement
 {
@@ -135,15 +136,18 @@ public class GUI_Button extends GUIElement
         {
             this.RenderButton(sb);
 
-            BitmapFont font = FontHelper.buttonLabelFont;
-            Color textColor = interactable ? this.textColor : TEXT_DISABLED_COLOR;
-            if (FontHelper.getSmartWidth(font, text, 9999.0F, 0.0F) > (hb.width * 0.8))
+            if (StringUtils.isNotEmpty(text))
             {
-                RenderHelpers.WriteCentered(sb, font, text, hb, textColor, 0.8f);
-            }
-            else
-            {
-                RenderHelpers.WriteCentered(sb, font, text, hb, textColor);
+                BitmapFont font = FontHelper.buttonLabelFont;
+                Color textColor = interactable ? this.textColor : TEXT_DISABLED_COLOR;
+                if (FontHelper.getSmartWidth(font, text, 9999.0F, 0.0F) > (hb.width * 0.8))
+                {
+                    RenderHelpers.WriteCentered(sb, font, text, hb, textColor, 0.8f);
+                }
+                else
+                {
+                    RenderHelpers.WriteCentered(sb, font, text, hb, textColor);
+                }
             }
 
             this.hb.render(sb);

@@ -17,7 +17,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
-import eatyourbeets.relics.animator.Readme;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -56,7 +55,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
 
         lastRelicObtained = relic;
 
-        if (!(relic instanceof UnnamedReignRelic) && !(relic instanceof Readme))
+        if (!(relic instanceof UnnamedReignRelic))
         {
             for (AbstractRelic r : StoreRelicPatches.last20Relics)
             {

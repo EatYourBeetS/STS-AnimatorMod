@@ -158,6 +158,10 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), offset_y, alpha);
         }
+        if (card.purgeOnUse || card.hasTag(GR.Enums.CardTags.PURGE))
+        {
+            offset_y -= RenderBadge(sb, BADGES.Purge.Texture(), offset_y, alpha);
+        }
         if (card.exhaust)
         {
             offset_y -= RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y, alpha);

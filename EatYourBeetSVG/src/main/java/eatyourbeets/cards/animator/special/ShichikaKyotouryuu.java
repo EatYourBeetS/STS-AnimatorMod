@@ -1,18 +1,16 @@
 package eatyourbeets.cards.animator.special;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
+import eatyourbeets.actions.basic.RemoveBlock;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
 import eatyourbeets.utilities.GameActions;
 
 public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
@@ -27,6 +25,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
         SetUpgrade(1, 0, 0);
         SetScaling(0, 1, 1);
 
+        SetEthereal(true);
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
     }
@@ -34,7 +33,7 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
     @Override
     protected void OnUpgrade()
     {
-        SetRetain(true);
+        SetEthereal(false);
     }
 
     @Override
@@ -46,29 +45,14 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Add(new RemoveAllBlockAction(m, player));
-//        GameActions.Bottom.VFX(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale,
-//        AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F);
+        GameActions.Bottom.Add(new RemoveBlock(m, p)).SetOptions(true, true);
 
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActions.Bottom.VFX(new ViolentAttackEffect(m.hb.cX, m.hb.cY, Color.SCARLET));
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-
-//        if (upgraded)
-//        {
-//            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-//        }
-
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActions.Bottom.VFX(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale,
-        AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F);
 
-        if (HasSynergy())
-        {
-            ForcePower.PreserveOnce();
-            AgilityPower.PreserveOnce();
-        }
-
-        GameActions.Last.Add(new RemoveAllBlockAction(m, player));
+        GameActions.Last.Add(new RemoveBlock(m, p)).SetOptions(true, false);
     }
 }

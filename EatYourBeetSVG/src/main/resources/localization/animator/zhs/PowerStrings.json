@@ -2,7 +2,7 @@
 {
 	"animator:AinzPower":
 	{
-		"DESCRIPTIONS": ["在你的回合开始时 #b", " 次激活四种随机效果中的一种。"],
+		"DESCRIPTIONS": ["在你的回合开始时获得四种随机效果中的一种 #b", " 次。"],
 		"NAME": "安兹·乌尔·恭"
 	},
 	"animator:ArcherPower":
@@ -17,32 +17,32 @@
 	},
 	"animator:BiyorigoPower":
 	{
-		"DESCRIPTIONS": ["在你的回合结束时， 消耗剩余的能量之 #b", " 来获得 #b", " 点 #y武力"],
-		"NAME": "微刀・钗"
+		"DESCRIPTIONS": ["在你的回合结束时，消耗 #b{0}点剩余能量获得 #b{1} 点 #y机敏 和 #y武力"],
+		"NAME": "微刀 钗"
 	},
 	"animator:BorosPower":
 	{
-		"DESCRIPTIONS": ["所有能力被打出两次。"],
+		"DESCRIPTIONS": ["所有 #y能力牌 将被打出两次。"],
 		"NAME": "波罗斯"
 	},
 	"animator:BozesPower":
 	{
-		"DESCRIPTIONS": ["同调 时得到 #b", " 层 #y支援伤害 。"],
+		"DESCRIPTIONS": [" #y同调 时造成 #b", " 点 #y支援伤害 。"],
 		"NAME": "波赛斯·戈·芭蕾丝蒂"
 	},
 	"animator:BurningPower":
 	{
-		"DESCRIPTIONS": ["回合结束受到 #b", " 伤害。 受到额外 #b", "% 的 #y攻击 伤害。"],
+		"DESCRIPTIONS": ["回合结束失去 #b", " 生命。 额外受到 #b", "% 的 #y攻击 伤害。"],
 		"NAME": "点燃"
 	},
 	"animator:ChlammyZellPower":
 	{
-		"DESCRIPTIONS": ["回合内每次打出不同类型的牌时， 对所有敌人造成 #b", " 点伤害并 #y循环 #b1 张牌。 NL NL 当前类型: #y"],
+		"DESCRIPTIONS": ["回合内每次连续打出不同类型的牌时， 对所有敌人造成 #b", " 点伤害并 #y循环 #b1 张牌。 NL NL 上一张牌类型: #y"],
 		"NAME": "克拉米·杰尔"
 	},
 	"animator:CursedStabsPower":
 	{
-		"DESCRIPTIONS": ["每当造成破防伤害， 增加1张 #y疼痛 到抽牌堆。"],
+		"DESCRIPTIONS": ["每当造成未被格挡的伤害时，将1张 #y疼痛 加入你的抽牌堆。"],
 		"NAME": "诅咒匕首"
 	},
 	"animator:DarkCrystalPower":
@@ -72,7 +72,7 @@
 	},
 	"animator:EarthenThornsPower":
 	{
-		"DESCRIPTIONS": ["受攻击时， 造成 #b", " 点反伤。"],
+		"DESCRIPTIONS": ["受到攻击时，造成 #b", " 点反伤。"],
 		"NAME": "地刺"
 	},
 	"animator:EmiyaShirouPower":
@@ -82,12 +82,12 @@
 	},
 	"animator:EnchantedArmorPower":
 	{
-		"DESCRIPTIONS": ["减少 #b", "% 承伤。"],
+		"DESCRIPTIONS": ["减伤 #b", "% 。"],
 		"NAME": "魔法盔甲"
 	},
 	"animator:EntouJyuuPower":
 	{
-		"DESCRIPTIONS": ["本回合内接下来的 #b", " 次 #y攻击 时, 抽 #b1 张牌并对所有敌人给予 #b1 层 #y点燃 。"],
+		"DESCRIPTIONS": ["本回合内接下来打出的 #b", " 张 #y攻击牌 ，抽 #b1 张牌并对所有敌人给予 #b1 层 #y点燃 。"],
 		"NAME": "炎刃·铳"
 	},
 	"animator:EnvyPower":
@@ -122,7 +122,7 @@
 	},
 	"animator:FlamingWeaponPower":
 	{
-		"DESCRIPTIONS": ["每次破防时， 给予 #b", " 层 #y点燃 。"],
+		"DESCRIPTIONS": ["每次造成未被格挡的伤害时， 给予 #b", " 层 #y点燃 。"],
 		"NAME": "炎刃"
 	},
 	"animator:FrostCrystalPower":
@@ -142,7 +142,7 @@
 	},
 	"animator:GazelDwargonPower":
 	{
-		"DESCRIPTIONS": ["在每回合开始时， 保留 #b", " 件 #y格挡 。"],
+		"DESCRIPTIONS": ["在每回合开始时，至多保留 #b", " 点 #y格挡 。"],
 		"NAME": "矮人王"
 	},
 	"animator:GeassPower":
@@ -218,7 +218,7 @@
 	"animator:NextTurnDexterityPower":
 	{
 		"DESCRIPTIONS": ["下回合获得 #b", " 点临时 #y敏捷 。"],
-		"NAME": "躲闪未来"
+		"NAME": "下回合敏捷"
 	},
 	"animator:OrbCore_ChaosPower":
 	{
@@ -262,7 +262,7 @@
 	},
 	"animator:PlayerStatistics":
 	{
-		"DESCRIPTIONS": ["隐藏玩家统计能力。"],
+		"DESCRIPTIONS": ["后台玩家统计能力。"],
 		"NAME": "玩家统计"
 	},
 	"animator:PoisonAffinityPower":
@@ -347,7 +347,7 @@
 	},
 	"animator:YukoShionjiPower":
 	{
-		"DESCRIPTIONS": ["查看抽牌堆顶的牌， NL 你可以 #p左键 抽取 ( #b", " 次)， 或者 #p右键 丢弃 ( #b", " 次)。"],
+		"DESCRIPTIONS": ["查看抽牌堆顶部的牌， NL 你可以 #p左键 抽取 ( #b", " 次)， 或 #p右键 丢弃 ( #b", " 次)。"],
 		"NAME": "紫苑寺有子"
 	}
 }

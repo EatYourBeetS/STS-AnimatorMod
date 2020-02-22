@@ -34,6 +34,7 @@ public class CommonImages
     {
         public final TextureCache Ethereal                = new TextureCache("images/cardui/eyb/badges/Ethereal.png");
         public final TextureCache Exhaust                 = new TextureCache("images/cardui/eyb/badges/Exhaust.png");
+        public final TextureCache Purge                   = new TextureCache("images/cardui/eyb/badges/Purge.png");
         public final TextureCache Innate                  = new TextureCache("images/cardui/eyb/badges/Innate.png");
         public final TextureCache Retain                  = new TextureCache("images/cardui/eyb/badges/Retain.png");
     }

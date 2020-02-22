@@ -1,12 +1,15 @@
 package eatyourbeets.powers.animator;
 
 import basemod.BaseMod;
-import com.megacrit.cardcrawl.actions.unique.DiscoveryAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.utilities.GameActions;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.animator.special.OrbCore_Chaos;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class OrbCore_ChaosPower extends OrbCore_AbstractPower
 {
@@ -24,9 +27,30 @@ public class OrbCore_ChaosPower extends OrbCore_AbstractPower
     @Override
     protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
     {
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+
         if (p.hand.size() < BaseMod.MAX_HAND_SIZE)
         {
-            GameActions.Bottom.Add(new DiscoveryAction());
+            while (group.size() < 3)
+            {
+                AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat();
+                if (!card.hasTag(AbstractCard.CardTags.HEALING) && group.findCardById(card.cardID) == null)
+                {
+                    group.addToBottom(card.makeCopy());
+                }
+            }
+
+            GameActions.Bottom.SelectFromPile(name, 1, group)
+            .SetOptions(false, false)
+            .SetMessage(CardRewardScreen.TEXT[1])
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    GameActions.Bottom.MakeCardInHand(cards.get(0)).AddCallback(c -> c.modifyCostForCombat(-1));
+                    GameUtilities.RefreshHandLayout();
+                }
+            });
         }
     }
 }

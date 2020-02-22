@@ -16,7 +16,10 @@ public class AcuraAkari extends AnimatorCard
     public static final EYBCardData DATA = Register(AcuraAkari.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        DATA.AddPreview(ThrowingKnife.GetCardForPreview(), false);
+        for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
+        {
+            DATA.AddPreview(knife, false);
+        }
     }
 
     public AcuraAkari()

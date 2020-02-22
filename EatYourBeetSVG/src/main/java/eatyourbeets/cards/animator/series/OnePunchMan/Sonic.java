@@ -15,7 +15,10 @@ public class Sonic extends AnimatorCard implements MartialArtist
     public static final EYBCardData DATA = Register(Sonic.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
-        DATA.AddPreview(ThrowingKnife.GetCardForPreview(), false);
+        for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
+        {
+            DATA.AddPreview(knife, false);
+        }
     }
 
     public Sonic()

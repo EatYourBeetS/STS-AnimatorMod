@@ -45,10 +45,8 @@ public class ShuffleOrbs extends EYBAction
             player.orbs.set(index1, orb2);
             player.orbs.set(index2, orb1);
 
-            orb1.tX = orb2.cX;
-            orb1.tY = orb2.cY;
-            orb2.tX = orb1.cX;
-            orb2.tY = orb1.cY;
+            orb1.setSlot(index2, player.maxOrbs);
+            orb2.setSlot(index1, player.maxOrbs);
         }
 
         if (amount > 1)

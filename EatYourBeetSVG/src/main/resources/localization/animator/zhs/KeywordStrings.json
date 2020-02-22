@@ -1,56 +1,14 @@
 
 {
-	"Augmentable":
-	{
-		"DESCRIPTION": "能被多次升级。",
-		"NAMES": ["无限成长"],
-		"PROPER_NAME": "无限成长"
-	},
-	"Boost":
-	{
-		"DESCRIPTION": "此效果使用次数有限。",
-		"NAMES": ["仓促"],
-		"PROPER_NAME": "仓促"
-	},
 	"Cooldown":
 	{
-		"DESCRIPTION": "每打出或弃置一次减少一层 #y冷却 层数， 当  #y冷却 层数为0时，打出时触发 #y冷却 效果，并重置 #y冷却 层数。",
+		"DESCRIPTION": "每打出或丢弃时，减少1层 #y冷却 层数，当 #y冷却 层数为0时，触发效果。",
 		"NAMES": ["冷却"],
 		"PROPER_NAME": "冷却"
 	},
-	"Flaming Weapon":
-	{
-		"DESCRIPTION": "如果造成未被格挡的伤害，给予 #b1 层 #y点燃 。",
-		"NAMES": ["炎刃", "炎刃"],
-		"PROPER_NAME": "炎刃"
-	},
-	"Heartseeker":
-	{
-		"DESCRIPTION": "如果目标的血量低于 50% , 造成双倍伤害。",
-		"NAMES": ["嗜血"],
-		"PROPER_NAME": "嗜血"
-	},
-	"Lazy":
-	{
-		"DESCRIPTION": "延迟若干回合造成伤害。",
-		"NAMES": ["懒惰"],
-		"PROPER_NAME": "懒惰"
-	},
-	"Legacy":
-	{
-		"DESCRIPTION": "这张卡被消耗时触发。",
-		"NAMES": ["遗赠"],
-		"PROPER_NAME": "遗赠"
-	},
-	"Loyal":
-	{
-		"DESCRIPTION": "进入弃牌堆时，洗回抽牌堆。",
-		"NAMES": ["忠诚"],
-		"PROPER_NAME": "忠诚"
-	},
 	"Martial Artist":
 	{
-		"DESCRIPTION": "伤害受 #y敏捷 加成。",
+		"DESCRIPTION": "#y同调 其他 #y武师 。",
 		"NAMES": ["武师", "武师"],
 		"PROPER_NAME": "武师"
 	},
@@ -60,29 +18,11 @@
 		"NAMES": ["激励"],
 		"PROPER_NAME": "激励"
 	},
-	"Orb Core":
+	"~Orb Core":
 	{
-		"DESCRIPTION": " #y能力 : #y生成 1个充能球。 每回合第二次 #y同调 时得到一个额外效果。",
-		"NAMES": ["充能球核心", "火焰核心", "大地核心", "闪电核心", "等离子核心", "冰霜核心", "凌风核心"],
-		"PROPER_NAME": "充能球"
-	},
-	"Overrun":
-	{
-		"DESCRIPTION": "此攻击中每有一个敌人失去格挡都触发效果。",
-		"NAMES": ["追击"],
-		"PROPER_NAME": "追击"
-	},
-	"Persistent":
-	{
-		"DESCRIPTION": "每当此牌进入弃牌堆时，洗入抽牌堆。",
-		"NAMES": ["固执"],
-		"PROPER_NAME": "固执"
-	},
-	"Recall":
-	{
-		"DESCRIPTION": "手动弃置或循环时触发。",
-		"NAMES": ["召回"],
-		"PROPER_NAME": "召回"
+		"DESCRIPTION": "生成 1 个充能球。 NL NL 每回合第二次协同是获得一个额外效果。",
+		"NAMES": ["~充能球核心", "~充能球核心"],
+		"PROPER_NAME": "充能球核心"
 	},
 	"Reload":
 	{
@@ -92,7 +32,7 @@
 	},
 	"Resurrect":
 	{
-		"DESCRIPTION": "若此牌没有被消耗或清除，抵消致命伤害并永久失去此牌。",
+		"DESCRIPTION": "若此牌没有被消耗或抹除，抵消致命伤害并永久失去此牌。",
 		"NAMES": ["重生"],
 		"PROPER_NAME": "重生"
 	},
@@ -104,7 +44,7 @@
 	},
 	"Spellcaster":
 	{
-		"DESCRIPTION": "伤害受 #y集中 加成。",
+		"DESCRIPTION": "#y同调 其他 #y法师 。",
 		"NAMES": ["法师"],
 		"PROPER_NAME": "法师"
 	},
@@ -119,11 +59,5 @@
 		"DESCRIPTION": "连续使用同一系列的牌或者 #y法师 或者 #y武师 时触发 #y同调 。",
 		"NAMES": ["同调"],
 		"PROPER_NAME": "同调"
-	},
-	"Throwing-Knife":
-	{
-		"DESCRIPTION": "带有随机负面效果的0耗能 #y攻击 牌。",
-		"NAMES": ["飞刀", "飞刀+"],
-		"PROPER_NAME": "飞刀"
 	}
 }

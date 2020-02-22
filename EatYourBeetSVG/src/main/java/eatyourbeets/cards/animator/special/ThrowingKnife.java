@@ -13,6 +13,9 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ThrowingKnife extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ThrowingKnife.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
@@ -20,14 +23,13 @@ public class ThrowingKnife extends AnimatorCard
     private static ThrowingKnife preview;
     private int index;
 
-    public static ThrowingKnife GetCardForPreview()
+    public static List<ThrowingKnife> GetAllCards()
     {
-        if (preview == null)
-        {
-            preview = new ThrowingKnife(0);
-        }
-
-        return preview;
+        List<ThrowingKnife> result = new ArrayList<>();
+        result.add(new ThrowingKnife(1));
+        result.add(new ThrowingKnife(2));
+        result.add(new ThrowingKnife(3));
+        return result;
     }
 
     public static AbstractCard GetRandomCard()

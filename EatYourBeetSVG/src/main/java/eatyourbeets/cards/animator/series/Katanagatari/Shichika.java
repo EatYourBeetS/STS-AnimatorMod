@@ -22,9 +22,9 @@ public class Shichika extends AnimatorCard implements MartialArtist
     {
         super(DATA);
 
-        Initialize(0, 2, 1);
-        SetUpgrade(0, 0, 1);
-        SetScaling(0, 1, 0);
+        Initialize(0, 2);
+        SetUpgrade(0, 0);
+        SetScaling(0, 1, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);
@@ -34,12 +34,8 @@ public class Shichika extends AnimatorCard implements MartialArtist
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainForce(magicNumber);
-
-        if (HasSynergy())
-        {
-            GameActions.Bottom.GainAgility(1);
-        }
+        GameActions.Bottom.GainForce(1, upgraded);
+        GameActions.Bottom.GainAgility(1, upgraded);
 
         GameActions.Bottom.MakeCardInHand(new ShichikaKyotouryuu());
     }

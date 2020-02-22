@@ -20,6 +20,10 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:DwarfShaman":
+	{
+		"cropPortrait": false
+	},
 	"animator:Emonzaemon":
 	{
 		"cropPortrait": false
@@ -68,10 +72,6 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:Nanami":
-	{
-		"cropPortrait": false
-	},
 	"animator:QuestionMark":
 	{
 		"cropPortrait": false
@@ -81,10 +81,6 @@
 		"cropPortrait": false
 	},
 	"animator:SeriousSaitama":
-	{
-		"cropPortrait": false
-	},
-	"animator:Shichika":
 	{
 		"cropPortrait": false
 	},

@@ -24,7 +24,10 @@ public class Add extends AnimatorCard
     static
     {
         DATA.AddPreview(new Crystallize(), false);
-        DATA.AddPreview(OrbCore.GetCardForPreview(), false);
+        for (OrbCore core : OrbCore.GetAllCores())
+        {
+            DATA.AddPreview(core, false);
+        }
     }
 
     public Add()

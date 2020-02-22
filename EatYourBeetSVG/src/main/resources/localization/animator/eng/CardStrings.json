@@ -552,7 +552,7 @@
 	},
 	"animator:HououinKyouma":
 	{
-		"DESCRIPTION": "Choose 1 card you ** played this combat. Add ** a copy of it to your hand ** and Retain it. Purge.",
+		"DESCRIPTION": "Choose 1 card you ** played this combat. Add ** a copy of it to your ** hand and Retain it.",
 		"NAME": "Hououin Kyouma"
 	},
 	"animator:IchigoBankai":
@@ -562,8 +562,9 @@
 	},
 	"animator:IchigoKurosaki":
 	{
-		"DESCRIPTION": " Gain !M! [F] and !M! [A]. || When Exhausted: If you ** have at least !S! <FOR>, ** add {Ichigo Bankai} to ** your draw pile.",
-		"NAME": "Ichigo Kurosaki"
+		"DESCRIPTION": "Boost [F] [A]. || When Exhausted: If you ** reached 5 [F] this combat, ** add {Ichigo Bankai} to ** your draw pile.",
+		"NAME": "Ichigo Kurosaki",
+		"UPGRADE_DESCRIPTION": "Boost [F] [A]. <DRW>. || When Exhausted: If you ** reached 5 [F] this combat, ** add {Ichigo Bankai} to ** your draw pile."
 	},
 	"animator:Illya":
 	{
@@ -783,7 +784,7 @@
 	},
 	"animator:OrbCore_Chaos":
 	{
-		"DESCRIPTION": "Channel !S! Random Orb. || On your second ** Synergy each turn: ** Discover 1 card.",
+		"DESCRIPTION": "Channel !S! Random Orb. || On your second ** Synergy each turn: ** Choose 1 of 3 cards to ** obtain, it costs 1 less.",
 		"NAME": "Chaos Core"
 	},
 	"animator:OrbCore_Dark":
@@ -860,7 +861,7 @@
 	},
 	"animator:Respite":
 	{
-		"DESCRIPTION": "Delay certain doom ** by 1 turn. Purge.",
+		"DESCRIPTION": "Delay certain ** doom by 1 turn.",
 		"NAME": "Respite"
 	},
 	"animator:Rimuru":
@@ -912,7 +913,7 @@
 	},
 	"animator:SeriousSaitama":
 	{
-		"DESCRIPTION": "Stun ALL enemies. ** Gain X + !M! Force. ** Purge.",
+		"DESCRIPTION": "Stun ALL enemies. ** Gain X + !M! Force.",
 		"NAME": "Serious Saitama"
 	},
 	"animator:Shalltear":
@@ -922,12 +923,12 @@
 	},
 	"animator:Shichika":
 	{
-		"DESCRIPTION": "Gain !M! Force. ** Add {Kyotouryuu} ** to your hand. || Synergy: Gain [A].",
+		"DESCRIPTION": "Gain/Boost [F] [A]. ** Add {Kyotouryuu} ** to your hand.",
 		"NAME": "Shichika"
 	},
 	"animator:ShichikaKyotouryuu":
 	{
-		"DESCRIPTION": "Remove the ** enemy's Block. || Synergy: Lose no ** [F] and [A] next turn.",
+		"DESCRIPTION": "Remove the ** enemy's Block.",
 		"NAME": "Kyotouryuu"
 	},
 	"animator:Shigure":
@@ -1003,7 +1004,7 @@
 	},
 	"animator:Spearman":
 	{
-		"DESCRIPTION": "Boost [A]. Add a ** {~Wound} to your hand. || Synergy: Gain 1 Force.",
+		"DESCRIPTION": "Boost [A]. Add a ** {~Wound} to your hand. || Synergy: Gain [F].",
 		"NAME": "Spearman"
 	},
 	"animator:Strike":
@@ -1124,7 +1125,7 @@
 	"animator:ThrowingKnife":
 	{
 		"DESCRIPTION": "{0} || When Discarded: ** Play this card on a ** random enemy.",
-		"EXTENDED_DESCRIPTION": ["Apply a random ** {Debuff}. Purge.", "Apply !M! Weak. ** Purge.", "Apply !M! Vulnerable. ** Purge.", "Apply !S! Poison. ** Purge."],
+		"EXTENDED_DESCRIPTION": ["Apply a Debuff.", "Apply !M! Weak.", "Apply !M! Vulnerable.", "Apply !S! Poison."],
 		"NAME": "Throwing-Knife"
 	},
 	"animator:Togame":
@@ -1187,7 +1188,7 @@
 	},
 	"animator:Vesta_Elixir":
 	{
-		"DESCRIPTION": "Choose and combine ** up to 3 effects. ** Purge.",
+		"DESCRIPTION": "Choose and combine ** up to 3 effects.",
 		"EXTENDED_DESCRIPTION": ["Takes 1 less turn ** to complete."],
 		"NAME": "Elixir"
 	},
@@ -1209,7 +1210,7 @@
 	},
 	"animator:Wiz":
 	{
-		"DESCRIPTION": "Exhaust 1 card. Choose a card ** in Exhaust pile and add a ** copy to your hand. Purge. || <LIM>. Synergy: This ** card will not Purge.",
+		"DESCRIPTION": "Exhaust 1 card. Choose a ** card in Exhaust pile and ** add a copy to your hand. || <LIM>. Synergy: This ** card will not Purge.",
 		"NAME": "Wiz"
 	},
 	"animator:YaoHaDucy":

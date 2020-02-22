@@ -41,7 +41,7 @@ public class Canti extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (damage >= 23)
+        if (damage >= 20)
         {
             //GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
             //GameActions.Bottom.Wait(0.8F);

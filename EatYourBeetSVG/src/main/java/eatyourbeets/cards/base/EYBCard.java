@@ -193,6 +193,10 @@ public abstract class EYBCard extends EYBCardBase
         {
             dynamicTooltips.add(GR.Tooltips.Retain);
         }
+        if (purgeOnUse || hasTag(GR.Enums.CardTags.PURGE))
+        {
+            dynamicTooltips.add(GR.Tooltips.Purge);
+        }
         if (exhaust)
         {
             dynamicTooltips.add(GR.Tooltips.Exhaust);
@@ -369,6 +373,8 @@ public abstract class EYBCard extends EYBCardBase
         else
         {
             tags.remove(GR.Enums.CardTags.PURGE);
+            tags.remove(GR.Enums.CardTags.PURGING);
+            purgeOnUse = false;
         }
     }
 

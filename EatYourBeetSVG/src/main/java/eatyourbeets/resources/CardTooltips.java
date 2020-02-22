@@ -99,6 +99,7 @@ public class CardTooltips
         Ethereal.icon = LoadFromBadge(badges.Ethereal);
         Retain.icon = LoadFromBadge(badges.Retain);
         Innate.icon = LoadFromBadge(badges.Innate);
+        Purge.icon = LoadFromBadge(badges.Purge);
 
         CommonImages.CardIcons icons = GR.Common.Images.Icons;
         Ranged.icon = LoadFromLargeIcon(icons.Ranged);

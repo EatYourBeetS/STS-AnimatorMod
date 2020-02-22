@@ -154,7 +154,8 @@
 			"Not enough cards of this type.",
 			"Dynamic Portraits",
 			"Use card hovering animation.",
-			"'CTRL' to cycle"
+			"'CTRL' to cycle",
+			"Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel."
 		]
 	}
 }

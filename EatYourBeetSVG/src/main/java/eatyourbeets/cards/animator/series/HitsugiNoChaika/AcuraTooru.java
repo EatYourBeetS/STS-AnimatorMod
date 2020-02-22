@@ -15,7 +15,10 @@ public class AcuraTooru extends AnimatorCard
     public static final EYBCardData DATA = Register(AcuraTooru.class).SetAttack(2, CardRarity.UNCOMMON);
     static
     {
-        DATA.AddPreview(ThrowingKnife.GetCardForPreview(), false);
+        for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
+        {
+            DATA.AddPreview(knife, false);
+        }
     }
 
     public AcuraTooru()

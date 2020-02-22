@@ -7,20 +7,17 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTooltip;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
 public abstract class OrbCore extends AnimatorCard
 {
-    private static final ArrayList<AbstractCard> cores = new ArrayList<>();
-    private static final RandomizedList<AbstractCard> cores0 = new RandomizedList<>();
-    private static final RandomizedList<AbstractCard> cores1 = new RandomizedList<>();
-    private static final RandomizedList<AbstractCard> cores2 = new RandomizedList<>();
+    private static final ArrayList<OrbCore> cores = new ArrayList<>();
+    private static final RandomizedList<OrbCore> cores0 = new RandomizedList<>();
+    private static final RandomizedList<OrbCore> cores1 = new RandomizedList<>();
+    private static final RandomizedList<OrbCore> cores2 = new RandomizedList<>();
 
     public OrbCore(EYBCardData data)
     {
@@ -39,19 +36,9 @@ public abstract class OrbCore extends AnimatorCard
 
     }
 
-    public static EYBCard GetCardForPreview()
-    {
-        OrbCore_Chaos preview = new OrbCore_Chaos();
-        EYBCardTooltip tooltip = GR.Tooltips.OrbCore;
-        preview.name = tooltip.title;
-        preview.cardText.OverrideDescription(tooltip.description, true);
-        return preview;
-    }
-
     public static SelectFromPile SelectCoreAction(String sourceName, int amount)
     {
-        return new SelectFromPile(sourceName, amount, OrbCore.CreateCoresGroup(true))
-                .SetMessage(CardRewardScreen.TEXT[1]);
+        return new SelectFromPile(sourceName, amount, OrbCore.CreateCoresGroup(true)).SetMessage(CardRewardScreen.TEXT[1]);
     }
 
     public static CardGroup CreateCoresGroup(boolean anyCost)
@@ -78,7 +65,7 @@ public abstract class OrbCore extends AnimatorCard
         return group;
     }
 
-    public static ArrayList<AbstractCard> GetAllCores()
+    public static ArrayList<OrbCore> GetAllCores()
     {
         InitializeCores();
 

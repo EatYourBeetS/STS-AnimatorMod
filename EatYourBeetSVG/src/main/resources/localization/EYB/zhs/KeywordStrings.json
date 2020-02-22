@@ -126,17 +126,17 @@
 		"NAMES": ["金属化"],
 		"PROPER_NAME": "金属化"
 	},
-	"Piercing":
-	{
-		"DESCRIPTION": "无视目标的 #y格挡 和 #y荆棘 。",
-		"NAMES": ["穿刺"],
-		"PROPER_NAME": "穿刺"
-	},
 	"Plated Armor":
 	{
 		"DESCRIPTION": "回合结束时获得 #y格挡 。每次受伤减少 #b1 层。",
 		"NAMES": ["多层护甲", "多层护甲"],
 		"PROPER_NAME": "多层护甲"
+	},
+	"Purge":
+	{
+		"DESCRIPTION": "移出本场战斗。",
+		"NAMES": ["抹除"],
+		"PROPER_NAME": "抹除"
 	},
 	"Rebound":
 	{
@@ -168,11 +168,59 @@
 		"NAMES": ["临时生命"],
 		"PROPER_NAME": "临时生命"
 	},
-	"~Preview":
+	"Boost":
 	{
-		"DESCRIPTION": "按 #pSHIFT 浏览相关卡牌。",
-		"NAMES": ["~"],
-		"PROPER_NAME": "卡牌预览"
+		"DESCRIPTION": "获得特定的能力且不会在下一回合开始时减少。",
+		"NAMES": ["激励"],
+		"PROPER_NAME": "激励"
+	},	
+	"~Damage":
+	{
+		"DESCRIPTION": "-",
+		"NAMES": ["~伤害"],
+		"PROPER_NAME": "普通伤害"
+	},	
+	"~Elemental":
+	{
+		"DESCRIPTION": "无视 #y格挡 和 #y荆棘 。",
+		"NAMES": ["~魔法"],
+		"PROPER_NAME": "魔法伤害"
+	},	
+	"~Piercing":
+	{
+		"DESCRIPTION": "无视 #y格挡 和 #y荆棘 。",
+		"NAMES": ["~穿刺"],
+		"PROPER_NAME": "穿刺伤害"
+	},
+	"~Ranged":
+	{
+		"DESCRIPTION": "无视 #y荆棘 。",
+		"NAMES": ["~远程"],
+		"PROPER_NAME": "远程伤害"
+	},
+	"~Innate":
+	{
+		"DESCRIPTION": "在每场战斗开始时，这张牌会出现在你的手牌中。",
+		"NAMES": ["~固有"],
+		"PROPER_NAME": "固有"
+	},
+	"~Retain":
+	{
+		"DESCRIPTION": "保留的牌不会在回合结束时被放入弃牌堆。",
+		"NAMES": ["~保留"],
+		"PROPER_NAME": "保留"
+	},
+	"~Ethereal":
+	{
+		"DESCRIPTION": "如果这张牌在回合结束时仍然在你的手中，它将被 #y消耗 。",
+		"NAMES": ["~虚无"],
+		"PROPER_NAME": "虚无"
+	},
+	"~Steal":
+	{
+		"DESCRIPTION": "你最多能从BOSS上抢走 #b50 #y金币 ，精英 #b25 #y金币 ，非爪牙敌人 #b10 #y金币 。",
+		"NAMES": ["~偷窃"],
+		"PROPER_NAME": "偷窃"
 	},
 	"~Unique":
 	{

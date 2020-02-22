@@ -5,6 +5,11 @@
 		"DESCRIPTIONS": ["回合结束时， 受到 #b", " 点伤害。"],
 		"NAME": "自残"
 	},
+	"EYB:MarkedPower":
+	{
+		"DESCRIPTIONS": ["下次受到的 #y攻击 伤害额外增加 #b{0} 点 。"],
+		"NAME": "印记"
+	},
 	"EYB:ForcePower":
 	{
 		"DESCRIPTIONS": ["回合开始时， 失去 #b1 点 #y武力 和 #y力量。"],

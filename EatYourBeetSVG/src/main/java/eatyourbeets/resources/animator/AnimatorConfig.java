@@ -104,8 +104,8 @@ public class AnimatorConfig
                 CropCardImages = config.getBool(CROP_CARD_PORTRAIT_KEY);
             }
 
-            ModPanel settingsPanel = new ModPanel(); // TODO: Localize
-            settingsPanel.addUIElement(new ModLabeledToggleButton("Use card hovering animation.", 400, 700,
+            ModPanel settingsPanel = new ModPanel();
+            settingsPanel.addUIElement(new ModLabeledToggleButton(GR.Animator.Strings.Misc.UseCardHoveringAnimation, 400, 700,
             Settings.CREAM_COLOR, FontHelper.charDescFont, GetCropCardImages(), settingsPanel, __ -> { }, c -> SetCropCardImages(c.enabled, true)));
             BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", settingsPanel);
         }

@@ -8,8 +8,6 @@ import eatyourbeets.characters.UnnamedCharacter;
 import eatyourbeets.relics.unnamed.InfinitePower;
 import eatyourbeets.resources.AbstractResources;
 
-import java.io.File;
-
 public class UnnamedResources extends AbstractResources
 {
     public final static String ID = "unnamed";
@@ -18,25 +16,6 @@ public class UnnamedResources extends AbstractResources
     public UnnamedResources()
     {
         super(ID);
-    }
-
-    private static void LoadLanguagePath()
-    {
-        if (languagePath != null)
-        {
-            return;
-        }
-
-        String filePath = "c:/temp/unnamed-localization/";
-        File f = new File(filePath);
-        if(f.exists() && f.isDirectory())
-        {
-            languagePath = filePath;
-        }
-        else
-        {
-            languagePath = "localization/unnamed/eng/";
-        }
     }
 
     @Override
@@ -72,8 +51,6 @@ public class UnnamedResources extends AbstractResources
     @Override
     protected void InitializeStrings()
     {
-        LoadLanguagePath();
-
         BaseMod.loadCustomStringsFile(CharacterStrings.class, languagePath + "CharacterStrings.json");
         BaseMod.loadCustomStringsFile(CardStrings.class, languagePath + "CardStrings.json");
         BaseMod.loadCustomStringsFile(RelicStrings.class, languagePath + "RelicStrings.json");
@@ -90,6 +67,6 @@ public class UnnamedResources extends AbstractResources
     @Override
     protected void InitializeKeywords()
     {
-        LoadKeywords(languagePath + "KeywordStrings.json");
+        LoadKeywords();
     }
 }

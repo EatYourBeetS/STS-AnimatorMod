@@ -157,7 +157,7 @@ public class PlayCard extends EYBActionWithCallback<AbstractMonster>
 
         if (isDone)
         {
-            if (target == null || GameUtilities.IsDeadOrEscaped(target))
+            if (GameUtilities.RequiresTarget(card) && (target == null || GameUtilities.IsDeadOrEscaped(target)))
             {
                 target = GameUtilities.GetRandomEnemy(true);
             }

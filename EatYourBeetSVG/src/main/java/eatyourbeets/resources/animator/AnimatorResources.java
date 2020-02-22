@@ -53,17 +53,17 @@ public class AnimatorResources extends AbstractResources
         LoadCustomStrings(OrbStrings.class);
         LoadCustomStrings(CharacterStrings.class);
 
-        if (Settings.language != Settings.GameLanguage.ENG)
-        {
-            String json = Gdx.files.internal(GetFallbackLanguagePath() + "CardStrings.json").readString(StandardCharsets.UTF_8.name());
-            BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(json, GetFallbackLanguagePath()));
-        }
+        String json = GetFallbackFile("CardStrings.json").readString(StandardCharsets.UTF_8.name());
+        BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(json, true));
 
-        FileHandle file = Gdx.files.internal(GetLanguagePath(Settings.language) + "CardStrings.json");
-        if (file.exists())
+        if (testFolder.isDirectory() || Settings.language != Settings.GameLanguage.ENG)
         {
-            String json = file.readString(StandardCharsets.UTF_8.name());
-            BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(json, GetLanguagePath(Settings.language)));
+            FileHandle file = GetFile(Settings.language, "CardStrings.json");
+            if (file.exists())
+            {
+                String json2 = file.readString(StandardCharsets.UTF_8.name());
+                BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(json2, false));
+            }
         }
 
         String jsonString = new String(Gdx.files.internal("Animator-CardMetadata.json").readBytes());
@@ -147,26 +147,17 @@ public class AnimatorResources extends AbstractResources
         AnimatorLoadoutsContainer.PreloadResources();
     }
 
-    @Override
-    public String GetLanguagePath(Settings.GameLanguage language)
+    public String ProcessJson(String originalString, boolean useFallback)
     {
-        if (language != Settings.GameLanguage.ZHT && language != Settings.GameLanguage.ZHS)
-        {
-            language = Settings.GameLanguage.ENG;
-        }
+        final String path = "CardStringsShortcuts.json";
+        final FileHandle file = useFallback ? GetFallbackFile(path) : GetFile(Settings.language, path);
 
-        return super.GetLanguagePath(language);
-    }
-
-    public String ProcessJson(String originalString, String languagePath)
-    {
-        String path = languagePath + "CardStringsShortcuts.json";
-        if (!Gdx.files.internal(path).exists())
+        if (!file.exists())
         {
             return originalString;
         }
 
-        String shortcutsJson = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
+        String shortcutsJson = file.readString(String.valueOf(StandardCharsets.UTF_8));
         Map<String, String> items = new Gson().fromJson(shortcutsJson, new TypeToken<Map<String, String>>(){}.getType());
 
         int size = items.size();

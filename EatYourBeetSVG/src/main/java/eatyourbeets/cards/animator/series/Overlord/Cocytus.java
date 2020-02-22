@@ -2,12 +2,14 @@ package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Cocytus extends AnimatorCard
 {
@@ -17,8 +19,8 @@ public class Cocytus extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0);
-        SetUpgrade(3, 0);
+        Initialize(5, 0, 2, 2);
+        SetUpgrade(1, 0, 1, 0);
         SetScaling(0, 0, 2);
 
         SetSynergy(Synergies.Overlord);
@@ -28,18 +30,15 @@ public class Cocytus extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActions.Bottom.GainForce(1);
 
-        if (HasSynergy())
+        if (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID) <= magicNumber)
         {
-            if (AbstractDungeon.cardRandomRng.randomBoolean())
-            {
-                GameActions.Bottom.GainThorns(1);
-            }
-            else
-            {
-                GameActions.Bottom.GainPlatedArmor(1);
-            }
+            GameActions.Bottom.GainForce(1, true);
+        }
+
+        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.GainPlatedArmor(secondaryValue);
         }
     }
 }

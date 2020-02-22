@@ -178,5 +178,4 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
         return copy;
     }
-
 }

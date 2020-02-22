@@ -4,7 +4,6 @@ import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
@@ -147,17 +146,6 @@ public class CommonResources extends AbstractResources
                 }
             }
         }
-    }
-
-    @Override
-    public String GetLanguagePath(Settings.GameLanguage language)
-    {
-        if (language != Settings.GameLanguage.ZHT && language != Settings.GameLanguage.ZHS)
-        {
-            language = Settings.GameLanguage.ENG;
-        }
-
-        return super.GetLanguagePath(language);
     }
 
     private static void AddEnergyTooltip(String symbol, TextureAtlas.AtlasRegion region)

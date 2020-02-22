@@ -9,6 +9,7 @@ public class AnimatorStrings
 {
     public Tips Tips;
     public Rewards Rewards;
+    public Misc Misc;
     public Synergies Synergies;
     public CharacterSelect CharSelect;
     public SeriesSelection SeriesSelection;
@@ -17,6 +18,7 @@ public class AnimatorStrings
 
     public void Initialize()
     {
+        Misc = new Misc();
         Tips = new Tips();
         Rewards = new Rewards();
         Synergies = new Synergies();
@@ -66,6 +68,25 @@ public class AnimatorStrings
         private final UIStrings Strings = GetUIStrings("Synergies");
 
         public final String Series = Strings.EXTRA_TEXT[0];
+
+        public final String SynergyName(int synergyID)
+        {
+            return Strings.TEXT[synergyID];
+        }
+    }
+
+    public class Misc
+    {
+        private final UIStrings Strings = GetUIStrings("Misc");
+
+        public final String Discord = Strings.TEXT[0];
+        public final String DiscordDescription = Strings.TEXT[1];
+        public final String Steam = Strings.TEXT[2];
+        public final String SteamDescription = Strings.TEXT[3];
+        public final String NotEnoughCards = Strings.TEXT[4];
+        public final String DynamicPortraits = Strings.TEXT[5];
+        public final String UseCardHoveringAnimation = Strings.TEXT[6];
+        public final String PressControlToCycle = Strings.TEXT[7];
 
         public final String SynergyName(int synergyID)
         {

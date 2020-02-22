@@ -62,7 +62,7 @@ public class EYBCardPreview
 
         if (isMultiPreview)
         {
-            String cyclePreviewText = "'CTRL' to cycle"; // TODO: Localization
+            String cyclePreviewText = GR.Animator.Strings.Misc.PressControlToCycle;
             BitmapFont font = RenderHelpers.GetDescriptionFont(preview, 0.9f);
             RenderHelpers.DrawOnCardAuto(sb, preview, GR.Common.Images.Panel.Texture(), new Vector2(0, -AbstractCard.RAW_H * 0.55f),
             IMG_WIDTH * 0.6f, font.getLineHeight() * 1.8f, Color.DARK_GRAY, 0.75f, 1);

@@ -5,6 +5,11 @@
 		"DESCRIPTIONS": ["At the end of this turn, take #b", " damage."],
 		"NAME": "Self Damage"
 	},
+	"EYB:MarkedPower":
+	{
+		"DESCRIPTIONS": ["Take #b{0} additional damage on the next #yAttack."],
+		"NAME": "Marked"
+	},
 	"EYB:ForcePower":
 	{
 		"DESCRIPTIONS": ["Lose #b1 #yForce at the start of each turn.", " If you reach #b{0} #yForce, gain #b{1} #yStrength."],

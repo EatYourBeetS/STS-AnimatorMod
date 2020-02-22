@@ -1,19 +1,25 @@
 package eatyourbeets.resources;
 
 import basemod.interfaces.*;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.megacrit.cardcrawl.core.Settings;
+
+import java.io.File;
 
 public abstract class AbstractResources extends GR
 implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber,
            EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
            AddAudioSubscriber
 {
+    protected final FileHandle testFolder;
     protected final String prefix;
     protected String defaultLanguagePath;
 
     protected AbstractResources(String prefix)
     {
         this.prefix = prefix;
+        this.testFolder = new FileHandle("c:/temp/" + prefix + "-localization/");;
     }
 
     public String CreateID(String suffix)
@@ -84,35 +90,35 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     protected void InitializeKeywords()  { }
     protected void PostInitialize()      { }
 
-    public String GetFallbackLanguagePath()
+    public FileHandle GetFallbackFile(String fileName)
     {
-//        if (defaultLanguagePath == null)
-//        {
-//            File f = new File("c:/temp/" + prefix + "-localization/");
-//            if (f.exists() && f.isDirectory())
-//            {
-//                defaultLanguagePath = f.getAbsolutePath();
-//            }
-//            else
-//            {
-//                defaultLanguagePath = GetLanguagePath(Settings.GameLanguage.ENG);
-//            }
-//        }
-        return GetLanguagePath(Settings.GameLanguage.ENG);
+        return Gdx.files.internal("localization/" + prefix + "/eng/" + fileName);
     }
 
-    public String GetLanguagePath(Settings.GameLanguage language)
+    public FileHandle GetFile(Settings.GameLanguage language, String fileName)
     {
-        return "localization/" + prefix + "/" + language.name().toLowerCase() + "/";
+        if (testFolder.isDirectory() && new File(testFolder.path() + "/" + fileName).isFile())
+        {
+            return Gdx.files.internal(testFolder.path() + "/" + fileName);
+        }
+        else
+        {
+            if (language != Settings.GameLanguage.ENG)
+            {
+                language = Settings.GameLanguage.ENG; // TODO: Change this to accept ZHS and ZHT once the translation is ready
+            }
+
+            return Gdx.files.internal("localization/" + prefix + "/" + language.name().toLowerCase() + "/" + fileName);
+        }
     }
 
     protected void LoadKeywords()
     {
-        super.LoadKeywords(GetFallbackLanguagePath() + "KeywordStrings.json");
+        super.LoadKeywords(GetFallbackFile("KeywordStrings.json"));
 
-        if (Settings.language != Settings.GameLanguage.ENG)
+        if (testFolder.isDirectory() || Settings.language != Settings.GameLanguage.ENG)
         {
-            super.LoadKeywords(GetLanguagePath(Settings.language) + "KeywordStrings.json");
+            super.LoadKeywords(GetFile(Settings.language, "KeywordStrings.json"));
         }
     }
 
@@ -133,11 +139,11 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     protected void LoadCustomStrings(Class<?> type)
     {
-        super.LoadCustomStrings(type, GetFallbackLanguagePath() + type.getSimpleName() + ".json");
+        super.LoadCustomStrings(type, GetFallbackFile(type.getSimpleName() + ".json"));
 
-//        if (Settings.language != Settings.GameLanguage.ENG)
-//        {
-//            super.LoadCustomStrings(type, GetLanguagePath(Settings.language) + type.getSimpleName() + ".json");
-//        }
+        if (testFolder.isDirectory() || Settings.language != Settings.GameLanguage.ENG)
+        {
+            super.LoadCustomStrings(type, GetFile(Settings.language, type.getSimpleName() + ".json"));
+        }
     }
 }

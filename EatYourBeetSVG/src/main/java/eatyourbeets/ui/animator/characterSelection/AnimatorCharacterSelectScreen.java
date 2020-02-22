@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.utilities.GameUtilities;
@@ -108,15 +109,15 @@ public class AnimatorCharacterSelectScreen
 
         final float offsetX = 60 * Settings.scale;
         final float offsetY = 0;
+        final AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
 
-        // TODO: Localization
         if (DiscordButton.interactable && DiscordButton.hb.hovered)
         {
-            TipHelper.renderGenericTip(DiscordButton.hb.cX + offsetX, DiscordButton.hb.cY + offsetY, "Discord", "The Animator Discord link.");
+            TipHelper.renderGenericTip(DiscordButton.hb.cX + offsetX, DiscordButton.hb.cY + offsetY, misc.Discord, misc.DiscordDescription);
         }
         else if (SteamButton.interactable && SteamButton.hb.hovered)
         {
-            TipHelper.renderGenericTip(SteamButton.hb.cX + offsetX, SteamButton.hb.cY + offsetY, "Steam", "The Animator Steam page.");
+            TipHelper.renderGenericTip(SteamButton.hb.cX + offsetX, SteamButton.hb.cY + offsetY, misc.Steam, misc.SteamDescription);
         }
     }
 

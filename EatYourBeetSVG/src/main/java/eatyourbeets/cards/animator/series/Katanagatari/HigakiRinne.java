@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -89,6 +90,10 @@ public class HigakiRinne extends AnimatorCard
         else if (n < 65)
         {
             ChangeForm(CardType.POWER);
+        }
+        else if (n < 69)
+        {
+            CardCrawlGame.sound.playA("ORB_SLOT_GAIN", -0.82f);
         }
     }
 

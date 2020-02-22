@@ -46,6 +46,8 @@ public abstract class EYBCardBase extends AbstractCard
     @Override public final void initializeDescriptionCN() { initializeDescription(); }
     @Override public void calculateDamageDisplay(AbstractMonster mo) { calculateCardDamage(mo); }
     @Override public abstract void renderUpgradePreview(SpriteBatch sb);
+    @Override public abstract void initializeDescription();
+    @Override public abstract void calculateCardDamage(AbstractMonster mo);
     //@Formatter: On
 
     protected static final FieldInfo<Boolean> _darken = JavaUtilities.GetField("darken", AbstractCard.class);

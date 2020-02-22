@@ -27,7 +27,7 @@ public class AnimatorCardRewardInfo extends GUIElement
         zoomToggle = new GUI_Toggle(new Hitbox(Scale(256), Scale(48.0F)))
         .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
         .SetPosition(ScreenW(0.9f), ScreenH(0.65f) - (upgradeToggle.hb.height * 1.05f))
-        .SetText("Dynamic Portraits") // TODO: Localization
+        .SetText(GR.Animator.Strings.Misc.DynamicPortraits)
         .SetFont(RenderHelpers.CardDescriptionFont_Large, 0.475f)
         .SetOnToggle(this::ToggleCardZoom);
     }

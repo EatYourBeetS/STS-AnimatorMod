@@ -141,5 +141,20 @@
 			"###############",
 			"Unlocks at Level {0} (You are Level {1})"
 		]
+	},
+	
+	"animator:Misc":
+	{
+		"TEXT":
+		[
+			"Discord", 
+			"The Animator Discord link.",
+			"Steam", 
+			"The Animator Steam page.",
+			"Not enough cards of this type.",
+			"Dynamic Portraits",
+			"Use card hovering animation.",
+			"'CTRL' to cycle"
+		]
 	}
 }

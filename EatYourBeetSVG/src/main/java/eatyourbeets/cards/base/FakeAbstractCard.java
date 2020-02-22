@@ -40,6 +40,18 @@ public class FakeAbstractCard extends EYBCardBase
     }
 
     @Override
+    public void initializeDescription()
+    {
+
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo)
+    {
+
+    }
+
+    @Override
     public AbstractCard makeCopy()
     {
         return FromCard(source);

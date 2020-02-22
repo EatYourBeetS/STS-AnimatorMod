@@ -298,12 +298,11 @@ public class GR
         }
     }
 
-    protected void LoadKeywords(String path)
+    protected void LoadKeywords(FileHandle file)
     {
-        FileHandle file = Gdx.files.internal(path);
         if (!file.exists())
         {
-            JavaUtilities.GetLogger(this).warn("File not found: " + path);
+            JavaUtilities.GetLogger(this).warn("File not found: " + file.path());
             return;
         }
 
@@ -327,15 +326,15 @@ public class GR
         }
     }
 
-    protected void LoadCustomStrings(Class<?> type, String path)
+    protected void LoadCustomStrings(Class<?> type, FileHandle file)
     {
-        if (Gdx.files.internal(path).exists())
+        if (file.exists())
         {
-            BaseMod.loadCustomStringsFile(type, path);
+            BaseMod.loadCustomStrings(type, file.readString(String.valueOf(StandardCharsets.UTF_8)));
         }
         else
         {
-            JavaUtilities.GetLogger(this).warn("File not found: " + path);
+            JavaUtilities.GetLogger(this).warn("File not found: " + file.path());
         }
     }
 

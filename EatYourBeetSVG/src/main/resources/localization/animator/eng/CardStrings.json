@@ -160,7 +160,7 @@
 	},
 	"animator:Ciel":
 	{
-		"DESCRIPTION": "Your next {Attack} deals ** !M! additional damage. || Synergy: Increase the ** damage of every copy of ** {Lu} in your deck by !S!.",
+		"DESCRIPTION": "The enemy takes !M! more ** damage on the next attack. || Synergy: Increase the ** damage of every copy of ** {Lu} in your deck by !S!.",
 		"NAME": "Ciel"
 	},
 	"animator:Cirno":
@@ -170,7 +170,7 @@
 	},
 	"animator:Cocytus":
 	{
-		"DESCRIPTION": "Gain 1 <FOR>. || Synergy: Randomly ** gain either Thorns ** or {Plated Armor}.",
+		"DESCRIPTION": "If you have !M! or ** less [F]: Boost [F]. || <slm>. Synergy: ** Gain !S! {Plat. Armor}.",
 		"NAME": "Cocytus"
 	},
 	"animator:CowGirl":

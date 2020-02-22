@@ -57,11 +57,7 @@ public abstract class SpecialToken extends CTToken
                     {
                         if (token instanceof WordToken)
                         {
-                            if (word.charAt(0) != '#')
-                            {
-                                ((WordToken) token).overrideColor = Settings.GOLD_COLOR.cpy();
-                            }
-
+                            ((WordToken)token).overrideColor = Settings.GOLD_COLOR.cpy();
                             ((WordToken)token).tooltip = tooltip;
                         }
 

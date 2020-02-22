@@ -47,8 +47,8 @@ public class ShichikaKyotouryuu extends AnimatorCard implements MartialArtist
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Add(new RemoveAllBlockAction(m, player));
-        GameActions.Bottom.VFX(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale,
-        AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F);
+//        GameActions.Bottom.VFX(new FlashAtkImgEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale,
+//        AbstractGameAction.AttackEffect.SLASH_HEAVY), 0.1F);
 
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);

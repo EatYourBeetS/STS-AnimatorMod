@@ -764,6 +764,11 @@ public class GameUtilities
         return pool;
     }
 
+    public static boolean RequiresTarget(AbstractCard card)
+    {
+        return card.target == AbstractCard.CardTarget.ENEMY || card.target == AbstractCard.CardTarget.SELF_AND_ENEMY;
+    }
+
     private static class HandLayoutRefresher implements OnPhaseChangedSubscriber
     {
         @Override

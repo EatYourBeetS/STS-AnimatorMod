@@ -95,7 +95,7 @@ public class GUI_Button extends GUIElement
 
     public GUI_Button SetColor(Color buttonColor)
     {
-        this.buttonColor = buttonColor;
+        this.buttonColor = buttonColor.cpy();
 
         return this;
     }

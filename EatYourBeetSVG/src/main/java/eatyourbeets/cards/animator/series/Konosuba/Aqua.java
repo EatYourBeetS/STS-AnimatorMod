@@ -79,6 +79,12 @@ public class Aqua extends AnimatorCard
     }
 
     @Override
+    public boolean canUpgrade()
+    {
+        return !upgraded;
+    }
+
+    @Override
     public AbstractCard makeStatEquivalentCopy()
     {
         Aqua other = (Aqua) super.makeStatEquivalentCopy();

@@ -5,31 +5,25 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.RegrowPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.cards.animator.series.GoblinSlayer.GuildGirl;
 import eatyourbeets.interfaces.subscribers.OnEnemyDyingSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscriber
 {
     public static final String POWER_ID = CreateFullID(GuildGirlPower.class.getSimpleName());
-
-    private final String rewardName;
-    private final int goldGain;
+    public static final int GOLD_GAIN = 4;
 
     private int goldReward;
 
-    public GuildGirlPower(AbstractCreature owner, int amount, int goldGain)
+    public GuildGirlPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.rewardName = GuildGirl.DATA.Strings.NAME;
         this.amount = amount;
         this.goldReward = 0;
-        this.goldGain = goldGain;
 
         updateDescription();
     }
@@ -63,7 +57,8 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
     {
         if (!monster.hasPower(MinionPower.POWER_ID) && !monster.hasPower(RegrowPower.POWER_ID))
         {
-            this.goldReward += this.goldGain;
+            this.goldReward += GOLD_GAIN;
+            this.flash();
         }
     }
 
@@ -75,7 +70,10 @@ public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscri
         AbstractRoom room = GameUtilities.GetCurrentRoom();
         if (room != null && room.rewardAllowed && goldReward > 0)
         {
-            room.rewards.add(0, new SpecialGoldReward(rewardName, goldReward));
+            room.addGoldToRewards(goldReward);
+
+            //The following can't be used because, for UNKNOWN REASONS it changes the rng of the other rewards
+            //room.rewards.add(new SpecialGoldReward(GuildGirl.DATA.Strings.NAME, goldReward));
         }
     }
 }

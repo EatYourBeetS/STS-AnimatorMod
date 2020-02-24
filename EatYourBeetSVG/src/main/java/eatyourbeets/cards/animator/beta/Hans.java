@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NoxiousFumesPower;
+import eatyourbeets.cards.animator.status.Hans_Slimed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
@@ -12,6 +13,10 @@ import eatyourbeets.utilities.GameActions;
 public class Hans extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Hans.class).SetPower(3, CardRarity.RARE);
+    static
+    {
+        DATA.AddPreview(new Hans_Slimed(), true);
+    }
 
     public Hans()
     {
@@ -27,6 +32,6 @@ public class Hans extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.StackPower(new NoxiousFumesPower(p, magicNumber));
-        GameActions.Bottom.StackPower(new HansPower(p, secondaryValue));
+        GameActions.Bottom.StackPower(new HansPower(p, secondaryValue, upgraded));
     }
 }

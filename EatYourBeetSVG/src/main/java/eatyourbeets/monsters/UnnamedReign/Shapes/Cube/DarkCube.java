@@ -14,9 +14,9 @@ public class DarkCube extends Cube
     {
         super(MonsterElement.Dark, tier, x, y);
 
-        moveset.AddNormal(new Move_Defend(tier.Add(3,3)));
+        moveset.AddNormal(new Move_Defend(tier.Add(3,5)));
         moveset.AddNormal(new Move_GainTempThorns(tier.Add(3,3)));
-        moveset.AddNormal(new Move_AttackDefend(tier.Add(3,3), tier.Add(3, 3)));
+        moveset.AddNormal(new Move_AttackDefend(tier.Add(2,4), tier.Add(2, 4)));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class DarkCube extends Cube
                 break;
 
             case Advanced:
-                amount = 4;
+                amount = 3;
                 break;
 
             case Ultimate:

@@ -5,11 +5,8 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.WraithFormPower;
 import eatyourbeets.monsters.Moveset;
+import eatyourbeets.monsters.SharedMoveset.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultiple;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleFrail;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleVulnerable;
-import eatyourbeets.monsters.SharedMoveset.Move_AttackMultipleWeak;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
@@ -30,14 +27,15 @@ public class UltimateCube extends Cube
         boolean asc4 = GameUtilities.GetActualAscensionLevel() >= 4;
         boolean asc18 = GameUtilities.GetActualAscensionLevel() >= 18;
 
-        moveset.AddSpecial(new Move_AttackMultiple(6, asc4 ? 32 : 24));
-
         int debuffsAmount = asc18 ? 3 : 2;
         int damageAmount = asc4 ? 6 : 4;
 
+        moveset.AddSpecial(new Move_AttackMultiple(6, asc4 ? 32 : 24));
+        moveset.AddSpecial(new Move_AttackVulnerable(24, 2));
+
         moveset.AddNormal(new Move_AttackMultipleWeak(damageAmount, 2, debuffsAmount));
-        moveset.AddNormal(new Move_AttackMultipleVulnerable(damageAmount, 2, debuffsAmount));
         moveset.AddNormal(new Move_AttackMultipleFrail(damageAmount, 2, debuffsAmount));
+        moveset.AddNormal(new Move_AttackMultipleVulnerable(damageAmount, 2, debuffsAmount));
     }
 
     @Override
@@ -49,6 +47,12 @@ public class UltimateCube extends Cube
         }
         else
         {
+            if (historySize == 0)
+            {
+                moveset.GetMove(Move_AttackVulnerable.class).SetMove();
+                return;
+            }
+
             super.SetNextMove(roll, historySize, previousMove);
         }
     }

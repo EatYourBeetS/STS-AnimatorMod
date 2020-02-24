@@ -2,7 +2,6 @@ package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.SpiritPoop;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
@@ -101,7 +100,7 @@ public class AnimatorCardRewardBanish extends GUIElement
                 GameEffects.Queue.Add(new HideCardEffect(toBan.card));
                 OnCardBanned(toBan.card);
 
-                AbstractCard replacement = FindReplacement();
+                AbstractCard replacement = GameUtilities.GetRandomRewardCard(rewardItem, false);
                 if (replacement != null)
                 {
                     replacement.current_x = replacement.target_x = toBan.card.current_x;
@@ -134,59 +133,6 @@ public class AnimatorCardRewardBanish extends GUIElement
             {
                 banButton.TryRender(sb);
             }
-        }
-    }
-
-    private AbstractCard FindReplacement()
-    {
-        AbstractCard replacement = null;
-        boolean searchingCard = true;
-        while (searchingCard)
-        {
-            searchingCard = false;
-
-            AbstractCard temp = returnRandomCard();
-            if (temp == null)
-            {
-                break;
-            }
-
-            for (AbstractCard c : rewardItem.cards)
-            {
-                if (temp.cardID.equals(c.cardID))
-                {
-                    searchingCard = true;
-                }
-            }
-
-            if (!searchingCard)
-            {
-                replacement = temp.makeCopy();
-            }
-        }
-
-        return replacement;
-    }
-
-    private AbstractCard returnRandomCard()
-    {
-        ArrayList<AbstractCard> list;
-        if (AbstractDungeon.cardRng.randomBoolean(0.4f))
-        {
-            list = AbstractDungeon.srcUncommonCardPool.group;
-        }
-        else
-        {
-            list = AbstractDungeon.srcCommonCardPool.group;
-        }
-
-        if (list != null && list.size() > 0)
-        {
-            return list.get(AbstractDungeon.cardRng.random(list.size() - 1));
-        }
-        else
-        {
-            return null;
         }
     }
 

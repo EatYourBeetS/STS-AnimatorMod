@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shichika extends AnimatorCard implements MartialArtist
 {
-    public static final EYBCardData DATA = Register(Shichika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Shichika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
     static
     {
         DATA.AddPreview(new ShichikaKyotouryuu(), false);

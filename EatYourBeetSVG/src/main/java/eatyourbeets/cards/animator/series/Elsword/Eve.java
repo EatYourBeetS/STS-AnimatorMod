@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Eve extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Eve.class).SetPower(3, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Eve.class).SetPower(3, CardRarity.RARE).SetMaxCopies(1);
     static
     {
         for (OrbCore core : OrbCore.GetAllCores())

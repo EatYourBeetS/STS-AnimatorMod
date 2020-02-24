@@ -212,7 +212,7 @@ public class SoraAction extends EYBAction
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        GameActions.Bottom.Cycle(c.name, c.magicNumber);
+                        GameActions.Bottom.Cycle(c.name, c.magicNumber).DrawInstantly(true);
                     });
                 }
 
@@ -220,8 +220,7 @@ public class SoraAction extends EYBAction
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        GameActions.Bottom.DealDamageToAll(c, AttackEffect.SMASH)
-                        .SetPiercing(true, false);
+                        GameActions.Bottom.DealDamageToAll(c, AttackEffect.SMASH);
                         GameUtilities.UsePenNib();
                     });
                 }
@@ -273,8 +272,7 @@ public class SoraAction extends EYBAction
                     {
                         for (int i = 0; i < 2; i++)
                         {
-                            GameActions.Bottom.DealDamageToRandomEnemy(c, AbstractGameAction.AttackEffect.SMASH)
-                            .SetPiercing(true, false);
+                            GameActions.Bottom.DealDamageToRandomEnemy(c, AbstractGameAction.AttackEffect.SMASH);
                         }
                         GameUtilities.UsePenNib();
                     });

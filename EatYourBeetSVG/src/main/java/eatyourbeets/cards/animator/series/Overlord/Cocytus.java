@@ -19,7 +19,7 @@ public class Cocytus extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 2, 2);
+        Initialize(6, 0, 2, 2);
         SetUpgrade(1, 0, 1, 0);
         SetScaling(0, 0, 2);
 

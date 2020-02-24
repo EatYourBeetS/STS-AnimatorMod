@@ -12,9 +12,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Ghosts;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.events.animator.TheMaskedTraveler1;
+import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
 import eatyourbeets.interfaces.subscribers.OnCardPoolChangedSubscriber;
 import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.relics.animator.PurgingStone;
@@ -22,6 +24,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 
@@ -168,6 +171,9 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             return;
         }
 
+        AbstractDungeon.uncommonRelicPool.remove(PenNib.ID);
+        AbstractDungeon.uncommonRelicPool.remove(Kunai.ID);
+        AbstractDungeon.uncommonRelicPool.remove(StrikeDummy.ID);
         AbstractDungeon.bossRelicPool.remove(SneckoEye.ID);
         AbstractDungeon.bossRelicPool.remove(RunicPyramid.ID);
         AddRelicToPool(MarkOfPain.ID, AbstractRelic.RelicTier.BOSS);
@@ -246,12 +252,118 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             {
                 if (card instanceof OnCardPoolChangedSubscriber)
                 {
-                    ((OnCardPoolChangedSubscriber) card).OnCardPoolChanged();
+                    ((OnCardPoolChangedSubscriber)card).OnCardPoolChanged();
+                }
+
+                RemoveExtraCopies(card);
+            }
+        }
+    }
+
+    public void OnCardObtained(AbstractCard card)
+    {
+        if (card instanceof OnAddedToDeckSubscriber)
+        {
+            ((OnAddedToDeckSubscriber)card).OnAddedToDeck();
+        }
+
+        RemoveExtraCopies(card);
+
+        if (card.tags.contains(GR.Enums.CardTags.UNIQUE))
+        {
+            AbstractCard first = null;
+
+            ArrayList<AbstractCard> toRemove = new ArrayList<>();
+            ArrayList<AbstractCard> cards = AbstractDungeon.player.masterDeck.group;
+            for (AbstractCard c : cards)
+            {
+                if (c.cardID.equals(card.cardID))
+                {
+                    if (first == null)
+                    {
+                        first = c;
+                    }
+                    else
+                    {
+                        toRemove.add(c);
+                        for (int i = 0; i <= c.timesUpgraded; i++)
+                        {
+                            first.upgrade();
+                        }
+                    }
+                }
+            }
+
+            for (AbstractCard c : toRemove)
+            {
+                cards.remove(c);
+            }
+
+            if (first != null && toRemove.size() > 0 && GameEffects.TopLevelQueue.Count() < 5)
+            {
+                GameEffects.TopLevelQueue.Add(new UpgradeShineEffect((float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F));
+                GameEffects.TopLevelQueue.ShowCardBriefly(first.makeStatEquivalentCopy(), (float) Settings.WIDTH / 4.0F, (float) Settings.HEIGHT / 2.0F);
+            }
+        }
+    }
+
+    private void RemoveExtraCopies(AbstractCard card)
+    {
+        EYBCard eybCard = JavaUtilities.SafeCast(card, EYBCard.class);
+        if (eybCard != null)
+        {
+            if (eybCard.cardData.MaxCopies > 0)
+            {
+                int copies = GameUtilities.GetAllCopies(eybCard.cardID, AbstractDungeon.player.masterDeck).size();
+                if (copies > eybCard.cardData.MaxCopies)
+                {
+                    RemoveCardFromPools(eybCard);
                 }
             }
         }
     }
 
+    private void RemoveCardFromPools(AbstractCard card)
+    {
+        if (card.color == AbstractCard.CardColor.COLORLESS)
+        {
+            AbstractDungeon.colorlessCardPool.removeCard(card.cardID);
+            AbstractDungeon.srcColorlessCardPool.removeCard(card.cardID);
+            return;
+        }
+
+        switch (card.rarity)
+        {
+            case BASIC:
+            case SPECIAL:
+            case CURSE:
+            {
+                JavaUtilities.GetLogger(this).warn("Wrong card rarity for RemoveCardFromPools(), " + card.cardID);
+                break;
+            }
+
+            case COMMON:
+            {
+                AbstractDungeon.commonCardPool.removeCard(card.cardID);
+                AbstractDungeon.srcCommonCardPool.removeCard(card.cardID);
+                break;
+            }
+
+            case UNCOMMON:
+            {
+                AbstractDungeon.uncommonCardPool.removeCard(card.cardID);
+                AbstractDungeon.srcUncommonCardPool.removeCard(card.cardID);
+                break;
+            }
+
+            case RARE:
+            {
+                AbstractDungeon.rareCardPool.removeCard(card.cardID);
+                AbstractDungeon.srcRareCardPool.removeCard(card.cardID);
+                break;
+            }
+        }
+    }
 
     private void AddRelicToPool(String relicID, AbstractRelic.RelicTier tier)
     {

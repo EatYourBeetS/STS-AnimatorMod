@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.orbs.animator.Earth;
@@ -13,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorCard implements Spellcaster
 {
-    public static final EYBCardData DATA = Register(Arpeggio.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Arpeggio.class).SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(2);
 
     public Arpeggio()
     {
@@ -22,7 +21,6 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetExhaust(true);
         SetSynergy(Synergies.Gate);
     }
 
@@ -34,7 +32,7 @@ public class Arpeggio extends AnimatorCard implements Spellcaster
             GameActions.Bottom.GainOrbSlots(magicNumber);
         }
 
-        GameActions.Bottom.GainIntellect(secondaryValue);
+        GameActions.Bottom.GainIntellect(secondaryValue, false);
 
         if (HasSynergy() && EffectHistory.TryActivateLimited(cardID))
         {

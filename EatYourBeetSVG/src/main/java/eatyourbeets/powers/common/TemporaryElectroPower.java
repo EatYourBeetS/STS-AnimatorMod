@@ -29,9 +29,9 @@ public class TemporaryElectroPower extends ElectroPower implements CloneablePowe
     }
 
     @Override
-    public void atStartOfTurn()
+    public void atStartOfTurnPostDraw()
     {
-        super.atStartOfTurn();
+        super.atStartOfTurnPostDraw();
 
         if (!permanent)
         {

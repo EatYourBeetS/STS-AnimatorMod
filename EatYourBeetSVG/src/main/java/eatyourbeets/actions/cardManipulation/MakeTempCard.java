@@ -71,7 +71,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             actualCard = card;
         }
 
-        if (upgrade)
+        if (upgrade && actualCard.canUpgrade())
         {
             actualCard.upgrade();
         }

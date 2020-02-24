@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator;
 
 import basemod.BaseMod;
+import basemod.abstracts.CustomUnlockBundle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.characters.AnimatorCharacter;
@@ -92,6 +94,13 @@ public class AnimatorResources extends AbstractResources
     protected void InitializeCharacter()
     {
         BaseMod.addCharacter(new AnimatorCharacter(), Images.CHAR_BUTTON_PNG, Images.CHAR_PORTRAIT_JPG, PlayerClass);
+
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "Nothing", "Anime", "A new starting deck!"), PlayerClass, 0);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "Nothing", "Anime", "A new starting deck!"), PlayerClass, 1);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "Unicorns", "BaseMod", "A new starting deck!"), PlayerClass, 2);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "A piece of paper", "BaseMod", "A new starting deck!"), PlayerClass, 3);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "A new bug", "BaseMod", "A new starting deck!"), PlayerClass, 4);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "The Void", "Breaking changes without a warning!", "A new starting deck!"), PlayerClass, 5);
     }
 
     @Override

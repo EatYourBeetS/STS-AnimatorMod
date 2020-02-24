@@ -65,7 +65,7 @@
 	},
 	"animator:Arpeggio":
 	{
-		"DESCRIPTION": "Gain !S! Intellect. ** Gain !M! Orb Slot(s). || Limited. Synergy: ** Channel 1 Earth.",
+		"DESCRIPTION": "Gain !S! [I]. ** Gain !M! Orb Slot(s). || Limited. Synergy: ** Channel 1 Earth.",
 		"NAME": "Arpeggio"
 	},
 	"animator:Asuramaru":
@@ -115,7 +115,7 @@
 	},
 	"animator:Canti":
 	{
-		"DESCRIPTION": "Deal additional damage ** equal to the enemy's ** base attack damage.",
+		"DESCRIPTION": "Deal additional ** damage equal to the ** enemy's current ** attack damage.",
 		"NAME": "Canti"
 	},
 	"animator:Caster":
@@ -313,7 +313,7 @@
 	},
 	"animator:DolaStephanie":
 	{
-		"DESCRIPTION": "Choose a card in your ** hand, Fetch 1 card with ** the same Synergy from ** your draw pile.",
+		"DESCRIPTION": "Choose a card in your ** hand: Fetch a card that ** would Synergize with it ** from your draw pile.",
 		"EXTENDED_DESCRIPTION": ["Fetch Cards with the same Synergy."],
 		"NAME": "Stephanie"
 	},
@@ -400,10 +400,21 @@
 		"DESCRIPTION": "Gain 1 Intangible.",
 		"NAME": "Excalibur"
 	},
+	"animator:Father":
+	{
+		"DESCRIPTION": "Lose !S!% of your Max HP. ** Obtain {Philosopher's Stone}. || Remove this card from ** your deck and from ** future card rewards.",
+		"NAME": "Father"
+	},
 	"animator:FeridBathory":
 	{
 		"DESCRIPTION": "Whenever a card is Exhausted, ** steal !M! HP from a random ** enemy as {Temp. HP}. || <LIM>. At the start of turn, if ** you have 20 or more cards in ** Exhaust pile, gain !S! <FOR>.",
 		"NAME": "Ferid Bathory"
+	},
+	"animator:FielNirvalen":
+	{
+		"DESCRIPTION": "Choose !M! : Boost [A], ** Boost [I] or Boost [F]. || Once per turn, when ** you shuffle your ** draw pile: Scry !S!.",
+		"EXTENDED_DESCRIPTION": ["Once per turn, when you shuffle your draw pile: #yScry #b{0}.", "Boost [A].", "Boost [I].", "Boost [F]."],
+		"NAME": "Fiel Nirvalen"
 	},
 	"animator:Fredrika":
 	{
@@ -500,9 +511,15 @@
 	},
 	"animator:Hans":
 	{
-		"DESCRIPTION": "Whenever you apply ** Poison: Gain !S! {Temp. HP}. || At the start of turn: ** Apply !M! Poison to ** ALL enemies.",
+		"DESCRIPTION": "Whenever you apply ** Poison: Gain !S! {Temp. HP}. || At the start of turn: Apply !M! ** Poison to ALL enemies and ** add a {Slimed} to your hand.",
 		"EXTENDED_DESCRIPTION": ["Whenever you apply #yPoison, gain #b{0} #yTemporary #yHP."],
 		"NAME": "Hans"
+	},
+	"animator:Hans_Slimed":
+	{
+		"DESCRIPTION": "",
+		"NAME": "Slimed",
+		"UPGRADE_DESCRIPTION": "<DRW>"
 	},
 	"animator:HarukoHaruhara":
 	{
@@ -686,6 +703,11 @@
 		"DESCRIPTION": "Give Shapeshifter to ** a card in your hand. || <LIM>. When Discarded: ** Create and add a random ** Shapeshifter to your hand.",
 		"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
 		"NAME": "Mamizou Futatsuiwa"
+	},
+	"animator:ManiwaHouou":
+	{
+		"DESCRIPTION": "",
+		"NAME": "Maniwa Houou"
 	},
 	"animator:Megumin":
 	{

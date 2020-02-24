@@ -10,8 +10,8 @@ import eatyourbeets.monsters.AbstractMove;
 
 public class Move_AttackMultipleVulnerable extends AbstractMove
 {
-    private final int times;
-    private final int debuffAmount;
+    public int times;
+    public int debuffAmount;
 
     public Move_AttackMultipleVulnerable(int damageAmount, int times, int debuffAmount)
     {

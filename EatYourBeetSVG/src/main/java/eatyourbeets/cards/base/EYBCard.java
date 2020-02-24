@@ -167,10 +167,15 @@ public abstract class EYBCard extends EYBCardBase
     }
 
     @Override
-    public void triggerWhenCopied()
+    public final void triggerOnScry()
+    {
+
+    }
+
+    @Override
+    public final void triggerWhenCopied()
     {
         // this is only used by ShowCardAndAddToHandEffect
-        super.triggerWhenCopied();
         triggerWhenDrawn();
     }
 
@@ -420,7 +425,7 @@ public abstract class EYBCard extends EYBCardBase
 
             if (updateDescription)
             {
-                cardText.ForceRefresh();
+                initializeDescription();
             }
 
             return true;
@@ -621,6 +626,11 @@ public abstract class EYBCard extends EYBCardBase
 
         if (applyEnemyPowers)
         {
+            if (attackType == EYBAttackType.Elemental && enemy.currentBlock > 0)
+            {
+                tempDamage *= 1.3f;
+            }
+
             for (AbstractPower p : enemy.powers)
             {
                 tempDamage = p.atDamageReceive(tempDamage, damageTypeForTurn, this);

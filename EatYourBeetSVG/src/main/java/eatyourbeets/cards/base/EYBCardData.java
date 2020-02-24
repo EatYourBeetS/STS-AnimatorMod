@@ -24,6 +24,7 @@ public class EYBCardData
     public String ID;
     public AbstractCard.CardType CardType;
     public int BaseCost;
+    public int MaxCopies;
 
     public final RotatingList<EYBCardPreview> previews = new RotatingList<>();
     public AbstractCard.CardRarity CardRarity;
@@ -40,6 +41,7 @@ public class EYBCardData
         this.Strings = GR.GetCardStrings(cardID);
         this.ImagePath = GR.GetCardImage(cardID);
         this.ID = cardID;
+        this.MaxCopies = -1;
     }
 
     public EYBCardData(Class<? extends EYBCard> type, String cardID, CardStrings strings)
@@ -47,6 +49,7 @@ public class EYBCardData
         this.type = type;
         this.Strings = strings;
         this.ID = cardID;
+        this.MaxCopies = -1;
     }
 
     public AbstractCard CreateNewInstance() throws RuntimeException
@@ -107,6 +110,13 @@ public class EYBCardData
         {
             return previews.Current();
         }
+    }
+
+    public EYBCardData SetMaxCopies(int maxCopies)
+    {
+        MaxCopies = maxCopies;
+
+        return this;
     }
 
     public EYBCardData SetColor(AbstractCard.CardColor color)

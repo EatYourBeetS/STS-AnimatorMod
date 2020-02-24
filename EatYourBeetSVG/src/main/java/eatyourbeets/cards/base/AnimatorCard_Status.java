@@ -55,10 +55,4 @@ public abstract class AnimatorCard_Status extends AnimatorCard
     {
         return false;
     }
-
-    @Override
-    public void upgrade()
-    {
-
-    }
 }

@@ -91,6 +91,11 @@ public class GR
         return CardCrawlGame.languagePack.getPowerStrings(powerID);
     }
 
+    public static RelicStrings GetRelicStrings(String relicID)
+    {
+        return CardCrawlGame.languagePack.getRelicStrings(relicID);
+    }
+
     public static CardStrings GetCardStrings(String cardID)
     {
         return CardCrawlGame.languagePack.getCardStrings(cardID);

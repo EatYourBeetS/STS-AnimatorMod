@@ -20,10 +20,12 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.relics.PenNib;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
@@ -167,6 +169,69 @@ public class GameUtilities
         }
 
         return 0;
+    }
+
+    public static AbstractCard GetRandomRewardCard(RewardItem rewardItem, boolean includeRares)
+    {
+        AbstractCard replacement = null;
+        boolean searchingCard = true;
+        while (searchingCard)
+        {
+            searchingCard = false;
+
+            AbstractCard temp = GetRandomRewardCard(includeRares);
+            if (temp == null)
+            {
+                break;
+            }
+
+            for (AbstractCard c : rewardItem.cards)
+            {
+                if (temp.cardID.equals(c.cardID))
+                {
+                    searchingCard = true;
+                }
+            }
+
+            if (temp instanceof OnAddingToCardReward && ((OnAddingToCardReward)temp).ShouldCancel(rewardItem))
+            {
+                searchingCard = true;
+            }
+
+            if (!searchingCard)
+            {
+                replacement = temp.makeCopy();
+            }
+        }
+
+        return replacement;
+    }
+
+    public static AbstractCard GetRandomRewardCard(boolean includeRares)
+    {
+        ArrayList<AbstractCard> list;
+        int roll = AbstractDungeon.cardRng.random(100);
+        if (roll <= 4 && includeRares)
+        {
+            list = AbstractDungeon.srcRareCardPool.group;
+        }
+        else if (roll < 40)
+        {
+            list = AbstractDungeon.srcUncommonCardPool.group;
+        }
+        else
+        {
+            list = AbstractDungeon.srcCommonCardPool.group;
+        }
+
+        if (list != null && list.size() > 0)
+        {
+            return list.get(AbstractDungeon.cardRng.random(list.size() - 1));
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public static ArrayList<AbstractMonster> GetCurrentEnemies(boolean aliveOnly)
@@ -767,6 +832,20 @@ public class GameUtilities
     public static boolean RequiresTarget(AbstractCard card)
     {
         return card.target == AbstractCard.CardTarget.ENEMY || card.target == AbstractCard.CardTarget.SELF_AND_ENEMY;
+    }
+
+    public static HashSet<AbstractCard> GetAllCopies(String cardID, CardGroup group)
+    {
+        HashSet<AbstractCard> result = new HashSet<>();
+        for (AbstractCard card : group.group)
+        {
+            if (cardID.equals(card.cardID))
+            {
+                result.add(card);
+            }
+        }
+
+        return result;
     }
 
     private static class HandLayoutRefresher implements OnPhaseChangedSubscriber

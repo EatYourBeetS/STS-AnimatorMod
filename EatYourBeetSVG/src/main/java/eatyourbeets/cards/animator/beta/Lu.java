@@ -5,21 +5,18 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.defect.EvokeAllOrbsAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.ClawEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
-import eatyourbeets.interfaces.subscribers.OnCardPoolChangedSubscriber;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class Lu extends AnimatorCard implements OnAddedToDeckSubscriber, OnCardPoolChangedSubscriber
+public class Lu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Lu.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(Lu.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal).SetMaxCopies(2);
 
     public Lu()
     {
@@ -30,19 +27,6 @@ public class Lu extends AnimatorCard implements OnAddedToDeckSubscriber, OnCardP
         SetScaling(2, 0, 2);
 
         SetSynergy(Synergies.Elsword);
-    }
-
-    @Override
-    public void OnAddedToDeck()
-    {
-        OnCardPoolChanged();
-    }
-
-    @Override
-    public void OnCardPoolChanged()
-    {
-        AbstractDungeon.uncommonCardPool.removeCard(cardID);
-        AbstractDungeon.srcUncommonCardPool.removeCard(cardID);
     }
 
     @Override

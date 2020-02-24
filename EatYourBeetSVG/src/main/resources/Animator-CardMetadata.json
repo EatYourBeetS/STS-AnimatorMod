@@ -12,19 +12,11 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:DolaRiku":
-	{
-		"cropPortrait": false
-	},
 	"animator:DolaSchwi":
 	{
 		"cropPortrait": false
 	},
 	"animator:DwarfShaman":
-	{
-		"cropPortrait": false
-	},
-	"animator:Emonzaemon":
 	{
 		"cropPortrait": false
 	},
@@ -41,10 +33,6 @@
 		"cropPortrait": false
 	},
 	"animator:ItamiYouji":
-	{
-		"cropPortrait": false
-	},
-	"animator:Jibril":
 	{
 		"cropPortrait": false
 	},

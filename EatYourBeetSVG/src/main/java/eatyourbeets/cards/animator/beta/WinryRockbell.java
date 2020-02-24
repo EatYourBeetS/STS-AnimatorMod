@@ -19,6 +19,7 @@ public class WinryRockbell extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, WinryRockbellPower.BLOCK_AMOUNT);
+        SetUpgrade(0, 2, 0);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -32,6 +33,11 @@ public class WinryRockbell extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
+        if (upgraded)
+        {
+            GameActions.Bottom.GainBlock(block);
+        }
+
         GameActions.Bottom.StackPower(new WinryRockbellPower(p, 1));
 
         if (HasSynergy())

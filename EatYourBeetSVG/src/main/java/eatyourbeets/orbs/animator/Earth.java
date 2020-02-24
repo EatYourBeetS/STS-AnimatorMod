@@ -91,7 +91,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
         if (turns <= 0)
         {
-            GameActions.Top.Add(new EvokeSpecificOrbAction(this));
+            GameActions.Bottom.Add(new EvokeSpecificOrbAction(this));
 
             evoked = true;
         }

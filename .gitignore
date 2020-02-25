@@ -1,5 +1,8 @@
 target/
 temp/
+bin/
+.settings/
+src/main/resources/
 .idea/
 pom.xml.tag
 pom.xml.releaseBackup

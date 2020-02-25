@@ -26,7 +26,7 @@ public class MamiTomoe extends AnimatorCard {
 
     @Override
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-        int damageCount = magicNumber * GameUtilities.GetCurseCount(abstractPlayer.discardPile);
+        int damageCount = magicNumber * abstractPlayer.discardPile.getCardsOfType(CardType.CURSE).size();
 
         GameActions.Bottom.VFX(new LightFlareLEffect(abstractMonster.hb_x, abstractMonster.hb_y));
 

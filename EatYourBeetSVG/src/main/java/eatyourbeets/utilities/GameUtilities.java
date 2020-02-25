@@ -197,24 +197,6 @@ public class GameUtilities
         return JavaUtilities.GetRandomElement(curses).makeCopy();
     }
 
-    public static int GetCurseCount(CardGroup pile)
-    {
-        int count = 0;
-        Iterator iter = pile.group.iterator();
-
-        while(iter.hasNext())
-        {
-            AbstractCard c = (AbstractCard) iter.next();
-
-            if (c.type == AbstractCard.CardType.CURSE)
-            {
-                count++;
-            }
-        }
-
-        return count;
-    }
-
     public static AbstractCard GetRandomRewardCard(RewardItem rewardItem, boolean includeRares)
     {
         AbstractCard replacement = null;

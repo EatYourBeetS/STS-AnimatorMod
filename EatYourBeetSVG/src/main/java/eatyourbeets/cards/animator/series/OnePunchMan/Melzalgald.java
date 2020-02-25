@@ -37,8 +37,8 @@ public class Melzalgald extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
 
-        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_1()).SetOptions(upgraded, false);
-        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_2()).SetOptions(upgraded, false);
-        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_3()).SetOptions(upgraded, false);
+        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_1()).SetOptions(upgraded, false).AddCallback(c -> c.retain = true);
+        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_2()).SetOptions(upgraded, false).AddCallback(c -> c.retain = true);
+        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_3()).SetOptions(upgraded, false).AddCallback(c -> c.retain = true);
     }
 }

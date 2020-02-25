@@ -31,7 +31,7 @@ public class ElricAlphonseAlt extends AnimatorCard
         }
 
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainPlatedArmor(this.magicNumber);
+        GameActions.Bottom.GainPlatedArmor(magicNumber);
 
         if (HasSynergy())
         {

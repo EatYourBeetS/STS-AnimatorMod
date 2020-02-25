@@ -68,7 +68,7 @@ public class DolaRikuAction extends EYBAction
             }
             else if (special || temp.rarity == card.rarity)
             {
-                if (temp.color == mainColor || temp.color == AbstractCard.CardColor.COLORLESS)
+                if (temp.color == mainColor || (temp.color == AbstractCard.CardColor.COLORLESS && AbstractDungeon.colorlessCardPool.contains(temp)))
                 {
                     sameRarity.Add(temp);
                 }

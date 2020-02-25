@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.*;
@@ -149,6 +150,11 @@ public class GR
     public static String GetRewardImage(String rewardID)
     {
         return "images/ui/rewards/" + rewardID.replace(":", "/") + ".png";
+    }
+
+    public static boolean IsTranslationSupported(Settings.GameLanguage language)
+    {
+        return language == Settings.GameLanguage.ZHS;
     }
 
     public static Texture GetTextureMipMap(String path)

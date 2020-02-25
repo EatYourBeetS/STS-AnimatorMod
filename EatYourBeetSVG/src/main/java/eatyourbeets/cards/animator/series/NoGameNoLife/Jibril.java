@@ -21,8 +21,8 @@ public class Jibril extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(7, 0, 2);
-        SetUpgrade(3, 0, 0);
+        Initialize(6, 0, 2);
+        SetUpgrade(4, 0, 0);
         SetScaling(3, 0, 0);
 
         SetEvokeOrbCount(1);

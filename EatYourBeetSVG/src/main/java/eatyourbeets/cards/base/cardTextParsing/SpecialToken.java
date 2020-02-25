@@ -44,8 +44,26 @@ public abstract class SpecialToken extends CTToken
                         parser.AddTooltip(tooltip);
                     }
 
-                    if (word.length() > 1 && word.charAt(0) == '~')
+                    if (word.startsWith("~"))
                     {
+                        internalParser.Initialize(null, word.substring(1)); // card must be null
+                    }
+                    else if (word.startsWith("+"))
+                    {
+                        if (!parser.card.upgraded)
+                        {
+                            return i + 1;
+                        }
+
+                        internalParser.Initialize(null, word.substring(1)); // card must be null
+                    }
+                    else if (word.startsWith("-"))
+                    {
+                        if (parser.card.upgraded)
+                        {
+                            return i + 1;
+                        }
+
                         internalParser.Initialize(null, word.substring(1)); // card must be null
                     }
                     else

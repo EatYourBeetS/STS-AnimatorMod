@@ -207,6 +207,42 @@ public class GameUtilities
         return replacement;
     }
 
+    public static CardGroup GetCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
+    {
+        if (color == AbstractCard.CardColor.COLORLESS)
+        {
+            return AbstractDungeon.colorlessCardPool;
+        }
+
+        switch (rarity)
+        {
+            case COMMON: return AbstractDungeon.commonCardPool;
+            case UNCOMMON: return AbstractDungeon.uncommonCardPool;
+            case RARE: return AbstractDungeon.rareCardPool;
+
+            default:
+                return null;
+        }
+    }
+
+    public static CardGroup GetSourceCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
+    {
+        if (color == AbstractCard.CardColor.COLORLESS)
+        {
+            return AbstractDungeon.colorlessCardPool;
+        }
+
+        switch (rarity)
+        {
+            case COMMON: return AbstractDungeon.srcCommonCardPool;
+            case UNCOMMON: return AbstractDungeon.srcUncommonCardPool;
+            case RARE: return AbstractDungeon.srcRareCardPool;
+
+            default:
+                return null;
+        }
+    }
+
     public static AbstractCard GetRandomRewardCard(boolean includeRares)
     {
         ArrayList<AbstractCard> list;

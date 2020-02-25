@@ -116,7 +116,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     {
         super.LoadKeywords(GetFallbackFile("KeywordStrings.json"));
 
-        if (testFolder.isDirectory() || Settings.language != Settings.GameLanguage.ENG)
+        if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
         {
             super.LoadKeywords(GetFile(Settings.language, "KeywordStrings.json"));
         }
@@ -141,7 +141,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     {
         super.LoadCustomStrings(type, GetFallbackFile(type.getSimpleName() + ".json"));
 
-        if (testFolder.isDirectory() || Settings.language != Settings.GameLanguage.ENG)
+        if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
         {
             super.LoadCustomStrings(type, GetFile(Settings.language, type.getSimpleName() + ".json"));
         }

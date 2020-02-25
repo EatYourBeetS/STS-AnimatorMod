@@ -16,13 +16,13 @@ import org.apache.logging.log4j.util.TriConsumer;
 
 public class FielNirvalen extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(FielNirvalen.class).SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(4);
+    public static final EYBCardData DATA = Register(FielNirvalen.class).SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(3);
 
     public FielNirvalen()
     {
         super(DATA);
 
-        Initialize(0, 2, 1, 3);
+        Initialize(0, 2, 1, 2);
         SetUpgrade(0, 2, 1, 0);
 
         SetSynergy(Synergies.NoGameNoLife);

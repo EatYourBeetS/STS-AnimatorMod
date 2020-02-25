@@ -1,6 +1,8 @@
 package eatyourbeets.cards.base.cardTextParsing;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 
 public class WhitespaceToken extends CTToken
 {
@@ -9,6 +11,20 @@ public class WhitespaceToken extends CTToken
     private WhitespaceToken()
     {
         super(CTTokenType.Whitespace, " ");
+    }
+
+    @Override
+    protected float GetWidth(BitmapFont font, String text)
+    {
+        BitmapFont.BitmapFontData data = font.getData();
+        if (Settings.language == Settings.GameLanguage.ZHS)
+        {
+            return data.scaleX * data.spaceWidth * text.length() * 0.4f;
+        }
+        else
+        {
+            return data.scaleX * data.spaceWidth * text.length();// super.GetWidth(font, text);
+        }
     }
 
     public static int TryAdd(CTContext parser)

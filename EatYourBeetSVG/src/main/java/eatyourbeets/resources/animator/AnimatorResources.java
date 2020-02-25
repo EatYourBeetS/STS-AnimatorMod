@@ -58,7 +58,7 @@ public class AnimatorResources extends AbstractResources
         String json = GetFallbackFile("CardStrings.json").readString(StandardCharsets.UTF_8.name());
         BaseMod.loadCustomStrings(CardStrings.class, ProcessJson(json, true));
 
-        if (testFolder.isDirectory() || Settings.language != Settings.GameLanguage.ENG)
+        if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
         {
             FileHandle file = GetFile(Settings.language, "CardStrings.json");
             if (file.exists())

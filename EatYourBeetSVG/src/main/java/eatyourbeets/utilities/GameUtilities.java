@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.curses.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,6 +26,8 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.curse.Curse_Greed;
+import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.orbs.animator.Aether;
@@ -169,6 +172,47 @@ public class GameUtilities
         }
 
         return 0;
+    }
+
+    public static AbstractCard GetRandomCurse()
+    {
+        ArrayList<AbstractCard> curses;
+
+        curses = new ArrayList<>();
+        curses.add(new Clumsy());
+        curses.add(new Decay());
+        curses.add(new Doubt());
+        curses.add(new Injury());
+        curses.add(new Normality());
+        curses.add(new Pain());
+        curses.add(new Parasite());
+        curses.add(new Regret());
+        curses.add(new Shame());
+        curses.add(new Writhe());
+        curses.add(new Curse_Greed());
+        curses.add(new Curse_Nutcracker());
+        //curses.add(new Pride());
+        //curses.add(new Necronomicurse());
+
+        return JavaUtilities.GetRandomElement(curses).makeCopy();
+    }
+
+    public static int GetCurseCount(CardGroup pile)
+    {
+        int count = 0;
+        Iterator iter = pile.group.iterator();
+
+        while(iter.hasNext())
+        {
+            AbstractCard c = (AbstractCard) iter.next();
+
+            if (c.type == AbstractCard.CardType.CURSE)
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     public static AbstractCard GetRandomRewardCard(RewardItem rewardItem, boolean includeRares)

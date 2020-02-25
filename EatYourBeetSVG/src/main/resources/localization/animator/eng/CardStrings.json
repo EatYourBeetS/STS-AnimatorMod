@@ -693,6 +693,11 @@
 		"DESCRIPTION": "Channel 1 Frost. ** Channel 1 Dark. || When Exhausted: ** Evoke ALL Orbs.",
 		"NAME": "Lu"
 	},
+	"animator:MamiTomoe":
+	{
+		"DESCRIPTION": "Deal !M! damage for each Curse in your Discard pile. || End your turn.",
+		"NAME": "Mami Tomoe"
+	},
 	"animator:MaesHughes":
 	{
 		"DESCRIPTION": "<DRW> for every !M! ** cards in your draw pile. ** Motivate 1. || When Exhausted: Draw {Roy} ** {Mustang} from any pile, it ** costs 1 less this turn.",
@@ -922,6 +927,11 @@
 		"EXTENDED_DESCRIPTION": ["<DRW-M>. ** Gain !S! <AGI>.", "Prevent the next time ** you would lose HP.", "Gain !M! <FOR>.", "", "Remove Intangible. ** Stun the enemy."],
 		"NAME": "Saitama",
 		"UPGRADE_DESCRIPTION": "Motivate 1. || Whenever this card is ** played, increase its cost ** and change its effect ** for this combat."
+	},
+	"animator:SayakaMiki":
+	{
+		"DESCRIPTION": "Gain !M! block and heal !M! HP. || If Synergy wasn't triggered, add a random Curse to your Discard pile.",
+		"NAME": "Sayaka Miki"
 	},
 	"animator:Scar":
 	{

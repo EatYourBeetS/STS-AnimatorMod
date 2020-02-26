@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -18,6 +17,10 @@ import eatyourbeets.utilities.GameActions;
 public class MamiTomoe extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MamiTomoe.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal);
+    static
+    {
+        DATA.AddPreview(new Curse_GriefSeed(), false);
+    }
 
     public MamiTomoe()
     {

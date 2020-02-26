@@ -10,11 +10,11 @@ import eatyourbeets.actions.EYBActionWithCallback;
 
 import java.util.ArrayList;
 
-public class ScryWhichActuallyTriggerDiscard extends EYBActionWithCallback<ArrayList<AbstractCard>>
+public class ScryWhichActuallyTriggersDiscard extends EYBActionWithCallback<ArrayList<AbstractCard>>
 {
     protected final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
 
-    public ScryWhichActuallyTriggerDiscard(int amount)
+    public ScryWhichActuallyTriggersDiscard(int amount)
     {
         super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_FAST);
 

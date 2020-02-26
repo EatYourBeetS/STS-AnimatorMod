@@ -25,10 +25,10 @@ public class KyokoSakura extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-
-        GameActions.Bottom.Cycle(name, magicNumber).AddCallback(cards ->
+        GameActions.Bottom.Cycle(name, magicNumber).AddCallback(m, (enemy, cards) ->
         {
             if (cards.size() > 0)
             {
@@ -38,14 +38,9 @@ public class KyokoSakura extends AnimatorCard
                 {
                     if (card.cost == 0)
                     {
-                        addBurn = true;
-                        break;
+                        GameActions.Bottom.ApplyBurning(player, (AbstractMonster)enemy, 2);
+                        return;
                     }
-                }
-
-                if (addBurn)
-                {
-                    GameActions.Bottom.ApplyBurning(p, m, 2);
                 }
             }
         });

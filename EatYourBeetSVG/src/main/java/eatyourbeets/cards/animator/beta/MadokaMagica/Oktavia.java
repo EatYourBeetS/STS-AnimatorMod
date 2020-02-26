@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -52,28 +51,18 @@ public class Oktavia extends AnimatorCard
         GameActions.Bottom.Callback(__ ->
         {
             //Draw cards equal to number of curses
-
-            if (magicNumber > 0)
-            {
-                GameActions.Bottom.Draw(magicNumber);
-            }
-
-            //Deal damage equal to number of curses times magic number
-            GameActions.Bottom.Callback(___ ->
+            GameActions.Bottom.Draw(player.hand.getCardsOfType(CardType.CURSE).size())
+            .AddCallback(___ ->
             {
                 magicNumber = player.hand.getCardsOfType(CardType.CURSE).size();
 
-                if (magicNumber > 0)
+                for (int i = 0; i < magicNumber; i++)
                 {
-                    int[] multiDamage = DamageInfo.createDamageMatrix(13, true);
-
-                    for (int i = 0; i < magicNumber; i++) {
-                        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
-                                .SetOptions(true, false);
-                    }
-
-                    GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
+                    GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
+                    .SetOptions(true, false);
                 }
+
+                GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
             });
         });
     }

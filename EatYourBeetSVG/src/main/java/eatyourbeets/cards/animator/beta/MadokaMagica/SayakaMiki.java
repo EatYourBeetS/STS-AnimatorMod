@@ -13,6 +13,11 @@ import eatyourbeets.utilities.GameUtilities;
 public class SayakaMiki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SayakaMiki.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    static
+    {
+        DATA.AddPreview(new Oktavia(), false);
+        DATA.AddPreview(new Curse_GriefSeed(), false);
+    }
 
     public SayakaMiki()
     {

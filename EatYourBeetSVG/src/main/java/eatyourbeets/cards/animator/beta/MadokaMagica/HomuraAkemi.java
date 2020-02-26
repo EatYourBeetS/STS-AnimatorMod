@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
-import eatyourbeets.actions.cardManipulation.ScryWhichActuallyTriggerDiscard;
+import eatyourbeets.actions.cardManipulation.ScryWhichActuallyTriggersDiscard;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -26,19 +26,19 @@ public class HomuraAkemi extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        GameActions.Bottom.VFX(new WhirlwindEffect(new Color(0.2F, 0.0F, 0.2F, 1.0F),true));
-
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        GameActions.Bottom.VFX(new WhirlwindEffect(new Color(0.2F, 0.0F, 0.2F, 1.0F), true));
         GameActions.Bottom.Add(new SkipEnemiesTurnAction());
 
-        for (int i = 0; i < 3; i++ )
+        for (int i = 0; i < 3; i++)
         {
             GameActions.Bottom.MakeCardInDiscardPile(GameUtilities.GetRandomCurse());
         }
 
         if (upgraded)
         {
-            GameActions.Bottom.Add(new ScryWhichActuallyTriggerDiscard(4));
+            GameActions.Bottom.Add(new ScryWhichActuallyTriggersDiscard(4));
         }
 
         GameActions.Bottom.Add(new PressEndTurnButtonAction());

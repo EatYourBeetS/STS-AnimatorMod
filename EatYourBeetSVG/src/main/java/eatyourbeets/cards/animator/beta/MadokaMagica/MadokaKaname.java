@@ -12,7 +12,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class MadokaKaname extends AnimatorCard
 {
@@ -29,15 +28,9 @@ public class MadokaKaname extends AnimatorCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        if(!EffectHistory.TryActivateLimited(cardID))
-        {
-            return;
-        }
-
-        int numCurses = 0;
-
-        numCurses += MoveCurses(p.discardPile, p.exhaustPile);
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        int numCurses = MoveCurses(p.discardPile, p.exhaustPile);
 
         if (upgraded)
         {
@@ -45,15 +38,15 @@ public class MadokaKaname extends AnimatorCard
             numCurses += MoveCurses(p.drawPile, p.exhaustPile);
         }
 
-        int intangibleCount = (int)Math.floor(numCurses / 2);
-
-        GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, intangibleCount));
+        if (EffectHistory.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, numCurses / 2));
+        }
     }
 
     private int MoveCurses(CardGroup source, CardGroup destination)
     {
         float duration = 0.3f;
-
         int numCurses = 0;
 
         for (AbstractCard card : source.group)
@@ -61,8 +54,9 @@ public class MadokaKaname extends AnimatorCard
             if (card.type == CardType.CURSE)
             {
                 GameActions.Top.MoveCard(card, source, destination)
-                        .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
-                        .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
+                .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
+                .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
+
                 numCurses++;
             }
         }

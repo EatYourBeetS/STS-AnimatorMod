@@ -325,7 +325,7 @@
 	"animator:Elesis":
 	{
 		"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-		"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain that much [F] and [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply 1 Burning ** for every {Debuff} ** on the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 Vulnerable. || At the start of each ** combat: Lose !M! HP."],
+		"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain that much [F] and [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply 1 Burning for ** every {Debuff} on ** the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 Vulnerable. || At the start of each ** combat: Lose !M! HP."],
 		"NAME": "Elesis",
 		"UPGRADE_DESCRIPTION": "At the start of combat, ** choose 1 of 3 Upgraded ** {Forms} and permanently ** change this card into it."
 	},
@@ -950,8 +950,9 @@
 	},
 	"animator:SeriousSaitama":
 	{
-		"DESCRIPTION": "Stun ALL enemies. ** Gain X + !M! Force.",
-		"NAME": "Serious Saitama"
+		"DESCRIPTION": "Stun ALL enemies. ** Gain X Strength. ** Gain X [F].",
+		"NAME": "Serious Saitama",
+		"UPGRADE_DESCRIPTION": "Stun ALL enemies. ** Gain X+!M! Strength. ** Gain X+!M! [F]."
 	},
 	"animator:Shalltear":
 	{

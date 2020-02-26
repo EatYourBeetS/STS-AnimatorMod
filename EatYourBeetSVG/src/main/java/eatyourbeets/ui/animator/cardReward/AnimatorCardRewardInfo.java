@@ -14,6 +14,11 @@ public class AnimatorCardRewardInfo extends GUIElement
 {
     public final GUI_Toggle upgradeToggle;
     public final GUI_Toggle zoomToggle;
+    public final KeywordLegend exhaust;
+    public final KeywordLegend ethereal;
+    public final KeywordLegend retain;
+    public final KeywordLegend innate;
+    public final KeywordLegend purge;
 
     public AnimatorCardRewardInfo()
     {
@@ -30,6 +35,12 @@ public class AnimatorCardRewardInfo extends GUIElement
         .SetText(GR.Animator.Strings.Misc.DynamicPortraits)
         .SetFont(RenderHelpers.CardDescriptionFont_Large, 0.475f)
         .SetOnToggle(this::ToggleCardZoom);
+
+        exhaust = new KeywordLegend(GR.Tooltips.Exhaust);
+        ethereal = new KeywordLegend(GR.Tooltips.Ethereal);
+        retain = new KeywordLegend(GR.Tooltips.Retain);
+        innate = new KeywordLegend(GR.Tooltips.Innate);
+        purge = new KeywordLegend(GR.Tooltips.Purge);
     }
 
     public void Close()
@@ -49,6 +60,15 @@ public class AnimatorCardRewardInfo extends GUIElement
     {
         upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
         zoomToggle.SetToggle(GR.Animator.Config.GetCropCardImages()).Update();
+
+        float x = zoomToggle.hb.x + (zoomToggle.hb.width - (exhaust.textBox.hb.width * 0.5f));
+        float step = exhaust.textBox.hb.height;
+        float y = zoomToggle.hb.y - (step * 1.1f);
+        exhaust.SetPosition(x, y).Update();
+        ethereal.SetPosition(x, y - step).Update();
+        retain.SetPosition(x, y - (step*2)).Update();
+        innate.SetPosition(x, y - (step*3)).Update();
+        purge.SetPosition(x, y - (step*4)).Update();
     }
 
     @Override
@@ -56,6 +76,12 @@ public class AnimatorCardRewardInfo extends GUIElement
     {
         upgradeToggle.Render(sb);
         zoomToggle.Render(sb);
+
+        exhaust.Render(sb);
+        ethereal.Render(sb);
+        retain.Render(sb);
+        innate.Render(sb);
+        purge.Render(sb);
     }
 
     private void ToggleViewUpgrades(boolean value)

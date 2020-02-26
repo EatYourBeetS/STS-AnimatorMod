@@ -19,11 +19,26 @@ public class Millim extends AnimatorCard
         super(DATA);
 
         Initialize(5, 0, 2);
-        SetUpgrade(1, 0, 1);
+        SetUpgrade(1, 0, 0);
         SetScaling(1, 1, 1);
 
         SetUnique(true, true);
         SetSynergy(Synergies.TenSura);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        if (timesUpgraded % 2 == 1)
+        {
+            upgradeMagicNumber(1);
+        }
+        else
+        {
+            upgradeDamage(2);
+        }
+
+        this.upgradedMagicNumber = true;
     }
 
     @Override

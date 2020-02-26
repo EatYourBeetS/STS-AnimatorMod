@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class HououinKyouma extends AnimatorCard
 {
@@ -47,9 +48,7 @@ public class HououinKyouma extends AnimatorCard
 
                 if (canAdd)
                 {
-                    AbstractCard copy = c.makeStatEquivalentCopy();
-                    copy.retain = true;
-                    choices.addToTop(copy);
+                    choices.addToTop(c.makeStatEquivalentCopy());
                 }
             }
         }
@@ -59,7 +58,7 @@ public class HououinKyouma extends AnimatorCard
             GameActions.Bottom.SelectFromPile(name, 1, choices)
             .SetOptions(false, false)
             .SetMessage(CardRewardScreen.TEXT[1])
-            .AddCallback(cards -> GameActions.Bottom.MakeCardInHand(cards.get(0)));
+            .AddCallback(cards -> GameActions.Bottom.MakeCardInHand(cards.get(0)).AddCallback(GameUtilities::Retain));
         }
     }
 }

@@ -75,8 +75,8 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         selectionAmount = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(4.8f), buttonWidth, buttonHeight*0.8f))
         .SetColors(Color.DARK_GRAY, Settings.GOLD_COLOR)
-        .SetAlignment(0.5f, true)
-        .SetFont(FontHelper.charDescFont); //FontHelper.textAboveEnemyFont);
+        .SetAlignment(0.5f, 0.5f)
+        .SetFont(FontHelper.charDescFont, 1); //FontHelper.textAboveEnemyFont);
 
         final float selectionAmountSize = selectionAmount.hb.height;
         purgingStoneImage = new GUI_Relic(new PurgingStone(), new Hitbox(selectionAmount.hb.x + (selectionAmountSize * 0.25f),
@@ -85,7 +85,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         selectionInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(7f), buttonWidth, buttonHeight*2.5f))
         .SetText(GR.Animator.Strings.SeriesSelection.PurgingStoneRequirement)
         .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
-        .SetFont(FontHelper.tipBodyFont);
+        .SetFont(FontHelper.tipBodyFont, 1);
 
         confirm = CreateHexagonalButton(xPos, getY.Invoke(8f), buttonWidth, buttonHeight*1.1f)
         .SetText("Proceed")

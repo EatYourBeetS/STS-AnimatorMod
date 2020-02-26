@@ -3,7 +3,7 @@ package eatyourbeets.resources.animator.loadouts.beta;
 import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.animator.beta.MadokaMagica.KyokoSakura;
-import eatyourbeets.cards.animator.colorless.rare.Kyubey;
+import eatyourbeets.cards.animator.beta.MadokaMagica.Kyubey;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;

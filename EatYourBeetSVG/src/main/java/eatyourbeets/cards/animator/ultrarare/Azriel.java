@@ -32,7 +32,11 @@ public class Azriel extends AnimatorCard_UltraRare
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.StackPower(new PlayerFlightPower(p, 2));
+        if (!p.hasPower(PlayerFlightPower.POWER_ID))
+        {
+            GameActions.Bottom.StackPower(new PlayerFlightPower(p, 2));
+        }
+
         GameActions.Bottom.StackPower(new AzrielPower(p, this.magicNumber));
     }
 }

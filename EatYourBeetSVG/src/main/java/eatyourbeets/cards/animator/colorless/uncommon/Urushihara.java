@@ -61,8 +61,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
             GameEffects.Queue.ShowCardBriefly(this);
 
-            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE)
-            .SetPiercing(true, false);
+            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
             GameUtilities.UsePenNib();
 
             PlayerStatistics.onStartOfTurnPostDraw.Unsubscribe(this);

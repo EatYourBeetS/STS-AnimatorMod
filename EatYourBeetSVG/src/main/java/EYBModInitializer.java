@@ -90,7 +90,7 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
                 testModeLabel = new GUI_TextBox(GR.Common.Images.Panel.Texture(),
                         new AdvancedHitbox(Settings.WIDTH * 0.12f, Settings.HEIGHT * 0.08f))
                         .SetPosition(Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.85f)
-                        .SetAlignment(0.5f, true)
+                        .SetAlignment(0.5f, 0.5f)
                         .SetText("TEST MODE");
             }
 

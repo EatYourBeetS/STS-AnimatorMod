@@ -32,6 +32,7 @@ public class DolaRikuAction extends EYBAction
         boolean curse = card.type == AbstractCard.CardType.CURSE;
         boolean special = !curse && card.rarity == AbstractCard.CardRarity.SPECIAL;
         boolean colorless = card.color == AbstractCard.CardColor.COLORLESS;
+        boolean basic = card.rarity == AbstractCard.CardRarity.BASIC;
 
         AbstractCard.CardColor mainColor;
         if (colorless)
@@ -68,7 +69,8 @@ public class DolaRikuAction extends EYBAction
             }
             else if (special || temp.rarity == card.rarity)
             {
-                if (temp.color == mainColor || (temp.color == AbstractCard.CardColor.COLORLESS && AbstractDungeon.colorlessCardPool.contains(temp)))
+                if (temp.color == mainColor || (temp.color == AbstractCard.CardColor.COLORLESS &&
+                (AbstractDungeon.colorlessCardPool.contains(temp) || (basic && temp.rarity == AbstractCard.CardRarity.BASIC))))
                 {
                     sameRarity.Add(temp);
                 }

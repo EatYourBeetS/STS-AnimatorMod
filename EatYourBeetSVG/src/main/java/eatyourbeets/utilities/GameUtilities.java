@@ -301,6 +301,17 @@ public class GameUtilities
         }
     }
 
+    public static boolean Retain(AbstractCard card)
+    {
+        if (!card.isEthereal && !card.retain)
+        {
+            card.retain = true;
+            return true;
+        }
+
+        return false;
+    }
+
     public static int GetDebuffsCount(AbstractCreature creature)
     {
         if (creature == null || creature.powers == null)

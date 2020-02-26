@@ -148,13 +148,13 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public ArrayList<String> getStartingDeck()
     {
-        return GetCurrentLoadout().GetStartingDeck();
+        return PrepareLoadout().GetStartingDeck();
     }
 
     @Override
     public ArrayList<String> getStartingRelics()
     {
-        return GetCurrentLoadout().GetStartingRelics();
+        return PrepareLoadout().GetStartingRelics();
     }
 
     @Override
@@ -166,7 +166,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public CharSelectInfo getLoadout()
     {
-        return GetCurrentLoadout().GetLoadout(NAMES[0], TEXT[0], this);
+        return PrepareLoadout().GetLoadout(NAMES[0], TEXT[0], this);
     }
 
     @Override
@@ -194,7 +194,7 @@ public class AnimatorCharacter extends CustomPlayer
         return super.getCharStat();
     }
 
-    protected AnimatorLoadout GetCurrentLoadout()
+    protected AnimatorLoadout PrepareLoadout()
     {
         int level = GR.Animator.GetUnlockLevel();
         AnimatorLoadout current = GR.Animator.Data.SelectedLoadout;
@@ -210,7 +210,7 @@ public class AnimatorCharacter extends CustomPlayer
                 }
             }
 
-            current = list.Retrieve(new com.megacrit.cardcrawl.random.Random());
+            GR.Animator.Data.SelectedLoadout = list.Retrieve(new com.megacrit.cardcrawl.random.Random());
         }
 
         return current;

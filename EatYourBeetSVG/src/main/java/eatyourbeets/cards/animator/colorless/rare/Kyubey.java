@@ -27,7 +27,7 @@ public class Kyubey extends AnimatorCard implements StartupCard
         super(DATA);
 
         Initialize(0, 0, 2);
-        SetCostUpgrade(-1);
+        SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
         SetSynergy(Synergies.MadokaMagica);
@@ -36,8 +36,8 @@ public class Kyubey extends AnimatorCard implements StartupCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Draw(this.magicNumber);
-        GameActions.Bottom.GainEnergy(this.magicNumber);
+        GameActions.Bottom.Draw(magicNumber);
+        GameActions.Bottom.GainEnergy(2);
     }
 
     private AbstractCard GetRandomCurse()

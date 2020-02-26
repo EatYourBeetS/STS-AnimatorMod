@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class HiiragiShinya extends AnimatorCard
 {
@@ -37,9 +38,9 @@ public class HiiragiShinya extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                AbstractCard c = cards.get(0);
-                c.setCostForTurn(c.costForTurn + 1);
-                c.retain = true;
+                AbstractCard card = cards.get(0);
+                card.setCostForTurn(card.costForTurn + 1);
+                GameUtilities.Retain(card);
                 GameActions.Bottom.Add(new RefreshHandLayout());
             }
         });

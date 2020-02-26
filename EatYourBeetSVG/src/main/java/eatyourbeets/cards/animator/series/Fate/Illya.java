@@ -14,6 +14,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Illya extends AnimatorCard
 {
@@ -104,10 +105,10 @@ public class Illya extends AnimatorCard
                 {
                     GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
                     GameActions.Top.MoveCard(c, group, player.hand)
-                    .ShowEffect(true, true);
+                    .ShowEffect(true, true)
+                    .AddCallback(GameUtilities::Retain);
                 }
 
-                c.retain = true;
                 return true;
             }
         }

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class KaijinPower extends AnimatorPower
 {
@@ -30,25 +31,24 @@ public class KaijinPower extends AnimatorPower
             GameActions.Bottom.SelectFromHand(name, 1, false)
             .SetOptions(true, true, true)
             .SetMessage(RetainCardsAction.TEXT[0])
+            .SetFilter(c -> !c.isEthereal)
             .AddCallback(cards ->
             {
                 if (cards.size() > 0)
                 {
-                    AbstractCard c = cards.get(0);
-                    if (!c.isEthereal)
+                    AbstractCard card = cards.get(0);
+
+                    if (card.baseBlock > 0)
                     {
-                        c.retain = true;
+                        card.baseBlock += amount;
                     }
 
-                    if (c.baseBlock > 0)
+                    if (card.baseDamage > 0)
                     {
-                        c.baseBlock += amount;
+                        card.baseDamage += amount;
                     }
 
-                    if (c.baseDamage > 0)
-                    {
-                        c.baseDamage += amount;
-                    }
+                    GameUtilities.Retain(card);
                 }
             });
         }

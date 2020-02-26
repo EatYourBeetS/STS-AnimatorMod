@@ -17,7 +17,8 @@ public class GUI_Label extends GUIElement
     private BitmapFont font;
     private float fontScale;
     private float verticalRatio;
-    private boolean horizontallyCentered;
+    private float horizontalRatio;
+    private boolean smartText;
 
     public GUI_Label(BitmapFont font)
     {
@@ -26,7 +27,9 @@ public class GUI_Label extends GUIElement
 
     public GUI_Label(BitmapFont font, Hitbox hb)
     {
+        this.smartText = true;
         this.verticalRatio = 0.85f;
+        this.horizontalRatio = 0.1f;
         this.textColor = Color.WHITE;
         this.fontScale = 1;
         this.font = font;
@@ -61,10 +64,11 @@ public class GUI_Label extends GUIElement
         return this;
     }
 
-    public GUI_Label SetAlignment(float verticalRatio, boolean centerHorizontally)
+    public GUI_Label SetAlignment(float verticalRatio, float horizontalRatio)
     {
         this.verticalRatio = verticalRatio;
-        this.horizontallyCentered = centerHorizontally;
+        this.horizontalRatio = horizontalRatio;
+        this.smartText = false;
 
         return this;
     }
@@ -95,16 +99,37 @@ public class GUI_Label extends GUIElement
             font.getData().setScale(fontScale);
         }
 
-        if (horizontallyCentered)
+        if (smartText)
         {
-            FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.y + (hb.height * verticalRatio), textColor);
-        }
-        else
-        {
-            final float step = hb.width * 0.1f;
+            final float step = hb.width * horizontalRatio;
             FontHelper.renderSmartText(sb, font, text, hb.x + step, hb.y + (hb.height * verticalRatio),
                     hb.width - (step * 2), font.getLineHeight(), textColor);
         }
+        else if (horizontalRatio < 0.5f)
+        {
+            final float step = hb.width * horizontalRatio;
+            FontHelper.renderFontLeft(sb, font, text, hb.x + step, hb.y + hb.height * verticalRatio, textColor);
+        }
+        else if (horizontalRatio > 0.5f)
+        {
+            final float step = hb.width * (1-horizontalRatio) * 2;
+            FontHelper.renderFontRightAligned(sb, font, text, hb.x + hb.width - step, hb.y + hb.height * verticalRatio, textColor);
+        }
+        else
+        {
+            FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.y + hb.height * verticalRatio, textColor);
+        }
+
+//        if (horizontallyCentered)
+//        {
+//            FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.y + (hb.height * verticalRatio), textColor);
+//        }
+//        else
+//        {
+//            final float step = hb.width * horizontalRatio;
+//            FontHelper.renderSmartText(sb, font, text, hb.x + step, hb.y - (hb.height * verticalRatio),
+//                    hb.width - (step * 2), font.getLineHeight(), textColor);
+//        }
 
         if (fontScale != 1)
         {

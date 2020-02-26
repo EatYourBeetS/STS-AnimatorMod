@@ -35,16 +35,16 @@ public class GUI_TextBox extends GUIElement
         return this;
     }
 
-    public GUI_TextBox SetFont(BitmapFont font)
+    public GUI_TextBox SetFont(BitmapFont font, float fontScale)
     {
         this.label.SetFont(font, 1);
 
         return this;
     }
 
-    public GUI_TextBox SetAlignment(float verticalRatio, boolean centerHorizontally)
+    public GUI_TextBox SetAlignment(float verticalRatio, float horizontalRatio)
     {
-        this.label.SetAlignment(verticalRatio, centerHorizontally);
+        this.label.SetAlignment(verticalRatio, horizontalRatio);
 
         return this;
     }

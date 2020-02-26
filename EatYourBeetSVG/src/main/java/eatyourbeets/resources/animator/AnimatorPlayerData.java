@@ -24,6 +24,7 @@ public class AnimatorPlayerData
     public void Initialize()
     {
         AddBaseLoadouts();
+        AddBetaLoadouts();
         DeserializeTrophies(GR.Animator.Config.GetTrophyString());
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
@@ -148,6 +149,12 @@ public class AnimatorPlayerData
         add.Invoke(new OnePunchMan(), 4);
         add.Invoke(new Kancolle(), 4);
         add.Invoke(new AccelWorld(), 4);
+    }
+
+    private void AddBetaLoadouts()
+    {
+        BetaLoadouts.clear();
+        //BetaLoadouts.add(new <YourLoadoutHere>);
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

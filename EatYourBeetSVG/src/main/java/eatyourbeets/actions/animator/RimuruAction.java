@@ -64,7 +64,7 @@ public class RimuruAction extends EYBAction
 
             if (rimuru.upgraded || copy.retain)
             {
-                newCopy.retain = true;
+                GameUtilities.Retain(newCopy);
             }
 
             newCopy.tags.add(GR.Enums.CardTags.TEMPORARY);

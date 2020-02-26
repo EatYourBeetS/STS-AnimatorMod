@@ -290,11 +290,6 @@ public abstract class EYBCard extends EYBCardBase
         this.isMultiDamage = value;
     }
 
-    public void SetRetainOnce(boolean value)
-    {
-        this.retain = value;
-    }
-
     public void SetRetain(boolean value)
     {
         this.selfRetain = value;

@@ -68,6 +68,15 @@ public class AnimatorLoadoutsContainer
             }
         }
 
+        for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
+        {
+            AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
+            if (card != null)
+            {
+                seriesSelectionItems.add(card);
+            }
+        }
+
         // <Beta>
 
 //        seriesSelectionItems.add(AnimatorRuntimeLoadout.TryCreate(new _Test(Synergies.HatarakuMaouSama, Urushihara.ID, 4)));
@@ -128,7 +137,15 @@ public class AnimatorLoadoutsContainer
         GR.Animator.Dungeon.Series.clear();
         for (AbstractCard card : selectedCards)
         {
-            GR.Animator.Dungeon.AddSeries(Find(card));
+            AnimatorRuntimeLoadout loadout = Find(card);
+
+            if (loadout.IsBeta)
+            {
+                // Do not unlock trophies or ascension
+                Settings.seedSet = true;
+            }
+
+            GR.Animator.Dungeon.AddSeries(loadout);
         }
 
         GR.Animator.Dungeon.InitializeCardPool(false);

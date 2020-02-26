@@ -695,7 +695,7 @@
 	},
 	"animator:MamiTomoe":
 	{
-		"DESCRIPTION": "Deal !M! damage times X, where X is the number of Curses in your Discard pile. || End your turn.",
+		"DESCRIPTION": "Attack 1 additional time for each Curse in your Discard pile. || End your turn.",
 		"NAME": "Mami Tomoe"
 	},
 	"animator:MaesHughes":

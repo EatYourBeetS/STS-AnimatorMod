@@ -47,7 +47,7 @@ import java.util.Map;
                  {
                      String loadoutName = tokens[2].replace("_", " ");
                      AnimatorLoadout loadout = GR.Animator.Data.GetByName(loadoutName);
-                     if (GameUtilities.IsInGame() && loadout != null && AbstractDungeon.player.masterDeck != null)
+                     if (GameUtilities.IsInGame() && loadout != null && AbstractDungeon.player != null && AbstractDungeon.player.masterDeck != null)
                      {
                          AbstractDungeon.player.masterDeck.group.removeAll(AbstractDungeon.player.masterDeck.getPurgeableCards().group);
 

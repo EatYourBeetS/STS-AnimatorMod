@@ -194,6 +194,11 @@
 		"DESCRIPTION": "Unplayable. When drawn, raise the cost of a random card in your hand by 1 this turn.",
 		"NAME": "Greed"
 	},
+	"animator:Curse_GriefSeed":
+	{
+		"DESCRIPTION": "Unplayable. When exhausted, remove your rightmost {Debuff}.",
+		"NAME": "Grief Seed"
+	},
 	"animator:Curse_Nutcracker":
 	{
 		"DESCRIPTION": "Unplayable. At the end of your turn, ALL enemies heal !M! HP.",
@@ -712,7 +717,7 @@
 	},
 	"animator:MamiTomoe":
 	{
-		"DESCRIPTION": "Attack 1 additional time for each Curse in your Discard pile. || End your turn.",
+		"DESCRIPTION": "Attack an additional time for each Curse in your Discard pile.  If there are no Curses in the Discard pile, add 1 {Grief Seed} to your Discard pile.",
 		"NAME": "Mami Tomoe"
 	},
 	"animator:MaesHughes":
@@ -952,7 +957,7 @@
 	},
 	"animator:SayakaMiki":
 	{
-		"DESCRIPTION": "If Synergy wasn't triggered, add a random Curse to your Discard pile. || If your HP is below 50%, add a copy of {Oktavia} to your discard pile, then exhaust.",
+		"DESCRIPTION": "If your HP is above or at 50% and if Synergy wasn't triggered, add a random Curse to your Discard pile. || If your HP is below 50% and if Synergy wasn't triggered, add a copy of {Oktavia} and a {Grief Seed} to your discard pile, then Exhaust.",
 		"NAME": "Sayaka Miki"
 	},
 	"animator:Scar":

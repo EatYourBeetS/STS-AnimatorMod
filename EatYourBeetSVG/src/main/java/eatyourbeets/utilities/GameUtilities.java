@@ -27,6 +27,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.curse.Curse_Greed;
+import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
@@ -191,6 +192,7 @@ public class GameUtilities
         curses.add(new Writhe());
         curses.add(new Curse_Greed());
         curses.add(new Curse_Nutcracker());
+        curses.add(new Curse_GriefSeed());
         //curses.add(new Pride());
         //curses.add(new Necronomicurse());
 

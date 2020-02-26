@@ -38,6 +38,27 @@ public class AnimatorPlayerData
         }
     }
 
+    public AnimatorLoadout GetByName(String name)
+    {
+        for (AnimatorLoadout loadout : BaseLoadouts)
+        {
+            if (loadout.Name.equals(name))
+            {
+                return loadout;
+            }
+        }
+
+        for (AnimatorLoadout loadout : BetaLoadouts)
+        {
+            if (loadout.Name.equals(name))
+            {
+                return loadout;
+            }
+        }
+
+        return null;
+    }
+
     public AnimatorLoadout GetLoadout(int id, boolean isBeta)
     {
         return isBeta ? GetBetaLoadout(id) : GetBaseLoadout(id);

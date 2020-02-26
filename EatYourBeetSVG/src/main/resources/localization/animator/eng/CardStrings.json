@@ -567,6 +567,12 @@
 		"DESCRIPTION": "<DRW-M>. ** Refill your Energy. ** Lose !S! Max HP. || If you end the combat ** with this card in hand: ** Gain 2 Max HP.",
 		"NAME": "The Grail"
 	},
+	"animator:HomuraAkemi":
+	{
+		"DESCRIPTION": "Take an extra turn after this one.  Add 3 random Curses to your discard pile. || End your turn.",
+		"NAME": "Homura Akemi",
+		"UPGRADE_DESCRIPTION": "Take an extra turn after this one.  Add 3 random Curses to your discard pile. Scry 4. || End your turn."
+	},
 	"animator:HououinKyouma":
 	{
 		"DESCRIPTION": "Choose 1 card you ** played this combat. Add ** a copy of it to your ** hand and Retain it.",
@@ -645,6 +651,11 @@
 		"DESCRIPTION": "Discard !M! cards to add ** {Black Lotus} to your ** hand, then Exhaust.",
 		"NAME": "Kuroyukihime"
 	},
+	"animator:KyokoSakura":
+	{
+		"DESCRIPTION": "Cycle !M! cards.  If at least one card cycled had a cost of 0, apply 2 Burning to the target.",
+		"NAME": "Kyoko Sakura"
+	},
 	"animator:Kyubey":
 	{
 		"DESCRIPTION": "Gain [E] [E]. ** <DRW-M>. || At the start of combat: ** Add 1 random Curse ** to your discard pile.",
@@ -692,6 +703,12 @@
 	{
 		"DESCRIPTION": "Channel 1 Frost. ** Channel 1 Dark. || When Exhausted: ** Evoke ALL Orbs.",
 		"NAME": "Lu"
+	},
+	"animator:MadokaKaname":
+	{
+		"DESCRIPTION": "Limited. Exhaust all curses from your discard pile.  Gain 1 Intangible for each 2 curses exhausted.",
+		"NAME": "Madoka Kaname",
+		"UPGRADE_DESCRIPTION": "Limited.  Exhaust all curses from your discard pile, hand, and draw pile.  Gain 1 Intangible for each 2 curses exhausted."
 	},
 	"animator:MamiTomoe":
 	{

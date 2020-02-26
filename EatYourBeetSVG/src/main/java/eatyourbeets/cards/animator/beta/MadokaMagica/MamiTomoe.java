@@ -22,10 +22,9 @@ public class MamiTomoe extends AnimatorCard
     {
         super(DATA);
 
-        // For attacks, damage should be used instead of magicNumber,
-        // otherwise it will not scale with Vulnerable, Weak, and similar effects
-        Initialize(12, 0);
-        SetUpgrade(3, 0);
+        Initialize(10, 0, 1);
+        SetUpgrade(3, 0, 1);
+
         SetSynergy(Synergies.MadokaMagica);
     }
 
@@ -34,7 +33,7 @@ public class MamiTomoe extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        magicNumber = player.discardPile.getCardsOfType(CardType.CURSE).size();
+        magicNumber = player.discardPile.getCardsOfType(CardType.CURSE).size() + 1;
     }
 
     @Override

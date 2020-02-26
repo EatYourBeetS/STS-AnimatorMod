@@ -68,13 +68,14 @@ public class AnimatorLoadoutsContainer
             }
         }
 
-        // <Beta>
-
-//        seriesSelectionItems.add(AnimatorRuntimeLoadout.TryCreate(new _Test(Synergies.HatarakuMaouSama, Urushihara.ID, 4)));
-//        seriesSelectionItems.add(AnimatorRuntimeLoadout.TryCreate(new _Test(Synergies.ReZero, Emilia.ID, 5)));
-//        seriesSelectionItems.add(AnimatorRuntimeLoadout.TryCreate(new _Test(Synergies.Jojo, QuestionMark.ID, 7)));
-
-        // </Beta>
+        for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
+        {
+            AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
+            if (card != null)
+            {
+                seriesSelectionItems.add(card);
+            }
+        }
 
         Random rng = new Random(Settings.seed + 13);
         while (promotedCount < 3)
@@ -128,7 +129,15 @@ public class AnimatorLoadoutsContainer
         GR.Animator.Dungeon.Series.clear();
         for (AbstractCard card : selectedCards)
         {
-            GR.Animator.Dungeon.AddSeries(Find(card));
+            AnimatorRuntimeLoadout loadout = Find(card);
+
+            if (loadout.IsBeta)
+            {
+                // Do not unlock trophies or ascension
+                Settings.seedSet = true;
+            }
+
+            GR.Animator.Dungeon.AddSeries(loadout);
         }
 
         GR.Animator.Dungeon.InitializeCardPool(false);

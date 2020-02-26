@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.curse.Curse_Greed;
 import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
+import eatyourbeets.cards.animator.special.Asuramaru;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -20,18 +21,27 @@ public class SayakaMiki extends AnimatorCard {
     {
         super(DATA);
 
-        Initialize(0, 5, 5);
+        Initialize(0, 6, 0);
+        SetUpgrade(0, 1, 1);
 
         SetSynergy(Synergies.MadokaMagica);
     }
 
     @Override
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-        GameActions.Bottom.GainBlock(magicNumber);
-        GameActions.Bottom.Heal(magicNumber);
+        GameActions.Bottom.GainBlock(block);
 
         if (!HasSynergy()) {
             GameActions.Bottom.MakeCardInDiscardPile(GameUtilities.GetRandomCurse());
+        }
+
+        if (GameUtilities.GetHealthPercentage(player) < 0.5f)
+        {
+            GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetOptions(upgraded, false)
+            .AddCallback(__ ->
+             {
+                  GameActions.Bottom.Exhaust(this);
+             });
         }
     }
 }

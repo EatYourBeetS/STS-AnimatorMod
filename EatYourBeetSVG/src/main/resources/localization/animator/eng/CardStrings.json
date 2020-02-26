@@ -695,7 +695,7 @@
 	},
 	"animator:MamiTomoe":
 	{
-		"DESCRIPTION": "Deal !M! damage for each Curse in your Discard pile. || End your turn.",
+		"DESCRIPTION": "Deal !M! damage times X, where X is the number of Curses in your Discard pile. || End your turn.",
 		"NAME": "Mami Tomoe"
 	},
 	"animator:MaesHughes":
@@ -803,6 +803,11 @@
 	{
 		"DESCRIPTION": "Cycle !M! card(s). Motivate !S!. || Whenever you Synergize ** while this is in your hand: ** Increase this card's ** Motivate by 1.",
 		"NAME": "Nonon Jakuzure"
+	},
+	"animator:Oktavia":
+	{
+		"DESCRIPTION": "Add two random Curses to your hand, then draw cards equal to the total number of Curses in your hand. || Deal !M! damage X times to all enemies, where X is the number of Curses in your hand.",
+		"NAME": "Oktavia"
 	},
 	"animator:OrbCore_Aether":
 	{
@@ -930,7 +935,7 @@
 	},
 	"animator:SayakaMiki":
 	{
-		"DESCRIPTION": "Heal !M! HP. || If Synergy wasn't triggered, add a random Curse to your Discard pile.",
+		"DESCRIPTION": "If Synergy wasn't triggered, add a random Curse to your Discard pile. || If your HP is below 50%, add a copy of {Oktavia} to your discard pile, then exhaust.",
 		"NAME": "Sayaka Miki"
 	},
 	"animator:Scar":

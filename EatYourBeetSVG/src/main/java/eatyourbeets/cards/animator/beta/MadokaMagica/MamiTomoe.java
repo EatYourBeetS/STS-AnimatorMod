@@ -21,6 +21,7 @@ public class MamiTomoe extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 0,12);
+        SetUpgrade(0, 0, 3);
         SetSynergy(Synergies.MadokaMagica);
     }
 
@@ -28,7 +29,7 @@ public class MamiTomoe extends AnimatorCard {
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
         int damageCount = magicNumber * abstractPlayer.discardPile.getCardsOfType(CardType.CURSE).size();
 
-        GameActions.Bottom.VFX(new LightFlareLEffect(abstractMonster.hb_x, abstractMonster.hb_y));
+        GameActions.Bottom.VFX(new ExplosionSmallEffect(abstractMonster.hb_x, abstractMonster.hb_y));
 
         GameActions.Bottom.DealDamage(abstractPlayer, abstractMonster, damageCount, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));

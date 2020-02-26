@@ -4,6 +4,7 @@
 import basemod.devcommands.ConsoleCommand;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
@@ -11,8 +12,10 @@ import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.CustomCardLibSortHeader;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.Testing;
 
 import java.io.IOException;
@@ -40,6 +43,29 @@ import java.util.Map;
          {
              if (tokens.length > 1)
              {
+                 if (tokens[1].equals("starter") && tokens.length > 2)
+                 {
+                     String loadoutName = tokens[2].replace("_", " ");
+                     AnimatorLoadout loadout = GR.Animator.Data.GetByName(loadoutName);
+                     if (GameUtilities.IsInGame() && loadout != null && AbstractDungeon.player.masterDeck != null)
+                     {
+                         AbstractDungeon.player.masterDeck.group.removeAll(AbstractDungeon.player.masterDeck.getPurgeableCards().group);
+
+                         for (String cardID : loadout.GetStartingDeck())
+                         {
+                             AbstractDungeon.player.masterDeck.group.add(CardLibrary.getCard(cardID).makeCopy());
+                         }
+
+                         DevConsole.log("Replaced starting deck with: " + loadoutName);
+                     }
+                     else
+                     {
+                         DevConsole.log("Error processing command.");
+                     }
+
+                     return;
+                 }
+
                  if (tokens[1].equals("sort-by-tribe"))
                  {
                      CustomCardLibSortHeader.Instance.group.group.sort((a, b) ->
@@ -113,6 +139,21 @@ import java.util.Map;
      @Override
      public ArrayList<String> extraOptions(String[] tokens, int depth)
      {
+         if (tokens.length > 1 && tokens[1].equals("starter"))
+         {
+             ArrayList<String> suggestions = new ArrayList<>();
+             for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
+             {
+                 suggestions.add(loadout.Name.replace(" ", "_"));
+             }
+             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
+             {
+                 suggestions.add(loadout.Name.replace(" ", "_"));
+             }
+             suggestions.sort(String::compareTo);
+             return suggestions;
+         }
+
          return new ArrayList<>();
      }
 

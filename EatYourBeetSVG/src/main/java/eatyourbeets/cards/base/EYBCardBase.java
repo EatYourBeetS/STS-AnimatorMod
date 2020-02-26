@@ -12,17 +12,13 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.JavaUtilities;
-import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.*;
 
 public abstract class EYBCardBase extends AbstractCard
 {
@@ -103,7 +99,7 @@ public abstract class EYBCardBase extends AbstractCard
         super.update();
 
         // Adding this because UPDATEHOVERLOGIC() gets called at arbitrary times...
-        if (CardCrawlGame.GameMode.GAMEPLAY.equals(CardCrawlGame.mode) && player != null && player.hoveredCard != this && !AbstractDungeon.isScreenUp)
+        if (GameUtilities.IsInGame() && player.hoveredCard != this && !AbstractDungeon.isScreenUp)
         {
             this.hovered = false;
             this.renderTip = false;

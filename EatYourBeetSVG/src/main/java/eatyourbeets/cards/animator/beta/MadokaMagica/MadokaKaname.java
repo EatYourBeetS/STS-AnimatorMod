@@ -40,7 +40,7 @@ public class MadokaKaname extends AnimatorCard
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, numCurses / 2));
+            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, numCurses / 2)).SkipIfZero(true);
         }
     }
 

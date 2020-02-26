@@ -32,8 +32,6 @@ public class KyokoSakura extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                boolean addBurn = false;
-
                 for (AbstractCard card : cards)
                 {
                     if (card.cost == 0)

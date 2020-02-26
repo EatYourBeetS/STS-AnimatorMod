@@ -77,14 +77,6 @@ public class AnimatorLoadoutsContainer
             }
         }
 
-        // <Beta>
-
-//        seriesSelectionItems.add(AnimatorRuntimeLoadout.TryCreate(new _Test(Synergies.HatarakuMaouSama, Urushihara.ID, 4)));
-//        seriesSelectionItems.add(AnimatorRuntimeLoadout.TryCreate(new _Test(Synergies.ReZero, Emilia.ID, 5)));
-//        seriesSelectionItems.add(AnimatorRuntimeLoadout.TryCreate(new _Test(Synergies.Jojo, QuestionMark.ID, 7)));
-
-        // </Beta>
-
         Random rng = new Random(Settings.seed + 13);
         while (promotedCount < 3)
         {

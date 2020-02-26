@@ -717,7 +717,7 @@
 	},
 	"animator:MamiTomoe":
 	{
-		"DESCRIPTION": "Attack an additional time for each Curse in your Discard pile.  If there are no Curses in the Discard pile, add 1 {Grief Seed} to your Discard pile.",
+		"DESCRIPTION": "Attacks an additional time for each Curse in your Discard pile.  If there are no Curses in the Discard pile, add 1 {Grief Seed} to your Discard pile.",
 		"NAME": "Mami Tomoe"
 	},
 	"animator:MaesHughes":
@@ -828,7 +828,7 @@
 	},
 	"animator:Oktavia":
 	{
-		"DESCRIPTION": "Add two random Curses to your hand, then draw cards equal to the total number of Curses in your hand. || Deal !M! damage X times to all enemies, where X is the number of Curses in your hand.",
+		"DESCRIPTION": "Add two random Curses to your hand, then draw cards equal to the total number of Curses in your hand. ||  Attacks X times, where X is the number of Curses in your hand.",
 		"NAME": "Oktavia"
 	},
 	"animator:OrbCore_Aether":

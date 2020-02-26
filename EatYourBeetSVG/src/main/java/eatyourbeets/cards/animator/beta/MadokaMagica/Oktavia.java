@@ -7,21 +7,36 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Oktavia extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Oktavia.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Oktavia.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL);
 
     public Oktavia()
     {
         super(DATA);
 
-        Initialize(13, 0, 0);
+        Initialize(13, 0, 1);
         SetUpgrade(3, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        magicNumber = player.hand.getCardsOfType(CardType.CURSE).size();
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
@@ -37,16 +52,29 @@ public class Oktavia extends AnimatorCard
         GameActions.Bottom.Callback(__ ->
         {
             //Draw cards equal to number of curses
-            int numCurses = player.hand.getCardsOfType(CardType.CURSE).size();
-            if (numCurses > 0)
-            {
-                GameActions.Bottom.Draw(numCurses);
 
-                //Deal damage equal to number of curses times magic number
-                int[] multiDamage = DamageInfo.createDamageMatrix(numCurses * damage, true);
-                GameActions.Bottom.DealDamageToAll(multiDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE);
-                GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
+            if (magicNumber > 0)
+            {
+                GameActions.Bottom.Draw(magicNumber);
             }
+
+            //Deal damage equal to number of curses times magic number
+            GameActions.Bottom.Callback(___ ->
+            {
+                magicNumber = player.hand.getCardsOfType(CardType.CURSE).size();
+
+                if (magicNumber > 0)
+                {
+                    int[] multiDamage = DamageInfo.createDamageMatrix(13, true);
+
+                    for (int i = 0; i < magicNumber; i++) {
+                        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
+                                .SetOptions(true, false);
+                    }
+
+                    GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH));
+                }
+            });
         });
     }
 }

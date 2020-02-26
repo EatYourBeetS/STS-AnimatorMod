@@ -42,7 +42,7 @@ public class Witch extends AnimatorCard implements Spellcaster, StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        if (GameUtilities.IsEliteRoom())
+        if (GameUtilities.InEliteRoom())
         {
             GameActions.Bottom.Add(new ObtainPotionAction(AbstractDungeon.returnRandomPotion(false)));
 

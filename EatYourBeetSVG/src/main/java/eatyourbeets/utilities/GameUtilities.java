@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.curses.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,6 +26,8 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.curse.Curse_Greed;
+import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.orbs.animator.Aether;
@@ -43,6 +46,99 @@ public class GameUtilities
 {
     private static final OnPhaseChangedSubscriber handLayoutRefresher = new HandLayoutRefresher();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
+    private static final RandomizedList<AbstractCard> curses = new RandomizedList<>();
+
+    public static void ApplyTemporaryDexterity(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        if (UseArtifact(target))
+        {
+            GameActions.Top.ApplyPowerSilently(source, target, new LoseDexterityPower(target, amount), amount);
+        }
+
+        GameActions.Top.ApplyPower(source, target, new DexterityPower(target, amount), amount);
+    }
+
+    public static void ApplyTemporaryFocus(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        if (UseArtifact(target))
+        {
+            GameActions.Top.ApplyPowerSilently(source, target, new TemporaryBiasPower(target, amount), amount);
+        }
+
+        GameActions.Top.ApplyPower(source, target, new FocusPower(target, amount), amount);
+    }
+
+    public static void ApplyTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        if (UseArtifact(target))
+        {
+            GameActions.Top.ApplyPowerSilently(source, target, new LoseStrengthPower(target, amount), amount);
+        }
+
+        GameActions.Top.ApplyPower(source, target, new StrengthPower(target, amount), amount);
+    }
+
+    public static void ClearPostCombatActions()
+    {
+        AbstractDungeon.actionManager.clearPostCombatActions();
+    }
+
+    public static void CopyVisualProperties(AbstractCard copy, AbstractCard original)
+    {
+        copy.current_y = original.current_y;
+        copy.current_x = original.current_x;
+        copy.target_x = original.target_x;
+        copy.target_y = original.target_y;
+        copy.targetDrawScale = original.targetDrawScale;
+        copy.drawScale = original.drawScale;
+        copy.transparency = original.transparency;
+        copy.targetTransparency = original.targetTransparency;
+        copy.angle = original.angle;
+        copy.targetAngle = original.targetAngle;
+    }
+
+    public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
+    {
+        AbstractPlayer player = AbstractDungeon.player;
+        if (player.hand.contains(card))
+        {
+            return player.hand;
+        }
+        else if (player.drawPile.contains(card))
+        {
+            return player.drawPile;
+        }
+        else if (player.discardPile.contains(card))
+        {
+            return player.discardPile;
+        }
+        else if (player.exhaustPile.contains(card))
+        {
+            return player.exhaustPile;
+        }
+        else if (includeLimbo && player.limbo.contains(card))
+        {
+            return player.limbo;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public static ArrayList<AbstractCard> GenerateCardPool(Predicate<AbstractCard> filter)
+    {
+        ArrayList<AbstractCard> pool = new ArrayList<>();
+        for (AbstractCard c : CardLibrary.getAllCards())
+        {
+            if (filter.test(c))
+            {
+                pool.add(c);
+            }
+        }
+
+        return pool;
+    }
 
     public static int GetActualAscensionLevel()
     {
@@ -139,6 +235,20 @@ public class GameUtilities
         return cards;
     }
 
+    public static HashSet<AbstractCard> GetAllCopies(String cardID, CardGroup group)
+    {
+        HashSet<AbstractCard> result = new HashSet<>();
+        for (AbstractCard card : group.group)
+        {
+            if (cardID.equals(card.cardID))
+            {
+                result.add(card);
+            }
+        }
+
+        return result;
+    }
+
     public static HashSet<AbstractCard> GetAllInBattleInstances(AbstractCard card)
     {
         HashSet<AbstractCard> cards = GetAllInBattleInstances.get(card.uuid);
@@ -171,42 +281,6 @@ public class GameUtilities
         return 0;
     }
 
-    public static AbstractCard GetRandomRewardCard(RewardItem rewardItem, boolean includeRares)
-    {
-        AbstractCard replacement = null;
-        boolean searchingCard = true;
-        while (searchingCard)
-        {
-            searchingCard = false;
-
-            AbstractCard temp = GetRandomRewardCard(includeRares);
-            if (temp == null)
-            {
-                break;
-            }
-
-            for (AbstractCard c : rewardItem.cards)
-            {
-                if (temp.cardID.equals(c.cardID))
-                {
-                    searchingCard = true;
-                }
-            }
-
-            if (temp instanceof OnAddingToCardReward && ((OnAddingToCardReward)temp).ShouldCancel(rewardItem))
-            {
-                searchingCard = true;
-            }
-
-            if (!searchingCard)
-            {
-                replacement = temp.makeCopy();
-            }
-        }
-
-        return replacement;
-    }
-
     public static CardGroup GetCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
     {
         if (color == AbstractCard.CardColor.COLORLESS)
@@ -222,51 +296,6 @@ public class GameUtilities
 
             default:
                 return null;
-        }
-    }
-
-    public static CardGroup GetSourceCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
-    {
-        if (color == AbstractCard.CardColor.COLORLESS)
-        {
-            return AbstractDungeon.colorlessCardPool;
-        }
-
-        switch (rarity)
-        {
-            case COMMON: return AbstractDungeon.srcCommonCardPool;
-            case UNCOMMON: return AbstractDungeon.srcUncommonCardPool;
-            case RARE: return AbstractDungeon.srcRareCardPool;
-
-            default:
-                return null;
-        }
-    }
-
-    public static AbstractCard GetRandomRewardCard(boolean includeRares)
-    {
-        ArrayList<AbstractCard> list;
-        int roll = AbstractDungeon.cardRng.random(100);
-        if (roll <= 4 && includeRares)
-        {
-            list = AbstractDungeon.srcRareCardPool.group;
-        }
-        else if (roll < 40)
-        {
-            list = AbstractDungeon.srcUncommonCardPool.group;
-        }
-        else
-        {
-            list = AbstractDungeon.srcCommonCardPool.group;
-        }
-
-        if (list != null && list.size() > 0)
-        {
-            return list.get(AbstractDungeon.cardRng.random(list.size() - 1));
-        }
-        else
-        {
-            return null;
         }
     }
 
@@ -299,17 +328,6 @@ public class GameUtilities
         {
             return mapNode.getRoom();
         }
-    }
-
-    public static boolean Retain(AbstractCard card)
-    {
-        if (!card.isEthereal && !card.retain)
-        {
-            card.retain = true;
-            return true;
-        }
-
-        return false;
     }
 
     public static int GetDebuffsCount(AbstractCreature creature)
@@ -414,41 +432,6 @@ public class GameUtilities
         return cards;
     }
 
-    public static <T extends AbstractRelic> T GetRelic(String relicID)
-    {
-        for (AbstractRelic relic : AbstractDungeon.player.relics)
-        {
-            if (relic != null && relicID.equals(relic.relicId))
-            {
-                try
-                {
-                    return (T)relic;
-                }
-                catch (ClassCastException e)
-                {
-                    e.printStackTrace();
-
-                    return null;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public static <T> T GetRelic(Class<T> relicType)
-    {
-        for (AbstractRelic relic : AbstractDungeon.player.relics)
-        {
-            if (relicType.isInstance(relic))
-            {
-                return relicType.cast(relic);
-            }
-        }
-
-        return null;
-    }
-
     public static <T> T GetPower(AbstractCreature owner, Class<T> powerType)
     {
         for (AbstractPower power : owner.powers)
@@ -515,6 +498,29 @@ public class GameUtilities
         }
     }
 
+    public static AbstractCard GetRandomCurse()
+    {
+        if (curses.Size() == 0)
+        {
+            curses.Add(new Clumsy());
+            curses.Add(new Decay());
+            curses.Add(new Doubt());
+            curses.Add(new Injury());
+            curses.Add(new Normality());
+            curses.Add(new Pain());
+            curses.Add(new Parasite());
+            curses.Add(new Regret());
+            curses.Add(new Shame());
+            curses.Add(new Writhe());
+            curses.Add(new Curse_Greed());
+            curses.Add(new Curse_Nutcracker());
+            //curses.add(new Pride());
+            //curses.add(new Necronomicurse());
+        }
+
+        return curses.Retrieve(AbstractDungeon.cardRandomRng, false).makeCopy();
+    }
+
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
     {
         return JavaUtilities.GetRandomElement(GetCurrentEnemies(aliveOnly));
@@ -536,6 +542,104 @@ public class GameUtilities
         return orbs.Retrieve(AbstractDungeon.cardRandomRng, false).makeCopy();
     }
 
+    public static AbstractCard GetRandomRewardCard(RewardItem rewardItem, boolean includeRares)
+    {
+        AbstractCard replacement = null;
+        boolean searchingCard = true;
+        while (searchingCard)
+        {
+            searchingCard = false;
+
+            AbstractCard temp = GetRandomRewardCard(includeRares);
+            if (temp == null)
+            {
+                break;
+            }
+
+            for (AbstractCard c : rewardItem.cards)
+            {
+                if (temp.cardID.equals(c.cardID))
+                {
+                    searchingCard = true;
+                }
+            }
+
+            if (temp instanceof OnAddingToCardReward && ((OnAddingToCardReward)temp).ShouldCancel(rewardItem))
+            {
+                searchingCard = true;
+            }
+
+            if (!searchingCard)
+            {
+                replacement = temp.makeCopy();
+            }
+        }
+
+        return replacement;
+    }
+
+    public static AbstractCard GetRandomRewardCard(boolean includeRares)
+    {
+        ArrayList<AbstractCard> list;
+        int roll = AbstractDungeon.cardRng.random(100);
+        if (roll <= 4 && includeRares)
+        {
+            list = AbstractDungeon.srcRareCardPool.group;
+        }
+        else if (roll < 40)
+        {
+            list = AbstractDungeon.srcUncommonCardPool.group;
+        }
+        else
+        {
+            list = AbstractDungeon.srcCommonCardPool.group;
+        }
+
+        if (list != null && list.size() > 0)
+        {
+            return list.get(AbstractDungeon.cardRng.random(list.size() - 1));
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public static <T extends AbstractRelic> T GetRelic(String relicID)
+    {
+        for (AbstractRelic relic : AbstractDungeon.player.relics)
+        {
+            if (relic != null && relicID.equals(relic.relicId))
+            {
+                try
+                {
+                    return (T)relic;
+                }
+                catch (ClassCastException e)
+                {
+                    e.printStackTrace();
+
+                    return null;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static <T> T GetRelic(Class<T> relicType)
+    {
+        for (AbstractRelic relic : AbstractDungeon.player.relics)
+        {
+            if (relicType.isInstance(relic))
+            {
+                return relicType.cast(relic);
+            }
+        }
+
+        return null;
+    }
+
     public static int GetResonance()
     {
         return GetResonance(AbstractDungeon.player);
@@ -550,6 +654,24 @@ public class GameUtilities
         }
 
         return 0;
+    }
+
+    public static CardGroup GetSourceCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
+    {
+        if (color == AbstractCard.CardColor.COLORLESS)
+        {
+            return AbstractDungeon.colorlessCardPool;
+        }
+
+        switch (rarity)
+        {
+            case COMMON: return AbstractDungeon.srcCommonCardPool;
+            case UNCOMMON: return AbstractDungeon.srcUncommonCardPool;
+            case RARE: return AbstractDungeon.srcRareCardPool;
+
+            default:
+                return null;
+        }
     }
 
     public static int GetStrength()
@@ -583,6 +705,23 @@ public class GameUtilities
         return orbList.size();
     }
 
+    public static int GetXCostEnergy(AbstractCard card)
+    {
+        int amount = EnergyPanel.getCurrentEnergy();
+
+        if (card.energyOnUse != -1)
+        {
+            amount = card.energyOnUse;
+        }
+
+        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
+        {
+            amount += ChemicalX.BOOST;
+        }
+
+        return amount;
+    }
+
     public static boolean InBattle()
     {
         AbstractRoom room = GetCurrentRoom();
@@ -592,6 +731,27 @@ public class GameUtilities
         }
 
         return false;
+    }
+
+    public static boolean InBossRoom()
+    {
+        return GetCurrentRoom() instanceof MonsterRoomBoss;
+    }
+
+    public static boolean InEliteRoom()
+    {
+        AbstractRoom room = GetCurrentRoom();
+        if (room != null)
+        {
+            return room.eliteTrigger;
+        }
+
+        return false;
+    }
+
+    public static boolean InGame()
+    {
+        return CardCrawlGame.GameMode.GAMEPLAY.equals(CardCrawlGame.mode);
     }
 
     public static boolean IsAttacking(AbstractMonster.Intent intent)
@@ -610,17 +770,32 @@ public class GameUtilities
         return target.isDeadOrEscaped() || target.currentHealth <= 0;
     }
 
-    public static boolean IsBossRoom()
+    public static boolean IsPlayerClass(AbstractPlayer.PlayerClass playerClass)
     {
-        return GetCurrentRoom() instanceof MonsterRoomBoss;
+        return AbstractDungeon.player != null && AbstractDungeon.player.chosenClass == playerClass;
     }
 
-    public static boolean IsEliteRoom()
+    public static boolean IsValidOrb(AbstractOrb orb)
     {
-        AbstractRoom room = GetCurrentRoom();
-        if (room != null)
+        return orb != null && !(orb instanceof EmptyOrbSlot);
+    }
+
+    public static void RefreshHandLayout()
+    {
+        PlayerStatistics.onPhaseChanged.Subscribe(handLayoutRefresher);
+    }
+
+    public static boolean RequiresTarget(AbstractCard card)
+    {
+        return card.target == AbstractCard.CardTarget.ENEMY || card.target == AbstractCard.CardTarget.SELF_AND_ENEMY;
+    }
+
+    public static boolean Retain(AbstractCard card)
+    {
+        if (!card.isEthereal && !card.retain)
         {
-            return room.eliteTrigger;
+            card.retain = true;
+            return true;
         }
 
         return false;
@@ -629,6 +804,41 @@ public class GameUtilities
     public static boolean TriggerOnKill(AbstractCreature enemy, boolean includeMinions)
     {
         return IsDeadOrEscaped(enemy) && !enemy.hasPower(RegrowPower.POWER_ID) && (includeMinions || !enemy.hasPower(MinionPower.POWER_ID));
+    }
+
+    public static Vector2 TryGetPosition(CardGroup group)
+    {
+        if (group != null)
+        {
+            if (group.type == CardGroup.CardGroupType.DRAW_PILE)
+            {
+                return new Vector2(CardGroup.DRAW_PILE_X, CardGroup.DRAW_PILE_Y);
+            }
+            else if (group.type == CardGroup.CardGroupType.DISCARD_PILE)
+            {
+                return new Vector2(CardGroup.DISCARD_PILE_X, CardGroup.DRAW_PILE_Y);
+            }
+            else if (group.type == CardGroup.CardGroupType.EXHAUST_PILE)
+            {
+                return new Vector2(CardGroup.DISCARD_PILE_X, CardGroup.DRAW_PILE_Y + (Settings.scale * 30f));
+            }
+        }
+
+        return null;
+    }
+
+    public static boolean TrySetPosition(CardGroup group, AbstractCard card)
+    {
+        Vector2 pos = TryGetPosition(group);
+        if (pos != null)
+        {
+            card.current_x = pos.x;
+            card.current_y = pos.y;
+
+            return true;
+        }
+
+        return false;
     }
 
     public static void UnlockAllKeys()
@@ -692,87 +902,6 @@ public class GameUtilities
         }
     }
 
-    public static void ApplyTemporaryDexterity(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        if (UseArtifact(target))
-        {
-            GameActions.Top.ApplyPowerSilently(source, target, new LoseDexterityPower(target, amount), amount);
-        }
-
-        GameActions.Top.ApplyPower(source, target, new DexterityPower(target, amount), amount);
-    }
-
-    public static void ApplyTemporaryFocus(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        if (UseArtifact(target))
-        {
-            GameActions.Top.ApplyPowerSilently(source, target, new TemporaryBiasPower(target, amount), amount);
-        }
-
-        GameActions.Top.ApplyPower(source, target, new FocusPower(target, amount), amount);
-    }
-
-    public static void ApplyTemporaryStrength(AbstractCreature source, AbstractCreature target, int amount)
-    {
-        if (UseArtifact(target))
-        {
-            GameActions.Top.ApplyPowerSilently(source, target, new LoseStrengthPower(target, amount), amount);
-        }
-
-        GameActions.Top.ApplyPower(source, target, new StrengthPower(target, amount), amount);
-    }
-
-    public static void ClearPostCombatActions()
-    {
-        AbstractDungeon.actionManager.clearPostCombatActions();
-    }
-
-    public static CardGroup FindCardGroup(AbstractCard card, boolean includeLimbo)
-    {
-        AbstractPlayer player = AbstractDungeon.player;
-        if (player.hand.contains(card))
-        {
-            return player.hand;
-        }
-        else if (player.drawPile.contains(card))
-        {
-            return player.drawPile;
-        }
-        else if (player.discardPile.contains(card))
-        {
-            return player.discardPile;
-        }
-        else if (player.exhaustPile.contains(card))
-        {
-            return player.exhaustPile;
-        }
-        else if (includeLimbo && player.limbo.contains(card))
-        {
-            return player.limbo;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public static int GetXCostEnergy(AbstractCard card)
-    {
-        int amount = EnergyPanel.getCurrentEnergy();
-
-        if (card.energyOnUse != -1)
-        {
-            amount = card.energyOnUse;
-        }
-
-        if (AbstractDungeon.player.hasRelic(ChemicalX.ID))
-        {
-            amount += ChemicalX.BOOST;
-        }
-
-        return amount;
-    }
-
     public static int UseXCostEnergy(AbstractCard card)
     {
         int amount = EnergyPanel.getCurrentEnergy();
@@ -796,108 +925,6 @@ public class GameUtilities
         RefreshHandLayout();
 
         return amount;
-    }
-
-    public static void RefreshHandLayout()
-    {
-        PlayerStatistics.onPhaseChanged.Subscribe(handLayoutRefresher);
-    }
-
-    public static boolean TrySetPosition(CardGroup group, AbstractCard card)
-    {
-        Vector2 pos = TryGetPosition(group);
-        if (pos != null)
-        {
-            card.current_x = pos.x;
-            card.current_y = pos.y;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public static Vector2 TryGetPosition(CardGroup group)
-    {
-        if (group != null)
-        {
-            if (group.type == CardGroup.CardGroupType.DRAW_PILE)
-            {
-                return new Vector2(CardGroup.DRAW_PILE_X, CardGroup.DRAW_PILE_Y);
-            }
-            else if (group.type == CardGroup.CardGroupType.DISCARD_PILE)
-            {
-                return new Vector2(CardGroup.DISCARD_PILE_X, CardGroup.DRAW_PILE_Y);
-            }
-            else if (group.type == CardGroup.CardGroupType.EXHAUST_PILE)
-            {
-                return new Vector2(CardGroup.DISCARD_PILE_X, CardGroup.DRAW_PILE_Y + (Settings.scale * 30f));
-            }
-        }
-
-        return null;
-    }
-
-    public static boolean IsPlayerClass(AbstractPlayer.PlayerClass playerClass)
-    {
-        return AbstractDungeon.player != null && AbstractDungeon.player.chosenClass == playerClass;
-    }
-
-    public static void CopyVisualProperties(AbstractCard copy, AbstractCard original)
-    {
-        copy.current_y = original.current_y;
-        copy.current_x = original.current_x;
-        copy.target_x = original.target_x;
-        copy.target_y = original.target_y;
-        copy.targetDrawScale = original.targetDrawScale;
-        copy.drawScale = original.drawScale;
-        copy.transparency = original.transparency;
-        copy.targetTransparency = original.targetTransparency;
-        copy.angle = original.angle;
-        copy.targetAngle = original.targetAngle;
-    }
-
-    public static boolean IsValidOrb(AbstractOrb orb)
-    {
-        return orb != null && !(orb instanceof EmptyOrbSlot);
-    }
-
-    public static ArrayList<AbstractCard> GenerateCardPool(Predicate<AbstractCard> filter)
-    {
-        ArrayList<AbstractCard> pool = new ArrayList<>();
-        for (AbstractCard c : CardLibrary.getAllCards())
-        {
-            if (filter.test(c))
-            {
-                pool.add(c);
-            }
-        }
-
-        return pool;
-    }
-
-    public static boolean RequiresTarget(AbstractCard card)
-    {
-        return card.target == AbstractCard.CardTarget.ENEMY || card.target == AbstractCard.CardTarget.SELF_AND_ENEMY;
-    }
-
-    public static HashSet<AbstractCard> GetAllCopies(String cardID, CardGroup group)
-    {
-        HashSet<AbstractCard> result = new HashSet<>();
-        for (AbstractCard card : group.group)
-        {
-            if (cardID.equals(card.cardID))
-            {
-                result.add(card);
-            }
-        }
-
-        return result;
-    }
-
-    public static boolean IsInGame()
-    {
-        return CardCrawlGame.GameMode.GAMEPLAY.equals(CardCrawlGame.mode);
     }
 
     private static class HandLayoutRefresher implements OnPhaseChangedSubscriber

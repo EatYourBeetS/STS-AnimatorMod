@@ -925,7 +925,7 @@ public class GameUtilities
 
     public static boolean IsInGame()
     {
-        return CardCrawlGame.GameMode.GAMEPLAY.equals(CardCrawlGame.mode) && AbstractDungeon.player != null;
+        return CardCrawlGame.GameMode.GAMEPLAY.equals(CardCrawlGame.mode);
     }
 
     private static class HandLayoutRefresher implements OnPhaseChangedSubscriber

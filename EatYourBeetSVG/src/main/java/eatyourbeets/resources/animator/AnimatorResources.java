@@ -95,12 +95,12 @@ public class AnimatorResources extends AbstractResources
     {
         BaseMod.addCharacter(new AnimatorCharacter(), Images.CHAR_BUTTON_PNG, Images.CHAR_PORTRAIT_JPG, PlayerClass);
 
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "Nothing", "Anime", "A new starting deck!"), PlayerClass, 0);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "UNNECESSARY unlock bar", "Anime", "A new starting deck!"), PlayerClass, 0);
         BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "Nothing", "Anime", "A new starting deck!"), PlayerClass, 1);
         BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "Unicorns", "BaseMod", "A new starting deck!"), PlayerClass, 2);
         BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "A piece of paper", "BaseMod", "A new starting deck!"), PlayerClass, 3);
         BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "A new bug", "BaseMod", "A new starting deck!"), PlayerClass, 4);
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "The Void", "Breaking changes without a warning!", "A new starting deck!"), PlayerClass, 5);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "The Void", "Breaking changes", "A new starting deck!"), PlayerClass, 5);
     }
 
     @Override

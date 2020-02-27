@@ -16,7 +16,7 @@ public class GoblinSoldier extends AnimatorCard_Status
 
     public GoblinSoldier()
     {
-        super(DATA);
+        super(DATA, true);
 
         Initialize(0, 0, 2);
 

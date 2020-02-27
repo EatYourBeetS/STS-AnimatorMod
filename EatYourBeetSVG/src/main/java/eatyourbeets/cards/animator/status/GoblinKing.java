@@ -15,7 +15,7 @@ public class GoblinKing extends AnimatorCard_Status
 
     public GoblinKing()
     {
-        super(DATA);
+        super(DATA, true);
 
         Initialize(0, 0);
 

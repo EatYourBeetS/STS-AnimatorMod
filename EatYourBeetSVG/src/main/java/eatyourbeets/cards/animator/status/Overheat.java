@@ -16,15 +16,9 @@ public class Overheat extends AnimatorCard_Status
 
     public Overheat()
     {
-        super(DATA);
+        super(DATA, false);
 
         Initialize(0, 0, 3);
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        // Do not autoplay
     }
 
     @Override

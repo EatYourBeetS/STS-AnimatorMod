@@ -15,7 +15,7 @@ public class GoblinShaman extends AnimatorCard_Status
 
     public GoblinShaman()
     {
-        super(DATA);
+        super(DATA, true);
 
         Initialize(0, 0);
 

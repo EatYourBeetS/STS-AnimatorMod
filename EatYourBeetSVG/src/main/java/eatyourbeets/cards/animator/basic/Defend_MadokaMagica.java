@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.basic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.Synergies;
@@ -25,7 +26,7 @@ public class Defend_MadokaMagica extends Defend
     {
         GameActions.Bottom.GainBlock(this.block);
 
-        if (Math.random() < 0.5)
+        if (AbstractDungeon.cardRandomRng.randomBoolean(0.5f))
         {
             GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
         }

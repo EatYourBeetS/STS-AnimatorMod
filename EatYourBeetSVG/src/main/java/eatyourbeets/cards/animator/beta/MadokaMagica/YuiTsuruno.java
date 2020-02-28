@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -11,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class YuiTsuruno extends AnimatorCard {
-    public static final EYBCardData DATA = Register(YuiTsuruno.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(YuiTsuruno.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public YuiTsuruno() {
         super(DATA);
@@ -26,7 +27,7 @@ public class YuiTsuruno extends AnimatorCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
 
-        if (Math.random() < 0.5)
+        if (AbstractDungeon.cardRandomRng.randomBoolean(0.5f))
         {
             GameActions.Bottom.MakeCardInDiscardPile(GameUtilities.GetRandomCurse());
         }

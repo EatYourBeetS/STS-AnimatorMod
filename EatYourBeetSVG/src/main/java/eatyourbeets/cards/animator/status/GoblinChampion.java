@@ -15,7 +15,7 @@ public class GoblinChampion extends AnimatorCard_Status
 
     public GoblinChampion()
     {
-        super(DATA);
+        super(DATA, true);
 
         Initialize(0, 0);
 

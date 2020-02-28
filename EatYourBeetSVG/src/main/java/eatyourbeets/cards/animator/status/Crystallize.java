@@ -14,17 +14,11 @@ public class Crystallize extends AnimatorCard_Status
 
     public Crystallize()
     {
-        super(DATA);
+        super(DATA, false);
 
         Initialize(0, 0, 4, 3);
 
         SetExhaust(true);
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        // Do not autoplay
     }
 
     @Override

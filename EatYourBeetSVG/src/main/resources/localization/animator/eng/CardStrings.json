@@ -554,7 +554,7 @@
 	},
 	"animator:HiiragiShinya":
 	{
-		"DESCRIPTION": "Fetch a card from your ** discard pile and Retain it, ** it costs 1 more this turn. || Synergy: Gain !M! ** {Support Damage}.",
+		"DESCRIPTION": "Fetch a card from your ** discard pile and Retain it, ** it costs 1 more this turn. || On Synergy: Gain !M! ** {Support Damage}.",
 		"NAME": "Shinya Hiiragi"
 	},
 	"animator:HiiragiTenri":
@@ -920,7 +920,7 @@
 	},
 	"animator:Rimuru":
 	{
-		"DESCRIPTION": "Whenever you play a ** card, turn this card ** into a copy of it.",
+		"DESCRIPTION": "Whenever you play a ** card: Turn this card ** into a copy of it.",
 		"NAME": "Rimuru"
 	},
 	"animator:RinTohsaka":

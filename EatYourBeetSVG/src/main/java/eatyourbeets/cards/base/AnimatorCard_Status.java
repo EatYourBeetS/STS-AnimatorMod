@@ -10,9 +10,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public abstract class AnimatorCard_Status extends AnimatorCard
 {
-    protected AnimatorCard_Status(EYBCardData data)
+    protected boolean playAtEndOfTurn;
+
+    protected AnimatorCard_Status(EYBCardData data, boolean playAtEndOfTurn)
     {
         super(data);
+
+        this.playAtEndOfTurn = playAtEndOfTurn;
     }
 
     @Override
@@ -29,8 +33,11 @@ public abstract class AnimatorCard_Status extends AnimatorCard
     @Override
     public void triggerOnEndOfTurnForPlayingCard()
     {
-        this.dontTriggerOnUseCard = true;
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+        if (playAtEndOfTurn)
+        {
+            this.dontTriggerOnUseCard = true;
+            AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+        }
     }
 
     @Override

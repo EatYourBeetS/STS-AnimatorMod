@@ -98,7 +98,8 @@ public abstract class EYBCardBase extends AbstractCard
     {
         super.update();
 
-        if (GameUtilities.IsInGame() && player != null && player.hoveredCard != this && !AbstractDungeon.isScreenUp)
+        // Adding this because UPDATEHOVERLOGIC() gets called at arbitrary times...
+        if (GameUtilities.InGame() && player != null && player.hoveredCard != this && !AbstractDungeon.isScreenUp)
         {
             this.hovered = false;
             this.renderTip = false;

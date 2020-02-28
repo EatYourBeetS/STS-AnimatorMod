@@ -17,7 +17,7 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
 
     public TheHaunt()
     {
-        super(DATA);
+        super(DATA, false);
 
         int goldBonus = 0;
         Haunted blight = GetBlight();
@@ -40,12 +40,6 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
 
         this.isEthereal = true;
         this.exhaust = true;
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        // Do not auto play
     }
 
     @Override

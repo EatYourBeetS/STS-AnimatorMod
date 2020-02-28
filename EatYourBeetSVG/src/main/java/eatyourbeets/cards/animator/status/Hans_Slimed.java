@@ -16,7 +16,7 @@ public class Hans_Slimed extends AnimatorCard_Status
 
     public Hans_Slimed()
     {
-        super(DATA);
+        super(DATA, false);
 
         Initialize(0, 0, 1);
 

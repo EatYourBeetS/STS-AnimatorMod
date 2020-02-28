@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.powers.BasePower;
 
-public class FlashPowerEffect extends AbstractGameEffect
+public class EYBFlashPowerEffect extends AbstractGameEffect
 {
     private float x;
     private float y;
@@ -18,7 +18,7 @@ public class FlashPowerEffect extends AbstractGameEffect
     private static final int W = 32;
     private float scale;
 
-    public FlashPowerEffect(BasePower power)
+    public EYBFlashPowerEffect(BasePower power)
     {
         this.scale = Settings.scale;
 
@@ -62,15 +62,22 @@ public class FlashPowerEffect extends AbstractGameEffect
         sb.setColor(this.color);
         if (this.region128 != null)
         {
-            sb.draw(this.region128, this.x, this.y, 32f, 32f, 64.0F, 64.0F, this.scale * 3.0F, this.scale * 3.0F, 0.0F);
-            //sb.draw(this.region128, this.x, this.y, (float) this.region128.packedWidth / 2.0F, (float) this.region128.packedHeight / 2.0F, (float) this.region128.packedWidth, (float) this.region128.packedHeight, this.scale * 3.0F, this.scale * 3.0F, 0.0F);
+            float half_w = region128.packedWidth / 2f;
+            float half_h = region128.packedHeight / 2f;
+
+            sb.draw(region128, x, y, half_w, half_h, region128.packedWidth, region128.packedHeight, scale, scale, 0.0F);
+            //sb.draw(this.region128, this.x, this.y, 32f, 32f, 64.0F, 64.0F, this.scale * 3.0F, this.scale * 3.0F, 0.0F);
+        }
+        else if (img.getWidth() >= 48)
+        {
+            sb.draw(img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, scale * 12.0F, scale * 12.0F, 0.0F, 0, 0, 32, 32, false, false);
+            sb.draw(img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, scale * 10.0F, scale * 10.0F, 0.0F, 0, 0, 32, 32, false, false);
+            sb.draw(img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, scale * 8.0F, scale * 8.0F, 0.0F, 0, 0, 32, 32, false, false);
+            sb.draw(img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, scale * 7.0F, scale * 7.0F, 0.0F, 0, 0, 32, 32, false, false);
         }
         else
         {
-            sb.draw(this.img, this.x - 16.0F, this.y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, this.scale * 12.0F, this.scale * 12.0F, 0.0F, 0, 0, 32, 32, false, false);
-            sb.draw(this.img, this.x - 16.0F, this.y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, this.scale * 10.0F, this.scale * 10.0F, 0.0F, 0, 0, 32, 32, false, false);
-            sb.draw(this.img, this.x - 16.0F, this.y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, this.scale * 8.0F, this.scale * 8.0F, 0.0F, 0, 0, 32, 32, false, false);
-            sb.draw(this.img, this.x - 16.0F, this.y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, this.scale * 7.0F, this.scale * 7.0F, 0.0F, 0, 0, 32, 32, false, false);
+            this.isDone = true;
         }
         sb.setBlendFunction(770, 771);
     }

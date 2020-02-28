@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
@@ -25,11 +26,25 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
     {
         super(DATA);
 
-        Initialize(4, 7);
-        SetUpgrade(3, 0);
+        Initialize(4, 6, 1);
+        SetUpgrade(2, 2);
         SetScaling(1, 1, 0);
 
         SetSynergy(Synergies.YoujoSenki);
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        magicNumber = (baseMagicNumber + player.hand.getSkills().size());
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
@@ -41,7 +56,7 @@ public class TanyaDegurechaff extends AnimatorCard implements StartupCard
         .SetFilter(c -> c.type == CardType.SKILL)
         .AddCallback(m, (enemy, cards) ->
         {
-            for (int i = 0; i < cards.size(); i++)
+            for (int i = 0; i < (cards.size() + baseMagicNumber); i++)
             {
                 GameActions.Bottom.SFX("ATTACK_FIRE");
                 GameActions.Bottom.DealDamage(this, (AbstractCreature) enemy, AbstractGameAction.AttackEffect.NONE);

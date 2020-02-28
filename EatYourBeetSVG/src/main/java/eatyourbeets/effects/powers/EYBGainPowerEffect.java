@@ -10,14 +10,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.powers.BasePower;
 
-public class GainPowerEffect extends AbstractGameEffect
+public class EYBGainPowerEffect extends AbstractGameEffect
 {
     private static final float EFFECT_DUR = 2.0F;
     private float scale;
     private Texture img;
     private AtlasRegion region48;
 
-    public GainPowerEffect(BasePower power, boolean playSfx)
+    public EYBGainPowerEffect(BasePower power, boolean playSfx)
     {
         this.img = power.img;
 
@@ -61,12 +61,17 @@ public class GainPowerEffect extends AbstractGameEffect
         sb.setBlendFunction(770, 1);
         if (this.region48 != null)
         {
-            sb.draw(this.region48, x - 12f, y - 16f, 16f, 16f, 32.0F, 32.0F, this.scale, this.scale, 0.0F);
+            float half_w = region48.packedWidth / 2f;
+            float half_h = region48.packedHeight / 2f;
+
+            //sb.draw(this.region48, x - 12f, y - 16f, 16f, 16f, 32.0F, 32.0F, scale, scale, 0.0F);
+            sb.draw(this.region48, x - half_w, y - half_h, half_w, half_h, region48.packedWidth , region48.packedHeight, scale * 0.1f, scale * 0.1f, 0.0F);
         }
         else
         {
-            sb.draw(this.img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, this.scale, this.scale, 0.0F, 0, 0, 32, 32, false, false);
+            sb.draw(this.img, x - 16.0F, y - 16.0F, 16.0F, 16.0F, 32.0F, 32.0F, scale, scale, 0.0F, 0, 0, 32, 32, false, false);
         }
+
         sb.setBlendFunction(770, 771);
     }
 

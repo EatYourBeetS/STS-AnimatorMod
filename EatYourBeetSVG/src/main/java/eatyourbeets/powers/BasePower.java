@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.effects.powers.FlashPowerEffect;
-import eatyourbeets.effects.powers.GainPowerEffect;
+import eatyourbeets.effects.powers.EYBFlashPowerEffect;
+import eatyourbeets.effects.powers.EYBGainPowerEffect;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
@@ -139,15 +139,15 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
     @Override
     public void flash()
     {
-        this.effects.add(new GainPowerEffect(this, true));
-        GameEffects.List.Add(new FlashPowerEffect(this));
+        this.effects.add(new EYBGainPowerEffect(this, true));
+        GameEffects.List.Add(new EYBFlashPowerEffect(this));
     }
 
     @Override
     public void flashWithoutSound()
     {
-        this.effects.add(new GainPowerEffect(this, false));
-        GameEffects.List.Add(new FlashPowerEffect(this));
+        this.effects.add(new EYBGainPowerEffect(this, false));
+        GameEffects.List.Add(new EYBFlashPowerEffect(this));
     }
 
     @Override

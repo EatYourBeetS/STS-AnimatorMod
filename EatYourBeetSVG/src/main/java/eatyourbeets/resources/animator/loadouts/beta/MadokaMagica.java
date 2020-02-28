@@ -1,11 +1,10 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
-import eatyourbeets.cards.animator.basic.Defend;
-import eatyourbeets.cards.animator.basic.Defend_Elsword;
-import eatyourbeets.cards.animator.basic.Strike;
-import eatyourbeets.cards.animator.basic.Strike_Elsword;
+import eatyourbeets.cards.animator.basic.*;
+import eatyourbeets.cards.animator.beta.MadokaMagica.IrohaTamaki;
 import eatyourbeets.cards.animator.beta.MadokaMagica.KyokoSakura;
 import eatyourbeets.cards.animator.beta.MadokaMagica.Kyubey;
+import eatyourbeets.cards.animator.beta.MadokaMagica.YuiTsuruno;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -26,16 +25,16 @@ public class MadokaMagica extends AnimatorLoadout
     {
         if (startingDeck.isEmpty())
         {
-            startingDeck.add(Strike_Elsword.DATA.ID);
-            startingDeck.add(Defend_Elsword.DATA.ID);
+            startingDeck.add(Strike_MadokaMagica.ID);
+            startingDeck.add(Defend_MadokaMagica.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
             startingDeck.add(Defend.DATA.ID);
-            startingDeck.add(KyokoSakura.DATA.ID);
-            startingDeck.add(KyokoSakura.DATA.ID);
+            startingDeck.add(IrohaTamaki.DATA.ID);
+            startingDeck.add(YuiTsuruno.DATA.ID);
         }
 
         return startingDeck;

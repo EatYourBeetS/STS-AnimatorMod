@@ -7,19 +7,20 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Oktavia extends AnimatorCard
+public class Oktavia extends AnimatorCard implements Spellcaster
 {
-    public static final EYBCardData DATA = Register(Oktavia.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Oktavia.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     public Oktavia()
     {
         super(DATA);
 
-        Initialize(13, 0, 1);
-        SetUpgrade(3, 0, 0);
+        Initialize(9, 0, 1);
+        SetUpgrade(2, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
     }

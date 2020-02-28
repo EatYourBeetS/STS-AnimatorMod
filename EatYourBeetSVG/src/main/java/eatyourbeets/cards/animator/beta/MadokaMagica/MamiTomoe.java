@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class MamiTomoe extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MamiTomoe.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(MamiTomoe.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged);
     static
     {
         DATA.AddPreview(new Curse_GriefSeed(), false);
@@ -26,8 +26,8 @@ public class MamiTomoe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0, 1);
-        SetUpgrade(3, 0, 0);
+        Initialize(8, 0, 1);
+        SetUpgrade(2, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
     }

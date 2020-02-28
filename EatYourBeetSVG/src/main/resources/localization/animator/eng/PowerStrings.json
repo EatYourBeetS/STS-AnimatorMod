@@ -350,6 +350,11 @@
 		"DESCRIPTIONS": ["Whenever you are attacked this turn, gain #b", " #yTemporary #HP."],
 		"NAME": "Vitality"
 	},
+	"animator:YachiyoNanamiPower":
+	{
+		"DESCRIPTIONS": ["At the start of your turn, you may discard a card.  If you do, gain #b", " #yBlock.  If the discarded card has a cost of 0, also gain 2 Agility."],
+		"NAME": "Yachiyo Nanami"
+	},
 	"animator:YukoShionjiPower":
 	{
 		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use(s) ), or #pRight-Click to discard it ( #b", " use(s))."],

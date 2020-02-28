@@ -133,11 +133,6 @@
 		"DESCRIPTION": "Played at the start of ** your next turn. Apply 1 ** Weak and Vulnerable. || When Discarded: Deal !M! ** damage to ALL enemies.",
 		"NAME": "Chaika Trabant"
 	},
-	"animator:Charlotte":
-	{
-		"DESCRIPTION": "Double the damage dealt for each Curse in hand.",
-		"NAME": "Charlotte"
-	},
 	"animator:ChlammyZell":
 	{
 		"DESCRIPTION": "Draw 2 cards. Next turn, ** draw !M! additional card(s). || <LIM>. If you reached ** 3 [I] this combat: Add a ** {Scheme} to your hand.",
@@ -273,11 +268,6 @@
 	"animator:Defend_Konosuba":
 	{
 		"DESCRIPTION": "",
-		"NAME": "Improved Defend"
-	},
-	"animator:Defend_MadokaMagica":
-	{
-		"DESCRIPTION": "Have a 50% chance of adding a Grief Seed to your deck.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_NoGameNoLife":
@@ -609,12 +599,6 @@
 		"DESCRIPTION": "Play the {Attack} with the ** highest damage from your ** draw pile. Take !M! damage ** at the end of turn. || When Exhausted: Draw ** {Berserker} from any ** pile and Retain it.",
 		"NAME": "Illya"
 	},
-	"animator:IrohaTamaki":
-	{
-		"DESCRIPTION": "Synergy: Cycle 1 card.",
-		"NAME": "Iroha Tamaki",
-		"UPGRADE_DESCRIPTION": "Synergy: Exhaust the top card of your draw pile if it is a Hindrance.  Cycle 1 card."
-	},
 	"animator:ItamiYouji":
 	{
 		"DESCRIPTION": "<DRW-M>. ** Deal damage for ** each {Attack} drawn. || On Synergy: Gain !S! ** {Support Damage}.",
@@ -819,11 +803,6 @@
 		"DESCRIPTION": "When Exhausted: This ** card returns to your ** draw pile after a random ** number of turns.",
 		"NAME": "Mumen Rider",
 		"UPGRADE_DESCRIPTION": "<DRW>. || When Exhausted: This ** card returns to your ** draw pile after a random ** number of turns."
-	},
-	"animator:NagisaMomoe":
-	{
-		"DESCRIPTION": "Fetch !M! cards from your discard pile. || Add a copy of {Charlotte} and a {Grief Seed} to your discard pile, then Exhaust. ",
-		"NAME": "Nagisa Momoe"
 	},
 	"animator:Nanami":
 	{
@@ -1143,11 +1122,6 @@
 		"DESCRIPTION": "",
 		"NAME": "Improved Strike"
 	},
-	"animator:Strike_MadokaMagica":
-	{
-		"DESCRIPTION": "Scry 2.",
-		"NAME": "Improved Strike"
-	},
 	"animator:Strike_NoGameNoLife":
 	{
 		"DESCRIPTION": "Retain your rightmost ** playable card.",
@@ -1299,11 +1273,6 @@
 		"DESCRIPTION": "Exhaust 1 card. Choose a ** card in Exhaust pile and ** add a copy to your hand. || <LIM>. Synergy: This ** card will not Purge.",
 		"NAME": "Wiz"
 	},
-	"animator:YachiyoNanami":
-	{
-		"DESCRIPTION": "At the start of your turn, you may discard a card.  If you do, gain !M! block.  If the discarded card has a cost of 0, also gain 2 Agility.",
-		"NAME": "Yachiyo Nanami"
-	},
 	"animator:YaoHaDucy":
 	{
 		"DESCRIPTION": "The enemy loses ** !M! Strength this turn. || On Synergy: If you have ** any {Support Damage}, ** increase it by !S!.",
@@ -1313,11 +1282,6 @@
 	{
 		"DESCRIPTION": "Discard 1 card. ** Gain 1 {Support Damage}. || <SLM>. On ** Synergy: Activate your ** {Support Damage}.",
 		"NAME": "Yoichi"
-	},
-	"animator:YuiTsuruno":
-	{
-		"DESCRIPTION": "Has a 50% chance of adding a random Curse to your Discard pile.",
-		"NAME": "Yui Tsuruno"
 	},
 	"animator:YunYun":
 	{

@@ -281,7 +281,7 @@ public class GameUtilities
 
         return 0;
     }
-    
+
     public static CardGroup GetCardPool(AbstractCard.CardRarity rarity, AbstractCard.CardColor color)
     {
         if (color == AbstractCard.CardColor.COLORLESS)

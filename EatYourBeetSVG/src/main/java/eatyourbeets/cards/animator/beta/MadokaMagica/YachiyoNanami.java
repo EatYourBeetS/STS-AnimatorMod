@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class YachiyoNanami extends AnimatorCard
 {
@@ -58,7 +59,7 @@ public class YachiyoNanami extends AnimatorCard
             {
                 if (cards.size() > 0)
                 {
-                    if (cards.get(0).cost == 0)
+                    if (GameUtilities.IsCurseOrStatus(cards.get(0)))
                     {
                         GameActions.Bottom.GainAgility(AGILITY_AMOUNT);
                     }

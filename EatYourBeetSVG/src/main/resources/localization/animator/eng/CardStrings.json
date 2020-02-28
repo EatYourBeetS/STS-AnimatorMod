@@ -674,7 +674,7 @@
 	},
 	"animator:KyokoSakura":
 	{
-		"DESCRIPTION": "Cycle !M! card(s). || If you Cycled at least ** one {0-Cost} card: ** Apply 2 Burning.",
+		"DESCRIPTION": "Cycle !M! card(s). || If at least one card you Cycled ** is a Hindrance: ** Apply 2 Burning.",
 		"NAME": "Kyoko Sakura"
 	},
 	"animator:Kyubey":
@@ -1301,8 +1301,8 @@
 	},
 	"animator:YachiyoNanami":
 	{
-		"DESCRIPTION": "At the start of your turn, you may discard a card.  If you do, gain !M! block.  If the discarded card has a cost of 0, also gain 2 Agility.",
-		"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard 1 card to gain #b{0} #yBlock. If you discarded a 0-Cost card, also gain #b{1} #yAgility"],
+		"DESCRIPTION": "At the start of your turn, you may discard a card.  If you do, gain !M! block.  If the discarded card is a Hindrance, also gain 2 Agility.",
+		"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard 1 card to gain #b{0} #yBlock. If you discarded a Hindrance, also gain #b{1} #yAgility"],
 		"NAME": "Yachiyo Nanami"
 	},
 	"animator:YaoHaDucy":

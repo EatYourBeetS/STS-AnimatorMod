@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class KyokoSakura extends AnimatorCard
 {
@@ -34,7 +35,7 @@ public class KyokoSakura extends AnimatorCard
             {
                 for (AbstractCard card : cards)
                 {
-                    if (card.cost == 0)
+                    if (GameUtilities.IsCurseOrStatus(card))
                     {
                         GameActions.Bottom.ApplyBurning(player, (AbstractMonster)enemy, 2);
                         return;

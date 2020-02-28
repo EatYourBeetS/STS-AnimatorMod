@@ -2,13 +2,11 @@
 
  import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
-import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.interfaces.markers.MartialArtist;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.resources.GR;
@@ -18,11 +16,7 @@ import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.Testing;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Map;
 
  public class ParseGenericCommand extends ConsoleCommand
  {
@@ -32,7 +26,7 @@ import java.util.Map;
      public ParseGenericCommand()
      {
          this.minExtraTokens = 1;
-         this.maxExtraTokens = 1;
+         this.maxExtraTokens = 99;
          this.simpleCheck = true;
      }
 
@@ -111,7 +105,7 @@ import java.util.Map;
 
                  if (tokens[1].equals("crop"))
                  {
-                     Crop(tokens[2]);
+                     DevConsole.log("This command is currently not available.");
                      return;
                  }
 
@@ -139,22 +133,24 @@ import java.util.Map;
      @Override
      public ArrayList<String> extraOptions(String[] tokens, int depth)
      {
-         if (tokens.length > 1 && tokens[1].equals("starter"))
+         ArrayList<String> suggestions = new ArrayList<>();
+
+         if (tokens.length > 1 && tokens.length <= 3)
          {
-             ArrayList<String> suggestions = new ArrayList<>();
-             for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
+             if (tokens[1].equals("starter"))
              {
-                 suggestions.add(loadout.Name.replace(" ", "_"));
+                 for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
+                 {
+                     suggestions.add(loadout.Name.replace(" ", "_"));
+                 }
+                 for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
+                 {
+                     suggestions.add(loadout.Name.replace(" ", "_"));
+                 }
              }
-             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
-             {
-                 suggestions.add(loadout.Name.replace(" ", "_"));
-             }
-             suggestions.sort(String::compareTo);
-             return suggestions;
          }
 
-         return new ArrayList<>();
+         return suggestions;
      }
 
      public static void Test(String[] tokens) throws NumberFormatException
@@ -166,27 +162,5 @@ import java.util.Map;
          }
 
          Testing.SetValues(values);
-     }
-
-     private static void Crop(String arg) throws IOException
-     {
-         final String path = "C:/temp/Animator-CardMetadata.json";
-         final String jsonString = new String(Files.readAllBytes(Paths.get(path)));
-
-         EYBCard card = GR.UI.CardPopup.GetCard();
-         if (card != null)
-         {
-             Gson gson = new Gson();
-             Map<String, EYBCardMetadata> items = GR.Animator.CardData;
-
-             if (!items.containsKey(card.cardID))
-             {
-                 items.put(card.cardID, new EYBCardMetadata());
-             }
-
-             items.get(card.cardID).cropPortrait = arg.equals("true");
-
-             Files.write(Paths.get(path), new Gson().toJson(items).getBytes());
-         }
      }
  }

@@ -1,10 +1,7 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.basic.*;
-import eatyourbeets.cards.animator.beta.MadokaMagica.IrohaTamaki;
-import eatyourbeets.cards.animator.beta.MadokaMagica.KyokoSakura;
-import eatyourbeets.cards.animator.beta.MadokaMagica.Kyubey;
-import eatyourbeets.cards.animator.beta.MadokaMagica.YuiTsuruno;
+import eatyourbeets.cards.animator.beta.MadokaMagica.*;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;

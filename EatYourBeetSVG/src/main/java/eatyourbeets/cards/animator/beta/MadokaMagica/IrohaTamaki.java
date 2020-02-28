@@ -11,10 +11,12 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class IrohaTamaki extends AnimatorCard {
+public class IrohaTamaki extends AnimatorCard
+{
     public static final EYBCardData DATA = Register(IrohaTamaki.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
-    public IrohaTamaki() {
+    public IrohaTamaki()
+    {
         super(DATA);
 
         Initialize(3, 5);
@@ -24,23 +26,23 @@ public class IrohaTamaki extends AnimatorCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
         GameActions.Bottom.GainBlock(block);
 
-        if (HasSynergy()) {
+        if (HasSynergy())
+        {
             if (upgraded)
             {
                 AbstractCard topCard = player.drawPile.getTopCard();
-
                 if (GameUtilities.IsCurseOrStatus(topCard))
                 {
-                    GameActions.Bottom.Exhaust(topCard);
+                    GameActions.Top.Exhaust(topCard);
                 }
             }
 
-            GameActions.Bottom.Cycle(name ,1);
+            GameActions.Bottom.Cycle(name, 1);
         }
-
     }
 }

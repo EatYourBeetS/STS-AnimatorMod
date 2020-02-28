@@ -1,9 +1,6 @@
-package eatyourbeets.cards.animator.curse;
+package eatyourbeets.cards.animator.beta.MadokaMagica;
 
-import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard_Curse;
@@ -11,9 +8,9 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
-public class Curse_GriefSeed extends AnimatorCard_Curse {
+public class Curse_GriefSeed extends AnimatorCard_Curse
+{
     public static final EYBCardData DATA = Register(Curse_GriefSeed.class).SetCurse(-2, EYBCardTarget.None);
 
     public Curse_GriefSeed()
@@ -29,8 +26,8 @@ public class Curse_GriefSeed extends AnimatorCard_Curse {
     @Override
     public void triggerOnExhaust()
     {
-        GameActions.Bottom.Callback(__ -> {
-            AbstractPlayer player = AbstractDungeon.player;
+        GameActions.Bottom.Callback(__ ->
+        {
             for (int i = player.powers.size() - 1; i >= 0; i--)
             {
                 AbstractPower power = player.powers.get(i);
@@ -44,7 +41,14 @@ public class Curse_GriefSeed extends AnimatorCard_Curse {
     }
 
     @Override
-    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
+    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster)
+    {
 
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        return false;
     }
 }

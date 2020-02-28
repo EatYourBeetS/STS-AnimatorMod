@@ -11,10 +11,12 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 
-public class Charlotte extends AnimatorCard implements Spellcaster {
+public class Charlotte extends AnimatorCard implements Spellcaster
+{
     public static final EYBCardData DATA = Register(Charlotte.class).SetAttack(4, CardRarity.SPECIAL, EYBAttackType.Normal);
 
-    public Charlotte() {
+    public Charlotte()
+    {
         super(DATA);
 
         Initialize(8, 0, 0);
@@ -24,15 +26,15 @@ public class Charlotte extends AnimatorCard implements Spellcaster {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        int curseCount = player.hand.getCardsOfType(CardType.CURSE).size();
-        int damageCount = damage;
+    protected float GetInitialDamage()
+    {
+        return baseDamage * (float) Math.pow(2, player.hand.getCardsOfType(CardType.CURSE).size());
+    }
 
-        for (int i=0; i<curseCount; i++)
-        {
-            damageCount *= 2;
-        }
-
-        GameActions.Bottom.DealDamage(p, m, damageCount, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE);
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
+        // This would need a flashier VFX when the damage is above 64 or something
+        GameActions.Bottom.DealDamage(p, m, damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE);
     }
 }

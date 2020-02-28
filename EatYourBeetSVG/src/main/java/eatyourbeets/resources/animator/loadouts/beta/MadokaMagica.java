@@ -1,7 +1,9 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.basic.Defend;
+import eatyourbeets.cards.animator.basic.Defend_Elsword;
 import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.basic.Strike_Elsword;
 import eatyourbeets.cards.animator.beta.MadokaMagica.KyokoSakura;
 import eatyourbeets.cards.animator.beta.MadokaMagica.Kyubey;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
@@ -24,8 +26,8 @@ public class MadokaMagica extends AnimatorLoadout
     {
         if (startingDeck.isEmpty())
         {
-            startingDeck.add(Strike.DATA.ID);
-            startingDeck.add(Defend.DATA.ID);
+            startingDeck.add(Strike_Elsword.DATA.ID);
+            startingDeck.add(Defend_Elsword.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);
             startingDeck.add(Strike.DATA.ID);

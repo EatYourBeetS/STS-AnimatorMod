@@ -55,13 +55,13 @@ public class LabyPower extends AnimatorPower
     {
         this.flashWithoutSound();
 
-        GameActions.Bottom.ApplyConstricted(owner, owner, amount);
+        GameActions.Top.ApplyConstricted(owner, owner, amount);
 
         if (upgradedAmount > 0)
         {
             for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
             {
-                GameActions.Bottom.ApplyConstricted(owner, enemy, upgradedAmount)
+                GameActions.Top.ApplyConstricted(owner, enemy, upgradedAmount)
                 .ShowEffect(false, true);
             }
         }

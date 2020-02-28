@@ -888,7 +888,7 @@
 	},
 	"animator:Rimuru":
 	{
-		"DESCRIPTION": "Whenever you play a ** card, turn this card ** into a copy of it.",
+		"DESCRIPTION": "Whenever you play a ** card: Turn this card ** into a copy of it.",
 		"NAME": "Rimuru"
 	},
 	"animator:RinTohsaka":

@@ -42,7 +42,7 @@ public class Shiro extends AnimatorCard implements OnCostRefreshSubscriber
     public void atTurnStart()
     {
         super.atTurnStart();
-        this.resetAttributes();
+
         Refresh(null);
     }
 

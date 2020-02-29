@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -47,7 +46,6 @@ public class SwordMaiden extends AnimatorCard
         GameActions.Bottom.GainTemporaryHP(this.magicNumber);
         GameActions.Bottom.Callback(__ ->
         {
-            AbstractPlayer player = AbstractDungeon.player;
             for (int i = player.powers.size() - 1; i >= 0; i--)
             {
                 AbstractPower power = player.powers.get(i);

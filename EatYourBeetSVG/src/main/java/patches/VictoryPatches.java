@@ -10,6 +10,7 @@ import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
+// Act 5 and Act 3 victory logic
 public class VictoryPatches
 {
     private static final TheUnnamed.Data data = new TheUnnamed.Data(TheUnnamed.ID);

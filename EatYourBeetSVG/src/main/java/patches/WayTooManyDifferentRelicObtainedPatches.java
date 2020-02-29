@@ -10,9 +10,9 @@ import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 
-public class WayTooManyDifferentRelicObtainedPatches
+public class WayTooManyDifferentRelicObtainedPatches // a.k.a. base game code is a mess
 {
-    private static void OnRelicObtain(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
+    protected static void OnRelicObtain(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
         PlayerStatistics.OnRelicObtained(relic, trigger);
         UnnamedReignRelic.OnRelicObtained(relic, trigger);

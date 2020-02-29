@@ -9,6 +9,7 @@ import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 import javassist.CtBehavior;
 
+// This patch ensures each font has a handle to its own file...
 @SpirePatch(clz = FontHelper.class, method = "prepFont", paramtypez = {FreeTypeFontGenerator.class, float.class, boolean.class})
 public class FontHelperPatches
 {

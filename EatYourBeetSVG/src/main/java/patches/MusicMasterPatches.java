@@ -10,6 +10,7 @@ import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 
+// If a track is already playing, do not start playing the same one
 @SpirePatch(clz = MusicMaster.class, method = "playTempBgmInstantly", paramtypez = {String.class})
 public class MusicMasterPatches
 {

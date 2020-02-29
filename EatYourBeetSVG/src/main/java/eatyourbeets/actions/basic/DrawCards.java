@@ -72,8 +72,8 @@ public class DrawCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
             if (shuffleIfEmpty && !player.discardPile.isEmpty())
             {
                 GameActions.Top.Sequential(
-                    new DrawCards(this, amount),
-                    new EmptyDeckShuffleAction()
+                    new EmptyDeckShuffleAction(),
+                    new DrawCards(this, amount)
                 );
 
                 Complete(); // Do not trigger callback

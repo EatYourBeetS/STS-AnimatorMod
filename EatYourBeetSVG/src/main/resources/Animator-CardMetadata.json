@@ -8,6 +8,10 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:Charlotte":
+	{
+	  "cropPortrait": false
+	},
 	"animator:ChlammyZellScheme":
 	{
 		"cropPortrait": false

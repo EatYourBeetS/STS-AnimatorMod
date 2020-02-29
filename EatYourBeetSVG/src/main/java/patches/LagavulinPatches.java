@@ -14,6 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
+// Fix Lagavulin music playing multiple times when fighting multiple Lagavulin (in act 5)
 public class LagavulinPatches
 {
     @SpirePatch(clz = Lagavulin.class, method = "changeState")

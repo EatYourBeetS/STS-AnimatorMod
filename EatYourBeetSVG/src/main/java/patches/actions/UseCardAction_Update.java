@@ -1,4 +1,4 @@
-package patches.useCardAction;
+package patches.actions;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -20,7 +20,7 @@ public class UseCardAction_Update
             {
                 if (m.getClassName().equals(AbstractCard.class.getName()) && m.getFieldName().equals("purgeOnUse"))
                 {
-                    m.replace("{ $_ = patches.useCardAction.UseCardAction_Update.Patch($0); }");
+                    m.replace("{ $_ = patches.actions.UseCardAction_Update.Patch($0); }");
                 }
             }
         };

@@ -10,6 +10,7 @@ import eatyourbeets.events.animator.TheMaskedTraveler2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.rooms.AnimatorCustomEventRoom;
 
+// Add the event to enter Act 5
 @SpirePatch(clz = TheEnding.class, method = "generateSpecialMap")
 public class TheEnding_GenerateSpecialMap
 {

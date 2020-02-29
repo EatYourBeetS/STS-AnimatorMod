@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ConfusionPower;
 
+// If card cost is greater than 3, randomize its cost between 0 and its base cost, instead of 0-3
 @SpirePatch(clz = ConfusionPower.class, method = "onCardDraw", paramtypez = {AbstractCard.class})
 public class ConfusionPowerPatches
 {

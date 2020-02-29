@@ -11,6 +11,11 @@ import eatyourbeets.utilities.GameActions;
 public class NagisaMomoe extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(NagisaMomoe.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    static
+    {
+        DATA.AddPreview(new Charlotte(), true);
+        DATA.AddPreview(new Curse_GriefSeed(), false);
+    }
 
     public NagisaMomoe()
     {

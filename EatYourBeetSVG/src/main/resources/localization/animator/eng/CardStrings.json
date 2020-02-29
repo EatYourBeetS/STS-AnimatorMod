@@ -586,7 +586,7 @@
 	{
 		"DESCRIPTION": "Take an extra turn after this one. Add 3 random {Curses} to your discard pile. || End your turn.",
 		"NAME": "Homura Akemi",
-		"UPGRADE_DESCRIPTION": "Take an extra turn after this one. Add 3 random {Curses} to your discard pile. Scry 4. || End your turn."
+		"UPGRADE_DESCRIPTION": "Take an extra turn after this one. Add 3 random {Curses} to your discard pile. Boost 5 [I]. || End your turn."
 	},
 	"animator:HououinKyouma":
 	{
@@ -674,7 +674,7 @@
 	},
 	"animator:KyokoSakura":
 	{
-		"DESCRIPTION": "Cycle !M! card(s). || If at least one card you Cycled ** is a Hindrance: ** Apply 2 Burning.",
+		"DESCRIPTION": "Cycle !M! card(s). || If at least one card you ** Cycled is a Hindrance: ** Channel 1 Fire.",
 		"NAME": "Kyoko Sakura"
 	},
 	"animator:Kyubey":
@@ -727,14 +727,15 @@
 	},
 	"animator:MadokaKaname":
 	{
-		"DESCRIPTION": "Exhaust all {Curses} ** in discard pile. || Limited. Gain 1 Intangible for each 2 {Curses} Exhausted.",
+		"DESCRIPTION": "Exhaust all {Hindrances} ** in the discard pile. || Limited. Boost 1 Intellect for each 2 {Status} exhausted and gain 1 Intangible for each 2 {Curses} Exhausted.",
 		"NAME": "Madoka Kaname",
-		"UPGRADE_DESCRIPTION": "Exhaust all {Curses} ** everywhere. || Limited. Gain 1 Intangible for each 2 {Curses} Exhausted."
+		"UPGRADE_DESCRIPTION": "Exhaust all {Hindrances} ** everywhere. || Limited. Boost 1 Intellect for each 2 {Status} exhausted and gain 1 Intangible for each 2 {Curses} Exhausted."
 	},
 	"animator:MamiTomoe":
 	{
-		"DESCRIPTION": "Attacks an additional time for each Curse in your Discard pile. || If there are no Curses in the Discard pile, add 1 {Grief Seed} to your Discard pile.",
-		"NAME": "Mami Tomoe"
+		"DESCRIPTION": "Attacks an additional time for each Curse in your Discard pile plus your Draw pile. || If there are no Curses in the Discard pile, add 1 {Grief Seed} to your Discard pile.",
+		"NAME": "Mami Tomoe",
+		"UPGRADE_DESCRIPTION": "Attacks an additional time for each Curse you have everywhere. || If there are no Curses in the Discard pile, add 1 {Grief Seed} to your Discard pile."
 	},
 	"animator:MaesHughes":
 	{
@@ -978,7 +979,7 @@
 	},
 	"animator:SayakaMiki":
 	{
-		"DESCRIPTION": "If your HP is above or at 50% and if Synergy wasn't triggered, add a random Curse to your Discard pile. || If your HP is below 50% and if Synergy wasn't triggered, add a copy of {Oktavia} and a {Grief Seed} to your discard pile, then Exhaust.",
+		"DESCRIPTION": "Synergy: If your HP is above ** 50%, Channel 1 Frost. || If your HP is below 50%, add a copy of {Oktavia} and a {Grief Seed} to your discard pile, then Exhaust.",
 		"NAME": "Sayaka Miki"
 	},
 	"animator:Scar":
@@ -1301,8 +1302,8 @@
 	},
 	"animator:YachiyoNanami":
 	{
-		"DESCRIPTION": "At the start of your turn, you may discard a card.  If you do, gain !M! block.  If the discarded card is a Hindrance, also gain 2 Agility.",
-		"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard 1 card to gain #b{0} #yBlock. If you discarded a Hindrance, also gain #b{1} #yAgility"],
+		"DESCRIPTION": "At the start of your turn, you ** may discard a card.  If you do, ** gain !M! block.  If the discarded ** card is a Hindrance, also gain ** 2 [I].",
+		"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard 1 card to gain #b{0} #yBlock. If you discarded a Hindrance, also gain #b{1} Intellect"],
 		"NAME": "Yachiyo Nanami"
 	},
 	"animator:YaoHaDucy":
@@ -1318,7 +1319,8 @@
 	"animator:YuiTsuruno":
 	{
 		"DESCRIPTION": "Has a 50% chance of adding a random Curse to your Discard pile.",
-		"NAME": "Yui Tsuruno"
+		"NAME": "Yui Tsuruno",
+		"UPGRADE_DESCRIPTION": "Has a 50% chance of adding a random ** Curse to your Discard pile, and a 50% chance ** of Channeling 1 Fire."
 	},
 	"animator:YunYun":
 	{

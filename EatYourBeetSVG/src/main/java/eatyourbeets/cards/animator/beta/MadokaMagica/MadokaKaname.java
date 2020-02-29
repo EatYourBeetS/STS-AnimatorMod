@@ -12,10 +12,14 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MadokaKaname extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MadokaKaname.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None);
+
+    private int CurseCount;
+    private int StatusCount;
 
     public MadokaKaname()
     {
@@ -30,37 +34,43 @@ public class MadokaKaname extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        int numCurses = MoveCurses(p.discardPile, p.exhaustPile);
+        CurseCount = 0;
+        StatusCount = 0;
+
+        MoveHindranceUpdateCounts(p.discardPile, p.exhaustPile);
 
         if (upgraded)
         {
-            numCurses += MoveCurses(p.hand, p.exhaustPile);
-            numCurses += MoveCurses(p.drawPile, p.exhaustPile);
+            MoveHindranceUpdateCounts(p.hand, p.exhaustPile);
+            MoveHindranceUpdateCounts(p.drawPile, p.exhaustPile);
         }
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, numCurses / 2)).SkipIfZero(true);
+            GameActions.Bottom.GainIntellect(StatusCount / 2, true);
+            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, CurseCount / 2)).SkipIfZero(true);
         }
     }
 
-    private int MoveCurses(CardGroup source, CardGroup destination)
+    private void MoveHindranceUpdateCounts(CardGroup source, CardGroup destination)
     {
         float duration = 0.3f;
-        int numCurses = 0;
 
         for (AbstractCard card : source.group)
         {
-            if (card.type == CardType.CURSE)
+            if (GameUtilities.IsCurseOrStatus(card))
             {
-                GameActions.Top.MoveCard(card, source, destination)
-                .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
-                .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
+                if (card.type == CardType.CURSE) {
+                    CurseCount++;
+                }
+                else if (card.type == CardType.STATUS) {
+                    StatusCount++;
+                }
 
-                numCurses++;
+                GameActions.Top.MoveCard(card, source, destination)
+                        .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
+                        .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
             }
         }
-
-        return numCurses;
     }
 }

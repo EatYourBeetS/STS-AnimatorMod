@@ -15,7 +15,7 @@ public class Defend_MadokaMagica extends Defend
     {
         super(ID, 1, CardTarget.SELF);
 
-        Initialize(0, 5, 2);
+        Initialize(0, 7, 2);
         SetUpgrade(0, 3);
 
         SetSynergy(Synergies.Elsword);

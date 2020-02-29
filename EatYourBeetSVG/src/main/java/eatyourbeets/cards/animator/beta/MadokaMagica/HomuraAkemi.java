@@ -38,7 +38,7 @@ public class HomuraAkemi extends AnimatorCard
 
         if (upgraded)
         {
-            GameActions.Bottom.Add(new ScryWhichActuallyTriggersDiscard(4));
+            GameActions.Bottom.GainIntellect(5, true);
         }
 
         GameActions.Bottom.Add(new PressEndTurnButtonAction());

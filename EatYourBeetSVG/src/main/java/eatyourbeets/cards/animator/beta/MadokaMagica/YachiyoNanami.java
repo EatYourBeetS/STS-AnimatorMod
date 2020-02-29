@@ -18,6 +18,7 @@ public class YachiyoNanami extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 4);
+        SetUpgrade(0, 0, 1);
         SetCostUpgrade(-1);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -61,7 +62,7 @@ public class YachiyoNanami extends AnimatorCard
                 {
                     if (GameUtilities.IsCurseOrStatus(cards.get(0)))
                     {
-                        GameActions.Bottom.GainAgility(AGILITY_AMOUNT);
+                        GameActions.Bottom.GainIntellect(AGILITY_AMOUNT);
                     }
 
                     GameActions.Bottom.GainBlock(amount);

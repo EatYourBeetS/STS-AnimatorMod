@@ -27,6 +27,7 @@ public class MamiTomoe extends AnimatorCard
 
         Initialize(8, 0, 1);
         SetUpgrade(2, 0, 0);
+        SetScaling(1,0,0);
 
         SetSynergy(Synergies.MadokaMagica);
     }
@@ -36,7 +37,12 @@ public class MamiTomoe extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        magicNumber = player.discardPile.getCardsOfType(CardType.CURSE).size() + 1;
+        magicNumber = player.discardPile.getCardsOfType(CardType.CURSE).size() + player.drawPile.getCardsOfType(CardType.CURSE).size() + 1;
+
+        if (upgraded)
+        {
+            magicNumber += player.hand.getCardsOfType(CardType.CURSE).size();
+        }
     }
 
     @Override

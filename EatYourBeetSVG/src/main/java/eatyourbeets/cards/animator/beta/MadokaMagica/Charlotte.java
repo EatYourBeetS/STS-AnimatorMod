@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Charlotte extends AnimatorCard implements Spellcaster
 {
-    public static final EYBCardData DATA = Register(Charlotte.class).SetAttack(4, CardRarity.SPECIAL, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(Charlotte.class).SetAttack(3, CardRarity.SPECIAL, EYBAttackType.Normal);
 
     public Charlotte()
     {
@@ -25,6 +25,7 @@ public class Charlotte extends AnimatorCard implements Spellcaster
 
         Initialize(8, 0, 0);
         SetCostUpgrade(-1);
+        SetScaling(1,0,0);
 
         SetSynergy(Synergies.MadokaMagica);
     }

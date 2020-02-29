@@ -21,6 +21,7 @@ public class Oktavia extends AnimatorCard implements Spellcaster
 
         Initialize(9, 0, 1);
         SetUpgrade(2, 0, 0);
+        SetScaling(1,0,0);
 
         SetSynergy(Synergies.MadokaMagica);
     }

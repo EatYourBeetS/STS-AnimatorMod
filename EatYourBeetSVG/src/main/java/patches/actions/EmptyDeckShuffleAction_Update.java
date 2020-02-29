@@ -1,4 +1,4 @@
-package patches;
+package patches.actions;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
@@ -8,7 +8,7 @@ import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JavaUtilities;
 
 @SpirePatch(clz = EmptyDeckShuffleAction.class, method = "update")
-public class EmptyDeckShufflePatches
+public class EmptyDeckShuffleAction_Update
 {
     private static final FieldInfo<Boolean> _shuffled = JavaUtilities.GetField("shuffled", EmptyDeckShuffleAction.class);
 

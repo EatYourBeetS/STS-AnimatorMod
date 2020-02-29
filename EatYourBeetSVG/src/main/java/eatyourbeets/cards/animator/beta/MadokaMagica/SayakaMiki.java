@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -24,29 +25,30 @@ public class SayakaMiki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 0);
-        SetUpgrade(0, 2, 1);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 0, 2);
 
+        SetCooldown(4, -1, this::OnCooldownCompleted);
         SetSynergy(Synergies.MadokaMagica);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        if (GameUtilities.GetHealthPercentage(player) < 0.5f)
+        if (HasSynergy())
         {
-            GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetOptions(upgraded, false);
-            GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
-            this.exhaustOnUseOnce = true;
+            GameActions.Bottom.ChannelOrb(new Frost(), true);
         }
-        else
-        {
-            if (HasSynergy())
-            {
-                GameActions.Bottom.ChannelOrb(new Frost(), true);
-            }
-        }
+
+        cooldown.ProgressCooldownAndTrigger(m);
+    }
+
+    protected void OnCooldownCompleted(AbstractMonster m)
+    {
+        GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetOptions(upgraded, false);
+        GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
+        this.exhaustOnUseOnce = true;
     }
 }

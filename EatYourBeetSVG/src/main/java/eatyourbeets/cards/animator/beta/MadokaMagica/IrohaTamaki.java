@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.cardManipulation.ScryWhichActuallyTriggersDiscard;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -19,8 +20,8 @@ public class IrohaTamaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 5);
-        SetUpgrade(0, 2);
+        Initialize(3, 5, 3);
+        SetUpgrade(0, 2, 0);
 
         SetSynergy(Synergies.MadokaMagica);
     }
@@ -33,6 +34,8 @@ public class IrohaTamaki extends AnimatorCard
 
         if (HasSynergy())
         {
+            GameActions.Bottom.Add(new ScryWhichActuallyTriggersDiscard(magicNumber));
+
             if (upgraded)
             {
                 AbstractCard topCard = player.drawPile.getTopCard();
@@ -41,8 +44,6 @@ public class IrohaTamaki extends AnimatorCard
                     GameActions.Top.Exhaust(topCard);
                 }
             }
-
-            GameActions.Bottom.Cycle(name, 1);
         }
     }
 }

@@ -21,7 +21,7 @@ public class KyokoSakura extends AnimatorCard
         super(DATA);
 
         Initialize(5, 0, 1);
-        SetUpgrade(1, 0, 1);
+        SetUpgrade(2, 0, 0);
 
         SetSynergy(Synergies.MadokaMagica);
     }
@@ -32,6 +32,11 @@ public class KyokoSakura extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Bottom.Cycle(name, magicNumber).AddCallback(m, (enemy, cards) ->
         {
+            if (!upgraded)
+            {
+                return;
+            }
+
             if (cards.size() > 0)
             {
                 for (AbstractCard card : cards)

@@ -18,7 +18,6 @@ public class YachiyoNanami extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 4);
-        SetUpgrade(0, 0, 1);
         SetCostUpgrade(-1);
 
         SetSynergy(Synergies.MadokaMagica);

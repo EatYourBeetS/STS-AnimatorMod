@@ -17,18 +17,18 @@ import eatyourbeets.effects.attack.Hemokinesis2Effect;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Charlotte extends AnimatorCard implements Spellcaster
 {
-    public static final EYBCardData DATA = Register(Charlotte.class).SetAttack(3, CardRarity.SPECIAL, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(Charlotte.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal);
 
     public Charlotte()
     {
         super(DATA);
 
         Initialize(8, 0, 0);
-        SetCostUpgrade(-1);
-        SetScaling(1,0,0);
+        SetScaling(1,0,1);
 
         SetSynergy(Synergies.MadokaMagica);
     }
@@ -52,6 +52,12 @@ public class Charlotte extends AnimatorCard implements Spellcaster
                 GameEffects.List.Add(new Hemokinesis2Effect(e.hb.cX, e.hb.cY, player.hb.cX, player.hb.cY));
                 GameEffects.List.Add(new BorderFlashEffect(Color.RED));
                 GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
+            }
+        }).AddCallback(c ->
+        {
+            if (upgraded && GameUtilities.TriggerOnKill(c, true))
+            {
+                GameActions.Bottom.Heal(5);
             }
         });
     }

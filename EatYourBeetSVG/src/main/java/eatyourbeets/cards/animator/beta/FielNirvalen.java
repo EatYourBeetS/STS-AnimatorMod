@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.actions.cardManipulation.ScryWhichActuallyTriggersDiscard;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.AnimatorPower;
@@ -103,7 +102,7 @@ public class FielNirvalen extends AnimatorCard
             if (enabled)
             {
                 this.flash();
-                GameActions.Bottom.Add(new ScryWhichActuallyTriggersDiscard(amount));
+                GameActions.Bottom.Scry(amount);
                 enabled = false;
             }
         }

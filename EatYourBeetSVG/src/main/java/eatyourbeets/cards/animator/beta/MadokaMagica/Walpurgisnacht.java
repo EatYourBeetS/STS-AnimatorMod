@@ -16,17 +16,21 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JavaUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 public class Walpurgisnacht extends AnimatorCard implements Spellcaster
 {
     public static final EYBCardData DATA = Register(Walpurgisnacht.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
+    private static final RandomizedList<AnimatorCard> spellcasterPool = new RandomizedList<>();
+
     public Walpurgisnacht()
     {
         super(DATA);
 
-        Initialize(0, 0);
-        SetUpgrade(0, 0);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
     }
@@ -34,42 +38,28 @@ public class Walpurgisnacht extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
-        .AddCallback(orbCores ->
+        for (int i=0; i<magicNumber; i++)
         {
-            if (orbCores != null && orbCores.size() > 0)
+            if (spellcasterPool.Size() == 0)
             {
-                for (AbstractCard c : orbCores)
-                {
-                    c.applyPowers();
-                    c.use(AbstractDungeon.player, null);
-                }
+                spellcasterPool.AddAll(JavaUtilities.Filter(Synergies.GetNonColorlessCard(), c -> c instanceof Spellcaster));
+                spellcasterPool.AddAll(JavaUtilities.Filter(Synergies.GetColorlessCards(), c -> c instanceof Spellcaster));
             }
-        }));
 
-        MoveSpellcasters(p.discardPile, p.drawPile);
+            AnimatorCard spellcaster = spellcasterPool.Retrieve(AbstractDungeon.cardRandomRng, false);
+            if (spellcaster != null)
+            {
+                AbstractCard copy = spellcaster.makeCopy();
 
-        if (upgraded)
-        {
-            MoveSpellcasters(p.exhaustPile, p.drawPile);
+                copy.costForTurn = 0;
+                copy.isCostModified = true;
+                copy.freeToPlayOnce = true;
+
+                GameActions.Bottom.MakeCardInHand(copy);
+            }
         }
 
         GameActions.Bottom.ApplyPower(p, p, new WalpurgisnachtPower(p));
-    }
-
-    private void MoveSpellcasters(CardGroup source, CardGroup destination)
-    {
-        float duration = 0.3f;
-
-        for (AbstractCard card : source.group)
-        {
-            if (card instanceof Spellcaster)
-            {
-                GameActions.Top.MoveCard(card, source, destination)
-                .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
-                .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
-            }
-        }
     }
 
     public static class WalpurgisnachtPower extends AnimatorPower
@@ -78,9 +68,16 @@ public class Walpurgisnacht extends AnimatorCard implements Spellcaster
         {
             super(owner, Walpurgisnacht.DATA);
 
+
             this.amount = -1;
 
             updateDescription();
+        }
+
+        @Override
+        public void updateDescription()
+        {
+            description = FormatDescription(0, amount);
         }
 
         @Override

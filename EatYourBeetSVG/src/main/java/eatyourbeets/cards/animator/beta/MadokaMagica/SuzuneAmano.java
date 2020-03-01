@@ -7,9 +7,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 
-public class SuzuneAmano extends AnimatorCard
+public class SuzuneAmano extends AnimatorCard implements Spellcaster
 {
     public static final EYBCardData DATA = Register(SuzuneAmano.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 

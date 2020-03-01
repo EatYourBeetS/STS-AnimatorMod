@@ -1305,10 +1305,9 @@
 	},
 	"animator:Walpurgisnacht":
 	{
-		"DESCRIPTION": "Play 1 Orb Core. Move all Spellcasters from your discard pile to your draw pile. || At the start of turn: Evoke your next Orb once for each Curse and Spellcaster in discard pile.",
+		"DESCRIPTION": "Create and Add !M! random Spellcasters to your hand.  They cost 0 this turn. || At the start of turn: Evoke your next Orb once for each Curse and Spellcaster in discard pile.",
 		"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your discard pile."],
-		"NAME": "Walpurgisnacht",
-		"UPGRADE_DESCRIPTION": "Play 1 Orb Core. Move all Spellcasters from your discard pile and exhaust pile to your draw pile. || At the start of turn: Evoke your next Orb once for each Curse and Spellcaster in discard pile."
+		"NAME": "Walpurgisnacht"
 	},
 	"animator:WinryRockbell":
 	{

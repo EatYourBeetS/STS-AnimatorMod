@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta.MadokaMagica;
+package eatyourbeets.relics.animator;
 
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;

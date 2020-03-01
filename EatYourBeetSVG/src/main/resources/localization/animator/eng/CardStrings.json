@@ -739,6 +739,16 @@
 		"NAME": "Mami Tomoe",
 		"UPGRADE_DESCRIPTION": "Attacks an additional time for each Curse you have everywhere. || If there are no Curses in the Discard pile, add 1 {Grief Seed} to your Discard pile."
 	},
+	"animator:Magilou":
+	{
+		"DESCRIPTION": "Trigger your first Orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
+		"NAME": "Magilou"
+	},
+	"animator:Bienfu":
+	{
+		"DESCRIPTION": "Unplayable. ** When Drawn: Boost [I]. || When Discarded: Return ** this to your draw pile.",
+		"NAME": "Bienfu"
+	},
 	"animator:MaesHughes":
 	{
 		"DESCRIPTION": "<DRW> for every !M! ** cards in your draw pile. ** Motivate 1. || When Exhausted: Draw {Roy} ** {Mustang} from any pile, it ** costs 1 less this turn.",

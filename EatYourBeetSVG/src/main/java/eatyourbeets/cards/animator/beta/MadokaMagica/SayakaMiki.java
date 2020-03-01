@@ -54,6 +54,6 @@ public class SayakaMiki extends AnimatorCard
     {
         GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetOptions(upgraded, false);
         GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
-        GameActions.Bottom.Exhaust(this);
+        GameActions.Last.Exhaust(this);
     }
 }

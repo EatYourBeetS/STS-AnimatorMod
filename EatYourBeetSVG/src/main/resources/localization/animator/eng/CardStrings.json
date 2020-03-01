@@ -988,7 +988,7 @@
 	},
 	"animator:SayakaMiki":
 	{
-		"DESCRIPTION": "Synergy: Channel 1 Frost. || Cooldown 4: Add {Oktavia} and a {Grief Seed} to your discard pile, then Exhaust.",
+		"DESCRIPTION": "Synergy: Channel 1 Frost. || Cooldown !S!: Add {Oktavia} and a {Grief Seed} to your discard pile, then Exhaust.",
 		"NAME": "Sayaka Miki"
 	},
 	"animator:Scar":

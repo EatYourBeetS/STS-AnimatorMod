@@ -1,15 +1,15 @@
-package eatyourbeets.relics.animator;
+package eatyourbeets.cards.animator.beta.MadokaMagica;
 
-import eatyourbeets.actions.handSelection.ExhaustFromHand;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JavaUtilities;
 
-public class SoulGem extends AnimatorRelic {
+public class SoulGem extends AnimatorRelic
+{
     public static final String ID = CreateFullID(SoulGem.class.getSimpleName());
 
-    public SoulGem() {
+    public SoulGem()
+    {
         super(ID, RelicTier.RARE, LandingSound.HEAVY);
     }
 
@@ -18,6 +18,6 @@ public class SoulGem extends AnimatorRelic {
     {
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(false, true, true)
-        .SetFilter(c -> GameUtilities.IsCurseOrStatus(c));
+        .SetFilter(GameUtilities::IsCurseOrStatus);
     }
 }

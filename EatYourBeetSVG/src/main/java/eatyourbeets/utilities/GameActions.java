@@ -630,6 +630,11 @@ public final class GameActions
         return Add(new ReshuffleDiscardPile(onlyIfEmpty));
     }
 
+    public ScryWhichActuallyTriggersDiscard Scry(int amount)
+    {
+        return Add(new ScryWhichActuallyTriggersDiscard(amount));
+    }
+
     public SFXAction SFX(String key)
     {
         return Add(new SFXAction(key));

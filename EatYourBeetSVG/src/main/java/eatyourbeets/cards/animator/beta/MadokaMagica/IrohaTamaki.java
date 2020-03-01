@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.cardManipulation.ScryWhichActuallyTriggersDiscard;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -40,7 +39,7 @@ public class IrohaTamaki extends AnimatorCard
 
         if (HasSynergy())
         {
-            GameActions.Bottom.Add(new ScryWhichActuallyTriggersDiscard(magicNumber));
+            GameActions.Bottom.Scry(magicNumber);
         }
     }
 }

@@ -1,6 +1,8 @@
 package eatyourbeets.cards.animator.beta.MadokaMagica;
 
+import com.megacrit.cardcrawl.actions.defect.AnimateOrbAction;
 import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
+import com.megacrit.cardcrawl.actions.defect.EvokeWithoutRemovingOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,14 +11,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
-public class Walpurgisnacht extends AnimatorCard implements Spellcaster {
+public class Walpurgisnacht extends AnimatorCard implements Spellcaster
+{
     public static final EYBCardData DATA = Register(Walpurgisnacht.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public Walpurgisnacht()
@@ -30,7 +32,8 @@ public class Walpurgisnacht extends AnimatorCard implements Spellcaster {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m)
+    {
         GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
         .AddCallback(orbCores ->
         {
@@ -51,7 +54,7 @@ public class Walpurgisnacht extends AnimatorCard implements Spellcaster {
             MoveSpellcasters(p.exhaustPile, p.drawPile);
         }
 
-        GameActions.Bottom.StackPower(new WalpurgisnachtPower(p));
+        GameActions.Bottom.ApplyPower(p, p, new WalpurgisnachtPower(p));
     }
 
     private void MoveSpellcasters(CardGroup source, CardGroup destination)
@@ -71,8 +74,11 @@ public class Walpurgisnacht extends AnimatorCard implements Spellcaster {
 
     public static class WalpurgisnachtPower extends AnimatorPower
     {
-        public WalpurgisnachtPower(AbstractPlayer owner) {
+        public WalpurgisnachtPower(AbstractPlayer owner)
+        {
             super(owner, Walpurgisnacht.DATA);
+
+            this.amount = -1;
 
             updateDescription();
         }
@@ -81,10 +87,16 @@ public class Walpurgisnacht extends AnimatorCard implements Spellcaster {
         public void atStartOfTurnPostDraw()
         {
             int numTimesEvoke = player.discardPile.getCardsOfType(CardType.CURSE).size() + GetSpellcasterCount(player.discardPile);
-
             if (numTimesEvoke > 0)
             {
-                GameActions.Bottom.Add(new EvokeOrbAction(numTimesEvoke));
+                for (int i = 1; i < numTimesEvoke; i++)
+                {
+                    GameActions.Bottom.Add(new AnimateOrbAction(1));
+                    GameActions.Bottom.Add(new EvokeWithoutRemovingOrbAction(1));
+                }
+
+                GameActions.Bottom.Add(new AnimateOrbAction(1));
+                GameActions.Bottom.Add(new EvokeOrbAction(1));
             }
         }
 

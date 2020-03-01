@@ -726,9 +726,9 @@
 	},
 	"animator:MadokaKaname":
 	{
-		"DESCRIPTION": "Exhaust all {Hindrances} ** in the discard pile. || Limited. Boost 1 Intellect for each 2 {Status} exhausted and gain 1 Intangible for each 2 {Curses} Exhausted.",
+		"DESCRIPTION": "Exhaust all {Hindrances} ** in discard pile. || Limited. Boost [I] for each 2 {Status} Exhausted and gain 1 Intangible for each 2 {Curses} Exhausted.",
 		"NAME": "Madoka Kaname",
-		"UPGRADE_DESCRIPTION": "Exhaust all {Hindrances} ** everywhere. || Limited. Boost 1 Intellect for each 2 {Status} exhausted and gain 1 Intangible for each 2 {Curses} Exhausted."
+		"UPGRADE_DESCRIPTION": "Exhaust all {Hindrances} ** everywhere. || Limited. Boost [I] for each 2 {Status} Exhausted and gain 1 Intangible for each 2 {Curses} Exhausted."
 	},
 	"animator:MamiTomoe":
 	{
@@ -1190,7 +1190,7 @@
 	},
 	"animator:SuzuneAmano":
 	{
-		"DESCRIPTION": "Exhaust a card: Apply !M! burning.",
+		"DESCRIPTION": "Exhaust a card to apply !M! burning.",
 		"NAME": "Suzune Amano"
 	},
 	"animator:SwordMaiden":
@@ -1305,10 +1305,10 @@
 	},
 	"animator:Walpurgisnacht":
 	{
-		"DESCRIPTION": "Play 1 Orb Core.  Move all Spellcasters from your discard pile to your draw pile. || At the start of your turn, Evoke your next Orb once for each Curse plus each Spellcaster in your discard pile.",
+		"DESCRIPTION": "Play 1 Orb Core. Move all Spellcasters from your discard pile to your draw pile. || At the start of turn: Evoke your next Orb once for each Curse and Spellcaster in discard pile.",
 		"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your discard pile."],
 		"NAME": "Walpurgisnacht",
-		"UPGRADE_DESCRIPTION": "Play 1 Orb Core. Move all Spellcasters from your discard pile and exhaust pile to your draw pile.  || At the start of your turn, Evoke your next Orb once for each Curse plus each Spellcaster in your discard pile."
+		"UPGRADE_DESCRIPTION": "Play 1 Orb Core. Move all Spellcasters from your discard pile and exhaust pile to your draw pile. || At the start of turn: Evoke your next Orb once for each Curse and Spellcaster in discard pile."
 	},
 	"animator:WinryRockbell":
 	{

@@ -18,7 +18,7 @@ public class Defend_MadokaMagica extends Defend
         Initialize(0, 6);
         SetUpgrade(0, 3);
 
-        SetSynergy(Synergies.Elsword);
+        SetSynergy(Synergies.MadokaMagica);
     }
 
     @Override

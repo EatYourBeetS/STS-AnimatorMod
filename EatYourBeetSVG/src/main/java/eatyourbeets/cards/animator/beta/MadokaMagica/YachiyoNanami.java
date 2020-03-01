@@ -31,7 +31,7 @@ public class YachiyoNanami extends AnimatorCard
 
     public static class YachiyoNanamiPower extends AnimatorPower
     {
-        public static final int AGILITY_AMOUNT = 2;
+        public static final int INTELLECT_AMOUNT = 2;
 
         public YachiyoNanamiPower(AbstractPlayer owner, int amount)
         {
@@ -45,7 +45,7 @@ public class YachiyoNanami extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, AGILITY_AMOUNT);
+            description = FormatDescription(0, amount, INTELLECT_AMOUNT);
         }
 
         @Override
@@ -61,7 +61,7 @@ public class YachiyoNanami extends AnimatorCard
                 {
                     if (GameUtilities.IsCurseOrStatus(cards.get(0)))
                     {
-                        GameActions.Bottom.GainIntellect(AGILITY_AMOUNT);
+                        GameActions.Bottom.GainIntellect(INTELLECT_AMOUNT);
                     }
 
                     GameActions.Bottom.GainBlock(amount);

@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -53,7 +52,7 @@ public class Eve extends AnimatorCard
                 for (AbstractCard c : orbCores)
                 {
                     c.applyPowers();
-                    c.use(AbstractDungeon.player, null);
+                    c.use(player, null);
                 }
             }
         }));

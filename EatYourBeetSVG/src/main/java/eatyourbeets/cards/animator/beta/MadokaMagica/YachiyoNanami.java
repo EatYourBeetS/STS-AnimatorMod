@@ -69,5 +69,4 @@ public class YachiyoNanami extends AnimatorCard
             });
         }
     }
-
 }

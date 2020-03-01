@@ -135,9 +135,8 @@
 	},
 	"animator:Charlotte":
 	{
-		"DESCRIPTION": "Double the damage dealt for each Curse in hand.",
-		"NAME": "Charlotte",
-		"UPGRADE_DESCRIPTION": "Double the damage dealt for each Curse in hand. || If this card kills 1 or more enemies, heal 5 HP."
+		"DESCRIPTION": "Double the damage dealt for each Curse in hand. || Limited. If this card kills the enemy: Heal !M! HP.",
+		"NAME": "Charlotte"
 	},
 	"animator:ChlammyZell":
 	{
@@ -202,7 +201,7 @@
 	},
 	"animator:Curse_GriefSeed":
 	{
-		"DESCRIPTION": "Unplayable. When Exhausted: Remove your rightmost {Debuff}.",
+		"DESCRIPTION": "At the end of turn: Take !M! Damage. || When Exhausted: Remove your rightmost {Debuff}.",
 		"NAME": "Grief Seed"
 	},
 	"animator:Curse_Nutcracker":
@@ -278,7 +277,7 @@
 	},
 	"animator:Defend_MadokaMagica":
 	{
-		"DESCRIPTION": "Have a 50% chance of adding a Grief Seed to your deck.",
+		"DESCRIPTION": "Limited. Add a {Grief Seed} to the top of your draw pile.",
 		"NAME": "Improved Defend"
 	},
 	"animator:Defend_NoGameNoLife":
@@ -587,7 +586,7 @@
 	{
 		"DESCRIPTION": "Take an extra turn after this one. Add 3 random {Curses} to your discard pile. || End your turn.",
 		"NAME": "Homura Akemi",
-		"UPGRADE_DESCRIPTION": "Take an extra turn after this one. Add 3 random {Curses} to your discard pile. Boost 2 [I]. || End your turn."
+		"UPGRADE_DESCRIPTION": "Take an extra turn after this one. Add 3 random {Curses} to your discard pile. Boost [I] [I]. || End your turn."
 	},
 	"animator:HououinKyouma":
 	{
@@ -612,9 +611,8 @@
 	},
 	"animator:IrohaTamaki":
 	{
-		"DESCRIPTION": "Synergy: Scry !M!.",
-		"NAME": "Iroha Tamaki",
-		"UPGRADE_DESCRIPTION": "Synergy: Scry !M!. Exhaust the top card of your draw pile if it is a Hindrance."
+		"DESCRIPTION": "If the top card of your draw pile is a Hindrance, Exhaust it. || Synergy: Scry !M!.",
+		"NAME": "Iroha Tamaki"
 	},
 	"animator:ItamiYouji":
 	{
@@ -675,9 +673,8 @@
 	},
 	"animator:KyokoSakura":
 	{
-		"DESCRIPTION": "Cycle !M! card(s).",
-		"NAME": "Kyoko Sakura",
-		"UPGRADE_DESCRIPTION": "Cycle !M! card(s). || If at least one card you ** Cycled is a Hindrance: ** Channel 1 Fire."
+		"DESCRIPTION": "Cycle !M! card(s). || If you Cycled a Hindrance: Channel 1 Fire.",
+		"NAME": "Kyoko Sakura"
 	},
 	"animator:Kyubey":
 	{
@@ -735,9 +732,8 @@
 	},
 	"animator:MamiTomoe":
 	{
-		"DESCRIPTION": "Attacks an additional time for each Curse in your Discard pile plus your Draw pile. || If there are no Curses in the Discard pile, add 1 {Grief Seed} to your Discard pile.",
-		"NAME": "Mami Tomoe",
-		"UPGRADE_DESCRIPTION": "Attacks an additional time for each Curse you have everywhere. || If there are no Curses in the Discard pile, add 1 {Grief Seed} to your Discard pile."
+		"DESCRIPTION": "Attacks 1 additional time for each Curse in draw or discard pile. || If you have no Curse in discard pile: Add 1 {Grief Seed} to your discard pile.",
+		"NAME": "Mami Tomoe"
 	},
 	"animator:Magilou":
 	{
@@ -835,9 +831,9 @@
 	},
 	"animator:NagisaMomoe":
 	{
-		"DESCRIPTION": "Fetch 1 random card from your discard pile. || Add a copy of {Charlotte} and a {Grief Seed} to your discard pile. ",
+		"DESCRIPTION": "Fetch 1 random card from your discard pile. || Add {Charlotte} and a {Grief Seed} to your discard pile.",
 		"NAME": "Nagisa Momoe",
-		"UPGRADE_DESCRIPTION": "Fetch 1 card from your discard pile. || Add a copy of {Charlotte} and a {Grief Seed} to your discard pile. "
+		"UPGRADE_DESCRIPTION": "Fetch 1 card from your discard pile. || Add {Charlotte} and a {Grief Seed} to your discard pile."
 	},
 	"animator:Nanami":
 	{
@@ -863,7 +859,7 @@
 	},
 	"animator:Oktavia":
 	{
-		"DESCRIPTION": "Add two random Curses to your hand, then draw cards equal to the total number of Curses in your hand. ||  Attacks X times, where X is the number of Curses in your hand.",
+		"DESCRIPTION": "Add !S! random {Curses} to your hand, then draw cards equal to the total number of {Curses} in hand. || Attacks once for each Curse in hand.",
 		"NAME": "Oktavia"
 	},
 	"animator:OrbCore_Aether":
@@ -992,7 +988,7 @@
 	},
 	"animator:SayakaMiki":
 	{
-		"DESCRIPTION": "Add !M! {Temporary HP}. || Synergy: Channel 1 Frost. || Cooldown 4: add a copy of {Oktavia} and a {Grief Seed} to your discard pile, then Exhaust.",
+		"DESCRIPTION": "Synergy: Channel 1 Frost. || Cooldown 4: Add {Oktavia} and a {Grief Seed} to your discard pile, then Exhaust.",
 		"NAME": "Sayaka Miki"
 	},
 	"animator:Scar":
@@ -1331,9 +1327,8 @@
 	},
 	"animator:YuiTsuruno":
 	{
-		"DESCRIPTION": "Discard the top card of your draw pile.  If that card is an Attack, add a random Curse to your Discard pile.",
-		"NAME": "Yui Tsuruno",
-		"UPGRADE_DESCRIPTION": "Discard the top card of your draw pile.  If that card is an Attack, add a random Curse to your Discard pile.  Otherwise, Channel 1 Fire."
+		"DESCRIPTION": "Discard the top card of your draw pile. If it was an {Attack}: Add a Curse to your Discard pile. Otherwise: Channel 1 Fire.",
+		"NAME": "Yui Tsuruno"
 	},
 	"animator:YunYun":
 	{

@@ -1,5 +1,7 @@
 package eatyourbeets.cards.animator.beta.MadokaMagica;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -11,13 +13,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class Curse_GriefSeed extends AnimatorCard_Curse
 {
-    public static final EYBCardData DATA = Register(Curse_GriefSeed.class).SetCurse(-2, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Curse_GriefSeed.class).SetCurse(1, EYBCardTarget.None);
 
     public Curse_GriefSeed()
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 0, 2);
 
         SetSynergy(Synergies.MadokaMagica);
     }
@@ -40,14 +42,11 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
     }
 
     @Override
-    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster)
+    public void use(AbstractPlayer p, AbstractMonster m)
     {
-
-    }
-
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        return false;
+        if (this.dontTriggerOnUseCard)
+        {
+            GameActions.Bottom.DealDamage(p, p, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+        }
     }
 }

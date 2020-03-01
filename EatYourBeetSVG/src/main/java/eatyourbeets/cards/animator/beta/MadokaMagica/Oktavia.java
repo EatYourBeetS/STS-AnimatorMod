@@ -19,8 +19,8 @@ public class Oktavia extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(9, 0, 1);
-        SetUpgrade(2, 0, 0);
+        Initialize(9, 0, 1, 2);
+        SetUpgrade(2, 0, 0, 0);
         SetScaling(1,0,0);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -43,16 +43,13 @@ public class Oktavia extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        //Add curses to hand
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < secondaryValue; i++)
         {
             GameActions.Bottom.MakeCardInHand(GameUtilities.GetRandomCurse());
         }
 
-        // This needs to happen after the curses are added
         GameActions.Bottom.Callback(__ ->
         {
-            //Draw cards equal to number of curses
             GameActions.Bottom.Draw(player.hand.getCardsOfType(CardType.CURSE).size())
             .AddCallback(___ ->
             {

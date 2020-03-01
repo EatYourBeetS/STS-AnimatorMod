@@ -27,7 +27,8 @@ public class Charlotte extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(8, 0, 0);
+        Initialize(8, 0, 4);
+        SetUpgrade(0, 0, 4);
         SetScaling(1,0,1);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -55,9 +56,9 @@ public class Charlotte extends AnimatorCard implements Spellcaster
             }
         }).AddCallback(c ->
         {
-            if (upgraded && GameUtilities.TriggerOnKill(c, true))
+            if (GameUtilities.TriggerOnKill(c, true))
             {
-                GameActions.Bottom.Heal(5);
+                GameActions.Bottom.Heal(magicNumber);
             }
         });
     }

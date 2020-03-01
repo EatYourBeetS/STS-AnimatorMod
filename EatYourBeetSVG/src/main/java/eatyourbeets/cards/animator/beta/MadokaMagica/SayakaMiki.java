@@ -3,18 +3,17 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class SayakaMiki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SayakaMiki.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
-
     static
     {
         DATA.AddPreview(new Oktavia(), false);
@@ -30,6 +29,12 @@ public class SayakaMiki extends AnimatorCard
 
         SetCooldown(4, -1, this::OnCooldownCompleted);
         SetSynergy(Synergies.MadokaMagica);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
@@ -49,6 +54,6 @@ public class SayakaMiki extends AnimatorCard
     {
         GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetOptions(upgraded, false);
         GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
-        this.exhaustOnUseOnce = true;
+        GameActions.Bottom.Exhaust(this);
     }
 }

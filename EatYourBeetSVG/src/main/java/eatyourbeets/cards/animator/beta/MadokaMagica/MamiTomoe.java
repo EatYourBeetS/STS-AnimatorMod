@@ -25,8 +25,8 @@ public class MamiTomoe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 1);
-        SetUpgrade(2, 0, 0);
+        Initialize(7, 0, 1);
+        SetUpgrade(3, 0, 0);
         SetScaling(1,0,0);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -38,11 +38,6 @@ public class MamiTomoe extends AnimatorCard
         super.Refresh(enemy);
 
         magicNumber = player.discardPile.getCardsOfType(CardType.CURSE).size() + player.drawPile.getCardsOfType(CardType.CURSE).size() + 1;
-
-        if (upgraded)
-        {
-            magicNumber += player.hand.getCardsOfType(CardType.CURSE).size();
-        }
     }
 
     @Override
@@ -54,7 +49,7 @@ public class MamiTomoe extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (magicNumber < 2)
+        if (player.discardPile.getCardsOfType(CardType.CURSE).isEmpty())
         {
             GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
         }

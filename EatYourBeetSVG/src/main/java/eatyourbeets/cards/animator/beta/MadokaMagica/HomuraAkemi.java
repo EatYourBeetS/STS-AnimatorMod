@@ -4,10 +4,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
-import eatyourbeets.actions.cardManipulation.ScryWhichActuallyTriggersDiscard;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -33,12 +36,12 @@ public class HomuraAkemi extends AnimatorCard
 
         for (int i = 0; i < 3; i++)
         {
-            GameActions.Bottom.MakeCardInDiscardPile(GameUtilities.GetRandomCurse());
+            GameActions.Bottom.MakeCardInDiscardPile(GameUtilities.GetRandomCurse()).SetDuration(Settings.ACTION_DUR_XFAST, false);
         }
 
         if (upgraded)
         {
-            GameActions.Bottom.GainIntellect(3, true);
+            GameActions.Bottom.GainIntellect(2, true);
         }
 
         GameActions.Bottom.Add(new PressEndTurnButtonAction());

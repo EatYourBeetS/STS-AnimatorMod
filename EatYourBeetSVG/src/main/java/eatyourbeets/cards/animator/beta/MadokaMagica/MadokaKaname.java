@@ -68,8 +68,8 @@ public class MadokaKaname extends AnimatorCard
                 }
 
                 GameActions.Top.MoveCard(card, source, destination)
-                        .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
-                        .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
+                .ShowEffect(true, true, duration = Math.max(0.1f, duration * 0.8f))
+                .SetCardPosition(MoveCard.DEFAULT_CARD_X_RIGHT, MoveCard.DEFAULT_CARD_Y);
             }
         }
     }

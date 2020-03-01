@@ -20,8 +20,8 @@ public class IrohaTamaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 5, 3);
-        SetUpgrade(0, 2, 0);
+        Initialize(3, 5, 2);
+        SetUpgrade(0, 2, 1);
 
         SetSynergy(Synergies.MadokaMagica);
     }
@@ -29,21 +29,18 @@ public class IrohaTamaki extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         GameActions.Bottom.GainBlock(block);
+
+        AbstractCard topCard = player.drawPile.getTopCard();
+        if (GameUtilities.IsCurseOrStatus(topCard))
+        {
+            GameActions.Top.Exhaust(topCard);
+        }
 
         if (HasSynergy())
         {
             GameActions.Bottom.Add(new ScryWhichActuallyTriggersDiscard(magicNumber));
-
-            if (upgraded)
-            {
-                AbstractCard topCard = player.drawPile.getTopCard();
-                if (GameUtilities.IsCurseOrStatus(topCard))
-                {
-                    GameActions.Top.Exhaust(topCard);
-                }
-            }
         }
     }
 }

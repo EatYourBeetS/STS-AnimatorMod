@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YachiyoNanami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YachiyoNanami.class).SetPower(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(YachiyoNanami.class).SetPower(2, CardRarity.UNCOMMON);
 
     public YachiyoNanami()
     {

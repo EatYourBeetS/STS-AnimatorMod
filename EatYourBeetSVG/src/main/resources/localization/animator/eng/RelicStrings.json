@@ -136,6 +136,12 @@
 		"FLAVOR": "Here, have a taste, how bad can it be?",
 		"NAME": "Shion's Dessert"
 	},
+	"animator:SoulGem":
+	{
+		"DESCRIPTIONS": ["At the start of your turn, you may exhaust a #yHindrance from your hand."],
+		"FLAVOR": "Would you like to make a contract?",
+		"NAME": "Soul Gem"
+	},
 	"animator:TheEgnaroPiece":
 	{
 		"DESCRIPTIONS": ["Gain [E] and draw 1 card at the start of each turn. NL Gain #b{0} #yTemporary #yHP at the end of each turn, then increase this number by #b1."],

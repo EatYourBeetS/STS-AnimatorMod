@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.beta.MadokaMagica.Walpurgisnacht;
 import eatyourbeets.cards.animator.ultrarare.*;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
@@ -44,6 +45,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
             cards.put(NivaLada.DATA.ID, new NivaLada());
             cards.put(SeriousSaitama.DATA.ID, new SeriousSaitama());
             cards.put(HolyGrail.DATA.ID, new HolyGrail());
+            cards.put(Walpurgisnacht.DATA.ID, new Walpurgisnacht());
             //Cards.put(Cthulhu.ID, new Cthulhu());
             //Cards.put(InfinitePower.ID, new InfinitePower());
         }

@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class HomuraAkemi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HomuraAkemi.class).SetSkill(3, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HomuraAkemi.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None);
 
     public HomuraAkemi()
     {

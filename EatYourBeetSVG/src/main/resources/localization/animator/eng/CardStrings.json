@@ -897,6 +897,11 @@
 		"DESCRIPTION": "Channel !S! Plasma. || On your second ** Synergy each turn: ** Gain !M! {Temp. HP}.",
 		"NAME": "Plasma Core"
 	},
+	"animator:OrikoMikuni":
+	{
+		"DESCRIPTION": "Scry !M!.",
+		"NAME": "Oriko Mikuni"
+	},
 	"animator:Overheat":
 	{
 		"DESCRIPTION": "Draw 2 cards. ** Take !M! damage. ** ALL copies of this ** card gain 1 damage ** this combat.",
@@ -1183,6 +1188,11 @@
 		"DESCRIPTION": "",
 		"NAME": "Improved Strike"
 	},
+	"animator:SuzuneAmano":
+	{
+		"DESCRIPTION": "Exhaust a card: Apply !M! burning.",
+		"NAME": "Suzune Amano"
+	},
 	"animator:SwordMaiden":
 	{
 		"DESCRIPTION": "Remove your ** rightmost {Debuff}. || Boost [F] [A] [I].",
@@ -1292,6 +1302,13 @@
 	{
 		"DESCRIPTION": "<DRW>. || When Discarded: Add ** 1 {Throwing-Knife} ** to your hand.",
 		"NAME": "Viivi"
+	},
+	"animator:Walpurgisnacht":
+	{
+		"DESCRIPTION": "Play 1 Orb Core.  Move all Spellcasters from your discard pile to your draw pile. || At the start of your turn, Evoke your next Orb once for each Curse plus each Spellcaster in your discard pile.",
+		"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your discard pile."],
+		"NAME": "Walpurgisnacht",
+		"UPGRADE_DESCRIPTION": "Play 1 Orb Core. Move all Spellcasters from your discard pile and exhaust pile to your draw pile.  || At the start of your turn, Evoke your next Orb once for each Curse plus each Spellcaster in your discard pile."
 	},
 	"animator:WinryRockbell":
 	{

@@ -575,6 +575,11 @@ public class GameUtilities
             }
         }
 
+        for (AbstractRelic r : AbstractDungeon.player.relics)
+        {
+            r.onPreviewObtainCard(replacement);
+        }
+
         return replacement;
     }
 

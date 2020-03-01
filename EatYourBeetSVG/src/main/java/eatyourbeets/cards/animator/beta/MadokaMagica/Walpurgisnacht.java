@@ -16,7 +16,7 @@ import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
-public class Walpurgisnacht extends AnimatorCard_UltraRare implements Spellcaster {
+public class Walpurgisnacht extends AnimatorCard implements Spellcaster {
     public static final EYBCardData DATA = Register(Walpurgisnacht.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
 
     public Walpurgisnacht()
@@ -51,7 +51,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare implements Spellcaste
             MoveSpellcasters(p.exhaustPile, p.drawPile);
         }
 
-        GameActions.Bottom.StackPower(new WalpurgisnachtPower(p, this.magicNumber));
+        GameActions.Bottom.StackPower(new WalpurgisnachtPower(p));
     }
 
     private void MoveSpellcasters(CardGroup source, CardGroup destination)
@@ -71,12 +71,8 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare implements Spellcaste
 
     public static class WalpurgisnachtPower extends AnimatorPower
     {
-        public static final String POWER_ID = CreateFullID(WalpurgisnachtPower.class.getSimpleName());
-
-        public WalpurgisnachtPower(AbstractPlayer owner, int amount) {
-            super(owner, POWER_ID);
-
-            this.amount = amount;
+        public WalpurgisnachtPower(AbstractPlayer owner) {
+            super(owner, Walpurgisnacht.DATA);
 
             updateDescription();
         }

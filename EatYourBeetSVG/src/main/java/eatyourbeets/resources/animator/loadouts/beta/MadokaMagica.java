@@ -46,6 +46,6 @@ public class MadokaMagica extends AnimatorLoadout
     @Override
     public AnimatorCard_UltraRare GetUltraRare()
     {
-        return new Walpurgisnacht();
+        return null;
     }
 }

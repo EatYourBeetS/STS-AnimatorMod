@@ -693,6 +693,16 @@
 		"DESCRIPTION": "Channel 1 Frost. ** Channel 1 Dark. || When Exhausted: ** Evoke ALL Orbs.",
 		"NAME": "Lu"
 	},
+	"animator:Magilou":
+	{
+		"DESCRIPTION": "Trigger your first Orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
+		"NAME": "Magilou"
+	},
+	"animator:Bienfu":
+	{
+		"DESCRIPTION": "Unplayable. ** When Drawn: Boost [I]. || When Discarded: Return ** this to your draw pile.",
+		"NAME": "Bienfu"
+	},
 	"animator:MaesHughes":
 	{
 		"DESCRIPTION": "<DRW> for every !M! ** cards in your draw pile. ** Motivate 1. || When Exhausted: Draw {Roy} ** {Mustang} from any pile, it ** costs 1 less this turn.",

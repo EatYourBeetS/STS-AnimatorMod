@@ -42,11 +42,15 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
     }
 
     @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        GameActions.Bottom.Flash(this);
+        GameActions.Bottom.DealDamage(null, player, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (this.dontTriggerOnUseCard)
-        {
-            GameActions.Bottom.DealDamage(p, p, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
-        }
+
     }
 }

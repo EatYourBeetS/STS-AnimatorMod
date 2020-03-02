@@ -16,6 +16,7 @@ import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -82,33 +83,20 @@ public class Walpurgisnacht extends AnimatorCard implements Spellcaster
         @Override
         public void atStartOfTurnPostDraw()
         {
-            int numTimesEvoke = AbstractDungeon.player.hand.getCardsOfType(CardType.CURSE).size() + GetSpellcasterCount(AbstractDungeon.player.hand);
-            if (numTimesEvoke > 0)
+            GameActions.Bottom.Callback(__->
             {
-                for (int i = 1; i < numTimesEvoke; i++)
+                int count = JavaUtilities.Count(player.hand.group, c -> GameUtilities.IsCurseOrStatus(c) || c instanceof Spellcaster);
+                if (count > 0)
                 {
+                    for (int i = 1; i < count; i++) {
+                        GameActions.Bottom.Add(new AnimateOrbAction(1));
+                        GameActions.Bottom.Add(new EvokeWithoutRemovingOrbAction(1));
+                    }
+
                     GameActions.Bottom.Add(new AnimateOrbAction(1));
-                    GameActions.Bottom.Add(new EvokeWithoutRemovingOrbAction(1));
-                }
-
-                GameActions.Bottom.Add(new AnimateOrbAction(1));
-                GameActions.Bottom.Add(new EvokeOrbAction(1));
-            }
-        }
-
-        private int GetSpellcasterCount(CardGroup group)
-        {
-            int count = 0;
-
-            for (AbstractCard card : group.group)
-            {
-                if (card instanceof Spellcaster)
-                {
-                    count++;
+                    GameActions.Bottom.Add(new EvokeOrbAction(1));
                 }
             }
-
-            return count;
         }
     }
 }

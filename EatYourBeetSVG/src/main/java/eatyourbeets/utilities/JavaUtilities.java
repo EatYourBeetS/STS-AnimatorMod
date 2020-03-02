@@ -13,6 +13,7 @@ import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringJoiner;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
@@ -97,6 +98,20 @@ public class JavaUtilities
     {
         formatter.applyPattern(format);
         return formatter.format(args);
+    }
+
+    public static <T> int Count(List<T> list, Predicate<T> predicate)
+    {
+        int count = 0;
+        for (T t : list)
+        {
+            if (predicate.test(t))
+            {
+                count += 1;
+            }
+        }
+
+        return count;
     }
 
     public static ArrayList<String> GetClassNamesFromJarFile(String prefix)

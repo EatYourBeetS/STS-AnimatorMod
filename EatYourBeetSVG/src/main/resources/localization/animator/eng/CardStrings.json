@@ -1305,8 +1305,8 @@
 	},
 	"animator:Walpurgisnacht":
 	{
-		"DESCRIPTION": "Create and Add !M! random Spellcasters to your hand.  They cost 0 this turn. || At the start of turn: Evoke your next Orb once for each Curse and Spellcaster in discard pile.",
-		"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your discard pile."],
+		"DESCRIPTION": "Create and Add !M! random Spellcasters to your hand.  They cost 0 this turn. || At the start of turn: Evoke your next Orb once for each Curse and Spellcaster in your hand.",
+		"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your hand."],
 		"NAME": "Walpurgisnacht"
 	},
 	"animator:WinryRockbell":

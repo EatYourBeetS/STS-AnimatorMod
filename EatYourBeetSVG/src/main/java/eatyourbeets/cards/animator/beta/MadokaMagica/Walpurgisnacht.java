@@ -68,7 +68,6 @@ public class Walpurgisnacht extends AnimatorCard implements Spellcaster
         {
             super(owner, Walpurgisnacht.DATA);
 
-
             this.amount = -1;
 
             updateDescription();
@@ -83,7 +82,7 @@ public class Walpurgisnacht extends AnimatorCard implements Spellcaster
         @Override
         public void atStartOfTurnPostDraw()
         {
-            int numTimesEvoke = player.discardPile.getCardsOfType(CardType.CURSE).size() + GetSpellcasterCount(player.discardPile);
+            int numTimesEvoke = AbstractDungeon.player.hand.getCardsOfType(CardType.CURSE).size() + GetSpellcasterCount(AbstractDungeon.player.hand);
             if (numTimesEvoke > 0)
             {
                 for (int i = 1; i < numTimesEvoke; i++)

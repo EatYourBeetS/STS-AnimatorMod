@@ -164,7 +164,7 @@ public class PurgingStone extends AnimatorRelic implements CustomSavable<String>
 
                 if (card.type == AbstractCard.CardType.POWER)
                 {
-                    return pool.getPowers().size() >= 2;
+                    return card.rarity == AbstractCard.CardRarity.COMMON || pool.getPowers().size() >= 2;
                 }
                 else if (card.type == AbstractCard.CardType.SKILL)
                 {

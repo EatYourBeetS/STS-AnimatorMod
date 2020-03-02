@@ -1,22 +1,25 @@
  package eatyourbeets.console.commands;
 
  import basemod.DevConsole;
-import basemod.devcommands.ConsoleCommand;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.interfaces.markers.MartialArtist;
-import eatyourbeets.interfaces.markers.Spellcaster;
-import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.ui.CustomCardLibSortHeader;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.Testing;
+ import basemod.devcommands.ConsoleCommand;
+ import com.megacrit.cardcrawl.cards.AbstractCard;
+ import com.megacrit.cardcrawl.cards.CardGroup;
+ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+ import com.megacrit.cardcrawl.helpers.CardLibrary;
+ import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
+ import eatyourbeets.cards.base.AnimatorCard;
+ import eatyourbeets.cards.base.EYBCard;
+ import eatyourbeets.interfaces.markers.MartialArtist;
+ import eatyourbeets.interfaces.markers.Spellcaster;
+ import eatyourbeets.resources.GR;
+ import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+ import eatyourbeets.ui.CustomCardLibSortHeader;
+ import eatyourbeets.utilities.FieldInfo;
+ import eatyourbeets.utilities.GameUtilities;
+ import eatyourbeets.utilities.JavaUtilities;
+ import eatyourbeets.utilities.Testing;
 
-import java.util.ArrayList;
+ import java.util.ArrayList;
 
  public class ParseGenericCommand extends ConsoleCommand
  {
@@ -117,7 +120,13 @@ import java.util.ArrayList;
 
                  if (tokens[1].equals("remove-colorless"))
                  {
-                     CardLibrary.getAllCards().removeIf(card -> card.color == AbstractCard.CardColor.COLORLESS && !(card instanceof EYBCard));
+                     final FieldInfo<CardGroup> _colorless = JavaUtilities.GetField("colorlessCards", CardLibraryScreen.class);
+                     if (CustomCardLibSortHeader.Screen != null)
+                     {
+                         _colorless.Get(CustomCardLibSortHeader.Screen).group.removeIf(card -> card.rarity == AbstractCard.CardRarity.BASIC || !(card instanceof EYBCard));
+                     }
+
+                     DevConsole.log("Removed cards from colorless library.");
                      return;
                  }
 

@@ -1,5 +1,6 @@
 package eatyourbeets.actions.cardManipulation;
 
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -72,7 +73,8 @@ public class ScryWhichActuallyTriggersDiscard extends EYBActionWithCallback<Arra
                 player.drawPile.moveToDiscardPile(c);
                 selectedCards.add(c);
             }
-
+            
+            GameActionManager.incrementDiscard(false);
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
 

@@ -96,7 +96,7 @@ public class Walpurgisnacht extends AnimatorCard implements Spellcaster
                     GameActions.Bottom.Add(new AnimateOrbAction(1));
                     GameActions.Bottom.Add(new EvokeOrbAction(1));
                 }
-            }
+            });
         }
     }
 }

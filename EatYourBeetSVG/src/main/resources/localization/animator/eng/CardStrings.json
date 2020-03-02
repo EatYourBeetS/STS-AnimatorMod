@@ -945,9 +945,9 @@
 	},
 	"animator:SeriousSaitama":
 	{
-		"DESCRIPTION": "Stun ALL enemies. ** Gain X Strength. ** Gain X [F].",
+		"DESCRIPTION": "Stun ALL enemies. ** Apply X Vulnerable ** to ALL enemies. ** Gain X [F].",
 		"NAME": "Serious Saitama",
-		"UPGRADE_DESCRIPTION": "Stun ALL enemies. ** Gain X+!M! Strength. ** Gain X+!M! [F]."
+		"UPGRADE_DESCRIPTION": "Stun ALL enemies. ** Apply X+!M! Vulnerable ** to ALL enemies. ** Gain X+!M! [F]."
 	},
 	"animator:Shalltear":
 	{

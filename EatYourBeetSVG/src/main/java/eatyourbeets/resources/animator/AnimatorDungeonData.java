@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Ghosts;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
@@ -171,11 +172,12 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             return;
         }
 
-        AbstractDungeon.uncommonRelicPool.remove(PenNib.ID);
-        AbstractDungeon.uncommonRelicPool.remove(Kunai.ID);
-        AbstractDungeon.uncommonRelicPool.remove(StrikeDummy.ID);
-        AbstractDungeon.bossRelicPool.remove(SneckoEye.ID);
-        AbstractDungeon.bossRelicPool.remove(RunicPyramid.ID);
+        RemoveRelic(PenNib.ID);
+        RemoveRelic(Kunai.ID);
+        RemoveRelic(StrikeDummy.ID);
+        RemoveRelic(SneckoEye.ID);
+        RemoveRelic(RunicPyramid.ID);
+
         AddRelicToPool(MarkOfPain.ID, AbstractRelic.RelicTier.BOSS);
         AddRelicToPool(RunicCapacitor.ID, AbstractRelic.RelicTier.SHOP);
         AddRelicToPool(TwistedFunnel.ID, AbstractRelic.RelicTier.SHOP);
@@ -365,36 +367,20 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         }
     }
 
+    private void RemoveRelic(String relicID)
+    {
+        ArrayList<String> pool = GameUtilities.GetRelicPool(RelicLibrary.getRelic(relicID).tier);
+        if (pool != null)
+        {
+            pool.remove(relicID);
+        }
+    }
+
     private void AddRelicToPool(String relicID, AbstractRelic.RelicTier tier)
     {
         if (!AbstractDungeon.player.hasRelic(relicID))
         {
-            ArrayList<String> pool = null;
-
-            switch (tier)
-            {
-                case COMMON:
-                    pool = AbstractDungeon.commonRelicPool;
-                    break;
-                case UNCOMMON:
-                    pool = AbstractDungeon.uncommonRelicPool;
-                    break;
-                case RARE:
-                    pool = AbstractDungeon.rareRelicPool;
-                    break;
-                case BOSS:
-                    pool = AbstractDungeon.bossRelicPool;
-                    break;
-                case SHOP:
-                    pool = AbstractDungeon.shopRelicPool;
-                    break;
-
-                case DEPRECATED:
-                case STARTER:
-                case SPECIAL:
-                    break;
-            }
-
+            ArrayList<String> pool = GameUtilities.GetRelicPool(tier);
             if (pool != null && pool.size() > 0 && !pool.contains(relicID))
             {
                 Random rng = AbstractDungeon.relicRng;

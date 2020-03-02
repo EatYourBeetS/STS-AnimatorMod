@@ -25,6 +25,8 @@ public class CardLibraryScreenPatches
         @SpirePrefixPatch
         public static void Prefix(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection)
         {
+            CustomCardLibSortHeader.Screen = screen;
+
             if (defaultHeader == null)
             {
                 defaultHeader = _sortHeader.Get(screen);

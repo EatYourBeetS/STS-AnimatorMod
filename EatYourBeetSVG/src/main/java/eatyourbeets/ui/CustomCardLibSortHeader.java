@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
+import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.CardSeriesComparator;
@@ -16,6 +17,7 @@ import java.util.Collections;
 
 public class CustomCardLibSortHeader extends CardLibSortHeader
 {
+    public static CardLibraryScreen Screen;
     public static CustomCardLibSortHeader Instance;
     public static boolean ShowSpecial = GR.TEST_MODE;
 

@@ -114,20 +114,6 @@ public class JavaUtilities
         return formatter.format(args);
     }
 
-    public static <T> int Count(List<T> list, Predicate<T> predicate)
-    {
-        int count = 0;
-        for (T t : list)
-        {
-            if (predicate.test(t))
-            {
-                count += 1;
-            }
-        }
-
-        return count;
-    }
-
     public static ArrayList<String> GetClassNamesFromJarFile(String prefix)
     {
         if (classNames.size() == 0)

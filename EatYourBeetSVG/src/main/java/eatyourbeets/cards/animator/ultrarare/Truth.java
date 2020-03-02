@@ -53,6 +53,7 @@ public class Truth extends AnimatorCard_UltraRare
         GameActions.Bottom.GainAgility(magicNumber);
         GameActions.Bottom.GainIntellect(magicNumber);
         GameActions.Bottom.GainStrength(magicNumber);
+        GameActions.Bottom.GainEnergy(magicNumber);
 
         int count = 0;
         ArrayList<String> orbs = new ArrayList<>();

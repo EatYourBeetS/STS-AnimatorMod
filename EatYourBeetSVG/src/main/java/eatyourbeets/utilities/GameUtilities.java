@@ -797,7 +797,7 @@ public class GameUtilities
 
     public static boolean Retain(AbstractCard card)
     {
-        if (!card.isEthereal && !card.retain)
+        if (!card.isEthereal && !card.retain && !card.selfRetain)
         {
             card.retain = true;
             return true;

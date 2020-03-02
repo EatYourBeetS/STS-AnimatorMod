@@ -80,6 +80,20 @@ public class JavaUtilities
         }
     }
 
+    public static <T> int Count(List<T> list, Predicate<T> predicate)
+    {
+        int count = 0;
+        for (T t : list)
+        {
+            if (predicate.test(t))
+            {
+                count += 1;
+            }
+        }
+
+        return count;
+    }
+
     public static <T> ArrayList<T> Filter(ArrayList<T> list, Predicate<T> predicate)
     {
         ArrayList<T> res = new ArrayList<>();

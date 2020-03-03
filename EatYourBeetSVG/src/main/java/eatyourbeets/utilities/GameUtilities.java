@@ -290,9 +290,12 @@ public class GameUtilities
 
         switch (rarity)
         {
-            case COMMON: return AbstractDungeon.commonCardPool;
-            case UNCOMMON: return AbstractDungeon.uncommonCardPool;
-            case RARE: return AbstractDungeon.rareCardPool;
+            case COMMON:
+                return AbstractDungeon.commonCardPool;
+            case UNCOMMON:
+                return AbstractDungeon.uncommonCardPool;
+            case RARE:
+                return AbstractDungeon.rareCardPool;
 
             default:
                 return null;
@@ -307,7 +310,7 @@ public class GameUtilities
         {
             for (AbstractMonster m : room.monsters.monsters)
             {
-                if (!aliveOnly || (!m.isDeadOrEscaped() && m.currentHealth >0))
+                if (!aliveOnly || (!m.isDeadOrEscaped() && m.currentHealth > 0))
                 {
                     monsters.add(m);
                 }
@@ -389,7 +392,7 @@ public class GameUtilities
 
     public static float GetHealthPercentage(AbstractCreature creature)
     {
-        return creature.currentHealth / (float)creature.maxHealth;
+        return creature.currentHealth / (float) creature.maxHealth;
     }
 
     public static AbstractCard GetMasterDeckInstance(String cardID)
@@ -453,7 +456,7 @@ public class GameUtilities
             {
                 try
                 {
-                    return (T)p;
+                    return (T) p;
                 }
                 catch (ClassCastException e)
                 {
@@ -564,7 +567,7 @@ public class GameUtilities
                 }
             }
 
-            if (temp instanceof OnAddingToCardReward && ((OnAddingToCardReward)temp).ShouldCancel(rewardItem))
+            if (temp instanceof OnAddingToCardReward && ((OnAddingToCardReward) temp).ShouldCancel(rewardItem))
             {
                 searchingCard = true;
             }
@@ -610,6 +613,25 @@ public class GameUtilities
         }
     }
 
+    public static ArrayList<String> GetRelicPool(AbstractRelic.RelicTier tier)
+    {
+        switch (tier)
+        {
+            case COMMON:
+                return AbstractDungeon.commonRelicPool;
+            case UNCOMMON:
+                return AbstractDungeon.uncommonRelicPool;
+            case RARE:
+                return AbstractDungeon.rareRelicPool;
+            case BOSS:
+                return AbstractDungeon.bossRelicPool;
+            case SHOP:
+                return AbstractDungeon.shopRelicPool;
+            default:
+                return null;
+        }
+    }
+
     public static <T extends AbstractRelic> T GetRelic(String relicID)
     {
         for (AbstractRelic relic : AbstractDungeon.player.relics)
@@ -618,7 +640,7 @@ public class GameUtilities
             {
                 try
                 {
-                    return (T)relic;
+                    return (T) relic;
                 }
                 catch (ClassCastException e)
                 {
@@ -670,9 +692,12 @@ public class GameUtilities
 
         switch (rarity)
         {
-            case COMMON: return AbstractDungeon.srcCommonCardPool;
-            case UNCOMMON: return AbstractDungeon.srcUncommonCardPool;
-            case RARE: return AbstractDungeon.srcRareCardPool;
+            case COMMON:
+                return AbstractDungeon.srcCommonCardPool;
+            case UNCOMMON:
+                return AbstractDungeon.srcUncommonCardPool;
+            case RARE:
+                return AbstractDungeon.srcRareCardPool;
 
             default:
                 return null;

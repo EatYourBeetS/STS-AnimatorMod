@@ -14,14 +14,14 @@ import eatyourbeets.utilities.GameActions;
 
 public class RinTohsaka extends AnimatorCard implements Spellcaster
 {
-    public static final EYBCardData DATA = Register(RinTohsaka.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(RinTohsaka.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public RinTohsaka()
     {
         super(DATA);
 
-        Initialize(0, 4);
-        SetUpgrade(0, 3);
+        Initialize(0, 5, 0, 1);
+        SetUpgrade(0, 1, 0, 1);
         SetScaling(1, 0, 0);
 
         SetSynergy(Synergies.Fate);
@@ -31,9 +31,9 @@ public class RinTohsaka extends AnimatorCard implements Spellcaster
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainTemporaryArtifact(1);
+        GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
 
-        if (HasSynergy() && p.filledOrbCount() > 0 && EffectHistory.TryActivateLimited(cardID))
+        if (HasSynergy() && p.filledOrbCount() > 0 && EffectHistory.TryActivateSemiLimited(cardID))
         {
             AbstractOrb orb = p.orbs.get(0);
             if (!(orb instanceof EmptyOrbSlot))

@@ -4,12 +4,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Bienfu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Bienfu.class).SetSkill(-2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Bienfu.class).SetSkill(-2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
 
     public Bienfu()
     {

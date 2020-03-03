@@ -13,6 +13,7 @@ import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringJoiner;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
@@ -77,6 +78,20 @@ public class JavaUtilities
         {
             throw new RuntimeException(e);
         }
+    }
+
+    public static <T> int Count(List<T> list, Predicate<T> predicate)
+    {
+        int count = 0;
+        for (T t : list)
+        {
+            if (predicate.test(t))
+            {
+                count += 1;
+            }
+        }
+
+        return count;
     }
 
     public static <T> ArrayList<T> Filter(ArrayList<T> list, Predicate<T> predicate)

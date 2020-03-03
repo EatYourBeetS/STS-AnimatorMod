@@ -120,7 +120,7 @@
 	},
 	"animator:Caster":
 	{
-		"DESCRIPTION": "Steal 1 Force. ** {Channel} 1 Dark. || On Synergy: Evoke ** your next Orb.",
+		"DESCRIPTION": "Apply !M! {Shackles}, ** then gain [F] [I]. || <SLM>. ** Synergy or Exhaust: ** Channel 1 {~Dark}.",
 		"NAME": "Caster"
 	},
 	"animator:ChaikaBohdan":
@@ -710,7 +710,7 @@
 	},
 	"animator:Bienfu":
 	{
-		"DESCRIPTION": "Unplayable. ** When Drawn: Boost [I]. || When Discarded: Return ** this to your draw pile.",
+		"DESCRIPTION": "Unplayable. || When Drawn: Boost [I]. || When Discarded: Return ** this to your draw pile.",
 		"NAME": "Bienfu"
 	},
 	"animator:MaesHughes":
@@ -913,7 +913,7 @@
 	},
 	"animator:RinTohsaka":
 	{
-		"DESCRIPTION": "Gain 1 {Temp}. Artifact. || Limited. On Synergy: ** {Channel} a copy of ** your first Orb.",
+		"DESCRIPTION": "Gain !S! {Temp}. Artifact. || <slm>. Synergy: ** {Channel} a copy of ** your first Orb.",
 		"NAME": "Rin Tohsaka"
 	},
 	"animator:RoryMercury":
@@ -955,9 +955,9 @@
 	},
 	"animator:SeriousSaitama":
 	{
-		"DESCRIPTION": "Stun ALL enemies. ** Gain X Strength. ** Gain X [F].",
+		"DESCRIPTION": "Stun ALL enemies. ** Apply X Vulnerable ** to ALL enemies. ** Gain X [F].",
 		"NAME": "Serious Saitama",
-		"UPGRADE_DESCRIPTION": "Stun ALL enemies. ** Gain X+!M! Strength. ** Gain X+!M! [F]."
+		"UPGRADE_DESCRIPTION": "Stun ALL enemies. ** Apply X+!M! Vulnerable ** to ALL enemies. ** Gain X+!M! [F]."
 	},
 	"animator:Shalltear":
 	{

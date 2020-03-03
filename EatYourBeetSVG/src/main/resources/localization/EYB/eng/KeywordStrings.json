@@ -162,6 +162,12 @@
 		"NAMES": ["slow"],
 		"PROPER_NAME": "Slow"
 	},
+	"Shackles":
+	{
+		"DESCRIPTION": "#yStrength reduction until end of turn.",
+		"NAMES": ["schackles"],
+		"PROPER_NAME": "Shackles"
+	},
 	"Stun":
 	{
 		"DESCRIPTION": "Cannot act for #b1 turn.",

@@ -194,6 +194,11 @@
 		"DESCRIPTION": "Unplayable. When drawn, raise the cost of a random card in your hand by 1 this turn.",
 		"NAME": "Greed"
 	},
+	"animator:Curse_Dizziness":
+	{
+		"DESCRIPTION": "Unplayable. ** When drawn or discarded, ** add 1 Dazed to your draw pile.",
+		"NAME": "Dizziness"
+	},
 	"animator:Curse_Nutcracker":
 	{
 		"DESCRIPTION": "Unplayable. At the end of your turn, ALL enemies heal !M! HP.",
@@ -556,6 +561,11 @@
 	{
 		"DESCRIPTION": "Play and Exhaust ALL cards ** in your discard pile. || <LIM>. When Exhausted: ** Shuffle your Exhaust pile ** into your draw pile.",
 		"NAME": "Tenri Hiiragi"
+	},
+	"animator:HinaKagiyama":
+	{
+		"DESCRIPTION": "<slm>. Whenever you draw a curse, ** draw 2 cards. || <LIM>. If you end your turn with ** at least 3 Hindrances in your hand, ** channel 1 Plasma.",
+		"NAME": "Hina Kagiyama"
 	},
 	"animator:Hitei":
 	{

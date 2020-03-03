@@ -196,7 +196,7 @@
 	},
 	"animator:Curse_Dizziness":
 	{
-		"DESCRIPTION": "Unplayable. ** Loyal.",
+		"DESCRIPTION": "Unplayable. || If this would enter your discard ** pile, move it to your draw pile.",
 		"NAME": "Dizziness"
 	},
 	"animator:Curse_Nutcracker":
@@ -564,9 +564,9 @@
 	},
 	"animator:HinaKagiyama":
 	{
-		"DESCRIPTION": "<slm>. Whenever you draw a curse, ** draw !M! cards. || <LIM>. If you end your turn with ** at least 3 Hindrances in your hand, ** channel 1 Plasma.",
+		"DESCRIPTION": "Once per turn, ** whenever you draw a Curse, ** draw !S! cards. || <LIM>. ** If you end your turn with ** at least 3 Hindrances in ** your hand, channel 1 Plasma.",
 		"NAME": "Hina Kagiyama",
-		"EXTENDED_DESCRIPTION": ["Once per turn, if you draw a #yCurse, draw #b{0} cards. Once per combat, if you end the turn with 3 #yHindrances in hand, #yChannel 1 #yPlasma."]
+		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, draw #b{1} cards."]
 	},
 	"animator:Hitei":
 	{

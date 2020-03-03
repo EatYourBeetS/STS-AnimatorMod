@@ -10,13 +10,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class HinaKagiyama extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HinaKagiyama.class).SetPower(2, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(HinaKagiyama.class).SetPower(1, CardRarity.SPECIAL);
 
     public HinaKagiyama()
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 1, HinaPower.CARD_DRAW_AMOUNT);
 
         SetSynergy(Synergies.TouhouProject);
     }

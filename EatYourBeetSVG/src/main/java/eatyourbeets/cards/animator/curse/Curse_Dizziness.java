@@ -11,7 +11,7 @@ public class Curse_Dizziness extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(Curse_Dizziness.class).SetCurse(-2, EYBCardTarget.None);
 
-    protected Curse_Dizziness() {
+    public Curse_Dizziness() {
         super(DATA);
         Initialize(0, 0, 0);
         SetSynergy(Synergies.TouhouProject);

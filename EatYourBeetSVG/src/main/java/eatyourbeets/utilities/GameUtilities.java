@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.curse.Curse_Dizziness;
 import eatyourbeets.cards.animator.curse.Curse_Greed;
 import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
@@ -517,6 +518,7 @@ public class GameUtilities
             curses.Add(new Writhe());
             curses.Add(new Curse_Greed());
             curses.Add(new Curse_Nutcracker());
+            curses.Add(new Curse_Dizziness());
             //curses.add(new Pride());
             //curses.add(new Necronomicurse());
         }

@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.curses.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -26,8 +25,6 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.animator.curse.Curse_Greed;
-import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.orbs.animator.Aether;
@@ -46,7 +43,6 @@ public class GameUtilities
 {
     private static final OnPhaseChangedSubscriber handLayoutRefresher = new HandLayoutRefresher();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
-    private static final RandomizedList<AbstractCard> curses = new RandomizedList<>();
 
     public static void ApplyTemporaryDexterity(AbstractCreature source, AbstractCreature target, int amount)
     {
@@ -503,25 +499,7 @@ public class GameUtilities
 
     public static AbstractCard GetRandomCurse()
     {
-        if (curses.Size() == 0)
-        {
-            curses.Add(new Clumsy());
-            curses.Add(new Decay());
-            curses.Add(new Doubt());
-            curses.Add(new Injury());
-            curses.Add(new Normality());
-            curses.Add(new Pain());
-            curses.Add(new Parasite());
-            curses.Add(new Regret());
-            curses.Add(new Shame());
-            curses.Add(new Writhe());
-            curses.Add(new Curse_Greed());
-            curses.Add(new Curse_Nutcracker());
-            //curses.add(new Pride());
-            //curses.add(new Necronomicurse());
-        }
-
-        return curses.Retrieve(AbstractDungeon.cardRandomRng, false).makeCopy();
+        return CardLibrary.getCurse(null, AbstractDungeon.cardRandomRng).makeCopy();
     }
 
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)

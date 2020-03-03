@@ -27,7 +27,7 @@
 	},
 	"animator:Ainz":
 	{
-		"DESCRIPTION": "At the start of your turn, choose and execute 1 of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** randomly gain [I], [F] or [A].",
+		"DESCRIPTION": "At the start of turn: ** choose and execute 1 ** of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** randomly gain [I], [F] or [A].",
 		"NAME": "Ainz Ooal Gown"
 	},
 	"animator:Aisha":
@@ -37,7 +37,7 @@
 	},
 	"animator:Albedo":
 	{
-		"DESCRIPTION": "Gain {Ench. Armor} equal ** to the damage dealt. || Synergy: Gain 1 ** {Temp}. Artifact.",
+		"DESCRIPTION": "Gain {Ench. Armor} equal ** to the damage dealt. || On Synergy: Gain 1 ** {Temp}. Artifact.",
 		"NAME": "Albedo"
 	},
 	"animator:Alexander":
@@ -60,7 +60,7 @@
 	},
 	"animator:Archer":
 	{
-		"DESCRIPTION": "At the end of turn: Deal !M! damage to every enemy for each {Debuff} they have. || On Synergy: Apply 1 Vulnerable to ALL enemies.",
+		"DESCRIPTION": "At the end of turn: Deal !M! ** damage to every enemy for ** each {Debuff} they have. || On Synergy: Apply 1 ** Vulnerable to ALL enemies.",
 		"NAME": "Archer"
 	},
 	"animator:Arpeggio":
@@ -105,7 +105,7 @@
 	},
 	"animator:Boros":
 	{
-		"DESCRIPTION": "Every {Power} is ** played twice. || <LIM>. When Exhausted: ** Gain !M! Regeneration.",
+		"DESCRIPTION": "Every {Power} is ** played twice. || <LIM>. When ** Exhausted: Gain !M! ** Regeneration.",
 		"NAME": "Boros"
 	},
 	"animator:Bozes":
@@ -120,7 +120,7 @@
 	},
 	"animator:Caster":
 	{
-		"DESCRIPTION": "Apply !M! {Shackles}, ** then gain [F] [I]. || <SLM>. ** Synergy or Exhaust: ** Channel 1 {~Dark}.",
+		"DESCRIPTION": "Apply !M! {Shackles}, ** then gain [F] [I]. || <SLM>. ** {~Synergy} or Exhaust: ** Channel 1 {~Dark}.",
 		"NAME": "Caster"
 	},
 	"animator:ChaikaBohdan":

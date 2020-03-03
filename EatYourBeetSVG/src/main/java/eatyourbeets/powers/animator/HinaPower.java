@@ -22,7 +22,6 @@ public class HinaPower extends AnimatorPower
 
         this.amount = amount;
         this.baseAmount = amount;
-        FormatDescription(0, amount, CARD_DRAW_AMOUNT);
         updateDescription();
     }
     @Override
@@ -40,10 +39,11 @@ public class HinaPower extends AnimatorPower
     @Override
     public void onCardDraw(AbstractCard c)
     {
-        if(c.type == AbstractCard.CardType.CURSE && this.amount > 0)
+        if(c.type == AbstractCard.CardType.CURSE && this.amount > 0){
             GameActions.Bottom.Draw(CARD_DRAW_AMOUNT);
             this.amount--;
             this.flash();
+        }
     }
 
     @Override
@@ -53,6 +53,12 @@ public class HinaPower extends AnimatorPower
                 GameActions.Bottom.ChannelOrb(new Plasma(), false);
             }
         }
+    }
+    @Override
+    public void updateDescription()
+    {
+        this.description = FormatDescription(0, amount, CARD_DRAW_AMOUNT);;
+        this.enabled = (amount > 0);
     }
 }
 

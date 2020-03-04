@@ -196,7 +196,7 @@
 	},
 	"animator:Curse_Dizziness":
 	{
-		"DESCRIPTION": "Unplayable. ** If this would enter ** your discard pile, ** move it to your draw pile.",,
+		"DESCRIPTION": "Unplayable. ** If this would enter ** your discard pile, ** move it to your draw pile.",
 		"NAME": "Dizziness"
 	},
 	"animator:Curse_Nutcracker":

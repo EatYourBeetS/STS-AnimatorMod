@@ -1190,8 +1190,9 @@
 	},
 	"animator:SuzuneAmano":
 	{
-		"DESCRIPTION": "Exhaust a card to apply !M! burning.",
-		"NAME": "Suzune Amano"
+		"DESCRIPTION": "Exhaust a random card: Apply !M! burning.",
+		"NAME": "Suzune Amano",
+		"UPGRADE_DESCRIPTION": "Exhaust a card: Apply !M! burning."
 	},
 	"animator:SwordMaiden":
 	{

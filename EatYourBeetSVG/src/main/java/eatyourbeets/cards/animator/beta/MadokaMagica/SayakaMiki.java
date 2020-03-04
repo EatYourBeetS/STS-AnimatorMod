@@ -27,7 +27,7 @@ public class SayakaMiki extends AnimatorCard
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 2);
 
-        SetCooldown(4, -1, this::OnCooldownCompleted);
+        SetCooldown(2, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.MadokaMagica);
     }
 

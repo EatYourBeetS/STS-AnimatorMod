@@ -18,8 +18,7 @@ public class SuzuneAmano extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(6, 0, 2);
-        SetUpgrade(2, 0, 1);
+        Initialize(8, 0, 3);
 
         SetSynergy(Synergies.MadokaMagica);
     }
@@ -28,7 +27,7 @@ public class SuzuneAmano extends AnimatorCard implements Spellcaster
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        GameActions.Bottom.ExhaustFromHand(name, 1, false)
+        GameActions.Bottom.ExhaustFromHand(name, 1, !upgraded)
         .SetOptions(false, false, false)
         .AddCallback(m, (enemy, cards) ->
         {

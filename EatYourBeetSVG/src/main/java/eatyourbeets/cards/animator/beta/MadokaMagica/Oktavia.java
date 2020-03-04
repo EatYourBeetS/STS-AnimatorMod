@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.markers.Spellcaster;
@@ -43,10 +44,7 @@ public class Oktavia extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            GameActions.Bottom.MakeCardInHand(GameUtilities.GetRandomCurse());
-        }
+        GameActions.Bottom.Add(new CreateRandomCurses(secondaryValue, p.hand));
 
         GameActions.Bottom.Callback(__ ->
         {

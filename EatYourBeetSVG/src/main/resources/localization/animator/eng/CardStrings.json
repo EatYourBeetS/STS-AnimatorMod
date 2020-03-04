@@ -635,6 +635,12 @@
 		"DESCRIPTION": "Channel 1 Dark. ** Lose no [I] next turn. || On Synergy: Shuffle ** your Orbs, then trigger ** your first !M! Orbs.",
 		"NAME": "Jibril"
 	},
+	"animator:Kagari":
+	{
+		"DESCRIPTION": "Whenever you take damage, gain !M! Thorns.  The amount of Thorns gained gets increased by !S! each as this ability is triggered on the same turn.",
+		"EXTENDED_DESCRIPTION": ["Whenever you receive attack damage, gain #b{0} Thorns.  Thorns gets increased by #b{1} each as this ability is triggered on the same turn."],
+		"NAME": "Kagari"
+	},
 	"animator:Kaijin":
 	{
 		"DESCRIPTION": "At the end of turn, Retain 1 ** card and increase its damage ** and Block by !M! this combat. || When you add this card to your ** deck, permanently Upgrade a ** random Basic card.",
@@ -655,6 +661,11 @@
 	{
 		"DESCRIPTION": "Gain !M! [F], then increase this ** number by !S! this combat. || <LIM>. If you have 10 or ** more [F], deal 40 damage ** to a random enemy.",
 		"NAME": "Konayuki"
+	},
+	"animator:KotoriKanbe":
+	{
+		"DESCRIPTION": "Removes all Artifact on the target and apply !M! Weak and !S! Vulnerable.  Heals the target for 35 HP.",
+		"NAME": "Kotori Kanbe"
 	},
 	"animator:KrulTepes":
 	{

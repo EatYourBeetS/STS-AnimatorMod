@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -39,7 +40,7 @@ public class YuiTsuruno extends AnimatorCard implements Spellcaster
             {
                 if (cards.get(0).type == CardType.ATTACK)
                 {
-                    GameActions.Bottom.MakeCardInDiscardPile(GameUtilities.GetRandomCurse());
+                    GameActions.Bottom.Add(new CreateRandomCurses(1, p.discardPile));
                 }
                 else
                 {

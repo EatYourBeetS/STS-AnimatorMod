@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
+import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -34,10 +35,7 @@ public class HomuraAkemi extends AnimatorCard
         GameActions.Bottom.VFX(new WhirlwindEffect(new Color(0.2F, 0.0F, 0.2F, 1.0F), true));
         GameActions.Bottom.Add(new SkipEnemiesTurnAction());
 
-        for (int i = 0; i < 3; i++)
-        {
-            GameActions.Bottom.MakeCardInDiscardPile(GameUtilities.GetRandomCurse()).SetDuration(Settings.ACTION_DUR_XFAST, false);
-        }
+        GameActions.Bottom.Add(new CreateRandomCurses(3, p.discardPile));
 
         if (upgraded)
         {

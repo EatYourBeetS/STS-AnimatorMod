@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.relics.BustedCrown;
+import com.megacrit.cardcrawl.relics.QuestionCard;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import eatyourbeets.cards.base.Synergies;
@@ -75,14 +77,14 @@ public class SynergyCardsReward extends AnimatorReward
             i++;
         }
 
-        if (AbstractDungeon.player.hasRelic("Question Card"))
+        if (AbstractDungeon.player.hasRelic(QuestionCard.ID))
         {
-            AbstractDungeon.player.getRelic("Question Card").flash();
+            AbstractDungeon.player.getRelic(QuestionCard.ID).flash();
         }
 
-        if (AbstractDungeon.player.hasRelic("Busted Crown"))
+        if (AbstractDungeon.player.hasRelic(BustedCrown.ID))
         {
-            AbstractDungeon.player.getRelic("Busted Crown").flash();
+            AbstractDungeon.player.getRelic(BustedCrown.ID).flash();
         }
 
         if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD)

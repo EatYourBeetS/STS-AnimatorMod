@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.MadokaMagica;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -18,10 +19,17 @@ public class YachiyoNanami extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(0, 0, 4);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 5);
+
+        SetEthereal(true);
 
         SetSynergy(Synergies.MadokaMagica);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override
@@ -32,21 +40,32 @@ public class YachiyoNanami extends AnimatorCard implements Spellcaster
 
     public static class YachiyoNanamiPower extends AnimatorPower
     {
-        public static final int INTELLECT_AMOUNT = 2;
+        public static final int AGILITY_AMOUNT = 1;
+        public static final int INTELLECT_AMOUNT = 1;
 
-        public YachiyoNanamiPower(AbstractPlayer owner, int amount)
+        public int blockAmount;
+
+        public YachiyoNanamiPower(AbstractPlayer owner, int blockAmount)
         {
             super(owner, YachiyoNanami.DATA);
 
-            this.amount = amount;
+            this.amount = 1;
+            this.blockAmount = blockAmount;
 
+            updateDescription();
+        }
+
+        @Override
+        public void stackPower(int stackAmount)
+        {
+            super.stackPower(stackAmount);
             updateDescription();
         }
 
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, INTELLECT_AMOUNT);
+            description = FormatDescription(0, amount, blockAmount, AGILITY_AMOUNT, INTELLECT_AMOUNT);
         }
 
         @Override
@@ -54,18 +73,19 @@ public class YachiyoNanami extends AnimatorCard implements Spellcaster
         {
             flash();
 
-            GameActions.Bottom.DiscardFromHand(name, 1, false)
+            GameActions.Bottom.DiscardFromHand(name, amount, false)
             .SetOptions(true, true, true)
             .AddCallback(cards ->
             {
-                if (cards.size() > 0)
+                for (AbstractCard card : cards)
                 {
-                    if (GameUtilities.IsCurseOrStatus(cards.get(0)))
+                    if (GameUtilities.IsCurseOrStatus(card))
                     {
+                        GameActions.Bottom.GainAgility(INTELLECT_AMOUNT);
                         GameActions.Bottom.GainIntellect(INTELLECT_AMOUNT);
                     }
 
-                    GameActions.Bottom.GainBlock(amount);
+                    GameActions.Bottom.GainBlock(blockAmount);
                 }
             });
         }

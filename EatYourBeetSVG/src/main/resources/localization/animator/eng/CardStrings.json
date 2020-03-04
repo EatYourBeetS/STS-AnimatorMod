@@ -899,7 +899,7 @@
 	},
 	"animator:OrikoMikuni":
 	{
-		"DESCRIPTION": "Scry !M!.",
+		"DESCRIPTION": "Scry !M!. || Next turn: <DRW>.",
 		"NAME": "Oriko Mikuni"
 	},
 	"animator:Overheat":
@@ -1327,8 +1327,8 @@
 	},
 	"animator:YachiyoNanami":
 	{
-		"DESCRIPTION": "At the start of your turn, you ** may discard a card.  If you do, ** gain !M! block.  If the discarded ** card is a Hindrance, also gain ** 2 [I].",
-		"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard 1 card to gain #b{0} #yBlock. If you discarded a Hindrance, also gain #b{1} Intellect"],
+		"DESCRIPTION": "At the start of your turn, you may discard a card.  If you do, gain !M! block.  For each Hindrance discarded, also gain 1 [A] and 1 [I].",
+		"EXTENDED_DESCRIPTION": ["At the start of turn, you may discard #b{0} cards to gain #b{1} #yBlock each. For each Hindrance discarded, also gain #b{2} Agility and #b{2} Intellect"],
 		"NAME": "Yachiyo Nanami"
 	},
 	"animator:YaoHaDucy":

@@ -19,7 +19,7 @@ public class YachiyoNanami extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, YachiyoNanamiPower.BLOCK_AMOUNT);
         SetEthereal(true);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -34,21 +34,20 @@ public class YachiyoNanami extends AnimatorCard implements Spellcaster
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.StackPower(new YachiyoNanamiPower(p));
+        GameActions.Bottom.StackPower(new YachiyoNanamiPower(p, 1));
     }
 
     public static class YachiyoNanamiPower extends AnimatorPower
     {
         public static final int AGILITY_AMOUNT = 1;
         public static final int INTELLECT_AMOUNT = 1;
-
         public static final int BLOCK_AMOUNT = 5;
 
-        public YachiyoNanamiPower(AbstractPlayer owner)
+        public YachiyoNanamiPower(AbstractPlayer owner, int amount)
         {
             super(owner, YachiyoNanami.DATA);
 
-            this.amount = 1;
+            this.amount = amount;
 
             updateDescription();
         }

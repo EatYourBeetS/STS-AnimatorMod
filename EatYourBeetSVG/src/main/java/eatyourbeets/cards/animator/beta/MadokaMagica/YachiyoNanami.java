@@ -78,8 +78,8 @@ public class YachiyoNanami extends AnimatorCard implements Spellcaster
                 {
                     if (GameUtilities.IsCurseOrStatus(card))
                     {
-                        GameActions.Bottom.GainAgility(AGILITY_AMOUNT, true);
-                        GameActions.Bottom.GainIntellect(INTELLECT_AMOUNT, true);
+                        GameActions.Bottom.GainAgility(AGILITY_AMOUNT);
+                        GameActions.Bottom.GainIntellect(INTELLECT_AMOUNT);
                     }
 
                     GameActions.Bottom.GainBlock(BLOCK_AMOUNT);

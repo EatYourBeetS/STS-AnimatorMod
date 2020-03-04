@@ -12,12 +12,14 @@ import java.util.ArrayList;
 
 public abstract class EYBAction extends AbstractGameAction
 {
+    public boolean canCancel;
+    public boolean isRealtime;
+
     protected final ArrayList<Object> tags = new ArrayList<>(1);
-    protected AbstractCard card;
     protected final AbstractPlayer player;
+    protected AbstractCard card;
     protected String message;
     protected String name;
-    protected boolean isRealtime;
     protected int ticks;
 
     public EYBAction(ActionType type)
@@ -30,6 +32,7 @@ public abstract class EYBAction extends AbstractGameAction
         this.player = AbstractDungeon.player;
         this.duration = this.startDuration = duration;
         this.actionType = type;
+        this.canCancel = true;
     }
 
     public boolean HasTag(Object tag)
@@ -40,6 +43,13 @@ public abstract class EYBAction extends AbstractGameAction
     public EYBAction AddTag(Object tag)
     {
         this.tags.add(tag);
+
+        return this;
+    }
+
+    public EYBAction SetCancellable(boolean canCancel)
+    {
+        this.canCancel = canCancel;
 
         return this;
     }

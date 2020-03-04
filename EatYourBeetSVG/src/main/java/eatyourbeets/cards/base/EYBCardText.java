@@ -72,7 +72,7 @@ public class EYBCardText
         {
             FontHelper.menuBannerFont.getData().setScale(card.drawScale * 1.25F);
             FontHelper.renderRotatedText(sb, FontHelper.menuBannerFont, "? ? ?", card.current_x, card.current_y,
-                    0, -200 * Settings.scale * card.drawScale * 0.5f, card.angle, true, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
+            0, -200 * Settings.scale * card.drawScale * 0.5f, card.angle, true, RenderHelpers.CopyColor(card, Settings.CREAM_COLOR));
             FontHelper.menuBannerFont.getData().setScale(1.0F);
             return;
         }

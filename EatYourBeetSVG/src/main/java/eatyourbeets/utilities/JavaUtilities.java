@@ -181,6 +181,12 @@ public class JavaUtilities
         GetLogger(source).info(Format(format, values));
     }
 
+    public static float Round(float value, int precision)
+    {
+        final float scale = (float) Math.pow(10, precision);
+        return Math.round(value * scale) / scale;
+    }
+
     public static int ParseInt(String value, int defaultValue)
     {
         try

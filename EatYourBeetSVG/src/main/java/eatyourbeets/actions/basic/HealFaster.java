@@ -15,6 +15,8 @@ public class HealFaster extends EYBAction
     {
         super(ActionType.HEAL, Settings.ACTION_DUR_FAST);
 
+        this.canCancel = false;
+
         Initialize(target, source, amount);
     }
 

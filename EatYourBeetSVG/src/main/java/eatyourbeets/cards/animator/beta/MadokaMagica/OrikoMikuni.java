@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.beta.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -17,7 +16,7 @@ public class OrikoMikuni extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 3);
         SetUpgrade(0, 0, 1);
 
         SetSynergy(Synergies.MadokaMagica);
@@ -27,6 +26,5 @@ public class OrikoMikuni extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Scry(magicNumber);
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 1));
     }
 }

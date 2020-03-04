@@ -4,12 +4,12 @@ import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class Kyubey extends AnimatorCard implements StartupCard
     @Override
     public boolean atBattleStartPreDraw()
     {
-        GameActions.Bottom.MakeCardInDiscardPile(GameUtilities.GetRandomCurse());
+        GameActions.Bottom.Add(new CreateRandomCurses(1, player.discardPile));
 
         return true;
     }

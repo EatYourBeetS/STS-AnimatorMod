@@ -497,11 +497,6 @@ public class GameUtilities
         }
     }
 
-    public static AbstractCard GetRandomCurse()
-    {
-        return CardLibrary.getCurse(null, AbstractDungeon.cardRandomRng).makeCopy();
-    }
-
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
     {
         return JavaUtilities.GetRandomElement(GetCurrentEnemies(aliveOnly));

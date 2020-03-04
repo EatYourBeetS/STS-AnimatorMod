@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
-import eatyourbeets.dungeons.CustomAbstractDungeon;
 import eatyourbeets.resources.GR;
 import eatyourbeets.rewards.AnimatorReward;
 import eatyourbeets.utilities.JavaUtilities;
@@ -41,7 +40,7 @@ public class SynergyCardsReward extends AnimatorReward
         super(ID, GenerateRewardTitle(synergy), GR.Enums.Rewards.SYNERGY_CARDS);
 
         this.synergy = synergy;
-        this.cards = CustomAbstractDungeon.getRewardCards(synergy);
+        this.cards = GenerateCardReward(synergy);
     }
 
     @Override

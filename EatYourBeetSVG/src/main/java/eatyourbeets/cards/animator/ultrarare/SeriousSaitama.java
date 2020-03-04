@@ -32,7 +32,6 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
         if (amount > 0)
         {
             GameActions.Bottom.GainForce(amount);
-            GameActions.Bottom.GainStrength(amount);
         }
 
         for (AbstractMonster enemy : GameUtilities.GetCurrentEnemies(true))
@@ -41,6 +40,8 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
             {
                 GameActions.Bottom.ApplyPower(p, enemy, new StunMonsterPower(enemy, 1), 1);
             }
+
+            GameActions.Bottom.ApplyVulnerable(p, enemy, amount).SkipIfZero(true);
         }
     }
 }

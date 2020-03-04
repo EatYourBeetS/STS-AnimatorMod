@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
-import eatyourbeets.dungeons.CustomAbstractDungeon;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
+import eatyourbeets.rewards.AnimatorReward;
 import eatyourbeets.ui.AdvancedHitbox;
 import eatyourbeets.ui.GUIElement;
 
@@ -62,7 +62,7 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
         String trophyString = "";
         if (trophyLevel > 0)
         {
-            trophyString += " " + String.format("%.2f", CustomAbstractDungeon.GetUltraRareChance()) + "%";
+            trophyString += " " + String.format("%.2f", AnimatorReward.GetUltraRareChance()) + "%";
         }
 
         float w = 64;

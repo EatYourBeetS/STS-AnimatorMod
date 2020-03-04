@@ -41,7 +41,7 @@ public class MarkedPower extends CommonPower
     {
         if (info.type == DamageInfo.DamageType.NORMAL)
         {
-            GameActions.Top.RemovePower(owner, owner, this);
+            GameActions.Bottom.RemovePower(owner, owner, this);
         }
 
         return super.onAttacked(info, damageAmount);

@@ -30,7 +30,7 @@ public class CreateRandomGoblins extends EYBAction
         Complete();
     }
 
-    private AnimatorCard GetRandomGoblin(Random rng)
+    public static AnimatorCard GetRandomGoblin(Random rng)
     {
         int n = rng.random(100);
         if (n < 35) // 35%

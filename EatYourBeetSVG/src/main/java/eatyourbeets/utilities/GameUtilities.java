@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.curses.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -26,8 +25,6 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.animator.curse.Curse_Greed;
-import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
 import eatyourbeets.interfaces.subscribers.OnAddingToCardReward;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.orbs.animator.Aether;
@@ -46,7 +43,6 @@ public class GameUtilities
 {
     private static final OnPhaseChangedSubscriber handLayoutRefresher = new HandLayoutRefresher();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
-    private static final RandomizedList<AbstractCard> curses = new RandomizedList<>();
 
     public static void ApplyTemporaryDexterity(AbstractCreature source, AbstractCreature target, int amount)
     {
@@ -290,9 +286,12 @@ public class GameUtilities
 
         switch (rarity)
         {
-            case COMMON: return AbstractDungeon.commonCardPool;
-            case UNCOMMON: return AbstractDungeon.uncommonCardPool;
-            case RARE: return AbstractDungeon.rareCardPool;
+            case COMMON:
+                return AbstractDungeon.commonCardPool;
+            case UNCOMMON:
+                return AbstractDungeon.uncommonCardPool;
+            case RARE:
+                return AbstractDungeon.rareCardPool;
 
             default:
                 return null;
@@ -307,7 +306,7 @@ public class GameUtilities
         {
             for (AbstractMonster m : room.monsters.monsters)
             {
-                if (!aliveOnly || (!m.isDeadOrEscaped() && m.currentHealth >0))
+                if (!aliveOnly || (!m.isDeadOrEscaped() && m.currentHealth > 0))
                 {
                     monsters.add(m);
                 }
@@ -389,7 +388,7 @@ public class GameUtilities
 
     public static float GetHealthPercentage(AbstractCreature creature)
     {
-        return creature.currentHealth / (float)creature.maxHealth;
+        return creature.currentHealth / (float) creature.maxHealth;
     }
 
     public static AbstractCard GetMasterDeckInstance(String cardID)
@@ -453,7 +452,7 @@ public class GameUtilities
             {
                 try
                 {
-                    return (T)p;
+                    return (T) p;
                 }
                 catch (ClassCastException e)
                 {
@@ -496,29 +495,6 @@ public class GameUtilities
         {
             return result;
         }
-    }
-
-    public static AbstractCard GetRandomCurse()
-    {
-        if (curses.Size() == 0)
-        {
-            curses.Add(new Clumsy());
-            curses.Add(new Decay());
-            curses.Add(new Doubt());
-            curses.Add(new Injury());
-            curses.Add(new Normality());
-            curses.Add(new Pain());
-            curses.Add(new Parasite());
-            curses.Add(new Regret());
-            curses.Add(new Shame());
-            curses.Add(new Writhe());
-            curses.Add(new Curse_Greed());
-            curses.Add(new Curse_Nutcracker());
-            //curses.add(new Pride());
-            //curses.add(new Necronomicurse());
-        }
-
-        return curses.Retrieve(AbstractDungeon.cardRandomRng, false).makeCopy();
     }
 
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
@@ -564,7 +540,7 @@ public class GameUtilities
                 }
             }
 
-            if (temp instanceof OnAddingToCardReward && ((OnAddingToCardReward)temp).ShouldCancel(rewardItem))
+            if (temp instanceof OnAddingToCardReward && ((OnAddingToCardReward) temp).ShouldCancel(rewardItem))
             {
                 searchingCard = true;
             }
@@ -610,6 +586,25 @@ public class GameUtilities
         }
     }
 
+    public static ArrayList<String> GetRelicPool(AbstractRelic.RelicTier tier)
+    {
+        switch (tier)
+        {
+            case COMMON:
+                return AbstractDungeon.commonRelicPool;
+            case UNCOMMON:
+                return AbstractDungeon.uncommonRelicPool;
+            case RARE:
+                return AbstractDungeon.rareRelicPool;
+            case BOSS:
+                return AbstractDungeon.bossRelicPool;
+            case SHOP:
+                return AbstractDungeon.shopRelicPool;
+            default:
+                return null;
+        }
+    }
+
     public static <T extends AbstractRelic> T GetRelic(String relicID)
     {
         for (AbstractRelic relic : AbstractDungeon.player.relics)
@@ -618,7 +613,7 @@ public class GameUtilities
             {
                 try
                 {
-                    return (T)relic;
+                    return (T) relic;
                 }
                 catch (ClassCastException e)
                 {
@@ -670,9 +665,12 @@ public class GameUtilities
 
         switch (rarity)
         {
-            case COMMON: return AbstractDungeon.srcCommonCardPool;
-            case UNCOMMON: return AbstractDungeon.srcUncommonCardPool;
-            case RARE: return AbstractDungeon.srcRareCardPool;
+            case COMMON:
+                return AbstractDungeon.srcCommonCardPool;
+            case UNCOMMON:
+                return AbstractDungeon.srcUncommonCardPool;
+            case RARE:
+                return AbstractDungeon.srcRareCardPool;
 
             default:
                 return null;

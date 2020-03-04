@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Magilou extends AnimatorCard implements Spellcaster
 {
-    public static final EYBCardData DATA = Register(Magilou.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(1);
+    public static final EYBCardData DATA = Register(Magilou.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(1);
     static
     {
         DATA.AddPreview(new Bienfu(), false);

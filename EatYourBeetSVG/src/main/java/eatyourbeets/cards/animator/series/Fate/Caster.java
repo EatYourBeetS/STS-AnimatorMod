@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
@@ -8,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.markers.Spellcaster;
+import eatyourbeets.ui.EffectHistory;
 import eatyourbeets.utilities.GameActions;
 
 public class Caster extends AnimatorCard implements Spellcaster
@@ -18,29 +18,32 @@ public class Caster extends AnimatorCard implements Spellcaster
     {
         super(DATA);
 
-        Initialize(0, 0, 0, 1);
-        SetUpgrade(0, 0, 0, 0);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
-        SetEvokeOrbCount(1);
         SetEthereal(true);
         SetSynergy(Synergies.Fate);
     }
 
     @Override
-    protected void OnUpgrade()
+    public void triggerOnExhaust()
     {
-        SetEthereal(false);
+        if (EffectHistory.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.ChannelOrb(new Dark(), true);
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Dark(), true);
-        GameActions.Bottom.ReduceStrength(m, secondaryValue, true).SetForceGain(true);
+        GameActions.Bottom.ReduceStrength(m, magicNumber, true);
+        GameActions.Bottom.GainForce(1, false);
+        GameActions.Bottom.GainIntellect(1, false);
 
-        if (HasSynergy())
+        if (HasSynergy() && EffectHistory.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.Add(new EvokeOrbAction(1));
+            GameActions.Bottom.ChannelOrb(new Dark(), true);
         }
     }
 }

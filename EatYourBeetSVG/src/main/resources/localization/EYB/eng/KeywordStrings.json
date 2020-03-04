@@ -165,7 +165,7 @@
 	"Shackles":
 	{
 		"DESCRIPTION": "#yStrength reduction until end of turn.",
-		"NAMES": ["schackles"],
+		"NAMES": ["shackles"],
 		"PROPER_NAME": "Shackles"
 	},
 	"Stun":

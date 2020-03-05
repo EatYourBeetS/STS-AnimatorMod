@@ -25,7 +25,7 @@ public class Truth extends AnimatorCard_UltraRare
     public static final EYBCardData DATA = Register(Truth.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
     static
     {
-        DATA.AddPreview(FakeAbstractCard.FromCard(wound), false);
+        DATA.AddPreview(new FakeAbstractCard(wound), false);
     }
 
     public Truth()

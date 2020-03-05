@@ -2,7 +2,7 @@ package eatyourbeets.resources.animator;
 
 import com.badlogic.gdx.utils.Base64Coder;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.csharp.ActionT2;
+import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;

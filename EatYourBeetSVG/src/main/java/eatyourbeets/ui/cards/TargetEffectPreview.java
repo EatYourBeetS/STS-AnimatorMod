@@ -1,7 +1,7 @@
 package eatyourbeets.ui.cards;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.csharp.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT1;
 
 public class TargetEffectPreview
 {

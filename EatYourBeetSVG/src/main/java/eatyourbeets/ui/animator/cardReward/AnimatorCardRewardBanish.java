@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.effects.card.HideCardEffect;
-import eatyourbeets.interfaces.csharp.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameEffects;

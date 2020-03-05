@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import eatyourbeets.interfaces.csharp.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.ui.GUIElement;
 
 public class GUI_VerticalScrollBar extends GUIElement

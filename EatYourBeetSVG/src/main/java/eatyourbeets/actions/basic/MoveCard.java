@@ -182,7 +182,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         {
             ShowCard();
 
-            callbacks.add(0, new GenericCallback<>(this::MoveToDiscardPile));
+            callbacks.add(0, GenericCallback.FromT1(this::MoveToDiscardPile));
         }
         else
         {
@@ -208,7 +208,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         {
             ShowCard();
 
-            callbacks.add(0, new GenericCallback<>(this::MoveToDrawPile));
+            callbacks.add(0, GenericCallback.FromT1(this::MoveToDrawPile));
         }
         else
         {
@@ -227,7 +227,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         {
             ShowCard();
 
-            callbacks.add(0, new GenericCallback<>(this::MoveToExhaustPile));
+            callbacks.add(0, GenericCallback.FromT1(this::MoveToExhaustPile));
         }
         else
         {
@@ -249,7 +249,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         {
             ShowCard();
 
-            callbacks.add(0, new GenericCallback<>(this::MoveToHand));
+            callbacks.add(0, GenericCallback.FromT1(this::MoveToHand));
         }
         else
         {
@@ -278,7 +278,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         {
             ShowCard();
 
-            callbacks.add(0, new GenericCallback<>(this::MoveToPile));
+            callbacks.add(0, GenericCallback.FromT1(this::MoveToPile));
         }
         else
         {

@@ -3,9 +3,8 @@ package eatyourbeets.effects.utility;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.EYBEffectWithCallback;
-
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
 
 public class CallbackEffect extends EYBEffectWithCallback<AbstractGameAction>
 {
@@ -19,14 +18,14 @@ public class CallbackEffect extends EYBEffectWithCallback<AbstractGameAction>
         this.action = action;
     }
 
-    public CallbackEffect(AbstractGameAction action, Consumer<AbstractGameAction> onCompletion)
+    public CallbackEffect(AbstractGameAction action, ActionT1<AbstractGameAction> onCompletion)
     {
         this(action);
 
         AddCallback(onCompletion);
     }
 
-    public CallbackEffect(AbstractGameAction action, Object state, BiConsumer<Object, AbstractGameAction> onCompletion)
+    public CallbackEffect(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)
     {
         this(action);
 

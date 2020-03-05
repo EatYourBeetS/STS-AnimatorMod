@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.interfaces.csharp.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;

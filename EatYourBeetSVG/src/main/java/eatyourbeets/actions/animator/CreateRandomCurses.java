@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class CreateRandomCurses extends EYBAction
 {
-    protected static final FakeAbstractCard fakeCurse = FakeAbstractCard.FromCard(new AscendersBane());
+    protected static final FakeAbstractCard fakeCurse = new FakeAbstractCard(new AscendersBane()).SetID("-");
     protected final CardGroup destination;
 
     public CreateRandomCurses(int amount, CardGroup destination)

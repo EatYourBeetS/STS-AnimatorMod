@@ -4,7 +4,6 @@ import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.Keyword;
@@ -13,12 +12,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.console.CommandsManager;
-import eatyourbeets.dungeons.TheUnnamedReign;
-import eatyourbeets.events.UnnamedReign.TheAbandonedCabin;
-import eatyourbeets.events.UnnamedReign.TheHaunt;
-import eatyourbeets.events.UnnamedReign.TheMaskedTraveler3;
-import eatyourbeets.events.UnnamedReign.TheUnnamedMerchant;
-import eatyourbeets.events.animator.TheMaskedTraveler1;
+import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.monsters.Bosses.KrulTepes;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.powers.common.AgilityPower;
@@ -50,13 +44,7 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializeEvents()
     {
-        BaseMod.addEvent(TheMaskedTraveler1.ID, TheMaskedTraveler1.class, Exordium.ID);
-        //BaseMod.addEvent(TheMaskedTraveler2.ID, TheMaskedTraveler2.class, TheEnding.ID);
-        BaseMod.addEvent(TheMaskedTraveler3.ID, TheMaskedTraveler3.class, TheUnnamedReign.ID);
-        //BaseMod.addEvent(TheDomVedeloper1.ID, TheDomVedeloper1.class, Exordium.ID);
-        BaseMod.addEvent(TheHaunt.ID, TheHaunt.class, TheUnnamedReign.ID);
-        BaseMod.addEvent(TheUnnamedMerchant.ID, TheUnnamedMerchant.class, TheUnnamedReign.ID);
-        BaseMod.addEvent(TheAbandonedCabin.ID, TheAbandonedCabin.class, TheUnnamedReign.ID);
+        EYBEvent.RegisterEvents();
     }
 
     @Override

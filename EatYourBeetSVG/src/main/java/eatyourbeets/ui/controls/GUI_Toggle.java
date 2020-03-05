@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.ui.GUIElement;
-import eatyourbeets.interfaces.csharp.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class GUI_Toggle extends GUIElement

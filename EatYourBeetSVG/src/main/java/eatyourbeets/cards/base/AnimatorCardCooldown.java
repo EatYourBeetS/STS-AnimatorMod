@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.csharp.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameUtilities;
 

@@ -11,9 +11,10 @@ public class GainGold extends EYBAction
 
     public GainGold(int amount, boolean showCoins)
     {
-        super(ActionType.DAMAGE); // So it doesn't get cleared if all enemies die...
+        super(ActionType.SPECIAL);
 
         this.showCoins = showCoins;
+        this.canCancel = false;
 
         Initialize(amount);
     }

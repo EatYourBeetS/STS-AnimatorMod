@@ -16,6 +16,8 @@ public class ScarUpgradeAction extends EYBAction
     public ScarUpgradeAction()
     {
         super(ActionType.SPECIAL);
+
+        this.canCancel = false;
     }
 
     @Override

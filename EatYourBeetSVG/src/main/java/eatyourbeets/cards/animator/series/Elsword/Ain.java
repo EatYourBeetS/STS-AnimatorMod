@@ -66,8 +66,7 @@ public class Ain extends AnimatorCard implements Spellcaster
 
         for (int i = 0; i < this.magicNumber; i++)
         {
-            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
-                    .SetOptions(true, false);
+            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
         }
 
         GameActions.Bottom.ChannelRandomOrb(true);

@@ -911,7 +911,8 @@
 	"animator:OrikoMikuni":
 	{
 		"DESCRIPTION": "Scry !M!. || Discard 1 card. Retain 1 card.",
-		"NAME": "Oriko Mikuni"
+		"NAME": "Oriko Mikuni",
+		"UPGRADE_DESCRIPTION": "Scry !M!. || Retain 1 card."
 	},
 	"animator:Overheat":
 	{

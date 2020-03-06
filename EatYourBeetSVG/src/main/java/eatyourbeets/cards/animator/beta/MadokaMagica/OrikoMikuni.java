@@ -32,7 +32,7 @@ public class OrikoMikuni extends AnimatorCard
     {
         GameActions.Bottom.Scry(magicNumber);
 
-        if (!p.hand.isEmpty()) {
+        if (!p.hand.isEmpty() && !upgraded) {
             GameActions.Bottom.DiscardFromHand(name, 1, false)
             .SetOptions(false, false, false);
         }

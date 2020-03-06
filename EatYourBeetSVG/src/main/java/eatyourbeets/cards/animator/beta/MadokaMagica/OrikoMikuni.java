@@ -1,6 +1,9 @@
 package eatyourbeets.cards.animator.beta.MadokaMagica;
 
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -8,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class OrikoMikuni extends AnimatorCard
 {
@@ -27,6 +31,27 @@ public class OrikoMikuni extends AnimatorCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.Scry(magicNumber);
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 1));
+
+        if (!p.hand.isEmpty()) {
+            GameActions.Bottom.DiscardFromHand(name, 1, false)
+            .SetOptions(false, false, false);
+        }
+
+        if (!p.hand.isEmpty())
+        {
+            GameActions.Bottom.SelectFromHand(name, 1, false)
+            .SetOptions(true, true, true)
+            .SetMessage(RetainCardsAction.TEXT[0])
+            .SetFilter(c -> !c.isEthereal)
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    AbstractCard card = cards.get(0);
+
+                    GameUtilities.Retain(card);
+                }
+            });
+        }
     }
 }

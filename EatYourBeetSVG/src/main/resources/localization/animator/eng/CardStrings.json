@@ -910,7 +910,7 @@
 	},
 	"animator:OrikoMikuni":
 	{
-		"DESCRIPTION": "Scry !M!. || Next turn: <DRW>.",
+		"DESCRIPTION": "Scry !M!. || Discard 1 card. Retain 1 card.",
 		"NAME": "Oriko Mikuni"
 	},
 	"animator:Overheat":

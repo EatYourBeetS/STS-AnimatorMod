@@ -12,7 +12,7 @@ public class Spearman extends AnimatorCard
     public static final EYBCardData DATA = Register(Spearman.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing);
     static
     {
-        DATA.AddPreview(FakeAbstractCard.FromCard(new Wound()), false);
+        DATA.AddPreview(new FakeAbstractCard(new Wound()), false);
     }
 
     public Spearman()

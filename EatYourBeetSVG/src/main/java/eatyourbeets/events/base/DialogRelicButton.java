@@ -1,4 +1,4 @@
-package eatyourbeets.events;
+package eatyourbeets.events.base;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.TipHelper;

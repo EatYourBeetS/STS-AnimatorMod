@@ -87,6 +87,8 @@ public class AnimatorStrings
         public final String DynamicPortraits = Strings.TEXT[5];
         public final String UseCardHoveringAnimation = Strings.TEXT[6];
         public final String PressControlToCycle = Strings.TEXT[7];
+        public final String LocalizationHelp = Strings.TEXT[8];
+        public final String DisplayBetaSeries = Strings.TEXT[9];
 
         public final String SynergyName(int synergyID)
         {

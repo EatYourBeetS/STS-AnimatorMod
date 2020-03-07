@@ -3,23 +3,23 @@ package eatyourbeets.actions.cardManipulation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
 
 import java.util.UUID;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public class ModifyAllCombatInstances extends EYBActionWithCallback<AbstractCard>
 {
     private final UUID uuid;
 
-    public ModifyAllCombatInstances(UUID targetUUID, Consumer<AbstractCard> onCompletion)
+    public ModifyAllCombatInstances(UUID targetUUID, ActionT1<AbstractCard> onCompletion)
     {
         this(targetUUID);
 
         AddCallback(onCompletion);
     }
 
-    public ModifyAllCombatInstances(UUID targetUUID, Object state, BiConsumer<Object, AbstractCard> onCompletion)
+    public ModifyAllCombatInstances(UUID targetUUID, Object state, ActionT2<Object, AbstractCard> onCompletion)
     {
         this(targetUUID);
 

@@ -157,26 +157,35 @@ public class GR
         return language == Settings.GameLanguage.ZHS;
     }
 
-    public static Texture GetTextureMipMap(String path)
-    {
-        Texture texture = textures.get(path);
-        if (texture == null)
-        {
-            texture = new Texture(Gdx.files.internal(path), true);
-            texture.setFilter(Texture.TextureFilter.MipMapLinearLinear, Texture.TextureFilter.Linear);
-            textures.put(path, texture);
-        }
-
-        return texture;
-    }
-
     public static Texture GetTexture(String path)
     {
+        return GetTexture(path, false);
+    }
+
+    public static Texture GetTexture(String path, boolean useMipMap)
+    {
         Texture texture = textures.get(path);
         if (texture == null)
         {
-            texture = new Texture(Gdx.files.internal(path), false);
-            texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            FileHandle file = Gdx.files.internal(path);
+            if (file.exists())
+            {
+                texture = new Texture(file, useMipMap);
+                if (useMipMap)
+                {
+                    texture.setFilter(Texture.TextureFilter.MipMapLinearLinear, Texture.TextureFilter.Linear);
+                }
+                else
+                {
+                    texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+                }
+            }
+            else
+            {
+                JavaUtilities.GetLogger(GR.class).error("Texture does not exist: " + path);
+                texture = null;
+            }
+
             textures.put(path, texture);
         }
 

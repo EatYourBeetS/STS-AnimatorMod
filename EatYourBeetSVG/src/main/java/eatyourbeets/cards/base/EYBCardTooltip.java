@@ -102,7 +102,7 @@ public class EYBCardTooltip
         else
         {
             x = card.current_x;
-            if (card.current_x < (float) Settings.WIDTH * 0.75F)
+            if (card.current_x < (float) Settings.WIDTH * 0.70F)
             {
                 x += AbstractCard.IMG_WIDTH / 2.0F + CARD_TIP_PAD;
             }
@@ -111,10 +111,17 @@ public class EYBCardTooltip
                 x -= AbstractCard.IMG_WIDTH / 2.0F + CARD_TIP_PAD + BOX_W;
             }
 
-            y = card.current_y + AbstractCard.IMG_HEIGHT / 2.0F - BOX_EDGE_H;
-            if (tooltips.size() >= 5 && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.CARD_REWARD)
+            y = card.current_y - BOX_EDGE_H;
+            if (tooltips.size() > 3 && card.current_y < Settings.HEIGHT * 0.5f && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.CARD_REWARD)
             {
-                y += AbstractCard.IMG_HEIGHT * 0.3f; //(float) (tooltips.size() - 1) * 62.0F * Settings.scale;
+                float steps = (tooltips.size() - 3) * 0.4f;
+                float multi = 1f - (card.current_y / (Settings.HEIGHT * 0.5f));
+
+                y += AbstractCard.IMG_HEIGHT * (0.5f + JavaUtilities.Round(multi * steps, 3));
+            }
+            else
+            {
+                y += AbstractCard.IMG_HEIGHT * 0.5F;
             }
         }
 

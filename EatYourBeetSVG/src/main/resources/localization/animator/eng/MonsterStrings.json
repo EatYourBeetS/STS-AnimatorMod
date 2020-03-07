@@ -3,285 +3,285 @@
 	"animator:Dark_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "Dark Cube (S)",
+		"NAME": "Dark Cube",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "Dark Cube (M)",
+		"NAME": "Dark Cube",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "Dark Cube (L)",
+		"NAME": "Dark Cube",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "Lightning Cube (S)",
+		"NAME": "Lightning Cube",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "Lightning Cube (M)",
+		"NAME": "Lightning Cube",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "Lightning Cube (L)",
+		"NAME": "Lightning Cube",
 		"DIALOG": [""]
 	},
 
 	"animator:Frost_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "Frost Cube (S)",
+		"NAME": "Frost Cube",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "Frost Cube (M)",
+		"NAME": "Frost Cube",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "Frost Cube (L)",
+		"NAME": "Frost Cube",
 		"DIALOG": [""]
 	},
 
 	"animator:Fire_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "Fire Cube (S)",
+		"NAME": "Fire Cube",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "Fire Cube (M)",
+		"NAME": "Fire Cube",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "Fire Cube (L)",
+		"NAME": "Fire Cube",
 		"DIALOG": [""]
 	},
 
 	"animator:Healing_Cube_0":
 	{
 		"MOVES": [],
-		"NAME": "Healing Cube (S)",
+		"NAME": "Healing Cube",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Cube_1":
 	{
 		"MOVES": [],
-		"NAME": "Healing Cube (M)",
+		"NAME": "Healing Cube",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Cube_2":
 	{
 		"MOVES": [],
-		"NAME": "Healing Cube (L)",
+		"NAME": "Healing Cube",
 		"DIALOG": [""]
 	},
 
 	"animator:Dark_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "Dark Crystal (S)",
+		"NAME": "Dark Crystal",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "Dark Crystal (M)",
+		"NAME": "Dark Crystal",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "Dark Crystal (L)",
+		"NAME": "Dark Crystal",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "Lightning Crystal (S)",
+		"NAME": "Lightning Crystal",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "Lightning Crystal (M)",
+		"NAME": "Lightning Crystal",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "Lightning Crystal (L)",
+		"NAME": "Lightning Crystal",
 		"DIALOG": [""]
 	},
 
 	"animator:Frost_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "Frost Crystal (S)",
+		"NAME": "Frost Crystal",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "Frost Crystal (M)",
+		"NAME": "Frost Crystal",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "Frost Crystal (L)",
+		"NAME": "Frost Crystal",
 		"DIALOG": [""]
 	},
 
 	"animator:Fire_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "Fire Crystal (S)",
+		"NAME": "Fire Crystal",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "Fire Crystal (M)",
+		"NAME": "Fire Crystal",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "Fire Crystal (L)",
+		"NAME": "Fire Crystal",
 		"DIALOG": [""]
 	},
 
 	"animator:Healing_Crystal_0":
 	{
 		"MOVES": [],
-		"NAME": "Healing Crystal (S)",
+		"NAME": "Healing Crystal",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Crystal_1":
 	{
 		"MOVES": [],
-		"NAME": "Healing Crystal (M)",
+		"NAME": "Healing Crystal",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Crystal_2":
 	{
 		"MOVES": [],
-		"NAME": "Healing Crystal (L)",
+		"NAME": "Healing Crystal",
 		"DIALOG": [""]
 	},
 
 	"animator:Dark_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "Dark Wisp (S)",
+		"NAME": "Dark Wisp",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "Dark Wisp (M)",
+		"NAME": "Dark Wisp",
 		"DIALOG": [""]
 	},
 	"animator:Dark_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "Dark Wisp (L)",
+		"NAME": "Dark Wisp",
 		"DIALOG": [""]
 	},
 
 	"animator:Lightning_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "Lightning Wisp (S)",
+		"NAME": "Lightning Wisp",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "Lightning Wisp (M)",
+		"NAME": "Lightning Wisp",
 		"DIALOG": [""]
 	},
 	"animator:Lightning_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "Lightning Wisp (L)",
+		"NAME": "Lightning Wisp",
 		"DIALOG": [""]
 	},
 
 	"animator:Frost_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "Frost Wisp (S)",
+		"NAME": "Frost Wisp",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "Frost Wisp (M)",
+		"NAME": "Frost Wisp",
 		"DIALOG": [""]
 	},
 	"animator:Frost_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "Frost Wisp (L)",
+		"NAME": "Frost Wisp",
 		"DIALOG": [""]
 	},
 
 	"animator:Fire_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "Fire Wisp (S)",
+		"NAME": "Fire Wisp",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "Fire Wisp (M)",
+		"NAME": "Fire Wisp",
 		"DIALOG": [""]
 	},
 	"animator:Fire_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "Fire Wisp (L)",
+		"NAME": "Fire Wisp",
 		"DIALOG": [""]
 	},
 
 	"animator:Healing_Wisp_0":
 	{
 		"MOVES": [],
-		"NAME": "Healing Wisp (S)",
+		"NAME": "Healing Wisp",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Wisp_1":
 	{
 		"MOVES": [],
-		"NAME": "Healing Wisp (M)",
+		"NAME": "Healing Wisp",
 		"DIALOG": [""]
 	},
 	"animator:Healing_Wisp_2":
 	{
 		"MOVES": [],
-		"NAME": "Healing Wisp (L)",
+		"NAME": "Healing Wisp",
 		"DIALOG": [""]
 	},
 
@@ -343,7 +343,7 @@
 			"Wait a little longer!",
 			"Almost ready!",
 			"Here it is!",
-			"I am a cultist."
+			"BEHOLD! An interloper."
 		]
 	},
 	"animator:TheUnnamed":

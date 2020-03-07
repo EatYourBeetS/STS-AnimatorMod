@@ -1,10 +1,11 @@
 package eatyourbeets.effects;
 
+import eatyourbeets.interfaces.delegates.ActionT0;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.utilities.GenericCallback;
 
 import java.util.ArrayList;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public abstract class EYBEffectWithCallback<T> extends EYBEffect
 {
@@ -25,16 +26,23 @@ public abstract class EYBEffectWithCallback<T> extends EYBEffect
         super(amount, duration);
     }
 
-    public EYBEffectWithCallback<T> AddCallback(Object state, BiConsumer<Object, T> onCompletion)
+    public EYBEffectWithCallback<T> AddCallback(Object state, ActionT2<Object, T> onCompletion)
     {
-        callbacks.add(new GenericCallback<>(state, onCompletion));
+        callbacks.add(GenericCallback.FromT2(onCompletion, state));
 
         return this;
     }
 
-    public EYBEffectWithCallback<T> AddCallback(Consumer<T> onCompletion)
+    public EYBEffectWithCallback<T> AddCallback(ActionT1<T> onCompletion)
     {
-        callbacks.add(new GenericCallback<>(onCompletion));
+        callbacks.add(GenericCallback.FromT1(onCompletion));
+
+        return this;
+    }
+
+    public EYBEffectWithCallback<T> AddCallback(ActionT0 onCompletion)
+    {
+        callbacks.add(GenericCallback.FromT0(onCompletion));
 
         return this;
     }

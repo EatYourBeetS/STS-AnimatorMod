@@ -85,7 +85,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     public void LoadImage(String suffix)
     {
-        portraitImg = GR.GetTextureMipMap(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"));
+        portraitImg = GR.GetTexture(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"), true);
     }
 
     public boolean IsOnScreen()

@@ -1,4 +1,4 @@
-package eatyourbeets.interfaces.csharp;
+package eatyourbeets.interfaces.delegates;
 
 public interface FuncT1<Result, T1>
 {

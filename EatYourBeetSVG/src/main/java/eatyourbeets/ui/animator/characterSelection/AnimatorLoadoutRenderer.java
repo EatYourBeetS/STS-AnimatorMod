@@ -23,9 +23,11 @@ public class AnimatorLoadoutRenderer extends GUIElement
 {
     protected static FieldInfo<String> _hp = JavaUtilities.GetField("hp", CharacterOption.class);
     protected static FieldInfo<Integer> _gold = JavaUtilities.GetField("gold", CharacterOption.class);
-    
+
+    protected static final AnimatorLoadout RANDOM_LOADOUT = new _Random();
     protected static final AnimatorStrings.CharacterSelect charSelectStrings = GR.Animator.Strings.CharSelect;
 
+    protected final ArrayList<AnimatorLoadout> loadouts;
     protected final Hitbox startingCardsLabelHb;
     protected final Hitbox startingCardsSelectedHb;
     protected final Hitbox startingCardsLeftHb;
@@ -44,6 +46,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         float POS_X = 180f * Settings.scale;
         float POS_Y = ((float) Settings.HEIGHT / 2.0F) + (20 * Settings.scale);
 
+        loadouts = new ArrayList<>();
         startingCardsLabelHb = new Hitbox(leftTextWidth, 50.0F * Settings.scale);
         startingCardsSelectedHb = new Hitbox(rightTextWidth, 50f * Settings.scale);
         startingCardsLeftHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
@@ -59,7 +62,26 @@ public class AnimatorLoadoutRenderer extends GUIElement
     {
         this.selectScreen = selectScreen;
         this.characterOption = characterOption;
+
+        this.loadouts.clear();
+        this.loadouts.add(RANDOM_LOADOUT);
+        this.loadouts.addAll(GR.Animator.Data.BaseLoadouts);
+        if (GR.Animator.Config.GetDisplayBetaSeries())
+        {
+            for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
+            {
+                if (loadout.GetStartingDeck().size() > 0)
+                {
+                    this.loadouts.add(loadout);
+                }
+            }
+        }
+
         this.loadout = GR.Animator.Data.SelectedLoadout;
+        if (RANDOM_LOADOUT != loadout && (this.loadout.GetStartingDeck().isEmpty() || !loadouts.contains(this.loadout)))
+        {
+            this.loadout = GR.Animator.Data.SelectedLoadout = loadouts.get(0);
+        }
 
         _gold.Set(characterOption, loadout.StartingGold);
         _hp.Set(characterOption, String.valueOf(loadout.MaxHP));
@@ -105,19 +127,14 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             startingCardsLeftHb.clicked = false;
 
-            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Data.BaseLoadouts;
             int current = loadouts.indexOf(loadout);
             if (current == 0)
             {
-                GR.Animator.Data.SelectedLoadout = new _Random();
-            }
-            else if (current == -1)
-            {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(loadouts.size() -1);
+                GR.Animator.Data.SelectedLoadout = loadouts.get(loadouts.size() - 1);
             }
             else
             {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(current -1);
+                GR.Animator.Data.SelectedLoadout = loadouts.get(current - 1);
             }
 
             Refresh(selectScreen, characterOption);
@@ -127,19 +144,14 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             startingCardsRightHb.clicked = false;
 
-            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Data.BaseLoadouts;
             int current = loadouts.indexOf(loadout);
-            if (current >= (loadouts.size()-1))
-            {
-                GR.Animator.Data.SelectedLoadout = new _Random();
-            }
-            else if (current == -1)
+            if (current >= (loadouts.size() - 1))
             {
                 GR.Animator.Data.SelectedLoadout = loadouts.get(0);
             }
             else
             {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(current +1);
+                GR.Animator.Data.SelectedLoadout = loadouts.get(current + 1);
             }
 
             Refresh(selectScreen, characterOption);
@@ -174,10 +186,10 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
         sb.setColor(startingCardsLeftHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24.0F, startingCardsLeftHb.cY - 24.0F, 24.0F, 24.0F,
-        48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+                48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
         sb.setColor(startingCardsRightHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24.0F, startingCardsRightHb.cY - 24.0F, 24.0F, 24.0F,
-        48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+                48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
     }
 }

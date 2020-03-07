@@ -10,21 +10,23 @@ public class FakeAbstractCard extends EYBCardBase
 {
     private final AbstractCard source;
 
-    public static FakeAbstractCard FromCard(AbstractCard card)
-    {
-        return new FakeAbstractCard(card);
-    }
-
     @Override
     public void upgrade()
     {
 
     }
 
-    protected FakeAbstractCard(AbstractCard card)
+    public FakeAbstractCard(AbstractCard card)
     {
         super(card.cardID, card.name, null, card.cost, card.rawDescription, card.type, card.color, card.rarity, card.target);
         this.source = card;
+    }
+
+    public FakeAbstractCard SetID(String cardID)
+    {
+        this.cardID = cardID;
+
+        return this;
     }
 
     @Override
@@ -54,7 +56,7 @@ public class FakeAbstractCard extends EYBCardBase
     @Override
     public AbstractCard makeCopy()
     {
-        return FromCard(source);
+        return new FakeAbstractCard(source).SetID(cardID);
     }
 
     @Override

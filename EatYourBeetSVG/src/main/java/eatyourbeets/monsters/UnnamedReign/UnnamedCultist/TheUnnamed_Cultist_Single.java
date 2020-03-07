@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.monsters.city.ShelledParasite;
 import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.monsters.exordium.Sentry;
 import eatyourbeets.monsters.SharedMoveset.Move_GainStrengthAndBlockAll;
+import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.DarkCube;
+import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -112,5 +114,12 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
         m = new ShelledParasite(-352, -26);
         m.currentHealth = m.maxHealth += 20 + level / 2;
         pool2.Add(m);
+
+        if (GameUtilities.GetActualAscensionLevel() >= 20)
+        {
+            m = new DarkCube(MonsterTier.Normal, -330, 2);
+            m.currentHealth = m.maxHealth += -30 + level / 2;
+            pool2.Add(m);
+        }
     }
 }

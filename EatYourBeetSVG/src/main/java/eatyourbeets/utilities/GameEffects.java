@@ -12,10 +12,11 @@ import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.effects.player.SpawnRelicEffect;
 import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.effects.utility.CallbackEffect2;
+import eatyourbeets.interfaces.delegates.ActionT0;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
 
 import java.util.ArrayList;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public final class GameEffects
 {
@@ -68,12 +69,17 @@ public final class GameEffects
         return Add(new CallbackEffect2(effect));
     }
 
-    public CallbackEffect2 Callback(AbstractGameEffect effect, Consumer<AbstractGameEffect> onCompletion)
+    public CallbackEffect2 Callback(AbstractGameEffect effect, ActionT0 onCompletion)
     {
         return Add(new CallbackEffect2(effect, onCompletion));
     }
 
-    public CallbackEffect2 Callback(AbstractGameEffect effect, Object state, BiConsumer<Object, AbstractGameEffect> onCompletion)
+    public CallbackEffect2 Callback(AbstractGameEffect effect, ActionT1<AbstractGameEffect> onCompletion)
+    {
+        return Add(new CallbackEffect2(effect, onCompletion));
+    }
+
+    public CallbackEffect2 Callback(AbstractGameEffect effect, Object state, ActionT2<Object, AbstractGameEffect> onCompletion)
     {
         return Add(new CallbackEffect2(effect, state, onCompletion));
     }
@@ -83,12 +89,17 @@ public final class GameEffects
         return Add(new CallbackEffect(action));
     }
 
-    public CallbackEffect Callback(AbstractGameAction action, Consumer<AbstractGameAction> onCompletion)
+    public CallbackEffect Callback(AbstractGameAction effect, ActionT0 onCompletion)
+    {
+        return Add(new CallbackEffect(effect, onCompletion));
+    }
+
+    public CallbackEffect Callback(AbstractGameAction action, ActionT1<AbstractGameAction> onCompletion)
     {
         return Add(new CallbackEffect(action, onCompletion));
     }
 
-    public CallbackEffect Callback(AbstractGameAction action, Object state, BiConsumer<Object, AbstractGameAction> onCompletion)
+    public CallbackEffect Callback(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)
     {
         return Add(new CallbackEffect(action, state, onCompletion));
     }

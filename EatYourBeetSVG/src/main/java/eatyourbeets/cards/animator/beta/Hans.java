@@ -15,7 +15,7 @@ public class Hans extends AnimatorCard
     public static final EYBCardData DATA = Register(Hans.class).SetPower(3, CardRarity.RARE);
     static
     {
-        DATA.AddPreview(new Hans_Slimed(), true);
+        DATA.AddPreview(new Hans_Slimed(), false);
     }
 
     public Hans()

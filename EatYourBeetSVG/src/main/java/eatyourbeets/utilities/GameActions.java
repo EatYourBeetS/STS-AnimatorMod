@@ -46,7 +46,9 @@ import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.interfaces.csharp.FuncT1;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
+import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.powers.animator.BurningPower;
@@ -58,8 +60,6 @@ import eatyourbeets.powers.common.TemporaryArtifactPower;
 
 import java.util.ArrayList;
 import java.util.UUID;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 @SuppressWarnings("UnusedReturnValue")
 public final class GameActions
@@ -177,12 +177,12 @@ public final class GameActions
         return StackPower(source, new WeakPower(target, amount, !source.isPlayer));
     }
 
-    public CallbackAction Callback(AbstractGameAction action, Object state, BiConsumer<Object, AbstractGameAction> onCompletion)
+    public CallbackAction Callback(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)
     {
         return Add(new CallbackAction(action, state, onCompletion));
     }
 
-    public CallbackAction Callback(AbstractGameAction action, Consumer<AbstractGameAction> onCompletion)
+    public CallbackAction Callback(AbstractGameAction action, ActionT1<AbstractGameAction> onCompletion)
     {
         return Add(new CallbackAction(action, onCompletion));
     }
@@ -192,12 +192,12 @@ public final class GameActions
         return Add(new CallbackAction(action));
     }
 
-    public CallbackAction Callback(Consumer<AbstractGameAction> onCompletion)
+    public CallbackAction Callback(ActionT1<AbstractGameAction> onCompletion)
     {
         return Callback(new WaitAction(0.05f), onCompletion);
     }
 
-    public CallbackAction Callback(Object state, BiConsumer<Object, AbstractGameAction> onCompletion)
+    public CallbackAction Callback(Object state, ActionT2<Object, AbstractGameAction> onCompletion)
     {
         return Callback(new WaitAction(0.05f), state, onCompletion);
     }
@@ -497,12 +497,12 @@ public final class GameActions
         return MakeCard(card, AbstractDungeon.player.hand);
     }
 
-    public ModifyAllCombatInstances ModifyAllCombatInstances(UUID uuid, Object state, BiConsumer<Object, AbstractCard> onCompletion)
+    public ModifyAllCombatInstances ModifyAllCombatInstances(UUID uuid, Object state, ActionT2<Object, AbstractCard> onCompletion)
     {
         return Add(new ModifyAllCombatInstances(uuid, state, onCompletion));
     }
 
-    public ModifyAllCombatInstances ModifyAllCombatInstances(UUID uuid, Consumer<AbstractCard> onCompletion)
+    public ModifyAllCombatInstances ModifyAllCombatInstances(UUID uuid, ActionT1<AbstractCard> onCompletion)
     {
         return Add(new ModifyAllCombatInstances(uuid, onCompletion));
     }
@@ -596,14 +596,14 @@ public final class GameActions
         return Add(new ReduceStrength(AbstractDungeon.player, target, amount, temporary));
     }
 
-    public DiscardFromHand Reload(String sourceName, Object state, BiConsumer<Object, ArrayList<AbstractCard>> onReload)
+    public DiscardFromHand Reload(String sourceName, Object state, ActionT2<Object, ArrayList<AbstractCard>> onReload)
     {
         return (DiscardFromHand) Add(new DiscardFromHand(sourceName, 999, false)
                 .SetOptions(true, true, true)
                 .AddCallback(state, onReload));
     }
 
-    public DiscardFromHand Reload(String sourceName, Consumer<ArrayList<AbstractCard>> onReload)
+    public DiscardFromHand Reload(String sourceName, ActionT1<ArrayList<AbstractCard>> onReload)
     {
         return (DiscardFromHand) Add(new DiscardFromHand(sourceName, 999, false)
                 .SetOptions(true, true, true)
@@ -612,12 +612,12 @@ public final class GameActions
 
     public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractCreature target, AbstractPower power)
     {
-        return Add(new RemoveSpecificPowerAction(source, source, power));
+        return Add(new RemoveSpecificPowerAction(target, source, power));
     }
 
     public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractCreature target, String powerID)
     {
-        return Add(new RemoveSpecificPowerAction(source, source, powerID));
+        return Add(new RemoveSpecificPowerAction(target, source, powerID));
     }
 
     public ReplaceCard ReplaceCard(UUID uuid, AbstractCard replacement)

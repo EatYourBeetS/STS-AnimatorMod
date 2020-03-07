@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
@@ -16,15 +18,22 @@ import org.apache.logging.log4j.util.TriConsumer;
 public class FielNirvalen extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(FielNirvalen.class).SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(3);
+    public static final int SCRY_AMOUNT = 2;
 
     public FielNirvalen()
     {
         super(DATA);
 
-        Initialize(0, 2, 1, 2);
-        SetUpgrade(0, 2, 1, 0);
+        Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetSynergy(Synergies.NoGameNoLife);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
@@ -36,9 +45,9 @@ public class FielNirvalen extends AnimatorCard
         group.addToBottom(CreateChoice(text[2], (c1, p1, m1) -> GameActions.Bottom.GainIntellect(1, true)));
         group.addToBottom(CreateChoice(text[3], (c1, p1, m1) -> GameActions.Bottom.GainForce(1, true)));
 
-        GameActions.Bottom.GainBlock(block).SetOptions(true, false);
-        GameActions.Bottom.StackPower(new FielNirvalenPower(p, secondaryValue));
-        GameActions.Bottom.SelectFromPile(name, magicNumber, group)
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.StackPower(new FielNirvalenPower(p, SCRY_AMOUNT));
+        GameActions.Bottom.SelectFromPile(name, secondaryValue, group)
         .SetOptions(false, false)
         .SetMessage(CardRewardScreen.TEXT[1])
         .AddCallback(cards ->

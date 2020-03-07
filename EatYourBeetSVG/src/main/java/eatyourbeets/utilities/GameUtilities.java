@@ -298,6 +298,11 @@ public class GameUtilities
         }
     }
 
+    public static int GetCurrentDeckSize(AbstractPlayer player)
+    {
+        return player.drawPile.size() + player.discardPile.size() + player.hand.size() + player.exhaustPile.size() + player.limbo.size();
+    }
+
     public static ArrayList<AbstractMonster> GetCurrentEnemies(boolean aliveOnly)
     {
         ArrayList<AbstractMonster> monsters = new ArrayList<>();

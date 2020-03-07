@@ -1,28 +1,67 @@
 package eatyourbeets.cards.animator.beta.DateALive;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
+import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.actions.cardManipulation.RandomCostIncrease;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
 public class InverseTohka extends AnimatorCard {
-    public static final EYBCardData DATA = Register(InverseTohka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(InverseTohka.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL);
 
     public InverseTohka() {
         super(DATA);
 
-        Initialize(0, 0, 0);
-        SetUpgrade(0, 0, 0);
+        Initialize(10, 0, 10);
 
-        SetSynergy(Synergies.eatyourbeets.cards.animator.beta.DateALive);
+        SetSynergy(Synergies.DateALive);
+    }
+
+    @Override
+    protected void OnUpgrade() {
+        SetRetain(true);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        int energy = EnergyPanel.getCurrentEnergy();
+        if (energy > 0)
+        {
+            GameActions.Bottom.GainEnergy(-1);
+
+            int[] damageMatrix = DamageInfo.createDamageMatrix(magicNumber, true);
+
+            GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+            GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+
+        GameActions.Bottom.Reload(name, cards ->
+        {
+            if (cards.size() > 0) {
+
+                for (int i=0; i<cards.size(); i++)
+                {
+                    GameActions.Top.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
+                            .SetOptions(true,false);
+                }
+            }
+        });
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.HIGH));
     }
 }

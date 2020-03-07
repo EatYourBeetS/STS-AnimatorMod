@@ -609,6 +609,11 @@
 		"DESCRIPTION": "Play the {Attack} with the ** highest damage from your ** draw pile. Take !M! damage ** at the end of turn. || When Exhausted: Draw ** {Berserker} from any ** pile and Retain it.",
 		"NAME": "Illya"
 	},
+	"animator:InverseTohka":
+	{
+		"DESCRIPTION": "When this card is drawn, if you have at least 1 Energy, you lose 1 energy and deal 10 damage to all enemies. || Reload: attack an extra time.",
+		"NAME": "Inverse Tohka"
+	},
 	"animator:IrohaTamaki":
 	{
 		"DESCRIPTION": "If the top card of your draw pile is a Hindrance, Exhaust it. || Synergy: Scry !M!.",
@@ -808,6 +813,12 @@
 		"DESCRIPTION": "Exhaust a card in ** your discard pile. || If you Exhausted a ** Hindrance: Gain !S! [F].",
 		"NAME": "Mikaela"
 	},
+	"animator:MikuIzayoi":
+	{
+		"DESCRIPTION": "Block is always 9. || When Discarded: Increase your Common Buffs by 1.",
+		"EXTENDED_DESCRIPTION": ["Common Buffs", "#yForce, #yAgility, #yIntellect, #yThorns, #yTemp. #yThorns, #yMetallize, #yPlated #yArmor. "],
+		"NAME": "Miku Izayoi"
+	},
 	"animator:Millim":
 	{
 		"DESCRIPTION": "{~Unique}. Apply !M! ** Burning and Poison. || Synergy: Draw 2 more ** cards next turn.",
@@ -851,6 +862,12 @@
 		"DESCRIPTION": "{Counter} the enemy intent. || This card will have a ** different text based on the ** enemy you are targeting.     ",
 		"NAME": "Nanami",
 		"UPGRADE_DESCRIPTION": "Strongly {Counter} ** the enemy intent. || This card will have a ** different text based on the ** enemy you are targeting."
+	},
+	"animator:Natsumi":
+	{
+		"DESCRIPTION": "Transform a card in your hand into a random card with the same cost and upgrade level.  || If you have 30+ cards in your deck, you may choose what card to transform into.",
+		"EXTENDED_DESCRIPTION": ["Choose a card to transform.", "Choose a card to transform into."],
+		"NAME": "Natsumi"
 	},
 	"animator:NarberalGamma":
 	{
@@ -907,6 +924,12 @@
 	{
 		"DESCRIPTION": "Channel !S! Plasma. || On your second ** Synergy each turn: ** Gain !M! {Temp. HP}.",
 		"NAME": "Plasma Core"
+	},
+	"animator:OrigamiTobiichi":
+	{
+		"DESCRIPTION": "Channel !M! Random Orbs. || At the end of your turn, add 1 Support Damage for each Orb.  Then, if you have 20 or more Support Damage, lose this power and add Inverse Origami to your draw pile.",
+		"EXTENDED_DESCRIPTION": ["At the end of your turn, add #b{0} Support Damage per Orb.  Then, if you have #b{1} or more Support Damage, lose this power and add Inverse Origami to your draw pile."],
+		"NAME": "Origami Tobiichi"
 	},
 	"animator:OrikoMikuni":
 	{
@@ -1251,6 +1274,11 @@
 	{
 		"DESCRIPTION": "<DRW-M>. ** You may Exhaust a card ** to draw 1 additional card. || <slm>. If you Exhausted ** a Hindrance: Motivate 1.",
 		"NAME": "Togame"
+	},
+	"animator:TohkaYatogami":
+	{
+		"DESCRIPTION": "Damage is always 10. || If there are 10 or more cards in your exhaust pile, add a copy of Inverse Tohka to your draw pile and exhaust.",
+		"NAME": "Tohka Yatogami"
 	},
 	"animator:Truth":
 	{

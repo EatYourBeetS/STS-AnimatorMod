@@ -1,21 +1,46 @@
 package eatyourbeets.events.animator;
 
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.animator.curse.Curse_Dizziness;
 import eatyourbeets.cards.animator.special.HinaKagiyama;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
-import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 public class TheCursedForest extends EYBEvent
 {
     public static final EventStrings STRINGS = new EventStrings();
     public static final String ID = CreateFullID(TheCursedForest.class);
+
+    public static TheCursedForest TryCreate(Random rng)
+    {
+        int curseCount = 0;
+        for (AbstractCard card : AbstractDungeon.player.masterDeck.group)
+        {
+            if (card.cardID.equals(HinaKagiyama.DATA.ID))
+            {
+                return null;
+            }
+            else if (card.type == AbstractCard.CardType.CURSE)
+            {
+                curseCount += 1;
+            }
+        }
+
+        if (curseCount > 2 && rng.random(0, 100) < Math.pow(curseCount + 2, 2))
+        {
+            return new TheCursedForest();
+        }
+
+        return null;
+    }
 
     public TheCursedForest()
     {
@@ -39,6 +64,8 @@ public class TheCursedForest extends EYBEvent
 
     private static class Offer extends EYBEventPhase<TheCursedForest, EventStrings>
     {
+        private final AbstractCard card = new HinaKagiyama();
+        private final AbstractCard curse = new Curse_Dizziness();
         private String OfferLine;
 
         @Override
@@ -50,55 +77,77 @@ public class TheCursedForest extends EYBEvent
             }
 
             AddText(OfferLine);
-
-
-            AddOption(text.EmbraceOption(), new HinaKagiyama()).AddCallback(this::Embrace);
+            AddOption(text.EmbraceOption(), card).AddCallback(this::Embrace);
             AddOption(text.PurifyOption()).AddCallback(this::Purify);
         }
-        private void Embrace(){
-            player.masterDeck.addToBottom(new HinaKagiyama());
-            player.masterDeck.addToBottom(new Curse_Dizziness());
+
+        private void Embrace()
+        {
+            GameEffects.List.Add(new ShowCardAndObtainEffect(card, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2.0F));
+            GameEffects.List.Add(new ShowCardAndObtainEffect(curse, (float) Settings.WIDTH * 0.55f, (float) Settings.HEIGHT / 2.0F));
+            ProgressPhase();
         }
-        private void Purify(){
 
+        private void Purify()
+        {
+            RandomizedList<AbstractCard> toRemove = new RandomizedList<>();
+            for (AbstractCard card : player.masterDeck.group)
+            {
+                if (card.type == AbstractCard.CardType.CURSE && !SoulboundField.soulbound.get(card))
+                {
+                    toRemove.Add(card);
+                }
+            }
+
+            if (toRemove.Size() > 0)
+            {
+                RemoveCard(toRemove.Retrieve(RNG), true);
+
+                if (toRemove.Size() > 0)
+                {
+                    RemoveCard(toRemove.Retrieve(RNG), false);
+                }
+            }
+
+            ProgressPhase();
         }
+    }
+
+    private static class Farewell extends EYBEventPhase<TheCursedForest, EventStrings>
+    {
+        @Override
+        protected void OnEnter()
+        {
+            AddText(text.Farewell());
+            AddLeaveOption();
+        }
+    }
+
+    private static class EventStrings extends EYBEventStrings
+    {
+        public String Introduction()
+        {
+            return GetDescription(0);
         }
 
-private static class Farewell extends EYBEventPhase<TheCursedForest, EventStrings>
-{
-    @Override
-    protected void OnEnter()
-    {
-        AddText(text.Farewell());
-        AddLeaveOption();
-    }
-}
+        public String Offering()
+        {
+            return GetDescription(1);
+        }
 
-private static class EventStrings extends EYBEventStrings
-{
-    public String Introduction()
-    {
-        return GetDescription(0);
-    }
+        public String Farewell()
+        {
+            return GetDescription(2);
+        }
 
-    public String Offering()
-    {
-        return GetDescription(1);
-    }
+        public String EmbraceOption()
+        {
+            return GetOption(0);
+        }
 
-    public String Farewell()
-    {
-        return GetDescription(4);
+        public String PurifyOption()
+        {
+            return GetOption(1);
+        }
     }
-
-    public String EmbraceOption()
-    {
-        return GetOption(0);
-    }
-
-    public String PurifyOption()
-    {
-        return GetOption(1);
-    }
-}
 }

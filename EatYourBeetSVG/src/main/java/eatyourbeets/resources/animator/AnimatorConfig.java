@@ -138,7 +138,12 @@ public class AnimatorConfig
             ModPanel settingsPanel = new ModPanel();
             AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
             AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 700, GetCropCardImages(), c -> SetCropCardImages(c.enabled, true));
-            AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 650, GetDisplayBetaSeries(), c -> SetDisplayBetaSeries(c.enabled, true));
+
+            if (GR.Animator.Data.BetaLoadouts.size() > 0)
+            {
+                AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 650, GetDisplayBetaSeries(), c -> SetDisplayBetaSeries(c.enabled, true));
+            }
+
             BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", settingsPanel);
         }
         catch (IOException e)

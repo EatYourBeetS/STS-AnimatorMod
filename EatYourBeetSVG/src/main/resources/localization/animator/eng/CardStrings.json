@@ -412,7 +412,7 @@
 	},
 	"animator:FielNirvalen":
 	{
-		"DESCRIPTION": "Choose !M! : Boost [A], ** Boost [I] or Boost [F]. || Once per turn, when ** you shuffle your ** draw pile: Scry !S!.",
+		"DESCRIPTION": "Choose !S! : Boost [A], ** Boost [I] or Boost [F]. || Once per turn, when ** you shuffle your ** draw pile: Scry 2.",
 		"EXTENDED_DESCRIPTION": ["Once per turn, when you shuffle your draw pile: #yScry #b{0}.", "Boost [A].", "Boost [I].", "Boost [F]."],
 		"NAME": "Fiel Nirvalen"
 	},
@@ -486,7 +486,7 @@
 	},
 	"animator:Greed":
 	{
-		"DESCRIPTION": "Gain !M! {Plated Armor}, ** {Metallicize} and {Malleable}. || <LIM>. For every 150 {Gold} ** you have: Gain [E] next turn.",
+		"DESCRIPTION": "Gain !S! {Malleable}. ** Gain !M! {Metallicize}. || <LIM>. For every ** 150 {Gold} you have: ** Gain [E] next turn.",
 		"NAME": "Greed"
 	},
 	"animator:GuildGirl":

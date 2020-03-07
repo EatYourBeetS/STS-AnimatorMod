@@ -3,7 +3,9 @@ package eatyourbeets.events.base;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
+import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.animator.*;
 import eatyourbeets.resources.GR;
@@ -21,6 +23,11 @@ public abstract class EYBEvent extends AbstractImageEvent
     public static String CreateFullID(Class eventClass)
     {
         return GR.Animator.CreateID(eventClass.getSimpleName());
+    }
+
+    public static AbstractEvent GenerateSpecialEvent(AbstractDungeon dungeon, Random rng, boolean isAnimator)
+    {
+        return null;
     }
 
     public static void UpdateEvents(boolean isAnimator)

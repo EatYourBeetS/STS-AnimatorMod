@@ -69,7 +69,7 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
             container.allCards.add(0, c);
         }
 
-        if (AnimatorSeriesSelectScreen.isBetaToggled)
+        if (GR.Animator.Config.GetDisplayBetaSeries())
         {
             container.allCards.addAll(container.betaCards);
         }
@@ -109,7 +109,14 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
                     screen.Select(c);
                 }
 
-                screen.toggleBeta.isActive = container.betaCards.size() > 0;
+                if (GR.Animator.Dungeon.StartingSeries.IsBeta)
+                {
+                    screen.toggleBeta.SetInteractable(false).SetActive(true);
+                }
+                else
+                {
+                    screen.toggleBeta.SetInteractable(true).SetActive(container.betaCards.size() > 0);
+                }
             }
         }
     }

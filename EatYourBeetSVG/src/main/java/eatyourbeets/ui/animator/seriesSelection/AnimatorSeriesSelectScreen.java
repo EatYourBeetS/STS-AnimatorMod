@@ -22,7 +22,6 @@ import eatyourbeets.utilities.RandomizedList;
 public class AnimatorSeriesSelectScreen extends AbstractScreen
 {
     protected static final Random rng = new Random();
-    protected static boolean isBetaToggled = false;
     protected int totalCardsCache = 0;
 
     public final AnimatorLoadoutsContainer container = new AnimatorLoadoutsContainer();
@@ -133,7 +132,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             TotalCardsChanged(totalCardsCache);
         }
 
-        toggleBeta.SetToggle(isBetaToggled).TryUpdate();
+        toggleBeta.SetToggle(GR.Animator.Config.GetDisplayBetaSeries()).TryUpdate();
 
         purgingStoneImage.TryUpdate();
 
@@ -215,7 +214,9 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     public void ToggleBetaSeries(boolean value)
     {
-        if (isBetaToggled = value)
+        GR.Animator.Config.SetDisplayBetaSeries(value, true);
+
+        if (value)
         {
             for (AbstractCard card : container.betaCards)
             {

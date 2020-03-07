@@ -15,12 +15,13 @@ import eatyourbeets.utilities.GameEffects;
 
 public class TheAbandonedCabin extends EYBEvent
 {
+    public static final EventStrings STRINGS = new EventStrings();
     public static final String ID = CreateFullID(TheAbandonedCabin.class);
     public int Medallions = 0;
 
     public TheAbandonedCabin()
     {
-        super(ID, new EventStrings(), "Cabin1.png");
+        super(ID, STRINGS, "Cabin1.png");
 
         this.noCardsInRewards = true;
 
@@ -54,8 +55,8 @@ public class TheAbandonedCabin extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.EnteringCabin());
-            SetOption(text.ContinueOption());
+            AddText(text.EnteringCabin());
+            AddContinueOption();
         }
     }
 
@@ -66,8 +67,8 @@ public class TheAbandonedCabin extends EYBEvent
         {
             dialog.loadImage("images/events/Cabin2.png");
             CardCrawlGame.music.playTempBGM(GR.Common.Audio_TheCreature);
-            SetText(text.EncounteringCreature());
-            SetOption(text.ContinueOption());
+            AddText(text.EncounteringCreature());
+            AddContinueOption();
         }
     }
 
@@ -80,9 +81,9 @@ public class TheAbandonedCabin extends EYBEvent
         {
             dialog.loadImage("images/events/Cabin2.png");
             CardCrawlGame.music.playTempBGM(GR.Common.Audio_TheCreature);
-            SetText(text.FirstTradeProposal());
-            SetOption(text.AcceptTradeOption(HP_LOSS)).AddCallback(this::AcceptTrade);
-            SetOption(text.RunOption()).AddCallback(this::RanAway);
+            AddText(text.FirstTradeProposal());
+            AddOption(text.AcceptTradeOption(HP_LOSS)).AddCallback(this::AcceptTrade);
+            AddPhaseChangeOption(text.RunOption(), RanAwaySuccessfully.class);
         }
 
         private void AcceptTrade()
@@ -92,11 +93,6 @@ public class TheAbandonedCabin extends EYBEvent
             event.Medallions += 1;
             ProgressPhase();
         }
-
-        private void RanAway()
-        {
-            ChangePhase(RanAwaySuccessfully.class);
-        }
     }
 
     private static class FirstTradeCompleted extends EYBEventPhase<TheAbandonedCabin, EventStrings>
@@ -104,8 +100,8 @@ public class TheAbandonedCabin extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.FirstTradeCompleted());
-            SetOption(text.ContinueOption());
+            AddText(text.FirstTradeCompleted());
+            AddContinueOption();
         }
     }
 
@@ -114,8 +110,8 @@ public class TheAbandonedCabin extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.RanAwaySuccessfully());
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText(text.RanAwaySuccessfully());
+            AddLeaveOption();
         }
     }
 
@@ -124,8 +120,8 @@ public class TheAbandonedCabin extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.RanAwayDamaged());
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText(text.RanAwayDamaged());
+            AddLeaveOption();
         }
     }
 
@@ -139,9 +135,9 @@ public class TheAbandonedCabin extends EYBEvent
         {
             dialog.loadImage("images/events/Cabin2.png");
             CardCrawlGame.music.playTempBGM(GR.Common.Audio_TheCreature);
-            SetText(text.SecondTradeProposal());
-            SetOption(text.AcceptTradeOption(HP_LOSS_TRADE)).AddCallback(this::AcceptTrade);
-            SetOption(text.AttemptToRunOption(HP_LOSS_RUN)).AddCallback(this::AttemptToRun);
+            AddText(text.SecondTradeProposal());
+            AddOption(text.AcceptTradeOption(HP_LOSS_TRADE)).AddCallback(this::AcceptTrade);
+            AddOption(text.AttemptToRunOption(HP_LOSS_RUN)).AddCallback(this::AttemptToRun);
         }
 
         private void AcceptTrade()
@@ -173,8 +169,8 @@ public class TheAbandonedCabin extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.SecondTradeCompleted());
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText(text.SecondTradeCompleted());
+            AddLeaveOption();
         }
     }
 
@@ -220,29 +216,19 @@ public class TheAbandonedCabin extends EYBEvent
             return GetDescription(7);
         }
 
-        public String ContinueOption()
-        {
-            return GetOption(0);
-        }
-
         public String AcceptTradeOption(int hpLoss)
         {
-            return GetOption(1, hpLoss);
+            return GetOption(0, hpLoss);
         }
 
         public String RunOption()
         {
-            return GetOption(2);
+            return GetOption(1);
         }
 
         public String AttemptToRunOption(int hpLoss)
         {
-            return GetOption(3, hpLoss);
-        }
-
-        public String LeaveOption()
-        {
-            return GetOption(4);
+            return GetOption(2, hpLoss);
         }
     }
 }

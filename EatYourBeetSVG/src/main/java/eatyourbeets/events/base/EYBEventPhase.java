@@ -20,6 +20,8 @@ public abstract class EYBEventPhase<Event extends EYBEvent, Text extends EYBEven
     public Event event;
     public GenericEventDialog dialog;
 
+    protected abstract void OnEnter();
+
     protected final boolean OnOptionSelected(int index)
     {
         if (options.size() > index)
@@ -40,20 +42,18 @@ public abstract class EYBEventPhase<Event extends EYBEvent, Text extends EYBEven
         return false;
     }
 
-    protected abstract void OnEnter();
-
-    protected void SetText(String text)
+    protected void AddText(String text)
     {
-        SetText(text, true);
+        AddText(text, true);
     }
 
-    protected void SetText(String text, boolean clearAll)
+    protected void AddText(String text, boolean clearAll)
     {
         dialog.updateBodyText(text);
 
         if (clearAll)
         {
-            dialog.clearAllDialogs();
+            ClearOptions();
         }
     }
 
@@ -63,21 +63,21 @@ public abstract class EYBEventPhase<Event extends EYBEvent, Text extends EYBEven
         options.clear();
     }
 
-    protected EYBEventOption SetOption(String text)
+    protected EYBEventOption AddOption(String text)
     {
         EYBEventOption option = new EYBEventOption(text);
         options.add(option);
         return option;
     }
 
-    protected EYBEventOption SetOption(String text, AbstractCard card)
+    protected EYBEventOption AddOption(String text, AbstractCard card)
     {
-        return SetOption(text).SetCard(card);
+        return AddOption(text).SetCard(card);
     }
 
-    protected EYBEventOption SetOption(String text, AbstractRelic relic)
+    protected EYBEventOption AddOption(String text, AbstractRelic relic)
     {
-        return SetOption(text).SetRelic(relic);
+        return AddOption(text).SetRelic(relic);
     }
 
     protected void BuildOptions()
@@ -115,11 +115,6 @@ public abstract class EYBEventPhase<Event extends EYBEvent, Text extends EYBEven
         }
     }
 
-    protected static int GetMaxHP(float percentage)
-    {
-        return (int)Math.ceil(AbstractDungeon.player.maxHealth * percentage / 100f);
-    }
-
     protected void OpenMap()
     {
         event.OpenMap();
@@ -145,5 +140,27 @@ public abstract class EYBEventPhase<Event extends EYBEvent, Text extends EYBEven
         ClearOptions();
         OnEnter();
         BuildOptions();
+    }
+
+    // Helper Methods for commonly used code
+
+    protected static int GetMaxHP(float percentage)
+    {
+        return (int)Math.ceil(AbstractDungeon.player.maxHealth * percentage / 100f);
+    }
+
+    protected EYBEventOption AddLeaveOption()
+    {
+        return AddOption(EYBEvent.COMMON_STRINGS.Leave()).AddCallback(this::OpenMap);
+    }
+
+    protected EYBEventOption AddContinueOption()
+    {
+        return AddOption(EYBEvent.COMMON_STRINGS.Continue()).AddCallback(this::ProgressPhase);
+    }
+
+    protected EYBEventOption AddPhaseChangeOption(String text, Class<? extends EYBEventPhase> phase)
+    {
+        return AddOption(text).AddCallback(phase, (t, __) -> this.ChangePhase((Class<? extends EYBEventPhase>) t));
     }
 }

@@ -12,11 +12,12 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class TheUnnamedMerchant extends EYBEvent
 {
+    public static final EventStrings STRINGS = new EventStrings();
     public static final String ID = CreateFullID(TheUnnamedMerchant.class);
 
     public TheUnnamedMerchant()
     {
-        super(ID, new EventStrings(), "Merchant.png");
+        super(ID, STRINGS, "Merchant.png");
 
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Offering());
@@ -29,8 +30,8 @@ public class TheUnnamedMerchant extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.Introduction());
-            SetOption(text.ContinueOption()).AddCallback(this::ProgressPhase);
+            AddText(text.Introduction());
+            AddContinueOption();
         }
     }
 
@@ -52,36 +53,36 @@ public class TheUnnamedMerchant extends EYBEvent
                 buyingPrice = 180;
             }
 
-            SetText(merchantLine);
+            AddText(merchantLine);
 
             boolean hasMedallion = AbstractDungeon.player.hasRelic(AncientMedallion.ID);
             boolean hasEnoughGold = AbstractDungeon.player.gold >= buyingPrice;
 
             if (hasMedallion)
             {
-                SetOption(text.SellMedallionOption(sellingPrice)).AddCallback(this::SellMedallion);
+                AddOption(text.SellMedallionOption(sellingPrice)).AddCallback(this::SellMedallion);
             }
             else
             {
-                SetOption(text.SellMedallionLockedOption()).SetDisabled(true);
+                AddOption(text.SellMedallionLockedOption()).SetDisabled(true);
             }
 
             if (hasEnoughGold)
             {
-                SetOption(text.BuyMedallionOption(buyingPrice)).AddCallback(this::BuyMedallion);
+                AddOption(text.BuyMedallionOption(buyingPrice)).AddCallback(this::BuyMedallion);
             }
             else
             {
-                SetOption(text.BuyMedallionLockedOption()).SetDisabled(true);
+                AddOption(text.BuyMedallionLockedOption()).SetDisabled(true);
             }
 
             haggleEnabled = haggleEnabled && (hasEnoughGold || hasMedallion);
             if (haggleEnabled)
             {
-                SetOption(text.HaggleOption()).AddCallback(this::Haggle);
+                AddOption(text.HaggleOption()).AddCallback(this::Haggle);
             }
 
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddLeaveOption();
         }
 
         private void SellMedallion()
@@ -141,8 +142,8 @@ public class TheUnnamedMerchant extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.Farewell());
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText(text.Farewell());
+            AddLeaveOption();
         }
     }
 
@@ -188,24 +189,14 @@ public class TheUnnamedMerchant extends EYBEvent
             return GetOption(2);
         }
 
-        public String LeaveOption()
+        public String SellMedallionLockedOption()
         {
             return GetOption(3);
         }
 
-        public String SellMedallionLockedOption()
-        {
-            return GetOption(4);
-        }
-
         public String BuyMedallionLockedOption()
         {
-            return GetOption(5);
-        }
-
-        public String ContinueOption()
-        {
-            return GetOption(6);
+            return GetOption(4);
         }
     }
 }

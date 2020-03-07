@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public abstract class EYBEvent extends AbstractImageEvent
 {
-    protected final ArrayList<EYBEventPhase> phases = new ArrayList<>();
-
-    public EYBEventStrings strings;
+    public final static EYBCommonStrings COMMON_STRINGS = new EYBCommonStrings();
+    public final ArrayList<EYBEventPhase> phases = new ArrayList<>();
+    public final EYBEventStrings strings;
     public EYBEventPhase currentPhase;
 
     public static String CreateFullID(Class eventClass)
@@ -112,7 +112,7 @@ public abstract class EYBEvent extends AbstractImageEvent
             }
         }
 
-        JavaUtilities.Log(this, "Event phase not found: " + currentPhase);
+        JavaUtilities.Log(this, "Event phase not found: " + newPhase);
         OpenMap();
     }
 
@@ -135,5 +135,18 @@ public abstract class EYBEvent extends AbstractImageEvent
     public void OpenMap()
     {
         super.openMap();
+    }
+
+    public static class EYBCommonStrings extends EYBEventStrings
+    {
+        public final String Continue()
+        {
+            return GetOption(0);
+        }
+
+        public final String Leave()
+        {
+            return GetOption(1);
+        }
     }
 }

@@ -2,10 +2,14 @@ package eatyourbeets.events.base;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
+import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
 
@@ -146,7 +150,7 @@ public abstract class EYBEventPhase<Event extends EYBEvent, Text extends EYBEven
 
     protected static int GetMaxHP(float percentage)
     {
-        return (int)Math.ceil(AbstractDungeon.player.maxHealth * percentage / 100f);
+        return (int) Math.ceil(AbstractDungeon.player.maxHealth * percentage / 100f);
     }
 
     protected EYBEventOption AddLeaveOption()
@@ -162,5 +166,17 @@ public abstract class EYBEventPhase<Event extends EYBEvent, Text extends EYBEven
     protected EYBEventOption AddPhaseChangeOption(String text, Class<? extends EYBEventPhase> phase)
     {
         return AddOption(text).AddCallback(phase, (t, __) -> this.ChangePhase((Class<? extends EYBEventPhase>) t));
+    }
+
+    protected void RemoveCard(AbstractCard card, boolean playSound)
+    {
+        if (playSound)
+        {
+            CardCrawlGame.sound.play("CARD_EXHAUST");
+        }
+
+        GameEffects.TopLevelList.Add(new PurgeCardEffect(card));
+        player.masterDeck.removeCard(card);
+        AbstractEvent.logMetricCardRemoval(event.strings.name, "Removed", card);
     }
 }

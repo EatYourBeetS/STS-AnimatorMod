@@ -130,15 +130,11 @@ public class AnimatorLoadoutRenderer extends GUIElement
             int current = loadouts.indexOf(loadout);
             if (current == 0)
             {
-                GR.Animator.Data.SelectedLoadout = RANDOM_LOADOUT;
-            }
-            else if (current == -1)
-            {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(loadouts.size() -1);
+                GR.Animator.Data.SelectedLoadout = loadouts.get(loadouts.size() - 1);
             }
             else
             {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(current -1);
+                GR.Animator.Data.SelectedLoadout = loadouts.get(current - 1);
             }
 
             Refresh(selectScreen, characterOption);
@@ -148,19 +144,14 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             startingCardsRightHb.clicked = false;
 
-            ArrayList<AnimatorLoadout> loadouts = GR.Animator.Data.BaseLoadouts;
             int current = loadouts.indexOf(loadout);
-            if (current >= (loadouts.size()-1))
-            {
-                GR.Animator.Data.SelectedLoadout = new _Random();
-            }
-            else if (current == -1)
+            if (current >= (loadouts.size() - 1))
             {
                 GR.Animator.Data.SelectedLoadout = loadouts.get(0);
             }
             else
             {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(current +1);
+                GR.Animator.Data.SelectedLoadout = loadouts.get(current + 1);
             }
 
             Refresh(selectScreen, characterOption);
@@ -195,10 +186,10 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
         sb.setColor(startingCardsLeftHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24.0F, startingCardsLeftHb.cY - 24.0F, 24.0F, 24.0F,
-        48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+                48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
         sb.setColor(startingCardsRightHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
         sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24.0F, startingCardsRightHb.cY - 24.0F, 24.0F, 24.0F,
-        48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+                48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
     }
 }

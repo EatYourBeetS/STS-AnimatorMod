@@ -3,6 +3,7 @@ package eatyourbeets.resources.animator;
 import basemod.BaseMod;
 import basemod.ModLabeledToggleButton;
 import basemod.ModPanel;
+import basemod.ModToggleButton;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,14 +15,34 @@ import eatyourbeets.powers.UnnamedReign.DarkCubePower;
 import eatyourbeets.resources.GR;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 public class AnimatorConfig
 {
     private static final String TROPHY_DATA_KEY = "TDAL";
     private static final String CROP_CARD_PORTRAIT_KEY =  "TheAnimator-UseCroppedPortrait";
+    private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
 
     private SpireConfig config;
     private Boolean CropCardImages = null;
+    private Boolean DisplayBetaSeries = null;
+
+    public boolean GetDisplayBetaSeries()
+    {
+        if (DisplayBetaSeries == null)
+        {
+            if (config.has(DISPLAY_BETA_SERIES))
+            {
+                DisplayBetaSeries = config.getBool(DISPLAY_BETA_SERIES);
+            }
+            else
+            {
+                DisplayBetaSeries = false; // Default value
+            }
+        }
+
+        return DisplayBetaSeries;
+    }
 
     public boolean GetCropCardImages()
     {
@@ -33,11 +54,21 @@ public class AnimatorConfig
             }
             else
             {
-                CropCardImages = true;
+                CropCardImages = true; // Default value
             }
         }
 
         return CropCardImages;
+    }
+
+    public void SetDisplayBetaSeries(boolean value, boolean flush)
+    {
+        config.setBool(DISPLAY_BETA_SERIES, DisplayBetaSeries = value);
+
+        if (flush)
+        {
+            Save();
+        }
     }
 
     public void SetCropCardImages(boolean value, boolean flush)
@@ -105,8 +136,9 @@ public class AnimatorConfig
             }
 
             ModPanel settingsPanel = new ModPanel();
-            settingsPanel.addUIElement(new ModLabeledToggleButton(GR.Animator.Strings.Misc.UseCardHoveringAnimation, 400, 700,
-            Settings.CREAM_COLOR, FontHelper.charDescFont, GetCropCardImages(), settingsPanel, __ -> { }, c -> SetCropCardImages(c.enabled, true)));
+            AnimatorStrings.Misc misc = GR.Animator.Strings.Misc;
+            AddToggle(settingsPanel, misc.UseCardHoveringAnimation, 400, 700, GetCropCardImages(), c -> SetCropCardImages(c.enabled, true));
+            AddToggle(settingsPanel, misc.DisplayBetaSeries, 400, 650, GetDisplayBetaSeries(), c -> SetDisplayBetaSeries(c.enabled, true));
             BaseMod.registerModBadge(GR.GetTexture(GR.GetPowerImage(DarkCubePower.POWER_ID)), AnimatorCharacter.NAME, "EatYourBeetS", "", settingsPanel);
         }
         catch (IOException e)
@@ -127,5 +159,10 @@ public class AnimatorConfig
             e.printStackTrace();
             return false;
         }
+    }
+
+    protected void AddToggle(ModPanel settingsPanel, String label, float x, float y, boolean initialValue, Consumer<ModToggleButton> onToggle)
+    {
+        settingsPanel.addUIElement(new ModLabeledToggleButton(label, x, y, Settings.CREAM_COLOR, FontHelper.charDescFont, initialValue, settingsPanel, __ -> { }, onToggle));
     }
 }

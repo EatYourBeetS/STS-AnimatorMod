@@ -156,9 +156,10 @@
 			"The Animator Steam page.",
 			"Not enough cards of this type.",
 			"Dynamic Portraits",
-			"Use card hovering animation.",
+			"Dynamic cards portraits.",
 			"'CTRL' to cycle",
-			"Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel."
+			"Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel.",
+			"Display Beta Series"
 		]
 	}
 }

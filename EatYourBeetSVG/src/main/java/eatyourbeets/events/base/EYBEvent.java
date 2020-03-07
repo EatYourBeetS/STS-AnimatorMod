@@ -139,14 +139,24 @@ public abstract class EYBEvent extends AbstractImageEvent
 
     public static class EYBCommonStrings extends EYBEventStrings
     {
+        private EYBCommonStrings Load()
+        {
+            if (name == null)
+            {
+                SetStrings(GR.GetEventStrings("_CommonEvent"));
+            }
+
+            return this;
+        }
+
         public final String Continue()
         {
-            return GetOption(0);
+            return Load().GetOption(0);
         }
 
         public final String Leave()
         {
-            return GetOption(1);
+            return Load().GetOption(1);
         }
     }
 }

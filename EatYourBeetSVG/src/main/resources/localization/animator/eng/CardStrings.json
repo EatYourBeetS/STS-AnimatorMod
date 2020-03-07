@@ -853,9 +853,8 @@
 	},
 	"animator:NagisaMomoe":
 	{
-		"DESCRIPTION": "Fetch 1 random card from your discard pile. || Add {Charlotte} and a {Grief Seed} to your discard pile.",
-		"NAME": "Nagisa Momoe",
-		"UPGRADE_DESCRIPTION": "Fetch 1 card from your discard pile. || Add {Charlotte} and a {Grief Seed} to your discard pile."
+		"DESCRIPTION": "Fetch !M! random cards from your discard pile. || Add {Charlotte} and a {Grief Seed} to your discard pile.",
+		"NAME": "Nagisa Momoe"
 	},
 	"animator:Nanami":
 	{

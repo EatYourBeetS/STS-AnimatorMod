@@ -28,6 +28,7 @@ public class SuzuneAmano extends AnimatorCard implements Spellcaster
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.ExhaustFromHand(name, 1, !upgraded)
+        .ShowEffect(true, true)
         .SetOptions(false, false, false)
         .AddCallback(m, (enemy, cards) ->
         {

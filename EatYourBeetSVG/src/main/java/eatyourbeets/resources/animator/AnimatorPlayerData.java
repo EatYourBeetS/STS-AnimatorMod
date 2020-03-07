@@ -2,6 +2,7 @@ package eatyourbeets.resources.animator;
 
 import com.badlogic.gdx.utils.Base64Coder;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
@@ -53,6 +54,30 @@ public class AnimatorPlayerData
             if (loadout.Name.equals(name))
             {
                 return loadout;
+            }
+        }
+
+        return null;
+    }
+
+    public AnimatorLoadout GetLoadout(Synergy synergy)
+    {
+        if (synergy != null)
+        {
+            for (AnimatorLoadout loadout : BaseLoadouts)
+            {
+                if (synergy.equals(loadout.Synergy))
+                {
+                    return loadout;
+                }
+            }
+
+            for (AnimatorLoadout loadout : BetaLoadouts)
+            {
+                if (synergy.equals(loadout.Synergy))
+                {
+                    return loadout;
+                }
             }
         }
 

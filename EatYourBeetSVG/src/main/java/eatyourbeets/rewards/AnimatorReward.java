@@ -28,7 +28,7 @@ public abstract class AnimatorReward extends CustomReward
         return GR.Animator.CreateID(id);
     }
 
-    public static float GetUltraRareChance()
+    public static float GetUltraRareChance(AnimatorLoadout loadout)
     {
         float bonus = 1;
         int level = GR.Animator.Data.SpecialTrophies.Trophy1;
@@ -37,7 +37,14 @@ public abstract class AnimatorReward extends CustomReward
             bonus += level / (level + 100f);
         }
 
-        return 4f * bonus;
+        if (loadout != null && loadout.IsBeta)
+        {
+            return 6f * bonus;
+        }
+        else
+        {
+            return 4f * bonus;
+        }
     }
 
     public AnimatorReward(String id, String text, RewardType type)
@@ -118,7 +125,13 @@ public abstract class AnimatorReward extends CustomReward
             return;
         }
 
-        float chances = GetUltraRareChance();
+        AnimatorLoadout loadout = GR.Animator.Data.GetByName(synergy.Name);
+        if (loadout == null)
+        {
+            return;
+        }
+
+        float chances = GetUltraRareChance(loadout);
         for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
         {
             if (c instanceof AnimatorCard_UltraRare)
@@ -135,13 +148,7 @@ public abstract class AnimatorReward extends CustomReward
         }
 
         float roll = AbstractDungeon.cardRng.random(100f);
-        if (roll > chances)
-        {
-            return;
-        }
-
-        AnimatorLoadout loadout = GR.Animator.Data.GetByName(synergy.Name);
-        if (loadout != null)
+        if (roll < chances)
         {
             AbstractCard ultraRare = loadout.GetUltraRare();
             cards.remove(0);

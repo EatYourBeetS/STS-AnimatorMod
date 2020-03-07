@@ -5,33 +5,37 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import eatyourbeets.dungeons.TheUnnamedReign;
-import eatyourbeets.events.UnnamedReign.TheAbandonedCabin;
-import eatyourbeets.events.UnnamedReign.TheHaunt;
-import eatyourbeets.events.UnnamedReign.TheMaskedTraveler3;
-import eatyourbeets.events.UnnamedReign.TheUnnamedMerchant;
-import eatyourbeets.events.animator.TheMaskedTraveler1;
+import eatyourbeets.events.animator.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class EYBEvent extends AbstractImageEvent
 {
-    protected final Map<Integer, EventPhase> phases = new HashMap<>();
-    protected final ArrayList<PhaseHandler> phaseHandlers = new ArrayList<>();
+    protected final ArrayList<EYBEventPhase> phases = new ArrayList<>();
 
     public EYBEventStrings strings;
-    public int currentPhase;
+    public EYBEventPhase currentPhase;
+
+    public static String CreateFullID(Class eventClass)
+    {
+        return GR.Animator.CreateID(eventClass.getSimpleName());
+    }
+
+    public static void UpdateEvents(boolean isAnimator)
+    {
+        if (!isAnimator)
+        {
+            AbstractDungeon.eventList.remove(TheMaskedTraveler1.ID);
+        }
+    }
 
     public static void RegisterEvents()
     {
         BaseMod.addEvent(TheMaskedTraveler1.ID, TheMaskedTraveler1.class, Exordium.ID);
-        //BaseMod.addEvent(TheMaskedTraveler1_New.ID, TheMaskedTraveler1_New.class, Exordium.ID);
         //BaseMod.addEvent(TheMaskedTraveler2.ID, TheMaskedTraveler2.class, TheEnding.ID);
         BaseMod.addEvent(TheMaskedTraveler3.ID, TheMaskedTraveler3.class, TheUnnamedReign.ID);
-        //BaseMod.addEvent(TheDomVedeloper1.ID, TheDomVedeloper1.class, Exordium.ID);
         BaseMod.addEvent(TheHaunt.ID, TheHaunt.class, TheUnnamedReign.ID);
         BaseMod.addEvent(TheUnnamedMerchant.ID, TheUnnamedMerchant.class, TheUnnamedReign.ID);
         BaseMod.addEvent(TheAbandonedCabin.ID, TheAbandonedCabin.class, TheUnnamedReign.ID);
@@ -49,40 +53,63 @@ public abstract class EYBEvent extends AbstractImageEvent
         this.strings = strings.SetStrings(GR.GetEventStrings(id));
         this.title = strings.name;
         this.body = strings.GetDescription(0);
-        this.currentPhase = 0;
+        this.currentPhase = null;
     }
 
     @Override
     protected final void buttonEffect(int i)
     {
-        EventPhase phase = phases.get(currentPhase);
-        if (phase == null || !phase.OnOptionSelected(i))
+        if (currentPhase == null || !currentPhase.OnOptionSelected(i))
         {
             OpenMap();
         }
     }
 
-    protected void RegisterPhase(int id, EventPhase phase)
+    protected void RegisterSpecialPhase(EYBEventPhase phase)
     {
-        phases.put(id, phase);
+        RegisterPhase(-1, phase);
+    }
 
-        phase.id = id;
-        phase.player = AbstractDungeon.player;
+    protected void RegisterPhase(int index, EYBEventPhase phase)
+    {
+        phases.add(phase);
+
+        phase.index = index;
         phase.dialog = this.imageEventText;
         phase.text = this.strings;
         phase.event = this;
     }
 
+    public void ChangePhase(Class<? extends EYBEventPhase> newPhase)
+    {
+        for (EYBEventPhase phase : phases)
+        {
+            if (newPhase.equals(phase.getClass()))
+            {
+                currentPhase = phase;
+
+                phase.OnEnter();
+                phase.BuildOptions();
+                return;
+            }
+        }
+
+        JavaUtilities.Log(this, "Event phase not found: " + newPhase.getSimpleName());
+        OpenMap();
+    }
+
     public void ChangePhase(int newPhase)
     {
-        currentPhase = newPhase;
-
-        EventPhase phase = phases.get(currentPhase);
-        if (phase != null)
+        for (EYBEventPhase phase : phases)
         {
-            phase.OnEnter();
-            phase.BuildOptions();
-            return;
+            if (newPhase == phase.index)
+            {
+                currentPhase = phase;
+
+                phase.OnEnter();
+                phase.BuildOptions();
+                return;
+            }
         }
 
         JavaUtilities.Log(this, "Event phase not found: " + currentPhase);
@@ -91,7 +118,18 @@ public abstract class EYBEvent extends AbstractImageEvent
 
     public void ProgressPhase()
     {
-        ChangePhase(currentPhase + 1);
+        if (currentPhase == null)
+        {
+            ChangePhase(0);
+        }
+        else if (currentPhase.index == -1)
+        {
+            OpenMap();
+        }
+        else
+        {
+            ChangePhase(currentPhase.index + 1);
+        }
     }
 
     public void OpenMap()

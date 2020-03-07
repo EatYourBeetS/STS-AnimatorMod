@@ -1,45 +1,42 @@
 package eatyourbeets.events.animator;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.effects.special.MaskedTravelerTransformCardsEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
-import eatyourbeets.events.AnimatorEvent;
+import eatyourbeets.events.base.EYBEvent;
+import eatyourbeets.events.base.EYBEventOption;
+import eatyourbeets.events.base.EYBEventPhase;
+import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.TheEgnaroPiece;
 import eatyourbeets.relics.animator.unnamedReign.TheEruzaStone;
 import eatyourbeets.relics.animator.unnamedReign.TheWolleyCore;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
 
-public class TheMaskedTraveler2 extends AnimatorEvent
+public class TheMaskedTraveler2 extends EYBEvent
 {
-    public static final String ID = CreateFullID(TheMaskedTraveler2.class.getSimpleName());
+    public static final String ID = CreateFullID(TheMaskedTraveler2.class);
 
+    private final ArrayList<AbstractRelic> startingRelicsCache = new ArrayList<>();
     private final AbstractRelic relic1 = new TheEruzaStone();
     private final AbstractRelic relic2 = new TheWolleyCore();
     private final AbstractRelic relic3 = new TheEgnaroPiece();
-    private final AbstractRelic medallion = new AncientMedallion(true);
-
-    private static final int REMOVE_CARDS = 2;
-    private static final int OBTAIN_CARDS = 2;
-    private static final int UPGRADE_SAME_CARD = 4;
-
-    private final ArrayList<AbstractRelic> startingRelicsCache = new ArrayList<>();
-
-    private int currentHPLoss = 0;
 
     public TheMaskedTraveler2()
     {
-        super(ID, "secretPortal.jpg");
+        super(ID, new EventStrings(), "secretPortal.jpg");
 
         MapRoomNode node = AbstractDungeon.getCurrMapNode();
         if (node != null && node.room != null)
@@ -47,112 +44,100 @@ public class TheMaskedTraveler2 extends AnimatorEvent
             node.room.rewardAllowed = false;
         }
 
-        RegisterPhase(-1, this::CreateSpecialPhase, this::HandleSpecialPhase);
-        RegisterPhase(1, this::CreatePhase1, this::HandlePhase1);
-        RegisterPhase(2, this::CreatePhase2, this::HandlePhase2);
-        RegisterPhase(3, this::CreatePhase3, this::HandlePhase3);
+        RegisterSpecialPhase(new EnterUnnamedReign());
+        RegisterPhase(0, new Introduction());
+        RegisterPhase(1, new Explanation());
+        RegisterPhase(2, new Offering());
         ProgressPhase();
     }
 
-    private void CreatePhase1()
+    private static class Introduction extends EYBEventPhase<TheMaskedTraveler2, EventStrings>
     {
-        UpdateBodyText(eventStrings.DESCRIPTIONS[0], true);
-        UpdateDialogOption(0, OPTIONS[1]); // Continue
-        UpdateDialogOption(1, OPTIONS[0]); // Leave
+        @Override
+        protected void OnEnter()
+        {
+            SetText(text.Introduction());
+            SetOption(text.InquireOption()).AddCallback(this::ProgressPhase);
+            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+        }
     }
 
-    private void HandlePhase1(int button)
+    private static class Explanation extends EYBEventPhase<TheMaskedTraveler2, EventStrings>
     {
-        if (button == 0)
+        @Override
+        protected void OnEnter()
         {
+            SetText(text.Explanation(UnnamedRelicEquipEffect.CalculateGoldBonus() + 21));
+            SetOption(text.ObtainRelicOption(), event.relic1).AddCallback(this::ObtainRelic);
+            SetOption(text.ObtainRelicOption(), event.relic2).AddCallback(this::ObtainRelic);
+            SetOption(text.ObtainRelicOption(), event.relic3).AddCallback(this::ObtainRelic);
+            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+        }
+
+        private void ObtainRelic(EYBEventOption option)
+        {
+            for (AbstractRelic relic : AbstractDungeon.player.relics)
+            {
+                if (relic.tier == AbstractRelic.RelicTier.STARTER)
+                {
+                    event.startingRelicsCache.add(relic);
+                }
+            }
+
+            AbstractRelic relic = option.relic.makeCopy();
+            relic.instantObtain();
+            CardCrawlGame.metricData.addRelicObtainData(relic);
             ProgressPhase();
         }
-        else
-        {
-            this.openMap();
-        }
     }
 
-    private void CreatePhase2()
+    private static class Offering extends EYBEventPhase<TheMaskedTraveler2, EventStrings>
     {
-        String goldBonus = String.valueOf(UnnamedRelicEquipEffect.CalculateGoldBonus() + 21);
+        private static final AncientMedallion MedallionPreview = new AncientMedallion();
+        private static final int REMOVE_CARDS = 2;
+        private static final int OBTAIN_CARDS = 2;
+        private static final int UPGRADE_SAME_CARD = 4;
+        private int currentHPLoss = 0;
 
-        UpdateBodyText(eventStrings.DESCRIPTIONS[1].replace("{0}", goldBonus), true);
-        UpdateDialogOption(0, OPTIONS[2], relic1);
-        UpdateDialogOption(1, OPTIONS[2], relic2);
-        UpdateDialogOption(2, OPTIONS[2], relic3);
-        UpdateDialogOption(3, OPTIONS[0]); // Leave
-    }
-
-    private void HandlePhase2(int button)
-    {
-        for (AbstractRelic relic : AbstractDungeon.player.relics)
+        @Override
+        protected void OnEnter()
         {
-            if (relic.tier == AbstractRelic.RelicTier.STARTER)
+            int hpLossPercentage = 8;
+            if (player instanceof AnimatorCharacter)
             {
-                startingRelicsCache.add(relic);
+                hpLossPercentage = 12;
             }
+
+            currentHPLoss = (int) Math.ceil((UnnamedRelicEquipEffect.CalculateMaxHealth() / 100.0) * hpLossPercentage);
+
+            SetText(text.Offering());
+            SetOption(text.ObtainRelicOption(), MedallionPreview).AddCallback(this::ObtainRelic);
+            SetOption(text.ReplaceCardsOption(REMOVE_CARDS, OBTAIN_CARDS)).AddCallback(this::ReplaceCards);
+            SetOption(text.RecoverRelicsOption(currentHPLoss)).AddCallback(this::RecoverRelics);
         }
 
-        if (button == 0)
+        private void ObtainRelic()
         {
-            ObtainRelic(relic1);
-        }
-        else if (button == 1)
-        {
-            ObtainRelic(relic2);
-        }
-        else if (button == 2)
-        {
-            ObtainRelic(relic3);
-        }
-        else
-        {
-            this.openMap();
-            return;
+            AbstractRelic relic = new AncientMedallion(true);
+            relic.instantObtain();
+            CardCrawlGame.metricData.addRelicObtainData(relic);
+
+            ClearOptions();
+            SetOption(text.LeaveOption()).AddCallback(() -> ChangePhase(EnterUnnamedReign.class));
+            BuildOptions();
         }
 
-        ProgressPhase();
-    }
-
-    private void CreatePhase3()
-    {
-        AbstractPlayer p = AbstractDungeon.player;
-
-        String message1 = OPTIONS[3].replace("{0}", String.valueOf(REMOVE_CARDS));
-        message1 = message1.replace("{1}", String.valueOf(OBTAIN_CARDS));
-
-        int hpLossPercentage = 8;
-        if (p instanceof AnimatorCharacter)
+        private void ReplaceCards()
         {
-            hpLossPercentage = 12;
+            GameEffects.List.Add(new MaskedTravelerTransformCardsEffect(REMOVE_CARDS))
+            .AddCallback(() -> ChangePhase(EnterUnnamedReign.class));
         }
 
-        currentHPLoss = (int) Math.ceil((UnnamedRelicEquipEffect.CalculateMaxHealth() / 100.0) * hpLossPercentage);
-        String message2 = OPTIONS[4].replace("{0}", String.valueOf(currentHPLoss));
-
-        UpdateBodyText(eventStrings.DESCRIPTIONS[2], true);
-        UpdateDialogOption(0, OPTIONS[2], medallion);
-        UpdateDialogOption(1, message1);
-        UpdateDialogOption(2, message2);
-    }
-
-    private void HandlePhase3(int button)
-    {
-        UpdateBodyText(eventStrings.DESCRIPTIONS[2], true);
-        if (button == 0)
+        private void RecoverRelics()
         {
-            ObtainRelic(medallion);
-        }
-        else if (button == 1)
-        {
-            AbstractDungeon.effectsQueue.add(new MaskedTravelerTransformCardsEffect(REMOVE_CARDS));
-        }
-        else if (button == 2)
-        {
-            AbstractDungeon.player.decreaseMaxHealth(currentHPLoss);
+            player.decreaseMaxHealth(currentHPLoss);
 
-            for (String relicID : AbstractDungeon.player.getStartingRelics())
+            for (String relicID : player.getStartingRelics())
             {
                 if (!RecoverPreviousRelic(relicID))
                 {
@@ -161,79 +146,115 @@ public class TheMaskedTraveler2 extends AnimatorEvent
                 }
             }
 
-            startingRelicsCache.clear();
-            //AbstractDungeon.effectsQueue.add(new MaskedTravelerUpgradeSameCardEffect(UPGRADE_SAME_CARD));
+            event.startingRelicsCache.clear();
+            GameEffects.List.Callback(new WaitAction(0.3f))
+            .AddCallback(() -> ChangePhase(EnterUnnamedReign.class));
         }
 
-        ProgressPhase(-1);
-    }
-
-    private void CreateSpecialPhase()
-    {
-        UpdateBodyText(eventStrings.DESCRIPTIONS[2], true);
-        UpdateDialogOption(0, OPTIONS[0]);
-    }
-
-    private void HandleSpecialPhase(int button)
-    {
-        GR.Common.Dungeon.EnterUnnamedReign();
-    }
-
-    private void ObtainRelic(AbstractRelic relic)
-    {
-        relic.instantObtain();
-        CardCrawlGame.metricData.addRelicObtainData(relic);
-        //AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH / 2f, Settings.HEIGHT / 2f, relic.makeCopy());
-    }
-
-    private boolean RecoverPreviousRelic(String relicID)
-    {
-        AbstractRelic relic = null;
-        for (AbstractRelic previousRelic : startingRelicsCache)
+        private boolean RecoverPreviousRelic(String relicID)
         {
-            if (relicID.equals(previousRelic.relicId))
+            AbstractRelic relic = null;
+            for (AbstractRelic previousRelic : event.startingRelicsCache)
             {
-                relic = previousRelic;
-                break;
+                if (relicID.equals(previousRelic.relicId))
+                {
+                    relic = previousRelic;
+                    break;
+                }
             }
-        }
 
-        if (relic == null)
+            if (relic == null)
+            {
+                return false;
+            }
+
+            if (Circlet.ID.equals(relic.relicId) && player.hasRelic(Circlet.ID))
+            {
+                AbstractRelic circlet = player.getRelic(Circlet.ID);
+                ++circlet.counter;
+                circlet.flash();
+            }
+            else
+            {
+                float START_X = 64.0F * Settings.scale;
+                float START_Y = (float) Settings.HEIGHT - 102.0F * Settings.scale;
+
+                relic.playLandingSFX();
+                relic.isDone = true;
+                relic.isObtained = true;
+                relic.currentX = START_X + (float) player.relics.size() * AbstractRelic.PAD_X;
+                relic.currentY = START_Y;
+                relic.targetX = relic.currentX;
+                relic.targetY = relic.currentY;
+                relic.flash();
+                player.relics.add(relic);
+                relic.hb.move(relic.currentX, relic.currentY);
+                //relic.onEquip();
+                relic.relicTip();
+                UnlockTracker.markRelicAsSeen(relic.relicId);
+            }
+
+            if (AbstractDungeon.topPanel != null)
+            {
+                AbstractDungeon.topPanel.adjustRelicHbs();
+            }
+
+            return true;
+        }
+    }
+
+    private static class EnterUnnamedReign extends EYBEventPhase<TheMaskedTraveler2, EventStrings>
+    {
+        @Override
+        protected void OnEnter()
         {
-            return false;
+            GR.Common.Dungeon.EnterUnnamedReign();
+            SetText("");
+            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            OpenMap();
         }
+    }
 
-        if ("Circlet".equals(relic.relicId) && AbstractDungeon.player.hasRelic("Circlet"))
+    private static class EventStrings extends EYBEventStrings
+    {
+        public String Introduction()
         {
-            AbstractRelic circ = AbstractDungeon.player.getRelic("Circlet");
-            ++circ.counter;
-            circ.flash();
+            return GetDescription(0);
         }
-        else
+
+        public String Explanation(int goldBonus)
         {
-            float START_X = 64.0F * Settings.scale;
-            float START_Y = (float) Settings.HEIGHT - 102.0F * Settings.scale;
-
-            relic.playLandingSFX();
-            relic.isDone = true;
-            relic.isObtained = true;
-            relic.currentX = START_X + (float) AbstractDungeon.player.relics.size() * AbstractRelic.PAD_X;
-            relic.currentY = START_Y;
-            relic.targetX = relic.currentX;
-            relic.targetY = relic.currentY;
-            relic.flash();
-            AbstractDungeon.player.relics.add(relic);
-            relic.hb.move(relic.currentX, relic.currentY);
-            //relic.onEquip();
-            relic.relicTip();
-            UnlockTracker.markRelicAsSeen(relic.relicId);
+            return GetDescription(1, goldBonus);
         }
 
-        if (AbstractDungeon.topPanel != null)
+        public String Offering()
         {
-            AbstractDungeon.topPanel.adjustRelicHbs();
+            return GetDescription(2);
         }
 
-        return true;
+        public String LeaveOption()
+        {
+            return GetOption(0);
+        }
+
+        public String InquireOption()
+        {
+            return GetOption(1);
+        }
+
+        public String ObtainRelicOption()
+        {
+            return GetOption(2);
+        }
+
+        public String ReplaceCardsOption(int remove, int add)
+        {
+            return GetOption(3, remove, add);
+        }
+
+        public String RecoverRelicsOption(int hpAmount)
+        {
+            return GetOption(4, hpAmount);
+        }
     }
 }

@@ -41,10 +41,4 @@ public class Hans_Slimed extends AnimatorCard_Status
             GameActions.Bottom.Draw(1);
         }
     }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return true;
-    }
 }

@@ -12,6 +12,7 @@ import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.effects.player.SpawnRelicEffect;
 import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.effects.utility.CallbackEffect2;
+import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 
@@ -68,6 +69,11 @@ public final class GameEffects
         return Add(new CallbackEffect2(effect));
     }
 
+    public CallbackEffect2 Callback(AbstractGameEffect effect, ActionT0 onCompletion)
+    {
+        return Add(new CallbackEffect2(effect, onCompletion));
+    }
+
     public CallbackEffect2 Callback(AbstractGameEffect effect, ActionT1<AbstractGameEffect> onCompletion)
     {
         return Add(new CallbackEffect2(effect, onCompletion));
@@ -81,6 +87,11 @@ public final class GameEffects
     public CallbackEffect Callback(AbstractGameAction action)
     {
         return Add(new CallbackEffect(action));
+    }
+
+    public CallbackEffect Callback(AbstractGameAction effect, ActionT0 onCompletion)
+    {
+        return Add(new CallbackEffect(effect, onCompletion));
     }
 
     public CallbackEffect Callback(AbstractGameAction action, ActionT1<AbstractGameAction> onCompletion)

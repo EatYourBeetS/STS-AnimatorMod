@@ -3,6 +3,7 @@ package eatyourbeets.effects.utility;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.EYBEffectWithCallback;
+import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 
@@ -16,6 +17,13 @@ public class CallbackEffect extends EYBEffectWithCallback<AbstractGameAction>
         super(1);
 
         this.action = action;
+    }
+
+    public CallbackEffect(AbstractGameAction action, ActionT0 onCompletion)
+    {
+        this(action);
+
+        AddCallback(onCompletion);
     }
 
     public CallbackEffect(AbstractGameAction action, ActionT1<AbstractGameAction> onCompletion)

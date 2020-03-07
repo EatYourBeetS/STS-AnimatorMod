@@ -12,39 +12,37 @@ import eatyourbeets.utilities.GenericCallback;
 
 import java.util.ArrayList;
 
-public class EventOption
+public class EYBEventOption
 {
-    protected final ArrayList<GenericCallback<EventOption>> callbacks = new ArrayList<>();
+    protected final ArrayList<GenericCallback<EYBEventOption>> callbacks = new ArrayList<>();
     protected final FakeAbstractCard sampleCard = new FakeAbstractCard(new Wound());
     protected String text;
-    protected int index;
 
     public AbstractRelic relic;
     public AbstractCard card;
     public boolean disabled;
 
-    public EventOption(int id, String text)
+    public EYBEventOption(String text)
     {
-        this.index = id;
         this.text = text;
     }
 
     public void OnSelect()
     {
-        for (GenericCallback<EventOption> callback : callbacks)
+        for (GenericCallback<EYBEventOption> callback : callbacks)
         {
             callback.Complete(this);
         }
     }
 
-    public EventOption SetDisabled(boolean disabled)
+    public EYBEventOption SetDisabled(boolean disabled)
     {
         this.disabled = disabled;
 
         return this;
     }
 
-    public EventOption SetCard(AbstractCard card)
+    public EYBEventOption SetCard(AbstractCard card)
     {
         this.card = card;
 
@@ -53,28 +51,28 @@ public class EventOption
         return this;
     }
 
-    public EventOption SetRelic(AbstractRelic relic)
+    public EYBEventOption SetRelic(AbstractRelic relic)
     {
         this.relic = relic;
 
         return this;
     }
 
-    public EventOption AddCallback(Object state, ActionT2<Object, EventOption> onCompletion)
+    public EYBEventOption AddCallback(Object state, ActionT2<Object, EYBEventOption> onCompletion)
     {
         callbacks.add(GenericCallback.FromT2(onCompletion, state));
 
         return this;
     }
 
-    public EventOption AddCallback(ActionT1<EventOption> onCompletion)
+    public EYBEventOption AddCallback(ActionT1<EYBEventOption> onCompletion)
     {
         callbacks.add(GenericCallback.FromT1(onCompletion));
 
         return this;
     }
 
-    public EventOption AddCallback(ActionT0 onCompletion)
+    public EYBEventOption AddCallback(ActionT0 onCompletion)
     {
         callbacks.add(GenericCallback.FromT0(onCompletion));
 

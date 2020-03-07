@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.events.animator.TheMaskedTraveler1;
+import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.interfaces.subscribers.OnAddedToDeckSubscriber;
 import eatyourbeets.interfaces.subscribers.OnCardPoolChangedSubscriber;
 import eatyourbeets.relics.animator.AbstractMissingPiece;
@@ -167,11 +167,12 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         {
             AbstractDungeon.srcColorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
             AbstractDungeon.colorlessCardPool.group.removeIf(c -> c instanceof AnimatorCard);
-            AbstractDungeon.eventList.remove(TheMaskedTraveler1.ID);
+            EYBEvent.UpdateEvents(false);
 
             return;
         }
 
+        EYBEvent.UpdateEvents(true);
         RemoveRelic(PenNib.ID);
         RemoveRelic(Kunai.ID);
         RemoveRelic(StrikeDummy.ID);

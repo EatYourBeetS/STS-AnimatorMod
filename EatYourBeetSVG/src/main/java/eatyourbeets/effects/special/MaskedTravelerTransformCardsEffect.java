@@ -11,10 +11,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon.CurrentScreen;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.EmptyCage;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import eatyourbeets.effects.EYBEffectWithCallback;
+import eatyourbeets.utilities.GameEffects;
 
-public class MaskedTravelerTransformCardsEffect extends AbstractGameEffect
+public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Object>
 {
     private static final float DUR = 1.5F;
     private boolean openedPanel = false;
@@ -54,7 +55,7 @@ public class MaskedTravelerTransformCardsEffect extends AbstractGameEffect
                     reward = reward.makeCopy();
                     reward.upgrade();
 
-                    AbstractDungeon.topLevelEffectsQueue.add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3.0F + displayCount, (float)Settings.HEIGHT / 2.0F, false));
+                    GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3.0F + displayCount, (float)Settings.HEIGHT / 2.0F, false));
                     displayCount += (float)Settings.WIDTH / 6.0F;
                 }
             }
@@ -62,10 +63,12 @@ public class MaskedTravelerTransformCardsEffect extends AbstractGameEffect
             AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             cardsToRemove = 0;
-            this.isDone = true;
+
+            Complete(this);
         }
     }
 
+    @Override
     public void render(SpriteBatch sb)
     {
         sb.setColor(this.screenColor);
@@ -74,19 +77,14 @@ public class MaskedTravelerTransformCardsEffect extends AbstractGameEffect
         {
             AbstractDungeon.gridSelectScreen.render(sb);
         }
-
-    }
-
-    public void dispose()
-    {
     }
 
     public void OpenPanel()
     {
-        CardGroup cardGroup = AbstractDungeon.player.masterDeck.getPurgeableCards();
+        CardGroup cardGroup = player.masterDeck.getPurgeableCards();
         if (cardGroup.size() < cardsToRemove)
         {
-            this.isDone = true;
+            Complete(this);
             return;
         }
 

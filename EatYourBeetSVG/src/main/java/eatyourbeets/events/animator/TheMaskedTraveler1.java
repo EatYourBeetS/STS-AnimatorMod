@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class TheMaskedTraveler1 extends EYBEvent
 {
+    public static final EventStrings STRINGS = new EventStrings();
     public static final String ID = CreateFullID(TheMaskedTraveler1.class);
 
     public TheMaskedTraveler1()
@@ -52,23 +53,23 @@ public class TheMaskedTraveler1 extends EYBEvent
             AbstractCard card = cards.Retrieve(AbstractDungeon.miscRng);
             if (card != null)
             {
-                SetOption(text.SellCardOption(card.name, SELLING_PRICE), card).AddCallback(this::SellCard);
+                AddOption(text.SellCardOption(card.name, SELLING_PRICE), card).AddCallback(this::SellCard);
             }
             else
             {
-                SetOption(text.SellCardLockedOption()).SetDisabled(true);
+                AddOption(text.SellCardLockedOption()).SetDisabled(true);
             }
 
             if (player.gold >= BUYING_PRICE)
             {
-                SetOption(text.ImproveCardsOption(BUYING_PRICE)).AddCallback(this::ImproveCards);
+                AddOption(text.ImproveCardsOption(BUYING_PRICE)).AddCallback(this::ImproveCards);
             }
             else
             {
-                SetOption(text.ImproveCardsLockedOption()).SetDisabled(true);
+                AddOption(text.ImproveCardsLockedOption()).SetDisabled(true);
             }
 
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddLeaveOption();
         }
 
         private void SellCard(EYBEventOption option)
@@ -156,8 +157,8 @@ public class TheMaskedTraveler1 extends EYBEvent
         @Override
         public void OnEnter()
         {
-            SetText(text.Farewell(), true);
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText(text.Farewell(), true);
+            AddLeaveOption();
         }
     }
 
@@ -183,19 +184,14 @@ public class TheMaskedTraveler1 extends EYBEvent
             return GetOption(1, gold);
         }
 
-        public final String LeaveOption()
+        public final String SellCardLockedOption()
         {
             return GetOption(2);
         }
 
-        public final String SellCardLockedOption()
-        {
-            return GetOption(3);
-        }
-
         public final String ImproveCardsLockedOption()
         {
-            return GetOption(4);
+            return GetOption(3);
         }
     }
 }

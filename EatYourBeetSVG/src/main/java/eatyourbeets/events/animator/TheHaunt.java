@@ -14,11 +14,12 @@ import eatyourbeets.utilities.GameEffects;
 
 public class TheHaunt extends EYBEvent
 {
+    public static final EventStrings STRINGS = new EventStrings();
     public static final String ID = CreateFullID(TheHaunt.class);
 
     public TheHaunt()
     {
-        super(ID, new EventStrings(), "GoldRiver.png");
+        super(ID, STRINGS, "GoldRiver.png");
 
         RegisterSpecialPhase(new Healed());
         RegisterSpecialPhase(new Blighted());
@@ -43,9 +44,9 @@ public class TheHaunt extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.MainPhase());
-            SetOption(text.GoldOption(GOLD_AMOUNT)).AddCallback(this::TakeGold);
-            SetOption(text.HealOption(HEAL_AMOUNT)).AddCallback(this::Heal);
+            AddText(text.MainPhase());
+            AddOption(text.GoldOption(GOLD_AMOUNT)).AddCallback(this::TakeGold);
+            AddOption(text.HealOption(HEAL_AMOUNT)).AddCallback(this::Heal);
         }
 
         private void TakeGold()
@@ -53,7 +54,7 @@ public class TheHaunt extends EYBEvent
             GameEffects.List.Add(new RainingGoldEffect(600));
             GameEffects.List.Callback(new WaitAction(3f), this::Blighted);
 
-            SetText("", true);
+            AddText("", true);
 
             player.gainGold(GOLD_AMOUNT);
             AbstractDungeon.scene.fadeOutAmbiance();
@@ -79,8 +80,8 @@ public class TheHaunt extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText("", true);
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText("", true);
+            AddLeaveOption();
         }
     }
 
@@ -89,8 +90,8 @@ public class TheHaunt extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.ObtainedBlight());
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText(text.ObtainedBlight());
+            AddLeaveOption();
         }
     }
 
@@ -114,11 +115,6 @@ public class TheHaunt extends EYBEvent
         public final String HealOption(int heal)
         {
             return GetOption(1, heal);
-        }
-
-        public final String LeaveOption()
-        {
-            return GetOption(2);
         }
     }
 }

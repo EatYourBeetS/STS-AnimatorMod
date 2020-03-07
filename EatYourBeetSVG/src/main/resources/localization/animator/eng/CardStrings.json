@@ -853,7 +853,7 @@
 	},
 	"animator:NagisaMomoe":
 	{
-		"DESCRIPTION": "Fetch !M! random cards from your discard pile. || Add {Charlotte} and a {Grief Seed} to your discard pile.",
+		"DESCRIPTION": "Fetch !M! random card(s) from your discard pile. || Add {Charlotte} and a {Grief Seed} to your discard pile.",
 		"NAME": "Nagisa Momoe"
 	},
 	"animator:Nanami":
@@ -926,8 +926,8 @@
 	},
 	"animator:OrigamiTobiichi":
 	{
-		"DESCRIPTION": "Channel !M! Random Orbs. || At the end of your turn, add 1 Support Damage for each Orb.  Then, if you have 20 or more Support Damage, lose this power and add Inverse Origami to your draw pile.",
-		"EXTENDED_DESCRIPTION": ["At the end of your turn, add #b{0} Support Damage per Orb.  Then, if you have #b{1} or more Support Damage, lose this power and add Inverse Origami to your draw pile."],
+		"DESCRIPTION": "Channel !M! Random Orb(s). || At the end of your turn, add 1 Support Damage per Orb channeled.  Then, if you have 20 or more Support Damage, lose this power and add Inverse Origami to your draw pile.",
+		"EXTENDED_DESCRIPTION": ["At the end of your turn, add #b{0} Support Damage per Orb channeled.  Then, if you have #b{1} or more Support Damage, lose this power and add Inverse Origami to your draw pile."],
 		"NAME": "Origami Tobiichi"
 	},
 	"animator:OrikoMikuni":
@@ -1345,7 +1345,7 @@
 	},
 	"animator:Walpurgisnacht":
 	{
-		"DESCRIPTION": "Create and Add !M! random Spellcasters to your hand.  They cost 0 this turn. || At the start of turn: Evoke your next Orb once for each Curse and Spellcaster in your hand.",
+		"DESCRIPTION": "Create and Add !M! random Spellcaster(s) to your hand.  They cost 0 this turn. || At the start of turn: Evoke your next Orb once for each Curse and Spellcaster in your hand.",
 		"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next Orb once for each #yCurse plus each #ySpellcaster in your hand."],
 		"NAME": "Walpurgisnacht"
 	},

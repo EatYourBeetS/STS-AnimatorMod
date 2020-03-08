@@ -231,6 +231,11 @@
 		"DESCRIPTION": "When Discarded: ** Gain !M! Block.",
 		"NAME": "Improved Defend"
 	},
+	"animator:Defend_DateALive":
+	{
+		"DESCRIPTION": "If you have 25 or more cards in your current deck, add a copy of Shido Itsuka+ to your hand.",
+		"NAME": "Improved Strike"
+	},
 	"animator:Defend_Elsword":
 	{
 		"DESCRIPTION": "Next turn: ** Gain !M! Block.",
@@ -854,7 +859,7 @@
 	},
 	"animator:MukuroHoshimiya":
 	{
-		"DESCRIPTION": "Deals damage equal to the number of cards in your draw pile. || At the start of the game or when this card enters the draw pile, put it in your deck sixth from the top. || Limited: You may shuffle a 0-cost card from your exhaust pile to your draw pile.  That card gains Spellcaster.",
+		"DESCRIPTION": "Gains 1 damage for each card in your draw pile. || Limited: Shuffle an exhausted 0-cost card to your draw pile.  || On start of game or discard, add to your draw pile sixth from the top.",
 		"NAME": "Mukuro Hoshimiya"
 	},
 	"animator:MumenRider":
@@ -1074,6 +1079,12 @@
 		"DESCRIPTION": "Remove the ** enemy's Block.",
 		"NAME": "Kyotouryuu"
 	},
+	"animator:ShidoItsuka":
+	{
+		"DESCRIPTION": "Choose 1 of 2 synergic cards to put into your draw pile. || Synergy: Choose 1 of 3 cards instead.",
+		"NAME": "Shido Itsuka",
+		"UPGRADE_DESCRIPTION": "Choose 1 of 2 upgraded synergic cards to put into your draw pile. || Synergy: Choose 1 of 3 cards instead."
+	},
 	"animator:Shigure":
 	{
 		"DESCRIPTION": "Apply !M! Poison. || When Exhausted: Gain ** !S! {Support Damage}.",
@@ -1158,6 +1169,11 @@
 	"animator:Strike_AccelWorld":
 	{
 		"DESCRIPTION": "When Discarded: ** Deal !M! damage to ** a random enemy.",
+		"NAME": "Improved Strike"
+	},
+	"animator:Strike_DateALive":
+	{
+		"DESCRIPTION": "If you have 25 or more cards in your current deck, draw a card.",
 		"NAME": "Improved Strike"
 	},
 	"animator:Strike_Elsword":

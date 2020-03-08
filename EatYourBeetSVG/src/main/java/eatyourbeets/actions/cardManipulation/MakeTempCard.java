@@ -17,12 +17,24 @@ import eatyourbeets.utilities.JavaUtilities;
 
 public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 {
+    public enum Destination
+    {
+        //@Formatter: Off
+        Top,
+        Bottom,
+        Random;
+
+        public boolean IsRandom() { return this == Random; }
+        public boolean IsTop()    { return this == Top;    }
+        public boolean IsBottom() { return this == Bottom; }
+        //@Formatter: On
+    }
+
     protected final CardGroup cardGroup;
     protected boolean upgrade;
     protected boolean makeCopy;
     protected boolean cancelIfFull;
-    protected boolean randomSpot = true;
-    protected boolean toBottom;
+    protected Destination destination;
     protected AbstractCard actualCard;
 
     public MakeTempCard(AbstractCard card, CardGroup group)
@@ -31,6 +43,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
 
         this.card = card;
         this.cardGroup = group;
+        this.destination = Destination.Random;
         UnlockTracker.markCardAsSeen(card.cardID);
 
         Initialize(1);
@@ -51,10 +64,9 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
         return this;
     }
 
-    public MakeTempCard SetDestination(boolean randomSpot, boolean toBottom)
+    public MakeTempCard SetDestination(Destination destination)
     {
-        this.randomSpot = randomSpot;
-        this.toBottom = toBottom;
+        this.destination = destination;
 
         return this;
     }
@@ -82,7 +94,7 @@ public class MakeTempCard extends EYBActionWithCallback<AbstractCard>
             {
                 ShowCardAndAddToDrawPileEffect effect = GameEffects.List.Add(new ShowCardAndAddToDrawPileEffect(actualCard,
                 (float) Settings.WIDTH / 2.0F - ((25.0F * Settings.scale) + AbstractCard.IMG_WIDTH),
-                (float) Settings.HEIGHT / 2.0F, randomSpot, true, toBottom));
+                (float) Settings.HEIGHT / 2.0F, destination.IsRandom(), true, destination.IsBottom()));
 
                 // For reasons unknown ShowCardAndAddToDrawPileEffect creates a copy of the card...
                 actualCard = JavaUtilities.<AbstractCard>GetField("card", ShowCardAndAddToDrawPileEffect.class).Get(effect);

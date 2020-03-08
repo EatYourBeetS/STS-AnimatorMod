@@ -1,5 +1,8 @@
 package eatyourbeets.interfaces.subscribers;
 
-public interface OnAddedToDrawPileSubscriber {
-    void OnAddedToDrawPile();
+import eatyourbeets.actions.cardManipulation.MakeTempCard;
+
+public interface OnAddedToDrawPileSubscriber
+{
+    void OnAddedToDrawPile(boolean visualOnly, MakeTempCard.Destination destination);
 }

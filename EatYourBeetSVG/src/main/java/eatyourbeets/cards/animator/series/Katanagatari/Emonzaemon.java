@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.cardManipulation.MakeTempCard;
 import eatyourbeets.cards.animator.special.EntouJyuu;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -69,7 +70,7 @@ public class Emonzaemon extends AnimatorCard implements MartialArtist
                 {
                     EffectHistory.TryActivateLimited(cardID);
                     GameActions.Bottom.MakeCardInDrawPile(new EntouJyuu())
-                    .SetDestination(false, true)
+                    .SetDestination(MakeTempCard.Destination.Bottom)
                     .SetOptions(upgraded, false);
                 }
             }

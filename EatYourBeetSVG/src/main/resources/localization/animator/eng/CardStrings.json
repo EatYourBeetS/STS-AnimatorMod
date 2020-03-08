@@ -1276,7 +1276,7 @@
 	},
 	"animator:TohkaYatogami":
 	{
-		"DESCRIPTION": "Damage is always 10. || If there are 10 or more cards in your exhaust pile, add a copy of Inverse Tohka to your draw pile and exhaust.",
+		"DESCRIPTION": "Damage is always 10. || If there are 10 or more cards in your exhaust pile, Transform this card into Inverse Tohka.",
 		"NAME": "Tohka Yatogami"
 	},
 	"animator:Truth":

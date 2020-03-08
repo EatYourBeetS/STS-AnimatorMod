@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.animator.TransformCardAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -20,7 +21,6 @@ public class Natsumi extends AnimatorCard {
     public static final EYBCardData DATA = Register(Natsumi.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     private static Dictionary<Integer, CardGroup> cardPool;
-    private static AbstractCard newCard;
 
     public Natsumi() {
         super(DATA);
@@ -48,38 +48,6 @@ public class Natsumi extends AnimatorCard {
 
     private void TransformCard(AbstractPlayer player, AbstractCard oldCard, boolean isRandom)
     {
-        GameActions.Bottom.Purge(oldCard);
-
-        int index = player.hand.group.indexOf(oldCard);
-
-        if (index < 0)
-        {
-            return;
-        }
-
-        SetNewCardToTransform(oldCard, isRandom, name, cardData.Strings.EXTENDED_DESCRIPTION[1]);
-
-        if (newCard != null)
-        {
-            if (oldCard.upgraded)
-            {
-                newCard.upgrade();
-            }
-
-            newCard.current_x = oldCard.current_x;
-            newCard.current_y = oldCard.current_y;
-            newCard.target_x = oldCard.target_x;
-            newCard.target_y = oldCard.target_y;
-
-            player.hand.group.remove(index);
-            player.hand.group.add(index, newCard);
-            player.hand.glowCheck();
-        }
-    }
-
-    private static void SetNewCardToTransform(AbstractCard oldCard, boolean isRandom, String sourceName, String cardSelectDescription)
-    {
-        newCard = null;
         int cost = oldCard.cost;
 
         if (cardPool == null) {
@@ -88,34 +56,27 @@ public class Natsumi extends AnimatorCard {
 
         CardGroup currentGroup = cardPool.get(cost);
 
-        if (currentGroup == null)
-        {
-            return;
-        }
-
-        currentGroup.removeCard(oldCard);
-
-        if (currentGroup.isEmpty())
+        if (currentGroup == null || currentGroup.isEmpty())
         {
             return;
         }
 
         if (isRandom)
         {
-            newCard = currentGroup.getRandomCard(true);
+            GameActions.Bottom.ReplaceCard(oldCard.uuid, currentGroup.getRandomCard(true).makeCopy()).SetUpgrade(upgraded);
         }
         else
         {
-            GameActions.Bottom.SelectFromPile(sourceName, 1, currentGroup)
-                    .SetMessage(cardSelectDescription)
-                    .SetOptions(false, true)
-                    .AddCallback(cards ->
-                    {
-                        if (cards.size() > 0)
-                        {
-                            newCard = cards.get(0);
-                        }
-                    });
+            GameActions.Bottom.SelectFromPile(name, 1, currentGroup)
+            .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
+            .SetOptions(false, false)
+            .AddCallback(cards ->
+            {
+                if (cards.size() > 0)
+                {
+                    GameActions.Bottom.ReplaceCard(oldCard.uuid, cards.get(0).makeCopy()).SetUpgrade(upgraded);
+                }
+            });
         }
     }
 
@@ -127,7 +88,7 @@ public class Natsumi extends AnimatorCard {
         {
             if (c.type != AbstractCard.CardType.CURSE && c.type != AbstractCard.CardType.STATUS &&
                     c instanceof AnimatorCard && !c.tags.contains(AbstractCard.CardTags.HEALING)
-                    && c.rarity != AbstractCard.CardRarity.BASIC) {
+                    && c.rarity != AbstractCard.CardRarity.BASIC && c.rarity != AbstractCard.CardRarity.SPECIAL) {
                 AddCardToPoolByCost(c);
             }
         }

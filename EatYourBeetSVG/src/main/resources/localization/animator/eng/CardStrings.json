@@ -46,6 +46,7 @@
 		"NAME": "Alexander",
 		"UPGRADE_DESCRIPTION": "Gain [F]. || When Exhausted: ** Play this card."
 	},
+
 	"animator:Aqua":
 	{
 		"DESCRIPTION": "Heal !M! HP. <DRW>. ** Becomes useless for the ** rest of this combat.",
@@ -609,6 +610,12 @@
 		"DESCRIPTION": "Play the {Attack} with the ** highest damage from your ** draw pile. Take !M! damage ** at the end of turn. || When Exhausted: Draw ** {Berserker} from any ** pile and Retain it.",
 		"NAME": "Illya"
 	},
+	"animator:InverseOrigami":
+	{
+		"DESCRIPTION": "When this card is drawn, if you have at least 1 Energy, you lose 1 energy and Channel 1 Random Orb. || Activate your {Support Damage} and {Trigger} all your Orbs.  You lose {Support Damage} equal to the number of Orbs triggered this way.",
+		"NAME": "Inverse Origami",
+		"UPGRADE_DESCRIPTION": "When this card is drawn, if you have at least 1 Energy, you lose 1 energy and add 1 random {Orb Core} to your hand. || Activate your {Support Damage} and {Trigger} all your Orbs.  You lose {Support Damage} equal to the number of Orbs triggered this way."
+	},
 	"animator:InverseTohka":
 	{
 		"DESCRIPTION": "When this card is drawn, if you have at least 1 Energy, you lose 1 energy and deal 10 damage to all enemies. || Reload: attack an extra time.",
@@ -845,6 +852,11 @@
 		"DESCRIPTION": "Gain/Boost [F]. Can only ** deal damage if the ** enemy is attacking. || When Exhausted: ** Gain !S! Block.",
 		"NAME": "Mitsurugi"
 	},
+	"animator:MukuroHoshimiya":
+	{
+		"DESCRIPTION": "Deals damage equal to the number of cards in your draw pile. || At the start of the game or when this card enters the draw pile, put it in your deck sixth from the top. || Limited: You may shuffle a 0-cost card from your exhaust pile to your draw pile.  That card gains Spellcaster.",
+		"NAME": "Mukuro Hoshimiya"
+	},
 	"animator:MumenRider":
 	{
 		"DESCRIPTION": "When Exhausted: This ** card returns to your ** draw pile after a random ** number of turns.",
@@ -864,7 +876,7 @@
 	},
 	"animator:Natsumi":
 	{
-		"DESCRIPTION": "Transform a card in your hand into a random card with the same cost and upgrade level.  || If you have 30+ cards in your deck, you may choose what card to transform into.",
+		"DESCRIPTION": "Transform a card in your hand into a random card with the same cost and upgrade level.  || If you have 7 or more Powers in your hand, discard pile, and draw pile, you may choose what card to transform into.",
 		"EXTENDED_DESCRIPTION": ["Choose a card to transform.", "Choose a card to transform into."],
 		"NAME": "Natsumi"
 	},
@@ -926,9 +938,10 @@
 	},
 	"animator:OrigamiTobiichi":
 	{
-		"DESCRIPTION": "Channel !M! Random Orb(s). || At the end of your turn, add 1 Support Damage per Orb channeled.  Then, if you have 20 or more Support Damage, lose this power and add Inverse Origami to your draw pile.",
+		"DESCRIPTION": "At the end of your turn, add 1 {Support Damage} per Orb channeled.  Then, if you have 25 or more {Support Damage}, remove 1 stack of this power and add Inverse Origami to your draw pile.",
 		"EXTENDED_DESCRIPTION": ["At the end of your turn, add #b{0} Support Damage per Orb channeled.  Then, if you have #b{1} or more Support Damage, lose this power and add Inverse Origami to your draw pile."],
-		"NAME": "Origami Tobiichi"
+		"NAME": "Origami Tobiichi",
+		"UPGRADE_DESCRIPTION": "Channel 1 Random Orb. || At the end of your turn, add 1 {Support Damage} per Orb channeled.  Then, if you have 25 or more {Support Damage}, lose this power and add Inverse Origami to your draw pile."
 	},
 	"animator:OrikoMikuni":
 	{

@@ -5,20 +5,19 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.TransformCardAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.interfaces.markers.Spellcaster;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class Natsumi extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Natsumi.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+public class Natsumi extends AnimatorCard implements Spellcaster {
+    public static final EYBCardData DATA = Register(Natsumi.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     private static Dictionary<Integer, CardGroup> cardPool;
 
@@ -26,9 +25,13 @@ public class Natsumi extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 0);
-        SetCostUpgrade(-1);
-
         SetSynergy(Synergies.DateALive);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetInnate(true);
     }
 
     @Override
@@ -41,7 +44,10 @@ public class Natsumi extends AnimatorCard {
         {
             if (cards.size() > 0)
             {
-                TransformCard(p, cards.get(0), GameUtilities.GetCurrentDeckSize(p) < 30);
+                int powerCount = player.discardPile.getCardsOfType(CardType.POWER).size() + player.drawPile.getCardsOfType(CardType.POWER).size()
+                            + player.hand.getCardsOfType(CardType.POWER).size();
+
+                TransformCard(p, cards.get(0), powerCount >= 7);
             }
         });
     }

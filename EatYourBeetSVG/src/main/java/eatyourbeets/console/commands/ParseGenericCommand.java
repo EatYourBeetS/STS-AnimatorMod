@@ -148,11 +148,7 @@
          {
              if (tokens[1].equals("starter"))
              {
-                 for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
-                 {
-                     suggestions.add(loadout.Name.replace(" ", "_"));
-                 }
-                 for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
+                 for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
                  {
                      suggestions.add(loadout.Name.replace(" ", "_"));
                  }

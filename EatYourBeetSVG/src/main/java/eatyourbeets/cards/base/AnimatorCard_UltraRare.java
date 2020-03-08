@@ -8,6 +8,7 @@ import eatyourbeets.cards.animator.beta.MadokaMagica.Walpurgisnacht;
 import eatyourbeets.cards.animator.ultrarare.*;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
@@ -31,19 +32,15 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     {
         if (cards.isEmpty())
         {
-            cards.put(Chomusuke.DATA.ID, new Chomusuke());
-            cards.put(Giselle.DATA.ID, new Giselle());
-            cards.put(Veldora.DATA.ID, new Veldora());
-            cards.put(Rose.DATA.ID, new Rose());
-            cards.put(Truth.DATA.ID, new Truth());
-            cards.put(Azriel.DATA.ID, new Azriel());
-            cards.put(Hero.DATA.ID, new Hero());
-            cards.put(SirTouchMe.DATA.ID, new SirTouchMe());
-            cards.put(ShikizakiKiki.DATA.ID, new ShikizakiKiki());
-            cards.put(HiiragiTenri.DATA.ID, new HiiragiTenri());
-            cards.put(JeanneDArc.DATA.ID, new JeanneDArc());
-            cards.put(NivaLada.DATA.ID, new NivaLada());
-            cards.put(SeriousSaitama.DATA.ID, new SeriousSaitama());
+            for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
+            {
+                AnimatorCard_UltraRare card = loadout.GetUltraRare();
+                if (card != null)
+                {
+                    cards.put(card.cardID, card);
+                }
+            }
+
             cards.put(HolyGrail.DATA.ID, new HolyGrail());
             cards.put(Walpurgisnacht.DATA.ID, new Walpurgisnacht());
             //Cards.put(Cthulhu.ID, new Cthulhu());

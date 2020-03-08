@@ -31,7 +31,7 @@ import eatyourbeets.orbs.animator.Aether;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.PlayerStatistics;
-import eatyourbeets.powers.common.TemporaryBiasPower;
+import eatyourbeets.powers.deprecated.TemporaryBiasPower;
 import eatyourbeets.powers.unnamed.ResonancePower;
 
 import java.util.ArrayList;

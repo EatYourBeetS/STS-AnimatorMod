@@ -1,4 +1,4 @@
-package eatyourbeets.powers.animator;
+package eatyourbeets.powers.deprecated;
 
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;

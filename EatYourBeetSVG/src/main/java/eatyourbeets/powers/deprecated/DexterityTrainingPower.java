@@ -1,18 +1,18 @@
-package eatyourbeets.powers.animator;
+package eatyourbeets.powers.deprecated;
 
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
-public class SonicPower extends AnimatorPower
+public class DexterityTrainingPower extends AnimatorPower
 {
-    public static final String POWER_ID = CreateFullID(SonicPower.class.getSimpleName());
+    public static final String POWER_ID = CreateFullID(DexterityTrainingPower.class.getSimpleName());
 
-    public SonicPower(AbstractCreature owner, int amount)
+    public DexterityTrainingPower(AbstractPlayer owner, int duration)
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
+        this.amount = duration;
         this.isTurnBased = true;
 
         updateDescription();
@@ -24,8 +24,6 @@ public class SonicPower extends AnimatorPower
         super.atStartOfTurnPostDraw();
 
         GameActions.Bottom.GainDexterity(1);
-        GameActions.Bottom.CreateThrowingKnives(1);
-
         GameActions.Bottom.ReducePower(this, 1);
     }
 }

@@ -1,4 +1,4 @@
-package eatyourbeets.powers.animator;
+package eatyourbeets.powers.deprecated;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;

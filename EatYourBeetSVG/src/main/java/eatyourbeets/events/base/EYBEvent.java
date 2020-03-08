@@ -3,7 +3,9 @@ package eatyourbeets.events.base;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
+import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.animator.*;
 import eatyourbeets.resources.GR;
@@ -13,14 +15,19 @@ import java.util.ArrayList;
 
 public abstract class EYBEvent extends AbstractImageEvent
 {
-    protected final ArrayList<EYBEventPhase> phases = new ArrayList<>();
-
-    public EYBEventStrings strings;
+    public final static EYBCommonStrings COMMON_STRINGS = new EYBCommonStrings();
+    public final ArrayList<EYBEventPhase> phases = new ArrayList<>();
+    public final EYBEventStrings strings;
     public EYBEventPhase currentPhase;
 
     public static String CreateFullID(Class eventClass)
     {
         return GR.Animator.CreateID(eventClass.getSimpleName());
+    }
+
+    public static AbstractEvent GenerateSpecialEvent(AbstractDungeon dungeon, Random rng, boolean isAnimator)
+    {
+        return null;
     }
 
     public static void UpdateEvents(boolean isAnimator)
@@ -112,7 +119,7 @@ public abstract class EYBEvent extends AbstractImageEvent
             }
         }
 
-        JavaUtilities.Log(this, "Event phase not found: " + currentPhase);
+        JavaUtilities.Log(this, "Event phase not found: " + newPhase);
         OpenMap();
     }
 
@@ -135,5 +142,28 @@ public abstract class EYBEvent extends AbstractImageEvent
     public void OpenMap()
     {
         super.openMap();
+    }
+
+    public static class EYBCommonStrings extends EYBEventStrings
+    {
+        private EYBCommonStrings Load()
+        {
+            if (name == null)
+            {
+                SetStrings(GR.GetEventStrings("_CommonEvent"));
+            }
+
+            return this;
+        }
+
+        public final String Continue()
+        {
+            return Load().GetOption(0);
+        }
+
+        public final String Leave()
+        {
+            return Load().GetOption(1);
+        }
     }
 }

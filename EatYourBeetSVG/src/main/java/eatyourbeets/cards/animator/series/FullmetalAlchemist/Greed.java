@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import com.megacrit.cardcrawl.powers.MalleablePower;
@@ -14,13 +13,14 @@ import eatyourbeets.utilities.GameActions;
 public class Greed extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Greed.class).SetPower(2, CardRarity.RARE);
+    public static final int GOLD_DIVISOR = 150;
 
     public Greed()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 150);
-        SetUpgrade(0, 4, 0, 0);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 1, 1);
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }
@@ -28,18 +28,12 @@ public class Greed extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        if (block > 0)
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
-
-        GameActions.Bottom.GainPlatedArmor(magicNumber);
+        GameActions.Bottom.StackPower(new MalleablePower(p, secondaryValue));
         GameActions.Bottom.GainMetallicize(magicNumber);
-        GameActions.Bottom.StackPower(new MalleablePower(p, 0));
 
         if (EffectHistory.TryActivateLimited(cardID))
         {
-            int energy = Math.floorDiv(AbstractDungeon.player.gold, secondaryValue);
+            int energy = Math.floorDiv(player.gold, GOLD_DIVISOR);
             if (energy > 0)
             {
                 GameActions.Bottom.StackPower(new EnergizedBluePower(p, energy));

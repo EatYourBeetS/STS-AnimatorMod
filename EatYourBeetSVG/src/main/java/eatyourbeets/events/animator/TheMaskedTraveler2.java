@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 public class TheMaskedTraveler2 extends EYBEvent
 {
+    public static final EventStrings STRINGS = new EventStrings();
     public static final String ID = CreateFullID(TheMaskedTraveler2.class);
 
     private final ArrayList<AbstractRelic> startingRelicsCache = new ArrayList<>();
@@ -36,7 +37,7 @@ public class TheMaskedTraveler2 extends EYBEvent
 
     public TheMaskedTraveler2()
     {
-        super(ID, new EventStrings(), "secretPortal.jpg");
+        super(ID, STRINGS, "secretPortal.jpg");
 
         MapRoomNode node = AbstractDungeon.getCurrMapNode();
         if (node != null && node.room != null)
@@ -56,9 +57,9 @@ public class TheMaskedTraveler2 extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.Introduction());
-            SetOption(text.InquireOption()).AddCallback(this::ProgressPhase);
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText(text.Introduction());
+            AddContinueOption();
+            AddLeaveOption();
         }
     }
 
@@ -67,11 +68,11 @@ public class TheMaskedTraveler2 extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.Explanation(UnnamedRelicEquipEffect.CalculateGoldBonus() + 21));
-            SetOption(text.ObtainRelicOption(), event.relic1).AddCallback(this::ObtainRelic);
-            SetOption(text.ObtainRelicOption(), event.relic2).AddCallback(this::ObtainRelic);
-            SetOption(text.ObtainRelicOption(), event.relic3).AddCallback(this::ObtainRelic);
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText(text.Explanation(UnnamedRelicEquipEffect.CalculateGoldBonus() + 21));
+            AddOption(text.ObtainRelicOption(), event.relic1).AddCallback(this::ObtainRelic);
+            AddOption(text.ObtainRelicOption(), event.relic2).AddCallback(this::ObtainRelic);
+            AddOption(text.ObtainRelicOption(), event.relic3).AddCallback(this::ObtainRelic);
+            AddLeaveOption();
         }
 
         private void ObtainRelic(EYBEventOption option)
@@ -110,10 +111,10 @@ public class TheMaskedTraveler2 extends EYBEvent
 
             currentHPLoss = (int) Math.ceil((UnnamedRelicEquipEffect.CalculateMaxHealth() / 100.0) * hpLossPercentage);
 
-            SetText(text.Offering());
-            SetOption(text.ObtainRelicOption(), MedallionPreview).AddCallback(this::ObtainRelic);
-            SetOption(text.ReplaceCardsOption(REMOVE_CARDS, OBTAIN_CARDS)).AddCallback(this::ReplaceCards);
-            SetOption(text.RecoverRelicsOption(currentHPLoss)).AddCallback(this::RecoverRelics);
+            AddText(text.Offering());
+            AddOption(text.ObtainRelicOption(), MedallionPreview).AddCallback(this::ObtainRelic);
+            AddOption(text.ReplaceCardsOption(REMOVE_CARDS, OBTAIN_CARDS)).AddCallback(this::ReplaceCards);
+            AddOption(text.RecoverRelicsOption(currentHPLoss)).AddCallback(this::RecoverRelics);
         }
 
         private void ObtainRelic()
@@ -123,7 +124,7 @@ public class TheMaskedTraveler2 extends EYBEvent
             CardCrawlGame.metricData.addRelicObtainData(relic);
 
             ClearOptions();
-            SetOption(text.LeaveOption()).AddCallback(() -> ChangePhase(EnterUnnamedReign.class));
+            AddPhaseChangeOption(COMMON_STRINGS.Leave(), EnterUnnamedReign.class);
             BuildOptions();
         }
 
@@ -209,8 +210,8 @@ public class TheMaskedTraveler2 extends EYBEvent
         protected void OnEnter()
         {
             GR.Common.Dungeon.EnterUnnamedReign();
-            SetText("");
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText("");
+            AddLeaveOption();
             OpenMap();
         }
     }
@@ -232,29 +233,19 @@ public class TheMaskedTraveler2 extends EYBEvent
             return GetDescription(2);
         }
 
-        public String LeaveOption()
+        public String ObtainRelicOption()
         {
             return GetOption(0);
         }
 
-        public String InquireOption()
-        {
-            return GetOption(1);
-        }
-
-        public String ObtainRelicOption()
-        {
-            return GetOption(2);
-        }
-
         public String ReplaceCardsOption(int remove, int add)
         {
-            return GetOption(3, remove, add);
+            return GetOption(1, remove, add);
         }
 
         public String RecoverRelicsOption(int hpAmount)
         {
-            return GetOption(4, hpAmount);
+            return GetOption(2, hpAmount);
         }
     }
 }

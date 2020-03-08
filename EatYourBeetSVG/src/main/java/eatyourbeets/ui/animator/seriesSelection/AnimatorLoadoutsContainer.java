@@ -140,6 +140,11 @@ public class AnimatorLoadoutsContainer
             GR.Animator.Dungeon.AddSeries(loadout);
         }
 
+        if (GR.Animator.Dungeon.StartingSeries.IsBeta)
+        {
+            Settings.seedSet = true;
+        }
+
         GR.Animator.Dungeon.InitializeCardPool(false);
     }
 }

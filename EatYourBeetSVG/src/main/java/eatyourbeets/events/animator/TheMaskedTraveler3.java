@@ -14,11 +14,12 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class TheMaskedTraveler3 extends EYBEvent
 {
+    public static final EventStrings STRINGS = new EventStrings();
     public static final String ID = CreateFullID(TheMaskedTraveler3.class);
 
     public TheMaskedTraveler3()
     {
-        super(ID, new EventStrings(), "MaskedTraveler.png");
+        super(ID, STRINGS, "MaskedTraveler.png");
 
         this.noCardsInRewards = true;
 
@@ -34,27 +35,27 @@ public class TheMaskedTraveler3 extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            SetText(text.Introduction());
+            AddText(text.Introduction());
 
             if (player.hasRelic(AncientMedallion.ID))
             {
-                SetOption(text.TradeMedallionOption()).AddCallback(this::TradeMedallion);
+                AddOption(text.TradeMedallionOption()).AddCallback(this::TradeMedallion);
             }
             else
             {
-                SetOption(text.TradeMedallionLockedOption()).SetDisabled(true);
+                AddOption(text.TradeMedallionLockedOption()).SetDisabled(true);
             }
 
             if (player.gold >= PRICE)
             {
-                SetOption(text.TradeGoldOption(PRICE)).AddCallback(this::TradeGold);
+                AddOption(text.TradeGoldOption(PRICE)).AddCallback(this::TradeGold);
             }
             else
             {
-                SetOption(text.TradeGoldLockedOption()).SetDisabled(true);
+                AddOption(text.TradeGoldLockedOption()).SetDisabled(true);
             }
 
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddLeaveOption();
         }
 
         private void TradeMedallion()
@@ -103,8 +104,8 @@ public class TheMaskedTraveler3 extends EYBEvent
         @Override
         public void OnEnter()
         {
-            SetText(text.Farewell(), true);
-            SetOption(text.LeaveOption()).AddCallback(this::OpenMap);
+            AddText(text.Farewell(), true);
+            AddLeaveOption();
         }
     }
 
@@ -130,19 +131,14 @@ public class TheMaskedTraveler3 extends EYBEvent
             return GetOption(1, gold);
         }
 
-        public final String LeaveOption()
+        public final String TradeMedallionLockedOption()
         {
             return GetOption(2);
         }
 
-        public final String TradeMedallionLockedOption()
-        {
-            return GetOption(3);
-        }
-
         public final String TradeGoldLockedOption()
         {
-            return GetOption(4);
+            return GetOption(3);
         }
     }
 }

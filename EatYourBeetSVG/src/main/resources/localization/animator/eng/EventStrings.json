@@ -1,5 +1,15 @@
 
 {
+	"_CommonEvent":
+	{
+		"DESCRIPTIONS": [""],
+		"NAME": "",
+		"OPTIONS":
+		[
+			"[Continue]",
+			"[Leave]"
+		]
+	},
 	"animator:TheAbandonedCabin":
 	{
 		"DESCRIPTIONS": 
@@ -23,11 +33,9 @@
 		"NAME": "The Abandoned Cabin",
 		"OPTIONS": 
 		[
-			"[Continue]", 
 			"[Accept] #rLose #r{0} #rHP. #gObtain #gRelic",
 			"[Run]", 
-			"[Try to Run] #r50% #rchance #rto #rlose #r{0} #rHP", 
-			"[Leave]"
+			"[Try to Run] #r50% #rchance #rto #rlose #r{0} #rHP"
 		]
 	},
 	"animator:TheHaunt":
@@ -42,8 +50,7 @@
 		"OPTIONS": 
 		[
 			"[Take the Gold] #yGain #y{0} #yGold.", 
-			"[Leave] #gHeal #g{0} #gHP",
-			"[Leave]"
+			"[Leave] #gHeal #g{0} #gHP"
 		]
 	},
 	"animator:TheMaskedTraveler1":
@@ -58,8 +65,7 @@
 		"OPTIONS": 
 		[
 			"[Sell] #gRemove {0}. #gGain #g{1} #gGold.", 
-			"[Trade] #gImprove #gall Strikes #gand Defends. #rLose #r{0} #rGold.", 
-			"[Leave]", 
+			"[Trade] #gImprove #gall Strikes #gand Defends. #rLose #r{0} #rGold.",
 			"[Locked] No card to sell.", 
 			"[Locked] Not enough Gold."
 		]
@@ -77,8 +83,6 @@
 		"NAME": "The Masked Traveler (Part 2)",
 		"OPTIONS": 
 		[
-			"[Leave]", 
-			"[Inquire]", 
 			"[Accept] #gObtain #gRelic", 
 			"[Accept] #gRemove #g{0} #gcards, #gobtain #g{1} #grandom #gUpgraded #gcards.", 
 			"[Accept] #gRecover #gyour #gstarting #grelics. #rLose #r{0} #rMax #rHP."
@@ -97,7 +101,6 @@
 		[
 			"[Trade] #rLose #r1 #rAncient #rMedallion. #gObtain #gan #gUpgraded #grare #gcard.", 
 			"[Trade] #rLose #r{0} #rGold. #gObtain #gan #gUpgraded #grare #gcard.",
-			"[Leave]", 
 			"[Locked] No #yAncient #yMedallion to trade.", 
 			"[Locked] Not enough Gold."
 		]
@@ -122,10 +125,8 @@
 			"[Sell] #gGain #g{0} #gGold. #rLose #rAncient #rMedallion.", 
 			"[Buy] #gObtain #gAncient #gMedallion. #rLose #r{0} #rGold.", 
 			"[Haggle] #g50%: #gBetter #gDeal. #r50%: #rWorse #rDeal.", 
-			"[Leave]", 
 			"[Locked] No #yAncient #yMedallion to sell.", 
-			"[Locked] Not enough Gold.", 
-			"[Continue]"
+			"[Locked] Not enough Gold."
 		]
 	}
 }

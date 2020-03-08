@@ -1,8 +1,13 @@
 package eatyourbeets.actions.special;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +16,7 @@ import java.util.UUID;
 
 public class ReplaceCard extends EYBActionWithCallback<Map<AbstractCard, AbstractCard>>
 {
+    protected FieldInfo<AbstractCard> _targetCard = JavaUtilities.GetField("targetCard", UseCardAction.class);
     protected Map<AbstractCard, AbstractCard> newCards = new HashMap<>();
     protected boolean upgrade;
     protected UUID cardUUID;
@@ -41,9 +47,22 @@ public class ReplaceCard extends EYBActionWithCallback<Map<AbstractCard, Abstrac
         Replace(player.drawPile.group);
         Replace(player.hand.group);
 
-        if (newCards.containsKey(player.cardInUse))
+        for (int i = 0; i < AbstractDungeon.actionManager.actions.size(); i++)
         {
-            player.cardInUse = newCards.get(player.cardInUse);
+            AbstractGameAction action = AbstractDungeon.actionManager.actions.get(i);
+            if (action instanceof UseCardAction)
+            {
+                AbstractCard card = _targetCard.Get(action);
+                if (newCards.containsKey(card) || cardUUID.equals(card.uuid))
+                {
+                    _targetCard.Set(action, Replace(card));
+                }
+            }
+        }
+
+        if (player.cardInUse != null && (newCards.containsKey(player.cardInUse) || cardUUID.equals(player.cardInUse.uuid)))
+        {
+            player.cardInUse = Replace(player.cardInUse);
         }
 
         Complete(newCards);
@@ -53,31 +72,35 @@ public class ReplaceCard extends EYBActionWithCallback<Map<AbstractCard, Abstrac
     {
         for (int i = 0; i < cards.size(); i++)
         {
-            if (cardUUID.equals(cards.get(i).uuid))
+            AbstractCard original = cards.get(i);
+            if (cardUUID.equals(original.uuid))
             {
-                AbstractCard original = cards.get(i);
-
-                AbstractCard replacement;
-                if (newCards.containsKey(original))
-                {
-                    replacement = newCards.get(original);
-                }
-                else
-                {
-                    replacement = card.makeStatEquivalentCopy();
-                    replacement.uuid = original.uuid;
-
-                    if (upgrade)
-                    {
-                        replacement.upgrade();
-                    }
-
-                    GameUtilities.CopyVisualProperties(replacement, original);
-                    newCards.put(original, replacement);
-                }
-
-                cards.set(i, replacement);
+                cards.set(i, Replace(original));
             }
         }
+    }
+
+    protected AbstractCard Replace(AbstractCard original)
+    {
+        AbstractCard replacement;
+        if (newCards.containsKey(original))
+        {
+            replacement = newCards.get(original);
+        }
+        else
+        {
+            replacement = card.makeStatEquivalentCopy();
+            replacement.uuid = original.uuid;
+
+            if (upgrade)
+            {
+                replacement.upgrade();
+            }
+
+            GameUtilities.CopyVisualProperties(replacement, original);
+            newCards.put(original, replacement);
+        }
+
+        return replacement;
     }
 }

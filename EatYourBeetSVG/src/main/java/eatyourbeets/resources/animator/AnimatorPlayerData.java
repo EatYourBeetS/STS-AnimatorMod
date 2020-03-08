@@ -11,6 +11,7 @@ import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.utilities.JavaUtilities;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
@@ -39,17 +40,22 @@ public class AnimatorPlayerData
         }
     }
 
+    public List<AnimatorLoadout> GetEveryLoadout()
+    {
+        return GetEveryLoadout(new ArrayList<>(BaseLoadouts.size() + BetaLoadouts.size()));
+    }
+
+    public List<AnimatorLoadout> GetEveryLoadout(List<AnimatorLoadout> list)
+    {
+        list.clear();
+        list.addAll(BaseLoadouts);
+        list.addAll(BetaLoadouts);
+        return list;
+    }
+
     public AnimatorLoadout GetByName(String name)
     {
-        for (AnimatorLoadout loadout : BaseLoadouts)
-        {
-            if (loadout.Name.equals(name))
-            {
-                return loadout;
-            }
-        }
-
-        for (AnimatorLoadout loadout : BetaLoadouts)
+        for (AnimatorLoadout loadout : GetEveryLoadout())
         {
             if (loadout.Name.equals(name))
             {
@@ -64,15 +70,7 @@ public class AnimatorPlayerData
     {
         if (synergy != null)
         {
-            for (AnimatorLoadout loadout : BaseLoadouts)
-            {
-                if (synergy.equals(loadout.Synergy))
-                {
-                    return loadout;
-                }
-            }
-
-            for (AnimatorLoadout loadout : BetaLoadouts)
+            for (AnimatorLoadout loadout : GetEveryLoadout())
             {
                 if (synergy.equals(loadout.Synergy))
                 {

@@ -16,8 +16,8 @@ import java.util.UUID;
 
 public class ReplaceCard extends EYBActionWithCallback<Map<AbstractCard, AbstractCard>>
 {
-    protected FieldInfo<AbstractCard> _targetCard = JavaUtilities.GetField("targetCard", UseCardAction.class);
-    protected Map<AbstractCard, AbstractCard> newCards = new HashMap<>();
+    protected final static FieldInfo<AbstractCard> _targetCard = JavaUtilities.GetField("targetCard", UseCardAction.class);
+    protected final Map<AbstractCard, AbstractCard> newCards = new HashMap<>();
     protected boolean upgrade;
     protected UUID cardUUID;
 

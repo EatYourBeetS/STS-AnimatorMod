@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.RegrowPower;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JavaUtilities;
 
 public class StolenGoldPower extends AnimatorPower
 {
@@ -61,8 +60,6 @@ public class StolenGoldPower extends AnimatorPower
         {
             GameActions.Top.GainGold(goldGain);
         }
-
-        JavaUtilities.GetLogger(this).info(goldGain);
     }
 
     @Override

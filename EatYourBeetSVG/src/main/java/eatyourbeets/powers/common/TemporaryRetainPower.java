@@ -13,7 +13,7 @@ public class TemporaryRetainPower extends RetainCardPower implements CloneablePo
     {
         super(owner, numCards);
 
-        this.ID = AnimatorPower.CreateFullID(TemporaryJuggernautPower.class.getSimpleName());
+        this.ID = AnimatorPower.CreateFullID(TemporaryRetainPower.class.getSimpleName());
     }
 
     @Override

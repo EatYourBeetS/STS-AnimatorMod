@@ -1,4 +1,4 @@
-package eatyourbeets.powers.animator;
+package eatyourbeets.powers.deprecated;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;

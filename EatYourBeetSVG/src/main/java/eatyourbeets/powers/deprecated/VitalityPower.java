@@ -1,4 +1,4 @@
-package eatyourbeets.powers.animator;
+package eatyourbeets.powers.deprecated;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.cards.DamageInfo;

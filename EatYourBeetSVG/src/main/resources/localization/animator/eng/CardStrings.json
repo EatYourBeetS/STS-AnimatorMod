@@ -196,7 +196,7 @@
 	},
 	"animator:Curse_Dizziness":
 	{
-		"DESCRIPTION": "Unplayable. ** If this would enter ** your discard pile, ** move it to your draw pile.",
+		"DESCRIPTION": "Unplayable. ** When drawn, add ** a Dazed to your ** draw pile.",
 		"NAME": "Dizziness"
 	},
 	"animator:Curse_Nutcracker":
@@ -564,9 +564,9 @@
 	},
 	"animator:HinaKagiyama":
 	{
-		"DESCRIPTION": "Once per turn, ** whenever you draw a Curse, ** draw !S! cards. || <LIM>. ** If you end your turn with ** at least 3 Hindrances in ** your hand, channel 1 Plasma.",
+		"DESCRIPTION": "Once per turn, ** when you draw a ** Curse: draw !S! cards. || At the start of your ** turn: You may Purge a ** Hindrance on your Exhaust ** pile to obtain a Miracle.",
 		"NAME": "Hina Kagiyama",
-		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, draw #b{1} cards."]
+		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, draw #b{1} cards.", "Miracle", "Gain [E].", "Gain [E] [E].", "Purge Hindrances for Miracles."]
 	},
 	"animator:Hitei":
 	{

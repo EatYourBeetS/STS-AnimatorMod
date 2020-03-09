@@ -191,17 +191,17 @@
 	},
 	"animator:Curse_Greed":
 	{
-		"DESCRIPTION": "Unplayable. When drawn, raise the cost of a random card in your hand by 1 this turn.",
+		"DESCRIPTION": "Unplayable. ** When drawn: raise ** the cost of a random ** card in your hand ** by 1 this turn.",
 		"NAME": "Greed"
 	},
 	"animator:Curse_Dizziness":
 	{
-		"DESCRIPTION": "Unplayable. ** When drawn, add ** a Dazed to your ** draw pile.",
+		"DESCRIPTION": "Unplayable. ** When drawn: Add ** a Dazed to your ** draw pile.",
 		"NAME": "Dizziness"
 	},
 	"animator:Curse_Nutcracker":
 	{
-		"DESCRIPTION": "Unplayable. At the end of your turn, ALL enemies heal !M! HP.",
+		"DESCRIPTION": "Unplayable. ** At the end of turn: ** ALL enemies heal !M! HP.",
 		"NAME": "Nutcracker"
 	},
 	"animator:Darkness":
@@ -564,9 +564,14 @@
 	},
 	"animator:HinaKagiyama":
 	{
-		"DESCRIPTION": "Once per turn, ** when you draw a ** Curse: draw !S! cards. || At the start of your ** turn: You may Purge a ** Hindrance on your Exhaust ** pile to obtain a Miracle.",
+		"DESCRIPTION": "Once per turn, when you ** draw a Curse: draw !M! card(s). || At the start of turn: You may ** Purge a Hindrance in Exhaust ** pile to obtain a {Miracle}.",
 		"NAME": "Hina Kagiyama",
-		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, draw #b{1} cards.", "Miracle", "Gain [E].", "Gain [E] [E].", "Purge Hindrances for Miracles."]
+		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, draw #b{1} cards.", "Choose up to {0} card(s) to Purge."]
+	},
+	"animator:HinaKagiyama_Miracle":
+	{
+		"DESCRIPTION": "Gain {+[E]} [E].",
+		"NAME": "Miracle"
 	},
 	"animator:Hitei":
 	{
@@ -997,7 +1002,7 @@
 	},
 	"animator:Shion":
 	{
-		"DESCRIPTION": "Discard 1 card. Next ** turn: <DRW>. || Limited. On Synergy: ** Apply !M! Vulnerable.",
+		"DESCRIPTION": "Discard 1 card. Next ** turn: <DRW>. || <LIM>. On Synergy: ** Apply !M! Vulnerable.",
 		"NAME": "Shion"
 	},
 	"animator:Shiro":

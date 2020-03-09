@@ -52,7 +52,7 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final Color SELECTED_CARD_COLOR = new Color(0.5F, 0.9F, 0.9F, 1.0F);
     protected static final float SHADOW_OFFSET_X = 18.0F * Settings.scale;
     protected static final float SHADOW_OFFSET_Y = 14.0F * Settings.scale;
-    protected static AbstractPlayer player = null;
+    public static AbstractPlayer player = null;
 
     public float hoverDuration;
     public boolean renderTip;

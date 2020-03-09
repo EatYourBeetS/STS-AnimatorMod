@@ -15,12 +15,12 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCardBuilder;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
-import org.apache.logging.log4j.util.TriConsumer;
 
 import java.util.ArrayList;
 
@@ -282,7 +282,7 @@ public class SoraAction extends EYBAction
             return null;
         }
 
-        protected AnimatorCardBuilder GenerateInternal(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
+        protected AnimatorCardBuilder GenerateInternal(ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
             AnimatorCardBuilder builder = new AnimatorCardBuilder(Sora.DATA.ID + "Alt");
 

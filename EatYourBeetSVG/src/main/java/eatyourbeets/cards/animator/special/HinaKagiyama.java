@@ -5,18 +5,22 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.animator.HinaPower;
+import eatyourbeets.powers.animator.HinaKagiyamaPower;
 import eatyourbeets.utilities.GameActions;
 
 public class HinaKagiyama extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HinaKagiyama.class).SetPower(1, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(HinaKagiyama.class).SetPower(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    static
+    {
+        DATA.AddPreview(new HinaKagiyama_Miracle(), false);
+    }
 
     public HinaKagiyama()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, HinaPower.CARD_DRAW_AMOUNT);
+        Initialize(0, 0, HinaKagiyamaPower.CARD_DRAW_AMOUNT);
 
         SetSynergy(Synergies.TouhouProject);
     }
@@ -24,9 +28,9 @@ public class HinaKagiyama extends AnimatorCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.StackPower(new HinaPower(p, magicNumber));
-
+        GameActions.Bottom.StackPower(new HinaKagiyamaPower(p, 1));
     }
+
     @Override
     protected void OnUpgrade()
     {

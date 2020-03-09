@@ -1,6 +1,5 @@
 package eatyourbeets.relics.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,11 +7,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.JavaUtilities;
 import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
@@ -72,14 +71,7 @@ public class RacePiece extends AnimatorRelic
     private void OpenTransformSelection()
     {
         AbstractPlayer p = AbstractDungeon.player;
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        for (AbstractCard c : p.masterDeck.getPurgeableCards().group)
-        {
-            if (!SoulboundField.soulbound.get(c))
-            {
-                group.addToTop(c);
-            }
-        }
+        CardGroup group = p.masterDeck.getPurgeableCards();
 
         if (group.size() > 0)
         {

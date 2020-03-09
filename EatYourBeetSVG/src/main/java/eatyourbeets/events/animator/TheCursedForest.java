@@ -1,6 +1,5 @@
 package eatyourbeets.events.animator;
 
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,6 +11,7 @@ import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class TheCursedForest extends EYBEvent
@@ -34,17 +34,19 @@ public class TheCursedForest extends EYBEvent
             }
         }
 
-        if (curseCount > 2 && rng.random(0, 100) < Math.pow(curseCount + 2, 2))
+        switch (curseCount)
         {
-            return new TheCursedForest();
+            case  0: return null;
+            case  1: return rng.randomBoolean(0.10f) ? new TheCursedForest() : null;
+            case  2: return rng.randomBoolean(0.25f) ? new TheCursedForest() : null;
+            case  3: return rng.randomBoolean(0.33f) ? new TheCursedForest() : null;
+            default: return rng.randomBoolean(0.60f) ? new TheCursedForest() : null;
         }
-
-        return null;
     }
 
     public TheCursedForest()
     {
-        super(ID, STRINGS, "Merchant.png");
+        super(ID, STRINGS, "CursedForest.png");
 
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Offer());
@@ -64,6 +66,7 @@ public class TheCursedForest extends EYBEvent
 
     private static class Offer extends EYBEventPhase<TheCursedForest, EventStrings>
     {
+        private final static int CURSES = 2;
         private final AbstractCard card = new HinaKagiyama();
         private final AbstractCard curse = new Curse_Dizziness();
         private String OfferLine;
@@ -78,7 +81,7 @@ public class TheCursedForest extends EYBEvent
 
             AddText(OfferLine);
             AddOption(text.EmbraceOption(), card).AddCallback(this::Embrace);
-            AddOption(text.PurifyOption()).AddCallback(this::Purify);
+            AddOption(text.PurifyOption(CURSES)).AddCallback(this::Purify);
         }
 
         private void Embrace()
@@ -93,7 +96,7 @@ public class TheCursedForest extends EYBEvent
             RandomizedList<AbstractCard> toRemove = new RandomizedList<>();
             for (AbstractCard card : player.masterDeck.group)
             {
-                if (card.type == AbstractCard.CardType.CURSE && !SoulboundField.soulbound.get(card))
+                if (card.type == AbstractCard.CardType.CURSE && GameUtilities.CanRemoveFromDeck(card))
                 {
                     toRemove.Add(card);
                 }
@@ -145,9 +148,9 @@ public class TheCursedForest extends EYBEvent
             return GetOption(0);
         }
 
-        public String PurifyOption()
+        public String PurifyOption(int curses)
         {
-            return GetOption(1);
+            return GetOption(1, curses);
         }
     }
 }

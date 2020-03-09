@@ -1,11 +1,8 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.actions.defect.RemoveAllOrbsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.curses.AscendersBane;
-import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,6 +12,7 @@ import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -81,10 +79,7 @@ public class Truth extends AnimatorCard_UltraRare
         CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
-            if (!c.cardID.equals(wound.cardID) && !c.cardID.equals(this.cardID)
-                    && !c.cardID.equals(Necronomicurse.ID)
-                    && !c.cardID.equals(AscendersBane.ID)
-                    && !SoulboundField.soulbound.get(c))
+            if (!c.cardID.equals(wound.cardID) && !c.cardID.equals(this.cardID) && GameUtilities.CanRemoveFromDeck(c))
             {
                 temp.group.add(c);
             }

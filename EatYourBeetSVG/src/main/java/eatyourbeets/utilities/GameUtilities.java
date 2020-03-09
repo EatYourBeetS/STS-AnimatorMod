@@ -1,6 +1,7 @@
 package eatyourbeets.utilities;
 
 import com.badlogic.gdx.math.Vector2;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
@@ -72,6 +73,11 @@ public class GameUtilities
         }
 
         GameActions.Top.ApplyPower(source, target, new StrengthPower(target, amount), amount);
+    }
+
+    public static boolean CanRemoveFromDeck(AbstractCard card)
+    {
+        return (card.rarity != AbstractCard.CardRarity.SPECIAL) && !SoulboundField.soulbound.get(card);
     }
 
     public static void ClearPostCombatActions()

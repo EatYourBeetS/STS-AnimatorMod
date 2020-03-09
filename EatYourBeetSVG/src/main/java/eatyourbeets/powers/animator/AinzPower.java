@@ -11,13 +11,13 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.WeightedList;
-import org.apache.logging.log4j.util.TriConsumer;
 
 import java.util.ArrayList;
 
@@ -133,7 +133,7 @@ public class AinzPower extends AnimatorPower
             }
         }
 
-        public AnimatorCardBuilder Generate(TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
+        public AnimatorCardBuilder Generate(ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
             AnimatorCardBuilder builder = new AnimatorCardBuilder(Ainz.DATA.ID + "Alt");
 

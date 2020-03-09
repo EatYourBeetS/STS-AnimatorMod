@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.powers.EYBFlashPowerEffect;
 import eatyourbeets.effects.powers.EYBGainPowerEffect;
@@ -37,6 +39,7 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
 
     protected final ArrayList<AbstractGameEffect> effects;
     protected final PowerStrings powerStrings;
+    protected final AbstractPlayer player;
 
     public BasePower(AbstractCreature owner, EYBCardData cardData)
     {
@@ -47,6 +50,7 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
         this.powerIcon = cardData.GetCardIcon();
         this.img = null;
 
+        this.player = EYBCard.player; // can't use AbstractDungeon.player because this may be called at startup
         this.powerStrings = new PowerStrings();
         this.powerStrings.NAME = cardData.Strings.NAME;
         this.powerStrings.DESCRIPTIONS = cardData.Strings.EXTENDED_DESCRIPTION;
@@ -65,6 +69,7 @@ public abstract class BasePower extends AbstractPower implements CloneablePowerI
             this.img = GR.GetTexture(imagePath);
         }
 
+        this.player = EYBCard.player;
         this.powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
         this.name = powerStrings.NAME;
     }

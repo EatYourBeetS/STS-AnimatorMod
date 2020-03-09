@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PlayerStatistics;
 import eatyourbeets.utilities.GameActions;
-import org.apache.logging.log4j.util.TriConsumer;
 
 public class FielNirvalen extends AnimatorCard
 {
@@ -59,7 +59,7 @@ public class FielNirvalen extends AnimatorCard
         });
     }
 
-    private AnimatorCard_Dynamic CreateChoice(String text, TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)
+    private AnimatorCard_Dynamic CreateChoice(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)
     {
         return new AnimatorCardBuilder(cardID)
         .SetImage(assetUrl)

@@ -128,5 +128,22 @@
 			"[Locked] No #yAncient #yMedallion to sell.", 
 			"[Locked] Not enough Gold."
 		]
+	},
+	"animator:TheCursedForest":
+	{
+		"DESCRIPTIONS":
+		[
+			"Numerous trees flood your vision as you're quickly engulfed by a thick forest. NL The air is ~heavy~ ~and~ ~humid,~ filled with spores from fungi and the leafs all seem to be wet from recent rain. NL NL Dancing through the trees, a ghostly figure spins in the air, fading in and out of existence while approaching you.",
+
+			"\"This is no place for a mortal, are you perhaps lost?\" NL NL The green haired apparition says in a calm yet surprised tone. NL \"Oh! You've got your own set of afflictions, if you are going to persist they'll slow you down. It is my duty to contain those, but I can also show you how to harvest power from them.\" NL NL She seems to mean no harm, what will you do?",
+
+			"Blinding light envelops you completely robbing you of your vision, when you finally are able to see again, you're by yourself again. NL NL The trees and mushrooms stand mockingly still as you're left to wonder what happened, but somehow both the air and yourself feel lighter."
+		],
+		"NAME": "The Cursed Forest",
+		"OPTIONS":
+		[
+			"[Embrace] #gObtain #gHina #gKagiyama #rAnd #rA #rCurse.",
+			"[Purify] #gRemove #g{0} #gRandom #gCurses #gFrom #gYour #gDeck."
+		]
 	}
 }

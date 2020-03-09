@@ -4,9 +4,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import org.apache.logging.log4j.util.TriConsumer;
-
-import java.util.function.Consumer;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT3;
 
 public class AnimatorCard_Dynamic extends AnimatorCard
 {
@@ -14,8 +13,9 @@ public class AnimatorCard_Dynamic extends AnimatorCard
 
     public boolean canSelect;
     public int attributeMultiplier;
-    public final Consumer<AnimatorCard> onUpgrade;
-    public final TriConsumer<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
+    public final ActionT1<AnimatorCard> constructor;
+    public final ActionT1<AnimatorCard> onUpgrade;
+    public final ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
 
     public AnimatorCard_Dynamic(AnimatorCardBuilder builder)
     {
@@ -35,9 +35,15 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         this.builder = builder;
         this.onUse = builder.onUse;
         this.onUpgrade = builder.onUpgrade;
+        this.constructor = builder.constructor;
         this.isMultiDamage = builder.isMultiDamage;
         this.tags.addAll(builder.tags);
         this.cropPortrait = false;
+
+        if (constructor != null)
+        {
+            constructor.Invoke(this);
+        }
 
         SetSynergy(builder.synergy, builder.isShapeshifter);
     }
@@ -71,7 +77,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     {
         if (onUpgrade != null)
         {
-            onUpgrade.accept(this);
+            onUpgrade.Invoke(this);
         }
     }
 
@@ -80,7 +86,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     {
         if (onUse != null)
         {
-            onUse.accept(this, p, m);
+            onUse.Invoke(this, p, m);
         }
     }
 

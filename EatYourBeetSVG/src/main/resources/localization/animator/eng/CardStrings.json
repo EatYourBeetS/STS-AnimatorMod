@@ -714,6 +714,17 @@
 		"DESCRIPTION": "Trigger your first Orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
 		"NAME": "Magilou"
 	},
+	"animator:MatouShinji":
+	{
+		"DESCRIPTION": "Gain{+ [I]} [I]. Lose an orb slot to ** obtain {Command Spell}. || <LIM>: ** If you have no Orb Slots, ** gain 3 Orb Slots instead.",
+		"NAME": "Matou Shinji"
+	},
+	"animator:MatouShinji_CommandSpell":
+	{
+		"DESCRIPTION": "The next non-power ** Spellcaster you play is ** played twice.",
+		"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you play a non-power #ySpellcaster, it's played twice."],
+		"NAME": "Command Spell"
+	},
 	"animator:Bienfu":
 	{
 		"DESCRIPTION": "Unplayable. || When Drawn: Boost [I]. || When Discarded: Return ** this to your draw pile.",

@@ -6,6 +6,7 @@
  import com.megacrit.cardcrawl.cards.CardGroup;
  import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
  import com.megacrit.cardcrawl.helpers.CardLibrary;
+ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
  import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
  import eatyourbeets.cards.base.AnimatorCard;
  import eatyourbeets.cards.base.EYBCard;
@@ -103,6 +104,12 @@
                  if (tokens[1].equals("set-zoom"))
                  {
                      GR.Animator.Config.SetCropCardImages(tokens.length > 2 && tokens[2].equals("true"), true);
+                     return;
+                 }
+
+                 if (tokens[1].equals("show-upgrades"))
+                 {
+                     SingleCardViewPopup.isViewingUpgrade ^= true;
                      return;
                  }
 

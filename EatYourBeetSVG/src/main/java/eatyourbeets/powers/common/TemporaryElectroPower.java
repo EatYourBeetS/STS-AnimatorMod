@@ -4,7 +4,6 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ElectroPower;
-import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class TemporaryElectroPower extends ElectroPower implements CloneablePowerInterface
@@ -17,7 +16,7 @@ public class TemporaryElectroPower extends ElectroPower implements CloneablePowe
 
         permanent = false;
 
-        this.ID = AnimatorPower.CreateFullID(TemporaryElectroPower.class.getSimpleName());
+        this.ID = ElectroPower.POWER_ID;
     }
 
     @Override
